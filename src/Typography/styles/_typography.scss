@@ -1,0 +1,73 @@
+@import '~blu-tokens/dist/tokens.scss';
+
+@mixin headings {
+  font-family: $font-family-highlight;
+  font-weight: $font-weight-extrabold;
+  line-height: $line-height-medium;
+  color: $color-interface-dark-pure;
+}
+
+@mixin subtitles {
+  font-family: $font-family-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-medium;
+  color: $color-interface-dark-down;
+}
+
+@mixin texts {
+  font-family: $font-family-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-comfy;
+  color: $color-interface-dark-down;
+}
+
+.typography {
+  margin: 0;
+
+  &__heading1 {
+    @include headings;
+    font-size: $font-size-lg;
+  }
+
+  &__heading2 {
+    @include headings;
+    font-size: $font-size-md;
+  }
+
+  &__heading3 {
+    @include headings;
+    font-size: $font-size-sm;
+  }
+
+  &__heading4 {
+    @include headings;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+  }
+
+  &__subtitle1 {
+    @include subtitles;
+    font-size: $font-size-md;
+  }
+
+  &__subtitle2 {
+    @include subtitles;
+    font-size: $font-size-sm;
+  }
+
+  &__paragraph {
+    @include texts;
+    font-size: $font-size-xs;
+  }
+
+  &__description {
+    @include texts;
+    font-size: $font-size-xxs;
+  }
+
+  &__caption {
+    @include texts;
+    font-size: $font-size-xxxs;
+  }
+}

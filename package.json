@@ -1,0 +1,80 @@
+{
+  "name": "@useblu/ocean-ui",
+  "version": "0.1.0-alpha",
+  "description": "A design-system project",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "deploy-storybook": "storybook-to-ghpages",
+    "build": "rollup -c",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "format": "prettier --write src/**/*.{js,tsx,scss}",
+    "format:watch": "onchange 'src/**/*.{js,tsx,scss}' -- prettier --write {{changed}}",
+    "format:check": "prettier --list-different src/**/*.{js,tsx,scss}",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet --fix"
+  },
+  "repository": "git@github.com:Pagnet/ocean-ds.git",
+  "author": "Blu Pagamentos <devs@useblu.com.br>",
+  "license": "GPL-3.0",
+  "private": false,
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "@storybook/react": "^5.3.19",
+    "@storybook/storybook-deployer": "^2.8.6",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.3.0",
+    "@types/classnames": "2.2.10",
+    "@types/jest": "^26.0.0",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react-app": "^9.1.2",
+    "eslint": "^7.3.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.14.0",
+    "eslint-plugin-jest-dom": "^3.0.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-testing-library": "^3.3.1",
+    "husky": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "react": "^16.13.1",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-dom": "^16.13.1",
+    "rollup": "^2.17.1",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "sass-loader": "^8.0.2",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "dependencies": {
+    "blu-tokens": "^0.0.4",
+    "classnames": "2.2.6"
+  }
+}
