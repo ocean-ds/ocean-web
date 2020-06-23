@@ -25,6 +25,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
+    "@storybook/addon-viewport": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "@storybook/storybook-deployer": "^2.8.6",
     "@testing-library/jest-dom": "^5.10.1",
@@ -52,6 +53,7 @@
     "react-dom": "^16.13.1",
     "rollup": "^2.17.1",
     "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-postcss": "^3.1.2",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "sass-loader": "^8.0.2",

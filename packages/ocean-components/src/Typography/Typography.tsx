@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './styles/_typography.scss';
 
-const defaultTypesMapping: Record<string, string> = {
+export const defaultTypesMapping: Record<string, string> = {
   heading1: 'h1',
   heading2: 'h2',
   heading3: 'h3',
@@ -14,16 +14,18 @@ const defaultTypesMapping: Record<string, string> = {
   description: 'p',
 };
 
+export type Variant =
+  | 'heading1'
+  | 'heading2'
+  | 'heading3'
+  | 'heading4'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'paragraph'
+  | 'description';
+
 export type TypographyProps = {
-  variant:
-    | 'heading1'
-    | 'heading2'
-    | 'heading3'
-    | 'heading4'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'paragraph'
-    | 'description';
+  variant: Variant;
   children: React.ReactNode;
   className?: string;
 } & React.ComponentPropsWithoutRef<'span'>;

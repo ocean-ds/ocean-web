@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import sass from 'rollup-plugin-sass';
+import postcss from 'rollup-plugin-postcss';
 
 import pkg from './package.json';
 
@@ -21,12 +22,14 @@ export default {
     },
   ],
   plugins: [
+    postcss({
+      extract: 'ocean-ui.min.css',
+      minimize: true,
+    }),
     peerDepsExternal(),
     resolve(),
     commonjs(),
     typescript(),
-    sass({
-      insert: true,
-    }),
+    sass(),
   ],
 };
