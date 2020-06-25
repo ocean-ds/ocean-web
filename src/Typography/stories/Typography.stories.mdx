@@ -1,7 +1,7 @@
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import Typography from '../Typography';
 
-<Meta title="Typography/API" component={Typography} />
+<Meta title="Components|Typography" component={Typography} />
 
 # Typography API
 
@@ -15,6 +15,17 @@ import Typography from '@useblu/ocean-ui/Typography';
 import { Typography } from '@useblu/ocean-ui';
 ```
 
+## Usage
+
+<Preview withSource="open" withToolbar>
+  <Story name="Usage">
+    <Typography variant="paragraph">
+      Soluções de negócios inovadoras e que beneficiam toda a cadeia, do Varejo
+      à Indústria.
+    </Typography>
+  </Story>
+</Preview>
+
 ## Props
 
 <Props component={Typography} />
@@ -24,3 +35,18 @@ The ref is forwarded to the root element.
 Any other props supplied will be provided to the root element (native element).
 
 ## CSS
+
+| Rule name   | Global class                   | Description                                                  |
+| ----------- | ------------------------------ | ------------------------------------------------------------ |
+| Root        | .ods-typography                | Styles applied to the root element.                          |
+| heading1    | .ods-typography\_\_heading1    | Styles applied to the root element if variant="heading1".    |
+| heading2    | .ods-typography\_\_heading2    | Styles applied to the root element if variant="heading2".    |
+| heading3    | .ods-typography\_\_heading3    | Styles applied to the root element if variant="heading3".    |
+| heading4    | .ods-typography\_\_heading4    | Styles applied to the root element if variant="heading4".    |
+| subtitle1   | .ods-typography\_\_subtitle1   | Styles applied to the root element if variant="subtitle1".   |
+| subtitle2   | .ods-typography\_\_subtitle2   | Styles applied to the root element if variant="subtitle2".   |
+| paragraph   | .ods-typography\_\_paragraph   | Styles applied to the root element if variant="paragraph".   |
+| description | .ods-typography\_\_description | Styles applied to the root element if variant="description". |
+| caption     | .ods-typography\_\_caption     | Styles applied to the root element if variant="caption".     |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds/blob/master/src/Typography/Typography.tsx) for more detail.
