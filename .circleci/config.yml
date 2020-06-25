@@ -8,9 +8,13 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install javascript dependencies (using Yarn)
-          command: yarn install
+          command: yarn install --immutable
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
