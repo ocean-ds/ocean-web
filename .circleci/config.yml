@@ -26,17 +26,17 @@ jobs:
   tests:
     executor: node/default
     steps:
-        - checkout
-        - restore_cache:
-            name: Restore Yarn Package Cache
-            keys:
-                - yarn-packages-{{ checksum "yarn.lock" }}
-        - run:
-            name: Install javascript dependencies (using Yarn)
-            command: yarn install --immutable
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-            name: Run ocean ds tests
-            command: yarn test
+          name: Install javascript dependencies (using Yarn)
+          command: yarn install --immutable
+      - run:
+          name: Run ocean ds tests
+          command: yarn test
 
 workflows:
   version: 2
