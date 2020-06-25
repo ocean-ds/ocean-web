@@ -7,7 +7,11 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - run: npm install
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Install javascript dependencies (using Yarn)
+          command: yarn install
 workflows:
     build-deploy:
       jobs:
