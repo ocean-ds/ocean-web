@@ -29,5 +29,5 @@ workflows:
     jobs:
       - build-setup
       - tests:
-        requires:
-          - build-setup
+          requires:
+            - build-setup
