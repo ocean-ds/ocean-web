@@ -12,6 +12,9 @@ jobs:
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn install
+      - run:
+          name: Build ocean ds
+          command: yarn build
 workflows:
     build-deploy:
       jobs:
