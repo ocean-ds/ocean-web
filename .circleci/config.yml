@@ -23,6 +23,7 @@ jobs:
       - run:
           name: Build ocean ds
           command: yarn build
+
   tests:
     executor: node/default
     steps:
@@ -38,6 +39,21 @@ jobs:
           name: Run ocean ds tests
           command: yarn test
 
+  deploy-docs:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install javascript dependencies (using Yarn)
+          command: yarn install --immutable
+      - run:
+          name: Deploy ocean ds docs
+          command: yarn deploy-storybook
+
 workflows:
   version: 2
 
@@ -45,5 +61,8 @@ workflows:
     jobs:
       - build-setup
       - tests:
+          requires:
+            - build-setup
+      - deploy-docs:
           requires:
             - build-setup
