@@ -25,4 +25,6 @@ workflows:
     build-deploy:
       jobs:
         - build-setup
-        - tests
+        - tests:
+          requires:
+            - build-setup
