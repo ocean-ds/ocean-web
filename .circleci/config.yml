@@ -21,10 +21,13 @@ jobs:
       - run:
           name: Run ocean ds tests
           command: yarn test
+
 workflows:
-    build-deploy:
-      jobs:
-        - build-setup
-        - tests:
-          requires:
-            - build-setup
+  version: 2
+
+  build-deploy:
+    jobs:
+      - build-setup
+      - tests:
+        requires:
+          - build-setup
