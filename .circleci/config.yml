@@ -14,13 +14,13 @@ jobs:
       - run:
           name: Build ocean ds
           command: yarn build
-    tests:
-      executor: node/default
-      steps:
-        - checkout
-        - run:
-            name: Run ocean ds tests
-            command: yarn test
+  tests:
+    executor: node/default
+    steps:
+      - checkout
+      - run:
+          name: Run ocean ds tests
+          command: yarn test
 workflows:
     build-deploy:
       jobs:
