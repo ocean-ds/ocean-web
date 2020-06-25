@@ -3,8 +3,7 @@ orbs:
   node: circleci/node@3.0.0
 jobs:
   build-setup:
-    executor:
-      name: node/default
+    executor: node/default
     steps:
       - checkout
       - node/install-packages:
@@ -15,7 +14,14 @@ jobs:
       - run:
           name: Build ocean ds
           command: yarn build
+    tests:
+      executor: node/default
+      - checkout
+      - run:
+          name: Run ocean ds tests
+          command: yarn test
 workflows:
     build-deploy:
       jobs:
         - build-setup
+        - tests
