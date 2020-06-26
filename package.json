@@ -24,7 +24,7 @@
   "private": false,
   "devDependencies": {
     "@rollup/plugin-commonjs": "^13.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.1",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "@storybook/addon-a11y": "^6.0.0-beta.36",
     "@storybook/addon-controls": "^6.0.0-beta.36",
     "@storybook/addon-docs": "^6.0.0-beta.35",
