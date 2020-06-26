@@ -34,7 +34,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/yarn-packages-v1
+          at: ~/
       - run:
           name: Run ocean ds tests
           command: yarn test
