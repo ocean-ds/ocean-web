@@ -51,11 +51,8 @@ jobs:
           name: Install javascript dependencies (using Yarn)
           command: yarn install --immutable
       - run:
-          name: Install Storybook deployer
-          command: yarn add "@storybook/storybook-deployer" -g
-      - run:
           name: Deploy ocean ds docs
-          command: storybook-to-ghpages
+          command: yarn deploy-storybook
 
 workflows:
   version: 2
