@@ -9,17 +9,18 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - restore_cache:
-          name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn install --immutable
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Build ocean ds
           command: yarn build
@@ -29,12 +30,11 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install javascript dependencies (using Yarn)
-          command: yarn install --immutable
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
       - run:
           name: Run ocean ds tests
           command: yarn test
@@ -74,6 +74,27 @@ jobs:
       - run:
           name: Deploy ocean ds docs
           command: yarn deploy-storybook
+
+  deploy-web:
+    executor: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run:
+                name: Authenticate with registry
+                command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+            - run:
+                name: Build Ocean
+                command: yarn build
+            - run:
+                name: Bump package version by tag
+                command: |
+                  export VERSION_TAG=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
+                  yarn version --new-version $VERSION_TAG --no-git-tag-version --no-commit-hooks
+            - run:
+                name: Publish package
+                command: yarn publish --access public
 
 workflows:
   version: 2
