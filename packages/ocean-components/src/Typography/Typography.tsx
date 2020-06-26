@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './styles/_typography.scss';
+import './styles/typography.scss';
 
 export const defaultTypesMapping: Record<string, string> = {
   heading1: 'h1',
@@ -25,8 +25,17 @@ export type Variant =
   | 'description';
 
 export type TypographyProps = {
+  /**
+   * Applies the theme typography styles.
+   */
   variant: Variant;
+  /**
+   * The content of the component.
+   */
   children: React.ReactNode;
+  /**
+   * The CSS class name of the wrapper element.
+   */
   className?: string;
 } & React.ComponentPropsWithoutRef<'span'>;
 
@@ -37,7 +46,10 @@ const Typography = React.forwardRef<unknown, TypographyProps>(
     return (
       <Component
         ref={ref}
-        className={classNames(`typography typography__${variant}`, className)}
+        className={classNames(
+          `ods-typography ods-typography__${variant}`,
+          className
+        )}
         {...rest}
       >
         {children}
