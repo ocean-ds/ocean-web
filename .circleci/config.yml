@@ -50,6 +50,9 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
       - run:
+          name: Install javascript dependencies (using Yarn)
+          command: yarn install --immutable
+      - run:
           name: Run tests
           command: yarn test --coverage
       - run:
@@ -82,5 +85,8 @@ workflows:
           requires:
             - build-setup
       - deploy-docs:
+          requires:
+            - build-setup
+      - upload-coverage:
           requires:
             - build-setup
