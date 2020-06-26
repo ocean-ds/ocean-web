@@ -16,7 +16,7 @@ test('render element', () => {
 
   expect(getByText('Hello')).toMatchInlineSnapshot(`
     <h1
-      class="typography typography__heading1"
+      class="ods-typography ods-typography__heading1"
       data-cy="typo-heading1"
       style="width: 200px;"
     >
@@ -32,7 +32,9 @@ test.each(Object.keys(defaultTypesMapping))(
       <Typography variant={variant as Variant}>Hey</Typography>
     );
 
-    expect(getByText('Hey')).toHaveClass(`typography typography__${variant}`);
+    expect(getByText('Hey')).toHaveClass(
+      `ods-typography ods-typography__${variant}`
+    );
   }
 );
 
@@ -49,6 +51,6 @@ test('render another class', () => {
   );
 
   expect(getByText('My Text')).toHaveClass(
-    `typography typography__paragraph another-css-class__1 another-css-class__2`
+    `ods-typography ods-typography__paragraph another-css-class__1 another-css-class__2`
   );
 });
