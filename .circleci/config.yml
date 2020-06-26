@@ -16,7 +16,7 @@ jobs:
             - yarn-packages-v1-
       - run:
           name: Install javascript dependencies (using Yarn)
-          command: yarn install --immutable
+          command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
           paths:
             - ~/.cache/yarn
