@@ -52,7 +52,7 @@ jobs:
           command: yarn install --immutable
       - run:
           name: Deploy ocean ds docs
-          command: yarn deploy-storybook
+          command: storybook-to-ghpages
 
 workflows:
   version: 2
