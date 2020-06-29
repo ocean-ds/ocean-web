@@ -8,7 +8,6 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
-          include-branch-in-cache-key: false
       - run:
           name: Build ocean ds
           command: yarn build
@@ -19,7 +18,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - node-deps-v1-${echo CIRCLE_BRANCH}-{{ checksum "yarn.lock" }}
+            - node-deps-v1-${echo $CIRCLE_BRANCH}-{{ checksum "yarn.lock" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
