@@ -87,7 +87,10 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
       - codestyle:
           requires:
             - build
@@ -111,3 +114,8 @@ workflows:
       - deploy-docs:
           requires:
             - deploy-package
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
