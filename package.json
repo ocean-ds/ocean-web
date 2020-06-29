@@ -8,15 +8,18 @@
     "dist"
   ],
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "deploy-storybook": "storybook-to-ghpages",
-    "build": "rollup -c",
+    "build": "npm run lint && npm run build:lib && npm run build:storybook",
+    "build:lib": "rollup -c",
+    "build:storybook": "build-storybook",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
+    "storybook": "start-storybook -p 6006",
+    "deploy:storybook": "storybook-to-ghpages",
     "format": "prettier --write src/**/*.{js,tsx,scss}",
     "format:watch": "onchange 'src/**/*.{js,tsx,scss}' -- prettier --write {{changed}}",
     "format:check": "prettier --list-different src/**/*.{js,tsx,scss}",
-    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet --fix"
+    "lint": "eslint '.' --quiet"
   },
   "repository": "git@github.com:Pagnet/ocean-ds.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",

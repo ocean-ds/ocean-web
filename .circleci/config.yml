@@ -2,28 +2,17 @@ version: 2.1
 orbs:
   node: circleci/node@3.0.0
 jobs:
-  build-setup:
+  build:
     executor: node/default
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          name: Build ocean ds
+          name: Build library
           command: yarn build
 
   tests:
-    executor: node/default
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Run ocean ds tests
-          command: yarn test
-
-  upload-coverage:
     executor: node/default
     steps:
       - checkout
@@ -38,27 +27,13 @@ jobs:
             - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
       - run:
           name: Run tests
-          command: yarn test --coverage
+          command: yarn test:coverage
       - run:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -t lcov
           when: always
 
-  deploy-docs:
-    executor: node/default
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install javascript dependencies (using Yarn)
-          command: yarn install --immutable
-      - run:
-          name: Deploy ocean ds docs
-          command: yarn deploy-storybook
-
-  deploy-web:
+  deploy-package:
     executor: node/default
     steps:
       - checkout
@@ -82,18 +57,36 @@ jobs:
                 name: Publish package
                 command: yarn publish --access public
 
+  deploy-docs:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install javascript dependencies (using Yarn)
+          command: yarn install --immutable
+      - run:
+          name: Deploy ocean ds docs
+          command: yarn deploy:storybook
+
 workflows:
   version: 2
-
   build-deploy:
     jobs:
-      - build-setup
+      - build
       - tests:
           requires:
-            - build-setup
+            - build
+      - deploy-package:
+          requires:
+            - tests
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - deploy-docs:
           requires:
-            - build-setup
-      - upload-coverage:
-          requires:
-            - build-setup
+            - deploy-package
