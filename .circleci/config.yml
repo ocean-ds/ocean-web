@@ -51,7 +51,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-v1-${CIRCLE_BRANCH}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-$CIRCLE_BRANCH-{{ checksum "yarn.lock" }}
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn install --immutable
