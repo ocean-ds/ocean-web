@@ -37,25 +37,23 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - restore_cache:
-                keys:
-                  - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
-            - run:
-                name: Authenticate with registry
-                command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
-            - run:
-                name: Build Ocean
-                command: yarn build
-            - run:
-                name: Bump package version by tag
-                command: |
-                  export VERSION_TAG=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
-                  yarn version --new-version $VERSION_TAG --no-git-tag-version --no-commit-hooks
-            - run:
-                name: Publish package
-                command: yarn publish --access public
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+      - run:
+          name: Build Ocean
+          command: yarn build:lib
+      - run:
+          name: Bump package version by tag
+          command: |
+            export VERSION_TAG=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
+            yarn version --new-version $VERSION_TAG --no-git-tag-version --no-commit-hooks
+      - run:
+          name: Publish package
+          command: yarn publish --access public
 
   deploy-docs:
     executor: node/default
