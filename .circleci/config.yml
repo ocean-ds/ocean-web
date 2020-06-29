@@ -47,7 +47,7 @@ jobs:
           command: ./cc-test-reporter after-build -t lcov
           when: always
 
-  deploy-package:
+  deploy-pkg:
     executor: node/default
     steps:
       - checkout
@@ -76,9 +76,6 @@ jobs:
       - restore_cache:
           keys:
             - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
-      # - run:
-      #     name: Install javascript dependencies (using Yarn)
-      #     command: yarn install --immutable
       - run:
           name: Deploy ocean ds docs
           command: yarn deploy:storybook
@@ -91,19 +88,19 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore:
+                - gh-pages
       - codestyle:
           requires:
             - build
-          filters:
-            tags:
-              only: /^v.*/
       - tests:
           requires:
             - build
           filters:
             tags:
               only: /^v.*/
-      - deploy-package:
+      - deploy-pkg:
           requires:
             - tests
           filters:
@@ -113,9 +110,7 @@ workflows:
               ignore: /.*/
       - deploy-docs:
           requires:
-            - deploy-package
+            - deploy-pkg
           filters:
             tags:
               only: /^v.*/
-            branches:
-              ignore: /.*/
