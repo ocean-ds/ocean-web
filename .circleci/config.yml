@@ -8,18 +8,10 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+          with-cache: true
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
       - run:
           name: Build ocean ds
           command: yarn build
@@ -28,10 +20,6 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
