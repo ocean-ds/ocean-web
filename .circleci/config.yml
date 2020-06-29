@@ -33,9 +33,9 @@ jobs:
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
-      - run:
-          name: Install javascript dependencies (using Yarn)
-          command: yarn install --immutable
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
       - run:
           name: Run tests
           command: yarn test --coverage
@@ -49,9 +49,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-v1-$CIRCLE_BRANCH-{{ checksum "yarn.lock" }}
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn install --immutable
@@ -65,6 +64,9 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
+            - restore_cache:
+                keys:
+                  - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
             - run:
                 name: Authenticate with registry
                 command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
@@ -92,16 +94,6 @@ workflows:
       - deploy-docs:
           requires:
             - build-setup
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
       - upload-coverage:
           requires:
             - build-setup
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
