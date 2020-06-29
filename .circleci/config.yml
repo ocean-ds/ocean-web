@@ -51,7 +51,7 @@ jobs:
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
-            - yarn-packages-<<parameters.cache-version>>-<<#parameters.include-branch-in-cache-key>>{{ .Branch }}-<</parameters.include-branch-in-cache-key>>{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-<<#pipeline.git.branch>>{{ .Branch }}-<</pipeline.git.branch>>{{ checksum "yarn.lock" }}
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn install --immutable
