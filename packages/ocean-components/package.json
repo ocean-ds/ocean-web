@@ -60,7 +60,7 @@
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "sass-loader": "^8.0.2",
-    "ts-jest": "^26.1.0",
+    "ts-jest": "^26.1.1",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
