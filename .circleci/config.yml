@@ -21,7 +21,7 @@ jobs:
             - >-
               node-deps-v1-<<#pipeline.git.branch>>{{
               .Branch }}-<</pipeline.git.branch>>{{
-              checksum "~/project/package-lock.json" }}
+              checksum "~/project/yarn-lock.json" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
