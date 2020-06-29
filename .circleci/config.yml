@@ -18,7 +18,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - node-deps-v1-{{ $(echo $CIRCLE_BRANCH) }}-{{ checksum "yarn.lock" }}
+            - node-deps-v1-${CIRCLE_BRANCH}-{{ checksum "yarn.lock" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
