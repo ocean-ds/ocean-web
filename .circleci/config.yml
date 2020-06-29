@@ -9,32 +9,29 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - restore_cache:
+          name: Restore Yarn Package Cache
           keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install javascript dependencies (using Yarn)
           command: yarn --frozen-lockfile --cache-folder ~/.cache/yarn
       - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run:
           name: Build ocean ds
           command: yarn build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
 
   tests:
     executor: node/default
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
