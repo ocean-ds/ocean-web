@@ -1,4 +1,4 @@
-@import '~blu-tokens/dist/tokens.scss';
+@import '~@useblu/tokens/dist/tokens.scss';
 
 @mixin headings {
   font-family: $font-family-highlight;
@@ -21,7 +21,7 @@
   color: $color-interface-dark-down;
 }
 
-.typography {
+.ods-typography {
   margin: 0;
 
   &__heading1 {
