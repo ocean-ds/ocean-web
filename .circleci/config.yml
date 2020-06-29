@@ -18,10 +18,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - >-
-              node-deps-v1-<<#pipeline.git.branch>>{{
-              .Branch }}-<</pipeline.git.branch>>{{
-              checksum "~/project/yarn-lock.json" }}
+            - node-deps-v1-{{ checksum "yarn.lock" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
@@ -95,6 +92,16 @@ workflows:
       - deploy-docs:
           requires:
             - build-setup
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - upload-coverage:
           requires:
             - build-setup
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
