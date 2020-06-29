@@ -8,6 +8,7 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
+          include-branch-in-cache-key: false
       - run:
           name: Build ocean ds
           command: yarn build
