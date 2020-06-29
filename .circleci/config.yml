@@ -16,6 +16,12 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - >-
+              node-deps-<<parameters.cache-version>>-<<#parameters.include-branch-in-cache-key>>{{
+              .Branch }}-<</parameters.include-branch-in-cache-key>>{{
+              checksum "<<parameters.app-dir>>/package-lock.json" }}
       - run:
           name: Run ocean ds tests
           command: yarn test
