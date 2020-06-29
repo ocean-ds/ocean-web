@@ -13,7 +13,7 @@ jobs:
           command: yarn build:lib
       - run:
           name: Build storybook
-          command: yarn build:docs
+          command: yarn build:storybook
 
   codestyle:
     executor: node/default
