@@ -24,4 +24,3 @@ workflows:
   main:
     jobs:
       - build
-          context: SonarCloud
