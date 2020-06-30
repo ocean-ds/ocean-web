@@ -8,17 +8,20 @@
     "dist"
   ],
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "deploy-storybook": "storybook-to-ghpages",
-    "build": "rollup -c",
+    "build": "npm run lint && npm run build:lib && npm run build:storybook",
+    "build:lib": "rollup -c",
+    "build:storybook": "build-storybook",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "format": "prettier --write src/**/*.{js,tsx,scss}",
-    "format:watch": "onchange 'src/**/*.{js,tsx,scss}' -- prettier --write {{changed}}",
-    "format:check": "prettier --list-different src/**/*.{js,tsx,scss}",
-    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet --fix"
+    "storybook": "start-storybook -p 6006",
+    "deploy:storybook": "storybook-to-ghpages",
+    "format": "prettier --write src/**/*.{ts,tsx,scss}",
+    "format:watch": "onchange 'src/**/*.{ts,tsx,scss}' -- prettier --write {{changed}}",
+    "format:check": "prettier --list-different src/**/*.{ts,tsx,scss}",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet"
   },
-  "repository": "git@github.com:Pagnet/ocean-ds.git",
+  "repository": "git@github.com:Pagnet/ocean-ds-web.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",
   "license": "GPL-3.0",
   "private": false,
@@ -40,7 +43,7 @@
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
-    "eslint": "^7.3.0",
+    "eslint": "^7.3.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^23.14.0",
     "eslint-plugin-jest-dom": "^3.0.1",
@@ -67,6 +70,13 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "dependencies": {
+    "@useblu/tokens": "^1.0.0",
+    "classnames": "2.2.6"
+  },
+  "storybook-deployer": {
+    "commitMessage": "Deploy Storybook [skip ci]"
+  },
   "prettier": {
     "singleQuote": true
   },
@@ -74,9 +84,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  },
-  "dependencies": {
-    "@useblu/tokens": "^1.0.0",
-    "classnames": "2.2.6"
   }
 }

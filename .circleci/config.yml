@@ -1,27 +1,121 @@
 version: 2.1
-
+orbs:
+  node: circleci/node@3.0.0
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 jobs:
   build:
-    docker:
-      - image: 'node:latest'
+    executor: node/default
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          name: Install dependencies
-          command: npm install
+          name: Build library
+          command: yarn build:lib
       - run:
-          name: Build project
-          command: npm run build
-      - run:
-          name: Test project
-          command: npm run test --coverage
-      - sonarcloud/scan 
+          name: Build storybook
+          command: yarn build:storybook
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - dist
 
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
+  codestyle:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Run linter
+          command: yarn lint
+
+  tests:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+      - run:
+          name: Run tests
+          command: yarn test:coverage
+      - run:
+          name: Send coverage report to Code Climate
+          command: ./cc-test-reporter after-build -t lcov
+          when: always
+
+  deploy-pkg:
+    executor: node/default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+      - run:
+          name: Bump package version by tag
+          command: |
+            export VERSION_TAG=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
+            yarn version --new-version $VERSION_TAG --no-git-tag-version --no-commit-hooks
+      - run:
+          name: Publish package
+          command: yarn publish --access public
+
+  deploy-doc:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Deploy ocean-ds documentation
+          command: yarn deploy:storybook
 
 workflows:
-  main:
+  version: 2
+  build-deploy:
     jobs:
-      - build
-      ##
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore:
+                - gh-pages
+      - codestyle:
+          requires:
+            - build
+      - tests:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy-pkg:
+          requires:
+            - tests
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - deploy-doc:
+          requires:
+            - deploy-pkg
+          filters:
+            tags:
+              only: /^v.*/
+      - sonarcloud/scan
