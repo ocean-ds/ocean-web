@@ -21,7 +21,7 @@
     "format:check": "prettier --list-different src/**/*.{ts,tsx,scss}",
     "lint": "eslint 'src/**/*.{ts,tsx}' --quiet"
   },
-  "repository": "git@github.com:Pagnet/ocean-ds.git",
+  "repository": "git@github.com:Pagnet/ocean-ds-web.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",
   "license": "GPL-3.0",
   "private": false,
