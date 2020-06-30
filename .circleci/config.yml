@@ -17,7 +17,7 @@ jobs:
           command: npm run test --coverage
       - run:
           name: teste
-          command: echo ${CIRCLE_PULL_REQUEST##*/}
+          command: export PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
       - sonarcloud/scan
 
 orbs:
