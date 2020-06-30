@@ -16,10 +16,10 @@
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "deploy:storybook": "storybook-to-ghpages",
-    "format": "prettier --write src/**/*.{js,tsx,scss}",
-    "format:watch": "onchange 'src/**/*.{js,tsx,scss}' -- prettier --write {{changed}}",
-    "format:check": "prettier --list-different src/**/*.{js,tsx,scss}",
-    "lint": "eslint '.' --quiet"
+    "format": "prettier --write src/**/*.{ts,tsx,scss}",
+    "format:watch": "onchange 'src/**/*.{ts,tsx,scss}' -- prettier --write {{changed}}",
+    "format:check": "prettier --list-different src/**/*.{ts,tsx,scss}",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet"
   },
   "repository": "git@github.com:Pagnet/ocean-ds.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",
