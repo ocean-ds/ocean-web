@@ -14,10 +14,6 @@ jobs:
       - run:
           name: Build storybook
           command: yarn build:storybook
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - dist
 
   codestyle:
     executor: node/default
@@ -55,14 +51,15 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/project/dist
       - restore_cache:
           keys:
             - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+      - run:
+          name: Build Ocean
+          command: yarn build:lib
       - run:
           name: Bump package version by tag
           command: |
