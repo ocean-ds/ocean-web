@@ -19,7 +19,7 @@ jobs:
           root: ~/project
           paths:
             - dist
-
+      - sonarcloud/scan
   codestyle:
     executor: node/default
     steps:
@@ -118,4 +118,4 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-      - sonarcloud/scan
+      
