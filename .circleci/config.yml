@@ -15,10 +15,7 @@ jobs:
       - run:
           name: Test project
           command: npm run test --coverage
-      - run:
-          name: teste
-          command: export PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
-      - sonarcloud/scan
+      - sonarcloud/scan 
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
