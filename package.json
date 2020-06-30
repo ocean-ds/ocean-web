@@ -70,6 +70,13 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
+  "dependencies": {
+    "@useblu/tokens": "^1.0.0",
+    "classnames": "2.2.6"
+  },
+  "storybook-deployer": {
+    "commitMessage": "Deploy Storybook [skip ci]"
+  },
   "prettier": {
     "singleQuote": true
   },
@@ -77,9 +84,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  },
-  "dependencies": {
-    "@useblu/tokens": "^1.0.0",
-    "classnames": "2.2.6"
   }
 }
