@@ -20,7 +20,6 @@ jobs:
           paths:
             - dist
       - sonarcloud/scan:
-          cache-version: v0
           github-project-slug: Pagnet/ocean-ds-web
           project-key: Pagnet_ocean-ds-web
             
