@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Install jq
           command: sudo apt install -y jq
-      - sonarcloud/scan-on-branch-commit:
+      - sonarcloud/scan:
           github-project-slug: Pagnet/ocean-ds-web
           project-key: Pagnet_ocean-ds-web
           github-api-token: a985f4ecd11aa459caad45b9fa644c7d3a6f34d8
