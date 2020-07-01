@@ -18,7 +18,7 @@ orbs:
           root: ~/project
           paths:
             - dist
-      - sonarcloud/scan
+      - sonarcloud/scan #
   codestyle:
     executor: node/default
     steps:
