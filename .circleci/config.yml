@@ -92,6 +92,7 @@ workflows:
   build-deploy:
     jobs:
       - build:
+          context: SonarCloud
           filters:
             tags:
               only: /^v.*/
