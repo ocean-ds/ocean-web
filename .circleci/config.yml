@@ -19,7 +19,7 @@ jobs:
           root: ~/project
           paths:
             - dist
-      - sonarcloud/scan
+      - sonarcloud/scan-on-branch-commit
             
   codestyle:
     executor: node/default
