@@ -19,7 +19,7 @@ jobs:
           root: ~/project
           paths:
             - dist
-      - sonarcloud/scan-on-branch-commit:
+      - sonarcloud/scan:
           cache-version: v0
           github-project-slug: Pagnet/ocean-ds-web
           project-key: Pagnet_ocean-ds-web
