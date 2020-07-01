@@ -1,8 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
-  sonarcloud: socialtables/sonarcloud@1.1.1
-jobs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
   build:
     executor: node/default
     steps:
@@ -19,11 +18,7 @@ jobs:
           root: ~/project
           paths:
             - dist
-      - sonarcloud/scan-on-branch-commit:
-            # increment this version to force invalidation of the sonar-scanner executable's cache.
-            cache-version: v0
-            project-key: Pagnet_ocean-ds-web
-            github-project-slug: Pagnet/ocean-ds-web
+      - sonarcloud/scan
   codestyle:
     executor: node/default
     steps:
