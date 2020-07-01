@@ -14,7 +14,9 @@ jobs:
           command: yarn build:lib
       - run:
           name: Build storybook
-          command: yarn build:storybook
+          command: |
+            yarn build:storybook
+            echo ${SONARCLOUD_TOKEN}
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -123,4 +125,3 @@ workflows:
             tags:
               only: /^v.*/
       
-#
