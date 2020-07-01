@@ -22,7 +22,6 @@ jobs:
       - sonarcloud/scan-on-branch-commit:
           github-project-slug: Pagnet/ocean-ds-web
           project-key: Pagnet_ocean-ds-web
-          github-api-token: a985f4ecd11aa459caad45b9fa644c7d3a6f34d8
             
   codestyle:
     executor: node/default
