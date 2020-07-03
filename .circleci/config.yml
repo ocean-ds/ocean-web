@@ -88,7 +88,6 @@ workflows:
   build-deploy:
     jobs:
       - build:
-          context: SonarCloud
           filters:
             tags:
               only: /^v.*/
@@ -99,6 +98,7 @@ workflows:
           requires:
             - build
       - tests:
+          context: SonarCloud
           requires:
             - build
           filters:
