@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
-  sonarcloud: socialtables/sonarcloud@1.1.1
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 jobs:
   build:
     executor: node/default
@@ -19,10 +19,6 @@ jobs:
           root: ~/project
           paths:
             - dist
-      - sonarcloud/scan-on-branch-commit:
-          github-project-slug: Pagnet/ocean-ds-web
-          project-key: Pagnet_ocean-ds-web
-            
   codestyle:
     executor: node/default
     steps:
@@ -54,7 +50,7 @@ jobs:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -t lcov
           when: always
-
+      - sonarcloud/scan
   deploy-pkg:
     executor: node/default
     steps:
