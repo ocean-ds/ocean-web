@@ -52,7 +52,7 @@ jobs:
           when: always
       - run:
           name: Installing jest-sonarcloud-reporter
-          command: npm install jest-sonarcloud-reporter --save-dev
+          command: yarn add -D jest-sonar-reporter
       - sonarcloud/scan
   deploy-pkg:
     executor: node/default
