@@ -53,6 +53,9 @@ jobs:
       - run:
           name: Installing jest-sonarcloud-reporter
           command: yarn add -D jest-sonar-reporter
+      - run:
+          name: Excuting jest-sonarcloud-reporter
+          command: yarn test:coverage
       - sonarcloud/scan
   deploy-pkg:
     executor: node/default
