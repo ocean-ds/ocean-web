@@ -44,18 +44,15 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
       - run:
+          name: Installing jest-sonarcloud-reporter
+          command: yarn add -D jest-sonar-reporter --save-dev
+      - run:
           name: Run tests
           command: yarn test:coverage
       - run:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -t lcov
           when: always
-      - run:
-          name: Installing jest-sonarcloud-reporter
-          command: yarn add -D jest-sonar-reporter --save-dev
-      - run:
-          name: Excuting jest-sonarcloud-reporter
-          command: yarn test:coverage
       - sonarcloud/scan
   deploy-pkg:
     executor: node/default
