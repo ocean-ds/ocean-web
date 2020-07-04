@@ -50,6 +50,9 @@ jobs:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -t lcov
           when: always
+      - run:
+          name: Installing jest-sonarcloud-reporter
+          command: npm install jest-sonarcloud-reporter --save-dev
       - sonarcloud/scan
   deploy-pkg:
     executor: node/default
