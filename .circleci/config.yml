@@ -52,7 +52,7 @@ jobs:
           when: always
       - run:
           name: Installing jest-sonarcloud-reporter
-          command: yarn add -D jest-sonar-reporter
+          command: yarn add -D jest-sonar-reporter --save-dev
       - run:
           name: Excuting jest-sonarcloud-reporter
           command: yarn test:coverage
