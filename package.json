@@ -89,7 +89,7 @@
     "testResultsProcessor": "jest-sonar-reporter"
   },
   "jestSonar": {
-    "reportPath": ".",
+    "reportPath": "reports",
     "reportFile": "test-reporter.xml",
     "indent": 4
   }
