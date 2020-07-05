@@ -56,6 +56,11 @@ jobs:
       - run:
           name: Runing jest-sonar-reporter
           command: yarn run test
+      - run:
+          name: List Files
+          command: |
+              cd reports
+              ls -la
       - sonarcloud/scan
   deploy-pkg:
     executor: node/default
