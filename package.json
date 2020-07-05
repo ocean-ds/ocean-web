@@ -14,7 +14,6 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "testResultsProcessor": "jest-sonar-reported",
     "storybook": "start-storybook -p 6006",
     "deploy:storybook": "storybook-to-ghpages",
     "format": "prettier --write src/**/*.{ts,tsx,scss}",
@@ -85,5 +84,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "jest": {
+    "testResultsProcessor": "jest-sonar-reporter"
   }
 }
