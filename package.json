@@ -85,9 +85,6 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "jest": {
-    "testResultsProcessor": "jest-sonar-reporter"
-  },
   "jestSonar": {
     "reportPath": "reports",
     "indent": 4
