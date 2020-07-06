@@ -41,8 +41,18 @@ jobs:
           keys:
             - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
       - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter	
+            chmod +x ./cc-test-reporter	
+            ./cc-test-reporter before-build
+      - run:
           name: Run tests
           command: yarn test --coverage
+      - run:
+          name: Send coverage report to Code Climate
+          command: ./cc-test-reporter after-build -t lcov
+          when: always
       - sonarcloud/scan
 
   deploy-pkg:
@@ -81,34 +91,34 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      # - build:
-      #     filters:
-      #       tags:
-      #         only: /^v.*/
-      #       branches:
-      #         ignore:
-      #           - gh-pages
-      # - codestyle:
-      #     requires:
-      #       - build
-      - tests:
-          context: SonarCloud
-          # requires:
-          #   - build
+      - build:
           filters:
             tags:
               only: /^v.*/
-      # - deploy-pkg:
-      #     requires:
-      #       - tests
-      #     filters:
-      #       tags:
-      #         only: /^v.*/
-      #       branches:
-      #         ignore: /.*/
-      # - deploy-doc:
-      #     requires:
-      #       - deploy-pkg
-      #     filters:
-      #       tags:
-      #         only: /^v.*/
+            branches:
+              ignore:
+                - gh-pages
+      - codestyle:
+          requires:
+            - build
+      - tests:
+          context: SonarCloud
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy-pkg:
+          requires:
+            - tests
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - deploy-doc:
+          requires:
+            - deploy-pkg
+          filters:
+            tags:
+              only: /^v.*/
