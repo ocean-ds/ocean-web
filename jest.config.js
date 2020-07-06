@@ -13,4 +13,5 @@ module.exports = {
       'identity-obj-proxy',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
+  testResultsProcessor: 'jest-sonar-reporter',
 };
