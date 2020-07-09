@@ -1,6 +1,9 @@
 version: 2.1
+
 orbs:
   node: circleci/node@3.0.0
+  sonarcloud: sonarsource/sonarcloud@1.0.1
+
 jobs:
   build:
     executor: node/default
@@ -45,11 +48,12 @@ jobs:
             ./cc-test-reporter before-build
       - run:
           name: Run tests
-          command: yarn test:coverage
+          command: yarn test --coverage
       - run:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -t lcov
           when: always
+      - sonarcloud/scan
 
   deploy-pkg:
     executor: node/default
@@ -98,6 +102,7 @@ workflows:
           requires:
             - build
       - tests:
+          context: SonarCloud
           requires:
             - build
           filters:
