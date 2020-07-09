@@ -6,7 +6,7 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
-  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/index.ts'],
   testMatch: ['**/*.test.(ts|tsx)'],
   moduleNameMapper: {
     // Mocks out all these file formats when tests are run
