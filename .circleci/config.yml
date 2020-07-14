@@ -74,7 +74,14 @@ jobs:
             yarn version --new-version $VERSION_TAG --no-git-tag-version --no-commit-hooks
       - run:
           name: Publish package
-          command: yarn publish --access public
+          command: |
+            # Setup variables
+            export VERSION_NUMBER=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
+            export TAG_NAME=$(echo $VERSION_NUMBER | grep -Po '[a-z]*')
+            [ -z "$TAG_NAME" ] && TAG_NAME="latest"
+            # Bump and publish
+            yarn version --new-version $VERSION_NUMBER --no-git-tag-version --no-commit-hooks
+            yarn publish --access public --tag $TAG_NAME
 
   deploy-doc:
     executor: node/default
