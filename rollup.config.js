@@ -28,7 +28,7 @@ export default {
     typescript(),
     postcss({
       minimize: true,
-      extract: 'ocean-ui.min.css',
+      extract: 'ocean-ds.min.css',
     }),
     sass(),
   ],
