@@ -22,14 +22,14 @@ export default {
     },
   ],
   plugins: [
-    postcss({
-      extract: 'ocean-ui.min.css',
-      minimize: true,
-    }),
     peerDepsExternal(),
     resolve(),
     commonjs(),
     typescript(),
+    postcss({
+      minimize: true,
+      extract: 'ocean-ds.min.css',
+    }),
     sass(),
   ],
 };
