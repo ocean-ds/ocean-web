@@ -1519,16 +1519,18 @@
     util-deprecate "^1.0.2"
 
 "@storybook/addon-controls@^6.0.0-beta.36":
-  version "6.0.0-beta.44"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.0-beta.44.tgz#d0b6a2b075f367c96dd0b642bd5ac95a30544d32"
-  integrity sha512-aRpFafG5phZ5vH1tfekWXBXFLASTnqLYpASoBBqnzrHrvFsfpmUOkuvF6tIl7Dq1NUxM64wT+cyiQoONGbZ/Jw==
+  version "6.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.0-rc.5.tgz#f67c687e94936ad4a8be7cb6313b9938c0878750"
+  integrity sha512-T6VmZwW1MWHufiM2JFCy3h50zwAEsite6Y1UFqyHcQz2Qixce7bFZ3cOF/E71S/TUH+g2FUDPN6xc3hr9hR9sQ==
   dependencies:
-    "@storybook/addons" "6.0.0-beta.44"
-    "@storybook/api" "6.0.0-beta.44"
-    "@storybook/client-api" "6.0.0-beta.44"
-    "@storybook/components" "6.0.0-beta.44"
-    "@storybook/theming" "6.0.0-beta.44"
+    "@storybook/addons" "6.0.0-rc.5"
+    "@storybook/api" "6.0.0-rc.5"
+    "@storybook/client-api" "6.0.0-rc.5"
+    "@storybook/components" "6.0.0-rc.5"
+    "@storybook/node-logger" "6.0.0-rc.5"
+    "@storybook/theming" "6.0.0-rc.5"
     core-js "^3.0.1"
+    ts-dedent "^1.1.1"
 
 "@storybook/addon-docs@^6.0.0-beta.35":
   version "6.0.0-beta.44"
@@ -2206,6 +2208,17 @@
   version "6.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-6.0.0-rc.3.tgz#789577978e8667178c40ee7d0ca50d3fc983c952"
   integrity sha512-E0ak1Gh33fudGd6Ew/mogjrrgxSRjRGDkzhG4draoDdwB0uu008RInLgpQjj+3i2OnlHNLQWAyqwidSf8l2msw==
+  dependencies:
+    "@types/npmlog" "^4.1.2"
+    chalk "^4.0.0"
+    core-js "^3.0.1"
+    npmlog "^4.1.2"
+    pretty-hrtime "^1.0.3"
+
+"@storybook/node-logger@6.0.0-rc.5":
+  version "6.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-6.0.0-rc.5.tgz#930111bb28aca8a4b02be4eb489fc93b2f7a1d4a"
+  integrity sha512-SGIqwvXdRQeSykNTE4+fUwxOaAQxO2CRVNLDGpfFuvF0cjiPSDIcPpBj3EY5NsYbdQI9+QzHdCOHOTi+B5vG6A==
   dependencies:
     "@types/npmlog" "^4.1.2"
     chalk "^4.0.0"
