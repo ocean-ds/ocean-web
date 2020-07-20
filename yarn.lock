@@ -3045,10 +3045,10 @@
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
-"@useblu/tokens@^2.0.0-beta.1":
-  version "2.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@useblu/tokens/-/tokens-2.0.0-beta.4.tgz#2822dc20e21d90ad40c55739b2b6a4fe70fc6cd8"
-  integrity sha512-NfEfWN4vgHOc6xP/Swgxo2fjjnt5n1t4HDDEJqEehbzQ5r2fUUHxES64Ghs685pO1tNfytP0Ap5EySKUhgaRjQ==
+"@useblu/tokens@^2.0.0-beta.7":
+  version "2.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@useblu/tokens/-/tokens-2.0.0-beta.7.tgz#801251e9b5a1be79ddad6c2098527455f68d3c82"
+  integrity sha512-Dy2xyD5Ai2zd1AicyCUtJm1uA7X9VdZzSA7nFvxeTutQJxzkcDX99Uvoqp6g1ZAETd9pr/id/wLLQnOBUrzQIw==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
