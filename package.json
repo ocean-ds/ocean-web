@@ -39,7 +39,7 @@
     "@storybook/addon-controls": "^6.0.0-rc.8",
     "@storybook/addon-docs": "^6.0.0-rc.8",
     "@storybook/addon-viewport": "^6.0.0-rc.3",
-    "@storybook/react": "^6.0.0-rc.3",
+    "@storybook/react": "^6.0.0-rc.12",
     "@storybook/storybook-deployer": "^2.8.6",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.3.0",
