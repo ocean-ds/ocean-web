@@ -2886,10 +2886,10 @@
   dependencies:
     eslint-visitor-keys "^1.1.0"
 
-"@useblu/tokens@^2.0.0-beta.1":
-  version "2.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@useblu/tokens/-/tokens-2.0.0-beta.4.tgz#2822dc20e21d90ad40c55739b2b6a4fe70fc6cd8"
-  integrity sha512-NfEfWN4vgHOc6xP/Swgxo2fjjnt5n1t4HDDEJqEehbzQ5r2fUUHxES64Ghs685pO1tNfytP0Ap5EySKUhgaRjQ==
+"@useblu/tokens@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@useblu/tokens/-/tokens-2.0.0.tgz#52b6a020a07ae577d7fa03c4703ff4b253c5378b"
+  integrity sha512-y4YBljSoR+UO3zVUYjkLJQLsxlkNqfj/tfFrXaGgWz1UaPr401n+156vk/yASGkETVQdaucPgB1xvoOZlrcH1g==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
