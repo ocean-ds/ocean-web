@@ -7,7 +7,6 @@ test('render element properly', () => {
   const { getByTestId } = render(
     <Container
       data-testid="grid-container"
-      style={{ width: 200 }}
       className="other-css-class__1 other-css-class__2"
     >
       Container rendering
@@ -18,7 +17,6 @@ test('render element properly', () => {
     <div
       class="ods-container other-css-class__1 other-css-class__2"
       data-testid="grid-container"
-      style="width: 200px;"
     >
       Container rendering
     </div>

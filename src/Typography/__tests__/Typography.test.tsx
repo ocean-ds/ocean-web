@@ -8,7 +8,6 @@ test('render element properly', () => {
     <Typography
       variant="heading1"
       data-testid="typo-heading1"
-      style={{ width: 200 }}
       className="other-css-class__1 other-css-class__2"
     >
       Hello
@@ -19,7 +18,6 @@ test('render element properly', () => {
     <h1
       class="ods-typography ods-typography__heading1 other-css-class__1 other-css-class__2"
       data-testid="typo-heading1"
-      style="width: 200px;"
     >
       Hello
     </h1>

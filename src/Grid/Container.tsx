@@ -10,7 +10,7 @@ type ContainerProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  function Container({ fluid = false, children, className, ...rest }, ref) {
+  function Container({ children, fluid = false, className, ...rest }, ref) {
     return (
       <div
         ref={ref}
