@@ -1572,16 +1572,16 @@
     vue-docgen-loader "^1.4.0"
 
 "@storybook/addon-viewport@^6.0.0-rc.13":
-  version "6.0.0-rc.13"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-6.0.0-rc.13.tgz#aa6bce309bfda1d50dd4a320500103c43bcbd23a"
-  integrity sha512-cYV+ldIlbChVyZ/JWyQbO9gNLzgM57QE4ON71Lbscg1/o/iXcq8j2EQiw1dTXAtfyehlZvrkM+NAKFGGEjWwrg==
+  version "6.0.0-rc.14"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-6.0.0-rc.14.tgz#db77588013c973f766a42a03a212873d9e53d853"
+  integrity sha512-uj9cGBrWFyF1p7beNZYH+fS8spmph11fw5j/l+CLroR7LwREXZGr7q4HQ9DM1krGlGAO5CM4nOOawmu2XX70CA==
   dependencies:
-    "@storybook/addons" "6.0.0-rc.13"
-    "@storybook/api" "6.0.0-rc.13"
-    "@storybook/client-logger" "6.0.0-rc.13"
-    "@storybook/components" "6.0.0-rc.13"
-    "@storybook/core-events" "6.0.0-rc.13"
-    "@storybook/theming" "6.0.0-rc.13"
+    "@storybook/addons" "6.0.0-rc.14"
+    "@storybook/api" "6.0.0-rc.14"
+    "@storybook/client-logger" "6.0.0-rc.14"
+    "@storybook/components" "6.0.0-rc.14"
+    "@storybook/core-events" "6.0.0-rc.14"
+    "@storybook/theming" "6.0.0-rc.14"
     core-js "^3.0.1"
     global "^4.3.2"
     memoizerific "^1.11.3"
