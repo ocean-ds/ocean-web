@@ -30,9 +30,7 @@ test('includes "ods-col" when xs is true', () => {
 
 test('includes "ods-col" when span of xs is true', () => {
   const { getByTestId } = render(
-    <Col data-testid="grid-col" xs={{ span: true }}>
-      span:true
-    </Col>
+    <Col data-testid="grid-col" xs={{ span: true }} />
   );
 
   expect(getByTestId('grid-col').className).toBe('ods-col');

@@ -1,25 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-type RowColWidth =
-  | 'auto'
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
-  | '10'
-  | '11'
-  | '12';
+import './styles/row.scss';
+
+type RowColWidth = '1' | '2' | '3' | '4' | '5' | '6';
 
 type RowProps = {
   /**
    * Removes the gutter spacing between `Col`s as well as any added negative margins.
-   * @default false
    */
   noGutters?: boolean;
   /**
@@ -55,11 +43,11 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>(function Row(
         'ods-row',
         noGutters && 'ods-no-gutters',
         {
-          [`ods-row-${xs}`]: xs,
-          [`ods-row-sm-${sm}`]: sm,
-          [`ods-row-md-${md}`]: md,
-          [`ods-row-lg-${lg}`]: lg,
-          [`ods-row-xl-${xl}`]: xl,
+          [`ods-row-cols-${xs}`]: xs,
+          [`ods-row-cols-sm-${sm}`]: sm,
+          [`ods-row-cols-md-${md}`]: md,
+          [`ods-row-cols-lg-${lg}`]: lg,
+          [`ods-row-cols-xl-${xl}`]: xl,
         },
         className
       )}

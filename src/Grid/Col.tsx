@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import './styles/col.scss';
+
 const DEVICE_SIZES = [
   'xs' as const,
   'sm' as const,

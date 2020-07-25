@@ -25,38 +25,12 @@ test('render element properly', () => {
 
 test('render no-gutters correctly', () => {
   const { getByTestId } = render(<Row data-testid="grid-row" noGutters />);
-  expect(getByTestId('grid-row')).toHaveClass('ods-row ods-no-gutters');
+  expect(getByTestId('grid-row').className).toBe('ods-row ods-no-gutters');
 });
 
 test('include number sizes', () => {
-  const { getByTestId } = render(
-    <Row data-testid="grid-row" xs="3" sm="7" md="5" lg="1" xl="11" />
+  const { getByTestId } = render(<Row data-testid="grid-row" xs="4" md="6" />);
+  expect(getByTestId('grid-row').className).toBe(
+    'ods-row ods-row-cols-4 ods-row-cols-md-6'
   );
-
-  expect(getByTestId('grid-row')).toHaveClass('ods-row');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-3');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-sm-7');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-md-5');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-lg-1');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-xl-11');
-});
-
-test('include auto sizes', () => {
-  const { getByTestId } = render(
-    <Row
-      data-testid="grid-row"
-      xs="auto"
-      sm="auto"
-      md="auto"
-      lg="auto"
-      xl="auto"
-    />
-  );
-
-  expect(getByTestId('grid-row')).toHaveClass('ods-row');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-auto');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-sm-auto');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-md-auto');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-lg-auto');
-  expect(getByTestId('grid-row')).toHaveClass('ods-row-xl-auto');
 });
