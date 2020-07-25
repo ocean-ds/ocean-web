@@ -24,20 +24,13 @@ test('render element properly', () => {
 });
 
 test('render no-gutters correctly', () => {
-  const { getByTestId } = render(
-    <Row data-testid="grid-row" noGutters>
-      no-gutters
-    </Row>
-  );
-
+  const { getByTestId } = render(<Row data-testid="grid-row" noGutters />);
   expect(getByTestId('grid-row')).toHaveClass('ods-row ods-no-gutters');
 });
 
 test('include number sizes', () => {
   const { getByTestId } = render(
-    <Row data-testid="grid-row" xs="3" sm="7" md="5" lg="1" xl="11">
-      include number sizes
-    </Row>
+    <Row data-testid="grid-row" xs="3" sm="7" md="5" lg="1" xl="11" />
   );
 
   expect(getByTestId('grid-row')).toHaveClass('ods-row');
@@ -57,9 +50,7 @@ test('include auto sizes', () => {
       md="auto"
       lg="auto"
       xl="auto"
-    >
-      include auto sizes
-    </Row>
+    />
   );
 
   expect(getByTestId('grid-row')).toHaveClass('ods-row');
