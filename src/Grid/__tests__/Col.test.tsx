@@ -44,7 +44,7 @@ test('includes sizes', () => {
   );
 
   expect(getByTestId('grid-col').className).toBe(
-    'ods-col-lg-12 ods-col-md-8 ods-col-4'
+    'ods-col-4 ods-col-md-8 ods-col-lg-12'
   );
 });
 
@@ -59,7 +59,7 @@ test('includes offsets', () => {
   );
 
   expect(getByTestId('grid-col').className).toBe(
-    'ods-col-lg ods-col-md-8 ods-col-4 order-lg-last order-md-1 offset-1'
+    'ods-col-4 offset-1 ods-col-md-8 order-md-1 ods-col-lg order-lg-last'
   );
 });
 
@@ -77,6 +77,6 @@ it('allows span to be auto', () => {
   );
 
   expect(getByTestId('grid-col').className).toBe(
-    'ods-col-lg-auto ods-col-md-auto'
+    'ods-col-md-auto ods-col-lg-auto'
   );
 });

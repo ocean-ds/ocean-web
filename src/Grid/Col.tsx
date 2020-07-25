@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 const DEVICE_SIZES = [
-  'xl' as const,
-  'lg' as const,
-  'md' as const,
-  'sm' as const,
   'xs' as const,
+  'sm' as const,
+  'md' as const,
+  'lg' as const,
+  'xl' as const,
 ];
 
 type NumberAttr =
@@ -28,7 +28,7 @@ type ColSize = boolean | 'auto' | NumberAttr;
 
 type ColSpec =
   | ColSize
-  | { span?: ColSize; offset?: NumberAttr; order?: ColOrder };
+  | { span?: ColSize; order?: ColOrder; offset?: NumberAttr };
 
 type ColProps = {
   /**
@@ -58,8 +58,8 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
   ref
 ) {
   const prefix = 'ods-col';
-  const spans: string[] = [];
-  const classes: string[] = [];
+  const classes = [];
+  let hasAnySpan = false;
 
   DEVICE_SIZES.forEach((brkPoint) => {
     const propValue = rest[brkPoint];
@@ -69,7 +69,7 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
     let offset: NumberAttr | undefined;
     let order: ColOrder | undefined;
 
-    if (typeof propValue === 'object' && propValue != null) {
+    if (typeof propValue === 'object' && propValue) {
       ({ span = true, offset, order } = propValue);
     } else {
       span = propValue;
@@ -77,25 +77,21 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
 
     const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
 
-    if (span)
-      spans.push(
+    if (span) {
+      hasAnySpan = true;
+      classes.push(
         span === true ? `${prefix}${infix}` : `${prefix}${infix}-${span}`
       );
-
-    if (order != null) classes.push(`order${infix}-${order}`);
-    if (offset != null) classes.push(`offset${infix}-${offset}`);
+    }
+    if (order) classes.push(`order${infix}-${order}`);
+    if (offset) classes.push(`offset${infix}-${offset}`);
   });
 
-  if (!spans.length) {
-    spans.push(prefix); // plain 'ods-col'
-  }
+  // plain 'ods-col'
+  if (!hasAnySpan) classes.unshift(prefix);
 
   return (
-    <div
-      ref={ref}
-      className={classNames(...spans, ...classes, className)}
-      {...rest}
-    >
+    <div ref={ref} className={classNames(classes, className)} {...rest}>
       {children}
     </div>
   );
