@@ -76,7 +76,7 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
         span === true ? `${prefix}${infix}` : `${prefix}${infix}-${span}`
       );
     }
-    if (offset) classes.push(`offset${infix}-${offset}`);
+    if (offset) classes.push(`ods-offset${infix}-${offset}`);
   });
 
   // plain 'ods-col'

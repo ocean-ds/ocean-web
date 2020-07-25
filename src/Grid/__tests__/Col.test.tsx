@@ -59,7 +59,7 @@ test('includes offsets', () => {
   );
 
   expect(getByTestId('grid-col').className).toBe(
-    'ods-col-4 offset-1 ods-col-md-8 ods-col-lg offset-lg-2'
+    'ods-col-4 ods-offset-1 ods-col-md-8 ods-col-lg ods-offset-lg-2'
   );
 });
 
