@@ -22,14 +22,8 @@ type NumberAttr =
   | '10'
   | '11'
   | '12';
-
-type ColOrder = 'first' | 'last' | NumberAttr;
 type ColSize = boolean | 'auto' | NumberAttr;
-
-type ColSpec =
-  | ColSize
-  | { span?: ColSize; order?: ColOrder; offset?: NumberAttr };
-
+type ColSpec = ColSize | { span?: ColSize; offset?: NumberAttr };
 type ColProps = {
   /**
    * The number of columns to span on extra small devices (<576px)
@@ -67,10 +61,9 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
 
     let span: ColSize | undefined;
     let offset: NumberAttr | undefined;
-    let order: ColOrder | undefined;
 
     if (typeof propValue === 'object' && propValue) {
-      ({ span = true, offset, order } = propValue);
+      ({ span = true, offset } = propValue);
     } else {
       span = propValue;
     }
@@ -83,7 +76,6 @@ const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
         span === true ? `${prefix}${infix}` : `${prefix}${infix}-${span}`
       );
     }
-    if (order) classes.push(`order${infix}-${order}`);
     if (offset) classes.push(`offset${infix}-${offset}`);
   });
 

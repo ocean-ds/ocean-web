@@ -53,22 +53,22 @@ test('includes offsets', () => {
     <Col
       data-testid="grid-col"
       xs={{ span: '4', offset: '1' }}
-      md={{ span: '8', order: '1' }}
-      lg={{ order: 'last' }}
+      md={{ span: '8' }}
+      lg={{ offset: '2' }}
     />
   );
 
   expect(getByTestId('grid-col').className).toBe(
-    'ods-col-4 offset-1 ods-col-md-8 order-md-1 ods-col-lg order-lg-last'
+    'ods-col-4 offset-1 ods-col-md-8 ods-col-lg offset-lg-2'
   );
 });
 
 it('allows span to be false', () => {
   const { getByTestId } = render(
-    <Col data-testid="grid-col" xs="6" md={{ span: false, order: 'first' }} />
+    <Col data-testid="grid-col" xs="6" md={{ span: false }} />
   );
 
-  expect(getByTestId('grid-col').className).toBe('ods-col-6 order-md-first');
+  expect(getByTestId('grid-col').className).toBe('ods-col-6');
 });
 
 it('allows span to be auto', () => {
