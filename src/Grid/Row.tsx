@@ -8,6 +8,7 @@ type RowColWidth = '1' | '2' | '3' | '4' | '5' | '6';
 type RowProps = {
   /**
    * Removes the gutter spacing between `Col`s as well as any added negative margins.
+   * @default false
    */
   noGutters?: boolean;
   /**
@@ -33,7 +34,7 @@ type RowProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Row = React.forwardRef<HTMLDivElement, RowProps>(function Row(
-  { children, className, noGutters, xs, sm, md, lg, xl, ...rest },
+  { children, className, noGutters = false, xs, sm, md, lg, xl, ...rest },
   ref
 ) {
   return (

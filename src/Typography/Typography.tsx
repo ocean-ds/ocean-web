@@ -33,10 +33,6 @@ export type TypographyProps = {
    * The content of the component.
    */
   children: React.ReactNode;
-  /**
-   * The CSS class name of the wrapper element.
-   */
-  className?: string;
 } & React.ComponentPropsWithoutRef<'span'>;
 
 const Typography = React.forwardRef<unknown, TypographyProps>(
