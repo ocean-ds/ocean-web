@@ -1,0 +1,60 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Button from '../Button';
+
+<Meta title="Components/Button" component={Button} />
+
+# Button API
+
+The API documentation of the Button React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Button } from '@useblu/ocean-components';
+```
+
+## Usage
+
+<Preview withSource="open" withToolbar>
+  <Story
+    name="Usage"
+    parameters={{ controls: { hideNoControlsWarning: true } }}
+  >
+    <Button>Click Here!</Button>
+  </Story>
+</Preview>
+
+## Props
+
+<Props component={Button} parameters />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Rule name | Global class                     | Description                         |
+| --------- | -------------------------------- | ----------------------------------- |
+| root      | .ods-btn                         | Styles applied to the root element. |
+| ...       | .ods-btn\_\_contained            | ...                                 |
+| ...       | .ods-btn\_\_contained--primary   | ...                                 |
+| ...       | .ods-btn\_\_contained--secondary | ...                                 |
+| ...       | .ods-btn\_\_text                 | ...                                 |
+| ...       | .ods-btn\_\_text--primary        | ...                                 |
+| ...       | .ods-btn\_\_text--secondary      | ...                                 |
+| ...       | .ods-btn--[sm,md,lg]             | ...                                 |
+| ...       | .ods-btn--full-width             | ...                                 |
+| ...       | .ods-btn--inverted               | ...                                 |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Button/Button.tsx) for more detail.
+
+## Playground
+
+<Preview>
+  <Story name="Playground" args={{ children: 'My Button' }}>
+    {(props) => <Button {...props} />}
+  </Story>
+</Preview>
+
+<Props story="Playground" />
