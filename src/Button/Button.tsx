@@ -2,19 +2,15 @@ import React from 'react';
 import classNames from 'classnames';
 
 import './styles/button.scss';
+import { MergeProps } from '../_util/type';
 
 /**
  * Utility type
  */
 
-type MergeElementProps<
-  T extends React.ElementType,
-  P extends Record<string, unknown>
-> = Omit<React.ComponentPropsWithRef<T>, keyof P> & P;
-
 export type ButtonProps<P extends React.ElementType = 'button'> = {
   component?: P;
-} & MergeElementProps<
+} & MergeProps<
   P,
   {
     children: React.ReactNode;
