@@ -1575,6 +1575,22 @@
     ts-dedent "^1.1.1"
     util-deprecate "^1.0.2"
 
+"@storybook/addon-backgrounds@^6.0.0-rc.24":
+  version "6.0.0-rc.24"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-6.0.0-rc.24.tgz#4cbc89c4a04ef62d598f00eb0a2b9406533f2ab4"
+  integrity sha512-QVz8ik0GFevZLL5S5StYTXz0ILZCNe4nfdqDUdvXiHX1TsVHzs5eyLt593jTeIFD18iZEKIyENpvyGJGW75OZA==
+  dependencies:
+    "@storybook/addons" "6.0.0-rc.24"
+    "@storybook/api" "6.0.0-rc.24"
+    "@storybook/client-logger" "6.0.0-rc.24"
+    "@storybook/components" "6.0.0-rc.24"
+    "@storybook/core-events" "6.0.0-rc.24"
+    "@storybook/theming" "6.0.0-rc.24"
+    core-js "^3.0.1"
+    memoizerific "^1.11.3"
+    react "^16.8.3"
+    regenerator-runtime "^0.13.3"
+
 "@storybook/addon-controls@^6.0.0-rc.8":
   version "6.0.0-rc.24"
   resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.0-rc.24.tgz#041b514237652f1e39013ea9152ab44c3da2fae0"
