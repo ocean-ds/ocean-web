@@ -77,6 +77,28 @@
     }
   }
 
+  &--ghost {
+    color: $color-brand-primary-pure;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $color-interface-light-down;
+    }
+
+    &:active {
+      background-color: $color-interface-light-deep;
+    }
+
+    &:focus {
+      background-color: $color-interface-light-down;
+    }
+
+    &:disabled {
+      background-color: $color-interface-dark-up;
+      background-color: $color-interface-light-down;
+    }
+  }
+
   &--inverse {
     color: $color-brand-primary-pure;
     background-color: $color-complementary-pure;
@@ -91,28 +113,6 @@
 
     &:focus {
       background-color: $color-complementary-down;
-    }
-
-    &:disabled {
-      background-color: $color-interface-dark-up;
-      background-color: $color-interface-light-down;
-    }
-  }
-
-  &__text {
-    color: $color-brand-primary-pure;
-    background-color: transparent;
-
-    &:hover {
-      background-color: $color-interface-light-down;
-    }
-
-    &:active {
-      background-color: $color-interface-light-deep;
-    }
-
-    &:focus {
-      background-color: $color-interface-light-down;
     }
 
     &:disabled {
