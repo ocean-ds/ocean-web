@@ -5,11 +5,6 @@ import './styles/button.scss';
 
 type ButtonProps = {
   /**
-   * The variant to use.
-   * @default 'contained'
-   */
-  variant?: 'contained' | 'text';
-  /**
    * The size of the button.
    * @default 'md'
    */
@@ -17,28 +12,21 @@ type ButtonProps = {
   /**
    * The color of the component.
    */
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'ghost' | 'inverse';
   /**
    * If true, the button will take up the full width of its container.
    * @default false
    */
   fullWidth?: boolean;
-  /**
-   * If true, the button can be formatted to appear on dark backgrounds.
-   * @default false
-   */
-  inverted?: boolean;
 } & React.ComponentPropsWithoutRef<'button'>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     children,
     className,
-    variant = 'contained',
     size = 'md',
-    color,
+    color = 'primary',
     fullWidth = false,
-    inverted = false,
     ...rest
   },
   ref
@@ -46,15 +34,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   return (
     <button
       ref={ref}
+      type="button"
       className={classNames(
         'ods-btn',
         `ods-btn--${size}`,
-        `ods-btn__${variant}`,
-        {
-          [`ods-btn__${variant}--${color}`]: color,
-          [`ods-btn--full-width`]: fullWidth,
-          [`ods-btn--inverted`]: inverted,
-        },
+        `ods-btn--${color}`,
+        fullWidth && 'ods-btn--full-width',
         className
       )}
       {...rest}

@@ -15,8 +15,9 @@ test('renders element properly', () => {
 
   expect(getByTestId('btn-test')).toMatchInlineSnapshot(`
     <button
-      class="ods-btn ods-btn--md ods-btn__contained other-css-class__1 other-css-class__2"
+      class="ods-btn ods-btn--md ods-btn--primary other-css-class__1 other-css-class__2"
       data-testid="btn-test"
+      type="button"
     >
       Hello
     </button>
@@ -38,72 +39,44 @@ it('renders a large button', () => {
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--lg');
 });
 
-test('renders contained button', () => {
+test('renders primary button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="contained" />
+    <Button data-testid="btn-test" color="primary" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn__contained'
+    'ods-btn ods-btn--md ods-btn--primary'
   );
 });
 
-test('renders contained primary button', () => {
+test('renders secondary button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="contained" color="primary" />
+    <Button data-testid="btn-test" color="secondary" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn__contained ods-btn__contained--primary'
+    'ods-btn ods-btn--md ods-btn--secondary'
   );
 });
 
-test('renders contained secondary button', () => {
+test('renders a ghost button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="contained" color="secondary" />
+    <Button data-testid="btn-test" color="ghost" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn__contained ods-btn__contained--secondary'
+    'ods-btn ods-btn--md ods-btn--ghost'
   );
 });
 
-test('renders a text button', () => {
+test('renders an inverse button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="text" />
+    <Button data-testid="btn-test" color="inverse" />
   );
-
-  expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn__text'
-  );
-});
-
-test('renders a text primary button', () => {
-  const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="text" color="primary" />
-  );
-
-  expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn__text ods-btn__text--primary'
-  );
-});
-
-test('renders a text secondary button', () => {
-  const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="text" color="secondary" />
-  );
-
-  expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn__text ods-btn__text--secondary'
-  );
+  expect(getByTestId('btn-test')).toHaveClass('ods-btn--inverse');
 });
 
 test('renders a full width button', () => {
   const { getByTestId } = render(<Button data-testid="btn-test" fullWidth />);
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--full-width');
-});
-
-test('renders inverted button', () => {
-  const { getByTestId } = render(<Button data-testid="btn-test" inverted />);
-  expect(getByTestId('btn-test')).toHaveClass('ods-btn--inverted');
 });

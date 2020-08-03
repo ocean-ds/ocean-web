@@ -1,5 +1,127 @@
 @import '~@useblu/tokens/dist/web/tokens.scss';
 
 .ods-btn {
-  display: block; // TODO: Only for tests
+  border-radius: $border-radius-pill;
+  font-family: $font-family-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  border: $border-width-none;
+  text-align: center;
+  outline: none;
+
+  &--sm {
+    min-width: 96px;
+    height: 32px;
+    font-size: $font-size-xxs;
+    padding-left: $spacing-inline-xs;
+    padding-right: $spacing-inline-xs;
+  }
+
+  &--md {
+    min-width: 108px;
+    height: 48px;
+    font-size: $font-size-xs;
+    padding-left: $spacing-inline-sm;
+    padding-right: $spacing-inline-sm;
+  }
+
+  &--lg {
+    min-width: 148px;
+    height: 56px;
+    font-size: $font-size-sm;
+    padding-left: $spacing-inline-md;
+    padding-right: $spacing-inline-md;
+  }
+
+  &--primary {
+    background-color: $color-brand-primary-pure;
+    color: $color-interface-light-pure;
+
+    &:hover {
+      background-color: $color-brand-primary-down;
+    }
+
+    &:active {
+      background-color: $color-brand-primary-deep;
+    }
+
+    &:focus {
+      background-color: $color-brand-primary-down;
+    }
+
+    &:disabled {
+      background-color: $color-interface-dark-up;
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  &--secondary {
+    color: $color-brand-primary-pure;
+    background-color: $color-interface-light-up;
+
+    &:hover {
+      background-color: $color-interface-light-up;
+    }
+
+    &:active {
+      background-color: $color-interface-dark-up;
+    }
+
+    &:focus {
+      background-color: $color-interface-light-down;
+    }
+
+    &:disabled {
+      background-color: $color-interface-dark-up;
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  &--inverse {
+    color: $color-brand-primary-pure;
+    background-color: $color-complementary-pure;
+
+    &:hover {
+      background-color: $color-complementary-down;
+    }
+
+    &:active {
+      background-color: $color-complementary-deep;
+    }
+
+    &:focus {
+      background-color: $color-complementary-down;
+    }
+
+    &:disabled {
+      background-color: $color-interface-dark-up;
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  &__text {
+    color: $color-brand-primary-pure;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $color-interface-light-down;
+    }
+
+    &:active {
+      background-color: $color-interface-light-deep;
+    }
+
+    &:focus {
+      background-color: $color-interface-light-down;
+    }
+
+    &:disabled {
+      background-color: $color-interface-dark-up;
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
 }
