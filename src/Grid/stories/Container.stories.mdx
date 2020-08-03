@@ -1,0 +1,32 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Container from '../Container';
+
+<Meta title="Components/Grid/Container" component={Container} />
+
+# Grid - Container API
+
+The API documentation of the Container React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Container } from '@useblu/ocean-components/dist/Grid';
+```
+
+## Props
+
+<Props component={Container} parameters />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Rule name             | Global class                 | Description                                          |
+| --------------------- | ---------------------------- | ---------------------------------------------------- |
+| container             | .ods-container               | Sets a `max-width` at each responsive breakpoint.    |
+| container-fluid       | .ods-container-fluid         | Sets a `width: 100%` at all breakpoints.             |
+| container-breakpoints | .ods-container-[sm,md,lg,xl] | Sets a `width: 100%` until the specified breakpoint. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Grid/Container.tsx) for more detail.
