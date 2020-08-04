@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { MergeElementProps } from '../_util/type';
-
 import './styles/button.scss';
 
 type ButtonProps<P extends React.ElementType = 'button'> = {
