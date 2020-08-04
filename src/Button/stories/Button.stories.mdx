@@ -58,12 +58,13 @@ import Button from '../Button';
       name: 'fullWidth',
       description:
         'If true, the button will take up the full width of its container.',
+      defaultValue: false,
       table: {
         type: {
           summary: 'true | false',
         },
         defaultValue: {
-          summary: 'false',
+          summary: false,
         },
       },
       control: {
@@ -118,7 +119,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
 <Canvas>
   <Story
     name="Playground"
-    args={{ children: 'My Button' }}
+    args={{ children: 'My Button', fullWidth: false }}
     argTypes={{
       children: {
         name: 'children',
