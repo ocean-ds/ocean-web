@@ -54,10 +54,9 @@ import Button from '../Button';
         type: null,
       },
     },
-    fullWidth: {
-      name: 'fullWidth',
-      description:
-        'If true, the button will take up the full width of its container.',
+    blocked: {
+      name: 'blocked',
+      description: 'Spans the full width of the Button parent.',
       defaultValue: false,
       table: {
         type: {
@@ -102,15 +101,15 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class         | Description                          |
-| -------------------- | ------------------------------------ |
-| .ods-btn             | Styles applied to the root element.  |
-| .ods-btn--primary    | The color of the primary component   |
-| .ods-btn--secondary  | The color of the secondary component |
-| .ods-btn--text       | The color of the text component      |
-| .ods-btn--inverse    | The color of the inverse component   |
-| .ods-btn--[sm,md,lg] | The width set to the component       |
-| .ods-btn--full-width | Full width to the component          |
+| Global class         | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| .ods-btn             | Styles applied to the root element.                     |
+| .ods-btn--primary    | Sets primary background and text color of the button.   |
+| .ods-btn--secondary  | Sets secondary background and text color of the button. |
+| .ods-btn--text       | Sets styles of the text button.                         |
+| .ods-btn--inverse    | Use the inverse button on dark backgrounds.             |
+| .ods-btn--[sm,md,lg] | Specifies the width of the button.                      |
+| .ods-btn--blocked    | Spans the full width of the Button parent.              |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Button/Button.tsx) for more detail.
 
@@ -119,7 +118,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
 <Canvas>
   <Story
     name="Playground"
-    args={{ children: 'My Button', fullWidth: false }}
+    args={{ children: 'My Button', blocked: false }}
     argTypes={{
       children: {
         name: 'children',
@@ -139,8 +138,8 @@ If that's not sufficient, you can check the [implementation of the component](ht
           options: ['sm', 'md', 'lg'],
         },
       },
-      fullWidth: {
-        name: 'fullWidth',
+      blocked: {
+        name: 'blocked',
         control: 'boolean',
       },
     }}

@@ -24,10 +24,10 @@ type ButtonProps<P extends React.ElementType = 'button'> = {
      */
     size?: 'sm' | 'md' | 'lg';
     /**
-     * If true, the button will take up the full width of its container.
+     * Spans the full width of the Button parent.
      * @default false
      */
-    fullWidth?: boolean;
+    blocked?: boolean;
   }
 >;
 
@@ -37,7 +37,7 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     className,
     size = 'md',
     variant = 'primary',
-    fullWidth = false,
+    blocked = false,
     component,
     ...rest
   }: ButtonProps<T>,
@@ -51,7 +51,7 @@ function ButtonBase<T extends React.ElementType = 'button'>(
         'ods-btn',
         `ods-btn--${size}`,
         `ods-btn--${variant}`,
-        fullWidth && 'ods-btn--full-width',
+        blocked && 'ods-btn--blocked',
         className
       ),
       ...rest,

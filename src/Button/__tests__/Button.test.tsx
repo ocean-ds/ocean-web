@@ -77,8 +77,8 @@ test('renders an inverse button', () => {
 });
 
 test('renders a full width button', () => {
-  const { getByTestId } = render(<Button data-testid="btn-test" fullWidth />);
-  expect(getByTestId('btn-test')).toHaveClass('ods-btn--full-width');
+  const { getByTestId } = render(<Button data-testid="btn-test" blocked />);
+  expect(getByTestId('btn-test')).toHaveClass('ods-btn--blocked');
 });
 
 test('renders a link button', () => {
