@@ -2,9 +2,11 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Container from '../Container';
 import Row from '../Row';
 import Col from '../Col';
-import '../styles/stories.scss';
 
-<Meta title="Components/Grid/Demos" />
+<Meta
+  title="Components/Grid/Demos"
+  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
+/>
 
 ## Equal-width
 
