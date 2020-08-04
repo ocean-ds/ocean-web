@@ -41,7 +41,7 @@ it('renders a large button', () => {
 
 test('renders primary button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" color="primary" />
+    <Button data-testid="btn-test" variant="primary" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
@@ -51,7 +51,7 @@ test('renders primary button', () => {
 
 test('renders secondary button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" color="secondary" />
+    <Button data-testid="btn-test" variant="secondary" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
@@ -61,7 +61,7 @@ test('renders secondary button', () => {
 
 test('renders a ghost button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" color="ghost" />
+    <Button data-testid="btn-test" variant="ghost" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
@@ -71,7 +71,7 @@ test('renders a ghost button', () => {
 
 test('renders an inverse button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" color="inverse" />
+    <Button data-testid="btn-test" variant="inverse" />
   );
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--inverse');
 });
