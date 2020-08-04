@@ -5,6 +5,23 @@ import Button from '../Button';
   title="Components/Button"
   component={Button}
   argTypes={{
+    component: {
+      name: 'component',
+      description:
+        'The component used for the root node. Either a string to use a HTML element or a component.',
+      defaultValue: 'button',
+      table: {
+        type: {
+          summary: 'elementType',
+        },
+        defaultValue: {
+          summary: 'button',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
     variant: {
       name: 'variant',
       description: 'The variant to use.',

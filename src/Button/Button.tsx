@@ -6,6 +6,10 @@ import { MergeElementProps } from '../_util/type';
 import './styles/button.scss';
 
 type ButtonProps<P extends React.ElementType = 'button'> = {
+  /**
+   * The component used for the root node. Either a string to use a HTML element or a component.
+   * @default 'button'
+   */
   component?: P;
 } & MergeElementProps<
   P,
