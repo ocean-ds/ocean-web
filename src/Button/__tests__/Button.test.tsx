@@ -86,7 +86,7 @@ test('renders a link button', () => {
   const history = createMemoryHistory();
   const { getByTestId } = render(
     <Router history={history}>
-      <Button data-testid="btn-test" as={Link} to="/teste/1234">
+      <Button data-testid="btn-test" component={Link} to="/teste/1234">
         Link
       </Button>
     </Router>
