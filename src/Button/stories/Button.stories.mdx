@@ -28,7 +28,7 @@ import Button from '../Button';
       defaultValue: 'primary',
       table: {
         type: {
-          summary: '"primary" | "secondary" | "ghost" | "inverse"',
+          summary: '"primary" | "secondary" | "text" | "inverse"',
         },
         defaultValue: {
           summary: 'primary',
@@ -107,7 +107,7 @@ Any other props supplied will be provided to the root element (native element).
 | .ods-btn             | Styles applied to the root element.  |
 | .ods-btn--primary    | The color of the primary component   |
 | .ods-btn--secondary  | The color of the secondary component |
-| .ods-btn--ghost      | The color of the ghost component     |
+| .ods-btn--text       | The color of the text component      |
 | .ods-btn--inverse    | The color of the inverse component   |
 | .ods-btn--[sm,md,lg] | The width set to the component       |
 | .ods-btn--full-width | Full width to the component          |
@@ -129,7 +129,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
         name: 'variant',
         control: {
           type: 'select',
-          options: ['primary', 'secondary', 'ghost', 'inverse'],
+          options: ['primary', 'secondary', 'text', 'inverse'],
         },
       },
       size: {

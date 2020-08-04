@@ -17,7 +17,7 @@ type ButtonProps<P extends React.ElementType = 'button'> = {
      * The variant to use.
      * @default 'primary'
      */
-    variant?: 'primary' | 'secondary' | 'ghost' | 'inverse';
+    variant?: 'primary' | 'secondary' | 'text' | 'inverse';
     /**
      * The size of the button.
      * @default 'md'

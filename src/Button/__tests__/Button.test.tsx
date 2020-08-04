@@ -59,13 +59,13 @@ test('renders secondary button', () => {
   );
 });
 
-test('renders a ghost button', () => {
+test('renders a text button', () => {
   const { getByTestId } = render(
-    <Button data-testid="btn-test" variant="ghost" />
+    <Button data-testid="btn-test" variant="text" />
   );
 
   expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn--ghost'
+    'ods-btn ods-btn--md ods-btn--text'
   );
 });
 
