@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Typography from '../Typography';
 
 <Meta title="Components/Typography" component={Typography} />
@@ -15,21 +15,18 @@ import { Typography } from '@useblu/ocean-components';
 
 ## Usage
 
-<Preview withSource="open" withToolbar>
-  <Story
-    name="Usage"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
     <Typography variant="paragraph">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis
       tenetur
     </Typography>
   </Story>
-</Preview>
+</Canvas>
 
 ## Props
 
-<Props component={Typography} parameters />
+<ArgsTable of="." />
 
 The ref is forwarded to the root element.
 
@@ -37,33 +34,52 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Rule name   | Global class                   | Description                                                  |
-| ----------- | ------------------------------ | ------------------------------------------------------------ |
-| root        | .ods-typography                | Styles applied to the root element.                          |
-| heading1    | .ods-typography\_\_heading1    | Styles applied to the root element if variant="heading1".    |
-| heading2    | .ods-typography\_\_heading2    | Styles applied to the root element if variant="heading2".    |
-| heading3    | .ods-typography\_\_heading3    | Styles applied to the root element if variant="heading3".    |
-| heading4    | .ods-typography\_\_heading4    | Styles applied to the root element if variant="heading4".    |
-| subtitle1   | .ods-typography\_\_subtitle1   | Styles applied to the root element if variant="subtitle1".   |
-| subtitle2   | .ods-typography\_\_subtitle2   | Styles applied to the root element if variant="subtitle2".   |
-| paragraph   | .ods-typography\_\_paragraph   | Styles applied to the root element if variant="paragraph".   |
-| description | .ods-typography\_\_description | Styles applied to the root element if variant="description". |
-| caption     | .ods-typography\_\_caption     | Styles applied to the root element if variant="caption".     |
+| Global class                   | Description                                                  |
+| ------------------------------ | ------------------------------------------------------------ |
+| .ods-typography                | Styles applied to the root element.                          |
+| .ods-typography\_\_heading1    | Styles applied to the root element if variant="heading1".    |
+| .ods-typography\_\_heading2    | Styles applied to the root element if variant="heading2".    |
+| .ods-typography\_\_heading3    | Styles applied to the root element if variant="heading3".    |
+| .ods-typography\_\_heading4    | Styles applied to the root element if variant="heading4".    |
+| .ods-typography\_\_subtitle1   | Styles applied to the root element if variant="subtitle1".   |
+| .ods-typography\_\_subtitle2   | Styles applied to the root element if variant="subtitle2".   |
+| .ods-typography\_\_paragraph   | Styles applied to the root element if variant="paragraph".   |
+| .ods-typography\_\_description | Styles applied to the root element if variant="description". |
+| .ods-typography\_\_caption     | Styles applied to the root element if variant="caption".     |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Typography/Typography.tsx) for more detail.
 
 ## Playground
 
-<Preview>
+<Canvas>
   <Story
     name="Playground"
     args={{
       variant: 'heading3',
       children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     }}
+    argTypes={{
+      variant: {
+        name: 'variant',
+        defaultValue: 'heading1',
+        control: {
+          type: 'select',
+          options: [
+            'heading1',
+            'heading2',
+            'heading3',
+            'heading4',
+            'subtitle1',
+            'subtitle2',
+            'paragraph',
+            'description',
+          ],
+        },
+      },
+    }}
   >
     {(props) => <Typography {...props} />}
   </Story>
-</Preview>
+</Canvas>
 
-<Props story="Playground" />
+<ArgsTable story="Playground" of="." />

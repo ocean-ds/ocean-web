@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 
 import Typography, { defaultTypesMapping, Variant } from '../Typography';
 
-test('render element properly', () => {
+test('renders element properly', () => {
   const { getByTestId } = render(
     <Typography
       variant="heading1"

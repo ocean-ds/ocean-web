@@ -1,20 +1,19 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import Container from '../Container';
 import Row from '../Row';
 import Col from '../Col';
-import '../styles/stories.scss';
 
-<Meta title="Components/Grid/Demos" />
+<Meta
+  title="Components/Grid/Demos"
+  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
+/>
 
 ## Equal-width
 
 For example, here are two grid layouts that apply to every device and viewport, from xs to xl. Add any number of unit-less classes for each breakpoint you need and every column will be the same width.
 
-<Preview>
-  <Story
-    name="Equal-width"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas>
+  <Story name="Equal-width">
     <Container>
       <Row>
         <Col>1 of 2</Col>
@@ -27,17 +26,14 @@ For example, here are two grid layouts that apply to every device and viewport, 
       </Row>
     </Container>
   </Story>
-</Preview>
+</Canvas>
 
 ## Setting one column width
 
 Auto-layout for flexbox grid columns also means you can set the width of one column and have the sibling columns automatically resize around it. You may use predefined grid classes (as shown below), grid mixins, or inline widths. Note that the other columns will resize no matter the width of the center column.
 
-<Preview>
-  <Story
-    name="Setting one column width"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas>
+  <Story name="Setting one column width">
     <Container>
       <Row>
         <Col>1 of 3</Col>
@@ -51,15 +47,12 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
       </Row>
     </Container>
   </Story>
-</Preview>
+</Canvas>
 
 ## Mix and match
 
-<Preview>
-  <Story
-    name="Mix and match"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas>
+  <Story name="Mix and match">
     <Container>
       <Row>
         <Col md="8">.ods-col-md-8</Col>
@@ -84,17 +77,14 @@ Auto-layout for flexbox grid columns also means you can set the width of one col
       </Row>
     </Container>
   </Story>
-</Preview>
+</Canvas>
 
 ## Row columns
 
 Use these row columns classes to quickly create basic grid layouts or to control your card layouts.
 
-<Preview>
-  <Story
-    name="Row columns"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas>
+  <Story name="Row columns">
     <Container>
       <Row xs="1" sm="2" md="4">
         <Col>Column</Col>
@@ -104,15 +94,12 @@ Use these row columns classes to quickly create basic grid layouts or to control
       </Row>
     </Container>
   </Story>
-</Preview>
+</Canvas>
 
 ## Offsetting columns
 
-<Preview>
-  <Story
-    name="Offsetting columns"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas>
+  <Story name="Offsetting columns">
     <Container>
       <Row>
         <Col md="4">.ods-col-md-4</Col>
@@ -135,7 +122,7 @@ Use these row columns classes to quickly create basic grid layouts or to control
       </Row>
     </Container>
   </Story>
-</Preview>
+</Canvas>
 
 ## Nesting
 
@@ -143,11 +130,8 @@ To nest your content with the default grid, add a new .ods-row and set of .ods-c
 
 Nested rows should include a set of columns that add up to 12 or fewer (it is not required that you use all 12 available columns).
 
-<Preview>
-  <Story
-    name="Nesting"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas>
+  <Story name="Nesting">
     <Container>
       <Row>
         <Col sm="9">
@@ -164,4 +148,4 @@ Nested rows should include a set of columns that add up to 12 or fewer (it is no
       </Row>
     </Container>
   </Story>
-</Preview>
+</Canvas>

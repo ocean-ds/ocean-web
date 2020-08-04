@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Row from '../Row';
 
 <Meta title="Components/Grid/Row" component={Row} />
@@ -13,9 +13,19 @@ The API documentation of the Row React component. Learn more about the props and
 import { Row } from '@useblu/ocean-components/dist/Grid';
 ```
 
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Usage">
+    <Row noGutters md="4">
+      .ods-row .ods-no-gutters .ods-row-cols-md-4
+    </Row>
+  </Story>
+</Canvas>
+
 ## Props
 
-<Props component={Row} parameters />
+<ArgsTable of="." />
 
 The ref is forwarded to the root element.
 
@@ -23,12 +33,12 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Rule name            | Global class                       | Description                                                                                               |
-| -------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| root                 | .ods-row                           | Styles applied to the root element.                                                                       |
-| no-gutters           | .ods-no-gutters                    | Removes the negative margins from .ods-row and the horizontal padding from all immediate children columns |
-| row-cols-xs          | .ods-row-cols-[1..6]               | Sets the number of columns that best render your content and layout.                                      |
-| row-cols-breakpoints | .ods-row-cols-[sm,md,lg,xl]-[1..6] | Sets column widths in rows until the specified breakpoint.                                                |
+| Global class                       | Description                                                                                               |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| .ods-row                           | Styles applied to the root element.                                                                       |
+| .ods-no-gutters                    | Removes the negative margins from .ods-row and the horizontal padding from all immediate children columns |
+| .ods-row-cols-[1..6]               | Sets the number of columns that best render your content and layout.                                      |
+| .ods-row-cols-[sm,md,lg,xl]-[1..6] | Sets column widths in rows until the specified breakpoint.                                                |
 
 _Whereas normal .ods-col-\* classes apply to the individual columns (e.g., .ods-col-md-4), the **row columns classes** are set on the parent .ods-row as a shortcut._
 
