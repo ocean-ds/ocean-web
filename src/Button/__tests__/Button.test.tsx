@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import Button from '../Button';
 
@@ -79,4 +80,25 @@ test('renders an inverse button', () => {
 test('renders a full width button', () => {
   const { getByTestId } = render(<Button data-testid="btn-test" fullWidth />);
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--full-width');
+});
+
+test('renders a link button', () => {
+  const { getByTestId } = render(
+    <Router>
+      <Button data-testid="btn-test" component={Link} to="/teste/1234">
+        Link
+      </Button>
+    </Router>
+  );
+
+  expect(getByTestId('btn-test')).toMatchInlineSnapshot(`
+    <a
+      class="ods-btn ods-btn--md ods-btn--primary"
+      data-testid="btn-test"
+      href="/teste/1234"
+      type="button"
+    >
+      Link
+    </a>
+  `);
 });
