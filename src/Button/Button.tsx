@@ -10,7 +10,7 @@ type ButtonProps<P extends React.ElementType = 'button'> = {
    * The component used for the root node. Either a string to use a HTML element or a component.
    * @default 'button'
    */
-  component?: P;
+  as?: P;
 } & MergeElementProps<
   P,
   {
@@ -39,15 +39,15 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     size = 'md',
     variant = 'primary',
     fullWidth = false,
+    as,
     ...rest
   }: ButtonProps<T>,
   ref: React.Ref<HTMLButtonElement>
 ) {
   return React.createElement(
-    rest.component || 'button',
+    as || 'button',
     {
       ref,
-      type: 'button',
       className: classNames(
         'ods-btn',
         `ods-btn--${size}`,

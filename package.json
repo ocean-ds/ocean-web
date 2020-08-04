@@ -61,6 +61,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-testing-library": "^3.3.2",
+    "history": "^5.0.0",
     "husky": "^4.2.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",

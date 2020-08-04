@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Router, Link } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 
 import Button from '../Button';
 
@@ -18,7 +19,6 @@ test('renders element properly', () => {
     <button
       class="ods-btn ods-btn--md ods-btn--primary other-css-class__1 other-css-class__2"
       data-testid="btn-test"
-      type="button"
     >
       Hello
     </button>
@@ -83,9 +83,10 @@ test('renders a full width button', () => {
 });
 
 test('renders a link button', () => {
+  const history = createMemoryHistory();
   const { getByTestId } = render(
-    <Router>
-      <Button data-testid="btn-test" component={Link} to="/teste/1234">
+    <Router history={history}>
+      <Button data-testid="btn-test" as={Link} to="/teste/1234">
         Link
       </Button>
     </Router>
@@ -96,7 +97,6 @@ test('renders a link button', () => {
       class="ods-btn ods-btn--md ods-btn--primary"
       data-testid="btn-test"
       href="/teste/1234"
-      type="button"
     >
       Link
     </a>
