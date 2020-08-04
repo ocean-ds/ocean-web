@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Container from '../Container';
 
 <Meta title="Components/Grid/Container" component={Container} />
@@ -13,9 +13,17 @@ The API documentation of the Container React component. Learn more about the pro
 import { Container } from '@useblu/ocean-components/dist/Grid';
 ```
 
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Usage">
+    <Container fluid="sm">.ods-container-sm</Container>
+  </Story>
+</Canvas>
+
 ## Props
 
-<Props component={Container} parameters />
+<ArgsTable of="." />
 
 The ref is forwarded to the root element.
 

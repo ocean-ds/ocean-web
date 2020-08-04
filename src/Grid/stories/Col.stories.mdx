@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Col from '../Col';
 
 <Meta title="Components/Grid/Col" component={Col} />
@@ -13,9 +13,17 @@ The API documentation of the Col React component. Learn more about the props and
 import { Col } from '@useblu/ocean-components/dist/Grid';
 ```
 
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Usage">
+    <Col xs={{ span: '3', offset: '1' }}>.ods-col-3 .ods-offset-1</Col>
+  </Story>
+</Canvas>
+
 ## Props
 
-<Props component={Col} parameters />
+<ArgsTable of="." />
 
 The ref is forwarded to the root element.
 

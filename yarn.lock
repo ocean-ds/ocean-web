@@ -1027,14 +1027,14 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2", "@babel/runtime@^7.9.6":
   version "7.11.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.0.tgz#f10245877042a815e07f7e693faff0ae9d3a2aac"
   integrity sha512-qArkXsjJq7H+T86WrIFV0Fnu/tNOkZ4cgXmjkzAu3b/58D5mFIO8JH/y77t7C9q0OdDRdh9s7Ue5GasYssxtXw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.3", "@babel/runtime@^7.9.6":
+"@babel/runtime@^7.10.3":
   version "7.10.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
   integrity sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==
@@ -1553,7 +1553,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@storybook/addon-a11y@^6.0.0-rc.13":
+"@storybook/addon-a11y@^6.0.0-rc.24":
   version "6.0.0-rc.24"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-6.0.0-rc.24.tgz#3f066d7f50146f79dfd0500b2e338b8694a150fc"
   integrity sha512-0b9L9iQtAmjJonRAkuW4yAsOazc2OakwtcE8KR+OMiRt8b3r+ZZh0bTrRlTYErSGhc6ZKG3csjR43AFY5OiOGg==
@@ -1591,7 +1591,7 @@
     react "^16.8.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-controls@^6.0.0-rc.8":
+"@storybook/addon-controls@^6.0.0-rc.24":
   version "6.0.0-rc.24"
   resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.0-rc.24.tgz#041b514237652f1e39013ea9152ab44c3da2fae0"
   integrity sha512-TCUx2yIh/ZRns2R5ciNmcHqc4ClLNV80x2aQoA9dJdBtl07Yl/eo9xcqyj9c0d5JnDEW9LV/PJuolZXWrKGH4Q==
@@ -1605,7 +1605,7 @@
     core-js "^3.0.1"
     ts-dedent "^1.1.1"
 
-"@storybook/addon-docs@^6.0.0-rc.13":
+"@storybook/addon-docs@^6.0.0-rc.24":
   version "6.0.0-rc.24"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-6.0.0-rc.24.tgz#091734aab8e8a4bd0e8546b35a0a75004c002a28"
   integrity sha512-kRvCWXdli9pIgrLi2RVzFeEYVOrK2hrXYpr2eOzQ8VVuDZm4YDe2sXqr+Ytj0CBqP7KPw7e5sE4+sIW+KFKL0g==
@@ -1649,7 +1649,7 @@
     ts-dedent "^1.1.1"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-viewport@^6.0.0-rc.13":
+"@storybook/addon-viewport@^6.0.0-rc.24":
   version "6.0.0-rc.24"
   resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-6.0.0-rc.24.tgz#2e8ede3e32e2e78d25958c39fbbbdad8dcc5c389"
   integrity sha512-QVunuvdCjb3xVBZF+idcU47qRSElw1JaPXRztxOW9yw53LHfA8XfXOPU2jv3hj4XvXlbFZ5+j59nP0/zmpLMFQ==
@@ -1922,7 +1922,7 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/react@^6.0.0-rc.13":
+"@storybook/react@^6.0.0-rc.24":
   version "6.0.0-rc.24"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-6.0.0-rc.24.tgz#c235afcd7146cbeed46e24e6f8c95a742e949b94"
   integrity sha512-2q+LY19itVDFBqEVd1x+rETXRkRriX/6H8PJYvbXXeTyh0I2ns9xr2zolbEdD0FmLc4UE/yCCCCB4jxpx3M6NA==
@@ -5460,9 +5460,9 @@ eslint-config-prettier@^6.11.0:
     get-stdin "^6.0.0"
 
 eslint-plugin-jest-dom@^3.0.1:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.1.4.tgz#c65dec65d04e937fcd238a0fa0b9ef36509bb187"
-  integrity sha512-c6V5HXMD9ToHsikadNGDvDJlBF8ba0R3sxZVZ5nRs2t1vuqTUR72yDOTWdj1MtaRMd1+K7FB5HyjYHjKHAe/oA==
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.1.5.tgz#bd968fafc2677b0614b004fec72ca5da56c7d37f"
+  integrity sha512-KT9Nw3MmM8uSM/RyN25cu+wm9nZLAX6ueGaBSZVF4uYmuMtiMtDAMlKslijZaQvTqFzo4ov0wgrsVJpShr6QRQ==
   dependencies:
     "@babel/runtime" "^7.9.6"
     requireindex "^1.2.0"

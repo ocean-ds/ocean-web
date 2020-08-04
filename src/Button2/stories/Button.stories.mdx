@@ -1,7 +1,60 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Button from '../Button';
 
-<Meta title="Components/Button" component={Button} />
+<Meta
+  title="Components/Button"
+  component={Button}
+  argTypes={{
+    variant: {
+      name: 'variant',
+      description: 'The variant to use.',
+      defaultValue: 'primary',
+      table: {
+        type: {
+          summary: '"primary" | "secondary" | "ghost" | "inverse"',
+        },
+        defaultValue: {
+          summary: 'primary',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+    size: {
+      name: 'size',
+      description: 'The size of the button.',
+      defaultValue: 'md',
+      table: {
+        type: {
+          summary: '"sm" | "md" | "lg"',
+        },
+        defaultValue: {
+          summary: 'md',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+    fullWidth: {
+      name: 'fullWidth',
+      description:
+        'If true, the button will take up the full width of its container.',
+      table: {
+        type: {
+          summary: 'true | false',
+        },
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+  }}
+/>
 
 # Button API
 
@@ -15,18 +68,15 @@ import { Button } from '@useblu/ocean-components';
 
 ## Usage
 
-<Preview withSource="open" withToolbar>
-  <Story
-    name="Usage"
-    parameters={{ controls: { hideNoControlsWarning: true } }}
-  >
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
     <Button>Click Here!</Button>
   </Story>
-</Preview>
+</Canvas>
 
 ## Props
 
-<Props component={Button} parameters />
+<ArgsTable of="." showComponent={false} />
 
 The ref is forwarded to the root element.
 
@@ -48,10 +98,37 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Playground
 
-<Preview>
-  <Story name="Playground" args={{ children: 'My Button' }}>
+<Canvas>
+  <Story
+    name="Playground"
+    args={{ children: 'My Button' }}
+    argTypes={{
+      children: {
+        name: 'children',
+        control: 'text',
+      },
+      variant: {
+        name: 'variant',
+        control: {
+          type: 'select',
+          options: ['primary', 'secondary', 'ghost', 'inverse'],
+        },
+      },
+      size: {
+        name: 'size',
+        control: {
+          type: 'select',
+          options: ['sm', 'md', 'lg'],
+        },
+      },
+      fullWidth: {
+        name: 'fullWidth',
+        control: 'boolean',
+      },
+    }}
+  >
     {(props) => <Button {...props} />}
   </Story>
-</Preview>
+</Canvas>
 
-<Props story="Playground" />
+<ArgsTable story="Playground" of="." />

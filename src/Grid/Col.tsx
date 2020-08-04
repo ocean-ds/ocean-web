@@ -47,6 +47,7 @@ type ColProps = {
    * The number of columns to span on extra large devices (≥1200px)
    */
   xl?: ColSpec;
+  id?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(

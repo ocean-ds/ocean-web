@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Row from '../Row';
 
 <Meta title="Components/Grid/Row" component={Row} />
@@ -13,9 +13,19 @@ The API documentation of the Row React component. Learn more about the props and
 import { Row } from '@useblu/ocean-components/dist/Grid';
 ```
 
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Usage">
+    <Row noGutters md="4">
+      .ods-row .ods-no-gutters .ods-row-cols-md-4
+    </Row>
+  </Story>
+</Canvas>
+
 ## Props
 
-<Props component={Row} parameters />
+<ArgsTable of="." />
 
 The ref is forwarded to the root element.
 
