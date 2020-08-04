@@ -7,3 +7,5 @@ addParameters({
     page: DocsPage,
   },
 });
+
+addParameters({ controls: { hideNoControlsWarning: true } });

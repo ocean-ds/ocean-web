@@ -18,3 +18,15 @@
     padding-left: 0;
   }
 }
+
+.show-grid {
+  .ods-row {
+    > .ods-col,
+    > [class^='ods-col-'] {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      background-color: #bbeffd;
+      border: 1px solid #61dafb;
+    }
+  }
+}

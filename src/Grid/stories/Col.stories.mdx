@@ -1,4 +1,4 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Col from '../Col';
 
 <Meta title="Components/Grid/Col" component={Col} />
@@ -13,9 +13,17 @@ The API documentation of the Col React component. Learn more about the props and
 import { Col } from '@useblu/ocean-components/dist/Grid';
 ```
 
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Usage">
+    <Col xs={{ span: '3', offset: '1' }}>.ods-col-3 .ods-offset-1</Col>
+  </Story>
+</Canvas>
+
 ## Props
 
-<Props component={Col} parameters />
+<ArgsTable of="." />
 
 The ref is forwarded to the root element.
 
@@ -23,13 +31,13 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Rule name          | Global class                        | Description                                                           |
-| ------------------ | ----------------------------------- | --------------------------------------------------------------------- |
-| root               | .ods-col                            | Styles applied to the root element when no breakpoint is passed.      |
-| col-xs             | .ods-col-[auto,1..12]               | Sets the width content at xs or all breakpoints.                      |
-| col-breakpoints    | .ods-col-[sm,md,lg,xl]-[auto,1..12] | Sets the width content until the specified breakpoint.                |
-| offset-xs          | .ods-offset-[1..11]                 | Increases the left margin of a column for xs or all breakpoints.      |
-| offset-breakpoints | .ods-offset-[sm,md,lg,xl]-[0..11]   | Increases the left margin of a column until the specified breakpoint. |
+| Global class                        | Description                                                           |
+| ----------------------------------- | --------------------------------------------------------------------- |
+| .ods-col                            | Styles applied to the root element when no breakpoint is passed.      |
+| .ods-col-[auto,1..12]               | Sets the width content at xs or all breakpoints.                      |
+| .ods-col-[sm,md,lg,xl]-[auto,1..12] | Sets the width content until the specified breakpoint.                |
+| .ods-offset-[1..11]                 | Increases the left margin of a column for xs or all breakpoints.      |
+| .ods-offset-[sm,md,lg,xl]-[0..11]   | Increases the left margin of a column until the specified breakpoint. |
 
 - _Set the column value (for any breakpoint size) to "auto" to size columns based on the natural width of their content._
 

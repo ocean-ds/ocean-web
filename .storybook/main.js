@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/addon-docs',
     '@storybook/addon-controls',
     '@storybook/addon-a11y',
+    '@storybook/addon-backgrounds',
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({
