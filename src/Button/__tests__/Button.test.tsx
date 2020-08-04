@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Router, Link } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { MemoryRouter as Router, Link } from 'react-router-dom';
 
 import Button from '../Button';
 
@@ -83,9 +82,8 @@ test('renders a full width button', () => {
 });
 
 test('renders a link button', () => {
-  const history = createMemoryHistory();
   const { getByTestId } = render(
-    <Router history={history}>
+    <Router>
       <Button data-testid="btn-test" component={Link} to="/teste/1234">
         Link
       </Button>
