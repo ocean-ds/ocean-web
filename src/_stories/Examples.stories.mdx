@@ -1,0 +1,29 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import Button from '../Button';
+
+<Meta title="Examples/Page" />
+
+## Example 1
+
+<Canvas withSource="open">
+  <Story name="Example 1">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col>
+          <Typography variant="paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+            blanditiis tenetur
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Col>
+          <Button>Voltar</Button>
+          <Button>Avançar</Button>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
