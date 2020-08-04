@@ -1,27 +1,30 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import './styles/button.scss';
 import { MergeProps } from '../_util/type';
 
-/**
- * Utility type
- */
+import './styles/button.scss';
 
-export type ButtonProps<P extends React.ElementType = 'button'> = {
+type ButtonProps<P extends React.ElementType = 'button'> = {
   component?: P;
 } & MergeProps<
   P,
   {
-    children: React.ReactNode;
-
-    className?: string;
-
-    variant?: 'contained' | 'text' | 'blocked';
-
-    color?: 'primary' | 'secondary' | 'inverse';
-
+    /**
+     * The variant to use.
+     * @default 'primary'
+     */
+    variant?: 'primary' | 'secondary' | 'ghost' | 'inverse';
+    /**
+     * The size of the button.
+     * @default 'md'
+     */
     size?: 'sm' | 'md' | 'lg';
+    /**
+     * If true, the button will take up the full width of its container.
+     * @default false
+     */
+    fullWidth?: boolean;
   }
 >;
 
@@ -29,10 +32,9 @@ function ButtonBase<T extends React.ElementType = 'button'>(
   {
     children,
     className,
-    type = 'button',
-    variant = 'contained',
-    color = 'primary',
     size = 'md',
+    variant = 'primary',
+    fullWidth = false,
     ...rest
   }: ButtonProps<T>,
   ref: React.Ref<HTMLButtonElement>
@@ -41,11 +43,14 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     rest.component || 'button',
     {
       ref,
+      type: 'button',
       className: classNames(
-        `ods-button ods-button-${variant} ods-button-${color} ods-button-${size}`,
+        'ods-btn',
+        `ods-btn--${size}`,
+        `ods-btn--${variant}`,
+        fullWidth && 'ods-btn--full-width',
         className
       ),
-      type,
       ...rest,
     },
     children
