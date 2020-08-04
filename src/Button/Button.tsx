@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { MergeProps } from '../_util/type';
+import { MergeElementProps } from '../_util/type';
 
 import './styles/button.scss';
 
 type ButtonProps<P extends React.ElementType = 'button'> = {
   component?: P;
-} & MergeProps<
+} & MergeElementProps<
   P,
   {
     /**
