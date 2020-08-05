@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Input from '../Input';
+
+<Meta title="Components/Input" component={Input} />
+
+# Input API
+
+The API documentation of the Input React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Input } from '@useblu/ocean-components';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Input
+      label="Label"
+      value="Hello World"
+      helperText="Just a small info ;)"
+      readOnly
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    args={{
+      label: 'Label',
+      defaultValue: 'Input text',
+      error: true,
+      helperText: 'Mensagem de erro.',
+    }}
+    argTypes={{
+      label: {
+        control: 'text',
+      },
+      placeholder: {
+        control: 'text',
+      },
+      disabled: {
+        control: 'boolean',
+      },
+      helperText: {
+        control: 'text',
+      },
+    }}
+  >
+    {(props) => <Input {...props} />}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Playground" of="." />
