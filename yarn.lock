@@ -1580,16 +1580,16 @@
     regenerator-runtime "^0.13.3"
 
 "@storybook/addon-controls@^6.0.0-rc.24":
-  version "6.0.0-rc.26"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.0-rc.26.tgz#75a9cca39838769ef02566389d91f2599fa7d8ad"
-  integrity sha512-1xLNVcIVbl0SHbPPlmFK7EK2O11gHtItBD4WPmKHwOaKeUrs4w83Ol+vTE4C1Cs2g//TzyGh4l4ViXTRgMcUWg==
+  version "6.0.0-rc.28"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.0-rc.28.tgz#69d9623e8df4ee331bf1031a7507e64f09c89c81"
+  integrity sha512-h1y3BuSsas41GfsU0I5oD/sTXxyRzhxTd4dbTtr5OH2ZGmuTmYmbWqmYaDdfmn93AaamB3XsS77ojK1xvG6w5w==
   dependencies:
-    "@storybook/addons" "6.0.0-rc.26"
-    "@storybook/api" "6.0.0-rc.26"
-    "@storybook/client-api" "6.0.0-rc.26"
-    "@storybook/components" "6.0.0-rc.26"
-    "@storybook/node-logger" "6.0.0-rc.26"
-    "@storybook/theming" "6.0.0-rc.26"
+    "@storybook/addons" "6.0.0-rc.28"
+    "@storybook/api" "6.0.0-rc.28"
+    "@storybook/client-api" "6.0.0-rc.28"
+    "@storybook/components" "6.0.0-rc.28"
+    "@storybook/node-logger" "6.0.0-rc.28"
+    "@storybook/theming" "6.0.0-rc.28"
     core-js "^3.0.1"
     ts-dedent "^1.1.1"
 
@@ -2020,17 +2020,6 @@
   integrity sha512-USTLkZze5gkel8MYCujSRBVIrUQ3YPBrLOx7GNk/0wttvVtlzWXAq9eLbQ4p/NicGxP+3T7KPEMVV//g+yubpw==
   dependencies:
     lodash "^4.17.15"
-
-"@storybook/node-logger@6.0.0-rc.26":
-  version "6.0.0-rc.26"
-  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-6.0.0-rc.26.tgz#ff42b4342a0963d369959de6bf552bd5b49fbf4a"
-  integrity sha512-KZjBcKTSFFZc5IQ1g+A41Rcm4NLYszBsPpXbJxV/PAiPGR8cmhGFHxcm2lGln8G+YM/bFDTxS2oI2RPtZb3DMg==
-  dependencies:
-    "@types/npmlog" "^4.1.2"
-    chalk "^4.0.0"
-    core-js "^3.0.1"
-    npmlog "^4.1.2"
-    pretty-hrtime "^1.0.3"
 
 "@storybook/node-logger@6.0.0-rc.28":
   version "6.0.0-rc.28"
