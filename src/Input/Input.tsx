@@ -30,23 +30,20 @@ type InputProps = {
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
-  {
-    className,
-    type = 'text',
-    label,
-    helperText,
-    blocked = false,
-    error = false,
-    ...rest
-  },
+  { type, className, label, helperText, blocked, error, id, ...rest },
   ref
 ) {
   return (
     <div className="ods-input__root">
-      {label && <label className="ods-input__label">{label}</label>}
+      {label && (
+        <label className="ods-input__label" htmlFor={id}>
+          {label}
+        </label>
+      )}
       <input
         ref={ref}
-        type={type}
+        type={type || 'text'}
+        id={id}
         className={classNames(
           'ods-input',
           blocked && 'ods-input--blocked',
