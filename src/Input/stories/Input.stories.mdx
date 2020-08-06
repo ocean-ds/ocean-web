@@ -35,6 +35,7 @@ import { Input } from '@useblu/ocean-components';
 <Canvas withSource="open" withToolbar>
   <Story name="Usage">
     <Input
+      id="input-usage"
       label="Label"
       value="Hello World"
       helperText="Just a small info ;)"
@@ -97,10 +98,9 @@ If that's not sufficient, you can check the [implementation of the component](ht
       helperText: {
         control: 'text',
       },
-      defaultValue: { control: null },
     }}
   >
-    {(props) => <Input {...props} />}
+    {(props) => <Input id="input-playground" {...props} />}
   </Story>
 </Canvas>
 
