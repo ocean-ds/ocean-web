@@ -24,11 +24,9 @@
     color: $color-interface-light-deep;
   }
 
-  &:focus {
-    border-color: $color-brand-primary-down;
-  }
-
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     border-color: $color-brand-primary-down;
   }
 
@@ -41,10 +39,6 @@
     &:active {
       border-color: $color-interface-light-down;
     }
-  }
-
-  &:active {
-    border-color: $color-brand-primary-up;
   }
 
   &--error {
