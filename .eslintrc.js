@@ -31,5 +31,6 @@ module.exports = {
   },
   rules: {
     'react/prop-types': 'off',
+    'jest/consistent-test-it': ['error', { fn: 'test' }],
   },
 };

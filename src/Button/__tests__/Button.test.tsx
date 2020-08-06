@@ -24,17 +24,17 @@ test('renders element properly', () => {
   `);
 });
 
-it('renders a small button', () => {
+test('renders a small button', () => {
   const { getByTestId } = render(<Button data-testid="btn-test" size="sm" />);
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--sm');
 });
 
-it('renders a medium button', () => {
+test('renders a medium button', () => {
   const { getByTestId } = render(<Button data-testid="btn-test" size="md" />);
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--md');
 });
 
-it('renders a large button', () => {
+test('renders a large button', () => {
   const { getByTestId } = render(<Button data-testid="btn-test" size="lg" />);
   expect(getByTestId('btn-test')).toHaveClass('ods-btn--lg');
 });

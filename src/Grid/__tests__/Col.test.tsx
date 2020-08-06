@@ -61,7 +61,7 @@ test('includes offsets', () => {
   );
 });
 
-it('allows span to be false', () => {
+test('allows span to be false', () => {
   const { getByTestId } = render(
     <Col data-testid="grid-col" xs="6" md={{ span: false }} />
   );
@@ -69,7 +69,7 @@ it('allows span to be false', () => {
   expect(getByTestId('grid-col').className).toBe('ods-col-6');
 });
 
-it('allows span to be auto', () => {
+test('allows span to be auto', () => {
   const { getByTestId } = render(
     <Col data-testid="grid-col" md="auto" lg={{ span: 'auto' }} />
   );
