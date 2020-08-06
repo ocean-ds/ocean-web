@@ -5,10 +5,10 @@ import './styles/input.scss';
 
 type InputProps = {
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Type of the `input` element.
    * @default 'text'
    */
-  type?: React.InputHTMLAttributes<unknown>['type'];
+  type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
   /**
    * The label content.
    */
@@ -42,12 +42,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   ref
 ) {
   return (
-    <div
-      className={classNames(
-        'ods-input__root',
-        blocked && 'ods-input__root--blocked'
-      )}
-    >
+    <div className="ods-input__root">
       {label && <label className="ods-input__label">{label}</label>}
       <input
         ref={ref}
