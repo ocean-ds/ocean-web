@@ -118,7 +118,11 @@ If that's not sufficient, you can check the [implementation of the component](ht
 <Canvas>
   <Story
     name="Playground"
-    args={{ children: 'My Button', blocked: false }}
+    args={{
+      children: 'My Button',
+      blocked: false,
+      disabled: false,
+    }}
     argTypes={{
       children: {
         name: 'children',
@@ -140,6 +144,10 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       blocked: {
         name: 'blocked',
+        control: 'boolean',
+      },
+      disabled: {
+        name: 'disabled',
         control: 'boolean',
       },
     }}
