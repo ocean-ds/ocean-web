@@ -5,17 +5,14 @@ import Col from '../Col';
 
 test('renders element properly', () => {
   const { getByTestId } = render(
-    <Col
-      data-testid="grid-col"
-      className="other-css-class__1 other-css-class__2"
-    >
+    <Col data-testid="grid-col" className="custom-class">
       Col rendering
     </Col>
   );
 
   expect(getByTestId('grid-col')).toMatchInlineSnapshot(`
     <div
-      class="ods-col other-css-class__1 other-css-class__2"
+      class="ods-col custom-class"
       data-testid="grid-col"
     >
       Col rendering

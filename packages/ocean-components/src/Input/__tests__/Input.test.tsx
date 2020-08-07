@@ -5,10 +5,7 @@ import Input from '../Input';
 
 test('renders element properly', () => {
   const { container, getByTestId } = render(
-    <Input
-      data-testid="input-test"
-      className="other-css-class__1 other-css-class__2"
-    />
+    <Input data-testid="input-test" className="custom-class" />
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
@@ -16,7 +13,7 @@ test('renders element properly', () => {
       class="ods-input__root"
     >
       <input
-        class="ods-input other-css-class__1 other-css-class__2"
+        class="ods-input custom-class"
         data-testid="input-test"
         type="text"
       />
