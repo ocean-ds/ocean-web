@@ -5,17 +5,14 @@ import Container from '../Container';
 
 test('render element properly', () => {
   const { getByTestId } = render(
-    <Container
-      data-testid="grid-container"
-      className="other-css-class__1 other-css-class__2"
-    >
+    <Container data-testid="grid-container" className="custom-class">
       Container
     </Container>
   );
 
   expect(getByTestId('grid-container')).toMatchInlineSnapshot(`
     <div
-      class="ods-container other-css-class__1 other-css-class__2"
+      class="ods-container custom-class"
       data-testid="grid-container"
     >
       Container

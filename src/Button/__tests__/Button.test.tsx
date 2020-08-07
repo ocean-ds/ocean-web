@@ -6,17 +6,14 @@ import Button from '../Button';
 
 test('renders element properly', () => {
   const { getByTestId } = render(
-    <Button
-      data-testid="btn-test"
-      className="other-css-class__1 other-css-class__2"
-    >
+    <Button data-testid="btn-test" className="custom-class">
       Hello
     </Button>
   );
 
   expect(getByTestId('btn-test')).toMatchInlineSnapshot(`
     <button
-      class="ods-btn ods-btn--md ods-btn--primary other-css-class__1 other-css-class__2"
+      class="ods-btn ods-btn--md ods-btn--primary custom-class"
       data-testid="btn-test"
     >
       Hello
