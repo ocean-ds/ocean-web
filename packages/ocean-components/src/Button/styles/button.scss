@@ -34,6 +34,12 @@
     padding-right: $spacing-inline-md;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    color: $color-interface-dark-up;
+    background-color: $color-interface-light-down;
+  }
+
   &--primary {
     background-color: $color-brand-primary-pure;
     color: $color-interface-light-pure;
@@ -42,17 +48,12 @@
       background-color: $color-brand-primary-down;
     }
 
-    &:active {
-      background-color: $color-brand-primary-deep;
-    }
-
     &:focus {
       background-color: $color-brand-primary-down;
     }
 
-    &:disabled {
-      background-color: $color-interface-dark-up;
-      background-color: $color-interface-light-down;
+    &:active {
+      background-color: $color-brand-primary-deep;
     }
   }
 
@@ -64,17 +65,12 @@
       background-color: $color-interface-light-down;
     }
 
-    &:active {
-      background-color: $color-interface-dark-up;
-    }
-
     &:focus {
       background-color: $color-interface-light-down;
     }
 
-    &:disabled {
+    &:active {
       background-color: $color-interface-dark-up;
-      background-color: $color-interface-light-down;
     }
   }
 
@@ -86,17 +82,12 @@
       background-color: $color-interface-light-down;
     }
 
-    &:active {
-      background-color: $color-interface-light-deep;
-    }
-
     &:focus {
       background-color: $color-interface-light-down;
     }
 
-    &:disabled {
-      background-color: $color-interface-dark-up;
-      background-color: $color-interface-light-down;
+    &:active {
+      background-color: $color-interface-light-deep;
     }
   }
 
@@ -108,17 +99,12 @@
       background-color: $color-complementary-down;
     }
 
-    &:active {
-      background-color: $color-complementary-deep;
-    }
-
     &:focus {
       background-color: $color-complementary-down;
     }
 
-    &:disabled {
-      background-color: $color-interface-dark-up;
-      background-color: $color-interface-light-down;
+    &:active {
+      background-color: $color-complementary-deep;
     }
   }
 
