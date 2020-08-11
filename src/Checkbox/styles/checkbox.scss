@@ -1,15 +1,15 @@
 @import '~@useblu/tokens/dist/web/tokens.scss';
 
-.ods-checkbox__root {
-  display: flex;
-  user-select: none;
-}
-
 .ods-checkbox {
   opacity: 0;
   height: 0;
   width: 0;
   margin: 0;
+
+  &__root {
+    display: flex;
+    user-select: none;
+  }
 
   &__label {
     cursor: pointer;

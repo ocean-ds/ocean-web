@@ -1,15 +1,15 @@
 @import '~@useblu/tokens/dist/web/tokens.scss';
 
-.ods-radio__root {
-  display: flex;
-  user-select: none;
-}
-
 .ods-radio {
   height: 0;
   margin: 0;
   opacity: 0;
   width: 0;
+
+  &__root {
+    display: flex;
+    user-select: none;
+  }
 
   &__label {
     cursor: pointer;
