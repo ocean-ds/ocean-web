@@ -1,15 +1,20 @@
 @import '~@useblu/tokens/dist/web/tokens.scss';
 
+.ods-checkbox__root {
+  display: flex;
+  user-select: none;
+
+  &:hover .ods-checkbox__checkmark {
+    background-color: $color-interface-light-up;
+    border-color: $color-interface-dark-up;
+  }
+}
+
 .ods-checkbox {
   opacity: 0;
   height: 0;
   width: 0;
   margin: 0;
-
-  &__root {
-    display: flex;
-    user-select: none;
-  }
 
   &__label {
     cursor: pointer;
@@ -36,12 +41,6 @@
       border-width: 0 2px 2px 0;
       transform: rotate(40deg);
     }
-  }
-
-  &__label:hover,
-  &__checkmark:hover {
-    background-color: $color-interface-light-up;
-    border-color: $color-interface-dark-up;
   }
 
   &:checked ~ &__checkmark:after {
