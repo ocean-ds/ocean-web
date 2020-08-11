@@ -1,0 +1,70 @@
+@import '~@useblu/tokens/dist/web/tokens.scss';
+
+.ods-checkbox__root {
+  display: flex;
+  user-select: none;
+}
+
+.ods-checkbox {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  margin: 0;
+
+  &__label {
+    cursor: pointer;
+    padding-left: $spacing-inline-xxs;
+  }
+
+  &__checkmark {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border: solid 2px $color-interface-dark-up;
+    border-radius: $border-radius-sm;
+    background-color: $color-interface-light-pure;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: $color-interface-light-up;
+      border-color: $color-interface-dark-up;
+    }
+
+    &:after {
+      content: '';
+      display: none;
+      margin-top: 2px;
+      margin-left: 6px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(40deg);
+    }
+  }
+
+  &:checked ~ &__checkmark:after {
+    display: block;
+  }
+
+  &:disabled ~ &__checkmark,
+  &:disabled ~ &__label {
+    cursor: not-allowed;
+    color: $color-interface-light-deep;
+  }
+
+  &:checked:not(:disabled) ~ &__checkmark {
+    border-color: $color-highlight-pure;
+    background-color: $color-highlight-pure;
+  }
+
+  &:checked:disabled ~ &__checkmark {
+    background-color: $color-interface-light-deep;
+    border-color: $color-interface-light-deep;
+  }
+
+  &:disabled:not(:checked) ~ &__checkmark {
+    background-color: $color-interface-light-pure;
+    border-color: $color-interface-light-deep;
+  }
+}
