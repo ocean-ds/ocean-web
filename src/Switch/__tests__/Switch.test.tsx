@@ -18,7 +18,7 @@ test('renders element properly', () => {
         type="checkbox"
       />
       <span
-        class="ods-switch__checkmark"
+        class="ods-switch__slider"
       />
     </label>
   `);

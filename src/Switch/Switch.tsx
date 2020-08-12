@@ -18,7 +18,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(
         {...rest}
         type="checkbox"
       />
-      <span className="ods-switch__checkmark"></span>
+      <span className="ods-switch__slider"></span>
     </label>
   );
 });
