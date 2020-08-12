@@ -1,6 +1,6 @@
 @import '~@useblu/tokens/dist/web/tokens.scss';
 
-.ods-checkbox {
+.ods-radio {
   position: absolute;
   opacity: 0;
   height: 0;
@@ -10,7 +10,7 @@
     display: inline-flex;
     user-select: none;
 
-    &:hover .ods-checkbox__checkmark {
+    &:hover .ods-radio__checkmark {
       background-color: $color-interface-light-up;
       border-color: $color-interface-dark-up;
     }
@@ -26,20 +26,19 @@
     width: 24px;
     height: 24px;
     border: solid 2px $color-interface-dark-up;
-    border-radius: $border-radius-sm;
+    border-radius: 50%;
     background-color: $color-interface-light-pure;
     box-sizing: border-box;
 
     &:after {
       content: '';
       display: none;
-      margin-top: 2px;
+      margin-top: 6px;
       margin-left: 6px;
-      width: 6px;
-      height: 10px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
-      transform: rotate(40deg);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: $color-interface-light-pure;
     }
   }
 
