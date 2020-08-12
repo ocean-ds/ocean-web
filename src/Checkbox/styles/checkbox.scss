@@ -1,15 +1,15 @@
 @import '~@useblu/tokens/dist/web/tokens.scss';
 
 .ods-checkbox {
+  position: absolute;
   opacity: 0;
   height: 0;
   width: 0;
-  margin: 0;
 
   &__root {
     display: inline-flex;
-    user-select: none;
     align-items: flex-end;
+    user-select: none;
 
     &:hover .ods-checkbox__checkmark {
       background-color: $color-interface-light-up;
