@@ -7,8 +7,9 @@
   margin: 0;
 
   &__root {
-    display: flex;
+    display: inline-flex;
     user-select: none;
+    align-items: flex-end;
 
     &:hover .ods-radio__checkmark {
       background-color: $color-interface-light-up;
