@@ -25,16 +25,16 @@
     right: 0;
     bottom: 0;
     box-sizing: border-box;
-    transition: 0.4s;
+    transition: all 0.2s ease;
 
     &:before {
       content: '';
       display: block;
       height: 16px;
       width: 16px;
-      background-color: $color-highlight-pure;
-      transition: 0.4s;
       border-radius: 50%;
+      background-color: $color-highlight-pure;
+      transition: all 0.2s ease;
     }
   }
 
