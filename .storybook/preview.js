@@ -1,11 +1,26 @@
-import { addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
-addParameters({
+export const parameters = {
   docs: {
     container: DocsContainer,
     page: DocsPage,
   },
-});
-
-addParameters({ controls: { hideNoControlsWarning: true } });
+  controls: { hideNoControlsWarning: true },
+  backgrounds: {
+    default: 'light',
+    values: [
+      {
+        name: 'light',
+        value: '#f7f9ff',
+      },
+      {
+        name: 'dark',
+        value: '#393b47',
+      },
+      {
+        name: 'brand',
+        value: '#0025e0',
+      },
+    ],
+  },
+};
