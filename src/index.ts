@@ -18,3 +18,6 @@ export * from './Radio';
 
 export { default as Link } from './Link';
 export * from './Link';
+
+export { default as TextArea } from './TextArea';
+export * from './TextArea';
