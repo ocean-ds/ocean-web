@@ -1,0 +1,103 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Link from '../Link';
+
+<Meta
+  title="Components/Link"
+  component={Link}
+  argTypes={{
+    component: {
+      name: 'component',
+      description:
+        'The component used for the root node. Either a string to use a HTML element or a component.',
+      defaultValue: 'a',
+      table: {
+        type: {
+          summary: 'elementType',
+        },
+        defaultValue: {
+          summary: 'a',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+    inverse: {
+      name: 'inverse',
+      description: 'Use the inverse link on dark backgrounds.',
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'true | false',
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+  }}
+/>
+
+# Link API
+
+The API documentation of the Link React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Link } from '@useblu/ocean-components';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Link>Link text</Link>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="Usage" of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class      | Description                            |
+| ----------------- | -------------------------------------- |
+| .ods-lnk          | Styles applied to the root element.    |
+| .ods-lnk--inverse | Use the inverse a on dark backgrounds. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Link/Link.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    args={{
+      children: 'My Link',
+      inverse: false,
+    }}
+    argTypes={{
+      children: {
+        name: 'children',
+        control: 'text',
+      },
+      inverse: {
+        name: 'inverse',
+        control: 'boolean',
+      },
+    }}
+  >
+    {(props) => <Link {...props} />}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Playground" of="." />
