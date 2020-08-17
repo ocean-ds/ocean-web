@@ -7,14 +7,15 @@
 }
 
 .ods-textarea {
-  border: $border-width-thin solid $color-interface-light-deep;
-  border-radius: $border-radius-sm;
-  background-color: $color-interface-light-pure;
-  padding: $spacing-inline-xs;
+  font-family: $font-family-base;
   font-size: $font-size-xs;
   font-weight: $font-weight-regular;
   line-height: $line-height-medium;
   color: $color-interface-dark-deep;
+  border: $border-width-thin solid $color-interface-light-deep;
+  border-radius: $border-radius-sm;
+  background-color: $color-interface-light-pure;
+  padding: $spacing-inline-xs;
   box-sizing: border-box;
   outline: none;
   align-self: flex-start;
