@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import TextArea from '../TextArea';
 
 test('renders element properly', () => {
-  const { container, getByTestId } = render(
+  const { container } = render(
     <TextArea data-testid="textarea-test" className="custom-class" />
   );
 
@@ -15,11 +15,9 @@ test('renders element properly', () => {
       <textarea
         class="ods-textarea custom-class"
         data-testid="textarea-test"
-        type="text"
       />
     </div>
   `);
-  expect(getByTestId('textarea-test')).toHaveAttribute('type', 'text');
 });
 
 test('renders a label for the textarea', () => {
