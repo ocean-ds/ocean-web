@@ -15,3 +15,6 @@ export * from './Checkbox';
 
 export { default as Radio } from './Radio';
 export * from './Radio';
+
+export { default as Link } from './Link';
+export * from './Link';
