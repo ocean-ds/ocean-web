@@ -37,7 +37,7 @@ test.each(Object.keys(defaultTypesMapping))(
   }
 );
 
-test('renders an inverse typegraph', () => {
+test('renders an inverse typography', () => {
   const { getByTestId } = render(
     <Typography variant="heading1" data-testid="typo-heading1" inverse>
       Hello
