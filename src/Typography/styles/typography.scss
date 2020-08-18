@@ -70,4 +70,8 @@
     @include texts;
     font-size: $font-size-xxxs;
   }
+
+  &--inverse {
+    color: $color-interface-light-pure;
+  }
 }
