@@ -36,3 +36,12 @@ test.each(Object.keys(defaultTypesMapping))(
     );
   }
 );
+
+test('renders an inverse typegraph', () => {
+  const { getByTestId } = render(
+    <Typography variant="heading1" data-testid="typo-heading1" inverse>
+      Hello
+    </Typography>
+  );
+  expect(getByTestId('typo-heading1')).toHaveClass('ods-typography--inverse');
+});

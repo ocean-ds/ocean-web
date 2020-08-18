@@ -30,13 +30,21 @@ export type TypographyProps = {
    */
   variant: Variant;
   /**
+   * Use the inverse typography on dark backgrounds.
+   * @default 'false'
+   */
+  inverse?: boolean;
+  /**
    * The content of the component.
    */
   children: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'span'>;
 
 const Typography = React.forwardRef<unknown, TypographyProps>(
-  function Typography({ children, variant, className, ...rest }, ref) {
+  function Typography(
+    { children, variant, className, inverse = false, ...rest },
+    ref
+  ) {
     const Component = defaultTypesMapping[variant] as React.ElementType;
 
     return (
@@ -44,6 +52,7 @@ const Typography = React.forwardRef<unknown, TypographyProps>(
         ref={ref}
         className={classNames(
           `ods-typography ods-typography__${variant}`,
+          inverse && 'ods-typography--inverse',
           className
         )}
         {...rest}
