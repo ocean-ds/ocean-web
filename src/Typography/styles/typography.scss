@@ -61,6 +61,13 @@
     font-size: $font-size-xs;
   }
 
+  &__lead {
+    color: $color-interface-dark-deep;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+
   &__description {
     @include texts;
     font-size: $font-size-xxs;
