@@ -11,7 +11,9 @@ export const defaultTypesMapping: Record<string, string> = {
   subtitle1: 'h6',
   subtitle2: 'h6',
   paragraph: 'p',
+  lead: 'p',
   description: 'p',
+  caption: 'p',
 };
 
 export type Variant =
@@ -22,7 +24,9 @@ export type Variant =
   | 'subtitle1'
   | 'subtitle2'
   | 'paragraph'
-  | 'description';
+  | 'lead'
+  | 'description'
+  | 'caption';
 
 export type TypographyProps = {
   /**
