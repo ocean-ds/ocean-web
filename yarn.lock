@@ -1539,17 +1539,17 @@
     ts-dedent "^1.1.1"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-backgrounds@^6.0.12":
-  version "6.0.12"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-6.0.12.tgz#5dfc10fdbcd454d4c1f2cfe0d233b6b0956d1527"
-  integrity sha512-udRYxbjCvb7ZNcsIv5zyEUVpBXGQrKeAkfn/pVdzTFZhv1A5G5ho0gtVrbpfz7k8gj4tb3CGb3hLM4D7chLVKg==
+"@storybook/addon-backgrounds@^6.0.16":
+  version "6.0.16"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-6.0.16.tgz#cbf909992a86dbbdfea172d3950300e8c2a7de01"
+  integrity sha512-0sH7hlZh4bHt6zV6QyG3ryNGJsxD42iXVwWdwAShzfWJKGfLy5XwdvHUKkMEBbY9bOPeoI9oMli2RAfsD6juLQ==
   dependencies:
-    "@storybook/addons" "6.0.12"
-    "@storybook/api" "6.0.12"
-    "@storybook/client-logger" "6.0.12"
-    "@storybook/components" "6.0.12"
-    "@storybook/core-events" "6.0.12"
-    "@storybook/theming" "6.0.12"
+    "@storybook/addons" "6.0.16"
+    "@storybook/api" "6.0.16"
+    "@storybook/client-logger" "6.0.16"
+    "@storybook/components" "6.0.16"
+    "@storybook/core-events" "6.0.16"
+    "@storybook/theming" "6.0.16"
     core-js "^3.0.1"
     memoizerific "^1.11.3"
     react "^16.8.3"
