@@ -1555,17 +1555,17 @@
     react "^16.8.3"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addon-controls@^6.0.16":
-  version "6.0.16"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.16.tgz#c7fc765a01cc3a0de397f8b55bfeda3f328e5495"
-  integrity sha512-RgBOply9o3PYoWI7TNKef2AQixw7l620pT1fCJbXykp/lu17eqKaIa5KYHRE9vEajun5RuEQxGnSzQOV3OZAsA==
+"@storybook/addon-controls@^6.0.18":
+  version "6.0.18"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.0.18.tgz#df2433eb413d928e9ad901995d7a7322288affb3"
+  integrity sha512-6qjSmlo74I9H43WysT4ZefQ5gS8f5CfZ+bkKbzlYeDYXcBZMXHqNJHvybcB1tzOA+nxmUAIr+fp6fm1N+sp7Dw==
   dependencies:
-    "@storybook/addons" "6.0.16"
-    "@storybook/api" "6.0.16"
-    "@storybook/client-api" "6.0.16"
-    "@storybook/components" "6.0.16"
-    "@storybook/node-logger" "6.0.16"
-    "@storybook/theming" "6.0.16"
+    "@storybook/addons" "6.0.18"
+    "@storybook/api" "6.0.18"
+    "@storybook/client-api" "6.0.18"
+    "@storybook/components" "6.0.18"
+    "@storybook/node-logger" "6.0.18"
+    "@storybook/theming" "6.0.18"
     core-js "^3.0.1"
     ts-dedent "^1.1.1"
 
