@@ -21,3 +21,6 @@ export * from './Link';
 
 export { default as TextArea } from './TextArea';
 export * from './TextArea';
+
+export { default as DatePicker } from './DatePicker';
+export * from './DatePicker';
