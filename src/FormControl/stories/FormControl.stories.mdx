@@ -1,0 +1,24 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import FormControl from '../FormControl';
+
+<Meta title="Components/FormControl" component={FormControl} />
+
+# FormControl API
+
+The API documentation of the FormControl React component. Learn more about the props and the CSS customization points.
+
+## Props
+
+<ArgsTable of="." />
+
+## CSS
+
+| Global class                            | Description                                               |
+| --------------------------------------- | --------------------------------------------------------- |
+| .ods-form-control\_\_root               | Styles applied to the div element.                        |
+| .ods-form-control\_\_label              | Styles applied to the label element.                      |
+| .ods-form-control\_\_element--blocked   | Styles applied to the children element if blocked={true}. |
+| .ods-form-control\_\_helper-text        | Styles applied to the p element.                          |
+| .ods-form-control\_\_helper-text--error | Styles applied to the p element if error={true}.          |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/FormControl/FormControl.tsx) for more detail.

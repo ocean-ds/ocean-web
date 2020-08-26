@@ -1,0 +1,36 @@
+@import '~@useblu/tokens/dist/web/tokens.scss';
+
+.ods-form-control {
+  &__root {
+    font-family: $font-family-base;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    align-self: flex-start;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+    color: $color-interface-dark-down;
+    margin-bottom: $spacing-stack-xxs;
+  }
+
+  &__element {
+    &--blocked :first-child {
+      width: 100%;
+    }
+  }
+
+  &__helper-text {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-tight;
+    margin-top: $spacing-stack-xxxs;
+
+    &--error {
+      color: $color-status-negative-pure;
+    }
+  }
+}
