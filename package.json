@@ -35,7 +35,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
-    "@storybook/addon-a11y": "^6.0.19",
+    "@storybook/addon-a11y": "^6.0.20",
     "@storybook/addon-backgrounds": "^6.0.20",
     "@storybook/addon-controls": "^6.0.20",
     "@storybook/addon-docs": "^6.0.19",
