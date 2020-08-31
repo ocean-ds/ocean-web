@@ -1,0 +1,24 @@
+@import '~@useblu/tokens/dist/web/tokens.scss';
+
+.ods-select__option {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-family: $font-family-highlight;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-medium;
+  color: $color-interface-dark-deep;
+  padding-right: $spacing-inline-xs;
+  padding-left: $spacing-inline-xs;
+  margin: 0;
+  list-style: none;
+  flex: 1;
+  min-width: 0;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

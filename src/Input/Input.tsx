@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import FormControl, { FormControlProps } from '../FormControl/FormControl';
+import FormControl, { FormControlProps } from '../FormControl';
 import './styles/input.scss';
 
 type InputProps = {
