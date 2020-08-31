@@ -2,27 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 import './styles/textarea.scss';
+import FormControl, { FormControlProps } from '../FormControl/FormControl';
 
-type TextAreaProps = {
-  /**
-   * The label content.
-   */
-  label?: React.ReactNode;
-  /**
-   * If `true`, the label will be displayed in an error state.
-   * @default false
-   */
-  error?: boolean;
-  /**
-   * The helper text content.
-   */
-  helperText?: React.ReactNode;
-  /**
-   * Spans the full width of the TextArea parent.
-   * @default false
-   */
-  blocked?: boolean;
-} & React.ComponentPropsWithoutRef<'textarea'>;
+type TextAreaProps = Omit<FormControlProps, 'children'> &
+  React.ComponentPropsWithoutRef<'textarea'>;
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
@@ -30,34 +13,24 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     ref
   ) {
     return (
-      <div className="ods-textarea__root">
-        {label && (
-          <label className="ods-textarea__label" htmlFor={id}>
-            {label}
-          </label>
-        )}
+      <FormControl
+        label={label}
+        htmlFor={id}
+        helperText={helperText}
+        error={error}
+        blocked={blocked}
+      >
         <textarea
           ref={ref}
           id={id}
           className={classNames(
             'ods-textarea',
-            blocked && 'ods-textarea--blocked',
             error && 'ods-textarea--error',
             className
           )}
           {...rest}
         />
-        {helperText && (
-          <p
-            className={classNames(
-              'ods-textarea__helper-text',
-              error && 'ods-textarea__helper-text--error'
-            )}
-          >
-            {helperText}
-          </p>
-        )}
-      </div>
+      </FormControl>
     );
   }
 );
