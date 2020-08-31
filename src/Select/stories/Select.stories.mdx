@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Select from '../Select';
+
+<Meta title="Components/Select" component={Select} />
+
+# Select API
+
+The API documentation of the Select React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Select } from '@useblu/ocean-components';
+```
+
+## Props
+
+<ArgsTable of="." />
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    args={{ options: [{ value: 'test', label: 'test' }] }}
+  >
+    {(args) => (
+      <div>
+        <Select {...args} />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod
+          molestie risus, sed hendrerit nisl viverra vitae. Ut dignissim lorem
+          ante, ac lacinia magna placerat nec. Morbi eu pellentesque dolor.
+          Nulla eget neque a mi consequat bibendum quis sed augue. Fusce auctor
+          pellentesque fringilla. Sed eu enim pellentesque, vulputate lectus et,
+          consectetur magna. Pellentesque euismod libero enim, in blandit est
+          rhoncus at. Orci varius natoque penatibus et magnis dis parturient
+          montes, nascetur ridiculus mus. Vestibulum sit amet luctus dui.
+        </p>
+      </div>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Playground" of="." />
