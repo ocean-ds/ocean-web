@@ -31,7 +31,7 @@ export type FormControlProps = {
    */
   blocked?: boolean;
   /**
-   * If true, the label and helper text should be displayed in a disabled state.
+   * If true, should be displayed in a disabled state.
    * @default false
    */
   disabled?: boolean;
