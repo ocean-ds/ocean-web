@@ -57,3 +57,18 @@ test('renders a error state', () => {
     'ods-form-control__helper-text ods-form-control__helper-text--error'
   );
 });
+
+test('renders a disabled state', () => {
+  const { getByText } = setup({
+    disabled: true,
+    label: 'Label Test',
+    helperText: 'Error message.',
+  });
+
+  expect(getByText('Label Test').className).toBe(
+    'ods-form-control__label ods-form-control__label--disabled'
+  );
+  expect(getByText('Error message.').className).toBe(
+    'ods-form-control__helper-text ods-form-control__helper-text--disabled'
+  );
+});
