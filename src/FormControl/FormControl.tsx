@@ -30,6 +30,11 @@ export type FormControlProps = {
    * @default false
    */
   blocked?: boolean;
+  /**
+   * If true, the label and helper text should be displayed in a disabled state.
+   * @default false
+   */
+  disabled?: boolean;
 };
 
 const FormControl: React.FC<FormControlProps> = ({
@@ -39,10 +44,17 @@ const FormControl: React.FC<FormControlProps> = ({
   helperText,
   error,
   blocked,
+  disabled,
 }) => (
   <div className="ods-form-control__root">
     {label && (
-      <label className="ods-form-control__label" htmlFor={htmlFor}>
+      <label
+        className={classNames(
+          'ods-form-control__label',
+          disabled && 'ods-form-control__label--disabled'
+        )}
+        htmlFor={htmlFor}
+      >
         {label}
       </label>
     )}
@@ -58,7 +70,8 @@ const FormControl: React.FC<FormControlProps> = ({
       <p
         className={classNames(
           'ods-form-control__helper-text',
-          error && 'ods-form-control__helper-text--error'
+          error && 'ods-form-control__helper-text--error',
+          disabled && 'ods-form-control__helper-text--disabled'
         )}
       >
         {helperText}

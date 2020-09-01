@@ -14,7 +14,7 @@ type InputProps = {
   React.ComponentPropsWithoutRef<'input'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
-  { type, className, label, helperText, blocked, error, id, ...rest },
+  { type, className, label, helperText, blocked, error, id, disabled, ...rest },
   ref
 ) {
   return (
@@ -24,6 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
       helperText={helperText}
       error={error}
       blocked={blocked}
+      disabled={disabled}
     >
       <input
         ref={ref}
@@ -34,6 +35,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           error && 'ods-input--error',
           className
         )}
+        disabled={disabled}
         {...rest}
       />
     </FormControl>
