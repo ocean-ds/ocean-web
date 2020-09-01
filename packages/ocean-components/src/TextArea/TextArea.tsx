@@ -9,7 +9,7 @@ type TextAreaProps = Omit<FormControlProps, 'children'> &
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
-    { className, label, helperText, blocked, error, id, ...rest },
+    { className, label, helperText, blocked, error, id, disabled, ...rest },
     ref
   ) {
     return (
@@ -19,6 +19,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         helperText={helperText}
         error={error}
         blocked={blocked}
+        disabled={disabled}
       >
         <textarea
           ref={ref}
@@ -28,6 +29,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             error && 'ods-textarea--error',
             className
           )}
+          disabled={disabled}
           {...rest}
         />
       </FormControl>
