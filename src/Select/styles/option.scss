@@ -15,10 +15,20 @@
   list-style: none;
   flex: 1;
   min-width: 0;
+  cursor: pointer;
 
   span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &--selected,
+  &:hover,
+  &:focus,
+  &:active {
+    font-weight: $font-weight-bold;
+    color: $color-brand-primary-pure;
+    background-color: $color-interface-light-up;
   }
 }

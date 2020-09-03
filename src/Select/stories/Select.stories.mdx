@@ -22,7 +22,12 @@ import { Select } from '@useblu/ocean-components';
 <Canvas>
   <Story
     name="Playground"
-    args={{ options: [{ value: 'test', label: 'test' }] }}
+    args={{
+      options: Array.from(Array(100), (x, index) => ({
+        value: `value-${index}`,
+        label: `label-${index}`,
+      })),
+    }}
   >
     {(args) => (
       <div>
