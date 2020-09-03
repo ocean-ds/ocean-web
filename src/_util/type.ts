@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * A generic type that receives two arguments: the name of the element, and an object with custom properties.
  */
