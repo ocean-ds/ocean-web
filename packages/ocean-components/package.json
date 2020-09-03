@@ -56,7 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^3.10.1",
     "@useblu/tokens": "^2.0.0",
-    "eslint": "^7.8.0",
+    "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^23.20.0",
     "eslint-plugin-jest-dom": "^3.2.2",
