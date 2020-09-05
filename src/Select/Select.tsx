@@ -49,8 +49,10 @@ const Select: React.FC<SelectProps> = ({
 }) => {
   const controlId = id || 'sel-control';
   const listboxId = makeId('listbox', controlId);
+
   const [selected, setSelected] = useState<SelectedType>();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [search, setSearch] = useState('');
   const refSelControl = useRef<HTMLButtonElement | null>(null);
   const refListbox = useRef<HTMLUListElement | null>(null);
   const options = useMemo(
@@ -71,6 +73,30 @@ const Select: React.FC<SelectProps> = ({
       select?.focus();
     };
   }, [isExpanded]);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let timer: any = null;
+
+    if (search) {
+      timer = setTimeout(() => {
+        const index = options.findIndex((o) => o.label.startsWith(search));
+        if (index >= 0) {
+          const option = options[index];
+          setSelected({
+            id: option.id,
+            index,
+            label: option.label,
+            value: option.value,
+          });
+        }
+
+        setSearch('');
+      }, 500);
+    }
+
+    return () => clearTimeout(timer);
+  }, [options, search]);
 
   const selectClosestOption = useCallback(
     (inc: number) => {
@@ -93,6 +119,7 @@ const Select: React.FC<SelectProps> = ({
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
+      const { key } = event;
       const mapEventsWithInc: Record<string, number> = {
         ArrowDown: 1,
         ArrowUp: -1,
@@ -102,8 +129,10 @@ const Select: React.FC<SelectProps> = ({
         End: options.length - 1,
       };
 
-      const incremental = mapEventsWithInc[event.key];
+      const incremental = mapEventsWithInc[key];
       if (incremental != null) selectClosestOption(incremental);
+
+      setSearch((keysSoFar) => keysSoFar + key);
     },
     [options.length, selectClosestOption]
   );
