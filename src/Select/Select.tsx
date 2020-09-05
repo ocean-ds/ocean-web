@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 
 import FormControl, { FormControlProps } from '../FormControl';
-import Option, { OptionProps } from './Option';
-import { RawValueType } from './types';
+import Option from './Option';
+import { OptionType, RawValueType } from './types';
 import './styles/select.scss';
 
 import Context, { SelectedType } from './context';
@@ -14,7 +14,7 @@ type SelectProps = {
    * Placeholder of select.
    */
   placeholder?: string;
-  options: OptionProps[];
+  options: OptionType[];
   value?: RawValueType;
   defaultValue?: RawValueType;
   /**
@@ -32,7 +32,7 @@ const Select: React.FC<SelectProps> = ({
   helperText,
   error,
   blocked,
-  options,
+  options: optionsProp,
   name,
   // value,
   // defaultValue,
@@ -45,14 +45,51 @@ const Select: React.FC<SelectProps> = ({
   const listboxId = makeId('listbox', controlId);
   const [selected, setSelected] = useState<SelectedType>();
   const [isExpanded, setIsExpanded] = useState(false);
-  // const refListbox = useRef<HTMLUListElement | null>(null);
+  const refListbox = useRef<HTMLUListElement | null>(null);
+  const options = useMemo(
+    () =>
+      optionsProp.map((opt) => ({
+        ...opt,
+        id: makeId(`option-${opt.value}`, listboxId),
+      })),
+    [listboxId, optionsProp]
+  );
 
-  // const handleKeyDown = (event: KeyboardEvent) => {
-  //   if (event.key == 'ArrowDown') {
-  //     console.log('here1');
-  //     refListbox.current?.dispatchEvent(new KeyboardEvent('keydown', event));
-  //   }
-  // };
+  useEffect(() => {
+    if (isExpanded) {
+      refListbox.current?.focus();
+    }
+  }, [isExpanded]);
+
+  const selectClosestOption = (inc: number) => {
+    const currentIndex = selected ? selected.index : -1;
+    let nextIndex = inc == 0 ? 0 : currentIndex + inc;
+
+    if (nextIndex < 0) nextIndex = 0;
+    if (nextIndex > options.length - 1) nextIndex = options.length - 1;
+
+    const { id, value, label } = options[nextIndex];
+    setSelected({
+      index: nextIndex,
+      id,
+      value,
+      label,
+    });
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    const mapEventsWithInc: Record<string, number> = {
+      ArrowDown: 1,
+      ArrowUp: -1,
+      PageDown: 4,
+      PageUp: -4,
+      Home: 0,
+      End: options.length - 1,
+    };
+
+    const incremental = mapEventsWithInc[event.key];
+    if (incremental != null) selectClosestOption(incremental);
+  };
 
   const handleChange = (newValue: SelectedType) => {
     if (onChange) {
@@ -79,7 +116,7 @@ const Select: React.FC<SelectProps> = ({
             className="ods-select__control"
             disabled={disabled}
             onClick={() => setIsExpanded(!isExpanded)}
-            // onKeyDown={handleKeyDown}
+            onKeyDown={handleKeyDown}
             // Set by the JavaScript when the listbox is displayed. Otherwise, is
             // not present.
             aria-expanded={isExpanded || undefined}
@@ -104,7 +141,7 @@ const Select: React.FC<SelectProps> = ({
           {isExpanded && (
             <div className="ods-select__listbox-wrapper">
               <ul
-                // ref={refListbox}
+                ref={refListbox}
                 id={listboxId}
                 tabIndex={-1}
                 role="listbox"
@@ -116,10 +153,10 @@ const Select: React.FC<SelectProps> = ({
                 // changes the value.
                 aria-activedescendant={selected?.id || undefined}
                 className="ods-select__listbox"
-                // onKeyDown={() => console.log('here2')}
+                onKeyDown={handleKeyDown}
               >
-                {options.map((o) => (
-                  <Option key={o.value} {...o} />
+                {options.map((option, index) => (
+                  <Option key={option.value} index={index} {...option} />
                 ))}
               </ul>
             </div>

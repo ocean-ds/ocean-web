@@ -1,38 +1,30 @@
-import React, { useContext, useMemo, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 
-import './styles/option.scss';
-import { RawValueType } from './types';
+import { OptionType } from './types';
 import Context from './context';
-import makeId from '../_util/makeId';
+import './styles/option.scss';
 
 export type OptionProps = {
-  value: RawValueType;
-  label: string;
-  className?: string;
-  id?: string;
-  [propName: string]: unknown;
-};
-
-function useOptionId(value: RawValueType, id?: string) {
-  const { listboxId } = useContext(Context);
-  return id ? id : makeId(`option-${value}`, listboxId);
-}
+  id: string;
+  index: number;
+} & OptionType &
+  React.ComponentPropsWithoutRef<'li'>;
 
 const Option: React.FC<OptionProps> = React.memo(function Option({
   value,
   label,
   className,
   id,
+  index,
   ...rest
 }) {
-  const refOption = useRef<HTMLLIElement | null>(null);
   const { selected, onSelect } = useContext(Context);
-  const isSelected = useMemo(() => selected?.value === value, [
+  const refOption = useRef<HTMLLIElement | null>(null);
+  const isSelected = useMemo(() => selected?.index === index, [
     selected,
-    value,
+    index,
   ]);
-  const optionId = useOptionId(value, id);
 
   useEffect(() => {
     if (refOption && isSelected) {
@@ -46,7 +38,7 @@ const Option: React.FC<OptionProps> = React.memo(function Option({
   return (
     <li
       ref={refOption}
-      id={optionId}
+      id={id}
       role="option"
       className={classNames(
         'ods-select__option',
@@ -55,9 +47,10 @@ const Option: React.FC<OptionProps> = React.memo(function Option({
       )}
       onClick={() =>
         onSelect?.({
-          id: optionId,
-          label,
+          id,
+          index,
           value,
+          label,
         })
       }
       // In a single-select listbox, the selected option has `aria-selected`
