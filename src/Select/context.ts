@@ -2,9 +2,10 @@ import React from 'react';
 import { RawValueType } from './types';
 
 export type SelectedType = {
+  index: number;
   id: string;
-  label: string;
   value: RawValueType;
+  label: string;
 };
 
 type ContextProps = {
