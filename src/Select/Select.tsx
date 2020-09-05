@@ -53,6 +53,8 @@ const Select: React.FC<SelectProps> = ({
   const [selected, setSelected] = useState<SelectedType>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState('');
+
+  const timeOutId = useRef<number>();
   const refSelControl = useRef<HTMLButtonElement | null>(null);
   const refListbox = useRef<HTMLUListElement | null>(null);
   const options = useMemo(
@@ -70,13 +72,13 @@ const Select: React.FC<SelectProps> = ({
     if (isExpanded) refListbox.current?.focus();
 
     return () => {
+      // TOFIX:
       select?.focus();
     };
   }, [isExpanded]);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let timer: any = null;
+    let timer: ReturnType<typeof setTimeout>;
 
     if (search) {
       timer = setTimeout(() => {
@@ -163,6 +165,21 @@ const Select: React.FC<SelectProps> = ({
     [handleKeyDown, toggleIsExpanded]
   );
 
+  // We close the popover on the next tick by using setTimeout.
+  // This is necessary because we need to first check if
+  // another child of the element has received focus as
+  // the blur event fires prior to the new focus event.
+  const onBlurHandler = () => {
+    timeOutId.current = setTimeout(() => {
+      setIsExpanded(false);
+    });
+  };
+
+  // If a child receives focus, do not close the popover.
+  const onFocusHandler = () => {
+    clearTimeout(timeOutId.current);
+  };
+
   return (
     <FormControl
       label={label}
@@ -173,7 +190,11 @@ const Select: React.FC<SelectProps> = ({
       disabled={disabled}
     >
       <Context.Provider value={{ selected, onSelect: handleChange, listboxId }}>
-        <div className="ods-select__root">
+        <div
+          className="ods-select__root"
+          onBlur={onBlurHandler}
+          onFocus={onFocusHandler}
+        >
           <button
             ref={refSelControl}
             id={controlId}
