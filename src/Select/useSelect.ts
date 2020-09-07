@@ -28,7 +28,7 @@ const useSelect = (
   const controlId = useId(id);
   const listboxId = makeId('listbox', controlId);
 
-  const isControlled = useRef(Boolean(value || onChange));
+  const isControlled = useRef(value != null);
   const [selected, setSelected] = useState<SelectedType>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState('');
@@ -45,13 +45,11 @@ const useSelect = (
 
   const handleChange = useCallback(
     (option: SelectedType) => {
-      if (isControlled.current) {
-        onChange?.(option.value);
-      } else {
-        setSelected(option);
-      }
+      if (selected?.id == option?.id) return;
+      if (!isControlled.current) setSelected(option);
+      onChange?.(option.value);
     },
-    [onChange]
+    [onChange, selected]
   );
 
   const selectByValue = useCallback(
@@ -76,19 +74,16 @@ const useSelect = (
       let newIndex = incremental == 0 ? 0 : currentIndex + incremental;
 
       if (newIndex < 0) newIndex = 0;
-      if (newIndex > options.length - 1) newIndex = options.length - 1;
+      if (newIndex > optionsMemo.length - 1) newIndex = optionsMemo.length - 1;
 
       selectByIndex(newIndex);
     },
-    [options.length, selectByIndex, selected]
+    [optionsMemo.length, selectByIndex, selected]
   );
 
   useEffect(() => {
-    if (isControlled.current) {
-      selectByValue(value);
-    } else if (defaultValue && !selected) {
-      selectByValue(defaultValue);
-    }
+    if (isControlled.current) selectByValue(value);
+    else if (defaultValue && !selected) selectByValue(defaultValue);
   }, [defaultValue, selectByValue, selected, value]);
 
   useEffect(() => {
@@ -96,14 +91,14 @@ const useSelect = (
 
     if (search) {
       timer = setTimeout(() => {
-        const index = options.findIndex((o) => o.label.startsWith(search));
+        const index = optionsMemo.findIndex((o) => o.label.startsWith(search));
         selectByIndex(index);
         setSearch('');
       }, 500);
     }
 
     return () => clearTimeout(timer);
-  }, [options, search, selectByIndex]);
+  }, [optionsMemo, search, selectByIndex]);
 
   return {
     controlId: controlId || 'sel-control',
