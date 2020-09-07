@@ -19,7 +19,9 @@ export type OptionProps = {
 
 const Option: React.FC<OptionProps> = React.memo(function Option(option) {
   const { label, className, id, index, ...rest } = option;
-  const { selected, onSelect, setIsExpanded } = useContext(Context);
+  const { selected, onSelect, setIsExpanded, refSelControl } = useContext(
+    Context
+  );
   const refOption = useRef<HTMLLIElement | null>(null);
   const isSelected = useMemo(() => selected?.index === index, [
     selected,
@@ -37,8 +39,9 @@ const Option: React.FC<OptionProps> = React.memo(function Option(option) {
 
   const handleClick = useCallback(() => {
     onSelect?.(option);
+    refSelControl?.current?.focus();
     setIsExpanded?.(false);
-  }, [onSelect, option, setIsExpanded]);
+  }, [onSelect, option, refSelControl, setIsExpanded]);
 
   return (
     <li
