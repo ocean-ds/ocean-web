@@ -1,4 +1,10 @@
-import React, { useContext, useRef, useEffect, useMemo } from 'react';
+import React, {
+  useContext,
+  useRef,
+  useEffect,
+  useMemo,
+  useCallback,
+} from 'react';
 import classNames from 'classnames';
 
 import { OptionType } from './types';
@@ -11,15 +17,9 @@ export type OptionProps = {
 } & OptionType &
   React.ComponentPropsWithoutRef<'li'>;
 
-const Option: React.FC<OptionProps> = React.memo(function Option({
-  value,
-  label,
-  className,
-  id,
-  index,
-  ...rest
-}) {
-  const { selected, onSelect } = useContext(Context);
+const Option: React.FC<OptionProps> = React.memo(function Option(option) {
+  const { label, className, id, index, ...rest } = option;
+  const { selected, onSelect, setIsExpanded } = useContext(Context);
   const refOption = useRef<HTMLLIElement | null>(null);
   const isSelected = useMemo(() => selected?.index === index, [
     selected,
@@ -35,6 +35,11 @@ const Option: React.FC<OptionProps> = React.memo(function Option({
     }
   }, [isSelected, refOption]);
 
+  const handleClick = useCallback(() => {
+    onSelect?.(option);
+    setIsExpanded?.(false);
+  }, [onSelect, option, setIsExpanded]);
+
   return (
     <li
       ref={refOption}
@@ -45,14 +50,7 @@ const Option: React.FC<OptionProps> = React.memo(function Option({
         isSelected && 'ods-select__option--selected',
         className
       )}
-      onClick={() =>
-        onSelect?.({
-          id,
-          index,
-          value,
-          label,
-        })
-      }
+      onClick={handleClick}
       // In a single-select listbox, the selected option has `aria-selected`
       // set to `true`.
       aria-selected={isSelected || undefined}
