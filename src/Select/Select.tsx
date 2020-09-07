@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import FormControl, { FormControlProps } from '../FormControl';
 import { OptionType, RawValueType } from './types';
@@ -6,7 +6,7 @@ import './styles/select.scss';
 
 import Context from './context';
 import Listbox from './Listbox';
-import { useSelect } from './hooks';
+import useSelect from './useSelect';
 
 type SelectProps = {
   /**
@@ -60,14 +60,13 @@ const Select: React.FC<SelectProps> = ({
     controlId,
     listboxId,
     selected,
-    selectByIndex,
     selectClosestOption,
     options,
     onSelect,
+    isExpanded,
+    setIsExpanded,
+    setSearch,
   } = useSelect(optionsProp, id, value, defaultValue, onChange);
-
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [search, setSearch] = useState('');
 
   const timeOutId = useRef<number>();
   const refSelControl = useRef<HTMLButtonElement | null>(null);
@@ -83,20 +82,6 @@ const Select: React.FC<SelectProps> = ({
       select?.focus();
     };
   }, [isExpanded]);
-
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-
-    if (search) {
-      timer = setTimeout(() => {
-        const index = options.findIndex((o) => o.label.startsWith(search));
-        selectByIndex(index);
-        setSearch('');
-      }, 500);
-    }
-
-    return () => clearTimeout(timer);
-  }, [options, search, selectByIndex]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -115,7 +100,7 @@ const Select: React.FC<SelectProps> = ({
 
       setSearch((keysSoFar) => keysSoFar + key);
     },
-    [options.length, selectClosestOption]
+    [options.length, selectClosestOption, setSearch]
   );
 
   const handleListboxKeyDown = useCallback(
@@ -129,7 +114,7 @@ const Select: React.FC<SelectProps> = ({
           handleKeyDown(event);
       }
     },
-    [handleKeyDown]
+    [handleKeyDown, setIsExpanded]
   );
 
   // We close the popover on the next tick by using setTimeout.

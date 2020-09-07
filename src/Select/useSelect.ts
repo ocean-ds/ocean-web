@@ -10,13 +10,15 @@ type SelectHookType = {
   listboxId: string;
   selected?: SelectedType;
   selectByValue: (newValue: RawValueType) => void;
-  selectByIndex: (newIndex: number) => void;
   selectClosestOption: (incremental: number) => void;
   options: Array<{ id: string } & OptionType>;
   onSelect: (newOption: SelectedType) => void;
+  isExpanded: boolean;
+  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const useSelect = (
+const useSelect = (
   options: OptionType[],
   id?: string,
   value?: RawValueType,
@@ -26,7 +28,11 @@ export const useSelect = (
   const controlId = useId(id);
   const listboxId = makeId('listbox', controlId);
 
+  const isControlled = useRef(Boolean(value || onChange));
   const [selected, setSelected] = useState<SelectedType>();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [search, setSearch] = useState('');
+
   const optionsMemo = useMemo(
     () =>
       options.map((opt, index) => ({
@@ -36,8 +42,6 @@ export const useSelect = (
       })),
     [listboxId, options]
   );
-
-  const isControlled = useRef(Boolean(value || onChange));
 
   const handleChange = useCallback(
     (option: SelectedType) => {
@@ -87,14 +91,32 @@ export const useSelect = (
     }
   }, [defaultValue, selectByValue, selected, value]);
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (search) {
+      timer = setTimeout(() => {
+        const index = options.findIndex((o) => o.label.startsWith(search));
+        selectByIndex(index);
+        setSearch('');
+      }, 500);
+    }
+
+    return () => clearTimeout(timer);
+  }, [options, search, selectByIndex]);
+
   return {
     controlId: controlId || 'sel-control',
     listboxId,
     selected,
     selectByValue,
-    selectByIndex,
     selectClosestOption,
     options: optionsMemo,
     onSelect: handleChange,
+    isExpanded,
+    setIsExpanded,
+    setSearch,
   };
 };
+
+export default useSelect;
