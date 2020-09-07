@@ -1,27 +1,33 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useMemo,
-  useCallback,
-} from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 import FormControl, { FormControlProps } from '../FormControl';
 import { OptionType, RawValueType } from './types';
 import './styles/select.scss';
 
-import Context, { SelectedType } from './context';
-import makeId from '../_util/makeId';
+import Context from './context';
 import Listbox from './Listbox';
+import { useSelect } from './hooks';
 
 type SelectProps = {
+  /**
+   * 	The id of the wrapper element or the select element when native.
+   */
   id?: string;
   /**
    * Placeholder of select.
    */
   placeholder?: string;
+  /**
+   * Array of options that populate the select menu.
+   */
   options: OptionType[];
+  /**
+   * Current selected option. Use when the component is controlled.
+   */
   value?: RawValueType;
+  /**
+   * 	The default selected option. Use when the component is not controlled.
+   */
   defaultValue?: RawValueType;
   /**
    * Name of the HTML Input (optional - without this, no input will be rendered)
@@ -29,6 +35,9 @@ type SelectProps = {
   name?: string;
   ariaLabel?: string;
   ariaLabelledBy?: string;
+  /**
+   *	Callback function fired when an option is selected.
+   */
   onChange?: (newValue: RawValueType) => void;
 } & Omit<FormControlProps, 'children'>;
 
@@ -40,31 +49,29 @@ const Select: React.FC<SelectProps> = ({
   blocked,
   options: optionsProp,
   name,
-  // value,
-  // defaultValue,
+  value,
+  defaultValue,
   disabled,
   ariaLabelledBy,
   ariaLabel,
   onChange,
 }) => {
-  const controlId = id || 'sel-control';
-  const listboxId = makeId('listbox', controlId);
+  const {
+    controlId,
+    listboxId,
+    selected,
+    selectByIndex,
+    selectClosestOption,
+    options,
+    onSelect,
+  } = useSelect(optionsProp, id, value, defaultValue, onChange);
 
-  const [selected, setSelected] = useState<SelectedType>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState('');
 
   const timeOutId = useRef<number>();
   const refSelControl = useRef<HTMLButtonElement | null>(null);
   const refListbox = useRef<HTMLUListElement | null>(null);
-  const options = useMemo(
-    () =>
-      optionsProp.map((opt) => ({
-        ...opt,
-        id: makeId(`option-${opt.value}`, listboxId),
-      })),
-    [listboxId, optionsProp]
-  );
 
   useEffect(() => {
     const select = refSelControl.current;
@@ -83,41 +90,13 @@ const Select: React.FC<SelectProps> = ({
     if (search) {
       timer = setTimeout(() => {
         const index = options.findIndex((o) => o.label.startsWith(search));
-        if (index >= 0) {
-          const option = options[index];
-          setSelected({
-            id: option.id,
-            index,
-            label: option.label,
-            value: option.value,
-          });
-        }
-
+        selectByIndex(index);
         setSearch('');
       }, 500);
     }
 
     return () => clearTimeout(timer);
-  }, [options, search]);
-
-  const selectClosestOption = useCallback(
-    (inc: number) => {
-      const currentIndex = selected ? selected.index : -1;
-      let nextIndex = inc == 0 ? 0 : currentIndex + inc;
-
-      if (nextIndex < 0) nextIndex = 0;
-      if (nextIndex > options.length - 1) nextIndex = options.length - 1;
-
-      const { id, value, label } = options[nextIndex];
-      setSelected({
-        index: nextIndex,
-        id,
-        value,
-        label,
-      });
-    },
-    [options, selected]
-  );
+  }, [options, search, selectByIndex]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -139,30 +118,18 @@ const Select: React.FC<SelectProps> = ({
     [options.length, selectClosestOption]
   );
 
-  const toggleIsExpanded = useCallback(() => {
-    setIsExpanded(!isExpanded);
-  }, [isExpanded]);
-
-  const handleChange = (newValue: SelectedType) => {
-    if (onChange) {
-      onChange(newValue.value);
-    }
-    setIsExpanded(false);
-    setSelected(newValue);
-  };
-
   const handleListboxKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       switch (event.key) {
         case 'Enter':
         case 'Escape':
-          toggleIsExpanded();
+          setIsExpanded(false);
           break;
         default:
           handleKeyDown(event);
       }
     },
-    [handleKeyDown, toggleIsExpanded]
+    [handleKeyDown]
   );
 
   // We close the popover on the next tick by using setTimeout.
@@ -189,7 +156,13 @@ const Select: React.FC<SelectProps> = ({
       blocked={blocked}
       disabled={disabled}
     >
-      <Context.Provider value={{ selected, onSelect: handleChange, listboxId }}>
+      <Context.Provider
+        value={{
+          selected,
+          onSelect,
+          setIsExpanded,
+        }}
+      >
         <div
           className="ods-select__root"
           onBlur={onBlurHandler}
@@ -201,7 +174,7 @@ const Select: React.FC<SelectProps> = ({
             type="button"
             className="ods-select__control"
             disabled={disabled}
-            onClick={toggleIsExpanded}
+            onClick={() => setIsExpanded(!isExpanded)}
             onKeyDown={handleKeyDown}
             // Set by the JavaScript when the listbox is displayed. Otherwise, is
             // not present.

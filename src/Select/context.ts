@@ -1,17 +1,16 @@
 import React from 'react';
-import { RawValueType } from './types';
+import { OptionType } from './types';
 
 export type SelectedType = {
   index: number;
   id: string;
-  value: RawValueType;
-  label: string;
-};
+} & OptionType;
 
 type ContextProps = {
   listboxId: string;
   selected?: SelectedType;
-  onSelect: (option: SelectedType) => void;
+  onSelect: (newOption: SelectedType) => void;
+  setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default React.createContext<Partial<ContextProps>>({});

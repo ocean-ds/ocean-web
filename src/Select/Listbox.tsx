@@ -31,8 +31,8 @@ const Listbox = React.forwardRef<HTMLUListElement, ListboxProps>(
           className="ods-select__listbox"
           onKeyDown={onKeyDown}
         >
-          {options.map((option, index) => (
-            <Option key={option.value} index={index} {...option} />
+          {options.map(({ value, index, ...rest }) => (
+            <Option key={value} value={value} index={index} {...rest} />
           ))}
         </ul>
       </div>
