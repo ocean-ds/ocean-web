@@ -11,6 +11,7 @@ type ContextProps = {
   selected?: SelectedType;
   onSelect: (newOption: SelectedType) => void;
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  refSelControl: React.MutableRefObject<HTMLButtonElement | null>;
 };
 
 export default React.createContext<Partial<ContextProps>>({});

@@ -70,18 +70,6 @@ const Select: React.FC<SelectProps> = ({
 
   const timeOutId = useRef<number>();
   const refSelControl = useRef<HTMLButtonElement | null>(null);
-  const refListbox = useRef<HTMLUListElement | null>(null);
-
-  useEffect(() => {
-    const select = refSelControl.current;
-
-    if (isExpanded) refListbox.current?.focus();
-
-    return () => {
-      // TOFIX:
-      select?.focus();
-    };
-  }, [isExpanded]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
@@ -108,6 +96,8 @@ const Select: React.FC<SelectProps> = ({
       switch (event.key) {
         case 'Enter':
         case 'Escape':
+          event.preventDefault();
+          refSelControl.current?.focus();
           setIsExpanded(false);
           break;
         default:
@@ -146,6 +136,7 @@ const Select: React.FC<SelectProps> = ({
           selected,
           onSelect,
           setIsExpanded,
+          refSelControl,
         }}
       >
         <div
@@ -185,7 +176,6 @@ const Select: React.FC<SelectProps> = ({
           {isExpanded && (
             <Listbox
               id={listboxId}
-              ref={refListbox}
               options={options}
               onKeyDown={handleListboxKeyDown}
             />
