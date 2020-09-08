@@ -1,9 +1,11 @@
 import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 
-import Select, { SelectProps } from '../Select';
+import { SelectProps } from '../types';
+import Select from '../Select';
 
 jest.useFakeTimers('modern');
+window.HTMLElement.prototype.scrollIntoView = jest.fn();
 
 const setup = (props?: Partial<SelectProps>) => {
   const onChangeFn = jest.fn();
@@ -73,7 +75,7 @@ test('renders element properly', () => {
   `);
 });
 
-test('select next option when `ArrowDown` key is pressed', () => {
+test('selects next option when `ArrowDown` key is pressed', () => {
   const { getByTestId, getByText, onChangeFn } = setup({
     defaultValue: 'mastercard',
   });
@@ -84,7 +86,14 @@ test('select next option when `ArrowDown` key is pressed', () => {
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toBe('american-express');
+  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
+    Object {
+      "id": "option-american-express--listbox--1",
+      "index": 2,
+      "label": "American Express",
+      "value": "american-express",
+    }
+  `);
   expect(getByText('American Express')).toBeInTheDocument();
 });
 
@@ -102,7 +111,7 @@ test('does not select next option when `ArrowDown` key is pressed', () => {
   expect(getByText('Other')).toBeInTheDocument();
 });
 
-test('select previous option when `ArrowUp` key is pressed', () => {
+test('selects previous option when `ArrowUp` key is pressed', () => {
   const { getByTestId, getByText, onChangeFn } = setup({
     defaultValue: 'hipercard',
   });
@@ -113,7 +122,14 @@ test('select previous option when `ArrowUp` key is pressed', () => {
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toBe('elo');
+  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
+    Object {
+      "id": "option-elo--listbox--7",
+      "index": 3,
+      "label": "Elo",
+      "value": "elo",
+    }
+  `);
   expect(getByText('Elo')).toBeInTheDocument();
 });
 
@@ -131,7 +147,7 @@ test('does not select previous option when `ArrowUp` key is pressed', () => {
   expect(getByText('Visa')).toBeInTheDocument();
 });
 
-test('select first option when `Home` key is pressed', () => {
+test('selects first option when `Home` key is pressed', () => {
   const { getByTestId, getByText, onChangeFn } = setup();
 
   getByTestId('select-test').focus();
@@ -140,7 +156,14 @@ test('select first option when `Home` key is pressed', () => {
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toBe('visa');
+  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
+    Object {
+      "id": "option-visa--listbox--13",
+      "index": 0,
+      "label": "Visa",
+      "value": "visa",
+    }
+  `);
   expect(getByText('Visa')).toBeInTheDocument();
 });
 
@@ -158,7 +181,7 @@ test('does not select an option when `Home` key is pressed', () => {
   expect(getByText('Visa')).toBeInTheDocument();
 });
 
-test('select last option when `End` key is pressed', () => {
+test('selects last option when `End` key is pressed', () => {
   const { getByTestId, getByText, onChangeFn } = setup();
 
   getByTestId('select-test').focus();
@@ -167,7 +190,14 @@ test('select last option when `End` key is pressed', () => {
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toBe('other');
+  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
+    Object {
+      "id": "option-other--listbox--18",
+      "index": 7,
+      "label": "Other",
+      "value": "other",
+    }
+  `);
   expect(getByText('Other')).toBeInTheDocument();
 });
 
@@ -200,7 +230,14 @@ test('select next option with a name that starts with the typed character', () =
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toBe('diners-club');
+  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
+    Object {
+      "id": "option-diners-club--listbox--23",
+      "index": 6,
+      "label": "Diners Club",
+      "value": "diners-club",
+    }
+  `);
   expect(getByText('Diners Club')).toBeInTheDocument();
 });
 
@@ -216,4 +253,20 @@ test('does not select an option with a name that starts with the typed character
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(0);
+});
+
+test('renders expanded listbox with the selected option focused', () => {
+  const { getByTestId, getByRole } = setup({ defaultValue: 'other' });
+
+  fireEvent.click(getByTestId('select-test'));
+
+  expect(getByTestId('select-test')).toHaveAttribute('aria-expanded', 'true');
+  expect(getByRole('listbox')).toHaveAttribute(
+    'aria-activedescendant',
+    'option-other--listbox--30'
+  );
+  expect(getByRole('option', { name: 'Other' })).toHaveAttribute(
+    'aria-selected',
+    'true'
+  );
 });
