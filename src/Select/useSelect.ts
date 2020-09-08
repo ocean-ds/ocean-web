@@ -7,6 +7,7 @@ import { OptionType, RawValueType } from './types';
 
 type SelectHookType = {
   controlId: string;
+  labelId: string;
   listboxId: string;
   selected?: SelectedType;
   selectByValue: (newValue: RawValueType) => void;
@@ -26,6 +27,7 @@ const useSelect = (
   onChange?: (newValue: RawValueType) => void
 ): SelectHookType => {
   const controlId = useId(id);
+  const labelId = makeId('label', controlId);
   const listboxId = makeId('listbox', controlId);
 
   const isControlled = useRef(value != null);
@@ -102,6 +104,7 @@ const useSelect = (
 
   return {
     controlId: controlId || 'sel-control',
+    labelId,
     listboxId,
     selected,
     selectByValue,

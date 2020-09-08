@@ -35,6 +35,10 @@
       background-color: $color-interface-light-down;
       border-color: $color-interface-light-down;
     }
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
   }
 
   &__value {
@@ -49,26 +53,5 @@
   &__arrow {
     margin-left: $spacing-inline-xs;
     user-select: none;
-  }
-
-  &__listbox-wrapper {
-    position: relative;
-  }
-
-  &__listbox {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-radius: $border-radius-sm;
-    box-shadow: $shadow-level-2;
-    background-color: $color-interface-light-pure;
-    border-color: $color-interface-light-deep;
-    margin-top: $spacing-inline-xxxs;
-    padding-top: $spacing-inline-xxs;
-    padding-bottom: $spacing-inline-xxs;
-    position: absolute;
-    width: 100%;
-    max-height: 160px;
-    overflow-y: auto;
   }
 }
