@@ -35,6 +35,8 @@ const useSelect = (
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState('');
 
+  const currentIndex = selected ? selected.index : -1;
+
   const optionsMemo = useMemo(
     () =>
       options.map((opt, index) => ({
@@ -48,10 +50,15 @@ const useSelect = (
   const handleChange = useCallback(
     (option: SelectedType) => {
       if (selected?.id == option?.id) return;
-      if (!isControlled.current) setSelected(option);
-      onChange?.(option.value);
+
+      if (!selected && defaultValue) {
+        setSelected(option);
+      } else {
+        if (!isControlled.current) setSelected(option);
+        onChange?.(option.value);
+      }
     },
-    [onChange, selected]
+    [defaultValue, onChange, selected]
   );
 
   const selectByValue = useCallback(
@@ -72,15 +79,16 @@ const useSelect = (
 
   const selectClosestOption = useCallback(
     (incremental: number) => {
-      const currentIndex = selected ? selected.index : -1;
+      const lastIndex = optionsMemo.length - 1;
       let newIndex = incremental == 0 ? 0 : currentIndex + incremental;
 
       if (newIndex < 0) newIndex = 0;
-      if (newIndex > optionsMemo.length - 1) newIndex = optionsMemo.length - 1;
+      else if (newIndex > lastIndex || incremental == lastIndex)
+        newIndex = lastIndex;
 
       selectByIndex(newIndex);
     },
-    [optionsMemo.length, selectByIndex, selected]
+    [currentIndex, optionsMemo.length, selectByIndex]
   );
 
   useEffect(() => {
@@ -93,14 +101,22 @@ const useSelect = (
 
     if (search) {
       timer = setTimeout(() => {
-        const index = optionsMemo.findIndex((o) => o.label.startsWith(search));
-        selectByIndex(index);
+        const options = [
+          ...optionsMemo.slice(currentIndex + 1),
+          ...optionsMemo.slice(0, currentIndex + 1),
+        ];
+
+        const option = options.find((o) =>
+          o.label.toLowerCase().startsWith(search.toLowerCase())
+        );
+
+        if (option) selectByIndex(option.index);
         setSearch('');
       }, 500);
     }
 
     return () => clearTimeout(timer);
-  }, [optionsMemo, search, selectByIndex]);
+  }, [currentIndex, optionsMemo, search, selectByIndex]);
 
   return {
     controlId: controlId || 'sel-control',

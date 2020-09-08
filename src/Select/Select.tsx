@@ -9,7 +9,7 @@ import Listbox from './Listbox';
 import useSelect from './useSelect';
 import './styles/select.scss';
 
-type SelectProps = {
+export type SelectProps = {
   /**
    * 	The id of the select element.
    */
