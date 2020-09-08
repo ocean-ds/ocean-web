@@ -3,7 +3,7 @@ import { useId } from '@reach/auto-id';
 
 import makeId from '../_util/makeId';
 import { SelectedType } from './context';
-import { OptionType, RawValueType } from './types';
+import { OptionType, RawValueType, SelectProps } from './types';
 
 type SelectHookType = {
   controlId: string;
@@ -19,13 +19,13 @@ type SelectHookType = {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const useSelect = (
-  options: OptionType[],
-  id?: string,
-  value?: RawValueType,
-  defaultValue?: RawValueType,
-  onChange?: (newValue: RawValueType) => void
-): SelectHookType => {
+const useSelect = ({
+  options,
+  id,
+  value,
+  defaultValue,
+  onChange,
+}: SelectProps): SelectHookType => {
   const controlId = useId(id);
   const labelId = makeId('label', controlId);
   const listboxId = makeId('listbox', controlId);
@@ -55,7 +55,7 @@ const useSelect = (
         setSelected(option);
       } else {
         if (!isControlled.current) setSelected(option);
-        onChange?.(option.value);
+        onChange?.(option);
       }
     },
     [defaultValue, onChange, selected]
