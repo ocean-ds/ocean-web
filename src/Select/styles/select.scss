@@ -48,6 +48,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    &--empty {
+      color: $color-interface-light-deep;
+    }
   }
 
   &__arrow {

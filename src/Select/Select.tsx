@@ -60,6 +60,7 @@ const Select: React.FC<SelectProps> = ({
   ariaLabel,
   onChange,
   className,
+  placeholder,
   ...rest
 }) => {
   const {
@@ -182,7 +183,13 @@ const Select: React.FC<SelectProps> = ({
             }
             aria-label={ariaLabel}
           >
-            <span className="ods-select__value">{selected?.label}</span>
+            <span
+              className={classNames('ods-select__value', {
+                'ods-select__value--empty': !selected?.label,
+              })}
+            >
+              {selected?.label || placeholder}
+            </span>
             <span className="ods-select__arrow" aria-hidden>
               {isExpanded ? '▲' : '▼'}
             </span>
