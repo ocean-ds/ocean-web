@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import './styles/form-control.scss';
+import FormLabel from './FormLabel';
 
 export type FormControlProps = {
   /**
@@ -11,7 +12,7 @@ export type FormControlProps = {
   /**
    * The label content.
    */
-  label?: React.ReactNode;
+  label?: string | React.ReactNode;
   /**
    * Specifies which form element a label is bound to.
    */
@@ -24,7 +25,7 @@ export type FormControlProps = {
   /**
    * The helper text content.
    */
-  helperText?: React.ReactNode;
+  helperText?: string;
   /**
    * Spans the full width of the element parent.
    * @default false
@@ -39,45 +40,49 @@ export type FormControlProps = {
 
 const FormControl: React.FC<FormControlProps> = ({
   children,
-  label,
+  label: labelProp,
   htmlFor,
   helperText,
   error,
   blocked,
   disabled,
-}) => (
-  <div className="ods-form-control__root">
-    {label && (
-      <label
+}) => {
+  let label;
+  if (labelProp) {
+    label =
+      typeof labelProp === 'string' ? (
+        <FormLabel htmlFor={htmlFor} disabled={disabled}>
+          {labelProp}
+        </FormLabel>
+      ) : (
+        labelProp
+      );
+  }
+
+  return (
+    <div className="ods-form-control__root">
+      {label}
+      <div
         className={classNames(
-          'ods-form-control__label',
-          disabled && 'ods-form-control__label--disabled'
+          'ods-form-control__element',
+          blocked && 'ods-form-control__element--blocked'
         )}
-        htmlFor={htmlFor}
       >
-        {label}
-      </label>
-    )}
-    <div
-      className={classNames(
-        'ods-form-control__element',
-        blocked && 'ods-form-control__element--blocked'
+        {children}
+      </div>
+      {helperText && (
+        <p
+          className={classNames(
+            'ods-form-control__helper-text',
+            error && 'ods-form-control__helper-text--error',
+            disabled && 'ods-form-control__helper-text--disabled'
+          )}
+        >
+          {helperText}
+        </p>
       )}
-    >
-      {children}
     </div>
-    {helperText && (
-      <p
-        className={classNames(
-          'ods-form-control__helper-text',
-          error && 'ods-form-control__helper-text--error',
-          disabled && 'ods-form-control__helper-text--disabled'
-        )}
-      >
-        {helperText}
-      </p>
-    )}
-  </div>
-);
+  );
+};
 
 export default FormControl;

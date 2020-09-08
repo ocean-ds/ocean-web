@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import Option from './Option';
 import Context from './context';
 import { OptionType } from './types';
+import './styles/listbox.scss';
 
 type ListboxProps = {
   id: string;

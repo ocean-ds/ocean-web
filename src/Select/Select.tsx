@@ -1,16 +1,17 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
+import classNames from 'classnames';
 
 import FormControl, { FormControlProps } from '../FormControl';
+import FormLabel from '../FormControl/FormLabel';
 import { OptionType, RawValueType } from './types';
-import './styles/select.scss';
-
 import Context from './context';
 import Listbox from './Listbox';
 import useSelect from './useSelect';
+import './styles/select.scss';
 
 type SelectProps = {
   /**
-   * 	The id of the wrapper element or the select element when native.
+   * 	The id of the select element.
    */
   id?: string;
   /**
@@ -33,13 +34,17 @@ type SelectProps = {
    * Name of the HTML Input (optional - without this, no input will be rendered)
    */
   name?: string;
+  /**
+   * The aria-label of the select element.
+   */
   ariaLabel?: string;
-  ariaLabelledBy?: string;
   /**
    *	Callback function fired when an option is selected.
    */
   onChange?: (newValue: RawValueType) => void;
-} & Omit<FormControlProps, 'children'>;
+  className?: string;
+  [propName: string]: unknown;
+} & Omit<FormControlProps, 'children' | 'htmlFor'>;
 
 const Select: React.FC<SelectProps> = ({
   label,
@@ -52,12 +57,14 @@ const Select: React.FC<SelectProps> = ({
   value,
   defaultValue,
   disabled,
-  ariaLabelledBy,
   ariaLabel,
   onChange,
+  className,
+  ...rest
 }) => {
   const {
     controlId,
+    labelId,
     listboxId,
     selected,
     selectClosestOption,
@@ -124,8 +131,13 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <FormControl
-      label={label}
-      htmlFor={controlId}
+      label={
+        label && (
+          <FormLabel component="span" disabled={disabled} id={labelId}>
+            {label}
+          </FormLabel>
+        )
+      }
       helperText={helperText}
       error={error}
       blocked={blocked}
@@ -145,10 +157,15 @@ const Select: React.FC<SelectProps> = ({
           onFocus={onFocusHandler}
         >
           <button
+            {...rest}
             ref={refSelControl}
             id={controlId}
             type="button"
-            className="ods-select__control"
+            className={classNames(
+              'ods-select__control',
+              error && 'ods-select__control--error',
+              className
+            )}
             disabled={disabled}
             onClick={() => setIsExpanded(!isExpanded)}
             onKeyDown={handleKeyDown}
@@ -161,7 +178,7 @@ const Select: React.FC<SelectProps> = ({
             aria-labelledby={
               ariaLabel
                 ? undefined
-                : [ariaLabelledBy, controlId].filter(Boolean).join(' ')
+                : [labelId, controlId].filter(Boolean).join(' ')
             }
             aria-label={ariaLabel}
           >
