@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useId } from '@reach/auto-id';
 
 import makeId from '../_util/makeId';
@@ -7,10 +7,9 @@ import { OptionType, RawValueType, SelectProps } from './types';
 
 type SelectHookType = {
   controlId?: string;
-  labelId: string;
+  labelId?: string;
   listboxId: string;
   selected?: SelectedType;
-  selectByValue: (newValue: RawValueType) => void;
   selectClosestOption: (incremental: number) => void;
   options: Array<{ id: string } & OptionType>;
   onSelect: (newOption: SelectedType) => void;
@@ -25,12 +24,13 @@ const useSelect = ({
   value,
   defaultValue,
   onChange,
+  label,
 }: SelectProps): SelectHookType => {
   const controlId = useId(id);
-  const labelId = makeId('label', controlId);
+  const labelId = label ? makeId('label', controlId) : undefined;
   const listboxId = makeId('listbox', controlId);
 
-  const isControlled = useRef(value != null);
+  const isControlled = Boolean(value);
   const [selected, setSelected] = useState<SelectedType>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState('');
@@ -47,34 +47,24 @@ const useSelect = ({
     [listboxId, options]
   );
 
-  const handleChange = useCallback(
-    (option: SelectedType) => {
+  const onSelect = useCallback(
+    (option: SelectedType, canEmitChangeEvent = true) => {
       if (selected?.id == option.id) return;
 
-      if (!selected && defaultValue) {
-        setSelected(option);
-      } else {
-        if (!isControlled.current) setSelected(option);
-        onChange?.(option);
+      setSelected(option);
+      if (canEmitChangeEvent && onChange) {
+        onChange(option);
       }
     },
-    [defaultValue, onChange, selected]
-  );
-
-  const selectByValue = useCallback(
-    (value?: RawValueType) => {
-      const option = optionsMemo.find((o) => o.value === value);
-      option && handleChange(option);
-    },
-    [handleChange, optionsMemo]
+    [onChange, selected]
   );
 
   const selectByIndex = useCallback(
     (index: number) => {
       const option = optionsMemo[index];
-      option && handleChange(option);
+      option && onSelect(option);
     },
-    [handleChange, optionsMemo]
+    [onSelect, optionsMemo]
   );
 
   const selectClosestOption = useCallback(
@@ -91,10 +81,18 @@ const useSelect = ({
     [currentIndex, optionsMemo.length, selectByIndex]
   );
 
+  const selectByValue = useCallback(
+    (value?: RawValueType) => {
+      const option = optionsMemo.find((o) => o.value == value);
+      option && onSelect(option, false);
+    },
+    [onSelect, optionsMemo]
+  );
+
   useEffect(() => {
-    if (isControlled.current) selectByValue(value);
+    if (isControlled) selectByValue(value);
     else if (defaultValue && !selected) selectByValue(defaultValue);
-  }, [defaultValue, selectByValue, selected, value]);
+  }, [defaultValue, isControlled, selectByValue, selected, value]);
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -123,10 +121,9 @@ const useSelect = ({
     labelId,
     listboxId,
     selected,
-    selectByValue,
     selectClosestOption,
     options: optionsMemo,
-    onSelect: handleChange,
+    onSelect,
     isExpanded,
     setIsExpanded,
     setSearch,
