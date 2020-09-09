@@ -37,7 +37,14 @@ const Select: React.FC<SelectProps> = ({
     isExpanded,
     setIsExpanded,
     setSearch,
-  } = useSelect({ options: optionsProp, id, value, defaultValue, onChange });
+  } = useSelect({
+    options: optionsProp,
+    id,
+    value,
+    defaultValue,
+    onChange,
+    label,
+  });
 
   const timeOutId = useRef<number>();
   const refSelControl = useRef<HTMLButtonElement | null>(null);

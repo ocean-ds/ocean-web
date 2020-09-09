@@ -3,6 +3,7 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 
 import { SelectProps } from '../types';
 import Select from '../Select';
+import SelectControlled from '../examples/SelectControlled';
 
 jest.useFakeTimers('modern');
 window.HTMLElement.prototype.scrollIntoView = jest.fn();
@@ -15,6 +16,7 @@ const setup = (props?: Partial<SelectProps>) => {
       <div>
         <Select
           id="sel-1"
+          name="sel-1"
           data-testid="select-test"
           options={[
             { value: 'visa', label: 'Visa' },
@@ -39,6 +41,7 @@ const setup = (props?: Partial<SelectProps>) => {
 test('renders element properly', () => {
   const { container } = render(
     <Select
+      label="Custom label"
       id="my-select"
       options={[
         { value: 'v1', label: 'Label 1' },
@@ -49,29 +52,43 @@ test('renders element properly', () => {
     />
   );
 
-  expect(container.querySelector('.ods-select__root')).toMatchInlineSnapshot(`
+  expect(container.firstChild).toMatchInlineSnapshot(`
     <div
-      class="ods-select__root"
+      class="ods-form-control__root"
     >
-      <button
-        aria-haspopup="listbox"
-        aria-labelledby="label--my-select my-select"
-        class="ods-select__control custom-class"
-        id="my-select"
-        type="button"
+      <span
+        class="ods-form-control__label"
+        id="label--my-select"
       >
-        <span
-          class="ods-select__value ods-select__value--empty"
+        Custom label
+      </span>
+      <div
+        class="ods-form-control__element"
+      >
+        <div
+          class="ods-select__root"
         >
-          Select some option
-        </span>
-        <span
-          aria-hidden="true"
-          class="ods-select__arrow"
-        >
-          ▼
-        </span>
-      </button>
+          <button
+            aria-haspopup="listbox"
+            aria-labelledby="label--my-select my-select"
+            class="ods-select__control custom-class"
+            id="my-select"
+            type="button"
+          >
+            <span
+              class="ods-select__value ods-select__value--empty"
+            >
+              Select some option
+            </span>
+            <span
+              aria-hidden="true"
+              class="ods-select__arrow"
+            >
+              ▼
+            </span>
+          </button>
+        </div>
+      </div>
     </div>
   `);
 });
@@ -295,12 +312,29 @@ test('collapses listbox when `Esc` key is pressed', () => {
 });
 
 test('collapses listbox when `Enter` key is pressed', () => {
-  const { getByTestId, queryByRole } = setup({ defaultValue: 'mastercard' });
+  const { getByTestId, queryByRole, getByText } = setup();
 
   fireEvent.click(getByTestId('select-test'));
   fireEvent.keyDown(document.activeElement || document.body, {
+    key: 'm',
+  });
+  act(() => {
+    jest.runAllTimers();
+  });
+  fireEvent.keyDown(document.activeElement || document.body, {
     key: 'Enter',
   });
+
+  expect(queryByRole('listbox')).not.toBeInTheDocument();
+  expect(getByTestId('select-test')).toHaveFocus();
+  expect(getByText('Mastercard')).toBeInTheDocument();
+});
+
+test('collapses listbox when option is selected', () => {
+  const { getByTestId, getByRole, queryByRole } = setup();
+
+  fireEvent.click(getByTestId('select-test'));
+  fireEvent.click(getByRole('option', { name: 'Discover Network' }));
 
   expect(queryByRole('listbox')).not.toBeInTheDocument();
   expect(getByTestId('select-test')).toHaveFocus();
@@ -318,4 +352,30 @@ test('collapses listbox when another element is focused', async () => {
     expect(queryByRole('listbox')).not.toBeInTheDocument();
     expect(getByTestId('select-test')).not.toHaveFocus();
   });
+});
+
+test('renders a error state for the select', () => {
+  const { getByTestId } = render(
+    <Select
+      data-testid="select-test"
+      options={[{ value: 'v1', label: 'Label 1' }]}
+      error
+    />
+  );
+
+  expect(getByTestId('select-test').className).toBe(
+    'ods-select__control ods-select__control--error'
+  );
+});
+
+test('renders controlled select', async () => {
+  const { getByTestId, getByLabelText } = render(<SelectControlled />);
+
+  expect(getByTestId('selected-value')).toBeEmptyDOMElement();
+  fireEvent.click(getByLabelText('Pick your favorite flavor'));
+  fireEvent.click(getByTestId('coconut'));
+
+  await waitFor(() =>
+    expect(getByTestId('selected-value')).toHaveTextContent('coconut')
+  );
 });
