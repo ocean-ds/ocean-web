@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 
 import { SelectProps } from '../types';
 import Select from '../Select';
@@ -14,6 +14,7 @@ const setup = (props?: Partial<SelectProps>) => {
     ...render(
       <div>
         <Select
+          id="sel-1"
           data-testid="select-test"
           options={[
             { value: 'visa', label: 'Visa' },
@@ -88,7 +89,7 @@ test('selects next option when `ArrowDown` key is pressed', () => {
   expect(onChangeFn).toHaveBeenCalledTimes(1);
   expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
     Object {
-      "id": "option-american-express--listbox--1",
+      "id": "option-american-express--listbox--sel-1",
       "index": 2,
       "label": "American Express",
       "value": "american-express",
@@ -124,7 +125,7 @@ test('selects previous option when `ArrowUp` key is pressed', () => {
   expect(onChangeFn).toHaveBeenCalledTimes(1);
   expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
     Object {
-      "id": "option-elo--listbox--7",
+      "id": "option-elo--listbox--sel-1",
       "index": 3,
       "label": "Elo",
       "value": "elo",
@@ -158,7 +159,7 @@ test('selects first option when `Home` key is pressed', () => {
   expect(onChangeFn).toHaveBeenCalledTimes(1);
   expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
     Object {
-      "id": "option-visa--listbox--13",
+      "id": "option-visa--listbox--sel-1",
       "index": 0,
       "label": "Visa",
       "value": "visa",
@@ -192,7 +193,7 @@ test('selects last option when `End` key is pressed', () => {
   expect(onChangeFn).toHaveBeenCalledTimes(1);
   expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
     Object {
-      "id": "option-other--listbox--18",
+      "id": "option-other--listbox--sel-1",
       "index": 7,
       "label": "Other",
       "value": "other",
@@ -232,7 +233,7 @@ test('select next option with a name that starts with the typed character', () =
   expect(onChangeFn).toHaveBeenCalledTimes(1);
   expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
     Object {
-      "id": "option-diners-club--listbox--23",
+      "id": "option-diners-club--listbox--sel-1",
       "index": 6,
       "label": "Diners Club",
       "value": "diners-club",
@@ -255,6 +256,16 @@ test('does not select an option with a name that starts with the typed character
   expect(onChangeFn).toHaveBeenCalledTimes(0);
 });
 
+test('renders expanded listbox', () => {
+  const { getByTestId, getByRole, queryByRole } = setup();
+
+  fireEvent.click(getByTestId('select-test'));
+
+  expect(getByTestId('select-test')).toHaveAttribute('aria-expanded', 'true');
+  expect(getByRole('listbox')).not.toHaveAttribute('aria-activedescendant');
+  expect(queryByRole('option', { selected: true })).not.toBeInTheDocument();
+});
+
 test('renders expanded listbox with the selected option focused', () => {
   const { getByTestId, getByRole } = setup({ defaultValue: 'other' });
 
@@ -263,10 +274,48 @@ test('renders expanded listbox with the selected option focused', () => {
   expect(getByTestId('select-test')).toHaveAttribute('aria-expanded', 'true');
   expect(getByRole('listbox')).toHaveAttribute(
     'aria-activedescendant',
-    'option-other--listbox--30'
+    'option-other--listbox--sel-1'
   );
   expect(getByRole('option', { name: 'Other' })).toHaveAttribute(
     'aria-selected',
     'true'
   );
+});
+
+test('collapses listbox when `Esc` key is pressed', () => {
+  const { getByTestId, queryByRole } = setup();
+
+  fireEvent.click(getByTestId('select-test'));
+  fireEvent.keyDown(document.activeElement || document.body, {
+    key: 'Esc',
+  });
+
+  expect(queryByRole('listbox')).not.toBeInTheDocument();
+  expect(getByTestId('select-test')).toHaveFocus();
+});
+
+test('collapses listbox when `Enter` key is pressed', () => {
+  const { getByTestId, queryByRole } = setup({ defaultValue: 'mastercard' });
+
+  fireEvent.click(getByTestId('select-test'));
+  fireEvent.keyDown(document.activeElement || document.body, {
+    key: 'Enter',
+  });
+
+  expect(queryByRole('listbox')).not.toBeInTheDocument();
+  expect(getByTestId('select-test')).toHaveFocus();
+});
+
+test('collapses listbox when another element is focused', async () => {
+  const { getByTestId, queryByRole, getByRole } = setup({
+    defaultValue: 'mastercard',
+  });
+
+  fireEvent.click(getByTestId('select-test'));
+  getByRole('button', { name: 'Another interactive element' }).focus();
+
+  await waitFor(() => {
+    expect(queryByRole('listbox')).not.toBeInTheDocument();
+    expect(getByTestId('select-test')).not.toHaveFocus();
+  });
 });
