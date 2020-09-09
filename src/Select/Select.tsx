@@ -68,7 +68,8 @@ const Select: React.FC<SelectProps> = ({
         case 'Enter':
         case 'Escape':
           event.preventDefault();
-          refSelControl.current?.focus();
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          refSelControl.current!.focus();
           setIsExpanded(false);
           break;
         default:

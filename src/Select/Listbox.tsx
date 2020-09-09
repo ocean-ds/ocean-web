@@ -20,7 +20,8 @@ const Listbox = React.memo<ListboxProps>(function Listbox({
   const refListbox = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
-    refListbox.current?.focus();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    refListbox.current!.focus();
   }, []);
 
   return (

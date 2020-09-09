@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, {
   useContext,
   useRef,
@@ -30,7 +31,7 @@ const Option: React.FC<OptionProps> = React.memo(function Option(option) {
 
   useEffect(() => {
     if (refOption && isSelected) {
-      refOption.current?.scrollIntoView({
+      refOption.current!.scrollIntoView({
         behavior: 'auto',
         block: 'center',
       });
@@ -38,13 +39,14 @@ const Option: React.FC<OptionProps> = React.memo(function Option(option) {
   }, [isSelected, refOption]);
 
   const handleClick = useCallback(() => {
-    onSelect?.(option);
-    refSelControl?.current?.focus();
-    setIsExpanded?.(false);
+    onSelect!(option);
+    refSelControl!.current!.focus();
+    setIsExpanded!(false);
   }, [onSelect, option, refSelControl, setIsExpanded]);
 
   return (
     <li
+      {...rest}
       ref={refOption}
       id={id}
       role="option"
@@ -57,7 +59,6 @@ const Option: React.FC<OptionProps> = React.memo(function Option(option) {
       // In a single-select listbox, the selected option has `aria-selected`
       // set to `true`.
       aria-selected={isSelected || undefined}
-      {...rest}
     >
       <span>{label}</span>
     </li>

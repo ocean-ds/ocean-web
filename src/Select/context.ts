@@ -6,7 +6,7 @@ export type SelectedType = {
   id: string;
 } & OptionType;
 
-type ContextProps = {
+type ContextType = {
   listboxId: string;
   selected?: SelectedType;
   onSelect: (newOption: SelectedType) => void;
@@ -14,4 +14,4 @@ type ContextProps = {
   refSelControl: React.MutableRefObject<HTMLButtonElement | null>;
 };
 
-export default React.createContext<Partial<ContextProps>>({});
+export default React.createContext<Partial<ContextType>>({});

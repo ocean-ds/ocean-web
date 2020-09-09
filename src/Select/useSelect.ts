@@ -6,7 +6,7 @@ import { SelectedType } from './context';
 import { OptionType, RawValueType, SelectProps } from './types';
 
 type SelectHookType = {
-  controlId: string;
+  controlId?: string;
   labelId: string;
   listboxId: string;
   selected?: SelectedType;
@@ -49,7 +49,7 @@ const useSelect = ({
 
   const handleChange = useCallback(
     (option: SelectedType) => {
-      if (selected?.id == option?.id) return;
+      if (selected?.id == option.id) return;
 
       if (!selected && defaultValue) {
         setSelected(option);
@@ -64,7 +64,7 @@ const useSelect = ({
   const selectByValue = useCallback(
     (value?: RawValueType) => {
       const option = optionsMemo.find((o) => o.value === value);
-      if (option) handleChange(option);
+      option && handleChange(option);
     },
     [handleChange, optionsMemo]
   );
@@ -72,7 +72,7 @@ const useSelect = ({
   const selectByIndex = useCallback(
     (index: number) => {
       const option = optionsMemo[index];
-      if (option) handleChange(option);
+      option && handleChange(option);
     },
     [handleChange, optionsMemo]
   );
@@ -119,7 +119,7 @@ const useSelect = ({
   }, [currentIndex, optionsMemo, search, selectByIndex]);
 
   return {
-    controlId: controlId || 'sel-control',
+    controlId,
     labelId,
     listboxId,
     selected,
