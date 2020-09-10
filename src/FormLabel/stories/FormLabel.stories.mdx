@@ -1,15 +1,62 @@
-import { Meta, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
 import FormLabel from '../FormLabel';
 
-<Meta title="Components/FormLabel" component={FormLabel} />
+<Meta
+  title="Components/FormLabel"
+  component={FormLabel}
+  argTypes={{
+    component: {
+      name: 'component',
+      description:
+        'The component used for the root node. Either a string to use a HTML element or a component.',
+      defaultValue: 'label',
+      table: {
+        type: {
+          summary: 'elementType',
+        },
+        defaultValue: {
+          summary: 'label',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+    disabled: {
+      name: 'disabled',
+      description:
+        'If true, the label should be displayed in a disabled state.',
+      defaultValue: false,
+      table: {
+        type: {
+          summary: 'true | false',
+        },
+        defaultValue: {
+          summary: false,
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+  }}
+/>
 
 # FormLabel API
 
 The API documentation of the FormLabel React component. Learn more about the props and the CSS customization points.
 
+## Usage
+
+<Canvas withSource="open">
+  <Story name="Usage">
+    <FormLabel>Label Here!</FormLabel>
+  </Story>
+</Canvas>
+
 ## Props
 
-<ArgsTable of="." />
+<ArgsTable story="Usage" of="." />
 
 ## CSS
 

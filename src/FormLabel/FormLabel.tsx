@@ -23,7 +23,7 @@ export type FormLabelProps<P extends React.ElementType = 'label'> = {
 
 function FormLabelBase<T extends React.ElementType = 'label'>(
   { children, className, component, disabled, ...rest }: FormLabelProps<T>,
-  ref: React.Ref<HTMLButtonElement>
+  ref: React.Ref<HTMLLabelElement>
 ) {
   return React.createElement(
     component || 'label',
