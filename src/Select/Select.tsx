@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import classNames from 'classnames';
 
 import FormControl from '../FormControl';
-import FormLabel from '../FormControl/FormLabel';
+import FormLabel from '../FormLabel';
 import { SelectProps } from './types';
 import Context from './context';
 import Listbox from './Listbox';

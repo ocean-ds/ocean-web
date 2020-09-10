@@ -57,7 +57,7 @@ test('renders element properly', () => {
       class="ods-form-control__root"
     >
       <span
-        class="ods-form-control__label"
+        class="ods-form-label"
         id="label--my-select"
       >
         Custom label

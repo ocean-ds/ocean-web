@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import './styles/form-control.scss';
-import FormLabel from './FormLabel';
+import FormLabel from '../FormLabel';
 
 export type FormControlProps = {
   /**

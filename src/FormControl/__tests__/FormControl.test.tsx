@@ -28,11 +28,6 @@ test('renders element properly', () => {
   `);
 });
 
-test('renders a label', () => {
-  const { getByText } = setup({ label: 'The label' });
-  expect(getByText('The label').className).toBe('ods-form-control__label');
-});
-
 test('renders a helper text', () => {
   const { getByText } = setup({ helperText: 'Just a small info.' });
   expect(getByText('Just a small info.').className).toBe(
@@ -65,9 +60,6 @@ test('renders a disabled state', () => {
     helperText: 'Error message.',
   });
 
-  expect(getByText('Label Test').className).toBe(
-    'ods-form-control__label ods-form-control__label--disabled'
-  );
   expect(getByText('Error message.').className).toBe(
     'ods-form-control__helper-text ods-form-control__helper-text--disabled'
   );

@@ -30,8 +30,8 @@ function FormLabelBase<T extends React.ElementType = 'label'>(
     {
       ref,
       className: classNames(
-        'ods-form-control__label',
-        disabled && 'ods-form-control__label--disabled',
+        'ods-form-label',
+        disabled && 'ods-form-label--disabled',
         className
       ),
       ...rest,
