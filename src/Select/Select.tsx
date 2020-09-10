@@ -165,7 +165,7 @@ const Select: React.FC<SelectProps> = ({
               {isExpanded ? '▲' : '▼'}
             </span>
             {name && (
-              <input type="hidden" name={name} value={selected?.value} />
+              <input type="hidden" name={name} value={selected?.value || ''} />
             )}
           </button>
           {isExpanded && (

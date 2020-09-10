@@ -93,145 +93,101 @@ test('renders element properly', () => {
   `);
 });
 
-test('selects next option when `ArrowDown` key is pressed', () => {
+test.each([
+  [
+    'selects next option when `ArrowDown` key is pressed',
+    {
+      key: 'ArrowDown',
+      defaultValue: 'mastercard',
+      selected: { label: 'American Express', value: 'american-express' },
+    },
+  ],
+  [
+    'selects previous option when `ArrowUp` key is pressed',
+    {
+      key: 'ArrowUp',
+      defaultValue: 'hipercard',
+      selected: { label: 'Elo', value: 'elo' },
+    },
+  ],
+  [
+    'selects option advancing 4 positions when `PageDown` key is pressed',
+    {
+      key: 'PageDown',
+      defaultValue: undefined,
+      selected: { label: 'Elo', value: 'elo' },
+    },
+  ],
+  [
+    'selects option kicking 4 positions when `PageDown` key is pressed',
+    {
+      key: 'PageUp',
+      defaultValue: 'discover-network',
+      selected: { label: 'Mastercard', value: 'mastercard' },
+    },
+  ],
+  [
+    'selects previous option when `ArrowUp` key is pressed',
+    {
+      key: 'ArrowUp',
+      defaultValue: 'hipercard',
+      selected: { label: 'Elo', value: 'elo' },
+    },
+  ],
+  [
+    'selects first option when `Home` key is pressed',
+    {
+      key: 'Home',
+      defaultValue: undefined,
+      selected: { label: 'Visa', value: 'visa' },
+    },
+  ],
+  [
+    'selects last option when `End` key is pressed',
+    {
+      key: 'End',
+      defaultValue: undefined,
+      selected: { label: 'Other', value: 'other' },
+    },
+  ],
+])('%s', (_, params) => {
   const { getByTestId, getByText, onChangeFn } = setup({
-    defaultValue: 'mastercard',
+    defaultValue: params.defaultValue,
   });
 
   getByTestId('select-test').focus();
   fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'ArrowDown',
+    key: params.key,
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
-    Object {
-      "id": "option-american-express--listbox--sel-1",
-      "index": 2,
-      "label": "American Express",
-      "value": "american-express",
-    }
-  `);
-  expect(getByText('American Express')).toBeInTheDocument();
+  expect(onChangeFn.mock.calls[0][0]).toMatchObject(params.selected);
+  expect(getByText(params.selected.label)).toBeInTheDocument();
 });
 
-test('does not select next option when `ArrowDown` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup({
-    defaultValue: 'other',
-  });
+test.each([
+  ['ArrowDown', 'other', 'Other'],
+  ['ArrowUp', 'visa', 'Visa'],
+  ['PageDown', 'other', 'Other'],
+  ['PageUp', 'visa', 'Visa'],
+  ['Home', 'visa', 'Visa'],
+  ['End', 'other', 'Other'],
+])(
+  'does not re-select option when `%s` is pressed',
+  (key, defaultValue, label) => {
+    const { getByTestId, getByText, onChangeFn } = setup({
+      defaultValue,
+    });
 
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'ArrowDown',
-  });
+    getByTestId('select-test').focus();
+    fireEvent.keyDown(document.activeElement || document.body, {
+      key,
+    });
 
-  expect(onChangeFn).toHaveBeenCalledTimes(0);
-  expect(getByText('Other')).toBeInTheDocument();
-});
-
-test('selects previous option when `ArrowUp` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup({
-    defaultValue: 'hipercard',
-  });
-
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'ArrowUp',
-  });
-
-  expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
-    Object {
-      "id": "option-elo--listbox--sel-1",
-      "index": 3,
-      "label": "Elo",
-      "value": "elo",
-    }
-  `);
-  expect(getByText('Elo')).toBeInTheDocument();
-});
-
-test('does not select previous option when `ArrowUp` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup({
-    defaultValue: 'visa',
-  });
-
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'ArrowUp',
-  });
-
-  expect(onChangeFn).toHaveBeenCalledTimes(0);
-  expect(getByText('Visa')).toBeInTheDocument();
-});
-
-test('selects first option when `Home` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup();
-
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'Home',
-  });
-
-  expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
-    Object {
-      "id": "option-visa--listbox--sel-1",
-      "index": 0,
-      "label": "Visa",
-      "value": "visa",
-    }
-  `);
-  expect(getByText('Visa')).toBeInTheDocument();
-});
-
-test('does not select an option when `Home` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup({
-    defaultValue: 'visa',
-  });
-
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'Home',
-  });
-
-  expect(onChangeFn).toHaveBeenCalledTimes(0);
-  expect(getByText('Visa')).toBeInTheDocument();
-});
-
-test('selects last option when `End` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup();
-
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'End',
-  });
-
-  expect(onChangeFn).toHaveBeenCalledTimes(1);
-  expect(onChangeFn.mock.calls[0][0]).toMatchInlineSnapshot(`
-    Object {
-      "id": "option-other--listbox--sel-1",
-      "index": 7,
-      "label": "Other",
-      "value": "other",
-    }
-  `);
-  expect(getByText('Other')).toBeInTheDocument();
-});
-
-test('does not select an option when `End` key is pressed', () => {
-  const { getByTestId, getByText, onChangeFn } = setup({
-    defaultValue: 'other',
-  });
-
-  getByTestId('select-test').focus();
-  fireEvent.keyDown(document.activeElement || document.body, {
-    key: 'End',
-  });
-
-  expect(onChangeFn).toHaveBeenCalledTimes(0);
-  expect(getByText('Other')).toBeInTheDocument();
-});
+    expect(onChangeFn).toHaveBeenCalledTimes(0);
+    expect(getByText(label)).toBeInTheDocument();
+  }
+);
 
 test('select next option with a name that starts with the typed character', () => {
   const { getByTestId, getByText, onChangeFn } = setup({
@@ -239,7 +195,6 @@ test('select next option with a name that starts with the typed character', () =
   });
 
   getByTestId('select-test').focus();
-
   fireEvent.keyDown(document.activeElement || document.body, {
     key: 'd',
   });
