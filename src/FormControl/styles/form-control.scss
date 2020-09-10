@@ -10,6 +10,7 @@
   &__element {
     &--blocked :first-child {
       width: 100%;
+      box-sizing: border-box;
     }
   }
 
