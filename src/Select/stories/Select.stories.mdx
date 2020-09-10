@@ -13,9 +13,50 @@ The API documentation of the Select React component. Learn more about the props 
 import { Select } from '@useblu/ocean-components';
 ```
 
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Select
+      label="Label"
+      defaultValue={1}
+      options={[
+        { value: 1, label: 'Option 1' },
+        { value: 2, label: 'Option 2' },
+      ]}
+      helperText="Just a small info ;)"
+      disabled
+    />
+  </Story>
+</Canvas>
+
 ## Props
 
 <ArgsTable of="." />
+
+Any other props supplied will be provided to the root element (button element).
+
+## CSS
+
+| Global class                    | Description                         |
+| ------------------------------- | ----------------------------------- |
+| .ods-select\_\_root             | Styles applied to the root element. |
+| .ods-select\_\_control          |                                     |
+| .ods-select\_\_control--error   |                                     |
+| .ods-select\_\_value            |                                     |
+| .ods-select\_\_value--empty     |                                     |
+| .ods-select\_\_arrow            |                                     |
+| .ods-select\_\_listbox-wrapper  |                                     |
+| .ods-select\_\_listbox          |                                     |
+| .ods-select\_\_listbox-wrapper  |                                     |
+| .ods-select\_\_option           |                                     |
+| .ods-select\_\_option--selected |                                     |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Select/Select.tsx) for more detail.
+
+## Inheritance
+
+The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
 
 ## Playground
 
@@ -23,7 +64,13 @@ import { Select } from '@useblu/ocean-components';
   <Story
     name="Playground"
     args={{
-      options: Array.from(Array(100), (x, index) => ({
+      label: 'Label',
+      placeholder: 'Placeholder...',
+      helperText: 'Some text here!',
+      error: false,
+      blocked: false,
+      disabled: false,
+      options: Array.from(Array(10), (x, index) => ({
         value: `value-${index}`,
         label: `${index}-label`,
       })),
