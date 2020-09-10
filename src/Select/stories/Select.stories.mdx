@@ -34,23 +34,23 @@ import { Select } from '@useblu/ocean-components';
 
 <ArgsTable of="." />
 
-Any other props supplied will be provided to the root element (button element).
+Any other props supplied will be provided to the select component.
 
 ## CSS
 
-| Global class                     | Description                         |
-| -------------------------------- | ----------------------------------- |
-| .ods-select\_\_root              | Styles applied to the root element. |
-| .ods-select\_\_control           |                                     |
-| .ods-select\_\_control--expanded |                                     |
-| .ods-select\_\_control--error    |                                     |
-| .ods-select\_\_value             |                                     |
-| .ods-select\_\_value--empty      |                                     |
-| .ods-select\_\_arrow             |                                     |
-| .ods-select\_\_listbox-wrapper   |                                     |
-| .ods-select\_\_listbox           |                                     |
-| .ods-select\_\_option            |                                     |
-| .ods-select\_\_option--selected  |                                     |
+| Global class                     | Description                                                   |
+| -------------------------------- | ------------------------------------------------------------- |
+| .ods-select\_\_root              | Styles applied to the root element.                           |
+| .ods-select\_\_control           | Styles applied to the control element.                        |
+| .ods-select\_\_control--expanded | Styles applied to the control element if the popup is open.   |
+| .ods-select\_\_control--error    | Styles applied to the control element if error={true}.        |
+| .ods-select\_\_value             | Styles applied to the value element.                          |
+| .ods-select\_\_value--empty      | Styles applied to the value element when placeholder appears. |
+| .ods-select\_\_arrow             | Styles applied to the arrow element.                          |
+| .ods-select\_\_listbox-wrapper   | Styles applied to the popup element.                          |
+| .ods-select\_\_listbox           | Styles applied to the listbox element.                        |
+| .ods-select\_\_option            | Styles applied to the option element.                         |
+| .ods-select\_\_option--selected  | Styles applied to the selected option in the listbox.         |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Select/Select.tsx) for more detail.
 
