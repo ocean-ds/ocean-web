@@ -135,6 +135,7 @@ const Select: React.FC<SelectProps> = ({
             type="button"
             className={classNames(
               'ods-select__control',
+              isExpanded && 'ods-select__control--expanded',
               error && 'ods-select__control--error',
               className
             )}
