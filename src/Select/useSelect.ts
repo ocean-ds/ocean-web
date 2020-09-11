@@ -82,8 +82,8 @@ const useSelect = ({
   );
 
   const selectByValue = useCallback(
-    (value?: RawValueType) => {
-      const option = optionsMemo.find((o) => o.value == value);
+    (val?: RawValueType) => {
+      const option = optionsMemo.find((o) => o.value == val);
       option && onSelect(option, false);
     },
     [onSelect, optionsMemo]
@@ -99,12 +99,12 @@ const useSelect = ({
 
     if (search) {
       timer = setTimeout(() => {
-        const options = [
+        const optionList = [
           ...optionsMemo.slice(currentIndex + 1),
           ...optionsMemo.slice(0, currentIndex + 1),
         ];
 
-        const option = options.find((o) =>
+        const option = optionList.find((o) =>
           o.label.toLowerCase().startsWith(search.toLowerCase())
         );
 
