@@ -64,10 +64,12 @@
 
     &--up {
       transform: rotate(-135deg);
+      margin-top: 3px;
     }
 
     &--down {
       transform: rotate(45deg);
+      margin-top: -3px;
     }
 
     &--disabled {
