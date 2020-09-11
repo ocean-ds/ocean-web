@@ -2,7 +2,7 @@ import { FormControlProps } from '../FormControl';
 
 export type RawValueType = string | number;
 
-export type OptionType = {
+type OptionType = {
   value: RawValueType;
   label: string;
   className?: string;
@@ -12,7 +12,7 @@ export type OptionType = {
 
 export type SelectProps = {
   /**
-   * 	The id of the select element.
+   * The id of the select element.
    */
   id?: string;
   /**
@@ -28,7 +28,7 @@ export type SelectProps = {
    */
   value?: RawValueType;
   /**
-   * 	The default selected option. Use when the component is not controlled.
+   * The default selected option. Use when the component is not controlled.
    */
   defaultValue?: RawValueType;
   /**
@@ -40,9 +40,17 @@ export type SelectProps = {
    */
   ariaLabel?: string;
   /**
-   *	Callback function fired when an option is selected.
+   * Callback function fired when an option is selected.
    */
   onChange?: (newValue: OptionType) => void;
+  /**
+   * The additional class to select.
+   */
   className?: string;
   [propName: string]: unknown;
 } & Omit<FormControlProps, 'children' | 'htmlFor'>;
+
+export type OptionProps = OptionType & {
+  id: string;
+  index: number;
+} & OptionType;

@@ -8,26 +8,20 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { OptionType } from './types';
 import Context from './context';
+import { OptionProps } from './types';
 import './styles/option.scss';
-
-export type OptionProps = {
-  id: string;
-  index: number;
-} & OptionType &
-  React.ComponentPropsWithoutRef<'li'>;
 
 const Option: React.FC<OptionProps> = React.memo(function Option(option) {
   const { label, className, id, index, ...rest } = option;
   const { selected, onSelect, setIsExpanded, refSelControl } = useContext(
     Context
   );
-  const refOption = useRef<HTMLLIElement | null>(null);
   const isSelected = useMemo(() => selected?.index === index, [
     selected,
     index,
   ]);
+  const refOption = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
     if (refOption && isSelected) {

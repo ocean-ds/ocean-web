@@ -1,15 +1,10 @@
 import React from 'react';
-import { OptionType } from './types';
-
-export type SelectedType = {
-  index: number;
-  id: string;
-} & OptionType;
+import { OptionProps } from './types';
 
 type ContextType = {
   listboxId: string;
-  selected?: SelectedType;
-  onSelect: (newOption: SelectedType) => void;
+  selected?: OptionProps;
+  onSelect: (newOption: OptionProps) => void;
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
   refSelControl: React.MutableRefObject<HTMLButtonElement | null>;
 };
