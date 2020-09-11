@@ -80,12 +80,9 @@ test('renders element properly', () => {
             >
               Select some option
             </span>
-            <span
-              aria-hidden="true"
-              class="ods-select__arrow"
-            >
-              ▼
-            </span>
+            <i
+              class="ods-select__arrow ods-select__arrow--down"
+            />
           </button>
         </div>
       </div>

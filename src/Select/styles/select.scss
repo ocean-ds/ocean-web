@@ -57,6 +57,21 @@
 
   &__arrow {
     margin-left: $spacing-inline-xs;
-    user-select: none;
+    border: solid $color-interface-dark-down;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+
+    &--up {
+      transform: rotate(-135deg);
+    }
+
+    &--down {
+      transform: rotate(45deg);
+    }
+
+    &--disabled {
+      border-color: $color-interface-dark-up;
+    }
   }
 }
