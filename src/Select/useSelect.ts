@@ -2,17 +2,16 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useId } from '@reach/auto-id';
 
 import makeId from '../_util/makeId';
-import { SelectedType } from './context';
-import { OptionType, RawValueType, SelectProps } from './types';
+import { OptionProps, RawValueType, SelectProps } from './types';
 
 type SelectHookType = {
   controlId?: string;
   labelId?: string;
   listboxId: string;
-  selected?: SelectedType;
+  selected?: OptionProps;
   selectClosestOption: (incremental: number) => void;
-  options: Array<{ id: string } & OptionType>;
-  onSelect: (newOption: SelectedType) => void;
+  options: OptionProps[];
+  onSelect: (newOption: OptionProps) => void;
   isExpanded: boolean;
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
@@ -31,7 +30,7 @@ const useSelect = ({
   const listboxId = makeId('listbox', controlId);
 
   const isControlled = Boolean(value);
-  const [selected, setSelected] = useState<SelectedType>();
+  const [selected, setSelected] = useState<OptionProps>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState('');
 
@@ -48,7 +47,7 @@ const useSelect = ({
   );
 
   const onSelect = useCallback(
-    (option: SelectedType, canEmitChangeEvent = true) => {
+    (option: OptionProps, canEmitChangeEvent = true) => {
       if (selected?.id == option.id) return;
 
       setSelected(option);

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useRef } from 'react';
 
-import Option from './Option';
 import Context from './context';
-import { OptionType } from './types';
+import { OptionProps } from './types';
+import Option from './Option';
 import './styles/listbox.scss';
 
 type ListboxProps = {
   id: string;
-  options: Array<{ id: string } & OptionType>;
+  options: OptionProps[];
   onKeyDown: React.KeyboardEventHandler;
 };
 
