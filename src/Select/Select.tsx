@@ -162,9 +162,13 @@ const Select: React.FC<SelectProps> = ({
             >
               {selected?.label || placeholder}
             </span>
-            <span className="ods-select__arrow" aria-hidden>
-              {isExpanded ? '▲' : '▼'}
-            </span>
+            <i
+              className={classNames('ods-select__arrow', {
+                'ods-select__arrow--up': isExpanded,
+                'ods-select__arrow--down': !isExpanded,
+                'ods-select__arrow--disabled': disabled,
+              })}
+            ></i>
             {name && (
               <input type="hidden" name={name} value={selected?.value || ''} />
             )}
