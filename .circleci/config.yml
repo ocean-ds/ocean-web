@@ -105,27 +105,27 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - codestyle:
-          requires:
-            - build
-      - tests:
-          context: SonarCloud
-          requires:
-            - build
-          filters:
-            tags:
-              only: /^v.*/
-      - deploy-pkg:
-          requires:
-            - tests
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+      # - codestyle:
+      #     requires:
+      #       - build
+      # - tests:
+      #     context: SonarCloud
+      #     requires:
+      #       - build
+      #     filters:
+      #       tags:
+      #         only: /^v.*/
+      # - deploy-pkg:
+      #     requires:
+      #       - tests
+      #     filters:
+      #       tags:
+      #         only: /^v.*/
+      #       branches:
+      #         ignore: /.*/
       - deploy-doc:
           requires:
-            - deploy-pkg
+            - build
           filters:
             tags:
               only: /^v.*/
