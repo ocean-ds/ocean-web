@@ -2,7 +2,6 @@ import React from 'react';
 import { OptionProps } from './types';
 
 type ContextType = {
-  listboxId: string;
   selected?: OptionProps;
   onSelect: (newOption: OptionProps) => void;
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
