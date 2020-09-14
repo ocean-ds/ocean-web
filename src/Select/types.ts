@@ -50,7 +50,7 @@ export type SelectProps = {
   [propName: string]: unknown;
 } & Omit<FormControlProps, 'children' | 'htmlFor'>;
 
-export type OptionProps = OptionType & {
+export type OptionProps = {
   id: string;
   index: number;
 } & OptionType;
