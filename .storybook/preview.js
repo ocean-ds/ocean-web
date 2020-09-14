@@ -1,6 +1,5 @@
-import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
-
 export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
   viewport: {
     viewports: {
       galaxys5: {
@@ -20,10 +19,6 @@ export const parameters = {
         type: 'tablet',
       },
     },
-  },
-  docs: {
-    container: DocsContainer,
-    page: DocsPage,
   },
   controls: { hideNoControlsWarning: true },
   backgrounds: {
