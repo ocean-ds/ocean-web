@@ -12,7 +12,7 @@ import Context from './context';
 import { OptionProps } from './types';
 import './styles/option.scss';
 
-const Option: React.FC<OptionProps> = React.memo(function Option(option) {
+const Option = React.memo<OptionProps>(function Option(option) {
   const { label, className, id, index, ...rest } = option;
   const { selected, onSelect, setIsExpanded, refSelControl } = useContext(
     Context
