@@ -1,0 +1,101 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Select from '../Select';
+
+<Meta title="Components/Select" component={Select} />
+
+# Select API
+
+The API documentation of the Select React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Select } from '@useblu/ocean-components';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Select
+      label="Label"
+      defaultValue={1}
+      options={[
+        { value: 1, label: 'Option 1' },
+        { value: 2, label: 'Option 2' },
+      ]}
+      helperText="Just a small info ;)"
+      disabled
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+Any other props supplied will be provided to the select component.
+
+## CSS
+
+| Global class                     | Description                                                   |
+| -------------------------------- | ------------------------------------------------------------- |
+| .ods-select\_\_root              | Styles applied to the root element.                           |
+| .ods-select\_\_control           | Styles applied to the control element.                        |
+| .ods-select\_\_control--expanded | Styles applied to the control element if the popup is open.   |
+| .ods-select\_\_control--error    | Styles applied to the control element if error={true}.        |
+| .ods-select\_\_value             | Styles applied to the value element.                          |
+| .ods-select\_\_value--empty      | Styles applied to the value element when placeholder appears. |
+| .ods-select\_\_arrow             | Styles applied to the arrow element.                          |
+| .ods-select\_\_arrow--down       | Styles applied to the arrow element if the popup is close.    |
+| .ods-select\_\_arrow--up         | Styles applied to the arrow element if the popup is open.     |
+| .ods-select\_\_arrow--disabled   | Styles applied to the arrow element if disabled={true}.       |
+| .ods-select\_\_listbox-wrapper   | Styles applied to the popup element.                          |
+| .ods-select\_\_listbox           | Styles applied to the listbox element.                        |
+| .ods-select\_\_option            | Styles applied to the option element.                         |
+| .ods-select\_\_option--selected  | Styles applied to the selected option in the listbox.         |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Select/Select.tsx) for more detail.
+
+## Inheritance
+
+The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    args={{
+      label: 'Label',
+      placeholder: 'Placeholder...',
+      helperText: 'Some text here!',
+      error: false,
+      blocked: false,
+      disabled: false,
+      options: Array.from(Array(10), (x, index) => ({
+        value: `opt-${index + 1}`,
+        label: `Option ${index + 1}`,
+      })),
+    }}
+    argTypes={{
+      value: { control: null },
+    }}
+  >
+    {(args) => (
+      <div>
+        <Select {...args} />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod
+          molestie risus, sed hendrerit nisl viverra vitae. Ut dignissim lorem
+          ante, ac lacinia magna placerat nec. Morbi eu pellentesque dolor.
+          Nulla eget neque a mi consequat bibendum quis sed augue. Fusce auctor
+          pellentesque fringilla. Sed eu enim pellentesque, vulputate lectus et,
+          consectetur magna. Pellentesque euismod libero enim, in blandit est
+          rhoncus at. Orci varius natoque penatibus et magnis dis parturient
+          montes, nascetur ridiculus mus. Vestibulum sit amet luctus dui.
+        </p>
+      </div>
+    )}
+  </Story>
+</Canvas>
