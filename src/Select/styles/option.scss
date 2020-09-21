@@ -1,0 +1,38 @@
+@import '~@useblu/tokens/dist/web/tokens.scss';
+
+.ods-select__option {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-family: $font-family-highlight;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-medium;
+  color: $color-interface-dark-deep;
+  padding-right: $spacing-inline-xs;
+  padding-left: $spacing-inline-xs;
+  margin: 0;
+  list-style: none;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &--selected,
+  &:hover,
+  &:focus,
+  &:active {
+    font-weight: $font-weight-bold;
+    color: $color-brand-primary-pure;
+    background-color: $color-interface-light-up;
+  }
+
+  &:hover:not(&--selected) {
+    font-weight: $font-weight-regular;
+  }
+}

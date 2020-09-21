@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import './styles/textarea.scss';
-import FormControl, { FormControlProps } from '../FormControl/FormControl';
+import FormControl, { FormControlProps } from '../FormControl';
 
 type TextAreaProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'textarea'>;
