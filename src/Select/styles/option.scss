@@ -31,4 +31,8 @@
     color: $color-brand-primary-pure;
     background-color: $color-interface-light-up;
   }
+
+  &:hover:not(&--selected) {
+    font-weight: $font-weight-regular;
+  }
 }
