@@ -33,7 +33,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@storybook/addon-a11y": "^6.0.21",
     "@storybook/addon-essentials": "^6.0.21",
