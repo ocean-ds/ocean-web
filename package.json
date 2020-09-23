@@ -23,7 +23,8 @@
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
     "format": "prettier --write 'src/**'",
     "format:check": "prettier --list-different src/**/*",
-    "lint": "eslint 'src/**/*.{ts,tsx}'"
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "cm": "cz"
   },
   "repository": "git@github.com:Pagnet/ocean-ds-web.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",
@@ -108,7 +109,6 @@
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "pretty-quick --staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
