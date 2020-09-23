@@ -33,6 +33,22 @@ jobs:
           name: Run linter
           command: yarn lint
 
+  commitlint:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Define environment variable with lastest commit's message
+          command: |
+            echo 'export COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")' >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: Lint commit message
+          command: echo "$COMMIT_MESSAGE" | npx commitlint
+
   tests:
     executor: node/default
     steps:
@@ -106,6 +122,9 @@ workflows:
               ignore:
                 - gh-pages
       - codestyle:
+          requires:
+            - build
+      - commitlint:
           requires:
             - build
       - tests:
