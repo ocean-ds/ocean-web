@@ -1,0 +1,19 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Drawer from '../Drawer';
+import Checkbox from '../../Checkbox';
+import Input from '../../Input';
+
+<Meta title="Components/Drawer" component={Drawer} />
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    args={{
+      open: true,
+    }}
+  >
+    {(args) => <Drawer {...args} />}
+  </Story>
+</Canvas>

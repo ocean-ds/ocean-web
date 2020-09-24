@@ -1,0 +1,53 @@
+@import '~@useblu/tokens/dist/web/tokens.scss';
+
+.ods-drawer {
+  background: $color-interface-light-pure;
+  border-top-left-radius: $border-radius-lg;
+  border-top-right-radius: $border-radius-lg;
+  bottom: 0;
+  box-shadow: $shadow-level-2;
+  min-height: 40%;
+  left: 0;
+  position: fixed;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+  width: 100%;
+  z-index: 200;
+
+  &-open {
+    transform: translateY(0);
+  }
+
+  &-handle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing-stack-sm;
+    margin-top: $spacing-stack-xxs;
+    width: 100%;
+  }
+
+  &-handle-item {
+    background-color: $color-interface-light-deep;
+    border-radius: $border-radius-pill;
+    cursor: pointer;
+    height: 4px;
+    width: 40px;
+  }
+
+  &-container {
+    padding-right: $spacing-inline-sm;
+    padding-bottom: $spacing-stack-sm;
+    padding-left: $spacing-inline-sm;
+  }
+}
+
+.ods-backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: $opacity-level-intense;
+  background-color: $color-interface-light-deep;
+  z-index: 100;
+  top: 0;
+  right: 0;
+}
