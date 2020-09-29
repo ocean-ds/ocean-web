@@ -1,14 +1,13 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "03:00"
-    timezone: Brazil/East
-  open-pull-requests-limit: 10
-  reviewers:
-  - SauloSilva
-  assignees:
-  - SauloSilva
-  versioning-strategy: increase
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+    reviewers:
+      - SauloSilva
+    assignees:
+      - SauloSilva
+    versioning-strategy: increase
+    commit-message:
+      prefix: 'chore'
