@@ -43,7 +43,7 @@
     "@storybook/addons": "^6.0.21",
     "@storybook/react": "^6.0.21",
     "@storybook/storybook-deployer": "^2.8.6",
-    "@storybook/theming": "^6.0.19",
+    "@storybook/theming": "^6.0.22",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@types/classnames": "2.2.10",
