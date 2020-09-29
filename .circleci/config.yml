@@ -92,6 +92,9 @@ jobs:
           name: Publish package
           command: |
             # Setup variables
+            cp -rf package.json dist
+            cd dist
+            # Setup variables
             export VERSION_NUMBER=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
             export TAG_NAME=$(echo $VERSION_NUMBER | grep -Po '[a-z]*')
             [ -z "$TAG_NAME" ] && TAG_NAME="latest"

@@ -11,12 +11,12 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
+      file: `dist/${pkg.main}`,
       format: 'cjs',
       sourcemap: true,
     },
     {
-      file: pkg.module,
+      file: `dist/${pkg.module}`,
       format: 'esm',
       sourcemap: true,
     },
