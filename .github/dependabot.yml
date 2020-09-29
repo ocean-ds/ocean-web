@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+    reviewers:
+      - SauloSilva
+    assignees:
+      - SauloSilva
+    versioning-strategy: increase
+    commit-message:
+      prefix: 'chore'
