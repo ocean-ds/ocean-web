@@ -39,7 +39,7 @@
     "@rollup/plugin-commonjs": "^15.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@storybook/addon-a11y": "^6.0.22",
-    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.22",
     "@storybook/addons": "^6.0.21",
     "@storybook/react": "^6.0.21",
     "@storybook/storybook-deployer": "^2.8.6",
