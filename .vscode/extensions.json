@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "orta.vscode-jest",
+    "coenraads.bracket-pair-colorizer-2",
+    "silvenon.mdx",
+    "knisterpeter.vscode-commitizen"
+  ]
+}
