@@ -15,11 +15,5 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/**/*.stories.mdx",
-    "src/**/*.test.tsx"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

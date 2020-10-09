@@ -25,7 +25,9 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript(),
+    typescript({
+      tsconfig: 'tsconfig.build.json',
+    }),
     postcss({
       minimize: true,
       extract: 'ocean-ds.min.css',
