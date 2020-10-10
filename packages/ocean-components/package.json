@@ -17,8 +17,7 @@
     "prebuild": "rimraf dist",
     "build": "rollup -c",
     "test": "jest",
-    "storybook": "start-storybook -p 6006 -s .storybook/assets",
-    "deploy:storybook": "storybook-to-ghpages -s build:storybook",
+    "test:coverage": "jest --coverage",
     "lint": "eslint 'src/**/*.{ts,tsx}'"
   },
   "repository": "git@github.com:Pagnet/ocean-ds-web.git",
