@@ -12,11 +12,8 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          name: Build library
-          command: yarn build:lib
-      - run:
-          name: Build storybook
-          command: yarn build:storybook
+          name: Build all
+          command: yarn build
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -64,7 +61,7 @@ jobs:
             ./cc-test-reporter before-build
       - run:
           name: Run tests
-          command: yarn test --coverage
+          command: yarn test:coverage
       - run:
           name: Send coverage report to Code Climate
           command: ./cc-test-reporter after-build -t lcov
