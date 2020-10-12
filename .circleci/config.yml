@@ -68,45 +68,6 @@ jobs:
           when: always
       - sonarcloud/scan
 
-  deploy-pkg:
-    executor: node/default
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - restore_cache:
-          keys:
-            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
-      - run:
-          name: Bump package version by tag
-          command: |
-            export VERSION_TAG=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
-            yarn version --new-version $VERSION_TAG --no-git-tag-version --no-commit-hooks
-      - run:
-          name: Publish package
-          command: |
-            # Setup variables
-            export VERSION_NUMBER=$(echo $CIRCLE_TAG | awk '{print substr($1,2); }')
-            export TAG_NAME=$(echo $VERSION_NUMBER | grep -Po '[a-z]*')
-            [ -z "$TAG_NAME" ] && TAG_NAME="latest"
-            # Bump and publish
-            yarn version --new-version $VERSION_NUMBER --no-git-tag-version --no-commit-hooks
-            yarn publish --access public --tag $TAG_NAME
-
-  deploy-doc:
-    executor: node/default
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
-      - run:
-          name: Deploy ocean-ds documentation
-          command: yarn deploy:storybook
-
 workflows:
   version: 2
   build-deploy:
@@ -128,20 +89,6 @@ workflows:
           context: SonarCloud
           requires:
             - build
-          filters:
-            tags:
-              only: /^v.*/
-      - deploy-pkg:
-          requires:
-            - tests
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - deploy-doc:
-          requires:
-            - deploy-pkg
           filters:
             tags:
               only: /^v.*/
