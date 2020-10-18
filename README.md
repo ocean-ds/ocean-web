@@ -36,3 +36,15 @@
 </p>
 
 This project is composed of many npm packages for building web apps with [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
+
+## Installation
+
+```bash
+yarn add @useblu/ocean-components
+```
+
+or
+
+```bash
+npm i @useblu/ocean-components
+```
