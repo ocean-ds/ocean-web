@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  Blu's Design System
+  The design system made by <a href="https://www.useblu.com.br/sobre">Blu</a>
 </p>
 
 <p align="center">
@@ -34,3 +34,5 @@
     <img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg">
   </a>
 </p>
+
+This project is composed of many npm packages for building web apps with [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
