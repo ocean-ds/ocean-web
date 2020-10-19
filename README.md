@@ -48,3 +48,21 @@ or
 ```bash
 npm i @useblu/ocean-components
 ```
+
+## Usage
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import '@useblu/ocean-components/ocean-ds.min.css';
+import { Button } from '@useblu/ocean-components';
+
+function App() {
+  return <Button variant="primary">Hello World</Button>;
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
+```
+
+Read the [documentation](https://pagnet.github.io/ocean-ds-web/index.html) to learn more.
