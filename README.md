@@ -85,3 +85,7 @@ Read our [contributing guide](CONTRIBUTING.md) to learn about our development pr
 ### Good First Issues
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/Pagnet/ocean-ds-web/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
+
+## License
+
+All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
