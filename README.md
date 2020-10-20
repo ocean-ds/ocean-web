@@ -33,6 +33,9 @@
   <a href="https://conventionalcommits.org">
     <img alt="Conventional Commits" src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg">
   </a>
+  <a href="http://makeapullrequest.com">
+    <img alt="Conventional Commits" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
+  </a>
 </p>
 
 This project is composed of many npm packages for building web apps with [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
@@ -66,3 +69,19 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 Read the [documentation](https://pagnet.github.io/ocean-ds-web/index.html) to learn more.
+
+## Contributing
+
+Whether you're helping us fix bugs, improve the docs, or spread the word, we'd love to have you as part of this project! :blue_heart: Read below to learn how you can take part of it.
+
+### Code of Conduct
+
+We adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
+### Contributing Guide
+
+Read our [contributing guide](CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes.
+
+### Good First Issues
+
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/Pagnet/ocean-ds-web/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
