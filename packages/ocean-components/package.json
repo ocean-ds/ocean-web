@@ -18,8 +18,9 @@
     "build": "rollup -c",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "storybook": "start-storybook -c ../../.storybook -p 6006 -s ../../.storybook/assets",
-    "lint": "eslint 'src/**/*.{ts,tsx}'"
+    "format": "prettier --write 'src/**'",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "storybook": "start-storybook -c ../../.storybook -p 6006 -s ../../.storybook/assets"
   },
   "repository": "git@github.com:Pagnet/ocean-ds-web.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",

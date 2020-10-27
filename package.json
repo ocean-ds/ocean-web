@@ -5,11 +5,12 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "run-p build:libs build:storybook",
     "build:libs": "lerna run build --stream",
     "build:storybook": "build-storybook -s .storybook/assets",
+    "build": "run-p build:libs build:storybook",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "format": "lerna run lint --parallel --stream",
     "lint": "lerna run lint --stream",
     "storybook": "start-storybook -p 6006 -s .storybook/assets",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
