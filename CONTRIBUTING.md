@@ -6,14 +6,14 @@ The following is a set of guidelines for contributing to Ocean DS and its packag
 
 ### Table Of Contents
 
-- [Code of Conduct](##Code-of-Conduct)
-- [Issues](##Issues)
-- [Your First Contribution](##Your-First-Contribution)
-- [Pull Requests](##Pull-Requests)
-- [Setup](##Setup)
-- [Project Structure](##Project-Structure)
-- [Styleguides](##Styleguides)
-- [Releasing](##Releasing)
+- [Code of Conduct](#code-of-conduct)
+- [Issues](#issues)
+- [Your First Contribution](#your-first-contribution)
+- [Pull Requests](#pull-requests)
+- [Setup](#setup)
+- [Project Structure](#project-structure)
+- [Styleguides](#styleguides)
+- [Releasing](#releasing)
 
 ## Code of Conduct
 
@@ -40,7 +40,7 @@ Read more: [SECURITY.md](SECURITY.md)
 
 ## Your First Contribution
 
-First of all, you will need to create an [issue](##Issues) for the feature or bugfix that you want to work on. When you open a new issue, there will be a template that will be automatically added to the text of the issue, which you would need to fill in. Doing this will help us to understand better what the ticket is about.
+First of all, you will need to create an [issue](#issues) for the feature or bugfix that you want to work on. When you open a new issue, there will be a template that will be automatically added to the text of the issue, which you would need to fill in. Doing this will help us to understand better what the ticket is about.
 
 Unsure where to begin contributing? You can start by looking through these issues:
 
@@ -64,7 +64,7 @@ In case you've got a small change in most of the cases, your pull request would 
 Please follow these steps to have your contribution considered by the maintainers:
 
 1. Follow all instructions in [the template](.github/PULL_REQUEST_TEMPLATE.md)
-2. Follow the [styleguides](##Styleguides)
+2. Follow the [styleguides](##styleguides)
 3. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track that problem with our status check suite.</details>
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
