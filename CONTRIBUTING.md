@@ -115,8 +115,8 @@ We adopted [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/
 
 - `yarn cm` will guide you adhering to a commit convention.
 - There's a [vscode extension](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) to help you.
-- Use the present tense ("add xyz" not "added xyz")
-- Use the imperative mood ("move cursor to..." not "Moves cursor to...")
+- Use the present tense ("add xyz" not "added xyz").
+- Use the imperative mood ("move cursor to..." not "Moves cursor to...").
 
 ### Code Formatting
 
@@ -144,20 +144,20 @@ We use typescript for package development. Make sure the typings are specific an
 The code that is written needs to be tested to ensure that it achieves the desired behavior. Tests either fall into a unit test or an integration test.
 
 - We use Jest as our official framework test.
-- We use [Testing Library](https://testing-library.com/docs/intro) to test UI components;
+- Use [Testing Library](https://testing-library.com/docs/intro) to test UI components.
 - All source files must be 100% coverage with tests.
 
 ### Linter
 
-- We use eslint to ensure recommended rules ([tslint is deprecated](https://www.darraghoriordan.com/2020/03/06/upgrade-tslint-deprecated-to-eslint/));
+- We use eslint to ensure recommended rules ([tslint is deprecated](https://www.darraghoriordan.com/2020/03/06/upgrade-tslint-deprecated-to-eslint/)).
 - Think carefully if you want to override some rules. Open an issue for discussion first.
 - `yarn lint` runs manually the linting rules.
 
 ### Documentation
 
 - Use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to create project documentation.
-- We use Storybook to document our components;
-- You must write stories using [MDX format](https://storybook.js.org/docs/react/writing-docs/mdx);
+- We use Storybook to document our components.
+- You must write stories using [MDX format](https://storybook.js.org/docs/react/writing-docs/mdx).
 
 ## Releasing
 
