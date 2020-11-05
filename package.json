@@ -61,7 +61,7 @@
     "react-router-dom": "^5.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.32.0",
-    "rollup-plugin-peer-deps-external": "^2.2.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.28.0",
     "sass-loader": "^10.0.5",
     "ts-jest": "^26.4.1",
