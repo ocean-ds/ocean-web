@@ -14,6 +14,10 @@ jobs:
       - run:
           name: Build all
           command: yarn build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
 
   codestyle:
     executor: node/default
@@ -64,17 +68,38 @@ jobs:
           when: always
       - sonarcloud/scan
 
+  deploy-pkg:
+    executor: node/default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/project/.npmrc
+      - run:
+          name: Check and publish packages
+          command: yarn release:publish
+
+  deploy-doc:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-deps-v1-{{ .Environment.CIRCLE_BRANCH }}-{{ checksum "yarn.lock" }}
+      - run:
+          name: Deploy ocean-ds documentation
+          command: yarn deploy:storybook
+
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - build:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore:
-                - gh-pages
+      - build
       - codestyle:
           requires:
             - build
@@ -85,6 +110,17 @@ workflows:
           context: SonarCloud
           requires:
             - build
+      - deploy-pkg:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - next
+      - deploy-doc:
           filters:
             tags:
-              only: /^v.*/
+              only: /.*/
+            branches:
+              ignore: /.*/

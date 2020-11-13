@@ -14,7 +14,9 @@
     "lint": "lerna run lint --stream",
     "storybook": "start-storybook -p 6006 -s .storybook/assets",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
-    "cm": "cz"
+    "cm": "cz",
+    "release:version": "node scripts/release.js",
+    "release:publish": "lerna publish from-git --yes"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -40,6 +42,7 @@
     "babel-loader": "^8.2.1",
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "3.3.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-jest": "^24.1.0",
