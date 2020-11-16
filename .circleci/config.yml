@@ -99,7 +99,10 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /.*/
       - codestyle:
           requires:
             - build
@@ -119,6 +122,8 @@ workflows:
                 - master
                 - next
       - deploy-doc:
+          requires:
+            - build
           filters:
             tags:
               only: /.*/
