@@ -29,7 +29,7 @@
     "@storybook/addon-essentials": "^6.0.28",
     "@storybook/addon-links": "^6.1.6",
     "@storybook/addons": "^6.1.2",
-    "@storybook/react": "^6.0.28",
+    "@storybook/react": "^6.1.7",
     "@storybook/storybook-deployer": "^2.8.6",
     "@storybook/theming": "^6.0.19",
     "@testing-library/jest-dom": "^5.11.6",
