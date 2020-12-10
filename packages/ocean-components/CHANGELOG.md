@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Pagnet/ocean-ds-web/compare/v0.2.0...v0.2.1) (2020-12-10)
+
+### Bug Fixes
+
+- include switch export ([#495](https://github.com/Pagnet/ocean-ds-web/issues/495)) ([61bcc1e](https://github.com/Pagnet/ocean-ds-web/commit/61bcc1eb35d36f1cd9ba022405353388eab51eab))
+
 # 0.2.0 (2020-11-16)
 
 ### Bug Fixes
