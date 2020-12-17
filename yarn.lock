@@ -8222,10 +8222,10 @@ eslint-config-prettier@^7.0.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-7.0.0.tgz#c1ae4106f74e6c0357f44adb076771d032ac0e97"
   integrity sha512-8Y8lGLVPPZdaNA7JXqnvETVC7IiVRgAP6afQu9gOQRn90YY3otMNh+x7Vr2vMePQntF+5erdSUBqSzCmU/AxaQ==
 
-eslint-plugin-jest-dom@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.3.0.tgz#5be14f8c303b7e8551b426bc7ac8a152d01736ae"
-  integrity sha512-/7LqlMPiZh4SHy8YXSHilcx/zy7m5Fb7rl4AlzjIY8+amsGP2nZq9WIbMv0JYYVeq20p5+44GmWO6dCZcdLj4A==
+eslint-plugin-jest-dom@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.6.4.tgz#233b70a9a244d73602815bcf986264d6fd7ecaad"
+  integrity sha512-410BlkLNIkR2Xvy5woN1JkrYxGVbdOXzpB21zlf++Y8NzaubhsPxpw9+Cem85KxZyZe9oKjkMtfaa8wxPPC1xg==
   dependencies:
     "@babel/runtime" "^7.9.6"
     "@testing-library/dom" "^7.28.1"
