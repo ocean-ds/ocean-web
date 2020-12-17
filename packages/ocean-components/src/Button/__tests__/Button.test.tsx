@@ -41,9 +41,9 @@ test('renders primary button', () => {
     <Button data-testid="btn-test" variant="primary" />
   );
 
-  expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn--primary'
-  );
+  expect(
+    getByTestId('btn-test')
+  ).toHaveClass('ods-btn ods-btn--md ods-btn--primary', { exact: true });
 });
 
 test('renders secondary button', () => {
@@ -51,9 +51,9 @@ test('renders secondary button', () => {
     <Button data-testid="btn-test" variant="secondary" />
   );
 
-  expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn--secondary'
-  );
+  expect(
+    getByTestId('btn-test')
+  ).toHaveClass('ods-btn ods-btn--md ods-btn--secondary', { exact: true });
 });
 
 test('renders a text button', () => {
@@ -61,9 +61,9 @@ test('renders a text button', () => {
     <Button data-testid="btn-test" variant="text" />
   );
 
-  expect(getByTestId('btn-test').className).toBe(
-    'ods-btn ods-btn--md ods-btn--text'
-  );
+  expect(
+    getByTestId('btn-test')
+  ).toHaveClass('ods-btn ods-btn--md ods-btn--text', { exact: true });
 });
 
 test('renders an inverse button', () => {

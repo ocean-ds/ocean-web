@@ -22,9 +22,9 @@ test('renders element properly', () => {
 
 test('renders a disabled state', () => {
   const { getByTestId } = render(<FormLabel data-testid="lbl-test" disabled />);
-  expect(getByTestId('lbl-test').className).toBe(
-    'ods-form-label ods-form-label--disabled'
-  );
+  expect(
+    getByTestId('lbl-test')
+  ).toHaveClass('ods-form-label ods-form-label--disabled', { exact: true });
 });
 
 test('renders a span element', () => {

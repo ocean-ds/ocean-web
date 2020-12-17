@@ -30,7 +30,7 @@ test('renders a error state for the input', () => {
   const { getByTestId } = render(
     <Input data-testid="input-test" error helperText="Error message." />
   );
-  expect(getByTestId('input-test').className).toBe(
-    'ods-input ods-input--error'
-  );
+  expect(getByTestId('input-test')).toHaveClass('ods-input ods-input--error', {
+    exact: true,
+  });
 });
