@@ -315,9 +315,11 @@ test('renders a error state for the select', () => {
     />
   );
 
-  expect(getByTestId('select-test').className).toBe(
-    'ods-select__control ods-select__control--error'
-  );
+  expect(
+    getByTestId('select-test')
+  ).toHaveClass('ods-select__control ods-select__control--error', {
+    exact: true,
+  });
 });
 
 test('renders controlled select', async () => {

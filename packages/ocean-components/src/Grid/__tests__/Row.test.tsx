@@ -22,12 +22,14 @@ test('render element properly', () => {
 
 test('render no-gutters correctly', () => {
   const { getByTestId } = render(<Row data-testid="grid-row" noGutters />);
-  expect(getByTestId('grid-row').className).toBe('ods-row ods-no-gutters');
+  expect(getByTestId('grid-row')).toHaveClass('ods-row ods-no-gutters', {
+    exact: true,
+  });
 });
 
 test('include number sizes', () => {
   const { getByTestId } = render(<Row data-testid="grid-row" xs="4" md="6" />);
-  expect(getByTestId('grid-row').className).toBe(
-    'ods-row ods-row-cols-4 ods-row-cols-md-6'
-  );
+  expect(
+    getByTestId('grid-row')
+  ).toHaveClass('ods-row ods-row-cols-4 ods-row-cols-md-6', { exact: true });
 });

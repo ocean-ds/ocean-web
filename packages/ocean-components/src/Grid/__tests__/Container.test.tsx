@@ -25,7 +25,9 @@ test('turns grid into "full-width" layout via "fluid" property set', () => {
     <Container data-testid="grid-container" fluid />
   );
 
-  expect(getByTestId('grid-container').className).toBe('ods-container-fluid');
+  expect(getByTestId('grid-container')).toHaveClass('ods-container-fluid', {
+    exact: true,
+  });
 });
 
 test('includes size breakpoint class when fluid is set to sm, md, lg or xl', () => {
@@ -33,5 +35,7 @@ test('includes size breakpoint class when fluid is set to sm, md, lg or xl', () 
     <Container data-testid="grid-container" fluid="sm" />
   );
 
-  expect(getByTestId('grid-container').className).toBe('ods-container-sm');
+  expect(getByTestId('grid-container')).toHaveClass('ods-container-sm', {
+    exact: true,
+  });
 });

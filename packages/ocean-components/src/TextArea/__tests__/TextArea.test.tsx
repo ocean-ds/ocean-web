@@ -28,7 +28,7 @@ test('renders a error state for the textarea', () => {
   const { getByTestId } = render(
     <TextArea data-testid="textarea-test" error helperText="Error message." />
   );
-  expect(getByTestId('textarea-test').className).toBe(
-    'ods-textarea ods-textarea--error'
-  );
+  expect(
+    getByTestId('textarea-test')
+  ).toHaveClass('ods-textarea ods-textarea--error', { exact: true });
 });
