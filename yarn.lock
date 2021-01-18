@@ -3627,10 +3627,10 @@
     lz-string "^1.4.4"
     pretty-format "^26.6.2"
 
-"@testing-library/jest-dom@^5.11.6":
-  version "5.11.6"
-  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.11.6.tgz#782940e82e5cd17bc0a36f15156ba16f3570ac81"
-  integrity sha512-cVZyUNRWwUKI0++yepYpYX7uhrP398I+tGz4zOlLVlUYnZS+Svuxv4fwLeCIy7TnBYKXUaOlQr3vopxL8ZfEnA==
+"@testing-library/jest-dom@^5.11.9":
+  version "5.11.9"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-5.11.9.tgz#e6b3cd687021f89f261bd53cbe367041fbd3e975"
+  integrity sha512-Mn2gnA9d1wStlAIT2NU8J15LNob0YFBVjs2aEQ3j8rsfRQo+lAs7/ui1i2TGaJjapLmuNPLTsrm+nPjmZDwpcQ==
   dependencies:
     "@babel/runtime" "^7.9.2"
     "@types/testing-library__jest-dom" "^5.9.1"
@@ -7474,10 +7474,10 @@ eslint-config-prettier@^7.1.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-7.1.0.tgz#5402eb559aa94b894effd6bddfa0b1ca051c858f"
   integrity sha512-9sm5/PxaFG7qNJvJzTROMM1Bk1ozXVTKI0buKOyb0Bsr1hrwi0H/TzxF/COtf1uxikIK8SwhX7K6zg78jAzbeA==
 
-eslint-plugin-jest-dom@^3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.6.4.tgz#233b70a9a244d73602815bcf986264d6fd7ecaad"
-  integrity sha512-410BlkLNIkR2Xvy5woN1JkrYxGVbdOXzpB21zlf++Y8NzaubhsPxpw9+Cem85KxZyZe9oKjkMtfaa8wxPPC1xg==
+eslint-plugin-jest-dom@^3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest-dom/-/eslint-plugin-jest-dom-3.6.5.tgz#61459d1db52873d438983d3aa84aaa9804eff222"
+  integrity sha512-iaJ5aSQghp9u2ciLAseWIVu7X5tW+WwNJwMBDToK4GBfwGXXQJDLt5IBNtm6fHvC3FRzCGwvyNMIG1g5gF+icQ==
   dependencies:
     "@babel/runtime" "^7.9.6"
     "@testing-library/dom" "^7.28.1"
