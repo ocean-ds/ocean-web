@@ -27,7 +27,7 @@
     "@storybook/addon-a11y": "^6.1.14",
     "@storybook/addon-actions": "^6.1.18",
     "@storybook/addon-essentials": "^6.1.14",
-    "@storybook/addon-links": "^6.1.14",
+    "@storybook/addon-links": "^6.1.18",
     "@storybook/addons": "^6.1.10",
     "@storybook/react": "^6.1.11",
     "@storybook/storybook-deployer": "^2.8.6",
