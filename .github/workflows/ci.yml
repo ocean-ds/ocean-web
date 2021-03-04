@@ -44,11 +44,12 @@ jobs:
         run: yarn lint
 
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.2.4
+        uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: yarn test:coverage
+          debug: true
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.5
