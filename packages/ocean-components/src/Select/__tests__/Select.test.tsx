@@ -299,6 +299,9 @@ test('collapses listbox when another element is focused', async () => {
 
   fireEvent.click(getByTestId('select-test'));
   getByRole('button', { name: 'Another interactive element' }).focus();
+  act(() => {
+    jest.runAllTimers();
+  });
 
   await waitFor(() => {
     expect(queryByRole('listbox')).not.toBeInTheDocument();
@@ -315,11 +318,12 @@ test('renders a error state for the select', () => {
     />
   );
 
-  expect(
-    getByTestId('select-test')
-  ).toHaveClass('ods-select__control ods-select__control--error', {
-    exact: true,
-  });
+  expect(getByTestId('select-test')).toHaveClass(
+    'ods-select__control ods-select__control--error',
+    {
+      exact: true,
+    }
+  );
 });
 
 test('renders controlled select', async () => {
