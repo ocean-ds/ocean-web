@@ -9,11 +9,14 @@
 </p>
 
 <p align="center">
-  <a href="https://circleci.com/gh/Pagnet/ocean-ds-web">
-    <img alt="CircleCI Status" src="https://img.shields.io/circleci/build/github/Pagnet/ocean-ds-web?label=circleci">
+  <a href="https://github.com/Pagnet/ocean-ds-web/actions">
+    <img alt="Actions Status" src="https://github.com/Pagnet/ocean-ds-web/workflows/CI/badge.svg">
   </a>
   <a href="https://codeclimate.com/github/Pagnet/ocean-ds-web">
     <img alt="Code Climate coverage" src="https://img.shields.io/codeclimate/coverage/Pagnet/ocean-ds-web">
+  </a>  
+  <a href="https://sonarcloud.io/dashboard?id=Pagnet_ocean-ds-web">
+    <img alt="Sonarcloud Status" src="https://sonarcloud.io/api/project_badges/measure?project=Pagnet_ocean-ds-web&metric=alert_status">
   </a>
   <a href="https://github.com/Pagnet/ocean-ds-web/blob/master/LICENSE">
     <img alt="GitHub License" src="https://img.shields.io/github/license/Pagnet/ocean-ds-web">
