@@ -94,6 +94,5 @@
   },
   "storybook-deployer": {
     "commitMessage": "Deploy Storybook [skip ci]"
-  },
-  "version": "0.0.0"
+  }
 }
