@@ -13,7 +13,6 @@ The following is a set of guidelines for contributing to Ocean DS and its packag
 - [Setup](#setup)
 - [Project Structure](#project-structure)
 - [Styleguides](#styleguides)
-- [Releasing](#releasing)
 
 ## Code of Conduct
 
@@ -158,7 +157,3 @@ The code that is written needs to be tested to ensure that it achieves the desir
 - Use [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to create project documentation.
 - We use Storybook to document our components.
 - You must write stories using [MDX format](https://storybook.js.org/docs/react/writing-docs/mdx).
-
-## Releasing
-
-You can find docs about our release process in [RELEASING.md](RELEASING.md).
