@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-formik",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "description": "Bindings for using formik with ocean-components.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
