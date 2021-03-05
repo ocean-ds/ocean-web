@@ -1,0 +1,63 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+      - next
+
+env:
+  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  GH_TOKEN: ${{ secrets.GH_PAT }}
+  CI: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Check out as an admin to allow for pushing back to master
+          token: ${{ secrets.GH_PAT }}
+          # We need to fetch all tags and branches
+          fetch-depth: 0
+
+      - name: Set git identity
+        run: |
+          git config --global user.name "Blu Release Bot"
+          git config --global user.email "devs@useblu.com.br"
+
+      - name: Use Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: https://registry.npmjs.org/
+
+      - name: Authenticate with Registry
+        run: npm whoami
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build all
+        run: yarn build
+
+      - name: Creates a CANARY release if necessary
+        if: github.ref == 'refs/heads/next'
+        run: npx lerna publish --canary --no-git-tag-version --no-changelog
+
+      - name: Creates a STABLE release if necessary
+        if: github.ref == 'refs/heads/master'
+        run: npx lerna publish --conventional-graduate

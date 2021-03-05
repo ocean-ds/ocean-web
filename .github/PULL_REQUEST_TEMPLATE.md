@@ -23,7 +23,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 ## Checklist:
 
-- [ ] I have read the [CONTRIBUTING](../CONTRIBUTING.md) document
+- [ ] I have read the [CONTRIBUTING](CONTRIBUTING.md) document
 - [ ] I have performed a self-review of my own code
 - [ ] My changes generate no new warnings
 - [ ] My changes work in Chrome, Edge, and Firefox

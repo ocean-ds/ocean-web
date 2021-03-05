@@ -15,8 +15,7 @@
     "storybook": "start-storybook -p 6006 -s .storybook/assets",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
     "cm": "cz",
-    "release:version": "node scripts/release.js",
-    "release:publish": "lerna publish from-git --yes"
+    "version": "prettier --write '**/{CHANGELOG.md,lerna.json}'"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
