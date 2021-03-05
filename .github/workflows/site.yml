@@ -1,23 +1,15 @@
 name: Site
 
-# on:
-#   push:
-#     tags:
-#       - 'v*.*.*'
-
 on:
   push:
-    branches:
-      - migrate-from-circleci
+    tags:
+      - 'v*.*.*'
 
 jobs:
   storybook:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        # with:
-        #   # Check out as an admin to allow for pushing back to gh-pages
-        #   token: ${{ secrets.GH_PAT }}
 
       - name: Use Node.js environment
         uses: actions/setup-node@v2
