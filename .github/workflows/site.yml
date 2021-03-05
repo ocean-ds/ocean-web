@@ -40,4 +40,6 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Deploy documentation
-        run: yarn deploy:storybook
+        run: yarn deploy:storybook -- --ci
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
