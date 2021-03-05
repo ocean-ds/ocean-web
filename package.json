@@ -14,7 +14,8 @@
     "lint": "lerna run lint --stream",
     "storybook": "start-storybook -p 6006 -s .storybook/assets",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
-    "cm": "cz"
+    "cm": "cz",
+    "version": "prettier --write '**/{CHANGELOG.md,lerna.json}'"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -93,5 +94,6 @@
   },
   "storybook-deployer": {
     "commitMessage": "Deploy Storybook [skip ci]"
-  }
+  },
+  "version": "0.0.0"
 }
