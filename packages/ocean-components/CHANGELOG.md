@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.5](https://github.com/Pagnet/ocean-ds-web/compare/v0.2.4...v0.2.5) (2021-03-08)
+
+**Note:** Version bump only for package @useblu/ocean-components
+
 ## [0.2.4](https://github.com/Pagnet/ocean-ds-web/compare/v0.2.3...v0.2.4) (2021-03-08)
 
 **Note:** Version bump only for package @useblu/ocean-components
