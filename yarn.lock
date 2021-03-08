@@ -3466,6 +3466,14 @@
   dependencies:
     "@types/node" "*"
 
+"@types/rollup-plugin-peer-deps-external@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@types/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.0.tgz#eae7d8b9d27fa037f5bcaded24e389f85b81973c"
+  integrity sha512-BiztED+KYJPBI3ihLSOuuZSzy836WAOpC9UrMtDqk3+VeByR8A5pJJ9pCVnq/dfB4wyCeiFL+FlyJnqZuP3pxg==
+  dependencies:
+    "@types/node" "*"
+    rollup "^0.63.4"
+
 "@types/rollup-plugin-postcss@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/rollup-plugin-postcss/-/rollup-plugin-postcss-2.0.1.tgz#f2c73a458b035db8af361c4a7d921f74c6d4dffa"
