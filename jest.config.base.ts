@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   testPathIgnorePatterns: ['node_modules/'],
   transform: {
@@ -12,3 +14,5 @@ module.exports = {
   },
   testResultsProcessor: 'jest-sonar-reporter',
 };
+
+export default config;

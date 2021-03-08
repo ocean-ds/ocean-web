@@ -1,7 +1,11 @@
-const baseConfig = require('../../jest.config.base');
-const packageName = require('./package.json').name.split('@useblu/').pop();
+import type { Config } from '@jest/types';
 
-module.exports = {
+import baseConfig from '../../jest.config.base';
+import pkg from './package.json';
+
+const packageName = pkg.name.split('@useblu/').pop();
+
+const config: Config.InitialOptions = {
   ...baseConfig,
   roots: [`<rootDir>/packages/${packageName}/src`],
   setupFilesAfterEnv: [`<rootDir>/packages/${packageName}/jest.setup.ts`],
@@ -14,3 +18,5 @@ module.exports = {
   displayName: packageName,
   rootDir: '../..',
 };
+
+export default config;
