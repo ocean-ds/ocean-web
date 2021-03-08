@@ -34,7 +34,7 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
-    "@reach/auto-id": "0.12.1",
+    "@reach/auto-id": "0.13.2",
     "classnames": "2.2.6"
   },
   "devDependencies": {
