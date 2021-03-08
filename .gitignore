@@ -7,3 +7,4 @@ coverage
 storybook-static
 test-report.xml
 .env
+package-lock.json
