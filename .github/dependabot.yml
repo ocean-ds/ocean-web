@@ -1,13 +1,13 @@
 version: 2
 updates:
-  - package-ecosystem: npm
+  - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: daily
+      interval: 'daily'
     reviewers:
-      - SauloSilva
+      - 'Pagnet/fronts'
     assignees:
-      - SauloSilva
+      - 'SauloSilva'
     versioning-strategy: increase
     commit-message:
       prefix: 'chore'
