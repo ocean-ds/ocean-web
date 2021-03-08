@@ -1,5 +1,7 @@
 # @useblu/ocean-components
 
+<a href="https://npmjs.org/package/@useblu/ocean-components"><img alt="NPM version" src="https://img.shields.io/npm/v/@useblu/ocean-components" /></a> <img alt="npm bundle size (scoped)" src="https://img.shields.io/bundlephobia/min/@useblu/ocean-components">
+
 > React components that implement Ocean's Design System.
 
 ## Installation
@@ -34,10 +36,6 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Read the [documentation](https://pagnet.github.io/ocean-ds-web/index.html) to learn more.
 
-## Contributing
-
-Please see our [contributing.md](/contributing.md).
-
 ## License
 
-Licensed under the [GPL-3.0 license](LICENSE).
+Licensed under the **GPL-3.0 license**.
