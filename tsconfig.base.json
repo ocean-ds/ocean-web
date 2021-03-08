@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "importHelpers": true,
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
     "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
+    "removeComments": true,
+    "importHelpers": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react"
   },
-  "exclude": ["node_modules", "dist", "**/*.test.tsx"]
+  "exclude": ["node_modules", "dist", "__tests__", "**/*.test*"]
 }
