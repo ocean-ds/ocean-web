@@ -1,17 +1,13 @@
 {
   "name": "@useblu/ocean-components",
   "version": "0.2.5",
+  "private": false,
   "description": "React components that implement Ocean's Design System.",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
-  ],
-  "keywords": [
-    "react",
-    "react-component",
-    "ocean design"
   ],
   "scripts": {
     "prebuild": "rimraf dist",
@@ -20,18 +16,22 @@
     "test:coverage": "jest --coverage",
     "format": "prettier --write 'src/**'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
     "storybook": "start-storybook -c ../../.storybook -p 6006 -s ../../.storybook/assets"
   },
-  "repository": "git@github.com:Pagnet/ocean-ds-web.git",
-  "author": "Blu Pagamentos <devs@useblu.com.br>",
+  "keywords": [
+    "react",
+    "react-component",
+    "ocean design"
+  ],
+  "homepage": "https://pagnet.github.io/ocean-ds-web/index.html",
+  "bugs": "https://github.com/Pagnet/ocean-ds-web/issues",
   "license": "GPL-3.0",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+  "author": "Blu Pagamentos <devs@useblu.com.br>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pagnet/ocean-ds-web.git",
+    "directory": "packages/ocean-components"
   },
   "dependencies": {
     "@reach/auto-id": "0.13.2",
@@ -43,5 +43,13 @@
     "@useblu/tokens": "^2.0.0",
     "rollup-plugin-postcss": "^3.1.6",
     "rollup-plugin-sass": "^1.2.2"
-  }
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
 }
