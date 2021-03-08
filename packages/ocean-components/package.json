@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "rollup -c",
+    "build": "rollup -c rollup.config.ts",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "format": "prettier --write 'src/**'",
