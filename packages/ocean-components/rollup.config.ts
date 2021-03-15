@@ -4,6 +4,7 @@ import typescript from 'rollup-plugin-typescript2';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import sass from 'rollup-plugin-sass';
 import postcss from 'rollup-plugin-postcss';
+import path from 'path';
 
 import pkg from './package.json';
 
@@ -30,7 +31,7 @@ export default {
     }),
     postcss({
       minimize: true,
-      extract: 'ocean-ds.min.css',
+      extract: path.resolve('dist/ocean-ds.min.css'),
     }),
     sass(),
   ],
