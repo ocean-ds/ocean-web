@@ -1,0 +1,63 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Checkbox from '../Checkbox';
+
+<Meta title="Components/Checkbox" component={Checkbox} />
+
+# Checkbox API
+
+The API documentation of the Checkbox React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Checkbox } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Checkbox id="checkbox-usage" label="Label" checked readOnly />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class               | Description                             |
+| -------------------------- | --------------------------------------- |
+| .ods-checkbox\_\_root      | Styles applied to the root element.     |
+| .ods-checkbox              | Styles applied to the checkbox element. |
+| .ods-checkbox\_\_checkmark | Styles applied to the span element.     |
+| .ods-checkbox\_\_label     | Styles applied to the span element.     |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Checkbox/Checkbox.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    args={{
+      label: 'Label',
+      disabled: false,
+    }}
+    argTypes={{
+      label: {
+        control: 'text',
+      },
+      disabled: {
+        control: 'boolean',
+      },
+    }}
+  >
+    {(props) => <Checkbox id="checkbox-playground" {...props} />}
+  </Story>
+</Canvas>

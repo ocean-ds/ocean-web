@@ -1,0 +1,42 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import Button from '../Button';
+
+<Meta title="Examples/Page" />
+
+## Example 1
+
+<Canvas withSource="open">
+  <Story name="Example 1">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col>
+          <Typography variant="heading1">Revisão do Pagamento</Typography>
+        </Grid.Col>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Col>
+          <Typography variant="paragraph">
+            Aliquam blandit rutrum egestas. Praesent molestie odio vitae
+            suscipit facilisis. Quisque cursus ut turpis ac bibendum. Quisque
+            sem mauris, varius vitae interdum non, rhoncus in ante. Maecenas
+            aliquam eros et est consectetur semper. Sed rhoncus varius mi. Sed
+            tempor eleifend nulla, id tincidunt nisi tincidunt non. Sed sit amet
+            tincidunt dolor, ac dictum dui. Mauris bibendum facilisis
+            ullamcorper. Suspendisse eu quam metus. Mauris tempor volutpat
+            semper. Nam lacinia porttitor turpis quis tempus. Sed id mi non
+            velit dapibus sollicitudin non at velit. Praesent turpis enim,
+            efficitur fermentum aliquet quis, venenatis ut magna.
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Col>
+          <Button variant="secondary">Voltar</Button>
+          <Button variant="primary">Avançar</Button>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
