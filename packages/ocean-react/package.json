@@ -40,13 +40,12 @@
   "devDependencies": {
     "@types/classnames": "2.2.11",
     "@types/rollup-plugin-peer-deps-external": "^2.2.0",
-    "@useblu/tokens": "^2.0.0",
     "ts-node": "^9.1.1"
   },
   "peerDependencies": {
+    "@useblu/ocean-components": "0.2.6",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "@useblu/ocean-react": "0.2.6"
+    "react-dom": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public"
