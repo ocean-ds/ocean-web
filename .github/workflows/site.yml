@@ -1,9 +1,8 @@
 name: Site
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  release:
+    types: [published]
 
 jobs:
   storybook:
