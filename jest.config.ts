@@ -7,7 +7,7 @@ const config: Config.InitialOptions = {
   coverageDirectory: '<rootDir>/coverage/',
   collectCoverageFrom: [
     '<rootDir>/packages/*/src/**/*.{ts,tsx}',
-    '!<rootDir>/packages/ocean-components/src/**/index.ts',
+    '!<rootDir>/packages/*/src/**/index.ts',
   ],
   moduleDirectories: ['node_modules'],
 };
