@@ -1,0 +1,65 @@
+.ods-switch {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+
+  &__root {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+  }
+
+  &__slider {
+    cursor: pointer;
+    border: solid $border-width-thin $color-highlight-pure;
+    border-radius: $border-radius-pill;
+    background-color: $color-interface-light-pure;
+    padding: $spacing-inset-xxs - $border-width-thin;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+
+    &:before {
+      content: '';
+      display: block;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background-color: $color-highlight-pure;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &:checked + &__slider:before {
+    transform: translateX(20px);
+    background-color: $color-interface-light-pure;
+  }
+
+  &:checked:not(:disabled) + &__slider {
+    background-color: $color-highlight-pure;
+  }
+
+  &:checked:disabled + &__slider {
+    background-color: $color-interface-light-deep;
+    border-color: $color-interface-light-deep;
+  }
+
+  &:disabled + &__slider {
+    cursor: not-allowed;
+  }
+
+  &:disabled:not(:checked) + &__slider {
+    background-color: $color-interface-light-pure;
+    border-color: $color-interface-light-deep;
+  }
+
+  &:disabled:not(:checked) + &__slider:before {
+    background-color: $color-interface-light-deep;
+  }
+}

@@ -1,0 +1,112 @@
+.ods-btn {
+  border-radius: $border-radius-pill;
+  font-family: $font-family-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  border: $border-width-none;
+  text-align: center;
+  outline: none;
+  cursor: pointer;
+
+  &--sm {
+    min-width: 96px;
+    height: 32px;
+    font-size: $font-size-xxs;
+    padding-left: $spacing-inline-xs;
+    padding-right: $spacing-inline-xs;
+  }
+
+  &--md {
+    min-width: 108px;
+    height: 48px;
+    font-size: $font-size-xs;
+    padding-left: $spacing-inline-sm;
+    padding-right: $spacing-inline-sm;
+  }
+
+  &--lg {
+    min-width: 148px;
+    height: 56px;
+    font-size: $font-size-sm;
+    padding-left: $spacing-inline-md;
+    padding-right: $spacing-inline-md;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $color-interface-dark-up;
+    background-color: $color-interface-light-down;
+  }
+
+  &--primary {
+    background-color: $color-brand-primary-pure;
+    color: $color-interface-light-pure;
+
+    &:hover {
+      background-color: $color-brand-primary-down;
+    }
+
+    &:focus {
+      background-color: $color-brand-primary-down;
+    }
+
+    &:active {
+      background-color: $color-brand-primary-deep;
+    }
+  }
+
+  &--secondary {
+    color: $color-brand-primary-pure;
+    background-color: $color-interface-light-up;
+
+    &:hover {
+      background-color: $color-interface-light-down;
+    }
+
+    &:focus {
+      background-color: $color-interface-light-down;
+    }
+
+    &:active {
+      background-color: $color-interface-dark-up;
+    }
+  }
+
+  &--text {
+    color: $color-brand-primary-pure;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $color-interface-light-down;
+    }
+
+    &:focus {
+      background-color: $color-interface-light-down;
+    }
+
+    &:active {
+      background-color: $color-interface-light-deep;
+    }
+  }
+
+  &--inverse {
+    color: $color-interface-light-pure;
+    background-color: $color-complementary-pure;
+
+    &:hover {
+      background-color: $color-complementary-down;
+    }
+
+    &:focus {
+      background-color: $color-complementary-down;
+    }
+
+    &:active {
+      background-color: $color-complementary-deep;
+    }
+  }
+
+  &--blocked {
+    width: 100%;
+  }
+}

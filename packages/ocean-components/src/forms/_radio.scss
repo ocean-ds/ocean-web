@@ -1,0 +1,67 @@
+.ods-radio {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+
+  &__root {
+    display: inline-flex;
+    user-select: none;
+
+    &:hover .ods-radio__checkmark {
+      background-color: $color-interface-light-up;
+      border-color: $color-interface-dark-up;
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    padding-left: $spacing-inline-xxs;
+  }
+
+  &__checkmark {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border: solid 2px $color-interface-dark-up;
+    border-radius: 50%;
+    background-color: $color-interface-light-pure;
+    box-sizing: border-box;
+
+    &:after {
+      content: '';
+      display: none;
+      margin-top: 6px;
+      margin-left: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: $color-interface-light-pure;
+    }
+  }
+
+  &:checked ~ &__checkmark:after {
+    display: block;
+  }
+
+  &:checked:not(:disabled) ~ &__checkmark {
+    border-color: $color-highlight-pure;
+    background-color: $color-highlight-pure;
+  }
+
+  &:checked:disabled ~ &__checkmark {
+    background-color: $color-interface-light-deep;
+    border-color: $color-interface-light-deep;
+  }
+
+  &:disabled ~ &__checkmark,
+  &:disabled ~ &__label {
+    cursor: not-allowed;
+    color: $color-interface-light-deep;
+  }
+
+  &:disabled:not(:checked) ~ &__checkmark {
+    background-color: $color-interface-light-pure;
+    border-color: $color-interface-light-deep;
+  }
+}

@@ -33,23 +33,9 @@
     "url": "https://github.com/Pagnet/ocean-ds-web.git",
     "directory": "packages/ocean-components"
   },
-  "dependencies": {
-    "@reach/auto-id": "0.13.2",
-    "classnames": "2.2.6"
-  },
   "devDependencies": {
-    "@types/classnames": "2.2.11",
-    "@types/rollup-plugin-peer-deps-external": "^2.2.0",
-    "@types/rollup-plugin-postcss": "^2.0.0",
     "@useblu/tokens": "^2.0.0",
-    "postcss": "^8.2.8",
-    "rollup-plugin-postcss": "^4.0.0",
-    "rollup-plugin-sass": "^1.2.2",
     "ts-node": "^9.1.1"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public"
