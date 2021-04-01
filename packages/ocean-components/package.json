@@ -3,21 +3,16 @@
   "version": "0.2.6",
   "private": false,
   "description": "React components that implement Ocean's Design System.",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
-    "build": "rollup -c rollup.config.ts",
+    "build": "gulp",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "format": "prettier --write 'src/**'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "storybook": "start-storybook -c ../../.storybook -p 6006 -s ../../.storybook/assets"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "keywords": [
     "react",
@@ -34,9 +29,30 @@
     "directory": "packages/ocean-components"
   },
   "devDependencies": {
+    "@types/cssnano": "^4.0.0",
+    "@types/gulp": "^4.0.8",
+    "@types/gulp-plumber": "^0.0.32",
+    "@types/gulp-postcss": "^8.0.0",
+    "@types/gulp-rename": "^2.0.0",
+    "@types/gulp-sass": "^4.0.0",
+    "@types/gulp-size": "^2.1.1",
     "@useblu/tokens": "^2.0.0",
+    "autoprefixer": "^10.2.5",
+    "cssnano": "^4.1.10",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-size": "^3.0.0",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.2.9",
     "ts-node": "^9.1.1"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "publishConfig": {
     "access": "public"
   },

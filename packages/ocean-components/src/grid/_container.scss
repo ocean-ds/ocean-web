@@ -1,5 +1,3 @@
-@import '../abstracts/grid';
-
 // Single container class with breakpoint max-widths
 .ods-container {
   @include make-container();
