@@ -12,16 +12,18 @@
 // Responsive containers that are 100% wide until a breakpoint
 @each $breakpoint, $container-max-width in $container-max-widths {
   .ods-container-#{$breakpoint} {
+    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
     @extend .ods-container-fluid;
   }
 
+  /* stylelint-disable-next-line order/order */
   @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+    // Extend each breakpoint which is smaller or equal to the current breakpoint
+    $extend-breakpoint: true;
+
     %responsive-container-#{$breakpoint} {
       max-width: $container-max-width;
     }
-
-    // Extend each breakpoint which is smaller or equal to the current breakpoint
-    $extend-breakpoint: true;
 
     @each $name, $width in $grid-breakpoints {
       @if ($extend-breakpoint) {
@@ -30,6 +32,7 @@
         }
 
         // Once the current breakpoint is reached, stop extending
+        /* stylelint-disable-next-line max-nesting-depth */
         @if ($breakpoint == $name) {
           $extend-breakpoint: false;
         }

@@ -1,14 +1,14 @@
 .ods-form-control {
   &__root {
-    font-family: $font-family-base;
     display: flex;
     flex-direction: column;
+    font-family: $font-family-base;
   }
 
   &__element {
     &--blocked :first-child {
-      width: 100%;
       box-sizing: border-box;
+      width: 100%;
     }
   }
 

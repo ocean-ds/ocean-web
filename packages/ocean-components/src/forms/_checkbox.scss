@@ -1,7 +1,7 @@
 .ods-checkbox {
-  position: absolute;
-  opacity: 0;
   height: 0;
+  opacity: 0;
+  position: absolute;
   width: 0;
 
   &__root {
@@ -20,34 +20,34 @@
   }
 
   &__checkmark {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
+    background-color: $color-interface-light-pure;
     border: solid 2px $color-interface-dark-up;
     border-radius: $border-radius-sm;
-    background-color: $color-interface-light-pure;
     box-sizing: border-box;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
 
-    &:after {
+    &::after {
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
       content: '';
       display: none;
-      margin-top: 2px;
-      margin-left: 6px;
-      width: 6px;
       height: 10px;
-      border: solid white;
-      border-width: 0 2px 2px 0;
+      margin-left: 6px;
+      margin-top: 2px;
       transform: rotate(40deg);
+      width: 6px;
     }
   }
 
-  &:checked ~ &__checkmark:after {
+  &:checked ~ &__checkmark::after {
     display: block;
   }
 
   &:checked:not(:disabled) ~ &__checkmark {
-    border-color: $color-highlight-pure;
     background-color: $color-highlight-pure;
+    border-color: $color-highlight-pure;
   }
 
   &:checked:disabled ~ &__checkmark {
@@ -57,8 +57,8 @@
 
   &:disabled ~ &__checkmark,
   &:disabled ~ &__label {
-    cursor: not-allowed;
     color: $color-interface-light-deep;
+    cursor: not-allowed;
   }
 
   &:disabled:not(:checked) ~ &__checkmark {

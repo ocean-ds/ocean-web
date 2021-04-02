@@ -4,22 +4,22 @@
   }
 
   &__control {
-    height: 48px;
-    width: 100%;
-    color: $color-interface-dark-deep;
-    font-family: $font-family-base;
-    font-size: $font-size-xs;
+    align-items: center;
+    background-color: $color-interface-light-pure;
     border: solid $border-width-hairline $color-interface-light-deep;
     border-radius: $border-radius-sm;
-    background-color: $color-interface-light-pure;
-    padding-right: $spacing-inline-xs;
-    padding-left: $spacing-inline-xs;
+    color: $color-interface-dark-deep;
+    cursor: pointer;
     display: flex;
-    align-items: center;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    height: 48px;
     justify-content: space-between;
     outline: none;
-    cursor: pointer;
+    padding-left: $spacing-inline-xs;
+    padding-right: $spacing-inline-xs;
     text-align: left;
+    width: 100%;
 
     &--expanded,
     &:hover,
@@ -29,10 +29,10 @@
     }
 
     &:disabled {
-      cursor: not-allowed;
-      color: $color-interface-dark-up;
       background-color: $color-interface-light-down;
       border-color: $color-interface-light-down;
+      color: $color-interface-dark-up;
+      cursor: not-allowed;
     }
 
     &--error {
@@ -41,12 +41,12 @@
   }
 
   &__value {
+    flex: 1;
     font-weight: $font-weight-regular;
     line-height: $line-height-medium;
-    flex: 1;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 
     &--empty {
       color: $color-interface-light-deep;
@@ -54,20 +54,20 @@
   }
 
   &__arrow {
-    margin-left: $spacing-inline-xs;
     border: solid $color-interface-dark-down;
     border-width: 0 2px 2px 0;
     display: inline-block;
+    margin-left: $spacing-inline-xs;
     padding: 3px;
 
     &--up {
-      transform: rotate(-135deg);
       margin-top: 3px;
+      transform: rotate(-135deg);
     }
 
     &--down {
-      transform: rotate(45deg);
       margin-top: -3px;
+      transform: rotate(45deg);
     }
 
     &--disabled {
@@ -80,53 +80,53 @@
   }
 
   &__listbox {
-    outline: none;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-radius: $border-radius-sm;
-    box-shadow: $shadow-level-2;
     background-color: $color-interface-light-pure;
     border: solid 1px $color-interface-light-deep;
+    border-radius: $border-radius-sm;
+    box-shadow: $shadow-level-2;
+    list-style: none;
+    margin: 0;
     margin-top: $spacing-inline-xxxs;
-    padding-top: $spacing-inline-xxs;
+    max-height: 160px;
+    outline: none;
+    overflow-y: auto;
+    padding: 0;
     padding-bottom: $spacing-inline-xxs;
+    padding-top: $spacing-inline-xxs;
     position: absolute;
     width: 100%;
-    max-height: 160px;
-    overflow-y: auto;
   }
 
   &__option {
-    display: flex;
     align-items: center;
-    height: 40px;
+    color: $color-interface-dark-deep;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
     font-family: $font-family-highlight;
     font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
+    height: 40px;
     line-height: $line-height-medium;
-    color: $color-interface-dark-deep;
-    padding-right: $spacing-inline-xs;
-    padding-left: $spacing-inline-xs;
-    margin: 0;
     list-style: none;
-    flex: 1;
+    margin: 0;
     min-width: 0;
-    cursor: pointer;
+    padding-left: $spacing-inline-xs;
+    padding-right: $spacing-inline-xs;
 
     span {
-      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &--selected,
     &:hover,
     &:focus,
     &:active {
-      font-weight: $font-weight-bold;
-      color: $color-brand-primary-pure;
       background-color: $color-interface-light-up;
+      color: $color-brand-primary-pure;
+      font-weight: $font-weight-bold;
     }
 
     &:hover:not(&--selected) {

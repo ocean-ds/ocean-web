@@ -1,44 +1,44 @@
 .ods-switch {
-  position: absolute;
-  opacity: 0;
   height: 0;
+  opacity: 0;
+  position: absolute;
   width: 0;
 
   &__root {
-    position: relative;
     display: inline-block;
-    width: 44px;
     height: 24px;
+    position: relative;
+    width: 44px;
   }
 
   &__slider {
-    cursor: pointer;
+    background-color: $color-interface-light-pure;
     border: solid $border-width-thin $color-highlight-pure;
     border-radius: $border-radius-pill;
-    background-color: $color-interface-light-pure;
-    padding: $spacing-inset-xxs - $border-width-thin;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
     box-sizing: border-box;
+    cursor: pointer;
+    left: 0;
+    padding: $spacing-inset-xxs - $border-width-thin;
+    position: absolute;
+    right: 0;
+    top: 0;
     transition: all 0.2s ease;
 
-    &:before {
+    &::before {
+      background-color: $color-highlight-pure;
+      border-radius: 50%;
       content: '';
       display: block;
       height: 16px;
-      width: 16px;
-      border-radius: 50%;
-      background-color: $color-highlight-pure;
       transition: all 0.2s ease;
+      width: 16px;
     }
   }
 
-  &:checked + &__slider:before {
-    transform: translateX(20px);
+  &:checked + &__slider::before {
     background-color: $color-interface-light-pure;
+    transform: translateX(20px);
   }
 
   &:checked:not(:disabled) + &__slider {
@@ -59,7 +59,7 @@
     border-color: $color-interface-light-deep;
   }
 
-  &:disabled:not(:checked) + &__slider:before {
+  &:disabled:not(:checked) + &__slider::before {
     background-color: $color-interface-light-deep;
   }
 }

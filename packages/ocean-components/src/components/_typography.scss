@@ -1,22 +1,22 @@
 @mixin headings {
+  color: $color-interface-dark-pure;
   font-family: $font-family-highlight;
   font-weight: $font-weight-extrabold;
   line-height: $line-height-medium;
-  color: $color-interface-dark-pure;
 }
 
 @mixin subtitles {
+  color: $color-interface-dark-down;
   font-family: $font-family-base;
   font-weight: $font-weight-regular;
   line-height: $line-height-medium;
-  color: $color-interface-dark-down;
 }
 
 @mixin texts {
+  color: $color-interface-dark-down;
   font-family: $font-family-base;
   font-weight: $font-weight-regular;
   line-height: $line-height-comfy;
-  color: $color-interface-dark-down;
 }
 
 .ods-typography {

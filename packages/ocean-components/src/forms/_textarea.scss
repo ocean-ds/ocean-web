@@ -1,16 +1,16 @@
 .ods-textarea {
+  align-self: flex-start;
+  background-color: $color-interface-light-pure;
+  border: $border-width-thin solid $color-interface-light-deep;
+  border-radius: $border-radius-sm;
+  box-sizing: border-box;
+  color: $color-interface-dark-deep;
   font-family: $font-family-base;
   font-size: $font-size-xs;
   font-weight: $font-weight-regular;
   line-height: $line-height-medium;
-  color: $color-interface-dark-deep;
-  border: $border-width-thin solid $color-interface-light-deep;
-  border-radius: $border-radius-sm;
-  background-color: $color-interface-light-pure;
-  padding: $spacing-inline-xs;
-  box-sizing: border-box;
   outline: none;
-  align-self: flex-start;
+  padding: $spacing-inline-xs;
   resize: none;
 
   &::placeholder {
@@ -24,9 +24,9 @@
   }
 
   &:disabled {
-    color: $color-interface-dark-up;
     background-color: $color-interface-light-down;
     border-color: $color-interface-light-down;
+    color: $color-interface-dark-up;
     cursor: not-allowed;
 
     &:active {
