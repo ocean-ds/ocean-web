@@ -25,4 +25,8 @@ gulp.task('css', () =>
     .pipe(gulp.dest(libraryDest))
 );
 
+gulp.task('watch', () => {
+  gulp.watch('src/**/*.scss', gulp.series('css'));
+});
+
 gulp.task('default', gulp.series('clean', 'css'));

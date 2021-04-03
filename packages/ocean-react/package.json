@@ -16,8 +16,7 @@
     "test:coverage": "jest --coverage",
     "format": "prettier --write 'src/**'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "storybook": "start-storybook -c ../../.storybook -p 6006 -s ../../.storybook/assets"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "keywords": [
     "react",

@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "gulp",
+    "build:watch": "gulp watch",
     "format": "prettier --write 'src/**'",
     "lint": "stylelint 'src/**/*.scss'",
     "lint:fix": "stylelint 'src/**/*.scss' --fix"
