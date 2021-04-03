@@ -19,7 +19,7 @@ gulp.task('css', () =>
     .pipe(
       sass({ includePaths: ['../../node_modules'] }).on('error', sass.logError)
     )
-    .pipe(rename({ basename: 'ocean-ui', suffix: '.min' }))
+    .pipe(rename({ basename: 'ocean', suffix: '.min' }))
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(size())
     .pipe(gulp.dest(libraryDest))
