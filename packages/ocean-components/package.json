@@ -2,7 +2,7 @@
   "name": "@useblu/ocean-components",
   "version": "0.2.6",
   "private": false,
-  "description": "React components that implement Ocean's Design System.",
+  "description": "UIkit css that implement Ocean's Design System.",
   "files": [
     "dist"
   ],
@@ -13,8 +13,10 @@
     "lint:fix": "stylelint 'src/**/*.scss' --fix"
   },
   "keywords": [
-    "react",
-    "react-component",
+    "css",
+    "scss",
+    "framework",
+    "responsive",
     "ocean design"
   ],
   "homepage": "https://pagnet.github.io/ocean-ds-web/index.html",
