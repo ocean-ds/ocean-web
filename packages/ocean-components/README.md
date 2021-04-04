@@ -2,7 +2,7 @@
 
 <a href="https://npmjs.org/package/@useblu/ocean-components"><img alt="NPM version" src="https://img.shields.io/npm/v/@useblu/ocean-components" /></a> <img alt="npm bundle size (scoped)" src="https://img.shields.io/bundlephobia/min/@useblu/ocean-components">
 
-> React components that implement Ocean's Design System.
+> UIkit css that implement Ocean's Design System.
 
 ## Installation
 
@@ -24,11 +24,12 @@ npm i @useblu/ocean-components
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@useblu/ocean-components/dist/ocean-ds.min.css';
-import { Button } from '@useblu/ocean-components';
+import '@useblu/ocean-components/dist/ocean.min.css';
 
 function App() {
-  return <Button variant="primary">Hello World</Button>;
+  return (
+    <button class="ods-btn ods-btn--md ods-btn--primary">Hello World</button>
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
