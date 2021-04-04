@@ -8,7 +8,7 @@
     "prepare": "husky install",
     "build:libs": "lerna run build --stream",
     "build:storybook": "build-storybook -s .storybook/assets",
-    "build": "run-p build:*",
+    "build": "run-s build:libs build:storybook",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "format": "prettier --write .",
