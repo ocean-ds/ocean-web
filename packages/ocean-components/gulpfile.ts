@@ -17,7 +17,10 @@ gulp.task('css', () =>
     .src('src/index.scss')
     .pipe(plumber())
     .pipe(
-      sass({ includePaths: ['../../node_modules'] }).on('error', sass.logError)
+      sass({ precision: 10, includePaths: ['../../node_modules'] }).on(
+        'error',
+        sass.logError
+      )
     )
     .pipe(rename({ basename: 'ocean', suffix: '.min' }))
     .pipe(postcss([autoprefixer(), cssnano()]))
