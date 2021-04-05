@@ -46,13 +46,13 @@ This project is composed of many npm packages for building web apps with [Ocean]
 ## Installation
 
 ```bash
-yarn add @useblu/ocean-components
+yarn add @useblu/ocean-core @useblu/ocean-react
 ```
 
 or
 
 ```bash
-npm i @useblu/ocean-components
+npm i @useblu/ocean-core @useblu/ocean-react
 ```
 
 ## Usage
@@ -61,8 +61,8 @@ npm i @useblu/ocean-components
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@useblu/ocean-components/dist/ocean.min.css';
-import { Button } from '@useblu/ocean-components';
+import '@useblu/ocean-core/dist/ocean.min.css';
+import { Button } from '@useblu/ocean-react';
 
 function App() {
   return <Button variant="primary">Hello World</Button>;

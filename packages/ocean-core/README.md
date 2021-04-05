@@ -1,6 +1,6 @@
-# @useblu/ocean-components
+# @useblu/ocean-core
 
-<a href="https://npmjs.org/package/@useblu/ocean-components"><img alt="NPM version" src="https://img.shields.io/npm/v/@useblu/ocean-components" /></a> <img alt="npm bundle size (scoped)" src="https://img.shields.io/bundlephobia/min/@useblu/ocean-components">
+<a href="https://npmjs.org/package/@useblu/ocean-core"><img alt="NPM version" src="https://img.shields.io/npm/v/@useblu/ocean-core" /></a> <img alt="npm bundle size (scoped)" src="https://img.shields.io/bundlephobia/min/@useblu/ocean-core">
 
 > UIkit css that implement Ocean's Design System.
 
@@ -9,13 +9,13 @@
 Using yarn:
 
 ```bash
-yarn add @useblu/ocean-components
+yarn add @useblu/ocean-core
 ```
 
 or using npm:
 
 ```bash
-npm i @useblu/ocean-components
+npm i @useblu/ocean-core
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ npm i @useblu/ocean-components
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@useblu/ocean-components/dist/ocean.min.css';
+import '@useblu/ocean-core/dist/ocean.min.css';
 
 function App() {
   return (

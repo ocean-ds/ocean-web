@@ -1,4 +1,4 @@
-import '../packages/ocean-components/dist/ocean.css';
+import '../packages/ocean-core/dist/ocean.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

@@ -14,7 +14,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "lerna run lint --stream",
-    "watch:css": "lerna run --scope @useblu/ocean-components build:watch",
+    "watch:css": "lerna run --scope @useblu/ocean-core build:watch",
     "watch:storybook": "start-storybook -p 6006 -s .storybook/assets",
     "storybook": "npm-run-all build:libs --parallel watch:*",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
