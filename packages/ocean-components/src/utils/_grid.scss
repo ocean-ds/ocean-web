@@ -1,4 +1,4 @@
-/* stylelint-disable max-nesting-depth */
+/* stylelint-disable max-nesting-depth, scss/selector-no-redundant-nesting-selector */
 
 /// Grid system
 //
@@ -55,7 +55,6 @@
 // style grid.
 
 @mixin row-cols($count) {
-  /* stylelint-disable-next-line scss/selector-no-redundant-nesting-selector */
   & > * {
     box-sizing: border-box;
     flex: 0 0 100% / $count;

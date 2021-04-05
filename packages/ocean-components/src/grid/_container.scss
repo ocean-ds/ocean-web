@@ -1,3 +1,5 @@
+/* stylelint-disable scss/at-extend-no-missing-placeholder */
+
 // Single container class with breakpoint max-widths
 .ods-container {
   @include make-container();
@@ -12,7 +14,6 @@
 // Responsive containers that are 100% wide until a breakpoint
 @each $breakpoint, $container-max-width in $container-max-widths {
   .ods-container-#{$breakpoint} {
-    /* stylelint-disable-next-line scss/at-extend-no-missing-placeholder */
     @extend .ods-container-fluid;
   }
 
