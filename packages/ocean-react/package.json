@@ -16,8 +16,7 @@
     "test:coverage": "jest --coverage",
     "format": "prettier --write 'src/**'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
-    "storybook": "start-storybook -c ../../.storybook -p 6006 -s ../../.storybook/assets"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
   },
   "keywords": [
     "react",
@@ -39,11 +38,10 @@
   },
   "devDependencies": {
     "@types/classnames": "2.2.11",
-    "@types/rollup-plugin-peer-deps-external": "^2.2.0",
-    "ts-node": "^9.1.1"
+    "@types/rollup-plugin-peer-deps-external": "^2.2.0"
   },
   "peerDependencies": {
-    "@useblu/ocean-components": "0.2.6",
+    "@useblu/ocean-core": "0.2.6",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },

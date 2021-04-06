@@ -1,0 +1,156 @@
+/* stylelint-disable max-nesting-depth, scss/selector-no-redundant-nesting-selector */
+
+/// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+@mixin make-container($gutter: $grid-gutter-width) {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $gutter / 2;
+  padding-right: $gutter / 2;
+  width: 100%;
+}
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths(
+  $max-widths: $container-max-widths,
+  $breakpoints: $grid-breakpoints
+) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  box-sizing: border-box;
+  flex: 0 0 percentage($size / $columns);
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-width: percentage($size / $columns);
+}
+
+@mixin make-row($gutter: $grid-gutter-width) {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter / 2;
+  margin-right: -$gutter / 2;
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  box-sizing: border-box;
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+// Row columns
+//
+// Specify on a parent element(e.g., .row) to force immediate children into NN
+// numberof columns. Supports wrapping to new lines, but does not do a Masonry
+// style grid.
+
+@mixin row-cols($count) {
+  & > * {
+    box-sizing: border-box;
+    flex: 0 0 100% / $count;
+    max-width: 100% / $count;
+  }
+}
+
+@mixin make-row-columns($breakpoints: $grid-breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      @if $grid-row-columns > 0 {
+        @for $i from 1 through $grid-row-columns {
+          .ods-row-cols#{$infix}-#{$i} {
+            @include row-cols($i);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Columns
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+@mixin make-grid-columns(
+  $columns: $grid-columns,
+  $gutter: $grid-gutter-width,
+  $breakpoints: $grid-breakpoints
+) {
+  // Common properties for all breakpoints
+  %grid-column {
+    box-sizing: border-box;
+    padding-left: $gutter / 2;
+    padding-right: $gutter / 2;
+    position: relative;
+    width: 100%;
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    @if $columns > 0 {
+      // Allow columns to stretch full width below their breakpoints
+      @for $i from 1 through $columns {
+        .ods-col#{$infix}-#{$i} {
+          @extend %grid-column;
+        }
+      }
+    }
+
+    .ods-col#{$infix},
+    .ods-col#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    /* stylelint-disable-next-line order/order */
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.ods-col-{bp}` classes for equal-width flexbox columns
+      .ods-col#{$infix} {
+        box-sizing: border-box;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .ods-col#{$infix}-auto {
+        box-sizing: border-box;
+        flex: 0 0 auto;
+        max-width: 100%; // Reset earlier grid tiers
+        width: auto;
+      }
+
+      @if $columns > 0 {
+        @for $i from 1 through $columns {
+          .ods-col#{$infix}-#{$i} {
+            @include make-col($i, $columns);
+          }
+        }
+      }
+
+      @if $columns > 0 {
+        // `$columns - 1` because offsetting by the width of an entire row isn't possible
+        @for $i from 0 through ($columns - 1) {
+          @if not($infix == '' and $i == 0) {
+            // Avoid emitting useless .offset-0
+            .ods-offset#{$infix}-#{$i} {
+              @include make-col-offset($i, $columns);
+            }
+          }
+        }
+      }
+    }
+  }
+}

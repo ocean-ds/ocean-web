@@ -1,0 +1,21 @@
+.ods-lnk {
+  color: $color-brand-primary-pure;
+  cursor: pointer;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-tight;
+
+  &:hover {
+    color: $color-brand-primary-down;
+    text-decoration: underline;
+  }
+
+  &--inverse {
+    color: $color-complementary-down;
+
+    &:hover {
+      color: $color-complementary-up;
+    }
+  }
+}
