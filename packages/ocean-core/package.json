@@ -52,8 +52,7 @@
     "node-sass": "^5.0.0",
     "postcss": "^8.2.9",
     "stylelint": "^13.12.0",
-    "stylelint-config-sass-guidelines": "^8.0.0",
-    "ts-node": "^9.1.1"
+    "stylelint-config-sass-guidelines": "^8.0.0"
   },
   "browserslist": [
     "defaults"
