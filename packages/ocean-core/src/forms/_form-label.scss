@@ -1,0 +1,12 @@
+.ods-form-label {
+  align-self: flex-start;
+  color: $color-interface-dark-down;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-medium;
+  margin-bottom: $spacing-stack-xxs;
+
+  &--disabled {
+    color: $color-interface-dark-up;
+  }
+}

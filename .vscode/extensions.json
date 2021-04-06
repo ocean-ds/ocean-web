@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "orta.vscode-jest",
     "silvenon.mdx",
-    "knisterpeter.vscode-commitizen"
+    "knisterpeter.vscode-commitizen",
+    "stylelint.vscode-stylelint"
   ]
 }

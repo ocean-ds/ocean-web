@@ -11,7 +11,7 @@
   "keywords": [
     "react",
     "formik",
-    "ocean-components",
+    "ocean-react",
     "form"
   ],
   "repository": "git@github.com:Pagnet/ocean-ds-web.git",
@@ -19,7 +19,7 @@
   "license": "GPL-3.0",
   "private": true,
   "peerDependencies": {
-    "@useblu/ocean-components": ">=0.1.0-beta.21",
+    "@useblu/ocean-react": ">=0.1.0-beta.21",
     "formik": ">=2.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

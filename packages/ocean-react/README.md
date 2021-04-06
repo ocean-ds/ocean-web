@@ -9,13 +9,13 @@
 Using yarn:
 
 ```bash
-yarn add @useblu/ocean-react
+yarn add @useblu/ocean-core @useblu/ocean-react
 ```
 
 or using npm:
 
 ```bash
-npm i @useblu/ocean-react
+npm i @useblu/ocean-core @useblu/ocean-react
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ npm i @useblu/ocean-react
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@useblu/ocean-components/dist/ocean-ds.min.css';
+import '@useblu/ocean-core/dist/ocean.min.css';
 import { Button } from '@useblu/ocean-react';
 
 function App() {
