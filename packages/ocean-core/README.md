@@ -24,7 +24,7 @@ npm i @useblu/ocean-core
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@useblu/ocean-core/dist/ocean.min.css';
+import '@useblu/ocean-core/ocean.min.css';
 
 function App() {
   return (

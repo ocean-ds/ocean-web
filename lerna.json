@@ -17,7 +17,8 @@
     "publish": {
       "verifyAccess": false,
       "preDistTag": "next",
-      "loglevel": "verbose"
+      "loglevel": "verbose",
+      "contents": "dist"
     }
   }
 }
