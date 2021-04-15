@@ -1,13 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Switch from '../Switch';
 
 test('renders element properly', () => {
-  const { container, getByTestId } = render(
+  const { container } = render(
     <Switch data-testid="switch-test" className="custom-class" />
   );
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-switch__root"
@@ -22,5 +23,5 @@ test('renders element properly', () => {
       />
     </label>
   `);
-  expect(getByTestId('switch-test')).toHaveAttribute('type', 'checkbox');
+  expect(screen.getByTestId('switch-test')).toHaveAttribute('type', 'checkbox');
 });

@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "husky install",
     "build:libs": "lerna run build --stream",
     "build:storybook": "build-storybook -s .storybook/assets",
     "build": "run-p build:*",
@@ -22,7 +23,7 @@
     "@babel/core": "^7.13.10",
     "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^12.0.1",
-    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
     "@storybook/addon-a11y": "^6.1.14",
     "@storybook/addon-actions": "^6.1.18",
@@ -43,14 +44,14 @@
     "commitizen": "^4.2.2",
     "cz-conventional-changelog": "3.3.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-jest": "^24.1.9",
+    "eslint-plugin-jest": "^24.3.1",
     "eslint-plugin-jest-dom": "^3.6.5",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-testing-library": "^3.10.1",
-    "husky": "4.3.8",
+    "eslint-plugin-testing-library": "^4.0.1",
+    "husky": "6.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "jest-sonar-reporter": "^2.0.0",
@@ -63,7 +64,7 @@
     "react-is": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.38.5",
+    "rollup": "^2.41.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.30.0",
     "sass-loader": "^10.1.1",
@@ -81,12 +82,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "config": {
     "commitizen": {

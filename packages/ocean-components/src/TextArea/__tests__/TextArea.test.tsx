@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import TextArea from '../TextArea';
 
@@ -8,6 +8,7 @@ test('renders element properly', () => {
     <TextArea data-testid="textarea-test" className="custom-class" />
   );
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <div
       class="ods-form-control__root"
@@ -25,10 +26,10 @@ test('renders element properly', () => {
 });
 
 test('renders a error state for the textarea', () => {
-  const { getByTestId } = render(
+  render(
     <TextArea data-testid="textarea-test" error helperText="Error message." />
   );
   expect(
-    getByTestId('textarea-test')
+    screen.getByTestId('textarea-test')
   ).toHaveClass('ods-textarea ods-textarea--error', { exact: true });
 });

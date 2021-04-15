@@ -1,5 +1,6 @@
+/* eslint-disable testing-library/no-container, testing-library/no-node-access */
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import FormControl, { FormControlProps } from '../FormControl';
 
@@ -43,13 +44,13 @@ test('renders a full width state', () => {
 });
 
 test('renders a error state', () => {
-  const { getByText } = setup({
+  setup({
     error: true,
     helperText: 'Error message.',
   });
 
   expect(
-    getByText('Error message.')
+    screen.getByText('Error message.')
   ).toHaveClass(
     'ods-form-control__helper-text ods-form-control__helper-text--error',
     { exact: true }
@@ -57,14 +58,14 @@ test('renders a error state', () => {
 });
 
 test('renders a disabled state', () => {
-  const { getByText } = setup({
+  setup({
     disabled: true,
     label: 'Label Test',
     helperText: 'Error message.',
   });
 
   expect(
-    getByText('Error message.')
+    screen.getByText('Error message.')
   ).toHaveClass(
     'ods-form-control__helper-text ods-form-control__helper-text--disabled',
     { exact: true }
