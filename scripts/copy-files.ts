@@ -16,6 +16,17 @@ const checkFolder = (folderPath: string) => {
   return isFolderExist;
 };
 
+const includeFileInBuild = (file: string, packagePath: string) => {
+  try {
+    const sourcePath = path.resolve(packagePath, file);
+    const targetPath = path.resolve(packagePath, 'dist', path.basename(file));
+    fs.copyFileSync(sourcePath, targetPath);
+    console.log(`Copied ${sourcePath} to ${targetPath}`);
+  } catch (error) {
+    console.log(`File ${file} not founded in ${packagePath}`);
+  }
+};
+
 function createPackageFile(packagePath: string) {
   let packageData = fs.readFileSync(
     path.resolve(packagePath, './package.json'),
@@ -45,4 +56,14 @@ for (const dirName of getDirectories('packages')) {
   if (!checkFolder(`${packagePath}/dist`)) continue;
 
   createPackageFile(packagePath);
+
+  // Copy root files
+  ['../../CHANGELOG.md', '../../LICENSE'].map((file) =>
+    includeFileInBuild(file, packagePath)
+  );
+
+  // Overrides with local files
+  ['./README.md', './CHANGELOG.md'].map((file) =>
+    includeFileInBuild(file, packagePath)
+  );
 }
