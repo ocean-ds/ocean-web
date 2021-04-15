@@ -1,13 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Input from '../Input';
 
 test('renders element properly', () => {
-  const { container, getByTestId } = render(
+  const { container } = render(
     <Input data-testid="input-test" className="custom-class" />
   );
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <div
       class="ods-form-control__root"
@@ -23,14 +24,15 @@ test('renders element properly', () => {
       </div>
     </div>
   `);
-  expect(getByTestId('input-test')).toHaveAttribute('type', 'text');
+  expect(screen.getByTestId('input-test')).toHaveAttribute('type', 'text');
 });
 
 test('renders a error state for the input', () => {
-  const { getByTestId } = render(
-    <Input data-testid="input-test" error helperText="Error message." />
+  render(<Input data-testid="input-test" error helperText="Error message." />);
+  expect(screen.getByTestId('input-test')).toHaveClass(
+    'ods-input ods-input--error',
+    {
+      exact: true,
+    }
   );
-  expect(getByTestId('input-test')).toHaveClass('ods-input ods-input--error', {
-    exact: true,
-  });
 });

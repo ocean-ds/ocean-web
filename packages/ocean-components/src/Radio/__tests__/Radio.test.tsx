@@ -1,13 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Radio from '../Radio';
 
 test('renders element properly', () => {
-  const { container, getByTestId } = render(
+  const { container } = render(
     <Radio data-testid="radio-test" className="custom-class" />
   );
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-radio__root"
@@ -22,10 +23,10 @@ test('renders element properly', () => {
       />
     </label>
   `);
-  expect(getByTestId('radio-test')).toHaveAttribute('type', 'radio');
+  expect(screen.getByTestId('radio-test')).toHaveAttribute('type', 'radio');
 });
 
 test('renders a label for the radio', () => {
-  const { getByText } = render(<Radio label="The radio label" />);
-  expect(getByText('The radio label')).toHaveClass('ods-radio__label');
+  render(<Radio label="The radio label" />);
+  expect(screen.getByText('The radio label')).toHaveClass('ods-radio__label');
 });

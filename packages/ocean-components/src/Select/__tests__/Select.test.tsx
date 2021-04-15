@@ -1,5 +1,12 @@
+/* eslint-disable testing-library/no-node-access */
 import React from 'react';
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  screen,
+} from '@testing-library/react';
 
 import { SelectProps } from '../types';
 import Select from '../Select';
@@ -148,18 +155,18 @@ test.each([
     },
   ],
 ])('%s', (_, params) => {
-  const { getByTestId, getByText, onChangeFn } = setup({
+  const { onChangeFn } = setup({
     defaultValue: params.defaultValue,
   });
 
-  getByTestId('select-test').focus();
+  screen.getByTestId('select-test').focus();
   fireEvent.keyDown(document.activeElement || document.body, {
     key: params.key,
   });
 
   expect(onChangeFn).toHaveBeenCalledTimes(1);
   expect(onChangeFn.mock.calls[0][0]).toMatchObject(params.selected);
-  expect(getByText(params.selected.label)).toBeInTheDocument();
+  expect(screen.getByText(params.selected.label)).toBeInTheDocument();
 });
 
 test.each([
@@ -172,26 +179,26 @@ test.each([
 ])(
   'does not re-select option when `%s` is pressed',
   (key, defaultValue, label) => {
-    const { getByTestId, getByText, onChangeFn } = setup({
+    const { onChangeFn } = setup({
       defaultValue,
     });
 
-    getByTestId('select-test').focus();
+    screen.getByTestId('select-test').focus();
     fireEvent.keyDown(document.activeElement || document.body, {
       key,
     });
 
     expect(onChangeFn).toHaveBeenCalledTimes(0);
-    expect(getByText(label)).toBeInTheDocument();
+    expect(screen.getByText(label)).toBeInTheDocument();
   }
 );
 
 test('select next option with a name that starts with the typed character', () => {
-  const { getByTestId, getByText, onChangeFn } = setup({
+  const { onChangeFn } = setup({
     defaultValue: 'discover-network',
   });
 
-  getByTestId('select-test').focus();
+  screen.getByTestId('select-test').focus();
   fireEvent.keyDown(document.activeElement || document.body, {
     key: 'd',
   });
@@ -208,13 +215,13 @@ test('select next option with a name that starts with the typed character', () =
       "value": "diners-club",
     }
   `);
-  expect(getByText('Diners Club')).toBeInTheDocument();
+  expect(screen.getByText('Diners Club')).toBeInTheDocument();
 });
 
 test('does not select an option with a name that starts with the typed character', async () => {
-  const { getByTestId, onChangeFn } = setup();
+  const { onChangeFn } = setup();
 
-  getByTestId('select-test').focus();
+  screen.getByTestId('select-test').focus();
   fireEvent.keyDown(document.activeElement || document.body, {
     key: 'z',
   });
@@ -226,47 +233,57 @@ test('does not select an option with a name that starts with the typed character
 });
 
 test('renders expanded listbox', () => {
-  const { getByTestId, getByRole, queryByRole } = setup();
+  setup();
 
-  fireEvent.click(getByTestId('select-test'));
+  fireEvent.click(screen.getByTestId('select-test'));
 
-  expect(getByTestId('select-test')).toHaveAttribute('aria-expanded', 'true');
-  expect(getByRole('listbox')).not.toHaveAttribute('aria-activedescendant');
-  expect(queryByRole('option', { selected: true })).not.toBeInTheDocument();
+  expect(screen.getByTestId('select-test')).toHaveAttribute(
+    'aria-expanded',
+    'true'
+  );
+  expect(screen.getByRole('listbox')).not.toHaveAttribute(
+    'aria-activedescendant'
+  );
+  expect(
+    screen.queryByRole('option', { selected: true })
+  ).not.toBeInTheDocument();
 });
 
 test('renders expanded listbox with the selected option focused', () => {
-  const { getByTestId, getByRole } = setup({ defaultValue: 'other' });
+  setup({ defaultValue: 'other' });
 
-  fireEvent.click(getByTestId('select-test'));
+  fireEvent.click(screen.getByTestId('select-test'));
 
-  expect(getByTestId('select-test')).toHaveAttribute('aria-expanded', 'true');
-  expect(getByRole('listbox')).toHaveAttribute(
+  expect(screen.getByTestId('select-test')).toHaveAttribute(
+    'aria-expanded',
+    'true'
+  );
+  expect(screen.getByRole('listbox')).toHaveAttribute(
     'aria-activedescendant',
     'option-other--listbox--sel-1'
   );
-  expect(getByRole('option', { name: 'Other' })).toHaveAttribute(
+  expect(screen.getByRole('option', { name: 'Other' })).toHaveAttribute(
     'aria-selected',
     'true'
   );
 });
 
 test('collapses listbox when `Esc` key is pressed', () => {
-  const { getByTestId, queryByRole } = setup();
+  setup();
 
-  fireEvent.click(getByTestId('select-test'));
+  fireEvent.click(screen.getByTestId('select-test'));
   fireEvent.keyDown(document.activeElement || document.body, {
     key: 'Esc',
   });
 
-  expect(queryByRole('listbox')).not.toBeInTheDocument();
-  expect(getByTestId('select-test')).toHaveFocus();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  expect(screen.getByTestId('select-test')).toHaveFocus();
 });
 
 test('collapses listbox when `Enter` key is pressed', () => {
-  const { getByTestId, queryByRole, getByText } = setup();
+  setup();
 
-  fireEvent.click(getByTestId('select-test'));
+  fireEvent.click(screen.getByTestId('select-test'));
   fireEvent.keyDown(document.activeElement || document.body, {
     key: 'm',
   });
@@ -277,40 +294,40 @@ test('collapses listbox when `Enter` key is pressed', () => {
     key: 'Enter',
   });
 
-  expect(queryByRole('listbox')).not.toBeInTheDocument();
-  expect(getByTestId('select-test')).toHaveFocus();
-  expect(getByText('Mastercard')).toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  expect(screen.getByTestId('select-test')).toHaveFocus();
+  expect(screen.getByText('Mastercard')).toBeInTheDocument();
 });
 
 test('collapses listbox when option is selected', () => {
-  const { getByTestId, getByRole, queryByRole } = setup();
+  setup();
 
-  fireEvent.click(getByTestId('select-test'));
-  fireEvent.click(getByRole('option', { name: 'Discover Network' }));
+  fireEvent.click(screen.getByTestId('select-test'));
+  fireEvent.click(screen.getByRole('option', { name: 'Discover Network' }));
 
-  expect(queryByRole('listbox')).not.toBeInTheDocument();
-  expect(getByTestId('select-test')).toHaveFocus();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  expect(screen.getByTestId('select-test')).toHaveFocus();
 });
 
 test('collapses listbox when another element is focused', async () => {
-  const { getByTestId, queryByRole, getByRole } = setup({
+  setup({
     defaultValue: 'mastercard',
   });
 
-  fireEvent.click(getByTestId('select-test'));
-  getByRole('button', { name: 'Another interactive element' }).focus();
+  fireEvent.click(screen.getByTestId('select-test'));
+  screen.getByRole('button', { name: 'Another interactive element' }).focus();
   act(() => {
     jest.runAllTimers();
   });
 
   await waitFor(() => {
-    expect(queryByRole('listbox')).not.toBeInTheDocument();
-    expect(getByTestId('select-test')).not.toHaveFocus();
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(screen.getByTestId('select-test')).not.toHaveFocus();
   });
 });
 
 test('renders a error state for the select', () => {
-  const { getByTestId } = render(
+  render(
     <Select
       data-testid="select-test"
       options={[{ value: 'v1', label: 'Label 1' }]}
@@ -318,7 +335,7 @@ test('renders a error state for the select', () => {
     />
   );
 
-  expect(getByTestId('select-test')).toHaveClass(
+  expect(screen.getByTestId('select-test')).toHaveClass(
     'ods-select__control ods-select__control--error',
     {
       exact: true,
@@ -327,13 +344,13 @@ test('renders a error state for the select', () => {
 });
 
 test('renders controlled select', async () => {
-  const { getByTestId, getByLabelText } = render(<SelectControlled />);
+  render(<SelectControlled />);
 
-  expect(getByTestId('selected-value')).toBeEmptyDOMElement();
-  fireEvent.click(getByLabelText('Pick your favorite flavor'));
-  fireEvent.click(getByTestId('coconut'));
+  expect(screen.getByTestId('selected-value')).toBeEmptyDOMElement();
+  fireEvent.click(screen.getByLabelText('Pick your favorite flavor'));
+  fireEvent.click(screen.getByTestId('coconut'));
 
   await waitFor(() =>
-    expect(getByTestId('selected-value')).toHaveTextContent('coconut')
+    expect(screen.getByTestId('selected-value')).toHaveTextContent('coconut')
   );
 });
