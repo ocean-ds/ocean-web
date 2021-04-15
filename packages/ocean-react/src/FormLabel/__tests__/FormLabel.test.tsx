@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import FormLabel from '../FormLabel';
 
@@ -10,6 +10,7 @@ test('renders element properly', () => {
     </FormLabel>
   );
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-form-label custom-class"
@@ -21,20 +22,20 @@ test('renders element properly', () => {
 });
 
 test('renders a disabled state', () => {
-  const { getByTestId } = render(<FormLabel data-testid="lbl-test" disabled />);
+  render(<FormLabel data-testid="lbl-test" disabled />);
   expect(
-    getByTestId('lbl-test')
+    screen.getByTestId('lbl-test')
   ).toHaveClass('ods-form-label ods-form-label--disabled', { exact: true });
 });
 
 test('renders a span element', () => {
-  const { getByTestId } = render(
+  render(
     <FormLabel data-testid="lbl-test" component="span">
       Polimorphism
     </FormLabel>
   );
 
-  expect(getByTestId('lbl-test')).toMatchInlineSnapshot(`
+  expect(screen.getByTestId('lbl-test')).toMatchInlineSnapshot(`
     <span
       class="ods-form-label"
       data-testid="lbl-test"

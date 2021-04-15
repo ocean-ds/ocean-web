@@ -1,5 +1,12 @@
+/* eslint-disable testing-library/no-node-access */
 import React from 'react';
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  screen,
+} from '@testing-library/react';
 
 import { SelectProps } from '../types';
 import Select from '../Select';
@@ -327,13 +334,13 @@ test('renders a error state for the select', () => {
 });
 
 test('renders controlled select', async () => {
-  const { getByTestId, getByLabelText } = render(<SelectControlled />);
+  render(<SelectControlled />);
 
-  expect(getByTestId('selected-value')).toBeEmptyDOMElement();
-  fireEvent.click(getByLabelText('Pick your favorite flavor'));
-  fireEvent.click(getByTestId('coconut'));
+  expect(screen.getByTestId('selected-value')).toBeEmptyDOMElement();
+  fireEvent.click(screen.getByLabelText('Pick your favorite flavor'));
+  fireEvent.click(screen.getByTestId('coconut'));
 
   await waitFor(() =>
-    expect(getByTestId('selected-value')).toHaveTextContent('coconut')
+    expect(screen.getByTestId('selected-value')).toHaveTextContent('coconut')
   );
 });

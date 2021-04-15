@@ -1,13 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Checkbox from '../Checkbox';
 
 test('renders element properly', () => {
-  const { container, getByTestId } = render(
+  const { container } = render(
     <Checkbox data-testid="checkbox-test" className="custom-class" />
   );
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-checkbox__root"
@@ -22,10 +23,13 @@ test('renders element properly', () => {
       />
     </label>
   `);
-  expect(getByTestId('checkbox-test')).toHaveAttribute('type', 'checkbox');
+  expect(screen.getByTestId('checkbox-test')).toHaveAttribute(
+    'type',
+    'checkbox'
+  );
 });
 
 test('renders a label for the checkbox', () => {
-  const { getByText } = render(<Checkbox label="My label" />);
-  expect(getByText('My label')).toHaveClass('ods-checkbox__label');
+  render(<Checkbox label="My label" />);
+  expect(screen.getByText('My label')).toHaveClass('ods-checkbox__label');
 });

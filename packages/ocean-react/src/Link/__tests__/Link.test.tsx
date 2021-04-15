@@ -1,17 +1,17 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter as Router, Link as RouterLink } from 'react-router-dom';
 
 import Link from '../Link';
 
 test('renders element properly', () => {
-  const { getByTestId } = render(
+  render(
     <Link data-testid="lnk-test" className="custom-class">
       Click here!
     </Link>
   );
 
-  expect(getByTestId('lnk-test')).toMatchInlineSnapshot(`
+  expect(screen.getByTestId('lnk-test')).toMatchInlineSnapshot(`
     <a
       class="ods-lnk custom-class"
       data-testid="lnk-test"
@@ -21,12 +21,12 @@ test('renders element properly', () => {
   `);
 });
 test('renders an inverse link', () => {
-  const { getByTestId } = render(<Link data-testid="lnk-test" inverse />);
-  expect(getByTestId('lnk-test')).toHaveClass('ods-lnk--inverse');
+  render(<Link data-testid="lnk-test" inverse />);
+  expect(screen.getByTestId('lnk-test')).toHaveClass('ods-lnk--inverse');
 });
 
 test('renders a link with router', () => {
-  const { getByTestId } = render(
+  render(
     <Router>
       <Link data-testid="lnk-test" component={RouterLink} to="/teste/1234">
         Link
@@ -34,7 +34,7 @@ test('renders a link with router', () => {
     </Router>
   );
 
-  expect(getByTestId('lnk-test')).toMatchInlineSnapshot(`
+  expect(screen.getByTestId('lnk-test')).toMatchInlineSnapshot(`
     <a
       class="ods-lnk"
       data-testid="lnk-test"

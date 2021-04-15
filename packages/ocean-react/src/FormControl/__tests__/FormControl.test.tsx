@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import FormControl, { FormControlProps } from '../FormControl';
 
@@ -13,6 +13,7 @@ const setup = (props?: Omit<FormControlProps, 'children'>) =>
 test('renders element properly', () => {
   const { container } = setup();
 
+  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <div
       class="ods-form-control__root"
@@ -36,20 +37,22 @@ test('renders a helper text', () => {
 });
 
 test('renders a full width state', () => {
-  const { container } = setup({ blocked: true });
+  setup({ blocked: true });
+
   expect(
-    container.querySelector('.ods-form-control__element--blocked')
+    // eslint-disable-next-line testing-library/no-node-access
+    document.querySelector('.ods-form-control__element--blocked')
   ).toBeInTheDocument();
 });
 
 test('renders a error state', () => {
-  const { getByText } = setup({
+  setup({
     error: true,
     helperText: 'Error message.',
   });
 
   expect(
-    getByText('Error message.')
+    screen.getByText('Error message.')
   ).toHaveClass(
     'ods-form-control__helper-text ods-form-control__helper-text--error',
     { exact: true }
@@ -57,14 +60,14 @@ test('renders a error state', () => {
 });
 
 test('renders a disabled state', () => {
-  const { getByText } = setup({
+  setup({
     disabled: true,
     label: 'Label Test',
     helperText: 'Error message.',
   });
 
   expect(
-    getByText('Error message.')
+    screen.getByText('Error message.')
   ).toHaveClass(
     'ods-form-control__helper-text ods-form-control__helper-text--disabled',
     { exact: true }
