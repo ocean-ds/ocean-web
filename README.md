@@ -61,7 +61,7 @@ npm i @useblu/ocean-core @useblu/ocean-react
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import '@useblu/ocean-core/dist/ocean.min.css';
+import '@useblu/ocean-core/ocean.min.css';
 import { Button } from '@useblu/ocean-react';
 
 function App() {
