@@ -43,35 +43,16 @@
 
 This project is composed of many npm packages for building web apps with [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
 
-## Installation
+## Documentation
 
-```bash
-yarn add @useblu/ocean-components
-```
+Documentation and examples can be found [here](https://pagnet.github.io/ocean-ds-web/index.html).
 
-or
+## Packages
 
-```bash
-npm i @useblu/ocean-components
-```
-
-## Usage
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import '@useblu/ocean-components/dist/ocean-ds.min.css';
-import { Button } from '@useblu/ocean-components';
-
-function App() {
-  return <Button variant="primary">Hello World</Button>;
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
-```
-
-Read the [documentation](https://pagnet.github.io/ocean-ds-web/index.html) to learn more.
+| Package                                              | Version                                                           | Description                                            |
+| ---------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------ |
+| [`@useblu/ocean-core`](packages/ocean-core#readme)   | ![npm (scoped)](https://img.shields.io/npm/v/@useblu/ocean-core)  | UIkit css that implement Ocean's Design System.        |
+| [`@useblu/ocean-react`](packages/ocean-react#readme) | ![npm (scoped)](https://img.shields.io/npm/v/@useblu/ocean-react) | React components that implement Ocean's Design System. |
 
 ## Contributing
 
@@ -92,3 +73,8 @@ To help you get your feet wet and get you familiar with our contribution process
 ## License
 
 All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
+
+## Related Projects
+
+- [Design tokens for the Blu design system](https://github.com/Pagnet/design-tokens)
+- [SVG icons for Ocean DS](https://github.com/Pagnet/ocean-icons)

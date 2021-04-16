@@ -148,7 +148,8 @@ The code that is written needs to be tested to ensure that it achieves the desir
 
 ### Linter
 
-- We use eslint to ensure recommended rules ([tslint is deprecated](https://www.darraghoriordan.com/2020/03/06/upgrade-tslint-deprecated-to-eslint/)).
+- For `*.ts` we use [eslint](https://eslint.org/) to ensure recommended rules ([tslint is deprecated](https://www.darraghoriordan.com/2020/03/06/upgrade-tslint-deprecated-to-eslint/)).
+- For `*.scss` we use [stylelint](https://stylelint.io/) to ensure recommended rules.
 - Think carefully if you want to override some rules. Open an issue for discussion first.
 - `yarn lint` runs manually the linting rules.
 

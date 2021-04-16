@@ -1,0 +1,30 @@
+.ods-row {
+  @include make-row();
+}
+
+@include make-row-columns();
+
+// Remove the negative margin from default .row, then the horizontal padding
+// from all immediate children columns (to prevent runaway style inheritance).
+.ods-no-gutters {
+  margin-left: 0;
+  margin-right: 0;
+
+  > .ods-col,
+  > [class*='ods-col-'] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.show-grid {
+  .ods-row {
+    > .ods-col,
+    > [class^='ods-col-'] {
+      background-color: #bbeffd;
+      border: 1px solid #61dafb;
+      padding-bottom: 0.75rem;
+      padding-top: 0.75rem;
+    }
+  }
+}

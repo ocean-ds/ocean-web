@@ -1,0 +1,30 @@
+.ods-form-control {
+  &__root {
+    display: flex;
+    flex-direction: column;
+    font-family: $font-family-base;
+  }
+
+  &__element {
+    &--blocked :first-child {
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+
+  &__helper-text {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-tight;
+    margin-top: $spacing-stack-xxxs;
+
+    &--error {
+      color: $color-status-negative-pure;
+    }
+
+    &--disabled {
+      color: $color-interface-dark-up;
+    }
+  }
+}

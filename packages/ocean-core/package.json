@@ -1,0 +1,74 @@
+{
+  "name": "@useblu/ocean-core",
+  "version": "0.2.7",
+  "private": false,
+  "description": "UIkit css that implement Ocean's Design System.",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "gulp",
+    "build:watch": "gulp watch",
+    "format": "prettier --write 'src/**'",
+    "lint": "stylelint 'src/**/*.scss'",
+    "lint:fix": "stylelint 'src/**/*.scss' --fix"
+  },
+  "keywords": [
+    "css",
+    "scss",
+    "framework",
+    "responsive",
+    "ocean design"
+  ],
+  "homepage": "https://pagnet.github.io/ocean-ds-web/index.html",
+  "bugs": "https://github.com/Pagnet/ocean-ds-web/issues",
+  "license": "GPL-3.0",
+  "author": "Blu Pagamentos <devs@useblu.com.br>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pagnet/ocean-ds-web.git",
+    "directory": "packages/ocean-core"
+  },
+  "devDependencies": {
+    "@types/cssnano": "^4.0.0",
+    "@types/gulp": "^4.0.8",
+    "@types/gulp-plumber": "^0.0.32",
+    "@types/gulp-postcss": "^8.0.0",
+    "@types/gulp-rename": "^2.0.0",
+    "@types/gulp-sass": "^4.0.0",
+    "@types/gulp-size": "^2.1.1",
+    "@types/gulp-sourcemaps": "^0.0.34",
+    "@useblu/tokens": "^2.0.0",
+    "autoprefixer": "^10.2.5",
+    "cssnano": "^5.0.1",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.2.9",
+    "stylelint": "^13.12.0",
+    "stylelint-config-sass-guidelines": "^8.0.0"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "stylelint": {
+    "extends": "stylelint-config-sass-guidelines",
+    "rules": {
+      "max-nesting-depth": 2,
+      "selector-class-pattern": null
+    },
+    "ignoreFiles": [
+      "dist/*.css"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

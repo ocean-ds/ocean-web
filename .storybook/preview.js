@@ -1,3 +1,5 @@
+import '../packages/ocean-core/dist/ocean.css';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   viewport: {

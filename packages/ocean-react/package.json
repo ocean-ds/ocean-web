@@ -1,0 +1,52 @@
+{
+  "name": "@useblu/ocean-react",
+  "version": "0.2.7",
+  "private": false,
+  "description": "React components that implement Ocean's Design System.",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "rollup -c rollup.config.ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "format": "prettier --write 'src/**'",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "ocean design"
+  ],
+  "homepage": "https://pagnet.github.io/ocean-ds-web/index.html",
+  "bugs": "https://github.com/Pagnet/ocean-ds-web/issues",
+  "license": "GPL-3.0",
+  "author": "Blu Pagamentos <devs@useblu.com.br>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pagnet/ocean-ds-web.git",
+    "directory": "packages/ocean-react"
+  },
+  "dependencies": {
+    "@reach/auto-id": "0.15.0",
+    "classnames": "2.3.1"
+  },
+  "devDependencies": {
+    "@types/classnames": "2.2.11",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.0"
+  },
+  "peerDependencies": {
+    "@useblu/ocean-core": "0.2.7",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}
