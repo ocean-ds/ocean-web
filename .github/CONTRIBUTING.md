@@ -137,7 +137,6 @@ We use typescript for package development. Make sure the typings are specific an
 
 - We use `sass` as a preprocessor.
 - We adopted [BEM pattern](http://getbem.com/introduction/) pattern to create and organize CSS classes.
-- We have some inspirations from [this](https://sass-guidelin.es/) guideline.
 
 ### Testing
 
