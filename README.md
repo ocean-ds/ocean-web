@@ -43,35 +43,16 @@
 
 This project is composed of many npm packages for building web apps with [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
 
-## Installation
+## Documentation
 
-```bash
-yarn add @useblu/ocean-core @useblu/ocean-react
-```
+Documentation and examples can be found [here](https://pagnet.github.io/ocean-ds-web/index.html).
 
-or
+## Packages
 
-```bash
-npm i @useblu/ocean-core @useblu/ocean-react
-```
-
-## Usage
-
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import '@useblu/ocean-core/ocean.min.css';
-import { Button } from '@useblu/ocean-react';
-
-function App() {
-  return <Button variant="primary">Hello World</Button>;
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
-```
-
-Read the [documentation](https://pagnet.github.io/ocean-ds-web/index.html) to learn more.
+| Package                                              | Version                                                           | Description                                            |
+| ---------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------ |
+| [`@useblu/ocean-core`](packages/ocean-core#readme)   | ![npm (scoped)](https://img.shields.io/npm/v/@useblu/ocean-core)  | UIkit css that implement Ocean's Design System.        |
+| [`@useblu/ocean-react`](packages/ocean-react#readme) | ![npm (scoped)](https://img.shields.io/npm/v/@useblu/ocean-react) | React components that implement Ocean's Design System. |
 
 ## Contributing
 
