@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-react",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "private": false,
   "description": "React components that implement Ocean's Design System.",
   "main": "dist/index.js",

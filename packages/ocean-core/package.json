@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-core",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "private": false,
   "description": "UIkit css that implement Ocean's Design System.",
   "files": [
