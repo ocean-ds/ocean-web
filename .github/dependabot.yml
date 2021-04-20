@@ -3,11 +3,10 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
     reviewers:
       - 'Pagnet/fronts'
     assignees:
       - 'SauloSilva'
-    versioning-strategy: increase
     commit-message:
       prefix: 'chore'
