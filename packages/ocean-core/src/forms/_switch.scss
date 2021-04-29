@@ -13,7 +13,7 @@
 
   &__slider {
     background-color: $color-interface-light-pure;
-    border: solid $border-width-thin $color-highlight-pure;
+    border: solid $border-width-thin $color-interface-dark-up;
     border-radius: $border-radius-pill;
     bottom: 0;
     box-sizing: border-box;
@@ -26,7 +26,7 @@
     transition: all 0.2s ease;
 
     &::before {
-      background-color: $color-highlight-pure;
+      background-color: $color-interface-dark-up;
       border-radius: 50%;
       content: '';
       display: block;
@@ -43,6 +43,7 @@
 
   &:checked:not(:disabled) + &__slider {
     background-color: $color-highlight-pure;
+    border-color: $color-highlight-pure;
   }
 
   &:checked:disabled + &__slider {
