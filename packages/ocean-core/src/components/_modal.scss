@@ -1,0 +1,89 @@
+.ods-modal {
+  &__overlay {
+    background: rgba($color-interface-dark-deep, 0.4);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+  }
+
+  &__header {
+    padding: $spacing-stack-xs;
+
+    &-close {
+      background: transparent;
+      border: 0;
+      color: $color-interface-dark-up;
+      cursor: pointer;
+      display: flex;
+      margin-left: auto;
+      padding: 0;
+      position: relative;
+    }
+  }
+
+  &__body {
+    padding: 0 $spacing-inline-sm $spacing-stack-sm;
+  }
+}
+
+.ods-modal__content {
+  background: $color-interface-light-pure;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-level-2;
+  left: 50%;
+  outline: none;
+  overflow: auto;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  transition: top 200ms linear;
+
+  @include media-breakpoint-down(md) {
+    border-radius: 0;
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+    bottom: 0;
+    left: auto;
+    max-height: 0;
+    overflow: hidden;
+    transform: none;
+    transition-property: max-height;
+    width: 100%;
+  }
+
+  &--blocked {
+    width: 100%;
+  }
+
+  &--after-open {
+    top: 50%;
+
+    @include media-breakpoint-down(md) {
+      max-height: 80%;
+      top: auto;
+    }
+  }
+
+  &--before-close {
+    top: 100%;
+
+    @include media-breakpoint-down(md) {
+      max-height: 0;
+      top: auto;
+    }
+  }
+}
+
+@each $breakpoint in 'sm', 'md', 'lg' {
+  .ods-modal__content--#{$breakpoint} {
+    max-width: breakpoint-max($breakpoint);
+
+    @include media-breakpoint-down(md) {
+      max-width: none;
+    }
+  }
+}
