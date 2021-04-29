@@ -78,9 +78,15 @@
   }
 }
 
-@each $breakpoint in 'sm', 'md', 'lg' {
+$max-widths: (
+  sm: 540px,
+  md: 680px,
+  lg: 800px,
+) !default;
+
+@each $breakpoint, $container-max-width in $max-widths {
   .ods-modal__content--#{$breakpoint} {
-    max-width: breakpoint-max($breakpoint);
+    max-width: $container-max-width;
 
     @include media-breakpoint-down(md) {
       max-width: none;

@@ -23,18 +23,23 @@ import { Modal } from '@useblu/ocean-react';
 
 <ArgsTable of="." />
 
-Any other props supplied will be provided to the ReactModal element (native element).
+Any other props supplied will be provided to the [react-modal](https://github.com/reactjs/react-modal) element (native element).
 
 ## CSS
 
-| Global class               | Description                             |
-| -------------------------- | --------------------------------------- |
-| .ods-checkbox\_\_root      | Styles applied to the root element.     |
-| .ods-checkbox              | Styles applied to the checkbox element. |
-| .ods-checkbox\_\_checkmark | Styles applied to the span element.     |
-| .ods-checkbox\_\_label     | Styles applied to the span element.     |
+| Global class                        | Description                                                    |
+| ----------------------------------- | -------------------------------------------------------------- |
+| .ods-modal\_\_overlay               | Styles applied to the overlay.                                 |
+| .ods-modal\_\_content               | Styles applied to the modal content.                           |
+| .ods-modal\_\_content--after-open   | Transitional styles applied to the modal content after open.   |
+| .ods-modal\_\_content--before-close | Transitional styles applied to the modal content before close. |
+| .ods-modal\_\_content--blocked      | Styles applied to the modal content if `blocked={true}`.       |
+| .ods-modal\_\_content--[sm,md,lg]   | Styles applied to the modal content if `maxWidth` is filled.   |
+| .ods-modal\_\_header                | Styles applied to the modal header.                            |
+| .ods-modal\_\_header-close          | Styles applied to the close icon.                              |
+| .ods-modal\_\_body                  | Styles applied to the wrapper of children element.             |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/src/Modal/Modal.tsx) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/packages/ocean-react/src/Modal/Modal.tsx) for more detail.
 
 ## Playground
 
