@@ -34,5 +34,6 @@ module.exports = {
     'jest/consistent-test-it': ['error', { fn: 'test' }],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'testing-library/no-node-access': 'off',
   },
 };

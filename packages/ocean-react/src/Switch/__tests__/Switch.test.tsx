@@ -8,7 +8,6 @@ test('renders element properly', () => {
     <Switch data-testid="switch-test" className="custom-class" />
   );
 
-  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-switch__root"

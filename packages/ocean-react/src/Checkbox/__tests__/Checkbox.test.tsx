@@ -8,7 +8,6 @@ test('renders element properly', () => {
     <Checkbox data-testid="checkbox-test" className="custom-class" />
   );
 
-  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-checkbox__root"

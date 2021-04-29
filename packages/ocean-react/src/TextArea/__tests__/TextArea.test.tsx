@@ -8,7 +8,6 @@ test('renders element properly', () => {
     <TextArea data-testid="textarea-test" className="custom-class" />
   );
 
-  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <div
       class="ods-form-control__root"

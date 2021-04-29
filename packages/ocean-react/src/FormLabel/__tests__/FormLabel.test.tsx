@@ -10,7 +10,6 @@ test('renders element properly', () => {
     </FormLabel>
   );
 
-  // eslint-disable-next-line testing-library/no-node-access
   expect(container.firstChild).toMatchInlineSnapshot(`
     <label
       class="ods-form-label custom-class"
