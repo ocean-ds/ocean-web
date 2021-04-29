@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import Modal from '../Modal';
+import SimpleModal from '../examples/SimpleModal';
 
 <Meta title="Components/Modal" component={Modal} />
 
@@ -46,13 +47,12 @@ If that's not sufficient, you can check the [implementation of the component](ht
 <Canvas>
   <Story
     name="Playground"
-    args={{ isOpen: false }}
     argTypes={{
-      isOpen: { control: 'boolean' },
+      isOpen: { control: null },
     }}
   >
     {(props) => (
-      <Modal
+      <SimpleModal
         {...props}
         contentLabel="Minimal Modal Example"
         ariaHideApp={false}
@@ -64,7 +64,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
         mattis pellentesque pharetra. Fusce ut lectus at nisi euismod facilisis
         eget quis nunc. Quisque vehicula luctus massa, a blandit augue pulvinar
         sed.
-      </Modal>
+      </SimpleModal>
     )}
   </Story>
 </Canvas>
