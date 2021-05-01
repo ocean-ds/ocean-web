@@ -56,7 +56,7 @@ jobs:
 
       - name: Creates a CANARY release if necessary
         if: github.ref == 'refs/heads/next'
-        run: npx lerna publish --canary --no-git-tag-version --no-changelog
+        run: npx lerna publish --canary --preid next --no-git-tag-version --no-changelog
 
       - name: Creates a STABLE release if necessary
         if: github.ref == 'refs/heads/master'

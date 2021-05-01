@@ -8,8 +8,7 @@
     "prepare": "husky install",
     "build:libs": "lerna run build --stream",
     "build:storybook": "build-storybook -s .storybook/assets",
-    "build:copy-files": "ts-node ./scripts/copy-files.ts",
-    "build": "npm-run-all build:libs --parallel build:copy-files build:storybook",
+    "build": "run-s build:libs build:storybook",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "format": "prettier --write .",
@@ -20,7 +19,8 @@
     "storybook": "npm-run-all build:libs --parallel watch:*",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
     "cm": "cz",
-    "version": "prettier --write '**/{CHANGELOG.md,lerna.json}'"
+    "version": "prettier --write '**/{CHANGELOG.md,lerna.json}'",
+    "prepublishOnly": "ts-node ./scripts/copy-files.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
