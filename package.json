@@ -17,6 +17,7 @@
     "watch:css": "lerna run --scope @useblu/ocean-core build:watch",
     "watch:storybook": "start-storybook -p 6006 -s .storybook/assets",
     "storybook": "npm-run-all build:libs --parallel watch:*",
+    "predeploy:storybook": "lerna run build --stream",
     "deploy:storybook": "storybook-to-ghpages -s build:storybook",
     "cm": "cz",
     "version": "prettier --write '**/{CHANGELOG.md,lerna.json}'",
