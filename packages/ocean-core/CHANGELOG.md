@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Pagnet/ocean-ds-web/compare/v1.1.0...v1.1.1) (2021-05-01)
+
+### Bug Fixes
+
+- change switch and radio styles ([#646](https://github.com/Pagnet/ocean-ds-web/issues/646)) ([18143c7](https://github.com/Pagnet/ocean-ds-web/commit/18143c7acd47a9b3fb35e310e3a5c82289d77d1e))
+
 # [1.0.0](https://github.com/Pagnet/ocean-ds-web/compare/v0.2.7...v1.0.0) (2021-04-16)
 
 ### Features
