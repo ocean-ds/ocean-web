@@ -27,30 +27,17 @@
     cursor: pointer;
     height: 24px;
     width: 24px;
-
-    &::after {
-      background-color: $color-interface-light-pure;
-      border-radius: 50%;
-      content: '';
-      display: none;
-      height: 8px;
-      margin-left: 6px;
-      margin-top: 6px;
-      width: 8px;
-    }
   }
 
-  &:checked ~ &__checkmark::after {
-    display: block;
+  &:checked ~ &__checkmark {
+    border-width: 8px;
   }
 
   &:checked:not(:disabled) ~ &__checkmark {
-    background-color: $color-highlight-pure;
     border-color: $color-highlight-pure;
   }
 
   &:checked:disabled ~ &__checkmark {
-    background-color: $color-interface-light-deep;
     border-color: $color-interface-light-deep;
   }
 
@@ -61,7 +48,6 @@
   }
 
   &:disabled:not(:checked) ~ &__checkmark {
-    background-color: $color-interface-light-pure;
     border-color: $color-interface-light-deep;
   }
 }
