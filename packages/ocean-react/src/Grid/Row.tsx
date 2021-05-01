@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 type RowColWidth = '1' | '2' | '3' | '4' | '5' | '6';
 
-type RowProps = {
+export type RowProps = {
   /**
    * Removes the gutter spacing between `Col`s as well as any added negative margins.
    * @default false

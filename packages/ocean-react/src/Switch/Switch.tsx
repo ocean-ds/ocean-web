@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-type SwitchProps = React.ComponentPropsWithoutRef<'input'>;
+export type SwitchProps = React.ComponentPropsWithoutRef<'input'>;
 
 const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   { className, id, ...rest },

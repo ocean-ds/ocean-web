@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import FormControl, { FormControlProps } from '../FormControl';
 
-type InputProps = {
+export type InputProps = {
   /**
    * Type of the `input` element.
    * @default 'text'

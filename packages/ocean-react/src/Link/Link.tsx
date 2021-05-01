@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { MergeElementProps } from '../_util/type';
 
-type LinkProps<P extends React.ElementType = 'a'> = {
+export type LinkProps<P extends React.ElementType = 'a'> = {
   /**
    * The component used for the root node. Either a string to use a HTML element or a component.
    * @default 'a'

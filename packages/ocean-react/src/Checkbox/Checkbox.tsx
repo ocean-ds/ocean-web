@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-type CheckboxProps = {
+export type CheckboxProps = {
   /**
    * The label content.
    */

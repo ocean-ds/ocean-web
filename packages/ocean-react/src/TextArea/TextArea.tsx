@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import FormControl, { FormControlProps } from '../FormControl';
 
-type TextAreaProps = Omit<FormControlProps, 'children'> &
+export type TextAreaProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'textarea'>;
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
