@@ -41,6 +41,7 @@ function createPackageFile(packagePath: string) {
   delete newPackageData.stylelint;
   delete newPackageData.browserslist;
   delete newPackageData.files;
+  delete newPackageData.gitHead;
 
   const targetPath = path.resolve(packagePath, 'dist', './package.json');
 
