@@ -3,10 +3,20 @@
     background: rgba($color-interface-dark-deep, 0.4);
     bottom: 0;
     left: 0;
+    opacity: 0;
     position: fixed;
     right: 0;
     top: 0;
+    transition: opacity 200ms linear;
     z-index: 1000;
+
+    &--after-open {
+      opacity: 1;
+    }
+
+    &--before-close {
+      opacity: 0;
+    }
   }
 
   &__header {
