@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({
   ...rest
 }) => (
   <ReactModal
-    closeTimeoutMS={200}
+    closeTimeoutMS={150}
     portalClassName="ods-modal"
     overlayClassName={{
       base: 'ods-modal__overlay',

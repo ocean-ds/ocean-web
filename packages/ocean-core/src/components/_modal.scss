@@ -7,7 +7,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    transition: opacity 200ms linear;
+    transition: opacity 150ms linear;
     z-index: 1000;
 
     &--after-open {
@@ -50,7 +50,7 @@
   position: absolute;
   top: 100%;
   transform: translate(-50%, -50%);
-  transition: top 200ms linear;
+  transition: top 150ms linear;
 
   @include media-breakpoint-down(md) {
     border-radius: 0;
