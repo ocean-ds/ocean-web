@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Pagnet/ocean-ds-web/compare/v1.1.1...v1.2.0) (2021-05-03)
+
+### Features
+
+- add modal component ([#645](https://github.com/Pagnet/ocean-ds-web/issues/645)) ([446b540](https://github.com/Pagnet/ocean-ds-web/commit/446b540e5caf96726dceab77e6f5be8d50b86380))
+
 # [1.1.0](https://github.com/Pagnet/ocean-ds-web/compare/v1.0.2...v1.1.0) (2021-05-01)
 
 ### Features
