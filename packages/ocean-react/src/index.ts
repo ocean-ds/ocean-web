@@ -27,3 +27,6 @@ export * from './Select';
 
 export { default as Switch } from './Switch';
 export * from './Switch';
+
+export { default as Modal } from './Modal';
+export * from './Modal';

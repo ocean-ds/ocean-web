@@ -1,0 +1,72 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import Modal from '../Modal';
+import SimpleModal from '../examples/SimpleModal';
+
+<Meta title="Components/Modal" component={Modal} />
+
+# Modal API
+
+The API documentation of the Modal React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Modal } from '@useblu/ocean-react';
+```
+
+## Usage
+
+```jsx
+<Modal isOpen={false}>Hello There!</Modal>
+```
+
+## Props
+
+<ArgsTable of="." />
+
+Any other props supplied will be provided to the [react-modal](https://github.com/reactjs/react-modal) element (native element).
+
+## CSS
+
+| Global class                        | Description                                                    |
+| ----------------------------------- | -------------------------------------------------------------- |
+| .ods-modal\_\_overlay               | Styles applied to the overlay.                                 |
+| .ods-modal\_\_overlay--after-open   | Transitional styles applied to the overlay after open.         |
+| .ods-modal\_\_overlay--before-close | Transitional styles applied to the overlay before close.       |
+| .ods-modal\_\_content               | Styles applied to the modal content.                           |
+| .ods-modal\_\_content--after-open   | Transitional styles applied to the modal content after open.   |
+| .ods-modal\_\_content--before-close | Transitional styles applied to the modal content before close. |
+| .ods-modal\_\_content--blocked      | Styles applied to the modal content if `blocked={true}`.       |
+| .ods-modal\_\_content--[sm,md,lg]   | Styles applied to the modal content if `maxWidth` is filled.   |
+| .ods-modal\_\_header                | Styles applied to the modal header.                            |
+| .ods-modal\_\_header-close          | Styles applied to the close icon.                              |
+| .ods-modal\_\_body                  | Styles applied to the wrapper of children element.             |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/Pagnet/ocean-ds-web/blob/master/packages/ocean-react/src/Modal/Modal.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="Playground"
+    argTypes={{
+      isOpen: { control: null },
+    }}
+  >
+    {(props) => (
+      <SimpleModal
+        {...props}
+        contentLabel="Minimal Modal Example"
+        ariaHideApp={false}
+      >
+        Curabitur et ultricies nisi, et ultricies urna. Aliquam ultrices, nisi
+        non pharetra commodo, dolor tellus ultrices ante, quis maximus nisi
+        felis id velit. Etiam ut neque ornare, eleifend ante vel, molestie
+        libero. Maecenas sollicitudin nisl eu diam aliquet sodales. Nullam
+        mattis pellentesque pharetra. Fusce ut lectus at nisi euismod facilisis
+        eget quis nunc. Quisque vehicula luctus massa, a blandit augue pulvinar
+        sed.
+      </SimpleModal>
+    )}
+  </Story>
+</Canvas>
