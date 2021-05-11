@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://pagnet.github.io/ocean-ds-web/index.html">
+  <a href="https://ocean-ds.github.io/ocean-web/index.html">
     <img alt="ocean-logo" src="https://user-images.githubusercontent.com/3240432/96205195-5c8b0080-0f3c-11eb-8229-1f0a7f93df0a.png" width="400">
   </a>
 </h1>
@@ -9,22 +9,22 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Pagnet/ocean-ds-web/actions">
-    <img alt="Actions Status" src="https://github.com/Pagnet/ocean-ds-web/workflows/CI/badge.svg">
+  <a href="https://github.com/ocean-ds/ocean-web/actions">
+    <img alt="Actions Status" src="https://github.com/ocean-ds/ocean-web/workflows/CI/badge.svg">
   </a>
-  <a href="https://codeclimate.com/github/Pagnet/ocean-ds-web">
-    <img alt="Code Climate coverage" src="https://img.shields.io/codeclimate/coverage/Pagnet/ocean-ds-web">
+  <a href="https://codeclimate.com/github/ocean-ds/ocean-web">
+    <img alt="Code Climate coverage" src="https://img.shields.io/codeclimate/coverage/ocean-ds/ocean-web">
   </a>  
-  <a href="https://sonarcloud.io/dashboard?id=Pagnet_ocean-ds-web">
-    <img alt="Sonarcloud Status" src="https://sonarcloud.io/api/project_badges/measure?project=Pagnet_ocean-ds-web&metric=alert_status">
+  <a href="https://sonarcloud.io/dashboard?id=ocean-ds_ocean-web">
+    <img alt="Sonarcloud Status" src="https://sonarcloud.io/api/project_badges/measure?project=ocean-ds_ocean-web&metric=alert_status">
   </a>
-  <a href="https://github.com/Pagnet/ocean-ds-web/blob/master/LICENSE">
-    <img alt="GitHub License" src="https://img.shields.io/github/license/Pagnet/ocean-ds-web">
+  <a href="https://github.com/ocean-ds/ocean-web/blob/master/LICENSE">
+    <img alt="GitHub License" src="https://img.shields.io/github/license/ocean-ds/ocean-web">
   </a>
-  <a href="https://github.com/Pagnet/ocean-ds-web/graphs/commit-activity">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Pagnet/ocean-ds-web">
+  <a href="https://github.com/ocean-ds/ocean-web/graphs/commit-activity">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/ocean-ds/ocean-web">
   </a>
-  <a href="https://github.com/Pagnet/ocean-ds-web/network/updates">
+  <a href="https://github.com/ocean-ds/ocean-web/network/updates">
     <img alt="Dependabot" src="https://img.shields.io/badge/Dependabot-enabled-brightgreen">
   </a>
   <a href="https://github.com/prettier/prettier">
@@ -45,7 +45,7 @@ This project is composed of many npm packages for building web apps with [Ocean]
 
 ## Documentation
 
-Documentation and examples can be found [here](https://pagnet.github.io/ocean-ds-web/index.html).
+Documentation and examples can be found [here](https://ocean-ds.github.io/ocean-web/index.html).
 
 ## Packages
 
@@ -68,7 +68,7 @@ Read our [contributing guide](.github/CONTRIBUTING.md) to learn about our develo
 
 ### Good First Issues
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/Pagnet/ocean-ds-web/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/ocean-ds/ocean-web/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
 
 ## License
 
@@ -76,5 +76,5 @@ All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
 
 ## Related Projects
 
-- [Design tokens for the Blu design system](https://github.com/Pagnet/design-tokens)
-- [SVG icons for Ocean DS](https://github.com/Pagnet/ocean-icons)
+- [Design tokens for the Blu design system](https://github.com/ocean-ds/ocean-tokens)
+- [SVG icons for Ocean DS](https://github.com/ocean-ds/ocean-icons)

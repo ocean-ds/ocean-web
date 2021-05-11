@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: 'weekly'
     reviewers:
-      - 'Pagnet/fronts'
+      - 'ocean-ds/core-web'
     assignees:
       - 'SauloSilva'
     commit-message:

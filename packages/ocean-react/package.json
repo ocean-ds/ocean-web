@@ -23,13 +23,13 @@
     "react-component",
     "ocean design"
   ],
-  "homepage": "https://pagnet.github.io/ocean-ds-web/index.html",
-  "bugs": "https://github.com/Pagnet/ocean-ds-web/issues",
+  "homepage": "https://ocean-ds.github.io/ocean-web/index.html",
+  "bugs": "https://github.com/ocean-ds/ocean-web/issues",
   "license": "GPL-3.0",
   "author": "Blu Pagamentos <devs@useblu.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pagnet/ocean-ds-web.git",
+    "url": "https://github.com/ocean-ds/ocean-web.git",
     "directory": "packages/ocean-react"
   },
   "dependencies": {

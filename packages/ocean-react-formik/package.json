@@ -14,7 +14,7 @@
     "ocean-react",
     "form"
   ],
-  "repository": "git@github.com:Pagnet/ocean-ds-web.git",
+  "repository": "git@github.com:ocean-ds/ocean-web.git",
   "author": "Blu Pagamentos <devs@useblu.com.br>",
   "license": "GPL-3.0",
   "private": true,

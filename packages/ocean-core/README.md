@@ -35,7 +35,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Read the [documentation](https://pagnet.github.io/ocean-ds-web/index.html) to learn more.
+Read the [documentation](https://ocean-ds.github.io/ocean-web/index.html) to learn more.
 
 ## License
 

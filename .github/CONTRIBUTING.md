@@ -25,7 +25,7 @@ A great way to contribute to the project is to send a detailed report when you e
 These are the locations to report or find an issue:
 
 - [In the JIRA Board](https://useblu.atlassian.net/jira/software/projects/DSO/boards/79) (restricted :sweat_smile:)
-- [Here on Github](https://github.com/Pagnet/ocean-ds-web/issues) (public :heart_eyes:)
+- [Here on Github](https://github.com/ocean-ds/ocean-web/issues) (public :heart_eyes:)
 
 Check that our issue database doesn't already include that problem or suggestion before submitting an issue. If you find a match, you can use the "subscribe" button to get notified on updates. Do not leave random "+1" or "I have this too" comments, as they only clutter the discussion, and don't help resolving it. However, if you have ways to reproduce the issue or have additional information that may help resolving the issue, please leave a comment.
 
@@ -43,8 +43,8 @@ First of all, you will need to create an [issue](#issues) for the feature or bug
 
 Unsure where to begin contributing? You can start by looking through these issues:
 
-- [Good first issues](https://github.com/Pagnet/ocean-ds-web/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+sort%3Acomments-desc) - issues which should only require a few lines of code, and a test or two.
-- [Help wanted issues](https://github.com/Pagnet/ocean-ds-web/issues?q=is%3Aopen+is%3Aissue+sort%3Acomments-desc+label%3A%22help+wanted%22) - issues which should be a bit more involved than beginner issues.
+- [Good first issues](https://github.com/ocean-ds/ocean-web/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+sort%3Acomments-desc) - issues which should only require a few lines of code, and a test or two.
+- [Help wanted issues](https://github.com/ocean-ds/ocean-web/issues?q=is%3Aopen+is%3Aissue+sort%3Acomments-desc+label%3A%22help+wanted%22) - issues which should be a bit more involved than beginner issues.
 
 ### Making Changes
 
@@ -91,8 +91,8 @@ It’s important that every piece of code is reviewed by at least one core contr
 </details>
 
 ```bash
-git clone https://github.com/Pagnet/ocean-ds-web.git # bonus: use your own fork for this step
-cd ocean-ds-web
+git clone https://github.com/ocean-ds/ocean-web.git # bonus: use your own fork for this step
+cd ocean-web
 yarn # install dependencies
 ```
 
