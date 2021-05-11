@@ -42,8 +42,8 @@
   }
 
   &:checked:not(:disabled) + &__slider {
-    background-color: $color-highlight-pure;
-    border-color: $color-highlight-pure;
+    background-color: $color-complementary-pure;
+    border-color: $color-complementary-pure;
   }
 
   &:checked:disabled + &__slider {

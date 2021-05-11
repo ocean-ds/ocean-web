@@ -46,8 +46,8 @@
   }
 
   &:checked:not(:disabled) ~ &__checkmark {
-    background-color: $color-highlight-pure;
-    border-color: $color-highlight-pure;
+    background-color: $color-complementary-pure;
+    border-color: $color-complementary-pure;
   }
 
   &:checked:disabled ~ &__checkmark {
