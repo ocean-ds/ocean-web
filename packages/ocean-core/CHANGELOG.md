@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/ocean-ds/ocean-web/compare/v1.2.1...v1.2.2) (2021-05-12)
+
+### Bug Fixes
+
+- change color from switch, radio and checkbox ([#658](https://github.com/ocean-ds/ocean-web/issues/658)) ([f8309fc](https://github.com/ocean-ds/ocean-web/commit/f8309fc6d1b706ebcf1e2ca8b252768f1dae63d1))
+
 ## [1.2.1](https://github.com/ocean-ds/ocean-web/compare/v1.2.0...v1.2.1) (2021-05-11)
 
 **Note:** Version bump only for package @useblu/ocean-core
