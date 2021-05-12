@@ -77,4 +77,4 @@ All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
 ## Related Projects
 
 - [Design tokens for the Blu design system](https://github.com/ocean-ds/ocean-tokens)
-- [SVG icons for Ocean DS](https://github.com/ocean-ds/ocean-icons).
+- [SVG icons for Ocean DS](https://github.com/ocean-ds/ocean-icons)
