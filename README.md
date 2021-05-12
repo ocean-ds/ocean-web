@@ -12,9 +12,6 @@
   <a href="https://github.com/ocean-ds/ocean-web/actions">
     <img alt="Actions Status" src="https://github.com/ocean-ds/ocean-web/workflows/CI/badge.svg">
   </a>
-  <a href="https://codeclimate.com/github/ocean-ds/ocean-web">
-    <img alt="Code Climate coverage" src="https://img.shields.io/codeclimate/coverage/ocean-ds/ocean-web">
-  </a>  
   <a href="https://sonarcloud.io/dashboard?id=ocean-ds_ocean-web">
     <img alt="Sonarcloud Status" src="https://sonarcloud.io/api/project_badges/measure?project=ocean-ds_ocean-web&metric=alert_status">
   </a>
