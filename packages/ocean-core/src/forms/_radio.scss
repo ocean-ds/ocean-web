@@ -34,7 +34,7 @@
   }
 
   &:checked:not(:disabled) ~ &__checkmark {
-    border-color: $color-highlight-pure;
+    border-color: $color-complementary-pure;
   }
 
   &:checked:disabled ~ &__checkmark {
