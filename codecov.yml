@@ -1,0 +1,7 @@
+coverage:
+  status:
+    patch:
+      default:
+        target: 100%
+comment:
+  behavior: new

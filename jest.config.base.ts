@@ -12,7 +12,6 @@ const config: Config.InitialOptions = {
       'identity-obj-proxy',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  testResultsProcessor: 'jest-sonar-reporter',
 };
 
 export default config;
