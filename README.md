@@ -12,6 +12,9 @@
   <a href="https://github.com/ocean-ds/ocean-web/actions">
     <img alt="Actions Status" src="https://github.com/ocean-ds/ocean-web/workflows/CI/badge.svg">
   </a>
+  <a href="https://codecov.io/gh/ocean-ds/ocean-web">
+    <img src="https://codecov.io/gh/ocean-ds/ocean-web/branch/master/graph/badge.svg"/>
+  </a>
   <a href="https://sonarcloud.io/dashboard?id=ocean-ds_ocean-web">
     <img alt="Sonarcloud Status" src="https://sonarcloud.io/api/project_badges/measure?project=ocean-ds_ocean-web&metric=alert_status">
   </a>

@@ -40,8 +40,11 @@ jobs:
       - name: Lint commit message
         run: git log -1 --pretty=format:"%s" | npx commitlint
 
-      - name: Runs test
+      - name: Run tests
         run: yarn test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
