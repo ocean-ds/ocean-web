@@ -34,5 +34,5 @@ export * from './Modal';
 export { default as Divider } from './Divider';
 export * from './Divider';
 
-export { default as IconModal } from './IconButton';
+export { default as IconButton } from './IconButton';
 export * from './IconButton';
