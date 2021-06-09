@@ -3915,10 +3915,10 @@
   resolved "https://registry.yarnpkg.com/@useblu/ocean-icons-react/-/ocean-icons-react-0.1.5.tgz#9f8011aa9979996222bcccb635c80b166837ad53"
   integrity sha512-3afKlOysYbSvE7xvQS18nr/CEJZ6mp7XejGtC96dnkFrMUzgsCLw4IpOfn/Hvhb8aq7zvjK3el+ad7BrNe3yiA==
 
-"@useblu/tokens@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@useblu/tokens/-/tokens-2.0.0.tgz#52b6a020a07ae577d7fa03c4703ff4b253c5378b"
-  integrity sha512-y4YBljSoR+UO3zVUYjkLJQLsxlkNqfj/tfFrXaGgWz1UaPr401n+156vk/yASGkETVQdaucPgB1xvoOZlrcH1g==
+"@useblu/ocean-tokens@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@useblu/ocean-tokens/-/ocean-tokens-3.0.0.tgz#712e80ebc4be5cd3c8593775f4cb49e4cb6879a4"
+  integrity sha512-eB4MVuuMojaP2nhmPO3Yrq5AcCnbBTDKr+HKJrg5tDWlv22NUF6In6lAXCowRYV+n4O1kJScWBDoRbcEqF0L7Q==
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
