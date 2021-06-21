@@ -8371,7 +8371,7 @@ fsevents@^1.2.7:
     bindings "^1.5.0"
     nan "^2.12.1"
 
-fsevents@^2.1.2, fsevents@~2.3.1:
+fsevents@^2.1.2, fsevents@~2.3.1, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -14790,11 +14790,11 @@ rollup@^0.63.4:
     "@types/node" "*"
 
 rollup@^2.45.2:
-  version "2.46.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.46.0.tgz#8cacf89d2ee31a34755f1af40a665168f592b829"
-  integrity sha512-qPGoUBNl+Z8uNu0z7pD3WPTABWRbcOwIrO/5ccDJzmrtzn0LVf6Lj91+L5CcWhXl6iWf23FQ6m8Jkl2CmN1O7Q==
+  version "2.52.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.52.2.tgz#a7e90d10ddae3e8472c2857bd9f44b09ef34a47a"
+  integrity sha512-4RlFC3k2BIHlUsJ9mGd8OO+9Lm2eDF5P7+6DNQOp5sx+7N/1tFM01kELfbxlMX3MxT6owvLB1ln4S3QvvQlbUA==
   optionalDependencies:
-    fsevents "~2.3.1"
+    fsevents "~2.3.2"
 
 rsvp@^4.8.4:
   version "4.8.5"
