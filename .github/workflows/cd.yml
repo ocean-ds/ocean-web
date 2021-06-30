@@ -7,8 +7,8 @@ on:
       - next
 
 env:
-  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-  GH_TOKEN: ${{ secrets.GH_PAT }}
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
   CI: true
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           # Check out as an admin to allow for pushing back to master
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GH_TOKEN }}
           # We need to fetch all tags and branches
           fetch-depth: 0
 
