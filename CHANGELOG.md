@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ocean-ds/ocean-web/compare/v1.2.5...v1.3.0) (2021-07-02)
+
+### Features
+
+- update status colors by bump ocean-tokens ([a973707](https://github.com/ocean-ds/ocean-web/commit/a973707119e2e3f41e5e119462608c39100033ff))
+
 ## [1.2.5](https://github.com/ocean-ds/ocean-web/compare/v1.2.4...v1.2.5) (2021-06-30)
 
 **Note:** Version bump only for package root
