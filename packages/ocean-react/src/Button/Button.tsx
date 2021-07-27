@@ -16,7 +16,7 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
      * The variant to use.
      * @default 'primary'
      */
-    variant?: 'primary' | 'secondary' | 'text' | 'inverse';
+    variant?: 'primary' | 'secondary' | 'text' | 'inverse' | 'critical';
     /**
      * The size of the button.
      * @default 'md'
@@ -59,6 +59,6 @@ function ButtonBase<T extends React.ElementType = 'button'>(
   );
 }
 
-const Button = (React.forwardRef(ButtonBase) as unknown) as typeof ButtonBase;
+const Button = React.forwardRef(ButtonBase) as unknown as typeof ButtonBase;
 
 export default Button;

@@ -39,30 +39,38 @@ test('renders a large button', () => {
 test('renders primary button', () => {
   render(<Button data-testid="btn-test" variant="primary" />);
 
-  expect(
-    screen.getByTestId('btn-test')
-  ).toHaveClass('ods-btn ods-btn--md ods-btn--primary', { exact: true });
+  expect(screen.getByTestId('btn-test')).toHaveClass(
+    'ods-btn ods-btn--md ods-btn--primary',
+    { exact: true }
+  );
 });
 
 test('renders secondary button', () => {
   render(<Button data-testid="btn-test" variant="secondary" />);
 
-  expect(
-    screen.getByTestId('btn-test')
-  ).toHaveClass('ods-btn ods-btn--md ods-btn--secondary', { exact: true });
+  expect(screen.getByTestId('btn-test')).toHaveClass(
+    'ods-btn ods-btn--md ods-btn--secondary',
+    { exact: true }
+  );
 });
 
 test('renders a text button', () => {
   render(<Button data-testid="btn-test" variant="text" />);
 
-  expect(
-    screen.getByTestId('btn-test')
-  ).toHaveClass('ods-btn ods-btn--md ods-btn--text', { exact: true });
+  expect(screen.getByTestId('btn-test')).toHaveClass(
+    'ods-btn ods-btn--md ods-btn--text',
+    { exact: true }
+  );
 });
 
 test('renders an inverse button', () => {
   render(<Button data-testid="btn-test" variant="inverse" />);
   expect(screen.getByTestId('btn-test')).toHaveClass('ods-btn--inverse');
+});
+
+test('renders a critical button', () => {
+  render(<Button data-testid="btn-test" variant="critical" />);
+  expect(screen.getByTestId('btn-test')).toHaveClass('ods-btn--critical');
 });
 
 test('renders a full width button', () => {

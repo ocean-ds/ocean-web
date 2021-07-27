@@ -106,6 +106,23 @@
     }
   }
 
+  &--critical {
+    background-color: $color-status-negative-pure;
+    color: $color-interface-light-pure;
+
+    &:hover {
+      background-color: $color-status-negative-down;
+    }
+
+    &:focus {
+      background-color: $color-status-negative-down;
+    }
+
+    &:active {
+      background-color: $color-status-negative-deep;
+    }
+  }
+
   &--blocked {
     width: 100%;
   }
