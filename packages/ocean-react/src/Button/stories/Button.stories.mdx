@@ -28,7 +28,8 @@ import Button from '../Button';
       defaultValue: 'primary',
       table: {
         type: {
-          summary: '"primary" | "secondary" | "text" | "inverse" | "critical"',
+          summary:
+            '"primary" | "secondary" | "text" | "inverse" | "primaryCritical"',
         },
         defaultValue: {
           summary: 'primary',
@@ -101,16 +102,16 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class         | Description                                             |
-| -------------------- | ------------------------------------------------------- |
-| .ods-btn             | Styles applied to the root element.                     |
-| .ods-btn--primary    | Sets primary background and text color of the button.   |
-| .ods-btn--secondary  | Sets secondary background and text color of the button. |
-| .ods-btn--text       | Sets styles of the text button.                         |
-| .ods-btn--inverse    | Use the inverse button on dark backgrounds.             |
-| .ods-btn--critical   | Sets styles of the critical button.                     |
-| .ods-btn--[sm,md,lg] | Specifies the width of the button.                      |
-| .ods-btn--blocked    | Spans the full width of the Button parent.              |
+| Global class              | Description                                             |
+| ------------------------- | ------------------------------------------------------- |
+| .ods-btn                  | Styles applied to the root element.                     |
+| .ods-btn--primary         | Sets primary background and text color of the button.   |
+| .ods-btn--secondary       | Sets secondary background and text color of the button. |
+| .ods-btn--text            | Sets styles of the text button.                         |
+| .ods-btn--inverse         | Use the inverse button on dark backgrounds.             |
+| .ods-btn--primaryCritical | Sets styles of the primary critical button.             |
+| .ods-btn--[sm,md,lg]      | Specifies the width of the button.                      |
+| .ods-btn--blocked         | Spans the full width of the Button parent.              |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Button/Button.tsx) for more detail.
 
@@ -133,7 +134,13 @@ If that's not sufficient, you can check the [implementation of the component](ht
         name: 'variant',
         control: {
           type: 'select',
-          options: ['primary', 'secondary', 'text', 'inverse', 'critical'],
+          options: [
+            'primary',
+            'secondary',
+            'text',
+            'inverse',
+            'primaryCritical',
+          ],
         },
       },
       size: {

@@ -16,7 +16,7 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
      * The variant to use.
      * @default 'primary'
      */
-    variant?: 'primary' | 'secondary' | 'text' | 'inverse' | 'critical';
+    variant?: 'primary' | 'secondary' | 'text' | 'inverse' | 'primaryCritical';
     /**
      * The size of the button.
      * @default 'md'
@@ -49,7 +49,7 @@ function ButtonBase<T extends React.ElementType = 'button'>(
       className: classNames(
         'ods-btn',
         `ods-btn--${size}`,
-        `ods-btn--${variant}`,
+        `ods-btn--${variant.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}`,
         blocked && 'ods-btn--blocked',
         className
       ),

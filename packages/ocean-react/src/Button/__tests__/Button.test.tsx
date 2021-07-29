@@ -69,8 +69,10 @@ test('renders an inverse button', () => {
 });
 
 test('renders a critical button', () => {
-  render(<Button data-testid="btn-test" variant="critical" />);
-  expect(screen.getByTestId('btn-test')).toHaveClass('ods-btn--critical');
+  render(<Button data-testid="btn-test" variant="primaryCritical" />);
+  expect(screen.getByTestId('btn-test')).toHaveClass(
+    'ods-btn--primary-critical'
+  );
 });
 
 test('renders a full width button', () => {
