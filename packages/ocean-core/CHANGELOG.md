@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ocean-ds/ocean-web/compare/v1.3.0...v1.4.0) (2021-07-29)
+
+### Features
+
+- **button:** add critical variant ([#727](https://github.com/ocean-ds/ocean-web/issues/727)) ([8c0a94f](https://github.com/ocean-ds/ocean-web/commit/8c0a94f985d4470dd2200a87b0e389f23807133f))
+
 # [1.3.0](https://github.com/ocean-ds/ocean-web/compare/v1.2.5...v1.3.0) (2021-07-02)
 
 ### Features
