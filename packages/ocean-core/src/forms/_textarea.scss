@@ -35,6 +35,10 @@
     }
   }
 
+  &--filled {
+    border-color: $color-brand-primary-up;
+  }
+
   &--error {
     border-color: $color-status-negative-pure;
   }

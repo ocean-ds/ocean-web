@@ -23,7 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     id,
     disabled,
     onChange,
-    value = undefined,
+    value,
     defaultValue,
     ...rest
   },
