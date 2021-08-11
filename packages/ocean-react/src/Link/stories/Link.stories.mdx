@@ -38,6 +38,22 @@ import Link from '../Link';
         type: null,
       },
     },
+    size: {
+      name: 'size',
+      description: 'The size of the link.',
+      defaultValue: 'md',
+      table: {
+        type: {
+          summary: '"sm" | "md"',
+        },
+        defaultValue: {
+          summary: 'md',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
   }}
 />
 
@@ -73,6 +89,7 @@ Any other props supplied will be provided to the root element (native element).
 | ----------------- | -------------------------------------- |
 | .ods-lnk          | Styles applied to the root element.    |
 | .ods-lnk--inverse | Use the inverse a on dark backgrounds. |
+| .ods-lnk--[sm,md] | Specifies the font size of the link.   |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Link/Link.tsx) for more detail.
 
@@ -84,6 +101,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
     args={{
       children: 'My Link',
       inverse: false,
+      size: 'md',
     }}
     argTypes={{
       children: {
@@ -93,6 +111,13 @@ If that's not sufficient, you can check the [implementation of the component](ht
       inverse: {
         name: 'inverse',
         control: 'boolean',
+      },
+      size: {
+        name: 'size',
+        control: {
+          type: 'select',
+          options: ['sm', 'md'],
+        },
       },
     }}
   >
