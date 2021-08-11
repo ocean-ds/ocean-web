@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import FormControl, { FormControlProps } from '../FormControl';
 import useInputFilled from '../_util/useInputFilled';
+import FormControl, { FormControlProps } from '../FormControl';
 
 export type InputProps = {
   /**
