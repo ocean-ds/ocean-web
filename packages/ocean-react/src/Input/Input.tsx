@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import FormControl, { FormControlProps } from '../FormControl';
+import useInputFilled from '../_util/useInputFilled';
 
 export type InputProps = {
   /**
@@ -29,25 +30,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   },
   ref
 ) {
-  const [filled, setFilled] = useState(Boolean(value || defaultValue));
-
-  const handleChange = useCallback(
-    (event) => {
-      if (onChange) return onChange(event);
-
-      // uncontrolled version
-      setFilled(Boolean(event.target.value));
-    },
-    [onChange]
-  );
-
-  useEffect(() => {
-    setFilled(Boolean(value));
-  }, [value]);
-
-  useEffect(() => {
-    setFilled(Boolean(defaultValue));
-  }, [defaultValue]);
+  const { filled, handleChange } = useInputFilled({
+    defaultValue,
+    value,
+    onChange,
+  });
 
   return (
     <FormControl
