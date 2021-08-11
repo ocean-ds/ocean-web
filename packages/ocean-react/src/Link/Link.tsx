@@ -17,11 +17,23 @@ export type LinkProps<P extends React.ElementType = 'a'> = {
      * @default 'false'
      */
     inverse?: boolean;
+    /**
+     * The size of the link.
+     * @default 'md'
+     */
+    size?: 'sm' | 'md';
   }
 >;
 
 function LinkBase<T extends React.ElementType = 'a'>(
-  { children, className, inverse, component, ...rest }: LinkProps<T>,
+  {
+    children,
+    className,
+    inverse,
+    size = 'md',
+    component,
+    ...rest
+  }: LinkProps<T>,
   ref: React.Ref<HTMLLinkElement>
 ) {
   return React.createElement(
@@ -30,6 +42,7 @@ function LinkBase<T extends React.ElementType = 'a'>(
       ref,
       className: classNames(
         'ods-lnk',
+        `ods-lnk--${size}`,
         inverse && 'ods-lnk--inverse',
         className
       ),
@@ -39,6 +52,6 @@ function LinkBase<T extends React.ElementType = 'a'>(
   );
 }
 
-const Link = (React.forwardRef(LinkBase) as unknown) as typeof LinkBase;
+const Link = React.forwardRef(LinkBase) as unknown as typeof LinkBase;
 
 export default Link;
