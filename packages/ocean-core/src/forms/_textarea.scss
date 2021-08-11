@@ -1,7 +1,6 @@
 .ods-textarea {
-  align-self: flex-start;
   background-color: $color-interface-light-pure;
-  border: $border-width-thin solid $color-interface-light-deep;
+  border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: $border-radius-sm;
   box-sizing: border-box;
   color: $color-interface-dark-deep;
@@ -21,6 +20,7 @@
   &:focus,
   &:active {
     border-color: $color-brand-primary-down;
+    border-width: $border-width-thin;
   }
 
   &:disabled {

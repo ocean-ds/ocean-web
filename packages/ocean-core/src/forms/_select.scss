@@ -26,6 +26,7 @@
     &:focus,
     &:active {
       border-color: $color-brand-primary-down;
+      border-width: $border-width-thin;
     }
 
     &:disabled {
