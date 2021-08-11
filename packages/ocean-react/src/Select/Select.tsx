@@ -44,7 +44,6 @@ const Select: React.FC<SelectProps> = ({
     onChange,
     label,
   });
-
   const timeOutId = useRef<number>();
   const refSelControl = useRef<HTMLButtonElement | null>(null);
 
@@ -135,6 +134,7 @@ const Select: React.FC<SelectProps> = ({
             className={classNames(
               'ods-select__control',
               isExpanded && 'ods-select__control--expanded',
+              !isExpanded && selected && 'ods-select__control--filled',
               error && 'ods-select__control--error',
               className
             )}
