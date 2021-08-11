@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ocean-ds/ocean-web/compare/v1.5.0...v1.6.0) (2021-08-11)
+
+### Features
+
+- update helper text color ([#763](https://github.com/ocean-ds/ocean-web/issues/763)) ([f3a291f](https://github.com/ocean-ds/ocean-web/commit/f3a291f5050f1a504c52b3f1a347b83aea4c5fe5))
+
 # [1.5.0](https://github.com/ocean-ds/ocean-web/compare/v1.4.0...v1.5.0) (2021-08-11)
 
 ### Features
