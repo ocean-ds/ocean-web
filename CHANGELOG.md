@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ocean-ds/ocean-web/compare/v1.4.0...v1.5.0) (2021-08-11)
+
+### Features
+
+- **link:** include a size prop ([#761](https://github.com/ocean-ds/ocean-web/issues/761)) ([4ccca24](https://github.com/ocean-ds/ocean-web/commit/4ccca2415bdf324b75b4599ef621b80bfd0a39a1))
+
 # [1.4.0](https://github.com/ocean-ds/ocean-web/compare/v1.3.0...v1.4.0) (2021-07-29)
 
 ### Features
