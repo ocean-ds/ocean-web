@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ocean-ds/ocean-web/compare/v1.12.0...v1.13.0) (2021-08-12)
+
+### Features
+
+- **radio:** update border-width ([#773](https://github.com/ocean-ds/ocean-web/issues/773)) ([2a83f05](https://github.com/ocean-ds/ocean-web/commit/2a83f057c292f6d55d729874813eab3689917f79))
+
 # [1.12.0](https://github.com/ocean-ds/ocean-web/compare/v1.11.0...v1.12.0) (2021-08-12)
 
 ### Features
