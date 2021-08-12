@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ocean-ds/ocean-web/compare/v1.13.0...v1.14.0) (2021-08-12)
+
+### Features
+
+- **switch:** add hover state, update border and non-checked styles ([#774](https://github.com/ocean-ds/ocean-web/issues/774)) ([b8357f3](https://github.com/ocean-ds/ocean-web/commit/b8357f3731b8765e6b5cc3bbee9c3f5b22e94d4f))
+
 # [1.13.0](https://github.com/ocean-ds/ocean-web/compare/v1.12.0...v1.13.0) (2021-08-12)
 
 ### Features
