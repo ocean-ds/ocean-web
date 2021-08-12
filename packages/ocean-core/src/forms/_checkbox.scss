@@ -41,6 +41,22 @@
     }
   }
 
+  &__checkmark--indeterminate {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &::after {
+      border: 0;
+      border-top: 2px solid #fff;
+      height: 0;
+      margin: 0;
+      position: absolute;
+      transform: none;
+      width: 14px;
+    }
+  }
+
   &:checked ~ &__checkmark::after {
     display: block;
   }
