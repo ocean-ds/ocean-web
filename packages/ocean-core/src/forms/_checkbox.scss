@@ -21,7 +21,7 @@
 
   &__checkmark {
     background-color: $color-interface-light-pure;
-    border: solid 2px $color-interface-dark-up;
+    border: solid $border-width-hairline $color-interface-dark-up;
     border-radius: $border-radius-sm;
     box-sizing: border-box;
     cursor: pointer;
@@ -34,8 +34,8 @@
       content: '';
       display: none;
       height: 10px;
-      margin-left: 6px;
-      margin-top: 2px;
+      margin-left: 7px;
+      margin-top: 3px;
       transform: rotate(40deg);
       width: 6px;
     }
