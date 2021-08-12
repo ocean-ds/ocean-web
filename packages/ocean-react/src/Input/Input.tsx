@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import useInputFilled from '../_util/useInputFilled';
 import FormControl, { FormControlProps } from '../FormControl';
 
 export type InputProps = {
@@ -13,9 +14,28 @@ export type InputProps = {
   React.ComponentPropsWithoutRef<'input'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
-  { type, className, label, helperText, blocked, error, id, disabled, ...rest },
+  {
+    type,
+    className,
+    label,
+    helperText,
+    blocked,
+    error,
+    id,
+    disabled,
+    onChange,
+    value,
+    defaultValue,
+    ...rest
+  },
   ref
 ) {
+  const { filled, handleChange } = useInputFilled({
+    defaultValue,
+    value,
+    onChange,
+  });
+
   return (
     <FormControl
       label={label}
@@ -31,10 +51,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
         id={id}
         className={classNames(
           'ods-input',
+          filled && 'ods-input--filled',
           error && 'ods-input--error',
           className
         )}
         disabled={disabled}
+        onChange={handleChange}
+        defaultValue={defaultValue}
+        value={value}
         {...rest}
       />
     </FormControl>
