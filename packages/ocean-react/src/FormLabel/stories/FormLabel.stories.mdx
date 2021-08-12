@@ -1,4 +1,4 @@
-import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { Meta, ArgsTable, Story, Canvas } from '@storybook/addon-docs';
 import FormLabel from '../FormLabel';
 
 <Meta
@@ -9,31 +9,23 @@ import FormLabel from '../FormLabel';
       name: 'component',
       description:
         'The component used for the root node. Either a string to use a HTML element or a component.',
-      defaultValue: 'label',
       table: {
         type: {
           summary: 'elementType',
         },
-        defaultValue: {
-          summary: 'label',
-        },
+        defaultValue: { summary: 'label' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     disabled: {
       name: 'disabled',
       description:
         'If true, the label should be displayed in a disabled state.',
-      defaultValue: false,
       table: {
         type: {
           summary: 'true | false',
         },
-        defaultValue: {
-          summary: false,
-        },
+        defaultValue: { summary: false },
       },
       control: {
         type: null,

@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Button from '../Button';
 
 <Meta
@@ -9,67 +9,45 @@ import Button from '../Button';
       name: 'component',
       description:
         'The component used for the root node. Either a string to use a HTML element or a component.',
-      defaultValue: 'button',
       table: {
-        type: {
-          summary: 'elementType',
-        },
-        defaultValue: {
-          summary: 'button',
-        },
+        type: { summary: 'elementType' },
+        defaultValue: { summary: 'button' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     variant: {
       name: 'variant',
       description: 'The variant to use.',
-      defaultValue: 'primary',
       table: {
         type: {
           summary:
             '"primary" | "secondary" | "text" | "inverse" | "primaryCritical"',
         },
-        defaultValue: {
-          summary: 'primary',
-        },
+        defaultValue: { summary: 'primary' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     size: {
       name: 'size',
       description: 'The size of the button.',
-      defaultValue: 'md',
       table: {
         type: {
           summary: '"sm" | "md" | "lg"',
         },
-        defaultValue: {
-          summary: 'md',
-        },
+        defaultValue: { summary: 'md' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     blocked: {
       name: 'blocked',
       description: 'Spans the full width of the Button parent.',
-      defaultValue: false,
       table: {
         type: {
           summary: 'true | false',
         },
-        defaultValue: {
-          summary: false,
-        },
+        defaultValue: { summary: false },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
   }}
 />
@@ -132,23 +110,13 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       variant: {
         name: 'variant',
-        control: {
-          type: 'select',
-          options: [
-            'primary',
-            'secondary',
-            'text',
-            'inverse',
-            'primaryCritical',
-          ],
-        },
+        options: ['primary', 'secondary', 'text', 'inverse', 'primaryCritical'],
+        control: { type: 'select' },
       },
       size: {
         name: 'size',
-        control: {
-          type: 'select',
-          options: ['sm', 'md', 'lg'],
-        },
+        options: ['sm', 'md', 'lg'],
+        control: { type: 'select' },
       },
       blocked: {
         name: 'blocked',
