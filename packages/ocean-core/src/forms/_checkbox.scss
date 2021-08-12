@@ -51,8 +51,8 @@
   }
 
   &:checked:disabled ~ &__checkmark {
-    background-color: $color-interface-light-deep;
-    border-color: $color-interface-light-deep;
+    background-color: $color-interface-light-down;
+    border-color: $color-interface-light-down;
   }
 
   &:disabled ~ &__checkmark,
@@ -63,6 +63,6 @@
 
   &:disabled:not(:checked) ~ &__checkmark {
     background-color: $color-interface-light-pure;
-    border-color: $color-interface-light-deep;
+    border-color: $color-interface-light-down;
   }
 }
