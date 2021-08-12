@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ocean-ds/ocean-web/compare/v1.9.0...v1.10.0) (2021-08-12)
+
+### Features
+
+- **form-label:** change font-weight from bold to regular ([#765](https://github.com/ocean-ds/ocean-web/issues/765)) ([f24d710](https://github.com/ocean-ds/ocean-web/commit/f24d710e3178f6e87f2f320891237d7c6b80bbce))
+
 # [1.9.0](https://github.com/ocean-ds/ocean-web/compare/v1.8.0...v1.9.0) (2021-08-12)
 
 ### Features
