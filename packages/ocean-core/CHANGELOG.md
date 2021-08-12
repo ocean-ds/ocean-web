@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ocean-ds/ocean-web/compare/v1.8.0...v1.9.0) (2021-08-12)
+
+### Features
+
+- **checkbox:** update border-width ([#766](https://github.com/ocean-ds/ocean-web/issues/766)) ([662ed14](https://github.com/ocean-ds/ocean-web/commit/662ed14fe011da78c7b4a00a0b52e292c97ca25b))
+
 # [1.8.0](https://github.com/ocean-ds/ocean-web/compare/v1.7.0...v1.8.0) (2021-08-12)
 
 ### Features
