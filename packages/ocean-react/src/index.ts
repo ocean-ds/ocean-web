@@ -30,3 +30,6 @@ export * from './Switch';
 
 export { default as Modal } from './Modal';
 export * from './Modal';
+
+export { default as Divider } from './Divider';
+export * from './Divider';
