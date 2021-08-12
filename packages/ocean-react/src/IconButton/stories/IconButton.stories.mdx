@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { XOutline, ChevronDown } from '@useblu/ocean-icons-react';
 import IconButton from '../IconButton';
 
@@ -10,50 +10,29 @@ import IconButton from '../IconButton';
       name: 'component',
       description:
         'The component used for the root node. Either a string to use a HTML element or a component.',
-      defaultValue: 'button',
       table: {
-        type: {
-          summary: 'elementType',
-        },
-        defaultValue: {
-          summary: 'button',
-        },
+        type: { summary: 'elementType' },
+        defaultValue: { summary: 'button' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     size: {
       name: 'size',
       description: 'The size of the icon button.',
-      defaultValue: 'md',
       table: {
-        type: {
-          summary: '"sm" | "md"',
-        },
-        defaultValue: {
-          summary: 'md',
-        },
+        type: { summary: '"sm" | "md"' },
+        defaultValue: { summary: 'md' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     disabled: {
       name: 'disabled',
       description: 'If true, the button will be disabled.',
-      defaultValue: false,
       table: {
-        type: {
-          summary: 'true | false',
-        },
-        defaultValue: {
-          summary: false,
-        },
+        type: { summary: 'true | false' },
+        defaultValue: { summary: false },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
   }}
 />
@@ -102,10 +81,8 @@ Any other props supplied will be provided to the root element (native element).
     argTypes={{
       size: {
         name: 'size',
-        control: {
-          type: 'select',
-          options: ['sm', 'md'],
-        },
+        options: ['sm', 'md'],
+        control: { type: 'select' },
       },
       disabled: {
         name: 'disabled',

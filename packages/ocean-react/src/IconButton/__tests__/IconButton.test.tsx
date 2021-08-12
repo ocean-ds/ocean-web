@@ -4,21 +4,6 @@ import { MemoryRouter as Router, Link } from 'react-router-dom';
 
 import IconButton from '../IconButton';
 
-test('renders a default Icon Button', () => {
-  render(<IconButton data-testid="btn-test" />);
-  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--md');
-});
-
-test('renders a small Icon Button', () => {
-  render(<IconButton data-testid="btn-test" size="sm" />);
-  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--sm');
-});
-
-test('renders a disabled Icon Button', () => {
-  render(<IconButton data-testid="btn-test" disabled={true} />);
-  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--disabled');
-});
-
 test('renders icon button element properly', () => {
   render(
     <IconButton className="classname-custom" data-testid="btn-test">
@@ -36,7 +21,22 @@ test('renders icon button element properly', () => {
   `);
 });
 
-test('renders icon button a link button', () => {
+test('renders a default icon button', () => {
+  render(<IconButton data-testid="btn-test" />);
+  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--md');
+});
+
+test('renders a small icon button', () => {
+  render(<IconButton data-testid="btn-test" size="sm" />);
+  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--sm');
+});
+
+test('renders a disabled icon button', () => {
+  render(<IconButton data-testid="btn-test" disabled={true} />);
+  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--disabled');
+});
+
+test('renders icon link button', () => {
   render(
     <Router>
       <IconButton data-testid="btn-test" component={Link} to="/teste/1234">
