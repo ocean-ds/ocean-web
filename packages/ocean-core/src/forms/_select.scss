@@ -26,6 +26,9 @@
     &:focus,
     &:active {
       border-color: $color-brand-primary-down;
+      border-width: $border-width-thin;
+      padding-left: $spacing-inline-xs - $border-width-hairline;
+      padding-right: $spacing-inline-xs - $border-width-hairline;
     }
 
     &:disabled {
@@ -33,6 +36,10 @@
       border-color: $color-interface-light-down;
       color: $color-interface-dark-up;
       cursor: not-allowed;
+    }
+
+    &--filled {
+      border-color: $color-brand-primary-up;
     }
 
     &--error {

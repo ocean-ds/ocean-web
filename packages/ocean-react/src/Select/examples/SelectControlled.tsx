@@ -14,6 +14,7 @@ const SelectControlled: React.FC = () => {
           { value: 'coconut', label: 'Coconut', 'data-testid': 'coconut' },
         ]}
         ariaLabel="Pick your favorite flavor"
+        data-testid="controlled-select"
       />
       <span data-testid="selected-value">{value}</span>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import useInputFilled from '../_util/useInputFilled';
 import FormControl, { FormControlProps } from '../FormControl';
 
 export type TextAreaProps = Omit<FormControlProps, 'children'> &
@@ -8,9 +9,27 @@ export type TextAreaProps = Omit<FormControlProps, 'children'> &
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
-    { className, label, helperText, blocked, error, id, disabled, ...rest },
+    {
+      className,
+      label,
+      helperText,
+      blocked,
+      error,
+      id,
+      disabled,
+      onChange,
+      value,
+      defaultValue,
+      ...rest
+    },
     ref
   ) {
+    const { filled, handleChange } = useInputFilled({
+      defaultValue,
+      value,
+      onChange,
+    });
+
     return (
       <FormControl
         label={label}
@@ -25,10 +44,14 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           id={id}
           className={classNames(
             'ods-textarea',
+            filled && 'ods-textarea--filled',
             error && 'ods-textarea--error',
             className
           )}
           disabled={disabled}
+          onChange={handleChange}
+          defaultValue={defaultValue}
+          value={value}
           {...rest}
         />
       </FormControl>
