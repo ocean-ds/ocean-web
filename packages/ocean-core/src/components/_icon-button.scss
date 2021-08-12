@@ -1,12 +1,14 @@
 .ods-icon-btn {
+  align-items: center;
   background: transparent;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
   height: 48px;
+  justify-content: center;
   line-height: $line-height-tight;
   outline: none;
-  text-align: center;
   width: 48px;
 
   &:hover,
