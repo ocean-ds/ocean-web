@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Link from '../Link';
 
 <Meta
@@ -9,30 +9,20 @@ import Link from '../Link';
       name: 'component',
       description:
         'The component used for the root node. Either a string to use a HTML element or a component.',
-      defaultValue: 'a',
       table: {
-        type: {
-          summary: 'elementType',
-        },
-        defaultValue: {
-          summary: 'a',
-        },
+        type: { summary: 'elementType' },
+        defaultValue: { summary: 'a' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
     inverse: {
       name: 'inverse',
       description: 'Use the inverse link on dark backgrounds.',
-      defaultValue: false,
       table: {
         type: {
           summary: 'true | false',
         },
-        defaultValue: {
-          summary: false,
-        },
+        defaultValue: { summary: false },
       },
       control: {
         type: null,
@@ -41,18 +31,13 @@ import Link from '../Link';
     size: {
       name: 'size',
       description: 'The size of the link.',
-      defaultValue: 'md',
       table: {
         type: {
           summary: '"sm" | "md"',
         },
-        defaultValue: {
-          summary: 'md',
-        },
+        defaultValue: { summary: 'md' },
       },
-      control: {
-        type: null,
-      },
+      control: { type: null },
     },
   }}
 />
@@ -114,10 +99,8 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       size: {
         name: 'size',
-        control: {
-          type: 'select',
-          options: ['sm', 'md'],
-        },
+        options: ['sm', 'md'],
+        control: { type: 'select' },
       },
     }}
   >

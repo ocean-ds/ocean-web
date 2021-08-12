@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Typography from '../Typography';
 
 <Meta title="Components/Typography" component={Typography} />
@@ -62,22 +62,19 @@ If that's not sufficient, you can check the [implementation of the component](ht
     argTypes={{
       variant: {
         name: 'variant',
-        defaultValue: 'heading1',
-        control: {
-          type: 'select',
-          options: [
-            'heading1',
-            'heading2',
-            'heading3',
-            'heading4',
-            'subtitle1',
-            'subtitle2',
-            'paragraph',
-            'lead',
-            'description',
-            'caption',
-          ],
-        },
+        options: [
+          'heading1',
+          'heading2',
+          'heading3',
+          'heading4',
+          'subtitle1',
+          'subtitle2',
+          'paragraph',
+          'lead',
+          'description',
+          'caption',
+        ],
+        control: { type: 'select' },
       },
     }}
   >
