@@ -1,0 +1,52 @@
+.ods-icon-btn {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  line-height: $line-height-tight;
+  outline: none;
+  width: 48px;
+
+  &:hover,
+  &:focus {
+    background: $color-interface-light-up;
+    color: $color-brand-primary-pure;
+  }
+
+  &:active {
+    background: $color-interface-light-down;
+  }
+
+  &--sm {
+    font-size: $font-size-xs;
+    height: 40px;
+    width: 40px;
+
+    :first-child {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &--md {
+    font-size: $font-size-sm;
+    height: 48px;
+    width: 48px;
+  }
+
+  &--disabled {
+    background-color: $color-interface-light-down;
+    color: $color-interface-dark-up;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      background-color: $color-interface-light-down;
+      color: $color-interface-dark-up;
+    }
+  }
+}
