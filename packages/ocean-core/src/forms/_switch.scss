@@ -9,17 +9,22 @@
     height: 24px;
     position: relative;
     width: 44px;
+
+    &:hover .ods-switch__slider {
+      background-color: $color-interface-light-up;
+      border-color: $color-interface-dark-up;
+    }
   }
 
   &__slider {
     background-color: $color-interface-light-pure;
-    border: solid $border-width-thin $color-interface-dark-up;
+    border: solid $border-width-hairline $color-interface-dark-up;
     border-radius: $border-radius-pill;
     bottom: 0;
     box-sizing: border-box;
     cursor: pointer;
     left: 0;
-    padding: $spacing-inset-xxs - $border-width-thin;
+    padding: $spacing-inset-xxs - $border-width-hairline;
     position: absolute;
     right: 0;
     top: 0;
@@ -47,8 +52,8 @@
   }
 
   &:checked:disabled + &__slider {
-    background-color: $color-interface-light-deep;
-    border-color: $color-interface-light-deep;
+    background-color: $color-interface-light-down;
+    border-color: $color-interface-light-down;
   }
 
   &:disabled + &__slider {
@@ -57,10 +62,10 @@
 
   &:disabled:not(:checked) + &__slider {
     background-color: $color-interface-light-pure;
-    border-color: $color-interface-light-deep;
+    border-color: $color-interface-light-down;
   }
 
   &:disabled:not(:checked) + &__slider::before {
-    background-color: $color-interface-light-deep;
+    background-color: $color-interface-light-down;
   }
 }
