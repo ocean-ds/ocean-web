@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ocean-ds/ocean-web/compare/v1.6.1...v1.7.0) (2021-08-12)
+
+### Features
+
+- update border-width for input, select and textarea ([#762](https://github.com/ocean-ds/ocean-web/issues/762)) ([ac61191](https://github.com/ocean-ds/ocean-web/commit/ac61191a8ca36c4d405028296c14a1ae3b5f5fe6))
+
 # [1.6.0](https://github.com/ocean-ds/ocean-web/compare/v1.5.0...v1.6.0) (2021-08-11)
 
 ### Features
