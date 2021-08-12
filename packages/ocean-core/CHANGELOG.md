@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ocean-ds/ocean-web/compare/v1.10.1...v1.11.0) (2021-08-12)
+
+### Features
+
+- add divider component ([#770](https://github.com/ocean-ds/ocean-web/issues/770)) ([598b8e4](https://github.com/ocean-ds/ocean-web/commit/598b8e4358e699b905dc1f8e5dcdda4b7f3c9503))
+
 # [1.10.0](https://github.com/ocean-ds/ocean-web/compare/v1.9.0...v1.10.0) (2021-08-12)
 
 ### Features
