@@ -16,7 +16,13 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
      * The variant to use.
      * @default 'primary'
      */
-    variant?: 'primary' | 'secondary' | 'text' | 'inverse' | 'primaryCritical';
+    variant?:
+      | 'primary'
+      | 'primaryCritical'
+      | 'secondary'
+      | 'text'
+      | 'textCritical'
+      | 'inverse';
     /**
      * The size of the button.
      * @default 'md'
