@@ -123,6 +123,23 @@
     }
   }
 
+  &--text-critical {
+    background-color: transparent;
+    color: $color-status-negative-pure;
+
+    &:hover {
+      background-color: $color-interface-light-down;
+    }
+
+    &:focus {
+      background-color: $color-interface-light-down;
+    }
+
+    &:active {
+      background-color: $color-interface-light-deep;
+    }
+  }
+
   &--blocked {
     width: 100%;
   }

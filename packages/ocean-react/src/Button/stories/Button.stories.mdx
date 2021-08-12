@@ -21,7 +21,7 @@ import Button from '../Button';
       table: {
         type: {
           summary:
-            '"primary" | "secondary" | "text" | "inverse" | "primaryCritical"',
+            '"primary" | "secondary" | "text" | "inverse" | "primaryCritical" | "textCritical"',
         },
         defaultValue: { summary: 'primary' },
       },
@@ -88,6 +88,7 @@ Any other props supplied will be provided to the root element (native element).
 | .ods-btn--text             | Sets styles of the text button.                         |
 | .ods-btn--inverse          | Use the inverse button on dark backgrounds.             |
 | .ods-btn--primary-critical | Sets styles of the primary critical button.             |
+| .ods-btn--text-critical    | Sets styles of the text critical button.                |
 | .ods-btn--[sm,md,lg]       | Specifies the width of the button.                      |
 | .ods-btn--blocked          | Spans the full width of the Button parent.              |
 
@@ -110,7 +111,14 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       variant: {
         name: 'variant',
-        options: ['primary', 'secondary', 'text', 'inverse', 'primaryCritical'],
+        options: [
+          'primary',
+          'secondary',
+          'text',
+          'inverse',
+          'primaryCritical',
+          'textCritical',
+        ],
         control: { type: 'select' },
       },
       size: {
