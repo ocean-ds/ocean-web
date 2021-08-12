@@ -18,11 +18,11 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
      */
     variant?:
       | 'primary'
+      | 'primaryCritical'
       | 'secondary'
       | 'text'
-      | 'inverse'
-      | 'primaryCritical'
-      | 'textCritical';
+      | 'textCritical'
+      | 'inverse';
     /**
      * The size of the button.
      * @default 'md'
