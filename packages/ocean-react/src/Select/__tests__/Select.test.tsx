@@ -265,6 +265,9 @@ test('renders expanded listbox with the selected option focused', () => {
     'aria-selected',
     'true'
   );
+  expect(screen.getByTestId('select-test')).not.toHaveClass(
+    'ods-select__control--filled'
+  );
 });
 
 test('collapses listbox when `Esc` key is pressed', () => {
@@ -342,14 +345,34 @@ test('renders a error state for the select', () => {
   );
 });
 
+test('renders a filled state for uncontrolled input', () => {
+  render(
+    <Select
+      data-testid="select-test"
+      defaultValue="v1"
+      options={[{ value: 'v1', label: 'Label 1' }]}
+    />
+  );
+
+  expect(screen.getByTestId('select-test')).toHaveClass(
+    'ods-select__control--filled'
+  );
+});
+
 test('renders controlled select', async () => {
   render(<SelectControlled />);
 
+  expect(screen.getByTestId('controlled-select')).not.toHaveClass(
+    'ods-select__control--filled'
+  );
   expect(screen.getByTestId('selected-value')).toBeEmptyDOMElement();
   fireEvent.click(screen.getByLabelText('Pick your favorite flavor'));
   fireEvent.click(screen.getByTestId('coconut'));
 
   await waitFor(() =>
     expect(screen.getByTestId('selected-value')).toHaveTextContent('coconut')
+  );
+  expect(screen.getByTestId('controlled-select')).toHaveClass(
+    'ods-select__control--filled'
   );
 });

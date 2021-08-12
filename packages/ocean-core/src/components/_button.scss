@@ -55,6 +55,23 @@
     }
   }
 
+  &--primary-critical {
+    background-color: $color-status-negative-pure;
+    color: $color-interface-light-pure;
+
+    &:hover {
+      background-color: $color-status-negative-down;
+    }
+
+    &:focus {
+      background-color: $color-status-negative-down;
+    }
+
+    &:active {
+      background-color: $color-status-negative-deep;
+    }
+  }
+
   &--secondary {
     background-color: $color-interface-light-up;
     color: $color-brand-primary-pure;
@@ -72,9 +89,9 @@
     }
   }
 
-  &--text {
+  &--text,
+  &--text-critical {
     background-color: transparent;
-    color: $color-brand-primary-pure;
 
     &:hover {
       background-color: $color-interface-light-down;
@@ -87,6 +104,14 @@
     &:active {
       background-color: $color-interface-light-deep;
     }
+  }
+
+  &--text {
+    color: $color-brand-primary-pure;
+  }
+
+  &--text-critical {
+    color: $color-status-negative-pure;
   }
 
   &--inverse {
@@ -103,23 +128,6 @@
 
     &:active {
       background-color: $color-complementary-deep;
-    }
-  }
-
-  &--primary-critical {
-    background-color: $color-status-negative-pure;
-    color: $color-interface-light-pure;
-
-    &:hover {
-      background-color: $color-status-negative-down;
-    }
-
-    &:focus {
-      background-color: $color-status-negative-down;
-    }
-
-    &:active {
-      background-color: $color-status-negative-deep;
     }
   }
 

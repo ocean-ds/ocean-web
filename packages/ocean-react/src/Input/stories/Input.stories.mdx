@@ -37,7 +37,7 @@ import { Input } from '@useblu/ocean-react';
     <Input
       id="input-usage"
       label="Label"
-      value="Hello World"
+      defaultValue="Hello World"
       helperText="Just a small info ;)"
       readOnly
     />
@@ -54,10 +54,11 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class      | Description                                          |
-| ----------------- | ---------------------------------------------------- |
-| .ods-input        | Styles applied to the input element.                 |
-| .ods-input--error | Styles applied to the input element if error={true}. |
+| Global class       | Description                                           |
+| ------------------ | ----------------------------------------------------- |
+| .ods-input         | Styles applied to the input element.                  |
+| .ods-input--filled | Styles applied to the input element when it's filled. |
+| .ods-input--error  | Styles applied to the input element if error={true}.  |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
 
