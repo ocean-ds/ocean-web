@@ -47,6 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "babel-loader": "^8.2.2",
+    "chromatic": "^5.9.2",
     "commitizen": "^4.2.4",
     "css-loader": "^5.2.1",
     "cz-conventional-changelog": "3.3.0",
