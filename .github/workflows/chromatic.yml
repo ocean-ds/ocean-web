@@ -30,12 +30,14 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
+      - name: Build all
+        run: yarn build
+
       - name: Publish to Chromatic
         if: github.ref != 'refs/heads/master'
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          buildScriptName: 'build'
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
       - name: Publish to Chromatic and auto accept changes
@@ -44,5 +46,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: 'build'
           autoAcceptChanges: true
