@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ocean-ds/ocean-web/compare/v1.14.0...v1.15.0) (2021-08-13)
+
+### Features
+
+- **checkbox:** add Indeterminate state and fix colors ([#775](https://github.com/ocean-ds/ocean-web/issues/775)) ([d4bc568](https://github.com/ocean-ds/ocean-web/commit/d4bc568fde3abce8760a2ef6085d4b3d269bfee1))
+
 # [1.12.0](https://github.com/ocean-ds/ocean-web/compare/v1.11.0...v1.12.0) (2021-08-12)
 
 ### Features
