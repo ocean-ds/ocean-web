@@ -31,12 +31,13 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class               | Description                             |
-| -------------------------- | --------------------------------------- |
-| .ods-checkbox\_\_root      | Styles applied to the root element.     |
-| .ods-checkbox              | Styles applied to the checkbox element. |
-| .ods-checkbox\_\_checkmark | Styles applied to the span element.     |
-| .ods-checkbox\_\_label     | Styles applied to the span element.     |
+| Global class                              | Description                                                 |
+| ----------------------------------------- | ----------------------------------------------------------- |
+| .ods-checkbox\_\_root                     | Styles applied to the root element.                         |
+| .ods-checkbox                             | Styles applied to the checkbox element.                     |
+| .ods-checkbox\_\_checkmark                | Styles applied to the span element.                         |
+| .ods-checkbox\_\_checkmark--indeterminate | Styles applied to the span element if indeterminate={true}. |
+| .ods-checkbox\_\_label                    | Styles applied to the span element.                         |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Checkbox/Checkbox.tsx) for more detail.
 
@@ -48,12 +49,16 @@ If that's not sufficient, you can check the [implementation of the component](ht
     args={{
       label: 'Label',
       disabled: false,
+      indeterminate: false,
     }}
     argTypes={{
       label: {
         control: 'text',
       },
       disabled: {
+        control: 'boolean',
+      },
+      indeterminate: {
         control: 'boolean',
       },
     }}
