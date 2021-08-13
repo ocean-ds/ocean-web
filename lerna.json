@@ -11,7 +11,7 @@
       "conventionalCommits": true,
       "noPrivate": true,
       "createRelease": "github",
-      "message": "chore(release): publish %s",
+      "message": "chore(release): publish %s [skip ci]",
       "loglevel": "verbose"
     },
     "publish": {

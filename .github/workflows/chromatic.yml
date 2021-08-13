@@ -1,15 +1,14 @@
-name: Site
+name: Chromatic
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
-  storybook:
+  chromatic-deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
 
       - name: Use Node.js environment
         uses: actions/setup-node@v2
@@ -31,7 +30,17 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Deploy documentation
-        run: yarn deploy:storybook -- --ci
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Publish to Chromatic
+        if: github.ref != 'refs/heads/master'
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+      - name: Publish to Chromatic and auto accept changes
+        if: github.ref == 'refs/heads/master'
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true
