@@ -17,8 +17,10 @@ import { Alert } from '@useblu/ocean-react';
 ## Usage
 
 <Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <Alert>Hello There!</Alert>
+  <Story name="Usage">
+    <Alert>
+      <strong>Atentention</strong>: Hello There!
+    </Alert>
   </Story>
 </Canvas>
 
@@ -103,6 +105,7 @@ You can also use the `icon` property to custom svg icon.
 | .ods-alert\_\_header   | Styles applied to the header element.                     |
 | .ods-alert\_\_icon     | Styles applied to the icon element.                       |
 | .ods-alert\_\_title    | Styles applied to the title element.                      |
+| .ods-alert\_\_content  | Styles applied to the content element.                    |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Alert/Alert.tsx) for more detail.
 

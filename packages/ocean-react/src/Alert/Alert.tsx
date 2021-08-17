@@ -16,16 +16,14 @@ export type AlertProps = {
   /**
    * Sets a custon icon for the Alert.
    */
-  icon?: React.ReactNode;
+  icon?: React.ReactElement;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   { children, type = 'default', title, className, icon, ...rest },
   ref
 ) {
-  const alertIcon = (
-    <AlertIcon type={type} icon={icon} className="ods-alert__icon" />
-  );
+  const alertIcon = <AlertIcon type={type} icon={icon} />;
 
   return (
     <div
@@ -47,8 +45,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
       ) : (
         alertIcon
       )}
-
-      {children}
+      <div className="ods-alert__content">{children}</div>
     </div>
   );
 });
