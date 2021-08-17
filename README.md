@@ -39,6 +39,9 @@
   <a href="http://makeapullrequest.com">
     <img alt="Conventional Commits" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
   </a>
+  <a href="https://discord.gg/hDWzGPKuG2">
+    <img alt="Discord Server" src="https://img.shields.io/discord/875438252172136468.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff">
+  </a>
 </p>
 
 This project is composed of many npm packages for building web apps with [Ocean](https://zeroheight.com/9c9b2b3aa/p/257272-ocean-ds/t/968532) design system.
@@ -78,3 +81,7 @@ All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
 
 - [Design tokens for the Blu design system](https://github.com/ocean-ds/ocean-tokens)
 - [SVG icons for Ocean DS](https://github.com/ocean-ds/ocean-icons)
+
+## Join our community
+
+Join our [discord server](https://discord.gg/hDWzGPKuG2) to get the latest updates, chat with other Ocean enthusiasts, and see what's happening in the community!
