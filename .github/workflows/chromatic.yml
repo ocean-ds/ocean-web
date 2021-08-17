@@ -33,12 +33,8 @@ jobs:
       - name: Build all
         run: yarn build
 
-      - name: Skip builds for dependabot actor
-        if: github.actor == 'dependabot[bot]'
-        run: npx chromatic --skip 'dependabot/**' --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-
       - name: Publish to Chromatic
-        if: github.ref != 'refs/heads/master' && github.actor != 'dependabot[bot]'
+        if: github.ref != 'refs/heads/master'
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
