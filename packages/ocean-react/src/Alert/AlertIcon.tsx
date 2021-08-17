@@ -6,16 +6,10 @@ import {
   CheckCircleOutline,
 } from '@useblu/ocean-icons-react';
 
-export type AlertIconProps = {
-  /**
-   * Determines the type of alert, with default icon and colors for each type
-   */
+type AlertIconProps = {
   type: 'success' | 'warning' | 'error' | 'default';
-  /**
-   * Sets a title for the Alert
-   */
-  icon?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'div'>;
+  icon?: React.ReactElement;
+};
 
 const mapIconsByType = {
   warning: ExclamationCircleOutline,
@@ -30,7 +24,7 @@ const AlertIcon = React.memo<AlertIconProps>(function AlertIcon({
 }) {
   const IconEl = mapIconsByType[type];
 
-  if (icon) return <div className="ods-alert__icon">{icon}</div>;
+  if (icon) return React.cloneElement(icon, { className: 'ods-alert__icon' });
 
   return (
     <IconEl
