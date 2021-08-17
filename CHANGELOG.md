@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.2](https://github.com/ocean-ds/ocean-web/compare/v1.16.1...v1.16.2) (2021-08-17)
+
+### Bug Fixes
+
+- **alert:** adds a wrapper for content to let user to have how many children they want ([#786](https://github.com/ocean-ds/ocean-web/issues/786)) ([5140595](https://github.com/ocean-ds/ocean-web/commit/5140595b73221c9f2eeaeeb61e7f44278bcb1171))
+
+## [1.16.1](https://github.com/ocean-ds/ocean-web/compare/v1.16.0...v1.16.1) (2021-08-17)
+
+**Note:** Version bump only for package root
+
+# [1.16.0](https://github.com/ocean-ds/ocean-web/compare/v1.15.0...v1.16.0) (2021-08-16)
+
+### Features
+
+- add alert component ([#768](https://github.com/ocean-ds/ocean-web/issues/768)) ([cc924bb](https://github.com/ocean-ds/ocean-web/commit/cc924bb81f9b6de18f390ae367e1e1070181eea5))
+
 # [1.15.0](https://github.com/ocean-ds/ocean-web/compare/v1.14.0...v1.15.0) (2021-08-13)
 
 ### Features

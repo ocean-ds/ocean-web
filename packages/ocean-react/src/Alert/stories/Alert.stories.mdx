@@ -1,0 +1,128 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { StarOutline } from '@useblu/ocean-icons-react';
+import Alert from '../Alert';
+
+<Meta title="Components/Alert" component={Alert} />
+
+# Alert API
+
+The API documentation of the alert React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Alert } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Alert>
+      <strong>Atentention</strong>: Hello There!
+    </Alert>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+### Simple alerts
+
+The alert offers four diferents default types that set a icon and color.
+
+<Canvas>
+  <Story name="default">
+    <Alert>This is an informational message.</Alert>
+  </Story>
+  <Story name="warning">
+    <Alert type="warning">This is an informational message.</Alert>
+  </Story>
+  <Story name="error">
+    <Alert type="error">This is an informational message.</Alert>
+  </Story>
+  <Story name="success">
+    <Alert type="success">This is an informational message.</Alert>
+  </Story>
+</Canvas>
+
+### Description
+
+You can use the `title` property to display a formatted title above the alert message.
+
+<Canvas>
+  <Story name="default-with-title">
+    <Alert title="Default Title">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="warning-with-title">
+    <Alert type="warning" title="Warning Title">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="error-with-title">
+    <Alert type="error" title="Error Title">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="success-with-title">
+    <Alert type="success" title="Success Title!">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+</Canvas>
+
+### Custom Icon
+
+You can also use the `icon` property to custom svg icon.
+
+<Canvas>
+  <Story name="default-with-custom-icon">
+    <Alert
+      title="Alert with a custom icon!"
+      icon={<StarOutline size={24} stroke="#5872f5" />}
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+</Canvas>
+
+## CSS
+
+| Global class           | Description                                               |
+| ---------------------- | --------------------------------------------------------- |
+| .ods-alert             | Styles applied to the root element.                       |
+| .ods-alert--has-header | Styles applied to the root element with a title proprity. |
+| .ods-alert--error      | Styles applied to the root element with a error type.     |
+| .ods-alert--warning    | Styles applied to the root element with a warning type.   |
+| .ods-alert--success    | Styles applied to the root element with a success type.   |
+| .ods-alert\_\_header   | Styles applied to the header element.                     |
+| .ods-alert\_\_icon     | Styles applied to the icon element.                       |
+| .ods-alert\_\_title    | Styles applied to the title element.                      |
+| .ods-alert\_\_content  | Styles applied to the content element.                    |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Alert/Alert.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      title: 'My title',
+      type: 'default',
+      children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    }}
+    argTypes={{
+      icon: { control: null },
+    }}
+  >
+    {(props) => <Alert {...props} />}
+  </Story>
+</Canvas>
