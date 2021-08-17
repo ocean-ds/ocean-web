@@ -5,14 +5,25 @@ on:
     branches-ignore:
       - 'dependabot/**'
   pull_request_target:
+    branches:
+      - 'dependabot/**'
     types: [opened, synchronize, reopened]
 
 jobs:
   chromatic-deployment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        if: github.event_name == 'push'
+        uses: actions/checkout@v2
         with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
+
+      - name: Checkout for dependabot
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0 # 👈 Required to retrieve git history
 
       - name: Use Node.js environment
