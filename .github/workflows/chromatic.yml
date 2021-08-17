@@ -1,13 +1,28 @@
 name: Chromatic
 
-on: push
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request_target:
+    types: [opened, synchronize, reopened]
 
 jobs:
   chromatic-deployment:
+    if: ${{ github.event_name == 'push' || (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        if: github.event_name == 'push'
+        uses: actions/checkout@v2
         with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
+
+      - name: Checkout for dependabot
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request_target.head.sha }}
           fetch-depth: 0 # 👈 Required to retrieve git history
 
       - name: Use Node.js environment
@@ -33,12 +48,8 @@ jobs:
       - name: Build all
         run: yarn build
 
-      - name: Skip builds for dependabot actor
-        if: github.actor == 'dependabot[bot]'
-        run: npx chromatic --skip 'dependabot/**' --project-token ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-
       - name: Publish to Chromatic
-        if: github.ref != 'refs/heads/master' && github.actor != 'dependabot[bot]'
+        if: github.ref != 'refs/heads/master'
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
