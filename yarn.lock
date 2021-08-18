@@ -3772,9 +3772,9 @@
     "@types/node" "*"
 
 "@types/gulp-postcss@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@types/gulp-postcss/-/gulp-postcss-8.0.0.tgz#f7e86d45e4999fd43e6d8c55b00504c88a67ad61"
-  integrity sha512-AVgjA03bpkYONKZpzuJviB9PzaNbDzrovYPbenj8/XxivUc35C/dIzJanyaQv7CFqfLLPLsqSalmtP3GLq6iag==
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@types/gulp-postcss/-/gulp-postcss-8.0.1.tgz#4130aba289384e890039c9a605ab3da8bc3766d1"
+  integrity sha512-aYbolMshYIEVcEuVOV39RW6che6oF6l2XacnrXeES0sL0BuY25+uz/Q+0jj/Tr9NX4SjdtJmeS5gXJ6G0fTP6g==
   dependencies:
     "@types/node" "*"
     "@types/vinyl" "*"
@@ -16438,9 +16438,9 @@ style-loader@^1.3.0:
     schema-utils "^2.7.0"
 
 style-loader@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-3.0.0.tgz#2eafcd0dbe70b07438e0256a9714ea94dd63cbe0"
-  integrity sha512-pqJTDiCtLr8D2eyVWXPiwNkLsAMDuvPHnu+Z/Edo9hu+DzdJwdO5eZv9zUBF6tWI8GJGhAkenWJaVjXI+sHnuQ==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-3.2.1.tgz#63cb920ec145c8669e9a50e92961452a1ef5dcde"
+  integrity sha512-1k9ZosJCRFaRbY6hH49JFlRB0fVSbmnyq1iTPjNxUmGVjBNEmwrrHPenhlp+Lgo51BojHSf6pl2FcqYaN3PfVg==
 
 style-search@^0.1.0:
   version "0.1.0"
