@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.3](https://github.com/ocean-ds/ocean-web/compare/v1.16.2...v1.16.3) (2021-08-18)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
 # [1.16.0](https://github.com/ocean-ds/ocean-web/compare/v1.15.0...v1.16.0) (2021-08-16)
 
 ### Features
