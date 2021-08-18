@@ -37,7 +37,7 @@
     "@types/gulp-rename": "^2.0.0",
     "@types/gulp-sass": "^4.0.0",
     "@types/gulp-size": "^2.1.1",
-    "@types/gulp-sourcemaps": "^0.0.34",
+    "@types/gulp-sourcemaps": "^0.0.35",
     "@useblu/ocean-tokens": "3.1.0",
     "autoprefixer": "^10.2.5",
     "cssnano": "^5.0.1",
