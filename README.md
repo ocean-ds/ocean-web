@@ -73,6 +73,10 @@ Read our [contributing guide](.github/CONTRIBUTING.md) to learn about our develo
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/ocean-ds/ocean-web/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
 
+## Join our community
+
+Join our [discord server](https://discord.gg/hDWzGPKuG2) to get the latest updates, chat with other Ocean enthusiasts, and see what's happening in the community!
+
 ## License
 
 All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
@@ -81,7 +85,3 @@ All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
 
 - [Design tokens for the Blu design system](https://github.com/ocean-ds/ocean-tokens)
 - [SVG icons for Ocean DS](https://github.com/ocean-ds/ocean-icons)
-
-## Join our community
-
-Join our [discord server](https://discord.gg/hDWzGPKuG2) to get the latest updates, chat with other Ocean enthusiasts, and see what's happening in the community!
