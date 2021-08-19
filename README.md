@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://ocean-ds.github.io/ocean-web/index.html">
-    <img alt="ocean-logo" src="https://user-images.githubusercontent.com/3240432/96205195-5c8b0080-0f3c-11eb-8229-1f0a7f93df0a.png" width="400">
+    <img alt="ocean-logo" src="https://user-images.githubusercontent.com/3240432/130073671-e62059a3-19f5-47bd-8ce8-db66b3240eb7.png" width="400">
   </a>
 </h1>
 
