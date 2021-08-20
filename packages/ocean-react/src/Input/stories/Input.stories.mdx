@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
+import { EyeOutline } from '@useblu/ocean-icons-react';
 
 <Meta
   title="Components/Input"
@@ -40,6 +41,21 @@ import { Input } from '@useblu/ocean-react';
       defaultValue="Hello World"
       helperText="Just a small info ;)"
       readOnly
+    />
+  </Story>
+</Canvas>
+
+## With adornment variation
+
+<Canvas withSource="open" withToolbar>
+  <Story name="with-adornment">
+    <Input
+      id="input-usage"
+      label="Password"
+      name="user[password]"
+      defaultValue="set your password"
+      type="password"
+      adornment={<EyeOutline size={24} stroke="#B6B9CC" />}
     />
   </Story>
 </Canvas>
