@@ -1,7 +1,11 @@
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
-import sass from 'gulp-sass';
+
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
+
 import postcss from 'gulp-postcss';
 import rename from 'gulp-rename';
 import size from 'gulp-size';
