@@ -7968,9 +7968,9 @@ eslint-plugin-jest-dom@^3.8.0:
     requireindex "^1.2.0"
 
 eslint-plugin-jest@^24.3.5:
-  version "24.3.6"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.3.6.tgz#5f0ca019183c3188c5ad3af8e80b41de6c8e9173"
-  integrity sha512-WOVH4TIaBLIeCX576rLcOgjNXqP+jNlCiEmRgFTfQtJ52DpwnIQKAVGlGPAN7CZ33bW6eNfHD6s8ZbEUTQubJg==
+  version "24.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.4.0.tgz#fa4b614dbd46a98b652d830377971f097bda9262"
+  integrity sha512-8qnt/hgtZ94E9dA6viqfViKBfkJwFHXgJmTWlMGDgunw1XJEGqm3eiPjDsTanM3/u/3Az82nyQM9GX7PM/QGmg==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
@@ -7998,9 +7998,9 @@ eslint-plugin-react@^7.23.2:
     string.prototype.matchall "^4.0.5"
 
 eslint-plugin-testing-library@^4.6.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-4.9.0.tgz#be65bab6cf20725c6a503974f134a65deea02de9"
-  integrity sha512-pnWco+Gi8I77K3DAusOmt9MMA1BG1/sbztkEptB4VbNeVxE0ju5sOyLETJ03CIx8eMNbQAZNeiLQB7hT5D0L3A==
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-4.11.0.tgz#59843429ae9c82eb7e6113e86896457984fc5aa2"
+  integrity sha512-2C5ODUaaxpOij1ah99vEFFbqDY/o5AXbAdjZcbT/RUcEIGcZupgxlFxID51wBsb6FWXtAL6mJliK0bAqgns4Ew==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.24.0"
 
