@@ -10,6 +10,10 @@ export type InputProps = {
    * @default 'text'
    */
   type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
+  /**
+   * Sets a custon adornment to be iside of the `input` element.
+   */
+  adornment?: React.ReactElement;
 } & Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'input'>;
 
@@ -25,6 +29,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     disabled,
     onChange,
     value,
+    adornment,
     defaultValue,
     ...rest
   },
@@ -45,22 +50,27 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
       blocked={blocked}
       disabled={disabled}
     >
-      <input
-        ref={ref}
-        type={type || 'text'}
-        id={id}
+      <div
         className={classNames(
           'ods-input',
           filled && 'ods-input--filled',
+          disabled && 'ods-input--disabled',
           error && 'ods-input--error',
           className
         )}
-        disabled={disabled}
-        onChange={handleChange}
-        defaultValue={defaultValue}
-        value={value}
-        {...rest}
-      />
+      >
+        <input
+          ref={ref}
+          type={type || 'text'}
+          id={id}
+          disabled={disabled}
+          onChange={handleChange}
+          defaultValue={defaultValue}
+          value={value}
+          {...rest}
+        />
+        {adornment && <div className="ods-input__adornment">{adornment}</div>}
+      </div>
     </FormControl>
   );
 });
