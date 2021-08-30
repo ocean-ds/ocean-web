@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ocean-ds/ocean-web/compare/v1.17.0...v1.18.0) (2021-08-30)
+
+### Features
+
+- **tag:** add tag component ([#798](https://github.com/ocean-ds/ocean-web/issues/798)) ([7a3217d](https://github.com/ocean-ds/ocean-web/commit/7a3217d4c86a668f7c8f1907ab5593fd8d3727c4))
+
 # [1.17.0](https://github.com/ocean-ds/ocean-web/compare/v1.16.5...v1.17.0) (2021-08-30)
 
 ### Features
