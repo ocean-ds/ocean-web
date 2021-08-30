@@ -1,0 +1,11 @@
+.ods-list {
+  background: $color-interface-light-pure;
+  border: 1px solid $color-interface-light-down;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .ods-list__item:not(:first-of-type):not(:last-of-type) {
+    border-bottom: 1px solid $color-interface-light-down;
+  }
+}

@@ -1,0 +1,272 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import Transaction from '../Transaction';
+import Tag from '../../Tag';
+import SubHeader from '../../SubHeader';
+import List from '../../List';
+
+import {
+  EyeOutline,
+  SwitchHorizontal,
+  ShoppingBagOutline,
+  CreditCardOutline,
+  StarOutline,
+  Reply,
+  LockClosed,
+} from '@useblu/ocean-icons-react';
+
+<Meta
+  title="Components/Transaction"
+  component={Transaction}
+  parameters={{ layout: 'padded' }}
+/>
+
+# Transaction API
+
+The API documentation of the Transaction React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Transaction } from '@useblu/ocean-react';
+```
+
+## Simple Usage
+
+with many levels of information, all the possibilities are displayed down below.
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Transaction
+      icon={<EyeOutline />}
+      tags={
+        <>
+          <Tag>Tag</Tag>
+          <Tag>Tag</Tag>
+        </>
+      }
+      time="9:00"
+      value="U$ 00.000,00"
+      level2="Level 2"
+      level3="Level 3"
+      level4="Level 4"
+    >
+      Level 1
+    </Transaction>
+  </Story>
+</Canvas>
+
+## With positive value
+
+<Canvas withSource="open">
+  <Story name="usage-positve">
+    <Transaction
+      icon={<SwitchHorizontal />}
+      positive
+      time="9:00"
+      value="U$ 5.346,90"
+      level2="In-n-Out Burgers LA"
+    >
+      Transaction Received
+    </Transaction>
+  </Story>
+</Canvas>
+
+## With Tags
+
+you can set one or a list of custom Tag element with the parameter `tags`:
+
+<Canvas withSource="open">
+  <Story name="usage-with-tags">
+    <Transaction
+      icon={<SwitchHorizontal />}
+      tags={
+        <>
+          <Tag type="negative"> blocked </Tag>
+        </>
+      }
+      time="9:00"
+      value="U$ 146,90"
+      level2="In-n-Out Burgers LA"
+      level3="reibushed to the client"
+    >
+      Transaction Received
+    </Transaction>
+  </Story>
+</Canvas>
+
+## Custom Icons
+
+you can set a custom Icon for the transaction with the parameter `icon`:
+
+<Canvas withSource="open">
+  <Story name="usage-with-icons">
+    <Transaction
+      icon={<StarOutline />}
+      value="U$ 999,90"
+      level3="a super mario's power up"
+    >
+      Star
+    </Transaction>
+  </Story>
+</Canvas>
+
+## Transaction with subitens
+
+you can set one or a list of sub Transaction element with the parameter `subTransactions`:
+
+<Canvas withSource="open">
+  <Story name="usage-with-sub">
+    <Transaction
+      className="ods-list__item"
+      icon={<CreditCardOutline />}
+      value="+ U$ 10.000,00"
+      positive
+      subTransactions={
+        <>
+          <Transaction
+            className="ods-list__item"
+            icon={<Reply />}
+            value="- U$ 500,00"
+          >
+            Taxes
+          </Transaction>
+          <Transaction
+            className="ods-list__item"
+            icon={<LockClosed />}
+            value="- U$ 500,00"
+          >
+            Locked
+          </Transaction>
+        </>
+      }
+    >
+      Monthly Income
+    </Transaction>
+  </Story>
+</Canvas>
+
+## Transaction In a List
+
+You can also display the transaction element in a list view:
+
+<Canvas withSource="open">
+  <Story name="usage-in-a-list">
+    <List>
+      <SubHeader
+        className="ods-list__item"
+        subtitle={
+          <>
+            Total amount: <strong>U$ 1.4232,00</strong>
+          </>
+        }
+      >
+        Today
+      </SubHeader>
+      <Transaction
+        icon={<ShoppingBagOutline />}
+        className="ods-list__item"
+        tags={<Tag type="warning">waiting</Tag>}
+        time="9:00"
+        value="U$ 1.340,00"
+        level2="store's name"
+      >
+        Shop
+      </Transaction>
+      <Transaction
+        className="ods-list__item"
+        icon={<CreditCardOutline />}
+        value="+ U$ 500,00"
+        positive
+        time="10 de july"
+      >
+        Credit Card
+      </Transaction>
+      <SubHeader className="ods-list__item">Yesterday</SubHeader>
+      <Transaction
+        className="ods-list__item"
+        icon={<CreditCardOutline />}
+        value="+ U$ 10.000,00"
+        positive
+        subTransactions={
+          <>
+            <Transaction
+              className="ods-list__item"
+              icon={<Reply />}
+              value="- U$ 500,00"
+            >
+              Taxes
+            </Transaction>
+            <Transaction
+              className="ods-list__item"
+              icon={<LockClosed />}
+              value="- U$ 500,00"
+            >
+              Locked
+            </Transaction>
+          </>
+        }
+      >
+        Monthly Income
+      </Transaction>
+      <Transaction
+        className="ods-list\_\_item"
+        icon={<SwitchHorizontal />}
+        time="9:00"
+        value="U$ 1.546,90"
+        level2="In-n-Out Burgers LA"
+        level3="40x Double-Double"
+        level4="Leonardo Alemax"
+      >
+        Bank Transfer
+      </Transaction>
+    </List>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class                         | Description                                                       |
+| ------------------------------------ | ----------------------------------------------------------------- |
+| .ods-transaction                     | Styles applied to the root element.                               |
+| .ods-transaction\_\_content          | Styles applied to the content element.                            |
+| .ods-transaction\_\_icon             | Styles applied to the icon element.                               |
+| .ods-transaction\_\_information      | Styles applied to the information group container.                |
+| .ods-transaction\_\_level1           | Styles applied to the level 1 type element.                       |
+| .ods-transaction\_\_level2           | Styles applied to the level 2 type element.                       |
+| .ods-transaction\_\_level3           | Styles applied to the level 3 type element.                       |
+| .ods-transaction\_\_level4           | Styles applied to the level 4 type element.                       |
+| .ods-transaction\_\_sub-information  | Styles applied to the subinformation in the right side container. |
+| .ods-transaction\_\_value            | Styles applied to the value element.                              |
+| .ods-transaction\_\_tags             | Styles applied to the tags element.                               |
+| .ods-transaction\_\_time             | Styles applied to the time element.                               |
+| .ods-transaction\_\_sub-transactions | Styles applied to the sub transaction container.                  |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Tag/Tag.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      children: 'Lorem ipsum',
+      icon: <SwitchHorizontal />,
+      tags: <Tag>Tag</Tag>,
+      time: '9:00',
+      value: 'U$ 00.000,00',
+      level2: 'Level 2',
+      level3: 'Level 3',
+      level4: 'Level 4',
+    }}
+  >
+    {(props) => <Transaction {...props} />}
+  </Story>
+</Canvas>

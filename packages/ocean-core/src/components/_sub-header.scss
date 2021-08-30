@@ -3,7 +3,7 @@
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: $spacing-stack-xs;
+  padding: 12px $spacing-stack-xs $spacing-stack-xxs $spacing-stack-xs;
   width: 100%;
 }
 
@@ -11,8 +11,9 @@
 .ods-sub-header__title {
   color: $color-interface-dark-up;
   font-family: $font-family-base;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
+  font-size: $font-size-xxxs;
+  font-weight: $font-weight-regular;
+  line-height: 150%;
 
   strong {
     font-weight: 900;

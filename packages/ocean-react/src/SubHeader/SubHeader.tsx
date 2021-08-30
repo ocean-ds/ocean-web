@@ -3,7 +3,8 @@ import classNames from 'classnames';
 
 export type SubHeaderProps = {
   /**
-   * Determines the type of Tag, with default icon and colors for each type
+   * Determines a subtitle for the header positioned
+   * in right side of the element.
    * @default undefined
    */
   subtitle?: string | React.ReactElement;
