@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ocean-ds/ocean-web/compare/v1.16.5...v1.17.0) (2021-08-30)
+
+### Features
+
+- **input:** add input adornment ([#791](https://github.com/ocean-ds/ocean-web/issues/791)) ([e1a9237](https://github.com/ocean-ds/ocean-web/commit/e1a9237d6749fddcc2b9f188763b46ca99f3f409))
+
 ## [1.16.2](https://github.com/ocean-ds/ocean-web/compare/v1.16.1...v1.16.2) (2021-08-17)
 
 ### Bug Fixes
