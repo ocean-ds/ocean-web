@@ -5,7 +5,13 @@
   box-sizing: border-box;
   overflow: hidden;
 
-  .ods-list__item:not(:first-of-type):not(:last-of-type) {
+  .ods-transaction-list-item:not(:last-of-type) {
     border-bottom: 1px solid $color-interface-light-down;
+  }
+
+  .ods-transaction-list-item__sub-itens {
+    .ods-transaction-list-item {
+      border: 0;
+    }
   }
 }

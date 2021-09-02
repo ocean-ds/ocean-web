@@ -1,0 +1,99 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import TransactionListItem from '../TransactionListItem';
+import Tag from '../../Tag';
+import SubHeader from '../../SubHeader';
+import List from '../List';
+
+import { EyeOutline } from '@useblu/ocean-icons-react';
+
+<Meta
+  title="Components/List/TransactionListItem"
+  component={TransactionListItem}
+  parameters={{ layout: 'padded' }}
+/>
+
+# Transaction List Item API
+
+The API documentation of the Transaction List Item React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { TransactionListItem } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <List>
+      <TransactionListItem
+        icon={<EyeOutline />}
+        tags={<Tag>Tag</Tag>}
+        time="9:00"
+        value="U$ 00.000,00"
+        level2="Level 2"
+        level3="Level 3"
+        level4="Level 4"
+      >
+        Level 1
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class                                  | Description                                                       |
+| --------------------------------------------- | ----------------------------------------------------------------- |
+| .ods-transaction-list-item                    | Styles applied to the root element.                               |
+| .ods-transaction-list-item\_\_content         | Styles applied to the content element.                            |
+| .ods-transaction-list-item\_\_icon            | Styles applied to the icon element.                               |
+| .ods-transaction-list-item\_\_information     | Styles applied to the information group container.                |
+| .ods-transaction-list-item\_\_level1          | Styles applied to the level 1 type element.                       |
+| .ods-transaction-list-item\_\_level2          | Styles applied to the level 2 type element.                       |
+| .ods-transaction-list-item\_\_level3          | Styles applied to the level 3 type element.                       |
+| .ods-transaction-list-item\_\_level4          | Styles applied to the level 4 type element.                       |
+| .ods-transaction-list-item\_\_sub-information | Styles applied to the subinformation in the right side container. |
+| .ods-transaction-list-item\_\_value           | Styles applied to the value element.                              |
+| .ods-transaction-list-item\_\_tags            | Styles applied to the tags element.                               |
+| .ods-transaction-list-item\_\_time            | Styles applied to the time element.                               |
+| .ods-transaction-list-item\_\_sub-itens       | Styles applied to the sub itens container.                        |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Tag/Tag.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      children: 'Level 1',
+      icon: <EyeOutline />,
+      tags: <Tag>Tag</Tag>,
+      time: '9:00',
+      value: 'U$ 00.000,00',
+      level2: 'Level 2',
+      level3: 'Level 3',
+      level4: 'Level 4',
+    }}
+    argTypes={{
+      icon: { control: null },
+      tags: { control: null },
+    }}
+  >
+    {(props) => (
+      <List>
+        <TransactionListItem {...props} />
+      </List>
+    )}
+  </Story>
+</Canvas>
