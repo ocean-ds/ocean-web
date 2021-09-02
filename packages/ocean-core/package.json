@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-core",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "private": false,
   "description": "UIkit css that implement Ocean's Design System.",
   "files": [
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/cssnano": "^4.0.0",
     "@types/gulp": "^4.0.8",
-    "@types/gulp-plumber": "^0.0.32",
+    "@types/gulp-plumber": "^0.0.33",
     "@types/gulp-postcss": "^8.0.0",
     "@types/gulp-rename": "^2.0.0",
     "@types/gulp-sass": "^5.0.0",
