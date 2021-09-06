@@ -100,5 +100,8 @@
   },
   "storybook-deployer": {
     "commitMessage": "Deploy Storybook [skip ci]"
+  },
+  "dependencies": {
+    "immer": "^9.0.6"
   }
 }
