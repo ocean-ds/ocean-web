@@ -43,7 +43,7 @@ export type TransactionListItemProps = {
 const TransactionListItem = React.forwardRef<
   HTMLDivElement,
   TransactionListItemProps
->(function Tag(
+>(function TransactionListItem(
   {
     children,
     level2,
