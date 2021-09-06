@@ -10,6 +10,9 @@ export * from './Tag';
 export { default as List } from './List';
 export * from './List';
 
+export { default as TransactionListItem } from './TransactionListItem';
+export * from './TransactionListItem';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 
