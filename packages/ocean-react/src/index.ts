@@ -4,6 +4,12 @@ export * from './Typography';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
+export { default as Tag } from './Tag';
+export * from './Tag';
+
+export { default as List } from './List';
+export * from './List';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 
