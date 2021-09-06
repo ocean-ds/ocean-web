@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/ocean-ds/ocean-web/compare/v1.19.0...v1.19.1) (2021-09-06)
+
+### Bug Fixes
+
+- **list:** export list from module ([#807](https://github.com/ocean-ds/ocean-web/issues/807)) ([9f493e4](https://github.com/ocean-ds/ocean-web/commit/9f493e4f0e5a2f4c50b9543f4cb649a7f9d1c0e6))
+
 # [1.19.0](https://github.com/ocean-ds/ocean-web/compare/v1.18.1...v1.19.0) (2021-09-06)
 
 ### Features
