@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ocean-ds/ocean-web/compare/v1.18.1...v1.19.0) (2021-09-06)
+
+### Features
+
+- **transaction-list-item:** add list and transaction list item component ([#799](https://github.com/ocean-ds/ocean-web/issues/799)) ([43197f1](https://github.com/ocean-ds/ocean-web/commit/43197f1869bad85ff2b03d6184e9d7280d001027))
+
 # [1.18.0](https://github.com/ocean-ds/ocean-web/compare/v1.17.0...v1.18.0) (2021-08-30)
 
 ### Features
