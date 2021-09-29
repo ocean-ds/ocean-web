@@ -1,0 +1,325 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import TransactionListItem from '../../TransactionListItem';
+import SubHeader from '../../SubHeader';
+import Tag from '../../Tag';
+import Carousel from '../Carousel';
+
+import {
+  StarOutline,
+  Reply,
+  LockClosed,
+  SwitchHorizontal,
+  CreditCardOutline,
+  ShoppingBagOutline,
+  EyeOutline,
+  CurrencyDollarOutline,
+} from '@useblu/ocean-icons-react';
+
+<Meta
+  title="Examples/Carousel"
+  component={Carousel}
+  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
+  parameters={{ layout: 'padded' }}
+/>
+
+# Lists
+
+Lists are continuous, vertical indexes of text or images.
+
+Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+
+## Simple List
+
+List can be used to show many diferent types of information
+
+<Canvas withSource="open" withToolbar>
+  <Story name="simple-list">
+    <Carousel>
+      <TransactionListItem icon={<StarOutline />}>Item 1</TransactionListItem>
+      <TransactionListItem icon={<Reply />}>Item 2</TransactionListItem>
+      <TransactionListItem>Item 3</TransactionListItem>
+      <TransactionListItem>Item 4</TransactionListItem>
+    </Carousel>
+  </Story>
+</Canvas>
+
+# Transaction List Item Variations
+
+Transaction List Itens are component to be used inside the List component, they are prepare to show a muilt level of information.
+
+## All level of information
+
+with many levels of information, all the possibilities are displayed down below.
+
+<Canvas withSource="open" withToolbar>
+  <Story name="all-level-information">
+    <List>
+      <TransactionListItem
+        icon={<EyeOutline />}
+        tags={<Tag>Tag</Tag>}
+        time="9:00"
+        value="+ U$ 00.000,00"
+        level2="Level 2"
+        level3="Level 3"
+        level4="Level 4"
+      >
+        Level 1
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## With positive value
+
+<Canvas withSource="open">
+  <Story name="with-positve">
+    <List>
+      <TransactionListItem
+        icon={<SwitchHorizontal />}
+        positive
+        time="9:00"
+        value="+ U$ 5.346,90"
+        level2="In-n-Out Burgers LA"
+      >
+        TransactionListItem Received
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## With Tags
+
+you can set one or a list of custom Tag element with the parameter `tags`:
+
+<Canvas withSource="open">
+  <Story name="with-tags">
+    <List>
+      <TransactionListItem
+        icon={<SwitchHorizontal />}
+        tags={<Tag type="negative"> blocked </Tag>}
+        time="9:00"
+        value="+ U$ 146,90"
+        level2="In-n-Out Burgers LA"
+        level3="reibushed to the client"
+      >
+        TransactionListItem Received
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## Custom Icons
+
+you can set a custom Icon for the transaction with the parameter `icon`:
+
+<Canvas withSource="open">
+  <Story name="with-icons">
+    <List>
+      <TransactionListItem
+        icon={<StarOutline />}
+        value="+ U$ 999,90"
+        level3="a super mario's power up"
+      >
+        Star
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## TransactionListItem with subitens
+
+you can set one or a list of sub TransactionListItem element with the parameter `subItens`:
+
+<Canvas withSource="open">
+  <Story name="with-sub-itens">
+    <List>
+      <TransactionListItem
+        icon={<CreditCardOutline />}
+        value="+ U$ 10.000,00"
+        positive
+        subItens={
+          <>
+            <TransactionListItem icon={<Reply />} value="- U$ 500,00">
+              Taxes
+            </TransactionListItem>
+            <TransactionListItem icon={<LockClosed />} value="- U$ 500,00">
+              Locked
+            </TransactionListItem>
+          </>
+        }
+      >
+        Monthly Income
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## Multiple usages
+
+You can also display the diferent kinds of List Itens element in a list view:
+
+<Canvas withSource="open">
+  <Story name="multiple-usages">
+    <List>
+      <SubHeader>Today</SubHeader>
+      <TransactionListItem
+        icon={<ShoppingBagOutline />}
+        tags={<Tag type="warning">waiting</Tag>}
+        time="9:00"
+        value="+ U$ 1.340,00"
+        level2="store's name"
+      >
+        Shop
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<CreditCardOutline />}
+        value="+ U$ 500,00"
+        positive
+        time="10 de July"
+      >
+        Credit Card
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<CreditCardOutline />}
+        value="+ U$ 10.000,00"
+        positive
+        subItens={
+          <>
+            <TransactionListItem icon={<Reply />} value="- U$ 500,00">
+              Taxes
+            </TransactionListItem>
+            <TransactionListItem icon={<LockClosed />} value="- U$ 500,00">
+              Locked
+            </TransactionListItem>
+          </>
+        }
+      >
+        Monthly Income
+      </TransactionListItem>
+      <TransactionListItem
+        className="ods-list\_\_item"
+        icon={<SwitchHorizontal />}
+        time="9:00"
+        value="+ U$ 1.546,90"
+        level2="In-n-Out Burgers LA"
+        level3="40x Double-Double"
+        level4="Leonardo Alemax"
+      >
+        Bank Transfer
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## Payments List
+
+<Canvas withSource="open">
+  <Story name="payments-list">
+    <List>
+      <SubHeader>Today, July 15</SubHeader>
+      <TransactionListItem
+        icon={<CurrencyDollarOutline />}
+        tags={<Tag type="warning">pending</Tag>}
+        value="- U$ 1.000,00"
+        level3="50867443456600"
+        level2="Maskel Industry and Commerce of Pillows and Foams Ltda"
+      >
+        Payment to supplier
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<CurrencyDollarOutline />}
+        tags={<Tag type="warning">pending</Tag>}
+        value="- U$ 2.500,00"
+        level2="IImosest Furniture and Upholstery Industry"
+      >
+        Payment to supplier
+      </TransactionListItem>
+      <SubHeader>Monday, July 14</SubHeader>
+      <TransactionListItem
+        icon={<CurrencyDollarOutline />}
+        tags={<Tag type="warning">pending</Tag>}
+        value="- U$ 400,00"
+        level2="IImosest Furniture and Upholstery Industry"
+      >
+        Payment to supplier
+      </TransactionListItem>
+      <SubHeader>Friday, July 12</SubHeader>
+      <TransactionListItem
+        icon={<CurrencyDollarOutline />}
+        tags={<Tag type="warning">pending</Tag>}
+        value="- U$ 1.200,00"
+        level2="IImosest Furniture and Upholstery Industry"
+      >
+        Payment to supplier
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<CurrencyDollarOutline />}
+        tags={<Tag type="warning">pending</Tag>}
+        value="- U$ 10.000,00"
+        level2="IImosest Furniture and Upholstery Industry"
+      >
+        Payment to supplier
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>
+
+## Bank Transactions
+
+<Canvas withSource="open">
+  <Story name="bank-transactions">
+    <List>
+      <SubHeader
+        subtitle={
+          <>
+            Day Amount: <strong>U$ 3.000,00</strong>
+          </>
+        }
+      >
+        Today, July 15
+      </SubHeader>
+      <TransactionListItem
+        icon={<SwitchHorizontal />}
+        value="- U$ 1.000,00"
+        time="9:00"
+        level2="IImosest Furniture and Upholstery Industry"
+      >
+        Brank Transfer
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<SwitchHorizontal />}
+        value="- U$ 2.500,00"
+        time="9:00"
+        level2="Moved Pampa Almt."
+      >
+        Brank Transfer
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<SwitchHorizontal />}
+        value="+ U$ 2.500,00"
+        positive
+        time="9:00"
+        level2="Moved Pampa Almt."
+      >
+        Brank Transfer
+      </TransactionListItem>
+      <SubHeader
+        subtitle={
+          <>
+            Day Amount: <strong>U$ 1.000,00</strong>
+          </>
+        }
+      >
+        Monday, July 14
+      </SubHeader>
+      <TransactionListItem
+        icon={<CreditCardOutline />}
+        value="+ U$ 500,00"
+        positive
+        time="9:00"
+      >
+        Credit Card
+      </TransactionListItem>
+    </List>
+  </Story>
+</Canvas>

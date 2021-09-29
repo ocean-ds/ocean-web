@@ -1,0 +1,42 @@
+.ods-carousel-container {
+  display: flex;
+  height: 200px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  width: 1283px;
+}
+
+.ods-carousel-item {
+  border: 1px solid rgb(226, 12, 12);
+  height: 200px;
+  width: 100%;
+
+  &--2 {
+    width: 633px;
+  }
+
+  &--3 {
+    width: 416.67px;
+  }
+
+  &--4 {
+    width: 308.2px;
+  }
+
+  &--5 {
+    width: 243.6px;
+  }
+}
+
+.ods-carousel-pagination-container {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 28px;
+}
+
+.ods-carousel-page {
+  background-color: $color-interface-dark-down;
+  height: 4px;
+  width: 4px;
+}

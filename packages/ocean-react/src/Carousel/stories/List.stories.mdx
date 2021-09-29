@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import TransactionListItem from '../../TransactionListItem';
+import SubHeader from '../../SubHeader';
+import Carousel from '../Carousel';
+
+import { StarOutline, Reply, LockClosed } from '@useblu/ocean-icons-react';
+
+<Meta
+  title="Components/Carousel"
+  component={Carousel}
+  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
+  parameters={{ layout: 'padded' }}
+/>
+
+# List API
+
+The API documentation of the List React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { List } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Carousel>
+      <TransactionListItem icon={<StarOutline />}>Item 1</TransactionListItem>
+      <TransactionListItem icon={<Reply />}>Item 2</TransactionListItem>
+      <TransactionListItem>Item 3</TransactionListItem>
+      <TransactionListItem>Item 4</TransactionListItem>
+    </Carousel>
+  </Story>
+</Canvas>
+
+## CSS
+
+| Global class   | Description                                                                            |
+| -------------- | -------------------------------------------------------------------------------------- |
+| .ods-list      | Styles applied to the root element.                                                    |
+| .ods-list-item | Adds a bottom line to the item inside list, also user in TransactionListItem Component |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Tag/Tag.tsx) for more detail.
