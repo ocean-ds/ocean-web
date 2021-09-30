@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import TransactionListItem from '../../TransactionListItem';
 import SubHeader from '../../SubHeader';
+import BannerChild from '../examples/BannerChild';
 import Carousel from '../Carousel';
 
 import { StarOutline, Reply, LockClosed } from '@useblu/ocean-icons-react';
@@ -26,11 +26,21 @@ import { List } from '@useblu/ocean-react';
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <Carousel>
-      <TransactionListItem icon={<StarOutline />}>Item 1</TransactionListItem>
-      <TransactionListItem icon={<Reply />}>Item 2</TransactionListItem>
-      <TransactionListItem>Item 3</TransactionListItem>
-      <TransactionListItem>Item 4</TransactionListItem>
+    <Carousel maxPerSection="2">
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
+      <BannerChild />
     </Carousel>
   </Story>
 </Canvas>
