@@ -1,8 +1,29 @@
+.ods-carousel-and-buttons {
+  align-items: center;
+  display: flex;
+}
+
+.ods-carousel-and-buttons button {
+  background-color: transparent;
+  border: 0;
+
+  > * {
+    align-self: center;
+    background: yellow;
+    border-color: $color-interface-light-deep;
+    border-radius: 100%;
+    border-width: $border-width-hairline;
+    color: $color-brand-primary-pure;
+    height: 32px;
+    width: 32px;
+  }
+}
+
 .ods-carousel-container {
+  align-items: center;
   display: flex;
   gap: $spacing-inline-xs;
   height: 200px;
-  margin-bottom: 16px;
   overflow-x: auto;
   scroll-behavior: smooth;
   width: 1282px;
@@ -12,9 +33,12 @@
   display: none;
 }
 
-.ods-carousel-item {
-  border: 1px solid rgb(226, 12, 12);
-  width: 100%;
+.ods-carousel-item-maxPerSection {
+  flex: none;
+
+  &--1 {
+    width: 100%;
+  }
 
   &--2 {
     width: 633px;
@@ -30,33 +54,6 @@
 
   &--5 {
     width: 243px;
-  }
-}
-
-.ods-carousel-item-maxPerSection {
-  &--1 {
-    flex: none;
-    width: 100%;
-  }
-
-  &--2 {
-    flex: none;
-    width: 49%;
-  }
-
-  &--3 {
-    flex: none;
-    width: 32%;
-  }
-
-  &--4 {
-    flex: none;
-    width: 24%;
-  }
-
-  &--5 {
-    flex: none;
-    width: 19%;
   }
 }
 
