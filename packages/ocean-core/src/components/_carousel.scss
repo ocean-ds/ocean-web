@@ -1,6 +1,7 @@
 .ods-carousel-and-buttons {
   align-items: center;
   display: flex;
+  justify-content: center;
 }
 
 .ods-carousel-and-buttons button {
@@ -9,24 +10,20 @@
 
   > * {
     align-self: center;
-    background: yellow;
-    border-color: $color-interface-light-deep;
+    background: $color-interface-light-pure;
+    border: $border-width-hairline solid $color-interface-light-deep;
     border-radius: 100%;
-    border-width: $border-width-hairline;
     color: $color-brand-primary-pure;
-    height: 32px;
-    width: 32px;
   }
 }
 
 .ods-carousel-container {
   align-items: center;
   display: flex;
-  gap: $spacing-inline-xs;
   height: 200px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  width: 1282px;
+  width: 100%;
 }
 
 .ods-carousel-container::-webkit-scrollbar {
@@ -37,29 +34,33 @@
   flex: none;
 
   &--1 {
-    width: 100%;
+    min-width: 100%;
   }
 
   &--2 {
-    width: 633px;
+    min-width: calc(50% - 8px);
   }
 
   &--3 {
-    width: 416px;
+    min-width: calc(33.33% - 10px);
   }
 
   &--4 {
-    width: 308px;
+    min-width: calc(25% - 12px);
   }
 
   &--5 {
-    width: 243px;
+    min-width: calc(20% - 13px);
   }
+}
+
+.ods-carousel-item-maxPerSection:not(:first-child) {
+  margin-left: 16px;
 }
 
 .ods-carousel-example {
   align-items: center;
-  background-color: $color-interface-dark-down;
+  background: linear-gradient(to right, red, yellow);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -67,14 +68,20 @@
 
 .ods-carousel-pagination-container {
   display: flex;
+  gap: 4px;
   justify-content: space-between;
   margin: auto;
-  width: 28px;
+  width: 80px;
 }
 
 .ods-carousel-page {
-  background-color: $color-interface-dark-down;
+  background-color: $color-interface-light-deep;
   border-radius: 100%;
+  cursor: pointer;
   height: 4px;
   width: 4px;
+
+  &-active {
+    background-color: $color-brand-primary-pure;
+  }
 }
