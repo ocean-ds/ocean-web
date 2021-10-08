@@ -4,17 +4,16 @@ import CarouselPagination from './CarouselPagination';
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
 export type CarouselProps = {
-  maxPerSection: 1 | 2 | 3 | 4 | 5;
-  children: React.ReactElement;
+  maxPerPage?: 1 | 2 | 3 | 4 | 5 | undefined;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
-  function Carousel({ maxPerSection = 1, children }) {
+  function Carousel({ maxPerPage = 1, children }, ref) {
     const carousel = useRef<HTMLDivElement>(null);
     const [activePage, setActivePage] = useState(0);
 
     const quantButtons = Math.ceil(
-      (1 / maxPerSection) * Children.toArray(children).length
+      (1 / maxPerPage) * Children.toArray(children).length
     );
 
     const scrollTo = (
@@ -25,7 +24,6 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       if (element.current === null) return;
 
       const amount = (element.current.clientWidth + 16) * steps;
-      console.log('amout', amount);
 
       element.current.scrollLeft += direction === 'left' ? amount * -1 : amount;
     };
@@ -44,7 +42,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
 
     return (
       <>
-        <div className={classNames('ods-carousel-and-buttons')}>
+        <div ref={ref} className={classNames('ods-carousel-and-buttons')}>
           {quantButtons > 1 && (
             <button onClick={handleLeftClick} disabled={activePage === 0}>
               <ChevronLeft />
@@ -55,8 +53,8 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               <div
                 key={index}
                 className={classNames(
-                  'ods-carousel-item-maxPerSection',
-                  `ods-carousel-item-maxPerSection--${maxPerSection}`
+                  'ods-carousel-item-maxPerPage',
+                  `ods-carousel-item-maxPerPage--${maxPerPage}`
                 )}
               >
                 {child}
