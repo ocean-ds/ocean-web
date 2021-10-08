@@ -44,7 +44,11 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       <>
         <div ref={ref} className={classNames('ods-carousel-and-buttons')}>
           {quantButtons > 1 && (
-            <button onClick={handleLeftClick} disabled={activePage === 0}>
+            <button
+              onClick={handleLeftClick}
+              disabled={activePage === 0}
+              data-testid="previous-page-button"
+            >
               <ChevronLeft />
             </button>
           )}
@@ -65,6 +69,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
             <button
               onClick={handleRightClick}
               disabled={activePage === quantButtons - 1}
+              data-testid="next-page-button"
             >
               <ChevronRight />
             </button>

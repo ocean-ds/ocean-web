@@ -1,9 +1,21 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Carousel, { CarouselProps } from '../Carousel';
+import CarouselPagination from '../CarouselPagination';
+import BannerChild from '../examples/BannerChild';
 
 const setup = (
-  props: CarouselProps = { maxPerPage: 1, children: <div> Carousel Item </div> }
+  props: CarouselProps = {
+    maxPerPage: 1,
+    children: (
+      <>
+        <div> Carousel Item </div>
+        <div> Carousel Item </div>
+        <div> Carousel Item </div>
+        <div> Carousel Item </div>
+      </>
+    ),
+  }
 ) => render(<Carousel {...props} />);
 
 test('renders default element properly', () => {
@@ -20,6 +32,15 @@ test('renders default element properly', () => {
         <div
           class="ods-carousel-item-maxPerPage ods-carousel-item-maxPerPage--1"
         >
+          <div>
+             Carousel Item 
+          </div>
+          <div>
+             Carousel Item 
+          </div>
+          <div>
+             Carousel Item 
+          </div>
           <div>
              Carousel Item 
           </div>
@@ -42,4 +63,44 @@ test('renders 5 elements per page', () => {
       />
     </div>
   `);
+});
+
+test('render CarouselChild', () => {
+  render(
+    <Carousel maxPerPage={1}>
+      <BannerChild />
+      <CarouselPagination
+        quantButtons={4}
+        activePage={0}
+        onChangePage={jest.fn()}
+      />
+    </Carousel>
+  );
+
+  expect(document.querySelector('.ods-carousel-example')).toBeInTheDocument();
+});
+
+test('move from page to page - via CarouselPagination', () => {
+  render(
+    <Carousel maxPerPage={1}>
+      <div> Carousel Item </div>
+      <div> Carousel Item </div>
+      <div> Carousel Item </div>
+      <div> Carousel Item </div>
+      <CarouselPagination
+        quantButtons={4}
+        activePage={0}
+        onChangePage={jest.fn()}
+      />
+    </Carousel>
+  );
+
+  const pageList = document.querySelectorAll('.ods-carousel-page');
+  expect(pageList[0]).toBeInTheDocument();
+
+  fireEvent.click(pageList[0]);
+  fireEvent.click(pageList[1]);
+  fireEvent.click(pageList[0]);
+  fireEvent.click(pageList[3]);
+  fireEvent.click(pageList[0]);
 });
