@@ -20,7 +20,6 @@
 .ods-carousel-container {
   align-items: center;
   display: flex;
-  height: 200px;
   overflow-x: auto;
   scroll-behavior: smooth;
   width: 100%;
@@ -58,19 +57,11 @@
   margin-left: 16px;
 }
 
-.ods-carousel-example {
-  align-items: center;
-  background: linear-gradient(to right, red, yellow);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .ods-carousel-pagination-container {
   display: flex;
   gap: 4px;
   justify-content: space-between;
-  margin: auto;
+  margin: 16px auto 0 auto;
   width: 80px;
 }
 

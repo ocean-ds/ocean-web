@@ -4,6 +4,10 @@ import CarouselPagination from './CarouselPagination';
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
 export type CarouselProps = {
+  /**
+   * Determines the number o columns in the carousel.
+   * @default '1'
+   */
   maxPerPage?: 1 | 2 | 3 | 4 | 5 | undefined;
 } & React.ComponentPropsWithoutRef<'div'>;
 
@@ -41,8 +45,8 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     };
 
     return (
-      <>
-        <div ref={ref} className={classNames('ods-carousel-and-buttons')}>
+      <div className="ods-carousel" ref={ref}>
+        <div className={classNames('ods-carousel-and-buttons')}>
           {quantButtons > 1 && (
             <button
               onClick={handleLeftClick}
@@ -88,7 +92,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
             }}
           />
         )}
-      </>
+      </div>
     );
   }
 );

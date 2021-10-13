@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import Carousel, { CarouselProps } from '../Carousel';
 import CarouselPagination from '../CarouselPagination';
-import BannerChild from '../examples/BannerChild';
+import BannerExample from '../examples/BannerExample';
 
 const setup = (
   props: CarouselProps = {
@@ -65,19 +65,10 @@ test('renders 5 elements per page', () => {
   `);
 });
 
-test('render CarouselChild', () => {
-  render(
-    <Carousel maxPerPage={1}>
-      <BannerChild />
-      <CarouselPagination
-        quantButtons={4}
-        activePage={0}
-        onChangePage={jest.fn()}
-      />
-    </Carousel>
-  );
+test('render example', () => {
+  render(<BannerExample />);
 
-  expect(document.querySelector('.ods-carousel-example')).toBeInTheDocument();
+  expect(screen.queryByText('Click me!')).toBeInTheDocument();
 });
 
 test('move from page to page - via CarouselPagination', () => {
