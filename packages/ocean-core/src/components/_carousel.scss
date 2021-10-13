@@ -8,6 +8,10 @@
   background-color: transparent;
   border: 0;
 
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+
   > * {
     align-self: center;
     background: $color-interface-light-pure;

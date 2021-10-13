@@ -34,13 +34,13 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       element.current.scrollLeft += direction === 'left' ? amount * -1 : amount;
     };
 
-    const handleLeftClick = (e: React.MouseEvent<HTMLElement>) => {
+    const handlePrevious = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
       scrollTo(carousel, 'left');
       setActivePage(activePage - 1);
     };
 
-    const handleRightClick = (e: React.MouseEvent<HTMLElement>) => {
+    const handleNext = (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
       scrollTo(carousel, 'right');
       setActivePage(activePage + 1);
@@ -49,9 +49,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     return (
       <div className="ods-carousel" ref={ref}>
         <div className="ods-carousel-main-container">
-          {quantButtons > 1 && !isMobile && (
+          {quantButtons > 1 && (
             <button
-              onClick={handleLeftClick}
+              onClick={handlePrevious}
               disabled={activePage === 0}
               data-testid="previous-page-button"
             >
@@ -71,9 +71,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               </div>
             ))}
           </div>
-          {quantButtons > 1 && !isMobile && (
+          {quantButtons > 1 && (
             <button
-              onClick={handleRightClick}
+              onClick={handleNext}
               disabled={activePage === quantButtons - 1 || isMobile}
               data-testid="next-page-button"
             >
