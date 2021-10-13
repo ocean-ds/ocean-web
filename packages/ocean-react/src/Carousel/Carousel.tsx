@@ -8,16 +8,16 @@ export type CarouselProps = {
    * Determines the number o columns in the carousel.
    * @default '1'
    */
-  maxPerPage?: 1 | 2 | 3 | 4 | 5 | undefined;
+  columns?: 1 | 2 | 3 | 4 | 5 | undefined;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
-  function Carousel({ maxPerPage = 1, children }, ref) {
+  function Carousel({ columns = 1, children }, ref) {
     const carousel = useRef<HTMLDivElement>(null);
     const [activePage, setActivePage] = useState(0);
 
     const quantButtons = Math.ceil(
-      (1 / maxPerPage) * Children.toArray(children).length
+      (1 / columns) * Children.toArray(children).length
     );
 
     const scrollTo = (
@@ -46,7 +46,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
 
     return (
       <div className="ods-carousel" ref={ref}>
-        <div className={classNames('ods-carousel-and-buttons')}>
+        <div className="ods-carousel-main-container">
           {quantButtons > 1 && (
             <button
               onClick={handleLeftClick}
@@ -56,13 +56,13 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               <ChevronLeft />
             </button>
           )}
-          <div className={classNames('ods-carousel-container')} ref={carousel}>
+          <div className="ods-carousel-children-container" ref={carousel}>
             {Children.toArray(children).map((child, index) => (
               <div
                 key={index}
                 className={classNames(
-                  'ods-carousel-item-maxPerPage',
-                  `ods-carousel-item-maxPerPage--${maxPerPage}`
+                  'ods-carousel-item-columns',
+                  `ods-carousel-item-columns--${columns}`
                 )}
               >
                 {child}

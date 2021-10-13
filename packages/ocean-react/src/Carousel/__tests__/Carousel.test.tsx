@@ -6,7 +6,7 @@ import BannerExample from '../examples/BannerExample';
 
 const setup = (
   props: CarouselProps = {
-    maxPerPage: 1,
+    columns: 1,
     children: (
       <>
         <div> Carousel Item </div>
@@ -30,7 +30,7 @@ test('renders default element properly', () => {
         class="ods-carousel-container"
       >
         <div
-          class="ods-carousel-item-maxPerPage ods-carousel-item-maxPerPage--1"
+          class="ods-carousel-item-columns ods-carousel-item-columns--1"
         >
           <div>
              Carousel Item 
@@ -51,7 +51,7 @@ test('renders default element properly', () => {
 });
 
 test('renders 5 elements per page', () => {
-  setup({ maxPerPage: 5 });
+  setup({ columns: 5 });
 
   expect(document.querySelector('.ods-carousel-and-buttons'))
     .toMatchInlineSnapshot(`
@@ -73,7 +73,7 @@ test('render example', () => {
 
 test('move from page to page - via CarouselPagination', () => {
   render(
-    <Carousel maxPerPage={1}>
+    <Carousel columns={1}>
       <div> Carousel Item </div>
       <div> Carousel Item </div>
       <div> Carousel Item </div>

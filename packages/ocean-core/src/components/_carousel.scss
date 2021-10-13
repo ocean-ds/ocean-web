@@ -1,10 +1,10 @@
-.ods-carousel-and-buttons {
+.ods-carousel-main-container {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
-.ods-carousel-and-buttons button {
+.ods-carousel-main-container button {
   background-color: transparent;
   border: 0;
 
@@ -14,10 +14,18 @@
     border: $border-width-hairline solid $color-interface-light-deep;
     border-radius: 100%;
     color: $color-brand-primary-pure;
+
+    &:hover {
+      background: $color-brand-primary-up;
+    }
+
+    &:active {
+      background: $color-interface-light-down;
+    }
   }
 }
 
-.ods-carousel-container {
+.ods-carousel-children-container {
   align-items: center;
   display: flex;
   overflow-x: auto;
@@ -25,11 +33,11 @@
   width: 100%;
 }
 
-.ods-carousel-container::-webkit-scrollbar {
+.ods-carousel-children-container::-webkit-scrollbar {
   display: none;
 }
 
-.ods-carousel-item-maxPerPage {
+.ods-carousel-item-columns {
   flex: none;
 
   &--1 {
@@ -53,7 +61,7 @@
   }
 }
 
-.ods-carousel-item-maxPerPage:not(:first-child) {
+.ods-carousel-item-columns:not(:first-child) {
   margin-left: 16px;
 }
 
@@ -61,13 +69,13 @@
   display: flex;
   gap: 4px;
   justify-content: space-between;
-  margin: 16px auto 0 auto;
-  width: 80px;
+  margin: 16px auto 0;
+  width: 28px;
 }
 
 .ods-carousel-page {
   background-color: $color-interface-light-deep;
-  border-radius: 100%;
+  border-radius: 24px;
   cursor: pointer;
   height: 4px;
   width: 4px;

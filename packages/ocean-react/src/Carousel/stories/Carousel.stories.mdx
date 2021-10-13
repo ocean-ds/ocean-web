@@ -26,7 +26,7 @@ import { List } from '@useblu/ocean-react';
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <Carousel maxPerPage={2}>
+    <Carousel columns={2}>
       <BannerExample />
       <BannerExample />
       <BannerExample />
@@ -44,7 +44,7 @@ Those are the columns variations
 
 <Canvas withSource="open" withToolbar>
   <Story name="variables-column-5">
-    <Carousel maxPerPage={5}>
+    <Carousel columns={5}>
       <BannerExample />
       <BannerExample />
       <BannerExample />
@@ -62,7 +62,7 @@ Those are the columns variations
 
 <Canvas withSource="open" withToolbar>
   <Story name="variables-column-4">
-    <Carousel maxPerPage={4}>
+    <Carousel columns={4}>
       <BannerExample />
       <BannerExample />
       <BannerExample />
@@ -80,7 +80,7 @@ Those are the columns variations
 
 <Canvas withSource="open" withToolbar>
   <Story name="variables-column-3">
-    <Carousel maxPerPage={3}>
+    <Carousel columns={3}>
       <BannerExample />
       <BannerExample />
       <BannerExample />
@@ -98,7 +98,7 @@ Those are the columns variations
 
 <Canvas withSource="open" withToolbar>
   <Story name="variables-column-2">
-    <Carousel maxPerPage={2}>
+    <Carousel columns={2}>
       <BannerExample />
       <BannerExample />
       <BannerExample />
@@ -112,11 +112,11 @@ Those are the columns variations
   </Story>
 </Canvas>
 
-### 1 Columns
+### 1 Column
 
 <Canvas withSource="open" withToolbar>
   <Story name="variables-column-1">
-    <Carousel maxPerPage={1}>
+    <Carousel columns={1}>
       <BannerExample />
       <BannerExample />
       <BannerExample />
@@ -140,11 +140,11 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class                  | Description                                                   |
-| ----------------------------- | ------------------------------------------------------------- |
-| .ods-carousel                 | Styles applied to the root element.                           |
-| .ods-carousel-and-buttons     | Styles applied to the children banners and navigation buttons |
-| .ods-carousel-container       | Styles applied to the children banners container              |
-| .ods-carousel-item-maxPerPage | Styles applied to the children banner                         |
+| Global class               | Description                                                   |
+| -------------------------- | ------------------------------------------------------------- |
+| .ods-carousel              | Styles applied to the root element.                           |
+| .ods-carousel-and-buttons  | Styles applied to the children banners and navigation buttons |
+| .ods-carousel-container    | Styles applied to the children banners container              |
+| .ods-carousel-item-columns | Styles applied to the children banner                         |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Carousel/Carousel.tsx) for more detail.
