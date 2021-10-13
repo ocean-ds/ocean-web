@@ -1,4 +1,5 @@
 import React, { Children, useRef, useState } from 'react';
+import { useMedia } from 'react-use';
 import classNames from 'classnames';
 import CarouselPagination from './CarouselPagination';
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
@@ -15,6 +16,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
   function Carousel({ columns = 1, children }, ref) {
     const carousel = useRef<HTMLDivElement>(null);
     const [activePage, setActivePage] = useState(0);
+    const isMobile = useMedia('(max-width: 768px)');
 
     const quantButtons = Math.ceil(
       (1 / columns) * Children.toArray(children).length
@@ -47,7 +49,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     return (
       <div className="ods-carousel" ref={ref}>
         <div className="ods-carousel-main-container">
-          {quantButtons > 1 && (
+          {quantButtons > 1 && !isMobile && (
             <button
               onClick={handleLeftClick}
               disabled={activePage === 0}
@@ -69,10 +71,10 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               </div>
             ))}
           </div>
-          {quantButtons > 1 && (
+          {quantButtons > 1 && !isMobile && (
             <button
               onClick={handleRightClick}
-              disabled={activePage === quantButtons - 1}
+              disabled={activePage === quantButtons - 1 || isMobile}
               data-testid="next-page-button"
             >
               <ChevronRight />

@@ -39,25 +39,28 @@
 
 .ods-carousel-item-columns {
   flex: none;
+  min-width: 100%;
 
-  &--1 {
-    min-width: 100%;
-  }
+  @include media-breakpoint-up(md) {
+    &--1 {
+      min-width: 100%;
+    }
 
-  &--2 {
-    min-width: calc(50% - 8px);
-  }
+    &--2 {
+      min-width: calc(50% - 8px);
+    }
 
-  &--3 {
-    min-width: calc(33.33% - 10px);
-  }
+    &--3 {
+      min-width: calc(33.33% - 10px);
+    }
 
-  &--4 {
-    min-width: calc(25% - 12px);
-  }
+    &--4 {
+      min-width: calc(25% - 12px);
+    }
 
-  &--5 {
-    min-width: calc(20% - 13px);
+    &--5 {
+      min-width: calc(20% - 13px);
+    }
   }
 }
 

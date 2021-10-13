@@ -21,13 +21,13 @@ const setup = (
 test('renders default element properly', () => {
   setup();
 
-  expect(document.querySelector('.ods-carousel-and-buttons'))
+  expect(document.querySelector('.ods-carousel-main-container'))
     .toMatchInlineSnapshot(`
     <div
-      class="ods-carousel-and-buttons"
+      class="ods-carousel-main-container"
     >
       <div
-        class="ods-carousel-container"
+        class="ods-carousel-children-container"
       >
         <div
           class="ods-carousel-item-columns ods-carousel-item-columns--1"
@@ -53,13 +53,13 @@ test('renders default element properly', () => {
 test('renders 5 elements per page', () => {
   setup({ columns: 5 });
 
-  expect(document.querySelector('.ods-carousel-and-buttons'))
+  expect(document.querySelector('.ods-carousel-main-container'))
     .toMatchInlineSnapshot(`
     <div
-      class="ods-carousel-and-buttons"
+      class="ods-carousel-main-container"
     >
       <div
-        class="ods-carousel-container"
+        class="ods-carousel-children-container"
       />
     </div>
   `);
