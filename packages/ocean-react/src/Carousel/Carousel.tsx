@@ -18,9 +18,9 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     const [activePage, setActivePage] = useState(0);
     const isMobile = useMedia('(max-width: 768px)');
 
-    const quantButtons = Math.ceil(
-      (1 / columns) * Children.toArray(children).length
-    );
+    const quantButtons = isMobile
+      ? 1 * Children.toArray(children).length
+      : Math.ceil((1 / columns) * Children.toArray(children).length);
 
     const scrollTo = (
       element: React.RefObject<HTMLDivElement>,
@@ -46,6 +46,11 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
       setActivePage(activePage + 1);
     };
 
+    const testFunc = (event) => {
+      console.log('event', event);
+      console.log('window.pageYOffset;', window.pageYOffset);
+    };
+
     return (
       <div className="ods-carousel" ref={ref}>
         <div className="ods-carousel-main-container">
@@ -58,7 +63,11 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               <ChevronLeft />
             </button>
           )}
-          <div className="ods-carousel-children-container" ref={carousel}>
+          <div
+            className="ods-carousel-children-container"
+            onScroll={testFunc}
+            ref={carousel}
+          >
             {Children.toArray(children).map((child, index) => (
               <div
                 key={index}
@@ -74,7 +83,7 @@ const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
           {quantButtons > 1 && (
             <button
               onClick={handleNext}
-              disabled={activePage === quantButtons - 1 || isMobile}
+              disabled={activePage === quantButtons - 1}
               data-testid="next-page-button"
             >
               <ChevronRight />
