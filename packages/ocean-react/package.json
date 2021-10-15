@@ -40,7 +40,8 @@
     "classnames": "2.3.1",
     "react-modal": "3.13.1",
     "react-slick": "^0.28.1",
-    "react-use": "^17.3.1"
+    "react-use": "^17.3.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/classnames": "2.3.1",
