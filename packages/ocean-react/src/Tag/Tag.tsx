@@ -20,6 +20,9 @@ export type TagProps = {
    * Sets a custon icon for the Tag.
    */
   icon?: React.ReactElement;
+  /**
+   * Set icon off.
+   */
   isIconOff?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
