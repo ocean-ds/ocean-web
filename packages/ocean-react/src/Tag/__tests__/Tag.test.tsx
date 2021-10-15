@@ -143,3 +143,20 @@ test('renders warning element properly', () => {
     </div>
   `);
 });
+
+test('renders warning element without icon by properly', () => {
+  setup({ type: 'warning', isIconOff: true });
+
+  expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
+    <div
+      class="ods-tag ods-tag--warning"
+      role="Tag"
+    >
+      <div
+        class="ods-tag__content"
+      >
+        Hello There!
+      </div>
+    </div>
+  `);
+});
