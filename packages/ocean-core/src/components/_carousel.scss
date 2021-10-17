@@ -5,3 +5,6 @@
 // .first-child-container {
 //   margin-left: auto;
 // }
+.slick-track > div:not(:first-child) {
+  margin-left: 16px;
+}
