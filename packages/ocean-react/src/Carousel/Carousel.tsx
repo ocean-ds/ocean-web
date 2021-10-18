@@ -1,7 +1,8 @@
 import React, { Children } from 'react';
-import { useMedia } from 'react-use';
+
 import Slider from 'react-slick';
-// import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
+import { useMedia } from 'react-use';
+import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
 export type CarouselProps = {
   /**
@@ -20,11 +21,31 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
     speed: 500,
     slidesToShow: isMobile ? 1 : columnsAsNumber,
     slidesToScroll: isMobile ? 1 : columnsAsNumber,
-    className: '',
+    prevArrow: <ChevronLeft />,
+    nextArrow: <ChevronRight />,
+    appendDots: (dots) => (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <ul
+          style={{
+            paddingInlineStart: '0',
+            marginBlockStart: '0',
+            marginBlockEnd: '0',
+          }}
+        >
+          {' '}
+          {dots}{' '}
+        </ul>
+      </div>
+    ),
   };
 
   return (
-    <div className="ods-carousel-container">
+    <div>
       <Slider {...settings}>
         {Children.toArray(children).map((child, index) => (
           <div key={index}>{child}</div>
