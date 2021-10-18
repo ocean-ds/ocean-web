@@ -14,7 +14,7 @@ export type CarouselProps = {
 
 const dotsList = (dots: Array<React.ReactElement>) => {
   return (
-    <div className="slick-dots">
+    <div data-testid="dots-list">
       <ul> {dots} </ul>
     </div>
   );
@@ -35,11 +35,13 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
   };
 
   return (
-    <Slider {...settings}>
-      {Children.toArray(children).map((child, index) => (
-        <div key={index}>{child}</div>
-      ))}
-    </Slider>
+    <div className="ods-carousel">
+      <Slider {...settings}>
+        {Children.toArray(children).map((child, index) => (
+          <div key={index}>{child}</div>
+        ))}
+      </Slider>
+    </div>
   );
 };
 

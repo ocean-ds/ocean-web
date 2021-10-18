@@ -64,15 +64,15 @@
   font-size: 0;
   font-size: 0;
   height: 32px;
-  width: 32px;
   line-height: 0;
   outline: none;
   padding: 0;
-  right: -10px;
 
   position: absolute;
+  right: -10px;
   top: 45%;
   transform: translate(0, -50%);
+  width: 32px;
 }
 
 .slick-prev {
@@ -83,17 +83,17 @@
   font-size: 0;
   font-size: 0;
   height: 32px;
-  width: 32px;
+  left: -10px;
   line-height: 0;
   outline: none;
   padding: 0;
-  right: -10px;
 
   position: absolute;
+  right: -10px;
   top: 45%;
   transform: translate(0, -50%);
+  width: 32px;
   z-index: 1;
-  left: -10px;
 }
 
 .slick-prev:hover,
@@ -111,9 +111,9 @@
 .slick-prev::before,
 .slick-next::before {
   font-family: 'slick';
-  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
   @include media-breakpoint-down(md) {
     display: none;
   }
@@ -121,69 +121,69 @@
 
 /* Dots */
 .slick-dots {
-  width: 100%;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: absolute;
   list-style: none;
+  position: absolute;
+  width: 100%;
 }
 
 .slick-dots ul {
-  padding-inline-start: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  padding-inline-start: 0;
 }
 
 .slick-dots li {
   cursor: pointer;
   display: inline-block;
   height: 20px;
-  width: 20px;
   position: relative;
+  width: 20px;
 }
 
 .slick-dots li button {
-  display: flex;
-  justify-content: center;
   align-items: center;
 
   background: transparent;
   border: 0;
   color: transparent;
   cursor: pointer;
+  display: flex;
   display: block;
 
   font-size: 0;
   height: 20px;
-  width: 20px;
+  justify-content: center;
   line-height: 0;
   outline: none;
   padding: 5px;
+  width: 20px;
 }
 
 .slick-dots li button::before {
+  align-items: center;
   color: $color-interface-light-deep;
 
   content: '•';
+  display: flex;
   font-family: 'slick';
   font-size: 24px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 20px;
-  width: 20px;
+  justify-content: center;
   left: 0;
 
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   top: 0;
+  width: 20px;
 }
 
 .slick-dots .slick-active button::before {
