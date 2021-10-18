@@ -23,11 +23,11 @@ export type TagProps = {
   /**
    * Set icon off.
    */
-  isIconOff?: boolean;
+  setIconOff?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Tag = React.forwardRef<HTMLDivElement, TagProps>(function Tag(
-  { children, type = 'default', className, icon, isIconOff = false, ...rest },
+  { children, type = 'default', className, icon, setIconOff = false, ...rest },
   ref
 ) {
   return (
@@ -37,7 +37,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(function Tag(
       className={classNames('ods-tag', `ods-tag--${type}`, className)}
       {...rest}
     >
-      {!isIconOff && <TagIcon type={type} icon={icon} />}
+      {!setIconOff && <TagIcon type={type} icon={icon} />}
       <div className="ods-tag__content">{children}</div>
     </div>
   );
