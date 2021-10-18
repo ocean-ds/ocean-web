@@ -39,12 +39,12 @@
 
 .slick-track {
   display: flex;
-  position: relative;
-  top: 0;
   left: 0;
+  margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 15px;
+  position: relative;
+  top: 0;
 }
 
 .slick-track > div:not(:first-child) {
@@ -66,16 +66,17 @@
   border-radius: 100%;
   color: $color-brand-primary-pure;
   font-size: 0;
-  height: 32px;
-  width: 32px;
-  line-height: 0;
   font-size: 0;
+  height: 32px;
+  line-height: 0;
   outline: none;
   padding: 0;
 
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
+  width: 32px;
+  z-index: 1;
 }
 
 .slick-next {
@@ -84,22 +85,22 @@
   border-radius: 100%;
   color: $color-brand-primary-pure;
   font-size: 0;
-  height: 32px;
-  width: 32px;
-  line-height: 0;
   font-size: 0;
+  height: 32px;
+  line-height: 0;
   outline: none;
   padding: 0;
 
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
+  width: 32px;
 }
 
 .slick-prev:hover,
 .slick-next:hover {
-  cursor: pointer;
   background: $color-interface-light-up;
+  cursor: pointer;
   outline: none;
 }
 
@@ -118,7 +119,7 @@
 }
 
 .slick-prev {
-  left: -10px;
+  left: -9px;
 }
 
 .slick-next {
