@@ -12,6 +12,30 @@ export type CarouselProps = {
   columns?: 1 | 2 | 3 | 4 | 5 | null;
 } & React.ComponentPropsWithoutRef<'div'>;
 
+const dotsList = (dots: Array<React.ReactElement>) => {
+  console.log('dots: ', dots);
+  console.log('dots: ', dots);
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <ul
+        style={{
+          paddingInlineStart: '0',
+          marginBlockStart: '0',
+          marginBlockEnd: '0',
+        }}
+      >
+        {' '}
+        {dots}{' '}
+      </ul>
+    </div>
+  );
+};
+
 const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
   const isMobile = useMedia('(max-width: 768px)');
   const columnsAsNumber = Number(columns);
@@ -23,35 +47,15 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
     slidesToScroll: isMobile ? 1 : columnsAsNumber,
     prevArrow: <ChevronLeft />,
     nextArrow: <ChevronRight />,
-    appendDots: (dots) => (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <ul
-          style={{
-            paddingInlineStart: '0',
-            marginBlockStart: '0',
-            marginBlockEnd: '0',
-          }}
-        >
-          {' '}
-          {dots}{' '}
-        </ul>
-      </div>
-    ),
+    appendDots: (dots: Array<React.ReactElement>) => dotsList(dots),
   };
 
   return (
-    <div>
-      <Slider {...settings}>
-        {Children.toArray(children).map((child, index) => (
-          <div key={index}>{child}</div>
-        ))}
-      </Slider>
-    </div>
+    <Slider {...settings}>
+      {Children.toArray(children).map((child, index) => (
+        <div key={index}>{child}</div>
+      ))}
+    </Slider>
   );
 };
 
