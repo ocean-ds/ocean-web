@@ -1,6 +1,5 @@
 import React, { Children } from 'react';
 import { useMedia } from 'react-use';
-import classNames from 'classnames';
 import Slider from 'react-slick';
 // import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
@@ -25,7 +24,7 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
   };
 
   return (
-    <div>
+    <div className="ods-carousel-container">
       <Slider {...settings}>
         {Children.toArray(children).map((child, index) => (
           <div key={index}>{child}</div>
