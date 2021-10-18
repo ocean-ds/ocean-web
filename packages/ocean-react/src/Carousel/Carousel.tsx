@@ -13,25 +13,9 @@ export type CarouselProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const dotsList = (dots: Array<React.ReactElement>) => {
-  console.log('dots: ', dots);
-  console.log('dots: ', dots);
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <ul
-        style={{
-          paddingInlineStart: '0',
-          marginBlockStart: '0',
-          marginBlockEnd: '0',
-        }}
-      >
-        {' '}
-        {dots}{' '}
-      </ul>
+    <div className="slick-dots">
+      <ul> {dots} </ul>
     </div>
   );
 };
