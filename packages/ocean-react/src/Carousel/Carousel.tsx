@@ -1,10 +1,7 @@
 import React, { Children } from 'react';
 import { useMedia } from 'react-use';
 import classNames from 'classnames';
-// import CarouselPagination from './CarouselPagination';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 // import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
 export type CarouselProps = {
@@ -29,17 +26,9 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
 
   return (
     <div>
-      <h2>Single Item</h2>
       <Slider {...settings}>
         {Children.toArray(children).map((child, index) => (
-          <div
-            className={classNames('child-container', {
-              'first-child-container': index === 0,
-            })}
-            key={index}
-          >
-            {child}
-          </div>
+          <div key={index}>{child}</div>
         ))}
       </Slider>
     </div>
