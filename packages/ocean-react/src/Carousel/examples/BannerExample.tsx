@@ -4,6 +4,7 @@ import { RefreshOutline } from '@useblu/ocean-icons-react';
 const BannerExample: React.FC = () => {
   return (
     <div
+      data-testid="ods-banner-example"
       style={{
         alignItems: 'center',
         background: '#EDEAFF',

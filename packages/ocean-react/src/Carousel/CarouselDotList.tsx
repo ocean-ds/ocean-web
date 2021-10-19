@@ -1,16 +1,21 @@
 import React from 'react';
 
-function CarouselDotList(dots: React.ReactElement[]) {
-  return (
-    <div>
-      {dots.map((dot) => (
+export type CarouselDotListProps = {
+  dots?: React.ReactElement[] | undefined;
+};
+
+const CarouselDotList: React.FC<CarouselDotListProps> = ({
+  dots,
+}: CarouselDotListProps) => (
+  <div>
+    {dots &&
+      dots.map((dot) => (
         <ul key={dot.key} data-testid="ods-ul-dots">
           {' '}
           {dot}{' '}
         </ul>
       ))}
-    </div>
-  );
-}
+  </div>
+);
 
 export default CarouselDotList;

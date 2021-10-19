@@ -14,6 +14,10 @@ export type CarouselProps = {
 const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
   const columnsAsNumber = Number(columns);
 
+  const appendDots = (dots?: React.ReactElement[] | undefined) => (
+    <CarouselDotList dots={dots} />
+  );
+
   const settings = {
     dots: true,
     infinite: false,
@@ -22,10 +26,7 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
     slidesToScroll: columnsAsNumber,
     prevArrow: <ChevronLeft />,
     nextArrow: <ChevronRight />,
-    appendDots: (dots: React.ReactElement[]) => {
-      console.log('Amigo estou aqui!');
-      return CarouselDotList(dots);
-    },
+    appendDots,
     responsive: [
       {
         breakpoint: 768,

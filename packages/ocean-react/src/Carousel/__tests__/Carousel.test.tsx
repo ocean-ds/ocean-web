@@ -1,9 +1,55 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
-// import { mocked } from 'ts-jest/utils';
-import '../../setupTest.mock';
+import { render } from '@testing-library/react';
+
 import Carousel, { CarouselProps } from '../Carousel';
-// import CarouselDotsList from '../CarouselDotList';
+
+jest.mock('@useblu/ocean-icons-react', () => ({
+  ChevronLeft: () => 'mock-chevron-left',
+  ChevronRight: () => 'mock-chevron-right',
+}));
+
+jest.mock(
+  'react-slick',
+  () =>
+    function Slider(props: {
+      children: HTMLElement;
+      appendDots: (dots: React.ReactElement[]) => HTMLLIElement;
+      dots: boolean;
+      infinite: boolean;
+      speed: number;
+      slidesToShow: number;
+      slidesToScroll: number;
+      prevArrow: React.ReactElement;
+      nextArrow: React.ReactElement;
+      responsive: {
+        breakpoint: number;
+        settings: {
+          slidesToShow: number;
+          slidesToScroll: number;
+        };
+      }[];
+    }) {
+      return (
+        <div>
+          dots: {props.dots.toString()}
+          infinite: {props.infinite.toString()}
+          speed : {props.speed}
+          slidesToShow : {props.slidesToShow}
+          slidesToScroll : {props.slidesToScroll}
+          prevArrow : {props.prevArrow}
+          nextArrow: {props.nextArrow}
+          breakpoint: {props.responsive[0].breakpoint}
+          slidesToShow: {props.responsive[0].settings.slidesToShow}
+          slidesToScroll: {props.responsive[0].settings.slidesToScroll}
+          {props.children}
+          {props.appendDots([
+            <div key={1}>teste 1</div>,
+            <div key={2}>teste 2</div>,
+          ])}
+        </div>
+      );
+    }
+);
 
 const setup = (
   props: CarouselProps = {
@@ -17,71 +63,74 @@ const setup = (
       </>
     ),
   }
-) => render(<Carousel {...props} />);
+) => {
+  return render(<Carousel {...props} />);
+};
 
 test('renders the container properly', async () => {
   setup();
 
-  await waitFor(() => {
-    expect(document.querySelector('.slick-dots')).toBeInTheDocument();
-    expect(document.querySelector('.ods-carousel')).toBeInTheDocument();
-    expect(document.querySelector('.ods-carousel')).toMatchInlineSnapshot(`
-   <div
-     class="ods-carousel"
-   >
-     <div
-       class="slick-slider slick-initialized"
-     >
-       
-       <div
-         class="slick-list"
-       >
-         <div
-           class="slick-track"
-           style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
-         >
-           <div
-             aria-hidden="false"
-             class="slick-slide slick-active slick-current"
-             data-index="0"
-             style="outline: none; width: 0px;"
-             tabindex="-1"
-           >
-             <div>
-               <div
-                 style="width: 100%; display: inline-block;"
-                 tabindex="-1"
-               >
-                 <div>
-                    Carousel Item 
-                 </div>
-                 <div>
-                    Carousel Item 
-                 </div>
-                 <div>
-                    Carousel Item 
-                 </div>
-                 <div>
-                    Carousel Item 
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-       
-       
-     </div>
-   </div>
-  `);
-  });
+  expect(document.querySelector('.ods-carousel')).toBeInTheDocument();
+  expect(document.querySelector('.ods-carousel')).toMatchInlineSnapshot(`
+<div
+  class="ods-carousel"
+>
+  <div>
+    dots: 
+    true
+    infinite: 
+    false
+    speed : 
+    500
+    slidesToShow : 
+    1
+    slidesToScroll : 
+    1
+    prevArrow : 
+    mock-chevron-left
+    nextArrow: 
+    mock-chevron-right
+    breakpoint: 
+    768
+    slidesToShow: 
+    1
+    slidesToScroll: 
+    1
+    <div>
+      <div>
+         Carousel Item 
+      </div>
+      <div>
+         Carousel Item 
+      </div>
+      <div>
+         Carousel Item 
+      </div>
+      <div>
+         Carousel Item 
+      </div>
+    </div>
+    <div>
+      <ul
+        data-testid="ods-ul-dots"
+      >
+         
+        <div>
+          teste 1
+        </div>
+         
+      </ul>
+      <ul
+        data-testid="ods-ul-dots"
+      >
+         
+        <div>
+          teste 2
+        </div>
+         
+      </ul>
+    </div>
+  </div>
+</div>
+`);
 });
-
-// test('renders a dot list pagination component', () => {
-//   const CarouselDotListMock = mocked(CarouselDotList);
-
-//   const div = React.createElement('div', 'Some text');
-//   render(CarouselDotListMock([div]));
-
-//   expect(screen.getByTestId('ods-ul-dots')).toBeInTheDocument();
-// });
