@@ -1,11 +1,13 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+// import { mocked } from 'ts-jest/utils';
 import '../../setupTest.mock';
 import Carousel, { CarouselProps } from '../Carousel';
+// import CarouselDotsList from '../CarouselDotList';
 
 const setup = (
   props: CarouselProps = {
-    columns: 1,
+    columns: undefined,
     children: (
       <>
         <div> Carousel Item </div>
@@ -17,87 +19,69 @@ const setup = (
   }
 ) => render(<Carousel {...props} />);
 
-test('first thing first', () => {
+test('renders the container properly', async () => {
   setup();
 
-  expect(document.querySelector('.ods-carousel')).toBeInTheDocument();
+  await waitFor(() => {
+    expect(document.querySelector('.slick-dots')).toBeInTheDocument();
+    expect(document.querySelector('.ods-carousel')).toBeInTheDocument();
+    expect(document.querySelector('.ods-carousel')).toMatchInlineSnapshot(`
+   <div
+     class="ods-carousel"
+   >
+     <div
+       class="slick-slider slick-initialized"
+     >
+       
+       <div
+         class="slick-list"
+       >
+         <div
+           class="slick-track"
+           style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+         >
+           <div
+             aria-hidden="false"
+             class="slick-slide slick-active slick-current"
+             data-index="0"
+             style="outline: none; width: 0px;"
+             tabindex="-1"
+           >
+             <div>
+               <div
+                 style="width: 100%; display: inline-block;"
+                 tabindex="-1"
+               >
+                 <div>
+                    Carousel Item 
+                 </div>
+                 <div>
+                    Carousel Item 
+                 </div>
+                 <div>
+                    Carousel Item 
+                 </div>
+                 <div>
+                    Carousel Item 
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       
+     </div>
+   </div>
+  `);
+  });
 });
 
-test('dots-list rendered', () => {
-  setup();
+// test('renders a dot list pagination component', () => {
+//   const CarouselDotListMock = mocked(CarouselDotList);
 
-  expect(screen.getByTestId('dots-list')).toBeInTheDocument();
-});
+//   const div = React.createElement('div', 'Some text');
+//   render(CarouselDotListMock([div]));
 
-// test('renders default element properly', () => {
-//   setup();
-
-//   expect(document.querySelector('.ods-carousel')).toMatchInlineSnapshot(`
-//   <div class="show-grid">
-//     <div class="ods-carousel">
-//         <div
-//           class="slick-slider slick-initialized"
-//         >
-//           <svg class="slick-arrow slick-prev" />
-//           <div class="slick-list">
-//             <div class="slick-track">
-//               <div class="slick-slide"/>
-//               <div class="slick-slide"/>
-//               <div class="slick-slide"/>
-//               <div class="slick-slide"/>
-//             </div>
-//           </div>
-//           <svg class="slick-arrow slick-next" />
-//           <div class="slick-dots"/>
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-//   `);
-// });
-
-// test('renders 5 elements per page', () => {
-//   setup({ columns: 5 });
-
-//   expect(document.querySelector('.ods-carousel-main-container'))
-//     .toMatchInlineSnapshot(`
-//     <div
-//       class="ods-carousel-main-container"
-//     >
-//       <div
-//         class="ods-carousel-children-container"
-//       />
-//     </div>
-//   `);
-// });
-
-// test('render example', () => {
-//   render(<BannerExample />);
-
-//   expect(screen.queryByText('Click me!')).toBeInTheDocument();
-// });
-
-// test('move from page to page - via CarouselPagination', () => {
-//   render(
-//     <Carousel columns={1}>
-//       <div> Carousel Item </div>
-//       <div> Carousel Item </div>
-//       <div> Carousel Item </div>
-//       <div> Carousel Item </div>
-//       <CarouselPagination
-//         quantButtons={4}
-//         activePage={0}
-//         onChangePage={jest.fn()}
-//       />
-//     </Carousel>
-//   );
-
-//   const pageList = document.querySelectorAll('.ods-carousel-page');
-//   expect(pageList[0]).toBeInTheDocument();
-
-//   fireEvent.click(pageList[0]);
-//   fireEvent.click(pageList[1]);
-//   fireEvent.click(pageList[0]);
-//   fireEvent.click(pageList[3]);
-//   fireEvent.click(pageList[0]);
+//   expect(screen.getByTestId('ods-ul-dots')).toBeInTheDocument();
 // });

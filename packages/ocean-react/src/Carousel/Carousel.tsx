@@ -1,7 +1,6 @@
 import React, { Children } from 'react';
-
+import CarouselDotList from './CarouselDotList';
 import Slider from 'react-slick';
-import { useMedia } from 'react-use';
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
 export type CarouselProps = {
@@ -12,28 +11,30 @@ export type CarouselProps = {
   columns?: 1 | 2 | 3 | 4 | 5 | null;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-export const dotsList = (
-  dots: Array<React.ReactElement>
-): React.ReactElement => {
-  return (
-    <div>
-      <ul data-testid="dot-list"> {dots} </ul>
-    </div>
-  );
-};
-
 const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
-  const isMobile = useMedia('(max-width: 768px)');
   const columnsAsNumber = Number(columns);
+
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: isMobile ? 1 : columnsAsNumber,
-    slidesToScroll: isMobile ? 1 : columnsAsNumber,
+    slidesToShow: columnsAsNumber,
+    slidesToScroll: columnsAsNumber,
     prevArrow: <ChevronLeft />,
     nextArrow: <ChevronRight />,
-    appendDots: (dots: Array<React.ReactElement>) => dotsList(dots),
+    appendDots: (dots: React.ReactElement[]) => {
+      console.log('Amigo estou aqui!');
+      return CarouselDotList(dots);
+    },
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
