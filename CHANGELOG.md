@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/ocean-ds/ocean-web/compare/v1.20.0...v1.20.1) (2021-10-19)
+
+### Bug Fixes
+
+- **tag component nowrap:** nowrap in correct classname ([#829](https://github.com/ocean-ds/ocean-web/issues/829)) ([b8adb0f](https://github.com/ocean-ds/ocean-web/commit/b8adb0fec22a516daa3013eb7b2cb0846a551b2a))
+
+# [1.20.0](https://github.com/ocean-ds/ocean-web/compare/v1.19.2...v1.20.0) (2021-10-18)
+
+### Features
+
+- **tab component:** add new prop to set icon off and icon content nowrap ([#826](https://github.com/ocean-ds/ocean-web/issues/826)) ([4e47c7f](https://github.com/ocean-ds/ocean-web/commit/4e47c7fc8a1cdcc3eb9e46d1814667b9aa2686b6))
+
 ## [1.19.2](https://github.com/ocean-ds/ocean-web/compare/v1.19.1...v1.19.2) (2021-09-06)
 
 ### Bug Fixes
