@@ -7,7 +7,7 @@ export type CarouselDotListProps = {
 const CarouselDotList: React.FC<CarouselDotListProps> = ({
   dots,
 }: CarouselDotListProps) => (
-  <div>
+  <div className="ods-carousel-dots">
     {dots &&
       dots.map((dot) => (
         <ul key={dot.key} data-testid="ods-ul-dots">
