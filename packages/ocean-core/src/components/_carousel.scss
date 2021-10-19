@@ -124,8 +124,20 @@
 }
 
 .slick-arrow > path {
-  transform: scale(0.7);
-  transform-origin: center;
+  transform: scale(0.9);
+}
+
+.slick-prev > path {
+  transform-origin: left;
+}
+
+.slick-next > path {
+  transform-origin: right;
+}
+
+.teste {
+  border: 1px solid red;
+  border-radius: 100%;
 }
 
 /* Dots */
