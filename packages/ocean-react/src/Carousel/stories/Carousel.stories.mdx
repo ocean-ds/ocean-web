@@ -1,0 +1,150 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import SubHeader from '../../SubHeader';
+import BannerExample from '../examples/BannerExample';
+import Carousel from '../Carousel';
+
+import { StarOutline, Reply, LockClosed } from '@useblu/ocean-icons-react';
+
+<Meta
+  title="Components/Carousel"
+  component={Carousel}
+  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
+  parameters={{ layout: 'padded' }}
+/>
+
+# List API
+
+The API documentation of the List React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { List } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Carousel columns={2}>
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+    </Carousel>
+  </Story>
+</Canvas>
+
+## Component Variable
+
+Those are the columns variations
+
+### 5 Columns
+
+<Canvas withSource="open" withToolbar>
+  <Story name="variables-column-5">
+    <Carousel columns={5}>
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+    </Carousel>
+  </Story>
+</Canvas>
+
+### 4 Columns
+
+<Canvas withSource="open" withToolbar>
+  <Story name="variables-column-4">
+    <Carousel columns={4}>
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+    </Carousel>
+  </Story>
+</Canvas>
+
+### 3 Columns
+
+<Canvas withSource="open" withToolbar>
+  <Story name="variables-column-3">
+    <Carousel columns={3}>
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+    </Carousel>
+  </Story>
+</Canvas>
+
+### 2 Columns
+
+<Canvas withSource="open" withToolbar>
+  <Story name="variables-column-2">
+    <Carousel columns={2}>
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+    </Carousel>
+  </Story>
+</Canvas>
+
+### 1 Column
+
+<Canvas withSource="open" withToolbar>
+  <Story name="variables-column-1">
+    <Carousel columns={1}>
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+      <BannerExample />
+    </Carousel>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class               | Description                                                   |
+| -------------------------- | ------------------------------------------------------------- |
+| .ods-carousel              | Styles applied to the root element.                           |
+| .ods-carousel-and-buttons  | Styles applied to the children banners and navigation buttons |
+| .ods-carousel-container    | Styles applied to the children banners container              |
+| .ods-carousel-item-columns | Styles applied to the children banner                         |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Carousel/Carousel.tsx) for more detail.
