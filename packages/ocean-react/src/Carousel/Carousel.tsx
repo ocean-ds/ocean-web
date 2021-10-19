@@ -12,10 +12,12 @@ export type CarouselProps = {
   columns?: 1 | 2 | 3 | 4 | 5 | null;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const dotsList = (dots: Array<React.ReactElement>) => {
+export const dotsList = (
+  dots: Array<React.ReactElement>
+): React.ReactElement => {
   return (
-    <div data-testid="dots-list">
-      <ul> {dots} </ul>
+    <div>
+      <ul data-testid="dot-list"> {dots} </ul>
     </div>
   );
 };

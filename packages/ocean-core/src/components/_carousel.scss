@@ -62,7 +62,6 @@
   border-radius: 100%;
   color: $color-brand-primary-pure;
   font-size: 0;
-  font-size: 0;
   height: 30px;
   line-height: 0;
   outline: none;
@@ -80,7 +79,6 @@
   border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: 100%;
   color: $color-brand-primary-pure;
-  font-size: 0;
   font-size: 0;
   height: 30px;
   left: -10px;
@@ -110,13 +108,9 @@
 
 .slick-prev::before,
 .slick-next::before {
-  font-family: 'slick';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1;
-  @include media-breakpoint-down(md) {
-    display: none;
-  }
 }
 
 .slick-arrow > path {
@@ -176,7 +170,6 @@
 
   content: '•';
   display: flex;
-  font-family: 'slick';
   font-size: 24px;
 
   -webkit-font-smoothing: antialiased;
