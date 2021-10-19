@@ -38,7 +38,17 @@
 }
 
 .slick-track > div:not(:first-child) {
-  margin-left: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.slick-track > div:first-child {
+  margin-left: 4px;
+  margin-right: 8px;
+}
+
+.slick-track > div:last-child {
+  margin-right: 8px;
 }
 
 .slick-slide {
@@ -142,7 +152,7 @@
   display: inline-block;
   height: 20px;
   position: relative;
-  width: 20px;
+  width: 12px;
 }
 
 .slick-dots li button {
