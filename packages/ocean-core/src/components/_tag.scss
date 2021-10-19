@@ -23,7 +23,6 @@
 
     .ods-tag__content {
       color: $color-status-negative-pure;
-      white-space: nowrap;
     }
   }
 
@@ -94,5 +93,6 @@
 
   &__content {
     margin: 0 $spacing-stack-xxxs;
+    white-space: nowrap;
   }
 }
