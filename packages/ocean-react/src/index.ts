@@ -22,6 +22,9 @@ export * from './Alert';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as Carousel } from './Carousel';
+export * from './Carousel';
+
 export { default as Input } from './Input';
 export * from './Input';
 
