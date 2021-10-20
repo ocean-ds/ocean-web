@@ -110,7 +110,9 @@ test('renders the container properly', async () => {
          Carousel Item 
       </div>
     </div>
-    <div>
+    <div
+      class="ods-carousel-dots"
+    >
       <ul
         data-testid="ods-ul-dots"
       >
