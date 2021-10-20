@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/ocean-ds/ocean-web/compare/v1.21.0...v1.21.1) (2021-10-20)
+
+### Bug Fixes
+
+- adding className on CarouselDotList component ([#831](https://github.com/ocean-ds/ocean-web/issues/831)) ([f2bd8c1](https://github.com/ocean-ds/ocean-web/commit/f2bd8c16a2f4f744a2834b57998275131e8a263f))
+
 # [1.21.0](https://github.com/ocean-ds/ocean-web/compare/v1.20.1...v1.21.0) (2021-10-19)
 
 ### Features
