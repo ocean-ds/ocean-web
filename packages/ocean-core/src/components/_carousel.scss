@@ -73,7 +73,7 @@
   line-height: 0;
   outline: none;
   padding: 0;
-
+  margin-top: -10px;
   position: absolute;
   right: -10px;
   top: 45%;
@@ -92,7 +92,7 @@
   line-height: 0;
   outline: none;
   padding: 0;
-
+  margin-top: -10px;
   position: absolute;
   right: -10px;
   top: 45%;
@@ -137,7 +137,6 @@
   display: flex;
   justify-content: center;
   list-style: none;
-  position: absolute;
   width: 100%;
 }
 
@@ -179,24 +178,20 @@
 
 .ods-carousel-dots li button::before {
   align-items: center;
-  color: $color-interface-light-deep;
-
-  content: '•';
+  content: ' ';
   display: flex;
   font-size: 24px;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 20px;
-  justify-content: center;
+  background: $color-interface-light-deep;
+  border-radius: 16px;
+  padding: 0;
   left: 0;
-
+  height: 4px;
   position: absolute;
   text-align: center;
   top: 0;
-  width: 20px;
+  width: 4px;
 }
 
 .ods-carousel-dots .slick-active button::before {
-  color: $color-brand-primary-pure;
+  background: $color-brand-primary-pure;
 }
