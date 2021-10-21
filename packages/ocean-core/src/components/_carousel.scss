@@ -71,9 +71,9 @@
   font-size: 0;
   height: 30px;
   line-height: 0;
+  margin-top: -10px;
   outline: none;
   padding: 0;
-  margin-top: -10px;
   position: absolute;
   right: -10px;
   top: 45%;
@@ -90,9 +90,9 @@
   height: 30px;
   left: -10px;
   line-height: 0;
+  margin-top: -10px;
   outline: none;
   padding: 0;
-  margin-top: -10px;
   position: absolute;
   right: -10px;
   top: 45%;
@@ -178,14 +178,14 @@
 
 .ods-carousel-dots li button::before {
   align-items: center;
+  background: $color-interface-light-deep;
+  border-radius: 16px;
   content: ' ';
   display: flex;
   font-size: 24px;
-  background: $color-interface-light-deep;
-  border-radius: 16px;
-  padding: 0;
-  left: 0;
   height: 4px;
+  left: 0;
+  padding: 0;
   position: absolute;
   text-align: center;
   top: 0;
