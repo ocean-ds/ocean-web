@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.3](https://github.com/ocean-ds/ocean-web/compare/v1.21.2...v1.21.3) (2021-10-21)
+
+### Bug Fixes
+
+- remove wrong char from css ([#833](https://github.com/ocean-ds/ocean-web/issues/833)) ([f474884](https://github.com/ocean-ds/ocean-web/commit/f474884d7433c5b8ca414530aea02368fc7793b3))
+
 ## [1.21.2](https://github.com/ocean-ds/ocean-web/compare/v1.21.1...v1.21.2) (2021-10-20)
 
 ### Bug Fixes
