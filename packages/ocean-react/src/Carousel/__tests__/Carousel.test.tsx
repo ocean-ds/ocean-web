@@ -54,6 +54,7 @@ jest.mock(
 const setup = (
   props: CarouselProps = {
     columns: undefined,
+    infinite: false,
     children: (
       <>
         <div> Carousel Item </div>
