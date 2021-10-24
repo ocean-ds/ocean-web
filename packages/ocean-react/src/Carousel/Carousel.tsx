@@ -13,7 +13,7 @@ export type CarouselProps = {
    * Determines if the component can scroll infinitely or not.
    * @default 'false'
    */
-  infinite: boolean;
+  infinite?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Carousel: React.FC<CarouselProps> = ({
