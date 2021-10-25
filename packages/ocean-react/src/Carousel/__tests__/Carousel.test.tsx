@@ -54,6 +54,7 @@ jest.mock(
 const setup = (
   props: CarouselProps = {
     columns: undefined,
+    infinite: true,
     children: (
       <>
         <div> Carousel Item </div>
@@ -79,7 +80,7 @@ test('renders the container properly', async () => {
     dots: 
     true
     infinite: 
-    false
+    true
     speed : 
     500
     slidesToShow : 
@@ -135,4 +136,18 @@ test('renders the container properly', async () => {
   </div>
 </div>
 `);
+});
+
+test('renders the container properly - false case', async () => {
+  const setupFalse = (props?: CarouselProps) => {
+    return render(
+      <Carousel {...props}>
+        <div>item1</div>
+      </Carousel>
+    );
+  };
+
+  setupFalse();
+
+  expect(document.querySelector('.ods-carousel')).toBeInTheDocument();
 });

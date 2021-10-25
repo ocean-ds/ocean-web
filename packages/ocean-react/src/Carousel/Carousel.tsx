@@ -5,13 +5,22 @@ import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
 export type CarouselProps = {
   /**
-   * Determines the number o columns in the carousel.
+   * Determines the number of columns in the carousel.
    * @default '1'
    */
   columns?: 1 | 2 | 3 | 4 | 5 | null;
+  /**
+   * Determines if the component can scroll infinitely or not.
+   * @default 'false'
+   */
+  infinite?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
+const Carousel: React.FC<CarouselProps> = ({
+  columns = 1,
+  infinite = false,
+  children,
+}) => {
   const columnsAsNumber = Number(columns);
 
   const appendDots = (dots?: React.ReactElement[] | undefined) => (
@@ -20,7 +29,7 @@ const Carousel: React.FC<CarouselProps> = ({ columns = 1, children }) => {
 
   const settings = {
     dots: true,
-    infinite: false,
+    infinite,
     speed: 500,
     slidesToShow: columnsAsNumber,
     slidesToScroll: columnsAsNumber,
