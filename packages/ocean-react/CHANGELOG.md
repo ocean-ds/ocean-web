@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ocean-ds/ocean-web/compare/v1.21.3...v1.22.0) (2021-10-25)
+
+### Features
+
+- adding infinite prop to carousel component (default: false) ([#834](https://github.com/ocean-ds/ocean-web/issues/834)) ([6f8f550](https://github.com/ocean-ds/ocean-web/commit/6f8f55012d3c6c3d8faade57c161d8ec4fac74aa))
+
 ## [1.21.2](https://github.com/ocean-ds/ocean-web/compare/v1.21.1...v1.21.2) (2021-10-20)
 
 ### Bug Fixes
