@@ -1,0 +1,83 @@
+.ods-progress {
+  display: inline-block;
+  position: relative;
+
+  &__primary {
+    transform: rotate(-90deg);
+    display: inline-block;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    svg {
+      display: block;
+
+      circle {
+        stroke: rgba($color-interface-light-pure, 0.4);
+      }
+    }
+  }
+
+  &__secondary {
+    position: absolute;
+    left: 0;
+
+    svg {
+      display: block;
+
+      circle {
+        display: block;
+        stroke: $color-interface-light-pure;
+        stroke-dasharray: 80px, 200px;
+        stroke-dashoffset: 0;
+        animation: animate-progress 1.4s ease-in-out infinite;
+      }
+    }
+  }
+
+  &--md {
+    width: 24px;
+    height: 24px;
+
+    svg {
+      circle {
+        stroke-width: 8;
+      }
+    }
+  }
+
+  &--sm {
+    width: 16px;
+    height: 16px;
+
+    svg {
+      circle {
+        stroke-width: 8;
+      }
+    }
+  }
+
+  &--lg {
+    width: 32px;
+    height: 32px;
+
+    svg {
+      circle {
+        stroke-width: 8;
+      }
+    }
+  }
+}
+
+@keyframes animate-progress {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
+}
