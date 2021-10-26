@@ -17,6 +17,7 @@ test('renders element properly', () => {
     class="ods-progress__primary ods-progress--md"
   >
     <svg
+      class="ods-progress-svg"
       viewBox="22 22 44 44"
     >
       <circle
