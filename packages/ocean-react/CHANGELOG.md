@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ocean-ds/ocean-web/compare/v1.22.0...v1.23.0) (2021-10-27)
+
+### Bug Fixes
+
+- disable close in modal ([#836](https://github.com/ocean-ds/ocean-web/issues/836)) ([80a35ce](https://github.com/ocean-ds/ocean-web/commit/80a35cefbebd169170f1faf0da5ed7e133557aff))
+
+### Features
+
+- New component Progress ([#835](https://github.com/ocean-ds/ocean-web/issues/835)) ([9eded00](https://github.com/ocean-ds/ocean-web/commit/9eded00b43516bc56c931aeabd7b25f228818815))
+
 # [1.22.0](https://github.com/ocean-ds/ocean-web/compare/v1.21.3...v1.22.0) (2021-10-25)
 
 ### Features
