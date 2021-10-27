@@ -33,7 +33,7 @@
     "directory": "packages/ocean-react"
   },
   "dependencies": {
-    "@reach/auto-id": "0.15.2",
+    "@reach/auto-id": "0.16.0",
     "@useblu/ocean-icons-react": "0.1.5",
     "classnames": "2.3.1",
     "react-modal": "3.13.1",
