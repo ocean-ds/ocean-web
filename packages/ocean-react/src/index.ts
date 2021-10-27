@@ -54,3 +54,6 @@ export * from './Divider';
 
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
+
+export { default as Progress } from './Progress';
+export * from './Progress';

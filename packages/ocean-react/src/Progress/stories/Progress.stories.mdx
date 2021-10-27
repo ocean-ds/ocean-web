@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import Progress from '../Progress';
+
+<Meta title="Components/Progress" component={Progress} />
+
+# Progress Circle
+
+The API documentation of the Progress component. Learn more about the props and the CSS customization points.
+
+## Usage
+
+```jsx
+<Progress />
+```
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <div
+      style={{
+        background: 'rgb(216, 218, 232)',
+        'text-align': 'center',
+        padding: '10px 0px',
+      }}
+    >
+      <Progress />
+    </div>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class               | Description                                     |
+| -------------------------- | ----------------------------------------------- |
+| .ods-progress              | Styles applied to the root element.             |
+| .ods-progress--[sm,md,lg]  | Specifies the width of the element.             |
+| .ods-progress\_\_primary   | Specifies the main circle style and its effect. |
+| .ods-progress\_\_secundary | Specifies the style of the background circle    |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Progress/Progress.tsx) for more detail.
