@@ -19,9 +19,10 @@ export type ModalProps = {
   maxWidth?: 'sm' | 'md' | 'lg' | false;
   /**
    * Function that will be run when the modal is requested to be closed, prior to actually closing.
+   * @default false
    */
 
-  disableClose?: false;
+  disableClose?: boolean;
   /**
    * it will disable the close button
    */
