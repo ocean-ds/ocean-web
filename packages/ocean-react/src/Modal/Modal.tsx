@@ -19,6 +19,12 @@ export type ModalProps = {
   maxWidth?: 'sm' | 'md' | 'lg' | false;
   /**
    * Function that will be run when the modal is requested to be closed, prior to actually closing.
+   * @default false
+   */
+
+  disableClose?: boolean;
+  /**
+   * it will disable the close button
    */
   onRequestClose(event: React.MouseEvent | React.KeyboardEvent): void;
 } & ReactModal.Props;
@@ -26,6 +32,7 @@ export type ModalProps = {
 const Modal: React.FC<ModalProps> = ({
   children,
   maxWidth = false,
+  disableClose = false,
   blocked = false,
   onRequestClose,
   ...rest
@@ -50,14 +57,16 @@ const Modal: React.FC<ModalProps> = ({
     {...rest}
   >
     <div className="ods-modal__header">
-      <button
-        type="button"
-        className="ods-modal__header-close"
-        aria-label="Close modal"
-        onClick={onRequestClose}
-      >
-        <XOutline />
-      </button>
+      {!disableClose && (
+        <button
+          type="button"
+          className="ods-modal__header-close"
+          aria-label="Close modal"
+          onClick={onRequestClose}
+        >
+          <XOutline />
+        </button>
+      )}
     </div>
     <div className="ods-modal__body">{children}</div>
   </ReactModal>
