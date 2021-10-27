@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ocean-ds/ocean-web/compare/v1.22.0...v1.24.0) (2021-10-27)
+
+### Bug Fixes
+
+- add ref for the used lib in carousel ([#837](https://github.com/ocean-ds/ocean-web/issues/837)) ([65f439a](https://github.com/ocean-ds/ocean-web/commit/65f439a408d65f9a932b4d9eab17f1547ea9b126))
+- disable close in modal ([#836](https://github.com/ocean-ds/ocean-web/issues/836)) ([80a35ce](https://github.com/ocean-ds/ocean-web/commit/80a35cefbebd169170f1faf0da5ed7e133557aff))
+
+### Features
+
+- new component progress ([#835](https://github.com/ocean-ds/ocean-web/issues/835)) ([a0262a3](https://github.com/ocean-ds/ocean-web/commit/a0262a34b080db6464fd37f20d63e52fc6df939e))
+
 # [1.23.0](https://github.com/ocean-ds/ocean-web/compare/v1.21.3...v1.22.0) (2021-10-25)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ocean-ds/ocean-web/compare/v1.22.0...v1.24.0) (2021-10-27)
+
+### Features
+
+- new component progress ([#835](https://github.com/ocean-ds/ocean-web/issues/835)) ([a0262a3](https://github.com/ocean-ds/ocean-web/commit/a0262a34b080db6464fd37f20d63e52fc6df939e))
+
 ## [1.21.3](https://github.com/ocean-ds/ocean-web/compare/v1.21.2...v1.21.3) (2021-10-21)
 
 ### Bug Fixes
