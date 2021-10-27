@@ -45,7 +45,7 @@ Unsure where to begin contributing? You can start by looking through these issue
 
 - We adopted [Github Flow](https://guides.github.com/introduction/flow/).
 - Assigns the issue to you. Let everyone know that you took that issue to settle.
-- Fork the repo and create your branch from master. A guide on how to fork a repository: https://help.github.com/articles/fork-a-repo/
+- Fork the repo and create your branch from master. A guide on how to fork a repository: <https://help.github.com/articles/fork-a-repo/>
 - Make commits of logical and atomic units.
 - Submit a pull request.
 
@@ -67,11 +67,11 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 It’s important that every piece of code is reviewed by at least one core contributor familiar with that codebase. Here are some things we look for:
 
-1.  **Required CI checks pass.** This is a prerequisite for the review, and it is the PR author's responsibility. As long as the tests don’t pass, the PR won't get reviewed.
-2.  **Simplicity.** Is this the simplest way to achieve the intended goal? If there are too many files, redundant functions, or complex lines of code, suggest a simpler way to do the same thing. In particular, avoid implementing an overly general solution when a simple, small, and pragmatic fix will do.
-3.  **Testing.** Do the tests ensure this code won’t break when other stuff changes around it? When it does break, will the tests added help us identify which part of the library has the problem? Did we cover an appropriate set of edge cases? Look at the test coverage report if there is one. Are all significant code paths in the new code exercised at least once?
-4.  **No unnecessary or unrelated changes.** PRs shouldn’t come with random formatting changes, especially in unrelated parts of the code. If there is some refactoring that needs to be done, it should be in a separate PR from a bug fix or feature, if possible.
-5.  **Code has appropriate comments.** Code should be commented, or written in a clear “self-documenting” way.
+1. **Required CI checks pass.** This is a prerequisite for the review, and it is the PR author's responsibility. As long as the tests don’t pass, the PR won't get reviewed.
+2. **Simplicity.** Is this the simplest way to achieve the intended goal? If there are too many files, redundant functions, or complex lines of code, suggest a simpler way to do the same thing. In particular, avoid implementing an overly general solution when a simple, small, and pragmatic fix will do.
+3. **Testing.** Do the tests ensure this code won’t break when other stuff changes around it? When it does break, will the tests added help us identify which part of the library has the problem? Did we cover an appropriate set of edge cases? Look at the test coverage report if there is one. Are all significant code paths in the new code exercised at least once?
+4. **No unnecessary or unrelated changes.** PRs shouldn’t come with random formatting changes, especially in unrelated parts of the code. If there is some refactoring that needs to be done, it should be in a separate PR from a bug fix or feature, if possible.
+5. **Code has appropriate comments.** Code should be commented, or written in a clear “self-documenting” way.
 
 ## Setup
 
@@ -79,7 +79,7 @@ It’s important that every piece of code is reviewed by at least one core contr
 <p>
 
 - Node 14.13.0+ _(if you need other versions we recommend the [node version manager](https://github.com/nvm-sh/nvm))_
-- Yarn 1.22.0+ _(required, because of [yarn workspace](https://classic.yarnpkg.com/en/docs/workspaces/))_
+- Yarn 1.23.0+ _(required, because of [yarn workspace](https://classic.yarnpkg.com/en/docs/workspaces/))_
 - VSCode _(optional, but it's useful because we share common configs and extensions)_
 
 </p>
