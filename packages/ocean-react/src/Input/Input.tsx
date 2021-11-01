@@ -10,6 +10,12 @@ export type InputProps = {
    * @default 'text'
    */
   type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
+
+  /**
+   *
+   */
+  position?: 'right' | 'left';
+
   /**
    * Sets a custon adornment to be iside of the `input` element.
    */
@@ -31,6 +37,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     value,
     adornment,
     defaultValue,
+    position,
     ...rest
   },
   ref
@@ -56,6 +63,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           filled && 'ods-input--filled',
           disabled && 'ods-input--disabled',
           error && 'ods-input--error',
+          position === 'left' && 'ods-input--left',
+          adornment && !filled ? 'ods-input--disabled--text' : '',
           className
         )}
       >

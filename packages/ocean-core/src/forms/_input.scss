@@ -40,6 +40,18 @@
     margin: 0;
   }
 
+  &--left {
+    flex-direction: row-reverse;
+
+    input {
+      padding: 0 0 0 10px;
+    }
+
+    .ods-input__adornment {
+      padding: 0 0 0 16px;
+    }
+  }
+
   &--disabled {
     background-color: $color-interface-light-down;
     border-color: $color-interface-light-down;
@@ -48,6 +60,12 @@
     input {
       color: $color-interface-dark-up;
       cursor: not-allowed;
+    }
+
+    &--text {
+      .ods-input__adornment {
+        opacity: 0.3;
+      }
     }
 
     &:hover,
