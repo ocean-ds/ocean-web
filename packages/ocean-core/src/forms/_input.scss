@@ -62,10 +62,8 @@
       cursor: not-allowed;
     }
 
-    &--text {
-      .ods-input__adornment {
-        opacity: 0.3;
-      }
+    &--text .ods-input__adornment {
+      opacity: 0.3;
     }
 
     &:hover,
