@@ -57,3 +57,6 @@ export * from './IconButton';
 
 export { default as Progress } from './Progress';
 export * from './Progress';
+
+export { default as Search } from './Search';
+export * from './Search';
