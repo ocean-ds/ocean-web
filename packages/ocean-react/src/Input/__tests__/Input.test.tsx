@@ -50,34 +50,34 @@ test('renders element with adornment properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
+<div
+  class="ods-form-control__root"
+>
+  <div
+    class="ods-form-control__element"
+  >
     <div
-      class="ods-form-control__root"
+      class="ods-input ods-input--disabled--text custom-class"
     >
+      <input
+        data-testid="input-test"
+        type="text"
+        value=""
+      />
       <div
-        class="ods-form-control__element"
+        class="ods-input__adornment"
       >
         <div
-          class="ods-input custom-class"
+          size="24"
+          stroke="#5872f5"
         >
-          <input
-            data-testid="input-test"
-            type="text"
-            value=""
-          />
-          <div
-            class="ods-input__adornment"
-          >
-            <div
-              size="24"
-              stroke="#5872f5"
-            >
-              mock-start-circle-outline
-            </div>
-          </div>
+          mock-start-circle-outline
         </div>
       </div>
     </div>
-  `);
+  </div>
+</div>
+`);
   expect(screen.getByTestId('input-test')).toHaveAttribute('type', 'text');
 });
 
@@ -122,5 +122,32 @@ test('renders a filled state for controlled input', () => {
   });
   expect(screen.getByTestId('controlled-input').parentElement).toHaveClass(
     'ods-input--filled'
+  );
+});
+
+test('renders a adornment state string for controlled input', () => {
+  render(
+    <Input
+      data-testid="input-test"
+      id="input-value"
+      label="Label"
+      name="value"
+      type="text"
+      position="left"
+      helperText="Helper text"
+      placeholder="5.00"
+      adornment={<span>R$</span>}
+    />
+  );
+
+  expect(screen.getByTestId('input-test').parentElement).toHaveClass(
+    'ods-input--left ods-input--disabled--text'
+  );
+
+  fireEvent.change(screen.getByTestId('input-test'), {
+    target: { value: '5,00' },
+  });
+  expect(screen.getByTestId('input-test').parentElement).not.toHaveClass(
+    'ods-input--disabled--text'
   );
 });

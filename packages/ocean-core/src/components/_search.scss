@@ -1,4 +1,4 @@
-.ods-input {
+.ods-search {
   align-items: center;
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-deep;
@@ -6,6 +6,7 @@
   display: flex;
   height: 46px;
   margin: 1px;
+  width: auto !important;
 
   input {
     border: 0;
@@ -25,13 +26,6 @@
     }
   }
 
-  &__adornment {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    padding-right: $spacing-inline-xs;
-  }
-
   &:hover,
   &:focus,
   &:active {
@@ -40,16 +34,16 @@
     margin: 0;
   }
 
-  &--left {
-    flex-direction: row-reverse;
+  svg {
+    color: #d8dae8;
+  }
 
-    input {
-      padding: 0 0 0 10px;
-    }
+  &--filled {
+    border-color: $color-brand-primary-up;
+  }
 
-    .ods-input__adornment {
-      padding: 0 0 0 16px;
-    }
+  &--filled svg {
+    color: #0025e0;
   }
 
   &--disabled {
@@ -62,10 +56,6 @@
       cursor: not-allowed;
     }
 
-    &--text .ods-input__adornment {
-      opacity: 0.3;
-    }
-
     &:hover,
     &:focus,
     &:active {
@@ -73,11 +63,20 @@
     }
   }
 
-  &--filled {
-    border-color: $color-brand-primary-up;
+  &__adornment {
+    line-height: 0;
+    padding-left: 16px;
+    width: auto !important;
   }
 
-  &--error {
-    border-color: $color-status-negative-pure;
+  &__clean {
+    cursor: pointer;
+    line-height: 0;
+    padding-right: 16px;
+    width: 24px;
+
+    svg {
+      color: #393b47;
+    }
   }
 }
