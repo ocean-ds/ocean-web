@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ocean-ds/ocean-web/compare/v1.24.0...v1.25.0) (2021-11-05)
+
+### Bug Fixes
+
+- double select z-index problem ([#840](https://github.com/ocean-ds/ocean-web/issues/840)) ([775e054](https://github.com/ocean-ds/ocean-web/commit/775e054860b5330638fba27e45a72ee1d3a5f8b9))
+
+### Features
+
+- create new component search ([#841](https://github.com/ocean-ds/ocean-web/issues/841)) ([f9b966e](https://github.com/ocean-ds/ocean-web/commit/f9b966e2f0c32af5d90aebc6da8aca2d00bec98b))
+
 # [1.24.0](https://github.com/ocean-ds/ocean-web/compare/v1.22.0...v1.24.0) (2021-10-27)
 
 ### Bug Fixes
