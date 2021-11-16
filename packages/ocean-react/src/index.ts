@@ -4,11 +4,26 @@ export * from './Typography';
 export { default as Grid } from './Grid';
 export * from './Grid';
 
+export { default as Tag } from './Tag';
+export * from './Tag';
+
+export { default as List } from './List';
+export * from './List';
+
+export { default as SubHeader } from './SubHeader';
+export * from './SubHeader';
+
+export { default as TransactionListItem } from './TransactionListItem';
+export * from './TransactionListItem';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 
 export { default as Button } from './Button';
 export * from './Button';
+
+export { default as Carousel } from './Carousel';
+export * from './Carousel';
 
 export { default as Input } from './Input';
 export * from './Input';
@@ -39,3 +54,9 @@ export * from './Divider';
 
 export { default as IconButton } from './IconButton';
 export * from './IconButton';
+
+export { default as Progress } from './Progress';
+export * from './Progress';
+
+export { default as Search } from './Search';
+export * from './Search';

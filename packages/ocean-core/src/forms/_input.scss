@@ -1,18 +1,35 @@
 .ods-input {
+  align-items: center;
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: $border-radius-sm;
-  box-sizing: border-box;
-  color: $color-interface-dark-deep;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-regular;
-  height: 48px;
-  line-height: $line-height-medium;
-  outline: none;
-  padding: 0 $spacing-inline-xs;
+  display: flex;
+  height: 46px;
+  margin: 1px;
 
-  &::placeholder {
-    color: $color-interface-light-deep;
+  input {
+    border: 0;
+    border-radius: $border-radius-sm;
+    box-sizing: border-box;
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    height: 100%;
+    line-height: $line-height-medium;
+    outline: none;
+    padding: 0 $spacing-inline-xs;
+    width: 100%;
+
+    &::placeholder {
+      color: $color-interface-light-deep;
+    }
+  }
+
+  &__adornment {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    padding-right: $spacing-inline-xs;
   }
 
   &:hover,
@@ -20,15 +37,37 @@
   &:active {
     border-color: $color-brand-primary-down;
     border-width: $border-width-thin;
-    padding: 0 ($spacing-inline-xs - $border-width-hairline);
+    margin: 0;
   }
 
-  &:disabled {
+  &--left {
+    flex-direction: row-reverse;
+
+    input {
+      padding: 0 0 0 10px;
+    }
+
+    .ods-input__adornment {
+      padding: 0 0 0 16px;
+    }
+  }
+
+  &--disabled {
     background-color: $color-interface-light-down;
     border-color: $color-interface-light-down;
-    color: $color-interface-dark-up;
     cursor: not-allowed;
 
+    input {
+      color: $color-interface-dark-up;
+      cursor: not-allowed;
+    }
+
+    &--text .ods-input__adornment {
+      opacity: 0.3;
+    }
+
+    &:hover,
+    &:focus,
     &:active {
       border-color: $color-interface-light-down;
     }

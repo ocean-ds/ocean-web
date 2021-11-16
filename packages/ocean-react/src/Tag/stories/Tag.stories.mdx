@@ -1,0 +1,148 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Star } from '@useblu/ocean-icons-react';
+import Tag from '../Tag';
+
+<Meta title="Components/Tag" component={Tag} />
+
+# Tag APIs
+
+The API documentation of the Tag React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Tag } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="Usage">
+    <Tag>
+      <strong>Your Tag</strong>
+    </Tag>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+### Default tags
+
+The tag offers four diferents default types that set of color with no icon.
+
+<Canvas>
+  <Story name="default">
+    <Tag>Default</Tag>
+  </Story>
+  <Story name="neutral">
+    <Tag type="neutral">Neutral</Tag>
+  </Story>
+  <Story name="neutral-02">
+    <Tag type="neutral-02">Neutral 02</Tag>
+  </Story>
+  <Story name="neutral-03">
+    <Tag type="neutral-03">Neutral 03</Tag>
+  </Story>
+</Canvas>
+
+### Types with default icon
+
+The tag offers thre diferents default types that set a icon and color.
+
+<Canvas>
+  <Story name="warning">
+    <Tag type="warning">Warning</Tag>
+  </Story>
+  <Story name="negative">
+    <Tag type="negative">Negative</Tag>
+  </Story>
+  <Story name="positive">
+    <Tag type="positive">Positive</Tag>
+  </Story>
+</Canvas>
+
+### Types without icon
+
+<Canvas>
+  <Story name="iconOff">
+    <Tag type="warning" setIconOff={true}>
+      Warning
+    </Tag>
+  </Story>
+</Canvas>
+
+### With Custom Icons
+
+You can alson add a custom icon for any of the default tags.
+
+<Canvas>
+  <Story name="neutral-with-icon">
+    <Tag icon={<Star size={16} />} type="neutral">
+      Neutral
+    </Tag>
+  </Story>
+  <Story name="neutral-02-with-icon">
+    <Tag icon={<Star size={16} />} type="neutral-02">
+      Neutral 02
+    </Tag>
+  </Story>
+  <Story name="neutral-03-with-icon">
+    <Tag icon={<Star size={16} />} type="neutral-03">
+      Neutral 03
+    </Tag>
+  </Story>
+  <Story name="warning-with-icon">
+    <Tag type="warning" icon={<Star size={16} />}>
+      Warning
+    </Tag>
+  </Story>
+  <Story name="negative-with-icon">
+    <Tag type="negative" icon={<Star size={16} />}>
+      Negative
+    </Tag>
+  </Story>
+  <Story name="positive-with-icon">
+    <Tag type="positive" icon={<Star size={16} />}>
+      Positive
+    </Tag>
+  </Story>
+</Canvas>
+
+## CSS
+
+| Global class            | Description                                                   |
+| ----------------------- | ------------------------------------------------------------- |
+| .ods-tag                | Styles applied to the root element.                           |
+| .ods-tag--default       | Styles applied to the root element with a default type.       |
+| .ods-tag--primary       | Styles applied to the root element with a primary type.       |
+| .ods-tag--complementary | Styles applied to the root element with a complementary type. |
+| .ods-tag--negative      | Styles applied to the root element with a negative type.      |
+| .ods-tag--warning       | Styles applied to the root element with a warning type.       |
+| .ods-tag--positive      | Styles applied to the root element with a positive type.      |
+| .ods-tag\_\_icon        | Styles applied to the icon element.                           |
+| .ods-tag\_\_content     | Styles applied to the content element.                        |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Tag/Tag.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      type: 'default',
+      children: 'Lorem ipsum',
+    }}
+    argTypes={{
+      icon: { control: null },
+    }}
+  >
+    {(props) => <Tag {...props} />}
+  </Story>
+</Canvas>

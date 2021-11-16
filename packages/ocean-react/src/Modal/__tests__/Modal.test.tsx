@@ -56,6 +56,14 @@ test('renders element properly', () => {
   `);
 });
 
+test('disable close in modal', () => {
+  setup({ disableClose: true });
+
+  expect(
+    document.querySelector('.ods-modal__header-close')
+  ).not.toBeInTheDocument();
+});
+
 test('renders a full width modal', () => {
   setup({ blocked: true });
 

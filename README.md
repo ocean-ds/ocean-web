@@ -1,6 +1,6 @@
 <h1 align="center">
   <a href="https://ocean-ds.github.io/ocean-web/index.html">
-    <img alt="ocean-logo" src="https://user-images.githubusercontent.com/3240432/96205195-5c8b0080-0f3c-11eb-8229-1f0a7f93df0a.png" width="400">
+    <img alt="ocean-logo" src="https://user-images.githubusercontent.com/3240432/130073671-e62059a3-19f5-47bd-8ce8-db66b3240eb7.png" width="400">
   </a>
 </h1>
 
@@ -73,6 +73,10 @@ Read our [contributing guide](.github/CONTRIBUTING.md) to learn about our develo
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/ocean-ds/ocean-web/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started.
 
+## Join our community
+
+Join our [discord server](https://discord.gg/hDWzGPKuG2) to get the latest updates, chat with other Ocean enthusiasts, and see what's happening in the community!
+
 ## License
 
 All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
@@ -81,7 +85,3 @@ All packages are licensed under the terms of the [GPL-3.0 License](LICENSE).
 
 - [Design tokens for the Blu design system](https://github.com/ocean-ds/ocean-tokens)
 - [SVG icons for Ocean DS](https://github.com/ocean-ds/ocean-icons)
-
-## Join our community
-
-Join our [discord server](https://discord.gg/hDWzGPKuG2) to get the latest updates, chat with other Ocean enthusiasts, and see what's happening in the community!

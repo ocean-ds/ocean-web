@@ -1,0 +1,157 @@
+@use 'sass:math';
+
+.ods-transaction__icon {
+  align-items: center;
+  background-color: $color-interface-light-up;
+  border-radius: 40px;
+  color: $color-interface-dark-up;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  min-width: 40px;
+  width: 40px;
+
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+
+.ods-transaction {
+  background-color: $color-interface-light-pure;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: $color-interface-light-up;
+
+    .ods-transaction__icon {
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  &:active {
+    background-color: $color-interface-light-deep;
+
+    .ods-transaction__icon {
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  .ods-transaction__sub-transactions {
+    .ods-transaction {
+      background-color: transparent;
+    }
+
+    .ods-transaction__icon {
+      background-color: transparent;
+    }
+
+    &:hover .ods-transaction__icon,
+    &:focus .ods-transaction__icon {
+      background-color: transparent;
+    }
+
+    &:active .ods-transaction__icon {
+      background-color: transparent;
+    }
+  }
+}
+
+.ods-transaction__sub-transactions {
+  .ods-transaction .ods-transaction__content {
+    padding: math.div($spacing-stack-xs, 2) $spacing-stack-xs;
+  }
+
+  &:last-of-type {
+    .ods-transaction .ods-transaction__content {
+      padding-bottom: $spacing-stack-xs;
+    }
+  }
+}
+
+.ods-transaction__content {
+  align-items: center;
+  box-sizing: border-box;
+  column-gap: $spacing-stack-xs;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: $spacing-stack-xs;
+  width: 100%;
+}
+
+.ods-transaction__information,
+.ods-transaction__sub-information {
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.ods-transaction__information {
+  width: 100%;
+}
+
+.ods-transaction__sub-information {
+  text-align: right;
+}
+
+.ods-transaction__level1 {
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-inline-xxxs;
+}
+
+.ods-transaction__level2 {
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: 15px;
+  font-weight: $font-weight-regular;
+  margin-bottom: $spacing-inline-xxs;
+}
+
+.ods-transaction__level3 {
+  color: $color-interface-dark-up;
+  font-family: $font-family-base;
+  font-size: $font-size-xxxs;
+  font-weight: $font-weight-medium;
+}
+
+.ods-transaction__level4 {
+  color: $color-brand-primary-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xxxs;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-inline-xxs;
+}
+
+.ods-transaction__value {
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-inline-xxxs;
+  white-space: nowrap;
+
+  &--positive {
+    color: $color-status-positive-deep;
+  }
+}
+
+.ods-transaction__tags {
+  column-gap: $spacing-stack-xxxs;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $spacing-inline-xxxs;
+}
+
+.ods-transaction__time {
+  color: $color-interface-dark-up;
+  font-family: $font-family-base;
+  font-size: $font-size-xxxs;
+  font-weight: $font-weight-medium;
+}

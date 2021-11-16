@@ -1,0 +1,82 @@
+.ods-search {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-deep;
+  border-radius: $border-radius-sm;
+  display: flex;
+  height: 46px;
+  margin: 1px;
+  width: auto !important;
+
+  input {
+    border: 0;
+    border-radius: $border-radius-sm;
+    box-sizing: border-box;
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    height: 100%;
+    line-height: $line-height-medium;
+    outline: none;
+    padding: 0 $spacing-inline-xs;
+    width: 100%;
+
+    &::placeholder {
+      color: $color-interface-light-deep;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $color-brand-primary-down;
+    border-width: $border-width-thin;
+    margin: 0;
+  }
+
+  svg {
+    color: #d8dae8;
+  }
+
+  &--filled {
+    border-color: $color-brand-primary-up;
+  }
+
+  &--filled svg {
+    color: #0025e0;
+  }
+
+  &--disabled {
+    background-color: $color-interface-light-down;
+    border-color: $color-interface-light-down;
+    cursor: not-allowed;
+
+    input {
+      color: $color-interface-dark-up;
+      cursor: not-allowed;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $color-interface-light-down;
+    }
+  }
+
+  &__adornment {
+    line-height: 0;
+    padding-left: 16px;
+    width: auto !important;
+  }
+
+  &__clean {
+    cursor: pointer;
+    line-height: 0;
+    padding-right: 16px;
+    width: 24px;
+
+    svg {
+      color: #393b47;
+    }
+  }
+}

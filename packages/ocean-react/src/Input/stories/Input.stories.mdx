@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
+import { EyeOutline } from '@useblu/ocean-icons-react';
 
 <Meta
   title="Components/Input"
@@ -44,6 +45,38 @@ import { Input } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
+## With adornment variation
+
+<Canvas withSource="open" withToolbar>
+  <Story name="with-adornment">
+    <Input
+      id="input-usage"
+      label="Password"
+      name="user[password]"
+      defaultValue="set your password"
+      type="password"
+      adornment={<EyeOutline size={24} stroke="#B6B9CC" />}
+    />
+  </Story>
+</Canvas>
+
+## With currency variation
+
+<Canvas withSource="open" withToolbar>
+  <Story name="with-value">
+    <Input
+      id="input-value"
+      label="Label"
+      name="value"
+      type="text"
+      position="left"
+      helperText="Helper text"
+      adornment={<span>R$</span>}
+      placeholder="5.00"
+    />
+  </Story>
+</Canvas>
+
 ## Props
 
 <ArgsTable of="." />
@@ -54,11 +87,13 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class       | Description                                           |
-| ------------------ | ----------------------------------------------------- |
-| .ods-input         | Styles applied to the input element.                  |
-| .ods-input--filled | Styles applied to the input element when it's filled. |
-| .ods-input--error  | Styles applied to the input element if error={true}.  |
+| Global class               | Description                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| .ods-input                 | Styles applied to the input element.                                                           |
+| .ods-input--filled         | Styles applied to the input element when it's filled.                                          |
+| .ods-input--error          | Styles applied to the input element if error={true}.                                           |
+| .ods-input--left           | Styles applied to the input element if position="left".                                        |
+| .ods-input--disabled--text | Styles applied to the element if it doesn't have any text and doesn't have an icon as default. |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
 

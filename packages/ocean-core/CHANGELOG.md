@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.1](https://github.com/ocean-ds/ocean-web/compare/v1.25.0...v1.25.1) (2021-11-16)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+# [1.25.0](https://github.com/ocean-ds/ocean-web/compare/v1.24.0...v1.25.0) (2021-11-05)
+
+### Bug Fixes
+
+- double select z-index problem ([#840](https://github.com/ocean-ds/ocean-web/issues/840)) ([775e054](https://github.com/ocean-ds/ocean-web/commit/775e054860b5330638fba27e45a72ee1d3a5f8b9))
+
+### Features
+
+- create new component search ([#841](https://github.com/ocean-ds/ocean-web/issues/841)) ([f9b966e](https://github.com/ocean-ds/ocean-web/commit/f9b966e2f0c32af5d90aebc6da8aca2d00bec98b))
+
+# [1.24.0](https://github.com/ocean-ds/ocean-web/compare/v1.22.0...v1.24.0) (2021-10-27)
+
+### Features
+
+- new component progress ([#835](https://github.com/ocean-ds/ocean-web/issues/835)) ([a0262a3](https://github.com/ocean-ds/ocean-web/commit/a0262a34b080db6464fd37f20d63e52fc6df939e))
+
+## [1.21.3](https://github.com/ocean-ds/ocean-web/compare/v1.21.2...v1.21.3) (2021-10-21)
+
+### Bug Fixes
+
+- remove wrong char from css ([#833](https://github.com/ocean-ds/ocean-web/issues/833)) ([f474884](https://github.com/ocean-ds/ocean-web/commit/f474884d7433c5b8ca414530aea02368fc7793b3))
+
+## [1.21.1](https://github.com/ocean-ds/ocean-web/compare/v1.21.0...v1.21.1) (2021-10-20)
+
+### Bug Fixes
+
+- adding className on CarouselDotList component ([#831](https://github.com/ocean-ds/ocean-web/issues/831)) ([f2bd8c1](https://github.com/ocean-ds/ocean-web/commit/f2bd8c16a2f4f744a2834b57998275131e8a263f))
+
+# [1.21.0](https://github.com/ocean-ds/ocean-web/compare/v1.20.1...v1.21.0) (2021-10-19)
+
+### Features
+
+- carousel component ([#825](https://github.com/ocean-ds/ocean-web/issues/825)) ([8663ef5](https://github.com/ocean-ds/ocean-web/commit/8663ef543ef6b5182228b84222954c630540874b))
+
+## [1.20.1](https://github.com/ocean-ds/ocean-web/compare/v1.20.0...v1.20.1) (2021-10-19)
+
+### Bug Fixes
+
+- **tag component nowrap:** nowrap in correct classname ([#829](https://github.com/ocean-ds/ocean-web/issues/829)) ([b8adb0f](https://github.com/ocean-ds/ocean-web/commit/b8adb0fec22a516daa3013eb7b2cb0846a551b2a))
+
+# [1.20.0](https://github.com/ocean-ds/ocean-web/compare/v1.19.2...v1.20.0) (2021-10-18)
+
+### Features
+
+- **tab component:** add new prop to set icon off and icon content nowrap ([#826](https://github.com/ocean-ds/ocean-web/issues/826)) ([4e47c7f](https://github.com/ocean-ds/ocean-web/commit/4e47c7fc8a1cdcc3eb9e46d1814667b9aa2686b6))
+
+# [1.19.0](https://github.com/ocean-ds/ocean-web/compare/v1.18.1...v1.19.0) (2021-09-06)
+
+### Features
+
+- **transaction-list-item:** add list and transaction list item component ([#799](https://github.com/ocean-ds/ocean-web/issues/799)) ([43197f1](https://github.com/ocean-ds/ocean-web/commit/43197f1869bad85ff2b03d6184e9d7280d001027))
+
+## [1.18.1](https://github.com/ocean-ds/ocean-web/compare/v1.18.0...v1.18.1) (2021-09-02)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+# [1.18.0](https://github.com/ocean-ds/ocean-web/compare/v1.17.0...v1.18.0) (2021-08-30)
+
+### Features
+
+- **tag:** add tag component ([#798](https://github.com/ocean-ds/ocean-web/issues/798)) ([7a3217d](https://github.com/ocean-ds/ocean-web/commit/7a3217d4c86a668f7c8f1907ab5593fd8d3727c4))
+
+# [1.17.0](https://github.com/ocean-ds/ocean-web/compare/v1.16.5...v1.17.0) (2021-08-30)
+
+### Features
+
+- **input:** add input adornment ([#791](https://github.com/ocean-ds/ocean-web/issues/791)) ([e1a9237](https://github.com/ocean-ds/ocean-web/commit/e1a9237d6749fddcc2b9f188763b46ca99f3f409))
+
+## [1.16.5](https://github.com/ocean-ds/ocean-web/compare/v1.16.4...v1.16.5) (2021-08-25)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+## [1.16.4](https://github.com/ocean-ds/ocean-web/compare/v1.16.3...v1.16.4) (2021-08-20)
+
+### Bug Fixes
+
+- **vunerability:** upgrade node-sass to reduce vulnerabilities ([#789](https://github.com/ocean-ds/ocean-web/issues/789)) ([ec744db](https://github.com/ocean-ds/ocean-web/commit/ec744dbe3e0ccea6b9da9ac3caccb6afc5e03620))
+
+## [1.16.3](https://github.com/ocean-ds/ocean-web/compare/v1.16.2...v1.16.3) (2021-08-18)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
 # [1.16.0](https://github.com/ocean-ds/ocean-web/compare/v1.15.0...v1.16.0) (2021-08-16)
 
 ### Features
