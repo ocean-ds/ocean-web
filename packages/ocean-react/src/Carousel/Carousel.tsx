@@ -39,7 +39,7 @@ const Carousel: React.FC<CarouselProps> = ({
     nextArrow: <ChevronRight />,
     appendDots,
     autoplay,
-    autoplaySpeed: 8000,
+    autoplaySpeed: 7000,
     responsive: [
       {
         breakpoint: 768,
