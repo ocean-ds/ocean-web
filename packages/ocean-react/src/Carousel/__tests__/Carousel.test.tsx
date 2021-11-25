@@ -16,6 +16,8 @@ jest.mock(
       appendDots: (dots: React.ReactElement[]) => HTMLLIElement;
       dots: boolean;
       infinite: boolean;
+      autoplay: boolean;
+      autoplaySpeed: number;
       speed: number;
       slidesToShow: number;
       slidesToScroll: number;
@@ -33,7 +35,9 @@ jest.mock(
         <div>
           dots: {props.dots.toString()}
           infinite: {props.infinite.toString()}
-          speed : {props.speed}
+          autoplay: {props.infinite.toString()}
+          autoplaySpeed: {props.autoplaySpeed}
+          speed: {props.speed}
           slidesToShow : {props.slidesToShow}
           slidesToScroll : {props.slidesToScroll}
           prevArrow : {props.prevArrow}
@@ -81,8 +85,12 @@ test('renders the container properly', async () => {
     true
     infinite: 
     true
-    speed : 
-    500
+    autoplay: 
+    true
+    autoplaySpeed: 
+    7000
+    speed: 
+    1500
     slidesToShow : 
     1
     slidesToScroll : 
