@@ -1,0 +1,37 @@
+.ods-topbar {
+  align-items: center;
+  display: grid;
+  font-family: $font-family-highlight;
+  font-size: $font-size-sm;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 80px auto 80px;
+  // grid-template-columns: 1.5rem auto 2rem;
+  width: 100%;
+
+  &-prev {
+    color: $color-brand-primary-pure;
+    cursor: pointer;
+    line-height: 0;
+  }
+
+  &-title {
+    color: $color-brand-primary-pure;
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-medium;
+    // padding: 0 $spacing-inline-xs;
+
+    span {
+      color: $color-interface-dark-down;
+      display: block;
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &-search {
+    color: $color-brand-primary-pure;
+    cursor: pointer;
+    line-height: 0;
+    text-align: right;
+  }
+}
