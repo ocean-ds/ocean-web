@@ -1,7 +1,12 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import TopBar from '../TopBar';
+import { Container, Row } from '../../Grid';
 
-<Meta title="Components/TopBar" component={TopBar} />
+<Meta
+  title="Components/TopBar"
+  component={TopBar}
+  parameters={{ layout: 'padded' }}
+/>
 
 # TopBar API
 
@@ -10,14 +15,21 @@ The API documentation of the TopBar React component. Learn more about the props 
 ## Import
 
 ```javascript
-import { Input } from '@useblu/ocean-react';
+import { TopBar } from '@useblu/ocean-react';
 ```
 
 ## Usage
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <TopBar id="input-usage" defaultValue="Hello World" />
+    <TopBar
+      id="TopBar-playground"
+      variants="extended"
+      title="Title"
+      onBack={() => console.log('aa')}
+      onSearch={() => console.log('aa')}
+      description="Description"
+    />
   </Story>
 </Canvas>
 
@@ -31,39 +43,25 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class          | Description                                              |
-| --------------------- | -------------------------------------------------------- |
-| .ods-TopBar           | Styles applied to the TopBar element.                    |
-| .ods-TopBar--filled   | Styles applied to the TopBar element when it's filled.   |
-| .ods-TopBar--disabled | Styles applied to the TopBar element when it's disabled. |
+| Global class       | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| .ods-topbar        | Styles applied to the TopBar element.                  |
+| .ods-topbar-extend | Styles applied to the TopBar element extend variant.   |
+| .ods-topbar-title  | Styles applied to the TopBar element when it's title.  |
+| .ods-topbar-search | Styles applied to the TopBar element when it's search. |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/TopBar/TopBar.tsx) for more detail.
 
-## Inheritance
-
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
-
 ## Playground
 
-<Canvas>
+<Canvas withSource="open" withToolbar>
   <Story
     name="playground"
     args={{
-      defaultValue: 'dkosakd',
-      placeholder: 'Placeholder...',
-      blocked: false,
-      disabled: false,
-    }}
-    argTypes={{
-      placeholder: {
-        control: 'text',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
+      title: 'Title',
+      description: 'Description',
+      onSearch: () => console.log('Click'),
+      onBack: () => console.log('back'),
     }}
   >
     {(props) => <TopBar id="TopBar-playground" {...props} />}

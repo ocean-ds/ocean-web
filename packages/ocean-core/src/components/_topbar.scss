@@ -1,24 +1,58 @@
 .ods-topbar {
   align-items: center;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   font-family: $font-family-highlight;
   font-size: $font-size-sm;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 80px auto 80px;
-  // grid-template-columns: 1.5rem auto 2rem;
   width: 100%;
 
-  &-prev {
+  &-light {
+    color: #fff;
+
+    .ods-topbar-title {
+      span {
+        color: #fff;
+      }
+    }
+  }
+
+  &-default {
     color: $color-brand-primary-pure;
-    cursor: pointer;
+
+    .ods-topbar-title {
+      span {
+        color: $color-interface-dark-down;
+      }
+    }
+  }
+
+  &-extend {
+    display: grid;
+    grid-template-columns: 2rem auto 2rem;
+
+    .ods-topbar-title {
+      padding-top: 0;
+    }
+
+    .ods-topbar-search {
+      width: auto;
+    }
+  }
+
+  &-prev {
     line-height: 0;
+    width: 50%;
+
+    svg {
+      cursor: pointer;
+    }
   }
 
   &-title {
-    color: $color-brand-primary-pure;
     font-weight: $font-weight-extrabold;
     line-height: $line-height-medium;
-    // padding: 0 $spacing-inline-xs;
+    padding-top: 5rem;
+    width: 100%;
 
     span {
       color: $color-interface-dark-down;
@@ -29,9 +63,12 @@
   }
 
   &-search {
-    color: $color-brand-primary-pure;
-    cursor: pointer;
     line-height: 0;
     text-align: right;
+    width: 50%;
+
+    svg {
+      cursor: pointer;
+    }
   }
 }

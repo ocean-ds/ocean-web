@@ -1,24 +1,56 @@
-import { ArrowLeftOutline, SearchOutline } from '@useblu/ocean-icons-react';
 import React from 'react';
+import { ArrowLeftOutline, SearchOutline } from '@useblu/ocean-icons-react';
+import classNames from 'classnames';
 
-const TopBar: React.FC = () => {
+interface TopBarProps {
+  onSearch?: () => void;
+  onBack?: () => void;
+  title: string;
+  description?: string;
+  variants?: 'default' | 'extended';
+  color?: 'light' | 'default';
+}
+
+const TopBar: React.FC<TopBarProps> = ({
+  onBack,
+  onSearch,
+  title,
+  description,
+  variants = 'default',
+  color = 'default',
+}) => {
   return (
-    <div className="ods-topbar">
-      <div className="ods-topbar-prev">
-        <ArrowLeftOutline />
-      </div>
-      {/* <div className="ods-topbar-title">
+    <div
+      className={classNames(
+        variants === 'default' ? 'ods-topbar' : 'ods-topbar ods-topbar-extend',
+        color === 'light' ? 'ods-topbar-light' : 'ods-topbar-default'
+      )}
+    >
+      {onBack && (
+        <div className="ods-topbar-prev">
+          <ArrowLeftOutline onClick={onBack} />
+        </div>
+      )}
+
+      {variants === 'extended' && (
+        <div className="ods-topbar-title">
           Title
           <span>Description</span>
-        </div> */}
-      <div className="ods-topbar-search">
-        <SearchOutline />
-      </div>
+        </div>
+      )}
 
-      <div className="ods-topbar-title">
-        Title
-        <span>Description</span>
-      </div>
+      {onSearch && (
+        <div className="ods-topbar-search">
+          <SearchOutline onClick={onSearch} />
+        </div>
+      )}
+
+      {variants === 'default' && (
+        <div className="ods-topbar-title">
+          {title}
+          {description && <span>{description}</span>}
+        </div>
+      )}
     </div>
   );
 };
