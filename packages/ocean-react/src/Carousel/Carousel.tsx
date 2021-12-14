@@ -14,11 +14,13 @@ export type CarouselProps = {
    * @default 'false'
    */
   infinite?: boolean;
+  autoplay?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Carousel: React.FC<CarouselProps> = ({
   columns = 1,
   infinite = false,
+  autoplay = false,
   children,
 }) => {
   const columnsAsNumber = Number(columns);
@@ -30,18 +32,22 @@ const Carousel: React.FC<CarouselProps> = ({
   const settings = {
     dots: true,
     infinite,
-    speed: 500,
+    speed: 1500,
     slidesToShow: columnsAsNumber,
     slidesToScroll: columnsAsNumber,
     prevArrow: <ChevronLeft />,
     nextArrow: <ChevronRight />,
     appendDots,
+    autoplay,
+    autoplaySpeed: 7000,
     responsive: [
       {
         breakpoint: 768,
         settings: {
+          autoplay: false,
           slidesToShow: 1,
           slidesToScroll: 1,
+          speed: 1500,
         },
       },
     ],
