@@ -92,3 +92,25 @@ test('should not render buttons', () => {
   expect(document.querySelector('.ods-topbar-prev')).not.toBeInTheDocument();
   expect(document.querySelector('.ods-topbar-search')).not.toBeInTheDocument();
 });
+
+test('should render the variant default', () => {
+  const { container } = render(
+    <TopBar variants="default" title="Title" description="Description" />
+  );
+  expect(container.firstChild).toHaveClass('ods-topbar');
+  expect(container.firstChild).toHaveClass('ods-topbar-default');
+  expect(container.firstChild).toHaveTextContent('Description');
+  expect(document.querySelector('.ods-topbar-title')).toBeInTheDocument();
+});
+
+test('should render the color light', () => {
+  const { container } = render(
+    <TopBar
+      variants="default"
+      color="light"
+      title="Title"
+      description="Description"
+    />
+  );
+  expect(container.firstChild).toHaveClass('ods-topbar-light');
+});

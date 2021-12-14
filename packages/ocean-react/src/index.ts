@@ -60,3 +60,6 @@ export * from './Progress';
 
 export { default as Search } from './Search';
 export * from './Search';
+
+export { default as TopBar } from './TopBar';
+export * from './TopBar';
