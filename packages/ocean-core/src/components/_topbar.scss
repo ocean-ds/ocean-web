@@ -9,20 +9,16 @@
   &-light {
     color: #fff;
 
-    .ods-topbar-title {
-      span {
-        color: #fff;
-      }
+    .ods-topbar-title span {
+      color: #fff;
     }
   }
 
   &-default {
     color: $color-brand-primary-pure;
 
-    .ods-topbar-title {
-      span {
-        color: $color-interface-dark-down;
-      }
+    .ods-topbar-title span {
+      color: $color-interface-dark-down;
     }
   }
 
