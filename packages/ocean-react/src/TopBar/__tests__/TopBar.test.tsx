@@ -105,12 +105,7 @@ test('should render the variant default', () => {
 
 test('should render the color light', () => {
   const { container } = render(
-    <TopBar
-      variants="default"
-      color="light"
-      title="Title"
-      description="Description"
-    />
+    <TopBar color="light" title="Title" description="Description" />
   );
   expect(container.firstChild).toHaveClass('ods-topbar-light');
 });
