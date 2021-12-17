@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ocean-ds/ocean-web/compare/v1.25.2...v1.26.0) (2021-12-17)
+
+### Features
+
+- new component topbar ([#863](https://github.com/ocean-ds/ocean-web/issues/863)) ([4fd2beb](https://github.com/ocean-ds/ocean-web/commit/4fd2beb1d6fe0f556f11a0876ac1e37d6f2ae4fa))
+
 ## [1.25.2](https://github.com/ocean-ds/ocean-web/compare/v1.25.1...v1.25.2) (2021-11-25)
 
 ### Bug Fixes
