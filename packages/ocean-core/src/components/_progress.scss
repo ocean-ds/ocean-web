@@ -9,6 +9,7 @@
 
     svg {
       display: block;
+      stroke-width: 8px;
     }
 
     svg circle {
@@ -30,6 +31,7 @@
       stroke: $color-interface-light-pure;
       stroke-dasharray: 80px, 200px;
       stroke-dashoffset: 0;
+      stroke-width: 8px;
     }
   }
 

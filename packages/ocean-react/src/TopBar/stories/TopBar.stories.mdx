@@ -1,0 +1,69 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import TopBar from '../TopBar';
+import { Container, Row } from '../../Grid';
+
+<Meta
+  title="Components/TopBar"
+  component={TopBar}
+  parameters={{ layout: 'padded' }}
+/>
+
+# TopBar API
+
+The API documentation of the TopBar React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { TopBar } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <TopBar
+      id="TopBar-playground"
+      variants="extended"
+      title="Title"
+      onBack={() => console.log('aa')}
+      onSearch={() => console.log('aa')}
+      description="Description"
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class       | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| .ods-topbar        | Styles applied to the TopBar element.                  |
+| .ods-topbar-extend | Styles applied to the TopBar element extend variant.   |
+| .ods-topbar-title  | Styles applied to the TopBar element when it's title.  |
+| .ods-topbar-search | Styles applied to the TopBar element when it's search. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/TopBar/TopBar.tsx) for more detail.
+
+## Playground
+
+<Canvas withSource="open" withToolbar>
+  <Story
+    name="playground"
+    args={{
+      title: 'Title',
+      description: 'Description',
+      onSearch: () => console.log('Click'),
+      onBack: () => console.log('back'),
+    }}
+  >
+    {(props) => <TopBar id="TopBar-playground" {...props} />}
+  </Story>
+</Canvas>

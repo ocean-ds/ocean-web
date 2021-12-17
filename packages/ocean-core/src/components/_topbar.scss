@@ -1,0 +1,70 @@
+.ods-topbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $font-family-highlight;
+  font-size: $font-size-sm;
+  width: 100%;
+
+  &-light {
+    color: #fff;
+
+    .ods-topbar-title span {
+      color: #fff;
+    }
+  }
+
+  &-default {
+    color: $color-brand-primary-pure;
+
+    .ods-topbar-title span {
+      color: $color-interface-dark-down;
+    }
+  }
+
+  &-extend {
+    display: grid;
+    grid-template-columns: 2rem auto 2rem;
+
+    .ods-topbar-title {
+      padding-top: 0;
+    }
+
+    .ods-topbar-search {
+      width: auto;
+    }
+  }
+
+  &-prev {
+    line-height: 0;
+    width: 50%;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  &-title {
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-medium;
+    padding-top: 5rem;
+    width: 100%;
+
+    span {
+      color: $color-interface-dark-down;
+      display: block;
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &-search {
+    line-height: 0;
+    text-align: right;
+    width: 50%;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+}
