@@ -34,8 +34,8 @@ const TopBar: React.FC<TopBarProps> = ({
 
       {variants === 'extended' && (
         <div className="ods-topbar-title">
-          Title
-          <span>Description</span>
+          {title}
+          <span>{description}</span>
         </div>
       )}
 
