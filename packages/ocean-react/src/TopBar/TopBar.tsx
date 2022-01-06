@@ -1,10 +1,11 @@
-import React from 'react';
-import { ArrowLeftOutline, SearchOutline } from '@useblu/ocean-icons-react';
+import React, { ReactElement } from 'react';
+import { SearchOutline } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 
 interface TopBarProps {
   onSearch?: () => void;
   onBack?: () => void;
+  leftIcon: ReactElement;
   title: string;
   description?: string;
   variants?: 'default' | 'extended';
@@ -14,6 +15,7 @@ interface TopBarProps {
 const TopBar: React.FC<TopBarProps> = ({
   onBack,
   onSearch,
+  leftIcon,
   title,
   description,
   variants = 'default',
@@ -26,16 +28,16 @@ const TopBar: React.FC<TopBarProps> = ({
         color === 'light' ? 'ods-topbar-light' : 'ods-topbar-default'
       )}
     >
-      {onBack && (
+      {onBack && leftIcon && (
         <div className="ods-topbar-prev">
-          <ArrowLeftOutline onClick={onBack} />
+          <span onClick={onBack}>{leftIcon}</span>
         </div>
       )}
 
       {variants === 'extended' && (
         <div className="ods-topbar-title">
-          Title
-          <span>Description</span>
+          {title}
+          <span>{description}</span>
         </div>
       )}
 
