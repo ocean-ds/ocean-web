@@ -1,11 +1,11 @@
 .ods-topbar {
   align-items: center;
+  background: #fff;
   display: flex;
   flex-wrap: wrap;
   font-family: $font-family-highlight;
   font-size: $font-size-sm;
   width: 100%;
-  background: #fff;
 
   &-light {
     color: #fff;
@@ -16,16 +16,16 @@
   }
 
   &-default {
+    color: $color-brand-primary-pure;
     display: grid;
     grid-template-columns: 3rem auto 2rem;
-    color: $color-brand-primary-pure;
 
     .ods-topbar-title {
       padding-top: 0;
+    }
 
-      span {
-        color: $color-interface-dark-down;
-      }
+    .ods-topbar-title span {
+      color: $color-interface-dark-down;
     }
   }
 
