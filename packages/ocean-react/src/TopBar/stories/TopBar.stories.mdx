@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import TopBar from '../TopBar';
 import { Container, Row } from '../../Grid';
+import { ArrowLeftOutline } from '@useblu/ocean-icons-react';
 
 <Meta
   title="Components/TopBar"
@@ -26,6 +27,7 @@ import { TopBar } from '@useblu/ocean-react';
       id="TopBar-playground"
       variants="extended"
       title="Title"
+      leftIcon={<ArrowLeftOutline />}
       onBack={() => console.log('aa')}
       onSearch={() => console.log('aa')}
       description="Description"
@@ -59,6 +61,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
     name="playground"
     args={{
       title: 'Title',
+      leftIcon: <ArrowLeftOutline />,
       description: 'Description',
       onSearch: () => console.log('Click'),
       onBack: () => console.log('back'),
