@@ -1,10 +1,10 @@
 .ods-topbar {
   align-items: center;
-  background: #fff;
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
   font-family: $font-family-highlight;
   font-size: $font-size-sm;
+  grid-template-columns: 3rem auto 2rem;
   width: 100%;
 
   &-light {
@@ -17,8 +17,6 @@
 
   &-default {
     color: $color-brand-primary-pure;
-    display: grid;
-    grid-template-columns: 3rem auto 2rem;
 
     .ods-topbar-title {
       padding-top: 0;
@@ -54,7 +52,6 @@
   &-title {
     font-weight: $font-weight-extrabold;
     line-height: $line-height-medium;
-    padding-top: 5rem;
     width: 100%;
 
     span {
@@ -68,7 +65,7 @@
   &-search {
     line-height: 0;
     text-align: right;
-    width: 50%;
+    // width: 50%;
 
     svg {
       cursor: pointer;

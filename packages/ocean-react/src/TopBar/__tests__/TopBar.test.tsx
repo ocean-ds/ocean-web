@@ -122,7 +122,7 @@ test('should render the color light', () => {
   const { container } = render(
     <TopBar
       leftIcon={<ArrowLeftOutline />}
-      color="on"
+      color="off"
       title="Title"
       description="Description"
     />
