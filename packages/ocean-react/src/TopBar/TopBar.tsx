@@ -25,7 +25,9 @@ const TopBar: React.FC<TopBarProps> = ({
     <div
       className={classNames(
         variants === 'default' ? 'ods-topbar' : 'ods-topbar ods-topbar-extend',
-        color === 'on' ? 'ods-topbar-light' : 'ods-topbar-default'
+        color === 'on'
+          ? 'ods-topbar-light'
+          : 'ods-topbar-default ods-topbar-scroll-bar'
       )}
     >
       {onBack && leftIcon && (

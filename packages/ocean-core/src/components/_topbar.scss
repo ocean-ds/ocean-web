@@ -4,8 +4,13 @@
   flex-wrap: wrap;
   font-family: $font-family-highlight;
   font-size: $font-size-sm;
-  grid-template-columns: 3rem auto 2rem;
+  grid-template-columns: 3rem auto 3rem;
   width: 100%;
+  padding: 10px 5px;
+
+  &-scroll-bar {
+    box-shadow: 0 4px 8px rgba(12, 13, 20, 0.08);
+  }
 
   &-light {
     color: #fff;
