@@ -10,6 +10,7 @@ interface TopBarProps {
   description?: string;
   variants?: 'default' | 'extended';
   color?: 'off' | 'on';
+  scrollBar?: boolean;
 }
 
 const TopBar: React.FC<TopBarProps> = ({
@@ -20,14 +21,14 @@ const TopBar: React.FC<TopBarProps> = ({
   description,
   variants = 'default',
   color = 'default',
+  scrollBar,
 }) => {
   return (
     <div
       className={classNames(
         variants === 'default' ? 'ods-topbar' : 'ods-topbar ods-topbar-extend',
-        color === 'on'
-          ? 'ods-topbar-light'
-          : 'ods-topbar-default ods-topbar-scroll-bar'
+        color === 'on' ? 'ods-topbar-light' : 'ods-topbar-default',
+        scrollBar ? 'ods-topbar-scroll-bar' : ''
       )}
     >
       {onBack && leftIcon && (

@@ -18,7 +18,7 @@ test('renders element properly', () => {
 
   expect(container.firstChild).toMatchInlineSnapshot(`
 <div
-  class="ods-topbar ods-topbar-extend ods-topbar-default ods-topbar-scroll-bar"
+  class="ods-topbar ods-topbar-extend ods-topbar-default"
 >
   <div
     class="ods-topbar-prev"
