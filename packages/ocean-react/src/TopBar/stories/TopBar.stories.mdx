@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import TopBar from '../TopBar';
 import { Container, Row } from '../../Grid';
+import { ArrowLeftOutline } from '@useblu/ocean-icons-react';
 
 <Meta
   title="Components/TopBar"
@@ -26,6 +27,7 @@ import { TopBar } from '@useblu/ocean-react';
       id="TopBar-playground"
       variants="extended"
       title="Title"
+      leftIcon={<ArrowLeftOutline />}
       onBack={() => console.log('aa')}
       onSearch={() => console.log('aa')}
       description="Description"
@@ -43,12 +45,13 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class       | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| .ods-topbar        | Styles applied to the TopBar element.                  |
-| .ods-topbar-extend | Styles applied to the TopBar element extend variant.   |
-| .ods-topbar-title  | Styles applied to the TopBar element when it's title.  |
-| .ods-topbar-search | Styles applied to the TopBar element when it's search. |
+| Global class           | Description                                                |
+| ---------------------- | ---------------------------------------------------------- |
+| .ods-topbar            | Styles applied to the TopBar element.                      |
+| .ods-topbar-extend     | Styles applied to the TopBar element extend variant.       |
+| .ods-topbar-title      | Styles applied to the TopBar element when it's title.      |
+| .ods-topbar-search     | Styles applied to the TopBar element when it's search.     |
+| .ods-topbar-scroll-bar | Styles applied to the TopBar element when it's box-shadow. |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/TopBar/TopBar.tsx) for more detail.
 
@@ -59,9 +62,11 @@ If that's not sufficient, you can check the [implementation of the component](ht
     name="playground"
     args={{
       title: 'Title',
+      leftIcon: <ArrowLeftOutline />,
       description: 'Description',
       onSearch: () => console.log('Click'),
       onBack: () => console.log('back'),
+      scrollBar: true,
     }}
   >
     {(props) => <TopBar id="TopBar-playground" {...props} />}

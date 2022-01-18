@@ -2,10 +2,12 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import TopBar from '../TopBar';
+import { ArrowLeftOutline } from '@useblu/ocean-icons-react';
 
 test('renders element properly', () => {
   const { container } = render(
     <TopBar
+      leftIcon={<ArrowLeftOutline />}
       variants="extended"
       title="Title"
       onBack={() => console.log('aa')}
@@ -21,28 +23,22 @@ test('renders element properly', () => {
   <div
     class="ods-topbar-prev"
   >
-    <svg
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M10 19l-7-7m0 0l7-7m-7 7h18"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-      />
-    </svg>
-  </div>
-  <div
-    class="ods-topbar-title"
-  >
-    Title
     <span>
-      Description
+      <svg
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </svg>
     </span>
   </div>
   <div
@@ -64,12 +60,21 @@ test('renders element properly', () => {
       />
     </svg>
   </div>
+  <div
+    class="ods-topbar-title"
+  >
+    Title
+    <span>
+      Description
+    </span>
+  </div>
 </div>
 `);
 });
 test('should render the buttons and Click', () => {
   const { container } = render(
     <TopBar
+      leftIcon={<ArrowLeftOutline />}
       variants="extended"
       title="Title"
       onBack={() => console.log('aa')}
@@ -85,7 +90,12 @@ test('should render the buttons and Click', () => {
 
 test('should not render buttons', () => {
   const { container } = render(
-    <TopBar variants="extended" title="Title" description="Description" />
+    <TopBar
+      leftIcon={<ArrowLeftOutline />}
+      variants="extended"
+      title="Title"
+      description="Description"
+    />
   );
 
   expect(container.firstChild).toHaveClass('ods-topbar-extend');
@@ -95,7 +105,12 @@ test('should not render buttons', () => {
 
 test('should render the variant default', () => {
   const { container } = render(
-    <TopBar variants="default" title="Title" description="Description" />
+    <TopBar
+      leftIcon={<ArrowLeftOutline />}
+      variants="default"
+      title="Title"
+      description="Description"
+    />
   );
   expect(container.firstChild).toHaveClass('ods-topbar');
   expect(container.firstChild).toHaveClass('ods-topbar-default');
@@ -105,7 +120,12 @@ test('should render the variant default', () => {
 
 test('should render the color light', () => {
   const { container } = render(
-    <TopBar color="light" title="Title" description="Description" />
+    <TopBar
+      leftIcon={<ArrowLeftOutline />}
+      color="off"
+      title="Title"
+      description="Description"
+    />
   );
-  expect(container.firstChild).toHaveClass('ods-topbar-light');
+  expect(container.firstChild).toHaveClass('ods-topbar-default');
 });

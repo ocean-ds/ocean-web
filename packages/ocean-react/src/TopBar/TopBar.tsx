@@ -1,41 +1,46 @@
-import React from 'react';
-import { ArrowLeftOutline, SearchOutline } from '@useblu/ocean-icons-react';
+import React, { ReactElement } from 'react';
+import { SearchOutline } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 
 interface TopBarProps {
   onSearch?: () => void;
   onBack?: () => void;
+  leftIcon: ReactElement;
   title: string;
   description?: string;
   variants?: 'default' | 'extended';
-  color?: 'light' | 'default';
+  color?: 'off' | 'on';
+  scrollBar?: boolean;
 }
 
 const TopBar: React.FC<TopBarProps> = ({
   onBack,
   onSearch,
+  leftIcon,
   title,
   description,
   variants = 'default',
   color = 'default',
+  scrollBar,
 }) => {
   return (
     <div
       className={classNames(
         variants === 'default' ? 'ods-topbar' : 'ods-topbar ods-topbar-extend',
-        color === 'light' ? 'ods-topbar-light' : 'ods-topbar-default'
+        color === 'on' ? 'ods-topbar-light' : 'ods-topbar-default',
+        scrollBar ? 'ods-topbar-scroll-bar' : ''
       )}
     >
-      {onBack && (
+      {onBack && leftIcon && (
         <div className="ods-topbar-prev">
-          <ArrowLeftOutline onClick={onBack} />
+          <span onClick={onBack}>{leftIcon}</span>
         </div>
       )}
 
-      {variants === 'extended' && (
+      {variants === 'default' && (
         <div className="ods-topbar-title">
-          Title
-          <span>Description</span>
+          {title}
+          {description && <span>{description}</span>}
         </div>
       )}
 
@@ -45,7 +50,7 @@ const TopBar: React.FC<TopBarProps> = ({
         </div>
       )}
 
-      {variants === 'default' && (
+      {variants === 'extended' && (
         <div className="ods-topbar-title">
           {title}
           {description && <span>{description}</span>}
