@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/ocean-ds/ocean-web/compare/v1.26.1...v1.26.2) (2022-01-24)
+
+### Bug Fixes
+
+- scroll modal mobile ([#889](https://github.com/ocean-ds/ocean-web/issues/889)) ([4bb34f7](https://github.com/ocean-ds/ocean-web/commit/4bb34f7e3b72892f5d4b84c64b94d39a113189f5))
+
 ## [1.26.1](https://github.com/ocean-ds/ocean-web/compare/v1.26.0...v1.26.1) (2022-01-18)
 
 **Note:** Version bump only for package root
