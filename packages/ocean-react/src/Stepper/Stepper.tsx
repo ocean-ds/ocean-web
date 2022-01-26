@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 interface StepperProps {
   step: number;
@@ -7,8 +7,10 @@ interface StepperProps {
 
 // off = 4
 
-const Stepper = ({ step, off }: StepperProps): ReactElement => {
-  if (step === 0)
+const Stepper = ({ step, off }: StepperProps) => {
+  const color = '#13BDBD';
+
+  if (step === 1) {
     return (
       <svg
         width="116"
@@ -17,30 +19,243 @@ const Stepper = ({ step, off }: StepperProps): ReactElement => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M7 10L9 12L13 8M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z"
-          stroke="#B8C3FF"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M20 10H32" stroke="#B8C3FF" strokeWidth="2" />
-        <path
-          d="M39 10L41 12L45 8M51 10C51 11.1819 50.7672 12.3522 50.3149 13.4442C49.8626 14.5361 49.1997 15.5282 48.364 16.364C47.5282 17.1997 46.5361 17.8626 45.4442 18.3149C44.3522 18.7672 43.1819 19 42 19C40.8181 19 39.6478 18.7672 38.5558 18.3149C37.4639 17.8626 36.4718 17.1997 35.636 16.364C34.8003 15.5282 34.1374 14.5361 33.6851 13.4442C33.2328 12.3522 33 11.1819 33 10C33 7.61305 33.9482 5.32387 35.636 3.63604C37.3239 1.94821 39.6131 1 42 1C44.3869 1 46.6761 1.94821 48.364 3.63604C50.0518 5.32387 51 7.61305 51 10Z"
-          stroke="#B8C3FF"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-        <path d="M64 10H69" stroke="#EBECF5" strokeWidth="2" />
-        <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-        <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
-        <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
-        <path d="M96 10H101" stroke="#EBECF5" strokeWidth="2" />
-        <circle cx="106" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+        <circle cx="9.5" cy="10.5" r="5.5" stroke={color} strokeWidth="2" />
+        <path d="M15 10H20" stroke={color} strokeWidth="2" />
+
+        {off === 2 && (
+          <>
+            <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+          </>
+        )}
+
+        {off === 3 && (
+          <>
+            <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M47 10H52" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+          </>
+        )}
+
+        {off === 4 && (
+          <>
+            <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M47 10H52" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
+            <circle
+              r="5"
+              transform="matrix(-1 0 0 1 106 10)"
+              stroke="#EBECF5"
+              strokeWidth="2"
+            />
+            <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
+          </>
+        )}
       </svg>
     );
+  }
+
+  if (step === 2) {
+    return (
+      <svg
+        width="116"
+        height="20"
+        viewBox="0 0 116 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="10"
+          cy="10"
+          r="9"
+          fill="#13BDBD"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+        <path
+          d="M7 10L9 12L13 8"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
+        <path d="M32 10L37 10" stroke="#13BDBD" strokeWidth="2" />
+        <circle cx="42" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
+        {off > 2 && (
+          <>
+            {' '}
+            <path d="M47 10H52" stroke="#13BDBD" strokeWidth="2" />
+            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+          </>
+        )}
+
+        {off === 3 && (
+          <>
+            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+          </>
+        )}
+
+        {off === 4 && (
+          <>
+            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
+            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
+            <circle
+              r="5"
+              transform="matrix(-1 0 0 1 106 10)"
+              stroke="#EBECF5"
+              strokeWidth="2"
+            />
+            <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
+          </>
+        )}
+      </svg>
+    );
+  }
+
+  if (step === 3) {
+    return (
+      <svg
+        width="116"
+        height="20"
+        viewBox="0 0 116 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="10"
+          cy="10"
+          r="9"
+          fill="#13BDBD"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+        <path
+          d="M7 10L9 12L13 8"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
+        <circle
+          cx="42"
+          cy="10"
+          r="9"
+          fill="#13BDBD"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+        <path
+          d="M39 10L41 12L45 8"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M52 10H64" stroke="#13BDBD" strokeWidth="2" />
+        <path d="M64 10L69 10" stroke="#13BDBD" strokeWidth="2" />
+        <circle cx="74" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
+        {off > 3 && (
+          <>
+            <path d="M79 10H84" stroke="#13BDBD" strokeWidth="2" />
+            <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
+            <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
+            <circle
+              r="5"
+              transform="matrix(-1 0 0 1 106 10)"
+              stroke="#EBECF5"
+              strokeWidth="2"
+            />
+          </>
+        )}
+      </svg>
+    );
+  }
+
+  if (step === 4) {
+    return (
+      <svg
+        width="116"
+        height="20"
+        viewBox="0 0 116 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="10"
+          cy="10"
+          r="9"
+          fill="#13BDBD"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+        <path
+          d="M7 10L9 12L13 8"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
+        <circle
+          cx="42"
+          cy="10"
+          r="9"
+          fill="#13BDBD"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+        <path
+          d="M39 10L41 12L45 8"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M52 10H64" stroke="#13BDBD" strokeWidth="2" />
+        <circle
+          cx="74"
+          cy="10"
+          r="9"
+          fill="#13BDBD"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+        <path
+          d="M71 10L73 12L77 8"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M84 10H96" stroke="#13BDBD" strokeWidth="2" />
+        <path d="M101 10H96" stroke="#13BDBD" strokeWidth="2" />
+        <circle
+          r="5"
+          transform="matrix(-1 0 0 1 106 10)"
+          stroke="#13BDBD"
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
 
   return (
     <svg
@@ -50,80 +265,37 @@ const Stepper = ({ step, off }: StepperProps): ReactElement => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
+      <circle
+        cx="10"
+        cy="10"
+        r="9"
+        fill="#13BDBD"
+        stroke="#13BDBD"
+        strokeWidth="2"
+      />
       <path
-        d="M7 10L9 12L13 8M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z"
-        stroke="#B8C3FF"
+        d="M7 10L9 12L13 8"
+        stroke="white"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {step < 2 && (
-        <>
-          <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
-          <path d="M32 10H37" stroke="#EBECF5" strokeWidth="2" />
-          <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-          {off >= 4 && <path d="M47 10H52" stroke="#EBECF5" strokeWidth="2" />}
-        </>
-      )}
-
-      {step >= 2 && (
-        <>
-          <path d="M20 10H32" stroke="#B8C3FF" strokeWidth="2" />
-          <path
-            d="M39 10L41 12L45 8M51 10C51 11.1819 50.7672 12.3522 50.3149 13.4442C49.8626 14.5361 49.1997 15.5282 48.364 16.364C47.5282 17.1997 46.5361 17.8626 45.4442 18.3149C44.3522 18.7672 43.1819 19 42 19C40.8181 19 39.6478 18.7672 38.5558 18.3149C37.4639 17.8626 36.4718 17.1997 35.636 16.364C34.8003 15.5282 34.1374 14.5361 33.6851 13.4442C33.2328 12.3522 33 11.1819 33 10C33 7.61305 33.9482 5.32387 35.636 3.63604C37.3239 1.94821 39.6131 1 42 1C44.3869 1 46.6761 1.94821 48.364 3.63604C50.0518 5.32387 51 7.61305 51 10Z"
-            stroke="#B8C3FF"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </>
-      )}
-      {off >= 4 && (
-        <>
-          {step < 3 && (
-            <>
-              <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-              <path d="M64 10H69" stroke="#EBECF5" strokeWidth="2" />
-              <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-              <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
-            </>
-          )}
-
-          {step >= 3 && (
-            <>
-              <path d="M52 10H64" stroke="#B8C3FF" strokeWidth="2" />
-              <path
-                d="M71 10L73 12L77 8M83 10C83 11.1819 82.7672 12.3522 82.3149 13.4442C81.8626 14.5361 81.1997 15.5282 80.364 16.364C79.5282 17.1997 78.5361 17.8626 77.4442 18.3149C76.3522 18.7672 75.1819 19 74 19C72.8181 19 71.6478 18.7672 70.5558 18.3149C69.4639 17.8626 68.4718 17.1997 67.636 16.364C66.8003 15.5282 66.1374 14.5361 65.6851 13.4442C65.2328 12.3522 65 11.1819 65 10C65 7.61305 65.9482 5.32387 67.636 3.63604C69.3239 1.94821 71.6131 1 74 1C76.3869 1 78.6761 1.94821 80.364 3.63604C82.0518 5.32387 83 7.61305 83 10Z"
-                stroke="#B8C3FF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </>
-          )}
-
-          {step < 4 && (
-            <>
-              <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
-              <path d="M96 10H101" stroke="#EBECF5" strokeWidth="2" />
-              <circle cx="106" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-            </>
-          )}
-
-          {step >= 4 && (
-            <>
-              <path d="M84 10H96" stroke="#B8C3FF" strokeWidth="2" />
-              <path
-                d="M103 10L105 12L109 8M115 10C115 11.1819 114.767 12.3522 114.315 13.4442C113.863 14.5361 113.2 15.5282 112.364 16.364C111.528 17.1997 110.536 17.8626 109.444 18.3149C108.352 18.7672 107.182 19 106 19C104.818 19 103.648 18.7672 102.556 18.3149C101.464 17.8626 100.472 17.1997 99.636 16.364C98.8003 15.5282 98.1374 14.5361 97.6851 13.4442C97.2328 12.3522 97 11.1819 97 10C97 7.61305 97.9482 5.32387 99.636 3.63604C101.324 1.94821 103.613 1 106 1C108.387 1 110.676 1.94821 112.364 3.63604C114.052 5.32387 115 7.61305 115 10Z"
-                stroke="#B8C3FF"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </>
-          )}
-        </>
-      )}
+      <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
+      <path d="M32 10L37 10" stroke="#13BDBD" strokeWidth="2" />
+      <circle cx="42" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
+      <path d="M47 10H52" stroke="#13BDBD" strokeWidth="2" />
+      <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+      <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
+      <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+      <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
+      <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
+      <circle
+        r="5"
+        transform="matrix(-1 0 0 1 106 10)"
+        stroke="#EBECF5"
+        strokeWidth="2"
+      />
+      <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
     </svg>
   );
 };
