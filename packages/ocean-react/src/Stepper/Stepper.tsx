@@ -18,6 +18,25 @@ const defaultProps = {
   off: 4,
 };
 
+const FinalSteps = () => {
+  return (
+    <>
+      <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
+      <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
+      <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
+      <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
+      <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
+      <circle
+        r="5"
+        transform="matrix(-1 0 0 1 106 10)"
+        stroke="#EBECF5"
+        strokeWidth="2"
+      />
+      <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
+    </>
+  );
+};
+
 const Stepper = ({
   step,
   off,
@@ -61,18 +80,7 @@ const Stepper = ({
             <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
             <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
             <path d="M47 10H52" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
-            <circle
-              r="5"
-              transform="matrix(-1 0 0 1 106 10)"
-              stroke="#EBECF5"
-              strokeWidth="2"
-            />
-            <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
+            <FinalSteps />
           </>
         )}
       </svg>
@@ -122,22 +130,7 @@ const Stepper = ({
           </>
         )}
 
-        {off === 4 && (
-          <>
-            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
-            <circle
-              r="5"
-              transform="matrix(-1 0 0 1 106 10)"
-              stroke="#EBECF5"
-              strokeWidth="2"
-            />
-            <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
-          </>
-        )}
+        {off === 4 && <FinalSteps />}
       </svg>
     );
   }
