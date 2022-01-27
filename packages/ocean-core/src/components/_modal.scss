@@ -74,6 +74,7 @@
 
     @include media-breakpoint-down(md) {
       max-height: 80%;
+      overflow: auto;
       top: auto;
     }
   }
