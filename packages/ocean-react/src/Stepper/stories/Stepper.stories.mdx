@@ -5,7 +5,7 @@ import Stepper from '../Stepper';
 
 # Stepper API
 
-The API documentation of the Step React component. Learn more about the props and the CSS customization points.
+The API documentation of the Stepper React component. Learn more about the props.
 
 ## Import
 
@@ -16,8 +16,8 @@ import { Stepper } from '@useblu/ocean-react';
 ## Default Usage
 
 <Canvas withSource="open" withToolbar>
-  <Story name="default-step">
-    <Stepper step={1} off={2} />
+  <Story name="usage">
+    <Stepper step={1} off={4} />
   </Story>
 </Canvas>
 
@@ -29,19 +29,7 @@ The ref is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
-## CSS
-
-| Global class                | Description                                                |
-| --------------------------- | ---------------------------------------------------------- |
-| .ods-sub-header             | Styles applied to the sub-header element.                  |
-| .ods-sub-header\_\_title    | Styles applied to the title element.                       |
-| .ods-sub-header\_\_subtitle | Styles applied to the subtitle element when it is present. |
-
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
-
-## Inheritance
-
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Stepper/Stepper.tsx) for more detail.
 
 ## Playground
 
@@ -49,10 +37,18 @@ The props of the [FormControl](?path=/docs/components-formcontrol--page) compone
   <Story
     name="playground"
     args={{
-      step: 2,
+      step: 1,
       off: 4,
     }}
+    argTypes={{
+      step: {
+        options: [1, 2, 3, 4],
+      },
+      off: {
+        options: [1, 2, 3, 4],
+      },
+    }}
   >
-    {(props) => <Stepper {...props} />}
+    {(props) => <Stepper id="stepper-playground" {...props} />}
   </Story>
 </Canvas>
