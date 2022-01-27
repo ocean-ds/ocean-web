@@ -2,36 +2,36 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Stepper, { StepperProps } from '../Stepper';
 
-const setup = (props: StepperProps = { step: 1, off: 4 }) => {
+const setup = (props: StepperProps = { completed: 1, steps: 4 }) => {
   return render(<Stepper {...props} />);
 };
 
-test.each([1, 2, 3] as const)('renders each step option`', (step) => {
-  setup({ step, off: 4 });
+test.each([1, 2, 3] as const)('renders each completed option`', (completed) => {
+  setup({ completed, steps: 4 });
 
-  expect(screen.getByTestId(`stepper-${step}`)).toBeInTheDocument();
+  expect(screen.getByTestId(`stepper-${completed}`)).toBeInTheDocument();
 });
 
-test('renders the first step off two', () => {
-  setup({ step: 1, off: 2 });
+test('renders the first completed steps two', () => {
+  setup({ completed: 1, steps: 2 });
 
   expect(document.firstChild).toMatchInlineSnapshot(`DocumentType {}`);
 });
 
-test('renders the first step off three', () => {
-  setup({ step: 1, off: 3 });
+test('renders the first completed steps three', () => {
+  setup({ completed: 1, steps: 3 });
 
   expect(document.firstChild).toMatchInlineSnapshot(`DocumentType {}`);
 });
 
-test('renders the second step off three', () => {
-  setup({ step: 2, off: 3 });
+test('renders the second completed steps three', () => {
+  setup({ completed: 2, steps: 3 });
 
   expect(document.firstChild).toMatchInlineSnapshot(`DocumentType {}`);
 });
 
-test('renders the fourth step off four', () => {
-  setup({ step: 4, off: 4 });
+test('renders the fourth completed steps four', () => {
+  setup({ completed: 4, steps: 4 });
 
   expect(document.firstChild).toMatchInlineSnapshot(`DocumentType {}`);
 });

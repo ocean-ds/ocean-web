@@ -2,20 +2,20 @@ import React, { ReactElement } from 'react';
 
 export interface StepperProps {
   /**
-   * Determines the current step.
+   * Determines the current completed.
    * @default 1
    */
-  step: 1 | 2 | 3 | 4;
+  completed: 1 | 2 | 3 | 4;
 
   /**
    * Determines the total amount of steps.
    * @default 4
    */
-  off: 1 | 2 | 3 | 4;
+  steps: 1 | 2 | 3 | 4;
 }
 const defaultProps = {
-  step: 1,
-  off: 4,
+  completed: 1,
+  steps: 4,
 };
 
 const FinalSteps = () => {
@@ -38,10 +38,10 @@ const FinalSteps = () => {
 };
 
 const Stepper = ({
-  step,
-  off,
+  completed,
+  steps,
 }: StepperProps & typeof defaultProps): ReactElement => {
-  if (step === 1) {
+  if (completed === 1) {
     return (
       <svg
         width="116"
@@ -54,7 +54,7 @@ const Stepper = ({
         <circle cx="9.5" cy="10.5" r="5.5" stroke="#13BDBD" strokeWidth="2" />
         <path d="M15 10H20" stroke="#13BDBD" strokeWidth="2" />
 
-        {off === 2 && (
+        {steps === 2 && (
           <>
             <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
             <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
@@ -62,7 +62,7 @@ const Stepper = ({
           </>
         )}
 
-        {off === 3 && (
+        {steps === 3 && (
           <>
             <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
             <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
@@ -74,7 +74,7 @@ const Stepper = ({
           </>
         )}
 
-        {off === 4 && (
+        {steps === 4 && (
           <>
             <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
             <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
@@ -87,7 +87,7 @@ const Stepper = ({
     );
   }
 
-  if (step === 2) {
+  if (completed === 2) {
     return (
       <svg
         width="116"
@@ -115,14 +115,14 @@ const Stepper = ({
         <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
         <path d="M32 10L37 10" stroke="#13BDBD" strokeWidth="2" />
         <circle cx="42" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
-        {off > 2 && (
+        {steps > 2 && (
           <>
             <path d="M47 10H52" stroke="#13BDBD" strokeWidth="2" />
             <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
           </>
         )}
 
-        {off === 3 && (
+        {steps === 3 && (
           <>
             <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
             <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
@@ -130,7 +130,7 @@ const Stepper = ({
           </>
         )}
 
-        {off === 4 && <FinalSteps />}
+        {steps === 4 && <FinalSteps />}
       </svg>
     );
   }
@@ -176,11 +176,11 @@ const Stepper = ({
         strokeLinejoin="round"
       />
       <path d="M52 10H64" stroke="#13BDBD" strokeWidth="2" />
-      {step === 3 ? (
+      {completed === 3 ? (
         <>
           <path d="M64 10L69 10" stroke="#13BDBD" strokeWidth="2" />
           <circle cx="74" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
-          {off > 3 && (
+          {steps > 3 && (
             <>
               <path d="M79 10H84" stroke="#13BDBD" strokeWidth="2" />
               <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
