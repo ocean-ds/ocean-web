@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-export interface StepperProps {
+export interface StepsProps {
   /**
    * Determines the current completed.
    * @default 1
@@ -11,7 +11,7 @@ export interface StepperProps {
    * Determines the total amount of steps.
    * @default 4
    */
-  steps: 1 | 2 | 3 | 4;
+  steps: 2 | 3 | 4;
 }
 const defaultProps = {
   completed: 1,
@@ -37,10 +37,10 @@ const FinalSteps = () => {
   );
 };
 
-const Stepper = ({
+const Steps = ({
   completed,
   steps,
-}: StepperProps & typeof defaultProps): ReactElement => {
+}: StepsProps & typeof defaultProps): ReactElement => {
   if (completed === 1) {
     return (
       <svg
@@ -49,7 +49,7 @@ const Stepper = ({
         viewBox="0 0 116 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        data-testid="stepper-1"
+        data-testid="step-1"
       >
         <circle cx="9.5" cy="10.5" r="5.5" stroke="#13BDBD" strokeWidth="2" />
         <path d="M15 10H20" stroke="#13BDBD" strokeWidth="2" />
@@ -95,7 +95,7 @@ const Stepper = ({
         viewBox="0 0 116 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        data-testid="stepper-2"
+        data-testid="step-2"
       >
         <circle
           cx="10"
@@ -142,7 +142,7 @@ const Stepper = ({
       viewBox="0 0 116 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      data-testid="stepper-3"
+      data-testid="step-3"
     >
       <circle
         cx="10"
@@ -225,4 +225,4 @@ const Stepper = ({
   );
 };
 
-export default Stepper;
+export default Steps;

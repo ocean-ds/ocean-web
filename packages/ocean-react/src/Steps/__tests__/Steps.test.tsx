@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Stepper, { StepperProps } from '../Stepper';
+import Stepper, { StepsProps } from '../Steps';
 
-const setup = (props: StepperProps = { completed: 1, steps: 4 }) => {
+const setup = (props: StepsProps = { completed: 1, steps: 4 }) => {
   return render(<Stepper {...props} />);
 };
 
 test.each([1, 2, 3] as const)('renders each completed option`', (completed) => {
   setup({ completed, steps: 4 });
 
-  expect(screen.getByTestId(`stepper-${completed}`)).toBeInTheDocument();
+  expect(screen.getByTestId(`step-${completed}`)).toBeInTheDocument();
 });
 
 test('renders the first completed steps two', () => {

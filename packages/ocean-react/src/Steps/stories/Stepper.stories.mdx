@@ -1,23 +1,23 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import Stepper from '../Stepper';
+import Steps from '../Steps';
 
-<Meta title="Components/Stepper" component={Stepper} />
+<Meta title="Components/Steps" component={Steps} />
 
-# Stepper API
+# Steps API
 
-The API documentation of the Stepper React component. Learn more about the props.
+The API documentation of the Steps React component. Learn more about the props.
 
 ## Import
 
 ```javascript
-import { Stepper } from '@useblu/ocean-react';
+import { Steps } from '@useblu/ocean-react';
 ```
 
 ## Default Usage
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <Stepper completed={1} steps={4} />
+    <Steps completed={1} steps={4} />
   </Story>
 </Canvas>
 
@@ -29,7 +29,7 @@ The ref is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Stepper/Stepper.tsx) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Steps/Steps.tsx) for more detail.
 
 ## Playground
 
@@ -45,10 +45,10 @@ If that's not sufficient, you can check the [implementation of the component](ht
         options: [1, 2, 3, 4],
       },
       steps: {
-        options: [1, 2, 3, 4],
+        options: [2, 3, 4],
       },
     }}
   >
-    {(props) => <Stepper id="stepper-playground" {...props} />}
+    {(props) => <Steps id="stepper-playground" {...props} />}
   </Story>
 </Canvas>
