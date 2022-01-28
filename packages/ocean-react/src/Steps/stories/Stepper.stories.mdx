@@ -17,7 +17,7 @@ import { Steps } from '@useblu/ocean-react';
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <Steps completed={1} steps={4} />
+    <Steps currentStep={1} steps={4} />
   </Story>
 </Canvas>
 
@@ -37,11 +37,11 @@ If that's not sufficient, you can check the [implementation of the component](ht
   <Story
     name="playground"
     args={{
-      completed: 1,
+      currentStep: 1,
       steps: 4,
     }}
     argTypes={{
-      completed: {
+      currentStep: {
         options: [1, 2, 3, 4],
       },
       steps: {

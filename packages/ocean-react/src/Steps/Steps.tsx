@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 
 export interface StepsProps {
   /**
-   * Determines the current completed.
+   * Determines the current step.
    * @default 1
    */
-  completed: 1 | 2 | 3 | 4;
+  currentStep: 1 | 2 | 3 | 4;
 
   /**
    * Determines the total amount of steps.
@@ -14,7 +14,7 @@ export interface StepsProps {
   steps: 2 | 3 | 4;
 }
 const defaultProps = {
-  completed: 1,
+  currentStep: 1,
   steps: 4,
 };
 
@@ -38,10 +38,10 @@ const FinalSteps = () => {
 };
 
 const Steps = ({
-  completed,
+  currentStep,
   steps,
 }: StepsProps & typeof defaultProps): ReactElement => {
-  if (completed === 1) {
+  if (currentStep === 1) {
     return (
       <svg
         width="116"
@@ -87,7 +87,7 @@ const Steps = ({
     );
   }
 
-  if (completed === 2) {
+  if (currentStep === 2) {
     return (
       <svg
         width="116"
@@ -176,7 +176,7 @@ const Steps = ({
         strokeLinejoin="round"
       />
       <path d="M52 10H64" stroke="#13BDBD" strokeWidth="2" />
-      {completed === 3 ? (
+      {currentStep === 3 ? (
         <>
           <path d="M64 10L69 10" stroke="#13BDBD" strokeWidth="2" />
           <circle cx="74" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
