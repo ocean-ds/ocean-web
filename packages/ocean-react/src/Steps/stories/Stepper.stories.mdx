@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import Steps from '../Steps';
+
+<Meta title="Components/Steps" component={Steps} />
+
+# Steps API
+
+The API documentation of the Steps React component. Learn more about the props.
+
+## Import
+
+```javascript
+import { Steps } from '@useblu/ocean-react';
+```
+
+## Default Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Steps currentStep={1} steps={4} />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Steps/Steps.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      currentStep: 1,
+      steps: 4,
+    }}
+    argTypes={{
+      currentStep: {
+        options: [1, 2, 3, 4],
+      },
+      steps: {
+        options: [2, 3, 4],
+      },
+    }}
+  >
+    {(props) => <Steps id="stepper-playground" {...props} />}
+  </Story>
+</Canvas>
