@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ocean-ds/ocean-web/compare/v1.26.2...v1.27.0) (2022-02-01)
+
+### Features
+
+- Stepper Component ([#895](https://github.com/ocean-ds/ocean-web/issues/895)) ([afa651a](https://github.com/ocean-ds/ocean-web/commit/afa651a1e0575dc34364e4cf205a7d4811836371))
+
 ## [1.26.2](https://github.com/ocean-ds/ocean-web/compare/v1.26.1...v1.26.2) (2022-01-24)
 
 ### Bug Fixes
