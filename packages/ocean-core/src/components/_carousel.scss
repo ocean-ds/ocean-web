@@ -1,19 +1,36 @@
+.ods-carousel {
+  &.columns-5,
+  &.columns-4,
+  &.columns-3,
+  &.columns-2 {
+    .slick-track {
+      gap: 8px;
+    }
+  }
+}
+
 .slick-slider {
   box-sizing: border-box;
-
   display: block;
   position: relative;
   -webkit-tap-highlight-color: transparent;
   touch-action: pan-y;
-
   -webkit-touch-callout: none;
-
   user-select: none;
+
+  .slick-arrow {
+    display: none !important;
+  }
+
+  &:hover {
+    .slick-arrow {
+      display: block !important;
+    }
+  }
 }
 
 .slick-list {
   display: block;
-
   margin: 0;
   overflow: hidden;
   padding: 0;
@@ -35,29 +52,16 @@
   top: 0;
 }
 
-.slick-track > div:not(:first-child) {
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-.slick-track > div:first-child {
-  margin-left: 4px;
-  margin-right: 8px;
-}
-
-.slick-track > div:last-child {
-  margin-right: 8px;
-}
-
 .slick-slide {
   display: block;
   float: left;
-
   height: 100%;
   min-height: 1px;
 }
 
 .slick-arrow {
+  box-shadow: $shadow-level-1;
+
   @include media-breakpoint-down(md) {
     display: none !important;
   }
@@ -75,7 +79,7 @@
   outline: none;
   padding: 0;
   position: absolute;
-  right: -10px;
+  right: 8px;
   top: 45%;
   transform: translate(0, -50%);
   width: 30px;
@@ -88,7 +92,7 @@
   color: $color-brand-primary-pure;
   font-size: 0;
   height: 30px;
-  left: -10px;
+  left: 8px;
   line-height: 0;
   margin-top: -10px;
   outline: none;
@@ -159,21 +163,19 @@
 
 .ods-carousel-dots li button {
   align-items: center;
-
   background: transparent;
   border: 0;
   color: transparent;
   cursor: pointer;
   display: flex;
   display: block;
-
   font-size: 0;
   height: 20px;
   justify-content: center;
   line-height: 0;
   outline: none;
   padding: 5px;
-  width: 20px;
+  width: 8px;
 }
 
 .ods-carousel-dots li button::before {
