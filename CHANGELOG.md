@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.2](https://github.com/ocean-ds/ocean-web/compare/v1.27.1...v1.27.2) (2022-02-11)
+
+### Bug Fixes
+
+- **carosel:** add shadown to block ([#910](https://github.com/ocean-ds/ocean-web/issues/910)) ([1835bc6](https://github.com/ocean-ds/ocean-web/commit/1835bc6ec497edcc3d05f7a875c903741d7d729e))
+
 ## [1.27.1](https://github.com/ocean-ds/ocean-web/compare/v1.27.0...v1.27.1) (2022-02-11)
 
 ### Bug Fixes
