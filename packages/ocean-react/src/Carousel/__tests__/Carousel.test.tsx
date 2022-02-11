@@ -78,7 +78,7 @@ test('renders the container properly', async () => {
   expect(document.querySelector('.ods-carousel')).toBeInTheDocument();
   expect(document.querySelector('.ods-carousel')).toMatchInlineSnapshot(`
 <div
-  class="ods-carousel"
+  class="ods-carousel columns-1"
 >
   <div>
     dots: 
