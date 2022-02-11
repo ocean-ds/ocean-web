@@ -10,7 +10,7 @@ const BannerExample: React.FC = () => {
         background: '#EDEAFF',
         fontSize: '14px',
         color: '#7B61FF',
-        height: '200px',
+        height: '140px',
         borderRadius: '8px',
         display: 'flex',
         border: '1px dashed #7B61FF',
