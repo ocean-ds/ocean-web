@@ -30,14 +30,14 @@
 }
 
 .slick-list {
+  border-radius: 8px;
+  box-shadow: $shadow-level-1;
   display: block;
   margin: 0;
+  margin-bottom: 15px;
   overflow: hidden;
   padding: 0;
-  margin-bottom: 15px;
   position: relative;
-  box-shadow: $shadow-level-1;
-  border-radius: $border-radius-md;
 }
 
 .slick-slider .slick-track,
