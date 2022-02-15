@@ -1,11 +1,11 @@
 .ods-topbar {
   align-items: center;
-  display: grid;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
   font-family: $font-family-highlight;
   font-size: $font-size-sm;
   grid-template-columns: 3rem auto 3rem;
-  padding: 10px 5px;
+  height: 56px;
   width: 100%;
 
   &-scroll-bar {
@@ -33,30 +33,48 @@
   }
 
   &-extend {
+    box-sizing: border-box;
     display: flex;
-    grid-template-columns: 50% 50% auto;
+    flex-direction: column;
+    height: 128px;
+    justify-content: space-between;
+    padding: 16px 16px 8px;
 
-    .ods-topbar-title {
-      padding-top: 4rem;
+    .ods-topbar-actions {
+      display: flex;
+      flex-direction: row;
+      height: 72px;
+      justify-content: space-between;
+      width: 100%;
     }
 
-    .ods-topbar-search {
-      width: 50%;
+    .ods-topbar-left {
+      margin-left: 0;
+    }
+
+    .ods-topbar-right {
+      margin-right: 0;
     }
   }
 
-  &-prev {
+  &-left {
     line-height: 0;
-    width: 50%;
+    margin-left: 16px;
+    width: 24px;
 
-    svg {
+    span {
+      align-items: center;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
     }
   }
 
   &-title {
     font-weight: $font-weight-extrabold;
     line-height: $line-height-medium;
+    margin-left: 16px;
+    margin-right: 16px;
     width: 100%;
 
     span {
@@ -67,13 +85,16 @@
     }
   }
 
-  &-search {
+  &-right {
     line-height: 0;
-    text-align: right;
-    // width: 50%;
+    margin-right: 16px;
+    width: 24px;
 
-    svg {
+    span {
+      align-items: center;
       cursor: pointer;
+      display: flex;
+      justify-content: center;
     }
   }
 }

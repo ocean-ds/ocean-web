@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import TopBar from '../TopBar';
 import { Container, Row } from '../../Grid';
-import { ArrowLeftOutline } from '@useblu/ocean-icons-react';
+import { ArrowLeftOutline, DotsVertical } from '@useblu/ocean-icons-react';
 
 <Meta
   title="Components/TopBar"
@@ -21,6 +21,56 @@ import { TopBar } from '@useblu/ocean-react';
 
 ## Usage
 
+### Somente titulo com ações na direita e na esquerda
+
+<Canvas withSource="open" withToolbar>
+  <Story name="simple">
+    <TopBar
+      id="TopBar-playground"
+      title="Title"
+      leftIcon={<ArrowLeftOutline />}
+      rightIcon={<DotsVertical />}
+      onRightAction={() => console.log('Click')}
+      onLeftAction={() => console.log('back')}
+      scrollBar
+    />
+  </Story>
+</Canvas>
+
+### Titulo, descrição e ações na direita e na esquerda
+
+<Canvas withSource="open" withToolbar>
+  <Story name="description">
+    <TopBar
+      id="TopBar-playground"
+      title="Title"
+      leftIcon={<ArrowLeftOutline />}
+      rightIcon={<DotsVertical />}
+      description={'Description'}
+      onRightAction={() => console.log('Click')}
+      onLeftAction={() => console.log('back')}
+      scrollBar
+    />
+  </Story>
+</Canvas>
+
+### Titulo, descrição sem ação na esquerda
+
+<Canvas withSource="open" withToolbar>
+  <Story name="no-left">
+    <TopBar
+      id="TopBar-playground"
+      title="Title"
+      rightIcon={<DotsVertical />}
+      description={'Description'}
+      onRightAction={() => console.log('Click')}
+      scrollBar
+    />
+  </Story>
+</Canvas>
+
+### Extended style
+
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
     <TopBar
@@ -28,9 +78,11 @@ import { TopBar } from '@useblu/ocean-react';
       variants="extended"
       title="Title"
       leftIcon={<ArrowLeftOutline />}
-      onBack={() => console.log('aa')}
-      onSearch={() => console.log('aa')}
+      rightIcon={<DotsVertical />}
+      onLeftAction={() => console.log('aa')}
+      onRightAction={() => console.log('aa')}
       description="Description"
+      scrollBar
     />
   </Story>
 </Canvas>
@@ -50,7 +102,8 @@ Any other props supplied will be provided to the root element (native element).
 | .ods-topbar            | Styles applied to the TopBar element.                      |
 | .ods-topbar-extend     | Styles applied to the TopBar element extend variant.       |
 | .ods-topbar-title      | Styles applied to the TopBar element when it's title.      |
-| .ods-topbar-search     | Styles applied to the TopBar element when it's search.     |
+| .ods-topbar-left       | Styles applied to the TopBar element when it's left.       |
+| .ods-topbar-right      | Styles applied to the TopBar element when it's right.      |
 | .ods-topbar-scroll-bar | Styles applied to the TopBar element when it's box-shadow. |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/TopBar/TopBar.tsx) for more detail.
@@ -63,9 +116,10 @@ If that's not sufficient, you can check the [implementation of the component](ht
     args={{
       title: 'Title',
       leftIcon: <ArrowLeftOutline />,
+      rightIcon: <DotsVertical />,
       description: 'Description',
-      onSearch: () => console.log('Click'),
-      onBack: () => console.log('back'),
+      onRightAction: () => console.log('Click'),
+      onLeftAction: () => console.log('back'),
       scrollBar: true,
     }}
   >

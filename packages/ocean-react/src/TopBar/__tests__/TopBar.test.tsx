@@ -10,8 +10,8 @@ test('renders element properly', () => {
       leftIcon={<ArrowLeftOutline />}
       variants="extended"
       title="Title"
-      onBack={() => console.log('aa')}
-      onSearch={() => console.log('aa')}
+      onLeftAction={() => console.log('aa')}
+      onRightAction={() => console.log('aa')}
       description="Description"
     />
   );
@@ -21,44 +21,29 @@ test('renders element properly', () => {
   class="ods-topbar ods-topbar-extend ods-topbar-default"
 >
   <div
-    class="ods-topbar-prev"
+    class="ods-topbar-actions"
   >
-    <span>
-      <svg
-        fill="none"
-        height="24"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        width="24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-        />
-      </svg>
-    </span>
-  </div>
-  <div
-    class="ods-topbar-search"
-  >
-    <svg
-      fill="none"
-      height="24"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      class="ods-topbar-left"
     >
-      <path
-        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-      />
-    </svg>
+      <span>
+        <svg
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+      </span>
+    </div>
   </div>
   <div
     class="ods-topbar-title"
@@ -75,17 +60,18 @@ test('should render the buttons and Click', () => {
   const { container } = render(
     <TopBar
       leftIcon={<ArrowLeftOutline />}
+      rightIcon={<ArrowLeftOutline />}
       variants="extended"
       title="Title"
-      onBack={() => console.log('aa')}
-      onSearch={() => console.log('aa')}
+      onLeftAction={() => console.log('aa')}
+      onRightAction={() => console.log('aa')}
       description="Description"
     />
   );
 
   expect(container.firstChild).toHaveClass('ods-topbar-extend');
-  expect(document.querySelector('.ods-topbar-prev')).toBeInTheDocument();
-  expect(document.querySelector('.ods-topbar-search')).toBeInTheDocument();
+  expect(document.querySelector('.ods-topbar-left')).toBeInTheDocument();
+  expect(document.querySelector('.ods-topbar-right')).toBeInTheDocument();
 });
 
 test('should not render buttons', () => {
@@ -99,8 +85,8 @@ test('should not render buttons', () => {
   );
 
   expect(container.firstChild).toHaveClass('ods-topbar-extend');
-  expect(document.querySelector('.ods-topbar-prev')).not.toBeInTheDocument();
-  expect(document.querySelector('.ods-topbar-search')).not.toBeInTheDocument();
+  expect(document.querySelector('.ods-topbar-left')).not.toBeInTheDocument();
+  expect(document.querySelector('.ods-topbar-right')).not.toBeInTheDocument();
 });
 
 test('should render the variant default', () => {

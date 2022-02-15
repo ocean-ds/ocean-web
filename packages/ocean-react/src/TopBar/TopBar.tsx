@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import { SearchOutline } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 
 interface TopBarProps {
-  onSearch?: () => void;
-  onBack?: () => void;
-  leftIcon: ReactElement;
+  onRightAction?: () => void;
+  onLeftAction?: () => void;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
   title: string;
   description?: string;
   variants?: 'default' | 'extended';
@@ -14,15 +14,28 @@ interface TopBarProps {
 }
 
 const TopBar: React.FC<TopBarProps> = ({
-  onBack,
-  onSearch,
+  onLeftAction,
+  onRightAction,
   leftIcon,
+  rightIcon,
   title,
   description,
   variants = 'default',
   color = 'default',
   scrollBar,
 }) => {
+  const leftAction = onLeftAction && leftIcon && (
+    <div className="ods-topbar-left">
+      <span onClick={onLeftAction}>{leftIcon}</span>
+    </div>
+  );
+
+  const rightAction = onRightAction && rightIcon && (
+    <div className="ods-topbar-right">
+      <span onClick={onRightAction}>{rightIcon}</span>
+    </div>
+  );
+
   return (
     <div
       className={classNames(
@@ -31,30 +44,28 @@ const TopBar: React.FC<TopBarProps> = ({
         scrollBar ? 'ods-topbar-scroll-bar' : ''
       )}
     >
-      {onBack && leftIcon && (
-        <div className="ods-topbar-prev">
-          <span onClick={onBack}>{leftIcon}</span>
-        </div>
-      )}
-
       {variants === 'default' && (
-        <div className="ods-topbar-title">
-          {title}
-          {description && <span>{description}</span>}
-        </div>
-      )}
-
-      {onSearch && (
-        <div className="ods-topbar-search">
-          <SearchOutline onClick={onSearch} />
-        </div>
+        <>
+          {leftAction}
+          <div className="ods-topbar-title">
+            {title}
+            {description && <span>{description}</span>}
+          </div>
+          {rightAction}
+        </>
       )}
 
       {variants === 'extended' && (
-        <div className="ods-topbar-title">
-          {title}
-          {description && <span>{description}</span>}
-        </div>
+        <>
+          <div className="ods-topbar-actions">
+            {leftAction}
+            {rightAction}
+          </div>
+          <div className="ods-topbar-title">
+            {title}
+            {description && <span>{description}</span>}
+          </div>
+        </>
       )}
     </div>
   );
