@@ -3,8 +3,20 @@
   &.columns-4,
   &.columns-3,
   &.columns-2 {
+    overflow: hidden;
+
     .slick-track {
       gap: 8px;
+    }
+
+    .slick-list {
+      box-shadow: none;
+      overflow: inherit;
+    }
+
+    .slick-slide {
+      border-radius: 8px;
+      box-shadow: $shadow-level-1;
     }
   }
 }
