@@ -4,8 +4,8 @@ import classNames from 'classnames';
 interface TopBarProps {
   onRightAction?: () => void;
   onLeftAction?: () => void;
-  leftIcon: ReactElement;
-  rightIcon: ReactElement;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
   title: string;
   description?: string;
   variants?: 'default' | 'extended';
