@@ -22,9 +22,11 @@
     display: none !important;
   }
 
-  &:hover {
-    .slick-arrow {
-      display: block !important;
+  &:hover .slick-arrow {
+    display: block !important;
+
+    @include media-breakpoint-down(md) {
+      display: none !important;
     }
   }
 }
