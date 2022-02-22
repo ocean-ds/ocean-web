@@ -1,0 +1,69 @@
+@use 'sass:math';
+
+.ods-badge {
+  display: flex;
+  font-family: $font-family-base;
+
+  &__content {
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: $color-highlight-pure;
+    color: $color-interface-light-pure;
+    border-radius: 40px;
+    box-sizing: border-box;
+    width: auto;
+  }
+
+  &--medium .ods-badge__content {
+    height: 24px;
+    width: 24px;
+    min-width: 24px;
+    font-size: $font-size-xxxs;
+  }
+
+  &--small .ods-badge__content {
+    height: 16px;
+    min-width: 16px;
+    font-size: 10px;
+  }
+
+  &--tiny .ods-badge__content {
+    height: 8px;
+    width: 8px;
+    display: block;
+    overflow: hidden;
+    min-width: 8px;
+    font-size: 10px;
+  }
+
+  &--small &__text {
+    border-radius: 40px;
+    padding: 0px 4px;
+    width: auto;
+  }
+
+  &--overflow .ods-badge__content {
+    width: auto;
+    padding: 0px 4px;
+  }
+
+  &--overflow .ods-badge__content {
+    width: auto;
+    padding: 0px 4px;
+  }
+
+  &--brand .ods-badge__content {
+    background-color: $color-brand-primary-pure;
+  }
+  &--complementary .ods-badge__content {
+    background-color: $color-complementary-pure;
+  }
+  &--alert .ods-badge__content {
+    background-color: $color-status-neutral-deep;
+  }
+  &--neutral .ods-badge__content {
+    background-color: $color-interface-dark-up;
+  }
+}
