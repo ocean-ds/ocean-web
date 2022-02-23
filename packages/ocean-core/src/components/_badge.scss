@@ -8,6 +8,7 @@
     white-space: nowrap;
     align-items: center;
     justify-content: center;
+    font-weight: 800;
     display: flex;
     background-color: $color-highlight-pure;
     color: $color-interface-light-pure;
@@ -42,6 +43,7 @@
     border-radius: 40px;
     padding: 0px 4px;
     width: auto;
+    box-shadow: 0 4px 10px #ff726e3d;
   }
 
   &--overflow .ods-badge__content {
@@ -57,13 +59,27 @@
   &--brand .ods-badge__content {
     background-color: $color-brand-primary-pure;
   }
+  &--brand .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #0025e03d;
+  }
   &--complementary .ods-badge__content {
     background-color: $color-complementary-pure;
+  }
+  &--complementary .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #13bdbd3d;
   }
   &--alert .ods-badge__content {
     background-color: $color-status-neutral-deep;
   }
+
+  &--alert .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #ff8a143d;
+  }
+
   &--neutral .ods-badge__content {
     background-color: $color-interface-dark-up;
+  }
+  &--neutral .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #b6b9cc3d;
   }
 }

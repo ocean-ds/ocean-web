@@ -39,7 +39,9 @@ import { Badge } from '@useblu/ocean-react';
 
 <Canvas withSource="open" withToolbar>
   <Story name="color">
-    <Badge count={99} color="brand_default" />
+    <Badge count={99} />
+    <br />
+    <Badge count={99} color="brand" />
     <br />
     <Badge count={99} color="complementary" />
     <br />
@@ -47,6 +49,20 @@ import { Badge } from '@useblu/ocean-react';
     <br />
     <Badge count={99} color="neutral" />
     <br />
+  </Story>
+</Canvas>
+
+## Texto com cores
+
+<Canvas>
+  <Story name="text-with-colors">
+    <Badge color="brand">Your Text</Badge>
+    <br />
+    <Badge color="complementary">Your Text</Badge>
+    <br />
+    <Badge color="alert">Your Text</Badge>
+    <br />
+    <Badge color="neutral">Your Text</Badge>
   </Story>
 </Canvas>
 
@@ -89,11 +105,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
   <Story
     name="playground"
     args={{
-      type: 'default',
       children: 'Lorem ipsum',
-    }}
-    argTypes={{
-      icon: { control: null },
     }}
   >
     {(props) => <Badge {...props} />}
