@@ -1,19 +1,19 @@
 import React from 'react';
 import { RefreshOutline } from '@useblu/ocean-icons-react';
 
-const BannerExample: React.FC = () => {
+const BannerExample: React.FC<{ color?: number }> = ({ color = 0 }) => {
+  const colors = ['#0025E0', '#FF726E', '#13BDBD', '#FF8A14'];
+
   return (
     <div
       data-testid="ods-banner-example"
       style={{
         alignItems: 'center',
-        background: '#EDEAFF',
+        background: colors[color],
         fontSize: '14px',
-        color: '#7B61FF',
+        color: '#FFF',
         height: '140px',
-        borderRadius: '8px',
         display: 'flex',
-        border: '1px dashed #7B61FF',
         flexDirection: 'column',
         justifyContent: 'center',
       }}

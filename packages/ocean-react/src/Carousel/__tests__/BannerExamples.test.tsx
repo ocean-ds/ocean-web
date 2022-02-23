@@ -8,3 +8,9 @@ test('renders a dot list pagination component', () => {
 
   expect(screen.getByTestId('ods-banner-example')).toBeInTheDocument();
 });
+
+test('renders a dot list pagination component', () => {
+  render(<BannerExample color={1} />);
+
+  expect(screen.getByTestId('ods-banner-example')).toBeInTheDocument();
+});

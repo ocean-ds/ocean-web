@@ -42,9 +42,6 @@ jest.mock(
           slidesToScroll : {props.slidesToScroll}
           prevArrow : {props.prevArrow}
           nextArrow: {props.nextArrow}
-          breakpoint: {props.responsive[0].breakpoint}
-          slidesToShow: {props.responsive[0].settings.slidesToShow}
-          slidesToScroll: {props.responsive[0].settings.slidesToScroll}
           {props.children}
           {props.appendDots([
             <div key={1}>teste 1</div>,
@@ -88,7 +85,7 @@ test('renders the container properly', async () => {
     autoplay: 
     true
     autoplaySpeed: 
-    7000
+    8000
     speed: 
     1500
     slidesToShow : 
@@ -99,12 +96,6 @@ test('renders the container properly', async () => {
     mock-chevron-left
     nextArrow: 
     mock-chevron-right
-    breakpoint: 
-    768
-    slidesToShow: 
-    1
-    slidesToScroll: 
-    1
     <div>
       <div>
          Carousel Item 
