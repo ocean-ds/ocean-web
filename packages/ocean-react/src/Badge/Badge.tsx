@@ -6,22 +6,22 @@ export type BadgeProps = {
    * Determines the type of Badge, with default icon and colors for each type
    * @default 'small'
    */
-  variation: 'tiny' | 'small' | 'medium';
+  variation?: 'tiny' | 'small' | 'medium';
   /**
    * Determines the type of Badge colors scheam.
    */
-  color: 'brand' | 'complementary' | 'alert' | 'neutral';
+  color?: 'brand' | 'complementary' | 'alert' | 'neutral';
   /**
    * Determines the number of that badge should display
    */
-  count: number;
+  count?: number;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
   { children, variation = 'small', className, count, color, ...rest },
   ref
 ) {
-  const countToShow = count > 99 ? `99+` : count;
+  const countToShow = count && count > 99 ? `99+` : count;
 
   return (
     <div
@@ -33,7 +33,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
         `ods-badge--${color}`,
         className,
         {
-          'ods-badge--overflow': count > 99,
+          'ods-badge--overflow': count && count > 99,
         }
       )}
       {...rest}
