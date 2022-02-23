@@ -1,0 +1,90 @@
+@use 'sass:math';
+
+.ods-badge {
+  display: flex;
+  font-family: $font-family-base;
+
+  &__content {
+    align-items: center;
+    background-color: $color-highlight-pure;
+    border-radius: 40px;
+    box-sizing: border-box;
+    color: $color-interface-light-pure;
+    display: flex;
+    font-weight: $font-weight-bold;
+    justify-content: center;
+    white-space: nowrap;
+    width: auto;
+  }
+
+  &--medium .ods-badge__content {
+    font-size: $font-size-xxxs;
+    height: 24px;
+    min-width: 24px;
+    width: 24px;
+  }
+
+  &--small .ods-badge__content {
+    font-size: 10px;
+    height: 16px;
+    min-width: 16px;
+  }
+
+  &--tiny .ods-badge__content {
+    display: block;
+    font-size: 10px;
+    height: 8px;
+    min-width: 8px;
+    overflow: hidden;
+    width: 8px;
+  }
+
+  &--small &__text {
+    border-radius: 40px;
+    box-shadow: 0 4px 10px #ff726e3d;
+    padding: 0 4px;
+    width: auto;
+  }
+
+  &--overflow .ods-badge__content {
+    padding: 0 4px;
+    width: auto;
+  }
+
+  &--overflow .ods-badge__content {
+    padding: 0 4px;
+    width: auto;
+  }
+
+  &--brand .ods-badge__content {
+    background-color: $color-brand-primary-pure;
+  }
+
+  &--brand .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #0025e03d;
+  }
+
+  &--complementary .ods-badge__content {
+    background-color: $color-complementary-pure;
+  }
+
+  &--complementary .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #13bdbd3d;
+  }
+
+  &--alert .ods-badge__content {
+    background-color: $color-status-neutral-deep;
+  }
+
+  &--alert .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #ff8a143d;
+  }
+
+  &--neutral .ods-badge__content {
+    background-color: $color-interface-dark-up;
+  }
+
+  &--neutral .ods-badge__text.ods-badge__content {
+    box-shadow: 0 4px 10px #b6b9cc3d;
+  }
+}

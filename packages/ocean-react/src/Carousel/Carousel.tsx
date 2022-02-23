@@ -40,18 +40,7 @@ const Carousel: React.FC<CarouselProps> = ({
     nextArrow: <ChevronRight />,
     appendDots,
     autoplay,
-    autoplaySpeed: 7000,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          autoplay: false,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          speed: 1500,
-        },
-      },
-    ],
+    autoplaySpeed: 8000,
   };
 
   return (
