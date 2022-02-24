@@ -1,11 +1,14 @@
 .ods-loading {
   svg {
-    animation: ods-loading__ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    animation: ods-loading-animation 0.8s linear infinite;
   }
 
-  @keyframes ods-loading__ring {
+  @keyframes ods-loading-animation {
     0% {
       transform: rotate(0deg);
+    }
+    90% {
+      transform: rotate(340deg);
     }
     100% {
       transform: rotate(360deg);

@@ -7,6 +7,7 @@
   line-height: $line-height-tight;
   outline: none;
   text-align: center;
+  transition: background-color 0.1s ease-out;
 
   &--sm {
     font-size: $font-size-xxs;
@@ -127,6 +128,14 @@
 
   &--blocked {
     width: 100%;
+  }
+
+  &--loading {
+    > span {
+      visibility: hidden;
+      height: 0px;
+      display: block;
+    }
   }
 
   &:disabled,

@@ -68,8 +68,16 @@ function ButtonBase<T extends React.ElementType = 'button'>(
         { 'ods-btn--loading': loading }
       ),
       ...rest,
+      onClick: loading ? () => false : rest.onClick,
     },
-    loading ? <Loading /> : children
+    loading ? (
+      <>
+        <Loading />
+        <span>{children}</span>
+      </>
+    ) : (
+      children
+    )
   );
 }
 

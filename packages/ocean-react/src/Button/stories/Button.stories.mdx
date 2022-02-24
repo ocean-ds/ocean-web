@@ -154,6 +154,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       children: 'My Button',
       blocked: false,
       disabled: false,
+      loading: false,
     }}
     argTypes={{
       children: {
@@ -185,8 +186,12 @@ If that's not sufficient, you can check the [implementation of the component](ht
         name: 'disabled',
         control: 'boolean',
       },
+      loading: {
+        name: 'loading',
+        control: 'boolean',
+      },
     }}
   >
-    {(props) => <Button {...props} />}
+    {(props) => <Button {...props} onClick={() => alert('clicked')} />}
   </Story>
 </Canvas>
