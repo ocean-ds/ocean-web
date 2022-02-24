@@ -4,7 +4,7 @@ import classNames from 'classnames';
 export type LoadingProps = React.ComponentPropsWithoutRef<'div'>;
 
 const Loading = React.forwardRef<HTMLDivElement, LoadingProps>(
-  function OceanLoading({ children, className, ...rest }, ref) {
+  function OceanLoading({ className, ...rest }, ref) {
     return (
       <div ref={ref} className={classNames('ods-loading', className)} {...rest}>
         <svg

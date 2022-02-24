@@ -132,9 +132,9 @@
 
   &--loading {
     > span {
-      visibility: hidden;
-      height: 0px;
       display: block;
+      height: 0;
+      visibility: hidden;
     }
   }
 
