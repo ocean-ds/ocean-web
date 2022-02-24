@@ -66,3 +66,6 @@ export * from './TopBar';
 
 export { default as Steps } from './Steps';
 export * from './Steps';
+
+export { default as Badge } from './Badge';
+export * from './Badge';
