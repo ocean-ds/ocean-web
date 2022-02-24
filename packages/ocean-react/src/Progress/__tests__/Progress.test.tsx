@@ -4,44 +4,36 @@ import { render, screen } from '@testing-library/react';
 import Progress from '../Progress';
 
 test('renders element properly', () => {
-  const { container } = render(
-    <Progress data-testid="progress-test" size="md" />
-  );
+  const { container } = render(<Progress data-testid="progress-test" />);
 
   expect(container.firstChild).toMatchInlineSnapshot(`
 <div
-  class="ods-progress"
+  class="ods-progress ods-progress--md"
   data-testid="progress-test"
 >
-  <span
-    class="ods-progress__primary ods-progress--md"
+  <svg
+    fill="none"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <svg
-      class="ods-progress-svg"
-      viewBox="22 22 44 44"
-    >
-      <circle
-        cx="44"
-        cy="44"
-        fill="none"
-        r="18"
-      />
-    </svg>
-  </span>
-  <span
-    class="ods-progress__secondary ods-progress--md"
-  >
-    <svg
-      viewBox="22 22 44 44"
-    >
-      <circle
-        cx="44"
-        cy="44"
-        fill="none"
-        r="18"
-      />
-    </svg>
-  </span>
+    <circle
+      cx="12"
+      cy="12"
+      opacity="0.4"
+      r="10"
+      stroke="#B8C3FF"
+      stroke-width="4"
+    />
+    <path
+      d="M12 2C13.3132 2 14.6136 2.25866 15.8268 2.7612C17.0401 3.26375 18.1425 4.00035 19.0711 4.92893C19.9997 5.85752 20.7362 6.95991 21.2388 8.17317C21.7413 9.38642 22 10.6868 22 12"
+      stroke="#0025E0"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="4"
+    />
+  </svg>
 </div>
 `);
   expect(container).toBeInTheDocument();
@@ -50,21 +42,15 @@ test('renders element properly', () => {
 test('should render a progress medium', () => {
   render(<Progress data-testid="progress-test" size="md" />);
 
-  expect(screen.getByTestId('progress-test').firstChild).toHaveClass(
-    'ods-progress--md'
-  );
+  expect(screen.getByTestId('progress-test')).toHaveClass('ods-progress--md');
 });
 
 test('should render a progress sm', () => {
   render(<Progress data-testid="progress-test" size="sm" />);
-  expect(screen.getByTestId('progress-test').firstChild).toHaveClass(
-    'ods-progress--sm'
-  );
+  expect(screen.getByTestId('progress-test')).toHaveClass('ods-progress--sm');
 });
 
 test('should render a progress large', () => {
   render(<Progress data-testid="progress-test" size="lg" />);
-  expect(screen.getByTestId('progress-test').firstChild).toHaveClass(
-    'ods-progress--lg'
-  );
+  expect(screen.getByTestId('progress-test')).toHaveClass('ods-progress--lg');
 });

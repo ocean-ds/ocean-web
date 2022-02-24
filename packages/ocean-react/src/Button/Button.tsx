@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { MergeElementProps } from '../_util/type';
-import Loading from '../Loading';
+import Progress from '../Progress';
 
 export type ButtonProps<P extends React.ElementType = 'button'> = {
   /**
@@ -55,6 +55,8 @@ function ButtonBase<T extends React.ElementType = 'button'>(
   }: ButtonProps<T>,
   ref: React.Ref<HTMLButtonElement>
 ) {
+  const onColor = ['primary', 'primaryCritical', 'inverse'].includes(variant);
+
   return React.createElement(
     component || 'button',
     {
@@ -72,7 +74,7 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     },
     loading ? (
       <>
-        <Loading />
+        <Progress size={size} onColor={onColor} />
         <span>{children}</span>
       </>
     ) : (
