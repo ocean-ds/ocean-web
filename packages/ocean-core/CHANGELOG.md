@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ocean-ds/ocean-web/compare/v1.27.3...v1.28.0) (2022-02-23)
+
+### Features
+
+- **badge:** add new badge component. ([#918](https://github.com/ocean-ds/ocean-web/issues/918)) ([b183b16](https://github.com/ocean-ds/ocean-web/commit/b183b16837580f59319d4957d7235b44431660cb))
+
 ## [1.27.3](https://github.com/ocean-ds/ocean-web/compare/v1.27.2...v1.27.3) (2022-02-15)
 
 **Note:** Version bump only for package @useblu/ocean-core

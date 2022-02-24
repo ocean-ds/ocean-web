@@ -4,26 +4,24 @@ import classNames from 'classnames';
 export type BadgeProps = {
   /**
    * Determines the type of Badge, with default icon and colors for each type
-   * @default 'default'
+   * @default 'small'
    */
-  type?:
-    | 'positive'
-    | 'warning'
-    | 'negative'
-    | 'neutral'
-    | 'neutral-02'
-    | 'neutral-03'
-    | 'default';
-  variation: string;
-  color: 'brand' | 'complementary' | 'alert' | 'neutral';
-  count: number;
+  variation?: 'tiny' | 'small' | 'medium';
+  /**
+   * Determines the type of Badge colors scheam.
+   */
+  color?: 'brand' | 'complementary' | 'alert' | 'neutral';
+  /**
+   * Determines the number of that badge should display
+   */
+  count?: number;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
   { children, variation = 'small', className, count, color, ...rest },
   ref
 ) {
-  const countToShow = count > 99 ? `99+` : count;
+  const countToShow = count && count > 99 ? `99+` : count;
 
   return (
     <div
@@ -35,17 +33,17 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
         `ods-badge--${color}`,
         className,
         {
-          'ods-badge--overflow': count > 99,
+          'ods-badge--overflow': count && count > 99,
         }
       )}
       {...rest}
     >
-      {variation !== 'tiny' && children && (
-        <div className="ods-badge__content ods-badge__text">{children}</div>
-      )}
-
       {variation !== 'tiny' && count && (
         <div className="ods-badge__content ods-badge__count">{countToShow}</div>
+      )}
+
+      {variation !== 'tiny' && typeof count === 'undefined' && children && (
+        <div className="ods-badge__content ods-badge__text">{children}</div>
       )}
 
       {variation === 'tiny' && <div className="ods-badge__content"></div>}
