@@ -32,12 +32,6 @@
     padding-right: $spacing-inline-md;
   }
 
-  &:disabled {
-    background-color: $color-interface-light-down;
-    color: $color-interface-dark-up;
-    cursor: not-allowed;
-  }
-
   &--primary {
     background-color: $color-brand-primary-pure;
     color: $color-interface-light-pure;
@@ -133,5 +127,12 @@
 
   &--blocked {
     width: 100%;
+  }
+
+  &:disabled,
+  &:disabled &:hover {
+    background-color: $color-interface-light-down;
+    color: $color-interface-dark-up;
+    cursor: not-allowed;
   }
 }

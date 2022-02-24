@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { MergeElementProps } from '../_util/type';
+import Loading from '../Loading';
 
 export type ButtonProps<P extends React.ElementType = 'button'> = {
   /**
@@ -33,6 +34,11 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
      * @default false
      */
     blocked?: boolean;
+    /**
+     * Sent a loading state changing the content of the button.
+     * @default false
+     */
+    loading?: boolean;
   }
 >;
 
@@ -43,6 +49,7 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     size = 'md',
     variant = 'primary',
     blocked = false,
+    loading = false,
     component,
     ...rest
   }: ButtonProps<T>,
@@ -57,11 +64,12 @@ function ButtonBase<T extends React.ElementType = 'button'>(
         `ods-btn--${size}`,
         `ods-btn--${variant.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}`,
         blocked && 'ods-btn--blocked',
-        className
+        className,
+        { 'ods-btn--loading': loading }
       ),
       ...rest,
     },
-    children
+    loading ? <Loading /> : children
   );
 }
 
