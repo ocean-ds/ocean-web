@@ -1,4 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
+
+import IconSm from './img/IconSm';
+import IconMd from './img/IconMd';
+import IconLg from './img/IconLg';
 
 export type ProgressProps = {
   /**
@@ -6,23 +11,38 @@ export type ProgressProps = {
    * @default 'md'
    */
   size?: 'md' | 'lg' | 'sm';
-};
 
-const Progress: React.FC<ProgressProps> = ({ size = 'md', ...rest }) => {
-  return (
-    <div className="ods-progress" {...rest}>
-      <span className={`ods-progress__primary ods-progress--${size}`}>
-        <svg className="ods-progress-svg" viewBox="22 22 44 44">
-          <circle cx="44" cy="44" r="18" fill="none" />
-        </svg>
-      </span>
-      <span className={`ods-progress__secondary ods-progress--${size}`}>
-        <svg viewBox="22 22 44 44">
-          <circle cx="44" cy="44" r="18" fill="none" />
-        </svg>
-      </span>
-    </div>
-  );
-};
+  /**
+   * The color of the progress.
+   * @default 'md'
+   */
+  onColor?: boolean;
+} & React.ComponentPropsWithoutRef<'div'>;
+
+const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
+  function OceanProgress(
+    { onColor = false, size = 'md', className, ...rest },
+    ref
+  ) {
+    return (
+      <div
+        ref={ref}
+        className={classNames(
+          'ods-progress',
+          `ods-progress--${size}`,
+          className,
+          {
+            'ods-progress--on-color': onColor,
+          }
+        )}
+        {...rest}
+      >
+        {size === 'sm' && <IconSm />}
+        {size === 'md' && <IconMd />}
+        {size === 'lg' && <IconLg />}
+      </div>
+    );
+  }
+);
 
 export default Progress;

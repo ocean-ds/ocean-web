@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { MergeElementProps } from '../_util/type';
+import Progress from '../Progress';
 
 export type ButtonProps<P extends React.ElementType = 'button'> = {
   /**
@@ -33,6 +34,11 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
      * @default false
      */
     blocked?: boolean;
+    /**
+     * Sent a loading state changing the content of the button.
+     * @default false
+     */
+    loading?: boolean;
   }
 >;
 
@@ -43,11 +49,14 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     size = 'md',
     variant = 'primary',
     blocked = false,
+    loading = false,
     component,
     ...rest
   }: ButtonProps<T>,
   ref: React.Ref<HTMLButtonElement>
 ) {
+  const onColor = ['primary', 'primaryCritical', 'inverse'].includes(variant);
+
   return React.createElement(
     component || 'button',
     {
@@ -57,11 +66,20 @@ function ButtonBase<T extends React.ElementType = 'button'>(
         `ods-btn--${size}`,
         `ods-btn--${variant.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}`,
         blocked && 'ods-btn--blocked',
-        className
+        className,
+        { 'ods-btn--loading': loading }
       ),
       ...rest,
+      onClick: loading ? () => false : rest.onClick,
     },
-    children
+    loading ? (
+      <>
+        <Progress size={size} onColor={onColor} />
+        <span>{children}</span>
+      </>
+    ) : (
+      children
+    )
   );
 }
 

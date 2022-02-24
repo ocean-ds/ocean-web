@@ -70,6 +70,102 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
+## Variations
+
+<Canvas withSource="open" withToolbar>
+  <Story name="variations">
+    <div className="flex-story">
+      <Button variant="primary">Primary</Button>
+      <Button variant="primaryCritical">Primary Critical</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="text">Text</Button>
+      <Button variant="textCritical">Text Critical</Button>
+      <Button variant="inverse">Inverse</Button>
+    </div>
+  </Story>
+</Canvas>
+
+## Size
+
+<Canvas withSource="open" withToolbar>
+  <Story name="size">
+    <div className="flex-story">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </div>
+  </Story>
+</Canvas>
+
+## Blocked
+
+<Canvas withSource="open" withToolbar>
+  <Story name="blocked">
+    <Button blocked>Blocked Button</Button>
+  </Story>
+</Canvas>
+
+## Disabled
+
+<Canvas withSource="open" withToolbar>
+  <Story name="disabled">
+    <Button disabled>Disabled Button</Button>
+  </Story>
+</Canvas>
+
+## Loading
+
+<Canvas withSource="open" withToolbar>
+  <Story name="loading">
+    <Button loading>Loading Button</Button>
+  </Story>
+</Canvas>
+
+## Loading auto on color
+
+<Canvas withSource="open" withToolbar>
+  <Story name="loading-auto-on-color">
+    <div className="flex-story">
+      <Button variant="primary" loading>
+        On Color
+      </Button>
+      <Button variant="primaryCritical" loading>
+        On Color
+      </Button>
+      <Button variant="secondary" loading>
+        On Color
+      </Button>
+      <Button variant="text" loading>
+        On Color
+      </Button>
+      <Button variant="textCritical" loading>
+        On Color
+      </Button>
+      <Button variant="inverse" loading>
+        On Color
+      </Button>
+    </div>
+  </Story>
+</Canvas>
+
+## Loading variations on size
+
+<Canvas withSource="open" withToolbar>
+  <Story name="loading-on-size">
+    <div className="flex-story">
+      <Button size="sm" loading>
+        Small
+      </Button>
+      <Button size="md" loading>
+        Medium
+      </Button>
+      <Button size="lg" loading>
+        Large
+      </Button>
+    </div>
+  </Story>
+</Canvas>
+
 ## Props
 
 <ArgsTable story="Usage" of="." />
@@ -103,6 +199,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       children: 'My Button',
       blocked: false,
       disabled: false,
+      loading: false,
     }}
     argTypes={{
       children: {
@@ -134,8 +231,12 @@ If that's not sufficient, you can check the [implementation of the component](ht
         name: 'disabled',
         control: 'boolean',
       },
+      loading: {
+        name: 'loading',
+        control: 'boolean',
+      },
     }}
   >
-    {(props) => <Button {...props} />}
+    {(props) => <Button {...props} onClick={() => alert('clicked')} />}
   </Story>
 </Canvas>

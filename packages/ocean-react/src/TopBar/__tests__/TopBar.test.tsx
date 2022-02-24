@@ -104,7 +104,7 @@ test('should render the variant default', () => {
   expect(document.querySelector('.ods-topbar-title')).toBeInTheDocument();
 });
 
-test('should render the color light', () => {
+test('should render the color default', () => {
   const { container } = render(
     <TopBar
       leftIcon={<ArrowLeftOutline />}
@@ -114,4 +114,23 @@ test('should render the color light', () => {
     />
   );
   expect(container.firstChild).toHaveClass('ods-topbar-default');
+});
+
+test('should render the color on', () => {
+  const { container } = render(
+    <TopBar
+      leftIcon={<ArrowLeftOutline />}
+      color="on"
+      title="Title"
+      description="Description"
+    />
+  );
+  expect(container.firstChild).toHaveClass('ods-topbar-light');
+});
+
+test('should render with scrollbar', () => {
+  const { container } = render(
+    <TopBar scrollBar color="off" title="Title" description="Description" />
+  );
+  expect(container.firstChild).toHaveClass('ods-topbar-scroll-bar');
 });

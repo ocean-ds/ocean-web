@@ -1,5 +1,7 @@
 import '../packages/ocean-core/dist/ocean.css';
 
+import './main.css';
+
 export const parameters = {
   layout: 'centered',
   actions: { argTypesRegex: '^on[A-Z].*' },

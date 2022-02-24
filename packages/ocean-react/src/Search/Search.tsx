@@ -33,7 +33,6 @@ const Search = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           id={id}
           disabled={disabled}
           onChange={({ target }) => setInputValue(target.value)}
-          defaultValue={defaultValue}
           value={inputValue}
           {...rest}
         />
