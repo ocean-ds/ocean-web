@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.1](https://github.com/ocean-ds/ocean-web/compare/v1.29.0...v1.29.1) (2022-02-24)
+
+### Bug Fixes
+
+- **button:** add hover transition to icon button variant. ([#923](https://github.com/ocean-ds/ocean-web/issues/923)) ([c3b94d6](https://github.com/ocean-ds/ocean-web/commit/c3b94d66f278a286c76731c5114562da0a671b30))
+
 # [1.29.0](https://github.com/ocean-ds/ocean-web/compare/v1.28.0...v1.29.0) (2022-02-24)
 
 ### Features
