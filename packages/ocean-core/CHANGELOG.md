@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.3](https://github.com/ocean-ds/ocean-web/compare/v1.29.2...v1.29.3) (2022-03-07)
+
+### Bug Fixes
+
+- **badge:** adjust line heigh in every size ([#929](https://github.com/ocean-ds/ocean-web/issues/929)) ([003595e](https://github.com/ocean-ds/ocean-web/commit/003595e2b0140b51b1712214b50bfff619bd7125))
+
 ## [1.29.1](https://github.com/ocean-ds/ocean-web/compare/v1.29.0...v1.29.1) (2022-02-24)
 
 ### Bug Fixes
