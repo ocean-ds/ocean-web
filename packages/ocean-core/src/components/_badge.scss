@@ -20,6 +20,7 @@
   &--medium .ods-badge__content {
     font-size: $font-size-xxxs;
     height: 24px;
+    line-height: 24px;
     min-width: 24px;
     width: 24px;
   }
@@ -27,6 +28,7 @@
   &--small .ods-badge__content {
     font-size: 10px;
     height: 16px;
+    line-height: 16px;
     min-width: 16px;
   }
 
@@ -34,6 +36,7 @@
     display: block;
     font-size: 10px;
     height: 8px;
+    line-height: 8px;
     min-width: 8px;
     overflow: hidden;
     width: 8px;
