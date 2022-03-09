@@ -1,0 +1,22 @@
+.ods-input--amount {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  input {
+    text-align: center;
+  }
+
+  &__number-controls {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+  }
+}

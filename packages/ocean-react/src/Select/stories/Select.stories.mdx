@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Select from '../Select';
 
-<Meta title="Components/Select" component={Select} />
+<Meta title="Components/Inputs/Select" component={Select} />
 
 # Select API
 
@@ -15,18 +15,26 @@ import { Select } from '@useblu/ocean-react';
 
 ## Usage
 
-<Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <Select
-      label="Label"
-      defaultValue={1}
-      options={[
-        { value: 1, label: 'Option 1' },
-        { value: 2, label: 'Option 2' },
-      ]}
-      helperText="Just a small info ;)"
-      disabled
-    />
+<Canvas>
+  <Story
+    name="Select"
+    args={{
+      label: 'Label',
+      placeholder: 'Placeholder...',
+      helperText: 'Some text here!',
+      error: false,
+      blocked: false,
+      disabled: false,
+      options: Array.from(Array(10), (x, index) => ({
+        value: `opt-${index + 1}`,
+        label: `Option ${index + 1}`,
+      })),
+    }}
+    argTypes={{
+      value: { control: null },
+    }}
+  >
+    {(args) => <Select {...args} />}
   </Story>
 </Canvas>
 
@@ -61,38 +69,3 @@ If that's not sufficient, you can check the [implementation of the component](ht
 ## Inheritance
 
 The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
-
-## Playground
-
-<Canvas>
-  <Story
-    name="playground"
-    args={{
-      label: 'Label',
-      placeholder: 'Placeholder...',
-      helperText: 'Some text here!',
-      error: false,
-      blocked: false,
-      disabled: false,
-      options: Array.from(Array(10), (x, index) => ({
-        value: `opt-${index + 1}`,
-        label: `Option ${index + 1}`,
-      })),
-    }}
-    argTypes={{
-      value: { control: null },
-    }}
-  >
-    {(args) => (
-      <div style={{ maxWidth: 400 }}>
-        <Select {...args} />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod
-          molestie risus, sed hendrerit nisl viverra vitae. Ut dignissim lorem
-          ante, ac lacinia magna placerat nec. Morbi eu pellentesque dolor.
-          Nulla eget neque a mi consequat bibendum quis sed augue. Fusce auctor
-        </p>
-      </div>
-    )}
-  </Story>
-</Canvas>

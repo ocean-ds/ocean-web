@@ -1,0 +1,91 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import Input from '../Input';
+import { EyeOutline } from '@useblu/ocean-icons-react';
+
+<Meta title="Components/Inputs/With Icon" component={Input} />
+
+# Input With Icon API
+
+The API documentation of the Input type With Icon React component.
+Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Input } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas>
+  <Story
+    name="With Icon"
+    args={{
+      label: 'With Icon Input',
+      placeholder: 'Placeholder...',
+      position: 'left',
+      helperText: 'Some text here!',
+      error: false,
+      blocked: false,
+      disabled: false,
+      type: 'text',
+    }}
+    argTypes={{
+      type: {
+        options: ['text', 'number', 'password'],
+        control: { type: 'select' },
+      },
+      position: {
+        options: ['right', 'left'],
+        control: { type: 'select' },
+      },
+      label: {
+        control: 'text',
+      },
+      adornment: {
+        control: 'text',
+      },
+      placeholder: {
+        control: 'text',
+      },
+      disabled: {
+        control: 'boolean',
+      },
+      helperText: {
+        control: 'text',
+      },
+    }}
+  >
+    {(props) => (
+      <Input
+        id="input-with-icon"
+        {...props}
+        adornment={<EyeOutline size={24} />}
+      />
+    )}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class               | Description                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| .ods-input                 | Styles applied to the input element.                                                           |
+| .ods-input--filled         | Styles applied to the input element when it's filled.                                          |
+| .ods-input--error          | Styles applied to the input element if error={true}.                                           |
+| .ods-input--left           | Styles applied to the input element if position="left".                                        |
+| .ods-input--disabled--text | Styles applied to the element if it doesn't have any text and doesn't have an icon as default. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
+
+## Inheritance
+
+The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.

@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="First Steps" />
+
+## Install
+
+Ocean components are written in React, and its stories are written in [Component Story Format](https://medium.com/storybookjs/component-story-format-66f4c32366df). It requires Storybook version 5.2-beta and up.
+
+Add Ocean to your project.
+
+`yarn add @useblu/ocean-react`
+`yarn add @useblu/ocean-core`
+
+### **Use**
+
+Import components you want into your UI
+
+`import { Button } from '@useblu/ocean-react';`
+
+and use them like so
+
+```
+  const example = () => (
+    <div>
+      <Button>Click Here!</Button>
+    </div>
+  )
+```
+
+### **Run and develop Ocean locally**
+
+Clone the [Ocean GitHub project](https://github.com/ocean-ds/ocean-web) then start Storybook.
+
+`yarn && yarn run storybook`

@@ -40,13 +40,11 @@
   }
 
   &--disabled {
-    background-color: $color-interface-light-down;
     color: $color-interface-dark-up;
     cursor: not-allowed;
 
     &:hover,
     &:focus {
-      background-color: $color-interface-light-down;
       color: $color-interface-dark-up;
     }
   }

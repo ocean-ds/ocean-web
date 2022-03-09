@@ -1,5 +1,4 @@
 import '../packages/ocean-core/dist/ocean.css';
-
 import './main.css';
 
 export const parameters = {
@@ -42,5 +41,10 @@ export const parameters = {
         value: '#0025e0',
       },
     ],
+  },
+  options: {
+    storySort: {
+      order: ['Welcome', 'First Steps', '*'],
+    },
   },
 };
