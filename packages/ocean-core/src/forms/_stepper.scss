@@ -1,0 +1,24 @@
+.ods-input--amount {
+  width: 100%;
+
+  input {
+    appearance: none;
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__stepper-controls {
+    align-items: center;
+    cursor: pointer;
+    display: block;
+  }
+
+  &__stepper-controls_plus {
+    padding-right: 4px;
+  }
+
+  &__stepper-controls_minus {
+    padding-left: 4px;
+  }
+}

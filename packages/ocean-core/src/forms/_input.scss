@@ -25,6 +25,10 @@
     }
   }
 
+  &__number-controls {
+    cursor: pointer;
+  }
+
   &__adornment {
     align-items: center;
     display: flex;

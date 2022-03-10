@@ -13,7 +13,6 @@ const Select: React.FC<SelectProps> = ({
   id,
   helperText,
   error,
-  blocked,
   options: optionsProp,
   name,
   value,
@@ -110,7 +109,6 @@ const Select: React.FC<SelectProps> = ({
       }
       helperText={helperText}
       error={error}
-      blocked={blocked}
       disabled={disabled}
     >
       <Context.Provider

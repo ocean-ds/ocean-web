@@ -26,11 +26,6 @@ export type FormControlProps = {
    */
   helperText?: string;
   /**
-   * Spans the full width of the element parent.
-   * @default false
-   */
-  blocked?: boolean;
-  /**
    * If true, should be displayed in a disabled state.
    * @default false
    */
@@ -43,7 +38,6 @@ const FormControl: React.FC<FormControlProps> = ({
   htmlFor,
   helperText,
   error,
-  blocked,
   disabled,
 }) => {
   let label;
@@ -61,14 +55,7 @@ const FormControl: React.FC<FormControlProps> = ({
   return (
     <div className="ods-form-control__root">
       {label}
-      <div
-        className={classNames(
-          'ods-form-control__element',
-          blocked && 'ods-form-control__element--blocked'
-        )}
-      >
-        {children}
-      </div>
+      <div className={classNames('ods-form-control__element')}>{children}</div>
       {helperText && (
         <p
           className={classNames(

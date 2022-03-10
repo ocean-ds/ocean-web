@@ -8,6 +8,7 @@ const config: Config.InitialOptions = {
   collectCoverageFrom: [
     '<rootDir>/packages/*/src/**/*.{ts,tsx}',
     '!<rootDir>/packages/*/src/**/index.ts',
+    `!<rootDir>/packages/*/src/_stories/components/*.{ts,tsx}`,
   ],
   moduleDirectories: ['node_modules'],
 };

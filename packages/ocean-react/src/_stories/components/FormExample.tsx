@@ -1,0 +1,142 @@
+/* eslint-disable */
+// @ts-nocheck
+import React from 'react';
+import { Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import { Col, Row } from '../../Grid';
+import Button from '../../Button';
+import Input from '../../Input';
+import Stepper from '../../Stepper';
+import Typography from '../../Typography';
+
+const FormExample: React.FC = () => {
+  const formik = {
+    initialValues: {
+      email: '',
+      password: '',
+      total: 1,
+    },
+    validateOnBlur: false,
+    validateOnChange: false,
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email('Adicione um E-mail válido')
+        .required('Este campo é obrigatório'),
+      password: yup.string().required('Este campo é obrigatório'),
+      total: yup
+        .number()
+        .min(1, 'Este valor não pode ser menor que o minimo')
+        .max(5, 'Este valor não pode ser menor que o maximo')
+        .required('Este campo é obrigatório'),
+    }),
+
+    onSubmit: (values: any) => {
+      console.log(values);
+    },
+  };
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderRadius: 8,
+        margin: '16px 0px',
+      }}
+    >
+      <Col
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '40px',
+        }}
+      >
+        <Formik {...formik} validationSchema={formik.validationSchema}>
+          {({ errors, values, touched, handleSubmit, handleChange }) => (
+            <form onSubmit={handleSubmit}>
+              <Row style={{ margin: '16px 0px' }}>
+                <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  label="Seu e-mail"
+                  placeholder="Informe seu e-mail"
+                  error={!!errors.email && touched.email}
+                  value={values.email}
+                  onChange={handleChange}
+                />
+                <br />
+                <ErrorMessage
+                  name="email"
+                  render={(msg) => (
+                    <Typography variant="caption">{msg}</Typography>
+                  )}
+                />
+                <br />
+              </Row>
+              <Row style={{ margin: '16px 0px' }}>
+                <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  label="Sua Senha"
+                  placeholder="Informe sua senha"
+                  error={!!errors.password && touched.password}
+                  value={values.password}
+                  onChange={handleChange}
+                />
+                <br />
+                <ErrorMessage
+                  name="email"
+                  render={(msg) => (
+                    <Typography variant="caption">{msg}</Typography>
+                  )}
+                />
+                <br />
+              </Row>
+              <Row style={{ margin: '16px 0px' }}>
+                <Stepper
+                  id="total"
+                  type="total"
+                  name="total"
+                  label="Total"
+                  min={1}
+                  max={5}
+                  error={!!errors.total && touched.total}
+                  value={values.total}
+                  onChange={(e) => {
+                    const event = {
+                      target: {
+                        name: 'total',
+                        value: e.target.value,
+                      },
+                    };
+                    handleChange(event);
+                  }}
+                />
+                <br />
+                <ErrorMessage
+                  name="total"
+                  render={(msg) => (
+                    <Typography variant="caption">{msg}</Typography>
+                  )}
+                />
+                <br />
+              </Row>
+              <Row style={{ margin: '16px 0px' }}>
+                <Button variant="secondary" tabIndex={-1}>
+                  Send
+                </Button>
+              </Row>
+            </form>
+          )}
+        </Formik>
+      </Col>
+    </div>
+  );
+};
+
+export default FormExample;

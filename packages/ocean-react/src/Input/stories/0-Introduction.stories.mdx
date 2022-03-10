@@ -1,0 +1,324 @@
+import { Meta } from '@storybook/addon-docs';
+import Input from '../Input';
+import Stepper from '../../Stepper';
+import Select from '../../Select';
+import TextArea from '../../TextArea';
+import Showcase from '../../_stories/components/Showcase';
+
+import { EyeOutline } from '@useblu/ocean-icons-react';
+
+<Meta title="Components/Inputs/Introduction" />
+
+# Inputs
+
+This is the showcase of the Input component of ocean design.
+
+## Base Input
+
+The base input is the base cade of data input, cold be of many types, and have many usages...
+
+### Simple Usage
+
+<Showcase>
+  <Input
+    label="Text"
+    name="text"
+    defaultValue="Simple Text Input"
+    type="text"
+  />
+</Showcase>
+
+#### code
+
+```jsx
+<Input label="Text" name="text" defaultValue="Simple Text Input" type="text" />
+```
+
+### Type Variation
+
+You could variate the type of the input with the same type patterns applyed to input html types.
+
+<Showcase>
+  <Input
+    label="Text"
+    name="text"
+    defaultValue="Simple Text Input"
+    type="text"
+  />
+  <br />
+  <Input
+    label="Number"
+    name="number"
+    defaultValue="Simple Number Input"
+    type="number"
+  />
+  <br />
+  <Input
+    label="Password"
+    name="password"
+    defaultValue="Simple Password Input"
+    type="password"
+  />
+</Showcase>
+
+#### code
+
+```jsx
+<Input
+  label="Text"
+  name="text"
+  defaultValue="Simple Text Input"
+  type="text"
+/>
+<Input
+  label="Number"
+  name="number"
+  defaultValue="Simple Number Input"
+  type="number"
+/>
+<Input
+  label="Password"
+  name="password"
+  defaultValue="Simple Password Input"
+  type="password"
+/>
+```
+
+### Adornment variation
+
+You could set a adornment to the input, and the adornment could be a icon or a text.
+
+<Showcase>
+  <Input
+    id="input-usage"
+    label="Password"
+    name="password"
+    defaultValue="set your password"
+    type="password"
+    adornment={<EyeOutline size={24} stroke="#B6B9CC" />}
+  />
+</Showcase>
+
+#### code
+
+```jsx
+<Input
+  id="input-usage"
+  label="Password"
+  name="password"
+  defaultValue="set your password"
+  type="password"
+  adornment={<EyeOutline size={24} stroke="#B6B9CC" />}
+/>
+```
+
+you could make a Currency type input with it:
+
+<Showcase>
+  <Input
+    id="input-value"
+    label="Label"
+    name="value"
+    type="text"
+    position="left"
+    helperText="Helper text"
+    adornment={<span>R$</span>}
+    placeholder="5.00"
+  />
+</Showcase>
+
+```jsx
+<Input
+  id="input-value"
+  label="Label"
+  name="value"
+  type="text"
+  position="left"
+  helperText="Helper text"
+  adornment={<span>R$</span>}
+  placeholder="5.00"
+/>
+```
+
+also change the sides of it:
+
+<Showcase>
+  <Input
+    id="input-value"
+    label="Label"
+    name="value"
+    type="text"
+    position="right"
+    helperText="Helper text"
+    adornment={<span>R$</span>}
+    placeholder="5.00"
+  />
+</Showcase>
+
+```jsx
+<Input
+  id="input-value"
+  label="Label"
+  name="value"
+  type="text"
+  position="right"
+  helperText="Helper text"
+  adornment={<span>R$</span>}
+  placeholder="5.00"
+/>
+```
+
+## Stepper Input
+
+The stepper input is a diferent kind of input, with only number type, this adds a amount controller for the input, also aviability to set the step of the input using arrow keys.
+You could also change the min and max values from stepper:
+
+<Showcase>
+  <Stepper
+    helperText="Some text here!"
+    id="stepper-playground"
+    label="Label"
+    max={15}
+    min={0}
+    placeholder="Placeholder..."
+  />
+</Showcase>
+
+```jsx
+<Stepper
+  helperText="Some text here!"
+  id="stepper-playground"
+  label="Label"
+  max={15}
+  min={0}
+  placeholder="Placeholder..."
+/>
+```
+
+## Text Area Input
+
+The Text Area are a kind of inputwith multiple lines:
+
+<Showcase>
+  <TextArea
+    helperText="Some text here!"
+    id="textarea-playground"
+    label="Label"
+    placeholder="Placeholder..."
+  />
+</Showcase>
+
+```jsx
+<TextArea
+  helperText="Some text here!"
+  id="textarea-playground"
+  label="Label"
+  placeholder="Placeholder..."
+/>
+```
+
+## Select Input
+
+The select input is a diferent kind of input,with predefined options.
+
+<Showcase>
+  <Select
+    helperText="Some text here!"
+    label="Label"
+    onChange={() => {}}
+    options={[
+      {
+        label: 'Option 1',
+        value: 'opt-1',
+      },
+      {
+        label: 'Option 2',
+        value: 'opt-2',
+      },
+      {
+        label: 'Option 3',
+        value: 'opt-3',
+      },
+      {
+        label: 'Option 4',
+        value: 'opt-4',
+      },
+      {
+        label: 'Option 5',
+        value: 'opt-5',
+      },
+      {
+        label: 'Option 6',
+        value: 'opt-6',
+      },
+      {
+        label: 'Option 7',
+        value: 'opt-7',
+      },
+      {
+        label: 'Option 8',
+        value: 'opt-8',
+      },
+      {
+        label: 'Option 9',
+        value: 'opt-9',
+      },
+      {
+        label: 'Option 10',
+        value: 'opt-10',
+      },
+    ]}
+    placeholder="Placeholder..."
+  />
+</Showcase>
+
+```jsx
+<Select
+  helperText="Some text here!"
+  label="Label"
+  onChange={() => {}}
+  options={[
+    {
+      label: 'Option 1',
+      value: 'opt-1',
+    },
+    {
+      label: 'Option 2',
+      value: 'opt-2',
+    },
+    {
+      label: 'Option 3',
+      value: 'opt-3',
+    },
+    {
+      label: 'Option 4',
+      value: 'opt-4',
+    },
+    {
+      label: 'Option 5',
+      value: 'opt-5',
+    },
+    {
+      label: 'Option 6',
+      value: 'opt-6',
+    },
+    {
+      label: 'Option 7',
+      value: 'opt-7',
+    },
+    {
+      label: 'Option 8',
+      value: 'opt-8',
+    },
+    {
+      label: 'Option 9',
+      value: 'opt-9',
+    },
+    {
+      label: 'Option 10',
+      value: 'opt-10',
+    },
+  ]}
+  placeholder="Placeholder..."
+/>
+```

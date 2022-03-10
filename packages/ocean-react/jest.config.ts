@@ -13,6 +13,7 @@ const config: Config.InitialOptions = {
   collectCoverageFrom: [
     `<rootDir>/packages/${packageName}/src/**/*.{ts,tsx}`,
     `!<rootDir>/packages/${packageName}/src/**/index.ts`,
+    `!<rootDir>/packages/${packageName}/src/_stories/components/*.{ts,tsx}`,
   ],
   name: packageName,
   displayName: packageName,

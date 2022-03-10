@@ -8,13 +8,13 @@ export type InputProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'input'>;
 
 const Search = React.forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, blocked, id, disabled, value, defaultValue, ...rest },
+  { className, id, disabled, value, defaultValue, ...rest },
   ref
 ) {
   const [inputValue, setInputValue] = useState(defaultValue || value);
 
   return (
-    <FormControl htmlFor={id} blocked={blocked} disabled={disabled}>
+    <FormControl htmlFor={id} disabled={disabled}>
       <div
         className={classNames(
           'ods-search',

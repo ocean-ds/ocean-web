@@ -64,6 +64,9 @@ export * from './Search';
 export { default as TopBar } from './TopBar';
 export * from './TopBar';
 
+export { default as Stepper } from './Stepper';
+export * from './Stepper';
+
 export { default as Steps } from './Steps';
 export * from './Steps';
 

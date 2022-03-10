@@ -31,16 +31,10 @@ test('renders element properly', () => {
 
 test('renders a helper text', () => {
   setup({ helperText: 'Just a small info.' });
-  expect(
-    screen.getByText('Just a small info.')
-  ).toHaveClass('ods-form-control__helper-text', { exact: true });
-});
-
-test('renders a full width state', () => {
-  const { container } = setup({ blocked: true });
-  expect(
-    container.querySelector('.ods-form-control__element--blocked')
-  ).toBeInTheDocument();
+  expect(screen.getByText('Just a small info.')).toHaveClass(
+    'ods-form-control__helper-text',
+    { exact: true }
+  );
 });
 
 test('renders a error state', () => {
@@ -49,9 +43,7 @@ test('renders a error state', () => {
     helperText: 'Error message.',
   });
 
-  expect(
-    screen.getByText('Error message.')
-  ).toHaveClass(
+  expect(screen.getByText('Error message.')).toHaveClass(
     'ods-form-control__helper-text ods-form-control__helper-text--error',
     { exact: true }
   );
@@ -64,9 +56,7 @@ test('renders a disabled state', () => {
     helperText: 'Error message.',
   });
 
-  expect(
-    screen.getByText('Error message.')
-  ).toHaveClass(
+  expect(screen.getByText('Error message.')).toHaveClass(
     'ods-form-control__helper-text ods-form-control__helper-text--disabled',
     { exact: true }
   );
