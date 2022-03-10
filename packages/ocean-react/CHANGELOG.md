@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/ocean-ds/ocean-web/compare/v1.29.3...v1.30.0) (2022-03-10)
+
+### Features
+
+- **stepper:** adds new stepper component ([#934](https://github.com/ocean-ds/ocean-web/issues/934)) ([6445c19](https://github.com/ocean-ds/ocean-web/commit/6445c192881c853a2a3befeef0289c7f967c9546))
+
 ## [1.29.2](https://github.com/ocean-ds/ocean-web/compare/v1.29.1...v1.29.2) (2022-02-24)
 
 **Note:** Version bump only for package @useblu/ocean-react
