@@ -104,6 +104,10 @@
     "commitMessage": "Deploy Storybook [skip ci]"
   },
   "dependencies": {
-    "immer": "^9.0.6"
+    "ansi-regex": "^5.0.1",
+    "glob-parent": "^5.1.2",
+    "immer": "^9.0.6",
+    "node-sass": "^7.0.0",
+    "trim": "^0.0.3"
   }
 }
