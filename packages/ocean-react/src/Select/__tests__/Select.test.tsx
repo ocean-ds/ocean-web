@@ -59,41 +59,41 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
+<div
+  class="ods-form-control__root"
+>
+  <span
+    class="ods-form-label"
+    id="label--my-select"
+  >
+    Custom label
+  </span>
+  <div
+    class="ods-form-control__element ods-form-control__element--blocked"
+  >
     <div
-      class="ods-form-control__root"
+      class="ods-select__root"
     >
-      <span
-        class="ods-form-label"
-        id="label--my-select"
+      <button
+        aria-haspopup="listbox"
+        aria-labelledby="label--my-select my-select"
+        class="ods-select__control custom-class"
+        id="my-select"
+        type="button"
       >
-        Custom label
-      </span>
-      <div
-        class="ods-form-control__element"
-      >
-        <div
-          class="ods-select__root"
+        <span
+          class="ods-select__value ods-select__value--empty"
         >
-          <button
-            aria-haspopup="listbox"
-            aria-labelledby="label--my-select my-select"
-            class="ods-select__control custom-class"
-            id="my-select"
-            type="button"
-          >
-            <span
-              class="ods-select__value ods-select__value--empty"
-            >
-              Select some option
-            </span>
-            <i
-              class="ods-select__arrow ods-select__arrow--down"
-            />
-          </button>
-        </div>
-      </div>
+          Select some option
+        </span>
+        <i
+          class="ods-select__arrow ods-select__arrow--down"
+        />
+      </button>
     </div>
-  `);
+  </div>
+</div>
+`);
 });
 
 test.each([

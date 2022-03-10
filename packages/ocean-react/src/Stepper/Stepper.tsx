@@ -65,9 +65,9 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     const addToAmount = useCallback(() => {
       if (disabled) return;
 
-      if (!max) return;
-
       setAmout((a: number) => {
+        if (!max) return a + 1;
+
         if (a < max) return a + 1;
 
         return a;
@@ -129,9 +129,9 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             onChange={(e) => {
               handleChange(e);
 
-              if (!e.target) return;
+              const { target } = e;
 
-              const inputedValue = parseFloat(e.target.value);
+              const inputedValue = parseFloat(target.value);
 
               if (max && inputedValue > max) return;
 
@@ -145,7 +145,9 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus">
               <IconButton
                 size="sm"
-                disabled={disabled || !max || amount >= max}
+                disabled={
+                  disabled || (typeof max !== 'undefined' && amount >= max)
+                }
                 onClick={addToAmount}
               >
                 <PlusOutline size={24} />

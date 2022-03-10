@@ -1,7 +1,7 @@
+// @ts-nocheck
 import React from 'react';
 import CoverImg from '../assets/storybook-cover.png';
 
-// eslint-disable-next-line
 import {
   colorInterfaceLightUp,
   colorBrandPrimaryPure,
@@ -18,6 +18,7 @@ const Cover: React.FC = () => (
       position: 'absolute',
       width: '100vw',
       height: '100vh',
+      overflow: 'hidden',
       top: '0px',
       left: '0px',
       backgroundColor: colorInterfaceLightUp,
