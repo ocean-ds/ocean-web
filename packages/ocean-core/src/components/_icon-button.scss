@@ -12,8 +12,7 @@
   transition: background-color 0.1s ease-out;
   width: 48px;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background: $color-interface-light-up;
     color: $color-brand-primary-pure;
   }
@@ -43,8 +42,7 @@
     color: $color-interface-dark-up;
     cursor: not-allowed;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: inherit;
       color: $color-interface-dark-up;
     }

@@ -10,19 +10,19 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <div
-    class="ods-form-control__element ods-form-control__element--blocked"
-  >
-    <textarea
-      class="ods-textarea custom-class"
-      data-testid="textarea-test"
-    />
-  </div>
-</div>
-`);
+    <div
+      class="ods-form-control__root"
+    >
+      <div
+        class="ods-form-control__element"
+      >
+        <textarea
+          class="ods-textarea custom-class"
+          data-testid="textarea-test"
+        />
+      </div>
+    </div>
+  `);
 });
 
 test('renders a error state for the textarea', () => {

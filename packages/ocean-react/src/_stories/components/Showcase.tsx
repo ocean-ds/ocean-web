@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import React from 'react';
 
 import { colorInterfaceLightUp } from '@useblu/ocean-tokens/web/tokens';

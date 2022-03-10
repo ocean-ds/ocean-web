@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
+import { isNaN } from 'lodash';
 
 import { PlusOutline, MinusSm } from '@useblu/ocean-icons-react';
 
@@ -51,6 +52,17 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     const [amount, setAmout] = React.useState<number>(
       typeof value === 'number' ? value : 0
     );
+
+    React.useEffect(() => {
+      if (typeof amount !== 'undefined' && onChange)
+        onChange({
+          target: {
+            value: `${amount}`,
+          },
+          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+        } as any);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [amount]);
 
     const deduceFromAmount = useCallback(() => {
       if (disabled) return;
@@ -114,6 +126,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             <IconButton
               size="sm"
               disabled={amount <= min || disabled}
+              type="button"
               onClick={deduceFromAmount}
             >
               <MinusSm size={24} />
@@ -133,9 +146,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
               const inputedValue = parseFloat(target.value);
 
-              if (max && inputedValue > max) return;
-
-              if (inputedValue > min) setAmout(inputedValue);
+              if (!isNaN(inputedValue)) setAmout(inputedValue);
             }}
             defaultValue={defaultValue}
             value={amount}
@@ -148,6 +159,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
                 disabled={
                   disabled || (typeof max !== 'undefined' && amount >= max)
                 }
+                type="button"
                 onClick={addToAmount}
               >
                 <PlusOutline size={24} />

@@ -69,7 +69,7 @@ test('renders element properly', () => {
     Custom label
   </span>
   <div
-    class="ods-form-control__element ods-form-control__element--blocked"
+    class="ods-form-control__element"
   >
     <div
       class="ods-select__root"

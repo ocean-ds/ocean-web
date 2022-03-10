@@ -29,7 +29,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     className,
     label,
     helperText,
-    blocked,
     error,
     id,
     disabled,
@@ -54,7 +53,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
       htmlFor={id}
       helperText={helperText}
       error={error}
-      blocked={blocked}
       disabled={disabled}
     >
       <div

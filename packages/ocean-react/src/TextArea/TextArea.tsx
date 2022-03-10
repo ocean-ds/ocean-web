@@ -35,7 +35,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         htmlFor={id}
         helperText={helperText}
         error={error}
-        blocked={true}
         disabled={disabled}
       >
         <textarea

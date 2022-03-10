@@ -45,6 +45,7 @@ test('renders element properly', () => {
       >
         <button
           class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--disabled"
+          type="button"
         >
           <div
             size="24"
@@ -63,6 +64,7 @@ test('renders element properly', () => {
       >
         <button
           class="ods-icon-btn ods-icon-btn--sm"
+          type="button"
         >
           <div
             size="24"
@@ -207,7 +209,7 @@ test('updates change amount with input', () => {
   expect(screen.getByTestId('stepper-test')).toHaveValue('3');
 });
 
-test('does not updates change amount with input more than max', () => {
+test('updates change amount with input more than max', () => {
   render(
     <Stepper
       data-testid="stepper-test"
@@ -222,7 +224,7 @@ test('does not updates change amount with input more than max', () => {
     target: { value: 5 },
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('5');
 });
 
 test('does not updates change amount without target', () => {
@@ -236,12 +238,43 @@ test('does not updates change amount without target', () => {
     />
   );
 
-  fireEvent.change(screen.getByTestId('stepper-test'), { target: false });
+  fireEvent.change(screen.getByTestId('stepper-test'), {
+    target: {
+      value: NaN,
+    },
+  });
 
   expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
-test('does not updates change amount with value less than min', () => {
+test('propagate the on change', () => {
+  const mocked = jest.fn();
+
+  render(
+    <Stepper
+      data-testid="stepper-test"
+      label="Teste"
+      value={2}
+      max={4}
+      onChange={mocked}
+      className="custom-class"
+    />
+  );
+
+  fireEvent.click(screen.getByText(/Plus-Outline/));
+
+  expect(screen.getByTestId('stepper-test')).toHaveValue('3');
+
+  const event = {
+    target: {
+      value: '3',
+    },
+  };
+
+  expect(mocked).toHaveBeenCalledWith(event);
+});
+
+test('updates change amount with value less than min', () => {
   render(
     <Stepper
       data-testid="stepper-test"
@@ -256,7 +289,7 @@ test('does not updates change amount with value less than min', () => {
     target: { value: -1 },
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('-1');
 });
 
 test('renders with error status', () => {
@@ -290,6 +323,7 @@ test('renders with error status', () => {
       >
         <button
           class="ods-icon-btn ods-icon-btn--sm"
+          type="button"
         >
           <div
             size="24"
@@ -308,6 +342,7 @@ test('renders with error status', () => {
       >
         <button
           class="ods-icon-btn ods-icon-btn--sm"
+          type="button"
         >
           <div
             size="24"
