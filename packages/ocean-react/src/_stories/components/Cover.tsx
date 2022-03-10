@@ -1,3 +1,4 @@
+/* eslint-disable */
 // @ts-nocheck
 import React from 'react';
 import CoverImg from '../assets/storybook-cover.png';

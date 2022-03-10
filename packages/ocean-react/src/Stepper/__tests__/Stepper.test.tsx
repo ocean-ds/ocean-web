@@ -89,7 +89,7 @@ test('add a step to amount', () => {
 
   fireEvent.click(screen.getByText(/Plus-Outline/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('deduce a step from amount', () => {
@@ -104,7 +104,7 @@ test('deduce a step from amount', () => {
 
   fireEvent.click(screen.getByText(/Minus-Sm/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '1');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('1');
 });
 
 test('renders and change amount until max and min value', () => {
@@ -120,23 +120,23 @@ test('renders and change amount until max and min value', () => {
 
   fireEvent.click(screen.getByText(/Minus-Sm/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '0');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('0');
 
   fireEvent.click(screen.getByText(/Minus-Sm/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '0');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('0');
 
   fireEvent.click(screen.getByText(/Plus-Outline/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '1');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('1');
 
   fireEvent.click(screen.getByText(/Plus-Outline/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 
   fireEvent.click(screen.getByText(/Plus-Outline/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('renders with disabled estatus and do not change amount', () => {
@@ -152,11 +152,11 @@ test('renders with disabled estatus and do not change amount', () => {
 
   fireEvent.click(screen.getByText(/Minus-Sm/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 
   fireEvent.click(screen.getByText(/Plus-Outline/));
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('renders works with arrow keys to change amount', () => {
@@ -175,19 +175,19 @@ test('renders works with arrow keys to change amount', () => {
     key: 'ArrowDown',
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '1');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('1');
 
   fireEvent.keyDown(screen.getByTestId('stepper-test'), {
     key: 'ArrowUp',
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 
   fireEvent.keyDown(screen.getByTestId('stepper-test'), {
     key: 'm',
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('updates change amount with input', () => {
@@ -204,7 +204,7 @@ test('updates change amount with input', () => {
     target: { value: 3 },
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '3');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('3');
 });
 
 test('does not updates change amount with input more than max', () => {
@@ -222,7 +222,7 @@ test('does not updates change amount with input more than max', () => {
     target: { value: 5 },
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('does not updates change amount without target', () => {
@@ -238,7 +238,7 @@ test('does not updates change amount without target', () => {
 
   fireEvent.change(screen.getByTestId('stepper-test'), { target: false });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('does not updates change amount with value less than min', () => {
@@ -256,7 +256,7 @@ test('does not updates change amount with value less than min', () => {
     target: { value: -1 },
   });
 
-  expect(screen.getByTestId('stepper-test')).toHaveAttribute('value', '2');
+  expect(screen.getByTestId('stepper-test')).toHaveValue('2');
 });
 
 test('renders with error status', () => {
