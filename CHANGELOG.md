@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.3](https://github.com/ocean-ds/ocean-web/compare/v1.29.2...v1.29.3) (2022-03-07)
+
+### Bug Fixes
+
+- **badge:** adjust line heigh in every size ([#929](https://github.com/ocean-ds/ocean-web/issues/929)) ([003595e](https://github.com/ocean-ds/ocean-web/commit/003595e2b0140b51b1712214b50bfff619bd7125))
+- **badge:** export default badge component ([5448d6e](https://github.com/ocean-ds/ocean-web/commit/5448d6e656e956813c2e1a969281164d114b54da))
+
+### Reverts
+
+- Revert "hotfix(badge): export default badge component. (#924)" (#925) ([fcff2a6](https://github.com/ocean-ds/ocean-web/commit/fcff2a6cfa9f0d67176c786815ea73c2da5223b3)), closes [#924](https://github.com/ocean-ds/ocean-web/issues/924) [#925](https://github.com/ocean-ds/ocean-web/issues/925)
+
 ## [1.29.2](https://github.com/ocean-ds/ocean-web/compare/v1.29.1...v1.29.2) (2022-02-24)
 
 **Note:** Version bump only for package root
