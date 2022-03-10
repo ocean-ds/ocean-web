@@ -1,4 +1,6 @@
 .ods-input--amount {
+  width: 100%;
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -11,12 +13,20 @@
 
   input {
     text-align: center;
+    display: block;
   }
 
-  &__number-controls {
+  &__stepper-controls {
     align-items: center;
     cursor: pointer;
-    display: flex;
-    height: 100%;
+    display: block;
+  }
+
+  &__stepper-controls_plus {
+    padding-right: 4px;
+  }
+
+  &__stepper-controls_minus {
+    padding-left: 4px;
   }
 }

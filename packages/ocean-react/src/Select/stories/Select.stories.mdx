@@ -23,12 +23,14 @@ import { Select } from '@useblu/ocean-react';
       placeholder: 'Placeholder...',
       helperText: 'Some text here!',
       error: false,
-      blocked: false,
       disabled: false,
       options: Array.from(Array(10), (x, index) => ({
         value: `opt-${index + 1}`,
         label: `Option ${index + 1}`,
       })),
+    }}
+    parameters={{
+      controls: { exclude: /^blocked*/ },
     }}
     argTypes={{
       value: { control: null },

@@ -26,8 +26,10 @@ import { Stepper } from '@useblu/ocean-react';
       placeholder: 'Placeholder...',
       helperText: 'Some text here!',
       error: false,
-      blocked: false,
       disabled: false,
+    }}
+    parameters={{
+      controls: { exclude: /^blocked*/ },
     }}
     argTypes={{
       label: {

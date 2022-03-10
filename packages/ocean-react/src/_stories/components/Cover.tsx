@@ -1,5 +1,6 @@
 import React from 'react';
-import CoverImg from './storybook-cover.png';
+
+import CoverImg from '../assets/storybook-cover.png';
 
 import {
   colorInterfaceLightUp,

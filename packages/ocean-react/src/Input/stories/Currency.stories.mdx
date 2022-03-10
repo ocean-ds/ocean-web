@@ -27,9 +27,11 @@ import { Input } from '@useblu/ocean-react';
       position: 'left',
       helperText: 'Some text here!',
       error: false,
-      blocked: false,
       disabled: false,
       type: 'text',
+    }}
+    parameters={{
+      controls: { exclude: /^blocked*/ },
     }}
     argTypes={{
       type: {

@@ -45,6 +45,7 @@
 
     &:hover,
     &:focus {
+      background-color: inherit;
       color: $color-interface-dark-up;
     }
   }
