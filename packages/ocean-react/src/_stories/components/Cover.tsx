@@ -1,7 +1,7 @@
 import React from 'react';
-
 import CoverImg from '../assets/storybook-cover.png';
 
+// eslint-disable-next-line
 import {
   colorInterfaceLightUp,
   colorBrandPrimaryPure,
@@ -10,7 +10,7 @@ import {
 import Typography from '../../Typography';
 import Grid from '../../Grid';
 
-const Cover = () => (
+const Cover: React.FC = () => (
   <div
     style={{
       display: 'flex',
@@ -30,6 +30,7 @@ const Cover = () => (
         flexDirection: 'column',
         justifyContent: 'center',
         padding: '40px',
+        minWidth: '360px',
       }}
     >
       <Typography variant="heading1" style={{ color: colorBrandPrimaryPure }}>

@@ -52,7 +52,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
       typeof value === 'number' ? value : 0
     );
 
-    const deduceFromAmount = () => {
+    const deduceFromAmount = useCallback(() => {
       if (disabled) return;
 
       setAmout((a: number) => {
@@ -60,9 +60,9 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
         return a;
       });
-    };
+    }, [min, disabled]);
 
-    const addToAmount = () => {
+    const addToAmount = useCallback(() => {
       if (disabled) return;
 
       if (!max) return;
@@ -72,22 +72,25 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
         return a;
       });
-    };
+    }, [max, disabled]);
 
-    const handleListboxKeyDown = useCallback((event: React.KeyboardEvent) => {
-      switch (event.key) {
-        case 'ArrowDown':
-          event.preventDefault();
-          deduceFromAmount();
-          break;
-        case 'ArrowUp':
-          event.preventDefault();
-          addToAmount();
-          break;
-        default:
-          return;
-      }
-    }, []);
+    const handleListboxKeyDown = useCallback(
+      (event: React.KeyboardEvent) => {
+        switch (event.key) {
+          case 'ArrowDown':
+            event.preventDefault();
+            deduceFromAmount();
+            break;
+          case 'ArrowUp':
+            event.preventDefault();
+            addToAmount();
+            break;
+          default:
+            return;
+        }
+      },
+      [addToAmount, deduceFromAmount]
+    );
 
     return (
       <FormControl
@@ -119,7 +122,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
           <input
             ref={ref}
-            type="stepper"
+            type="text"
             id={id}
             disabled={disabled}
             onKeyDown={handleListboxKeyDown}

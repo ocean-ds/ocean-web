@@ -13,7 +13,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       className,
       label,
       helperText,
-      blocked,
       error,
       id,
       disabled,
@@ -36,7 +35,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         htmlFor={id}
         helperText={helperText}
         error={error}
-        blocked={blocked}
+        blocked={true}
         disabled={disabled}
       >
         <textarea

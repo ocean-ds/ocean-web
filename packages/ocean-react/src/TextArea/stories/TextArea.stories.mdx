@@ -1,7 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import TextArea from '../TextArea';
 
-<Meta title="Components/TextArea" component={TextArea} />
+<Meta title="Components/Inputs/TextArea" component={TextArea} />
 
 # TextArea API
 
@@ -15,15 +15,35 @@ import { TextArea } from '@useblu/ocean-react';
 
 ## Usage
 
-<Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <TextArea
-      id="textarea-usage"
-      label="Label"
-      defaultValue="Hello World"
-      helperText="Just a small info ;)"
-      readOnly
-    />
+<Canvas>
+  <Story
+    name="TextArea"
+    args={{
+      label: 'Label',
+      placeholder: 'Placeholder...',
+      helperText: 'Some text here!',
+      error: false,
+      disabled: false,
+    }}
+    parameters={{
+      controls: { exclude: /^blocked*/ },
+    }}
+    argTypes={{
+      label: {
+        control: 'text',
+      },
+      placeholder: {
+        control: 'text',
+      },
+      disabled: {
+        control: 'boolean',
+      },
+      helperText: {
+        control: 'text',
+      },
+    }}
+  >
+    {(props) => <TextArea id="textarea-playground" {...props} />}
   </Story>
 </Canvas>
 
@@ -48,35 +68,3 @@ If that's not sufficient, you can check the [implementation of the component](ht
 ## Inheritance
 
 The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
-
-## Playground
-
-<Canvas>
-  <Story
-    name="playground"
-    args={{
-      label: 'Label',
-      placeholder: 'Placeholder...',
-      helperText: 'Some text here!',
-      error: false,
-      blocked: false,
-      disabled: false,
-    }}
-    argTypes={{
-      label: {
-        control: 'text',
-      },
-      placeholder: {
-        control: 'text',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
-    }}
-  >
-    {(props) => <TextArea id="textarea-playground" {...props} />}
-  </Story>
-</Canvas>
