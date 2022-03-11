@@ -11,6 +11,7 @@
   outline: none;
   padding: $spacing-inline-xs;
   resize: none;
+  width: 100%;
 
   &::placeholder {
     color: $color-interface-light-deep;
