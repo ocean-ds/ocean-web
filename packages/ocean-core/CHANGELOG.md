@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/ocean-ds/ocean-web/compare/v1.30.0...v1.30.1) (2022-03-11)
+
+### Bug Fixes
+
+- **textarea:** add width 100% to textarea ([#940](https://github.com/ocean-ds/ocean-web/issues/940)) ([075cc1a](https://github.com/ocean-ds/ocean-web/commit/075cc1a34b704fecfb563cc645a8f93b8437c7f7))
+
 # [1.30.0](https://github.com/ocean-ds/ocean-web/compare/v1.29.3...v1.30.0) (2022-03-10)
 
 ### Features

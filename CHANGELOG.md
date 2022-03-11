@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/ocean-ds/ocean-web/compare/v1.30.0...v1.30.1) (2022-03-11)
+
+### Bug Fixes
+
+- **sec:** security upgrade chromatic from 5.10.2 to 6.0.0 ([#938](https://github.com/ocean-ds/ocean-web/issues/938)) ([ca7008d](https://github.com/ocean-ds/ocean-web/commit/ca7008d11fd94ed3cd9022e2337fca71b2ccdba0))
+- **sec:** Inefficient Regular Expression Complexity in chalk/ansi-regex ([3af55e5](https://github.com/ocean-ds/ocean-web/commit/3af55e5fd7d8d660be2a8486cb26a76f11373dfb))
+- **textarea:** add width 100% to textarea ([#940](https://github.com/ocean-ds/ocean-web/issues/940)) ([075cc1a](https://github.com/ocean-ds/ocean-web/commit/075cc1a34b704fecfb563cc645a8f93b8437c7f7))
+
 # [1.30.0](https://github.com/ocean-ds/ocean-web/compare/v1.29.3...v1.30.0) (2022-03-10)
 
 ### Features
