@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.3](https://github.com/ocean-ds/ocean-web/compare/v1.30.2...v1.30.3) (2022-03-16)
+
+### Bug Fixes
+
+- **tooltip:** add usage in storybook ([#947](https://github.com/ocean-ds/ocean-web/issues/947)) ([fa587d9](https://github.com/ocean-ds/ocean-web/commit/fa587d95816d27879b73a31d5137bfc87a921d72))
+
 ## [1.30.2](https://github.com/ocean-ds/ocean-web/compare/v1.30.1...v1.30.2) (2022-03-16)
 
 ### Bug Fixes
