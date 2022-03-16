@@ -7,18 +7,26 @@ import Button from '../../Button';
 
 The API documentation of the Button React component. Learn more about the props and the CSS customization points.
 
+## Usage
+
+```jsx
+<Button aria-label="Whats up!" className="ods-tooltip" data-tooltip-pos="up">
+  Hover me!
+</Button>
+```
+
 ## Playground
 
 <Canvas>
   <Story
-    name="Tooltip"
+    name="Usage"
     args={{
-      disabled: false,
+      text: 'Whats up!',
       direction: 'up',
     }}
     argTypes={{
-      disabled: {
-        control: 'boolean',
+      text: {
+        control: 'text',
       },
       direction: {
         options: [
@@ -37,10 +45,10 @@ The API documentation of the Button React component. Learn more about the props 
   >
     {(props) => (
       <Button
-        aria-label="Whats up!"
-        data-balloon-pos={props.direction}
+        aria-label={props.text}
+        className="ods-tooltip"
+        data-tooltip-pos={props.direction}
         id="switch-playground"
-        {...props}
       >
         Hover me!
       </Button>
