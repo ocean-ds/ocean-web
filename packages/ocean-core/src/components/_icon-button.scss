@@ -24,6 +24,7 @@
   &--sm {
     font-size: $font-size-xs;
     height: 40px;
+    min-width: 40px;
     width: 40px;
 
     :first-child {
@@ -35,6 +36,7 @@
   &--md {
     font-size: $font-size-sm;
     height: 48px;
+    min-width: 48px;
     width: 48px;
   }
 

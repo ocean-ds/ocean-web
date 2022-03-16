@@ -2,51 +2,68 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import FormControl, { FormControlProps } from '../FormControl';
+import IconButton from '../IconButton';
 import { Search as Searchicon, X } from '@useblu/ocean-icons-react';
 
-export type InputProps = Omit<FormControlProps, 'children'> &
+export type SearchInputProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'input'>;
 
-const Search = React.forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, id, disabled, value, defaultValue, ...rest },
-  ref
-) {
-  const [inputValue, setInputValue] = useState(defaultValue || value);
+const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
+  function Input(
+    { className, id, disabled, value, defaultValue, onChange, ...rest },
+    ref
+  ) {
+    const [inputValue, setInputValue] = useState(defaultValue || value);
 
-  return (
-    <FormControl htmlFor={id} disabled={disabled}>
-      <div
-        className={classNames(
-          'ods-search',
-          inputValue && 'ods-search--filled',
-          disabled && 'ods-search--disabled',
-          className
-        )}
-      >
-        <div className="ods-search__adornment">
-          <Searchicon />
-        </div>
-
-        <input
-          ref={ref}
-          type="text"
-          id={id}
-          disabled={disabled}
-          onChange={({ target }) => setInputValue(target.value)}
-          value={inputValue}
-          {...rest}
-        />
-
+    return (
+      <FormControl htmlFor={id} disabled={disabled}>
         <div
-          data-testid="close"
-          onClick={() => setInputValue('')}
-          className="ods-search__clean"
+          className={classNames(
+            'ods-search',
+            inputValue && 'ods-search--filled',
+            disabled && 'ods-search--disabled',
+            className
+          )}
         >
-          {inputValue && <X />}
+          <div className="ods-search__adornment">
+            <Searchicon />
+          </div>
+
+          <input
+            ref={ref}
+            type="text"
+            id={id}
+            disabled={disabled}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+              if (onChange) onChange(e);
+            }}
+            value={inputValue}
+            {...rest}
+          />
+
+          {inputValue && (
+            <IconButton
+              data-testid="close"
+              onClick={() => {
+                setInputValue('');
+                const e = {
+                  target: { value: '' },
+                };
+
+                if (onChange)
+                  onChange(e as React.ChangeEvent<HTMLInputElement>);
+              }}
+              className="ods-search__clean"
+              size="sm"
+            >
+              <X />
+            </IconButton>
+          )}
         </div>
-      </div>
-    </FormControl>
-  );
-});
+      </FormControl>
+    );
+  }
+);
 
 export default Search;

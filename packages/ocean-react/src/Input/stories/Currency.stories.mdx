@@ -2,7 +2,11 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
 import { EyeOutline } from '@useblu/ocean-icons-react';
 
-<Meta title="Components/Inputs/Currency" component={Input} />
+<Meta
+  title="Components/Inputs/Currency"
+  component={Input}
+  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+/>
 
 # Input Currency API
 

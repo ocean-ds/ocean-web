@@ -4,6 +4,7 @@ import Search from '../Search';
 <Meta
   title="Components/Search"
   component={Search}
+  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
   argTypes={{
     type: {
       name: 'type',
@@ -60,7 +61,7 @@ The props of the [FormControl](?path=/docs/components-formcontrol--page) compone
   <Story
     name="playground"
     args={{
-      defaultValue: 'dkosakd',
+      defaultValue: 'Hello world',
       placeholder: 'Placeholder...',
       blocked: false,
       disabled: false,
