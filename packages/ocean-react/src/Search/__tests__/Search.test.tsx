@@ -9,45 +9,41 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <div
-    class="ods-form-control__element"
-  >
     <div
-      class="ods-search custom-class"
+      class="ods-form-control__root"
     >
       <div
-        class="ods-search__adornment"
+        class="ods-form-control__element"
       >
-        <svg
-          fill="currentColor"
-          height="24"
-          viewBox="0 0 20 20"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
+        <div
+          class="ods-search custom-class"
         >
-          <path
-            clip-rule="evenodd"
-            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-            fill-rule="evenodd"
+          <div
+            class="ods-search__adornment"
+          >
+            <svg
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 20 20"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <input
+            data-testid="input-test"
+            type="text"
+            value=""
           />
-        </svg>
+        </div>
       </div>
-      <input
-        data-testid="input-test"
-        type="text"
-        value=""
-      />
-      <div
-        class="ods-search__clean"
-        data-testid="close"
-      />
     </div>
-  </div>
-</div>
-`);
+  `);
   expect(screen.getByTestId('input-test')).toHaveAttribute('type', 'text');
 });
 
@@ -69,7 +65,7 @@ test('renders a value state for input', () => {
     target: { value: '' },
   });
 
-  expect(screen.getByTestId('close').firstChild).not.toBeInTheDocument();
+  expect(screen.queryByTestId('close')).not.toBeInTheDocument();
 });
 
 test('renders a function clean for input', () => {
@@ -79,5 +75,5 @@ test('renders a function clean for input', () => {
 
   fireEvent.click(screen.getByTestId('close'));
 
-  expect(screen.getByTestId('close').firstChild).not.toBeInTheDocument();
+  expect(screen.queryByTestId('close')).not.toBeInTheDocument();
 });

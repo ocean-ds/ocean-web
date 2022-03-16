@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import Showcase from '../../_stories/components/Showcase';
+
+import Progress from '../Progress';
+
+<Meta
+  title="Components/Progress/Introduction"
+  component={Progress}
+  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
+  parameters={{ layout: 'padded' }}
+/>
+
+# Progress API
+
+The API documentation of the Progress React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Progress } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Showcase>
+  <Progress />
+</Showcase>
+
+#### code
+
+```jsx
+<Progress />
+```
+
+## sizes
+
+<Showcase>
+  <div class="flex-story">
+    <Progress size="sm" />
+    <Progress size="md" />
+    <Progress size="lg" />
+  </div>
+</Showcase>
+
+#### code
+
+```jsx
+<Progress size="sm" />
+<Progress size="md" />
+<Progress size="lg" />
+```
+
+## On Color Variant
+
+<Showcase>
+  <div class="flex-story" style={{ backgroundColor: '#333' }}>
+    <Progress onColor />
+  </div>
+  <div class="flex-story" style={{ backgroundColor: '#fff' }}>
+    <Progress />
+  </div>
+</Showcase>
+
+#### code
+
+```jsx
+<div class="flex-story" style={{ backgroundColor: '#333' }}>
+  <Progress onColor />
+</div>
+<div class="flex-story" style={{ backgroundColor: '#fff' }}>
+  <Progress />
+</div>
+```

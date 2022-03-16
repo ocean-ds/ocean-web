@@ -6,7 +6,7 @@
   display: flex;
   height: 46px;
   margin: 1px;
-  width: auto !important;
+  width: 100%;
 
   input {
     border: 0;
@@ -18,7 +18,7 @@
     height: 100%;
     line-height: $line-height-medium;
     outline: none;
-    padding: 0 $spacing-inline-xs;
+    padding: 0 $spacing-inline-xxs;
     width: 100%;
 
     &::placeholder {
@@ -34,16 +34,8 @@
     margin: 0;
   }
 
-  svg {
-    color: #d8dae8;
-  }
-
   &--filled {
     border-color: $color-brand-primary-up;
-  }
-
-  &--filled svg {
-    color: #0025e0;
   }
 
   &--disabled {
@@ -65,18 +57,23 @@
 
   &__adornment {
     line-height: 0;
-    padding-left: 16px;
-    width: auto !important;
+    padding-left: $spacing-inline-xs;
+
+    svg {
+      color: #d8dae8;
+    }
+  }
+
+  &--filled &__adornment svg {
+    color: #0025e0;
   }
 
   &__clean {
-    cursor: pointer;
-    line-height: 0;
-    padding-right: 16px;
-    width: 24px;
+    color: $color-interface-dark-up;
+    margin-right: 4px;
 
-    svg {
-      color: #393b47;
+    &:hover {
+      color: $color-brand-primary-pure;
     }
   }
 }

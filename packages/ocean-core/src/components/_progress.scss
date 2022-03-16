@@ -21,16 +21,19 @@
     }
   }
 
+  &--md,
   &--md svg {
     height: 24px;
     width: 24px;
   }
 
+  &--sm,
   &--sm svg {
     height: 16px;
     width: 16px;
   }
 
+  &--lg,
   &--lg svg {
     height: 32px;
     width: 32px;

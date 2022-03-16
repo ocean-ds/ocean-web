@@ -1,7 +1,11 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import TextArea from '../TextArea';
 
-<Meta title="Components/Inputs/TextArea" component={TextArea} />
+<Meta
+  title="Components/Inputs/TextArea"
+  component={TextArea}
+  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+/>
 
 # TextArea API
 

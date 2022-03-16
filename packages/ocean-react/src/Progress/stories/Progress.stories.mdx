@@ -2,12 +2,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 
 import Progress from '../Progress';
 
-<Meta
-  title="Components/Progress"
-  component={Progress}
-  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
-  parameters={{ layout: 'padded' }}
-/>
+<Meta title="Components/Progress" component={Progress} />
 
 # Progress API
 
@@ -19,44 +14,9 @@ The API documentation of the Progress React component. Learn more about the prop
 import { Progress } from '@useblu/ocean-react';
 ```
 
-## Usage
-
-<Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <Progress />
-  </Story>
-</Canvas>
-
-## sizes
-
-<Canvas withSource="open" withToolbar>
-  <Story name="sizes">
-    <div class="flex-story">
-      <Progress size="sm" />
-      <Progress size="md" />
-      <Progress size="lg" />
-    </div>
-  </Story>
-</Canvas>
-
-## On Color Variant
-
-<Canvas withSource="open" withToolbar>
-  <Story name="colors">
-    <div class="flex-story" style={{ backgroundColor: '#333' }}>
-      <Progress onColor />
-    </div>
-    <div class="flex-story" style={{ backgroundColor: '#fff' }}>
-      <Progress />
-    </div>
-  </Story>
-</Canvas>
-
-## Playground
-
 <Canvas>
   <Story
-    name="playground"
+    name="Usage"
     args={{
       onColor: false,
       size: 'md',
