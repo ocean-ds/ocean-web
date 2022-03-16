@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.4](https://github.com/ocean-ds/ocean-web/compare/v1.30.3...v1.30.4) (2022-03-16)
+
+### Bug Fixes
+
+- **tooltip:** remove disable from control ([#948](https://github.com/ocean-ds/ocean-web/issues/948)) ([316ccf6](https://github.com/ocean-ds/ocean-web/commit/316ccf66577ef523631563a307ec56ad6b15e38f))
+
 ## [1.30.3](https://github.com/ocean-ds/ocean-web/compare/v1.30.2...v1.30.3) (2022-03-16)
 
 ### Bug Fixes
