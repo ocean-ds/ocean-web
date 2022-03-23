@@ -1,0 +1,13 @@
+{
+  "title": "Arraste e solte o arquivo aqui ou",
+  "call-to-action": "selecione do computador",
+  "subtitle": "Formato PDF. Tamanho máximo de 20MB.",
+  "validations": {
+    "file-invalid-type": "O arquivo deve estar no formato ${param}.",
+    "file-too-large": "O arquivo não deve ser maior que ${param}.",
+    "file-too-small": "O arquivo não deve ser menor que ${param}.",
+    "too-many-files": "Quantidade de arquivos excedida. O máximo é ${param}.",
+    "name-too-large": "O nome do arquivo deve ter até ${param} caracteres.",
+    "already-added": "Você já adicionou um arquivo com esse nome."
+  }
+}

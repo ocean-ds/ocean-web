@@ -1,0 +1,13 @@
+{
+  "title": "Drop your files here or",
+  "call-to-action": "select from computer",
+  "subtitle": "File type and size description.",
+  "validations": {
+    "file-invalid-type": "Name is larger than ${param} characters.",
+    "file-too-large": "File is larger than ${param}.",
+    "file-too-small": "File is smaller than ${param}.",
+    "too-many-files": "Too many files, max is ${param}.",
+    "name-too-large": "Name is larger than ${param} characters.",
+    "already-added": "File already added."
+  }
+}
