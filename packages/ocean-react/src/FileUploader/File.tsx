@@ -16,10 +16,11 @@ import IconButton from '../IconButton';
 export type FileProps = {
   status?: 'idle' | 'loading' | 'error' | 'success' | 'warning';
   file: File;
-  onRemove: (file: File) => void;
+  onRemove?: (file: File) => void;
+  onReload?: (file: File) => void;
 };
 
-const File = ({ status = 'idle', file, onRemove }: FileProps) => {
+const File = ({ status = 'idle', file, onRemove, onReload }: FileProps) => {
   const statusIcon = React.useMemo(() => {
     return {
       loading: <Progress size="sm" />,
@@ -41,14 +42,19 @@ const File = ({ status = 'idle', file, onRemove }: FileProps) => {
       <div className="ods-file-uploader__file-name">{file.name}</div>
       <div className="ods-file-uploader__file-actions">
         {status === 'error' && (
-          <IconButton size="sm">
+          <IconButton
+            size="sm"
+            onClick={() => {
+              if (onReload) onReload(file);
+            }}
+          >
             <Refresh />
           </IconButton>
         )}
         <IconButton
           size="sm"
           onClick={() => {
-            onRemove(file);
+            if (onRemove) onRemove(file);
           }}
         >
           <X />

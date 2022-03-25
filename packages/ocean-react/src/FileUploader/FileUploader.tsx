@@ -55,6 +55,8 @@ export type FileUploaderProps = {
   };
   onAdd?: (e: FileChangeEvent) => void;
   onChange?: (e: FileChangeEvent) => void;
+  onReloadFile?: (files: File) => void;
+  onRemoveFile?: (files: File) => void;
   validation?: (files: File) => FileError | null;
 };
 
@@ -73,6 +75,8 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   className,
   onChange,
   onAdd,
+  onReloadFile,
+  onRemoveFile,
   value,
   minSize,
   maxSize,
@@ -247,8 +251,12 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
                 status={fileState.state}
                 key={file.name}
                 file={file}
-                onRemove={() => {
+                onRemove={(file) => {
                   setFiles((oldFiles) => [...pull(oldFiles, file)]);
+                  if (onRemoveFile) onRemoveFile(file);
+                }}
+                onReload={(file) => {
+                  if (onReloadFile) onReloadFile(file);
                 }}
               />
 

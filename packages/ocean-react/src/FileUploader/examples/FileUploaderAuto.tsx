@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { difference } from 'lodash';
-
 import FileUploader, { FileChangeEvent, FileState } from '../FileUploader';
 
 const FileUploaderAuto: React.FC = (props) => {
@@ -18,8 +16,9 @@ const FileUploaderAuto: React.FC = (props) => {
   };
 
   const sendFile = (file: File) => {
-    setfilesState((o) => {
-      return [...o, { file, state: 'loading' }];
+    changeFileState({
+      file: file,
+      state: 'loading',
     });
 
     setTimeout(() => {
@@ -27,7 +26,7 @@ const FileUploaderAuto: React.FC = (props) => {
         confirm(
           `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload: 
         \n
-        files to upload: ${filesState.length}`
+        file to upload: ${file.name}`
         ) == true
       ) {
         changeFileState({
@@ -61,7 +60,21 @@ const FileUploaderAuto: React.FC = (props) => {
         value={files}
         filesState={filesState}
         onAdd={(e: FileChangeEvent) => {
+          setfilesState((o) => {
+            return [
+              ...o,
+              ...e.target.value.map(
+                (f) => ({ file: f, state: 'loading' } as FileState)
+              ),
+            ];
+          });
           e.target.value.forEach(sendFile);
+        }}
+        onRemoveFile={(file: File) => {
+          alert(file.name + ' removed');
+        }}
+        onReloadFile={(file: File) => {
+          sendFile(file);
         }}
         onChange={(e) => {
           setFiles(e.target.value);
