@@ -7,6 +7,13 @@ import { Col, Row } from '../../Grid';
 import Button from '../../Button';
 
 const FileUploaderControlled: React.FC = (props) => {
+  const [filesState, setfilesState] = React.useState<
+    {
+      file: File;
+      state: 'idle' | 'loading' | 'error' | 'success' | 'warning';
+    }[]
+  >([]);
+
   const formik = {
     initialValues: {
       files: [],
@@ -21,7 +28,37 @@ const FileUploaderControlled: React.FC = (props) => {
         ),
     }),
     onSubmit: (values: any) => {
-      alert(values.files);
+      setfilesState(
+        values.files.map((e: File) => ({
+          file: e,
+          state: 'loading',
+        }))
+      );
+
+      setTimeout(() => {
+        if (
+          confirm(
+            `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload: 
+          \n
+          files to upload: ${values.files.length}`
+          ) == true
+        ) {
+          setfilesState(
+            values.files.map((e: File) => ({
+              file: e,
+              state: 'success',
+            }))
+          );
+        } else {
+          setfilesState(
+            values.files.map((e: File) => ({
+              file: e,
+              state: 'error',
+              message: 'message from server with error',
+            }))
+          );
+        }
+      }, 1000);
     },
   };
 
@@ -51,6 +88,7 @@ const FileUploaderControlled: React.FC = (props) => {
                 <FileUploader
                   id="input-with-icon"
                   name="files"
+                  filesState={filesState}
                   error={!!(errors.files && touched.files)}
                   {...props}
                   value={values.files}

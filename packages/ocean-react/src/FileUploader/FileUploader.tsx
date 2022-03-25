@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { pull, uniqBy, find } from 'lodash';
@@ -12,14 +12,31 @@ import {
 
 import { UploadOutline } from '@useblu/ocean-icons-react';
 
-import FormControl, { FormControlProps } from '../FormControl';
+import FormControl from '../FormControl';
 
 import File from './File';
 import i18nPtBr from './locales/pt-br.json';
 import i18nEn from './locales/en.json';
 
+export type FileState = {
+  file: File;
+  state: 'idle' | 'loading' | 'error' | 'success' | 'warning';
+  message?: string;
+};
+
+export type FileChangeEvent = {
+  target: {
+    name: string | undefined;
+    value: File[];
+  };
+};
+
 export type FileUploaderProps = {
   title?: string;
+  label?: string;
+  id?: string;
+  name?: string;
+  className?: string;
   callToAction?: string;
   subtitle?: string;
   multiple?: boolean;
@@ -28,15 +45,18 @@ export type FileUploaderProps = {
   minSize?: number;
   maxSize?: number;
   accept?: string;
+  filesState?: FileState[];
   language?: 'pt-br' | 'en';
   error?: boolean;
+  disabled?: boolean;
   value?: File[];
   customLocale?: {
     [key: string]: string;
   };
+  onAdd?: (e: FileChangeEvent) => void;
+  onChange?: (e: FileChangeEvent) => void;
   validation?: (files: File) => FileError | null;
-} & Omit<FormControlProps, 'children'> &
-  React.ComponentPropsWithoutRef<'input'>;
+};
 
 const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   label,
@@ -52,9 +72,11 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   customLocale,
   className,
   onChange,
+  onAdd,
   value,
   minSize,
   maxSize,
+  filesState,
   validation,
   maxFiles,
   maxLength,
@@ -67,13 +89,13 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   const locale = customLocale || language === 'pt-br' ? i18nPtBr : i18nEn;
 
   React.useEffect(() => {
-    const event = {
+    const event: FileChangeEvent = {
       target: {
         name,
         value: files,
       },
     };
-    if (onChange) onChange(event as unknown as ChangeEvent<HTMLInputElement>);
+    if (onChange) onChange(event);
   }, [files]);
 
   const erroMessage = (code: string) => {
@@ -90,6 +112,11 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
     if (code === 'already-added') return locale.validations[code];
 
     return '';
+  };
+
+  const getFileState = (file: File) => {
+    const state = find(filesState, { file });
+    return state || { state: 'idle', file };
   };
 
   const customValidator = (file: File): FileError | null => {
@@ -150,6 +177,14 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
         ...(oldFiles as File[]),
         ...(dropedFiles as File[]),
       ]);
+
+      const event: FileChangeEvent = {
+        target: {
+          name,
+          value: dropedFiles,
+        },
+      };
+      if (onAdd) onAdd(event);
     },
   });
 
@@ -196,23 +231,39 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
             />
 
             {rejection.errors.map((error) => (
-              <div className="ods-file-uploader__validation_message">
+              <div className="ods-file-uploader__warning_message">
                 {erroMessage(error.code)}
               </div>
             ))}
           </>
         ))}
 
-        {files.map((file) => (
-          <File
-            status="idle"
-            key={file.name}
-            file={file}
-            onRemove={() => {
-              setFiles((oldFiles) => [...pull(oldFiles, file)]);
-            }}
-          />
-        ))}
+        {files.map((file) => {
+          const fileState = getFileState(file);
+
+          return (
+            <>
+              <File
+                status={fileState.state}
+                key={file.name}
+                file={file}
+                onRemove={() => {
+                  setFiles((oldFiles) => [...pull(oldFiles, file)]);
+                }}
+              />
+
+              {fileState.message && (
+                <div
+                  className={classNames(
+                    `ods-file-uploader__${fileState.state}_message`
+                  )}
+                >
+                  {fileState.message}
+                </div>
+              )}
+            </>
+          );
+        })}
       </div>
     </FormControl>
   );
