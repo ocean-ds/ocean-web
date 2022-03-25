@@ -38,6 +38,7 @@ export type FileUploaderProps = {
   name?: string;
   className?: string;
   callToAction?: string;
+  callToActionMobile?: string;
   subtitle?: string;
   multiple?: boolean;
   maxFiles?: number;
@@ -67,6 +68,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   disabled,
   title,
   callToAction,
+  callToActionMobile,
   subtitle,
   multiple = true,
   error = false,
@@ -213,6 +215,9 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
             <div className="ods-file-uploader__title">
               <span>{title || locale.title}</span>
               <a>{callToAction || locale['call-to-action']}</a>
+            </div>
+            <div className="ods-file-uploader__title--mobile">
+              <a>{callToActionMobile || locale['call-to-action-mobile']}</a>
             </div>
             <div className="ods-file-uploader__subtitle">
               {subtitle || locale.subtitle}

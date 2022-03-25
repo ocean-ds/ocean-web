@@ -70,7 +70,8 @@ const FileUploaderControlled: React.FC = (props) => {
         justifyContent: 'space-between',
         borderRadius: 8,
         margin: '16px 0px',
-        width: '480px',
+        maxWidth: '480px',
+        width: '100%',
       }}
     >
       <Col

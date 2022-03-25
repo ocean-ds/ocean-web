@@ -1,6 +1,7 @@
 {
   "title": "Arraste e solte o arquivo aqui ou",
   "call-to-action": "selecione do computador",
+  "call-to-action-mobile": "Selecione um ou mais arquivos",
   "subtitle": "Formato PDF. Tamanho máximo de 20MB.",
   "validations": {
     "file-invalid-type": "O arquivo deve estar no formato ${param}.",

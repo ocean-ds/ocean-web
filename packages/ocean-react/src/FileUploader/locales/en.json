@@ -2,6 +2,7 @@
   "title": "Drop your files here or",
   "call-to-action": "select from computer",
   "subtitle": "File type and size description.",
+  "call-to-action-mobile": "Select one or more files",
   "validations": {
     "file-invalid-type": "Name is larger than ${param} characters.",
     "file-too-large": "File is larger than ${param}.",
