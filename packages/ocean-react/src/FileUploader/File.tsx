@@ -20,7 +20,12 @@ export type FileProps = {
   onReload?: (file: File) => void;
 };
 
-const File = ({ status = 'idle', file, onRemove, onReload }: FileProps) => {
+const File: React.FunctionComponent<FileProps> = ({
+  status = 'idle',
+  file,
+  onRemove,
+  onReload,
+}: FileProps) => {
   const statusIcon = React.useMemo(() => {
     return {
       loading: <Progress size="sm" />,

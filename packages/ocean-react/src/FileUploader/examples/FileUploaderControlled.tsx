@@ -1,18 +1,18 @@
 import React from 'react';
 import Typography from '../../Typography';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, FormikValues } from 'formik';
 import * as yup from 'yup';
 import FileUploader from '../FileUploader';
 import { Col, Row } from '../../Grid';
 import Button from '../../Button';
 
+export type FilesState = {
+  file: File;
+  state: 'idle' | 'loading' | 'error' | 'success' | 'warning';
+};
+
 const FileUploaderControlled: React.FC = (props) => {
-  const [filesState, setfilesState] = React.useState<
-    {
-      file: File;
-      state: 'idle' | 'loading' | 'error' | 'success' | 'warning';
-    }[]
-  >([]);
+  const [filesState, setfilesState] = React.useState<FilesState[]>([]);
 
   const formik = {
     initialValues: {
@@ -27,7 +27,7 @@ const FileUploaderControlled: React.FC = (props) => {
           'A file is require (this is a form level validation, not in the input)'
         ),
     }),
-    onSubmit: (values: any) => {
+    onSubmit: (values: FormikValues) => {
       setfilesState(
         values.files.map((e: File) => ({
           file: e,

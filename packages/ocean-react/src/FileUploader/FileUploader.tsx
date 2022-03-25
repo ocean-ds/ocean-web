@@ -88,7 +88,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   maxLength,
   accept,
 }) => {
-  const [isDrag, setDrag] = React.useState<Boolean>(false);
+  const [isDrag, setDrag] = React.useState<boolean>(false);
   const [rejectedFiles, setRejectedFiles] = React.useState<FileRejection[]>([]);
   const [files, setFiles] = React.useState<File[]>(value || []);
 
@@ -102,6 +102,8 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
       },
     };
     if (onChange) onChange(event);
+
+    // eslint-disable-next-line
   }, [files]);
 
   const erroMessage = (code: string) => {
@@ -240,7 +242,10 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
             />
 
             {rejection.errors.map((error) => (
-              <div className="ods-file-uploader__warning_message">
+              <div
+                className="ods-file-uploader__warning_message"
+                key={error.code}
+              >
                 {erroMessage(error.code)}
               </div>
             ))}
