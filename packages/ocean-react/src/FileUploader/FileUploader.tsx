@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { pull, uniqBy, find } from 'lodash';
+import { pull, uniqBy, find, reverse } from 'lodash';
 
 import {
   useDropzone,
@@ -40,6 +40,8 @@ export type FileUploaderProps = {
   callToAction?: string;
   callToActionMobile?: string;
   subtitle?: string;
+  reloadTooltip?: string;
+  removeTooltip?: string;
   multiple?: boolean;
   maxFiles?: number;
   maxLength?: number;
@@ -73,6 +75,8 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   multiple = true,
   error = false,
   language = 'en',
+  reloadTooltip,
+  removeTooltip,
   customLocale,
   className,
   onChange,
@@ -261,6 +265,8 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
                 status={fileState.state}
                 key={file.name}
                 file={file}
+                reloadTooltip={reloadTooltip || locale['reload-tooltip']}
+                removeTooltip={removeTooltip || locale['remove-tooltip']}
                 onRemove={(file) => {
                   setFiles((oldFiles) => [...pull(oldFiles, file)]);
                   if (onRemoveFile) onRemoveFile(file);

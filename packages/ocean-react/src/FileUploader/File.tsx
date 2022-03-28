@@ -16,6 +16,8 @@ import IconButton from '../IconButton';
 export type FileProps = {
   status?: 'idle' | 'loading' | 'error' | 'success' | 'warning';
   file: File;
+  reloadTooltip?: string;
+  removeTooltip?: string;
   onRemove?: (file: File) => void;
   onReload?: (file: File) => void;
 };
@@ -23,6 +25,8 @@ export type FileProps = {
 const File: React.FunctionComponent<FileProps> = ({
   status = 'idle',
   file,
+  reloadTooltip,
+  removeTooltip,
   onRemove,
   onReload,
 }: FileProps) => {
@@ -49,6 +53,9 @@ const File: React.FunctionComponent<FileProps> = ({
         {status === 'error' && (
           <IconButton
             size="sm"
+            aria-label={reloadTooltip}
+            className="ods-tooltip"
+            data-tooltip-pos="up"
             onClick={() => {
               if (onReload) onReload(file);
             }}
@@ -58,6 +65,9 @@ const File: React.FunctionComponent<FileProps> = ({
         )}
         <IconButton
           size="sm"
+          aria-label={removeTooltip}
+          className="ods-tooltip"
+          data-tooltip-pos="up"
           onClick={() => {
             if (onRemove) onRemove(file);
           }}
