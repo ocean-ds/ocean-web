@@ -6,7 +6,7 @@
   "reload-tooltip": "Reupload file",
   "remove-tooltip": "Remove file",
   "validations": {
-    "file-invalid-type": "Name is larger than ${param} characters.",
+    "file-invalid-type": "The Accepted type is ${param}.",
     "file-too-large": "File is larger than ${param}.",
     "file-too-small": "File is smaller than ${param}.",
     "too-many-files": "Too many files, max is ${param}.",
