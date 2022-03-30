@@ -32,7 +32,11 @@ const File: React.FunctionComponent<FileProps> = ({
 }: FileProps) => {
   const statusIcon = React.useMemo(() => {
     return {
-      loading: <Progress size="sm" />,
+      loading: (
+        <div className="ods-file-uploader__file-loading">
+          <Progress size="sm" />
+        </div>
+      ),
       success: <CheckCircle />,
       error: <XCircle />,
       warning: <ExclamationCircle />,

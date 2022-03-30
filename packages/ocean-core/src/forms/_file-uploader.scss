@@ -111,7 +111,7 @@
     height: 48px;
     justify-content: space-between;
     margin-top: 8px;
-    padding: 0 4px 0 12px;
+    padding: 0 4px;
     width: 100%;
   }
 
@@ -133,7 +133,7 @@
   }
 
   &__file--warning &__file-status {
-    color: $color-status-neutral-pure;
+    color: $color-status-neutral-deep;
   }
 
   &__file--success &__file-status {
@@ -184,7 +184,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
-    margin: 0 8px;
+    margin: 0 8px 0 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -192,10 +192,18 @@
     width: 100%;
   }
 
+  &__file-loading {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__file-status {
     display: flex;
     justify-content: center;
-
+    margin: 0 8px;
     svg {
       height: 20px;
       width: 20px;
