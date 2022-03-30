@@ -54,7 +54,7 @@ const FileUploaderControlled: React.FC = (props) => {
             values.files.map((e: File) => ({
               file: e,
               state: 'error',
-              message: 'message from server with error',
+              message: 'Message from server with error.',
             }))
           );
         }
