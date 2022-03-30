@@ -18,6 +18,7 @@ export type FileProps = {
   file: File;
   reloadTooltip?: string;
   removeTooltip?: string;
+  className?: string;
   onRemove?: (file: File) => void;
   onReload?: (file: File) => void;
 };
@@ -27,6 +28,7 @@ const File: React.FunctionComponent<FileProps> = ({
   file,
   reloadTooltip,
   removeTooltip,
+  className,
   onRemove,
   onReload,
 }: FileProps) => {
@@ -48,7 +50,8 @@ const File: React.FunctionComponent<FileProps> = ({
     <div
       className={classNames(
         'ods-file-uploader__file',
-        `ods-file-uploader__file--${status}`
+        `ods-file-uploader__file--${status}`,
+        className
       )}
     >
       <div className="ods-file-uploader__file-status">{statusIcon}</div>

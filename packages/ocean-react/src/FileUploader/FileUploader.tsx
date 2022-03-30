@@ -93,6 +93,9 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   accept,
 }) => {
   const [isDrag, setDrag] = React.useState<boolean>(false);
+  const [animationState, updateAnimationState] = React.useState<{
+    [key: string]: string;
+  }>({});
   const [rejectedFiles, setRejectedFiles] = React.useState<FileRejection[]>([]);
   const [files, setFiles] = React.useState<File[]>(value || []);
 
@@ -240,10 +243,18 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
               status="warning"
               reloadTooltip={reloadTooltip || locale['reload-tooltip']}
               removeTooltip={removeTooltip || locale['remove-tooltip']}
+              className={animationState[rejection.file.name]}
               onRemove={() => {
-                setRejectedFiles((oldRejections) => [
-                  ...pull(oldRejections, rejection),
-                ]);
+                updateAnimationState((e) => ({
+                  ...e,
+                  [rejection.file.name]: 'removed',
+                }));
+
+                setTimeout(() => {
+                  setRejectedFiles((oldRejections) => [
+                    ...pull(oldRejections, rejection),
+                  ]);
+                }, 200);
               }}
             />
 
@@ -267,10 +278,18 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
                 status={fileState.state}
                 key={file.name}
                 file={file}
+                className={animationState[file.name]}
                 reloadTooltip={reloadTooltip || locale['reload-tooltip']}
                 removeTooltip={removeTooltip || locale['remove-tooltip']}
                 onRemove={(file) => {
-                  setFiles((oldFiles) => [...pull(oldFiles, file)]);
+                  updateAnimationState((e) => ({
+                    ...e,
+                    [file.name]: 'removed',
+                  }));
+                  setTimeout(() => {
+                    setFiles((oldFiles) => [...pull(oldFiles, file)]);
+                  }, 200);
+
                   if (onRemoveFile) onRemoveFile(file);
                 }}
                 onReload={(file) => {

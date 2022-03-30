@@ -110,6 +110,16 @@
     }
   }
 
+  @keyframes ods-file-animation-out {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
   &__file {
     align-items: center;
     animation: ods-file-animation 0.2s linear;
@@ -124,6 +134,10 @@
     margin-top: 8px;
     padding: 0 4px;
     width: 100%;
+
+    &.removed {
+      animation: ods-file-animation-out 0.2s linear;
+    }
   }
 
   &__file--warning {
