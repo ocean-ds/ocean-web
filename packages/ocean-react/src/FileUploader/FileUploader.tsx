@@ -238,6 +238,8 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
               key={rejection.file.name}
               file={rejection.file}
               status="warning"
+              reloadTooltip={reloadTooltip || locale['reload-tooltip']}
+              removeTooltip={removeTooltip || locale['remove-tooltip']}
               onRemove={() => {
                 setRejectedFiles((oldRejections) => [
                   ...pull(oldRejections, rejection),
