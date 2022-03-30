@@ -100,8 +100,19 @@
     text-align: center;
   }
 
+  @keyframes ods-file-animation {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   &__file {
     align-items: center;
+    animation: ods-file-animation 0.2s linear;
     background: $color-interface-light-pure;
     border: 1px solid $color-interface-light-deep;
     border-radius: 8px;
