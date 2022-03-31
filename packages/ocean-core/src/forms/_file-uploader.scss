@@ -144,8 +144,12 @@
     border: 1px solid $color-status-neutral-deep;
   }
 
+  &__file--success {
+    border: 1px solid $color-brand-primary-up;
+  }
+
   &__file--idle {
-    border: 1px solid $color-interface-light-down;
+    border: 1px solid $color-interface-primary-down;
   }
 
   &__file--loading {
