@@ -224,7 +224,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
             <UploadOutline className="ods-file-uploader__trigger-icon" />
             <div className="ods-file-uploader__title">
               <span>{title || locale.title}</span>
-              <a>{callToAction || locale['call-to-action']}</a>
+              <Link>{callToAction || locale['call-to-action']}</Link>
             </div>
             <div className="ods-file-uploader__title--mobile">
               <Link>

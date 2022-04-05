@@ -121,8 +121,11 @@
   margin-bottom: $spacing-inline-xxs;
   line-height: 15px;
   max-height: 30px;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .ods-transaction-list-item__level3 {
