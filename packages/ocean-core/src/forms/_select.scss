@@ -15,6 +15,7 @@
     font-size: $font-size-xs;
     height: 48px;
     justify-content: space-between;
+    margin: 1px;
     outline: none;
     padding-left: $spacing-inline-xs;
     padding-right: $spacing-inline-xs;
@@ -49,8 +50,8 @@
 
   &__value {
     flex: 1;
+    font-size: $font-size-xs;
     font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

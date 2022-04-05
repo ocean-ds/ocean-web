@@ -2,7 +2,11 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Stepper from '../Stepper';
 import { EyeOutline, PlusOutline } from '@useblu/ocean-icons-react';
 
-<Meta title="Components/Inputs/Stepper" component={Stepper} />
+<Meta
+  title="Components/Inputs/Stepper"
+  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+  component={Stepper}
+/>
 
 # Stepper API
 
