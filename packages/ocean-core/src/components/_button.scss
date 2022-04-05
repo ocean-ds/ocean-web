@@ -131,6 +131,10 @@
   }
 
   &--loading {
+    .ods-progress {
+      margin: auto;
+    }
+
     > span {
       display: block;
       height: 0;

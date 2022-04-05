@@ -45,6 +45,13 @@
       background-color: transparent;
     }
 
+    .ods-transaction-list-item__level1 {
+      color: $color-interface-dark-down;
+      font-family: $font-family-base;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
     .ods-transaction-list-item__icon {
       background-color: transparent;
     }
@@ -112,6 +119,10 @@
   font-size: 15px;
   font-weight: $font-weight-regular;
   margin-bottom: $spacing-inline-xxs;
+  line-height: 15px;
+  max-height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .ods-transaction-list-item__level3 {

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { pull, uniqBy, find, reverse } from 'lodash';
+import { pull, uniqBy, find } from 'lodash';
 
 import {
   useDropzone,
@@ -15,6 +15,7 @@ import { UploadOutline } from '@useblu/ocean-icons-react';
 import FormControl from '../FormControl';
 
 import File from './File';
+import Link from '../Link';
 import i18nPtBr from './locales/pt-br.json';
 import i18nEn from './locales/en.json';
 
@@ -226,7 +227,9 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
               <a>{callToAction || locale['call-to-action']}</a>
             </div>
             <div className="ods-file-uploader__title--mobile">
-              <a>{callToActionMobile || locale['call-to-action-mobile']}</a>
+              <Link>
+                {callToActionMobile || locale['call-to-action-mobile']}
+              </Link>
             </div>
             <div className="ods-file-uploader__subtitle">
               {subtitle || locale.subtitle}
