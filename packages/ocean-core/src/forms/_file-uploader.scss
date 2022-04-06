@@ -51,9 +51,7 @@
     line-height: 21px;
     margin: 8px 0;
     text-align: center;
-  }
 
-  &__title {
     @include media-breakpoint-down(sm) {
       display: none;
     }
