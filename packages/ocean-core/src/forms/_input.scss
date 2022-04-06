@@ -31,13 +31,6 @@
     cursor: pointer;
   }
 
-  &__adornment {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    padding-right: $spacing-inline-xs;
-  }
-
   &:hover,
   &:focus,
   &:active {
@@ -55,6 +48,13 @@
 
     .ods-input__adornment {
       padding: 0 0 0 16px;
+      margin-right: -12px;
+    }
+  }
+
+  &--right {
+    .ods-input__adornment {
+      margin-left: -12px;
     }
   }
 
@@ -66,10 +66,6 @@
     input {
       color: $color-interface-dark-up;
       cursor: not-allowed;
-    }
-
-    &--text .ods-input__adornment {
-      opacity: 0.3;
     }
 
     &:hover,
@@ -85,5 +81,21 @@
 
   &--error {
     border-color: $color-status-negative-pure;
+  }
+
+  &__adornment {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    padding-right: $spacing-inline-xs;
+    color: $color-interface-dark-deep;
+
+    &--placeholder {
+      color: $color-interface-light-deep;
+    }
+
+    input {
+      padding: 0 4px;
+    }
   }
 }

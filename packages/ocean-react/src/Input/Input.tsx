@@ -76,7 +76,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           value={value}
           {...rest}
         />
-        {adornment && <div className="ods-input__adornment">{adornment}</div>}
+        {adornment && (
+          <div
+            className={classNames('ods-input__adornment', {
+              'ods-input__adornment--placeholder': !filled,
+            })}
+          >
+            {adornment}
+          </div>
+        )}
       </div>
     </FormControl>
   );

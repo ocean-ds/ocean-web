@@ -167,7 +167,7 @@ const Select: React.FC<SelectProps> = ({
                 'ods-select__arrow--disabled': disabled,
               })}
             >
-              <ChevronDownOutline />
+              <ChevronDownOutline size={20} />
             </div>
             {name && (
               <input type="hidden" name={name} value={selected?.value || ''} />
