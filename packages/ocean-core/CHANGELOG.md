@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/ocean-ds/ocean-web/compare/v1.30.4...v1.31.0) (2022-04-06)
+
+### Features
+
+- **upload:** add a file upload input ([#954](https://github.com/ocean-ds/ocean-web/issues/954)) ([783511d](https://github.com/ocean-ds/ocean-web/commit/783511ddb0fc23417e80b5e44a28a43c0c5bfff9))
+
 ## [1.30.3](https://github.com/ocean-ds/ocean-web/compare/v1.30.2...v1.30.3) (2022-03-16)
 
 ### Bug Fixes

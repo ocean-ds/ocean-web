@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-react",
-  "version": "1.30.4",
+  "version": "1.31.0",
   "private": false,
   "description": "React components that implement Ocean's Design System.",
   "main": "dist/index.js",
@@ -36,9 +36,9 @@
     "@reach/auto-id": "0.16.0",
     "@useblu/ocean-icons-react": "1.4.0",
     "classnames": "2.3.1",
+    "react-dropzone": "^12.0.4",
     "react-modal": "3.13.1",
-    "react-slick": "^0.28.1",
-    "react-dropzone": "^12.0.4"
+    "react-slick": "^0.28.1"
   },
   "devDependencies": {
     "@types/classnames": "2.3.1",
