@@ -1,9 +1,9 @@
 .ods-input--amount {
   .ods-input--root {
+    align-items: center;
+    display: flex;
     margin: 1px;
     width: 100%;
-    display: flex;
-    align-items: center;
   }
 
   input {

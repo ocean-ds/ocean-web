@@ -215,6 +215,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
           {...getRootProps({
             className: 'ods-file-uploader__dropzone',
           })}
+          data-testid="ods-file-uploader-dropzone"
         >
           <div
             className={classNames('ods-file-uploader__trigger', {

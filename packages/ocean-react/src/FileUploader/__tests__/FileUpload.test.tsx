@@ -1,6 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import { render, screen, fireEvent } from '@testing-library/react';
 import FileUploader from '../FileUploader';
 
 jest.mock('@useblu/ocean-icons-react', () => ({
@@ -21,12 +20,12 @@ jest.mock('@useblu/ocean-icons-react', () => ({
   ExclamationCircle: function ExclamationCircleMock(
     props: React.HTMLAttributes<HTMLDivElement>
   ) {
-    return <div {...props}>mock-icon</div>;
+    return <div {...props}>mock-icon-warning</div>;
   },
   DocumentText: function DocumentTextMock(
     props: React.HTMLAttributes<HTMLDivElement>
   ) {
-    return <div {...props}>mock-icon</div>;
+    return <div {...props}>mock-icon-idle</div>;
   },
   CheckCircle: function CheckCircleMock(
     props: React.HTMLAttributes<HTMLDivElement>
@@ -52,6 +51,7 @@ test('renders element properly', () => {
         >
           <div
             class="ods-file-uploader__dropzone"
+            data-testid="ods-file-uploader-dropzone"
             role="button"
             tabindex="0"
           >
@@ -102,4 +102,201 @@ test('renders element properly', () => {
       </div>
     </div>
   `);
+});
+
+test('renders accept a droped file', async () => {
+  render(<FileUploader data-testid="upload-test" className="custom-class" />);
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  Object.defineProperty(inputEl, 'files', {
+    value: [file],
+  });
+  fireEvent.drop(inputEl);
+  expect(await screen.findByText('ping.json')).toBeInTheDocument();
+  expect(await screen.findByText('mock-icon-idle')).toBeInTheDocument();
+});
+
+test('renders reject by invalid type a droped file', async () => {
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      accept="image/*"
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  Object.defineProperty(inputEl, 'files', {
+    value: [file],
+  });
+  fireEvent.drop(inputEl);
+  expect(await screen.findByText('ping.json')).toBeInTheDocument();
+  expect(await screen.findByText('mock-icon-warning')).toBeInTheDocument();
+});
+
+test('prevents to send same file twice', async () => {
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      maxFiles={1}
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  const file2 = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+
+  Object.defineProperty(inputEl, 'files', {
+    value: [file, file2],
+  });
+
+  fireEvent.drop(inputEl);
+
+  fireEvent.drop(inputEl);
+
+  expect(await screen.findByText('ping.json')).toBeInTheDocument();
+  expect(await screen.queryAllByText('mock-icon-warning').length).toBe(1);
+});
+
+test('renders reject by max files a droped file', async () => {
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      maxFiles={1}
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  const file2 = new File(['file'], 'pong.json', {
+    type: 'application/json',
+  });
+
+  Object.defineProperty(inputEl, 'files', {
+    value: [file, file2],
+  });
+
+  fireEvent.drop(inputEl);
+
+  expect(await screen.findByText('ping.json')).toBeInTheDocument();
+  expect(await screen.queryAllByText('mock-icon-warning').length).toBe(2);
+});
+
+test('renders reject by max size a droped file', async () => {
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      maxSize={100}
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  Object.defineProperty(file, 'size', { value: 1024 * 1024 + 1 });
+
+  Object.defineProperty(inputEl, 'files', {
+    value: [file],
+  });
+
+  fireEvent.drop(inputEl);
+
+  expect(await screen.findByText('ping.json')).toBeInTheDocument();
+  expect(await screen.findByText('mock-icon-warning')).toBeInTheDocument();
+});
+
+test('renders reject by min size a droped file', async () => {
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      minSize={100000}
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  Object.defineProperty(file, 'size', { value: 1024 });
+
+  Object.defineProperty(inputEl, 'files', {
+    value: [file],
+  });
+
+  fireEvent.drop(inputEl);
+
+  expect(await screen.findByText('ping.json')).toBeInTheDocument();
+  expect(await screen.findByText('mock-icon-warning')).toBeInTheDocument();
+});
+
+test('renders reject by name length a droped file', async () => {
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      maxLength={5}
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'toolongtouploadtoolongtoupload.json', {
+    type: 'application/json',
+  });
+
+  Object.defineProperty(inputEl, 'files', {
+    value: [file],
+  });
+
+  fireEvent.drop(inputEl);
+
+  expect(
+    await screen.findByText('toolongtouploadtoolongtoupload.json')
+  ).toBeInTheDocument();
+  expect(await screen.findByText('mock-icon-warning')).toBeInTheDocument();
+});
+
+test('executes changes after  droped file', async () => {
+  const mockedChange = jest.fn();
+
+  render(
+    <FileUploader
+      data-testid="upload-test"
+      className="custom-class"
+      name="test-upload"
+      onChange={mockedChange}
+    />
+  );
+
+  const inputEl = screen.getByRole('button');
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+  Object.defineProperty(inputEl, 'files', {
+    value: [file],
+  });
+  fireEvent.drop(inputEl);
+
+  expect(mockedChange).toBeCalledWith({
+    target: {
+      name: 'test-upload',
+      value: [],
+    },
+  });
 });

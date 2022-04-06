@@ -114,18 +114,18 @@
 }
 
 .ods-transaction-list-item__level2 {
+  -webkit-box-orient: vertical;
   color: $color-interface-dark-down;
+  display: box;
   font-family: $font-family-base;
   font-size: 15px;
   font-weight: $font-weight-regular;
-  margin-bottom: $spacing-inline-xxs;
+  -webkit-line-clamp: 2;
   line-height: 15px;
+  margin-bottom: $spacing-inline-xxs;
   max-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 }
 
 .ods-transaction-list-item__level3 {

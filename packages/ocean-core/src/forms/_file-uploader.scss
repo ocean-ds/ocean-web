@@ -10,8 +10,8 @@
   }
 
   &__dropzone {
-    width: 100%;
     margin-bottom: 8px;
+    width: 100%;
   }
 
   &__trigger {
@@ -208,6 +208,7 @@
   }
 
   &__file-name {
+    color: #393b47;
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
@@ -215,22 +216,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #393b47;
     width: 100%;
   }
 
   &__file-loading {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    width: 20px;
   }
 
   &__file-status {
     display: flex;
     justify-content: center;
     margin: 0 8px;
+
     svg {
       height: 20px;
       width: 20px;
