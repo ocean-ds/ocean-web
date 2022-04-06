@@ -30,7 +30,7 @@
     "directory": "packages/ocean-core"
   },
   "devDependencies": {
-    "@types/cssnano": "^4.0.0",
+    "@types/cssnano": "^5.1.0",
     "@types/gulp": "^4.0.8",
     "@types/gulp-plumber": "^0.0.33",
     "@types/gulp-postcss": "^8.0.0",
