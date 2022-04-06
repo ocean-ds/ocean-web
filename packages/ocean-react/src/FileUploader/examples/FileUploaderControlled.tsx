@@ -41,7 +41,7 @@ const FileUploaderControlled: React.FC = (props) => {
             `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload: 
           \n
           files to upload: ${values.files.length}`
-          ) == true
+          )
         ) {
           setfilesState(
             values.files.map((e: File) => ({

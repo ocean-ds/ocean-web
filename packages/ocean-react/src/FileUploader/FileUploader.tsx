@@ -271,19 +271,19 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
                 className={animationState[file.name]}
                 reloadTooltip={reloadTooltip || locale['reload-tooltip']}
                 removeTooltip={removeTooltip || locale['remove-tooltip']}
-                onRemove={(file) => {
+                onRemove={(f) => {
                   updateAnimationState((e) => ({
                     ...e,
-                    [file.name]: 'removed',
+                    [f.name]: 'removed',
                   }));
                   setTimeout(() => {
                     setFiles((oldFiles) => [...pull(oldFiles, file)]);
                   }, 200);
 
-                  if (onRemoveFile) onRemoveFile(file);
+                  if (onRemoveFile) onRemoveFile(f);
                 }}
-                onReload={(file) => {
-                  if (onReloadFile) onReloadFile(file);
+                onReload={(f) => {
+                  if (onReloadFile) onReloadFile(f);
                 }}
               />
 

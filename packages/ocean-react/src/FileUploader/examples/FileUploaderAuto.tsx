@@ -27,7 +27,7 @@ const FileUploaderAuto: React.FC = (props) => {
           `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload: 
         \n
         file to upload: ${file.name}`
-        ) == true
+        )
       ) {
         changeFileState({
           file: file,
