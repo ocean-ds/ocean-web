@@ -14,7 +14,7 @@ import Progress from '../Progress';
 import IconButton from '../IconButton';
 
 export type FileProps = {
-  status?: 'idle' | 'loading' | 'error' | 'success' | 'warning';
+  status: 'idle' | 'loading' | 'error' | 'success' | 'warning';
   file: File;
   reloadTooltip?: string;
   removeTooltip?: string;
@@ -24,7 +24,7 @@ export type FileProps = {
 };
 
 const File: React.FunctionComponent<FileProps> = ({
-  status = 'idle',
+  status,
   file,
   reloadTooltip,
   removeTooltip,
