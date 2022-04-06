@@ -47,8 +47,8 @@
     }
 
     .ods-input__adornment {
-      padding: 0 0 0 16px;
       margin-right: -12px;
+      padding: 0 0 0 16px;
     }
   }
 
@@ -85,10 +85,10 @@
 
   &__adornment {
     align-items: center;
+    color: $color-interface-dark-deep;
     display: flex;
     height: 100%;
     padding-right: $spacing-inline-xs;
-    color: $color-interface-dark-deep;
 
     &--placeholder {
       color: $color-interface-light-deep;

@@ -403,7 +403,7 @@ test('renders changes drag start and end event', async () => {
     value: [file, file2],
   });
 
-  function dispatchEvt(node: any, type: any, data: any) {
+  function dispatchEvt(node: Element, type: string, data: File[]) {
     const event = new Event(type, { bubbles: true });
     Object.assign(event, data);
     fireEvent(node, event);
