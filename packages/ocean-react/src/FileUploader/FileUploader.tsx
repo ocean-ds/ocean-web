@@ -164,21 +164,12 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
     onDropRejected: (dropedFiles: FileRejection[]) => {
       setDrag(false);
       setRejectedFiles((oldRejection: FileRejection[]) =>
-        uniqBy(
-          [
-            ...(oldRejection as FileRejection[]),
-            ...(dropedFiles as FileRejection[]),
-          ],
-          'file.name'
-        )
+        uniqBy([...oldRejection, ...dropedFiles], 'file.name')
       );
     },
     onDropAccepted: (dropedFiles) => {
       setDrag(false);
-      setFiles((oldFiles: File[]) => [
-        ...(oldFiles as File[]),
-        ...(dropedFiles as File[]),
-      ]);
+      setFiles((oldFiles: File[]) => [...oldFiles, ...dropedFiles]);
 
       const event: FileChangeEvent = {
         target: {
