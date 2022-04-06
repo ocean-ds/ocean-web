@@ -1,5 +1,6 @@
 .ods-select {
   &__root {
+    margin: 1px;
     min-width: 237px;
   }
 
@@ -49,8 +50,8 @@
 
   &__value {
     flex: 1;
+    font-size: $font-size-xs;
     font-weight: $font-weight-regular;
-    line-height: $line-height-medium;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -61,24 +62,19 @@
   }
 
   &__arrow {
-    border: solid $color-interface-dark-down;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    margin-left: $spacing-inline-xs;
-    padding: 3px;
+    display: flex;
+    justify-self: center;
 
     &--up {
-      margin-top: 3px;
-      transform: rotate(-135deg);
+      transform: rotate(-180deg);
     }
 
     &--down {
-      margin-top: -3px;
-      transform: rotate(45deg);
+      transform: rotate(0);
     }
 
     &--disabled {
-      border-color: $color-interface-dark-up;
+      color: $color-interface-dark-up;
     }
   }
 

@@ -26,57 +26,61 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <label
-    class="ods-form-label"
-  >
-    Teste
-  </label>
-  <div
-    class="ods-form-control__element"
-  >
     <div
-      class="ods-input ods-input--amount custom-class"
+      class="ods-form-control__root"
     >
-      <div
-        class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus"
+      <label
+        class="ods-form-label"
       >
-        <button
-          class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--disabled"
-          type="button"
+        Teste
+      </label>
+      <div
+        class="ods-form-control__element"
+      >
+        <div
+          class="ods-input ods-input--amount custom-class"
         >
           <div
-            size="24"
+            class="ods-input--root"
           >
-            Minus-Sm
+            <div
+              class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus"
+            >
+              <button
+                class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--disabled"
+                type="button"
+              >
+                <div
+                  size="24"
+                >
+                  Minus-Sm
+                </div>
+              </button>
+            </div>
+            <input
+              data-testid="stepper-test"
+              type="text"
+              value="0"
+            />
+            <div
+              class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus"
+            >
+              <button
+                class="ods-icon-btn ods-icon-btn--sm"
+                type="button"
+              >
+                <div
+                  size="24"
+                >
+                  Plus-Outline
+                </div>
+              </button>
+            </div>
           </div>
-        </button>
-      </div>
-      <input
-        data-testid="stepper-test"
-        type="text"
-        value="0"
-      />
-      <div
-        class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus"
-      >
-        <button
-          class="ods-icon-btn ods-icon-btn--sm"
-          type="button"
-        >
-          <div
-            size="24"
-          >
-            Plus-Outline
-          </div>
-        </button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 test('add a step to amount', () => {
@@ -304,55 +308,59 @@ test('renders with error status', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <label
-    class="ods-form-label"
-  >
-    Teste
-  </label>
-  <div
-    class="ods-form-control__element"
-  >
     <div
-      class="ods-input ods-input--amount ods-input--error custom-class"
+      class="ods-form-control__root"
     >
-      <div
-        class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus"
+      <label
+        class="ods-form-label"
       >
-        <button
-          class="ods-icon-btn ods-icon-btn--sm"
-          type="button"
+        Teste
+      </label>
+      <div
+        class="ods-form-control__element"
+      >
+        <div
+          class="ods-input ods-input--amount ods-input--error custom-class"
         >
           <div
-            size="24"
+            class="ods-input--root"
           >
-            Minus-Sm
+            <div
+              class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus"
+            >
+              <button
+                class="ods-icon-btn ods-icon-btn--sm"
+                type="button"
+              >
+                <div
+                  size="24"
+                >
+                  Minus-Sm
+                </div>
+              </button>
+            </div>
+            <input
+              data-testid="stepper-test"
+              type="text"
+              value="2"
+            />
+            <div
+              class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus"
+            >
+              <button
+                class="ods-icon-btn ods-icon-btn--sm"
+                type="button"
+              >
+                <div
+                  size="24"
+                >
+                  Plus-Outline
+                </div>
+              </button>
+            </div>
           </div>
-        </button>
-      </div>
-      <input
-        data-testid="stepper-test"
-        type="text"
-        value="2"
-      />
-      <div
-        class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus"
-      >
-        <button
-          class="ods-icon-btn ods-icon-btn--sm"
-          type="button"
-        >
-          <div
-            size="24"
-          >
-            Plus-Outline
-          </div>
-        </button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });

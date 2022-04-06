@@ -45,6 +45,13 @@
       background-color: transparent;
     }
 
+    .ods-transaction-list-item__level1 {
+      color: $color-interface-dark-down;
+      font-family: $font-family-base;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
     .ods-transaction-list-item__icon {
       background-color: transparent;
     }
@@ -107,11 +114,18 @@
 }
 
 .ods-transaction-list-item__level2 {
+  -webkit-box-orient: vertical;
   color: $color-interface-dark-down;
+  display: box;
   font-family: $font-family-base;
   font-size: 15px;
   font-weight: $font-weight-regular;
+  -webkit-line-clamp: 2;
+  line-height: 15px;
   margin-bottom: $spacing-inline-xxs;
+  max-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ods-transaction-list-item__level3 {

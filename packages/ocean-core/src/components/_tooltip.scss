@@ -11,7 +11,6 @@ $arrow-directions: (
   }
   border: 5px solid transparent;
   height: 0;
-
   width: 0;
   border-#{map-get($arrow-directions, $direction)}-color: $color-interface-dark-deep;
 }
@@ -27,8 +26,6 @@ $arrow-directions: (
 }
 
 @mixin normalized-text() {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: normal;
@@ -75,11 +72,6 @@ $arrow-directions: (
   }
 }
 
-.ods-tooltip.font-awesome::after {
-  font-family: FontAwesome, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 .ods-tooltip[data-tooltip-break] {
   &::after {
     white-space: pre;
@@ -120,7 +112,7 @@ $arrow-directions: (
   }
 
   &::before {
-    left: 5px;
+    left: 8px;
   }
 }
 
@@ -130,7 +122,7 @@ $arrow-directions: (
   }
 
   &::before {
-    right: 5px;
+    right: 8px;
   }
 }
 

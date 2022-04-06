@@ -1,0 +1,238 @@
+.ods-file-uploader {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  input {
+    display: none;
+  }
+
+  &__dropzone {
+    margin-bottom: 8px;
+    width: 100%;
+  }
+
+  &__trigger {
+    align-items: center;
+    background: $color-interface-light-pure;
+    border: 1px dashed $color-interface-light-deep;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 128px;
+    padding: 24px 16px;
+    width: 100%;
+
+    &--drag {
+      background: $color-interface-light-up;
+      border: 1px dashed $color-brand-primary-pure;
+    }
+  }
+
+  &--error {
+    .ods-file-uploader__trigger {
+      border: 1px dashed $color-status-negative-pure;
+    }
+  }
+
+  &__trigger-icon {
+    color: $color-brand-primary-pure;
+  }
+
+  &__title {
+    color: $color-interface-dark-deep;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    margin: 8px 0;
+    text-align: center;
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  &__title--mobile {
+    color: $color-interface-dark-deep;
+    display: block;
+    font-size: 14px;
+    line-height: 21px;
+    margin: 8px 0;
+    text-align: center;
+    @include media-breakpoint-up(sm) {
+      display: none;
+    }
+
+    a {
+      font-size: 14px;
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+  }
+
+  &__title a {
+    font-size: 14px;
+    margin-left: 4px;
+  }
+
+  &__title a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &__subtitle {
+    align-items: center;
+    color: $color-interface-dark-up;
+    display: flex;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+    text-align: center;
+  }
+
+  @keyframes ods-file-animation {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes ods-file-animation-out {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  &__file {
+    align-items: center;
+    animation: ods-file-animation 0.2s linear;
+    background: $color-interface-light-pure;
+    border: 1px solid $color-interface-light-deep;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 48px;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding: 0 4px;
+    width: 100%;
+
+    &.removed {
+      animation: ods-file-animation-out 0.2s linear;
+    }
+  }
+
+  &__file--warning {
+    border: 1px solid $color-status-neutral-deep;
+  }
+
+  &__file--success {
+    border: 1px solid $color-brand-primary-up;
+  }
+
+  &__file--idle {
+    border: 1px solid $color-interface-light-down;
+  }
+
+  &__file--loading {
+    border: 1px solid $color-interface-light-down;
+  }
+
+  &__file--idle &__file-status {
+    color: $color-brand-primary-up;
+    opacity: 0.4;
+  }
+
+  &__file--warning &__file-status {
+    color: $color-status-neutral-deep;
+  }
+
+  &__file--success &__file-status {
+    color: $color-status-positive-pure;
+  }
+
+  &__file--error {
+    border: 1px solid $color-status-negative-pure;
+  }
+
+  &__file--error &__file-status {
+    color: $color-status-negative-pure;
+  }
+
+  &__file-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .ods-icon-btn {
+      color: $color-interface-dark-up;
+    }
+
+    .ods-icon-btn:hover {
+      color: $color-brand-primary-pure;
+    }
+  }
+
+  &__warning_message,
+  &__error_message {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 4px 0;
+    width: 100%;
+  }
+
+  &__warning_message {
+    color: $color-status-neutral-deep;
+  }
+
+  &__error_message {
+    color: $color-status-negative-pure;
+  }
+
+  &__file-name {
+    color: #393b47;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    margin: 0 8px 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &__file-loading {
+    align-items: center;
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    width: 20px;
+  }
+
+  &__file-status {
+    display: flex;
+    justify-content: center;
+    margin: 0 8px;
+
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}

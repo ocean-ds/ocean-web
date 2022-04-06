@@ -19,24 +19,24 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <div
-    class="ods-form-control__element"
-  >
     <div
-      class="ods-input custom-class"
+      class="ods-form-control__root"
     >
-      <input
-        data-testid="input-test"
-        type="text"
-        value=""
-      />
+      <div
+        class="ods-form-control__element"
+      >
+        <div
+          class="ods-input custom-class"
+        >
+          <input
+            data-testid="input-test"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-`);
+  `);
   expect(screen.getByTestId('input-test')).toHaveAttribute('type', 'text');
 });
 
@@ -50,34 +50,34 @@ test('renders element with adornment properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <div
-    class="ods-form-control__element"
-  >
     <div
-      class="ods-input ods-input--disabled--text custom-class"
+      class="ods-form-control__root"
     >
-      <input
-        data-testid="input-test"
-        type="text"
-        value=""
-      />
       <div
-        class="ods-input__adornment"
+        class="ods-form-control__element"
       >
         <div
-          size="24"
-          stroke="#5872f5"
+          class="ods-input ods-input--disabled--text custom-class"
         >
-          mock-start-circle-outline
+          <input
+            data-testid="input-test"
+            type="text"
+            value=""
+          />
+          <div
+            class="ods-input__adornment ods-input__adornment--placeholder"
+          >
+            <div
+              size="24"
+              stroke="#5872f5"
+            >
+              mock-start-circle-outline
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-`);
+  `);
   expect(screen.getByTestId('input-test')).toHaveAttribute('type', 'text');
 });
 

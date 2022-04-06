@@ -12,6 +12,7 @@
     border-radius: $border-radius-sm;
     box-sizing: border-box;
     color: $color-interface-dark-deep;
+    font-family: $font-family-base;
     font-size: $font-size-xs;
     font-weight: $font-weight-regular;
     height: 100%;
@@ -22,18 +23,12 @@
 
     &::placeholder {
       color: $color-interface-light-deep;
+      font-weight: $font-weight-regular;
     }
   }
 
   &__number-controls {
     cursor: pointer;
-  }
-
-  &__adornment {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    padding-right: $spacing-inline-xs;
   }
 
   &:hover,
@@ -48,11 +43,18 @@
     flex-direction: row-reverse;
 
     input {
-      padding: 0 0 0 10px;
+      padding: 0 16px;
     }
 
     .ods-input__adornment {
+      margin-right: -12px;
       padding: 0 0 0 16px;
+    }
+  }
+
+  &--right {
+    .ods-input__adornment {
+      margin-left: -12px;
     }
   }
 
@@ -64,10 +66,6 @@
     input {
       color: $color-interface-dark-up;
       cursor: not-allowed;
-    }
-
-    &--text .ods-input__adornment {
-      opacity: 0.3;
     }
 
     &:hover,
@@ -83,5 +81,21 @@
 
   &--error {
     border-color: $color-status-negative-pure;
+  }
+
+  &__adornment {
+    align-items: center;
+    color: $color-interface-dark-deep;
+    display: flex;
+    height: 100%;
+    padding-right: $spacing-inline-xs;
+
+    &--placeholder {
+      color: $color-interface-light-deep;
+    }
+
+    input {
+      padding: 0 4px;
+    }
   }
 }

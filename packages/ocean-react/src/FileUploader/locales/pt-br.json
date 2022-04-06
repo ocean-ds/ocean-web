@@ -1,0 +1,16 @@
+{
+  "title": "Arraste e solte o arquivo aqui ou",
+  "call-to-action": "selecione do computador",
+  "call-to-action-mobile": "Selecione um ou mais arquivos",
+  "subtitle": "Formato PDF. Tamanho máximo de 20MB.",
+  "reload-tooltip": "Recarregar arquivo",
+  "remove-tooltip": "Remover arquivo",
+  "validations": {
+    "file-invalid-type": "O arquivo deve estar no formato ${param}.",
+    "file-too-large": "O arquivo não deve ser maior que ${param}.",
+    "file-too-small": "O arquivo não deve ser menor que ${param}.",
+    "too-many-files": "Quantidade de arquivos excedida. O máximo é ${param}.",
+    "name-too-large": "O nome do arquivo deve ter até ${param} caracteres.",
+    "already-added": "Você já adicionou um arquivo com esse nome."
+  }
+}
