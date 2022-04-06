@@ -240,7 +240,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
             />
 
             {rejection.errors.map((e) => (
-              <div className="ods-file-uploader__warning_message" key={e.code}>
+              <div key={e.code} className="ods-file-uploader__warning_message">
                 {erroMessage(e.code)}
               </div>
             ))}
@@ -251,7 +251,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
           const fileState = getFileState(file);
 
           return (
-            <>
+            <div key={file.name}>
               <File
                 status={fileState.state}
                 key={file.name}
@@ -284,7 +284,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
                   {fileState.message}
                 </div>
               )}
-            </>
+            </div>
           );
         })}
       </div>
