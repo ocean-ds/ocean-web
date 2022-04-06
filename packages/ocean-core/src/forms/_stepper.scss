@@ -1,5 +1,10 @@
 .ods-input--amount {
-  width: 100%;
+  .ods-input--root {
+    margin: 1px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 
   input {
     appearance: none;

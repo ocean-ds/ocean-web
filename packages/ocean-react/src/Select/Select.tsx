@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import classNames from 'classnames';
+import { ChevronDownOutline } from '@useblu/ocean-icons-react';
 
 import FormControl from '../FormControl';
 import FormLabel from '../FormLabel';
@@ -159,13 +160,15 @@ const Select: React.FC<SelectProps> = ({
             >
               {selected?.label || placeholder}
             </span>
-            <i
+            <div
               className={classNames('ods-select__arrow', {
                 'ods-select__arrow--up': isExpanded,
                 'ods-select__arrow--down': !isExpanded,
                 'ods-select__arrow--disabled': disabled,
               })}
-            ></i>
+            >
+              <ChevronDownOutline />
+            </div>
             {name && (
               <input type="hidden" name={name} value={selected?.value || ''} />
             )}

@@ -122,50 +122,52 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             className
           )}
         >
-          <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus">
-            <IconButton
-              size="sm"
-              disabled={amount <= min || disabled}
-              type="button"
-              onClick={deduceFromAmount}
-            >
-              <MinusSm size={24} />
-            </IconButton>
-          </div>
-
-          <input
-            ref={ref}
-            type="text"
-            id={id}
-            disabled={disabled}
-            onKeyDown={handleListboxKeyDown}
-            onChange={(e) => {
-              handleChange(e);
-
-              const { target } = e;
-
-              const inputedValue = parseFloat(target.value);
-
-              if (!isNaN(inputedValue)) setAmout(inputedValue);
-            }}
-            defaultValue={defaultValue}
-            value={amount}
-            {...rest}
-          />
-          {
-            <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus">
+          <div className="ods-input--root">
+            <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus">
               <IconButton
                 size="sm"
-                disabled={
-                  disabled || (typeof max !== 'undefined' && amount >= max)
-                }
+                disabled={amount <= min || disabled}
                 type="button"
-                onClick={addToAmount}
+                onClick={deduceFromAmount}
               >
-                <PlusOutline size={24} />
+                <MinusSm size={24} />
               </IconButton>
             </div>
-          }
+
+            <input
+              ref={ref}
+              type="text"
+              id={id}
+              disabled={disabled}
+              onKeyDown={handleListboxKeyDown}
+              onChange={(e) => {
+                handleChange(e);
+
+                const { target } = e;
+
+                const inputedValue = parseFloat(target.value);
+
+                if (!isNaN(inputedValue)) setAmout(inputedValue);
+              }}
+              defaultValue={defaultValue}
+              value={amount}
+              {...rest}
+            />
+            {
+              <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus">
+                <IconButton
+                  size="sm"
+                  disabled={
+                    disabled || (typeof max !== 'undefined' && amount >= max)
+                  }
+                  type="button"
+                  onClick={addToAmount}
+                >
+                  <PlusOutline size={24} />
+                </IconButton>
+              </div>
+            }
+          </div>
         </div>
       </FormControl>
     );

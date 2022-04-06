@@ -69,14 +69,18 @@ test('renders element properly', () => {
                 <span>
                   Drop your files here or
                 </span>
-                <a>
+                <a
+                  class="ods-lnk ods-lnk--md"
+                >
                   select from computer
                 </a>
               </div>
               <div
                 class="ods-file-uploader__title--mobile"
               >
-                <a>
+                <a
+                  class="ods-lnk ods-lnk--md"
+                >
                   Select one or more files
                 </a>
               </div>

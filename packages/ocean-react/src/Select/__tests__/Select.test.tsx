@@ -59,41 +59,57 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-form-control__root"
->
-  <span
-    class="ods-form-label"
-    id="label--my-select"
-  >
-    Custom label
-  </span>
-  <div
-    class="ods-form-control__element"
-  >
     <div
-      class="ods-select__root"
+      class="ods-form-control__root"
     >
-      <button
-        aria-haspopup="listbox"
-        aria-labelledby="label--my-select my-select"
-        class="ods-select__control custom-class"
-        id="my-select"
-        type="button"
+      <span
+        class="ods-form-label"
+        id="label--my-select"
       >
-        <span
-          class="ods-select__value ods-select__value--empty"
+        Custom label
+      </span>
+      <div
+        class="ods-form-control__element"
+      >
+        <div
+          class="ods-select__root"
         >
-          Select some option
-        </span>
-        <i
-          class="ods-select__arrow ods-select__arrow--down"
-        />
-      </button>
+          <button
+            aria-haspopup="listbox"
+            aria-labelledby="label--my-select my-select"
+            class="ods-select__control custom-class"
+            id="my-select"
+            type="button"
+          >
+            <span
+              class="ods-select__value ods-select__value--empty"
+            >
+              Select some option
+            </span>
+            <div
+              class="ods-select__arrow ods-select__arrow--down"
+            >
+              <svg
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 9l-7 7-7-7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 test.each([

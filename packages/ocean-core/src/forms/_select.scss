@@ -1,6 +1,7 @@
 .ods-select {
   &__root {
     min-width: 237px;
+    margin: 1px;
   }
 
   &__control {
@@ -15,7 +16,6 @@
     font-size: $font-size-xs;
     height: 48px;
     justify-content: space-between;
-    margin: 1px;
     outline: none;
     padding-left: $spacing-inline-xs;
     padding-right: $spacing-inline-xs;
@@ -62,24 +62,19 @@
   }
 
   &__arrow {
-    border: solid $color-interface-dark-down;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    margin-left: $spacing-inline-xs;
-    padding: 3px;
+    display: flex;
+    justify-self: center;
 
     &--up {
-      margin-top: 3px;
-      transform: rotate(-135deg);
+      transform: rotate(-180deg);
     }
 
     &--down {
-      margin-top: -3px;
-      transform: rotate(45deg);
+      transform: rotate(0);
     }
 
     &--disabled {
-      border-color: $color-interface-dark-up;
+      color: $color-interface-dark-up;
     }
   }
 
