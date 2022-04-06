@@ -330,27 +330,24 @@ test('renders reject by invalid type a droped file', async () => {
 });
 
 test('prevents to send same file twice', async () => {
+  const file = new File(['file'], 'ping.json', {
+    type: 'application/json',
+  });
+
   render(
     <FileUploader
       data-testid="upload-test"
+      value={[file]}
       className="custom-class"
       maxFiles={1}
     />
   );
 
-  const inputEl = screen.getByRole('button');
-  const file = new File(['file'], 'ping.json', {
-    type: 'application/json',
-  });
-  const file2 = new File(['file'], 'ping.json', {
-    type: 'application/json',
-  });
+  const inputEl = screen.queryAllByRole('button')[0];
 
   Object.defineProperty(inputEl, 'files', {
-    value: [file, file2],
+    value: [file],
   });
-
-  fireEvent.drop(inputEl);
 
   fireEvent.drop(inputEl);
 

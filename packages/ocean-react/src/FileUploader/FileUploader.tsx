@@ -3,12 +3,7 @@ import classNames from 'classnames';
 
 import { pull, uniqBy, find } from 'lodash';
 
-import {
-  useDropzone,
-  FileRejection,
-  FileError,
-  ErrorCode,
-} from 'react-dropzone';
+import { useDropzone, FileRejection, FileError } from 'react-dropzone';
 
 import { UploadOutline } from '@useblu/ocean-icons-react';
 
@@ -115,19 +110,17 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
   }, [files]);
 
   const erroMessage = (code: string) => {
-    if (accept && code === 'file-invalid-type')
-      return locale.validations[code].replace('${param}', `${accept}`);
-    if (code === 'file-too-large')
-      return locale.validations[code].replace('${param}', `${maxSize}`);
-    if (code === 'file-too-small')
-      return locale.validations[code].replace('${param}', `${minSize}`);
-    if (code === 'too-many-files')
-      return locale.validations[code].replace('${param}', `${maxFiles}`);
-    if (code === 'name-too-large')
-      return locale.validations[code].replace('${param}', `${maxLength}`);
-    if (code === 'already-added') return locale.validations[code];
+    const codeToParam: { [key: string]: string } = {
+      'file-invalid-type': `${accept}`,
+      'file-too-large': `${maxSize}`,
+      'file-too-small': `${minSize}`,
+      'too-many-files': `${maxFiles}`,
+      'name-too-large': `${maxLength}`,
+      'already-added': '',
+    };
 
-    return '';
+    const validations = locale.validations as { [key: string]: string };
+    return validations[code].replace('${param}', codeToParam[code]);
   };
 
   const getFileState = (file: File) => {
@@ -147,13 +140,6 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
       return {
         code: 'name-too-large',
         message: `Name is larger than ${maxLength} characters`,
-      };
-    }
-
-    if (maxFiles && files.length >= maxFiles) {
-      return {
-        code: ErrorCode.TooManyFiles,
-        message: `Too many files, max is ${maxFiles}`,
       };
     }
 
