@@ -5,13 +5,13 @@ export interface StepsProps {
    * Determines the current step.
    * @default 1
    */
-  currentStep: number;
+  currentStep: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
   /**
    * Determines the total amount of steps.
    * @default 4
    */
-  steps: number;
+  steps: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 }
 const defaultProps = {
   currentStep: 1,
@@ -117,8 +117,8 @@ const Steps = ({
   return (
     <svg
       height="20"
-      width={steps === 1 ? 18 : 30 * (steps - 1) + 22}
-      viewBox={steps === 1 ? '0 0 18 20' : `0 0 ${30 * (steps - 1) + 22} 20`}
+      width={30 * (steps - 1) + 22}
+      viewBox={`0 0 ${30 * (steps - 1) + 22} 20`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       data-testid={`step-${currentStep}`}
