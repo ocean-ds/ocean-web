@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.3](https://github.com/ocean-ds/ocean-web/compare/v1.31.2...v1.31.3) (2022-05-24)
+
+### Bug Fixes
+
+- **checkbox:** fix checkmark position ([#967](https://github.com/ocean-ds/ocean-web/issues/967)) ([f897612](https://github.com/ocean-ds/ocean-web/commit/f897612ff6c30dcc2ea7914618633f55c51d5e3a))
+
 ## [1.31.2](https://github.com/ocean-ds/ocean-web/compare/v1.31.1...v1.31.2) (2022-05-24)
 
 ### Bug Fixes
