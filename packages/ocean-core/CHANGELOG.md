@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.2](https://github.com/ocean-ds/ocean-web/compare/v1.31.1...v1.31.2) (2022-05-24)
+
+### Bug Fixes
+
+- **checkbox:** add min-width and min-height to checkbox ([#964](https://github.com/ocean-ds/ocean-web/issues/964)) ([425eaf6](https://github.com/ocean-ds/ocean-web/commit/425eaf689cb837ac3f0f0634570e1a989e970310))
+
 # [1.31.0](https://github.com/ocean-ds/ocean-web/compare/v1.30.4...v1.31.0) (2022-04-06)
 
 ### Features
