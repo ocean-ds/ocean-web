@@ -1,14 +1,14 @@
 .ods-switch {
   height: 0;
   opacity: 0;
-  width: 0;
   position: absolute;
+  width: 0;
 
   &__root {
     display: inline-block;
     height: 20px;
-    width: 40px;
     position: relative;
+    width: 40px;
 
     &:hover .ods-switch__slider {
       background-color: $color-interface-light-up;
