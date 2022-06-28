@@ -25,12 +25,12 @@
     border-radius: 50%;
     box-sizing: border-box;
     cursor: pointer;
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
   }
 
   &:checked ~ &__checkmark {
-    border-width: 8px;
+    border-width: 6px;
   }
 
   &:checked:not(:disabled) ~ &__checkmark {

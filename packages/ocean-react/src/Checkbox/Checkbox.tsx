@@ -34,7 +34,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           )}
         ></span>
         {label && (
-          <span className="ods-typography ods-typography__paragraph ods-checkbox__label">
+          <span className="ods-typography ods-typography__description ods-checkbox__label">
             {label}
           </span>
         )}

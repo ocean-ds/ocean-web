@@ -6,9 +6,9 @@
 
   &__root {
     display: inline-block;
-    height: 24px;
+    height: 20px;
     position: relative;
-    width: 44px;
+    width: 40px;
 
     &:hover .ods-switch__slider {
       background-color: $color-interface-light-up;
@@ -24,7 +24,7 @@
     box-sizing: border-box;
     cursor: pointer;
     left: 0;
-    padding: $spacing-inset-xxs - $border-width-hairline;
+    padding: 2px;
     position: absolute;
     right: 0;
     top: 0;
@@ -35,9 +35,9 @@
       border-radius: 50%;
       content: '';
       display: block;
-      height: 16px;
+      height: 14px;
       transition: all 0.2s ease;
-      width: 16px;
+      width: 14px;
     }
   }
 
