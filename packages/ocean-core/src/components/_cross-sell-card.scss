@@ -20,7 +20,6 @@
   }
 
   &__information {
-    justify-self: flex-start;
     width: 100%;
   }
 
@@ -34,7 +33,7 @@
   }
 
   &__description {
-    color: $color-interface-dark-up;
+    color: $color-brand-primary-up;
     margin-top: $spacing-stack-xxxs;
   }
 
