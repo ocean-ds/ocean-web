@@ -72,7 +72,7 @@
     }
 
     &:focus-visible {
-      outline: $color-brand-primary-pure auto 1px;
+      outline: $color-brand-primary-pure auto $border-width-hairline;
     }
 
     &-icon {
