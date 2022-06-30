@@ -39,6 +39,10 @@
       transform: rotate(40deg);
       width: 6px;
     }
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
   }
 
   &__checkmark--indeterminate {
