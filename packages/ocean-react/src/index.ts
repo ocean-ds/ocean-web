@@ -72,3 +72,6 @@ export * from './Steps';
 
 export { default as Badge } from './Badge';
 export * from './Badge';
+
+export { default as CrossSellCard } from './CrossSellCard';
+export * from './CrossSellCard';

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/ocean-ds/ocean-web/compare/v1.31.4...v1.32.0) (2022-06-30)
+
+### Features
+
+- add cross sell card component ([#980](https://github.com/ocean-ds/ocean-web/issues/980)) ([6177870](https://github.com/ocean-ds/ocean-web/commit/61778709e2ac7d6f0f9daafce2f2888f09d84ccf))
+
+## [1.31.4](https://github.com/ocean-ds/ocean-web/compare/v1.31.3...v1.31.4) (2022-06-28)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+## [1.31.3](https://github.com/ocean-ds/ocean-web/compare/v1.31.2...v1.31.3) (2022-05-24)
+
+### Bug Fixes
+
+- **checkbox:** fix checkmark position ([#967](https://github.com/ocean-ds/ocean-web/issues/967)) ([f897612](https://github.com/ocean-ds/ocean-web/commit/f897612ff6c30dcc2ea7914618633f55c51d5e3a))
+
+## [1.31.2](https://github.com/ocean-ds/ocean-web/compare/v1.31.1...v1.31.2) (2022-05-24)
+
+### Bug Fixes
+
+- **checkbox:** add min-width and min-height to checkbox ([#964](https://github.com/ocean-ds/ocean-web/issues/964)) ([425eaf6](https://github.com/ocean-ds/ocean-web/commit/425eaf689cb837ac3f0f0634570e1a989e970310))
+
 # [1.31.0](https://github.com/ocean-ds/ocean-web/compare/v1.30.4...v1.31.0) (2022-04-06)
 
 ### Features

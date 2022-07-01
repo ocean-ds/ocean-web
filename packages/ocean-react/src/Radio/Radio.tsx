@@ -23,7 +23,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Radio(
       />
       <span className="ods-radio__checkmark" />
       {label && (
-        <span className="ods-typography ods-typography__paragraph ods-radio__label">
+        <span className="ods-typography ods-typography__description ods-radio__label">
           {label}
         </span>
       )}
