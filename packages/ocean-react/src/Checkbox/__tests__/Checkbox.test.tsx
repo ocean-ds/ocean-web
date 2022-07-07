@@ -51,3 +51,20 @@ test('renders indeterminate state of the checkbox', () => {
     </label>
   `);
 });
+
+test('renders error state of the checkbox', () => {
+  const { container } = render(<Checkbox error />);
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <label
+      class="ods-checkbox__root"
+    >
+      <input
+        class="ods-checkbox"
+        type="checkbox"
+      />
+      <span
+        class="ods-checkbox__checkmark ods-checkbox__checkmark--error"
+      />
+    </label>
+  `);
+});
