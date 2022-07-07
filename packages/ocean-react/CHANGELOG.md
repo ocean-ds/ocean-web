@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/ocean-ds/ocean-web/compare/v1.32.0...v1.33.0) (2022-07-07)
+
+### Features
+
+- add checkbox error state ([#982](https://github.com/ocean-ds/ocean-web/issues/982)) ([e36081e](https://github.com/ocean-ds/ocean-web/commit/e36081ec995356f5f7215d158bfcca66c24e1153))
+
 # [1.32.0](https://github.com/ocean-ds/ocean-web/compare/v1.31.4...v1.32.0) (2022-06-30)
 
 ### Features
