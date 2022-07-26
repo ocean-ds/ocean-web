@@ -38,7 +38,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
       )}
       {...rest}
     >
-      {variation !== 'tiny' && count && (
+      {variation !== 'tiny' && typeof count !== 'undefined' && (
         <div className="ods-badge__content ods-badge__count">{countToShow}</div>
       )}
 
