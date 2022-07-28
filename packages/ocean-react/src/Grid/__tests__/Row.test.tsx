@@ -29,7 +29,8 @@ test('render no-gutters correctly', () => {
 
 test('include number sizes', () => {
   render(<Row data-testid="grid-row" xs="4" md="6" />);
-  expect(
-    screen.getByTestId('grid-row')
-  ).toHaveClass('ods-row ods-row-cols-4 ods-row-cols-md-6', { exact: true });
+  expect(screen.getByTestId('grid-row')).toHaveClass(
+    'ods-row ods-row-cols-4 ods-row-cols-md-6',
+    { exact: true }
+  );
 });

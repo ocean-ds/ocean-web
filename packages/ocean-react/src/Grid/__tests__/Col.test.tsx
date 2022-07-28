@@ -38,9 +38,10 @@ test('includes "ods-col" when span of xs is true', () => {
 test('includes sizes', () => {
   render(<Col data-testid="grid-col" xs="4" md="8" lg={{ span: '12' }} />);
 
-  expect(
-    screen.getByTestId('grid-col')
-  ).toHaveClass('ods-col-4 ods-col-md-8 ods-col-lg-12', { exact: true });
+  expect(screen.getByTestId('grid-col')).toHaveClass(
+    'ods-col-4 ods-col-md-8 ods-col-lg-12',
+    { exact: true }
+  );
 });
 
 test('includes offsets', () => {
@@ -53,9 +54,7 @@ test('includes offsets', () => {
     />
   );
 
-  expect(
-    screen.getByTestId('grid-col')
-  ).toHaveClass(
+  expect(screen.getByTestId('grid-col')).toHaveClass(
     'ods-col-4 ods-offset-1 ods-col-md-8 ods-col-lg ods-offset-lg-2',
     { exact: true }
   );
@@ -72,7 +71,8 @@ test('allows span to be false', () => {
 test('allows span to be auto', () => {
   render(<Col data-testid="grid-col" md="auto" lg={{ span: 'auto' }} />);
 
-  expect(
-    screen.getByTestId('grid-col')
-  ).toHaveClass('ods-col-md-auto ods-col-lg-auto', { exact: true });
+  expect(screen.getByTestId('grid-col')).toHaveClass(
+    'ods-col-md-auto ods-col-lg-auto',
+    { exact: true }
+  );
 });

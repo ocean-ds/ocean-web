@@ -13,13 +13,12 @@ import { OptionProps } from './types';
 
 const Option = React.memo<OptionProps>(function Option(option) {
   const { label, className, id, index, ...rest } = option;
-  const { selected, onSelect, setIsExpanded, refSelControl } = useContext(
-    Context
+  const { selected, onSelect, setIsExpanded, refSelControl } =
+    useContext(Context);
+  const isSelected = useMemo(
+    () => selected?.index === index,
+    [selected, index]
   );
-  const isSelected = useMemo(() => selected?.index === index, [
-    selected,
-    index,
-  ]);
   const refOption = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
