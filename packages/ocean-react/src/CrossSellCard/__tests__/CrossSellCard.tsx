@@ -24,6 +24,7 @@ test('renders element properly', () => {
     >
       <div
         class="ods-cross-sell-card__content"
+        data-testid="cta-test"
       >
         <div
           class="ods-cross-sell-card__information"
@@ -46,7 +47,6 @@ test('renders element properly', () => {
       </div>
       <button
         class="ods-cross-sell-card__cta"
-        data-testid="cta-test"
       >
         Cta Text Test
          
