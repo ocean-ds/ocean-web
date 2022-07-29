@@ -76,7 +76,9 @@
     }
 
     &-icon {
-      color: $color-brand-primary-pure;
+      svg {
+        color: $color-brand-primary-pure;
+      }
     }
   }
 }
