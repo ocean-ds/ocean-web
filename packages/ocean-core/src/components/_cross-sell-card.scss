@@ -75,10 +75,8 @@
       outline: $color-brand-primary-pure auto $border-width-hairline;
     }
 
-    &-icon {
-      svg {
-        color: $color-brand-primary-pure;
-      }
+    &-icon svg {
+      color: $color-brand-primary-pure;
     }
   }
 }
