@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.33.1](https://github.com/ocean-ds/ocean-web/compare/v1.33.0...v1.33.1) (2022-08-02)
+
+### Bug Fixes
+
+- **badge:** fixes badge not being displayed properly on count=0 ([#991](https://github.com/ocean-ds/ocean-web/issues/991)) ([6255e31](https://github.com/ocean-ds/ocean-web/commit/6255e3150c7e4b372e34964fa7936e3541621c2c))
+
 # [1.33.0](https://github.com/ocean-ds/ocean-web/compare/v1.32.0...v1.33.0) (2022-07-07)
 
 ### Features
