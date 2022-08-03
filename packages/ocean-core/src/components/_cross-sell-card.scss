@@ -4,16 +4,6 @@
   min-height: 156px;
   width: 100%;
 
-  &:hover {
-    .ods-cross-sell-card__content {
-      background-color: $color-brand-primary-deep;
-    }
-
-    .ods-cross-sell-card__cta {
-      background: $color-interface-light-up;
-    }
-  }
-
   &__content {
     align-items: center;
     background-color: $color-brand-primary-pure;
