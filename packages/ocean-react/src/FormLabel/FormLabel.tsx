@@ -39,8 +39,8 @@ function FormLabelBase<T extends React.ElementType = 'label'>(
   );
 }
 
-const FormLabel = (React.forwardRef(
+const FormLabel = React.forwardRef(
   FormLabelBase
-) as unknown) as typeof FormLabelBase;
+) as unknown as typeof FormLabelBase;
 
 export default FormLabel;

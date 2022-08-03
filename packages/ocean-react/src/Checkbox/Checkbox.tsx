@@ -13,10 +13,18 @@ export type CheckboxProps = {
    * However, we set a `data-indeterminate` attribute on the input.
    */
   indeterminate?: boolean;
+  /**
+   * If `true`, the input will be displayed in an error state.
+   * @default false
+   */
+  error?: boolean;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  function Checkbox({ className, label, id, indeterminate, ...rest }, ref) {
+  function Checkbox(
+    { error, className, label, id, indeterminate, ...rest },
+    ref
+  ) {
     return (
       <label className="ods-checkbox__root" htmlFor={id}>
         <input
@@ -30,11 +38,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <span
           className={classNames(
             'ods-checkbox__checkmark',
-            indeterminate && 'ods-checkbox__checkmark--indeterminate'
+            indeterminate && 'ods-checkbox__checkmark--indeterminate',
+            error && 'ods-checkbox__checkmark--error'
           )}
         ></span>
         {label && (
-          <span className="ods-typography ods-typography__paragraph ods-checkbox__label">
+          <span className="ods-typography ods-typography__description ods-checkbox__label">
             {label}
           </span>
         )}

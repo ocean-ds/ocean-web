@@ -5,222 +5,127 @@ export interface StepsProps {
    * Determines the current step.
    * @default 1
    */
-  currentStep: 1 | 2 | 3 | 4;
+  currentStep: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
   /**
    * Determines the total amount of steps.
    * @default 4
    */
-  steps: 2 | 3 | 4;
+  steps: 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 }
 const defaultProps = {
   currentStep: 1,
   steps: 4,
 };
 
-const FinalSteps = () => {
-  return (
-    <>
-      <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-      <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
-      <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-      <path d="M79 10H84" stroke="#EBECF5" strokeWidth="2" />
-      <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
-      <circle
-        r="5"
-        transform="matrix(-1 0 0 1 106 10)"
-        stroke="#EBECF5"
-        strokeWidth="2"
-      />
-      <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
-    </>
-  );
-};
-
 const Steps = ({
   currentStep,
   steps,
 }: StepsProps & typeof defaultProps): ReactElement => {
-  if (currentStep === 1) {
-    return (
-      <svg
-        width="116"
-        height="20"
-        viewBox="0 0 116 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        data-testid="step-1"
-      >
-        <circle cx="9.5" cy="10.5" r="5.5" stroke="#13BDBD" strokeWidth="2" />
-        <path d="M15 10H20" stroke="#13BDBD" strokeWidth="2" />
+  const getCurrentStep = (step: number) => {
+    const left = 30 * (step - 1);
 
-        {steps === 2 && (
-          <>
-            <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-          </>
-        )}
-
-        {steps === 3 && (
-          <>
-            <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M47 10H52" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-          </>
-        )}
-
-        {steps === 4 && (
-          <>
-            <path d="M20 10H32" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M32 10L37 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="42" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M47 10H52" stroke="#EBECF5" strokeWidth="2" />
-            <FinalSteps />
-          </>
-        )}
-      </svg>
-    );
-  }
-
-  if (currentStep === 2) {
-    return (
-      <svg
-        width="116"
-        height="20"
-        viewBox="0 0 116 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        data-testid="step-2"
-      >
-        <circle
-          cx="10"
-          cy="10"
-          r="9"
-          fill="#13BDBD"
-          stroke="#13BDBD"
-          strokeWidth="2"
-        />
-        <path
-          d="M7 10L9 12L13 8"
-          stroke="white"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
-        <path d="M32 10L37 10" stroke="#13BDBD" strokeWidth="2" />
-        <circle cx="42" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
-        {steps > 2 && (
-          <>
-            <path d="M47 10H52" stroke="#13BDBD" strokeWidth="2" />
-            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-          </>
-        )}
-
-        {steps === 3 && (
-          <>
-            <path d="M52 10H64" stroke="#EBECF5" strokeWidth="2" />
-            <path d="M64 10L69 10" stroke="#EBECF5" strokeWidth="2" />
-            <circle cx="74" cy="10" r="5" stroke="#EBECF5" strokeWidth="2" />
-          </>
-        )}
-
-        {steps === 4 && <FinalSteps />}
-      </svg>
-    );
-  }
-
-  return (
-    <svg
-      width="116"
-      height="20"
-      viewBox="0 0 116 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      data-testid="step-3"
-    >
-      <circle
-        cx="10"
-        cy="10"
-        r="9"
-        fill="#13BDBD"
-        stroke="#13BDBD"
-        strokeWidth="2"
-      />
-      <path
-        d="M7 10L9 12L13 8"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M20 10H32" stroke="#13BDBD" strokeWidth="2" />
-      <circle
-        cx="42"
-        cy="10"
-        r="9"
-        fill="#13BDBD"
-        stroke="#13BDBD"
-        strokeWidth="2"
-      />
-      <path
-        d="M39 10L41 12L45 8"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M52 10H64" stroke="#13BDBD" strokeWidth="2" />
-      {currentStep === 3 ? (
+    if (step === currentStep) {
+      return (
         <>
-          <path d="M64 10L69 10" stroke="#13BDBD" strokeWidth="2" />
-          <circle cx="74" cy="10" r="5" stroke="#13BDBD" strokeWidth="2" />
-          {steps > 3 && (
+          <circle
+            cx={step === 1 ? 9.5 : left + 12}
+            cy="10"
+            r="5"
+            stroke="#13BDBD"
+            strokeWidth="2"
+          ></circle>
+          {steps > step && (
             <>
-              <path d="M79 10H84" stroke="#13BDBD" strokeWidth="2" />
-              <path d="M84 10H96" stroke="#EBECF5" strokeWidth="2" />
-              <path d="M101 10H96" stroke="#EBECF5" strokeWidth="2" />
-              <circle
-                r="5"
-                transform="matrix(-1 0 0 1 106 10)"
+              <path
+                d={step === 1 ? 'M15 10H20' : `M${left + 17} 10H${left + 22}`}
+                stroke="#13BDBD"
+                strokeWidth="2"
+              ></path>
+              <path
+                d={step === 1 ? 'M20 10H37' : `M${left + 22} 10H${left + 38}`}
                 stroke="#EBECF5"
                 strokeWidth="2"
-              />
+              ></path>
             </>
           )}
         </>
-      ) : (
+      );
+    }
+
+    if (currentStep > step) {
+      return (
         <>
           <circle
-            cx="74"
+            cx={step === 1 ? 10 : left + 12}
             cy="10"
             r="9"
             fill="#13BDBD"
             stroke="#13BDBD"
             strokeWidth="2"
           />
+
           <path
-            d="M71 10L73 12L77 8"
+            d={
+              step === 1
+                ? 'M7 10 L 9 12 L 13 8'
+                : `M${left + 9} 10 L ${left + 11} 12 L ${left + 16} 8`
+            }
             stroke="white"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          <path d="M84 10H96" stroke="#13BDBD" strokeWidth="2" />
-          <path d="M101 10H96" stroke="#13BDBD" strokeWidth="2" />
-          <circle
-            r="5"
-            transform="matrix(-1 0 0 1 106 10)"
-            stroke="#13BDBD"
-            strokeWidth="2"
-          />
+          {steps > step && (
+            <>
+              <path
+                d={`M${step === 1 ? 20 : left + 22} 10H${step * 30 + 2}`}
+                stroke="#13BDBD"
+                strokeWidth="2"
+              />
+              <path
+                d={`M${step * 30 + 2} 10L${step * 30 + 7} 10`}
+                stroke="#13BDBD"
+                strokeWidth="2"
+              />
+            </>
+          )}
         </>
-      )}
+      );
+    }
+
+    return (
+      <>
+        <circle
+          cx={step === 1 ? 9.5 : left + 12}
+          cy="10"
+          r="5"
+          stroke="#EBECF5"
+          strokeWidth="2"
+        ></circle>
+        {steps > step && (
+          <path
+            d={step === 1 ? 'M15 10H37' : `M${left + 17} 10H${left + 38}`}
+            stroke="#EBECF5"
+            strokeWidth="2"
+          ></path>
+        )}
+      </>
+    );
+  };
+
+  return (
+    <svg
+      height="20"
+      width={30 * (steps - 1) + 22}
+      viewBox={`0 0 ${30 * (steps - 1) + 22} 20`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      data-testid={`step-${currentStep}`}
+    >
+      {Array.from(Array(steps).keys()).map((step) => (
+        <g key={step}>{getCurrentStep(step + 1)}</g>
+      ))}
     </svg>
   );
 };

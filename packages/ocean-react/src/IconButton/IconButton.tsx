@@ -52,8 +52,8 @@ function IconButtonBase<T extends React.ElementType = 'button'>(
   );
 }
 
-const IconButton = (React.forwardRef(
+const IconButton = React.forwardRef(
   IconButtonBase
-) as unknown) as typeof IconButtonBase;
+) as unknown as typeof IconButtonBase;
 
 export default IconButton;

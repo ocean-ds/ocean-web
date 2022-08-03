@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/ocean-ds/ocean-web/compare/v1.33.1...v1.34.0) (2022-08-03)
+
+### Features
+
+- **crosssellcard:** CustomIcon + increases the clickable area for the whole component ([#992](https://github.com/ocean-ds/ocean-web/issues/992)) ([7f16ad2](https://github.com/ocean-ds/ocean-web/commit/7f16ad209c8d6beb6a330270bb70209398aaa81e))
+
+## [1.33.1](https://github.com/ocean-ds/ocean-web/compare/v1.33.0...v1.33.1) (2022-08-02)
+
+### Bug Fixes
+
+- **badge:** fixes badge not being displayed properly on count=0 ([#991](https://github.com/ocean-ds/ocean-web/issues/991)) ([6255e31](https://github.com/ocean-ds/ocean-web/commit/6255e3150c7e4b372e34964fa7936e3541621c2c))
+
+# [1.33.0](https://github.com/ocean-ds/ocean-web/compare/v1.32.0...v1.33.0) (2022-07-07)
+
+### Features
+
+- add checkbox error state ([#982](https://github.com/ocean-ds/ocean-web/issues/982)) ([e36081e](https://github.com/ocean-ds/ocean-web/commit/e36081ec995356f5f7215d158bfcca66c24e1153))
+
+# [1.32.0](https://github.com/ocean-ds/ocean-web/compare/v1.31.4...v1.32.0) (2022-06-30)
+
+### Features
+
+- add cross sell card component ([#980](https://github.com/ocean-ds/ocean-web/issues/980)) ([6177870](https://github.com/ocean-ds/ocean-web/commit/61778709e2ac7d6f0f9daafce2f2888f09d84ccf))
+
+## [1.31.4](https://github.com/ocean-ds/ocean-web/compare/v1.31.3...v1.31.4) (2022-06-28)
+
+**Note:** Version bump only for package root
+
+## [1.31.3](https://github.com/ocean-ds/ocean-web/compare/v1.31.2...v1.31.3) (2022-05-24)
+
+### Bug Fixes
+
+- **checkbox:** fix checkmark position ([#967](https://github.com/ocean-ds/ocean-web/issues/967)) ([f897612](https://github.com/ocean-ds/ocean-web/commit/f897612ff6c30dcc2ea7914618633f55c51d5e3a))
+
+## [1.31.2](https://github.com/ocean-ds/ocean-web/compare/v1.31.1...v1.31.2) (2022-05-24)
+
+### Bug Fixes
+
+- **checkbox:** add min-width and min-height to checkbox ([#964](https://github.com/ocean-ds/ocean-web/issues/964)) ([425eaf6](https://github.com/ocean-ds/ocean-web/commit/425eaf689cb837ac3f0f0634570e1a989e970310))
+
+## [1.31.1](https://github.com/ocean-ds/ocean-web/compare/v1.31.0...v1.31.1) (2022-05-17)
+
+**Note:** Version bump only for package root
+
 # [1.31.0](https://github.com/ocean-ds/ocean-web/compare/v1.30.4...v1.31.0) (2022-04-06)
 
 ### Features
