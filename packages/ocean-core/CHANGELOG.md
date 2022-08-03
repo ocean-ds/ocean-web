@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/ocean-ds/ocean-web/compare/v1.33.1...v1.34.0) (2022-08-03)
+
+### Features
+
+- **crosssellcard:** CustomIcon + increases the clickable area for the whole component ([#992](https://github.com/ocean-ds/ocean-web/issues/992)) ([7f16ad2](https://github.com/ocean-ds/ocean-web/commit/7f16ad209c8d6beb6a330270bb70209398aaa81e))
+
 # [1.33.0](https://github.com/ocean-ds/ocean-web/compare/v1.32.0...v1.33.0) (2022-07-07)
 
 ### Features
