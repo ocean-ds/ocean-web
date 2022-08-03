@@ -69,6 +69,28 @@ test('renders element with count more then 99', () => {
 `);
 });
 
+test('renders element with count equals 0', () => {
+  render(
+    <Badge count={0} data-testid="btn-test" className="custom-class">
+      Hello
+    </Badge>
+  );
+
+  expect(screen.getByTestId('btn-test')).toMatchInlineSnapshot(`
+<div
+  class="ods-badge ods-badge--small ods-badge--undefined custom-class"
+  data-testid="btn-test"
+  role="tag"
+>
+  <div
+    class="ods-badge__content ods-badge__count"
+  >
+    0
+  </div>
+</div>
+`);
+});
+
 test('renders element with variation', () => {
   render(
     <Badge variation="tiny" data-testid="btn-test" className="custom-class">
