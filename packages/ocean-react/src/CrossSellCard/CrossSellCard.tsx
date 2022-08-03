@@ -20,6 +20,10 @@ export type CrossSellCardProps = {
    */
   ctaText: string;
   /**
+   * Determines the Icon on the
+   */
+  customIcon?: JSX.Element;
+  /**
    * Determines the cta action
    */
   ctaAction: () => void;
@@ -27,7 +31,16 @@ export type CrossSellCardProps = {
 
 const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
   function CrossSellCard(
-    { title, className, description, imageSrc, ctaText, ctaAction, ...rest },
+    {
+      title,
+      className,
+      description,
+      imageSrc,
+      ctaText,
+      ctaAction,
+      customIcon,
+      ...rest
+    },
     ref
   ) {
     return (
@@ -35,8 +48,13 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
         ref={ref}
         {...rest}
         className={classNames('ods-cross-sell-card', className)}
+        onClick={ctaAction}
       >
-        <div className="ods-cross-sell-card__content">
+        <a
+          className="ods-cross-sell-card__content"
+          onClick={() => ctaAction}
+          data-testid="cta-test"
+        >
           <div className="ods-cross-sell-card__information">
             <div className="ods-typography--inverse ods-typography__heading3">
               {title}
@@ -48,14 +66,13 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
           {imageSrc && (
             <img className="ods-cross-sell-card__image" src={imageSrc} />
           )}
-        </div>
+        </a>
 
-        <button
-          className="ods-cross-sell-card__cta"
-          onClick={ctaAction}
-          data-testid="cta-test"
-        >
-          {ctaText} <ChevronRight className="ods-cross-sell-card__cta-icon" />
+        <button className="ods-cross-sell-card__cta">
+          {ctaText}{' '}
+          <span className="ods-cross-sell-card__cta-icon">
+            {customIcon || <ChevronRight />}
+          </span>
         </button>
       </div>
     );
