@@ -1,0 +1,192 @@
+.ods-datepicker {
+  display: flex;
+  position: relative;
+  user-select: none;
+  width: 100%;
+
+  &:active,
+  &:focus,
+  *:active,
+  *:focus {
+    outline: none;
+  }
+
+  &__form-row {
+    display: grid;
+    gap: $spacing-inline-xxxs;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  &__form-controls {
+    cursor: pointer;
+    margin: 0 !important;
+
+    > label {
+      color: $color-interface-dark-down;
+      font-family: $font-family-base;
+      font-size: $font-size-xxs;
+      font-weight: 400;
+      line-height: 15px;
+      margin: 0 0 $spacing-inline-xxs;
+      padding: 0;
+      text-transform: none;
+    }
+
+    input {
+      cursor: pointer !important;
+    }
+  }
+}
+
+.ods-datepicker-container {
+  position: absolute;
+  top: 4.4rem;
+  width: 100%;
+}
+
+.ods-datepicker-wrapper {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: $shadow-level-2;
+  padding: $spacing-inline-xs $spacing-inline-xxs;
+  position: relative;
+}
+
+.ods-datepicker-interactionDisabled {
+  cursor: not-allowed;
+}
+
+.ods-datepicker-navbar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.ods-datepicker-navbuttons {
+  background-color: transparent;
+  border: 0;
+  color: $color-brand-primary-pure;
+  cursor: pointer;
+  outline: 0;
+}
+
+.ods-datepicker-navButtonPrev {
+  font-size: 22px;
+  left: 15px;
+  outline: 0;
+  padding-left: 16px;
+}
+
+.ods-datepicker-navButtonNext {
+  font-size: 22px;
+  outline: 0;
+  padding-right: 16px;
+  right: 23px;
+}
+
+.ods-datepicker-mouths {
+  border-radius: 20px;
+  width: 100%;
+}
+
+.ods-datepicker-month {
+  &:first-child {
+    border-top-left-radius: 20px;
+    flex: 1;
+    margin-right: 0;
+
+    .ods-datepicker-caption {
+      border-top-left-radius: 20px;
+    }
+  }
+
+  &:last-child {
+    border-top-right-radius: 20px;
+    flex: 1;
+    margin-left: 0;
+
+    .ods-datepicker-caption {
+      border-top-right-radius: 20px;
+    }
+  }
+}
+
+.ods-datepicker-caption {
+  font-family: $font-family-highlight;
+  font-size: $font-size-xs;
+  font-weight: 900;
+  line-height: 17.6px;
+  margin: $spacing-inline-xs $spacing-inline-xxs;
+  margin: auto;
+  padding: $spacing-inline-xs $spacing-inline-xxs;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.ods-datepicker-weekdays {
+  width: 100%;
+}
+
+.ods-datepicker-weekdaysRow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+}
+
+.ods-datepicker-weekday {
+  align-items: center;
+  color: $color-interface-dark-up;
+  display: flex;
+  font-family: $font-family-base;
+  font-size: $font-size-xxxs;
+  font-weight: 600;
+  justify-content: center;
+  padding: 0.5rem;
+  text-transform: capitalize;
+
+  abbr {
+    text-decoration: none;
+  }
+}
+
+.ods-datepicker-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  width: 100%;
+}
+
+.ods-datepicker-day {
+  align-items: center;
+  color: $color-interface-dark-down;
+  cursor: pointer;
+  display: flex;
+  font-family: $font-family-base;
+  font-size: $font-size-xxs;
+  height: 40px;
+  justify-content: center;
+  line-height: 21px;
+  text-align: center;
+
+  &:hover {
+    background-color: $color-complementary-down;
+  }
+}
+
+.ods-datepicker-body {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.ods-datepicker-today {
+  color: $color-brand-primary-pure;
+}
+
+.ods-datepicker-selected {
+  background-color: #333;
+}
+
+.ods-datepicker-disabled {
+  color: $color-interface-light-deep;
+}
