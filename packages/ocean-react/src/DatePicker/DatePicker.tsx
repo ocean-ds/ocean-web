@@ -1,17 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import DayPicker, { ClassNames } from 'react-day-picker';
-import MomentLocaleUtils from 'react-day-picker/moment';
-// import { ptBR } from 'date-fns/locale';
+import * as Picker from 'react-day-picker';
 
-import { CalendarOutline } from '@useblu/ocean-icons-react';
+import * as OceanIcons from '@useblu/ocean-icons-react';
 
-import NavBar from './NavBar';
-
-import * as DateFns from 'date-fns';
+import ptBr from 'date-fns/locale/pt';
 
 import Input from '../Input';
+
+import useDatePicker from '../_util/useDatePicker';
 
 type DatePickerFields = {
   from: string;
@@ -20,7 +18,7 @@ type DatePickerFields = {
 
 export type DatePickerProps = {
   /**
-   * Determines values of inputs (from/to)
+   * Determines names of inputs (from/to)
    */
   labels?: DatePickerFields;
 
@@ -40,127 +38,56 @@ export type DatePickerProps = {
    * Determines if date inputs are editable
    * @default false
    */
-  editable: boolean;
+  editable?: boolean;
 
   /**
-   * Determines if date inputs are editable
+   * Determines if date inputs are disabled
    * @default false
    */
   disabled?: boolean;
-} & React.ComponentPropsWithoutRef<'div'>;
 
-const DEFAULT_FORMAT = 'dd/MM/yyyy';
+  /**
+   * Determines error os inputs
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * Determines error message
+   * @default null
+   */
+  helperText?: string;
+} & React.ComponentPropsWithoutRef<'div'>;
 
 const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   function DatePicker(
-    { labels, values, onSelect, editable, disabled, className, ...rest },
+    {
+      labels,
+      values,
+      onSelect,
+      editable,
+      disabled,
+      error,
+      helperText,
+      className,
+      ...rest
+    },
     ref
   ) {
-    const input1Ref = React.useRef<HTMLInputElement>(null);
-    const input2Ref = React.useRef<HTMLInputElement>(null);
-
-    const [showDayPicker, setShowDayPicker] = React.useState(false);
-    const [isSelectingLastDay, setIsSelectingLastDay] = React.useState(false);
-
-    const fromDate = new Date(values.from);
-    const toDate = new Date(values.to);
-
-    React.useEffect(() => {
-      if (values.from === '') setIsSelectingLastDay(false);
-    }, [values.from]);
-
-    const handleDayMouseEnter = (day: Date) => {
-      const formattedDay = DateFns.format(day, DEFAULT_FORMAT);
-
-      if (!isSelectingLastDay || (values.from && day < fromDate)) return;
-
-      onSelect({ from: values.from, to: formattedDay });
-    };
-    const handleDayClick = (day: Date) => {
-      const formattedDay = DateFns.format(day, DEFAULT_FORMAT);
-
-      if (isSelectingLastDay) {
-        if (day < fromDate) {
-          onSelect({ from: formattedDay, to: '' });
-        } else {
-          setIsSelectingLastDay(false);
-          setShowDayPicker(false);
-          onSelect({ from: values.from, to: formattedDay });
-        }
-      } else {
-        setIsSelectingLastDay(true);
-        onSelect({ from: formattedDay, to: '' });
-      }
-    };
-
-    const createHandleToggleClick = () => {
-      setShowDayPicker(true);
-
-      if (values.from.length < DEFAULT_FORMAT.length) {
-        input1Ref?.current?.focus();
-      } else if (
-        values.from.length === DEFAULT_FORMAT.length &&
-        values.to.length === DEFAULT_FORMAT.length
-      ) {
-        input1Ref?.current?.focus();
-      } else {
-        setIsSelectingLastDay(true);
-        input2Ref?.current?.focus();
-      }
-    };
-
-    const disabledDays = (day: Date) => {
-      return isSelectingLastDay && day < fromDate;
-    };
-
-    const inputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-      const dataFormatted = target.value; // Add input mask
-
-      if (target.id === 'start-date') {
-        setIsSelectingLastDay(false);
-        onSelect({ from: dataFormatted, to: '' });
-
-        if (dataFormatted.length === DEFAULT_FORMAT.length) {
-          setIsSelectingLastDay(true);
-          input2Ref?.current?.focus();
-        }
-      } else {
-        setIsSelectingLastDay(true);
-        onSelect({ from: values.from, to: dataFormatted });
-
-        if (dataFormatted.length === DEFAULT_FORMAT.length) {
-          setTimeout(() => setShowDayPicker(false), 500);
-        }
-      }
-    };
-
-    const CustomStyles: ClassNames = {
-      container: 'ods-datepicker-container',
-      wrapper: 'ods-datepicker-wrapper',
-      interactionDisabled: 'ods-datepicker-interactionDisabled',
-      navBar: 'ods-datepicker-navbar',
-      navButtonPrev: 'ods-datepicker-navButtonPrev',
-      navButtonNext: 'ods-datepicker-navButtonNext',
-      navButtonInteractionDisabled: '',
-
-      months: 'ods-datepicker-mouths',
-      month: '',
-      caption: 'ods-datepicker-caption',
-      weekdays: 'ods-datepicker-weekdays',
-      weekdaysRow: 'ods-datepicker-weekdaysRow',
-      weekday: 'ods-datepicker-weekday',
-      weekNumber: '',
-      body: 'ods-datepicker-body',
-      week: 'ods-datepicker-week',
-      day: 'ods-datepicker-day',
-      footer: '',
-      todayButton: '',
-
-      today: 'ods-datepicker-today',
-      selected: 'ods-datepicker-selected',
-      disabled: 'ods-datepicker-disabled',
-      outside: '',
-    };
+    const {
+      input1Ref,
+      input2Ref,
+      showDayPicker,
+      selectedDays,
+      CustomStyles,
+      handleDayMouseEnter,
+      handleDayClick,
+      inputChange,
+      createHandleToggleClick,
+      disabledDays,
+      formatDay,
+      formatWeekNumber,
+    } = useDatePicker({ values, onSelect });
 
     return (
       <div
@@ -181,10 +108,14 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
               placeholder="dd/mm/aaaa"
-              adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+              adornment={
+                <OceanIcons.CalendarOutline size={20} stroke="#B6B9CC" />
+              }
               autoComplete="off"
               readOnly={!editable}
               disabled={disabled}
+              error={!disabled && error}
+              helperText={(!disabled && error && helperText) || undefined}
             />
           </div>
 
@@ -200,34 +131,29 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
               placeholder="dd/mm/aaaa"
-              adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+              adornment={
+                <OceanIcons.CalendarOutline size={20} stroke="#B6B9CC" />
+              }
               autoComplete="off"
               readOnly={!editable}
               disabled={disabled}
+              error={!disabled && error}
+              helperText={(!disabled && error && helperText) || undefined}
             />
           </div>
 
           {!disabled && showDayPicker && (
-            <DayPicker
-              numberOfMonths={1}
-              enableOutsideDaysClick
+            <Picker.DayPicker
+              mode="range"
+              locale={ptBr}
+              weekStartsOn={0}
               classNames={CustomStyles}
-              locale="pt-BR"
-              localeUtils={MomentLocaleUtils}
-              selectedDays={(day) =>
-                DayPicker.DateUtils.isDayInRange(day, {
-                  from: fromDate,
-                  to: toDate,
-                })
-              }
-              navbarElement={(props) => <NavBar {...props} />}
-              onDayClick={(day) => handleDayClick(day)}
-              disabledDays={(day) => disabledDays(day)}
-              onDayMouseEnter={(day) => handleDayMouseEnter(day)}
-              modifiers={{
-                from: (day) => DayPicker.DateUtils.isSameDay(day, fromDate),
-                to: (day) => DayPicker.DateUtils.isSameDay(day, toDate),
-              }}
+              className={className}
+              onDayClick={(day: Date) => handleDayClick(day)}
+              onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
+              formatters={{ formatDay, formatWeekNumber }}
+              selected={selectedDays}
+              disabled={disabledDays}
             />
           )}
         </div>

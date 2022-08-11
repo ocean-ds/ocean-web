@@ -1,25 +1,27 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import DatePicker, { DatePickerFields } from '../DatePicker';
+import * as Storybook from '@storybook/react';
+import DatePicker from '../DatePicker';
 
 export default {
   title: 'Components/DatePicker',
   component: DatePicker,
-} as unknown as ComponentMeta<typeof DatePicker>;
+} as unknown as Storybook.ComponentMeta<typeof DatePicker>;
 
-const Template: ComponentStory<typeof DatePicker> = () => {
-  const [dates, setDates] = React.useState<DatePickerFields>({
-    from: '',
-    to: '',
-  });
+interface IDatesProps {
+  from: string;
+  to: string;
+}
 
-  const handleDates = (dates: DatePickerFields) =>
+const Template: Storybook.ComponentStory<typeof DatePicker> = () => {
+  const [dates, setDates] = React.useState<IDatesProps>({ from: '', to: '' });
+
+  const handleDates = (dates: IDatesProps) =>
     setDates({ from: dates.from, to: dates.to });
 
   return (
     <DatePicker
       values={dates}
-      onSelect={(dates: DatePickerFields) => handleDates(dates)}
+      onSelect={(dates: IDatesProps) => handleDates(dates)}
       editable={false}
     />
   );
