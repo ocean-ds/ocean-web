@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { useArgs } from '@storybook/client-api';
 import DatePicker from '../DatePicker';
+import { useState } from 'react';
 
 <Meta
   title="Components/DatePicker"
@@ -19,68 +19,56 @@ The API documentation of the DatePicker React component. Learn more about the pr
 import { DatePicker } from '@useblu/ocean-react';
 ```
 
-```jsx
-<DatePicker
-  labels={{
+export const DinamicDatePicker = () => {
+  const labels = {
     from: 'Start date',
     to: 'End date',
-  }}
-  values={{
-    from: '10/08/2022',
-    to: '15/08/2022',
-  }}
-  onSelect={(days) => ({ from: days.from, to: days.to })}
-/>
-```
+  };
+  const [dates, setDates] = useState({ from: '', to: '' });
+  const handleSelectDates = (dates) =>
+    setDates({ from: dates.from, to: dates.to });
+  return (
+    <div style={{ height: '350px' }}>
+      <DatePicker
+        labels={labels}
+        values={dates}
+        onSelect={handleSelectDates}
+        editable
+      />
+    </div>
+  );
+};
 
 ## Usage
 
+```jsx
+import { useState } from 'react';
+import { DatePicker } from '@useblu/ocean-react';
+
+const [dates, setDates] = useState({ from: '', to: '' });
+
+const handleSelectDates = (dates) =>
+  setDate({ from: dates.from, to: dates.to });
+
+const labels = {
+  from: 'Start date',
+  to: 'End date',
+};
+
+<DatePicker labels={labels} values={dates} onSelect={handleSelectDates} />;
+```
+
+## Example
+
 <Canvas withSource="open" withToolbar>
-  <Story
-    name="usage"
-    args={{
-      labels: { from: 'Start date', to: 'End date' },
-      values: { from: '', to: '' },
-      disabled: false,
-      editable: false,
-      error: false,
-    }}
-    argTypes={{
-      labels: {
-        name: 'labels',
-        type: { name: 'text', required: false },
-        defaultValue: { from: 'Start date', to: 'End date' },
-        description: 'Dates from/to',
-        control: { type: 'object' },
-      },
-      values: {
-        name: 'values',
-        type: { name: 'text', required: true },
-        description: 'Values of from/to fields',
-        control: { type: 'object' },
-      },
-      onSelect: {
-        control: 'values',
-      },
-      disabled: {
-        description: 'turn on component disabled',
-        control: 'boolean',
-      },
-      editable: {
-        control: 'boolean',
-      },
-      error: {
-        control: 'boolean',
-      },
-    }}
-  >
-    {(props) => <DatePicker {...props} />}
+  <Story name="usage">
+    <DinamicDatePicker />
   </Story>
 </Canvas>
 
 ## props
 
-<ArgsTable story="Usage" of="." />
+<ArgsTable story="usage" of="." />
 
 <!-- ## CSS
 

@@ -1,16 +1,11 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 
-import {
-  ClassNames,
-  DateRange,
-  DateFormatter,
-  WeekNumberFormatter,
-} from 'react-day-picker';
+import * as DP from 'react-day-picker';
 
-import { DatePickerProps } from '../DatePicker/DatePicker';
+import * as DatePicker from '../DatePicker/DatePicker';
 
-type IDatePickerProps = Pick<DatePickerProps, 'values' | 'onSelect'>;
+type IDatePickerProps = Pick<DatePicker.DatePickerProps, 'values' | 'onSelect'>;
 
 type IDatePickerReturn = {
   input1Ref: React.Ref<HTMLInputElement>;
@@ -18,15 +13,15 @@ type IDatePickerReturn = {
   showDayPicker: boolean;
   fromDate: Date;
   toDate: Date;
-  selectedDays: DateRange;
-  CustomStyles: ClassNames;
+  selectedDays: DP.DateRange;
+  CustomStyles: DP.ClassNames;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: () => void;
   disabledDays: (day: Date) => boolean;
-  formatDay: DateFormatter;
-  formatWeekNumber: WeekNumberFormatter;
+  formatDay: DP.DateFormatter;
+  formatWeekNumber: DP.WeekNumberFormatter;
 };
 
 const DEFAULT_FORMAT = 'dd/MM/yyyy';
@@ -42,8 +37,17 @@ export default function useDatePicker({
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [isSelectingLastDay, setIsSelectingLastDay] = React.useState(false);
 
-  const fromDate = new Date(values.from);
-  const toDate = new Date(values.to);
+  const [dayFrom, mouthFrom, yearFrom] = values.from.split('/');
+  const [dayTo, mouthTo, yearTo] = values.from.split('/');
+
+  const fromDate = new Date(
+    parseInt(dayFrom),
+    parseInt(mouthFrom),
+    parseInt(yearFrom)
+  );
+  const toDate = new Date(parseInt(dayTo), parseInt(mouthTo), parseInt(yearTo));
+
+  console.log('VALORES: ', values, fromDate, toDate);
 
   React.useEffect(() => {
     if (values.from === '') setIsSelectingLastDay(false);
@@ -93,10 +97,20 @@ export default function useDatePicker({
     return isSelectingLastDay && day < fromDate;
   };
 
+  const dateMask = (value: string) => {
+    let inputToChange = value;
+
+    if (inputToChange.length === 2 || inputToChange.length === 5) {
+      inputToChange += '/';
+    }
+
+    return inputToChange.slice(0, 10);
+  };
+
   const inputChange = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>): void => {
-    const dataFormatted = target.value; // Add input mask
+    const dataFormatted = dateMask(target.value);
 
     if (target.id === 'start-date') {
       setIsSelectingLastDay(false);
@@ -116,7 +130,7 @@ export default function useDatePicker({
     }
   };
 
-  const CustomStyles: ClassNames = {
+  const CustomStyles: DP.ClassNames = {
     root: 'ods-datepicker__root',
     caption: 'ods-datepicker__caption',
     nav_button: 'ods-datepicker__navButtons',
@@ -138,16 +152,19 @@ export default function useDatePicker({
     day_range_middle: 'ods-datepicker__selectedMiddle',
   };
 
-  const selectedDays: DateRange = {
-    from: new Date(2022, 7, 10),
-    to: new Date(2022, 7, 22),
-    // from: fromDate,
-    // to: toDate,
+  // const selectedDays: DP.DateRange = {
+  //   from: fromDate,
+  //   to: toDate,
+  // };
+
+  const selectedDays: DP.DateRange = {
+    from: fromDate,
+    to: toDate,
   };
 
-  const formatDay: DateFormatter = (day) => DateFns.format(day, 'd');
+  const formatDay: DP.DateFormatter = (day) => DateFns.format(day, 'd');
 
-  const formatWeekNumber: WeekNumberFormatter = (weekNumber) =>
+  const formatWeekNumber: DP.WeekNumberFormatter = (weekNumber) =>
     weekNumber.toLocaleString(DEFAULT_LOCATE);
 
   return {

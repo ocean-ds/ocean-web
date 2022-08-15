@@ -35,6 +35,7 @@
 
     input {
       cursor: pointer !important;
+      caret-color: $color-brand-primary-pure;
     }
   }
 }
@@ -132,6 +133,18 @@
   text-align: center;
   width: 100%;
 }
+
+.ods-datepicker__cell:matches(.ods-datepicker__selectedStart) {
+  background-color: lightcoral;
+}
+
+// .ods-datepicker__cell {
+//   background: -webkit-linear-gradient(
+//     right,
+//     rgba(176, 245, 245, 0.24) 50%,
+//     white 50%
+//   );
+// }
 
 .ods-datepicker__day {
   align-items: center;

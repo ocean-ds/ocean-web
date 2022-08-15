@@ -116,6 +116,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               disabled={disabled}
               error={!disabled && error}
               helperText={(!disabled && error && helperText) || undefined}
+              maxLength={10}
             />
           </div>
 
@@ -139,6 +140,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               disabled={disabled}
               error={!disabled && error}
               helperText={(!disabled && error && helperText) || undefined}
+              maxLength={10}
             />
           </div>
 
