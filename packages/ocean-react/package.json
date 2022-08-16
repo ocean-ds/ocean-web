@@ -39,7 +39,6 @@
     "date-fns": "^2.29.1",
     "react-day-picker": "8.0.7",
     "react-dropzone": "^12.0.4",
-    "react-input-mask": "^2.0.4",
     "react-modal": "3.13.1",
     "react-slick": "^0.28.1"
   },

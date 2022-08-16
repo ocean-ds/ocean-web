@@ -25,7 +25,7 @@ type IDatePickerReturn = {
 };
 
 const DEFAULT_FORMAT = 'dd/MM/yyyy';
-const DEFAULT_LOCATE = 'pt-br';
+const DEFAULT_LOCATE = 'pt-BR';
 
 export default function useDatePicker({
   values,
@@ -37,17 +37,8 @@ export default function useDatePicker({
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [isSelectingLastDay, setIsSelectingLastDay] = React.useState(false);
 
-  const [dayFrom, mouthFrom, yearFrom] = values.from.split('/');
-  const [dayTo, mouthTo, yearTo] = values.from.split('/');
-
-  const fromDate = new Date(
-    parseInt(dayFrom),
-    parseInt(mouthFrom),
-    parseInt(yearFrom)
-  );
-  const toDate = new Date(parseInt(dayTo), parseInt(mouthTo), parseInt(yearTo));
-
-  console.log('VALORES: ', values, fromDate, toDate);
+  const fromDate = DateFns.parse(values.from, DEFAULT_FORMAT, new Date());
+  const toDate = DateFns.parse(values.to, DEFAULT_FORMAT, new Date());
 
   React.useEffect(() => {
     if (values.from === '') setIsSelectingLastDay(false);
@@ -151,11 +142,6 @@ export default function useDatePicker({
     day_range_end: 'ods-datepicker__selectedEnd',
     day_range_middle: 'ods-datepicker__selectedMiddle',
   };
-
-  // const selectedDays: DP.DateRange = {
-  //   from: fromDate,
-  //   to: toDate,
-  // };
 
   const selectedDays: DP.DateRange = {
     from: fromDate,
