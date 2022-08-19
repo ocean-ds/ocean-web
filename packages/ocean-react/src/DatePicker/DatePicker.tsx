@@ -57,6 +57,8 @@ export type DatePickerProps = {
    * @default null
    */
   helperText?: string;
+
+  className?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(

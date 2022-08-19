@@ -38,168 +38,232 @@
       caret-color: $color-brand-primary-pure;
     }
   }
-}
 
-.ods-datepicker__root {
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: $shadow-level-2;
-  margin: 0;
-  padding: 0 0 $spacing-inline-xs;
-  position: absolute;
-  top: 4.4rem;
-  width: 100%;
-
-  .rdp-vhidden {
-    display: none;
-  }
-}
-
-.ods-datepicker__caption {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: 16px 8px;
-  position: relative;
-
-  h2 {
-    font-family: $font-family-highlight;
-    font-size: $font-size-xs;
-    font-weight: 700;
-    line-height: 17.6px;
+  .ods-datepicker__root {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: $shadow-level-2;
     margin: 0;
-    text-align: center;
+    padding: 0 0 $spacing-inline-xs;
+    position: absolute;
+    top: 4.4rem;
+    width: 100%;
+
+    .rdp-vhidden {
+      display: none;
+    }
+  }
+
+  .ods-datepicker__caption {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 16px 8px;
+    position: relative;
+
+    h2 {
+      font-family: $font-family-highlight;
+      font-size: $font-size-xs;
+      font-weight: 700;
+      line-height: 17.6px;
+      margin: 0;
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+
+  .ods-datepicker__navButtons {
+    background-color: transparent;
+    border: 0;
+    color: $color-brand-primary-pure;
+    cursor: pointer;
+    font-size: 6px;
+    outline: 0;
+    position: absolute;
+    top: 13px;
+  }
+
+  .ods-datepicker__navButtonPrev {
+    left: 17px;
+  }
+
+  .ods-datepicker__navButtonNext {
+    right: 17px;
+  }
+
+  .ods-datepicker__navIcon {
+    box-sizing: border-box;
+    width: 12px;
+  }
+
+  .ods-datepicker__table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ods-datepicker__head {
+    margin-bottom: $spacing-inline-xxs;
+    padding: 0 $spacing-inline-xxs;
+  }
+
+  .ods-datepicker__headRow {
+    color: $color-interface-dark-up;
+    display: grid;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    grid-template-columns: repeat(7, 1fr);
     text-transform: capitalize;
   }
-}
 
-.ods-datepicker__navButtons {
-  background-color: transparent;
-  border: 0;
-  color: $color-brand-primary-pure;
-  cursor: pointer;
-  font-size: 6px;
-  outline: 0;
-  position: absolute;
-  top: 13px;
-}
-
-.ods-datepicker__navButtonPrev {
-  left: 17px;
-}
-
-.ods-datepicker__navButtonNext {
-  right: 17px;
-}
-
-.ods-datepicker__navIcon {
-  box-sizing: border-box;
-  width: 12px;
-}
-
-.ods-datepicker__table {
-  display: flex;
-  flex-direction: column;
-}
-
-.ods-datepicker__head {
-  margin-bottom: $spacing-inline-xxs;
-  padding: 0 $spacing-inline-xxs;
-}
-
-.ods-datepicker__headRow {
-  color: $color-interface-dark-up;
-  display: grid;
-  font-family: $font-family-base;
-  font-size: $font-size-xxxs;
-  font-weight: $font-weight-medium;
-  grid-template-columns: repeat(7, 1fr);
-  text-transform: capitalize;
-}
-
-.ods-datepicker__body {
-  padding: 0 $spacing-inline-xxs;
-}
-
-.ods-datepicker__row {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
-
-.ods-datepicker__cell {
-  display: flex;
-  justify-content: center;
-  outline: 0;
-  text-align: center;
-  width: 100%;
-}
-
-.ods-datepicker__cell:matches(.ods-datepicker__selectedStart) {
-  background-color: lightcoral;
-}
-
-// .ods-datepicker__cell {
-//   background: -webkit-linear-gradient(
-//     right,
-//     rgba(176, 245, 245, 0.24) 50%,
-//     white 50%
-//   );
-// }
-
-.ods-datepicker__day {
-  align-items: center;
-  background-color: transparent;
-  border: 0;
-  color: $color-interface-dark-down;
-  cursor: pointer;
-  display: flex;
-  font-family: $font-family-base;
-  font-size: $font-size-xxs;
-  height: 40px;
-  justify-content: center;
-  line-height: 21px;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-
-  .rdp-vhidden {
-    display: none;
+  .ods-datepicker__body {
+    padding: 0 $spacing-inline-xxs;
   }
 
-  &:hover {
-    background-color: $color-interface-light-up;
+  .ods-datepicker__row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
   }
-}
 
-.ods-datepicker__today {
-  color: $color-brand-primary-pure;
-}
+  .ods-datepicker__cell {
+    display: flex;
+    justify-content: center;
+    outline: 0;
+    text-align: center;
+    width: 100%;
+    margin: 2px 0px;
+    width: 100%;
+    height: 40px;
+  }
 
-.ods-datepicker__disabled {
-  color: $color-interface-light-deep;
-}
+  .ods-datepicker__cell .ods-datepicker__selectedStart {
+    background: -webkit-linear-gradient(
+      right,
+      rgba(176, 245, 245, 0.24) 50%,
+      white 50%
+    );
+  }
 
-.ods-datepicker__selected {
-  background-color: rgba(176, 245, 245, 0.24);
+  .ods-datepicker__cell .ods-datepicker__selectedEnd {
+    background: -webkit-linear-gradient(
+      left,
+      rgba(176, 245, 245, 0.24) 50%,
+      white 50%
+    );
+  }
 
-  &:hover {
-    background-color: $color-complementary-deep;
+  .ods-datepicker__day {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    color: $color-interface-dark-down;
+    cursor: pointer;
+    display: flex;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    height: 100%;
+    justify-content: center;
+    line-height: 21px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    position: relative;
+
+    &:hover {
+      ::after {
+        content: '';
+        border: 1px solid $color-interface-dark-up;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+      }
+    }
+  }
+
+  .ods-datepicker__today {
+    color: $color-brand-primary-pure;
+  }
+
+  .ods-datepicker__disabled {
+    color: $color-interface-light-deep;
+  }
+
+  .ods-datepicker__selected {
+    position: relative;
+    background-color: rgba(176, 245, 245, 0.24);
+
+    &:hover {
+      ::after {
+        content: '';
+        border: 1px solid $color-interface-dark-up;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+      }
+    }
+  }
+
+  .ods-datepicker__selectedStart {
+    position: relative;
+    z-index: 1;
     color: $color-interface-light-pure;
+
+    ::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: $color-complementary-pure;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: -1;
+    }
   }
-}
 
-.ods-datepicker__selectedStart {
-  background-color: $color-complementary-pure;
-  color: $color-interface-light-pure;
-  clip-path: circle(19px);
-}
+  .ods-datepicker__selectedEnd {
+    position: relative;
+    z-index: 1;
+    color: $color-interface-light-pure;
 
-.ods-datepicker__selectedEnd {
-  background-color: $color-complementary-pure;
-  color: $color-interface-light-pure;
-  clip-path: circle(19px);
-}
+    ::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: $color-complementary-pure;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: -1;
+    }
+  }
 
-.ods-datepicker__selectedMiddle {
-  background-color: rgba(176, 245, 245, 0.24);
+  .ods-datepicker__selectedMiddle {
+    background-color: rgba(176, 245, 245, 0.24);
+  }
 }
