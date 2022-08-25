@@ -1,17 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import * as DateFns from 'date-fns';
+
 import * as Picker from 'react-day-picker';
 
 import * as OceanIcons from '@useblu/ocean-icons-react';
 
-import ptBr from 'date-fns/locale/pt';
+import ptBr from 'date-fns/locale/pt-BR';
 
 import Input from '../Input';
 
 import useDatePicker from '../_util/useDatePicker';
 
-type DatePickerFields = {
+export type DatePickerFields = {
   from: string;
   to: string;
 };
@@ -58,6 +60,16 @@ export type DatePickerProps = {
    */
   helperText?: string;
 
+  /**
+   * Object locale of date-fns locale package (internationalize)
+   * @default ptBr
+   */
+  locale?: DateFns.Locale;
+
+  /**
+   * ClassName to overwrite default style
+   * @default null
+   */
   className?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
 
@@ -72,6 +84,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       error,
       helperText,
       className,
+      locale,
       ...rest
     },
     ref
@@ -149,7 +162,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           {!disabled && showDayPicker && (
             <Picker.DayPicker
               mode="range"
-              locale={ptBr}
+              locale={locale || ptBr}
               weekStartsOn={0}
               classNames={CustomStyles}
               className={className}

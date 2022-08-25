@@ -89,13 +89,13 @@ export default function useDatePicker({
   };
 
   const dateMask = (value: string) => {
-    let inputToChange = value;
-
-    if (inputToChange.length === 2 || inputToChange.length === 5) {
-      inputToChange += '/';
+    const v = value.replace(/\D/g, '').slice(0, 10);
+    if (v.length >= 5) {
+      return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
+    } else if (v.length >= 3) {
+      return `${v.slice(0, 2)}/${v.slice(2)}`;
     }
-
-    return inputToChange.slice(0, 10);
+    return v;
   };
 
   const inputChange = ({
@@ -122,7 +122,7 @@ export default function useDatePicker({
   };
 
   const CustomStyles: DP.ClassNames = {
-    root: 'ods-datepicker__root',
+    root: 'ods-datepicker__calendar',
     caption: 'ods-datepicker__caption',
     nav_button: 'ods-datepicker__navButtons',
     nav_button_previous: 'ods-datepicker__navButtonPrev',
