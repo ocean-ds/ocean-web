@@ -115,6 +115,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             <label htmlFor="start-date">{labels?.from}</label>
             <Input
               ref={input1Ref}
+              data-testid="datepicker-input-1"
               id="start-date"
               type="text"
               className="date-field"
@@ -139,6 +140,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             <label htmlFor="end-date">{labels?.to}</label>
             <Input
               ref={input2Ref}
+              data-testid="datepicker-input-2"
               id="end-date"
               type="text"
               className="date-field"
@@ -160,18 +162,20 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           </div>
 
           {!disabled && showDayPicker && (
-            <Picker.DayPicker
-              mode="range"
-              locale={locale || ptBr}
-              weekStartsOn={0}
-              classNames={CustomStyles}
-              className={className}
-              onDayClick={(day: Date) => handleDayClick(day)}
-              onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
-              formatters={{ formatDay, formatWeekNumber }}
-              selected={selectedDays}
-              disabled={disabledDays}
-            />
+            <div data-testid="datepicker-calendar">
+              <Picker.DayPicker
+                mode="range"
+                locale={locale || ptBr}
+                weekStartsOn={0}
+                classNames={CustomStyles}
+                className={className}
+                onDayClick={(day: Date) => handleDayClick(day)}
+                onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
+                formatters={{ formatDay, formatWeekNumber }}
+                selected={selectedDays}
+                disabled={disabledDays}
+              />
+            </div>
           )}
         </div>
       </div>

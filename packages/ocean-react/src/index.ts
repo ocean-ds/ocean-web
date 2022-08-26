@@ -75,3 +75,6 @@ export * from './Badge';
 
 export { default as CrossSellCard } from './CrossSellCard';
 export * from './CrossSellCard';
+
+export { default as DatePicker } from './DatePicker';
+export * from './DatePicker';

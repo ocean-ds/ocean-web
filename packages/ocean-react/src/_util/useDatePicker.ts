@@ -51,6 +51,7 @@ export default function useDatePicker({
 
     onSelect({ from: values.from, to: formattedDay });
   };
+
   const handleDayClick = (day: Date): void => {
     const formattedDay = DateFns.format(day, DEFAULT_FORMAT);
 
