@@ -44,6 +44,13 @@
     line-height: $line-height-medium;
   }
 
+  &__heading5 {
+    @include headings;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+  }
+
   &__subtitle1 {
     @include subtitles;
     font-size: $font-size-md;
