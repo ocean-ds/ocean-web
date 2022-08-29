@@ -5,7 +5,10 @@ import * as DP from 'react-day-picker';
 
 import * as DatePicker from '../DatePicker/DatePicker';
 
-type IDatePickerProps = Pick<DatePicker.DatePickerProps, 'values' | 'onSelect'>;
+type IDatePickerProps = Pick<
+  DatePicker.DatePickerProps,
+  'values' | 'onSelect' | 'startsSelectToday'
+>;
 
 type IDatePickerReturn = {
   input1Ref: React.Ref<HTMLInputElement>;
@@ -30,6 +33,7 @@ const DEFAULT_LOCATE = 'pt-BR';
 export default function useDatePicker({
   values,
   onSelect,
+  startsSelectToday,
 }: IDatePickerProps): IDatePickerReturn {
   const input1Ref = React.useRef<HTMLInputElement>(null);
   const input2Ref = React.useRef<HTMLInputElement>(null);
@@ -86,7 +90,12 @@ export default function useDatePicker({
   };
 
   const disabledDays = (day: Date): boolean => {
-    return isSelectingLastDay && day < fromDate;
+    const startToday = Boolean(
+      startsSelectToday &&
+        day < new Date(new Date().setDate(new Date().getDate() - 1))
+    );
+
+    return startToday || (isSelectingLastDay && day < fromDate);
   };
 
   const dateMask = (value: string) => {

@@ -34,6 +34,7 @@ Change all available properties to see the component modification.
       value1: '',
       value2: '',
       helperText: 'Some text error here!',
+      startsSelectToday: false,
       editable: false,
       error: false,
       disabled: false,
@@ -45,7 +46,6 @@ Change all available properties to see the component modification.
     argTypes={{
       label1: {
         control: 'text',
-        required: true,
       },
       label2: {
         control: 'text',
@@ -55,6 +55,9 @@ Change all available properties to see the component modification.
       },
       value2: {
         control: 'text',
+      },
+      startsSelectToday: {
+        control: 'boolean',
       },
       helperText: {
         control: 'text',
@@ -83,7 +86,7 @@ Change all available properties to see the component modification.
           justifyContent: 'center',
         }}
       >
-        <div style={{ width: '500px' }}>
+        <div style={{ width: '100%' }}>
           <DatePicker
             labels={{ from: props.label1, to: props.label2 }}
             values={{ from: props.value1, to: props.value2 }}
@@ -91,6 +94,7 @@ Change all available properties to see the component modification.
             error={props.error}
             disabled={props.disabled}
             locale={selectLocation(props.locale)}
+            startsSelectToday={props.startsSelectToday}
           />
         </div>
       </div>

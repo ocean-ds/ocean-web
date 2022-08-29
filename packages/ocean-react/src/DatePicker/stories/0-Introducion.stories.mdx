@@ -59,6 +59,7 @@ export const DinamicDatePicker = () => {
 ```jsx
 import { useState } from 'react';
 import { DatePicker } from '@useblu/ocean-react';
+import { enUS } from 'date-fns/locale'; // Any locate object
 
 const [dates, setDates] = useState({ from: '', to: '' });
 
@@ -70,5 +71,10 @@ const labels = {
   to: 'End date',
 };
 
-<DatePicker labels={labels} values={dates} onSelect={handleSelectDates} />;
+<DatePicker
+  labels={labels}
+  values={dates}
+  onSelect={handleSelectDates}
+  locale={enUS}
+/>;
 ```
