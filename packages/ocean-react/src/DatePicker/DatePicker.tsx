@@ -112,7 +112,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       >
         <div className="ods-datepicker__form-row">
           <div className="ods-datepicker__form-controls">
-            <label htmlFor="start-date">{labels?.from}</label>
+            {labels && labels.from && (
+              <label htmlFor="start-date">{labels.from}</label>
+            )}
             <Input
               ref={input1Ref}
               data-testid="datepicker-input-1"
@@ -137,7 +139,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           </div>
 
           <div className="ods-datepicker__form-controls">
-            <label htmlFor="end-date">{labels?.to}</label>
+            {labels && labels.to && (
+              <label htmlFor="end-date">{labels.to}</label>
+            )}
             <Input
               ref={input2Ref}
               data-testid="datepicker-input-2"

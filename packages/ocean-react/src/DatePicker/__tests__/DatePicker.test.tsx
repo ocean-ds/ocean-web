@@ -141,7 +141,22 @@ test('renders element with calendar open', () => {
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 });
 
-jest.useFakeTimers();
+test('renders element with initial props', () => {
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/08/2022', to: '11/08/2022' }}
+      onSelect={() => jest.fn()}
+      editable
+      error
+      helperText="error here!"
+    />
+  );
+
+  expect(screen.getByText('first-label')).toBeInTheDocument();
+  expect(screen.getByText('second-label')).toBeInTheDocument();
+  expect(screen.getAllByText('error here!')).toHaveLength(2);
+});
 
 test('renders element with calendar open and select dates values', async () => {
   render(
@@ -209,4 +224,28 @@ test('renders element with calendar open and select dates values with hover', as
   setTimeout(() => {
     expect(datePicker).not.toBeInTheDocument();
   }, 1000);
+});
+
+test('renders element with calendar open and select dates values with input', async () => {
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={() => null}
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+  const input2 = screen.getByTestId('datepicker-input-2');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  fireEvent.change(input1, { target: { value: '10/08/2022' } });
+  fireEvent.change(input2, { target: { value: '11/08/2022' } });
+
+  expect(input1).toHaveAttribute('value');
+  expect(input2).toHaveAttribute('value');
 });
