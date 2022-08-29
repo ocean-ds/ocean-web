@@ -7,8 +7,6 @@ import * as Picker from 'react-day-picker';
 
 import * as OceanIcons from '@useblu/ocean-icons-react';
 
-import ptBr from 'date-fns/locale/pt-BR';
-
 import Input from '../Input';
 
 import useDatePicker from '../_util/useDatePicker';
@@ -102,6 +100,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       showDayPicker,
       selectedDays,
       CustomStyles,
+      localeOption,
       handleDayMouseEnter,
       handleDayClick,
       inputChange,
@@ -109,7 +108,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       disabledDays,
       formatDay,
       formatWeekNumber,
-    } = useDatePicker({ values, onSelect, startsSelectToday });
+    } = useDatePicker({ values, onSelect, startsSelectToday, locale });
 
     return (
       <div
@@ -176,7 +175,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             <div data-testid="datepicker-calendar">
               <Picker.DayPicker
                 mode="range"
-                locale={locale || ptBr}
+                locale={localeOption}
                 weekStartsOn={0}
                 classNames={CustomStyles}
                 className={className}

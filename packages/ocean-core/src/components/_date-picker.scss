@@ -13,7 +13,7 @@
 
   &__form-row {
     display: grid;
-    gap: $spacing-inline-xxxs;
+    gap: $spacing-inline-xxs;
     grid-template-columns: repeat(2, 1fr);
     width: 100%;
   }
@@ -39,6 +39,16 @@
     }
   }
 
+  @media (max-width: 321px) {
+    &__form-row {
+      display: grid;
+      gap: $spacing-inline-xxs;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+      width: 100%;
+    }
+  }
+
   .ods-datepicker__calendar {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -51,6 +61,10 @@
 
     .rdp-vhidden {
       display: none;
+    }
+
+    @media (max-width: 321px) {
+      top: 9.5rem;
     }
   }
 
@@ -150,6 +164,11 @@
       rgba(176, 245, 245, 0.24) 50%,
       white 50%
     );
+  }
+
+  .ods-datepicker__cell
+    .ods-datepicker__selectedStart.ods-datepicker__selectedEnd {
+    background: transparent;
   }
 
   .ods-datepicker__day {

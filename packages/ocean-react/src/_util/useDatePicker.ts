@@ -5,9 +5,11 @@ import * as DP from 'react-day-picker';
 
 import * as DatePicker from '../DatePicker/DatePicker';
 
+import ptBr from 'date-fns/locale/pt-BR';
+
 type IDatePickerProps = Pick<
   DatePicker.DatePickerProps,
-  'values' | 'onSelect' | 'startsSelectToday'
+  'values' | 'onSelect' | 'startsSelectToday' | 'locale'
 >;
 
 type IDatePickerReturn = {
@@ -25,31 +27,33 @@ type IDatePickerReturn = {
   disabledDays: (day: Date) => boolean;
   formatDay: DP.DateFormatter;
   formatWeekNumber: DP.WeekNumberFormatter;
+  localeOption: DateFns.Locale;
 };
-
-const DEFAULT_FORMAT = 'dd/MM/yyyy';
-const DEFAULT_LOCATE = 'pt-BR';
 
 export default function useDatePicker({
   values,
   onSelect,
   startsSelectToday,
+  locale,
 }: IDatePickerProps): IDatePickerReturn {
+  const localeOption = locale || ptBr;
+  const localeDateFormat = localeOption?.formatLong?.date({ width: 'short' });
+
   const input1Ref = React.useRef<HTMLInputElement>(null);
   const input2Ref = React.useRef<HTMLInputElement>(null);
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [isSelectingLastDay, setIsSelectingLastDay] = React.useState(false);
 
-  const fromDate = DateFns.parse(values.from, DEFAULT_FORMAT, new Date());
-  const toDate = DateFns.parse(values.to, DEFAULT_FORMAT, new Date());
+  const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
+  const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
 
   React.useEffect(() => {
     if (values.from === '') setIsSelectingLastDay(false);
   }, [values.from]);
 
   const handleDayMouseEnter = (day: Date): void => {
-    const formattedDay = DateFns.format(day, DEFAULT_FORMAT);
+    const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (!isSelectingLastDay || (values.from && day < fromDate)) return;
 
@@ -57,7 +61,7 @@ export default function useDatePicker({
   };
 
   const handleDayClick = (day: Date): void => {
-    const formattedDay = DateFns.format(day, DEFAULT_FORMAT);
+    const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (isSelectingLastDay) {
       if (day < fromDate) {
@@ -76,11 +80,11 @@ export default function useDatePicker({
   const createHandleToggleClick = () => {
     setShowDayPicker(true);
 
-    if (values.from.length < DEFAULT_FORMAT.length) {
+    if (values.from.length < localeDateFormat.length) {
       input1Ref?.current?.focus();
     } else if (
-      values.from.length === DEFAULT_FORMAT.length &&
-      values.to.length === DEFAULT_FORMAT.length
+      values.from.length === localeDateFormat.length &&
+      values.to.length === localeDateFormat.length
     ) {
       input1Ref?.current?.focus();
     } else {
@@ -117,7 +121,7 @@ export default function useDatePicker({
       setIsSelectingLastDay(false);
       onSelect({ from: dataFormatted, to: '' });
 
-      if (dataFormatted.length === DEFAULT_FORMAT.length) {
+      if (dataFormatted.length === localeDateFormat.length) {
         setIsSelectingLastDay(true);
         input2Ref?.current?.focus();
       }
@@ -125,7 +129,7 @@ export default function useDatePicker({
       setIsSelectingLastDay(true);
       onSelect({ from: values.from, to: dataFormatted });
 
-      if (dataFormatted.length === DEFAULT_FORMAT.length) {
+      if (dataFormatted.length === localeDateFormat.length) {
         setTimeout(() => setShowDayPicker(false), 500);
       }
     }
@@ -161,7 +165,7 @@ export default function useDatePicker({
   const formatDay: DP.DateFormatter = (day) => DateFns.format(day, 'd');
 
   const formatWeekNumber: DP.WeekNumberFormatter = (weekNumber) =>
-    weekNumber.toLocaleString(DEFAULT_LOCATE);
+    weekNumber.toLocaleString(localeOption.code);
 
   return {
     input1Ref,
@@ -171,6 +175,7 @@ export default function useDatePicker({
     toDate,
     selectedDays,
     CustomStyles,
+    localeOption,
     handleDayMouseEnter,
     handleDayClick,
     inputChange,
