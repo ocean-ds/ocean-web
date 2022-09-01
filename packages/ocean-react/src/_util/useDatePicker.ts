@@ -9,7 +9,7 @@ import ptBr from 'date-fns/locale/pt-BR';
 
 type IDatePickerProps = Pick<
   DatePicker.DatePickerProps,
-  'values' | 'onSelect' | 'startsSelectToday' | 'locale'
+  'values' | 'onSelect' | 'startsToday' | 'locale'
 >;
 
 type IDatePickerReturn = {
@@ -34,7 +34,7 @@ type IDatePickerReturn = {
 export default function useDatePicker({
   values,
   onSelect,
-  startsSelectToday,
+  startsToday,
   locale,
 }: IDatePickerProps): IDatePickerReturn {
   const localeOption = locale || ptBr;
@@ -96,7 +96,7 @@ export default function useDatePicker({
 
   const disabledDays = (day: Date): boolean => {
     const startToday = Boolean(
-      startsSelectToday &&
+      startsToday &&
         day < new Date(new Date().setDate(new Date().getDate() - 1))
     );
 

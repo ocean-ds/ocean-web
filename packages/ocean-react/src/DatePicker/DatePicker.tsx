@@ -62,7 +62,7 @@ export type DatePickerProps = {
    * Determines if date seleting starts today
    * @default false
    */
-  startsSelectToday?: boolean;
+  startsToday?: boolean;
 
   /**
    * Object locale of date-fns locale package (internationalize)
@@ -87,7 +87,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       disabled,
       error,
       helperText,
-      startsSelectToday,
+      startsToday,
       className,
       locale,
       ...rest
@@ -109,7 +109,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       formatDay,
       formatWeekNumber,
       getInputPlaceholder,
-    } = useDatePicker({ values, onSelect, startsSelectToday, locale });
+    } = useDatePicker({ values, onSelect, startsToday, locale });
 
     return (
       <div
