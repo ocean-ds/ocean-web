@@ -20,6 +20,7 @@ type IDatePickerReturn = {
   toDate: Date;
   selectedDays: DP.DateRange;
   CustomStyles: DP.ClassNames;
+  localeOption: DateFns.Locale;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,7 +28,7 @@ type IDatePickerReturn = {
   disabledDays: (day: Date) => boolean;
   formatDay: DP.DateFormatter;
   formatWeekNumber: DP.WeekNumberFormatter;
-  localeOption: DateFns.Locale;
+  getInputPlaceholder: () => string;
 };
 
 export default function useDatePicker({
@@ -167,6 +168,9 @@ export default function useDatePicker({
   const formatWeekNumber: DP.WeekNumberFormatter = (weekNumber) =>
     weekNumber.toLocaleString(localeOption.code);
 
+  const getInputPlaceholder = (): string =>
+    localeOption.code === 'pt-BR' ? 'dd/mm/aaaa' : 'mm/dd/yyyy';
+
   return {
     input1Ref,
     input2Ref,
@@ -183,5 +187,6 @@ export default function useDatePicker({
     disabledDays,
     formatDay,
     formatWeekNumber,
+    getInputPlaceholder,
   };
 }

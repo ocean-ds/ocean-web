@@ -108,6 +108,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       disabledDays,
       formatDay,
       formatWeekNumber,
+      getInputPlaceholder,
     } = useDatePicker({ values, onSelect, startsSelectToday, locale });
 
     return (
@@ -131,7 +132,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               value={values.from}
               onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
-              placeholder="dd/mm/aaaa"
+              placeholder={getInputPlaceholder()}
               adornment={
                 <OceanIcons.CalendarOutline size={20} stroke="#B6B9CC" />
               }
@@ -158,7 +159,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               value={values.to}
               onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
-              placeholder="dd/mm/aaaa"
+              placeholder={getInputPlaceholder()}
               adornment={
                 <OceanIcons.CalendarOutline size={20} stroke="#B6B9CC" />
               }
