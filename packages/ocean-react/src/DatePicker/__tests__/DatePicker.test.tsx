@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import DatePicker from '../DatePicker';
 
+import { enUS } from 'date-fns/locale';
+
 test('renders element properly', () => {
   const { container } = render(
     <DatePicker
@@ -248,4 +250,28 @@ test('renders element with calendar open and select dates values with input', as
 
   expect(input1).toHaveAttribute('value');
   expect(input2).toHaveAttribute('value');
+});
+
+test('renders element with calendar open and english locale', async () => {
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={() => null}
+      editable
+      locale={enUS}
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  expect(screen.getByText('Su')).toBeInTheDocument();
+
+  expect(screen.getByText('10')).toBeInTheDocument();
+
+  expect(screen.getAllByPlaceholderText('mm/dd/yyyy')).toHaveLength(2);
 });
