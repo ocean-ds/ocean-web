@@ -34,8 +34,8 @@
     }
 
     input {
-      cursor: pointer !important;
       caret-color: $color-brand-primary-pure;
+      cursor: pointer !important;
     }
   }
 
@@ -141,27 +141,27 @@
 
   .ods-datepicker__cell {
     display: flex;
+    height: 40px;
     justify-content: center;
+    margin: 2px 0;
     outline: 0;
     text-align: center;
     width: 100%;
-    margin: 2px 0px;
-    height: 40px;
   }
 
   .ods-datepicker__cell .ods-datepicker__selectedStart {
-    background: -webkit-linear-gradient(
-      right,
+    background: linear-gradient(
+      to left,
       rgba(176, 245, 245, 0.24) 50%,
-      white 50%
+      $color-interface-light-pure 50%
     );
   }
 
   .ods-datepicker__cell .ods-datepicker__selectedEnd {
-    background: -webkit-linear-gradient(
-      left,
+    background: linear-gradient(
+      to right,
       rgba(176, 245, 245, 0.24) 50%,
-      white 50%
+      $color-interface-light-pure 50%
     );
   }
 
@@ -183,26 +183,24 @@
     justify-content: center;
     line-height: 21px;
     padding: 0;
+    position: relative;
     text-align: center;
     width: 100%;
-    position: relative;
 
-    &:hover {
-      ::after {
-        content: '';
-        border: 1px solid $color-interface-dark-up;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: -1;
-      }
+    &:hover::after {
+      align-items: center;
+      border: 1px solid $color-interface-dark-up;
+      border-radius: 20px;
+      content: '';
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      z-index: -1;
     }
   }
 
@@ -215,68 +213,66 @@
   }
 
   .ods-datepicker__selected {
-    position: relative;
     background-color: rgba(176, 245, 245, 0.24);
+    position: relative;
 
-    &:hover {
-      ::after {
-        content: '';
-        border: 1px solid $color-interface-dark-up;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: -1;
-      }
+    &:hover::after {
+      align-items: center;
+      border: 1px solid $color-interface-dark-up;
+      border-radius: 20px;
+      content: '';
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      z-index: -1;
     }
   }
 
   .ods-datepicker__selectedStart {
+    color: $color-interface-light-pure;
     position: relative;
     z-index: 1;
-    color: $color-interface-light-pure;
 
     ::after {
-      content: '';
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
+      align-items: center;
       background-color: $color-complementary-pure;
+      border-radius: 20px;
+      content: '';
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      left: 50%;
       position: absolute;
       top: 50%;
-      left: 50%;
       transform: translate(-50%, -50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 40px;
       z-index: -1;
     }
   }
 
   .ods-datepicker__selectedEnd {
+    color: $color-interface-light-pure;
     position: relative;
     z-index: 1;
-    color: $color-interface-light-pure;
 
     ::after {
-      content: '';
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
+      align-items: center;
       background-color: $color-complementary-pure;
+      border-radius: 20px;
+      content: '';
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      left: 50%;
       position: absolute;
       top: 50%;
-      left: 50%;
       transform: translate(-50%, -50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 40px;
       z-index: -1;
     }
   }
