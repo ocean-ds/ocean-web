@@ -38,7 +38,10 @@ export default function useDatePicker({
   locale,
 }: IDatePickerProps): IDatePickerReturn {
   const localeOption = locale || ptBr;
-  const localeDateFormat = localeOption?.formatLong?.date({ width: 'short' });
+  const localeDateFormat =
+    localeOption &&
+    localeOption.formatLong &&
+    localeOption.formatLong.date({ width: 'short' });
 
   const input1Ref = React.useRef<HTMLInputElement>(null);
   const input2Ref = React.useRef<HTMLInputElement>(null);
@@ -82,15 +85,15 @@ export default function useDatePicker({
     setShowDayPicker(true);
 
     if (values.from.length < localeDateFormat.length) {
-      input1Ref?.current?.focus();
+      if (input1Ref && input1Ref.current) input1Ref.current.focus();
     } else if (
       values.from.length === localeDateFormat.length &&
       values.to.length === localeDateFormat.length
     ) {
-      input1Ref?.current?.focus();
+      if (input1Ref && input1Ref.current) input1Ref.current.focus();
     } else {
       setIsSelectingLastDay(true);
-      input2Ref?.current?.focus();
+      if (input2Ref && input2Ref.current) input2Ref.current.focus();
     }
   };
 
@@ -124,7 +127,7 @@ export default function useDatePicker({
 
       if (dataFormatted.length === localeDateFormat.length) {
         setIsSelectingLastDay(true);
-        input2Ref?.current?.focus();
+        if (input2Ref && input2Ref.current) input2Ref.current.focus();
       }
     } else {
       setIsSelectingLastDay(true);
