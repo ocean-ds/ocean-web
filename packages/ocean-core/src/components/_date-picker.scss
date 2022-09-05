@@ -160,8 +160,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     background: linear-gradient(to right, $background-custom);
   }
 
-  .ods-datepicker__cell
-    .ods-datepicker__selectedStart.ods-datepicker__selectedEnd {
+  .ods-datepicker__selectedStart.ods-datepicker__selectedEnd {
     background: transparent;
   }
 
