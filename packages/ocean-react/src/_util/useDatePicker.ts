@@ -71,9 +71,13 @@ export default function useDatePicker({
     const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (isSelectingLastDay) {
-      setIsSelectingLastDay(false);
-      setShowDayPicker(false);
-      updateState({ from: values.from, to: formattedDay });
+      if (day < fromDate) {
+        updateState({ from: formattedDay, to: '' });
+      } else {
+        setIsSelectingLastDay(false);
+        setShowDayPicker(false);
+        updateState({ from: values.from, to: formattedDay });
+      }
     } else {
       setIsSelectingLastDay(true);
       updateState({ from: formattedDay, to: '' });
