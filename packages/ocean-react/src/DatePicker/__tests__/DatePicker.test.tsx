@@ -275,3 +275,28 @@ test('renders element with calendar open and english locale', async () => {
 
   expect(screen.getAllByPlaceholderText('mm/dd/yyyy')).toHaveLength(2);
 });
+
+test('renders element with calendar open and from day less than to day', async () => {
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/09/2022', to: '' }}
+      onSelect={() => null}
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const fromDay = screen.getByText('10');
+  const toDay = screen.getByText('9');
+
+  expect(fromDay).toBeInTheDocument();
+  expect(toDay).toBeInTheDocument();
+
+  expect(toDay.parentElement).toHaveClass('ods-datepicker__disabled');
+});
