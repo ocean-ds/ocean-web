@@ -1,7 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
+import ptBr from 'date-fns/locale/pt-BR';
+
 import DatePicker from '../DatePicker';
+
+import { format } from 'date-fns';
 
 import { enUS } from 'date-fns/locale';
 
@@ -130,11 +134,13 @@ test('renders element properly', () => {
 });
 
 test('renders element with calendar open', () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '10/08/2022', to: '11/08/2022' }}
-      onSelect={() => jest.fn()}
+      onSelect={onSelectMock}
     />
   );
 
@@ -144,11 +150,13 @@ test('renders element with calendar open', () => {
 });
 
 test('renders element with initial props', () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '10/08/2022', to: '11/08/2022' }}
-      onSelect={() => jest.fn()}
+      onSelect={onSelectMock}
       editable
       error
       helperText="error here!"
@@ -161,11 +169,13 @@ test('renders element with initial props', () => {
 });
 
 test('renders element with calendar open and select dates values', async () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
-      onSelect={() => null}
+      onSelect={onSelectMock}
     />
   );
 
@@ -195,11 +205,13 @@ test('renders element with calendar open and select dates values', async () => {
 });
 
 test('renders element with calendar open and select dates values with hover', async () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
-      onSelect={() => null}
+      onSelect={onSelectMock}
     />
   );
 
@@ -229,11 +241,13 @@ test('renders element with calendar open and select dates values with hover', as
 });
 
 test('renders element with calendar open and select dates values with input', async () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
-      onSelect={() => null}
+      onSelect={onSelectMock}
       editable
     />
   );
@@ -253,11 +267,13 @@ test('renders element with calendar open and select dates values with input', as
 });
 
 test('renders element with calendar open and english locale', async () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
-      onSelect={() => null}
+      onSelect={onSelectMock}
       editable
       locale={enUS}
     />
@@ -277,11 +293,13 @@ test('renders element with calendar open and english locale', async () => {
 });
 
 test('renders element with calendar open and from day less than to day', async () => {
+  const onSelectMock = jest.fn();
+
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '10/09/2022', to: '' }}
-      onSelect={() => null}
+      onSelect={onSelectMock}
       editable
     />
   );
@@ -299,4 +317,67 @@ test('renders element with calendar open and from day less than to day', async (
   expect(toDay).toBeInTheDocument();
 
   expect(toDay.parentElement).toHaveClass('ods-datepicker__disabled');
+});
+
+test('renders element with calendar open and today date', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/09/2022', to: '' }}
+      onSelect={onSelectMock}
+      startsToday
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const today = new Date().getDate();
+
+  const yesterday = new Date().getDate() - 1;
+
+  const fromDay = screen.getByText(today);
+  const beforeDay = screen.getByText(yesterday);
+
+  expect(fromDay).toBeInTheDocument();
+
+  expect(beforeDay.parentElement).toHaveClass('ods-datepicker__disabled');
+});
+
+test('onSelect call with correct values', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={onSelectMock}
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const today = new Date().getDate();
+
+  const fromDay = screen.getByText(today);
+
+  expect(fromDay).toBeInTheDocument();
+
+  fireEvent.click(fromDay);
+
+  expect(onSelectMock).toBeCalledWith({
+    from: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+    to: '',
+  });
 });

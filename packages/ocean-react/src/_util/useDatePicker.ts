@@ -56,12 +56,15 @@ export default function useDatePicker({
     if (values.from === '') setIsSelectingLastDay(false);
   }, [values.from]);
 
+  const updateState = (updateData: DatePicker.DatePickerFields) =>
+    onSelect(updateData);
+
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (!isSelectingLastDay || (values.from && day < fromDate)) return;
 
-    onSelect({ from: values.from, to: formattedDay });
+    updateState({ from: values.from, to: formattedDay });
   };
 
   const handleDayClick = (day: Date): void => {
@@ -69,15 +72,15 @@ export default function useDatePicker({
 
     if (isSelectingLastDay) {
       if (day < fromDate) {
-        onSelect({ from: formattedDay, to: '' });
+        updateState({ from: formattedDay, to: '' });
       } else {
         setIsSelectingLastDay(false);
         setShowDayPicker(false);
-        onSelect({ from: values.from, to: formattedDay });
+        updateState({ from: values.from, to: formattedDay });
       }
     } else {
       setIsSelectingLastDay(true);
-      onSelect({ from: formattedDay, to: '' });
+      updateState({ from: formattedDay, to: '' });
     }
   };
 
@@ -123,7 +126,7 @@ export default function useDatePicker({
 
     if (target.id === 'start-date') {
       setIsSelectingLastDay(false);
-      onSelect({ from: dataFormatted, to: '' });
+      updateState({ from: dataFormatted, to: '' });
 
       if (dataFormatted.length === localeDateFormat.length) {
         setIsSelectingLastDay(true);
@@ -131,7 +134,7 @@ export default function useDatePicker({
       }
     } else {
       setIsSelectingLastDay(true);
-      onSelect({ from: values.from, to: dataFormatted });
+      updateState({ from: values.from, to: dataFormatted });
 
       if (dataFormatted.length === localeDateFormat.length) {
         setTimeout(() => setShowDayPicker(false), 500);
