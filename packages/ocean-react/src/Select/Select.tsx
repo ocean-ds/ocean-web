@@ -89,7 +89,7 @@ const Select: React.FC<SelectProps> = ({
   // another child of the element has received focus as
   // the blur event fires prior to the new focus event.
   const onBlurHandler = () => {
-    timeOutId.current = window.setTimeout(() => {
+    timeOutId.current = window?.setTimeout(() => {
       setIsExpanded(false);
     });
   };
