@@ -70,7 +70,7 @@ test('renders element properly', () => {
                   Drop your files here or
                 </span>
                 <a
-                  class="ods-lnk ods-lnk--md"
+                  class="ods-lnk ods-lnk--md ods-lnk--primary"
                 >
                   select from computer
                 </a>
@@ -79,7 +79,7 @@ test('renders element properly', () => {
                 class="ods-file-uploader__title--mobile"
               >
                 <a
-                  class="ods-lnk ods-lnk--md"
+                  class="ods-lnk ods-lnk--md ods-lnk--primary"
                 >
                   Select one or more files
                 </a>
@@ -144,7 +144,7 @@ test('renders element properly in pt-br', () => {
                   Arraste e solte o arquivo aqui ou
                 </span>
                 <a
-                  class="ods-lnk ods-lnk--md"
+                  class="ods-lnk ods-lnk--md ods-lnk--primary"
                 >
                   selecione do computador
                 </a>
@@ -153,7 +153,7 @@ test('renders element properly in pt-br', () => {
                 class="ods-file-uploader__title--mobile"
               >
                 <a
-                  class="ods-lnk ods-lnk--md"
+                  class="ods-lnk ods-lnk--md ods-lnk--primary"
                 >
                   Selecione um ou mais arquivos
                 </a>
