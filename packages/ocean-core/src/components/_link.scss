@@ -1,13 +1,24 @@
 .ods-lnk {
-  color: $color-brand-primary-pure;
   cursor: pointer;
   font-family: $font-family-base;
   font-weight: $font-weight-medium;
   line-height: $line-height-tight;
 
-  &:hover {
-    color: $color-brand-primary-down;
-    text-decoration: underline;
+  &--sm {
+    font-size: $font-size-xxs;
+  }
+
+  &--md {
+    font-size: $font-size-xs;
+  }
+
+  &--primary {
+    color: $color-brand-primary-pure;
+
+    &:hover {
+      color: $color-brand-primary-down;
+      text-decoration: underline;
+    }
   }
 
   &--inverse {
@@ -18,11 +29,11 @@
     }
   }
 
-  &--sm {
-    font-size: $font-size-xxs;
-  }
+  &--neutral {
+    color: $color-interface-dark-down;
 
-  &--md {
-    font-size: $font-size-xs;
+    &:hover {
+      color: $color-brand-primary-down;
+    }
   }
 }

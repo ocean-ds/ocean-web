@@ -15,14 +15,14 @@ import Link from '../Link';
       },
       control: { type: null },
     },
-    inverse: {
-      name: 'inverse',
-      description: 'Use the inverse link on dark backgrounds.',
+    variant: {
+      name: 'variant',
+      description: 'The variant color.',
       table: {
         type: {
-          summary: 'true | false',
+          summary: '"primary" | "inverse" | "neutral"',
         },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'primary' },
       },
       control: {
         type: null,
@@ -70,11 +70,13 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class      | Description                            |
-| ----------------- | -------------------------------------- |
-| .ods-lnk          | Styles applied to the root element.    |
-| .ods-lnk--inverse | Use the inverse a on dark backgrounds. |
-| .ods-lnk--[sm,md] | Specifies the font size of the link.   |
+| Global class      | Description                          |
+| ----------------- | ------------------------------------ |
+| .ods-lnk          | Styles applied to the root element.  |
+| .ods-lnk--primary | Sets styles of the link.             |
+| .ods-lnk--inverse | Sets styles of the inverse link.     |
+| .ods-lnk--neutral | Sets styles of the neutral link.     |
+| .ods-lnk--[sm,md] | Specifies the font size of the link. |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Link/Link.tsx) for more detail.
 
@@ -85,7 +87,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
     name="playground"
     args={{
       children: 'My Link',
-      inverse: false,
       size: 'md',
     }}
     argTypes={{
@@ -93,9 +94,10 @@ If that's not sufficient, you can check the [implementation of the component](ht
         name: 'children',
         control: 'text',
       },
-      inverse: {
-        name: 'inverse',
-        control: 'boolean',
+      variant: {
+        name: 'variant',
+        options: ['primary', 'inverse', 'neutral'],
+        control: { type: 'select' },
       },
       size: {
         name: 'size',

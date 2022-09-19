@@ -13,7 +13,7 @@ test('renders element properly', () => {
 
   expect(screen.getByTestId('lnk-test')).toMatchInlineSnapshot(`
     <a
-      class="ods-lnk ods-lnk--md custom-class"
+      class="ods-lnk ods-lnk--md ods-lnk--primary custom-class"
       data-testid="lnk-test"
     >
       Click here!
@@ -22,7 +22,7 @@ test('renders element properly', () => {
 });
 
 test('renders an inverse link', () => {
-  render(<Link data-testid="lnk-test" inverse />);
+  render(<Link data-testid="lnk-test" variant="inverse" />);
   expect(screen.getByTestId('lnk-test')).toHaveClass('ods-lnk--inverse');
 });
 
@@ -37,7 +37,7 @@ test('renders a link with router', () => {
 
   expect(screen.getByTestId('lnk-test')).toMatchInlineSnapshot(`
     <a
-      class="ods-lnk ods-lnk--md"
+      class="ods-lnk ods-lnk--md ods-lnk--primary"
       data-testid="lnk-test"
       href="/teste/1234"
     >

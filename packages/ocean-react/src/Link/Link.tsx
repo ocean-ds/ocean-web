@@ -16,7 +16,7 @@ export type LinkProps<P extends React.ElementType = 'a'> = {
      * Use the inverse link on dark backgrounds.
      * @default 'false'
      */
-    inverse?: boolean;
+    variant?: 'primary' | 'inverse' | 'neutral';
     /**
      * The size of the link.
      * @default 'md'
@@ -29,7 +29,7 @@ function LinkBase<T extends React.ElementType = 'a'>(
   {
     children,
     className,
-    inverse,
+    variant = 'primary',
     size = 'md',
     component,
     ...rest
@@ -43,7 +43,7 @@ function LinkBase<T extends React.ElementType = 'a'>(
       className: classNames(
         'ods-lnk',
         `ods-lnk--${size}`,
-        inverse && 'ods-lnk--inverse',
+        `ods-lnk--${variant}`,
         className
       ),
       ...rest,
