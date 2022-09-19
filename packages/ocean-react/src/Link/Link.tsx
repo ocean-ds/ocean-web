@@ -13,8 +13,8 @@ export type LinkProps<P extends React.ElementType = 'a'> = {
   P,
   {
     /**
-     * Use the inverse link on dark backgrounds.
-     * @default 'false'
+     * The variant color.
+     * @default 'primary'
      */
     variant?: 'primary' | 'inverse' | 'neutral';
     /**
