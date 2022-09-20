@@ -1,57 +1,45 @@
-import React from 'react';
+import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
 import classNames from 'classnames';
 
-import { MergeElementProps } from '../_util/type';
+import LinkIcons from './LinkIcons';
 
-export type LinkProps<P extends React.ElementType = 'a'> = {
+export type LinkProps = {
   /**
-   * The component used for the root node. Either a string to use a HTML element or a component.
-   * @default 'a'
+   * The variant color.
+   * @default 'primary'
    */
-  component?: P;
-} & MergeElementProps<
-  P,
-  {
-    /**
-     * The variant color.
-     * @default 'primary'
-     */
-    variant?: 'primary' | 'inverse' | 'neutral';
-    /**
-     * The size of the link.
-     * @default 'md'
-     */
-    size?: 'sm' | 'md';
-  }
->;
+  variant?: 'primary' | 'inverse' | 'neutral';
+  /**
+   * The size of the link.
+   * @default 'md'
+   */
+  size?: 'sm' | 'md';
+  /**
+   * Sets a custon icon for the Link.
+   * @default ' '
+   */
+  icon?: 'linkArrow' | 'externalLink';
+} & ComponentPropsWithoutRef<'a'>;
 
-function LinkBase<T extends React.ElementType = 'a'>(
-  {
-    children,
-    className,
-    variant = 'primary',
-    size = 'md',
-    component,
-    ...rest
-  }: LinkProps<T>,
-  ref: React.Ref<HTMLLinkElement>
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
+  { children, className, variant = 'primary', size = 'md', icon, ...rest },
+  ref
 ) {
-  return React.createElement(
-    component || 'a',
-    {
-      ref,
-      className: classNames(
-        'ods-lnk',
-        `ods-lnk--${size}`,
-        `ods-lnk--${variant}`,
+  return (
+    <a
+      ref={ref}
+      className={classNames(
+        'ods-link',
+        `ods-link--${size}`,
+        `ods-link--${variant}`,
         className
-      ),
-      ...rest,
-    },
-    children
+      )}
+      {...rest}
+    >
+      <div className="ods-link__content">{children}</div>
+      <LinkIcons icon={icon} />
+    </a>
   );
-}
-
-const Link = React.forwardRef(LinkBase) as unknown as typeof LinkBase;
+});
 
 export default Link;

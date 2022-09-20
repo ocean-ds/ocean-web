@@ -5,16 +5,6 @@ import Link from '../Link';
   title="Components/Link"
   component={Link}
   argTypes={{
-    component: {
-      name: 'component',
-      description:
-        'The component used for the root node. Either a string to use a HTML element or a component.',
-      table: {
-        type: { summary: 'elementType' },
-        defaultValue: { summary: 'a' },
-      },
-      control: { type: null },
-    },
     variant: {
       name: 'variant',
       description: 'The variant color.',
@@ -36,6 +26,17 @@ import Link from '../Link';
           summary: '"sm" | "md"',
         },
         defaultValue: { summary: 'md' },
+      },
+      control: { type: null },
+    },
+    icon: {
+      name: 'icon',
+      description: 'A optional link icon.',
+      table: {
+        type: {
+          summary: '"linkArrow", "externalLink", ""',
+        },
+        defaultValue: { summary: '' },
       },
       control: { type: null },
     },
@@ -70,13 +71,15 @@ Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-| Global class      | Description                          |
-| ----------------- | ------------------------------------ |
-| .ods-lnk          | Styles applied to the root element.  |
-| .ods-lnk--primary | Sets styles of the link.             |
-| .ods-lnk--inverse | Sets styles of the inverse link.     |
-| .ods-lnk--neutral | Sets styles of the neutral link.     |
-| .ods-lnk--[sm,md] | Specifies the font size of the link. |
+| Global class         | Description                             |
+| -------------------- | --------------------------------------- |
+| .ods-lnk             | Styles applied to the root element.     |
+| .ods-link\_\_content | Styles applied to the children element. |
+| .ods-link\_\_icon    | Styles applied to the icon.             |
+| .ods-lnk--primary    | Sets styles of the link.                |
+| .ods-lnk--inverse    | Sets styles of the inverse link.        |
+| .ods-lnk--neutral    | Sets styles of the neutral link.        |
+| .ods-lnk--[sm,md]    | Specifies the font size of the link.    |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Link/Link.tsx) for more detail.
 
@@ -102,6 +105,11 @@ If that's not sufficient, you can check the [implementation of the component](ht
       size: {
         name: 'size',
         options: ['sm', 'md'],
+        control: { type: 'select' },
+      },
+      icon: {
+        name: 'icon',
+        options: [' ', 'linkArrow', 'externalLink'],
         control: { type: 'select' },
       },
     }}

@@ -1,7 +1,10 @@
-.ods-lnk {
+.ods-link {
+  align-items: center;
   cursor: pointer;
+  display: flex;
   font-family: $font-family-base;
   font-weight: $font-weight-medium;
+  justify-content: center;
   line-height: $line-height-tight;
 
   &--sm {
@@ -26,6 +29,7 @@
 
     &:hover {
       color: $color-complementary-up;
+      text-decoration: underline;
     }
   }
 
@@ -34,6 +38,11 @@
 
     &:hover {
       color: $color-brand-primary-down;
+      text-decoration: underline;
     }
+  }
+
+  &__content {
+    margin-right: $spacing-inline-xxxs;
   }
 }
