@@ -70,18 +70,26 @@ test('renders element properly', () => {
                   Drop your files here or
                 </span>
                 <a
-                  class="ods-lnk ods-lnk--md ods-lnk--primary"
+                  class="ods-link ods-link--md ods-link--primary"
                 >
-                  select from computer
+                  <div
+                    class="ods-link__content"
+                  >
+                    select from computer
+                  </div>
                 </a>
               </div>
               <div
                 class="ods-file-uploader__title--mobile"
               >
                 <a
-                  class="ods-lnk ods-lnk--md ods-lnk--primary"
+                  class="ods-link ods-link--md ods-link--primary"
                 >
-                  Select one or more files
+                  <div
+                    class="ods-link__content"
+                  >
+                    Select one or more files
+                  </div>
                 </a>
               </div>
               <div
@@ -144,18 +152,26 @@ test('renders element properly in pt-br', () => {
                   Arraste e solte o arquivo aqui ou
                 </span>
                 <a
-                  class="ods-lnk ods-lnk--md ods-lnk--primary"
+                  class="ods-link ods-link--md ods-link--primary"
                 >
-                  selecione do computador
+                  <div
+                    class="ods-link__content"
+                  >
+                    selecione do computador
+                  </div>
                 </a>
               </div>
               <div
                 class="ods-file-uploader__title--mobile"
               >
                 <a
-                  class="ods-lnk ods-lnk--md ods-lnk--primary"
+                  class="ods-link ods-link--md ods-link--primary"
                 >
-                  Selecione um ou mais arquivos
+                  <div
+                    class="ods-link__content"
+                  >
+                    Selecione um ou mais arquivos
+                  </div>
                 </a>
               </div>
               <div
