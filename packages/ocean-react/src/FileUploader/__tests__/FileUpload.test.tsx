@@ -44,6 +44,13 @@ test('renders element properly', () => {
       class="ods-form-control__root"
     >
       <div
+        class="ods-form-control__header"
+      >
+        <div
+          class="ods-form-control__label"
+        />
+      </div>
+      <div
         class="ods-form-control__element"
       >
         <div
@@ -125,6 +132,13 @@ test('renders element properly in pt-br', () => {
     <div
       class="ods-form-control__root"
     >
+      <div
+        class="ods-form-control__header"
+      >
+        <div
+          class="ods-form-control__label"
+        />
+      </div>
       <div
         class="ods-form-control__element"
       >
