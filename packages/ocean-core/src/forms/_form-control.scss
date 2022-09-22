@@ -7,9 +7,9 @@
   }
 
   &__header {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     text-align: center;
   }
 
@@ -18,10 +18,10 @@
   }
 
   &__icon {
+    align-items: start;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
   }
 
   &__helper-text {
