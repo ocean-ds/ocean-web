@@ -10,14 +10,39 @@ export type InputProps = {
    * @default 'text'
    */
   type?: 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url';
-
+  /**
+   * Input label string.
+   */
+  label?: string;
+  /**
+   *  Input helper text.
+   */
+  helperText?: string;
+  /**
+   * Sets the input styles to error.
+   */
+  error?: boolean;
+  /**
+   * Sets the input styles to disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Sets a custon adornment to be iside of the `input` element.
+   */
+  /**
+   * Specifies the default value of the text field
+   */
+  defaultValue?: string;
+  /**
+   * Defines the tooltip property and text.
+   */
+  tooltipMessage?: string;
   /**
    *
    */
   position?: 'right' | 'left';
-
   /**
-   * Sets a custon adornment to be iside of the `input` element.
+   *
    */
   adornment?: React.ReactElement;
 } & Omit<FormControlProps, 'children'> &
@@ -26,17 +51,18 @@ export type InputProps = {
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   {
     type,
-    className,
     label,
     helperText,
     error,
-    id,
     disabled,
+    defaultValue,
+    tooltipMessage,
+    position,
+    adornment,
+    className,
+    id,
     onChange,
     value,
-    adornment,
-    defaultValue,
-    position,
     ...rest
   },
   ref
@@ -50,6 +76,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   return (
     <FormControl
       label={label}
+      tooltipMessage={tooltipMessage}
       htmlFor={id}
       helperText={helperText}
       error={error}
