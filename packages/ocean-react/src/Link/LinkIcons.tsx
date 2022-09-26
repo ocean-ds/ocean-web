@@ -20,6 +20,7 @@ const LinkIcons = React.memo<LinkIconProps>(function LinkIcons({ icon }) {
         className="ods-link__icon"
         aria-hidden
         focusable={false}
+        data-testid="link-icon"
       />
     );
   }
