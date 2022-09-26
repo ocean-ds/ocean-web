@@ -8,12 +8,14 @@ describe('renders the LinkIcons component with both icons', () => {
     render(<LinkIcons icon="linkArrow" />);
 
     expect(screen.queryByTestId('link-icon')).toBeInTheDocument();
+    expect(screen.queryByTestId('link-icon')).toHaveClass('ods-link__icon');
   });
 
   test('rshould render the LinkIcons component with externalLink icon', () => {
     render(<LinkIcons icon="externalLink" />);
 
     expect(screen.queryByTestId('link-icon')).toBeInTheDocument();
+    expect(screen.queryByTestId('link-icon')).toHaveClass('ods-link__icon');
   });
 });
 
