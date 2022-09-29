@@ -73,12 +73,12 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
   .ods-datepicker__caption {
     align-items: center;
+    color: $color-interface-dark-deep;
     display: flex;
-    justify-content: center;
     height: 40px;
+    justify-content: center;
     margin: 16px 8px;
     position: relative;
-    color: $color-interface-dark-deep;
 
     h2 {
       font-family: $font-family-highlight;
@@ -99,7 +99,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     font-size: 6px;
     outline: 0;
     position: absolute;
-    top: 0px;
+    top: 0;
   }
 
   .ods-datepicker__navButtonPrev {
