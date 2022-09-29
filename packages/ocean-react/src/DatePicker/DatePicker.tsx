@@ -1,15 +1,23 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import * as DateFns from 'date-fns';
+import { Locale, format } from 'date-fns';
 
-import * as Picker from 'react-day-picker';
-
-import * as OceanIcons from '@useblu/ocean-icons-react';
+import { DayPicker } from 'react-day-picker';
 
 import Input from '../Input';
 
+import IconButton from '../IconButton';
+
 import useDatePicker from '../_util/useDatePicker';
+
+import { CaptionProps, useNavigation } from 'react-day-picker';
+
+import {
+  CalendarOutline,
+  ChevronLeft,
+  ChevronRight,
+} from '@useblu/ocean-icons-react';
 
 export type DatePickerFields = {
   from: string;
@@ -68,7 +76,7 @@ export type DatePickerProps = {
    * Object locale of date-fns locale package (internationalize)
    * @default ptBr
    */
-  locale?: DateFns.Locale;
+  locale?: Locale;
 
   /**
    * ClassName to overwrite default style
@@ -111,6 +119,38 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       getInputPlaceholder,
     } = useDatePicker({ values, onSelect, startsToday, locale });
 
+    const DatePickerHeader = (props: CaptionProps) => {
+      const { goToMonth, nextMonth, previousMonth } = useNavigation();
+
+      return (
+        <div className="ods-datepicker__caption">
+          <IconButton
+            className={classNames(
+              'ods-datepicker__navButtons',
+              'ods-datepicker__navButtonPrev'
+            )}
+            disabled={!previousMonth}
+            onClick={() => previousMonth && goToMonth(previousMonth)}
+          >
+            <ChevronLeft size={20} />
+          </IconButton>
+          <h2>
+            {format(props.displayMonth, 'MMMM', { locale: localeOption })}
+          </h2>
+          <IconButton
+            className={classNames(
+              'ods-datepicker__navButtons',
+              'ods-datepicker__navButtonNext'
+            )}
+            disabled={!nextMonth}
+            onClick={() => nextMonth && goToMonth(nextMonth)}
+          >
+            <ChevronRight size={20} />
+          </IconButton>
+        </div>
+      );
+    };
+
     return (
       <div
         className={classNames('ods-datepicker', className)}
@@ -130,11 +170,12 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               className="date-field"
               name="start-date"
               value={values.from}
-              onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
               placeholder={getInputPlaceholder()}
               adornment={
-                <OceanIcons.CalendarOutline size={20} stroke="#B6B9CC" />
+                <IconButton size="sm" onClick={createHandleToggleClick}>
+                  <CalendarOutline size={20} stroke="#B6B9CC" />
+                </IconButton>
               }
               autoComplete="off"
               readOnly={!editable}
@@ -157,11 +198,12 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               className="date-field"
               name="end-date"
               value={values.to}
-              onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
               placeholder={getInputPlaceholder()}
               adornment={
-                <OceanIcons.CalendarOutline size={20} stroke="#B6B9CC" />
+                <IconButton size="sm" onClick={createHandleToggleClick}>
+                  <CalendarOutline size={20} stroke="#B6B9CC" />
+                </IconButton>
               }
               autoComplete="off"
               readOnly={!editable}
@@ -174,7 +216,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 
           {!disabled && showDayPicker && (
             <div data-testid="datepicker-calendar">
-              <Picker.DayPicker
+              <DayPicker
                 mode="range"
                 locale={localeOption}
                 weekStartsOn={0}
@@ -185,6 +227,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 formatters={{ formatDay, formatWeekNumber }}
                 selected={selectedDays}
                 disabled={disabledDays}
+                components={{
+                  Caption: DatePickerHeader,
+                }}
               />
             </div>
           )}

@@ -53,6 +53,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   .ods-datepicker__calendar {
+    border: 1px solid $color-interface-light-down;
     border-radius: $border-radius-md;
     box-shadow: $shadow-level-2;
     margin: 0;
@@ -97,7 +98,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     font-size: 6px;
     outline: 0;
     position: absolute;
-    top: 13px;
+    top: 0px;
   }
 
   .ods-datepicker__navButtonPrev {
