@@ -92,18 +92,16 @@ export default function useDatePicker({
   const createHandleToggleClick = () => {
     setShowDayPicker(!showDayPicker);
 
-    if (showDayPicker) {
-      if (values.from.length < localeDateFormat.length) {
-        if (input1Ref && input1Ref.current) input1Ref.current.focus();
-      } else if (
-        values.from.length === localeDateFormat.length &&
-        values.to.length === localeDateFormat.length
-      ) {
-        if (input1Ref && input1Ref.current) input1Ref.current.focus();
-      } else {
-        setIsSelectingLastDay(true);
-        if (input2Ref && input2Ref.current) input2Ref.current.focus();
-      }
+    if (values.from.length < localeDateFormat.length) {
+      if (input1Ref && input1Ref.current) input1Ref.current.focus();
+    } else if (
+      values.from.length === localeDateFormat.length &&
+      values.to.length === localeDateFormat.length
+    ) {
+      if (input1Ref && input1Ref.current) input1Ref.current.focus();
+    } else {
+      setIsSelectingLastDay(true);
+      if (input2Ref && input2Ref.current) input2Ref.current.focus();
     }
   };
 

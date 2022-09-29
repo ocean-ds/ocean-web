@@ -323,6 +323,45 @@ test('renders element with calendar open and today date', async () => {
   expect(beforeDay.parentElement).toHaveClass('ods-datepicker__disabled');
 });
 
+test('renders previous and next calendar button', () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/09/2022', to: '' }}
+      onSelect={onSelectMock}
+      startsToday
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const oldMonth = screen.getByTestId('calendar-caption-month');
+  const prevButton = screen.getByTestId('calendar-left-arrow');
+  const nextButton = screen.getByTestId('calendar-right-arrow');
+
+  expect(oldMonth).toBeInTheDocument();
+  expect(prevButton).toBeInTheDocument();
+  expect(nextButton).toBeInTheDocument();
+
+  fireEvent.click(nextButton);
+
+  const newMonth = screen.getByTestId('calendar-caption-month');
+
+  const t1 = oldMonth.textContent;
+  const t2 = newMonth.textContent;
+
+  fireEvent.click(prevButton);
+
+  expect(t1).toBe(t2);
+});
+
 test('onSelect call with correct values', async () => {
   const onSelectMock = jest.fn();
 

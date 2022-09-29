@@ -125,6 +125,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       return (
         <div className="ods-datepicker__caption">
           <IconButton
+            data-testid="calendar-left-arrow"
             size="sm"
             className={classNames(
               'ods-datepicker__navButtons',
@@ -135,10 +136,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           >
             <ChevronLeft size={20} />
           </IconButton>
-          <h2>
+          <h2 data-testid="calendar-caption-month">
             {format(props.displayMonth, 'MMMM', { locale: localeOption })}
           </h2>
           <IconButton
+            data-testid="calendar-right-arrow"
             size="sm"
             className={classNames(
               'ods-datepicker__navButtons',
