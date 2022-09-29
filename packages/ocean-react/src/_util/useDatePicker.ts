@@ -61,9 +61,9 @@ export default function useDatePicker({
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
-    if (!isSelectingLastDay || (values.from && day < fromDate)) return;
-
-    updateState({ from: values.from, to: formattedDay });
+    isSelectingLastDay &&
+      !(values.from && day < fromDate) &&
+      updateState({ from: values.from, to: formattedDay });
   };
 
   const handleDayClick = (day: Date): void => {
@@ -190,7 +190,6 @@ export default function useDatePicker({
     createHandleToggleClick,
     disabledDays,
     formatDay,
-    // formatWeekNumber,
     getInputPlaceholder,
   };
 }

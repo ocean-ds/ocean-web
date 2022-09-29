@@ -433,3 +433,44 @@ test('onSelect call with correct values', async () => {
     to: '',
   });
 });
+
+test('onSelect call with to date less than from date', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{
+        from: `${format(
+          new Date(),
+          ptBr?.formatLong?.date({ width: 'short' })
+        )}`,
+        to: '',
+      }}
+      onSelect={onSelectMock}
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const yesterday = new Date().getDate() - 1;
+
+  const toDay = screen.getByText(yesterday);
+
+  expect(toDay).toBeInTheDocument();
+
+  fireEvent.click(toDay);
+
+  expect(onSelectMock).toBeCalledWith({
+    from: `${format(
+      new Date().setDate(new Date().getDate() - 1),
+      ptBr?.formatLong?.date({ width: 'short' })
+    )}`,
+    to: '',
+  });
+});
