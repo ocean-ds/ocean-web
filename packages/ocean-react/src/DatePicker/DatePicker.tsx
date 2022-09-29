@@ -113,7 +113,6 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       createHandleToggleClick,
       disabledDays,
       formatDay,
-      formatWeekNumber,
       getInputPlaceholder,
     } = useDatePicker({ values, onSelect, startsToday, locale });
 
@@ -220,7 +219,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 className={className}
                 onDayClick={(day: Date) => handleDayClick(day)}
                 onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
-                formatters={{ formatDay, formatWeekNumber }}
+                formatters={{ formatDay }}
                 selected={selectedDays}
                 disabled={disabledDays}
                 components={{

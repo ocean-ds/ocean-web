@@ -5,12 +5,7 @@ import * as DatePicker from '../DatePicker/DatePicker';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import {
-  DateRange,
-  ClassNames,
-  DateFormatter,
-  WeekNumberFormatter,
-} from 'react-day-picker';
+import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
 
 type IDatePickerProps = Pick<
   DatePicker.DatePickerProps,
@@ -32,7 +27,6 @@ type IDatePickerReturn = {
   createHandleToggleClick: () => void;
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
-  formatWeekNumber: WeekNumberFormatter;
   getInputPlaceholder: () => string;
 };
 
@@ -178,9 +172,6 @@ export default function useDatePicker({
 
   const formatDay: DateFormatter = (day) => DateFns.format(day, 'd');
 
-  const formatWeekNumber: WeekNumberFormatter = (weekNumber) =>
-    weekNumber.toLocaleString(localeOption.code);
-
   const getInputPlaceholder = (): string =>
     localeOption.code === 'pt-BR' ? 'dd/mm/aaaa' : 'mm/dd/yyyy';
 
@@ -199,7 +190,7 @@ export default function useDatePicker({
     createHandleToggleClick,
     disabledDays,
     formatDay,
-    formatWeekNumber,
+    // formatWeekNumber,
     getInputPlaceholder,
   };
 }
