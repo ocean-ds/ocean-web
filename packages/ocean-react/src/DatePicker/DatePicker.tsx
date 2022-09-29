@@ -125,6 +125,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       return (
         <div className="ods-datepicker__caption">
           <IconButton
+            size="sm"
             className={classNames(
               'ods-datepicker__navButtons',
               'ods-datepicker__navButtonPrev'
@@ -138,6 +139,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             {format(props.displayMonth, 'MMMM', { locale: localeOption })}
           </h2>
           <IconButton
+            size="sm"
             className={classNames(
               'ods-datepicker__navButtons',
               'ods-datepicker__navButtonNext'
@@ -170,13 +172,10 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               className="date-field"
               name="start-date"
               value={values.from}
+              onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
               placeholder={getInputPlaceholder()}
-              adornment={
-                <IconButton size="sm" onClick={createHandleToggleClick}>
-                  <CalendarOutline size={20} stroke="#B6B9CC" />
-                </IconButton>
-              }
+              adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
               autoComplete="off"
               readOnly={!editable}
               disabled={disabled}
@@ -198,13 +197,10 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               className="date-field"
               name="end-date"
               value={values.to}
+              onClick={createHandleToggleClick}
               onChange={(editable && inputChange) || undefined}
               placeholder={getInputPlaceholder()}
-              adornment={
-                <IconButton size="sm" onClick={createHandleToggleClick}>
-                  <CalendarOutline size={20} stroke="#B6B9CC" />
-                </IconButton>
-              }
+              adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
               autoComplete="off"
               readOnly={!editable}
               disabled={disabled}
