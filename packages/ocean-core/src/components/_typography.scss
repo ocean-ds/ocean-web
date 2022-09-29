@@ -79,7 +79,10 @@
   }
 
   &__caption {
-    @include texts;
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
     font-size: $font-size-xxxs;
   }
 
