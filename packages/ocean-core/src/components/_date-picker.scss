@@ -98,8 +98,13 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     cursor: pointer;
     font-size: 6px;
     outline: 0;
+    padding: 0;
     position: absolute;
     top: 0;
+
+    &:hover {
+      background: $color-interface-light-up;
+    }
   }
 
   .ods-datepicker__navButtonPrev {
