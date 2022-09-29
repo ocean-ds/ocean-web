@@ -3,15 +3,13 @@ import classNames from 'classnames';
 
 import { Locale, format } from 'date-fns';
 
-import { DayPicker } from 'react-day-picker';
-
 import Input from '../Input';
 
 import IconButton from '../IconButton';
 
 import useDatePicker from '../_util/useDatePicker';
 
-import { CaptionProps, useNavigation } from 'react-day-picker';
+import { DayPicker, CaptionProps, useNavigation } from 'react-day-picker';
 
 import {
   CalendarOutline,
