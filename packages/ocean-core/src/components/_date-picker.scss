@@ -53,8 +53,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   .ods-datepicker__calendar {
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: $border-radius-md;
     box-shadow: $shadow-level-2;
     margin: 0;
     padding: 0 0 $spacing-inline-xs;
