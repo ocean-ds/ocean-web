@@ -1,11 +1,16 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 
-import * as DP from 'react-day-picker';
-
 import * as DatePicker from '../DatePicker/DatePicker';
 
 import ptBr from 'date-fns/locale/pt-BR';
+
+import {
+  DateRange,
+  ClassNames,
+  DateFormatter,
+  WeekNumberFormatter,
+} from 'react-day-picker';
 
 type IDatePickerProps = Pick<
   DatePicker.DatePickerProps,
@@ -18,16 +23,16 @@ type IDatePickerReturn = {
   showDayPicker: boolean;
   fromDate: Date;
   toDate: Date;
-  selectedDays: DP.DateRange;
-  CustomStyles: DP.ClassNames;
+  selectedDays: DateRange;
+  CustomStyles: ClassNames;
   localeOption: DateFns.Locale;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: () => void;
   disabledDays: (day: Date) => boolean;
-  formatDay: DP.DateFormatter;
-  formatWeekNumber: DP.WeekNumberFormatter;
+  formatDay: DateFormatter;
+  formatWeekNumber: WeekNumberFormatter;
   getInputPlaceholder: () => string;
 };
 
@@ -144,7 +149,7 @@ export default function useDatePicker({
     }
   };
 
-  const CustomStyles: DP.ClassNames = {
+  const CustomStyles: ClassNames = {
     root: 'ods-datepicker__calendar',
     caption: 'ods-datepicker__caption',
     nav_button: 'ods-datepicker__navButtons',
@@ -166,14 +171,14 @@ export default function useDatePicker({
     day_range_middle: 'ods-datepicker__selectedMiddle',
   };
 
-  const selectedDays: DP.DateRange = {
+  const selectedDays: DateRange = {
     from: fromDate,
     to: toDate,
   };
 
-  const formatDay: DP.DateFormatter = (day) => DateFns.format(day, 'd');
+  const formatDay: DateFormatter = (day) => DateFns.format(day, 'd');
 
-  const formatWeekNumber: DP.WeekNumberFormatter = (weekNumber) =>
+  const formatWeekNumber: WeekNumberFormatter = (weekNumber) =>
     weekNumber.toLocaleString(localeOption.code);
 
   const getInputPlaceholder = (): string =>
