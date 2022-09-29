@@ -116,12 +116,15 @@ export default function useDatePicker({
 
   const dateMask = (value: string) => {
     const v = value.replace(/\D/g, '').slice(0, 10);
-    if (v.length >= 5) {
-      return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
-    } else if (v.length >= 3) {
-      return `${v.slice(0, 2)}/${v.slice(2)}`;
-    }
+
+    if (v.length >= 5) return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
+    if (v.length >= 3) return `${v.slice(0, 2)}/${v.slice(2)}`;
+
     return v;
+  };
+
+  const closeCalendarDelay = () => {
+    setTimeout(() => setShowDayPicker(false), 500);
   };
 
   const inputChange = ({
@@ -141,9 +144,8 @@ export default function useDatePicker({
       setIsSelectingLastDay(true);
       updateState({ from: values.from, to: dataFormatted });
 
-      if (dataFormatted.length === localeDateFormat.length) {
-        setTimeout(() => setShowDayPicker(false), 500);
-      }
+      if (dataFormatted.length === localeDateFormat.length)
+        closeCalendarDelay();
     }
   };
 
