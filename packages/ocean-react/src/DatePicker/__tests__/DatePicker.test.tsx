@@ -362,6 +362,46 @@ test('renders previous and next calendar button', () => {
   expect(t1).toBe(t2);
 });
 
+test('renders correct date with correct mask value', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/08', to: '' }}
+      onSelect={onSelectMock}
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  fireEvent.change(input1, { target: { value: '10' } });
+
+  expect(onSelectMock).toBeCalledWith({
+    from: '10',
+    to: '',
+  });
+
+  fireEvent.change(input1, { target: { value: '1008' } });
+
+  expect(onSelectMock).toBeCalledWith({
+    from: '10/08',
+    to: '',
+  });
+
+  fireEvent.change(input1, { target: { value: '10082' } });
+
+  expect(onSelectMock).toBeCalledWith({
+    from: '10/08/2',
+    to: '',
+  });
+});
+
 test('onSelect call with correct values', async () => {
   const onSelectMock = jest.fn();
 
