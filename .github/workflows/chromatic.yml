@@ -7,7 +7,7 @@ on:
 
 jobs:
   chromatic-deployment:
-    if: ${{ github.actor != 'dependabot' && (github.secret_source != 'push' || github.event_name == 'pull_request_target') }}
+    if: ${{ github.secret_source != 'push' || github.event_name == 'pull_request_target' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,16 +47,18 @@ jobs:
         run: yarn build
 
       - name: Publish to Chromatic
-        if: ${{ github.actor != 'dependabot' && github.ref != 'refs/heads/master' }}
+        if: ${{ github.ref != 'refs/heads/master' }}
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          ignoreLastBuildOnBranch: dependabot/**
 
       - name: Publish to Chromatic and auto accept changes
-        if: ${{ github.actor != 'dependabot' && github.ref == 'refs/heads/master' }}
+        if: ${{github.ref == 'refs/heads/master' }}
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           autoAcceptChanges: true
+          ignoreLastBuildOnBranch: dependabot/**
