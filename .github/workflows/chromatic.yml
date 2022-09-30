@@ -47,14 +47,14 @@ jobs:
         run: yarn build
 
       - name: Publish to Chromatic
-        if: github.ref != 'refs/heads/master'
+        if: ${{ github.actor != 'dependabot' && github.ref != 'refs/heads/master' }}
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
       - name: Publish to Chromatic and auto accept changes
-        if: github.ref == 'refs/heads/master'
+        if: ${{ github.actor != 'dependabot' && github.ref == 'refs/heads/master' }}
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
