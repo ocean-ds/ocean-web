@@ -1,6 +1,7 @@
 name: Chromatic
 
 on:
+  push:
   pull_request_target:
     types: [opened, synchronize, reopened]
 
