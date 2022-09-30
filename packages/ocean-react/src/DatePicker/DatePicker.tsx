@@ -134,7 +134,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             <ChevronLeft size={20} />
           </IconButton>
           <h2 data-testid="calendar-caption-month">
-            {format(props.displayMonth, 'MMMM', { locale: localeOption })}
+            {format(props.displayMonth, 'MMMM yyyy', { locale: localeOption })}
           </h2>
           <IconButton
             data-testid="calendar-right-arrow"
