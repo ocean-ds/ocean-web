@@ -4,8 +4,8 @@ import { render, screen } from '@testing-library/react';
 import LinkIcons from '../LinkIcons';
 
 describe('renders the LinkIcons component with both icons', () => {
-  test('should render the LinkIcons component with linkArrow icon', () => {
-    render(<LinkIcons icon="linkArrow" />);
+  test('should render the LinkIcons component with LinkChevron icon', () => {
+    render(<LinkIcons icon="LinkChevron" />);
 
     expect(screen.queryByTestId('link-icon')).toBeInTheDocument();
     expect(screen.queryByTestId('link-icon')).toHaveClass('ods-link__icon');

@@ -18,7 +18,7 @@ export type LinkProps = {
    * Sets a custon icon for the Link.
    * @default ' '
    */
-  icon?: 'linkArrow' | 'externalLink';
+  icon?: 'LinkChevron' | 'externalLink';
 } & ComponentPropsWithoutRef<'a'>;
 
 const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
