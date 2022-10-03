@@ -20,6 +20,11 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
+  <div>
+    <div
+      class="ods-datepicker-background"
+      data-testid="date-picker-outside"
+    />
     <div
       class="ods-datepicker class-test"
     >
@@ -130,6 +135,7 @@ test('renders element properly', () => {
         </div>
       </div>
     </div>
+  </div>
   `);
 });
 
@@ -473,4 +479,34 @@ test('onSelect call with to date less than from date', async () => {
     )}`,
     to: '',
   });
+});
+
+test('close calendar when click outside', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/09/2022', to: '' }}
+      onSelect={onSelectMock}
+      startsToday
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  const calendar = screen.getByTestId('datepicker-calendar');
+
+  expect(calendar).toBeInTheDocument();
+
+  const outside = screen.getByTestId('date-picker-outside');
+
+  fireEvent.click(outside);
+
+  setTimeout(() => {
+    expect(calendar).not.toBeInTheDocument();
+  }, 1000);
 });

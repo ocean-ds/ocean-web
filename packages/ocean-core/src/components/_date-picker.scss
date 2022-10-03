@@ -1,6 +1,16 @@
 $background-custom: rgba(176, 245, 245, 0.24) 50%,
   $color-interface-light-pure 50%;
 
+.ods-datepicker-background {
+  background: transparent;
+  bottom: 0;
+  content: ' ';
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
 .ods-datepicker {
   display: flex;
   position: relative;
@@ -53,6 +63,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   .ods-datepicker__calendar {
+    background-color: $color-interface-light-pure;
     border: 1px solid $color-interface-light-down;
     border-radius: $border-radius-md;
     box-shadow: $shadow-level-2;

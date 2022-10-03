@@ -28,6 +28,7 @@ type IDatePickerReturn = {
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
   getInputPlaceholder: () => string;
+  handleCloseByOutside: () => void;
 };
 
 export default function useDatePicker({
@@ -143,6 +144,8 @@ export default function useDatePicker({
     }
   };
 
+  const handleCloseByOutside = () => showDayPicker && setShowDayPicker(false);
+
   const CustomStyles: ClassNames = {
     root: 'ods-datepicker__calendar',
     caption: 'ods-datepicker__caption',
@@ -191,5 +194,6 @@ export default function useDatePicker({
     disabledDays,
     formatDay,
     getInputPlaceholder,
+    handleCloseByOutside,
   };
 }

@@ -114,6 +114,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       disabledDays,
       formatDay,
       getInputPlaceholder,
+      handleCloseByOutside,
     } = useDatePicker({ values, onSelect, startsToday, locale });
 
     const DatePickerHeader = (props: CaptionProps) => {
@@ -153,87 +154,94 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
     };
 
     return (
-      <div
-        className={classNames('ods-datepicker', className)}
-        ref={ref}
-        {...rest}
-      >
-        <div className="ods-datepicker__form-row">
-          <div className="ods-datepicker__form-controls">
-            {labels && labels.from && (
-              <label htmlFor="start-date">{labels.from}</label>
-            )}
-            <Input
-              ref={input1Ref}
-              data-testid="datepicker-input-1"
-              id="start-date"
-              type="text"
-              className="date-field"
-              name="start-date"
-              value={values.from}
-              onClick={createHandleToggleClick}
-              onChange={(editable && inputChange) || undefined}
-              placeholder={getInputPlaceholder()}
-              adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
-              autoComplete="off"
-              readOnly={!editable}
-              disabled={disabled}
-              error={!disabled && error}
-              helperText={
-                (!disabled && !showDayPicker && error && helperText) ||
-                undefined
-              }
-              maxLength={10}
-            />
-          </div>
-
-          <div className="ods-datepicker__form-controls">
-            {labels && labels.to && (
-              <label htmlFor="end-date">{labels.to}</label>
-            )}
-            <Input
-              ref={input2Ref}
-              data-testid="datepicker-input-2"
-              id="end-date"
-              type="text"
-              className="date-field"
-              name="end-date"
-              value={values.to}
-              onClick={createHandleToggleClick}
-              onChange={(editable && inputChange) || undefined}
-              placeholder={getInputPlaceholder()}
-              adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
-              autoComplete="off"
-              readOnly={!editable}
-              disabled={disabled}
-              error={!disabled && error}
-              helperText={
-                (!disabled && !showDayPicker && error && helperText) ||
-                undefined
-              }
-              maxLength={10}
-            />
-          </div>
-
-          {!disabled && showDayPicker && (
-            <div data-testid="datepicker-calendar">
-              <DayPicker
-                mode="range"
-                locale={localeOption}
-                weekStartsOn={0}
-                classNames={CustomStyles}
-                className={className}
-                onDayClick={(day: Date) => handleDayClick(day)}
-                onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
-                formatters={{ formatDay }}
-                selected={selectedDays}
-                disabled={disabledDays}
-                components={{
-                  Caption: DatePickerHeader,
-                }}
+      <div>
+        <div
+          className="ods-datepicker-background"
+          data-testid="date-picker-outside"
+          onClick={handleCloseByOutside}
+        />
+        <div
+          className={classNames('ods-datepicker', className)}
+          ref={ref}
+          {...rest}
+        >
+          <div className="ods-datepicker__form-row">
+            <div className="ods-datepicker__form-controls">
+              {labels && labels.from && (
+                <label htmlFor="start-date">{labels.from}</label>
+              )}
+              <Input
+                ref={input1Ref}
+                data-testid="datepicker-input-1"
+                id="start-date"
+                type="text"
+                className="date-field"
+                name="start-date"
+                value={values.from}
+                onClick={createHandleToggleClick}
+                onChange={(editable && inputChange) || undefined}
+                placeholder={getInputPlaceholder()}
+                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+                autoComplete="off"
+                readOnly={!editable}
+                disabled={disabled}
+                error={!disabled && error}
+                helperText={
+                  (!disabled && !showDayPicker && error && helperText) ||
+                  undefined
+                }
+                maxLength={10}
               />
             </div>
-          )}
+
+            <div className="ods-datepicker__form-controls">
+              {labels && labels.to && (
+                <label htmlFor="end-date">{labels.to}</label>
+              )}
+              <Input
+                ref={input2Ref}
+                data-testid="datepicker-input-2"
+                id="end-date"
+                type="text"
+                className="date-field"
+                name="end-date"
+                value={values.to}
+                onClick={createHandleToggleClick}
+                onChange={(editable && inputChange) || undefined}
+                placeholder={getInputPlaceholder()}
+                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+                autoComplete="off"
+                readOnly={!editable}
+                disabled={disabled}
+                error={!disabled && error}
+                helperText={
+                  (!disabled && !showDayPicker && error && helperText) ||
+                  undefined
+                }
+                maxLength={10}
+              />
+            </div>
+
+            {!disabled && showDayPicker && (
+              <div data-testid="datepicker-calendar">
+                <DayPicker
+                  mode="range"
+                  locale={localeOption}
+                  weekStartsOn={0}
+                  classNames={CustomStyles}
+                  className={className}
+                  onDayClick={(day: Date) => handleDayClick(day)}
+                  onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
+                  formatters={{ formatDay }}
+                  selected={selectedDays}
+                  disabled={disabledDays}
+                  components={{
+                    Caption: DatePickerHeader,
+                  }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
