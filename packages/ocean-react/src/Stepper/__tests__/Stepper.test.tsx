@@ -29,11 +29,19 @@ test('renders element properly', () => {
     <div
       class="ods-form-control__root"
     >
-      <label
-        class="ods-form-label"
+      <div
+        class="ods-form-control__header"
       >
-        Teste
-      </label>
+        <div
+          class="ods-form-control__label"
+        >
+          <label
+            class="ods-form-label"
+          >
+            Teste
+          </label>
+        </div>
+      </div>
       <div
         class="ods-form-control__element"
       >
@@ -311,11 +319,19 @@ test('renders with error status', () => {
     <div
       class="ods-form-control__root"
     >
-      <label
-        class="ods-form-label"
+      <div
+        class="ods-form-control__header"
       >
-        Teste
-      </label>
+        <div
+          class="ods-form-control__label"
+        >
+          <label
+            class="ods-form-label"
+          >
+            Teste
+          </label>
+        </div>
+      </div>
       <div
         class="ods-form-control__element"
       >

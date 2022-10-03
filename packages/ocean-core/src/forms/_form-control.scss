@@ -6,6 +6,34 @@
     width: 100%;
   }
 
+  &__header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+  }
+
+  &__label {
+    margin-right: $spacing-inline-xxxs;
+  }
+
+  &__icon {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &.ods-tooltip[data-tooltip-pos*='-left'] {
+    &::after {
+      left: -5px;
+    }
+
+    &::before {
+      left: 3px;
+    }
+  }
+
   &__helper-text {
     color: $color-interface-dark-up;
     font-size: $font-size-xxxs;

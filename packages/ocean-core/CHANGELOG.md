@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/ocean-ds/ocean-web/compare/v1.34.2...v1.35.0) (2022-10-03)
+
+### Features
+
+- components adjustments ([#1013](https://github.com/ocean-ds/ocean-web/issues/1013)) ([f6a1aa8](https://github.com/ocean-ds/ocean-web/commit/f6a1aa8d0b5210f048fd4b9c9a17d92971f4a9ad))
+
 ## [1.34.2](https://github.com/ocean-ds/ocean-web/compare/v1.34.1...v1.34.2) (2022-08-15)
 
 **Note:** Version bump only for package @useblu/ocean-core

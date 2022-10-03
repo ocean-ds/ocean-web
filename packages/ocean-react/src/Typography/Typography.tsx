@@ -6,6 +6,7 @@ export const defaultTypesMapping: Record<string, string> = {
   heading2: 'h2',
   heading3: 'h3',
   heading4: 'h4',
+  heading5: 'h5',
   subtitle1: 'h6',
   subtitle2: 'h6',
   paragraph: 'p',
@@ -19,6 +20,7 @@ export type Variant =
   | 'heading2'
   | 'heading3'
   | 'heading4'
+  | 'heading5'
   | 'subtitle1'
   | 'subtitle2'
   | 'paragraph'

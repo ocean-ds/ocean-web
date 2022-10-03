@@ -62,12 +62,20 @@ test('renders element properly', () => {
     <div
       class="ods-form-control__root"
     >
-      <span
-        class="ods-form-label"
-        id="label--my-select"
+      <div
+        class="ods-form-control__header"
       >
-        Custom label
-      </span>
+        <div
+          class="ods-form-control__label"
+        >
+          <span
+            class="ods-form-label"
+            id="label--my-select"
+          >
+            Custom label
+          </span>
+        </div>
+      </div>
       <div
         class="ods-form-control__element"
       >
