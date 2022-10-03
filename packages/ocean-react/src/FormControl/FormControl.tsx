@@ -3,6 +3,8 @@ import classNames from 'classnames';
 
 import FormLabel from '../FormLabel';
 
+import { InformationCircle } from '@useblu/ocean-icons-react';
+
 export type FormControlProps = {
   /**
    * A single child content element.
@@ -14,6 +16,13 @@ export type FormControlProps = {
   label?: string | React.ReactNode;
   /**
    * Specifies which form element a label is bound to.
+   */
+  /**
+   * Defines the tooltip property and text.
+   */
+  tooltipMessage?: string;
+  /**
+   *
    */
   htmlFor?: string;
   /**
@@ -35,6 +44,7 @@ export type FormControlProps = {
 const FormControl: React.FC<FormControlProps> = ({
   children,
   label: labelProp,
+  tooltipMessage,
   htmlFor,
   helperText,
   error,
@@ -54,7 +64,21 @@ const FormControl: React.FC<FormControlProps> = ({
 
   return (
     <div className="ods-form-control__root">
-      {label}
+      <div className="ods-form-control__header">
+        <div className="ods-form-control__label">{label}</div>
+
+        {tooltipMessage ? (
+          <div
+            aria-label={tooltipMessage}
+            className="ods-form-control__icon ods-tooltip"
+            data-tooltip-pos="up-left"
+          >
+            <InformationCircle size={16} color="#B6B9CC" />{' '}
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
       <div className={classNames('ods-form-control__element')}>{children}</div>
       {helperText && (
         <p
