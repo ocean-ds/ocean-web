@@ -33,6 +33,7 @@ test('renders element properly', () => {
       >
         <div
           class="ods-datepicker__form-controls"
+          data-testid="date-picker-first-field-wrapper"
         >
           <label
             for="start-date"
@@ -46,7 +47,7 @@ test('renders element properly', () => {
               class="ods-form-control__element"
             >
               <div
-                class="ods-input ods-input--disabled--text date-field"
+                class="ods-input ods-input--disabled--text"
               >
                 <input
                   autocomplete="off"
@@ -84,6 +85,7 @@ test('renders element properly', () => {
         </div>
         <div
           class="ods-datepicker__form-controls"
+          data-testid="date-picker-second-field-wrapper"
         >
           <label
             for="end-date"
@@ -97,7 +99,7 @@ test('renders element properly', () => {
               class="ods-form-control__element"
             >
               <div
-                class="ods-input ods-input--disabled--text date-field"
+                class="ods-input ods-input--disabled--text"
               >
                 <input
                   autocomplete="off"
@@ -509,4 +511,30 @@ test('close calendar when click outside', async () => {
   setTimeout(() => {
     expect(calendar).not.toBeInTheDocument();
   }, 1000);
+});
+
+test('close calendar when click outside teste', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '10/09/2022', to: '' }}
+      onSelect={onSelectMock}
+      startsToday
+      editable
+    />
+  );
+
+  const firstWrapper = screen.getByTestId('date-picker-first-field-wrapper');
+
+  expect(firstWrapper).toBeInTheDocument();
+
+  fireEvent.click(firstWrapper);
+
+  const secondWrapper = screen.getByTestId('date-picker-second-field-wrapper');
+
+  expect(secondWrapper).toBeInTheDocument();
+
+  fireEvent.click(secondWrapper);
 });

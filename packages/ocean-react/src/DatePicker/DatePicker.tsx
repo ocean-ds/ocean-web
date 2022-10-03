@@ -107,6 +107,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       selectedDays,
       CustomStyles,
       localeOption,
+      currentField,
       handleDayMouseEnter,
       handleDayClick,
       inputChange,
@@ -168,7 +169,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           <div className="ods-datepicker__form-row">
             <div
               className="ods-datepicker__form-controls"
-              onClick={createHandleToggleClick}
+              data-testid="date-picker-first-field-wrapper"
+              onClick={() => createHandleToggleClick('start-date')}
             >
               {labels && labels.from && (
                 <label htmlFor="start-date">{labels.from}</label>
@@ -178,7 +180,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 data-testid="datepicker-input-1"
                 id="start-date"
                 type="text"
-                className="date-field"
+                className={classNames({
+                  'date-field-focussed': currentField === 'start-date',
+                })}
                 name="start-date"
                 value={values.from}
                 onChange={(editable && inputChange) || undefined}
@@ -198,7 +202,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 
             <div
               className="ods-datepicker__form-controls"
-              onClick={createHandleToggleClick}
+              data-testid="date-picker-second-field-wrapper"
+              onClick={() => createHandleToggleClick('end-date')}
             >
               {labels && labels.to && (
                 <label htmlFor="end-date">{labels.to}</label>
@@ -208,7 +213,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 data-testid="datepicker-input-2"
                 id="end-date"
                 type="text"
-                className="date-field"
+                className={classNames({
+                  'date-field-focussed': currentField === 'end-date',
+                })}
                 name="end-date"
                 value={values.to}
                 onChange={(editable && inputChange) || undefined}

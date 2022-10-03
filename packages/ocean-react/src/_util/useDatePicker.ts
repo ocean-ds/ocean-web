@@ -21,10 +21,11 @@ type IDatePickerReturn = {
   selectedDays: DateRange;
   CustomStyles: ClassNames;
   localeOption: DateFns.Locale;
+  currentField: string;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-  createHandleToggleClick: () => void;
+  createHandleToggleClick: (fieldId: string) => void;
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
   getInputPlaceholder: () => string;
@@ -48,6 +49,7 @@ export default function useDatePicker({
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [isSelectingLastDay, setIsSelectingLastDay] = React.useState(false);
+  const [currentField, setCurrentField] = React.useState<string>('');
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
@@ -62,42 +64,35 @@ export default function useDatePicker({
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
-    isSelectingLastDay &&
-      !(values.from && day < fromDate) &&
+    if (isSelectingLastDay && !(values.from && day < fromDate)) {
+      setCurrentField('end-date');
       updateState({ from: values.from, to: formattedDay });
+    }
   };
 
   const handleDayClick = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (isSelectingLastDay) {
+      setCurrentField('end-date');
       if (day < fromDate) {
         updateState({ from: formattedDay, to: '' });
       } else {
         setIsSelectingLastDay(false);
         setShowDayPicker(false);
+        setCurrentField('');
         updateState({ from: values.from, to: formattedDay });
       }
     } else {
       setIsSelectingLastDay(true);
+      setCurrentField('start-date');
       updateState({ from: formattedDay, to: '' });
     }
   };
 
-  const createHandleToggleClick = () => {
+  const createHandleToggleClick = (fieldId: string) => {
     setShowDayPicker(!showDayPicker);
-
-    if (values.from.length < localeDateFormat.length) {
-      if (input1Ref && input1Ref.current) input1Ref.current.focus();
-    } else if (
-      values.from.length === localeDateFormat.length &&
-      values.to.length === localeDateFormat.length
-    ) {
-      if (input1Ref && input1Ref.current) input1Ref.current.focus();
-    } else {
-      setIsSelectingLastDay(true);
-      if (input2Ref && input2Ref.current) input2Ref.current.focus();
-    }
+    setCurrentField(fieldId);
   };
 
   const disabledDays = (day: Date): boolean => {
@@ -129,18 +124,23 @@ export default function useDatePicker({
 
     if (target.id === 'start-date') {
       setIsSelectingLastDay(false);
+      setCurrentField('start-date');
       updateState({ from: dataFormatted, to: '' });
 
       if (dataFormatted.length === localeDateFormat.length) {
+        setCurrentField('end-date');
         setIsSelectingLastDay(true);
         if (input2Ref && input2Ref.current) input2Ref.current.focus();
       }
     } else {
       setIsSelectingLastDay(true);
+      setCurrentField('end-date');
       updateState({ from: values.from, to: dataFormatted });
 
-      if (dataFormatted.length === localeDateFormat.length)
+      if (dataFormatted.length === localeDateFormat.length) {
+        setCurrentField('');
         closeCalendarDelay();
+      }
     }
   };
 
@@ -187,6 +187,7 @@ export default function useDatePicker({
     selectedDays,
     CustomStyles,
     localeOption,
+    currentField,
     handleDayMouseEnter,
     handleDayClick,
     inputChange,
