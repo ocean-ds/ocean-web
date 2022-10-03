@@ -44,6 +44,13 @@ test('renders element properly', () => {
             class="ods-form-control__root"
           >
             <div
+              class="ods-form-control__header"
+            >
+              <div
+                class="ods-form-control__label"
+              />
+            </div>
+            <div
               class="ods-form-control__element"
             >
               <div
@@ -95,6 +102,13 @@ test('renders element properly', () => {
           <div
             class="ods-form-control__root"
           >
+            <div
+              class="ods-form-control__header"
+            >
+              <div
+                class="ods-form-control__label"
+              />
+            </div>
             <div
               class="ods-form-control__element"
             >
@@ -513,7 +527,7 @@ test('close calendar when click outside', async () => {
   }, 1000);
 });
 
-test('close calendar when click outside teste', async () => {
+test('renders input ref when click', async () => {
   const onSelectMock = jest.fn();
 
   render(
