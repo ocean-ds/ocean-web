@@ -212,6 +212,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
       align-items: center;
       border: 1px solid $color-interface-dark-up;
       border-radius: 20px;
+      box-sizing: border-box;
       content: '';
       display: flex;
       height: 40px;
