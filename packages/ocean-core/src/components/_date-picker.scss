@@ -67,6 +67,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     border: 1px solid $color-interface-light-down;
     border-radius: $border-radius-md;
     box-shadow: $shadow-level-2;
+    box-sizing: border-box;
     margin: 0;
     padding: 0 0 $spacing-inline-xs;
     position: absolute;
@@ -120,10 +121,18 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
   .ods-datepicker__navButtonPrev {
     left: 17px;
+
+    @media (max-width: 321px) {
+      left: 0;
+    }
   }
 
   .ods-datepicker__navButtonNext {
     right: 17px;
+
+    @media (max-width: 321px) {
+      right: 0;
+    }
   }
 
   .ods-datepicker__navIcon {

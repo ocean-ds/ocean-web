@@ -181,7 +181,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 onClick={createHandleToggleClick}
                 onChange={(editable && inputChange) || undefined}
                 placeholder={getInputPlaceholder()}
-                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+                adornment={
+                  <div onClick={createHandleToggleClick}>
+                    <CalendarOutline size={20} stroke="#B6B9CC" />
+                  </div>
+                }
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
@@ -209,7 +213,11 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 onClick={createHandleToggleClick}
                 onChange={(editable && inputChange) || undefined}
                 placeholder={getInputPlaceholder()}
-                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+                adornment={
+                  <div onClick={createHandleToggleClick}>
+                    <CalendarOutline size={20} stroke="#B6B9CC" />
+                  </div>
+                }
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
