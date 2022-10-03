@@ -166,7 +166,10 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           {...rest}
         >
           <div className="ods-datepicker__form-row">
-            <div className="ods-datepicker__form-controls">
+            <div
+              className="ods-datepicker__form-controls"
+              onClick={createHandleToggleClick}
+            >
               {labels && labels.from && (
                 <label htmlFor="start-date">{labels.from}</label>
               )}
@@ -178,14 +181,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 className="date-field"
                 name="start-date"
                 value={values.from}
-                onClick={createHandleToggleClick}
                 onChange={(editable && inputChange) || undefined}
                 placeholder={getInputPlaceholder()}
-                adornment={
-                  <div onClick={createHandleToggleClick}>
-                    <CalendarOutline size={20} stroke="#B6B9CC" />
-                  </div>
-                }
+                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
@@ -198,7 +196,10 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
               />
             </div>
 
-            <div className="ods-datepicker__form-controls">
+            <div
+              className="ods-datepicker__form-controls"
+              onClick={createHandleToggleClick}
+            >
               {labels && labels.to && (
                 <label htmlFor="end-date">{labels.to}</label>
               )}
@@ -210,14 +211,9 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 className="date-field"
                 name="end-date"
                 value={values.to}
-                onClick={createHandleToggleClick}
                 onChange={(editable && inputChange) || undefined}
                 placeholder={getInputPlaceholder()}
-                adornment={
-                  <div onClick={createHandleToggleClick}>
-                    <CalendarOutline size={20} stroke="#B6B9CC" />
-                  </div>
-                }
+                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
