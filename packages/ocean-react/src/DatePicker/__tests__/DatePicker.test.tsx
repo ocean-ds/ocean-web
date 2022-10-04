@@ -480,11 +480,19 @@ test('onSelect call with to date less than from date', async () => {
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
+  const today = new Date().getDate();
+
   const yesterday = new Date().getDate() - 1;
+
+  const fromDay = screen.getByText(today);
 
   const toDay = screen.getByText(yesterday);
 
+  expect(fromDay).toBeInTheDocument();
+
   expect(toDay).toBeInTheDocument();
+
+  fireEvent.click(fromDay);
 
   fireEvent.click(toDay);
 
