@@ -192,6 +192,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 readOnly={!editable}
                 disabled={disabled}
                 error={!disabled && error}
+                pattern="[0-9]*"
+                inputMode="numeric"
                 helperText={
                   (!disabled && !showDayPicker && error && helperText) ||
                   undefined
@@ -225,6 +227,8 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 readOnly={!editable}
                 disabled={disabled}
                 error={!disabled && error}
+                pattern="[0-9]*"
+                inputMode="numeric"
                 helperText={
                   (!disabled && !showDayPicker && error && helperText) ||
                   undefined
