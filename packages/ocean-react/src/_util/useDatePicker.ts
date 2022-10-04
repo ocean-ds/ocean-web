@@ -73,13 +73,6 @@ export default function useDatePicker({
     const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (currentField === 'start-date') {
-      // if (day > toDate || values.to === '') {
-      //   updateState({ from: formattedDay, to: '' });
-      // } else {
-      //   updateState({ from: formattedDay, to: values.to });
-      //   setCurrentField('');
-      // }
-
       updateState({ from: formattedDay, to: values.to });
       setCurrentField('end-date');
     }
