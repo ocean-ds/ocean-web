@@ -73,15 +73,15 @@ export default function useDatePicker({
     const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (currentField === 'start-date') {
-      setCurrentField('end-date');
+      // if (day > toDate || values.to === '') {
+      //   updateState({ from: formattedDay, to: '' });
+      // } else {
+      //   updateState({ from: formattedDay, to: values.to });
+      //   setCurrentField('');
+      // }
 
-      if (day > toDate || values.to === '') {
-        updateState({ from: formattedDay, to: '' });
-      } else {
-        updateState({ from: formattedDay, to: values.to });
-        closeCalendarDelay();
-        setCurrentField('');
-      }
+      updateState({ from: formattedDay, to: values.to });
+      setCurrentField('end-date');
     }
 
     if (currentField === 'end-date') {
@@ -89,7 +89,7 @@ export default function useDatePicker({
         updateState({ from: formattedDay, to: '' });
       } else {
         updateState({ from: values.from, to: formattedDay });
-        closeCalendarDelay();
+        setShowDayPicker(false);
         setCurrentField('');
       }
     }
@@ -154,7 +154,11 @@ export default function useDatePicker({
   };
 
   const CustomStyles: ClassNames = {
-    root: 'ods-datepicker__calendar',
+    root: `ods-datepicker__calendar ${
+      currentField === 'start-date'
+        ? 'ods-datepicker_calendar_m1'
+        : 'ods-datepicker_calendar_m2'
+    }`,
     caption: 'ods-datepicker__caption',
     nav_button: 'ods-datepicker__navButtons',
     nav_button_previous: 'ods-datepicker__navButtonPrev',

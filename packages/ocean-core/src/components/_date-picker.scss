@@ -77,14 +77,23 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     margin: 0;
     padding: 0 0 $spacing-inline-xs;
     position: absolute;
-    top: 4.4rem;
     width: 100%;
 
     .rdp-vhidden {
       display: none;
     }
+  }
 
-    @media (max-width: 321px) {
+  .ods-datepicker_calendar_m1 {
+    top: 4.5rem;
+  }
+
+  .ods-datepicker_calendar_m2 {
+    top: 4.5rem;
+  }
+
+  @media (max-width: 321px) {
+    .ods-datepicker_calendar_m2 {
       top: 9.5rem;
     }
   }
