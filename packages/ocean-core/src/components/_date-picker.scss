@@ -33,7 +33,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
   &__form-controls {
     cursor: pointer;
-    margin: 0 !important;
+    margin: 0;
 
     > label {
       color: $color-interface-dark-down;
@@ -48,7 +48,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
     input {
       caret-color: $color-brand-primary-pure;
-      cursor: pointer !important;
+      cursor: pointer;
     }
 
     .date-field-focussed {
