@@ -226,6 +226,43 @@ test('renders element with calendar open and select dates values', async () => {
   }, 1000);
 });
 
+test('renders element with calendar open and click in start date with end date value', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{
+        from: '',
+        to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+      }}
+      onSelect={onSelectMock}
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const yesterday = new Date().getDate() - 1;
+
+  const fromDay = screen.getByText(yesterday);
+
+  expect(fromDay).toBeInTheDocument();
+
+  fireEvent.click(fromDay);
+
+  expect(onSelectMock).toBeCalledWith({
+    from: `${format(
+      new Date().setDate(new Date().getDate() - 1),
+      ptBr?.formatLong?.date({ width: 'short' })
+    )}`,
+    to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+  });
+});
+
 test('renders element with calendar open and select dates values with hover', async () => {
   const onSelectMock = jest.fn();
 

@@ -48,14 +48,13 @@ export default function useDatePicker({
   const input2Ref = React.useRef<HTMLInputElement>(null);
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
-  const [isSelectingLastDay, setIsSelectingLastDay] = React.useState(false);
   const [currentField, setCurrentField] = React.useState<string>('');
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
 
   React.useEffect(() => {
-    if (values.from === '') setIsSelectingLastDay(false);
+    if (values.from === '') setCurrentField('');
   }, [values.from]);
 
   const updateState = (updateData: DatePicker.DatePickerFields) =>
@@ -64,7 +63,7 @@ export default function useDatePicker({
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
-    if (isSelectingLastDay && !(values.from && day < fromDate)) {
+    if (currentField === 'end-date' && !(values.from && day < fromDate)) {
       setCurrentField('end-date');
       updateState({ from: values.from, to: formattedDay });
     }
@@ -73,20 +72,26 @@ export default function useDatePicker({
   const handleDayClick = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
-    if (isSelectingLastDay) {
+    if (currentField === 'start-date') {
       setCurrentField('end-date');
+
+      if (day > toDate || values.to === '') {
+        updateState({ from: formattedDay, to: '' });
+      } else {
+        updateState({ from: formattedDay, to: values.to });
+        closeCalendarDelay();
+        setCurrentField('');
+      }
+    }
+
+    if (currentField === 'end-date') {
       if (day < fromDate) {
         updateState({ from: formattedDay, to: '' });
       } else {
-        setIsSelectingLastDay(false);
-        setShowDayPicker(false);
-        setCurrentField('');
         updateState({ from: values.from, to: formattedDay });
+        closeCalendarDelay();
+        setCurrentField('');
       }
-    } else {
-      setIsSelectingLastDay(true);
-      setCurrentField('start-date');
-      updateState({ from: formattedDay, to: '' });
     }
   };
 
@@ -101,7 +106,7 @@ export default function useDatePicker({
         day < new Date(new Date().setDate(new Date().getDate() - 1))
     );
 
-    return startToday || (isSelectingLastDay && day < fromDate);
+    return startToday || (currentField === 'end-date' && day < fromDate);
   };
 
   const dateMask = (value: string) => {
@@ -123,17 +128,14 @@ export default function useDatePicker({
     const dataFormatted = dateMask(target.value);
 
     if (target.id === 'start-date') {
-      setIsSelectingLastDay(false);
       setCurrentField('start-date');
       updateState({ from: dataFormatted, to: '' });
 
       if (dataFormatted.length === localeDateFormat.length) {
         setCurrentField('end-date');
-        setIsSelectingLastDay(true);
         if (input2Ref && input2Ref.current) input2Ref.current.focus();
       }
     } else {
-      setIsSelectingLastDay(true);
       setCurrentField('end-date');
       updateState({ from: values.from, to: dataFormatted });
 
@@ -144,7 +146,12 @@ export default function useDatePicker({
     }
   };
 
-  const handleCloseByOutside = () => showDayPicker && setShowDayPicker(false);
+  const handleCloseByOutside = () => {
+    if (showDayPicker) {
+      setShowDayPicker(false);
+      setCurrentField('');
+    }
+  };
 
   const CustomStyles: ClassNames = {
     root: 'ods-datepicker__calendar',
