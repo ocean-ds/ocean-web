@@ -493,6 +493,39 @@ test('renders element with calendar open and today date', async () => {
   expect(beforeDay.parentElement).toHaveClass('ods-datepicker__disabled');
 });
 
+test('renders element with calendar open and startsToday atribute on select yesterday', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={onSelectMock}
+      startsToday
+      editable
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const yesterday = new Date().getDate() - 1;
+
+  const fromDay = screen.getByText(yesterday);
+
+  expect(fromDay).toBeInTheDocument();
+
+  fireEvent.click(fromDay);
+
+  expect(onSelectMock).not.toBeCalledWith({
+    from: '',
+    to: '',
+  });
+});
+
 test('renders previous and next calendar button', () => {
   const onSelectMock = jest.fn();
 

@@ -67,6 +67,12 @@ export default function useDatePicker({
     updateCache && setDatePickerCache(updateData);
   };
 
+  const handleValidateStartsToday = (day: Date) =>
+    Boolean(
+      startsToday &&
+        day < new Date(new Date().setDate(new Date().getDate() - 1))
+    );
+
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
 
@@ -77,26 +83,27 @@ export default function useDatePicker({
   };
 
   const handleDayClick = (day: Date): void => {
-    // Validar quando possui => startsToday
-    const formattedDay = DateFns.format(day, localeDateFormat);
+    if (!(startsToday && handleValidateStartsToday(day))) {
+      const formattedDay = DateFns.format(day, localeDateFormat);
 
-    if (currentField === 'start-date') {
-      if (day > toDate) {
-        updateState({ from: formattedDay, to: '' }, true);
-      } else {
-        updateState({ from: formattedDay, to: values.to });
-        setDatePickerCache({ from: formattedDay, to: values.to });
+      if (currentField === 'start-date') {
+        if (day > toDate) {
+          updateState({ from: formattedDay, to: '' }, true);
+        } else {
+          updateState({ from: formattedDay, to: values.to });
+          setDatePickerCache({ from: formattedDay, to: values.to });
+        }
+        setCurrentField('end-date');
       }
-      setCurrentField('end-date');
-    }
 
-    if (currentField === 'end-date') {
-      if (day < fromDate) {
-        updateState({ from: formattedDay, to: '' }, true);
-      } else {
-        updateState({ from: values.from, to: formattedDay }, true);
-        setShowDayPicker(false);
-        setCurrentField('');
+      if (currentField === 'end-date') {
+        if (day < fromDate) {
+          updateState({ from: formattedDay, to: '' }, true);
+        } else {
+          updateState({ from: values.from, to: formattedDay }, true);
+          setShowDayPicker(false);
+          setCurrentField('');
+        }
       }
     }
   };
@@ -107,10 +114,7 @@ export default function useDatePicker({
   };
 
   const disabledDays = (day: Date): boolean => {
-    const startToday = Boolean(
-      startsToday &&
-        day < new Date(new Date().setDate(new Date().getDate() - 1))
-    );
+    const startToday = handleValidateStartsToday(day);
 
     return startToday || (currentField === 'end-date' && day < fromDate);
   };
