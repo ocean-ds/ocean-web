@@ -49,6 +49,8 @@ export default function useDatePicker({
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [currentField, setCurrentField] = React.useState<string>('');
+  const [datePickerCache, setDatePickerCache] =
+    React.useState<DatePicker.DatePickerFields>({ from: '', to: '' });
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
@@ -57,8 +59,13 @@ export default function useDatePicker({
     if (values.from === '') setCurrentField('');
   }, [values.from]);
 
-  const updateState = (updateData: DatePicker.DatePickerFields) =>
+  const updateState = (
+    updateData: DatePicker.DatePickerFields,
+    updateCache?: boolean
+  ) => {
     onSelect(updateData);
+    updateCache && setDatePickerCache(updateData);
+  };
 
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
@@ -70,22 +77,24 @@ export default function useDatePicker({
   };
 
   const handleDayClick = (day: Date): void => {
+    // Validar quando possui => startsToday
     const formattedDay = DateFns.format(day, localeDateFormat);
 
     if (currentField === 'start-date') {
       if (day > toDate) {
-        updateState({ from: formattedDay, to: '' });
+        updateState({ from: formattedDay, to: '' }, true);
       } else {
         updateState({ from: formattedDay, to: values.to });
+        setDatePickerCache({ from: formattedDay, to: values.to });
       }
       setCurrentField('end-date');
     }
 
     if (currentField === 'end-date') {
       if (day < fromDate) {
-        updateState({ from: formattedDay, to: '' });
+        updateState({ from: formattedDay, to: '' }, true);
       } else {
-        updateState({ from: values.from, to: formattedDay });
+        updateState({ from: values.from, to: formattedDay }, true);
         setShowDayPicker(false);
         setCurrentField('');
       }
@@ -126,7 +135,7 @@ export default function useDatePicker({
 
     if (target.id === 'start-date') {
       setCurrentField('start-date');
-      updateState({ from: dataFormatted, to: '' });
+      updateState({ from: dataFormatted, to: '' }, true);
 
       if (dataFormatted.length === localeDateFormat.length) {
         setCurrentField('end-date');
@@ -134,7 +143,7 @@ export default function useDatePicker({
       }
     } else {
       setCurrentField('end-date');
-      updateState({ from: values.from, to: dataFormatted });
+      updateState({ from: values.from, to: dataFormatted }, true);
 
       if (dataFormatted.length === localeDateFormat.length) {
         setCurrentField('');
@@ -147,6 +156,9 @@ export default function useDatePicker({
     if (showDayPicker) {
       setShowDayPicker(false);
       setCurrentField('');
+
+      if (datePickerCache.from !== '' && datePickerCache.to !== '')
+        updateState(datePickerCache);
     }
   };
 

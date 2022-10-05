@@ -340,6 +340,76 @@ test('renders element with calendar open and select dates values with hover', as
   }, 1000);
 });
 
+test('renders element with calendar open and select dates values with hover and save cache', async () => {
+  const onSelectMock = jest.fn();
+
+  const yesterday = new Date().getDate() - 1;
+
+  const today = new Date().getDate();
+
+  const tomorrow = new Date().getDate() + 1;
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{
+        from: `${format(
+          new Date().setDate(yesterday),
+          ptBr?.formatLong?.date({ width: 'short' })
+        )}`,
+        to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+      }}
+      onSelect={onSelectMock}
+    />
+  );
+
+  const input1 = screen.getByTestId('datepicker-input-1');
+
+  const input2 = screen.getByTestId('datepicker-input-2');
+
+  fireEvent.click(input1);
+
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  const fromDay = screen.getByText(yesterday);
+
+  const toDay = screen.getByText(today);
+
+  const tomorrowDay = screen.getByText(tomorrow);
+
+  expect(fromDay).toBeInTheDocument();
+
+  expect(toDay).toBeInTheDocument();
+
+  fireEvent.click(fromDay);
+
+  fireEvent.click(toDay);
+
+  expect(onSelectMock).toBeCalledWith({
+    from: `${format(
+      new Date().setDate(yesterday),
+      ptBr?.formatLong?.date({ width: 'short' })
+    )}`,
+    to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+  });
+
+  fireEvent.click(input2);
+
+  fireEvent.mouseEnter(tomorrowDay);
+
+  const outside = screen.getByTestId('date-picker-outside');
+
+  fireEvent.click(outside);
+
+  expect(onSelectMock).toBeCalledWith({
+    from: `${format(
+      new Date().setDate(yesterday),
+      ptBr?.formatLong?.date({ width: 'short' })
+    )}`,
+    to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+  });
+});
+
 test('renders element with calendar open and select dates values with input', async () => {
   const onSelectMock = jest.fn();
 
