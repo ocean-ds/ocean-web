@@ -76,7 +76,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.30.0",
     "sass": "^1.32.8",
-    "sass-loader": "^12.1.0",
+    "sass-loader": "^13.0.2",
     "style-loader": "^3.0.0",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
