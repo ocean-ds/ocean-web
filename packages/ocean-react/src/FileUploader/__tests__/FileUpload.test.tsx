@@ -79,11 +79,11 @@ test('renders element properly', () => {
                 <a
                   class="ods-link ods-link--md ods-link--primary"
                 >
-                  <div
+                  <span
                     class="ods-link__content"
                   >
                     select from computer
-                  </div>
+                  </span>
                 </a>
               </div>
               <div
@@ -92,11 +92,11 @@ test('renders element properly', () => {
                 <a
                   class="ods-link ods-link--md ods-link--primary"
                 >
-                  <div
+                  <span
                     class="ods-link__content"
                   >
                     Select one or more files
-                  </div>
+                  </span>
                 </a>
               </div>
               <div
@@ -168,11 +168,11 @@ test('renders element properly in pt-br', () => {
                 <a
                   class="ods-link ods-link--md ods-link--primary"
                 >
-                  <div
+                  <span
                     class="ods-link__content"
                   >
                     selecione do computador
-                  </div>
+                  </span>
                 </a>
               </div>
               <div
@@ -181,11 +181,11 @@ test('renders element properly in pt-br', () => {
                 <a
                   class="ods-link ods-link--md ods-link--primary"
                 >
-                  <div
+                  <span
                     class="ods-link__content"
                   >
                     Selecione um ou mais arquivos
-                  </div>
+                  </span>
                 </a>
               </div>
               <div
