@@ -14,11 +14,11 @@ test('renders element properly', () => {
       class="ods-link ods-link--md ods-link--primary custom-class"
       data-testid="link-test"
     >
-      <div
+      <span
         class="ods-link__content"
       >
         Click here!
-      </div>
+      </span>
     </a>
   `);
 });
