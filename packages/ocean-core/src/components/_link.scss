@@ -1,10 +1,7 @@
 .ods-link {
-  align-items: center;
   cursor: pointer;
-  display: flex;
   font-family: $font-family-base;
   font-weight: $font-weight-medium;
-  justify-content: center;
   line-height: $line-height-tight;
 
   &--sm {
@@ -42,7 +39,14 @@
     }
   }
 
-  &__content {
-    margin-right: $spacing-inline-xxxs;
+  &--with-icon {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  svg {
+    margin-left: $spacing-inline-xxxs;
   }
 }
