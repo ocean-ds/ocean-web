@@ -2,11 +2,11 @@ import React from 'react';
 import { ChevronRight, ExternalLink } from '@useblu/ocean-icons-react';
 
 type LinkIconProps = {
-  icon?: 'LinkChevron' | 'externalLink';
+  icon?: 'linkChevron' | 'externalLink';
 };
 
 const mapIconsByType = {
-  LinkChevron: ChevronRight,
+  linkChevron: ChevronRight,
   externalLink: ExternalLink,
 };
 
