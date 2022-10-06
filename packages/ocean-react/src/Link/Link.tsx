@@ -32,6 +32,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
         'ods-link',
         `ods-link--${size}`,
         `ods-link--${variant}`,
+        icon ? 'ods-link--with-icon' : '',
         className
       )}
       {...rest}
