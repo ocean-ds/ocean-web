@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.35.1](https://github.com/ocean-ds/ocean-web/compare/v1.35.0...v1.35.1) (2022-10-06)
+
+### Bug Fixes
+
+- correcting camelcase spelling of prop and adding a span attribute ([#1019](https://github.com/ocean-ds/ocean-web/issues/1019)) ([004429f](https://github.com/ocean-ds/ocean-web/commit/004429f71893e220c62ac8831288a6736d9993b0))
+
 # [1.35.0](https://github.com/ocean-ds/ocean-web/compare/v1.34.2...v1.35.0) (2022-10-03)
 
 ### Features
