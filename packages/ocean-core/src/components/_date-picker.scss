@@ -14,7 +14,6 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 .ods-datepicker {
   display: flex;
   position: relative;
-  user-select: none;
   width: 100%;
 
   &:active,
@@ -31,9 +30,15 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     width: 100%;
   }
 
+  &.__form-row-single {
+    flex: 1;
+    width: 100%;
+  }
+
   &__form-controls {
     cursor: pointer;
     margin: 0;
+    width: 100%;
 
     > label {
       color: $color-interface-dark-down;
@@ -277,6 +282,29 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
+  .ods-datepicker__selected-single {
+    background: transparent;
+    color: $color-interface-light-pure;
+    position: relative;
+    z-index: 1;
+
+    ::after {
+      align-items: center;
+      background-color: $color-complementary-pure;
+      border-radius: 20px;
+      content: '';
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      z-index: -1;
+    }
+  }
+
   .ods-datepicker__selectedStart {
     color: $color-interface-light-pure;
     position: relative;
@@ -324,4 +352,6 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   .ods-datepicker__selectedMiddle {
     background-color: rgba(176, 245, 245, 0.24);
   }
+
+  // Adicionar todas as classes do single aqui abaixo
 }

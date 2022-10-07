@@ -1,10 +1,10 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import DatePicker from '../DatePicker';
+import DayPicker from '../DatePickerSingle';
 import { useState } from 'react';
 
 <Meta
   title="Components/DatePicker/Playground"
-  component={DatePicker}
+  component={DayPicker}
   decorators={[(storyFn) => <div>{storyFn()}</div>]}
   parameters={{
     layout: 'centered',
@@ -16,13 +16,9 @@ import { useState } from 'react';
 />
 
 export const DinamicDatePicker = () => {
-  const labels = {
-    from: 'Start date',
-    to: 'End date',
-  };
-  const [dates, setDates] = useState({ from: '', to: '' });
-  const handleSelectDates = (dates) =>
-    setDates({ from: dates.from, to: dates.to });
+  const label = 'Data';
+  const [date, setDate] = useState();
+  const handleSelectDate = (date) => setDate(date);
   return (
     <div
       style={{
@@ -33,10 +29,10 @@ export const DinamicDatePicker = () => {
       }}
     >
       <div style={{ width: '100%' }}>
-        <DatePicker
-          labels={labels}
-          values={dates}
-          onSelect={handleSelectDates}
+        <DayPicker
+          label={label}
+          value={date}
+          onSelect={handleSelectDate}
           editable
         />
       </div>
