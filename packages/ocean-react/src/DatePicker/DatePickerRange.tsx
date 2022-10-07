@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { Locale } from 'date-fns';
-
 import Input from '../Input';
 
 import useDatePicker from '../_util/useDatePicker';
@@ -11,76 +9,12 @@ import { DayPicker, CaptionProps } from 'react-day-picker';
 
 import { CalendarOutline } from '@useblu/ocean-icons-react';
 
+import { DatePickerProps } from './DatePicker';
+
 import DatePickerHeader from './DatePickerHeader';
 
-export type DatePickerFields = {
-  from: string;
-  to: string;
-};
-
-export type DatePickerProps = {
-  /**
-   * Determines names of inputs (from/to)
-   */
-  labels?: DatePickerFields;
-
-  /**
-   * Determines values of inputs (from/to)
-   * @requires
-   */
-  values: DatePickerFields;
-
-  /**
-   * Determines the function to change fields (from/to)
-   * @requires
-   */
-  onSelect: (dates: DatePickerFields) => void;
-
-  /**
-   * Determines if date inputs are editable
-   * @default false
-   */
-  editable?: boolean;
-
-  /**
-   * Determines if date inputs are disabled
-   * @default false
-   */
-  disabled?: boolean;
-
-  /**
-   * Determines error os inputs
-   * @default false
-   */
-  error?: boolean;
-
-  /**
-   * Determines error message
-   * @default null
-   */
-  helperText?: string;
-
-  /**
-   * Determines if date seleting starts today
-   * @default false
-   */
-  startsToday?: boolean;
-
-  /**
-   * Object locale of date-fns locale package (internationalize)
-   * @default ptBr
-   */
-  locale?: Locale;
-
-  /**
-   * ClassName to overwrite default style
-   * @default null
-   */
-  className?: string;
-} & React.ComponentPropsWithoutRef<'div'>;
-
-const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
-  function DatePicker(
+const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
+  function DatePickerRange(
     {
       labels,
       values,
@@ -224,4 +158,4 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
   }
 );
 
-export default DatePicker;
+export default DatePickerRange;
