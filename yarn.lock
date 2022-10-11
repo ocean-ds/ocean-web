@@ -3960,10 +3960,10 @@
     "@types/node" "*"
     "@types/node-sass" "*"
 
-"@types/gulp-size@^2.1.1":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@types/gulp-size/-/gulp-size-2.1.2.tgz#cd0fc2cea95b6d871de26d11c29abe2eca4d6ba2"
-  integrity sha512-7kWQBAhun29/s+YjBFOE8M0dtgYJmoCj3Q1kNcA+y84jM5b2bUvha+5+by1UXPs8FiypEZP1y062aRB4zHQGxg==
+"@types/gulp-size@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/gulp-size/-/gulp-size-4.0.0.tgz#9f62aff2c3373474e67c71fe1118eb70b694fe03"
+  integrity sha512-Ndl0N2l05l2UR/1K4l35xPFXSSq+oDxgWMNBiQ4biOMspRtwvDcdaa85y1yHFFjsx38veL+95l0PgvIP9QBCvQ==
   dependencies:
     "@types/node" "*"
 
