@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import DatePicker from '../DatePicker';
+import { useState } from 'react';
+
+<Meta
+  title="Components/Date/Introducion"
+  component={DatePicker}
+  decorators={[(storyFn) => <div>{storyFn()}</div>]}
+  parameters={{
+    layout: 'centered',
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Date APIs
+
+The API documentation of the Date Collection React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { DatePicker } from '@useblu/ocean-react';
+import { DateRange } from '@useblu/ocean-react';
+```
+
+## Date Picker - Usage
+
+```jsx
+import { useState } from 'react';
+import { DatePicker } from '@useblu/ocean-react';
+import { enUS } from 'date-fns/locale'; // Any locate object (default pt-BR)
+
+const [date, setDate] = useState();
+
+const handleSelectDate = (date) => setDate(date);
+
+const label = 'Your date'
+
+<DatePicker
+  label={label}
+  value={date}
+  onSelect={handleSelectDate}
+  locale={enUS}
+/>;
+```
+
+## Date Range - Usage
+
+```jsx
+import { useState } from 'react';
+import { DateRange } from '@useblu/ocean-react';
+import { enUS } from 'date-fns/locale'; // Any locate object (default pt-BR)
+
+const [dates, setDates] = useState({ from: '', to: '' });
+
+const handleSelectDates = (dates) =>
+  setDate({ from: dates.from, to: dates.to });
+
+const labels = {
+  from: 'Start date',
+  to: 'End date',
+};
+
+<DateRange
+  labels={labels}
+  values={dates}
+  onSelect={handleSelectDates}
+  locale={enUS}
+/>;
+```

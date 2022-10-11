@@ -3,15 +3,15 @@ import classNames from 'classnames';
 
 import Input from '../Input';
 
-import useDatePicker from '../_util/useDatePicker';
+import useDateRange from './hooks/useDateRange';
 
 import { DayPicker, CaptionProps } from 'react-day-picker';
 
 import { CalendarOutline } from '@useblu/ocean-icons-react';
 
-import { DatePickerProps } from './DatePicker';
+import { DatePickerProps } from './types/DateRange.types';
 
-import DatePickerHeader from './DatePickerHeader';
+import DatePickerHeader from './DateHeader';
 
 const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
   function DatePickerRange(
@@ -38,15 +38,16 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       CustomStyles,
       localeOption,
       currentField,
+      inputPlaceholder,
       handleDayMouseEnter,
       handleDayClick,
       inputChange,
       createHandleToggleClick,
       disabledDays,
       formatDay,
-      getInputPlaceholder,
+
       handleCloseByOutside,
-    } = useDatePicker({ values, onSelect, startsToday, locale });
+    } = useDateRange({ values, onSelect, startsToday, locale });
 
     return (
       <div>
@@ -80,13 +81,12 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 name="start-date"
                 value={values.from}
                 onChange={(editable && inputChange) || undefined}
-                placeholder={getInputPlaceholder()}
+                placeholder={inputPlaceholder}
                 adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
                 error={!disabled && error}
-                pattern="[0-9]*"
                 inputMode="numeric"
                 helperText={
                   (!disabled && !showDayPicker && error && helperText) ||
@@ -115,13 +115,12 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 name="end-date"
                 value={values.to}
                 onChange={(editable && inputChange) || undefined}
-                placeholder={getInputPlaceholder()}
+                placeholder={inputPlaceholder}
                 adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
                 error={!disabled && error}
-                pattern="[0-9]*"
                 inputMode="numeric"
                 helperText={
                   (!disabled && !showDayPicker && error && helperText) ||

@@ -5,7 +5,14 @@ import ptBr from 'date-fns/locale/pt-BR';
 
 import { ClassNames, DateFormatter } from 'react-day-picker';
 
-import { DatePickerSingleProps } from '../DatePicker/DatePickerSingle';
+import { DatePickerSingleProps } from '../types/DatePicker.types';
+
+import {
+  handleValidateStartsToday,
+  dateMask,
+  formatDay,
+  getInputPlaceholder,
+} from '../utils/dateUtils';
 
 type IDatePickerProps = Pick<
   DatePickerSingleProps,
@@ -20,12 +27,12 @@ type IDatePickerReturn = {
   CustomStyles: ClassNames;
   localeOption: DateFns.Locale;
   currentField: string;
+  inputPlaceholder: string;
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: (fieldId: string) => void;
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
-  getInputPlaceholder: () => string;
   handleCloseByOutside: () => void;
 };
 
@@ -59,14 +66,8 @@ export default function useDatePickerSingle({
     updateCache && setDatePickerCache(updateData);
   };
 
-  const handleValidateStartsToday = (day: Date) =>
-    Boolean(
-      startsToday &&
-        day < new Date(new Date().setDate(new Date().getDate() - 1))
-    );
-
   const handleDayClick = (day: Date): void => {
-    if (!(startsToday && handleValidateStartsToday(day))) {
+    if (!(startsToday && handleValidateStartsToday(startsToday, day))) {
       const formattedDay = DateFns.format(day, localeDateFormat);
 
       updateState(formattedDay, true);
@@ -80,18 +81,9 @@ export default function useDatePickerSingle({
   };
 
   const disabledDays = (day: Date): boolean => {
-    const startToday = handleValidateStartsToday(day);
+    const startToday = handleValidateStartsToday(startsToday, day);
 
     return startToday || (currentField === 'end-date' && day < fromDate);
-  };
-
-  const dateMask = (value: string) => {
-    const v = value.replace(/\D/g, '').slice(0, 10);
-
-    if (v.length >= 5) return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
-    if (v.length >= 3) return `${v.slice(0, 2)}/${v.slice(2)}`;
-
-    return v;
   };
 
   const closeCalendarDelay = () => {
@@ -140,10 +132,7 @@ export default function useDatePickerSingle({
 
   const selectedDay: Date = fromDate;
 
-  const formatDay: DateFormatter = (day) => DateFns.format(day, 'd');
-
-  const getInputPlaceholder = (): string =>
-    localeOption.code === 'pt-BR' ? 'dd/mm/aaaa' : 'mm/dd/yyyy';
+  const inputPlaceholder = getInputPlaceholder(localeOption);
 
   return {
     input1Ref,
@@ -153,12 +142,12 @@ export default function useDatePickerSingle({
     CustomStyles,
     localeOption,
     currentField,
+    inputPlaceholder,
     handleDayClick,
     inputChange,
     createHandleToggleClick,
     disabledDays,
     formatDay,
-    getInputPlaceholder,
     handleCloseByOutside,
   };
 }

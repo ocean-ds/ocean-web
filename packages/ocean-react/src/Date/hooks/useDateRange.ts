@@ -1,14 +1,21 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 
-import * as DatePicker from '../DatePicker/DatePicker';
+import { DatePickerProps, DatePickerFields } from '../types/DateRange.types';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
 import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
 
+import {
+  handleValidateStartsToday,
+  dateMask,
+  formatDay,
+  getInputPlaceholder,
+} from '../utils/dateUtils';
+
 type IDatePickerProps = Pick<
-  DatePicker.DatePickerProps,
+  DatePickerProps,
   'values' | 'onSelect' | 'startsToday' | 'locale'
 >;
 
@@ -22,13 +29,13 @@ type IDatePickerReturn = {
   CustomStyles: ClassNames;
   localeOption: DateFns.Locale;
   currentField: string;
+  inputPlaceholder: string;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: (fieldId: string) => void;
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
-  getInputPlaceholder: () => string;
   handleCloseByOutside: () => void;
 };
 
@@ -50,7 +57,7 @@ export default function useDatePicker({
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [currentField, setCurrentField] = React.useState<string>('');
   const [datePickerCache, setDatePickerCache] =
-    React.useState<DatePicker.DatePickerFields>({ from: '', to: '' });
+    React.useState<DatePickerFields>({ from: '', to: '' });
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
@@ -59,19 +66,10 @@ export default function useDatePicker({
     if (values.from === '') setCurrentField('');
   }, [values.from]);
 
-  const updateState = (
-    updateData: DatePicker.DatePickerFields,
-    updateCache?: boolean
-  ) => {
+  const updateState = (updateData: DatePickerFields, updateCache?: boolean) => {
     onSelect(updateData);
     updateCache && setDatePickerCache(updateData);
   };
-
-  const handleValidateStartsToday = (day: Date) =>
-    Boolean(
-      startsToday &&
-        day < new Date(new Date().setDate(new Date().getDate() - 1))
-    );
 
   const handleDayMouseEnter = (day: Date): void => {
     const formattedDay = DateFns.format(day, localeDateFormat);
@@ -83,7 +81,7 @@ export default function useDatePicker({
   };
 
   const handleDayClick = (day: Date): void => {
-    if (!(startsToday && handleValidateStartsToday(day))) {
+    if (!(startsToday && handleValidateStartsToday(startsToday, day))) {
       const formattedDay = DateFns.format(day, localeDateFormat);
 
       if (currentField === 'start-date') {
@@ -114,18 +112,9 @@ export default function useDatePicker({
   };
 
   const disabledDays = (day: Date): boolean => {
-    const startToday = handleValidateStartsToday(day);
+    const startToday = handleValidateStartsToday(startsToday, day);
 
     return startToday || (currentField === 'end-date' && day < fromDate);
-  };
-
-  const dateMask = (value: string) => {
-    const v = value.replace(/\D/g, '').slice(0, 10);
-
-    if (v.length >= 5) return `${v.slice(0, 2)}/${v.slice(2, 4)}/${v.slice(4)}`;
-    if (v.length >= 3) return `${v.slice(0, 2)}/${v.slice(2)}`;
-
-    return v;
   };
 
   const closeCalendarDelay = () => {
@@ -197,10 +186,7 @@ export default function useDatePicker({
     to: toDate,
   };
 
-  const formatDay: DateFormatter = (day) => DateFns.format(day, 'd');
-
-  const getInputPlaceholder = (): string =>
-    localeOption.code === 'pt-BR' ? 'dd/mm/aaaa' : 'mm/dd/yyyy';
+  const inputPlaceholder = getInputPlaceholder(localeOption);
 
   return {
     input1Ref,
@@ -212,13 +198,13 @@ export default function useDatePicker({
     CustomStyles,
     localeOption,
     currentField,
+    inputPlaceholder,
     handleDayMouseEnter,
     handleDayClick,
     inputChange,
     createHandleToggleClick,
     disabledDays,
     formatDay,
-    getInputPlaceholder,
     handleCloseByOutside,
   };
 }
