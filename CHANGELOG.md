@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.1](https://github.com/ocean-ds/ocean-web/compare/v1.36.0...v1.36.1) (2022-10-11)
+
+### Bug Fixes
+
+- datepicker ([#1023](https://github.com/ocean-ds/ocean-web/issues/1023)) ([1f01013](https://github.com/ocean-ds/ocean-web/commit/1f010133d95da42e169908c7a3cd5e2add889d59))
+
 # [1.36.0](https://github.com/ocean-ds/ocean-web/compare/v1.35.2...v1.36.0) (2022-10-06)
 
 ### Features
