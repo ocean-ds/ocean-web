@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.3](https://github.com/ocean-ds/ocean-web/compare/v1.36.2...v1.36.3) (2022-10-11)
+
+### Bug Fixes
+
+- datepicker (remove input patterns) ([#1027](https://github.com/ocean-ds/ocean-web/issues/1027)) ([0d89c08](https://github.com/ocean-ds/ocean-web/commit/0d89c080f7a8f93531d458ac266b51cc1ebe8631))
+
 ## [1.36.2](https://github.com/ocean-ds/ocean-web/compare/v1.36.1...v1.36.2) (2022-10-11)
 
 **Note:** Version bump only for package root
