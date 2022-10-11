@@ -85,16 +85,16 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   .ods-datepicker_calendar_m1 {
-    top: 4.5rem;
+    top: 72px;
   }
 
   .ods-datepicker_calendar_m2 {
-    top: 4.5rem;
+    top: 72px;
   }
 
   @media (max-width: 321px) {
     .ods-datepicker_calendar_m2 {
-      top: 9.5rem;
+      top: 150px;
     }
   }
 
@@ -184,12 +184,19 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     grid-template-columns: repeat(7, 1fr);
   }
 
+  .rdp-head_cell {
+    border: 0;
+    text-align: center;
+  }
+
   .ods-datepicker__cell {
+    border: 0;
     display: flex;
     height: 40px;
     justify-content: center;
     margin: 2px 0;
     outline: 0;
+    padding: 0;
     text-align: center;
     width: 100%;
   }
