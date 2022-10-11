@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import DatePicker from '../DatePicker';
+import DatePicker from '../DateRange';
 
 import { format } from 'date-fns';
 

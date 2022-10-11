@@ -3,21 +3,15 @@ import classNames from 'classnames';
 
 import Input from '../Input';
 
-import useDatePickerSingle from '../_util/useDatePickerSingle';
+import useDatePicker from './hooks/useDatePicker';
 
 import { DayPicker, CaptionProps } from 'react-day-picker';
 
 import { CalendarOutline } from '@useblu/ocean-icons-react';
 
-import { DatePickerProps } from './DatePicker';
+import { DatePickerSingleProps } from './types/DatePicker.types';
 
-import DatePickerHeader from './DatePickerHeader';
-
-export type DatePickerSingleProps = {
-  label: string | undefined;
-  value: string | undefined;
-  onSelect: (date: string) => void;
-} & Omit<DatePickerProps, 'labels' | 'values' | 'onSelect'>;
+import DateHeader from './DateHeader';
 
 const DatePickerSingle = React.forwardRef<
   HTMLDivElement,
@@ -45,14 +39,14 @@ const DatePickerSingle = React.forwardRef<
     CustomStyles,
     localeOption,
     currentField,
+    inputPlaceholder,
     handleDayClick,
     inputChange,
     createHandleToggleClick,
     disabledDays,
     formatDay,
-    getInputPlaceholder,
     handleCloseByOutside,
-  } = useDatePickerSingle({ value, onSelect, startsToday, locale });
+  } = useDatePicker({ value, onSelect, startsToday, locale });
 
   return (
     <div>
@@ -84,13 +78,12 @@ const DatePickerSingle = React.forwardRef<
               name="start-date"
               value={value}
               onChange={(editable && inputChange) || undefined}
-              placeholder={getInputPlaceholder()}
+              placeholder={inputPlaceholder}
               adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
               autoComplete="off"
               readOnly={!editable}
               disabled={disabled}
               error={!disabled && error}
-              pattern="[0-9]*"
               inputMode="numeric"
               helperText={
                 (!disabled && !showDayPicker && error && helperText) ||
@@ -114,7 +107,7 @@ const DatePickerSingle = React.forwardRef<
                 disabled={disabledDays}
                 components={{
                   Caption: ({ displayMonth }: CaptionProps) =>
-                    DatePickerHeader({ displayMonth, locale: localeOption }),
+                    DateHeader({ displayMonth, locale: localeOption }),
                 }}
               />
             </div>

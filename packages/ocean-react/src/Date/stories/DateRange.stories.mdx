@@ -1,113 +1,79 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import DatePicker from '../DatePicker';
+import DateRange from '../DateRange';
 import { useState } from 'react';
 
-import { ptBR, enUS, ja, ar } from 'date-fns/locale';
-
 <Meta
-  title="Components/DatePicker/Usage"
-  component={DatePicker}
+  title="Components/Date/DateRange"
+  component={DateRange}
   decorators={[(storyFn) => <div>{storyFn()}</div>]}
-  parameters={{ layout: 'centered' }}
+  parameters={{
+    layout: 'centered',
+  }}
 />
 
-export const selectLocation = (locale) => {
-  const locales = {
-    portuguese: ptBR,
-    english: enUS,
-    japanese: ja,
-    arabic: ar,
+# Date Range APIs
+
+The API documentation of the DatePicker React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { DateRange } from '@useblu/ocean-react';
+```
+
+export const DinamicDatePicker = () => {
+  const labels = {
+    from: 'Start date',
+    to: 'End date',
   };
-  return locales[locale];
+  const [dates, setDates] = useState({ from: '', to: '' });
+  const handleSelectDates = (dates) =>
+    setDates({ from: dates.from, to: dates.to });
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '400px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <div style={{ width: '500px' }}>
+        <DateRange
+          labels={labels}
+          values={dates}
+          onSelect={handleSelectDates}
+          editable
+        />
+      </div>
+    </div>
+  );
 };
 
-# DatePicker props APIs
+## Usage
 
-Change all available properties to see the component modification.
+```jsx
+import { useState } from 'react';
+import { DateRange } from '@useblu/ocean-react';
+import { enUS } from 'date-fns/locale'; // Any locate object (default pt-BR)
 
-<Canvas withSource="close">
-  <Story
-    name="Usage"
-    args={{
-      label1: 'Start date',
-      label2: 'End date',
-      value1: '',
-      value2: '',
-      helperText: 'Some text error here!',
-      startsToday: false,
-      editable: false,
-      error: false,
-      disabled: false,
-      locale: 'pt-BR',
-    }}
-    parameters={{
-      controls: { exclude: /^blocked*/ },
-    }}
-    argTypes={{
-      label1: {
-        control: 'text',
-      },
-      label2: {
-        control: 'text',
-      },
-      value1: {
-        control: 'text',
-      },
-      value2: {
-        control: 'text',
-      },
-      startsToday: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
-      editable: {
-        control: 'boolean',
-      },
-      error: {
-        control: 'boolean',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      locale: {
-        options: ['portuguese', 'english', 'japanese', 'arabic'],
-        control: { type: 'select' },
-      },
-    }}
-  >
-    {(props) => (
-      <div
-        style={{
-          width: '100%',
-          height: '400px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <div style={{ width: '100%' }}>
-          <DatePicker
-            labels={{ from: props.label1, to: props.label2 }}
-            values={{ from: props.value1, to: props.value2 }}
-            onSelect={() => null}
-            error={props.error}
-            disabled={props.disabled}
-            locale={selectLocation(props.locale)}
-            startsToday={props.startsToday}
-            helperText={props.helperText}
-          />
-        </div>
-      </div>
-    )}
-  </Story>
-</Canvas>
+const [dates, setDates] = useState({ from: '', to: '' });
 
-## props
+const handleSelectDates = (dates) =>
+  setDate({ from: dates.from, to: dates.to });
 
-Change the fields below and see the reaction in the component above.
+const labels = {
+  from: 'Start date',
+  to: 'End date',
+};
 
-<ArgsTable story="Usage" of="." />
+<DateRange
+  labels={labels}
+  values={dates}
+  onSelect={handleSelectDates}
+  locale={enUS}
+/>;
+```
 
 ## CSS
 
@@ -135,3 +101,11 @@ Change the fields below and see the reaction in the component above.
 | .ods-datepicker\_\_selectedMiddle | Styles applied to the date modal range middle days.  |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/DatePicker/DatePicker.tsx) for more detail. -->
+
+## Playground
+
+<Canvas withSource="close" withToolbar>
+  <Story name="Playground">
+    <DinamicDatePicker />
+  </Story>
+</Canvas>
