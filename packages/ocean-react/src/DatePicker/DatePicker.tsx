@@ -124,6 +124,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       return (
         <div className="ods-datepicker__caption">
           <IconButton
+            type="button"
             data-testid="calendar-left-arrow"
             size="sm"
             className={classNames(
@@ -139,6 +140,7 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
             {format(props.displayMonth, 'MMMM yyyy', { locale: localeOption })}
           </h2>
           <IconButton
+            type="button"
             data-testid="calendar-right-arrow"
             size="sm"
             className={classNames(
@@ -156,11 +158,13 @@ const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
 
     return (
       <div>
-        <div
-          className="ods-datepicker-background"
-          data-testid="date-picker-outside"
-          onClick={handleCloseByOutside}
-        />
+        {showDayPicker && (
+          <div
+            className="ods-datepicker-background"
+            data-testid="date-picker-outside"
+            onClick={handleCloseByOutside}
+          />
+        )}
         <div
           className={classNames('ods-datepicker', className)}
           ref={ref}

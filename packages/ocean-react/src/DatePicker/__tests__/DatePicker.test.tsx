@@ -22,10 +22,6 @@ test('renders element properly', () => {
   expect(container.firstChild).toMatchInlineSnapshot(`
   <div>
     <div
-      class="ods-datepicker-background"
-      data-testid="date-picker-outside"
-    />
-    <div
       class="ods-datepicker class-test"
     >
       <div
