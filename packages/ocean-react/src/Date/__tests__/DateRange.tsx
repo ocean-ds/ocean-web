@@ -22,7 +22,7 @@ test('renders element properly', () => {
   expect(container.firstChild).toMatchInlineSnapshot(`
   <div>
     <div
-      class="ods-datepicker class-test"
+      class="ods-date class-test"
     >
       <div
         class="ods-date__form-row"
