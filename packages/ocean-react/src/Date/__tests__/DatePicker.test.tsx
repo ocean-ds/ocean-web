@@ -8,8 +8,6 @@ import DatePicker from '../DatePicker';
 
 import { format } from 'date-fns';
 
-// import { enUS } from 'date-fns/locale';
-
 test('renders element properly', () => {
   const { container } = render(
     <DatePicker
