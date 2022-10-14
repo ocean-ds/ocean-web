@@ -21,6 +21,7 @@ const DatePickerHeader: React.FC<IProps> = ({
   return (
     <div className="ods-date__caption">
       <IconButton
+        type="button"
         data-testid="calendar-left-arrow"
         size="sm"
         className={classNames('ods-date__navButtons', {
@@ -36,6 +37,7 @@ const DatePickerHeader: React.FC<IProps> = ({
         {format(displayMonth, 'MMMM yyyy', { locale })}
       </h2>
       <IconButton
+        type="button"
         data-testid="calendar-right-arrow"
         size="sm"
         className={classNames('ods-date__navButtons', {

@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import DateRange from '../DateRange';
 import { useState } from 'react';
+import { ptBR, enUS, ja, ar } from 'date-fns/locale';
 
 <Meta
   title="Components/Date/DateRange"
@@ -20,35 +21,6 @@ The API documentation of the DatePicker React component. Learn more about the pr
 ```javascript
 import { DateRange } from '@useblu/ocean-react';
 ```
-
-export const DinamicDatePicker = () => {
-  const labels = {
-    from: 'Start date',
-    to: 'End date',
-  };
-  const [dates, setDates] = useState({ from: '', to: '' });
-  const handleSelectDates = (dates) =>
-    setDates({ from: dates.from, to: dates.to });
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: '400px',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <div style={{ width: '500px' }}>
-        <DateRange
-          labels={labels}
-          values={dates}
-          onSelect={handleSelectDates}
-          editable
-        />
-      </div>
-    </div>
-  );
-};
 
 ## Usage
 
@@ -75,6 +47,10 @@ const labels = {
 />;
 ```
 
+## Props
+
+<ArgsTable story="Playground" of="." />
+
 ## CSS
 
 | Global class                | Description                                          |
@@ -100,12 +76,178 @@ const labels = {
 | .ods-date\_\_selectedEnd    | Styles applied to the date modal range end day.      |
 | .ods-date\_\_selectedMiddle | Styles applied to the date modal range middle days.  |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/DatePicker/DatePicker.tsx) for more detail. -->
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Date/DateRange.tsx) for more detail. -->
+
+export const DinamicDatePicker = (props) => {
+  const labels = {
+    from: 'Start date',
+    to: 'End date',
+  };
+  const [dates, setDates] = useState({ from: '', to: '' });
+  const handleSelectDates = (dates) =>
+    setDates({ from: dates.from, to: dates.to });
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '400px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <div style={{ width: '500px' }}>
+        <DateRange
+          labels={labels}
+          values={dates}
+          onSelect={handleSelectDates}
+          {...props}
+        />
+      </div>
+    </div>
+  );
+};
+
+export const selectLocation = (locale) => {
+  const locales = {
+    portuguese: ptBR,
+    english: enUS,
+    japanese: ja,
+    arabic: ar,
+  };
+  return locales[locale];
+};
 
 ## Playground
 
 <Canvas withSource="close" withToolbar>
-  <Story name="Playground">
-    <DinamicDatePicker />
+  <Story
+    name="Playground"
+    args={{
+      label1: 'Start date',
+      label2: 'End date',
+      value1: '14/10/2022',
+      value2: '15/10/2022',
+      onSelect: () => null,
+      helperText: 'Some text error here!',
+      startsToday: false,
+      editable: false,
+      error: false,
+      disabled: false,
+      locale: 'pt-BR',
+    }}
+    argTypes={{
+      label1: {
+        control: 'text',
+        description: 'Determines name of input (from)',
+        type: { name: 'string', required: false },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      label2: {
+        control: 'text',
+        description: 'Determines name of input (to)',
+        type: { name: 'string', required: false },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      value1: {
+        control: null,
+        description: 'Determines value of input (from)',
+        type: { name: 'string', required: true },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      value2: {
+        control: null,
+        description: 'Determines value of input (to)',
+        type: { name: 'string', required: true },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      onSelect: {
+        control: null,
+        description: 'Determines the function to change fields (from/to)',
+        type: { required: true },
+        table: {
+          type: { summary: 'function' },
+          defaultValue: { summary: null },
+        },
+      },
+      startsToday: {
+        control: 'boolean',
+        description: 'Determines if date seleting starts today',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      helperText: {
+        control: 'text',
+        description: 'Determines error message',
+        default: '',
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      editable: {
+        control: 'boolean',
+        description: 'Determines if date inputs are editable',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      error: {
+        control: 'boolean',
+        description: 'Determines error of input',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      disabled: {
+        control: 'boolean',
+        description: 'Determines if date input are disabled',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      locale: {
+        options: ['portuguese', 'english', 'japanese', 'arabic'],
+        control: { type: 'select' },
+        description:
+          'Object locale of date-fns locale package (internationalize)',
+        table: {
+          type: { summary: 'object' },
+          defaultValue: { summary: 'ptBR' },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <DinamicDatePicker
+        labels={{ from: props.label1, to: props.label2 }}
+        error={props.error}
+        disabled={props.disabled}
+        editable={props.editable}
+        locale={selectLocation(props.locale)}
+        startsToday={props.startsToday}
+        helperText={props.helperText}
+      />
+    )}
   </Story>
 </Canvas>
