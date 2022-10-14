@@ -50,19 +50,17 @@ const DatePickerSingle = React.forwardRef<
 
   return (
     <div>
-      <div
-        className="ods-datepicker-background"
-        data-testid="date-picker-outside"
-        onClick={handleCloseByOutside}
-      />
-      <div
-        className={classNames('ods-datepicker', className)}
-        ref={ref}
-        {...rest}
-      >
-        <div className="ods-datepicker__form-row-single">
+      {showDayPicker && (
+        <div
+          className="ods-date-background"
+          data-testid="date-picker-outside"
+          onClick={handleCloseByOutside}
+        />
+      )}
+      <div className={classNames('ods-date', className)} ref={ref} {...rest}>
+        <div className="ods-date__form-row-single">
           <div
-            className="ods-datepicker__form-controls"
+            className="ods-date__form-controls"
             data-testid="date-picker-first-field-wrapper"
             onClick={() => createHandleToggleClick('start-date')}
           >

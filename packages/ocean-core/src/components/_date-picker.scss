@@ -1,7 +1,7 @@
 $background-custom: rgba(176, 245, 245, 0.24) 50%,
   $color-interface-light-pure 50%;
 
-.ods-datepicker-background {
+.ods-date-background {
   background: transparent;
   bottom: 0;
   content: ' ';
@@ -11,7 +11,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   top: 0;
 }
 
-.ods-datepicker {
+.ods-date {
   display: flex;
   position: relative;
   user-select: none;
@@ -72,7 +72,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__calendar {
+  &__calendar {
     background-color: $color-interface-light-pure;
     border: 1px solid $color-interface-light-down;
     border-radius: $border-radius-md;
@@ -88,21 +88,21 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker_calendar_m1 {
+  &_calendar_m1 {
     top: 72px;
   }
 
-  .ods-datepicker_calendar_m2 {
+  &_calendar_m2 {
     top: 72px;
   }
 
   @media (max-width: 321px) {
-    .ods-datepicker_calendar_m2 {
+    &_calendar_m2 {
       top: 150px;
     }
   }
 
-  .ods-datepicker__caption {
+  &__caption {
     align-items: center;
     color: $color-interface-dark-deep;
     display: flex;
@@ -122,7 +122,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__navButtons {
+  &__navButtons {
     background-color: transparent;
     border: 0;
     color: $color-brand-primary-pure;
@@ -138,7 +138,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__navButtonPrev {
+  &__navButtonPrev {
     left: 17px;
 
     @media (max-width: 321px) {
@@ -146,11 +146,11 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__navButtonPrev-single {
+  &__navButtonPrev-datepicker {
     left: 0;
   }
 
-  .ods-datepicker__navButtonNext {
+  &__navButtonNext {
     right: 17px;
 
     @media (max-width: 321px) {
@@ -158,26 +158,26 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__navButtonNext-single {
+  &__navButtonNext-datepicker {
     right: 0;
   }
 
-  .ods-datepicker__navIcon {
+  &__navIcon {
     box-sizing: border-box;
     width: 12px;
   }
 
-  .ods-datepicker__table {
+  &__table {
     display: flex;
     flex-direction: column;
   }
 
-  .ods-datepicker__head {
+  &__head {
     margin-bottom: $spacing-inline-xxs;
     padding: 0 $spacing-inline-xxs;
   }
 
-  .ods-datepicker__headRow {
+  &__headRow {
     color: $color-interface-dark-up;
     display: grid;
     font-family: $font-family-base;
@@ -187,11 +187,11 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     text-transform: capitalize;
   }
 
-  .ods-datepicker__body {
+  &__body {
     padding: 0 $spacing-inline-xxs;
   }
 
-  .ods-datepicker__row {
+  &__row {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
   }
@@ -201,7 +201,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     text-align: center;
   }
 
-  .ods-datepicker__cell {
+  &__cell {
     border: 0;
     display: flex;
     height: 40px;
@@ -213,19 +213,19 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     width: 100%;
   }
 
-  .ods-datepicker__cell .ods-datepicker__selectedStart {
+  &__cell &__selectedStart {
     background: linear-gradient(to left, $background-custom);
   }
 
-  .ods-datepicker__cell .ods-datepicker__selectedEnd {
+  &__cell &__selectedEnd {
     background: linear-gradient(to right, $background-custom);
   }
 
-  .ods-datepicker__selectedStart.ods-datepicker__selectedEnd {
+  &__selectedStart.ods-date__selectedEnd {
     background: transparent;
   }
 
-  .ods-datepicker__day {
+  &__day {
     align-items: center;
     background-color: transparent;
     border: 0;
@@ -260,15 +260,15 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__today {
+  &__today {
     color: $color-brand-primary-pure;
   }
 
-  .ods-datepicker__disabled {
+  &__disabled {
     color: $color-interface-light-deep;
   }
 
-  .ods-datepicker__selected {
+  &__selected {
     background-color: rgba(176, 245, 245, 0.24);
     position: relative;
 
@@ -289,7 +289,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__selected-single {
+  &__selected-single {
     background: transparent;
     color: $color-interface-light-pure;
     position: relative;
@@ -312,7 +312,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__selectedStart {
+  &__selectedStart {
     color: $color-interface-light-pure;
     position: relative;
     z-index: 1;
@@ -334,7 +334,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__selectedEnd {
+  &__selectedEnd {
     color: $color-interface-light-pure;
     position: relative;
     z-index: 1;
@@ -356,7 +356,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  .ods-datepicker__selectedMiddle {
+  &__selectedMiddle {
     background-color: rgba(176, 245, 245, 0.24);
   }
 }

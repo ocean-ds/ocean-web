@@ -15,13 +15,13 @@ const DatePickerHeader: React.FC<IProps> = ({ displayMonth, locale }) => {
   const { goToMonth, nextMonth, previousMonth } = useNavigation();
 
   return (
-    <div className="ods-datepicker__caption">
+    <div className="ods-date__caption">
       <IconButton
         data-testid="calendar-left-arrow"
         size="sm"
         className={classNames(
-          'ods-datepicker__navButtons',
-          'ods-datepicker__navButtonPrev'
+          'ods-date__navButtons',
+          'ods-date__navButtonPrev'
         )}
         disabled={!previousMonth}
         onClick={() => previousMonth && goToMonth(previousMonth)}
@@ -35,8 +35,8 @@ const DatePickerHeader: React.FC<IProps> = ({ displayMonth, locale }) => {
         data-testid="calendar-right-arrow"
         size="sm"
         className={classNames(
-          'ods-datepicker__navButtons',
-          'ods-datepicker__navButtonNext'
+          'ods-date__navButtons',
+          'ods-date__navButtonNext'
         )}
         disabled={!nextMonth}
         onClick={() => nextMonth && goToMonth(nextMonth)}

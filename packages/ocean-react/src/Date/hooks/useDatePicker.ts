@@ -71,6 +71,7 @@ export default function useDatePickerSingle({
       const formattedDay = DateFns.format(day, localeDateFormat);
 
       updateState(formattedDay, true);
+      setCurrentField('');
       closeCalendarDelay();
     }
   };
@@ -98,6 +99,7 @@ export default function useDatePickerSingle({
     updateState(dataFormatted, true);
 
     if (dataFormatted.length === localeDateFormat.length) {
+      setCurrentField('');
       closeCalendarDelay();
     }
   };
@@ -112,22 +114,22 @@ export default function useDatePickerSingle({
   };
 
   const CustomStyles: ClassNames = {
-    root: 'ods-datepicker__calendar',
-    caption: 'ods-datepicker__caption',
-    nav_button: 'ods-datepicker__navButtons',
-    nav_button_previous: 'ods-datepicker__navButtonPrev-single',
-    nav_button_next: 'ods-datepicker__navButtonNext-single',
-    nav_icon: 'ods-datepicker__navIcon',
-    table: 'ods-datepicker__table',
-    head: 'ods-datepicker__head',
-    head_row: 'ods-datepicker__headRow',
-    tbody: 'ods-datepicker__body',
-    row: 'ods-datepicker__row',
-    cell: 'ods-datepicker__cell',
-    day: 'ods-datepicker__day',
-    day_today: 'ods-datepicker__today',
-    day_selected: 'ods-datepicker__selected-single',
-    day_disabled: 'ods-datepicker__disabled',
+    root: 'ods-date__calendar',
+    caption: 'ods-date__caption',
+    nav_button: 'ods-date__navButtons',
+    nav_button_previous: 'ods-date__navButtonPrev-datepicker',
+    nav_button_next: 'ods-date__navButtonNext-datepicker',
+    nav_icon: 'ods-date__navIcon',
+    table: 'ods-date__table',
+    head: 'ods-date__head',
+    head_row: 'ods-date__headRow',
+    tbody: 'ods-date__body',
+    row: 'ods-date__row',
+    cell: 'ods-date__cell',
+    day: 'ods-date__day',
+    day_today: 'ods-date__today',
+    day_selected: 'ods-date__selected-single',
+    day_disabled: 'ods-date__disabled',
   };
 
   const selectedDay: Date = fromDate;
