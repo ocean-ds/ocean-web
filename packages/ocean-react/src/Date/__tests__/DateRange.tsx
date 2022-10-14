@@ -22,10 +22,6 @@ test('renders element properly', () => {
   expect(container.firstChild).toMatchInlineSnapshot(`
   <div>
     <div
-      class="ods-date-background"
-      data-testid="date-picker-outside"
-    />
-    <div
       class="ods-date class-test"
     >
       <div
@@ -63,7 +59,6 @@ test('renders element properly', () => {
                   inputmode="numeric"
                   maxlength="10"
                   name="start-date"
-                  pattern="[0-9]*"
                   placeholder="dd/mm/aaaa"
                   readonly=""
                   type="text"
@@ -124,7 +119,6 @@ test('renders element properly', () => {
                   inputmode="numeric"
                   maxlength="10"
                   name="end-date"
-                  pattern="[0-9]*"
                   placeholder="dd/mm/aaaa"
                   readonly=""
                   type="text"
