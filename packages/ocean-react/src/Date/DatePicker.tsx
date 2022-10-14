@@ -58,7 +58,7 @@ const DatePickerSingle = React.forwardRef<
         />
       )}
       <div className={classNames('ods-date', className)} ref={ref} {...rest}>
-        <div className="ods-date__form-row-single">
+        <div className="ods-date__form-row-datepicker">
           <div
             className="ods-date__form-controls"
             data-testid="date-picker-first-field-wrapper"

@@ -84,7 +84,7 @@ export default function useDatePickerSingle({
   const disabledDays = (day: Date): boolean => {
     const startToday = handleValidateStartsToday(startsToday, day);
 
-    return startToday || (currentField === 'end-date' && day < fromDate);
+    return startToday;
   };
 
   const closeCalendarDelay = () => {
