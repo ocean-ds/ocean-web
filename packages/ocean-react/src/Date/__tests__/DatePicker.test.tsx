@@ -239,6 +239,15 @@ test('close calendar when click outside and save cache', async () => {
 
   fireEvent.click(day);
 
+  expect(onSelectMock).toBeCalledWith(
+    `${format(
+      new Date().setDate(today),
+      ptBr?.formatLong?.date({ width: 'short' })
+    )}`
+  );
+
+  fireEvent.click(input);
+
   const outside = screen.getByTestId('date-picker-outside');
 
   fireEvent.click(outside);
@@ -249,8 +258,4 @@ test('close calendar when click outside and save cache', async () => {
       ptBr?.formatLong?.date({ width: 'short' })
     )}`
   );
-
-  setTimeout(() => {
-    expect(calendar).not.toBeInTheDocument();
-  }, 1000);
 });
