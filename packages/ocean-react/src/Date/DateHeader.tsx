@@ -9,9 +9,13 @@ import { CaptionProps, useNavigation } from 'react-day-picker';
 
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 
-type IProps = CaptionProps & { locale: Locale };
+type IProps = CaptionProps & { locale: Locale; mode?: 'single' | 'range' };
 
-const DatePickerHeader: React.FC<IProps> = ({ displayMonth, locale }) => {
+const DatePickerHeader: React.FC<IProps> = ({
+  displayMonth,
+  locale,
+  mode = 'range',
+}) => {
   const { goToMonth, nextMonth, previousMonth } = useNavigation();
 
   return (
@@ -19,10 +23,10 @@ const DatePickerHeader: React.FC<IProps> = ({ displayMonth, locale }) => {
       <IconButton
         data-testid="calendar-left-arrow"
         size="sm"
-        className={classNames(
-          'ods-date__navButtons',
-          'ods-date__navButtonPrev'
-        )}
+        className={classNames('ods-date__navButtons', {
+          'ods-date__navButtonPrev': mode === 'range',
+          'ods-date__navButtonPrev-datepicker': mode === 'single',
+        })}
         disabled={!previousMonth}
         onClick={() => previousMonth && goToMonth(previousMonth)}
       >
@@ -34,10 +38,10 @@ const DatePickerHeader: React.FC<IProps> = ({ displayMonth, locale }) => {
       <IconButton
         data-testid="calendar-right-arrow"
         size="sm"
-        className={classNames(
-          'ods-date__navButtons',
-          'ods-date__navButtonNext'
-        )}
+        className={classNames('ods-date__navButtons', {
+          'ods-date__navButtonNext': mode === 'range',
+          'ods-date__navButtonNext-datepicker': mode === 'single',
+        })}
         disabled={!nextMonth}
         onClick={() => nextMonth && goToMonth(nextMonth)}
       >

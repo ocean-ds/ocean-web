@@ -105,7 +105,11 @@ const DatePickerSingle = React.forwardRef<
                 disabled={disabledDays}
                 components={{
                   Caption: ({ displayMonth }: CaptionProps) =>
-                    DateHeader({ displayMonth, locale: localeOption }),
+                    DateHeader({
+                      displayMonth,
+                      locale: localeOption,
+                      mode: 'single',
+                    }),
                 }}
               />
             </div>
