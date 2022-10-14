@@ -72,7 +72,7 @@ export default function useDatePickerSingle({
 
       updateState(formattedDay, true);
       setCurrentField('');
-      closeCalendarDelay();
+      setShowDayPicker(false);
     }
   };
 
