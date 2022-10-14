@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import DatePicker from '../DatePicker';
 import { useState } from 'react';
+import { ptBR, enUS, ja, ar } from 'date-fns/locale';
 
 <Meta
   title="Components/Date/DatePicker"
@@ -20,31 +21,6 @@ The API documentation of the DatePicker React component. Learn more about the pr
 ```javascript
 import { DatePicker } from '@useblu/ocean-react';
 ```
-
-export const DinamicDatePicker = () => {
-  const label = 'Your date';
-  const [date, setDate] = useState();
-  const handleSelectDate = (date) => setDate(date);
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: '400px',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
-    >
-      <div style={{ width: '400px' }}>
-        <DatePicker
-          label={label}
-          value={date}
-          onSelect={handleSelectDate}
-          editable
-        />
-      </div>
-    </div>
-  );
-};
 
 ## Usage
 
@@ -66,6 +42,10 @@ const label = 'Your date'
   locale={enUS}
 />;
 ```
+
+## Props
+
+<ArgsTable story="Playground" of="." />
 
 ## CSS
 
@@ -92,12 +72,149 @@ const label = 'Your date'
 | .ods-date\_\_selectedEnd              | Styles applied to the date modal range end day.      |
 | .ods-date\_\_selectedMiddle           | Styles applied to the date modal range middle days.  |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/DatePicker/DatePicker.tsx) for more detail. -->
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Date/DatePicker.tsx) for more detail. -->
+
+export const DinamicDatePicker = (props) => {
+  const [date, setDate] = useState();
+  const handleSelectDate = (date) => setDate(date);
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '400px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <div style={{ width: '400px' }}>
+        <DatePicker value={date} onSelect={handleSelectDate} {...props} />
+      </div>
+    </div>
+  );
+};
+
+export const selectLocation = (locale) => {
+  const locales = {
+    portuguese: ptBR,
+    english: enUS,
+    japanese: ja,
+    arabic: ar,
+  };
+  return locales[locale];
+};
 
 ## Playground
 
 <Canvas withSource="close" withToolbar>
-  <Story name="Playground">
-    <DinamicDatePicker />
+  <Story
+    name="Playground"
+    args={{
+      label: 'Your date',
+      value: '',
+      onSelect: () => null,
+      helperText: 'Some text error here!',
+      startsToday: false,
+      editable: false,
+      error: false,
+      disabled: false,
+      locale: 'pt-BR',
+    }}
+    argTypes={{
+      label: {
+        control: 'text',
+        description: 'Determines name of input',
+        type: { name: 'string', required: false },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      value: {
+        control: null,
+        description: 'Determines value of input',
+        type: { name: 'string', required: true },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: null },
+        },
+      },
+      onSelect: {
+        control: null,
+        description: 'Determines the function to change field',
+        type: { required: true },
+        table: {
+          type: { summary: 'function' },
+          defaultValue: { summary: null },
+        },
+      },
+      startsToday: {
+        control: 'boolean',
+        description: 'Determines if date seleting starts today',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      helperText: {
+        control: 'text',
+        description: 'Determines error message',
+        default: '',
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      editable: {
+        control: 'boolean',
+        description: 'Determines if date inputs are editable',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      error: {
+        control: 'boolean',
+        description: 'Determines error of input',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      disabled: {
+        control: 'boolean',
+        description: 'Determines if date input are disabled',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      locale: {
+        options: ['portuguese', 'english', 'japanese', 'arabic'],
+        control: { type: 'select' },
+        description:
+          'Object locale of date-fns locale package (internationalize)',
+        defaultValue: ptBR,
+        table: {
+          type: { summary: 'object' },
+          defaultValue: { summary: 'ptBR' },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <DinamicDatePicker
+        label={props.label}
+        error={props.error}
+        disabled={props.disabled}
+        editable={props.editable}
+        locale={selectLocation(props.locale)}
+        startsToday={props.startsToday}
+        helperText={props.helperText}
+      />
+    )}
   </Story>
 </Canvas>

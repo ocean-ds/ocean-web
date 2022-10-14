@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import DatePicker from '../DatePicker';
+import DateRange from '../DateRange';
 import { useState } from 'react';
 
 <Meta
@@ -15,59 +16,58 @@ import { useState } from 'react';
   }}
 />
 
-# Date APIs
+# Date
 
-The API documentation of the Date Collection React component. Learn more about the props and the CSS customization points.
+This is the showcase of the Date Collection of ocean design.
 
-## Import
+## Date picker
 
-```javascript
-import { DatePicker } from '@useblu/ocean-react';
-import { DateRange } from '@useblu/ocean-react';
-```
+The date picker is the version of date collection with one field.
 
-## Date Picker - Usage
+### Simple Usage
 
-```jsx
-import { useState } from 'react';
-import { DatePicker } from '@useblu/ocean-react';
-import { enUS } from 'date-fns/locale'; // Any locate object (default pt-BR)
+<div
+  style={{
+    width: '100%',
+    display: 'flex',
+    margin: '30px 0 40px',
+  }}
+>
+  <div style={{ width: '400px', zIndex: '10' }}>
+    <DatePicker label="Your label" value="" onSelect={() => null} />
+  </div>
+</div>
 
-const [date, setDate] = useState();
-
-const handleSelectDate = (date) => setDate(date);
-
-const label = 'Your date'
-
-<DatePicker
-  label={label}
-  value={date}
-  onSelect={handleSelectDate}
-  locale={enUS}
-/>;
-```
-
-## Date Range - Usage
+#### code
 
 ```jsx
-import { useState } from 'react';
-import { DateRange } from '@useblu/ocean-react';
-import { enUS } from 'date-fns/locale'; // Any locate object (default pt-BR)
+<DatePicker label="Your label" value="" onSelect={() => null} />
+```
 
-const [dates, setDates] = useState({ from: '', to: '' });
+## Date range
 
-const handleSelectDates = (dates) =>
-  setDate({ from: dates.from, to: dates.to });
+The date picker is the version of date collection to select a range of dates.
 
-const labels = {
-  from: 'Start date',
-  to: 'End date',
-};
+### Simple Usage
 
-<DateRange
-  labels={labels}
-  values={dates}
-  onSelect={handleSelectDates}
-  locale={enUS}
-/>;
+<div
+  style={{
+    width: '100%',
+    display: 'flex',
+    margin: '40px 0 30px',
+  }}
+>
+  <div style={{ width: '400px', zIndex: '10' }}>
+    <DateRange
+      labels={{ from: 'Start date', to: 'End date' }}
+      values={{ from: '', to: '' }}
+      onSelect={() => null}
+    />
+  </div>
+</div>
+
+#### code
+
+```jsx
+<DatePicker label="Your label" value="" onSelect={() => null} />
 ```
