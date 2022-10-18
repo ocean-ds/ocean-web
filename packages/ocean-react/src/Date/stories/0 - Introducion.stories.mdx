@@ -69,5 +69,9 @@ The date picker is the version of date collection to select a range of dates.
 #### code
 
 ```jsx
-<DatePicker label="Your label" value="" onSelect={() => null} />
+<DatePicker
+  labels={{ from: 'Start-date', to: 'End-date' }}
+  values={{ from: '', to: '' }}
+  onSelect={() => null}
+/>
 ```
