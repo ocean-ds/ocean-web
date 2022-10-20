@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import DatePicker from '../DatePicker';
+import DatePicker from '../DateRange';
 
 import { format } from 'date-fns';
 
@@ -22,13 +22,13 @@ test('renders element properly', () => {
   expect(container.firstChild).toMatchInlineSnapshot(`
   <div>
     <div
-      class="ods-datepicker class-test"
+      class="ods-date class-test"
     >
       <div
-        class="ods-datepicker__form-row"
+        class="ods-date__form-row"
       >
         <div
-          class="ods-datepicker__form-controls"
+          class="ods-date__form-controls"
           data-testid="date-picker-first-field-wrapper"
         >
           <label
@@ -88,7 +88,7 @@ test('renders element properly', () => {
           </div>
         </div>
         <div
-          class="ods-datepicker__form-controls"
+          class="ods-date__form-controls"
           data-testid="date-picker-second-field-wrapper"
         >
           <label
@@ -484,7 +484,7 @@ test('renders element with calendar open and today date', async () => {
 
   expect(fromDay).toBeInTheDocument();
 
-  expect(beforeDay.parentElement).toHaveClass('ods-datepicker__disabled');
+  expect(beforeDay.parentElement).toHaveClass('ods-date__disabled');
 });
 
 test('renders element with calendar open and startsToday atribute on select yesterday', async () => {
