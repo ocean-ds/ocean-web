@@ -50,6 +50,32 @@ This project is composed of many npm packages for building web apps with [Ocean]
 
 Documentation and examples can be found [here](https://ocean-ds.github.io/ocean-web/index.html).
 
+## Get Started
+
+To run the project, first install the packages:
+
+```bash
+yarn install
+```
+
+Then run the project with watch:
+
+```bash
+yarn watch:storybook
+```
+
+Or run the project without watch:
+
+```bash
+yarn run storybook
+```
+
+If you changed or added CSS, run this:
+
+```bash
+yarn watch:css
+```
+
 ## Packages
 
 | Package                                              | Version                                                           | Description                                            |
