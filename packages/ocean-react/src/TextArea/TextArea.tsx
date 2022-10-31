@@ -49,7 +49,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
           disabled={disabled}
           onChange={handleChange}
-          placeholder={defaultValue ? defaultValue.toString() : placeholder}
+          placeholder={placeholder}
           defaultValue={defaultValue}
           value={value}
           {...rest}

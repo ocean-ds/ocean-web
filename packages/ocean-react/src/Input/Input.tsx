@@ -101,7 +101,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           disabled={disabled}
           onChange={handleChange}
           defaultValue={defaultValue}
-          placeholder={defaultValue ? defaultValue : placeholder}
+          placeholder={placeholder}
           value={value}
           {...rest}
         />

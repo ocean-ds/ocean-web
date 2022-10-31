@@ -29,8 +29,6 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
       onChange,
     });
 
-    console.log('defaultValue', defaultValue, filled);
-
     return (
       <FormControl htmlFor={id} disabled={disabled}>
         <div
@@ -51,7 +49,8 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
             id={id}
             disabled={disabled}
             onChange={handleChange}
-            placeholder={defaultValue ? defaultValue.toString() : placeholder}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
             value={inputValue || ''}
             {...rest}
           />
