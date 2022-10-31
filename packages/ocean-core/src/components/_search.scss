@@ -5,7 +5,6 @@
   border-radius: $border-radius-sm;
   display: flex;
   height: 46px;
-  margin: 1px;
   width: 100%;
 
   input {
@@ -30,13 +29,13 @@
   &:hover,
   &:focus,
   &:active {
-    border-color: $color-brand-primary-down;
-    border-width: $border-width-thin;
-    margin: 0;
+    border: $border-width-thin solid $color-brand-primary-down;
+    margin: -1px;
   }
 
   &--filled {
-    border-color: $color-brand-primary-up;
+    border: $border-width-thin solid $color-brand-primary-down;
+    margin: -1px;
   }
 
   &--disabled {
@@ -52,7 +51,7 @@
     &:hover,
     &:focus,
     &:active {
-      border-color: $color-interface-light-down;
+      border: $color-interface-light-down;
     }
   }
 
@@ -63,10 +62,6 @@
     svg {
       color: #d8dae8;
     }
-  }
-
-  &--filled &__adornment svg {
-    color: #0025e0;
   }
 
   &__clean {

@@ -8,6 +8,7 @@ type FilledProps = {
 
 type FilledReturn = {
   filled: boolean;
+  inputValue: string | number | readonly string[] | undefined;
   handleChange: ChangeEventHandler<unknown>;
 };
 
@@ -17,6 +18,7 @@ export default function useInputFilled({
   onChange,
 }: FilledProps): FilledReturn {
   const [filled, setFilled] = useState(Boolean(value || defaultValue));
+  const [inputValue, setInputValue] = useState(value || defaultValue);
 
   const handleChange = useCallback(
     (event) => {
@@ -24,6 +26,7 @@ export default function useInputFilled({
 
       // uncontrolled version
       setFilled(Boolean(event.target.value));
+      setInputValue(event.target.value);
     },
     [onChange]
   );
@@ -36,5 +39,5 @@ export default function useInputFilled({
     setFilled(Boolean(defaultValue));
   }, [defaultValue]);
 
-  return { filled, handleChange };
+  return { inputValue, filled, handleChange };
 }

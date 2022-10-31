@@ -56,6 +56,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     error,
     disabled,
     defaultValue,
+    placeholder,
     tooltipMessage,
     position,
     adornment,
@@ -100,6 +101,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           disabled={disabled}
           onChange={handleChange}
           defaultValue={defaultValue}
+          placeholder={defaultValue ? defaultValue : placeholder}
           value={value}
           {...rest}
         />

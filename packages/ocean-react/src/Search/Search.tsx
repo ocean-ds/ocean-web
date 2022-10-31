@@ -1,32 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import FormControl, { FormControlProps } from '../FormControl';
+import useInputFilled from '../_util/useInputFilled';
 import IconButton from '../IconButton';
-import { Search as Searchicon, X } from '@useblu/ocean-icons-react';
+import { Search as SearchIcon, X } from '@useblu/ocean-icons-react';
 
 export type SearchInputProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'input'>;
 
 const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
   function Input(
-    { className, id, disabled, value, defaultValue, onChange, ...rest },
+    {
+      className,
+      id,
+      disabled,
+      value,
+      defaultValue,
+      placeholder,
+      onChange,
+      ...rest
+    },
     ref
   ) {
-    const [inputValue, setInputValue] = useState(defaultValue || value);
+    const { inputValue, filled, handleChange } = useInputFilled({
+      defaultValue,
+      value,
+      onChange,
+    });
+
+    console.log('defaultValue', defaultValue, filled);
 
     return (
       <FormControl htmlFor={id} disabled={disabled}>
         <div
           className={classNames(
             'ods-search',
-            inputValue && 'ods-search--filled',
+            filled && 'ods-search--filled',
             disabled && 'ods-search--disabled',
             className
           )}
         >
           <div className="ods-search__adornment">
-            <Searchicon />
+            <SearchIcon />
           </div>
 
           <input
@@ -34,25 +50,21 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
             type="text"
             id={id}
             disabled={disabled}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-              if (onChange) onChange(e);
-            }}
-            value={inputValue}
+            onChange={handleChange}
+            placeholder={defaultValue ? defaultValue.toString() : placeholder}
+            value={inputValue || ''}
             {...rest}
           />
 
-          {inputValue && (
+          {filled && (
             <IconButton
               data-testid="close"
               onClick={() => {
-                setInputValue('');
                 const e = {
                   target: { value: '' },
                 };
 
-                if (onChange)
-                  onChange(e as React.ChangeEvent<HTMLInputElement>);
+                handleChange(e as React.ChangeEvent<HTMLInputElement>);
               }}
               className="ods-search__clean"
               size="sm"

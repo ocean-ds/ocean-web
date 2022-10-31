@@ -20,9 +20,8 @@
   &:hover,
   &:focus,
   &:active {
-    border-color: $color-brand-primary-down;
-    border-width: $border-width-thin;
-    padding: $spacing-inline-xs - $border-width-hairline;
+    border: $border-width-thin solid $color-brand-primary-down;
+    margin: -1px;
   }
 
   &:disabled {
@@ -37,7 +36,8 @@
   }
 
   &--filled {
-    border-color: $color-brand-primary-up;
+    border: $border-width-thin solid $color-brand-primary-down;
+    margin: -1px;
   }
 
   &--error {
