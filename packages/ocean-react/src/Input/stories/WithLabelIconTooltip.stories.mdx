@@ -65,7 +65,13 @@ import { Input } from '@useblu/ocean-react';
       },
     }}
   >
-    {(props) => <Input id="input-with-label-icon-tooltip" {...props} />}
+    {(props) => (
+      <Input
+        id="input-with-label-icon-tooltip"
+        tooltipMessage="Tooltip Message!"
+        {...props}
+      />
+    )}
   </Story>
 </Canvas>
 
