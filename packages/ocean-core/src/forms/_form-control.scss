@@ -27,14 +27,12 @@
     flex-direction: column;
     justify-content: center;
 
-    &.ods-tooltip[data-tooltip-pos*='-left'] {
-      &::after {
-        left: -5px;
-      }
+    &.ods-tooltip[data-tooltip-pos*='-left']::before {
+      left: 3px;
+    }
 
-      &::before {
-        left: 3px;
-      }
+    &.ods-tooltip[data-tooltip-pos*='-left']::after {
+      left: -5px;
     }
   }
 
