@@ -22,14 +22,14 @@ The API documentation of the Search React component. Learn more about the props 
 ## Import
 
 ```javascript
-import { Input } from '@useblu/ocean-react';
+import { Search } from '@useblu/ocean-react';
 ```
 
 ## Usage
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <Search id="input-usage" defaultValue="Hello World" />
+    <Search id="input-usage" placeholder="Placeholder..." />
   </Story>
 </Canvas>
 
@@ -46,7 +46,6 @@ Any other props supplied will be provided to the root element (native element).
 | Global class          | Description                                              |
 | --------------------- | -------------------------------------------------------- |
 | .ods-search           | Styles applied to the Search element.                    |
-| .ods-search--filled   | Styles applied to the Search element when it's filled.   |
 | .ods-search--disabled | Styles applied to the Search element when it's disabled. |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Search/Search.tsx) for more detail.
@@ -61,13 +60,15 @@ The props of the [FormControl](?path=/docs/components-formcontrol--page) compone
   <Story
     name="playground"
     args={{
-      defaultValue: 'Hello world',
       placeholder: 'Placeholder...',
       blocked: false,
       disabled: false,
     }}
     argTypes={{
       placeholder: {
+        control: 'text',
+      },
+      defaultValue: {
         control: 'text',
       },
       disabled: {

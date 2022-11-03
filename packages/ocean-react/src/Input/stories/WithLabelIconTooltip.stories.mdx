@@ -3,12 +3,12 @@ import Input from '../Input';
 import { EyeOutline } from '@useblu/ocean-icons-react';
 
 <Meta
-  title="Components/Inputs/With Label Icon Tooltip"
+  title="Components/Inputs/With Tooltip"
   component={Input}
   decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
 />
 
-# Input With Label Icon Tooltip API
+# Input With Tooltip API
 
 The API documentation of the Input type With Icon React component.
 Learn more about the props and the CSS customization points.
@@ -23,11 +23,10 @@ import { Input } from '@useblu/ocean-react';
 
 <Canvas>
   <Story
-    name="With Label Icon Tooltip"
+    name="With Tooltip"
     args={{
-      label: 'With Icon Label Input',
+      label: 'With Tooltip',
       placeholder: 'Placeholder...',
-      tooltipMessage: 'Hello World!',
       position: 'right',
       helperText: 'Some text here!',
       error: false,
@@ -55,6 +54,9 @@ import { Input } from '@useblu/ocean-react';
       placeholder: {
         control: 'text',
       },
+      defaultValue: {
+        control: 'text',
+      },
       disabled: {
         control: 'boolean',
       },
@@ -63,7 +65,13 @@ import { Input } from '@useblu/ocean-react';
       },
     }}
   >
-    {(props) => <Input id="input-with-label-icon-tooltip" {...props} />}
+    {(props) => (
+      <Input
+        id="input-with-tooltip"
+        tooltipMessage="Tooltip Message!"
+        {...props}
+      />
+    )}
   </Story>
 </Canvas>
 

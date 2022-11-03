@@ -12,6 +12,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     {
       className,
       label,
+      placeholder,
       helperText,
       error,
       id,
@@ -48,6 +49,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
           disabled={disabled}
           onChange={handleChange}
+          placeholder={placeholder}
           defaultValue={defaultValue}
           value={value}
           {...rest}
