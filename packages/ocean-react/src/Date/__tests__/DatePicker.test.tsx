@@ -8,6 +8,13 @@ import DatePicker from '../DatePicker';
 
 import { format } from 'date-fns';
 
+const TODAY = 16;
+
+const TODAY_DATE = format(
+  new Date().setDate(TODAY),
+  ptBr?.formatLong?.date({ width: 'short' })
+);
+
 test('renders element properly', () => {
   const { container } = render(
     <DatePicker
@@ -146,20 +153,13 @@ test('renders element with calendar open and click a day', async () => {
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const today = new Date().getDate();
-
-  const day = screen.getByText(today);
+  const day = screen.getByText(TODAY);
 
   expect(day).toBeInTheDocument();
 
   fireEvent.click(day);
 
-  expect(onSelectMock).toBeCalledWith(
-    `${format(
-      new Date().setDate(today),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`
-  );
+  expect(onSelectMock).toBeCalledWith(`${TODAY_DATE}`);
 });
 
 test('renders element with calendar open and select dates values with input', async () => {
@@ -231,20 +231,13 @@ test('close calendar when click outside and save cache', async () => {
 
   expect(calendar).toBeInTheDocument();
 
-  const today = new Date().getDate();
-
-  const day = screen.getByText(today);
+  const day = screen.getByText(TODAY);
 
   expect(day).toBeInTheDocument();
 
   fireEvent.click(day);
 
-  expect(onSelectMock).toBeCalledWith(
-    `${format(
-      new Date().setDate(today),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`
-  );
+  expect(onSelectMock).toBeCalledWith(`${TODAY_DATE}`);
 
   fireEvent.click(input);
 
@@ -252,10 +245,5 @@ test('close calendar when click outside and save cache', async () => {
 
   fireEvent.click(outside);
 
-  expect(onSelectMock).toBeCalledWith(
-    `${format(
-      new Date().setDate(today),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`
-  );
+  expect(onSelectMock).toBeCalledWith(`${TODAY_DATE}`);
 });
