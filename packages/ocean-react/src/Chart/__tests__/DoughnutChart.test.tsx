@@ -2,9 +2,8 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import DoughnutChart from '../DoughnutChart';
-import { mockedDoughnutData } from '../utils/chartUtils';
-import { DoughnutChartProps } from '../types/DoughnutChart.types';
+import DoughnutChart, { DoughnutChartProps } from '../DoughnutChart';
+import { mockedDoughnutData } from '../mocks/doughnutChart';
 
 const setup = (
   props: DoughnutChartProps = {
@@ -34,7 +33,7 @@ test('renders element properly', () => {
           Doughnut chart title
         </div>
         <div
-          class="ods-typography ods-typography__description"
+          class="ods-typography ods-typography__caption"
         >
           Doughnut chart subtitle
         </div>
@@ -43,9 +42,9 @@ test('renders element properly', () => {
         class="ods-chart__canvas"
       >
         <canvas
-          height="150"
+          height="180"
           role="img"
-          width="300"
+          width="180"
         />
         <div
           class="ods-chart__canvas__center-legend"

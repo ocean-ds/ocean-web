@@ -1,14 +1,3 @@
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  borderWidth: 0,
-  cutout: '64%',
-};
-
 export const mockedDoughnutData = [
   {
     id: 1,

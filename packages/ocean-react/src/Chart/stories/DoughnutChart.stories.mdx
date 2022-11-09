@@ -1,7 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import DoughnutChart from '../DoughnutChart';
 import { useState } from 'react';
-import { mockedDoughnutData } from '../utils/chartUtils';
 
 <Meta
   title="Components/Chart/DoughnutChart"
@@ -49,8 +48,8 @@ const data =  [
 <DoughnutChart
   title="Title"
   subtitle="Subtitle"
-  centerChartLabel="center chart label"
-  centerChartValue="center chart value"
+  centerChartLabel="center label"
+  centerChartValue="center value"
   data={data}
 />;
 ```
@@ -64,7 +63,7 @@ const data =  [
 | Global class                                       | Description                                                                                             |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | .ods-chart                                         | Styles applied to the root element.                                                                     |
-| .ods-chart\_\_title-and-subtitle                   | Styles applied to the heading and description container.                                                |
+| .ods-chart\_\_title-and-subtitle                   | Styles applied to the heading and caption container.                                                    |
 | .ods-chart\_\_canvas                               | Styles applied to the graphic container.                                                                |
 | .ods-chart\_\_canvas\_\_center-legend              | Styles applied to the heading and description container on center chart legend.                         |
 | .ods-chart\_\_legend                               | Styles applied to the legend container on bottom.                                                       |
@@ -101,8 +100,8 @@ export const DinamicDoughnutChart = (props) => {
     args={{
       title: 'Chart Title',
       subtitle: 'Chart Subtitle',
-      centerChartValue: 'center chart value',
-      centerChartLabel: 'center chart label',
+      centerChartValue: 'center value',
+      centerChartLabel: 'center label',
       data: [
         {
           id: 1,

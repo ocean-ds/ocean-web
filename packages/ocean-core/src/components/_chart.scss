@@ -5,6 +5,11 @@
   &__title-and-subtitle {
     margin-bottom: $spacing-stack-sm;
     width: 100%;
+
+    .ods-typography__heading4 {
+      color: $interface-dark-deep;
+      margin-bottom: $spacing-stack-xxxs;
+    }
   }
 
   &__canvas {
@@ -24,10 +29,10 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    height: 64%;
+    height: 40px;
     justify-content: center;
     position: absolute;
-    width: 64%;
+    width: 96px;
 
     .ods-typography__heading2 {
       align-items: center;
