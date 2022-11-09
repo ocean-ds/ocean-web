@@ -1,10 +1,10 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import classNames from 'classnames';
 
 import { DoughnutChartProps } from './types/DoughnutChart.types';
 import { options } from './utils/chartUtils';
-import classNames from 'classnames';
 
 ChartJS.register(ArcElement);
 

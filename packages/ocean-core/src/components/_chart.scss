@@ -15,7 +15,7 @@
     position: relative;
     width: 100%;
 
-    & canvas {
+    canvas {
       margin: 0 auto;
     }
   }
@@ -29,24 +29,24 @@
     position: absolute;
     width: 64%;
 
-    & .ods-typography__heading2 {
+    .ods-typography__heading2 {
       align-items: center;
       color: $color-interface-dark-deep;
       display: flex;
       font-family: $font-family-base;
-      font-weight: $font-weight-medium;
       font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
       line-height: $line-height-medium;
       text-align: center;
     }
 
-    & .ods-typography__description {
+    .ods-typography__description {
       align-items: center;
       color: $color-interface-dark-down;
       display: flex;
       font-family: $font-family-base;
-      font-weight: $font-weight-medium;
       font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
       line-height: $line-height-comfy;
       text-align: center;
     }
@@ -91,8 +91,8 @@
     color: $color-interface-dark-deep;
     display: flex;
     font-family: $font-family-base;
-    font-weight: $font-weight-medium;
     font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
     height: 21px;
     line-height: $line-height-comfy;
   }
