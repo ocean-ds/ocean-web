@@ -9,6 +9,25 @@ import { format } from 'date-fns';
 
 import { enUS } from 'date-fns/locale';
 
+const YESTERDAY = 15;
+const TODAY = 16;
+const TOMORROW = 17;
+
+const YESTERDAY_DATE = format(
+  new Date().setDate(YESTERDAY),
+  ptBr?.formatLong?.date({ width: 'short' })
+);
+
+const TODAY_DATE = format(
+  new Date().setDate(TODAY),
+  ptBr?.formatLong?.date({ width: 'short' })
+);
+
+const TOMORROW_DATE = format(
+  new Date().setDate(TOMORROW),
+  ptBr?.formatLong?.date({ width: 'short' })
+);
+
 test('renders element properly', () => {
   const { container } = render(
     <DatePicker
@@ -232,7 +251,7 @@ test('renders element with calendar open and click in start date grather than en
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{
         from: '',
-        to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+        to: `${TODAY_DATE}`,
       }}
       onSelect={onSelectMock}
     />
@@ -244,19 +263,14 @@ test('renders element with calendar open and click in start date grather than en
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const tomorrow = new Date().getDate() + 1;
-
-  const fromDay = screen.getByText(tomorrow);
+  const fromDay = screen.getByText(TOMORROW);
 
   expect(fromDay).toBeInTheDocument();
 
   fireEvent.click(fromDay);
 
   expect(onSelectMock).toBeCalledWith({
-    from: `${format(
-      new Date().setDate(tomorrow),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`,
+    from: `${TOMORROW_DATE}`,
     to: '',
   });
 });
@@ -269,7 +283,7 @@ test('renders element with calendar open and click in start date with end date v
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{
         from: '',
-        to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+        to: `${TODAY_DATE}`,
       }}
       onSelect={onSelectMock}
     />
@@ -281,20 +295,15 @@ test('renders element with calendar open and click in start date with end date v
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const yesterday = new Date().getDate() - 1;
-
-  const fromDay = screen.getByText(yesterday);
+  const fromDay = screen.getByText(YESTERDAY);
 
   expect(fromDay).toBeInTheDocument();
 
   fireEvent.click(fromDay);
 
   expect(onSelectMock).toBeCalledWith({
-    from: `${format(
-      new Date().setDate(new Date().getDate() - 1),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`,
-    to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+    from: `${YESTERDAY_DATE}`,
+    to: `${TODAY_DATE}`,
   });
 });
 
@@ -337,21 +346,12 @@ test('renders element with calendar open and select dates values with hover', as
 test('renders element with calendar open and select dates values with hover and save cache', async () => {
   const onSelectMock = jest.fn();
 
-  const yesterday = new Date().getDate() - 1;
-
-  const today = new Date().getDate();
-
-  const tomorrow = new Date().getDate() + 1;
-
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{
-        from: `${format(
-          new Date().setDate(yesterday),
-          ptBr?.formatLong?.date({ width: 'short' })
-        )}`,
-        to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+        from: `${YESTERDAY_DATE}`,
+        to: `${TODAY_DATE}`,
       }}
       onSelect={onSelectMock}
     />
@@ -365,11 +365,11 @@ test('renders element with calendar open and select dates values with hover and 
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const fromDay = screen.getByText(yesterday);
+  const fromDay = screen.getByText(YESTERDAY);
 
-  const toDay = screen.getByText(today);
+  const toDay = screen.getByText(TODAY);
 
-  const tomorrowDay = screen.getByText(tomorrow);
+  const tomorrowDay = screen.getByText(TOMORROW);
 
   expect(fromDay).toBeInTheDocument();
 
@@ -380,11 +380,8 @@ test('renders element with calendar open and select dates values with hover and 
   fireEvent.click(toDay);
 
   expect(onSelectMock).toBeCalledWith({
-    from: `${format(
-      new Date().setDate(yesterday),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`,
-    to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+    from: `${YESTERDAY_DATE}`,
+    to: `${TODAY_DATE}`,
   });
 
   fireEvent.click(input2);
@@ -396,11 +393,8 @@ test('renders element with calendar open and select dates values with hover and 
   fireEvent.click(outside);
 
   expect(onSelectMock).toBeCalledWith({
-    from: `${format(
-      new Date().setDate(yesterday),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`,
-    to: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+    from: `${YESTERDAY_DATE}`,
+    to: `${TODAY_DATE}`,
   });
 });
 
@@ -462,7 +456,7 @@ test('renders element with calendar open and today date', async () => {
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
-      values={{ from: '10/09/2022', to: '' }}
+      values={{ from: `${TODAY_DATE}`, to: '' }}
       onSelect={onSelectMock}
       startsToday
       editable
@@ -475,14 +469,12 @@ test('renders element with calendar open and today date', async () => {
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const today = new Date().getDate();
-
-  const yesterday = new Date().getDate() - 1;
-
-  const fromDay = screen.getByText(today);
-  const beforeDay = screen.getByText(yesterday);
+  const beforeDay = screen.getByText(YESTERDAY);
+  const fromDay = screen.getByText(TODAY);
 
   expect(fromDay).toBeInTheDocument();
+
+  fireEvent.click(fromDay);
 
   expect(beforeDay.parentElement).toHaveClass('ods-date__disabled');
 });
@@ -506,9 +498,7 @@ test('renders element with calendar open and startsToday atribute on select yest
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const yesterday = new Date().getDate() - 1;
-
-  const fromDay = screen.getByText(yesterday);
+  const fromDay = screen.getByText(YESTERDAY);
 
   expect(fromDay).toBeInTheDocument();
 
@@ -617,16 +607,14 @@ test('onSelect call with correct values', async () => {
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const today = new Date().getDate();
-
-  const fromDay = screen.getByText(today);
+  const fromDay = screen.getByText(TODAY);
 
   expect(fromDay).toBeInTheDocument();
 
   fireEvent.click(fromDay);
 
   expect(onSelectMock).toBeCalledWith({
-    from: `${format(new Date(), ptBr?.formatLong?.date({ width: 'short' }))}`,
+    from: `${TODAY_DATE}`,
     to: '',
   });
 });
@@ -638,10 +626,7 @@ test('onSelect call with to date less than from date', async () => {
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{
-        from: `${format(
-          new Date(),
-          ptBr?.formatLong?.date({ width: 'short' })
-        )}`,
+        from: `${TODAY_DATE}`,
         to: '',
       }}
       onSelect={onSelectMock}
@@ -655,13 +640,9 @@ test('onSelect call with to date less than from date', async () => {
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
 
-  const today = new Date().getDate();
+  const fromDay = screen.getByText(TODAY);
 
-  const yesterday = new Date().getDate() - 1;
-
-  const fromDay = screen.getByText(today);
-
-  const toDay = screen.getByText(yesterday);
+  const toDay = screen.getByText(YESTERDAY);
 
   expect(fromDay).toBeInTheDocument();
 
@@ -672,10 +653,7 @@ test('onSelect call with to date less than from date', async () => {
   fireEvent.click(toDay);
 
   expect(onSelectMock).toBeCalledWith({
-    from: `${format(
-      new Date().setDate(new Date().getDate() - 1),
-      ptBr?.formatLong?.date({ width: 'short' })
-    )}`,
+    from: `${YESTERDAY_DATE}`,
     to: '',
   });
 });

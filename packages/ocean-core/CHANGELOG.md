@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.2](https://github.com/ocean-ds/ocean-web/compare/v1.37.1...v1.37.2) (2022-11-09)
+
+### Bug Fixes
+
+- components bugs ([#1034](https://github.com/ocean-ds/ocean-web/issues/1034)) ([d3e4397](https://github.com/ocean-ds/ocean-web/commit/d3e4397f301f631643c7b46023b8c80d93055ab9)), closes [#1023](https://github.com/ocean-ds/ocean-web/issues/1023) [#1018](https://github.com/ocean-ds/ocean-web/issues/1018)
+
 ## [1.37.1](https://github.com/ocean-ds/ocean-web/compare/v1.37.0...v1.37.1) (2022-10-24)
 
 ### Bug Fixes
