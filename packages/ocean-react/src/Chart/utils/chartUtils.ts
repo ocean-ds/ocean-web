@@ -9,13 +9,6 @@ export const options = {
   cutout: '64%',
 };
 
-export const dataEmptyChart = [
-  {
-    color: '#F7F9FF',
-    percentage: 100,
-  },
-];
-
 export const mockedDoughnutData = [
   {
     id: 1,

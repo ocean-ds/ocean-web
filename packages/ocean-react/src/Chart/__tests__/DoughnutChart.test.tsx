@@ -4,18 +4,23 @@ import { render } from '@testing-library/react';
 
 import DoughnutChart from '../DoughnutChart';
 import { mockedDoughnutData } from '../utils/chartUtils';
+import { DoughnutChartProps } from '../types/DoughnutChart.types';
+
+const setup = (
+  props: DoughnutChartProps = {
+    title: 'Doughnut chart title',
+    subtitle: 'Doughnut chart subtitle',
+    centerChartValue: 'Doughnut center value',
+    centerChartLabel: 'Doughnut center label',
+    data: mockedDoughnutData,
+  }
+) => {
+  return render(<DoughnutChart {...props} />);
+};
 
 test('renders element properly', () => {
-  const { container } = render(
-    <DoughnutChart
-      title="Title"
-      subtitle="Description"
-      centerChartLabel="center chart label"
-      centerChartValue="center chart value"
-      data={mockedDoughnutData}
-    />
-  );
-
+  const { container } = setup();
+  expect(document.querySelector('.ods-chart')).toBeInTheDocument();
   expect(container.firstChild).toMatchInlineSnapshot(`
     <div
       class="ods-chart"
@@ -26,12 +31,12 @@ test('renders element properly', () => {
         <div
           class="ods-typography ods-typography__heading4"
         >
-          Title
+          Doughnut chart title
         </div>
         <div
           class="ods-typography ods-typography__description"
         >
-          Description
+          Doughnut chart subtitle
         </div>
       </div>
       <div
@@ -48,12 +53,12 @@ test('renders element properly', () => {
           <div
             class="ods-typography ods-typography__heading2"
           >
-            center chart value
+            Doughnut center value
           </div>
           <p
             class="ods-typography ods-typography__description"
           >
-            center chart label
+            Doughnut center label
           </p>
         </div>
       </div>
