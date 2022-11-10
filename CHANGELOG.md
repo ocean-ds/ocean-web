@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/ocean-ds/ocean-web/compare/v1.37.2...v1.38.0) (2022-11-10)
+
+### Features
+
+- add doughnut chart component ([#1037](https://github.com/ocean-ds/ocean-web/issues/1037)) ([df268fb](https://github.com/ocean-ds/ocean-web/commit/df268fb9fdb7cbcb5b297d87e64cd42c6c260ad0))
+
 ## [1.37.2](https://github.com/ocean-ds/ocean-web/compare/v1.37.1...v1.37.2) (2022-11-09)
 
 ### Bug Fixes
