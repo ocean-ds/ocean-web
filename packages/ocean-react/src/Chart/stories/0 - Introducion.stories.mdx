@@ -1,0 +1,59 @@
+import { useState } from 'react';
+
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import DoughnutChart from '../DoughnutChart';
+import { mockedDoughnutData } from '../mocks/doughnutChart';
+
+<Meta
+  title="Components/Chart/Introducion"
+  component={DoughnutChart}
+  decorators={[(storyFn) => <div>{storyFn()}</div>]}
+  parameters={{
+    layout: 'centered',
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+  }}
+/>
+
+# Chart
+
+This is the showcase of the Chart Collection of ocean design.
+
+## Doughnut chart
+
+The doughnut chart is the version of graphic for data collection in a doughnut format.
+
+### Simple Usage
+
+<div
+  style={{
+    width: '100%',
+    display: 'flex',
+    margin: '30px 0 40px',
+  }}
+>
+  <div style={{ width: '400px', zIndex: '10' }}>
+    <DoughnutChart
+      title="Title"
+      subtitle="Subtitle"
+      centerChartLabel="center label"
+      centerChartValue="center value"
+      data={mockedDoughnutData}
+    />
+  </div>
+</div>
+
+#### code
+
+```jsx
+<DoughnutChart
+  title="Title"
+  subtitle="Subtitle"
+  centerChartLabel="center label"
+  centerChartValue="center value"
+  data={mockedDoughnutData}
+/>
+```

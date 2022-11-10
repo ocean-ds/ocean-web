@@ -1,0 +1,173 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import DoughnutChart from '../DoughnutChart';
+import { useState } from 'react';
+
+<Meta
+  title="Components/Chart/DoughnutChart"
+  component={DoughnutChart}
+  decorators={[(storyFn) => <div>{storyFn()}</div>]}
+  parameters={{
+    layout: 'centered',
+  }}
+/>
+
+# Doughnut Chart APIs
+
+The API documentation of the DoughnutChart React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { DoughnutChart } from '@useblu/ocean-react';
+```
+
+## Usage
+
+```jsx
+import { DoughnutChart } from '@useblu/ocean-react';
+
+const data =  [
+  {
+    id: 1,
+    count: 35,
+    percentage: 65,
+    color: '#13BDBD',
+    descriptionLevel1: 'Description level 1',
+    descriptionLevel2: 'Description level 2',
+  },
+  {
+    id: 2,
+    count: 10,
+    percentage: 35,
+    color: '#FFA347',
+    descriptionLevel1: 'Description level 1',
+    descriptionLevel2: 'Description level 2',
+  },
+]
+
+<DoughnutChart
+  title="Title"
+  subtitle="Subtitle"
+  centerChartLabel="center label"
+  centerChartValue="center value"
+  data={data}
+/>;
+```
+
+## Props
+
+<ArgsTable story="Playground" of="." />
+
+## CSS
+
+| Global class                                       | Description                                                                                             |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| .ods-chart                                         | Styles applied to the root element.                                                                     |
+| .ods-chart\_\_title-and-subtitle                   | Styles applied to the heading and caption container.                                                    |
+| .ods-chart\_\_canvas                               | Styles applied to the graphic container.                                                                |
+| .ods-chart\_\_canvas\_\_center-legend              | Styles applied to the heading and description container on center chart legend.                         |
+| .ods-chart\_\_legend                               | Styles applied to the legend container on bottom.                                                       |
+| .ods-chart\_\_legend\_\_row                        | Styles applied to a row in legend container on bottom.                                                  |
+| .ods-chart\_\_legend\_\_row\_\_description         | Styles applied to the circle and description level 1 in a row of legend container on bottom.            |
+| .ods-chart\_\_legend\_\_row\_\_description-circle  | Styles applied to the circle on left to the description level 1 in a row of legend container on bottom. |
+| .ods-chart\_\_legend\_\_row\_\_percent             | Styles applied to percentage in a row of legend container on bottom.                                    |
+| .ods-chart\_\_legend\_\_row\_\_description-level-2 | Styles applied to the description level 2 in a row of legend container on bottom.                       |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Chart/DoughnutChart.tsx) for more detail. -->
+
+export const DinamicDoughnutChart = (props) => {
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '400px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <div style={{ width: '100%' }}>
+        <DoughnutChart {...props} />
+      </div>
+    </div>
+  );
+};
+
+## Playground
+
+<Canvas withSource="close" withToolbar>
+  <Story
+    name="Playground"
+    args={{
+      title: 'Chart Title',
+      subtitle: 'Chart Subtitle',
+      centerChartValue: 'center value',
+      centerChartLabel: 'center label',
+      data: [
+        {
+          id: 1,
+          count: 35,
+          percentage: 65,
+          color: '#13BDBD',
+          descriptionLevel1: 'Description level 1',
+          descriptionLevel2: 'Description level 2',
+        },
+        {
+          id: 2,
+          count: 10,
+          percentage: 35,
+          color: '#FFA347',
+          descriptionLevel1: 'Description level 1',
+          descriptionLevel2: 'Description level 2',
+        },
+      ],
+    }}
+    argTypes={{
+      title: {
+        control: 'text',
+        description: 'Determines title of chart',
+        type: { name: 'string', required: true },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      subtitle: {
+        control: 'text',
+        description: 'Determines subtitle of chart',
+        type: { name: 'string', required: true },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      centerChartLabel: {
+        control: 'text',
+        description: 'Determines center chart label',
+        type: { name: 'string', required: false },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      centerChartValue: {
+        control: 'text',
+        description: 'Determines center chart value',
+        type: { name: 'string', required: false },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <DinamicDoughnutChart
+        title={props.title}
+        subtitle={props.subtitle}
+        centerChartLabel={props.centerChartLabel}
+        centerChartValue={props.centerChartValue}
+        data={props.data}
+      />
+    )}
+  </Story>
+</Canvas>
