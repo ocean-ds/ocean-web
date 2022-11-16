@@ -79,3 +79,6 @@ export * from './CrossSellCard';
 export { default as DatePicker } from './Date/DatePicker';
 export { default as DateRange } from './Date/DateRange';
 export * from './Date';
+
+export { default as Chart } from './Chart/DoughnutChart';
+export * from './Chart';
