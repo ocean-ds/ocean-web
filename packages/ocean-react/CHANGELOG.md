@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.38.1](https://github.com/ocean-ds/ocean-web/compare/v1.38.0...v1.38.1) (2022-11-16)
+
+### Bug Fixes
+
+- export chart component on ocean react ([#1039](https://github.com/ocean-ds/ocean-web/issues/1039)) ([aaf7958](https://github.com/ocean-ds/ocean-web/commit/aaf7958f420dd630a8ed854783316b05754b8963))
+
 # [1.38.0](https://github.com/ocean-ds/ocean-web/compare/v1.37.2...v1.38.0) (2022-11-10)
 
 ### Features
