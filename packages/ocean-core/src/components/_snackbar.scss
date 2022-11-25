@@ -1,0 +1,122 @@
+.ods-snackbar {
+  animation: 300ms ease-out forwards slideUp;
+  background: $color-interface-dark-deep;
+  border-radius: 4px;
+  bottom: 16px;
+  min-width: 314px;
+  max-width: 672px;
+  min-height: 56px;
+  position: fixed;
+  right: 16px;
+  width: 350px;
+  z-index: 1000;
+
+  @media (max-width: 767px) {
+    left: 0;
+    right: initial;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__icon-info {
+    color: $color-brand-primary-up;
+  }
+
+  &__icon-positive {
+    color: $color-status-positive-pure;
+  }
+
+  &__icon-negative {
+    color: $color-status-negative-pure;
+  }
+
+  &__icon-warning {
+    color: $color-status-neutral-pure;
+  }
+
+  &__message {
+    color: $color-interface-light-pure;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-regular;
+    line-height: 21px;
+    margin: 0;
+    padding: 0px $spacing-inline-xs;
+    width: 100%;
+  }
+
+  &__action {
+    color: $color-status-positive-pure;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    // margin: 0 $spacing-inline-xxs;
+    cursor: pointer;
+    // padding: 8px;
+  }
+
+  &__action-text-info {
+    color: $color-brand-primary-up;
+  }
+
+  &__action-text-positive {
+    color: $color-status-positive-pure;
+  }
+
+  &__action-text-negative {
+    color: $color-status-negative-pure;
+  }
+
+  &__action-text-warning {
+    color: $color-status-neutral-pure;
+  }
+
+  &__progress {
+    animation: 10s forwards progress;
+    background-color: $color-interface-dark-down;
+    height: 100%;
+    position: absolute;
+    opacity: $opacity-level-medium;
+    width: 0px;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  100% {
+    width: 100%;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
