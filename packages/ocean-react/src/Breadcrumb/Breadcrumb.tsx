@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, ComponentPropsWithoutRef, forwardRef } from 'react';
 import { ChevronRight } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 
@@ -7,9 +7,9 @@ export type BreadcrumbProps = {
    * Determines the items of Breadcrumbs
    */
   items: Array<ReactNode | string>;
-} & React.ComponentPropsWithoutRef<'div'>;
+} & ComponentPropsWithoutRef<'div'>;
 
-const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
+const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
   function Breadcrumb({ items, className, ...rest }, ref) {
     return (
       <div
@@ -17,13 +17,21 @@ const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
         ref={ref}
         {...rest}
       >
-        {items
-          ?.map((item) => item)
-          .reduce((prev, curr) => [
-            prev,
-            <ChevronRight width={12} height={12} />,
-            curr,
-          ])}
+        {items?.map((item, index) => {
+          const showIcon = index !== items.length - 1 && (
+            <ChevronRight size={12} />
+          );
+
+          return typeof item === 'string' ? (
+            <>
+              <span>{item}</span> {showIcon}
+            </>
+          ) : (
+            <>
+              {item} {showIcon}
+            </>
+          );
+        })}
       </div>
     );
   }
