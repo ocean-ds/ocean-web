@@ -23,7 +23,7 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
     },
     ref
   ) {
-    const { inputValue, filled, handleChange } = useInputFilled({
+    const { filled, handleChange } = useInputFilled({
       defaultValue,
       value,
       onChange,
@@ -51,7 +51,7 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
             onChange={handleChange}
             placeholder={placeholder}
             defaultValue={defaultValue}
-            value={inputValue || ''}
+            value={value}
             {...rest}
           />
 
