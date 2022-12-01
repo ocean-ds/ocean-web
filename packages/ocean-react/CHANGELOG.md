@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.38.2](https://github.com/ocean-ds/ocean-web/compare/v1.38.1...v1.38.2) (2022-12-01)
+
+### Bug Fixes
+
+- pass input value attribute ([#1044](https://github.com/ocean-ds/ocean-web/issues/1044)) ([b44dc7a](https://github.com/ocean-ds/ocean-web/commit/b44dc7a892c924472071ec764ee2a8209f9458b1))
+
 ## [1.38.1](https://github.com/ocean-ds/ocean-web/compare/v1.38.0...v1.38.1) (2022-11-16)
 
 ### Bug Fixes
