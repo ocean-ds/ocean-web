@@ -10,7 +10,6 @@
   span,
   a {
     color: $color-interface-dark-up;
-    cursor: pointer;
     font-family: $font-family-base;
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
@@ -19,9 +18,11 @@
 
     &:last-child {
       color: $color-interface-dark-down;
+      cursor: default;
     }
 
-    &:hover {
+    &:not(:last-child):hover {
+      cursor: pointer;
       text-decoration: underline;
     }
   }
