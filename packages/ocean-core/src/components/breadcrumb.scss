@@ -1,0 +1,29 @@
+.ods-breadcrumb {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+
+  svg {
+    color: $color-interface-dark-up;
+  }
+
+  span,
+  a {
+    color: $color-interface-dark-up;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-tight;
+    transition: 0.3s hover;
+
+    &:last-child {
+      color: $color-interface-dark-down;
+      cursor: default;
+    }
+
+    &:not(:last-child):hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

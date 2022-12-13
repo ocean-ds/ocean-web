@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Star } from '@useblu/ocean-icons-react';
+import Breadcrumb from '../Breadcrumb';
+
+<Meta title="Components/Breadcrumb" component={Breadcrumb} />
+
+# Badge APIs
+
+The API documentation of the Breadcrumb React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Breadcrumb } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Breadcrumb
+      items={[
+        <span>Home</span>,
+        <span>Page 1</span>,
+        <span>Page 2</span>,
+        <span>Page 3</span>,
+        <span>Page 4</span>,
+        <span>Current page</span>,
+      ]}
+    />
+  </Story>
+</Canvas>
+
+## CSS
+
+| Global class    | Description                         |
+| --------------- | ----------------------------------- |
+| .ods-breadcrumb | Styles applied to the root element. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Breadcrumb/Breadcrumbs.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      items: ['Home', 'Page 1', 'Page 2', 'Page 3', 'Page 4', 'Current page'],
+    }}
+    argTypes={{
+      items: {
+        control: { type: 'object' },
+      },
+    }}
+  >
+    {(props) => <Breadcrumb {...props} />}
+  </Story>
+</Canvas>
