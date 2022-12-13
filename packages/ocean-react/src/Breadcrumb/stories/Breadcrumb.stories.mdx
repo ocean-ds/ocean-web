@@ -45,14 +45,12 @@ If that's not sufficient, you can check the [implementation of the component](ht
   <Story
     name="playground"
     args={{
-      items: [
-        <span>Home</span>,
-        <span>Page 1</span>,
-        <span>Page 2</span>,
-        <span>Page 3</span>,
-        <span>Page 4</span>,
-        <span>Current page</span>,
-      ],
+      items: ['Home', 'Page 1', 'Page 2', 'Page 3', 'Page 4', 'Current page'],
+    }}
+    argTypes={{
+      items: {
+        control: { type: 'object' },
+      },
     }}
   >
     {(props) => <Breadcrumb {...props} />}
