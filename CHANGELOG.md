@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/ocean-ds/ocean-web/compare/v1.38.3...v1.39.0) (2022-12-13)
+
+### Features
+
+- add component breadcrumb ([#1042](https://github.com/ocean-ds/ocean-web/issues/1042)) ([de21cbb](https://github.com/ocean-ds/ocean-web/commit/de21cbba7a69bbba30cecbb69e7731665c178616))
+
 ## [1.38.3](https://github.com/ocean-ds/ocean-web/compare/v1.38.2...v1.38.3) (2022-12-08)
 
 ### Bug Fixes
