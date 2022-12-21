@@ -3,7 +3,9 @@
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding: 12px $spacing-stack-xs $spacing-stack-xxs $spacing-stack-xs;
+  align-items: center;
+  min-height: 40px;
+  padding: $spacing-stack-xxs $spacing-stack-xs;
   width: 100%;
 }
 
