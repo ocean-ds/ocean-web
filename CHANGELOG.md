@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.1](https://github.com/ocean-ds/ocean-web/compare/v1.39.0...v1.39.1) (2022-12-21)
+
+### Bug Fixes
+
+- adjust DatePicker test ([#1051](https://github.com/ocean-ds/ocean-web/issues/1051)) ([57348db](https://github.com/ocean-ds/ocean-web/commit/57348db2c56bfa8b4fab84d095e2e9b4890ecdb8))
+
 # [1.39.0](https://github.com/ocean-ds/ocean-web/compare/v1.38.3...v1.39.0) (2022-12-13)
 
 ### Features
