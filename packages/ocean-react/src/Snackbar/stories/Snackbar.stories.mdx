@@ -1,9 +1,11 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { useState } from 'react';
+import Button from '../../Button';
 import Snackbar from '../Snackbar';
 
 <Meta
   title="Components/Snackbar"
-  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+  decorators={[(storyFn) => <div className="centered">{storyFn()}</div>]}
   component={Snackbar}
 />
 
@@ -17,6 +19,22 @@ The API documentation of the Snackbar React component. Learn more about the prop
 import { Snackbar } from '@useblu/ocean-react';
 ```
 
+export const DinamicSnackbar = (props) => {
+  const [open, setOpen] = useState(false);
+  const toogle = () => setOpen(!open);
+  return (
+    <div>
+      <Button onClick={toogle}>Toogle</Button>
+      <Snackbar
+        id="snackbar-playground"
+        open={open}
+        onClose={toogle}
+        {...props}
+      />
+    </div>
+  );
+};
+
 ## Usage
 
 <Canvas>
@@ -26,6 +44,7 @@ import { Snackbar } from '@useblu/ocean-react';
       type: 'info',
       message: 'Mensagem de informação',
       open: false,
+      onClose: () => null,
     }}
     argTypes={{
       type: {
@@ -40,7 +59,7 @@ import { Snackbar } from '@useblu/ocean-react';
       },
     }}
   >
-    {(props) => <Snackbar id="snackbar-playground" {...props} />}
+    {(props) => <DinamicSnackbar type={props.type} message={props.message} />}
   </Story>
 </Canvas>
 

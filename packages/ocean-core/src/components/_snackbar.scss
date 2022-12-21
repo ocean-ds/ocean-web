@@ -9,7 +9,7 @@
   position: fixed;
   right: 16px;
   width: 350px;
-  z-index: 1000;
+  z-index: 9999;
 
   @media (max-width: 767px) {
     left: 0;
@@ -88,12 +88,19 @@
   }
 
   &__progress {
-    animation: 10s forwards progress;
     background-color: $color-interface-dark-down;
     height: 100%;
     position: absolute;
     opacity: $opacity-level-medium;
     width: 0px;
+  }
+
+  &__progress-default {
+    animation: 4s forwards progress;
+  }
+
+  &__progress-action {
+    animation: 10s forwards progress;
   }
 }
 

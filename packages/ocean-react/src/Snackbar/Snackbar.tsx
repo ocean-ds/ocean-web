@@ -1,12 +1,13 @@
 import React from 'react';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 
-import {
-  InfoOutline,
-  CheckCircleOutline,
-  XCircleOutline,
-  ExclamationCircleOutline,
-} from '@useblu/ocean-icons-react';
+import useSnackbar from './hook/useSnackbar';
+
+export type Position =
+  | 'bottom-left'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-right';
 
 export type SnackbarProps = {
   /**
@@ -23,39 +24,70 @@ export type SnackbarProps = {
    * @default false
    */
   open: boolean;
+  /**
+   * Function to close snackbar to show snackbar.
+   * @required
+   */
+  onClose: () => void;
+  /**
+   * Function to execute after 10s.
+   * @default null
+   */
+  action?: () => void;
+  /**
+   * Function to execute after 10s.
+   * @default null
+   */
+  position?: Position;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
-  function Snackbar({ type = 'info', message, open }, ref) {
-    console.log(type, message);
-
-    const getIcon = () => {
-      const icons = {
-        info: <InfoOutline />,
-        positive: <CheckCircleOutline />,
-        negative: <XCircleOutline />,
-        warning: <ExclamationCircleOutline />,
-      };
-
-      return icons[type as keyof typeof icons];
-    };
+  function Snackbar(
+    {
+      type = 'info',
+      message,
+      open,
+      onClose,
+      action,
+      position = 'bottom-right',
+    },
+    ref
+  ) {
+    const { Icon } = useSnackbar({ type, onClose });
 
     return (
       <>
         {open && (
-          <div className="ods-snackbar" ref={ref}>
+          <div
+            className={classNames('ods-snackbar', `ods-snackbar-${position}`)}
+            ref={ref}
+          >
             <div className="ods-snackbar__content">
-              <div className={`ods-snackbar__icon ods-snackbar__icon-${type}`}>
-                {getIcon()}
+              <div
+                className={classNames(
+                  'ods-snackbar__icon',
+                  `ods-snackbar__icon-${type}`
+                )}
+              >
+                <Icon />
               </div>
               <div className="ods-snackbar__message">{message}</div>
-              <div className="ods-snackbar__action">
-                <div className={`ods-snackbar__action-text-${type}`}>
-                  Desfazer
+              {action && (
+                <div className="ods-snackbar__action">
+                  <div className={`ods-snackbar__action-text-${type}`}>
+                    Desfazer
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
-            <div className="ods-snackbar__progress" />
+            <div
+              className={classNames(
+                'ods-snackbar__progress',
+                action
+                  ? 'ods-snackbar__progress-action'
+                  : 'ods-snackbar__progress-default'
+              )}
+            />
           </div>
         )}
       </>
