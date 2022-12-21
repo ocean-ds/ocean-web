@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.2](https://github.com/ocean-ds/ocean-web/compare/v1.39.1...v1.39.2) (2022-12-21)
+
+### Bug Fixes
+
+- position component checkbox ([#1040](https://github.com/ocean-ds/ocean-web/issues/1040)) ([34a36cd](https://github.com/ocean-ds/ocean-web/commit/34a36cdfd4a7f2cbd70d25ae01212927195c3ef8))
+
 # [1.39.0](https://github.com/ocean-ds/ocean-web/compare/v1.38.3...v1.39.0) (2022-12-13)
 
 ### Features
