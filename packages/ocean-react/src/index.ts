@@ -82,3 +82,6 @@ export * from './Date';
 
 export { default as Chart } from './Chart/DoughnutChart';
 export * from './Chart';
+
+export { default as Breadcrumb } from './Breadcrumb';
+export * from './Breadcrumb';
