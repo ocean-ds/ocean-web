@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.3](https://github.com/ocean-ds/ocean-web/compare/v1.39.2...v1.39.3) (2022-12-22)
+
+### Bug Fixes
+
+- adjust sub header padding and height ([#1050](https://github.com/ocean-ds/ocean-web/issues/1050)) ([8241d09](https://github.com/ocean-ds/ocean-web/commit/8241d0941c4a98de04a30f99aa236e35579ccfbf))
+
 ## [1.39.2](https://github.com/ocean-ds/ocean-web/compare/v1.39.1...v1.39.2) (2022-12-21)
 
 ### Bug Fixes
