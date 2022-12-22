@@ -65,6 +65,7 @@
 
   &:checked ~ &__checkmark::after {
     display: block;
+    position: relative;
   }
 
   &:checked:not(:disabled) ~ &__checkmark {

@@ -213,15 +213,7 @@ test('close calendar when click outside', async () => {
 test('close calendar when click outside and save cache', async () => {
   const onSelectMock = jest.fn();
 
-  render(
-    <DatePicker
-      label="Your label"
-      value=""
-      onSelect={onSelectMock}
-      editable
-      startsToday
-    />
-  );
+  render(<DatePicker label="Your label" value="" onSelect={onSelectMock} />);
 
   const input = screen.getByTestId('datepicker-input-1');
 
