@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.4](https://github.com/ocean-ds/ocean-web/compare/v1.39.3...v1.39.4) (2022-12-22)
+
+### Bug Fixes
+
+- adds a 8px margin to the input component label ([#1052](https://github.com/ocean-ds/ocean-web/issues/1052)) ([aa70f39](https://github.com/ocean-ds/ocean-web/commit/aa70f39a41e81c8a4af1d2d2eaaf89b1ef6cace1))
+
 ## [1.39.3](https://github.com/ocean-ds/ocean-web/compare/v1.39.2...v1.39.3) (2022-12-22)
 
 ### Bug Fixes
