@@ -25,7 +25,12 @@ export const DinamicSnackbar = (props) => {
   return (
     <div>
       <Button onClick={toogle}>{open ? 'Close' : 'Open'}</Button>
-      <Snackbar id="snackbar-playground" open={open} {...props} />
+      <Snackbar
+        id="snackbar-playground"
+        open={open}
+        onClose={toogle}
+        {...props}
+      />
     </div>
   );
 };
