@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../../Button';
 import Snackbar from '../Snackbar';
 
@@ -24,7 +24,7 @@ export const DinamicSnackbar = (props) => {
   const toogle = () => setOpen(!open);
   return (
     <div>
-      <Button onClick={toogle}>Toogle</Button>
+      <Button onClick={toogle}>{open ? 'Close' : 'Open'}</Button>
       <Snackbar
         id="snackbar-playground"
         open={open}
@@ -59,7 +59,14 @@ export const DinamicSnackbar = (props) => {
       },
     }}
   >
-    {(props) => <DinamicSnackbar type={props.type} message={props.message} />}
+    {(props) => (
+      <DinamicSnackbar
+        type={props.type}
+        message={props.message}
+        position={props.position}
+        onClose={props.onClose}
+      />
+    )}
   </Story>
 </Canvas>
 

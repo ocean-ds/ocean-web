@@ -1,15 +1,10 @@
 .ods-snackbar {
-  animation: 300ms ease-out forwards slideUp;
   background: $color-interface-dark-deep;
   border-radius: 4px;
-  bottom: 16px;
   min-width: 314px;
   max-width: 672px;
   min-height: 56px;
-  position: fixed;
-  right: 16px;
-  width: 350px;
-  z-index: 9999;
+  z-index: 99999;
 
   @media (max-width: 767px) {
     left: 0;
@@ -18,13 +13,46 @@
     margin: 0;
   }
 
+  &__top-right {
+    animation: 150ms ease-out forwards slideDown;
+    position: fixed;
+    right: 16px;
+    top: 16px;
+  }
+
+  &__top-left {
+    animation: 150ms ease-out forwards slideDown;
+    left: 16px;
+    position: fixed;
+    top: 16px;
+  }
+
+  &__bottom-right {
+    animation: 150ms ease-out forwards slideUp;
+    bottom: 16px;
+    position: fixed;
+    right: 16px;
+  }
+
+  &__bottom-left {
+    animation: 150ms ease-out forwards slideUp;
+    bottom: 16px;
+    left: 16px;
+    position: fixed;
+  }
+
+  &__actioned {
+  }
+
+  &__default {
+  }
+
   &__content {
     align-items: center;
     display: flex;
     justify-content: center;
     padding: 16px;
     position: absolute;
-    width: 100%;
     z-index: 1;
   }
 
@@ -63,12 +91,10 @@
 
   &__action {
     color: $color-status-positive-pure;
+    cursor: pointer;
     font-family: $font-family-base;
     font-size: $font-size-xxs;
     font-weight: $font-weight-bold;
-    // margin: 0 $spacing-inline-xxs;
-    cursor: pointer;
-    // padding: 8px;
   }
 
   &__action-text-info {
@@ -101,6 +127,17 @@
 
   &__progress-action {
     animation: 10s forwards progress;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -25,7 +25,7 @@ export type SnackbarProps = {
    */
   open: boolean;
   /**
-   * Function to close snackbar to show snackbar.
+   * Function to close snackbar.
    * @required
    */
   onClose: () => void;
@@ -59,7 +59,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       <>
         {open && (
           <div
-            className={classNames('ods-snackbar', `ods-snackbar-${position}`)}
+            className={classNames('ods-snackbar', `ods-snackbar__${position}`)}
             ref={ref}
           >
             <div className="ods-snackbar__content">
@@ -69,7 +69,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
                   `ods-snackbar__icon-${type}`
                 )}
               >
-                <Icon />
+                <Icon size={18} />
               </div>
               <div className="ods-snackbar__message">{message}</div>
               {action && (
