@@ -45,6 +45,11 @@ export type SnackbarProps = {
    * @default null
    */
   position?: Position;
+  /**
+   * ClassName to overwrite default style
+   * @default null
+   */
+  className?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
@@ -57,6 +62,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       action,
       actionLabel,
       position = 'bottom-right',
+      className,
     },
     ref
   ) {
@@ -71,8 +77,13 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       <>
         {open && (
           <div
-            className={classNames('ods-snackbar', `ods-snackbar__${position}`)}
+            className={classNames(
+              'ods-snackbar',
+              `ods-snackbar__${position}`,
+              className
+            )}
             ref={ref}
+            data-testid="snackbar-test"
           >
             <div className="ods-snackbar__content">
               <div
