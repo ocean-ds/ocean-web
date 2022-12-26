@@ -14,28 +14,28 @@
   }
 
   &__top-right {
-    animation: 150ms ease-out forwards slideDown;
+    animation: 150ms ease-out forwards moveInDown;
     position: fixed;
     right: 16px;
     top: 16px;
   }
 
   &__top-left {
-    animation: 150ms ease-out forwards slideDown;
+    animation: 150ms ease-out forwards moveInDown;
     left: 16px;
     position: fixed;
     top: 16px;
   }
 
   &__bottom-right {
-    animation: 150ms ease-out forwards slideUp;
+    animation: 150ms ease-out forwards moveInUp;
     bottom: 16px;
     position: fixed;
     right: 16px;
   }
 
   &__bottom-left {
-    animation: 150ms ease-out forwards slideUp;
+    animation: 150ms ease-out forwards moveInUp;
     bottom: 16px;
     left: 16px;
     position: fixed;
@@ -124,7 +124,7 @@
   }
 }
 
-@keyframes slideDown {
+@keyframes moveInDown {
   from {
     opacity: 0;
     transform: translateY(-3rem);
@@ -135,7 +135,7 @@
   }
 }
 
-@keyframes slideUp {
+@keyframes moveInUp {
   from {
     opacity: 0;
     transform: translateY(3rem);

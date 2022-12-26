@@ -35,7 +35,13 @@ export type SnackbarProps = {
    */
   action?: () => void;
   /**
-   * Function to execute after 10s.
+   * Label to rename action button.
+   * @requires action
+   * @default action
+   */
+  actionLabel?: string;
+  /**
+   * Position where Snackbar component is rendered.
    * @default null
    */
   position?: Position;
@@ -49,11 +55,17 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       open,
       onClose,
       action,
+      actionLabel,
       position = 'bottom-right',
     },
     ref
   ) {
-    const { Icon } = useSnackbar({ type, onClose });
+    const { Icon, closeSnackbar } = useSnackbar({
+      type,
+      open,
+      onClose,
+      action,
+    });
 
     return (
       <>
@@ -73,9 +85,9 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
               </div>
               <div className="ods-snackbar__message">{message}</div>
               {action && (
-                <div className="ods-snackbar__action">
+                <div className="ods-snackbar__action" onClick={closeSnackbar}>
                   <div className={`ods-snackbar__action-text-${type}`}>
-                    Desfazer
+                    {actionLabel ?? 'action'}
                   </div>
                 </div>
               )}
