@@ -12,8 +12,15 @@ import {
 
 type ISnackbarProps = Pick<SnackbarProps, 'type' | 'onClose'>;
 
+type IconType = React.ForwardRefExoticComponent<
+  {
+    size?: number | undefined;
+  } & React.SVGProps<SVGSVGElement> &
+    React.RefAttributes<SVGSVGElement>
+>;
+
 interface ISnackbarReturn {
-  Icon: typeof React.Component;
+  Icon: IconType;
 }
 
 export default function useSnackbar({ type }: ISnackbarProps): ISnackbarReturn {
@@ -24,7 +31,7 @@ export default function useSnackbar({ type }: ISnackbarProps): ISnackbarReturn {
     warning: ExclamationCircleOutline,
   };
 
-  const Icon: any = icons[type as keyof typeof icons];
+  const Icon: IconType = icons[type as keyof typeof icons];
 
   return {
     Icon,
