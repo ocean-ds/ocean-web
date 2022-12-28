@@ -6,7 +6,6 @@
 
   &__content {
     align-items: center;
-    background-color: $color-brand-primary-pure;
     border: $border-width-hairline solid $color-interface-light-down;
     border-bottom: 0;
     border-radius: $border-radius-md $border-radius-md 0 0;
@@ -35,7 +34,6 @@
   }
 
   &__description {
-    color: $color-brand-primary-up;
     margin-top: $spacing-stack-xxxs;
   }
 
