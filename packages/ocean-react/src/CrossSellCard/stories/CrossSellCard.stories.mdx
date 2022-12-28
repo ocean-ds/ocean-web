@@ -15,16 +15,34 @@ The API documentation of the CrossSellCard React component. Learn more about the
 import { CrossSellCard } from '@useblu/ocean-react';
 ```
 
-## Usage
+## Basic Usage
 
 <Canvas withSource="open" withToolbar>
-  <Story name="usage">
+  <Story name="basic">
     <CrossSellCard
       title="Card Title"
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       ctaText="Call To Action"
       imageSrc={emptyImage}
       ctaAction={() => console.log('clicked')}
+    />
+  </Story>
+</Canvas>
+
+## Custom Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="custom">
+    <CrossSellCard
+      title={{ text: 'Card Title', color: '#393B47' }}
+      description={{
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        color: '#67697A',
+      }}
+      ctaText="Conheça o Boleto Fácil"
+      imageSrc={emptyImage}
+      ctaAction={() => console.log('clicked')}
+      backgroundColor="linear-gradient(98.6deg, rgba(88, 114, 245, 0.12) 0%, rgba(106, 230, 230, 0.12) 100%), #FFFFFF"
     />
   </Story>
 </Canvas>
