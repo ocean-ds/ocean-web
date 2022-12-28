@@ -1,35 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
+import { ChevronRight } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 
-import { ChevronRight } from '@useblu/ocean-icons-react';
-export type CrossSellCardProps = {
-  /**
-   * Determines the card title
-   */
-  title: string;
-  /**
-   * Determines the card description
-   */
-  description: string;
-  /**
-   * Determines the card image src
-   */
-  imageSrc?: string;
-  /**
-   * Determines the cta text
-   */
-  ctaText: string;
-  /**
-   * Determines the Icon on the
-   */
-  customIcon?: JSX.Element;
-  /**
-   * Determines the cta action
-   */
-  ctaAction: () => void;
-} & React.ComponentPropsWithoutRef<'div'>;
+import { CrossSellCardProps } from './types';
 
-const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
+const CrossSellCard = forwardRef<HTMLDivElement, CrossSellCardProps>(
   function CrossSellCard(
     {
       title,
@@ -39,10 +14,20 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
       ctaText,
       ctaAction,
       customIcon,
+      backgroundColor,
       ...rest
     },
     ref
   ) {
+    const titleCard: string = typeof title === 'string' ? title : title['text'];
+    const descriptionCard: string =
+      typeof description === 'string' ? description : description['text'];
+
+    const titleColor: string =
+      typeof title === 'string' ? 'white' : title['color'];
+    const descriptionColor: string =
+      typeof description === 'string' ? '#b8c3ff' : description['color'];
+
     return (
       <div
         ref={ref}
@@ -54,13 +39,20 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
           className="ods-cross-sell-card__content"
           onClick={() => ctaAction}
           data-testid="cta-test"
+          style={{ background: backgroundColor || '#0025e0' }}
         >
           <div className="ods-cross-sell-card__information">
-            <div className="ods-typography--inverse ods-typography__heading3">
-              {title}
+            <div
+              className="ods-typography--inverse ods-typography__heading3"
+              style={{ color: titleColor }}
+            >
+              {titleCard}
             </div>
-            <div className="ods-typography--inverse ods-typography__description ods-cross-sell-card__description ">
-              {description}
+            <div
+              className="ods-typography--inverse ods-typography__description ods-cross-sell-card__description"
+              style={{ color: descriptionColor }}
+            >
+              {descriptionCard}
             </div>
           </div>
           {imageSrc && (
