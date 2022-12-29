@@ -34,11 +34,10 @@ import { CrossSellCard } from '@useblu/ocean-react';
 <Canvas withSource="open" withToolbar>
   <Story name="custom">
     <CrossSellCard
-      title={{ text: 'Card Title', color: '#393B47' }}
-      description={{
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        color: '#67697A',
-      }}
+      title="Card Title"
+      titleColor="#393B47"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      descriptionColor="#67697A"
       ctaText="Conheça o Boleto Fácil"
       imageSrc={emptyImage}
       ctaAction={() => console.log('clicked')}

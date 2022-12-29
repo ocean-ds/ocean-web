@@ -168,10 +168,13 @@ test('renders custom component', () => {
   render(
     <CrossSellCard
       title="Card Title"
+      titleColor="#393B47"
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      imageSrc={'../img/placeholder.svg'}
+      descriptionColor="#67697A"
       ctaText="Call To Action"
+      imageSrc={'../img/placeholder.svg'}
       ctaAction={mockFunction}
+      backgroundColor="linear-gradient(98.6deg, rgba(88, 114, 245, 0.12) 0%, rgba(106, 230, 230, 0.12) 100%), #FFFFFF"
       className="custom-class"
       data-testid="csc-test"
     />
@@ -185,20 +188,19 @@ test('renders custom component', () => {
   <a
     class="ods-cross-sell-card__content"
     data-testid="cta-test"
-    style="background: rgb(0, 37, 224);"
   >
     <div
       class="ods-cross-sell-card__information"
     >
       <div
         class="ods-typography--inverse ods-typography__heading3"
-        style="color: white;"
+        style="color: rgb(57, 59, 71);"
       >
         Card Title
       </div>
       <div
         class="ods-typography--inverse ods-typography__description ods-cross-sell-card__description"
-        style="color: rgb(184, 195, 255);"
+        style="color: rgb(103, 105, 122);"
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </div>
