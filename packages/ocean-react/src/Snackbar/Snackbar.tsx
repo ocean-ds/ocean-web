@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 
 import useSnackbar from './hook/useSnackbar';
@@ -23,12 +23,12 @@ export type SnackbarProps = {
    * Boolean to show snackbar.
    * @default false
    */
-  open: boolean;
+  isOpen: boolean;
   /**
    * Function to close snackbar.
    * @required
    */
-  onClose: () => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   /**
    * Function to execute after 10s.
    * @default null
@@ -57,8 +57,8 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
     {
       type = 'info',
       message,
-      open,
-      onClose,
+      isOpen,
+      setIsOpen,
       action,
       actionLabel,
       position = 'bottom-right',
@@ -68,14 +68,14 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
   ) {
     const { Icon, closeSnackbar } = useSnackbar({
       type,
-      open,
-      onClose,
+      isOpen,
+      setIsOpen,
       action,
     });
 
     return (
       <>
-        {open && (
+        {isOpen && (
           <div
             className={classNames(
               'ods-snackbar',
@@ -106,9 +106,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
             <div
               className={classNames(
                 'ods-snackbar__progress',
-                action
-                  ? 'ods-snackbar__progress-action'
-                  : 'ods-snackbar__progress-default'
+                action ? 'ods-snackbar__progress-action' : ''
               )}
             />
           </div>

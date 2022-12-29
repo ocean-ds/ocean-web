@@ -22,13 +22,15 @@ import { Snackbar } from '@useblu/ocean-react';
 export const DinamicSnackbar = (props) => {
   const [open, setOpen] = useState(false);
   const toogle = () => setOpen(!open);
+  const action = () => alert('Called');
   return (
     <div>
       <Button onClick={toogle}>{open ? 'Close' : 'Open'}</Button>
       <Snackbar
         id="snackbar-playground"
-        open={open}
-        onClose={toogle}
+        isOpen={open}
+        setIsOpen={setOpen}
+        action={action}
         {...props}
       />
     </div>
@@ -42,13 +44,11 @@ import { Snackbar } from '@useblu/ocean-react';
 
 const [open, setOpen] = useState(false);
 
-const toogle = () => setOpen(!open);
-
 return (
   <Snackbar
     id="snackbar-playground"
-    open={open}
-    onClose={toogle}
+    isOpen={open}
+    setIsOpen={setOpen}
     message="Hello, I'm a snackbar"
   />
 ```
@@ -77,8 +77,8 @@ If that's not sufficient, you can check the [implementation of the component](ht
     args={{
       type: 'info',
       message: 'Lorem ipsum dolor sit amet.',
-      open: false,
-      onClose: () => null,
+      isOpen: false,
+      setIsOpen: () => null,
     }}
     argTypes={{
       type: {
@@ -88,7 +88,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       message: {
         control: 'text',
       },
-      open: {
+      isOpen: {
         control: 'boolean',
       },
     }}
@@ -99,6 +99,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
           type={props.type}
           message={props.message}
           position={props.position}
+          actionLabel={props.actionLabel}
         />
       </div>
     )}

@@ -5,10 +5,10 @@ import Snackbar from '../Snackbar';
 test('renders element properly', () => {
   render(
     <Snackbar
-      open
+      isOpen
       className="custom-class"
       message="Hello, this is a snackbar"
-      onClose={jest.fn()}
+      setIsOpen={jest.fn()}
     />
   );
 

@@ -11,7 +11,7 @@ import {
 
 type ISnackbarProps = Pick<
   SnackbarProps,
-  'type' | 'open' | 'onClose' | 'action'
+  'type' | 'isOpen' | 'setIsOpen' | 'action'
 >;
 
 type IconType = React.ForwardRefExoticComponent<
@@ -28,8 +28,8 @@ interface ISnackbarReturn {
 
 export default function useSnackbar({
   type,
-  open,
-  onClose,
+  isOpen,
+  setIsOpen,
   action,
 }: ISnackbarProps): ISnackbarReturn {
   const snackbarTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -37,8 +37,8 @@ export default function useSnackbar({
   const closeSnackbar = useCallback(() => {
     if (snackbarTimer?.current) clearTimeout(snackbarTimer.current);
 
-    onClose();
-  }, [onClose]);
+    setIsOpen(false);
+  }, [setIsOpen]);
 
   const setSnackbarTimer = useCallback(() => {
     const timer = action ? 10000 : 4000;
@@ -50,8 +50,8 @@ export default function useSnackbar({
   }, [action, closeSnackbar]);
 
   useEffect(() => {
-    if (open) setSnackbarTimer();
-  }, [open, setSnackbarTimer]);
+    if (isOpen) setSnackbarTimer();
+  }, [isOpen, setSnackbarTimer]);
 
   const icons = {
     info: InfoOutline,
