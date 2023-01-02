@@ -19,26 +19,26 @@
 
   &__top-right {
     animation: 150ms ease-out forwards moveInDown;
-    right: $spacing-inline-xs;
-    top: $spacing-inline-xs;
+    right: $font-size-xl;
+    top: $font-size-xl;
   }
 
   &__top-left {
     animation: 150ms ease-out forwards moveInDown;
-    left: $spacing-inline-xs;
-    top: $spacing-inline-xs;
+    left: $font-size-xl;
+    top: $font-size-xl;
   }
 
   &__bottom-right {
     animation: 150ms ease-out forwards moveInUp;
-    bottom: $spacing-inline-xs;
-    right: $spacing-inline-xs;
+    bottom: $font-size-xl;
+    right: $font-size-xl;
   }
 
   &__bottom-left {
     animation: 150ms ease-out forwards moveInUp;
-    bottom: $spacing-inline-xs;
-    left: $spacing-inline-xs;
+    bottom: $font-size-xl;
+    left: $font-size-xl;
   }
 
   &__content {
