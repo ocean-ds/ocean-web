@@ -31,12 +31,12 @@ test('renders element properly', () => {
           class="ods-cross-sell-card__information"
         >
           <div
-            class="ods-typography--inverse ods-typography__heading3"
+            class="ods-cross-sell-card__title"
           >
             Title Test
           </div>
           <div
-            class="ods-typography--inverse ods-typography__description ods-cross-sell-card__description "
+            class="ods-cross-sell-card__description"
           >
             Description Test
           </div>
@@ -115,12 +115,12 @@ test('renders component with custom icon', () => {
           class="ods-cross-sell-card__information"
         >
           <div
-            class="ods-typography--inverse ods-typography__heading3"
+            class="ods-cross-sell-card__title"
           >
             Card Title
           </div>
           <div
-            class="ods-typography--inverse ods-typography__description ods-cross-sell-card__description "
+            class="ods-cross-sell-card__description"
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </div>

@@ -28,13 +28,29 @@
   &__image {
     min-height: 102px;
     width: 102px;
+
     @include media-breakpoint-down(lg) {
       min-height: 80px;
-      width: 80px;
+      min-width: 80px;
+    }
+  }
+
+  &__title {
+    @include headings;
+    color: white;
+    font-size: $font-size-sm;
+
+    @include media-breakpoint-down(md) {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-medium;
     }
   }
 
   &__description {
+    @extend .ods-typography--inverse;
+    @extend .ods-typography__description;
+
     color: $color-brand-primary-up;
     margin-top: $spacing-stack-xxxs;
   }
