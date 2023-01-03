@@ -26,13 +26,8 @@
   }
 
   &__image {
-    min-height: 102px;
-    width: 102px;
-
-    @include media-breakpoint-down(lg) {
-      min-height: 80px;
-      min-width: 80px;
-    }
+    min-height: 80px;
+    min-width: 80px;
   }
 
   &__title {
