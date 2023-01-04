@@ -44,9 +44,9 @@
 
   &__description {
     @include texts;
+    color: $color-brand-primary-up;
     font-size: $font-size-xxs;
 
-    color: $color-brand-primary-up;
     margin-top: $spacing-stack-xxxs;
   }
 
