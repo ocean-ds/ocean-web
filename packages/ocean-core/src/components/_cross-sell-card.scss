@@ -32,7 +32,7 @@
 
   &__title {
     @include headings;
-    color: white;
+    color: $color-interface-light-pure;
     font-size: $font-size-sm;
 
     @include media-breakpoint-down(md) {
@@ -43,8 +43,8 @@
   }
 
   &__description {
-    @extend .ods-typography--inverse;
-    @extend .ods-typography__description;
+    @include texts;
+    font-size: $font-size-xxs;
 
     color: $color-brand-primary-up;
     margin-top: $spacing-stack-xxxs;
