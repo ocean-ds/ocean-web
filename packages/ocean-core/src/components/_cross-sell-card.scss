@@ -13,12 +13,8 @@
     display: flex;
     gap: $spacing-inline-xs;
     justify-content: center;
-    padding: $spacing-squish-md;
+    padding: $spacing-inset-sm;
     transition: background 0.1s ease-in;
-
-    @include media-breakpoint-down(lg) {
-      padding: $spacing-inset-sm;
-    }
   }
 
   &__information {
