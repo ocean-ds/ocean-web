@@ -64,11 +64,6 @@
     transition: background 0.1s ease-in;
     width: 100%;
 
-    @include media-breakpoint-down(lg) {
-      padding-left: $spacing-inline-xs;
-      padding-right: $spacing-inline-xs;
-    }
-
     &:hover {
       background: $color-interface-light-up;
       cursor: pointer;
