@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.5](https://github.com/ocean-ds/ocean-web/compare/v1.39.4...v1.39.5) (2023-01-04)
+
+### Bug Fixes
+
+- title cross sell card ([#1055](https://github.com/ocean-ds/ocean-web/issues/1055)) ([91ebea4](https://github.com/ocean-ds/ocean-web/commit/91ebea46de0890845a4ef1da7d39039fee39d795))
+
 ## [1.39.1](https://github.com/ocean-ds/ocean-web/compare/v1.39.0...v1.39.1) (2022-12-21)
 
 ### Bug Fixes
