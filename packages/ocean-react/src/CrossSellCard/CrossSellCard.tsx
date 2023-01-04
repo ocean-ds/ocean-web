@@ -56,10 +56,8 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
           data-testid="cta-test"
         >
           <div className="ods-cross-sell-card__information">
-            <div className="ods-typography--inverse ods-typography__heading3">
-              {title}
-            </div>
-            <div className="ods-typography--inverse ods-typography__description ods-cross-sell-card__description ">
+            <div className="ods-cross-sell-card__title">{title}</div>
+            <div className="ods-cross-sell-card__description">
               {description}
             </div>
           </div>

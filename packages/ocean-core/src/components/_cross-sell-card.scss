@@ -13,12 +13,8 @@
     display: flex;
     gap: $spacing-inline-xs;
     justify-content: center;
-    padding: $spacing-squish-md;
+    padding: $spacing-inset-sm;
     transition: background 0.1s ease-in;
-
-    @include media-breakpoint-down(lg) {
-      padding: $spacing-inset-sm;
-    }
   }
 
   &__information {
@@ -26,16 +22,27 @@
   }
 
   &__image {
-    min-height: 102px;
-    width: 102px;
-    @include media-breakpoint-down(lg) {
-      min-height: 80px;
-      width: 80px;
+    min-height: 80px;
+    min-width: 80px;
+  }
+
+  &__title {
+    @include headings;
+    color: $color-interface-light-pure;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+
+    @include media-breakpoint-down(md) {
+      font-size: $font-size-sm;
     }
   }
 
   &__description {
+    @include texts;
     color: $color-brand-primary-up;
+    font-size: $font-size-xxs;
+
     margin-top: $spacing-stack-xxxs;
   }
 
@@ -53,15 +60,9 @@
     gap: $spacing-inline-xxs;
     height: 48px;
     justify-content: space-between;
-    padding-left: $spacing-inline-sm;
-    padding-right: $spacing-inline-sm;
+    padding: $spacing-inset-sm;
     transition: background 0.1s ease-in;
     width: 100%;
-
-    @include media-breakpoint-down(lg) {
-      padding-left: $spacing-inline-xs;
-      padding-right: $spacing-inline-xs;
-    }
 
     &:hover {
       background: $color-interface-light-up;
