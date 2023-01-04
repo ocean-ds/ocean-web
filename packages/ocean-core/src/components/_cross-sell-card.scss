@@ -33,12 +33,12 @@
   &__title {
     @include headings;
     color: $color-interface-light-pure;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
 
     @include media-breakpoint-down(md) {
-      font-size: $font-size-xs;
-      font-weight: $font-weight-bold;
-      line-height: $line-height-medium;
+      font-size: $font-size-sm;
     }
   }
 
