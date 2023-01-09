@@ -3,6 +3,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "module": "CommonJS",
+    "jsx": "react",
+    "lib": ["dom", "dom.iterable"],
+    "allowJs": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "paths": {
       "@useblu/*": ["packages/*/src"]
     }

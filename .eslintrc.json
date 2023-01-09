@@ -13,10 +13,18 @@
       "version": "detect"
     }
   },
-  "plugins": ["@typescript-eslint", "jest", "jest-dom", "testing-library"],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "@typescript-eslint",
+    "jest",
+    "jest-dom",
+    "testing-library"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "airbnb",
     "prettier",
     "plugin:jest/recommended",
     "plugin:react/recommended",
@@ -27,7 +35,8 @@
   "env": {
     "es6": true,
     "node": true,
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "rules": {
     "react/prop-types": "off",
@@ -39,6 +48,29 @@
     ],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
-    "testing-library/no-node-access": "off"
-  }
+    "testing-library/no-node-access": "off",
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react/forbid-prop-types": 0,
+    "react/state-in-constructor": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { "variables": false }]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+      }
+    }
+  ]
 }
