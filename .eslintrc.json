@@ -71,7 +71,7 @@
     "jsx-a11y/aria-role": [
       2,
       {
-        "allowedInvalidRoles": ["tag"],
+        "allowedInvalidRoles": ["tag", "Tag"],
         "ignoreNonDOM": true
       }
     ],

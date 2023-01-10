@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import DoughnutChart, { DoughnutChartProps } from '../DoughnutChart';
-import { mockedDoughnutData } from '../mocks/doughnutChart';
+import mockedDoughnutData from '../mocks/doughnutChart';
 
 const setup = (
   props: DoughnutChartProps = {

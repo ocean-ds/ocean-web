@@ -40,7 +40,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
   ) => (
     <div
       ref={ref}
-      role="tag"
+      role="Tag"
       className={classNames('ods-tag', `ods-tag--${type}`, className)}
       {...rest}
     >

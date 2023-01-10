@@ -42,12 +42,14 @@ test('renders element properly', () => {
           </div>
         </div>
         <img
+          alt="../img/placeholder.svg"
           class="ods-cross-sell-card__image"
           src="../img/placeholder.svg"
         />
       </a>
       <button
         class="ods-cross-sell-card__cta"
+        type="button"
       >
         Cta Text Test
          
@@ -126,12 +128,14 @@ test('renders component with custom icon', () => {
           </div>
         </div>
         <img
+          alt="../img/placeholder.svg"
           class="ods-cross-sell-card__image"
           src="../img/placeholder.svg"
         />
       </a>
       <button
         class="ods-cross-sell-card__cta"
+        type="button"
       >
         Call To Action
          

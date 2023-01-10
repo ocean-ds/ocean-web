@@ -77,36 +77,36 @@ test('renders the container properly', async () => {
   class="ods-carousel columns-1"
 >
   <div>
-    dots:
+    dots: 
     true
-    infinite:
+    infinite: 
     true
-    autoplay:
+    autoplay: 
     true
-    autoplaySpeed:
+    autoplaySpeed: 
     8000
-    speed:
+    speed: 
     1500
-    slidesToShow :
+    slidesToShow : 
     1
-    slidesToScroll :
+    slidesToScroll : 
     1
-    prevArrow :
+    prevArrow : 
     mock-chevron-left
-    nextArrow:
+    nextArrow: 
     mock-chevron-right
     <div>
       <div>
-         Carousel Item
+         Carousel Item 
       </div>
       <div>
-         Carousel Item
+         Carousel Item 
       </div>
       <div>
-         Carousel Item
+         Carousel Item 
       </div>
       <div>
-         Carousel Item
+         Carousel Item 
       </div>
     </div>
     <div
@@ -115,20 +115,20 @@ test('renders the container properly', async () => {
       <ul
         data-testid="ods-ul-dots"
       >
-
+         
         <div>
           teste 1
         </div>
-
+         
       </ul>
       <ul
         data-testid="ods-ul-dots"
       >
-
+         
         <div>
           teste 2
         </div>
-
+         
       </ul>
     </div>
   </div>
