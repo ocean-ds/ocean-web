@@ -31,11 +31,11 @@ export type RowProps = {
   xl?: RowColWidth;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const Row = React.forwardRef<HTMLDivElement, RowProps>(function Row(
-  { children, className, noGutters = false, xs, sm, md, lg, xl, ...rest },
-  ref
-) {
-  return (
+const Row = React.forwardRef<HTMLDivElement, RowProps>(
+  (
+    { children, className, noGutters = false, xs, sm, md, lg, xl, ...rest },
+    ref
+  ) => (
     <div
       ref={ref}
       className={classNames(
@@ -54,7 +54,9 @@ const Row = React.forwardRef<HTMLDivElement, RowProps>(function Row(
     >
       {children}
     </div>
-  );
-});
+  )
+);
+
+Row.displayName = 'Row';
 
 export default Row;

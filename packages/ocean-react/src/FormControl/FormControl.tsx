@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import FormLabel from '../FormLabel';
-
 import { InformationCircle } from '@useblu/ocean-icons-react';
+import FormLabel from '../FormLabel';
 
 export type FormControlProps = {
   /**

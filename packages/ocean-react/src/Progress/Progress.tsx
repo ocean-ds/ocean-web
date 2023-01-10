@@ -20,29 +20,26 @@ export type ProgressProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
-  function OceanProgress(
-    { onColor = false, size = 'md', className, ...rest },
-    ref
-  ) {
-    return (
-      <div
-        ref={ref}
-        className={classNames(
-          'ods-progress',
-          `ods-progress--${size}`,
-          className,
-          {
-            'ods-progress--on-color': onColor,
-          }
-        )}
-        {...rest}
-      >
-        {size === 'sm' && <IconSm />}
-        {size === 'md' && <IconMd />}
-        {size === 'lg' && <IconLg />}
-      </div>
-    );
-  }
+  ({ onColor = false, size = 'md', className, ...rest }, ref) => (
+    <div
+      ref={ref}
+      className={classNames(
+        'ods-progress',
+        `ods-progress--${size}`,
+        className,
+        {
+          'ods-progress--on-color': onColor,
+        }
+      )}
+      {...rest}
+    >
+      {size === 'sm' && <IconSm />}
+      {size === 'md' && <IconMd />}
+      {size === 'lg' && <IconLg />}
+    </div>
+  )
 );
+
+Progress.displayName = 'Progress';
 
 export default Progress;

@@ -1,4 +1,4 @@
-export const mockedDoughnutData = [
+const mockedDoughnutData = [
   {
     id: 1,
     count: 35,
@@ -32,3 +32,5 @@ export const mockedDoughnutData = [
     descriptionLevel2: 5,
   },
 ];
+
+export default mockedDoughnutData;

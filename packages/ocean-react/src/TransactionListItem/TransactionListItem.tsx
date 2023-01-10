@@ -43,24 +43,24 @@ export type TransactionListItemProps = {
 const TransactionListItem = React.forwardRef<
   HTMLDivElement,
   TransactionListItemProps
->(function TransactionListItem(
-  {
-    children,
-    level2,
-    level3,
-    level4,
-    icon,
-    value,
-    positive,
-    tags,
-    time,
-    subItens,
-    className,
-    ...rest
-  },
-  ref
-) {
-  return (
+>(
+  (
+    {
+      children,
+      level2,
+      level3,
+      level4,
+      icon,
+      value,
+      positive,
+      tags,
+      time,
+      subItens,
+      className,
+      ...rest
+    },
+    ref
+  ) => (
     <div
       ref={ref}
       className={classNames('ods-transaction-list-item', className)}
@@ -100,7 +100,9 @@ const TransactionListItem = React.forwardRef<
         <div className="ods-transaction-list-item__sub-itens">{subItens}</div>
       )}
     </div>
-  );
-});
+  )
+);
+
+TransactionListItem.displayName = 'TransactionListItem';
 
 export default TransactionListItem;

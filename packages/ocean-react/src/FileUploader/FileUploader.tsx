@@ -120,7 +120,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
     };
 
     const validations = locale.validations as { [key: string]: string };
-    return validations[code].replace('${param}', codeToParam[code]);
+    return validations[code].replace(/\$\{param\}/, codeToParam[code]);
   };
 
   const getFileState = (file: File) => {
@@ -212,7 +212,7 @@ const FileUploader: React.FunctionComponent<FileUploaderProps> = ({
             <div className="ods-file-uploader__subtitle">
               {subtitle || locale.subtitle}
             </div>
-            <input type={'file'} {...getInputProps()} />
+            <input type="file" {...getInputProps()} />
           </div>
         </div>
 

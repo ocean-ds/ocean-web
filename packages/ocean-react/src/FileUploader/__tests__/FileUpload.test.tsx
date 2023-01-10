@@ -324,7 +324,7 @@ test('reload file after added it', async () => {
       value={[file]}
       filesState={[
         {
-          file: file,
+          file,
           state: 'error',
           message: 'message from server with error',
         },

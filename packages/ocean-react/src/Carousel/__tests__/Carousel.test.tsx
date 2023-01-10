@@ -16,37 +16,38 @@ jest.mock(
       appendDots: (dots: React.ReactElement[]) => HTMLLIElement;
       dots: boolean;
       infinite: boolean;
-      autoplay: boolean;
       autoplaySpeed: number;
       speed: number;
       slidesToShow: number;
       slidesToScroll: number;
       prevArrow: React.ReactElement;
       nextArrow: React.ReactElement;
-      responsive: {
-        breakpoint: number;
-        settings: {
-          slidesToShow: number;
-          slidesToScroll: number;
-        };
-      }[];
     }) {
+      const {
+        dots,
+        infinite,
+        autoplaySpeed,
+        speed,
+        slidesToShow,
+        slidesToScroll,
+        prevArrow,
+        nextArrow,
+        children,
+        appendDots,
+      } = props;
       return (
         <div>
-          dots: {props.dots.toString()}
-          infinite: {props.infinite.toString()}
-          autoplay: {props.infinite.toString()}
-          autoplaySpeed: {props.autoplaySpeed}
-          speed: {props.speed}
-          slidesToShow : {props.slidesToShow}
-          slidesToScroll : {props.slidesToScroll}
-          prevArrow : {props.prevArrow}
-          nextArrow: {props.nextArrow}
-          {props.children}
-          {props.appendDots([
-            <div key={1}>teste 1</div>,
-            <div key={2}>teste 2</div>,
-          ])}
+          dots: {dots.toString()}
+          infinite: {infinite.toString()}
+          autoplay: {infinite.toString()}
+          autoplaySpeed: {autoplaySpeed}
+          speed: {speed}
+          slidesToShow : {slidesToShow}
+          slidesToScroll : {slidesToScroll}
+          prevArrow : {prevArrow}
+          nextArrow: {nextArrow}
+          {children}
+          {appendDots([<div key={1}>teste 1</div>, <div key={2}>teste 2</div>])}
         </div>
       );
     }
@@ -65,9 +66,7 @@ const setup = (
       </>
     ),
   }
-) => {
-  return render(<Carousel {...props} />);
-};
+) => render(<Carousel {...props} />);
 
 test('renders the container properly', async () => {
   setup();
@@ -78,36 +77,36 @@ test('renders the container properly', async () => {
   class="ods-carousel columns-1"
 >
   <div>
-    dots: 
+    dots:
     true
-    infinite: 
+    infinite:
     true
-    autoplay: 
+    autoplay:
     true
-    autoplaySpeed: 
+    autoplaySpeed:
     8000
-    speed: 
+    speed:
     1500
-    slidesToShow : 
+    slidesToShow :
     1
-    slidesToScroll : 
+    slidesToScroll :
     1
-    prevArrow : 
+    prevArrow :
     mock-chevron-left
-    nextArrow: 
+    nextArrow:
     mock-chevron-right
     <div>
       <div>
-         Carousel Item 
+         Carousel Item
       </div>
       <div>
-         Carousel Item 
+         Carousel Item
       </div>
       <div>
-         Carousel Item 
+         Carousel Item
       </div>
       <div>
-         Carousel Item 
+         Carousel Item
       </div>
     </div>
     <div
@@ -116,20 +115,20 @@ test('renders the container properly', async () => {
       <ul
         data-testid="ods-ul-dots"
       >
-         
+
         <div>
           teste 1
         </div>
-         
+
       </ul>
       <ul
         data-testid="ods-ul-dots"
       >
-         
+
         <div>
           teste 2
         </div>
-         
+
       </ul>
     </div>
   </div>
@@ -138,13 +137,12 @@ test('renders the container properly', async () => {
 });
 
 test('renders the container properly - false case', async () => {
-  const setupFalse = (props?: CarouselProps) => {
-    return render(
+  const setupFalse = (props?: CarouselProps) =>
+    render(
       <Carousel {...props}>
         <div>item1</div>
       </Carousel>
     );
-  };
 
   setupFalse();
 

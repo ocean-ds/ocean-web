@@ -1,11 +1,10 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 
-import { DatePickerProps, DatePickerFields } from '../types/DateRange.types';
-
 import ptBr from 'date-fns/locale/pt-BR';
 
 import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
+import { DatePickerProps, DatePickerFields } from '../types/DateRange.types';
 
 import {
   handleValidateStartsToday,
@@ -68,7 +67,7 @@ export default function useDatePicker({
 
   const updateState = (updateData: DatePickerFields, updateCache?: boolean) => {
     onSelect(updateData);
-    updateCache && setDatePickerCache(updateData);
+    return updateCache && setDatePickerCache(updateData);
   };
 
   const handleDayMouseEnter = (day: Date): void => {

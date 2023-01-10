@@ -13,9 +13,7 @@ const setup = (
     centerChartLabel: 'Doughnut center label',
     data: mockedDoughnutData,
   }
-) => {
-  return render(<DoughnutChart {...props} />);
-};
+) => render(<DoughnutChart {...props} />);
 
 test('renders element properly', () => {
   const { container } = setup();

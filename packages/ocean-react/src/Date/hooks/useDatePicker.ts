@@ -63,7 +63,7 @@ export default function useDatePickerSingle({
 
   const updateState = (updateData: string, updateCache?: boolean) => {
     onSelect(updateData);
-    updateCache && setDatePickerCache(updateData);
+    return updateCache && setDatePickerCache(updateData);
   };
 
   const handleDayClick = (day: Date): void => {

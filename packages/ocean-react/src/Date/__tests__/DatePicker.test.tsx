@@ -4,9 +4,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import DatePicker from '../DatePicker';
-
 import { format } from 'date-fns';
+import DatePicker from '../DatePicker';
 
 const TODAY = 16;
 

@@ -3,11 +3,10 @@ import classNames from 'classnames';
 
 import { format, Locale } from 'date-fns';
 
-import IconButton from '../IconButton';
-
 import { CaptionProps, useNavigation } from 'react-day-picker';
 
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
+import IconButton from '../IconButton';
 
 type IProps = CaptionProps & { locale: Locale; mode?: 'single' | 'range' };
 

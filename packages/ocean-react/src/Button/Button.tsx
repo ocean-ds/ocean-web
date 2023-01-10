@@ -64,7 +64,7 @@ function ButtonBase<T extends React.ElementType = 'button'>(
       className: classNames(
         'ods-btn',
         `ods-btn--${size}`,
-        `ods-btn--${variant.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())}`,
+        `ods-btn--${variant.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)}`,
         blocked && 'ods-btn--blocked',
         className,
         { 'ods-btn--loading': loading }

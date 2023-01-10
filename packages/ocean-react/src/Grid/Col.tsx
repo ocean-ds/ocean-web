@@ -47,46 +47,47 @@ type ColProps = {
   xl?: ColSpec;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const Col = React.forwardRef<HTMLDivElement, ColProps>(function Col(
-  { children, className, ...rest },
-  ref
-) {
-  const prefix = 'ods-col';
-  const classes = [];
-  let hasAnySpan = false;
+const Col = React.forwardRef<HTMLDivElement, ColProps>(
+  ({ children, className, ...rest }, ref) => {
+    const prefix = 'ods-col';
+    const classes = [];
+    let hasAnySpan = false;
 
-  DEVICE_SIZES.forEach((brkPoint) => {
-    const propValue = rest[brkPoint];
-    delete rest[brkPoint];
+    DEVICE_SIZES.forEach((brkPoint) => {
+      const propValue = rest[brkPoint];
+      delete rest[brkPoint];
 
-    let span: ColSize | undefined;
-    let offset: NumberAttr | undefined;
+      let span: ColSize | undefined;
+      let offset: NumberAttr | undefined;
 
-    if (typeof propValue === 'object' && propValue) {
-      ({ span = true, offset } = propValue);
-    } else {
-      span = propValue;
-    }
+      if (typeof propValue === 'object' && propValue) {
+        ({ span = true, offset } = propValue);
+      } else {
+        span = propValue;
+      }
 
-    const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
+      const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
 
-    if (span) {
-      hasAnySpan = true;
-      classes.push(
-        span === true ? `${prefix}${infix}` : `${prefix}${infix}-${span}`
-      );
-    }
-    if (offset) classes.push(`ods-offset${infix}-${offset}`);
-  });
+      if (span) {
+        hasAnySpan = true;
+        classes.push(
+          span === true ? `${prefix}${infix}` : `${prefix}${infix}-${span}`
+        );
+      }
+      if (offset) classes.push(`ods-offset${infix}-${offset}`);
+    });
 
-  // plain 'ods-col'
-  if (!hasAnySpan) classes.unshift(prefix);
+    // plain 'ods-col'
+    if (!hasAnySpan) classes.unshift(prefix);
 
-  return (
-    <div ref={ref} className={classNames(classes, className)} {...rest}>
-      {children}
-    </div>
-  );
-});
+    return (
+      <div ref={ref} className={classNames(classes, className)} {...rest}>
+        {children}
+      </div>
+    );
+  }
+);
+
+Col.displayName = 'Col';
 
 export default Col;

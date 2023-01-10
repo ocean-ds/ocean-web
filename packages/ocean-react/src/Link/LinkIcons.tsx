@@ -10,7 +10,7 @@ const mapIconsByType = {
   externalLink: ExternalLink,
 };
 
-const LinkIcons = React.memo<LinkIconProps>(function LinkIcons({ icon }) {
+const LinkIcons = React.memo<LinkIconProps>(({ icon }) => {
   if (icon) {
     const IconElement = mapIconsByType[icon];
 
@@ -27,5 +27,7 @@ const LinkIcons = React.memo<LinkIconProps>(function LinkIcons({ icon }) {
 
   return <></>;
 });
+
+LinkIcons.displayName = 'LinkIcons';
 
 export default LinkIcons;

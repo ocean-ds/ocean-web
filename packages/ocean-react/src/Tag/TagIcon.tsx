@@ -19,7 +19,7 @@ const mapIconsByType = (key?: string) =>
     '': undefined,
   }[key];
 
-const TagIcon = React.memo<TagIconProps>(function TagIcon({ type, icon }) {
+const TagIcon = React.memo<TagIconProps>(({ type, icon }) => {
   if (icon) return React.cloneElement(icon, { className: 'ods-tag__icon' });
 
   const IconEl = mapIconsByType(type);
@@ -36,5 +36,7 @@ const TagIcon = React.memo<TagIconProps>(function TagIcon({ type, icon }) {
 
   return <></>;
 });
+
+TagIcon.displayName = 'TagIcon';
 
 export default TagIcon;

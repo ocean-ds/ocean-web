@@ -2,9 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Stepper, { StepsProps } from '../Steps';
 
-const setup = (props: StepsProps = { currentStep: 1, steps: 4 }) => {
-  return render(<Stepper {...props} />);
-};
+const setup = (props: StepsProps = { currentStep: 1, steps: 4 }) =>
+  render(<Stepper {...props} />);
 
 test.each([1, 2, 3] as const)(
   'renders each currentStep option',

@@ -1,20 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import { DayPicker, CaptionProps } from 'react-day-picker';
+import { CalendarOutline } from '@useblu/ocean-icons-react';
 import Input from '../Input';
 
 import useDateRange from './hooks/useDateRange';
-
-import { DayPicker, CaptionProps } from 'react-day-picker';
-
-import { CalendarOutline } from '@useblu/ocean-icons-react';
 
 import { DatePickerProps } from './types/DateRange.types';
 
 import DatePickerHeader from './DateHeader';
 
 const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
-  function DatePickerRange(
+  (
     {
       labels,
       values,
@@ -29,7 +27,7 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       ...rest
     },
     ref
-  ) {
+  ) => {
     const {
       input1Ref,
       input2Ref,
@@ -154,5 +152,7 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
     );
   }
 );
+
+DatePickerRange.displayName = 'DatePickerRange';
 
 export default DatePickerRange;

@@ -34,19 +34,19 @@ const Steps = ({
             r="5"
             stroke="#13BDBD"
             strokeWidth="2"
-          ></circle>
+          />
           {steps > step && (
             <>
               <path
                 d={step === 1 ? 'M15 10H20' : `M${left + 17} 10H${left + 22}`}
                 stroke="#13BDBD"
                 strokeWidth="2"
-              ></path>
+              />
               <path
                 d={step === 1 ? 'M20 10H37' : `M${left + 22} 10H${left + 38}`}
                 stroke="#EBECF5"
                 strokeWidth="2"
-              ></path>
+              />
             </>
           )}
         </>
@@ -102,13 +102,13 @@ const Steps = ({
           r="5"
           stroke="#EBECF5"
           strokeWidth="2"
-        ></circle>
+        />
         {steps > step && (
           <path
             d={step === 1 ? 'M15 10H37' : `M${left + 17} 10H${left + 38}`}
             stroke="#EBECF5"
             strokeWidth="2"
-          ></path>
+          />
         )}
       </>
     );

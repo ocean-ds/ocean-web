@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import TopBar from '../TopBar';
 import { ArrowLeftOutline } from '@useblu/ocean-icons-react';
+import TopBar from '../TopBar';
 
 test('renders element properly', () => {
   const { container } = render(

@@ -10,7 +10,7 @@ type ContainerProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
-  function Container({ children, fluid = false, className, ...rest }, ref) {
+  ({ children, fluid = false, className, ...rest }, ref) => {
     const prefix = 'ods-container';
     const suffix = typeof fluid === 'string' ? `-${fluid}` : '-fluid';
 
@@ -25,5 +25,7 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     );
   }
 );
+
+Container.displayName = 'Container';
 
 export default Container;

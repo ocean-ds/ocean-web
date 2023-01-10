@@ -10,11 +10,7 @@ type ListboxProps = {
   onKeyDown: React.KeyboardEventHandler;
 };
 
-const Listbox = React.memo<ListboxProps>(function Listbox({
-  id,
-  options,
-  onKeyDown,
-}) {
+const Listbox = React.memo<ListboxProps>(({ id, options, onKeyDown }) => {
   const { selected } = useContext(Context);
   const refListbox = useRef<HTMLUListElement | null>(null);
 
@@ -47,5 +43,7 @@ const Listbox = React.memo<ListboxProps>(function Listbox({
     </div>
   );
 });
+
+Listbox.displayName = 'Listbox';
 
 export default Listbox;

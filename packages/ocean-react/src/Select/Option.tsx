@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import Context from './context';
 import { OptionProps } from './types';
 
-const Option = React.memo<OptionProps>(function Option(option) {
+const Option = React.memo<OptionProps>((option) => {
   const { label, className, id, index, ...rest } = option;
   const { selected, onSelect, setIsExpanded, refSelControl } =
     useContext(Context);
@@ -56,5 +56,7 @@ const Option = React.memo<OptionProps>(function Option(option) {
     </li>
   );
 });
+
+Option.displayName = 'Option';
 
 export default Option;

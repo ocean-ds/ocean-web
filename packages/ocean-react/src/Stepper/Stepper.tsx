@@ -26,7 +26,7 @@ export type StepperProps = {
   React.ComponentPropsWithoutRef<'input'>;
 
 const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
-  function Stepper(
+  (
     {
       className,
       label,
@@ -42,7 +42,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
       ...rest
     },
     ref
-  ) {
+  ) => {
     const { filled, handleChange } = useInputFilled({
       defaultValue,
       value,
@@ -98,7 +98,6 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             addToAmount();
             break;
           default:
-            return;
         }
       },
       [addToAmount, deduceFromAmount]
@@ -153,25 +152,25 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
               value={amount}
               {...rest}
             />
-            {
-              <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus">
-                <IconButton
-                  size="sm"
-                  disabled={
-                    disabled || (typeof max !== 'undefined' && amount >= max)
-                  }
-                  type="button"
-                  onClick={addToAmount}
-                >
-                  <PlusOutline size={24} />
-                </IconButton>
-              </div>
-            }
+            <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_plus">
+              <IconButton
+                size="sm"
+                disabled={
+                  disabled || (typeof max !== 'undefined' && amount >= max)
+                }
+                type="button"
+                onClick={addToAmount}
+              >
+                <PlusOutline size={24} />
+              </IconButton>
+            </div>
           </div>
         </div>
       </FormControl>
     );
   }
 );
+
+Stepper.displayName = 'Stepper';
 
 export default Stepper;

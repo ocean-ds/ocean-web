@@ -17,38 +17,44 @@ export type BadgeProps = {
   count?: number;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
-  { children, variation = 'small', className, count, color, ...rest },
-  ref
-) {
-  const countToShow = count && count > 99 ? `99+` : count;
+const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
+  (
+    { children, variation = 'small', className, count, color, ...rest },
+    ref
+  ) => {
+    const countToShow = count && count > 99 ? `99+` : count;
 
-  return (
-    <div
-      ref={ref}
-      role="tag"
-      className={classNames(
-        'ods-badge',
-        `ods-badge--${variation}`,
-        `ods-badge--${color}`,
-        className,
-        {
-          'ods-badge--overflow': count && count > 99,
-        }
-      )}
-      {...rest}
-    >
-      {variation !== 'tiny' && typeof count !== 'undefined' && (
-        <div className="ods-badge__content ods-badge__count">{countToShow}</div>
-      )}
+    return (
+      <div
+        ref={ref}
+        role="tag"
+        className={classNames(
+          'ods-badge',
+          `ods-badge--${variation}`,
+          `ods-badge--${color}`,
+          className,
+          {
+            'ods-badge--overflow': count && count > 99,
+          }
+        )}
+        {...rest}
+      >
+        {variation !== 'tiny' && typeof count !== 'undefined' && (
+          <div className="ods-badge__content ods-badge__count">
+            {countToShow}
+          </div>
+        )}
 
-      {variation !== 'tiny' && typeof count === 'undefined' && children && (
-        <div className="ods-badge__content ods-badge__text">{children}</div>
-      )}
+        {variation !== 'tiny' && typeof count === 'undefined' && children && (
+          <div className="ods-badge__content ods-badge__text">{children}</div>
+        )}
 
-      {variation === 'tiny' && <div className="ods-badge__content"></div>}
-    </div>
-  );
-});
+        {variation === 'tiny' && <div className="ods-badge__content" />}
+      </div>
+    );
+  }
+);
+
+Badge.displayName = 'Badge';
 
 export default Badge;

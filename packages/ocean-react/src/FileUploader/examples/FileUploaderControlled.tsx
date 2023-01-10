@@ -1,7 +1,7 @@
 import React from 'react';
-import Typography from '../../Typography';
 import { Formik, ErrorMessage, FormikValues } from 'formik';
 import * as yup from 'yup';
+import Typography from '../../Typography';
 import FileUploader from '../FileUploader';
 import { Col, Row } from '../../Grid';
 import Button from '../../Button';
@@ -37,8 +37,8 @@ const FileUploaderControlled: React.FC = (props) => {
 
       setTimeout(() => {
         if (
-          confirm(
-            `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload: 
+          window.confirm(
+            `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload:
           \n
           files to upload: ${values.files.length}`
           )

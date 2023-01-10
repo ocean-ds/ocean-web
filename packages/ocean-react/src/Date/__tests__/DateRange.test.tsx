@@ -3,11 +3,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import DatePicker from '../DateRange';
-
 import { format } from 'date-fns';
 
 import { enUS } from 'date-fns/locale';
+import DatePicker from '../DateRange';
 
 const YESTERDAY = 15;
 const TODAY = 16;
