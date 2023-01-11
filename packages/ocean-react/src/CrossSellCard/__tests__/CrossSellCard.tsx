@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import CrossSellCard from '../CrossSellCard';
 import { ChevronLeft } from '@useblu/ocean-icons-react';
+import CrossSellCard from '../CrossSellCard';
 
 const mockFunction = jest.fn();
 
@@ -10,7 +10,7 @@ test('renders element properly', () => {
     <CrossSellCard
       title="Title Test"
       description="Description Test"
-      imageSrc={'../img/placeholder.svg'}
+      imageSrc="../img/placeholder.svg"
       ctaText="Cta Text Test"
       ctaAction={mockFunction}
       className="custom-class"
@@ -42,12 +42,14 @@ test('renders element properly', () => {
           </div>
         </div>
         <img
+          alt="../img/placeholder.svg"
           class="ods-cross-sell-card__image"
           src="../img/placeholder.svg"
         />
       </a>
       <button
         class="ods-cross-sell-card__cta"
+        type="button"
       >
         Cta Text Test
          
@@ -78,7 +80,7 @@ test('action is being fired', () => {
     <CrossSellCard
       title="Title Test"
       description="Description Test"
-      imageSrc={'../img/placeholder.svg'}
+      imageSrc="../img/placeholder.svg"
       ctaText="Cta Text Test"
       ctaAction={mockFunction}
       className="custom-class"
@@ -93,7 +95,7 @@ test('renders component with custom icon', () => {
     <CrossSellCard
       title="Card Title"
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      imageSrc={'../img/placeholder.svg'}
+      imageSrc="../img/placeholder.svg"
       ctaText="Call To Action"
       ctaAction={mockFunction}
       className="custom-class"
@@ -126,12 +128,14 @@ test('renders component with custom icon', () => {
           </div>
         </div>
         <img
+          alt="../img/placeholder.svg"
           class="ods-cross-sell-card__image"
           src="../img/placeholder.svg"
         />
       </a>
       <button
         class="ods-cross-sell-card__cta"
+        type="button"
       >
         Call To Action
          

@@ -10,8 +10,8 @@ test('renders breadcrumb with array elements', () => {
       className="custom-class"
       key="test23"
       items={[
-        <span key={'element-1'}>item 1</span>,
-        <span key={'element-2'}>item 2</span>,
+        <span key="element-1">item 1</span>,
+        <span key="element-2">item 2</span>,
       ]}
     />
   );

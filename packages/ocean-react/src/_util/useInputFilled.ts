@@ -27,6 +27,8 @@ export default function useInputFilled({
       // uncontrolled version
       setFilled(Boolean(event.target.value));
       setInputValue(event.target.value);
+
+      return event;
     },
     [onChange]
   );

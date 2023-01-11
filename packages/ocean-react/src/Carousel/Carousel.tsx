@@ -1,8 +1,10 @@
+/* eslint react/no-array-index-key: 0 */
+
 import React, { Children } from 'react';
-import CarouselDotList from './CarouselDotList';
 import Slider from 'react-slick';
 import { ChevronLeft, ChevronRight } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
+import CarouselDotList from './CarouselDotList';
 
 export type CarouselProps = {
   /**

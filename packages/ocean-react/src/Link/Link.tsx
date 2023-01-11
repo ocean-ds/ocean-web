@@ -21,11 +21,11 @@ export type LinkProps = {
   icon?: 'linkChevron' | 'externalLink';
 } & ComponentPropsWithoutRef<'a'>;
 
-const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  { children, className, variant = 'primary', size = 'md', icon, ...rest },
-  ref
-) {
-  return (
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  (
+    { children, className, variant = 'primary', size = 'md', icon, ...rest },
+    ref
+  ) => (
     <a
       ref={ref}
       className={classNames(
@@ -40,7 +40,9 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
       <span className="ods-link__content">{children}</span>
       <LinkIcons icon={icon} />
     </a>
-  );
-});
+  )
+);
+
+Link.displayName = 'Link';
 
 export default Link;

@@ -10,31 +10,31 @@ export type BreadcrumbProps = {
 } & ComponentPropsWithoutRef<'div'>;
 
 const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
-  function Breadcrumb({ items, className, ...rest }, ref) {
-    return (
-      <div
-        className={classNames('ods-breadcrumb', className)}
-        ref={ref}
-        {...rest}
-      >
-        {items?.map((item, index) => {
-          const showIcon = index !== items.length - 1 && (
-            <ChevronRight size={12} />
-          );
+  ({ items, className, ...rest }, ref) => (
+    <div
+      className={classNames('ods-breadcrumb', className)}
+      ref={ref}
+      {...rest}
+    >
+      {items?.map((item, index) => {
+        const showIcon = index !== items.length - 1 && (
+          <ChevronRight size={12} />
+        );
 
-          return typeof item === 'string' ? (
-            <>
-              <span>{item}</span> {showIcon}
-            </>
-          ) : (
-            <>
-              {item} {showIcon}
-            </>
-          );
-        })}
-      </div>
-    );
-  }
+        return typeof item === 'string' ? (
+          <>
+            <span>{item}</span> {showIcon}
+          </>
+        ) : (
+          <>
+            {item} {showIcon}
+          </>
+        );
+      })}
+    </div>
+  )
 );
+
+Breadcrumb.displayName = 'Breadcrumb';
 
 export default Breadcrumb;

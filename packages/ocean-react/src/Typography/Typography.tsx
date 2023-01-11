@@ -45,10 +45,7 @@ export type TypographyProps = {
 } & React.ComponentPropsWithoutRef<'span'>;
 
 const Typography = React.forwardRef<unknown, TypographyProps>(
-  function Typography(
-    { children, variant, className, inverse = false, ...rest },
-    ref
-  ) {
+  ({ children, variant, className, inverse = false, ...rest }, ref) => {
     const Component = defaultTypesMapping[variant] as React.ElementType;
 
     return (
@@ -66,5 +63,7 @@ const Typography = React.forwardRef<unknown, TypographyProps>(
     );
   }
 );
+
+Typography.displayName = 'Typography';
 
 export default Typography;

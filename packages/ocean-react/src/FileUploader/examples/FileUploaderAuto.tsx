@@ -17,25 +17,25 @@ const FileUploaderAuto: React.FC = (props) => {
 
   const sendFile = (file: File) => {
     changeFileState({
-      file: file,
+      file,
       state: 'loading',
     });
 
     setTimeout(() => {
       if (
-        confirm(
-          `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload: 
+        window.confirm(
+          `This alert simulates the server side code, if you press 'yes' it will accept the file, if you cancel, it will set a error to the file upload:
         \n
         file to upload: ${file.name}`
         )
       ) {
         changeFileState({
-          file: file,
+          file,
           state: 'success',
         });
       } else {
         changeFileState({
-          file: file,
+          file,
           state: 'error',
           message: 'message from server with error',
         });
@@ -61,18 +61,16 @@ const FileUploaderAuto: React.FC = (props) => {
         value={files}
         filesState={filesState}
         onAdd={(e: FileChangeEvent) => {
-          setfilesState((o) => {
-            return [
-              ...o,
-              ...e.target.value.map(
-                (f) => ({ file: f, state: 'loading' } as FileState)
-              ),
-            ];
-          });
+          setfilesState((o) => [
+            ...o,
+            ...e.target.value.map(
+              (f) => ({ file: f, state: 'loading' } as FileState)
+            ),
+          ]);
           e.target.value.forEach(sendFile);
         }}
         onRemoveFile={(file: File) => {
-          alert(file.name + ' removed');
+          alert(`${file.name} removed`);
         }}
         onReloadFile={(file: File) => {
           sendFile(file);

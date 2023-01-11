@@ -8,11 +8,8 @@ export type RadioProps = {
   label?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'input'>;
 
-const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Radio(
-  { className, label, id, ...rest },
-  ref
-) {
-  return (
+const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
+  ({ className, label, id, ...rest }, ref) => (
     <label className="ods-radio__root" htmlFor={id}>
       <input
         ref={ref}
@@ -28,7 +25,9 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(function Radio(
         </span>
       )}
     </label>
-  );
-});
+  )
+);
+
+Radio.displayName = 'Radio';
 
 export default Radio;

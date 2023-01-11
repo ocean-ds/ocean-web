@@ -48,7 +48,7 @@ const useSelect = ({
 
   const onSelect = useCallback(
     (option: OptionProps, canEmitChangeEvent = true) => {
-      if (selected?.id == option.id) return;
+      if (selected?.id === option.id) return;
 
       setSelected(option);
       if (canEmitChangeEvent && onChange) {
@@ -61,7 +61,7 @@ const useSelect = ({
   const selectByIndex = useCallback(
     (index: number) => {
       const option = optionsMemo[index];
-      option && onSelect(option);
+      return option && onSelect(option);
     },
     [onSelect, optionsMemo]
   );
@@ -69,10 +69,10 @@ const useSelect = ({
   const selectClosestOption = useCallback(
     (incremental: number) => {
       const lastIndex = optionsMemo.length - 1;
-      let newIndex = incremental == 0 ? 0 : currentIndex + incremental;
+      let newIndex = incremental === 0 ? 0 : currentIndex + incremental;
 
       if (newIndex < 0) newIndex = 0;
-      else if (newIndex > lastIndex || incremental == lastIndex)
+      else if (newIndex > lastIndex || incremental === lastIndex)
         newIndex = lastIndex;
 
       selectByIndex(newIndex);
@@ -82,8 +82,8 @@ const useSelect = ({
 
   const selectByValue = useCallback(
     (val?: RawValueType) => {
-      const option = optionsMemo.find((o) => o.value == val);
-      option && onSelect(option, false);
+      const option = optionsMemo.find((o) => o.value === val);
+      return option && onSelect(option, false);
     },
     [onSelect, optionsMemo]
   );

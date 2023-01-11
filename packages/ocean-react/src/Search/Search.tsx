@@ -1,16 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import { Search as SearchIcon, X } from '@useblu/ocean-icons-react';
 import FormControl, { FormControlProps } from '../FormControl';
 import useInputFilled from '../_util/useInputFilled';
 import IconButton from '../IconButton';
-import { Search as SearchIcon, X } from '@useblu/ocean-icons-react';
 
 export type SearchInputProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'input'>;
 
 const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
-  function Input(
+  (
     {
       className,
       id,
@@ -22,7 +22,7 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
       ...rest
     },
     ref
-  ) {
+  ) => {
     const { filled, handleChange } = useInputFilled({
       defaultValue,
       value,
@@ -76,5 +76,7 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
     );
   }
 );
+
+Search.displayName = 'Search';
 
 export default Search;

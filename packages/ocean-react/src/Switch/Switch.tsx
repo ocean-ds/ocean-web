@@ -3,11 +3,8 @@ import classNames from 'classnames';
 
 export type SwitchProps = React.ComponentPropsWithoutRef<'input'>;
 
-const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(
-  { className, id, ...rest },
-  ref
-) {
-  return (
+const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+  ({ className, id, ...rest }, ref) => (
     <label className="ods-switch__root" htmlFor={id}>
       <input
         ref={ref}
@@ -16,9 +13,11 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(function Switch(
         {...rest}
         type="checkbox"
       />
-      <span className="ods-switch__slider"></span>
+      <span className="ods-switch__slider" />
     </label>
-  );
-});
+  )
+);
+
+Switch.displayName = 'Switch';
 
 export default Switch;

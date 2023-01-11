@@ -8,7 +8,7 @@ export type TextAreaProps = Omit<FormControlProps, 'children'> &
   React.ComponentPropsWithoutRef<'textarea'>;
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  function TextArea(
+  (
     {
       className,
       label,
@@ -23,7 +23,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       ...rest
     },
     ref
-  ) {
+  ) => {
     const { filled, handleChange } = useInputFilled({
       defaultValue,
       value,
@@ -58,5 +58,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     );
   }
 );
+
+TextArea.displayName = 'TextArea';
 
 export default TextArea;

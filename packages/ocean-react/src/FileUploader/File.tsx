@@ -32,19 +32,21 @@ const File: React.FunctionComponent<FileProps> = ({
   onRemove,
   onReload,
 }: FileProps) => {
-  const statusIcon = React.useMemo(() => {
-    return {
-      loading: (
-        <div className="ods-file-uploader__file-loading">
-          <Progress size="sm" />
-        </div>
-      ),
-      success: <CheckCircle />,
-      error: <XCircle />,
-      warning: <ExclamationCircle />,
-      idle: <DocumentText />,
-    }[status];
-  }, [status]);
+  const statusIcon = React.useMemo(
+    () =>
+      ({
+        loading: (
+          <div className="ods-file-uploader__file-loading">
+            <Progress size="sm" />
+          </div>
+        ),
+        success: <CheckCircle />,
+        error: <XCircle />,
+        warning: <ExclamationCircle />,
+        idle: <DocumentText />,
+      }[status]),
+    [status]
+  );
 
   return (
     <div

@@ -32,7 +32,7 @@ test('renders a small icon button', () => {
 });
 
 test('renders a disabled icon button', () => {
-  render(<IconButton data-testid="btn-test" disabled={true} />);
+  render(<IconButton data-testid="btn-test" disabled />);
   expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--disabled');
 });
 

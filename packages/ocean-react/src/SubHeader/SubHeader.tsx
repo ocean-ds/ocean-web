@@ -10,11 +10,8 @@ export type SubHeaderProps = {
   subtitle?: string | React.ReactElement;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(function Tag(
-  { children, subtitle, className, ...rest },
-  ref
-) {
-  return (
+const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
+  ({ children, subtitle, className, ...rest }, ref) => (
     <div
       ref={ref}
       className={classNames('ods-sub-header', className)}
@@ -23,7 +20,9 @@ const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(function Tag(
       <div className="ods-sub-header__title">{children}</div>
       {subtitle && <div className="ods-sub-header__subtitle">{subtitle}</div>}
     </div>
-  );
-});
+  )
+);
+
+SubHeader.displayName = 'SubHeader';
 
 export default SubHeader;

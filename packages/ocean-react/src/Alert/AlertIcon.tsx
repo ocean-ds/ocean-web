@@ -18,22 +18,14 @@ const mapIconsByType = {
   default: InformationCircleOutline,
 };
 
-const AlertIcon = React.memo<AlertIconProps>(function AlertIcon({
-  type,
-  icon,
-}) {
+const AlertIcon = React.memo<AlertIconProps>(({ type, icon }) => {
   const IconEl = mapIconsByType[type];
 
   if (icon) return React.cloneElement(icon, { className: 'ods-alert__icon' });
 
-  return (
-    <IconEl
-      size={24}
-      className="ods-alert__icon"
-      aria-hidden
-      focusable={false}
-    />
-  );
+  return <IconEl size={24} className="ods-alert__icon" focusable={false} />;
 });
+
+AlertIcon.displayName = 'AlertIcon';
 
 export default AlertIcon;
