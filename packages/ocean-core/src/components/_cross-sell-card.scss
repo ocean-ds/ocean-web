@@ -29,12 +29,12 @@
   &__title {
     @include headings;
     color: $color-interface-light-pure;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
     line-height: $line-height-medium;
 
     @include media-breakpoint-down(md) {
-      font-size: $font-size-sm;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
     }
   }
 
@@ -44,6 +44,12 @@
     font-size: $font-size-xxs;
 
     margin-top: $spacing-stack-xxxs;
+
+    @include media-breakpoint-down(md) {
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
+      line-height: $line-height-comfy;
+    }
   }
 
   &__cta {
