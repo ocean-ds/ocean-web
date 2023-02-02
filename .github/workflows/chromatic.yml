@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
+          onlyChanged: true
 
       - name: Checkout for dependabot
         if: github.event_name == 'pull_request_target'
