@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/ocean-ds/ocean-web/compare/v1.39.7...v1.40.0) (2023-02-02)
+
+### Features
+
+- drawer component improvements ([249c4cb](https://github.com/ocean-ds/ocean-web/commit/249c4cbf3611463139b42328bb776d7832e8d917))
+
 ## [1.39.6](https://github.com/ocean-ds/ocean-web/compare/v1.39.5...v1.39.6) (2023-01-11)
 
 **Note:** Version bump only for package @useblu/ocean-react
