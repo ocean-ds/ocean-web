@@ -40,8 +40,7 @@
     visibility: visible;
     z-index: 400;
     transform: translateX(0);
-    transition: 325ms ease-out 0ms;
-    transition: box-shadow 225ms ease-out 0ms;
+    transition: all 425ms ease-out 0ms;
 
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
       0px 16px 24px 2px rgba(0, 0, 0, 0.14),
