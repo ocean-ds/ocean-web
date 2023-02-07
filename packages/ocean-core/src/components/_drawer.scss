@@ -7,9 +7,7 @@
   left: auto;
 
   height: 100%;
-  width: auto;
-  max-width: 378px;
-  padding: 0 24px;
+  width: 378px;
   outline: 0;
   flex-shrink: 0;
 
@@ -31,8 +29,8 @@
       0px 6px 30px 5px rgba(0, 0, 0, 0.12);
 
     @include media-breakpoint-down(md) {
-      padding: 0 16px;
       cursor: default;
+      width: -webkit-fill-available;
     }
   }
 }
@@ -60,6 +58,7 @@
 .ods-drawer_content--header {
   display: flex;
   height: 48px;
+  padding: 0 24px;
 
   &--left {
     justify-content: flex-start;
