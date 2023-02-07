@@ -6,14 +6,20 @@ import Button from '../../Button';
 
 interface SimpleDrawerProps {
   children: React.ReactElement;
+  open: boolean;
+  iconAlignment: string;
 }
 
-const SimpleDrawer = ({ children }: SimpleDrawerProps): React.ReactElement => {
+const SimpleDrawer = ({
+  children,
+  open,
+  iconAlignment,
+}: SimpleDrawerProps): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen((prevState) => !prevState);
 
-  const toggleBackDropClose = () => setIsOpen(false);
+  const toggleOverlayClose = () => setIsOpen(false);
 
   return (
     <>
@@ -21,11 +27,11 @@ const SimpleDrawer = ({ children }: SimpleDrawerProps): React.ReactElement => {
         Open drawer
       </Button>
       <Drawer
-        open={isOpen}
+        open={open || isOpen}
         onDrawerClose={toggleOpen}
-        backDropClose={toggleBackDropClose}
+        overlayClose={toggleOverlayClose}
         headerIcon={<XOutline />}
-        iconAlignment="left"
+        iconAlignment={iconAlignment}
       >
         {children}
       </Drawer>
