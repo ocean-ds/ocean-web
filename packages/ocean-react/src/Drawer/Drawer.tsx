@@ -1,13 +1,15 @@
-import classNames from 'classnames';
 import React from 'react';
+
+import classNames from 'classnames';
 import Button from '../Button/Button';
+import { XOutline } from '@useblu/ocean-icons-react';
 
 interface DrawerProps {
   children: React.ReactNode;
   open: boolean;
   onDrawerClose?(event: React.MouseEvent | React.KeyboardEvent): void;
   overlayClose: () => void;
-  headerIcon: React.ReactNode;
+  headerIcon?: React.ReactNode;
   iconAlignment?: string;
 }
 
@@ -16,7 +18,7 @@ const Drawer = ({
   open,
   onDrawerClose,
   overlayClose,
-  headerIcon,
+  headerIcon = <XOutline />,
   iconAlignment = 'right',
 }: DrawerProps): React.ReactElement => (
   <>
@@ -26,18 +28,16 @@ const Drawer = ({
       onClick={overlayClose}
     />
     <div className={classNames('ods-drawer', open && 'ods-drawer--open')}>
-      {headerIcon && (
-        <div
-          className={classNames(
-            'ods-drawer__content--header',
-            `ods-drawer__content--header--${iconAlignment}`
-          )}
-        >
-          <Button type="button" onClick={onDrawerClose}>
-            {headerIcon}
-          </Button>
-        </div>
-      )}
+      <div
+        className={classNames(
+          'ods-drawer__content--header',
+          `ods-drawer__content--header--${iconAlignment}`
+        )}
+      >
+        <Button type="button" onClick={onDrawerClose}>
+          {headerIcon}
+        </Button>
+      </div>
       {children}
     </div>
   </>

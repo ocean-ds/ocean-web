@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { XOutline } from '@useblu/ocean-icons-react';
 import Drawer from '../Drawer';
 import Button from '../../Button';
 
@@ -30,7 +29,6 @@ const SimpleDrawer = ({
         open={open || isOpen}
         onDrawerClose={toggleOpen}
         overlayClose={toggleOverlayClose}
-        headerIcon={<XOutline />}
         iconAlignment={iconAlignment}
       >
         {children}
