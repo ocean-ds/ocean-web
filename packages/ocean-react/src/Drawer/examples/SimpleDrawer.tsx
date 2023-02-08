@@ -4,10 +4,10 @@ import { XOutline } from '@useblu/ocean-icons-react';
 import Drawer from '../Drawer';
 import Button from '../../Button';
 
-interface SimpleDrawerProps {
+export interface SimpleDrawerProps {
   children: React.ReactElement;
-  open: boolean;
-  iconAlignment: string;
+  open?: boolean;
+  iconAlignment?: string;
 }
 
 const SimpleDrawer = ({
