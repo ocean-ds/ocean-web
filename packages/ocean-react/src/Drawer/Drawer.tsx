@@ -1,8 +1,8 @@
 import React from 'react';
 
 import classNames from 'classnames';
-import Button from '../Button/Button';
 import { XOutline } from '@useblu/ocean-icons-react';
+import Button from '../Button/Button';
 
 interface DrawerProps {
   children: React.ReactNode;
