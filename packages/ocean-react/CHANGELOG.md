@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/ocean-ds/ocean-web/compare/v1.40.1...v1.41.0) (2023-02-09)
+
+### Features
+
+- drawer component ([#1061](https://github.com/ocean-ds/ocean-web/issues/1061)) ([2659cf7](https://github.com/ocean-ds/ocean-web/commit/2659cf70effdd66b9e0993fd142980ece5047ab4))
+
 ## [1.40.1](https://github.com/ocean-ds/ocean-web/compare/v1.40.0...v1.40.1) (2023-02-02)
 
 ### Reverts
