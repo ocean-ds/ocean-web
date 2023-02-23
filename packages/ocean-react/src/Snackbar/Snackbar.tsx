@@ -35,7 +35,7 @@ export type SnackbarProps = {
    */
   action?: () => void;
   /**
-   * Label to rename action button.
+   * Label to rename cancel action button.
    * @requires action
    * @default action
    */

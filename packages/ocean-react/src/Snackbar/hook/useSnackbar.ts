@@ -51,7 +51,8 @@ export default function useSnackbar({
 
   useEffect(() => {
     if (isOpen) setSnackbarTimer();
-  }, [isOpen, setSnackbarTimer]);
+    if (!isOpen) closeSnackbar();
+  }, [closeSnackbar, isOpen, setSnackbarTimer]);
 
   const icons = {
     info: InfoOutline,

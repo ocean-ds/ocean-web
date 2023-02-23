@@ -3,8 +3,7 @@
   border-radius: $border-radius-sm;
   display: flex;
   align-items: center;
-  min-width: 314px;
-  max-width: 672px;
+  width: 314px;
   min-height: 56px;
   position: fixed;
   z-index: 99999;
@@ -42,11 +41,10 @@
   }
 
   &__content {
-    align-items: center;
     display: flex;
-    justify-content: center;
+    max-width: 314px;
     padding: 12px $spacing-inline-xs;
-    position: absolute;
+    width: 314px;
     z-index: 1;
   }
 
@@ -77,14 +75,20 @@
     font-family: $font-family-base;
     font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
+    flex: 1;
     line-height: 21px;
     margin: 0;
+    max-height: 42px;
+    overflow: hidden;
     padding: 0px $spacing-inline-xs;
-    width: 100%;
+    text-overflow: ellipsis;
   }
 
   &__action {
+    align-items: center;
     color: $color-status-positive-pure;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     font-family: $font-family-base;
     font-size: $font-size-xxs;
@@ -109,6 +113,7 @@
 
   &__progress {
     background-color: $color-interface-dark-down;
+    border-radius: $spacing-inset-xxs;
     height: 100%;
     position: absolute;
     opacity: $opacity-level-medium;
@@ -149,12 +154,12 @@
 @keyframes progress {
   0% {
     width: 0%;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-top-left-radius: $spacing-inline-xxxs;
+    border-bottom-left-radius: $spacing-inline-xxxs;
   }
   100% {
     width: 100%;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-right-radius: $spacing-inline-xxxs;
+    border-bottom-right-radius: $spacing-inline-xxxs;
   }
 }
