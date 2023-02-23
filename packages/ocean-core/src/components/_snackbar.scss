@@ -1,19 +1,19 @@
 .ods-snackbar {
+  align-items: center;
   background: $color-interface-dark-deep;
   border-radius: $border-radius-sm;
   display: flex;
-  align-items: center;
-  width: 314px;
   min-height: 56px;
   position: fixed;
+  width: 314px;
   z-index: 99999;
 
   @media (max-width: 767px) {
     left: initial;
-    right: initial;
+    margin: 0;
     max-width: 100%;
     min-width: 91%;
-    margin: 0;
+    right: initial;
   }
 
   &__top-right {
@@ -72,27 +72,27 @@
 
   &__label {
     color: $color-interface-light-pure;
+    flex: 1;
     font-family: $font-family-base;
     font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
-    flex: 1;
     line-height: 21px;
     margin: 0;
     max-height: 42px;
     overflow: hidden;
-    padding: 0px $spacing-inline-xs;
+    padding: 0 $spacing-inline-xs;
     text-overflow: ellipsis;
   }
 
   &__action {
     align-items: center;
     color: $color-status-positive-pure;
-    display: flex;
-    justify-content: center;
     cursor: pointer;
+    display: flex;
     font-family: $font-family-base;
     font-size: $font-size-xxs;
     font-weight: $font-weight-bold;
+    justify-content: center;
   }
 
   &__action-text-info {
@@ -115,9 +115,9 @@
     background-color: $color-interface-dark-down;
     border-radius: $spacing-inset-xxs;
     height: 100%;
-    position: absolute;
     opacity: $opacity-level-medium;
-    width: 0px;
+    position: absolute;
+    width: 0;
   }
 
   &__progress-default {
@@ -134,6 +134,7 @@
     opacity: 0;
     transform: translateY(-3rem);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -145,6 +146,7 @@
     opacity: 0;
     transform: translateY(3rem);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -153,13 +155,14 @@
 
 @keyframes progress {
   0% {
-    width: 0%;
     border-top-left-radius: $spacing-inline-xxxs;
     border-bottom-left-radius: $spacing-inline-xxxs;
+    width: 0%;
   }
+
   100% {
-    width: 100%;
     border-top-right-radius: $spacing-inline-xxxs;
     border-bottom-right-radius: $spacing-inline-xxxs;
+    width: 100%;
   }
 }
