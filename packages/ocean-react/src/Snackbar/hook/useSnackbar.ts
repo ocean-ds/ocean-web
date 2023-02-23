@@ -16,7 +16,7 @@ type ISnackbarProps = Pick<
 
 type IconType = React.ForwardRefExoticComponent<
   {
-    size?: number | undefined;
+    size: number | undefined;
   } & React.SVGProps<SVGSVGElement> &
     React.RefAttributes<SVGSVGElement>
 >;
