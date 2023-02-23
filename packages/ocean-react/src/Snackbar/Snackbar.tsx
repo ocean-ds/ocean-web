@@ -97,7 +97,10 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
               <div className="ods-snackbar__label">{message}</div>
               {action && (
                 <div className="ods-snackbar__action" onClick={closeSnackbar}>
-                  <div className={`ods-snackbar__action-text-${type}`}>
+                  <div
+                    className={`ods-snackbar__action-text-${type}`}
+                    data-testid="snackbar-test-label"
+                  >
                     {actionLabel ?? 'action'}
                   </div>
                 </div>
@@ -108,6 +111,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
                 'ods-snackbar__progress',
                 action ? 'ods-snackbar__progress-action' : ''
               )}
+              data-testid="snackbar-test-progress"
             />
           </div>
         )}

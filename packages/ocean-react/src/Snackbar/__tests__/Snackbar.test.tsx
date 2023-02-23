@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Snackbar from '../Snackbar';
 
 test('renders element properly', () => {
@@ -25,10 +25,10 @@ test('renders element properly', () => {
         >
           <svg
             fill="none"
-            height="18"
+            height="19"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            width="18"
+            width="19"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -46,8 +46,111 @@ test('renders element properly', () => {
         </div>
       </div>
       <div
-        class="ods-snackbar__progress ods-snackbar__progress-default"
+        class="ods-snackbar__progress"
+        data-testid="snackbar-test-progress"
       />
     </div>
   `);
+});
+
+test('renders element without action', () => {
+  render(
+    <Snackbar
+      isOpen
+      className="custom-class"
+      message="Hello, this is a snackbar"
+      setIsOpen={jest.fn()}
+    />
+  );
+
+  const progress = screen.getByTestId('snackbar-test-progress');
+
+  expect(progress).toBeInTheDocument();
+
+  expect(progress).toHaveClass('ods-snackbar__progress');
+});
+
+test('renders element with action', () => {
+  render(
+    <Snackbar
+      isOpen
+      className="custom-class"
+      message="Hello, this is a snackbar"
+      setIsOpen={jest.fn()}
+      action={jest.fn()}
+    />
+  );
+
+  const progress = screen.getByTestId('snackbar-test-progress');
+
+  expect(progress).toBeInTheDocument();
+
+  expect(progress).toHaveClass('ods-snackbar__progress-action');
+});
+
+test('renders element with action label property', () => {
+  render(
+    <Snackbar
+      isOpen
+      className="custom-class"
+      message="Hello, this is a snackbar"
+      setIsOpen={jest.fn()}
+      action={jest.fn()}
+      actionLabel="I'm a label"
+    />
+  );
+
+  const actionLabel = screen.getByTestId('snackbar-test-label');
+
+  expect(actionLabel).toBeInTheDocument();
+
+  expect(actionLabel).toHaveTextContent("I'm a label");
+});
+
+test('call action after cooldown', async () => {
+  const action = jest.fn();
+
+  render(
+    <Snackbar
+      isOpen
+      message="Hello, this is a snackbar"
+      setIsOpen={jest.fn()}
+      action={action}
+    />
+  );
+
+  const snackbar = screen.getByTestId('snackbar-test');
+
+  expect(snackbar).toBeInTheDocument();
+
+  setTimeout(() => {
+    expect(action).toBeCalled();
+  }, 10000);
+});
+
+test('cancel action event', () => {
+  const setIsOpen = jest.fn();
+  const action = jest.fn();
+
+  render(
+    <Snackbar
+      isOpen
+      message="Hello, this is a snackbar"
+      setIsOpen={setIsOpen}
+      action={action}
+      actionLabel="cancel"
+    />
+  );
+
+  const snackbar = screen.getByTestId('snackbar-test');
+
+  expect(snackbar).toBeInTheDocument();
+
+  const cancelButton = screen.getByText('cancel');
+
+  fireEvent.click(cancelButton);
+
+  expect(action).not.toBeCalled();
+
+  expect(setIsOpen).toBeCalled();
 });
