@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 
-import { SnackbarProps } from '../Snackbar';
-
 import {
   InfoOutline,
   CheckCircleOutline,
   XCircleOutline,
   ExclamationCircleOutline,
 } from '@useblu/ocean-icons-react';
+import { SnackbarProps } from '../Snackbar';
 
 type ISnackbarProps = Pick<
   SnackbarProps,
@@ -36,8 +35,7 @@ export default function useSnackbar({
   const snackbarTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const closeSnackbar = useCallback(() => {
-    snackbarTimer &&
-      snackbarTimer.current &&
+    if (snackbarTimer && snackbarTimer.current)
       clearTimeout(snackbarTimer.current);
 
     setIsOpen(false);
@@ -47,14 +45,14 @@ export default function useSnackbar({
     const timer = action ? 10000 : 4000;
 
     snackbarTimer.current = setTimeout(() => {
-      action && action();
+      if (action) action();
       closeSnackbar();
     }, timer);
   }, [action, closeSnackbar]);
 
   useEffect(() => {
-    isOpen && setSnackbarTimer();
-    !isOpen && closeSnackbar();
+    if (isOpen) setSnackbarTimer();
+    if (!isOpen) closeSnackbar();
   }, [closeSnackbar, isOpen, setSnackbarTimer]);
 
   const icons = {

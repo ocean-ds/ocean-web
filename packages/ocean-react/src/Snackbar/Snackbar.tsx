@@ -53,7 +53,7 @@ export type SnackbarProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
-  function Snackbar(
+  (
     {
       type = 'info',
       message,
@@ -65,7 +65,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       className,
     },
     ref
-  ) {
+  ) => {
     const { Icon, closeSnackbar } = useSnackbar({
       type,
       isOpen,
@@ -119,5 +119,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
     );
   }
 );
+
+Snackbar.displayName = 'Snackbar';
 
 export default Snackbar;
