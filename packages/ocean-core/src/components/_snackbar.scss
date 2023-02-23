@@ -155,14 +155,14 @@
 
 @keyframes progress {
   0% {
-    border-top-left-radius: $spacing-inline-xxxs;
     border-bottom-left-radius: $spacing-inline-xxxs;
+    border-top-left-radius: $spacing-inline-xxxs;
     width: 0%;
   }
 
   100% {
-    border-top-right-radius: $spacing-inline-xxxs;
     border-bottom-right-radius: $spacing-inline-xxxs;
+    border-top-right-radius: $spacing-inline-xxxs;
     width: 100%;
   }
 }
