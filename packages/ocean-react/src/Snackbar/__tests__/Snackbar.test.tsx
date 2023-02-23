@@ -107,6 +107,10 @@ test('renders element with action label property', () => {
   expect(actionLabel).toHaveTextContent("I'm a label");
 });
 
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
 test('call action after cooldown', async () => {
   const action = jest.fn();
 
@@ -126,6 +130,11 @@ test('call action after cooldown', async () => {
   setTimeout(() => {
     expect(action).toBeCalled();
   }, 10000);
+});
+
+afterEach(() => {
+  jest.runOnlyPendingTimers();
+  jest.useRealTimers();
 });
 
 test('cancel action event', () => {
@@ -149,6 +158,25 @@ test('cancel action event', () => {
   const cancelButton = screen.getByText('cancel');
 
   fireEvent.click(cancelButton);
+
+  expect(action).not.toBeCalled();
+
+  expect(setIsOpen).toBeCalled();
+});
+
+test('close when is isOpem is false', () => {
+  const setIsOpen = jest.fn();
+  const action = jest.fn();
+
+  render(
+    <Snackbar
+      isOpen={false}
+      message="Hello, this is a snackbar"
+      setIsOpen={setIsOpen}
+      action={action}
+      actionLabel="cancel"
+    />
+  );
 
   expect(action).not.toBeCalled();
 
