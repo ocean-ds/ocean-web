@@ -14,7 +14,7 @@ test('renders element properly', () => {
 
   expect(screen.getByTestId('snackbar-test')).toMatchInlineSnapshot(`
     <div
-      class="ods-snackbar ods-snackbar__bottom-right custom-class"
+      class="ods-snackbar ods-snackbar__bottom-right-default custom-class"
       data-testid="snackbar-test"
     >
       <div
