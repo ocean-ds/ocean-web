@@ -1,0 +1,223 @@
+$progress-default-timer: 4s;
+$progress-action-timer: 10s;
+$slide-animate-timer: 150ms;
+
+@mixin up-animate-function($timer, $side) {
+  animation-delay: 0s, calc($timer - 0.1s);
+  animation-duration: $slide-animate-timer, $slide-animate-timer;
+  animation-name: moveInDown, moveInDownBack;
+  animation-timing-function: ease-out forwards, ease-out forwards;
+  #{$side}: $font-size-xl;
+  top: $font-size-xl;
+}
+
+@mixin down-animate-function($timer, $side) {
+  animation-delay: 0s, calc($timer - 0.1s);
+  animation-duration: $slide-animate-timer, $slide-animate-timer;
+  animation-name: moveInUp, moveInUpBack;
+  animation-timing-function: ease-out forwards, ease-out forwards;
+  bottom: $font-size-xl;
+  #{$side}: $font-size-xl;
+}
+
+.ods-snackbar {
+  align-items: center;
+  background: $color-interface-dark-deep;
+  border-radius: $border-radius-sm;
+  display: flex;
+  min-height: 56px;
+  position: fixed;
+  width: 328px;
+  z-index: 99999;
+
+  @media (max-width: 767px) {
+    left: 3%;
+    margin: 0;
+    right: 5%;
+    width: 93%;
+  }
+
+  &__top-right-default {
+    @include up-animate-function($progress-default-timer, right);
+  }
+
+  &__top-right-action {
+    @include up-animate-function($progress-action-timer, right);
+  }
+
+  &__top-left-default {
+    @include up-animate-function($progress-default-timer, left);
+  }
+
+  &__top-left-action {
+    @include up-animate-function($progress-action-timer, left);
+  }
+
+  &__bottom-right-default {
+    @include down-animate-function($progress-default-timer, right);
+  }
+
+  &__bottom-right-action {
+    @include down-animate-function($progress-action-timer, right);
+  }
+
+  &__bottom-left-default {
+    @include down-animate-function($progress-default-timer, left);
+  }
+
+  &__bottom-left-action {
+    @include down-animate-function($progress-action-timer, left);
+  }
+
+  &__content {
+    display: flex;
+    max-width: 328px;
+    padding: 12px $spacing-inline-xs;
+    width: 328px;
+    z-index: 1;
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__icon-info {
+    color: $color-brand-primary-up;
+  }
+
+  &__icon-positive {
+    color: $color-status-positive-pure;
+  }
+
+  &__icon-negative {
+    color: $color-status-negative-pure;
+  }
+
+  &__icon-warning {
+    color: $color-status-neutral-pure;
+  }
+
+  &__label {
+    align-items: center;
+    color: $color-interface-light-pure;
+    display: flex;
+    flex: 1;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-regular;
+    line-height: 21px;
+    margin: 0;
+    max-height: 42px;
+    overflow: hidden;
+    padding: 0 $spacing-inline-xs;
+    text-overflow: ellipsis;
+  }
+
+  &__action {
+    align-items: center;
+    color: $color-status-positive-pure;
+    cursor: pointer;
+    display: flex;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    justify-content: center;
+  }
+
+  &__action-text-info {
+    color: $color-brand-primary-up;
+  }
+
+  &__action-text-positive {
+    color: $color-status-positive-pure;
+  }
+
+  &__action-text-negative {
+    color: $color-status-negative-pure;
+  }
+
+  &__action-text-warning {
+    color: $color-status-neutral-pure;
+  }
+
+  &__progress {
+    background-color: $color-interface-dark-down;
+    border-radius: $spacing-inset-xxs;
+    height: 100%;
+    opacity: $opacity-level-medium;
+    position: absolute;
+    width: 0;
+  }
+
+  &__progress-default {
+    animation: $progress-default-timer forwards progress;
+  }
+
+  &__progress-action {
+    animation: $progress-action-timer forwards progress;
+  }
+}
+
+@keyframes moveInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveInDownBack {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
+@keyframes moveInUp {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveInUpBack {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
+
+@keyframes progress {
+  0% {
+    border-bottom-left-radius: $spacing-inline-xxxs;
+    border-top-left-radius: $spacing-inline-xxxs;
+    width: 0%;
+  }
+
+  100% {
+    border-bottom-right-radius: $spacing-inline-xxxs;
+    border-top-right-radius: $spacing-inline-xxxs;
+    width: 100%;
+  }
+}
