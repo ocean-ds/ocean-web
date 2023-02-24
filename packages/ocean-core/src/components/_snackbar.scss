@@ -5,15 +5,14 @@
   display: flex;
   min-height: 56px;
   position: fixed;
-  width: 314px;
+  width: 328px;
   z-index: 99999;
 
   @media (max-width: 767px) {
-    left: initial;
+    left: 3%;
     margin: 0;
-    max-width: 100%;
-    min-width: 91%;
-    right: initial;
+    right: 5%;
+    width: 93%;
   }
 
   &__top-right {
@@ -42,9 +41,9 @@
 
   &__content {
     display: flex;
-    max-width: 314px;
+    max-width: 328px;
     padding: 12px $spacing-inline-xs;
-    width: 314px;
+    width: 328px;
     z-index: 1;
   }
 
@@ -71,7 +70,9 @@
   }
 
   &__label {
+    align-items: center;
     color: $color-interface-light-pure;
+    display: flex;
     flex: 1;
     font-family: $font-family-base;
     font-size: $font-size-xxs;

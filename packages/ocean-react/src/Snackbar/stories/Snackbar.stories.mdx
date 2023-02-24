@@ -22,7 +22,7 @@ import { Snackbar } from '@useblu/ocean-react';
 export const DinamicSnackbar = (props) => {
   const [open, setOpen] = useState(false);
   const toogle = () => setOpen(!open);
-  const action = () => alert('Called');
+  const action = () => console.log('');
   return (
     <div>
       <Button onClick={toogle}>{open ? 'Close' : 'Open'}</Button>

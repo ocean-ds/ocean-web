@@ -46,7 +46,7 @@ test('renders element properly', () => {
         </div>
       </div>
       <div
-        class="ods-snackbar__progress"
+        class="ods-snackbar__progress ods-snackbar__progress-default"
         data-testid="snackbar-test-progress"
       />
     </div>

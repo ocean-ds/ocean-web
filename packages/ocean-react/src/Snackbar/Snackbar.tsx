@@ -109,7 +109,9 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
             <div
               className={classNames(
                 'ods-snackbar__progress',
-                action ? 'ods-snackbar__progress-action' : ''
+                action
+                  ? 'ods-snackbar__progress-action'
+                  : 'ods-snackbar__progress-default'
               )}
               data-testid="snackbar-test-progress"
             />
