@@ -92,7 +92,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
                   `ods-snackbar__icon-${type}`
                 )}
               >
-                <Icon size={19} />
+                <Icon size={24} />
               </div>
               <div className="ods-snackbar__label">{message}</div>
               {action && (

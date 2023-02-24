@@ -25,10 +25,10 @@ test('renders element properly', () => {
         >
           <svg
             fill="none"
-            height="19"
+            height="24"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            width="19"
+            width="24"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
