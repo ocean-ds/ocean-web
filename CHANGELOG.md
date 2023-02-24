@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/ocean-ds/ocean-web/compare/v1.42.0...v1.43.0) (2023-02-24)
+
+### Features
+
+- snackbar component ([#1063](https://github.com/ocean-ds/ocean-web/issues/1063)) ([1177b1f](https://github.com/ocean-ds/ocean-web/commit/1177b1fe76809a9dec06ec57e569c10c15ccb245))
+
 # [1.42.0](https://github.com/ocean-ds/ocean-web/compare/v1.41.0...v1.42.0) (2023-02-09)
 
 ### Features
