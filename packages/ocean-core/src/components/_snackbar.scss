@@ -2,7 +2,7 @@ $progress-default-timer: 4s;
 $progress-action-timer: 10s;
 $slide-animate-timer: 150ms;
 
-@mixin upAnimateFunction($timer, $side) {
+@mixin up-animate-function($timer, $side) {
   animation-delay: 0s, calc($timer - 0.1s);
   animation-duration: $slide-animate-timer, $slide-animate-timer;
   animation-name: moveInDown, moveInDownBack;
@@ -11,7 +11,7 @@ $slide-animate-timer: 150ms;
   top: $font-size-xl;
 }
 
-@mixin downAnimateFunction($timer, $side) {
+@mixin down-animate-function($timer, $side) {
   animation-delay: 0s, calc($timer - 0.1s);
   animation-duration: $slide-animate-timer, $slide-animate-timer;
   animation-name: moveInUp, moveInUpBack;
@@ -37,36 +37,36 @@ $slide-animate-timer: 150ms;
     width: 93%;
   }
 
-  &__top-right {
-    @include upAnimateFunction($progress-default-timer, right);
+  &__top-right-default {
+    @include up-animate-function($progress-default-timer, right);
   }
 
   &__top-right-action {
-    @include upAnimateFunction($progress-action-timer, right);
+    @include up-animate-function($progress-action-timer, right);
   }
 
-  &__top-left {
-    @include upAnimateFunction($progress-default-timer, left);
+  &__top-left-default {
+    @include up-animate-function($progress-default-timer, left);
   }
 
   &__top-left-action {
-    @include upAnimateFunction($progress-action-timer, left);
+    @include up-animate-function($progress-action-timer, left);
   }
 
-  &__bottom-right {
-    @include downAnimateFunction($progress-default-timer, right);
+  &__bottom-right-default {
+    @include down-animate-function($progress-default-timer, right);
   }
 
   &__bottom-right-action {
-    @include downAnimateFunction($progress-action-timer, right);
+    @include down-animate-function($progress-action-timer, right);
   }
 
-  &__bottom-left {
-    @include downAnimateFunction($progress-default-timer, left);
+  &__bottom-left-default {
+    @include down-animate-function($progress-default-timer, left);
   }
 
   &__bottom-left-action {
-    @include downAnimateFunction($progress-action-timer, left);
+    @include down-animate-function($progress-action-timer, left);
   }
 
   &__content {

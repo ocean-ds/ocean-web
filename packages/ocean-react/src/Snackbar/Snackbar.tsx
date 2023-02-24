@@ -79,7 +79,7 @@ const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
           <div
             className={classNames(
               'ods-snackbar',
-              `ods-snackbar__${position}${action ? '-action' : ''}`,
+              `ods-snackbar__${position}-${action ? 'action' : 'default'}`,
               className
             )}
             ref={ref}
