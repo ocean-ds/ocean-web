@@ -1,3 +1,25 @@
+$progress-default-timer: 4s;
+$progress-action-timer: 10s;
+$slide-animate-timer: 150ms;
+
+@mixin upAnimateFunction($timer, $side) {
+  animation-delay: 0s, calc($timer - 0.1s);
+  animation-duration: $slide-animate-timer, $slide-animate-timer;
+  animation-name: moveInDown, moveInDownBack;
+  animation-timing-function: ease-out forwards, ease-out forwards;
+  #{$side}: $font-size-xl;
+  top: $font-size-xl;
+}
+
+@mixin downAnimateFunction($timer, $side) {
+  animation-delay: 0s, calc($timer - 0.1s);
+  animation-duration: $slide-animate-timer, $slide-animate-timer;
+  animation-name: moveInUp, moveInUpBack;
+  animation-timing-function: ease-out forwards, ease-out forwards;
+  bottom: $font-size-xl;
+  #{$side}: $font-size-xl;
+}
+
 .ods-snackbar {
   align-items: center;
   background: $color-interface-dark-deep;
@@ -16,27 +38,35 @@
   }
 
   &__top-right {
-    animation: 150ms ease-out forwards moveInDown;
-    right: $font-size-xl;
-    top: $font-size-xl;
+    @include upAnimateFunction($progress-default-timer, right);
+  }
+
+  &__top-right-action {
+    @include upAnimateFunction($progress-action-timer, right);
   }
 
   &__top-left {
-    animation: 150ms ease-out forwards moveInDown;
-    left: $font-size-xl;
-    top: $font-size-xl;
+    @include upAnimateFunction($progress-default-timer, left);
+  }
+
+  &__top-left-action {
+    @include upAnimateFunction($progress-action-timer, left);
   }
 
   &__bottom-right {
-    animation: 150ms ease-out forwards moveInUp;
-    bottom: $font-size-xl;
-    right: $font-size-xl;
+    @include downAnimateFunction($progress-default-timer, right);
+  }
+
+  &__bottom-right-action {
+    @include downAnimateFunction($progress-action-timer, right);
   }
 
   &__bottom-left {
-    animation: 150ms ease-out forwards moveInUp;
-    bottom: $font-size-xl;
-    left: $font-size-xl;
+    @include downAnimateFunction($progress-default-timer, left);
+  }
+
+  &__bottom-left-action {
+    @include downAnimateFunction($progress-action-timer, left);
   }
 
   &__content {
@@ -122,11 +152,11 @@
   }
 
   &__progress-default {
-    animation: 4s forwards progress;
+    animation: $progress-default-timer forwards progress;
   }
 
   &__progress-action {
-    animation: 10s forwards progress;
+    animation: $progress-action-timer forwards progress;
   }
 }
 
@@ -142,6 +172,18 @@
   }
 }
 
+@keyframes moveInDownBack {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
 @keyframes moveInUp {
   from {
     opacity: 0;
@@ -151,6 +193,18 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes moveInUpBack {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(3rem);
   }
 }
 
