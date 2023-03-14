@@ -1,0 +1,101 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Adjustments } from '@useblu/ocean-icons-react';
+import Chip from '../Chip';
+
+<Meta
+  title="Components/Chips"
+  decorators={[(storyFn) => <>{storyFn()}</>]}
+  component={Chip}
+/>
+
+# Chip API
+
+The API documentation of the Chip React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Chip } from '@useblu/ocean-react';
+```
+
+## Usage
+
+```jsx
+import { Chip } from '@useblu/ocean-react';
+
+return (
+  <Chip
+    label="Chip Name"
+    isActive={false}
+    counter={1}
+    closeAfterAction={false}
+   />
+```
+
+## Props
+
+<ArgsTable of="." />
+
+## CSS
+
+| Global class         | Description                                     |
+| -------------------- | ----------------------------------------------- |
+| .ods-chip            | Styles applied to the root element.             |
+| .ods-chip\_\_content | Styles applied to the element content.          |
+| .ods-chip\_\_icon    | Styles applied to the element icon.             |
+| .ods-chip\_\_label   | Styles applied to the element label.            |
+| .ods-chip\_\_action  | Styles applied to the element action container. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Chips/BasicChip.tsx) for more detail.
+
+export const selectIcon = (icon) => {
+  const icons = {
+    adjustments: <Adjustments size={16} />,
+  };
+  return icons[icon] || null;
+};
+
+## Playground
+
+<Canvas withToolbar>
+  <Story
+    name="playground"
+    args={{
+      label: 'Label',
+      isActive: false,
+      counter: 0,
+      iconLeft: null,
+    }}
+    argTypes={{
+      label: {
+        control: 'text',
+        description: 'Determines label of chip component',
+        type: { name: 'string', required: true },
+        table: {
+          type: { summary: 'string' },
+          defaultValue: { summary: '' },
+        },
+      },
+      isActive: {
+        control: 'boolean',
+      },
+      counter: {
+        control: 'number',
+      },
+      iconLeft: {
+        options: ['none', 'adjustments'],
+        control: { type: 'select' },
+        table: {
+          type: { summary: 'object' },
+          defaultValue: { summary: 'adjustments' },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <div className="centered">
+        <Chip {...props} iconLeft={selectIcon(props.iconLeft)} />
+      </div>
+    )}
+  </Story>
+</Canvas>
