@@ -42,6 +42,12 @@
     margin-right: $spacing-inline-xxxs;
   }
 
+  .ods-badge__content {
+    background-color: $color-interface-light-pure;
+    color: $color-brand-primary-pure;
+    margin-left: $spacing-inline-xxxs;
+  }
+
   &__badge > .ods-badge__content {
     background-color: $color-brand-primary-pure;
     color: $color-interface-light-pure;
@@ -51,10 +57,50 @@
     background-color: $color-interface-dark-up;
     color: $color-interface-light-up;
   }
-}
 
-.ods-badge__content {
-  background-color: $color-interface-light-pure;
-  color: $color-brand-primary-pure;
-  margin-left: $spacing-inline-xxxs;
+  &__dropdown {
+    background-color: $color-interface-light-pure;
+    border: 1px solid $color-interface-light-down;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-level-2;
+    left: 0;
+    position: absolute;
+    top: calc($spacing-inline-md + $spacing-inline-xxxs);
+    min-width: 100%;
+    z-index: 99999;
+
+    @media (max-width: 767px) {
+      border-radius: 0;
+      border-top-left-radius: $border-radius-lg;
+      border-top-right-radius: $border-radius-lg;
+      bottom: 0;
+      position: fixed;
+      right: 0;
+      top: inherit;
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: transparent;
+    transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+
+    @media (max-width: 767px) {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__overlay-open {
+    opacity: 1;
+    z-index: 10;
+    visibility: visible;
+  }
 }

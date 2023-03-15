@@ -65,6 +65,7 @@ export const selectIcon = (icon) => {
       isActive: false,
       counter: 0,
       iconLeft: null,
+      disabled: false,
     }}
     argTypes={{
       label: {
@@ -89,6 +90,9 @@ export const selectIcon = (icon) => {
           type: { summary: 'object' },
           defaultValue: { summary: 'adjustments' },
         },
+      },
+      disabled: {
+        control: 'boolean',
       },
     }}
   >
