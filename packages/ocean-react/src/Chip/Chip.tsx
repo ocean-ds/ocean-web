@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
+import { ChevronDown } from '@useblu/ocean-icons-react';
 
 import Button from '../Button';
 import Badge from '../Badge';
@@ -63,12 +63,14 @@ const Chip: React.FC<IChipProps> = ({
             )}
           />
         )}
-        {!hideDropdownIcon && children && openDropdown && (
-          <ChevronUp size={16} />
-        )}
-
-        {!hideDropdownIcon && children && !openDropdown && (
-          <ChevronDown size={16} />
+        {!hideDropdownIcon && children && (
+          <ChevronDown
+            size={16}
+            className={classNames(
+              'ods-chip__arrow',
+              openDropdown && 'ods-chip__arrow-open'
+            )}
+          />
         )}
       </Button>
       {openDropdown && (

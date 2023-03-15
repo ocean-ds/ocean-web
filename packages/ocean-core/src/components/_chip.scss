@@ -2,6 +2,12 @@
   height: 32px;
   position: relative;
 
+  .ods-badge__content {
+    background-color: $color-interface-light-pure;
+    color: $color-brand-primary-pure;
+    margin-left: $spacing-inline-xxxs;
+  }
+
   &__button {
     align-items: center;
     display: flex;
@@ -42,12 +48,6 @@
     margin-right: $spacing-inline-xxxs;
   }
 
-  .ods-badge__content {
-    background-color: $color-interface-light-pure;
-    color: $color-brand-primary-pure;
-    margin-left: $spacing-inline-xxxs;
-  }
-
   &__badge > .ods-badge__content {
     background-color: $color-brand-primary-pure;
     color: $color-interface-light-pure;
@@ -56,6 +56,14 @@
   &__badge-disabled > .ods-badge__content {
     background-color: $color-interface-dark-up;
     color: $color-interface-light-up;
+  }
+
+  &__arrow {
+    transition: all 0.1s ease;
+  }
+
+  &__arrow-open {
+    transform: rotateZ(-180deg);
   }
 
   &__dropdown {
