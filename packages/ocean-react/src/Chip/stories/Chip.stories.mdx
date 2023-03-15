@@ -65,6 +65,7 @@ export const selectIcon = (icon) => {
       isActive: false,
       counter: 0,
       iconLeft: null,
+      hideDropdownIcon: false,
       disabled: false,
     }}
     argTypes={{
@@ -90,6 +91,9 @@ export const selectIcon = (icon) => {
           type: { summary: 'object' },
           defaultValue: { summary: 'adjustments' },
         },
+      },
+      hideDropdownIcon: {
+        control: 'boolean',
       },
       disabled: {
         control: 'boolean',
