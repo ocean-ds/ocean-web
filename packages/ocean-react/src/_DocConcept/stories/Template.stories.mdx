@@ -1,0 +1,231 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  ArgsTable,
+  Description,
+} from '@storybook/addon-docs';
+import {
+  StarOutline,
+  LinkOutline,
+  WifiOutline,
+  LocationMarkerOutline,
+} from '@useblu/ocean-icons-react';
+
+import Alert from '../../Alert';
+import ContentRow from '../../_stories/components/ContentRow.tsx';
+
+<Meta
+  title="Feedback/Alert"
+  component={Alert}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Alert
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Custom](#variants)
+- [Props](#props)
+- [CSS](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+Displays short messages with useful information for a task or something that requires the user's attention.
+An alert component is a crucial element in any design system that provides a way to communicate important
+messages or notifications to users. It typically consists of a small, highly visible box that appears on top
+of other content, and may contain a brief message, a call-to-action, or an icon.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Alert',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      type: 'default',
+      title: '',
+      children: 'Lorem ipsum dolor sit amet',
+      icon: null,
+    }}
+    argTypes={{
+      type: {
+        options: ['default', 'warning', 'success', 'error'],
+        control: { type: 'select' },
+        defaultValue: 'default',
+        description:
+          'Determines the type of alert, with default icon and colors for each type',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: 'default' },
+        },
+      },
+      title: {
+        control: { type: 'text' },
+        defaultValue: '',
+        description: 'Sets a title for the Alert',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      icon: {
+        control: { type: null },
+        defaultValue: null,
+        description: 'React node to be rendered inside the Alert',
+      },
+      children: {
+        control: { type: 'text' },
+        defaultValue: 'Lorem ipsum dolor sit amet',
+        description: 'React node to be rendered inside the Alert',
+      },
+    }}
+  >
+    {(props) => (
+      <ContentRow direction="row">
+        <Alert type={props.type} title={props.title}>
+          {props.children}
+        </Alert>
+      </ContentRow>
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { Alert } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  return <Alert title="Default Title">Hello There!</Alert>;
+};
+```
+
+## Basic variants <a name="variants"></a>
+
+The alert offers four diferents default types that set a icon and color.
+
+<Canvas>
+  <Story name="Simple alerts">
+    <ContentRow>
+      <Alert>This is an informational message.</Alert>
+      <Alert type="warning">This is an informational message.</Alert>
+      <Alert type="error">This is an informational message.</Alert>
+      <Alert type="success">This is an informational message.</Alert>
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Description
+
+You can use the `title` property to display a formatted title above the alert message.
+
+<Canvas>
+  <Story name="Alert with description">
+    <ContentRow>
+      <Alert title="Default Title">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+      <Alert type="warning" title="Warning Title">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+      <Alert type="error" title="Error Title">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+      <Alert type="success" title="Success Title!">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Custom Icon
+
+You can also use the `icon` property to custom svg icon.
+
+Customizing an Alert component icon is a common requirement
+when designing a user-friendly and cohesive interface. In many cases,
+default icons provided by Alert components may not fit the overall
+design aesthetic of a website or application.
+
+<Canvas>
+  <Story name="Alert with icon">
+    <ContentRow>
+      <Alert title="Alert with a custom icon!" icon={<StarOutline size={24} />}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+      <Alert
+        title="Alert with a custom icon!"
+        type="warning"
+        icon={<LinkOutline size={24} />}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+      <Alert
+        title="Alert with a custom icon!"
+        type="error"
+        icon={<WifiOutline size={24} />}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+      <Alert
+        title="Alert with a custom icon!"
+        type="success"
+        icon={<LocationMarkerOutline size={24} />}
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </Alert>
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class           | Description                                               |
+| ---------------------- | --------------------------------------------------------- |
+| .ods-alert             | Styles applied to the root element.                       |
+| .ods-alert--has-header | Styles applied to the root element with a title proprity. |
+| .ods-alert--error      | Styles applied to the root element with a error type.     |
+| .ods-alert--warning    | Styles applied to the root element with a warning type.   |
+| .ods-alert--success    | Styles applied to the root element with a success type.   |
+| .ods-alert\_\_header   | Styles applied to the header element.                     |
+| .ods-alert\_\_icon     | Styles applied to the icon element.                       |
+| .ods-alert\_\_title    | Styles applied to the title element.                      |
+| .ods-alert\_\_content  | Styles applied to the content element.                    |
+
+If that's not sufficient, you can check the
+[implementation of the component](https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Alert)
+for more detail.
