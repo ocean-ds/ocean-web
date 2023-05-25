@@ -1,0 +1,212 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Carousel from '../../Carousel';
+import Typography from '../../Typography';
+import BannerExample from '../../Carousel/examples/BannerExample';
+
+<Meta
+  title="Content/Carousel"
+  component={Carousel}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Carousel
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [Custom](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+The Carousel component in a design system is a dynamic and interactive element that allows for the display
+of a series of content items or images in a visually appealing and organized manner. It enables users to
+navigate through the content horizontally or vertically, creating an engaging and immersive experience.
+
+<Canvas
+  withToolbar
+  withSource="open"
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Carousel',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      columns: 1,
+      infinite: false,
+      autoplay: false,
+    }}
+    argTypes={{
+      columns: {
+        options: [1, 2, 3, 4],
+        control: {
+          type: 'select',
+        },
+        defaultValue: 1,
+        description: 'Determines the number of columns in the carousel.',
+        type: { name: 'number', required: false },
+        table: {
+          defaultValue: { summary: 1 },
+        },
+      },
+      infinite: {
+        control: {
+          type: 'boolean',
+        },
+        description:
+          'Determines if the component can scroll infinitely or not.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      autoplay: {
+        control: {
+          type: 'boolean',
+        },
+        description:
+          'Determines if the component can scroll automatically or not.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <div style={{ display: 'block', maxWidth: '800px' }}>
+        <Carousel {...props}>
+          <BannerExample color={0} />
+          <BannerExample color={1} />
+          <BannerExample color={2} />
+          <BannerExample color={3} />
+        </Carousel>
+      </div>
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { Carousel } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  return (
+    <Carousel columns={1} infinite={true}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+  );
+};
+```
+
+## Columns <a name="variants"></a>
+
+The `columns` property of the Carousel component in a design system allows for the
+customization of the number of visible slides or items displayed horizontally within
+the carousel at any given time.
+
+<Canvas>
+  <Story name="Variants">
+    <Typography variant="heading5">2-columns</Typography>
+    <Carousel columns={2}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+    <Typography variant="heading5">3-columns</Typography>
+    <Carousel columns={3}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+    <Typography variant="heading5">4-columns</Typography>
+    <Carousel columns={4}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+  </Story>
+</Canvas>
+
+## Infinite
+
+When the `infinite` property is enabled, the Carousel component cycles through its
+slides indefinitely. After reaching the end of the slide sequence, it seamlessly
+transitions back to the beginning, creating a loop effect. This means that users can
+continuously navigate through the slides in either direction without encountering an
+endpoint.
+
+<Canvas>
+  <Story name="Infinite">
+    <Carousel infinite={true}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+  </Story>
+</Canvas>
+
+## Autoplay
+
+The `autoplay` property of the Carousel component in a design system enables automatic
+and continuous playback of the slides, enhancing the user experience by providing a hands-free
+and dynamic browsing experience. The delay time of autoplay is 8s.
+
+<Canvas>
+  <Story name="Autoplay">
+    <Carousel columns={2} infinite={true} autoplay={true}>
+      <BannerExample color={3} />
+      <BannerExample color={2} />
+      <BannerExample color={1} />
+      <BannerExample color={0} />
+    </Carousel>
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## Custom <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class       | Description                                                     |
+| ------------------ | --------------------------------------------------------------- |
+| .ods-carousel      | Styles applied to the root element.                             |
+| .ods-carousel-dots | Styles applied to the dots below the children banners container |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Carousel/Carousel.tsx) for more detail.
