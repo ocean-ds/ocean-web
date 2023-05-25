@@ -12,6 +12,7 @@ import BannerExample from '../../Carousel/examples/BannerExample';
       docs: { index: -1 },
       canvas: { title: 'Sandbox' },
     },
+    layout: 'padded',
   }}
 />
 
@@ -33,8 +34,6 @@ of a series of content items or images in a visually appealing and organized man
 navigate through the content horizontally or vertically, creating an engaging and immersive experience.
 
 <Canvas
-  withToolbar
-  withSource="open"
   additionalActions={[
     {
       title: 'Code in GitHub',
@@ -94,14 +93,12 @@ navigate through the content horizontally or vertically, creating an engaging an
     }}
   >
     {(props) => (
-      <div style={{ display: 'block', maxWidth: '800px' }}>
-        <Carousel {...props}>
-          <BannerExample color={0} />
-          <BannerExample color={1} />
-          <BannerExample color={2} />
-          <BannerExample color={3} />
-        </Carousel>
-      </div>
+      <Carousel {...props}>
+        <BannerExample color={0} />
+        <BannerExample color={1} />
+        <BannerExample color={2} />
+        <BannerExample color={3} />
+      </Carousel>
     )}
   </Story>
 </Canvas>
