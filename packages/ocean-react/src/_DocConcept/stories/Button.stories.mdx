@@ -1,0 +1,242 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Button from '../../Button';
+import ContentRow from '../../_stories/components/ContentRow.tsx';
+
+<Meta
+  title="Action/Button"
+  component={Button}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Button
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [CSS](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+The Button component is a fundamental element within a design system that enables users
+to interact with a user interface, triggering actions or submitting forms. It serves as
+a key element in enhancing user engagement and facilitating intuitive interactions. The Button
+component typically appears as a clickable element with a clearly defined shape, such as
+a rectangle or a rounded shape, often accompanied by text or an icon that communicates
+its purpose. It is designed to be easily recognizable and distinguishable from other elements
+on the screen.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Button',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      variant: 'primary',
+      size: 'md',
+      blocked: false,
+      loading: false,
+      disabled: false,
+    }}
+    argTypes={{
+      variant: {
+        options: [
+          'primary',
+          'primaryCritical',
+          'secondary',
+          'text',
+          'textCritical',
+          'inverse',
+        ],
+        control: { type: 'select' },
+        defaultValue: 'primary',
+        description: 'The variant to use.',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: 'primary' },
+        },
+      },
+      size: {
+        options: ['sm', 'md', 'lg'],
+        control: { type: 'select' },
+        defaultValue: 'md',
+        description: 'The size of the button.',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: 'md' },
+        },
+      },
+      blocked: {
+        control: 'boolean',
+        description: 'Spans the full width of the Button parent.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      loading: {
+        control: 'boolean',
+        description: 'Sent a loading state changing the content of the button.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      disabled: {
+        control: 'boolean',
+        description: 'Set the button to disabled.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <ContentRow direction="row">
+        <Button {...props}>Click Here!</Button>
+      </ContentRow>
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { Button } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  return <Button>Click Here!</Button>;
+};
+```
+
+## Variants <a name="variants"></a>
+
+The `variant` property of the Button component in a design system allows for versatile
+customization, offering different visual styles and treatments to suit various usage scenarios
+and design requirements.
+
+<Canvas>
+  <Story name="Variants">
+    <ContentRow direction="row">
+      <Button variant="primary">Primary</Button>
+      <Button variant="primaryCritical">Primary Critical</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="text">Text</Button>
+      <Button variant="textCritical">Text Critical</Button>
+      <Button variant="inverse">Inverse</Button>
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Sizes
+
+The `size` property of the Button component in a design system allows for the customization of the
+button's dimensions, ensuring it aligns harmoniously with the overall user interface and meets
+specific design requirements.
+
+<Canvas>
+  <Story name="Sizes">
+    <ContentRow direction="row">
+      <Button size="sm">Small</Button>
+      <Button size="md" variant="inverse">
+        Medium
+      </Button>
+      <Button size="lg" variant="primaryCritical">
+        Large
+      </Button>
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Blocked
+
+Displays only one digit and its size is fixed.
+
+<Canvas>
+  <Story name="Blocked">
+    <Button blocked>This button is blocked</Button>
+  </Story>
+</Canvas>
+
+## Loading
+
+When the `loading` property is set to true, the Button component displays a loading indicator,
+to convey that a process is underway. This is particularly useful when a button triggers an
+action that requires some time to complete, such as submitting a form, fetching data, or
+performing a server request.
+
+<Canvas>
+  <Story name="Loading">
+    <ContentRow direction="row">
+      <Button variant="primary" loading />
+      <Button variant="primaryCritical" loading />
+      <Button variant="secondary" loading />
+      <Button variant="text" loading />
+      <Button variant="inverse" loading />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Disabled
+
+The `disabled` property of the Button component in a design system allows for the deactivation
+of a button, preventing user interaction and conveying that a particular action is currently
+unavailable or not applicable.
+
+<Canvas>
+  <Story name="Disabled">
+    <ContentRow direction="row">
+      <Button disabled>This button is disabled</Button>
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## CSS <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class               | Description                                             |
+| -------------------------- | ------------------------------------------------------- |
+| .ods-btn                   | Styles applied to the root element.                     |
+| .ods-btn--primary          | Sets primary background and text color of the button.   |
+| .ods-btn--primary-critical | Sets styles of the primary critical button.             |
+| .ods-btn--secondary        | Sets secondary background and text color of the button. |
+| .ods-btn--text             | Sets styles of the text button.                         |
+| .ods-btn--text-critical    | Sets styles of the text critical button.                |
+| .ods-btn--inverse          | Use the inverse button on dark backgrounds.             |
+| .ods-btn--[sm,md,lg]       | Specifies the width of the button.                      |
+| .ods-btn--blocked          | Spans the full width of the Button parent.              |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Button/Button.tsx) for more detail.
