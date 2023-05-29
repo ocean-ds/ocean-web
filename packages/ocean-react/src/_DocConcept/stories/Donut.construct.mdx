@@ -1,0 +1,178 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import DoughnutChart from '../../Chart/DoughnutChart';
+import Typography from '../../Typography';
+
+<Meta
+  title="Chart/Donut"
+  component={DoughnutChart}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+      options: {
+        showPanel: false,
+      },
+    },
+  }}
+/>
+
+# Donut
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [Custom](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+The Donut Chart component in a design system is a graphical representation that displays data in a
+circular shape, similar to a pie chart. It is a visually compelling and intuitive way to present
+data proportions and comparisons. The Donut Chart component consists of a circular shape divided
+into segments, where each segment represents a specific data category or value. The size of each
+segment is proportional to the value it represents, allowing users to easily grasp the relative
+magnitudes of different data points.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Chart',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story name="Usage">
+    {(props) => (
+      <DoughnutChart
+        title="Title"
+        subtitle="Subtitle"
+        centerChartLabel="Label"
+        centerChartValue="0"
+        data={[
+          {
+            id: 1,
+            count: 35,
+            percentage: 65,
+            color: '#13BDBD',
+            descriptionLevel1: 'Description level 1',
+            descriptionLevel2: 'Description level 2',
+          },
+          {
+            id: 2,
+            count: 10,
+            percentage: 35,
+            color: '#FFA347',
+            descriptionLevel1: 'Description level 1',
+            descriptionLevel2: 'Description level 2',
+          },
+        ]}
+      />
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { DoughnutChart } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  const data = [
+    {
+      id: 1,
+      count: 35,
+      percentage: 65,
+      color: '#13BDBD',
+      descriptionLevel1: 'Description level 1',
+      descriptionLevel2: 'Description level 2',
+    },
+    {
+      id: 2,
+      count: 10,
+      percentage: 35,
+      color: '#FFA347',
+      descriptionLevel1: 'Description level 1',
+      descriptionLevel2: 'Description level 2',
+    },
+  ];
+
+  return (
+    <DoughnutChart
+      title="Title"
+      subtitle="Subtitle"
+      centerChartLabel="center label"
+      centerChartValue="center value"
+      data={data}
+    />
+  );
+};
+```
+
+## Columns <a name="variants"></a>
+
+The `columns` property of the Carousel component in a design system allows for the
+customization of the number of visible slides or items displayed horizontally within
+the carousel at any given time.
+
+<Canvas>
+  <Story name="Variants">
+    <Typography variant="heading5">2-columns</Typography>
+    <Carousel columns={2}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+    <Typography variant="heading5">3-columns</Typography>
+    <Carousel columns={3}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+    <Typography variant="heading5">4-columns</Typography>
+    <Carousel columns={4}>
+      <BannerExample color={0} />
+      <BannerExample color={1} />
+      <BannerExample color={2} />
+      <BannerExample color={3} />
+    </Carousel>
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## Custom <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class                                       | Description                                                                                             |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| .ods-chart                                         | Styles applied to the root element.                                                                     |
+| .ods-chart\_\_title-and-subtitle                   | Styles applied to the heading and caption container.                                                    |
+| .ods-chart\_\_canvas                               | Styles applied to the graphic container.                                                                |
+| .ods-chart\_\_canvas\_\_center-legend              | Styles applied to the heading and description container on center chart legend.                         |
+| .ods-chart\_\_legend                               | Styles applied to the legend container on bottom.                                                       |
+| .ods-chart\_\_legend\_\_row                        | Styles applied to a row in legend container on bottom.                                                  |
+| .ods-chart\_\_legend\_\_row\_\_description         | Styles applied to the circle and description level 1 in a row of legend container on bottom.            |
+| .ods-chart\_\_legend\_\_row\_\_description-circle  | Styles applied to the circle on left to the description level 1 in a row of legend container on bottom. |
+| .ods-chart\_\_legend\_\_row\_\_percent             | Styles applied to percentage in a row of legend container on bottom.                                    |
+| .ods-chart\_\_legend\_\_row\_\_description-level-2 | Styles applied to the description level 2 in a row of legend container on bottom.                       |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Chart/DoughnutChart.tsx) for more detail. -->
