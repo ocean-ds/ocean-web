@@ -22,7 +22,7 @@ test('renders drawer component properly', () => {
 
   expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
     <div
-      class="ods-drawer ods-drawer--open"
+      class="ods-drawer ods-drawer--open ods-drawer--right"
     >
       <div
         class="ods-drawer__content--header ods-drawer__content--header--right"
