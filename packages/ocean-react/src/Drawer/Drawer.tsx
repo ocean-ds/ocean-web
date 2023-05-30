@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 
 import classNames from 'classnames';
@@ -10,7 +11,8 @@ interface DrawerProps {
   onDrawerClose?(event: React.MouseEvent | React.KeyboardEvent): void;
   overlayClose: () => void;
   headerIcon?: React.ReactNode;
-  iconAlignment?: string;
+  align?: 'right' | 'left';
+  iconAlignment?: 'right' | 'left';
 }
 
 const Drawer = ({
@@ -18,6 +20,7 @@ const Drawer = ({
   open,
   onDrawerClose,
   overlayClose,
+  align = 'right',
   headerIcon = <XOutline />,
   iconAlignment = 'right',
 }: DrawerProps): React.ReactElement => (
@@ -27,7 +30,13 @@ const Drawer = ({
       aria-hidden="true"
       onClick={overlayClose}
     />
-    <div className={classNames('ods-drawer', open && 'ods-drawer--open')}>
+    <div
+      className={classNames(
+        'ods-drawer',
+        open && 'ods-drawer--open',
+        `ods-drawer--${align}`
+      )}
+    >
       <div
         className={classNames(
           'ods-drawer__content--header',

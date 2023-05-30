@@ -46,6 +46,7 @@ import { Drawer } from '@useblu/ocean-react';
     name="playground"
     args={{
       open: false,
+      align: 'right',
       iconAlignment: 'right',
     }}
     argTypes={{
@@ -55,6 +56,11 @@ import { Drawer } from '@useblu/ocean-react';
       },
       iconAlignment: {
         name: 'iconAlignment',
+        options: ['right', 'left'],
+        control: { type: 'select' },
+      },
+      align: {
+        name: 'align',
         options: ['right', 'left'],
         control: { type: 'select' },
       },

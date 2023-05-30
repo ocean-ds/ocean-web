@@ -23,15 +23,24 @@
   flex-shrink: 0;
 
   height: 100%;
-  left: auto;
   outline: 0;
   position: fixed;
-  right: 0;
   top: 0;
-  transform: translateX(100%);
   transition: all 335ms ease-out 0ms;
   visibility: hidden;
   width: 378px;
+
+  &--right {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  &--left {
+    left: 0;
+    right: auto;
+    transform: translateX(-100%);
+  }
 
   &--open {
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),

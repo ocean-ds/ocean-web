@@ -6,12 +6,14 @@ import Button from '../../Button';
 export interface SimpleDrawerProps {
   children: React.ReactElement;
   open?: boolean;
-  iconAlignment?: string;
+  align?: 'left' | 'right';
+  iconAlignment?: 'left' | 'right';
 }
 
 const SimpleDrawer = ({
   children,
   open,
+  align,
   iconAlignment,
 }: SimpleDrawerProps): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +32,7 @@ const SimpleDrawer = ({
         onDrawerClose={toggleOpen}
         overlayClose={toggleOverlayClose}
         iconAlignment={iconAlignment}
+        align={align}
       >
         {children}
       </Drawer>
