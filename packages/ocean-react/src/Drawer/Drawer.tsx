@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from 'react';
+import React, { RefObject, useCallback, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 import { XOutline } from '@useblu/ocean-icons-react';
@@ -13,6 +12,7 @@ interface DrawerProps {
   headerIcon?: React.ReactNode;
   align?: 'right' | 'left';
   iconAlignment?: 'right' | 'left';
+  anchorEl?: RefObject<HTMLDivElement> | null;
 }
 
 const Drawer = ({
@@ -23,33 +23,72 @@ const Drawer = ({
   align = 'right',
   headerIcon = <XOutline />,
   iconAlignment = 'right',
-}: DrawerProps): React.ReactElement => (
-  <>
+  anchorEl,
+}: DrawerProps): React.ReactElement => {
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  const getAnchorPosition = useCallback(() => {
+    if (!anchorEl?.current) return null;
+
+    const position = anchorEl.current.getBoundingClientRect();
+
+    if (align === 'right') {
+      return {
+        width: `${position.right}px`,
+        right: `${position.right}px`,
+        left: 'auto',
+      };
+    }
+
+    return {
+      width: `${position.right}px`,
+      right: 'auto',
+      left: `${position.right}px`,
+    };
+  }, [align, anchorEl]);
+
+  const attachDrawer = useCallback(() => {
+    const position = getAnchorPosition();
+
+    if (!drawerRef.current || !position) return;
+
+    drawerRef.current.style.width = `calc(100% - ${position?.width}px)})`;
+    drawerRef.current.style.left = position.left;
+    drawerRef.current.style.right = position.right;
+  }, [getAnchorPosition]);
+
+  useEffect(() => {
+    attachDrawer();
+  }, [anchorEl, drawerRef, attachDrawer]);
+
+  return (
     <div
       className={classNames('ods-overlay', open && 'ods-overlay--open')}
       aria-hidden="true"
       onClick={overlayClose}
-    />
-    <div
-      className={classNames(
-        'ods-drawer',
-        open && 'ods-drawer--open',
-        `ods-drawer--${align}`
-      )}
+      ref={drawerRef}
     >
       <div
         className={classNames(
-          'ods-drawer__content--header',
-          `ods-drawer__content--header--${iconAlignment}`
+          'ods-drawer',
+          open && 'ods-drawer--open',
+          `ods-drawer--${align}`
         )}
       >
-        <Button type="button" onClick={onDrawerClose}>
-          {headerIcon}
-        </Button>
+        <div
+          className={classNames(
+            'ods-drawer__content--header',
+            `ods-drawer__content--header--${iconAlignment}`
+          )}
+        >
+          <Button type="button" onClick={onDrawerClose}>
+            {headerIcon}
+          </Button>
+        </div>
+        {children}
       </div>
-      {children}
     </div>
-  </>
-);
+  );
+};
 
 export default Drawer;
