@@ -91,3 +91,6 @@ export * from './Drawer';
 
 export { default as Snackbar } from './Snackbar';
 export * from './Snackbar';
+
+export { default as Shortcut } from './Shortcut';
+export * from './Shortcut';
