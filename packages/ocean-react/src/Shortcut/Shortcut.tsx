@@ -36,7 +36,7 @@ const Shortcut = ({
       >
         {label}
       </h5>
-      {description && (
+      {['medium', 'large'].includes(size) && description && (
         <span
           className={classNames(
             'ods-shortcut__content__description',

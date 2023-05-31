@@ -1,0 +1,45 @@
+.ods-shortcut {
+  align-items: flex-start;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-md;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-inline-xs;
+
+  &--tiny {
+    gap: 12px;
+    width: 80px;
+  }
+
+  &--small {
+    gap: 12px;
+    width: 116px;
+
+    & .ods-shortcut__content__label {
+      align-items: flex-end;
+      display: flex;
+      height: 40px;
+    }
+  }
+
+  &--medium {
+    width: 158px;
+    gap: $spacing-inline-xs;
+  }
+
+  &__icon {
+    color: $color-brand-primary-down;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+
+    &__description {
+      font-size: $font-size-xxxs;
+    }
+  }
+}
