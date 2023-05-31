@@ -33,9 +33,11 @@ const Drawer = ({
     const position = anchorEl.current.getBoundingClientRect();
 
     if (align === 'right') {
+      const size = window.innerWidth - position.left;
+
       return {
-        width: `${position.right}px`,
-        right: `${position.right}px`,
+        width: `${size}px`,
+        right: `${size}px`,
         left: 'auto',
       };
     }
