@@ -36,6 +36,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       icon: <PlaceholderOutline />,
       size: 'medium',
       blocked: false,
+      disabled: false,
     }}
     parameters={{
       controls: { exclude: /^icon*/ },
@@ -52,6 +53,9 @@ If that's not sufficient, you can check the [implementation of the component](ht
         control: { type: 'select' },
       },
       blocked: {
+        control: 'boolean',
+      },
+      disabled: {
         control: 'boolean',
       },
     }}
