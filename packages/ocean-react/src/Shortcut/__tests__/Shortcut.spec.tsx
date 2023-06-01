@@ -7,25 +7,7 @@ jest.mock('@useblu/ocean-icons-react', () => ({
   LockClosed: () => 'mock-lock-closed',
 }));
 
-const setup = ({
-  icon,
-  label,
-  description,
-  size = 'medium',
-  blocked = false,
-  disabled = false,
-}: ShortcutProps) => {
-  render(
-    <Shortcut
-      icon={icon}
-      label={label}
-      description={description}
-      size={size}
-      blocked={blocked}
-      disabled={disabled}
-    />
-  );
-};
+const setup = (props: ShortcutProps) => render(<Shortcut {...props} />);
 
 test('renders shortcut component properly', () => {
   setup({ icon: 'mock-home-xvg', label: 'Label' });
@@ -115,5 +97,19 @@ test.each(['tiny', 'small', 'medium', 'large'] as const)(
     expect(document.querySelector('.ods-shortcut')).toHaveClass(
       `ods-shortcut--${size}`
     );
+  }
+);
+
+test.each(['tiny', 'small'] as const)(
+  'not renders description when size is tiny or small',
+  (size) => {
+    setup({
+      icon: 'mock-home-xvg',
+      label: 'Label',
+      size,
+      description: 'Description',
+    });
+
+    expect(document.querySelector('.ods-shortcut__description')).toBeFalsy();
   }
 );
