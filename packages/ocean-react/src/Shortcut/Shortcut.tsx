@@ -25,8 +25,8 @@ const Shortcut = ({
       blocked && 'ods-shortcut--blocked'
     )}
   >
-    <div className="ods-shortcut__icon">{icon}</div>
     <div className="ods-shortcut__content">
+      <div className="ods-shortcut__icon">{icon}</div>
       <h5
         className={classNames(
           'ods-shortcut__content__label',
@@ -36,18 +36,18 @@ const Shortcut = ({
       >
         {label}
       </h5>
-      {['medium', 'large'].includes(size) && description && (
-        <span
-          className={classNames(
-            'ods-shortcut__content__description',
-            'ods-typography',
-            'ods-typography__description'
-          )}
-        >
-          {description}
-        </span>
-      )}
     </div>
+    {['medium', 'large'].includes(size) && description && (
+      <span
+        className={classNames(
+          'ods-shortcut__content__description',
+          'ods-typography',
+          'ods-typography__description'
+        )}
+      >
+        {description}
+      </span>
+    )}
   </div>
 );
 

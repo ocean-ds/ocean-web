@@ -9,13 +9,19 @@
   padding: $spacing-inline-xs;
 
   &--tiny {
-    gap: 12px;
     width: 80px;
+
+    & .ods-shortcut__content {
+      gap: $spacing-inline-xxs;
+    }
   }
 
   &--small {
-    gap: 12px;
     width: 116px;
+
+    & .ods-shortcut__content {
+      gap: $spacing-inline-xxs;
+    }
 
     & .ods-shortcut__content__label {
       align-items: flex-end;
@@ -26,17 +32,39 @@
 
   &--medium {
     width: 158px;
-    gap: $spacing-inline-xs;
+    gap: $spacing-inline-xxs;
+
+    & .ods-shortcut__content {
+      gap: $spacing-inline-xs;
+    }
+  }
+
+  &--large {
+    width: 200px;
+    gap: 12px;
+
+    & .ods-shortcut__content {
+      align-items: center;
+      flex-direction: row;
+      gap: 12px;
+    }
   }
 
   &__icon {
     color: $color-brand-primary-down;
+    height: 24px;
+    width: 24px;
   }
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: $spacing-inline-xxs;
+
+    &__label {
+      color: $color-interface-dark-deep;
+      height: max-content;
+      font-weight: 900;
+    }
 
     &__description {
       font-size: $font-size-xxxs;
