@@ -10,6 +10,7 @@ export interface ShortcutProps {
   description?: string;
   size?: ShortcutSize;
   blocked?: boolean;
+  disabled?: boolean;
 }
 
 const Shortcut = ({
@@ -18,12 +19,14 @@ const Shortcut = ({
   description,
   size = 'medium',
   blocked = false,
+  disabled = false,
 }: ShortcutProps): React.ReactElement => (
   <div
     className={classNames(
       'ods-shortcut',
       `ods-shortcut--${size}`,
-      blocked && 'ods-shortcut--blocked'
+      blocked && 'ods-shortcut--blocked',
+      disabled && 'ods-shortcut--disabled'
     )}
   >
     {blocked && (
@@ -35,7 +38,7 @@ const Shortcut = ({
       <div className="ods-shortcut__icon">{icon}</div>
       <h5
         className={classNames(
-          'ods-shortcut__content__label',
+          'ods-shortcut__label',
           'ods-typography',
           'ods-typography__heading5'
         )}
@@ -46,7 +49,7 @@ const Shortcut = ({
     {['medium', 'large'].includes(size) && description && (
       <span
         className={classNames(
-          'ods-shortcut__content__description',
+          'ods-shortcut__description',
           'ods-typography',
           'ods-typography__description'
         )}

@@ -15,6 +15,18 @@
     background-color: $color-interface-light-up;
   }
 
+  &--disabled {
+    background-color: rgba(235, 236, 245, 0.64);
+    border-color: transparent;
+    cursor: not-allowed;
+
+    & .ods-shortcut__icon,
+    & .ods-shortcut__label,
+    & .ods-shortcut__description {
+      color: $color-interface-dark-up;
+    }
+  }
+
   &--tiny {
     width: 80px;
 
@@ -30,7 +42,7 @@
       gap: $spacing-inline-xxs;
     }
 
-    & .ods-shortcut__content__label {
+    & .ods-shortcut__label {
       align-items: flex-end;
       display: flex;
       height: 40px;
@@ -66,16 +78,16 @@
   &__content {
     display: flex;
     flex-direction: column;
+  }
 
-    &__label {
-      color: $color-interface-dark-deep;
-      height: max-content;
-      font-weight: 900;
-    }
+  &__label {
+    color: $color-interface-dark-deep;
+    height: max-content;
+    font-weight: 900;
+  }
 
-    &__description {
-      font-size: $font-size-xxxs;
-    }
+  &__description {
+    font-size: $font-size-xxxs;
   }
 
   &__blocked {
