@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/ocean-ds/ocean-web/compare/v1.43.0...v1.44.0) (2023-06-01)
+
+### Features
+
+- add attach mode to drawer ([#1067](https://github.com/ocean-ds/ocean-web/issues/1067)) ([2edfd28](https://github.com/ocean-ds/ocean-web/commit/2edfd28eb6ba53242b83d656f8c4f455e2ba5da9))
+
 # [1.43.0](https://github.com/ocean-ds/ocean-web/compare/v1.42.0...v1.43.0) (2023-02-24)
 
 ### Features
