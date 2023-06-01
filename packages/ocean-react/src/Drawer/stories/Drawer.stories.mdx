@@ -3,6 +3,7 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Drawer from '../Drawer';
 
 import SimpleDrawer from '../examples/SimpleDrawer';
+import AttachedDrawer from '../examples/AttachedDrawer';
 import ContentPlaceholder from '../assets/contentPlaceholder.png';
 import Button from '../../Button';
 import Divider from '../../Divider';
@@ -46,6 +47,7 @@ import { Drawer } from '@useblu/ocean-react';
     name="playground"
     args={{
       open: false,
+      align: 'right',
       iconAlignment: 'right',
     }}
     argTypes={{
@@ -55,6 +57,11 @@ import { Drawer } from '@useblu/ocean-react';
       },
       iconAlignment: {
         name: 'iconAlignment',
+        options: ['right', 'left'],
+        control: { type: 'select' },
+      },
+      align: {
+        name: 'align',
         options: ['right', 'left'],
         control: { type: 'select' },
       },
@@ -129,6 +136,61 @@ import { Drawer } from '@useblu/ocean-react';
           </div>
         </div>
       </SimpleDrawer>
+    )}
+  </Story>
+</Canvas>
+
+## Attached Drawer
+
+<Canvas>
+  <Story
+    name="attached"
+    args={{
+      open: false,
+      align: 'right',
+      iconAlignment: 'right',
+    }}
+    argTypes={{
+      open: {
+        name: 'open',
+        control: 'boolean',
+      },
+      iconAlignment: {
+        name: 'iconAlignment',
+        options: ['right', 'left'],
+        control: { type: 'select' },
+      },
+      align: {
+        name: 'align',
+        options: ['right', 'left'],
+        control: { type: 'select' },
+      },
+    }}
+  >
+    {(props) => (
+      <AttachedDrawer {...props}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            padding: '0 24px',
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: 'Avenir',
+              fontSize: '20px',
+              fontWeight: '800',
+              lineHeight: '22px',
+              color: '#393B47',
+              margin: '0 0 8px 0',
+            }}
+          >
+            Drawer title
+          </h3>
+        </div>
+      </AttachedDrawer>
     )}
   </Story>
 </Canvas>
