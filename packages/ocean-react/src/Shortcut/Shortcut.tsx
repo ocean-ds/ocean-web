@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { LockClosed } from '@useblu/ocean-icons-react';
 
 type ShortcutSize = 'tiny' | 'small' | 'medium' | 'large';
 
@@ -25,6 +26,11 @@ const Shortcut = ({
       blocked && 'ods-shortcut--blocked'
     )}
   >
+    {blocked && (
+      <div className="ods-shortcut__blocked">
+        <LockClosed />
+      </div>
+    )}
     <div className="ods-shortcut__content">
       <div className="ods-shortcut__icon">{icon}</div>
       <h5

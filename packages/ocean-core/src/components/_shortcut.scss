@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   padding: $spacing-inline-xs;
+  position: relative;
 
   &--tiny {
     width: 80px;
@@ -68,6 +69,20 @@
 
     &__description {
       font-size: $font-size-xxxs;
+    }
+  }
+
+  &__blocked {
+    color: $color-interface-dark-up;
+    height: $font-size-xs;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: $font-size-xs;
+
+    & svg {
+      height: 100%;
+      width: 100%;
     }
   }
 }
