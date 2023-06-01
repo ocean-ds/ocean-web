@@ -28,7 +28,7 @@ const SimpleDrawer = ({
         Open drawer
       </Button>
       <Drawer
-        open={open ?? isOpen}
+        open={open || isOpen}
         onDrawerClose={toggleOpen}
         overlayClose={toggleOverlayClose}
         iconAlignment={iconAlignment}
