@@ -20,9 +20,9 @@
     border-color: transparent;
     cursor: not-allowed;
 
-    & .ods-shortcut__icon,
-    & .ods-shortcut__label,
-    & .ods-shortcut__description {
+    .ods-shortcut__icon,
+    .ods-shortcut__label,
+    .ods-shortcut__description {
       color: $color-interface-dark-up;
     }
   }
@@ -30,7 +30,7 @@
   &--tiny {
     width: 80px;
 
-    & .ods-shortcut__content {
+    .ods-shortcut__content {
       gap: $spacing-inline-xxs;
     }
   }
@@ -38,11 +38,11 @@
   &--small {
     width: 116px;
 
-    & .ods-shortcut__content {
+    .ods-shortcut__content {
       gap: $spacing-inline-xxs;
     }
 
-    & .ods-shortcut__label {
+    .ods-shortcut__label {
       align-items: flex-end;
       display: flex;
       height: 40px;
@@ -50,19 +50,19 @@
   }
 
   &--medium {
-    width: 158px;
     gap: $spacing-inline-xxs;
+    width: 158px;
 
-    & .ods-shortcut__content {
+    .ods-shortcut__content {
       gap: $spacing-inline-xs;
     }
   }
 
   &--large {
-    width: 200px;
     gap: 12px;
+    width: 200px;
 
-    & .ods-shortcut__content {
+    .ods-shortcut__content {
       align-items: center;
       flex-direction: row;
       gap: 12px;
@@ -82,8 +82,8 @@
 
   &__label {
     color: $color-interface-dark-deep;
-    height: max-content;
     font-weight: 900;
+    height: max-content;
   }
 
   &__description {
@@ -98,7 +98,7 @@
     top: 8px;
     width: $font-size-xs;
 
-    & svg {
+    svg {
       height: 100%;
       width: 100%;
     }
