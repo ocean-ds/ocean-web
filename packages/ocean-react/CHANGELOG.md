@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.45.0](https://github.com/ocean-ds/ocean-web/compare/v1.44.0...v1.45.0) (2023-06-02)
+
+### Features
+
+- create shortcut component ([#1068](https://github.com/ocean-ds/ocean-web/issues/1068)) ([6ac9802](https://github.com/ocean-ds/ocean-web/commit/6ac9802bc5bc056e53dfc50b04ecf3f5d1849973))
+
 # [1.44.0](https://github.com/ocean-ds/ocean-web/compare/v1.43.0...v1.44.0) (2023-06-01)
 
 ### Features
