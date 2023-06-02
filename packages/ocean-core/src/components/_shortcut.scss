@@ -1,0 +1,112 @@
+.ods-shortcut {
+  align-items: flex-start;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-md;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-inline-xs;
+  position: relative;
+  transition: 200ms ease-in;
+
+  &:is(:hover, :focus) {
+    background-color: $color-interface-light-up;
+  }
+
+  &--disabled {
+    background-color: rgba(235, 236, 245, 0.64);
+    border-color: transparent;
+    cursor: not-allowed;
+
+    .ods-shortcut__icon,
+    .ods-shortcut__label,
+    .ods-shortcut__description {
+      color: $color-interface-dark-up;
+    }
+  }
+
+  &--tiny {
+    width: 80px;
+
+    .ods-shortcut__content {
+      gap: $spacing-inline-xxs;
+    }
+  }
+
+  &--small {
+    width: 116px;
+
+    .ods-shortcut__content {
+      gap: $spacing-inline-xxs;
+    }
+
+    .ods-shortcut__label {
+      align-items: flex-end;
+      display: flex;
+      height: 40px;
+    }
+  }
+
+  &--medium {
+    gap: $spacing-inline-xxs;
+    width: 158px;
+
+    .ods-shortcut__content {
+      gap: $spacing-inline-xs;
+    }
+  }
+
+  &--large {
+    gap: 12px;
+    width: 200px;
+
+    .ods-shortcut__content {
+      align-items: center;
+      flex-direction: row;
+      gap: 12px;
+    }
+  }
+
+  &__icon {
+    color: $color-brand-primary-down;
+    height: 24px;
+    width: 24px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    color: $color-interface-dark-deep;
+    font-weight: 900;
+    height: max-content;
+  }
+
+  &__description {
+    font-size: $font-size-xxxs;
+  }
+
+  &__badge {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+
+  &__blocked {
+    color: $color-interface-dark-up;
+    height: $font-size-xs;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: $font-size-xs;
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

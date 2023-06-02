@@ -34,7 +34,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
           `ods-badge--${color}`,
           className,
           {
-            'ods-badge--overflow': count && count > 99,
+            'ods-badge--overflow': count && count > 9,
           }
         )}
         {...rest}
