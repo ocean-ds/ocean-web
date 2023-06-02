@@ -90,7 +90,7 @@ test('renders shortcut component with disabled state', () => {
 });
 
 test('renders shortcut component with count badge', () => {
-  setup({ icon: 'mock-home-xvg', label: 'Label', count: 10 });
+  setup({ icon: 'mock-home-xvg', label: 'Label', count: 9 });
 
   expect(document.querySelector('.ods-shortcut__badge')).toMatchInlineSnapshot(`
     <div
@@ -100,7 +100,7 @@ test('renders shortcut component with count badge', () => {
       <div
         class="ods-badge__content ods-badge__count"
       >
-        10
+        9
       </div>
     </div>
   `);
