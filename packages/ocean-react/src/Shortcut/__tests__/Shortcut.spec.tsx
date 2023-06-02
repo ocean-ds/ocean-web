@@ -89,6 +89,23 @@ test('renders shortcut component with disabled state', () => {
   );
 });
 
+test('renders shortcut component with count badge', () => {
+  setup({ icon: 'mock-home-xvg', label: 'Label', count: 10 });
+
+  expect(document.querySelector('.ods-shortcut__badge')).toMatchInlineSnapshot(`
+    <div
+      class="ods-badge ods-badge--small ods-badge--alert ods-shortcut__badge"
+      role="tag"
+    >
+      <div
+        class="ods-badge__content ods-badge__count"
+      >
+        10
+      </div>
+    </div>
+  `);
+});
+
 test.each(['tiny', 'small', 'medium', 'large'] as const)(
   'renders ods-drawer__content--header icon in each side',
   (size) => {

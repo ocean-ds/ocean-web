@@ -90,6 +90,12 @@
     font-size: $font-size-xxxs;
   }
 
+  &__badge {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+
   &__blocked {
     color: $color-interface-dark-up;
     height: $font-size-xs;

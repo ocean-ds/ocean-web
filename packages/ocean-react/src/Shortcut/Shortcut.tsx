@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { LockClosed } from '@useblu/ocean-icons-react';
+import Badge from '../Badge';
 
 type ShortcutSize = 'tiny' | 'small' | 'medium' | 'large';
 
@@ -11,6 +12,7 @@ export interface ShortcutProps {
   size?: ShortcutSize;
   blocked?: boolean;
   disabled?: boolean;
+  count?: number;
 }
 
 const Shortcut = ({
@@ -20,6 +22,7 @@ const Shortcut = ({
   size = 'medium',
   blocked = false,
   disabled = false,
+  count,
 }: ShortcutProps): React.ReactElement => (
   <div
     className={classNames(
@@ -34,6 +37,14 @@ const Shortcut = ({
         <LockClosed />
       </div>
     )}
+    {count ? (
+      <Badge
+        className="ods-shortcut__badge"
+        variation="small"
+        color="alert"
+        count={count}
+      />
+    ) : null}
     <div className="ods-shortcut__content">
       <div className="ods-shortcut__icon">{icon}</div>
       <h5

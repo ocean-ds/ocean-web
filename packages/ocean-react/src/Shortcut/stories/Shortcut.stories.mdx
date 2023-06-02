@@ -37,6 +37,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       size: 'medium',
       blocked: false,
       disabled: false,
+      count: undefined,
     }}
     parameters={{
       controls: { exclude: /^icon*/ },
@@ -57,6 +58,9 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       disabled: {
         control: 'boolean',
+      },
+      count: {
+        control: 'number',
       },
     }}
   >
