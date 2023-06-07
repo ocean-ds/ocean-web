@@ -50,6 +50,9 @@ import { Drawer } from '@useblu/ocean-react';
       align: 'right',
       iconAlignment: 'right',
     }}
+    parameters={{
+      controls: { exclude: /^onMouseOutDrawer*/ },
+    }}
     argTypes={{
       open: {
         name: 'open',
@@ -149,6 +152,9 @@ import { Drawer } from '@useblu/ocean-react';
       open: false,
       align: 'right',
       iconAlignment: 'right',
+    }}
+    parameters={{
+      controls: { exclude: /^onMouseOutDrawer*/ },
     }}
     argTypes={{
       open: {
