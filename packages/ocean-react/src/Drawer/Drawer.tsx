@@ -1,4 +1,10 @@
-import React, { RefObject, useCallback, useEffect, useRef } from 'react';
+import React, {
+  MouseEvent,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 
 import classNames from 'classnames';
 import { XOutline } from '@useblu/ocean-icons-react';
@@ -13,6 +19,7 @@ interface DrawerProps {
   align?: 'right' | 'left';
   iconAlignment?: 'right' | 'left';
   anchorEl?: RefObject<HTMLDivElement> | null;
+  onMouseOutDrawer?: (event?: MouseEvent<HTMLDivElement>) => void;
 }
 
 const Drawer = ({
@@ -24,6 +31,7 @@ const Drawer = ({
   headerIcon = <XOutline />,
   iconAlignment = 'right',
   anchorEl,
+  onMouseOutDrawer,
 }: DrawerProps): React.ReactElement => {
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -76,6 +84,7 @@ const Drawer = ({
           open && 'ods-drawer--open',
           `ods-drawer--${align}`
         )}
+        onMouseLeave={onMouseOutDrawer}
       >
         <div
           className={classNames(
