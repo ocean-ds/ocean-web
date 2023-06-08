@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.46.0](https://github.com/ocean-ds/ocean-web/compare/v1.45.0...v1.46.0) (2023-06-08)
+
+### Features
+
+- add mouse events on drawer ([#1069](https://github.com/ocean-ds/ocean-web/issues/1069)) ([f5bbd98](https://github.com/ocean-ds/ocean-web/commit/f5bbd98848df4f8e6a768240d7df2d6e70c3ae31))
+
 # [1.45.0](https://github.com/ocean-ds/ocean-web/compare/v1.44.0...v1.45.0) (2023-06-02)
 
 ### Features
