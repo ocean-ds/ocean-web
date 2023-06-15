@@ -14,7 +14,7 @@ interface DrawerProps {
   children: React.ReactNode;
   open: boolean;
   onDrawerClose?(event: React.MouseEvent | React.KeyboardEvent): void;
-  overlayClose: () => void;
+  overlayClose: (event?: MouseEvent<HTMLDivElement>) => void;
   headerIcon?: React.ReactNode;
   align?: 'right' | 'left';
   iconAlignment?: 'right' | 'left';
@@ -34,6 +34,13 @@ const Drawer = ({
   onMouseOutDrawer,
 }: DrawerProps): React.ReactElement => {
   const drawerRef = useRef<HTMLDivElement>(null);
+
+  const handleOverlayClose = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      event.preventDefault();
+      overlayClose(event);
+    }
+  };
 
   const getAnchorPosition = useCallback(() => {
     if (!anchorEl?.current) return null;
@@ -75,7 +82,7 @@ const Drawer = ({
     <div
       className={classNames('ods-overlay', open && 'ods-overlay--open')}
       aria-hidden="true"
-      onClick={overlayClose}
+      onClick={handleOverlayClose}
       ref={drawerRef}
     >
       <div
