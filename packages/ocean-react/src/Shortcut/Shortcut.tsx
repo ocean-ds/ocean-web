@@ -5,7 +5,7 @@ import Badge from '../Badge';
 
 type ShortcutSize = 'tiny' | 'small' | 'medium' | 'large';
 
-export interface ShortcutProps {
+export type ShortcutProps = {
   icon: React.ReactNode;
   label: string;
   description?: string;
@@ -13,7 +13,7 @@ export interface ShortcutProps {
   blocked?: boolean;
   disabled?: boolean;
   count?: number;
-}
+} & React.ComponentPropsWithoutRef<'div'>;
 
 const Shortcut = ({
   icon,
@@ -23,6 +23,7 @@ const Shortcut = ({
   blocked = false,
   disabled = false,
   count,
+  ...rest
 }: ShortcutProps): React.ReactElement => (
   <div
     className={classNames(
@@ -31,6 +32,7 @@ const Shortcut = ({
       blocked && 'ods-shortcut--blocked',
       disabled && 'ods-shortcut--disabled'
     )}
+    {...rest}
   >
     {blocked && (
       <div className="ods-shortcut__blocked">
