@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.1](https://github.com/ocean-ds/ocean-web/compare/v1.46.0...v1.46.1) (2023-06-16)
+
+### Bug Fixes
+
+- adjust handle clicks on drawer and shortcut ([#1070](https://github.com/ocean-ds/ocean-web/issues/1070)) ([70870f0](https://github.com/ocean-ds/ocean-web/commit/70870f0932601df2551e15ccf5e5eed95a818666))
+
 # [1.46.0](https://github.com/ocean-ds/ocean-web/compare/v1.45.0...v1.46.0) (2023-06-08)
 
 ### Features
