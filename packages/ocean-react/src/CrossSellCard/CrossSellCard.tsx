@@ -48,13 +48,8 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
       ref={ref}
       {...rest}
       className={classNames('ods-cross-sell-card', className)}
-      onClick={ctaAction}
     >
-      <a
-        className="ods-cross-sell-card__content"
-        onClick={() => ctaAction}
-        data-testid="cta-test"
-      >
+      <a className="ods-cross-sell-card__content" data-testid="cta-test">
         <div className="ods-cross-sell-card__information">
           <div className="ods-cross-sell-card__title">{title}</div>
           <div className="ods-cross-sell-card__description">{description}</div>
@@ -68,7 +63,11 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
         )}
       </a>
 
-      <button type="button" className="ods-cross-sell-card__cta">
+      <button
+        type="button"
+        className="ods-cross-sell-card__cta"
+        onClick={ctaAction}
+      >
         {ctaText}{' '}
         <span className="ods-cross-sell-card__cta-icon">
           {customIcon || <ChevronRight />}
