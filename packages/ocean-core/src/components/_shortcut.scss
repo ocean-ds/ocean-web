@@ -50,7 +50,7 @@
       min-width: 200px;
     }
 
-    & .ods-shortcut__content--vertical {
+    .ods-shortcut__content--vertical {
       gap: 12px;
     }
   }
@@ -74,8 +74,8 @@
     }
 
     &--horizontal {
-      flex-direction: row;
       align-items: center;
+      flex-direction: row;
     }
   }
 
