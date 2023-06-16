@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import SimpleDrawer from '../../Drawer/examples/SimpleDrawer';
 import AttachedDrawer from '../../Drawer/examples/AttachedDrawer';
+import Drawer from '../../Drawer';
 
 jest.mock('@useblu/ocean-icons-react', () => ({
   XOutline: () => 'mock-x-outline-xvg',
@@ -130,3 +131,21 @@ test.each(['right', 'left'] as const)(
     expect(document.querySelector(`.ods-drawer--${align}`)).toBeInTheDocument();
   }
 );
+
+const TestComponent = () => {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <Drawer open={open} overlayClose={() => setOpen(false)}>
+      <p>Drawer content!</p>
+    </Drawer>
+  );
+};
+
+test('close the drawer clicking the overlay', () => {
+  render(<TestComponent />);
+
+  fireEvent.click(screen.getByTestId('drawer-overlay'));
+
+  expect(document.querySelector(`.ods-overlay`)?.className).toBe('ods-overlay');
+});
