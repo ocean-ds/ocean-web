@@ -49,7 +49,7 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
       {...rest}
       className={classNames('ods-cross-sell-card', className)}
     >
-      <a className="ods-cross-sell-card__content" data-testid="cta-test">
+      <a className="ods-cross-sell-card__content">
         <div className="ods-cross-sell-card__information">
           <div className="ods-cross-sell-card__title">{title}</div>
           <div className="ods-cross-sell-card__description">{description}</div>
@@ -66,6 +66,7 @@ const CrossSellCard = React.forwardRef<HTMLDivElement, CrossSellCardProps>(
       <button
         type="button"
         className="ods-cross-sell-card__cta"
+        data-testid="cta-test"
         onClick={ctaAction}
       >
         {ctaText}{' '}
