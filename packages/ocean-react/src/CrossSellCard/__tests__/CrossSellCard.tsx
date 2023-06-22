@@ -25,7 +25,6 @@ test('renders element properly', () => {
     >
       <a
         class="ods-cross-sell-card__content"
-        data-testid="cta-test"
       >
         <div
           class="ods-cross-sell-card__information"
@@ -49,6 +48,7 @@ test('renders element properly', () => {
       </a>
       <button
         class="ods-cross-sell-card__cta"
+        data-testid="cta-test"
         type="button"
       >
         Cta Text Test
@@ -111,7 +111,6 @@ test('renders component with custom icon', () => {
     >
       <a
         class="ods-cross-sell-card__content"
-        data-testid="cta-test"
       >
         <div
           class="ods-cross-sell-card__information"
@@ -135,6 +134,7 @@ test('renders component with custom icon', () => {
       </a>
       <button
         class="ods-cross-sell-card__cta"
+        data-testid="cta-test"
         type="button"
       >
         Call To Action
