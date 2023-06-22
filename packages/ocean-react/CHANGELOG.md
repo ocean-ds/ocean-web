@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.3](https://github.com/ocean-ds/ocean-web/compare/v1.46.2...v1.46.3) (2023-06-22)
+
+### Bug Fixes
+
+- adjust data-tesid tag name ([#1073](https://github.com/ocean-ds/ocean-web/issues/1073)) ([ee44b73](https://github.com/ocean-ds/ocean-web/commit/ee44b739bcd9017aac0e0e47ce4f2d580afcc670))
+
 ## [1.46.2](https://github.com/ocean-ds/ocean-web/compare/v1.46.1...v1.46.2) (2023-06-22)
 
 ### Bug Fixes
