@@ -84,7 +84,7 @@ const Drawer = ({
       aria-hidden="true"
       onClick={handleOverlayClose}
       ref={drawerRef}
-      data-testId="drawer-overlay"
+      data-testid="drawer-overlay"
     >
       <div
         className={classNames(

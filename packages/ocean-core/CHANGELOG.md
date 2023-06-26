@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.2](https://github.com/ocean-ds/ocean-web/compare/v1.46.1...v1.46.2) (2023-06-22)
+
+### Bug Fixes
+
+- update CrossSellCad click event to be in button ([#1072](https://github.com/ocean-ds/ocean-web/issues/1072)) ([3e84280](https://github.com/ocean-ds/ocean-web/commit/3e842804981d95fa5821a0cdd07c123e4e63f956))
+
 # [1.45.0](https://github.com/ocean-ds/ocean-web/compare/v1.44.0...v1.45.0) (2023-06-02)
 
 ### Features

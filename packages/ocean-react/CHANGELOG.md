@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.3](https://github.com/ocean-ds/ocean-web/compare/v1.46.2...v1.46.3) (2023-06-22)
+
+### Bug Fixes
+
+- adjust data-tesid tag name ([#1073](https://github.com/ocean-ds/ocean-web/issues/1073)) ([ee44b73](https://github.com/ocean-ds/ocean-web/commit/ee44b739bcd9017aac0e0e47ce4f2d580afcc670))
+
+## [1.46.2](https://github.com/ocean-ds/ocean-web/compare/v1.46.1...v1.46.2) (2023-06-22)
+
+### Bug Fixes
+
+- update CrossSellCad click event to be in button ([#1072](https://github.com/ocean-ds/ocean-web/issues/1072)) ([3e84280](https://github.com/ocean-ds/ocean-web/commit/3e842804981d95fa5821a0cdd07c123e4e63f956))
+
 ## [1.46.1](https://github.com/ocean-ds/ocean-web/compare/v1.46.0...v1.46.1) (2023-06-16)
 
 ### Bug Fixes
