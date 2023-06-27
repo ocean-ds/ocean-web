@@ -35,9 +35,11 @@ If that's not sufficient, you can check the [implementation of the component](ht
       description: 'Lorem ipsum dolor sit amet, consectetur.',
       icon: <PlaceholderOutline />,
       size: 'medium',
+      orientation: 'horizontal',
+      count: undefined,
+      fullWidth: false,
       blocked: false,
       disabled: false,
-      count: undefined,
     }}
     parameters={{
       controls: { exclude: /^icon*/ },
@@ -50,13 +52,20 @@ If that's not sufficient, you can check the [implementation of the component](ht
         control: 'text',
       },
       size: {
-        options: ['tiny', 'small', 'medium', 'large'],
+        options: ['tiny', 'small', 'medium'],
+        control: { type: 'select' },
+      },
+      orientation: {
+        options: ['horizontal', 'vertical'],
         control: { type: 'select' },
       },
       blocked: {
         control: 'boolean',
       },
       disabled: {
+        control: 'boolean',
+      },
+      fullWidth: {
         control: 'boolean',
       },
       count: {

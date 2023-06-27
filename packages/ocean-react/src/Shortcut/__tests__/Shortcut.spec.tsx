@@ -14,10 +14,10 @@ test('renders shortcut component properly', () => {
 
   expect(document.querySelector('.ods-shortcut')).toMatchInlineSnapshot(`
     <div
-      class="ods-shortcut ods-shortcut--medium"
+      class="ods-shortcut ods-shortcut--medium ods-shortcut--horizontal"
     >
       <div
-        class="ods-shortcut__content"
+        class="ods-shortcut__content ods-shortcut__content--horizontal"
       >
         <div
           class="ods-shortcut__icon"
@@ -39,10 +39,10 @@ test('renders shortcut component with description', () => {
 
   expect(document.querySelector('.ods-shortcut')).toMatchInlineSnapshot(`
     <div
-      class="ods-shortcut ods-shortcut--medium"
+      class="ods-shortcut ods-shortcut--medium ods-shortcut--horizontal"
     >
       <div
-        class="ods-shortcut__content"
+        class="ods-shortcut__content ods-shortcut__content--horizontal"
       >
         <div
           class="ods-shortcut__icon"
@@ -89,6 +89,14 @@ test('renders shortcut component with disabled state', () => {
   );
 });
 
+test('renders shortcut component full width', () => {
+  setup({ icon: 'mock-home-xvg', label: 'Label', fullWidth: true });
+
+  expect(document.querySelector('.ods-shortcut')).toHaveClass(
+    'ods-shortcut--full-width'
+  );
+});
+
 test('renders shortcut component with count badge', () => {
   setup({ icon: 'mock-home-xvg', label: 'Label', count: 9 });
 
@@ -106,13 +114,24 @@ test('renders shortcut component with count badge', () => {
   `);
 });
 
-test.each(['tiny', 'small', 'medium', 'large'] as const)(
+test.each(['tiny', 'small', 'medium'] as const)(
   'renders ods-drawer__content--header icon in each side',
   (size) => {
     setup({ icon: 'mock-home-xvg', label: 'Label', size });
 
     expect(document.querySelector('.ods-shortcut')).toHaveClass(
       `ods-shortcut--${size}`
+    );
+  }
+);
+
+test.each(['vertical', 'horizontal'] as const)(
+  'renders ods-drawer__content--header icon in each side',
+  (orientation) => {
+    setup({ icon: 'mock-home-xvg', label: 'Label', orientation });
+
+    expect(document.querySelector('.ods-shortcut')).toHaveClass(
+      `ods-shortcut--${orientation}`
     );
   }
 );

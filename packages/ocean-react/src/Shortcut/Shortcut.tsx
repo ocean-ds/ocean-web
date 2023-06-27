@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { LockClosed } from '@useblu/ocean-icons-react';
 import Badge from '../Badge';
 
-type ShortcutSize = 'tiny' | 'small' | 'medium' | 'large';
+type ShortcutSize = 'tiny' | 'small' | 'medium';
 
 export type ShortcutProps = {
   icon: React.ReactNode;
@@ -13,6 +13,8 @@ export type ShortcutProps = {
   blocked?: boolean;
   disabled?: boolean;
   count?: number;
+  fullWidth?: boolean;
+  orientation?: 'horizontal' | 'vertical';
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Shortcut = ({
@@ -22,6 +24,8 @@ const Shortcut = ({
   size = 'medium',
   blocked = false,
   disabled = false,
+  fullWidth = false,
+  orientation = 'horizontal',
   count,
   ...rest
 }: ShortcutProps): React.ReactElement => (
@@ -30,7 +34,9 @@ const Shortcut = ({
       'ods-shortcut',
       `ods-shortcut--${size}`,
       blocked && 'ods-shortcut--blocked',
-      disabled && 'ods-shortcut--disabled'
+      disabled && 'ods-shortcut--disabled',
+      fullWidth && 'ods-shortcut--full-width',
+      `ods-shortcut--${orientation}`
     )}
     {...rest}
   >
@@ -47,7 +53,12 @@ const Shortcut = ({
         count={count}
       />
     ) : null}
-    <div className="ods-shortcut__content">
+    <div
+      className={classNames(
+        'ods-shortcut__content',
+        `ods-shortcut__content--${orientation}`
+      )}
+    >
       <div className="ods-shortcut__icon">{icon}</div>
       <h5
         className={classNames(
@@ -59,7 +70,7 @@ const Shortcut = ({
         {label}
       </h5>
     </div>
-    {['medium', 'large'].includes(size) && description && (
+    {size === 'medium' && description && (
       <span
         className={classNames(
           'ods-shortcut__description',
