@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.47.0](https://github.com/ocean-ds/ocean-web/compare/v1.46.3...v1.47.0) (2023-06-27)
+
+### Features
+
+- add orientation prop on shortcut ([#1071](https://github.com/ocean-ds/ocean-web/issues/1071)) ([05d96a1](https://github.com/ocean-ds/ocean-web/commit/05d96a1801a7dbb1dfa4e4b9e91bc0845cbb2884))
+
 ## [1.46.3](https://github.com/ocean-ds/ocean-web/compare/v1.46.2...v1.46.3) (2023-06-22)
 
 ### Bug Fixes

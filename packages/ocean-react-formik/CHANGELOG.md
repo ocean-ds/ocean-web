@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.47.0](https://github.com/ocean-ds/ocean-web/compare/v1.46.3...v1.47.0) (2023-06-27)
+
+**Note:** Version bump only for package @useblu/ocean-react-formik
+
 ## [1.46.3](https://github.com/ocean-ds/ocean-web/compare/v1.46.2...v1.46.3) (2023-06-22)
 
 **Note:** Version bump only for package @useblu/ocean-react-formik
