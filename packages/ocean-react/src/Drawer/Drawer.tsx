@@ -1,4 +1,10 @@
-import React from 'react';
+import React, {
+  MouseEvent,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 
 import classNames from 'classnames';
 import { XOutline } from '@useblu/ocean-icons-react';
@@ -8,9 +14,12 @@ interface DrawerProps {
   children: React.ReactNode;
   open: boolean;
   onDrawerClose?(event: React.MouseEvent | React.KeyboardEvent): void;
-  overlayClose: () => void;
+  overlayClose: (event?: MouseEvent<HTMLDivElement>) => void;
   headerIcon?: React.ReactNode;
-  iconAlignment?: string;
+  align?: 'right' | 'left';
+  iconAlignment?: 'right' | 'left';
+  anchorEl?: RefObject<HTMLDivElement> | null;
+  onMouseOutDrawer?: (event?: MouseEvent<HTMLDivElement>) => void;
 }
 
 const Drawer = ({
@@ -18,29 +27,87 @@ const Drawer = ({
   open,
   onDrawerClose,
   overlayClose,
+  align = 'right',
   headerIcon = <XOutline />,
   iconAlignment = 'right',
-}: DrawerProps): React.ReactElement => (
-  <>
+  anchorEl,
+  onMouseOutDrawer,
+}: DrawerProps): React.ReactElement => {
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  const handleOverlayClose = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      event.preventDefault();
+      overlayClose(event);
+    }
+  };
+
+  const getAnchorPosition = useCallback(() => {
+    if (!anchorEl?.current) return null;
+
+    const position = anchorEl.current.getBoundingClientRect();
+
+    if (align === 'right') {
+      const size = window.innerWidth - position.left;
+
+      return {
+        width: `${size}px`,
+        right: `${size}px`,
+        left: 'auto',
+      };
+    }
+
+    return {
+      width: `${position.right}px`,
+      right: 'auto',
+      left: `${position.right}px`,
+    };
+  }, [align, anchorEl]);
+
+  const attachDrawer = useCallback(() => {
+    const position = getAnchorPosition();
+
+    if (!drawerRef.current || !position) return;
+
+    drawerRef.current.style.width = `calc(100% - ${position?.width}px)})`;
+    drawerRef.current.style.left = position.left;
+    drawerRef.current.style.right = position.right;
+  }, [getAnchorPosition]);
+
+  useEffect(() => {
+    attachDrawer();
+  }, [anchorEl, drawerRef, attachDrawer]);
+
+  return (
     <div
       className={classNames('ods-overlay', open && 'ods-overlay--open')}
       aria-hidden="true"
-      onClick={overlayClose}
-    />
-    <div className={classNames('ods-drawer', open && 'ods-drawer--open')}>
+      onClick={handleOverlayClose}
+      ref={drawerRef}
+      data-testid="drawer-overlay"
+    >
       <div
         className={classNames(
-          'ods-drawer__content--header',
-          `ods-drawer__content--header--${iconAlignment}`
+          'ods-drawer',
+          open && 'ods-drawer--open',
+          `ods-drawer--${align}`
         )}
+        onMouseLeave={onMouseOutDrawer}
       >
-        <Button type="button" onClick={onDrawerClose}>
-          {headerIcon}
-        </Button>
+        <div
+          className={classNames(
+            'ods-drawer__content--header',
+            `ods-drawer__content--header--${iconAlignment}`
+          )}
+        >
+          <Button type="button" onClick={onDrawerClose}>
+            {headerIcon}
+          </Button>
+        </div>
+        {children}
       </div>
-      {children}
     </div>
-  </>
-);
+  );
+};
 
 export default Drawer;

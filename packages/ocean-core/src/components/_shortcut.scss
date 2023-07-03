@@ -1,0 +1,112 @@
+.ods-shortcut {
+  align-items: flex-start;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-md;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-inline-xxs;
+  padding: $spacing-inline-xs;
+  position: relative;
+  transition: 200ms ease-in;
+
+  &:is(:hover, :focus) {
+    background-color: $color-interface-light-up;
+  }
+
+  &--disabled {
+    background-color: rgba(235, 236, 245, 0.64);
+    border-color: transparent;
+    cursor: not-allowed;
+
+    .ods-shortcut__icon,
+    .ods-shortcut__label,
+    .ods-shortcut__description {
+      color: $color-interface-dark-up;
+    }
+  }
+
+  &--tiny {
+    min-width: 80px;
+
+    &.ods-shortcut--horizontal {
+      min-width: 100px;
+    }
+  }
+
+  &--small {
+    min-width: 116px;
+
+    &.ods-shortcut--horizontal {
+      min-width: 140px;
+    }
+  }
+
+  &--medium {
+    min-width: 158px;
+
+    &.ods-shortcut--horizontal {
+      min-width: 200px;
+    }
+
+    .ods-shortcut__content--vertical {
+      gap: 12px;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &__icon {
+    color: $color-brand-primary-down;
+    height: 24px;
+    width: 24px;
+  }
+
+  &__content {
+    display: flex;
+    gap: 8px;
+
+    &--vertical {
+      flex-direction: column;
+    }
+
+    &--horizontal {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  &__label {
+    color: $color-interface-dark-deep;
+    font-weight: 900;
+    height: max-content;
+  }
+
+  &__description {
+    font-size: $font-size-xxxs;
+  }
+
+  &__badge {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+
+  &__blocked {
+    color: $color-interface-dark-up;
+    height: $font-size-xs;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: $font-size-xs;
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.47.0](https://github.com/ocean-ds/ocean-web/compare/v1.46.3...v1.47.0) (2023-06-27)
+
+### Features
+
+- add orientation prop on shortcut ([#1071](https://github.com/ocean-ds/ocean-web/issues/1071)) ([05d96a1](https://github.com/ocean-ds/ocean-web/commit/05d96a1801a7dbb1dfa4e4b9e91bc0845cbb2884))
+
+## [1.46.3](https://github.com/ocean-ds/ocean-web/compare/v1.46.2...v1.46.3) (2023-06-22)
+
+### Bug Fixes
+
+- adjust data-tesid tag name ([#1073](https://github.com/ocean-ds/ocean-web/issues/1073)) ([ee44b73](https://github.com/ocean-ds/ocean-web/commit/ee44b739bcd9017aac0e0e47ce4f2d580afcc670))
+
+## [1.46.2](https://github.com/ocean-ds/ocean-web/compare/v1.46.1...v1.46.2) (2023-06-22)
+
+### Bug Fixes
+
+- update CrossSellCad click event to be in button ([#1072](https://github.com/ocean-ds/ocean-web/issues/1072)) ([3e84280](https://github.com/ocean-ds/ocean-web/commit/3e842804981d95fa5821a0cdd07c123e4e63f956))
+
+## [1.46.1](https://github.com/ocean-ds/ocean-web/compare/v1.46.0...v1.46.1) (2023-06-16)
+
+### Bug Fixes
+
+- adjust handle clicks on drawer and shortcut ([#1070](https://github.com/ocean-ds/ocean-web/issues/1070)) ([70870f0](https://github.com/ocean-ds/ocean-web/commit/70870f0932601df2551e15ccf5e5eed95a818666))
+
+# [1.46.0](https://github.com/ocean-ds/ocean-web/compare/v1.45.0...v1.46.0) (2023-06-08)
+
+### Features
+
+- add mouse events on drawer ([#1069](https://github.com/ocean-ds/ocean-web/issues/1069)) ([f5bbd98](https://github.com/ocean-ds/ocean-web/commit/f5bbd98848df4f8e6a768240d7df2d6e70c3ae31))
+
+# [1.45.0](https://github.com/ocean-ds/ocean-web/compare/v1.44.0...v1.45.0) (2023-06-02)
+
+### Features
+
+- create shortcut component ([#1068](https://github.com/ocean-ds/ocean-web/issues/1068)) ([6ac9802](https://github.com/ocean-ds/ocean-web/commit/6ac9802bc5bc056e53dfc50b04ecf3f5d1849973))
+
+# [1.44.0](https://github.com/ocean-ds/ocean-web/compare/v1.43.0...v1.44.0) (2023-06-01)
+
+### Features
+
+- add attach mode to drawer ([#1067](https://github.com/ocean-ds/ocean-web/issues/1067)) ([2edfd28](https://github.com/ocean-ds/ocean-web/commit/2edfd28eb6ba53242b83d656f8c4f455e2ba5da9))
+
 # [1.43.0](https://github.com/ocean-ds/ocean-web/compare/v1.42.0...v1.43.0) (2023-02-24)
 
 ### Features
