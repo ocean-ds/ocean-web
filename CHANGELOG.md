@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.47.1](https://github.com/ocean-ds/ocean-web/compare/v1.47.0...v1.47.1) (2023-07-03)
+
+### Bug Fixes
+
+- Center checkbox icon ([#1074](https://github.com/ocean-ds/ocean-web/issues/1074)) ([6441262](https://github.com/ocean-ds/ocean-web/commit/6441262c2382bf544a0097e8ce9d235a61a284f6))
+
 # [1.47.0](https://github.com/ocean-ds/ocean-web/compare/v1.46.3...v1.47.0) (2023-06-27)
 
 ### Features
