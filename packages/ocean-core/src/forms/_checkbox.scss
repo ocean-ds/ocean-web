@@ -33,7 +33,7 @@
     &::after {
       border: solid #fff;
       border-width: 0 2px 2px 0;
-      box-sizing: border-box;
+      box-sizing: border-box !important;
       content: '';
       display: none;
       height: 10px;
