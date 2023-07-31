@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.48.0](https://github.com/ocean-ds/ocean-web/compare/v1.47.1...v1.48.0) (2023-07-31)
+
+### Features
+
+- remove unused margin an add condicional render in input label ([#1079](https://github.com/ocean-ds/ocean-web/issues/1079)) ([561d8a7](https://github.com/ocean-ds/ocean-web/commit/561d8a73f8699848d0e2f0679a618471bcb088f7))
+
 # [1.47.0](https://github.com/ocean-ds/ocean-web/compare/v1.46.3...v1.47.0) (2023-06-27)
 
 ### Features
