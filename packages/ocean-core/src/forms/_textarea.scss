@@ -22,7 +22,6 @@
   &:active,
   &:focus-within {
     border: $border-width-thin solid $color-brand-primary-down;
-    margin: -1px;
   }
 
   &:disabled {

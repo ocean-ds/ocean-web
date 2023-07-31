@@ -63,21 +63,20 @@ const FormControl: React.FC<FormControlProps> = ({
 
   return (
     <div className="ods-form-control__root">
-      <div className="ods-form-control__header">
-        <div className="ods-form-control__label">{label}</div>
-
-        {tooltipMessage ? (
-          <div
-            aria-label={tooltipMessage}
-            className="ods-form-control__icon ods-tooltip"
-            data-tooltip-pos="up-left"
-          >
-            <InformationCircle size={16} color="#B6B9CC" />{' '}
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
+      {(labelProp || tooltipMessage) && (
+        <div className="ods-form-control__header">
+          {labelProp && <div className="ods-form-control__label">{label}</div>}
+          {tooltipMessage && (
+            <div
+              aria-label={tooltipMessage}
+              className="ods-form-control__icon ods-tooltip"
+              data-tooltip-pos="up-left"
+            >
+              <InformationCircle size={16} color="#B6B9CC" />{' '}
+            </div>
+          )}
+        </div>
+      )}
       <div className={classNames('ods-form-control__element')}>{children}</div>
       {helperText && (
         <p
