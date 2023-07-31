@@ -25,68 +25,62 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-  <div>
-    <div
-      class="ods-date class-test"
-    >
+    <div>
       <div
-        class="ods-date__form-row-datepicker"
+        class="ods-date class-test"
       >
         <div
-          class="ods-date__form-controls"
-          data-testid="date-picker-first-field-wrapper"
+          class="ods-date__form-row-datepicker"
         >
-          <label
-            for="start-date"
-          >
-            Your label
-          </label>
           <div
-            class="ods-form-control__root"
+            class="ods-date__form-controls"
+            data-testid="date-picker-first-field-wrapper"
           >
+            <label
+              for="start-date"
+            >
+              Your label
+            </label>
             <div
-              class="ods-form-control__header"
+              class="ods-form-control__root"
             >
               <div
-                class="ods-form-control__label"
-              />
-            </div>
-            <div
-              class="ods-form-control__element"
-            >
-              <div
-                class="ods-input ods-input--disabled--text"
+                class="ods-form-control__element"
               >
-                <input
-                  autocomplete="off"
-                  data-testid="datepicker-input-1"
-                  id="start-date"
-                  inputmode="numeric"
-                  maxlength="10"
-                  name="start-date"
-                  placeholder="dd/mm/aaaa"
-                  readonly=""
-                  type="text"
-                  value="10/08/2022"
-                />
                 <div
-                  class="ods-input__adornment ods-input__adornment--placeholder"
+                  class="ods-input ods-input--disabled--text"
                 >
-                  <svg
-                    fill="none"
-                    height="20"
-                    stroke="#B6B9CC"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <input
+                    autocomplete="off"
+                    data-testid="datepicker-input-1"
+                    id="start-date"
+                    inputmode="numeric"
+                    maxlength="10"
+                    name="start-date"
+                    placeholder="dd/mm/aaaa"
+                    readonly=""
+                    type="text"
+                    value="10/08/2022"
+                  />
+                  <div
+                    class="ods-input__adornment ods-input__adornment--placeholder"
                   >
-                    <path
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                    />
-                  </svg>
+                    <svg
+                      fill="none"
+                      height="20"
+                      stroke="#B6B9CC"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -94,7 +88,6 @@ test('renders element properly', () => {
         </div>
       </div>
     </div>
-  </div>
   `);
 });
 
