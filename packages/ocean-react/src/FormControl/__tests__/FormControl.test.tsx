@@ -19,13 +19,6 @@ test('renders element properly', () => {
       class="ods-form-control__root"
     >
       <div
-        class="ods-form-control__header"
-      >
-        <div
-          class="ods-form-control__label"
-        />
-      </div>
-      <div
         class="ods-form-control__element"
       >
         <span>
@@ -82,9 +75,6 @@ test('renders a Hello World tooltip', () => {
       <div
         class="ods-form-control__header"
       >
-        <div
-          class="ods-form-control__label"
-        />
         <div
           aria-label="Hello World!"
           class="ods-form-control__icon ods-tooltip"
