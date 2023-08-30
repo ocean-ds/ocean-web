@@ -7,6 +7,12 @@
     color: $color-interface-dark-up;
   }
 
+  div {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+  }
+
   span,
   a {
     color: $color-interface-dark-up;

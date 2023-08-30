@@ -22,13 +22,13 @@ const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
         );
 
         return typeof item === 'string' ? (
-          <>
+          <div key={`string-item-${item}`}>
             <span>{item}</span> {showIcon}
-          </>
+          </div>
         ) : (
-          <>
+          <div key={`tag-item-${index + 1}`}>
             {item} {showIcon}
-          </>
+          </div>
         );
       })}
     </div>
