@@ -7,7 +7,7 @@
     color: $color-interface-dark-up;
   }
 
-  div {
+  &__item {
     align-items: center;
     display: flex;
     gap: 4px;
