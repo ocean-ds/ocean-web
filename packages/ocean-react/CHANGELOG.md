@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.49.0](https://github.com/ocean-ds/ocean-web/compare/v1.48.1...v1.49.0) (2023-09-01)
+
+### Features
+
+- center chevron with content ([#1081](https://github.com/ocean-ds/ocean-web/issues/1081)) ([0f1370b](https://github.com/ocean-ds/ocean-web/commit/0f1370b3de8cc6dff7b9499620428c0685771827))
+
 ## [1.48.1](https://github.com/ocean-ds/ocean-web/compare/v1.48.0...v1.48.1) (2023-08-30)
 
 ### Bug Fixes
