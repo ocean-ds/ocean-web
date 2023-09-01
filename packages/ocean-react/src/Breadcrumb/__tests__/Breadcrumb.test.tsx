@@ -21,7 +21,9 @@ test('renders breadcrumb with array elements', () => {
       class="ods-breadcrumb custom-class"
       data-testid="breadcrumb-test"
     >
-      <div>
+      <div
+        class="ods-breadcrumb__item"
+      >
         <span>
           item 1
         </span>
@@ -40,7 +42,9 @@ test('renders breadcrumb with array elements', () => {
           />
         </svg>
       </div>
-      <div>
+      <div
+        class="ods-breadcrumb__item"
+      >
         <span>
           item 2
         </span>
@@ -65,7 +69,9 @@ test('renders breadcrumb with array string', () => {
       class="ods-breadcrumb custom-class"
       data-testid="breadcrumb-test"
     >
-      <div>
+      <div
+        class="ods-breadcrumb__item"
+      >
         <span>
           item 1
         </span>
@@ -84,7 +90,9 @@ test('renders breadcrumb with array string', () => {
           />
         </svg>
       </div>
-      <div>
+      <div
+        class="ods-breadcrumb__item"
+      >
         <span>
           item 2
         </span>
@@ -103,7 +111,9 @@ test('renders breadcrumb with array string', () => {
           />
         </svg>
       </div>
-      <div>
+      <div
+        class="ods-breadcrumb__item"
+      >
         <span>
           item 3
         </span>
