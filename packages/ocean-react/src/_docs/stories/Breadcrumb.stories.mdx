@@ -2,9 +2,10 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 
 import Breadcrumb, { BreadcrumbProps } from '../../Breadcrumb';
 import ContentRow from '../../_stories/components/ContentRow.tsx';
+import getComponentPath from '../utils/getComponentPath';
 
 <Meta
-  title="Navigation/Breadcrumb"
+  title={getComponentPath('breadcrumb')}
   component={Breadcrumb}
   parameters={{
     previewTabs: {

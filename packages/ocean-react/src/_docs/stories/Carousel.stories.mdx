@@ -3,9 +3,10 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Carousel from '../../Carousel';
 import Typography from '../../Typography';
 import BannerExample from '../../Carousel/examples/BannerExample';
+import getComponentPath from '../utils/getComponentPath';
 
 <Meta
-  title="Content/Carousel"
+  title={getComponentPath('carousel')}
   component={Carousel}
   parameters={{
     previewTabs: {

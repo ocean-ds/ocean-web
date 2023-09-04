@@ -9,9 +9,10 @@ import {
 
 import Alert from '../../Alert';
 import ContentRow from '../../_stories/components/ContentRow.tsx';
+import getComponentPath from '../utils/getComponentPath';
 
 <Meta
-  title="Feedback/Alert"
+  title={getComponentPath('alert')}
   component={Alert}
   parameters={{
     previewTabs: {
