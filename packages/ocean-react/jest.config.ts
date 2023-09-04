@@ -14,7 +14,7 @@ const config: Config.InitialOptions = {
     `<rootDir>/packages/${packageName}/src/**/*.{ts,tsx}`,
     `!<rootDir>/packages/${packageName}/src/**/index.ts`,
     `!<rootDir>/packages/${packageName}/src/_stories/components/*.{ts,tsx}`,
-    `!<rootDir>/packages/${packageName}/src/_docs/*.{ts,tsx}`,
+    `!<rootDir>/packages/${packageName}/src/_docs/**/*.{ts,tsx}`,
   ],
   name: packageName,
   displayName: packageName,
