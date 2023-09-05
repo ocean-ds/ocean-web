@@ -3,21 +3,36 @@ type ComponentPaths = {
 };
 
 const groupPaths = {
-  feedback: 'Feedback',
-  dataDisplay: 'Data Display',
   action: 'Action',
+  chart: 'Chart',
+  dataDisplay: 'Data Display',
+  feedback: 'Feedback',
+  fundations: 'Fundations',
   input: 'Input',
   navigation: 'Navigation',
-  chart: 'Chart',
 };
 
 // eslint-disable-next-line import/prefer-default-export
 export const componentsPaths: ComponentPaths = {
-  alert: `${groupPaths.feedback}/Alert`,
-  badge: `${groupPaths.dataDisplay}/Badge`,
-  breadcrumb: `${groupPaths.navigation}/BreadCrumb`,
+  // Actions
   button: `${groupPaths.action}/Button`,
-  carousel: `${groupPaths.dataDisplay}/Carousel`,
-  checkbox: `${groupPaths.input}/Checkbox`,
+
+  // Charts
   donut: `${groupPaths.chart}/Donut`,
+
+  // Data Display
+  badge: `${groupPaths.dataDisplay}/Badge`,
+  carousel: `${groupPaths.dataDisplay}/Carousel`,
+  crosssell: `${groupPaths.dataDisplay}/CrossSellCard`,
+
+  // Feedback
+  alert: `${groupPaths.feedback}/Alert`,
+
+  // Fundations
+
+  // Input
+  checkbox: `${groupPaths.input}/Checkbox`,
+
+  // Navigation
+  breadcrumb: `${groupPaths.navigation}/BreadCrumb`,
 };

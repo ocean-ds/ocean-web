@@ -1,0 +1,205 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import CrossSellCard from '../../CrossSellCard';
+import ContentRow from '../../_stories/components/ContentRow.tsx';
+import getComponentPath from '../utils/getComponentPath';
+import emptyImage from '../images/empty-image.svg';
+import logo from '../images/ocean-logo.svg';
+
+import { ChevronDown } from '@useblu/ocean-icons-react';
+
+<Meta
+  title={getComponentPath('crosssell')}
+  component={CrossSellCard}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# CrossSellCard
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [Custom](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+A CrossSellCard is a component within a design system that is specifically designed to promote and
+encourage cross-selling opportunities for products or services. This component is commonly used in
+e-commerce websites, mobile apps, or any platform where multiple offerings are available, and the
+goal is to entice users to explore related or complementary items.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Checkbox',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      title: 'Card title',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      imageSrc: emptyImage,
+      ctaText: 'Call To Action',
+      customIcon: null,
+      ctaAction: () => console.log('clicked'),
+    }}
+    argTypes={{
+      title: {
+        control: { type: 'text' },
+        defaultValue: '',
+        description: 'Determines the card title',
+        type: { name: 'string', required: true },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      description: {
+        control: { type: 'text' },
+        defaultValue: '',
+        description: 'Determines the card description',
+        type: { name: 'string', required: true },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      imageSrc: {
+        control: { type: 'text' },
+        defaultValue: '',
+        description: 'Determines the card image src',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      ctaText: {
+        control: { type: 'text' },
+        defaultValue: '',
+        description: 'Determines the cta text',
+        type: { name: 'string', required: true },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      customIcon: {
+        control: 'object',
+        description: 'Determines the Icon on the',
+        default: null,
+        table: {
+          type: { summary: 'object' },
+          defaultValue: { summary: null },
+        },
+      },
+      ctaAction: {
+        control: null,
+        description: 'Determines the cta action',
+        type: { required: true },
+        table: {
+          type: { summary: 'function' },
+          defaultValue: { summary: null },
+        },
+      },
+    }}
+  >
+    {(props) => <CrossSellCard {...props} />}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { CrossSellCard } from '@useblu/ocean-react';
+import emptyImage from './img/empty-image.svg';
+
+const MyComponent = () => {
+  return (
+    <CrossSellCard
+      title="Card Title"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      ctaText="Call To Action"
+      imageSrc={emptyImage}
+      ctaAction={() => console.log('clicked')}
+    />
+  );
+};
+```
+
+## Custom image <a name="variants"></a>
+
+The `imageSrc` permit to customize card image. Unlike standard product images, custom images
+are often illustrations, graphics, or unique visual representations of the cross-selling items. These
+images are carefully designed to catch the user's attention and provide a distinctive visual appeal.
+
+<Canvas>
+  <Story name="Custom image">
+    <CrossSellCard
+      title="This card has a custom image"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      ctaText="Show"
+      imageSrc={logo}
+      ctaAction={() => console.log('clicked')}
+    />
+  </Story>
+</Canvas>
+
+## Custom icon
+
+The `customIcon` are carefully designed to represent the cross-selling items concisely. Custom icons can
+range from simple graphical representations to more intricate and stylized symbols, depending on the
+design system's aesthetics and goals.
+
+<Canvas>
+  <Story name="Custom icon">
+    <CrossSellCard
+      title="This card has a custom icon"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      ctaText="Call to action"
+      imageSrc={emptyImage}
+      ctaAction={() => console.log('clicked')}
+      customIcon={<ChevronDown />}
+    />
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## Custom <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+## CSS
+
+| Global class                        | Description                                              |
+| ----------------------------------- | -------------------------------------------------------- |
+| .ods-cross-sell-card                | Styles applied to the root element.                      |
+| .ods-cross-sell-card\_\_content     | Styles applied to the content element.                   |
+| .ods-cross-sell-card\_\_information | Styles applied to the heading and description container. |
+| .ods-cross-sell-card\_\_image       | Styles applied to the image element.                     |
+| .ods-cross-sell-card\_\_description | Styles applied to the description element.               |
+| .ods-cross-sell-card\_\_cta         | Styles applied to the cta/button element.                |
+| .ods-cross-sell-card\_\_cta-icon    | Styles applied to the cta/button icon element.           |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/CrossSellCard/CrossSellCard.tsx) for more detail.
