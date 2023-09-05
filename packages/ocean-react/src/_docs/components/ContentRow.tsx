@@ -1,7 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
 import React from 'react';
-import { Col, Row } from '../../Grid';
 
 interface IContentRowProps {
   direction?: 'row' | 'column';

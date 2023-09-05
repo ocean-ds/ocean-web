@@ -7,7 +7,7 @@ const groupPaths = {
   chart: 'Chart',
   dataDisplay: 'Data Display',
   feedback: 'Feedback',
-  fundations: 'Fundations',
+  foundations: 'Foundations',
   input: 'Input',
   navigation: 'Navigation',
 };
@@ -29,6 +29,7 @@ export const componentsPaths: ComponentPaths = {
   alert: `${groupPaths.feedback}/Alert`,
 
   // Fundations
+  colors: `${groupPaths.foundations}/Colors`,
 
   // Input
   checkbox: `${groupPaths.input}/Checkbox`,
