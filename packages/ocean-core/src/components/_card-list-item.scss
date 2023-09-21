@@ -1,33 +1,33 @@
 .ods-card-list-item {
-  display: flex;
-  flex-direction: row;
   align-items: center;
-
-  width: 288px;
-  gap: $spacing-inline-xs;
-  padding: $spacing-stack-xs;
 
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-md;
 
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-inline-xs;
+  padding: $spacing-stack-xs;
   transition: 200ms;
 
+  width: 288px;
+
   &__leading-icon {
-    width: $font-size-md;
+    background-color: $color-interface-light-up;
+    border-radius: 50%;
+
+    color: $color-brand-primary-down;
     height: $font-size-md;
 
     padding: $spacing-stack-xxs;
 
-    color: $color-brand-primary-down;
-    border-radius: 50%;
-    background-color: $color-interface-light-up;
-
     transition: 200ms;
+    width: $font-size-md;
 
-    & svg {
-      width: $font-size-md;
+    svg {
       height: $font-size-md;
+      width: $font-size-md;
     }
   }
 
@@ -39,47 +39,45 @@
 
     &__title {
       color: $color-interface-dark-pure;
-      font-size: $font-size-xs;
       font-family: $font-family-base;
+      font-size: $font-size-xs;
       font-weight: $font-weight-regular;
       line-height: $line-height-comfy;
     }
 
     &__description {
       color: $color-interface-dark-down;
-      font-size: $font-size-xxs;
       font-family: $font-family-base;
+      font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
       line-height: $line-height-comfy;
     }
 
     &__caption {
-      margin-top: $spacing-inset-xxs;
-
       color: $color-interface-dark-down;
-      font-size: $font-size-xxxs;
       font-family: $font-family-base;
+      font-size: $font-size-xxxs;
       font-weight: $font-weight-regular;
       line-height: $line-height-comfy;
+      margin-top: $spacing-inset-xxs;
     }
   }
 
   &__action {
-    width: $font-size-sm;
-    height: $font-size-sm;
-
     color: $color-interface-dark-up;
+    height: $font-size-sm;
+    width: $font-size-sm;
 
-    & svg {
-      width: $font-size-sm;
+    svg {
       height: $font-size-sm;
+      width: $font-size-sm;
     }
   }
 
   &:hover {
     background-color: $color-interface-light-up;
 
-    & .ods-card-list-item__leading-icon {
+    .ods-card-list-item__leading-icon {
       background-color: rgba(184, 195, 255, 0.16);
     }
   }
@@ -87,31 +85,25 @@
   &--disabled {
     cursor: not-allowed;
 
-    & .ods-card-list-item {
-      &__content {
-        &__title,
-        &__description,
-        &__caption {
-          color: $color-interface-dark-up;
-        }
-      }
+    .ods-card-list-item__content__title,
+    .ods-card-list-item__content__description,
+    .ods-card-list-item__content__caption {
+      color: $color-interface-dark-up;
+    }
 
-      &__leading-icon,
-      &__action {
-        color: $color-interface-light-deep;
-      }
+    .ods-card-list-item__leading-icon,
+    .ods-card-list-item__action {
+      color: $color-interface-light-deep;
     }
   }
 
   &--size-small {
-    & .ods-card-list-item__content {
-      &__title {
-        font-size: $font-size-xxs;
-      }
+    .ods-card-list-item__content__title {
+      font-size: $font-size-xxs;
+    }
 
-      &__description {
-        font-size: $font-size-xxxs;
-      }
+    .ods-card-list-item__content__description {
+      font-size: $font-size-xxxs;
     }
   }
 
