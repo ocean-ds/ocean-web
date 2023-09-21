@@ -40,5 +40,20 @@ If that's not sufficient, you can check the [implementation of the component](ht
 ## Playground
 
 <Canvas>
-  <Story name="playground">{(props) => <CardListItem {...props} />}</Story>
+  <Story
+    name="playground"
+    args={{
+      title: 'Title',
+      description: 'Description',
+      caption: 'Caption',
+      leadingIcon: <PlaceholderOutline />,
+      actionIcon: <PlaceholderOutline />,
+      disabled: false,
+      size: 'medium',
+      onClick: () => null,
+      fullWidth: false,
+    }}
+  >
+    {(props) => <CardListItem {...props} />}
+  </Story>
 </Canvas>

@@ -10,6 +10,7 @@ interface CardListItemProps {
   size?: 'small' | 'medium';
   disabled?: boolean;
   fullWidth?: boolean;
+  onClick?: () => void;
 }
 
 const CardListItem = ({
@@ -21,6 +22,7 @@ const CardListItem = ({
   size = 'medium',
   disabled = false,
   fullWidth = false,
+  onClick,
 }: CardListItemProps): JSX.Element => (
   <div
     className={classNames(
@@ -29,6 +31,9 @@ const CardListItem = ({
       { 'ods-card-list-item--disabled': disabled },
       { 'ods-card-list-item--full-width': fullWidth }
     )}
+    onClick={() => {
+      if (!disabled && onClick) onClick();
+    }}
   >
     {leadingIcon && (
       <div className="ods-card-list-item__leading-icon">{leadingIcon}</div>

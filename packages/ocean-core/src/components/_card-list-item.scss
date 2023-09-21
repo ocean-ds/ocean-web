@@ -10,6 +10,9 @@
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-md;
 
+  cursor: pointer;
+  transition: 200ms;
+
   &__leading-icon {
     width: $font-size-md;
     height: $font-size-md;
@@ -19,6 +22,8 @@
     color: $color-brand-primary-down;
     border-radius: 50%;
     background-color: $color-interface-light-up;
+
+    transition: 200ms;
 
     & svg {
       width: $font-size-md;
@@ -68,6 +73,33 @@
     & svg {
       width: $font-size-sm;
       height: $font-size-sm;
+    }
+  }
+
+  &:hover {
+    background-color: $color-interface-light-up;
+
+    & .ods-card-list-item__leading-icon {
+      background-color: rgba(184, 195, 255, 0.16);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    & .ods-card-list-item {
+      &__content {
+        &__title,
+        &__description,
+        &__caption {
+          color: $color-interface-dark-up;
+        }
+      }
+
+      &__leading-icon,
+      &__action {
+        color: $color-interface-light-deep;
+      }
     }
   }
 }
