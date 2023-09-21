@@ -1,0 +1,73 @@
+.ods-card-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 320px;
+  gap: $spacing-inline-xs;
+  padding: $spacing-stack-xs;
+
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-md;
+
+  &__leading-icon {
+    width: $font-size-md;
+    height: $font-size-md;
+
+    padding: $spacing-stack-xxs;
+
+    color: $color-brand-primary-down;
+    border-radius: 50%;
+    background-color: $color-interface-light-up;
+
+    & svg {
+      width: $font-size-md;
+      height: $font-size-md;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    &__title {
+      color: $color-interface-dark-pure;
+      font-size: $font-size-xs;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-comfy;
+    }
+
+    &__description {
+      color: $color-interface-dark-down;
+      font-size: $font-size-xxs;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-comfy;
+    }
+
+    &__caption {
+      margin-top: $spacing-inset-xxs;
+
+      color: $color-interface-dark-down;
+      font-size: $font-size-xxxs;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-comfy;
+    }
+  }
+
+  &__action {
+    width: $font-size-sm;
+    height: $font-size-sm;
+
+    color: $color-interface-dark-up;
+
+    & svg {
+      width: $font-size-sm;
+      height: $font-size-sm;
+    }
+  }
+}
