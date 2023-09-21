@@ -45,7 +45,7 @@ const CardListItem = ({
           {description}
         </div>
       )}
-      {caption && (
+      {caption && size === 'medium' && (
         <div className="ods-card-list-item__content__caption">{caption}</div>
       )}
     </div>

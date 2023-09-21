@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
 
-  width: 320px;
+  width: 288px;
   gap: $spacing-inline-xs;
   padding: $spacing-stack-xs;
 
@@ -101,5 +101,21 @@
         color: $color-interface-light-deep;
       }
     }
+  }
+
+  &--size-small {
+    & .ods-card-list-item__content {
+      &__title {
+        font-size: $font-size-xxs;
+      }
+
+      &__description {
+        font-size: $font-size-xxxs;
+      }
+    }
+  }
+
+  &--full-width {
+    width: 100%;
   }
 }
