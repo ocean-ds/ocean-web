@@ -25,6 +25,7 @@ const CardListItem = ({
   onClick,
 }: CardListItemProps): JSX.Element => (
   <div
+    data-testid="card-list-item"
     className={classNames(
       'ods-card-list-item',
       `ods-card-list-item--size-${size}`,
