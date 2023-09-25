@@ -1,27 +1,23 @@
 .ods-card-list-item {
   align-items: center;
-
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-md;
-
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   flex-direction: row;
   gap: $spacing-inline-xs;
   padding: $spacing-stack-xs;
   transition: 200ms;
-
-  width: 288px;
+  width: 320px;
 
   &__leading-icon {
     background-color: $color-interface-light-up;
     border-radius: 50%;
-
+    box-sizing: content-box;
     color: $color-brand-primary-down;
     height: $font-size-md;
-
     padding: $spacing-stack-xxs;
-
     transition: 200ms;
     width: $font-size-md;
 
@@ -34,7 +30,6 @@
   &__content {
     display: flex;
     flex-direction: column;
-
     width: 100%;
 
     &__title {
