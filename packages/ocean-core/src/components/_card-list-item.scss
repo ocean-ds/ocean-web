@@ -77,7 +77,7 @@
   &:hover:not(.ods-card-list-item--disabled) {
     background-color: $color-interface-light-up;
 
-    .ods-card-list-item__leading-icon {
+    &:not(.ods-card-list-item--size-small) .ods-card-list-item__leading-icon {
       background-color: rgba(184, 195, 255, 0.16);
     }
   }
@@ -104,6 +104,10 @@
 
     .ods-card-list-item__content__description {
       font-size: $font-size-xxxs;
+    }
+
+    .ods-card-list-item__leading-icon {
+      background-color: transparent;
     }
   }
 
