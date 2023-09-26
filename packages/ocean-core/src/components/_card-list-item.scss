@@ -59,9 +59,14 @@
   }
 
   &__action {
+    background-color: transparent;
     color: $color-interface-dark-up;
     height: $font-size-sm;
     width: $font-size-sm;
+
+    &:hover {
+      background-color: transparent;
+    }
 
     svg {
       height: $font-size-sm;
@@ -69,7 +74,7 @@
     }
   }
 
-  &:hover {
+  &:hover:not(.ods-card-list-item--disabled) {
     background-color: $color-interface-light-up;
 
     .ods-card-list-item__leading-icon {
