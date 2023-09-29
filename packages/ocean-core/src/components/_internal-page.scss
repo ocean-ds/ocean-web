@@ -1,0 +1,56 @@
+.ods-internal-page {
+  position: relative;
+  max-width: 712px;
+  min-width: 712px;
+
+  &__navigation {
+    margin-bottom: 16px;
+  }
+
+  &__action {
+    position: absolute;
+    right: 0;
+  }
+
+  &__main {
+    position: relative;
+    min-height: 54px;
+    margin-bottom: 24px;
+
+    &--title {
+      @extend .ods-typography;
+      @extend .ods-typography__heading2;
+
+      color: $color-brand-primary-pure;
+      margin-bottom: 4px;
+    }
+
+    &--description {
+      @extend .ods-typography;
+      @extend .ods-typography__paragraph;
+
+      color: $color-interface-dark-down;
+    }
+  }
+
+  &__content {
+    &--title {
+      @extend .ods-typography;
+      @extend .ods-typography__heading3;
+
+      margin-bottom: 4px;
+    }
+
+    &--description {
+      @extend .ods-typography__description;
+    }
+  }
+
+  &__steps {
+    margin-bottom: 16px;
+  }
+
+  &__container {
+    margin-top: 24px;
+  }
+}

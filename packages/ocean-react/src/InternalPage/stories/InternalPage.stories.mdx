@@ -1,0 +1,69 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import InternalPage from '../InternalPage';
+
+<Meta title="Components/InternalPage" component={InternalPage} />
+
+# Divider API
+
+The API documentation of the Divider React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Divider } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <InternalPage
+      navigation={['Home', 'Page 1', 'Page 2', 'Current page']}
+      action={<button>Action</button>}
+      main={{
+        title: 'Main title',
+        description:
+          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.',
+      }}
+      content={{
+        title: 'Step or content title',
+        description: 'Content description.',
+      }}
+      steps={{ currentStep: 2, steps: 5 }}
+    >
+      ......
+    </InternalPage>
+  </Story>
+</Canvas>
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage1">
+    <InternalPage
+      navigation={['Home', 'Page 1', 'Page 2', 'Current page']}
+      action={<button>Action</button>}
+      main={{
+        title: 'Main title',
+        description: 'Lorem Ipsum is simply dummy text.',
+      }}
+      content={{
+        title: 'Step or content title',
+        description: 'Content description.',
+      }}
+      steps={{ currentStep: 2, steps: 5 }}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class | Description                       |
+| ------------ | --------------------------------- |
+| .ods-divider | Styles applied to the hr element. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Divider/Divider.tsx) for more detail.

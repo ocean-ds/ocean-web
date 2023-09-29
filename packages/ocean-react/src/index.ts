@@ -97,3 +97,5 @@ export * from './Shortcut';
 
 export { default as CardListItem } from './CardListItem';
 export * from './CardListItem';
+export { default as InternalPage } from './InternalPage';
+export * from './InternalPage';
