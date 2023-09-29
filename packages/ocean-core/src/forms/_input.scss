@@ -8,9 +8,8 @@
   height: 48px;
 
   input {
-    border: 0;
-    border-radius: $border-radius-sm;
     border: $border-width-hairline solid transparent;
+    border-radius: $border-radius-sm;
     box-sizing: border-box;
     color: $color-interface-dark-deep;
     font-family: $font-family-base;
