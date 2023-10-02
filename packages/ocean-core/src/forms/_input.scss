@@ -3,11 +3,12 @@
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: $border-radius-sm;
+  box-sizing: border-box;
   display: flex;
-  height: 46px;
+  height: 48px;
 
   input {
-    border: 0;
+    border: $border-width-hairline solid transparent;
     border-radius: $border-radius-sm;
     box-sizing: border-box;
     color: $color-interface-dark-deep;
@@ -36,6 +37,10 @@
   &:focus-within {
     border-color: $color-brand-primary-down;
     border-width: $border-width-thin;
+
+    input {
+      border-width: 0;
+    }
   }
 
   &--filled {
