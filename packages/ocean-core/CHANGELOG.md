@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.1](https://github.com/ocean-ds/ocean-web/compare/v1.50.0...v1.50.1) (2023-10-02)
+
+### Bug Fixes
+
+- remove input jump on hover ([#1084](https://github.com/ocean-ds/ocean-web/issues/1084)) ([99ce61c](https://github.com/ocean-ds/ocean-web/commit/99ce61cb6364e26cf4753561dd186d7604fa98ad))
+
 # [1.50.0](https://github.com/ocean-ds/ocean-web/compare/v1.49.0...v1.50.0) (2023-09-27)
 
 ### Features
