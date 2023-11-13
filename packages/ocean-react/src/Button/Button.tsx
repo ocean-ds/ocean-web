@@ -21,8 +21,11 @@ export type ButtonProps<P extends React.ElementType = 'button'> = {
       | 'primary'
       | 'primaryCritical'
       | 'secondary'
+      | 'secondaryCritical'
       | 'text'
       | 'textCritical'
+      | 'textTertiary'
+      | 'textTertiaryCritical'
       | 'inverse';
     /**
      * The size of the button.
