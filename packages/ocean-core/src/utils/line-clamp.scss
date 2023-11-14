@@ -1,4 +1,4 @@
-@mixin line-clamp($lines, $white-space: break-all) {
+@mixin line-clamp($lines, $white-space: wrap) {
   -webkit-box-orient: vertical;
   display: -webkit-box; /* stylelint-disable-line */
   -webkit-line-clamp: $lines;

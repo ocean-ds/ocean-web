@@ -117,12 +117,12 @@
   white-space: nowrap;
 
   @include media-breakpoint-down(sm) {
-    @include line-clamp(2, wrap);
+    @include line-clamp(2);
   }
 }
 
 .ods-transaction-list-item__level2 {
-  @include line-clamp(2, wrap);
+  @include line-clamp(2);
   color: $color-interface-dark-down;
   font-family: $font-family-base;
   font-size: $font-size-xxs;
