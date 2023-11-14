@@ -1,0 +1,7 @@
+@mixin line-clamp($lines, $white-space: break-all) {
+  -webkit-box-orient: vertical;
+  display: -webkit-box; /* stylelint-disable-line */
+  -webkit-line-clamp: $lines;
+  overflow: hidden;
+  white-space: $white-space;
+}

@@ -117,26 +117,18 @@
   white-space: nowrap;
 
   @include media-breakpoint-down(sm) {
-    -webkit-box-orient: vertical;
-    /* stylelint-disable value-no-vendor-prefix */
-    display: -webkit-box;
-    /* stylelint-enable value-no-vendor-prefix */
-    -webkit-line-clamp: 2;
-    white-space: wrap;
+    @include line-clamp(2, wrap);
   }
 }
 
 .ods-transaction-list-item__level2 {
-  -webkit-box-orient: vertical;
+  @include line-clamp(2, wrap);
   color: $color-interface-dark-down;
-  display: box;
   font-family: $font-family-base;
   font-size: $font-size-xxs;
   font-weight: $font-weight-regular;
-  -webkit-line-clamp: 2;
   line-height: 15px;
   margin-bottom: $spacing-inline-xxs;
-  max-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
