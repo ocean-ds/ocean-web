@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.51.0](https://github.com/ocean-ds/ocean-web/compare/v1.50.1...v1.51.0) (2023-11-14)
+
+### Features
+
+- adjust color and font size list ([#1085](https://github.com/ocean-ds/ocean-web/issues/1085)) ([1e93aaa](https://github.com/ocean-ds/ocean-web/commit/1e93aaa7bcbd54837db39ebbded0e70fe958a2ba))
+
 ## [1.50.1](https://github.com/ocean-ds/ocean-web/compare/v1.50.0...v1.50.1) (2023-10-02)
 
 ### Bug Fixes
