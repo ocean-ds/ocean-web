@@ -112,6 +112,19 @@
   font-size: $font-size-xs;
   font-weight: $font-weight-medium;
   margin-bottom: $spacing-inline-xxxs;
+}
+
+.ods-transaction-list-item__level2 {
+  color: $color-interface-dark-down;
+  font-family: $font-family-base;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-regular;
+  line-height: 15px;
+  margin-bottom: $spacing-inline-xxs;
+}
+
+.ods-transaction-list-item__level1,
+.ods-transaction-list-item__level2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -119,18 +132,6 @@
   @include media-breakpoint-down(sm) {
     @include line-clamp(2);
   }
-}
-
-.ods-transaction-list-item__level2 {
-  @include line-clamp(2);
-  color: $color-interface-dark-down;
-  font-family: $font-family-base;
-  font-size: $font-size-xxs;
-  font-weight: $font-weight-regular;
-  line-height: 15px;
-  margin-bottom: $spacing-inline-xxs;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .ods-transaction-list-item__level3 {
