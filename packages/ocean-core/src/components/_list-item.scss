@@ -82,7 +82,7 @@
 .ods-transaction-list-item__content {
   align-items: center;
   box-sizing: border-box;
-  column-gap: $spacing-stack-xs;
+  column-gap: $spacing-stack-xxs;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -98,6 +98,7 @@
 }
 
 .ods-transaction-list-item__information {
+  overflow: hidden;
   width: 100%;
 }
 
@@ -106,7 +107,7 @@
 }
 
 .ods-transaction-list-item__level1 {
-  color: $color-interface-dark-deep;
+  color: $color-interface-dark-pure;
   font-family: $font-family-base;
   font-size: $font-size-xs;
   font-weight: $font-weight-medium;
@@ -114,18 +115,23 @@
 }
 
 .ods-transaction-list-item__level2 {
-  -webkit-box-orient: vertical;
   color: $color-interface-dark-down;
-  display: box;
   font-family: $font-family-base;
-  font-size: 15px;
+  font-size: $font-size-xxs;
   font-weight: $font-weight-regular;
-  -webkit-line-clamp: 2;
   line-height: 15px;
   margin-bottom: $spacing-inline-xxs;
-  max-height: 30px;
+}
+
+.ods-transaction-list-item__level1,
+.ods-transaction-list-item__level2 {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include media-breakpoint-down(sm) {
+    @include line-clamp(2);
+  }
 }
 
 .ods-transaction-list-item__level3 {
@@ -144,7 +150,7 @@
 }
 
 .ods-transaction-list-item__value {
-  color: $color-interface-dark-deep;
+  color: $color-interface-dark-pure;
   font-family: $font-family-base;
   font-size: $font-size-xs;
   font-weight: $font-weight-bold;
