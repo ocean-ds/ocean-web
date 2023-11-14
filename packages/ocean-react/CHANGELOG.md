@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.52.0](https://github.com/ocean-ds/ocean-web/compare/v1.51.0...v1.52.0) (2023-11-14)
+
+### Features
+
+- create button variants ([#1086](https://github.com/ocean-ds/ocean-web/issues/1086)) ([92551ad](https://github.com/ocean-ds/ocean-web/commit/92551ad2c1cc94cd7910d10a62dad0e1e63ac2ce))
+
 # [1.50.0](https://github.com/ocean-ds/ocean-web/compare/v1.49.0...v1.50.0) (2023-09-27)
 
 ### Features
