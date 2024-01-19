@@ -3,8 +3,12 @@ import * as DateFns from 'date-fns';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
-import { DatePickerProps, DatePickerFields } from '../types/DateRange.types';
+import { DateRange, ClassNames } from 'react-day-picker';
+import {
+  DatePickerFields,
+  IDatePickerReturn,
+  IDatePickerProps,
+} from '../types/DateRange.types';
 
 import {
   handleValidateStartsToday,
@@ -12,33 +16,6 @@ import {
   formatDay,
   getInputPlaceholder,
 } from '../utils/dateUtils';
-
-type IDatePickerProps = Pick<
-  DatePickerProps,
-  'values' | 'onSelect' | 'startsToday' | 'locale'
->;
-
-type IDatePickerReturn = {
-  input1Ref: React.Ref<HTMLInputElement>;
-  input2Ref: React.Ref<HTMLInputElement>;
-  showDayPicker: boolean;
-  fromDate: Date;
-  toDate: Date;
-  selectedDays: DateRange;
-  CustomStyles: ClassNames;
-  localeOption: DateFns.Locale;
-  currentField: string;
-  inputPlaceholder: string;
-  handleDayMouseEnter: (day: Date) => void;
-  handleDayClick: (day: Date) => void;
-  inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-  createHandleToggleClick: (fieldId: string) => void;
-  disabledDays: (day: Date) => boolean;
-  formatDay: DateFormatter;
-  handleCloseByOutside: () => void;
-  handleDisplayMonth: (displayMonth: Date) => Date;
-  currentMonthToDisplay: Date | undefined;
-};
 
 export default function useDatePicker({
   values,
