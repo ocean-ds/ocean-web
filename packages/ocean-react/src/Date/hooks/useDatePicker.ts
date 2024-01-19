@@ -1,11 +1,9 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
-
 import ptBr from 'date-fns/locale/pt-BR';
+import { ClassNames } from 'react-day-picker';
 
-import { ClassNames, DateFormatter } from 'react-day-picker';
-
-import { DatePickerSingleProps } from '../types/DatePicker.types';
+import { IDatePickerProps, IDatePickerReturn } from '../types/DatePicker.types';
 
 import {
   handleValidateStartsToday,
@@ -13,29 +11,6 @@ import {
   formatDay,
   getInputPlaceholder,
 } from '../utils/dateUtils';
-
-type IDatePickerProps = Pick<
-  DatePickerSingleProps,
-  'value' | 'onSelect' | 'startsToday' | 'locale'
->;
-
-type IDatePickerReturn = {
-  input1Ref: React.Ref<HTMLInputElement>;
-  input2Ref: React.Ref<HTMLInputElement>;
-  showDayPicker: boolean;
-  selectedDay: Date;
-  CustomStyles: ClassNames;
-  localeOption: DateFns.Locale;
-  currentField: string;
-  inputPlaceholder: string;
-  handleDayClick: (day: Date) => void;
-  inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-  createHandleToggleClick: (fieldId: string) => void;
-  disabledDays: (day: Date) => boolean;
-  formatDay: DateFormatter;
-  handleCloseByOutside: () => void;
-  currentMonthToDisplay: Date | undefined;
-};
 
 export default function useDatePickerSingle({
   value,
