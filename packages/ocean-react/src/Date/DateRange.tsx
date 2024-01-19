@@ -39,12 +39,13 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       inputPlaceholder,
       handleDayMouseEnter,
       handleDayClick,
+      handleDisplayMonth,
       inputChange,
       createHandleToggleClick,
       disabledDays,
       formatDay,
-
       handleCloseByOutside,
+      currentMonthToDisplay,
     } = useDateRange({ values, onSelect, startsToday, locale });
 
     return (
@@ -139,9 +140,14 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                   formatters={{ formatDay }}
                   selected={selectedDays}
                   disabled={disabledDays}
+                  defaultMonth={currentMonthToDisplay}
                   components={{
-                    Caption: ({ displayMonth }: CaptionProps) =>
-                      DatePickerHeader({ displayMonth, locale: localeOption }),
+                    Caption: ({ displayMonth }: CaptionProps) => (
+                      <DatePickerHeader
+                        locale={localeOption}
+                        displayMonth={handleDisplayMonth(displayMonth)}
+                      />
+                    ),
                   }}
                 />
               </div>

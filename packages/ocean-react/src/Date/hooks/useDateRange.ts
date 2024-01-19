@@ -36,6 +36,8 @@ type IDatePickerReturn = {
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
   handleCloseByOutside: () => void;
+  handleDisplayMonth: (displayMonth: Date) => Date;
+  currentMonthToDisplay: Date | undefined;
 };
 
 export default function useDatePicker({
@@ -55,8 +57,12 @@ export default function useDatePicker({
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [currentField, setCurrentField] = React.useState<string>('');
+  const [currentMonthToDisplay, setCurrentMonthToDisplay] =
+    React.useState<Date>();
   const [datePickerCache, setDatePickerCache] =
     React.useState<DatePickerFields>({ from: '', to: '' });
+  const [firstInputClicked, setFirstInputClicked] =
+    React.useState<boolean>(false);
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
@@ -84,6 +90,7 @@ export default function useDatePicker({
       const formattedDay = DateFns.format(day, localeDateFormat);
 
       if (currentField === 'start-date') {
+        updateCurrentMonth(formattedDay);
         if (day > toDate) {
           updateState({ from: formattedDay, to: '' }, true);
         } else {
@@ -105,7 +112,42 @@ export default function useDatePicker({
     }
   };
 
+  const updateCurrentMonth = (date: string) => {
+    const parsedDate = DateFns.parse(date, 'dd/MM/yyyy', new Date());
+
+    setCurrentMonthToDisplay(parsedDate);
+  };
+
+  const isValidDate = (date: Date | undefined): boolean =>
+    date instanceof Date && !Number.isNaN(date.getTime());
+
+  const handleDisplayMonth = (displayMonth: Date) => {
+    const selectedDate = firstInputClicked
+      ? selectedDays.from
+      : selectedDays.to;
+    const monthToShowOnHeader = isValidDate(selectedDate)
+      ? selectedDate
+      : undefined;
+
+    return monthToShowOnHeader || displayMonth;
+  };
+
   const createHandleToggleClick = (fieldId: string) => {
+    const isValidStartDate =
+      fieldId === 'start-date' && isValidDate(selectedDays.from);
+    const isValidEndDate =
+      fieldId === 'end-date' && isValidDate(selectedDays.to);
+
+    if (isValidStartDate) {
+      updateCurrentMonth(values.from);
+      setFirstInputClicked(true);
+    }
+
+    if (isValidEndDate) {
+      updateCurrentMonth(values.to);
+      setFirstInputClicked(false);
+    }
+
     setShowDayPicker(!showDayPicker);
     setCurrentField(fieldId);
   };
@@ -205,5 +247,7 @@ export default function useDatePicker({
     disabledDays,
     formatDay,
     handleCloseByOutside,
+    handleDisplayMonth,
+    currentMonthToDisplay,
   };
 }

@@ -34,6 +34,7 @@ type IDatePickerReturn = {
   disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
   handleCloseByOutside: () => void;
+  currentMonthToDisplay: Date | undefined;
 };
 
 export default function useDatePickerSingle({
@@ -53,6 +54,8 @@ export default function useDatePickerSingle({
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [currentField, setCurrentField] = React.useState<string>('');
+  const [currentMonthToDisplay, setCurrentMonthToDisplay] =
+    React.useState<Date>();
   const [datePickerCache, setDatePickerCache] = React.useState<string>('');
 
   const fromDate = DateFns.parse(value || '', localeDateFormat, new Date());
@@ -70,6 +73,7 @@ export default function useDatePickerSingle({
     if (!(startsToday && handleValidateStartsToday(startsToday, day))) {
       const formattedDay = DateFns.format(day, localeDateFormat);
 
+      updateCurrentMonth(formattedDay);
       updateState(formattedDay, true);
       setCurrentField('');
       setShowDayPicker(false);
@@ -113,6 +117,12 @@ export default function useDatePickerSingle({
     }
   };
 
+  const updateCurrentMonth = (date: string) => {
+    const parsedDate = DateFns.parse(date, 'dd/MM/yyyy', new Date());
+
+    setCurrentMonthToDisplay(parsedDate);
+  };
+
   const CustomStyles: ClassNames = {
     root: 'ods-date__calendar ods-date_calendar_m1',
     caption: 'ods-date__caption',
@@ -151,5 +161,6 @@ export default function useDatePickerSingle({
     disabledDays,
     formatDay,
     handleCloseByOutside,
+    currentMonthToDisplay,
   };
 }
