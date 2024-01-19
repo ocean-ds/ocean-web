@@ -114,17 +114,17 @@ export default function useDatePicker({
 
   const updateCurrentMonth = (date: string) => {
     const parsedDate = DateFns.parse(date, 'dd/MM/yyyy', new Date());
-
     setCurrentMonthToDisplay(parsedDate);
   };
 
   const isValidDate = (date: Date | undefined): boolean =>
     date instanceof Date && !Number.isNaN(date.getTime());
 
+  const getSelectedDate = () =>
+    firstInputClicked ? selectedDays.from : selectedDays.to;
+
   const handleDisplayMonth = (displayMonth: Date) => {
-    const selectedDate = firstInputClicked
-      ? selectedDays.from
-      : selectedDays.to;
+    const selectedDate = getSelectedDate();
     const monthToShowOnHeader = isValidDate(selectedDate)
       ? selectedDate
       : undefined;
@@ -138,14 +138,18 @@ export default function useDatePicker({
     const isValidEndDate =
       fieldId === 'end-date' && isValidDate(selectedDays.to);
 
-    if (isValidStartDate) {
-      updateCurrentMonth(values.from);
-      setFirstInputClicked(true);
-    }
+    const updateValuesAndInputClicked = (
+      date: string,
+      isFirstInputClicked: boolean
+    ) => {
+      updateCurrentMonth(date);
+      setFirstInputClicked(isFirstInputClicked);
+    };
 
-    if (isValidEndDate) {
-      updateCurrentMonth(values.to);
-      setFirstInputClicked(false);
+    if (isValidStartDate) {
+      updateValuesAndInputClicked(values.from, true);
+    } else if (isValidEndDate) {
+      updateValuesAndInputClicked(values.to, false);
     }
 
     setShowDayPicker(!showDayPicker);
