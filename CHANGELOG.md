@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.52.1](https://github.com/ocean-ds/ocean-web/compare/v1.52.0...v1.52.1) (2024-01-22)
+
+### Bug Fixes
+
+- adjusts on Date component ([#1088](https://github.com/ocean-ds/ocean-web/issues/1088)) ([23bd270](https://github.com/ocean-ds/ocean-web/commit/23bd2701aa16e976ee88ac05f02cfb08929fb932))
+
 # [1.52.0](https://github.com/ocean-ds/ocean-web/compare/v1.51.0...v1.52.0) (2023-11-14)
 
 ### Features
