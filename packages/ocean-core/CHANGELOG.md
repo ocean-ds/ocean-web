@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.52.2](https://github.com/ocean-ds/ocean-web/compare/v1.52.1...v1.52.2) (2024-01-30)
+
+### Bug Fixes
+
+- add padding breadcumb ([#1090](https://github.com/ocean-ds/ocean-web/issues/1090)) ([63becce](https://github.com/ocean-ds/ocean-web/commit/63beccebc27af53c80944327b56edc08ead726f6))
+
 ## [1.52.1](https://github.com/ocean-ds/ocean-web/compare/v1.52.0...v1.52.1) (2024-01-22)
 
 ### Bug Fixes
