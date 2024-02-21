@@ -1,0 +1,75 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import getComponentPath from '../utils/getComponentPath';
+import ColorRow from '../components/ColorRow.tsx';
+import Typography from '../../Typography/Typography.tsx';
+
+<Meta
+  title={getComponentPath('colors')}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Colors
+
+- [Overview](#overview)
+- [Primary](#primary)
+- [Complementary](#complementary)
+- [Highlight](#highlight)
+- [Interface](#interface)
+- [Status](#status)
+
+## Overview <a name="overview"></a>
+
+Ocean colors are derived from Ocean-tokens, which can be found in this
+repository [here](https://github.com/ocean-ds/ocean-tokens).
+
+### Primary <a name="primary"></a>
+
+Blue is our main color and is used in most of our components.
+
+<ColorRow type="primary" />
+
+<br />
+
+### Complementary <a name="complementary"></a>
+
+Acqua is our supporting color that works together with blue. We use it, for example,
+for buttons and links that need contrast on a blue background. It is also used in components
+such as Radio Button, Checkbox and Toggle.
+
+<ColorRow type="complementary" />
+
+<br />
+
+### Highlight <a name="highlight"></a>
+
+We used coral as a strategic color to highlight certain elements. Its use is quite punctual
+in the interfaces and freer in the illustrations.
+
+<ColorRow type="highlight" />
+
+<br />
+
+### Interface <a name="interface"></a>
+
+We use Interface Colors in titles, masses of text and secondary button states, for example.
+In addition, we also use it as a background color to highlight any element that is on top of it.
+For the latter case, we prefer lighter tones, such as Color Interface Light Up.
+
+<ColorRow type="interface" />
+
+<br />
+
+### Status <a name="status"></a>
+
+Status colors are used to visually reinforce the outcome of an action. Positive Status for success
+messages and positive situations, Neutral Status for neutral or warning situations, such as a warning,
+and Negative Status for errors or critical situations that require more user attention, such as cancel
+buttons.
+
+<ColorRow type="status" />

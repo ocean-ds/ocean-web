@@ -1,0 +1,165 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Checkbox from '../../Checkbox';
+import ContentRow from '../../_stories/components/ContentRow.tsx';
+import getComponentPath from '../utils/getComponentPath';
+
+<Meta
+  title={getComponentPath('checkbox')}
+  component={Checkbox}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Checkbox
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [Custom](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+The Checkbox component in a design system is a user interface element that allows users to select
+or deselect options from a predefined set of choices. It provides a visual representation of a
+checkbox accompanied by text, enabling users to indicate their preferences or make multiple selections.
+The Checkbox component is widely used in various scenarios, such as forms, settings pages, or configuration
+panels, where users need to make multiple selections from a list of options. It provides a clear and
+familiar interaction pattern that allows users to indicate their preferences or choose multiple items
+simultaneously.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Checkbox',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      label: 'Label',
+      indeterminate: false,
+      error: false,
+    }}
+    argTypes={{
+      label: {
+        control: { type: 'text' },
+        defaultValue: '',
+        description: 'The label content.',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      checked: {
+        control: 'boolean',
+        description:
+          'If `true`, the component appears selected. This prop is passed to the input element.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      indeterminate: {
+        control: 'boolean',
+        description:
+          'If `true`, the component appears indeterminate. This does not set the native input element to indeterminate due to inconsistent behavior across browsers. However, we set a `data-indeterminate` attribute on the input.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+      error: {
+        control: 'boolean',
+        description:
+          'If `true`, the input will be displayed in an error state.',
+        default: false,
+        table: {
+          type: { summary: 'boolean' },
+          defaultValue: { summary: false },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <ContentRow direction="row">
+        <Checkbox {...props} />
+      </ContentRow>
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { Checkbox } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  return <Checkbox label="Label" checked />;
+};
+```
+
+## Indeterminate <a name="variants"></a>
+
+The `indeterminate` property is typically used when dealing with checkboxes that are part of
+a group or have hierarchical relationships. It is often applied to a parent checkbox when some,
+but not all, of its child checkboxes are selected. This allows users to indicate that a subset
+of options within a larger group is chosen, without necessarily selecting all individual checkboxes.
+
+<Canvas>
+  <Story name="Indeterminate">
+    <Checkbox label="Label" checked indeterminate />
+  </Story>
+</Canvas>
+
+## State with error
+
+The `error` property allows for the display of an error state or message associated with the checkbox.
+It provides a visual indication to users when there is an issue or validation error related to the checkbox
+selection.
+
+<Canvas>
+  <Story name="Error">
+    <Checkbox label="Label" error />
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## Custom <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class                              | Description                                                 |
+| ----------------------------------------- | ----------------------------------------------------------- |
+| .ods-checkbox\_\_root                     | Styles applied to the root element.                         |
+| .ods-checkbox                             | Styles applied to the checkbox element.                     |
+| .ods-checkbox\_\_checkmark                | Styles applied to the span element.                         |
+| .ods-checkbox\_\_checkmark--indeterminate | Styles applied to the span element if indeterminate={true}. |
+| .ods-checkbox\_\_label                    | Styles applied to the span element.                         |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Checkbox/Checkbox.tsx) for more detail.

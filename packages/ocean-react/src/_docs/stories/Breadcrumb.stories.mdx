@@ -1,0 +1,119 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Breadcrumb, { BreadcrumbProps } from '../../Breadcrumb';
+import ContentRow from '../../_stories/components/ContentRow.tsx';
+import getComponentPath from '../utils/getComponentPath';
+
+<Meta
+  title={getComponentPath('breadcrumb')}
+  component={Breadcrumb}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Breadcrumb
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [Custom](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+The Breadcrumb component is a crucial element within a design system that provides a clear
+and intuitive way to navigate hierarchical structures or multi-step processes in a user interface.
+It is commonly used to display the user's current location within a website or application and
+allows for easy navigation and contextual understanding.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Breadcrumb',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      items: ['Item1', 'Item2', 'Item3'],
+    }}
+    argTypes={{
+      items: {
+        control: { type: 'array' },
+        defaultValue: [],
+        description: 'Determines the items of Breadcrumbs',
+        type: { name: 'array', required: true },
+        table: {
+          defaultValue: { summary: '[]' },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <ContentRow direction="row">
+        <Breadcrumb {...props} />
+      </ContentRow>
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { Breadcrumb } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  return <Breadcrumb items={['Item1', 'Item2', 'Item3']} />;
+};
+```
+
+## Link <a name="variants"></a>
+
+Pages before the current one have hover behavior indicating they are a link.
+
+<Canvas>
+  <Story name="Link">
+    <ContentRow direction="row">
+      <Breadcrumb
+        items={[
+          <a href="#">Link1</a>,
+          <a href="#">Link2</a>,
+          <a href="#">Link3</a>,
+        ]}
+      />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## Custom <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class    | Description                         |
+| --------------- | ----------------------------------- |
+| .ods-breadcrumb | Styles applied to the root element. |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Breadcrumb/Breadcrumb.tsx) for more detail.

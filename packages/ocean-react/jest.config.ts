@@ -15,6 +15,7 @@ const config: Config.InitialOptions = {
     `!<rootDir>/packages/${packageName}/src/**/index.ts`,
     `!<rootDir>/packages/${packageName}/src/_stories/components/*.{ts,tsx}`,
   ],
+  coveragePathIgnorePatterns: [`<rootDir>/packages/${packageName}/src/_docs/*`],
   name: packageName,
   displayName: packageName,
   rootDir: '../..',
