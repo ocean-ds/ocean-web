@@ -1,0 +1,113 @@
+.ods-chips {
+  display: inline-block;
+  position: relative;
+
+  &__button {
+    border: 0;
+    display: flex;
+    font-size: $font-size-xxs;
+    padding: $spacing-stack-xxs $spacing-stack-xs;
+    border-radius: $spacing-inline-sm;
+    background: $color-interface-light-up;
+    color: $color-brand-primary-pure;
+    font-weight: $font-weight-bold;
+    gap: $spacing-inline-xxxs;
+    height: 32px;
+
+    &:hover,
+    &:focus {
+      background: $color-interface-light-down;
+    }
+
+    &:active {
+      background: $color-brand-primary-pure;
+      color: $color-interface-light-pure;
+
+      .ods-chips__badge > .ods-badge__content {
+        color: $color-brand-primary-pure;
+        background: $color-interface-light-pure;
+      }
+    }
+
+    > svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &--disabled {
+      background: $color-interface-light-up;
+      pointer-events: none;
+
+      .ods-chips__label {
+        color: $color-interface-dark-up;
+      }
+
+      .ods-chips__badge > .ods-badge__content {
+        background: $color-interface-dark-up;
+      }
+
+      > svg {
+        color: $color-interface-dark-up;
+      }
+    }
+
+    &--active {
+      color: $color-interface-light-pure;
+      background: $color-brand-primary-pure;
+
+      &:hover,
+      &:focus {
+        background: $color-brand-primary-pure;
+      }
+
+      .ods-chips__badge > .ods-badge__content {
+        color: $color-brand-primary-pure;
+        background: $color-interface-light-pure;
+      }
+    }
+  }
+
+  &__label {
+    margin: 0;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    padding: $spacing-inset-xxs;
+    background: $color-interface-light-pure;
+    border-radius: 10px;
+    border: 1px solid $color-interface-light-down;
+    position: absolute;
+    top: 38px;
+    align-items: flex-start;
+    max-height: 200px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--option {
+      border: 0;
+      display: flex;
+      min-height: 40px;
+      align-items: center;
+      width: 100%;
+      background-color: $color-interface-light-pure;
+      padding: $spacing-stack-xxs 12px;
+      font-size: $font-size-xxs;
+      font-weight: $font-weight-regular;
+      color: $color-interface-dark-down;
+
+      &:hover {
+        background-color: $color-interface-light-up;
+        border-radius: $border-radius-sm;
+        color: $color-brand-primary-pure;
+      }
+    }
+  }
+}
