@@ -3,16 +3,16 @@
   position: relative;
 
   &__button {
+    background: $color-interface-light-up;
     border: 0;
+    border-radius: $spacing-inline-sm;
+    color: $color-brand-primary-pure;
     display: flex;
     font-size: $font-size-xxs;
-    padding: $spacing-stack-xxs $spacing-stack-xs;
-    border-radius: $spacing-inline-sm;
-    background: $color-interface-light-up;
-    color: $color-brand-primary-pure;
     font-weight: $font-weight-bold;
     gap: $spacing-inline-xxxs;
     height: 32px;
+    padding: $spacing-stack-xxs $spacing-stack-xs;
 
     &:hover,
     &:focus {
@@ -22,48 +22,48 @@
     &:active {
       background: $color-brand-primary-pure;
       color: $color-interface-light-pure;
+    }
 
-      .ods-chips__badge > .ods-badge__content {
-        color: $color-brand-primary-pure;
-        background: $color-interface-light-pure;
-      }
+    &:active .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-light-pure;
+      color: $color-brand-primary-pure;
     }
 
     > svg {
-      width: 16px;
       height: 16px;
+      width: 16px;
     }
 
     &--disabled {
       background: $color-interface-light-up;
       pointer-events: none;
+    }
 
-      .ods-chips__label {
-        color: $color-interface-dark-up;
-      }
+    &--disabled .ods-chips__label {
+      color: $color-interface-dark-up;
+    }
 
-      .ods-chips__badge > .ods-badge__content {
-        background: $color-interface-dark-up;
-      }
+    &--disabled .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-dark-up;
+    }
 
-      > svg {
-        color: $color-interface-dark-up;
-      }
+    &--disabled > svg {
+      color: $color-interface-dark-up;
     }
 
     &--active {
-      color: $color-interface-light-pure;
       background: $color-brand-primary-pure;
+      color: $color-interface-light-pure;
+    }
 
-      &:hover,
-      &:focus {
-        background: $color-brand-primary-pure;
-      }
+    &--active:hover,
+    &--active:focus {
+      background: $color-brand-primary-pure;
+    }
 
-      .ods-chips__badge > .ods-badge__content {
-        color: $color-brand-primary-pure;
-        background: $color-interface-light-pure;
-      }
+    &--active .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-light-pure;
+      color: $color-brand-primary-pure;
     }
   }
 
@@ -72,42 +72,42 @@
   }
 
   &__options {
+    align-items: flex-start;
+    background: $color-interface-light-pure;
+    border: 1px solid $color-interface-light-down;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: 220px;
-    padding: $spacing-inset-xxs;
-    background: $color-interface-light-pure;
-    border-radius: 10px;
-    border: 1px solid $color-interface-light-down;
-    position: absolute;
-    top: 38px;
-    align-items: flex-start;
     max-height: 200px;
     overflow-y: auto;
-    -ms-overflow-style: none;
+    padding: $spacing-inset-xxs;
+    position: absolute;
     scrollbar-width: none;
+    top: 38px;
+    width: 220px;
+    -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
     &--option {
-      border: 0;
-      display: flex;
-      min-height: 40px;
       align-items: center;
-      width: 100%;
       background-color: $color-interface-light-pure;
-      padding: $spacing-stack-xxs 12px;
+      border: 0;
+      color: $color-interface-dark-down;
+      display: flex;
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
-      color: $color-interface-dark-down;
+      min-height: 40px;
+      padding: $spacing-stack-xxs 12px;
+      width: 100%;
+    }
 
-      &:hover {
-        background-color: $color-interface-light-up;
-        border-radius: $border-radius-sm;
-        color: $color-brand-primary-pure;
-      }
+    &--option:hover {
+      background-color: $color-interface-light-up;
+      border-radius: $border-radius-sm;
+      color: $color-brand-primary-pure;
     }
   }
 }
