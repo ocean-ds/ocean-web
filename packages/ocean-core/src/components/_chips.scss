@@ -1,0 +1,113 @@
+.ods-chips {
+  display: inline-block;
+  position: relative;
+
+  &__button {
+    background: $color-interface-light-up;
+    border: 0;
+    border-radius: $spacing-inline-sm;
+    color: $color-brand-primary-pure;
+    display: flex;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    gap: $spacing-inline-xxxs;
+    height: 32px;
+    padding: $spacing-stack-xxs $spacing-stack-xs;
+
+    &:hover,
+    &:focus {
+      background: $color-interface-light-down;
+    }
+
+    &:active {
+      background: $color-brand-primary-pure;
+      color: $color-interface-light-pure;
+    }
+
+    &:active .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-light-pure;
+      color: $color-brand-primary-pure;
+    }
+
+    > svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    &--disabled {
+      background: $color-interface-light-up;
+      pointer-events: none;
+    }
+
+    &--disabled .ods-chips__label {
+      color: $color-interface-dark-up;
+    }
+
+    &--disabled .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-dark-up;
+    }
+
+    &--disabled > svg {
+      color: $color-interface-dark-up;
+    }
+
+    &--active {
+      background: $color-brand-primary-pure;
+      color: $color-interface-light-pure;
+    }
+
+    &--active:hover,
+    &--active:focus {
+      background: $color-brand-primary-pure;
+    }
+
+    &--active .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-light-pure;
+      color: $color-brand-primary-pure;
+    }
+  }
+
+  &__label {
+    margin: 0;
+  }
+
+  &__options {
+    -ms-overflow-style: none;
+    align-items: flex-start;
+    background: $color-interface-light-pure;
+    border: 1px solid $color-interface-light-down;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: $spacing-inset-xxs;
+    position: absolute;
+    scrollbar-width: none;
+    top: 38px;
+    width: 220px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--option {
+      align-items: center;
+      background-color: $color-interface-light-pure;
+      border: 0;
+      color: $color-interface-dark-down;
+      display: flex;
+      font-size: $font-size-xxs;
+      font-weight: $font-weight-regular;
+      min-height: 40px;
+      padding: $spacing-stack-xxs 12px;
+      width: 100%;
+    }
+
+    &--option:hover {
+      background-color: $color-interface-light-up;
+      border-radius: $border-radius-sm;
+      color: $color-brand-primary-pure;
+    }
+  }
+}
