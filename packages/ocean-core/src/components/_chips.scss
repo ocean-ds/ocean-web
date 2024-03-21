@@ -72,6 +72,7 @@
   }
 
   &__options {
+    -ms-overflow-style: none;
     align-items: flex-start;
     background: $color-interface-light-pure;
     border: 1px solid $color-interface-light-down;
@@ -84,7 +85,6 @@
     position: absolute;
     scrollbar-width: none;
     top: 38px;
-    -ms-overflow-style: none;
     width: 220px;
 
     &::-webkit-scrollbar {
