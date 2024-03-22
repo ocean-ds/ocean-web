@@ -1,44 +1,49 @@
 import React, { useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
+import { isArray } from 'lodash';
 import Badge from '../Badge';
 import Options from './Options';
 
+export type ChipValue = { label: string; value: string };
+
 interface IChips {
   label: string;
-  counter?: string | number;
   icon?: React.ReactNode;
   disabled?: boolean;
-  options?: Array<{ label: string; value: any }>;
+  multiChoice?: boolean;
+  options?: ChipValue[];
+  defaultValue?: ChipValue;
   onClick?: () => void;
-  onChange?: (value: any) => void;
+  onChange?: (value: ChipValue[] | ChipValue) => void;
 }
 
 const Chips: React.FunctionComponent<IChips> = ({
   label,
-  counter,
   icon,
   disabled,
   options,
+  multiChoice,
+  defaultValue,
   onClick,
   onChange,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const [counter, setCounter] = React.useState<number>(0);
   const [selectionIsOpen, setSelectionIsOpen] = React.useState(false);
-  const [selectedOption, setSelectedOption] = React.useState<{
-    label: string;
-    value: any;
-  }>({
-    label: '',
-    value: null,
-  });
+  const [selectedOptions, setSelectedOptions] = React.useState<
+    ChipValue[] | ChipValue
+  >(defaultValue || multiChoice ? [] : { label: '', value: '' });
+
+  function handleClickOutside(event: TouchEvent | MouseEvent) {
+    const target = event.target as Node;
+
+    if (wrapperRef.current && !wrapperRef.current.contains(target)) {
+      setSelectionIsOpen(false);
+    }
+  }
 
   useEffect(() => {
-    function handleClickOutside(event: any) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setSelectionIsOpen(false);
-      }
-    }
     // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
@@ -56,13 +61,42 @@ const Chips: React.FunctionComponent<IChips> = ({
     }
   };
 
-  const handleSelectOption = (labelProp: string, value: any) => {
-    setSelectedOption({ label: labelProp, value });
-    setSelectionIsOpen(false);
+  const handleSelectOption = (labelProp: string, value: string) => {
+    if (!multiChoice) {
+      setSelectedOptions([{ label: labelProp, value }]);
+      setSelectionIsOpen(false);
+
+      if (onChange) {
+        onChange({ label: labelProp, value });
+      }
+
+      return;
+    }
+
+    if (!Array.isArray(selectedOptions)) return;
+
+    let copyOptions = [...selectedOptions];
+
+    if (selectedOptions.find((option) => option.value === value)) {
+      copyOptions = copyOptions.filter((option) => option.value !== value);
+    } else {
+      copyOptions.push({ label: labelProp, value });
+    }
+
+    setCounter(copyOptions.length);
+    setSelectedOptions(copyOptions);
 
     if (onChange) {
-      onChange({ label: labelProp, value });
+      onChange(copyOptions);
     }
+  };
+
+  const displayValue = (): string => {
+    if (!Array.isArray(selectedOptions)) {
+      return selectedOptions.value ? selectedOptions.label : label;
+    }
+
+    return label;
   };
 
   return (
@@ -74,14 +108,15 @@ const Chips: React.FunctionComponent<IChips> = ({
         className={classNames('ods-chips__button', {
           'ods-chips__button--disabled': disabled,
           'ods-chips__button--active':
-            selectionIsOpen || !!selectedOption.value,
+            selectionIsOpen ||
+            (Array.isArray(selectedOptions)
+              ? selectedOptions.length > 0
+              : selectedOptions?.value),
         })}
       >
         {icon || undefined}
-        <p className="ods-chips__label">
-          {selectedOption.value ? selectedOption.label : label}
-        </p>
-        {counter && (
+        <p className="ods-chips__label">{displayValue()}</p>
+        {counter > 0 && (
           <Badge color="brand" className="ods-chips__badge">
             {counter}
           </Badge>
@@ -90,7 +125,14 @@ const Chips: React.FunctionComponent<IChips> = ({
         {options && options?.length > 0 && selectionIsOpen && <ChevronUp />}
       </button>
       {selectionIsOpen && options && (
-        <Options options={options} onSelect={handleSelectOption} />
+        <Options
+          options={options}
+          onSelect={handleSelectOption}
+          checkbox={multiChoice}
+          selectedOptions={
+            isArray(selectedOptions) ? selectedOptions : undefined
+          }
+        />
       )}
     </div>
   );

@@ -54,7 +54,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
     name="playground"
     args={{
       label: 'Selecione o filtro',
-      counter: false,
       icon: <Adjustments />,
       disabled: false,
       options: [
@@ -71,6 +70,14 @@ If that's not sufficient, you can check the [implementation of the component](ht
       ],
       onClick: () => null,
       onChange: () => null,
+    }}
+    argTypes={{
+      label: {
+        control: 'text',
+      },
+      disabled: {
+        control: 'boolean',
+      },
     }}
   >
     {(props) => <Chips {...props} />}

@@ -81,7 +81,7 @@
     flex-direction: column;
     max-height: 200px;
     overflow-y: auto;
-    padding: $spacing-inset-xxs;
+    padding: $spacing-inset-xxs 0;
     position: absolute;
     scrollbar-width: none;
     top: 38px;
@@ -97,6 +97,7 @@
       border: 0;
       color: $color-interface-dark-down;
       display: flex;
+      gap: $spacing-inline-xxs;
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
       min-height: 40px;
