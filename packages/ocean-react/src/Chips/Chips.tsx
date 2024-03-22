@@ -14,6 +14,8 @@ interface IChips {
   multiChoice?: boolean;
   options?: ChipValue[];
   defaultValue?: ChipValue;
+  clearLabel?: string;
+  filterLabel?: string;
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
 }
@@ -23,8 +25,10 @@ const Chips: React.FunctionComponent<IChips> = ({
   icon,
   disabled,
   options,
-  multiChoice,
   defaultValue,
+  multiChoice = false,
+  clearLabel = 'Limpar',
+  filterLabel = 'Filtrar',
   onClick,
   onChange,
 }) => {
@@ -63,7 +67,7 @@ const Chips: React.FunctionComponent<IChips> = ({
 
   const handleSelectOption = (labelProp: string, value: string) => {
     if (!multiChoice) {
-      setSelectedOptions([{ label: labelProp, value }]);
+      setSelectedOptions({ label: labelProp, value });
       setSelectionIsOpen(false);
 
       if (onChange) {
@@ -99,6 +103,16 @@ const Chips: React.FunctionComponent<IChips> = ({
     return label;
   };
 
+  const clearOptions = () => {
+    setSelectedOptions([]);
+    setCounter(0);
+    setSelectionIsOpen(false);
+  };
+
+  const filterOptions = () => {
+    setSelectionIsOpen(false);
+  };
+
   return (
     <div className="ods-chips" ref={wrapperRef}>
       <button
@@ -128,10 +142,14 @@ const Chips: React.FunctionComponent<IChips> = ({
         <Options
           options={options}
           onSelect={handleSelectOption}
-          checkbox={multiChoice}
           selectedOptions={
             isArray(selectedOptions) ? selectedOptions : undefined
           }
+          clearLabel={clearLabel}
+          filterLabel={filterLabel}
+          multiChoice={multiChoice}
+          clearOptions={clearOptions}
+          filterOptions={filterOptions}
         />
       )}
     </div>
