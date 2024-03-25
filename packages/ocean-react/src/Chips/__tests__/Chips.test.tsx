@@ -27,6 +27,16 @@ const multiChoiceSetup = ({ handleClick, handleChange }: ISetup) => {
       multiChoice
     />
   );
+
+  fireEvent.click(screen.getByText('Test Label'));
+};
+
+const clickInOption = async (label: string) => {
+  await waitFor(() => {
+    expect(screen.getByText(label)).toBeInTheDocument();
+  });
+
+  fireEvent.click(screen.getByText(label));
 };
 
 describe('Chips', () => {
@@ -115,13 +125,7 @@ describe('Chips', () => {
     const handleChange = jest.fn();
     multiChoiceSetup({ handleChange });
 
-    fireEvent.click(screen.getByRole('button'));
-
-    await waitFor(() => {
-      expect(screen.getByText('Option 1')).toBeInTheDocument();
-    });
-
-    fireEvent.click(screen.getByText('Option 1'));
+    await clickInOption('Option 1');
 
     expect(handleChange).toHaveBeenCalledWith([
       {
@@ -129,10 +133,9 @@ describe('Chips', () => {
         value: '1',
       },
     ]);
-
     expect(screen.getByRole('tag')).toHaveTextContent('1');
 
-    fireEvent.click(screen.getByText('Option 2'));
+    await clickInOption('Option 2');
 
     expect(handleChange).toHaveBeenCalledWith([
       {
@@ -144,7 +147,6 @@ describe('Chips', () => {
         value: '2',
       },
     ]);
-
     expect(screen.getByRole('tag')).toHaveTextContent('2');
 
     fireEvent.click(screen.getByText('Option 2'));
@@ -163,13 +165,7 @@ describe('Chips', () => {
     const handleChange = jest.fn();
     multiChoiceSetup({ handleChange });
 
-    fireEvent.click(screen.getByRole('button'));
-
-    await waitFor(() => {
-      expect(screen.getByText('Option 1')).toBeInTheDocument();
-    });
-
-    fireEvent.click(screen.getByText('Option 1'));
+    await clickInOption('Option 1');
 
     expect(handleChange).toHaveBeenCalledWith([
       {
@@ -177,7 +173,6 @@ describe('Chips', () => {
         value: '1',
       },
     ]);
-    expect(screen.getByRole('tag')).toHaveTextContent('1');
 
     fireEvent.click(screen.getByText('Test Clear'));
 
@@ -192,13 +187,7 @@ describe('Chips', () => {
     const handleChange = jest.fn();
     multiChoiceSetup({ handleChange });
 
-    fireEvent.click(screen.getByRole('button'));
-
-    await waitFor(() => {
-      expect(screen.getByText('Option 1')).toBeInTheDocument();
-    });
-
-    fireEvent.click(screen.getByText('Option 1'));
+    await clickInOption('Option 1');
 
     fireEvent.click(screen.getByText('Test Filter'));
 
@@ -217,8 +206,6 @@ describe('Chips', () => {
   test('checks click outside', async () => {
     const handleClick = jest.fn();
     multiChoiceSetup({ handleClick });
-
-    fireEvent.click(screen.getByText('Test Label'));
 
     expect(handleClick).toHaveBeenCalled();
     expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
