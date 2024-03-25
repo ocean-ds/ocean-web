@@ -4,6 +4,31 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import Chips from '../Chips';
 
+interface ISetup {
+  handleClick?: () => void;
+  handleChange?: () => void;
+}
+
+const multiChoiceSetup = ({ handleClick, handleChange }: ISetup) => {
+  const options = [
+    { label: 'Option 1', value: '1' },
+    { label: 'Option 2', value: '2' },
+    { label: 'Option 3', value: '2' },
+    { label: 'Option 4', value: '2' },
+  ];
+  render(
+    <Chips
+      label="Test Label"
+      options={options}
+      onClick={handleClick}
+      onChange={handleChange}
+      filterLabel="Test Filter"
+      clearLabel="Test Clear"
+      multiChoice
+    />
+  );
+};
+
 describe('Chips', () => {
   test('renders the label', () => {
     render(<Chips label="Test Label" />);
@@ -88,20 +113,7 @@ describe('Chips', () => {
 
   test('checks multiChoice', async () => {
     const handleChange = jest.fn();
-    const options = [
-      { label: 'Option 1', value: '1' },
-      { label: 'Option 2', value: '2' },
-      { label: 'Option 3', value: '2' },
-      { label: 'Option 4', value: '2' },
-    ];
-    render(
-      <Chips
-        label="Test Label"
-        options={options}
-        onChange={handleChange}
-        multiChoice
-      />
-    );
+    multiChoiceSetup({ handleChange });
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -149,21 +161,7 @@ describe('Chips', () => {
 
   test('checks clear options button', async () => {
     const handleChange = jest.fn();
-    const options = [
-      { label: 'Option 1', value: '1' },
-      { label: 'Option 2', value: '2' },
-      { label: 'Option 3', value: '2' },
-      { label: 'Option 4', value: '2' },
-    ];
-    render(
-      <Chips
-        label="Test Label"
-        options={options}
-        onChange={handleChange}
-        multiChoice
-        clearLabel="Test Clear"
-      />
-    );
+    multiChoiceSetup({ handleChange });
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -192,21 +190,7 @@ describe('Chips', () => {
 
   test('checks filter options button', async () => {
     const handleChange = jest.fn();
-    const options = [
-      { label: 'Option 1', value: '1' },
-      { label: 'Option 2', value: '2' },
-      { label: 'Option 3', value: '2' },
-      { label: 'Option 4', value: '2' },
-    ];
-    render(
-      <Chips
-        label="Test Label"
-        options={options}
-        onChange={handleChange}
-        multiChoice
-        filterLabel="Test Filter"
-      />
-    );
+    multiChoiceSetup({ handleChange });
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -232,15 +216,7 @@ describe('Chips', () => {
 
   test('checks click outside', async () => {
     const handleClick = jest.fn();
-    const options = [
-      { label: 'Option 1', value: '1' },
-      { label: 'Option 2', value: '2' },
-      { label: 'Option 3', value: '2' },
-      { label: 'Option 4', value: '2' },
-    ];
-    render(
-      <Chips label="Test Label" options={options} onClick={handleClick} />
-    );
+    multiChoiceSetup({ handleClick });
 
     fireEvent.click(screen.getByText('Test Label'));
 
