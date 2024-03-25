@@ -28,7 +28,7 @@ const Options: React.FunctionComponent<IOptions> = ({
   const columns = multiChoice ? Math.ceil(10 / 5) : 1;
 
   return (
-    <div className="ods-chips__options">
+    <div className="ods-chips__options" data-testid="ods-chips-option">
       <div
         className={classNames(
           'ods-chips__options--content',

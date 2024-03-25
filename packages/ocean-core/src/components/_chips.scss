@@ -99,6 +99,8 @@
       }
 
       &--columns-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         width: 436px;
       }
     }

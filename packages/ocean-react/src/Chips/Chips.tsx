@@ -24,8 +24,8 @@ const Chips: React.FunctionComponent<IChips> = ({
   label,
   icon,
   disabled,
-  options,
   defaultValue,
+  options = [],
   multiChoice = false,
   clearLabel = 'Limpar',
   filterLabel = 'Filtrar',
@@ -77,21 +77,21 @@ const Chips: React.FunctionComponent<IChips> = ({
       return;
     }
 
-    if (!Array.isArray(selectedOptions)) return;
+    if (Array.isArray(selectedOptions)) {
+      let copyOptions = [...selectedOptions];
 
-    let copyOptions = [...selectedOptions];
+      if (selectedOptions.find((option) => option.value === value)) {
+        copyOptions = copyOptions.filter((option) => option.value !== value);
+      } else {
+        copyOptions.push({ label: labelProp, value });
+      }
 
-    if (selectedOptions.find((option) => option.value === value)) {
-      copyOptions = copyOptions.filter((option) => option.value !== value);
-    } else {
-      copyOptions.push({ label: labelProp, value });
-    }
+      setCounter(copyOptions.length);
+      setSelectedOptions(copyOptions);
 
-    setCounter(copyOptions.length);
-    setSelectedOptions(copyOptions);
-
-    if (onChange) {
-      onChange(copyOptions);
+      if (onChange) {
+        onChange(copyOptions);
+      }
     }
   };
 
@@ -107,10 +107,18 @@ const Chips: React.FunctionComponent<IChips> = ({
     setSelectedOptions([]);
     setCounter(0);
     setSelectionIsOpen(false);
+
+    if (onChange) {
+      onChange([]);
+    }
   };
 
   const filterOptions = () => {
     setSelectionIsOpen(false);
+
+    if (onChange) {
+      onChange(selectedOptions);
+    }
   };
 
   return (
