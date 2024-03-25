@@ -219,4 +219,15 @@ describe('Chips', () => {
       'Unable to find an element'
     );
   });
+
+  test('checks initial counter', async () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(<Chips label="Test Label" options={options} initialCounter={3} />);
+
+    expect(screen.getByRole('tag')).toHaveTextContent('3');
+  });
 });

@@ -15,6 +15,7 @@ interface IChips {
   defaultValue?: ChipValue;
   clearLabel?: string;
   filterLabel?: string;
+  initialCounter?: number;
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
 }
@@ -28,6 +29,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   multiChoice = false,
   clearLabel = 'Limpar',
   filterLabel = 'Filtrar',
+  initialCounter,
   onClick,
   onChange,
 }) => {
@@ -137,9 +139,9 @@ const Chips: React.FunctionComponent<IChips> = ({
       >
         {icon || undefined}
         <p className="ods-chips__label">{displayValue()}</p>
-        {counter > 0 && (
+        {(counter > 0 || initialCounter) && (
           <Badge color="brand" className="ods-chips__badge">
-            {counter}
+            {initialCounter ?? counter}
           </Badge>
         )}
         {options && options?.length > 0 && !selectionIsOpen && <ChevronDown />}
