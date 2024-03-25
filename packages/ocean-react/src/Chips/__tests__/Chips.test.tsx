@@ -1,16 +1,48 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import Chips from '../Chips';
+
+interface ISetup {
+  handleClick?: () => void;
+  handleChange?: () => void;
+}
+
+const multiChoiceSetup = ({ handleClick, handleChange }: ISetup) => {
+  const options = [
+    { label: 'Option 1', value: '1' },
+    { label: 'Option 2', value: '2' },
+    { label: 'Option 3', value: '2' },
+    { label: 'Option 4', value: '2' },
+  ];
+  render(
+    <Chips
+      label="Test Label"
+      options={options}
+      onClick={handleClick}
+      onChange={handleChange}
+      filterLabel="Test Filter"
+      clearLabel="Test Clear"
+      multiChoice
+    />
+  );
+
+  fireEvent.click(screen.getByText('Test Label'));
+};
+
+const clickInOption = async (label: string) => {
+  await waitFor(() => {
+    expect(screen.getByText(label)).toBeInTheDocument();
+  });
+
+  fireEvent.click(screen.getByText(label));
+};
 
 describe('Chips', () => {
   test('renders the label', () => {
     render(<Chips label="Test Label" />);
     expect(screen.getByText('Test Label')).toBeInTheDocument();
-  });
-
-  test('renders the counter', () => {
-    render(<Chips label="Test Label" counter="10" />);
-    expect(screen.getByText('10')).toBeInTheDocument();
   });
 
   test('renders the icon', () => {
@@ -27,8 +59,8 @@ describe('Chips', () => {
 
   test('renders the options', async () => {
     const options = [
-      { label: 'Option 1', value: 1 },
-      { label: 'Option 2', value: 2 },
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
     ];
     render(<Chips label="Test Label" options={options} />);
 
@@ -52,8 +84,8 @@ describe('Chips', () => {
   test('calls onChange with the selected value', async () => {
     const handleChange = jest.fn();
     const options = [
-      { label: 'Option 1', value: 1 },
-      { label: 'Option 2', value: 2 },
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
     ];
     render(
       <Chips label="Test Label" options={options} onChange={handleChange} />
@@ -65,6 +97,137 @@ describe('Chips', () => {
     });
 
     fireEvent.click(screen.getByText('Option 1'));
-    expect(handleChange).toHaveBeenCalledWith({ label: 'Option 1', value: 1 });
+    expect(handleChange).toHaveBeenCalledWith({
+      label: 'Option 1',
+      value: '1',
+    });
+  });
+
+  test('checks open and close', () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+    render(<Chips label="Test Label" options={options} />);
+
+    fireEvent.click(screen.getByText('Test Label'));
+
+    expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Test Label'));
+
+    expect(() => screen.getByTestId('ods-chips-option')).toThrow(
+      'Unable to find an element'
+    );
+  });
+
+  test('checks multiChoice', async () => {
+    const handleChange = jest.fn();
+    multiChoiceSetup({ handleChange });
+
+    await clickInOption('Option 1');
+
+    expect(handleChange).toHaveBeenCalledWith([
+      {
+        label: 'Option 1',
+        value: '1',
+      },
+    ]);
+    expect(screen.getByRole('tag')).toHaveTextContent('1');
+
+    await clickInOption('Option 2');
+
+    expect(handleChange).toHaveBeenCalledWith([
+      {
+        label: 'Option 1',
+        value: '1',
+      },
+      {
+        label: 'Option 2',
+        value: '2',
+      },
+    ]);
+    expect(screen.getByRole('tag')).toHaveTextContent('2');
+
+    fireEvent.click(screen.getByText('Option 2'));
+
+    expect(handleChange).toHaveBeenCalledWith([
+      {
+        label: 'Option 1',
+        value: '1',
+      },
+    ]);
+
+    expect(screen.getByRole('tag')).toHaveTextContent('1');
+  });
+
+  test('checks clear options button', async () => {
+    const handleChange = jest.fn();
+    multiChoiceSetup({ handleChange });
+
+    await clickInOption('Option 1');
+
+    expect(handleChange).toHaveBeenCalledWith([
+      {
+        label: 'Option 1',
+        value: '1',
+      },
+    ]);
+
+    fireEvent.click(screen.getByText('Test Clear'));
+
+    expect(handleChange).toHaveBeenCalledWith([]);
+
+    expect(() => screen.getByTestId('ods-chips-option')).toThrow(
+      'Unable to find an element'
+    );
+  });
+
+  test('checks filter options button', async () => {
+    const handleChange = jest.fn();
+    multiChoiceSetup({ handleChange });
+
+    await clickInOption('Option 1');
+
+    fireEvent.click(screen.getByText('Test Filter'));
+
+    expect(handleChange).toHaveBeenCalledWith([
+      {
+        label: 'Option 1',
+        value: '1',
+      },
+    ]);
+
+    expect(() => screen.getByTestId('ods-chips-option')).toThrow(
+      'Unable to find an element'
+    );
+  });
+
+  test('checks click outside', async () => {
+    const handleClick = jest.fn();
+    multiChoiceSetup({ handleClick });
+
+    expect(handleClick).toHaveBeenCalled();
+    expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
+
+    act(() => {
+      const addEvent = new Event('mousedown');
+      document.dispatchEvent(addEvent);
+    });
+
+    expect(() => screen.getByTestId('ods-chips-option')).toThrow(
+      'Unable to find an element'
+    );
+  });
+
+  test('checks initial counter', async () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(<Chips label="Test Label" options={options} initialCounter={3} />);
+
+    expect(screen.getByRole('tag')).toHaveTextContent('3');
   });
 });
