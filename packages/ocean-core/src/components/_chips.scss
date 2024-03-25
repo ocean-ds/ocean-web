@@ -83,26 +83,26 @@
     top: 38px;
 
     &--content {
-      -ms-overflow-style: none;
       align-items: flex-start;
       display: flex;
       flex-direction: column;
       max-height: 200px;
+      -ms-overflow-style: none;
       overflow-y: auto;
       scrollbar-width: none;
       width: 220px;
+    }
 
-      &--columns-2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        width: 296px;
-      }
+    &--content--columns-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 296px;
+    }
 
-      &--columns-3 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        width: 436px;
-      }
+    &--content--columns-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      width: 436px;
     }
 
     &::-webkit-scrollbar {
@@ -115,9 +115,9 @@
       border: 0;
       color: $color-interface-dark-down;
       display: flex;
-      gap: $spacing-inline-xxs;
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
+      gap: $spacing-inline-xxs;
       min-height: 40px;
       padding: $spacing-stack-xxs 12px;
       width: 100%;
