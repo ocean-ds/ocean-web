@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.54.0](https://github.com/ocean-ds/ocean-web/compare/v1.53.0...v1.54.0) (2024-03-25)
+
+### Features
+
+- add multi choice options on chips ([#1092](https://github.com/ocean-ds/ocean-web/issues/1092)) ([fc239e5](https://github.com/ocean-ds/ocean-web/commit/fc239e5e66b556c2c1580aab1735077e378e17c7))
+
 # [1.53.0](https://github.com/ocean-ds/ocean-web/compare/v1.52.2...v1.53.0) (2024-03-21)
 
 ### Features
