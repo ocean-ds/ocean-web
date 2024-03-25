@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
-import { isArray } from 'lodash';
 import Badge from '../Badge';
 import Options from './Options';
 
@@ -151,7 +150,7 @@ const Chips: React.FunctionComponent<IChips> = ({
           options={options}
           onSelect={handleSelectOption}
           selectedOptions={
-            isArray(selectedOptions) ? selectedOptions : undefined
+            Array.isArray(selectedOptions) ? selectedOptions : undefined
           }
           clearLabel={clearLabel}
           filterLabel={filterLabel}
