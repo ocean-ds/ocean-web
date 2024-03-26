@@ -129,6 +129,13 @@
       width: 100%;
     }
 
+    &--option--selected {
+      font-weight: $font-weight-bold;
+      background-color: $color-interface-light-up;
+      border-radius: $border-radius-sm;
+      color: $color-brand-primary-pure;
+    }
+
     &--option:hover {
       background-color: $color-interface-light-up;
       border-radius: $border-radius-sm;

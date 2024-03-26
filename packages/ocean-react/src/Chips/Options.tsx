@@ -6,7 +6,7 @@ import { ChipValue } from './Chips';
 
 interface IOptions {
   options: Array<ChipValue>;
-  selectedOptions?: ChipValue[];
+  selectedOptions?: ChipValue[] | ChipValue;
   clearLabel: string;
   filterLabel: string;
   multiChoice: boolean;
@@ -41,9 +41,14 @@ const Options: React.FunctionComponent<IOptions> = ({
             type="button"
             value={value}
             onClick={() => onSelect(label, value)}
-            className="ods-chips__options--option"
+            className={classNames('ods-chips__options--option', {
+              'ods-chips__options--option--selected':
+                !multiChoice &&
+                !Array.isArray(selectedOptions) &&
+                selectedOptions.value === value,
+            })}
           >
-            {multiChoice && (
+            {multiChoice && Array.isArray(selectedOptions) && (
               <Checkbox
                 checked={
                   !!selectedOptions.find((option) => option.value === value)

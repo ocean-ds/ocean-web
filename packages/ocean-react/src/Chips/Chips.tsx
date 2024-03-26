@@ -163,9 +163,7 @@ const Chips: React.FunctionComponent<IChips> = ({
         <Options
           options={options}
           onSelect={handleSelectOption}
-          selectedOptions={
-            Array.isArray(selectedOptions) ? selectedOptions : undefined
-          }
+          selectedOptions={selectedOptions}
           clearLabel={clearLabel}
           filterLabel={filterLabel}
           multiChoice={multiChoice}
