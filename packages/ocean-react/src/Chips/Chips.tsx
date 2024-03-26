@@ -18,6 +18,7 @@ interface IChips {
   initialCounter?: number;
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
+  onClose?: () => void;
 }
 
 const Chips: React.FunctionComponent<IChips> = ({
@@ -32,6 +33,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   initialCounter,
   onClick,
   onChange,
+  onClose,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = React.useState<number>(0);
@@ -46,6 +48,8 @@ const Chips: React.FunctionComponent<IChips> = ({
     if (wrapperRef.current && !wrapperRef.current.contains(target)) {
       setSelectionIsOpen(false);
     }
+
+    if (onClose) onClose();
   }
 
   useEffect(() => {
@@ -54,6 +58,7 @@ const Chips: React.FunctionComponent<IChips> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wrapperRef]);
 
   const handleClickChips = () => {
@@ -117,9 +122,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   const filterOptions = () => {
     setSelectionIsOpen(false);
 
-    if (onChange) {
-      onChange(selectedOptions);
-    }
+    if (onClose) onClose();
   };
 
   return (

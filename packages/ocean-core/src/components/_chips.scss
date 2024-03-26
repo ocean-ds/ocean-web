@@ -81,6 +81,7 @@
     padding: $spacing-inset-xxs 0;
     position: absolute;
     top: 38px;
+    width: auto;
 
     &--content {
       align-items: flex-start;
@@ -95,14 +96,18 @@
 
     &--content--columns-2 {
       display: grid;
+      grid-column-gap: 20px;
       grid-template-columns: repeat(2, 1fr);
-      width: 296px;
+      min-width: 296px;
+      width: auto;
     }
 
     &--content--columns-3 {
       display: grid;
+      grid-column-gap: 20px;
       grid-template-columns: repeat(3, 1fr);
-      width: 436px;
+      min-width: 436px;
+      width: auto;
     }
 
     &::-webkit-scrollbar {
@@ -120,6 +125,7 @@
       gap: $spacing-inline-xxs;
       min-height: 40px;
       padding: $spacing-stack-xxs 12px;
+      text-wrap: nowrap;
       width: 100%;
     }
 
