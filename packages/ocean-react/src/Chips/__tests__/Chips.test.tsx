@@ -7,9 +7,14 @@ import Chips from '../Chips';
 interface ISetup {
   handleClick?: () => void;
   handleChange?: () => void;
+  handleClose?: () => void;
 }
 
-const multiChoiceSetup = ({ handleClick, handleChange }: ISetup) => {
+const multiChoiceSetup = ({
+  handleClick,
+  handleChange,
+  handleClose,
+}: ISetup) => {
   const options = [
     { label: 'Option 1', value: '1' },
     { label: 'Option 2', value: '2' },
@@ -22,6 +27,7 @@ const multiChoiceSetup = ({ handleClick, handleChange }: ISetup) => {
       options={options}
       onClick={handleClick}
       onChange={handleChange}
+      onClose={handleClose}
       filterLabel="Test Filter"
       clearLabel="Test Clear"
       multiChoice
@@ -184,19 +190,14 @@ describe('Chips', () => {
   });
 
   test('checks filter options button', async () => {
-    const handleChange = jest.fn();
-    multiChoiceSetup({ handleChange });
+    const handleClose = jest.fn();
+    multiChoiceSetup({ handleClose });
 
     await clickInOption('Option 1');
 
     fireEvent.click(screen.getByText('Test Filter'));
 
-    expect(handleChange).toHaveBeenCalledWith([
-      {
-        label: 'Option 1',
-        value: '1',
-      },
-    ]);
+    expect(handleClose).toHaveBeenCalledTimes(1);
 
     expect(() => screen.getByTestId('ods-chips-option')).toThrow(
       'Unable to find an element'
@@ -205,7 +206,8 @@ describe('Chips', () => {
 
   test('checks click outside', async () => {
     const handleClick = jest.fn();
-    multiChoiceSetup({ handleClick });
+    const handleClose = jest.fn();
+    multiChoiceSetup({ handleClick, handleClose });
 
     expect(handleClick).toHaveBeenCalled();
     expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
@@ -215,6 +217,7 @@ describe('Chips', () => {
       document.dispatchEvent(addEvent);
     });
 
+    expect(handleClose).toHaveBeenCalledTimes(1);
     expect(() => screen.getByTestId('ods-chips-option')).toThrow(
       'Unable to find an element'
     );
