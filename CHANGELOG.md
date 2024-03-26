@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.54.1](https://github.com/ocean-ds/ocean-web/compare/v1.54.0...v1.54.1) (2024-03-26)
+
+### Bug Fixes
+
+- adjust optins columns ([#1093](https://github.com/ocean-ds/ocean-web/issues/1093)) ([b49ed7c](https://github.com/ocean-ds/ocean-web/commit/b49ed7cc28408a1cce4a2f6366b7c8799bff563e))
+
 # [1.54.0](https://github.com/ocean-ds/ocean-web/compare/v1.53.0...v1.54.0) (2024-03-25)
 
 ### Features
