@@ -6,7 +6,7 @@ import { ChipValue } from './Chips';
 
 interface IOptions {
   options: Array<ChipValue>;
-  selectedOptions?: ChipValue[] | ChipValue;
+  selectedOptions: ChipValue[] | ChipValue;
   clearLabel: string;
   filterLabel: string;
   multiChoice: boolean;
@@ -17,7 +17,7 @@ interface IOptions {
 
 const Options: React.FunctionComponent<IOptions> = ({
   options,
-  selectedOptions = [],
+  selectedOptions,
   clearLabel,
   filterLabel,
   multiChoice,
