@@ -16,6 +16,7 @@ interface IChips {
   clearLabel?: string;
   filterLabel?: string;
   initialCounter?: number;
+  actived?: boolean;
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
   onClose?: () => void;
@@ -31,6 +32,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   clearLabel = 'Limpar',
   filterLabel = 'Filtrar',
   initialCounter,
+  actived,
   onClick,
   onChange,
   onClose,
@@ -135,7 +137,8 @@ const Chips: React.FunctionComponent<IChips> = ({
             selectionIsOpen ||
             (Array.isArray(selectedOptions)
               ? selectedOptions.length > 0
-              : selectedOptions?.value),
+              : selectedOptions?.value) ||
+            actived,
         })}
       >
         {icon || undefined}

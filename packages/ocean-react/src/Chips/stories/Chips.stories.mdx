@@ -68,6 +68,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
         { label: 'Option 9', value: '9' },
         { label: 'Option 10', value: '10' },
       ],
+      actived: false,
       onClick: () => null,
       onChange: () => null,
       onClose: () => null,
@@ -77,6 +78,9 @@ If that's not sufficient, you can check the [implementation of the component](ht
         control: 'text',
       },
       disabled: {
+        control: 'boolean',
+      },
+      actived: {
         control: 'boolean',
       },
     }}
