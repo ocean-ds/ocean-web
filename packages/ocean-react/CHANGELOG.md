@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.55.0](https://github.com/ocean-ds/ocean-web/compare/v1.54.1...v1.55.0) (2024-03-27)
+
+### Features
+
+- selected value at chips ([#1094](https://github.com/ocean-ds/ocean-web/issues/1094)) ([07c6c58](https://github.com/ocean-ds/ocean-web/commit/07c6c58a1492489c1b83e357d96139a68cb24d05))
+
 ## [1.54.1](https://github.com/ocean-ds/ocean-web/compare/v1.54.0...v1.54.1) (2024-03-26)
 
 ### Bug Fixes
