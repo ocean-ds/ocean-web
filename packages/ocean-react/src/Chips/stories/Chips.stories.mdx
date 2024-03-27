@@ -56,6 +56,10 @@ If that's not sufficient, you can check the [implementation of the component](ht
       label: 'Selecione o filtro',
       icon: <Adjustments />,
       disabled: false,
+      multiChoice: false,
+      clearLabel: 'Limpar',
+      filterLabel: 'Filtrar',
+      initialCounter: undefined,
       options: [
         { label: 'Option 1', value: '1' },
         { label: 'Option 2', value: '2' },
@@ -68,6 +72,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
         { label: 'Option 9', value: '9' },
         { label: 'Option 10', value: '10' },
       ],
+      actived: false,
       onClick: () => null,
       onChange: () => null,
       onClose: () => null,
@@ -79,6 +84,21 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       disabled: {
         control: 'boolean',
+      },
+      actived: {
+        control: 'boolean',
+      },
+      multiChoice: {
+        control: 'boolean',
+      },
+      clearLabel: {
+        control: 'string',
+      },
+      filterLabel: {
+        control: 'string',
+      },
+      initialCounter: {
+        control: 'number',
       },
     }}
   >

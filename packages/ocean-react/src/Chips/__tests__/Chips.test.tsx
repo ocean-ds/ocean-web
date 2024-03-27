@@ -234,6 +234,17 @@ describe('Chips', () => {
     expect(screen.getByRole('tag')).toHaveTextContent('3');
   });
 
+  test('checks actived', async () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(<Chips label="Test Label" options={options} actived />);
+
+    expect(screen.getByRole('button')).toHaveClass('ods-chips__button--active');
+  });
+
   test('checks selected value', async () => {
     const options = [
       { label: 'Option 1', value: '1' },

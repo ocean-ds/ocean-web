@@ -16,6 +16,7 @@ interface IChips {
   clearLabel?: string;
   filterLabel?: string;
   initialCounter?: number;
+  actived?: boolean;
   selectedValue?: ChipValue;
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
@@ -32,6 +33,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   clearLabel = 'Limpar',
   filterLabel = 'Filtrar',
   initialCounter,
+  actived,
   selectedValue,
   onClick,
   onChange,
@@ -49,9 +51,8 @@ const Chips: React.FunctionComponent<IChips> = ({
 
     if (wrapperRef.current && !wrapperRef.current.contains(target)) {
       setSelectionIsOpen(false);
+      if (onClose) onClose();
     }
-
-    if (onClose) onClose();
   }
 
   useEffect(() => {
@@ -84,6 +85,7 @@ const Chips: React.FunctionComponent<IChips> = ({
     if (!multiChoice) {
       setSelectedOptions({ label: labelProp, value });
       setSelectionIsOpen(false);
+      if (onClose) onClose();
 
       if (onChange) {
         onChange({ label: labelProp, value });
@@ -122,10 +124,8 @@ const Chips: React.FunctionComponent<IChips> = ({
     setSelectedOptions([]);
     setCounter(0);
     setSelectionIsOpen(false);
-
-    if (onChange) {
-      onChange([]);
-    }
+    if (onClose) onClose();
+    if (onChange) onChange([]);
   };
 
   const filterOptions = () => {
@@ -146,7 +146,8 @@ const Chips: React.FunctionComponent<IChips> = ({
             selectionIsOpen ||
             (Array.isArray(selectedOptions)
               ? selectedOptions.length > 0
-              : selectedOptions?.value),
+              : selectedOptions?.value) ||
+            actived,
         })}
       >
         {icon || undefined}
