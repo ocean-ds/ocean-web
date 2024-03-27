@@ -233,4 +233,21 @@ describe('Chips', () => {
 
     expect(screen.getByRole('tag')).toHaveTextContent('3');
   });
+
+  test('checks selected value', async () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(
+      <Chips
+        label="Test Label"
+        options={options}
+        selectedValue={{ label: 'Option 1', value: '1' }}
+      />
+    );
+
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+  });
 });
