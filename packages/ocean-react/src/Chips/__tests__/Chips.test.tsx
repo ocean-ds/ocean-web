@@ -244,4 +244,51 @@ describe('Chips', () => {
 
     expect(screen.getByRole('button')).toHaveClass('ods-chips__button--active');
   });
+
+  test('checks selected value', async () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(
+      <Chips
+        label="Test Label"
+        options={options}
+        selectedValue={{ label: 'Option 1', value: '1' }}
+      />
+    );
+
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+  });
+
+  test('renders without selected value', () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(<Chips label="Test Label" options={options} multiChoice />);
+
+    expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
+    expect(screen.queryByText('Option 2')).not.toBeInTheDocument();
+  });
+
+  test('checks default value from selected value', () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+    const selectedValue = { label: 'Option 1', value: '1' };
+
+    render(
+      <Chips
+        label="Test Label"
+        options={options}
+        selectedValue={selectedValue}
+      />
+    );
+
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+  });
 });

@@ -17,6 +17,7 @@ interface IChips {
   filterLabel?: string;
   initialCounter?: number;
   actived?: boolean;
+  selectedValue?: ChipValue;
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
   onClose?: () => void;
@@ -33,6 +34,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   filterLabel = 'Filtrar',
   initialCounter,
   actived,
+  selectedValue,
   onClick,
   onChange,
   onClose,
@@ -52,6 +54,13 @@ const Chips: React.FunctionComponent<IChips> = ({
       if (onClose) onClose();
     }
   }
+
+  useEffect(() => {
+    if (selectedValue && selectedValue !== selectedOptions && !multiChoice) {
+      setSelectedOptions(selectedValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedValue]);
 
   useEffect(() => {
     // Bind the event listener
@@ -155,9 +164,7 @@ const Chips: React.FunctionComponent<IChips> = ({
         <Options
           options={options}
           onSelect={handleSelectOption}
-          selectedOptions={
-            Array.isArray(selectedOptions) ? selectedOptions : undefined
-          }
+          selectedOptions={selectedOptions}
           clearLabel={clearLabel}
           filterLabel={filterLabel}
           multiChoice={multiChoice}
