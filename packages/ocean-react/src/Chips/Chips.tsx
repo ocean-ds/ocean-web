@@ -17,7 +17,7 @@ interface IChips {
   filterLabel?: string;
   initialCounter?: number;
   actived?: boolean;
-  selectedValue?: ChipValue;
+  selectedValue?: ChipValue | ChipValue[];
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
   onClose?: () => void;
@@ -51,13 +51,18 @@ const Chips: React.FunctionComponent<IChips> = ({
 
     if (wrapperRef.current && !wrapperRef.current.contains(target)) {
       setSelectionIsOpen(false);
-      if (onClose) onClose();
+
+      if (onClose && selectionIsOpen) onClose();
     }
   }
 
   useEffect(() => {
-    if (selectedValue && selectedValue !== selectedOptions && !multiChoice) {
+    if (selectedValue && selectedValue !== selectedOptions) {
       setSelectedOptions(selectedValue);
+
+      if (multiChoice && Array.isArray(selectedValue)) {
+        setCounter(selectedValue.length);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedValue]);
@@ -69,7 +74,7 @@ const Chips: React.FunctionComponent<IChips> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wrapperRef]);
+  }, [wrapperRef, selectionIsOpen]);
 
   const handleClickChips = () => {
     if (options && options?.length > 0) {
