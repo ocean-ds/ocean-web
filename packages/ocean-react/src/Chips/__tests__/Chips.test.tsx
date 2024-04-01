@@ -2,18 +2,20 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import Chips from '../Chips';
+import Chips, { ChipValue } from '../Chips';
 
 interface ISetup {
   handleClick?: () => void;
   handleChange?: () => void;
   handleClose?: () => void;
+  selectedValue?: ChipValue | ChipValue[];
 }
 
 const multiChoiceSetup = ({
   handleClick,
   handleChange,
   handleClose,
+  selectedValue,
 }: ISetup) => {
   const options = [
     { label: 'Option 1', value: '1' },
@@ -30,6 +32,7 @@ const multiChoiceSetup = ({
       onClose={handleClose}
       filterLabel="Test Filter"
       clearLabel="Test Clear"
+      selectedValue={selectedValue}
       multiChoice
     />
   );
@@ -85,6 +88,24 @@ describe('Chips', () => {
     fireEvent.click(screen.getByRole('button'));
 
     expect(handleClick).toHaveBeenCalled();
+  });
+
+  test('calls onClose when clicked', () => {
+    const handleClose = jest.fn();
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    render(
+      <Chips label="Test Label" options={options} onClose={handleClose} />
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    fireEvent.click(screen.getByText('Option 1'));
+
+    expect(handleClose).toHaveBeenCalled();
   });
 
   test('calls onChange with the selected value', async () => {
@@ -169,7 +190,8 @@ describe('Chips', () => {
 
   test('checks clear options button', async () => {
     const handleChange = jest.fn();
-    multiChoiceSetup({ handleChange });
+    const handleClose = jest.fn();
+    multiChoiceSetup({ handleChange, handleClose });
 
     await clickInOption('Option 1');
 
@@ -183,6 +205,7 @@ describe('Chips', () => {
     fireEvent.click(screen.getByText('Test Clear'));
 
     expect(handleChange).toHaveBeenCalledWith([]);
+    expect(handleClose).toHaveBeenCalledTimes(1);
 
     expect(() => screen.getByTestId('ods-chips-option')).toThrow(
       'Unable to find an element'
@@ -260,6 +283,13 @@ describe('Chips', () => {
     );
 
     expect(screen.getByText('Option 1')).toBeInTheDocument();
+  });
+
+  test('checks selected value on multi choice', async () => {
+    multiChoiceSetup({ selectedValue: [{ label: 'Option 1', value: '1' }] });
+
+    expect(screen.getByText('Option 1')).toBeInTheDocument();
+    expect(screen.getByRole('tag')).toHaveTextContent('1');
   });
 
   test('renders without selected value', () => {
