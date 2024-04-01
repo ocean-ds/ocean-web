@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.56.0](https://github.com/ocean-ds/ocean-web/compare/v1.55.1...v1.56.0) (2024-04-01)
+
+### Features
+
+- **chips:** select option to multi choice ([#1096](https://github.com/ocean-ds/ocean-web/issues/1096)) ([2f594a7](https://github.com/ocean-ds/ocean-web/commit/2f594a738f4de5d0ebfe5993aef9c65024201aad))
+
 ## [1.55.1](https://github.com/ocean-ds/ocean-web/compare/v1.55.0...v1.55.1) (2024-03-27)
 
 ### Bug Fixes
