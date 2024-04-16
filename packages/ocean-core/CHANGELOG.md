@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.55.0](https://github.com/ocean-ds/ocean-web/compare/v1.54.1...v1.55.0) (2024-03-27)
+
+### Features
+
+- selected value at chips ([#1094](https://github.com/ocean-ds/ocean-web/issues/1094)) ([07c6c58](https://github.com/ocean-ds/ocean-web/commit/07c6c58a1492489c1b83e357d96139a68cb24d05))
+
+## [1.54.1](https://github.com/ocean-ds/ocean-web/compare/v1.54.0...v1.54.1) (2024-03-26)
+
+### Bug Fixes
+
+- adjust optins columns ([#1093](https://github.com/ocean-ds/ocean-web/issues/1093)) ([b49ed7c](https://github.com/ocean-ds/ocean-web/commit/b49ed7cc28408a1cce4a2f6366b7c8799bff563e))
+
+# [1.54.0](https://github.com/ocean-ds/ocean-web/compare/v1.53.0...v1.54.0) (2024-03-25)
+
+### Features
+
+- add multi choice options on chips ([#1092](https://github.com/ocean-ds/ocean-web/issues/1092)) ([fc239e5](https://github.com/ocean-ds/ocean-web/commit/fc239e5e66b556c2c1580aab1735077e378e17c7))
+
+# [1.53.0](https://github.com/ocean-ds/ocean-web/compare/v1.52.2...v1.53.0) (2024-03-21)
+
+### Features
+
+- create chips component ([#1091](https://github.com/ocean-ds/ocean-web/issues/1091)) ([7fc498a](https://github.com/ocean-ds/ocean-web/commit/7fc498a565fe78a42c29bc7051796dc8560c301f))
+
+## [1.52.2](https://github.com/ocean-ds/ocean-web/compare/v1.52.1...v1.52.2) (2024-01-30)
+
+### Bug Fixes
+
+- add padding breadcumb ([#1090](https://github.com/ocean-ds/ocean-web/issues/1090)) ([63becce](https://github.com/ocean-ds/ocean-web/commit/63beccebc27af53c80944327b56edc08ead726f6))
+
+## [1.52.1](https://github.com/ocean-ds/ocean-web/compare/v1.52.0...v1.52.1) (2024-01-22)
+
+### Bug Fixes
+
+- adjusts on Date component ([#1088](https://github.com/ocean-ds/ocean-web/issues/1088)) ([23bd270](https://github.com/ocean-ds/ocean-web/commit/23bd2701aa16e976ee88ac05f02cfb08929fb932))
+
 # [1.52.0](https://github.com/ocean-ds/ocean-web/compare/v1.51.0...v1.52.0) (2023-11-14)
 
 ### Features
