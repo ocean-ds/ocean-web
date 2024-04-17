@@ -33,7 +33,10 @@ const UnorderedListItem = React.forwardRef<
       {Icon && iconVariant !== 'chevron' ? (
         <Icon
           size={iconVariant === 'solid' ? 20 : 24}
-          className="ods-unordered-list-item__icon"
+          className={classNames(
+            'ods-unordered-list-item__icon',
+            iconVariant === 'solid' && 'ods-unordered-list-item__icon--solid'
+          )}
         />
       ) : (
         <span className="ods-unordered-list-item__icon-container">
