@@ -27,14 +27,14 @@
   }
 
   &--warning {
-    background-color: $color-status-neutral-up;
+    background-color: $color-status-warning-up;
 
     .ods-tag__icon {
-      fill: $color-status-neutral-deep;
+      fill: $color-status-warning-deep;
     }
 
     .ods-tag__content {
-      color: $color-status-neutral-deep;
+      color: $color-status-warning-deep;
     }
   }
 
