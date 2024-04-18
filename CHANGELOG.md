@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.57.0](https://github.com/ocean-ds/ocean-web/compare/v1.56.0...v1.57.0) (2024-04-18)
+
+### Features
+
+- create unordered list component ([#1097](https://github.com/ocean-ds/ocean-web/issues/1097)) ([d590bd6](https://github.com/ocean-ds/ocean-web/commit/d590bd6f9ccd95d8549c4f0e07bf12a695b61036))
+
 # [1.56.0](https://github.com/ocean-ds/ocean-web/compare/v1.55.1...v1.56.0) (2024-04-01)
 
 ### Features
