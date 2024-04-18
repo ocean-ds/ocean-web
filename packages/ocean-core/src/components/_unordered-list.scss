@@ -1,0 +1,52 @@
+.ods-unordered-list-item {
+  align-items: flex-start;
+  display: flex;
+  gap: $spacing-inset-xs;
+  list-style-type: none;
+
+  &__icon {
+    height: 24px;
+    min-height: 24px;
+    min-width: 24px;
+    width: 24px;
+  }
+
+  &__icon--solid {
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+    width: 20px;
+  }
+
+  &__icon-container {
+    align-items: center;
+    background-color: $color-interface-light-up;
+    border-radius: $border-radius-circular;
+    display: flex;
+    gap: $spacing-inset-xs;
+    height: 24px;
+    justify-content: center;
+    min-height: 24px;
+    min-width: 24px;
+    width: 24px;
+
+    svg {
+      fill: $color-brand-primary-down;
+    }
+  }
+
+  &__title {
+    color: $color-interface-dark-pure;
+    margin-bottom: $spacing-inline-xxxs;
+
+    &--with-solid-icon {
+      font-size: $font-size-xxs;
+    }
+  }
+
+  &__description {
+    align-items: center;
+    display: flex;
+    min-height: 24px;
+  }
+}
