@@ -24,14 +24,14 @@
   }
 
   &--warning {
-    background-color: $color-status-neutral-up;
+    background-color: $color-status-warning-up;
 
     .ods-alert__icon {
-      stroke: $color-status-neutral-deep;
+      stroke: $color-status-warning-deep;
     }
 
     .ods-alert__title {
-      color: $color-status-neutral-deep;
+      color: $color-status-warning-deep;
     }
   }
 

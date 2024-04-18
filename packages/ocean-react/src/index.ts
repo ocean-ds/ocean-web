@@ -16,6 +16,9 @@ export * from './SubHeader';
 export { default as TransactionListItem } from './TransactionListItem';
 export * from './TransactionListItem';
 
+export { default as UnorderedListItem } from './UnorderedListItem';
+export * from './UnorderedListItem';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 
