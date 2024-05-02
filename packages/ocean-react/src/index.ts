@@ -16,6 +16,9 @@ export * from './SubHeader';
 export { default as TransactionListItem } from './TransactionListItem';
 export * from './TransactionListItem';
 
+export { default as UnorderedListItem } from './UnorderedListItem';
+export * from './UnorderedListItem';
+
 export { default as Alert } from './Alert';
 export * from './Alert';
 
@@ -97,3 +100,6 @@ export * from './Shortcut';
 
 export { default as CardListItem } from './CardListItem';
 export * from './CardListItem';
+
+export { default as Chips } from './Chips';
+export * from './Chips';

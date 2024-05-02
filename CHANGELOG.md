@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.57.1](https://github.com/ocean-ds/ocean-web/compare/v1.57.0...v1.57.1) (2024-04-18)
+
+**Note:** Version bump only for package root
+
+# [1.57.0](https://github.com/ocean-ds/ocean-web/compare/v1.56.0...v1.57.0) (2024-04-18)
+
+### Features
+
+- create unordered list component ([#1097](https://github.com/ocean-ds/ocean-web/issues/1097)) ([d590bd6](https://github.com/ocean-ds/ocean-web/commit/d590bd6f9ccd95d8549c4f0e07bf12a695b61036))
+
+# [1.56.0](https://github.com/ocean-ds/ocean-web/compare/v1.55.1...v1.56.0) (2024-04-01)
+
+### Features
+
+- **chips:** select option to multi choice ([#1096](https://github.com/ocean-ds/ocean-web/issues/1096)) ([2f594a7](https://github.com/ocean-ds/ocean-web/commit/2f594a738f4de5d0ebfe5993aef9c65024201aad))
+
+## [1.55.1](https://github.com/ocean-ds/ocean-web/compare/v1.55.0...v1.55.1) (2024-03-27)
+
+### Bug Fixes
+
+- adjust on close handler ([#1095](https://github.com/ocean-ds/ocean-web/issues/1095)) ([dad160e](https://github.com/ocean-ds/ocean-web/commit/dad160ec160915f0d298c0cec6d4c2d6fb989974))
+
+# [1.55.0](https://github.com/ocean-ds/ocean-web/compare/v1.54.1...v1.55.0) (2024-03-27)
+
+### Features
+
+- selected value at chips ([#1094](https://github.com/ocean-ds/ocean-web/issues/1094)) ([07c6c58](https://github.com/ocean-ds/ocean-web/commit/07c6c58a1492489c1b83e357d96139a68cb24d05))
+
+## [1.54.1](https://github.com/ocean-ds/ocean-web/compare/v1.54.0...v1.54.1) (2024-03-26)
+
+### Bug Fixes
+
+- adjust optins columns ([#1093](https://github.com/ocean-ds/ocean-web/issues/1093)) ([b49ed7c](https://github.com/ocean-ds/ocean-web/commit/b49ed7cc28408a1cce4a2f6366b7c8799bff563e))
+
+# [1.54.0](https://github.com/ocean-ds/ocean-web/compare/v1.53.0...v1.54.0) (2024-03-25)
+
+### Features
+
+- add multi choice options on chips ([#1092](https://github.com/ocean-ds/ocean-web/issues/1092)) ([fc239e5](https://github.com/ocean-ds/ocean-web/commit/fc239e5e66b556c2c1580aab1735077e378e17c7))
+
+# [1.53.0](https://github.com/ocean-ds/ocean-web/compare/v1.52.2...v1.53.0) (2024-03-21)
+
+### Features
+
+- create chips component ([#1091](https://github.com/ocean-ds/ocean-web/issues/1091)) ([7fc498a](https://github.com/ocean-ds/ocean-web/commit/7fc498a565fe78a42c29bc7051796dc8560c301f))
+
 ## [1.52.2](https://github.com/ocean-ds/ocean-web/compare/v1.52.1...v1.52.2) (2024-01-30)
 
 ### Bug Fixes
