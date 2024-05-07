@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { StarOutline } from '@useblu/ocean-icons-react';
 
 import Alert, { AlertProps } from '../Alert';
 
@@ -120,6 +121,36 @@ describe('Alert', () => {
             >
               Hello There!
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `);
+  });
+
+  test('checks custom icon', () => {
+    setup({ icon: <StarOutline /> });
+
+    expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
+    <div
+      class="ods-alert ods-alert--default ods-alert--long"
+      role="alert"
+    >
+      <div
+        class="ods-alert__header"
+      >
+        <div
+          class="ods-alert__icon"
+        >
+          mock-start-circle-outline
+        </div>
+        <div
+          class="alert__content"
+        >
+          <div
+            class="ods-alert__content"
+          >
+            Hello There!
           </div>
         </div>
       </div>
