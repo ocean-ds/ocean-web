@@ -4,13 +4,19 @@
   border-radius: $border-radius-md;
   color: $color-interface-dark-down;
   display: flex;
+  flex-direction: column;
   font-family: $font-family-base;
   font-size: $font-size-xxxs;
   font-weight: $font-weight-regular;
   justify-content: center;
   line-height: $line-height-comfy;
   padding: $spacing-stack-xs;
-  flex-direction: column;
+
+  @include media-breakpoint-up(sm) {
+    &__button--mobile {
+      display: none;
+    }
+  }
 
   &--error {
     background-color: $color-status-negative-up;
@@ -23,11 +29,11 @@
       color: $color-status-negative-pure;
     }
 
-    & .ods-btn {
+    .ods-btn {
       background-color: $color-status-negative-pure;
     }
 
-    & .ods-link {
+    .ods-link {
       color: $color-status-negative-pure;
     }
   }
@@ -43,11 +49,11 @@
       color: $color-status-warning-deep;
     }
 
-    & .ods-btn {
+    .ods-btn {
       background-color: $color-status-warning-deep;
     }
 
-    & .ods-link {
+    .ods-link {
       color: $color-status-warning-deep;
     }
   }
@@ -63,11 +69,11 @@
       color: $color-status-positive-deep;
     }
 
-    & .ods-btn {
+    .ods-btn {
       background-color: $color-status-positive-deep;
     }
 
-    & .ods-link {
+    .ods-link {
       color: $color-status-positive-deep;
     }
   }
@@ -90,12 +96,9 @@
 
     &--mobile {
       margin-top: $spacing-stack-xxs;
-      @include media-breakpoint-up(sm) {
-        display: none;
-      }
     }
 
-    & .ods-btn {
+    .ods-btn {
       margin-left: $spacing-stack-xs;
       min-width: 0;
     }
