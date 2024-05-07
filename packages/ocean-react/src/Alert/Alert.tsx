@@ -3,6 +3,9 @@ import classNames from 'classnames';
 
 import AlertIcon from './AlertIcon';
 
+import Button from '../Button';
+import Link from '../Link';
+
 export type AlertProps = {
   /**
    * Determines the type of alert, with default icon and colors for each type
@@ -14,14 +17,41 @@ export type AlertProps = {
    */
   title?: string;
   /**
-   * Sets a custon icon for the Alert.
+   * Sets a custom icon for the Alert.
    */
   icon?: React.ReactElement;
+  /**
+   * Sets a size of the description.
+   */
+  descriptionSize?: 'short' | 'long';
+  /**
+   * Sets a button label.
+   */
+  button?: string;
+  /**
+   * Sets a button action.
+   */
+  buttonAction?: () => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ children, type = 'default', title, className, icon, ...rest }, ref) => {
+  (
+    {
+      children,
+      type = 'default',
+      title,
+      className,
+      icon,
+      descriptionSize = 'long',
+      button,
+      buttonAction,
+      ...rest
+    },
+    ref
+  ) => {
     const alertIcon = <AlertIcon type={type} icon={icon} />;
+
+    const descriptionBottom = descriptionSize === 'long';
 
     return (
       <div
@@ -30,6 +60,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         className={classNames(
           'ods-alert',
           `ods-alert--${type}`,
+          `ods-alert--size-${descriptionSize}`,
           title && 'ods-alert--has-header',
           className
         )}
@@ -38,12 +69,35 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         {title ? (
           <div className="ods-alert__header">
             {alertIcon}
-            <div className="ods-alert__title">{title}</div>
+            {!descriptionBottom ? (
+              <div className="ods-alert__text">
+                <div className="ods-alert__title">{title}</div>
+                <div className="ods-alert__content">{children}</div>
+                {button && (
+                  <div className="ods-alert__button--mobile">
+                    <Link size="sm" icon="linkChevron" onClick={buttonAction}>
+                      {button}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="ods-alert__title">{title}</div>
+            )}
+            {button && (
+              <div className="ods-alert__button">
+                <Button size="sm" onClick={buttonAction}>
+                  {button}
+                </Button>
+              </div>
+            )}
           </div>
         ) : (
           alertIcon
         )}
-        <div className="ods-alert__content">{children}</div>
+        {descriptionBottom && (
+          <div className="ods-alert__content">{children}</div>
+        )}
       </div>
     );
   }
