@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { StarOutline } from '@useblu/ocean-icons-react';
 
 import Alert, { AlertProps } from '../Alert';
@@ -9,6 +9,8 @@ jest.mock('@useblu/ocean-icons-react', () => ({
   ExclamationCircleOutline: () => 'mock-exclamation-circle-outline',
   XCircleOutline: () => 'mock-x-circle-outline',
   CheckCircleOutline: () => 'mock-check-circle-outline',
+  ChevronRight: () => 'mock-chevron-right',
+  ExternalLink: () => 'mock-external-link',
   StarOutline: function StarOutlineMock(
     props: React.HTMLAttributes<HTMLDivElement>
   ) {
@@ -24,147 +26,135 @@ const setup = (props?: AlertProps) => {
   );
 };
 
-test('renders default element properly', () => {
-  setup();
+describe('Alert', () => {
+  test('renders the title', () => {
+    setup({ title: 'Test Title' });
 
-  expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-<div
-  class="ods-alert ods-alert--default"
-  role="alert"
->
-  mock-information-circle-outline
-  <div
-    class="ods-alert__content"
-  >
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+  });
+
+  test('renders the title and the description', () => {
+    setup({ title: 'Test Title' });
+
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+    expect(screen.getByText('Hello There!')).toBeInTheDocument();
+  });
+
+  test('renders the button with the title', () => {
+    setup({ button: 'Test Button', title: 'Test Title' });
+
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+    expect(screen.getAllByText('Test Button')[0]).toBeInTheDocument();
+  });
+
+  test('renders the button without the title', () => {
+    setup({ button: 'Test Button' });
+
+    expect(screen.getAllByText('Test Button')[0]).toBeInTheDocument();
+  });
+
+  test('checks the button click', () => {
+    const mockFunction = jest.fn();
+
+    setup({ button: 'Test Button', buttonAction: mockFunction });
+
+    fireEvent.click(screen.getAllByText('Test Button')[0]);
+    expect(mockFunction).toHaveBeenCalledTimes(1);
+  });
+
+  test('checks long description snapshot', () => {
+    setup({ title: 'Test Title', size: 'long' });
+
+    expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
     <div
-      class="ods-alert__content"
+      class="ods-alert ods-alert--default ods-alert--long"
+      role="alert"
     >
-      Hello There!
+      <div
+        class="ods-alert__header ods-alert__header--margin"
+      >
+        mock-information-circle-outline
+        <div
+          class="ods-alert__title"
+        >
+          Test Title
+        </div>
+      </div>
+      <div
+        class="alert__content"
+      >
+        <div
+          class="ods-alert__content"
+        >
+          Hello There!
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-`);
-});
+    `);
+  });
 
-test('renders success element properly', () => {
-  setup({ type: 'success' });
+  test('checks short description snapshot', () => {
+    setup({ title: 'Test Title', size: 'short' });
 
-  expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-<div
-  class="ods-alert ods-alert--success"
-  role="alert"
->
-  mock-check-circle-outline
-  <div
-    class="ods-alert__content"
-  >
+    expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
     <div
-      class="ods-alert__content"
+      class="ods-alert ods-alert--default"
+      role="alert"
     >
-      Hello There!
+      <div
+        class="ods-alert__header"
+      >
+        mock-information-circle-outline
+        <div
+          class="ods-alert__text"
+        >
+          <div
+            class="ods-alert__title"
+          >
+            Test Title
+          </div>
+          <div
+            class="alert__content"
+          >
+            <div
+              class="ods-alert__content"
+            >
+              Hello There!
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-`);
-});
+    `);
+  });
 
-test('renders error element properly', () => {
-  setup({ type: 'error' });
+  test('checks custom icon', () => {
+    setup({ icon: <StarOutline /> });
 
-  expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-<div
-  class="ods-alert ods-alert--error"
-  role="alert"
->
-  mock-x-circle-outline
-  <div
-    class="ods-alert__content"
-  >
+    expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
     <div
-      class="ods-alert__content"
+      class="ods-alert ods-alert--default ods-alert--long"
+      role="alert"
     >
-      Hello There!
+      <div
+        class="ods-alert__header"
+      >
+        <div
+          class="ods-alert__icon"
+        >
+          mock-start-circle-outline
+        </div>
+        <div
+          class="alert__content"
+        >
+          <div
+            class="ods-alert__content"
+          >
+            Hello There!
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-`);
-});
-
-test('renders element with a custom icon', () => {
-  setup({ icon: <StarOutline /> });
-
-  expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-<div
-  class="ods-alert ods-alert--default"
-  role="alert"
->
-  <div
-    class="ods-alert__icon"
-  >
-    mock-start-circle-outline
-  </div>
-  <div
-    class="ods-alert__content"
-  >
-    <div
-      class="ods-alert__content"
-    >
-      Hello There!
-    </div>
-  </div>
-</div>
-`);
-});
-
-test('renders warning element properly', () => {
-  setup({ type: 'warning' });
-
-  expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-<div
-  class="ods-alert ods-alert--warning"
-  role="alert"
->
-  mock-exclamation-circle-outline
-  <div
-    class="ods-alert__content"
-  >
-    <div
-      class="ods-alert__content"
-    >
-      Hello There!
-    </div>
-  </div>
-</div>
-`);
-});
-
-test('renders element properly with title', () => {
-  setup({ title: "Test's Title" });
-
-  expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-<div
-  class="ods-alert ods-alert--default ods-alert--has-header"
-  role="alert"
->
-  <div
-    class="ods-alert__header"
-  >
-    mock-information-circle-outline
-    <div
-      class="ods-alert__title"
-    >
-      Test's Title
-    </div>
-  </div>
-  <div
-    class="ods-alert__content"
-  >
-    <div
-      class="ods-alert__content"
-    >
-      Hello There!
-    </div>
-  </div>
-</div>
-`);
+    `);
+  });
 });

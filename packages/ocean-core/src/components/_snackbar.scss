@@ -7,8 +7,8 @@ $slide-animate-timer: 150ms;
   animation-duration: $slide-animate-timer, $slide-animate-timer;
   animation-name: moveInDown, moveInDownBack;
   animation-timing-function: ease-out forwards, ease-out forwards;
-  #{$side}: $font-size-xl;
   top: $font-size-xl;
+  #{$side}: $font-size-xl;
 }
 
 @mixin down-animate-function($timer, $side) {
