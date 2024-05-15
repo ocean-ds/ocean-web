@@ -93,19 +93,66 @@ You can also use the `icon` property to custom svg icon.
   </Story>
 </Canvas>
 
+### Sizes
+
+You can set the `size` between `short` and `long`.
+
+<Canvas>
+  <Story name="default-short-size">
+    <Alert title="Default Title" size="short">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="default-long-size">
+    <Alert title="Default Title" size="long">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+</Canvas>
+
+### Button
+
+You can set the `button` that display on the alert.
+
+<Canvas>
+  <Story name="default-button">
+    <Alert title="Default Title" button="Button">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="warning-button">
+    <Alert title="Default Title" button="Button" type="warning">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="error-button">
+    <Alert title="Default Title" button="Button" type="error">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+  <Story name="success-button">
+    <Alert title="Default Title" button="Button" type="success">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </Alert>
+  </Story>
+</Canvas>
+
 ## CSS
 
-| Global class           | Description                                               |
-| ---------------------- | --------------------------------------------------------- |
-| .ods-alert             | Styles applied to the root element.                       |
-| .ods-alert--has-header | Styles applied to the root element with a title proprity. |
-| .ods-alert--error      | Styles applied to the root element with a error type.     |
-| .ods-alert--warning    | Styles applied to the root element with a warning type.   |
-| .ods-alert--success    | Styles applied to the root element with a success type.   |
-| .ods-alert\_\_header   | Styles applied to the header element.                     |
-| .ods-alert\_\_icon     | Styles applied to the icon element.                       |
-| .ods-alert\_\_title    | Styles applied to the title element.                      |
-| .ods-alert\_\_content  | Styles applied to the content element.                    |
+| Global class                 | Description                                             |
+| ---------------------------- | ------------------------------------------------------- |
+| .ods-alert                   | Styles applied to the root element.                     |
+| .ods-alert--long             | Styles applied to the root element when is long size.   |
+| .ods-alert--error            | Styles applied to the root element with a error type.   |
+| .ods-alert--warning          | Styles applied to the root element with a warning type. |
+| .ods-alert--success          | Styles applied to the root element with a success type. |
+| .ods-alert\_\_header         | Styles applied to the header element.                   |
+| .ods-alert\_\_header--margin | Styles applied to the header element with bottom margin |
+| .ods-alert\_\_icon           | Styles applied to the icon element.                     |
+| .ods-alert\_\_title          | Styles applied to the title element.                    |
+| .ods-alert\_\_content        | Styles applied to the content element.                  |
+| .ods-alert\_\_button         | Styles applied to the button element.                   |
+| .ods-alert\_\_button--mobile | Styles applied to the button element in mobile view.    |
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Alert/Alert.tsx) for more detail.
 
@@ -118,9 +165,12 @@ If that's not sufficient, you can check the [implementation of the component](ht
       title: 'My title',
       type: 'default',
       children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      size: 'long',
+      button: 'Button',
     }}
     argTypes={{
       icon: { control: null },
+      buttonAction: { control: null },
     }}
   >
     {(props) => <Alert {...props} />}
