@@ -32,14 +32,14 @@ const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
 
           if (isMobile && isLast) {
             return (
-              <div
+              <a
                 onClick={onHandleLastItem}
                 className="ods-breadcrumb__item"
                 key={`tag-item-${index + 1}`}
               >
                 <ChevronLeft size={12} />
                 <span>{item}</span>
-              </div>
+              </a>
             );
           }
 
