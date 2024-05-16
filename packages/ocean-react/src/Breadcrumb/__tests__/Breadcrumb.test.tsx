@@ -7,6 +7,7 @@ window.matchMedia = jest.fn().mockImplementation((query) => ({
   matches: query === '(max-width: 576px)',
   addEventListener: jest.fn(),
   removeEventListener: jest.fn(),
+  isMobile: query === '(max-width: 576px)',
 }));
 
 test('renders breadcrumb with array elements', () => {
@@ -27,8 +28,9 @@ test('renders breadcrumb with array elements', () => {
       class="ods-breadcrumb custom-class"
       data-testid="breadcrumb-test"
     >
-      <div
+      <button
         class="ods-breadcrumb__item"
+        type="button"
       >
         <svg
           fill="currentColor"
@@ -48,7 +50,7 @@ test('renders breadcrumb with array elements', () => {
             item 2
           </span>
         </span>
-      </div>
+      </button>
     </div>
   `);
 });
@@ -68,8 +70,9 @@ test('renders breadcrumb with array string', () => {
       class="ods-breadcrumb custom-class"
       data-testid="breadcrumb-test"
     >
-      <div
+      <button
         class="ods-breadcrumb__item"
+        type="button"
       >
         <svg
           fill="currentColor"
@@ -87,7 +90,7 @@ test('renders breadcrumb with array string', () => {
         <span>
           item 3
         </span>
-      </div>
+      </button>
     </div>
   `);
 });
