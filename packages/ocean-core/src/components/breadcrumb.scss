@@ -14,7 +14,14 @@
     gap: 4px;
   }
 
+  button {
+    background: none;
+    border: transparent;
+    outline: 1px solid transparent;
+  }
+
   span,
+  button,
   a {
     color: $color-interface-dark-up;
     font-family: $font-family-base;
