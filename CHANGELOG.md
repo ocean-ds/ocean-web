@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.59.0](https://github.com/ocean-ds/ocean-web/compare/v1.58.0...v1.59.0) (2024-05-16)
+
+### Features
+
+- mobile bradcrumbs ([#1100](https://github.com/ocean-ds/ocean-web/issues/1100)) ([2668a53](https://github.com/ocean-ds/ocean-web/commit/2668a53511ed0222afb71f43d9aca1288c9c2689))
+
+# [1.58.0](https://github.com/ocean-ds/ocean-web/compare/v1.57.1...v1.58.0) (2024-05-15)
+
+### Features
+
+- alert button ([#1099](https://github.com/ocean-ds/ocean-web/issues/1099)) ([425e015](https://github.com/ocean-ds/ocean-web/commit/425e01503db7be486b9dbb0d43c631a891aca799))
+
 ## [1.57.1](https://github.com/ocean-ds/ocean-web/compare/v1.57.0...v1.57.1) (2024-04-18)
 
 **Note:** Version bump only for package root

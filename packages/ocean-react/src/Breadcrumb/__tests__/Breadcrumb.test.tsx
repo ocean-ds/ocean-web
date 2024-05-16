@@ -3,6 +3,13 @@ import { render, screen } from '@testing-library/react';
 
 import Breadcrumb from '../Breadcrumb';
 
+window.matchMedia = jest.fn().mockImplementation((query) => ({
+  matches: query === '(max-width: 576px)',
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  isMobile: query === '(max-width: 576px)',
+}));
+
 test('renders breadcrumb with array elements', () => {
   render(
     <Breadcrumb
@@ -21,13 +28,10 @@ test('renders breadcrumb with array elements', () => {
       class="ods-breadcrumb custom-class"
       data-testid="breadcrumb-test"
     >
-      <div
+      <button
         class="ods-breadcrumb__item"
+        type="button"
       >
-        <span>
-          item 1
-        </span>
-         
         <svg
           fill="currentColor"
           height="12"
@@ -37,19 +41,16 @@ test('renders breadcrumb with array elements', () => {
         >
           <path
             clip-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
             fill-rule="evenodd"
           />
         </svg>
-      </div>
-      <div
-        class="ods-breadcrumb__item"
-      >
         <span>
-          item 2
+          <span>
+            item 2
+          </span>
         </span>
-         
-      </div>
+      </button>
     </div>
   `);
 });
@@ -69,13 +70,10 @@ test('renders breadcrumb with array string', () => {
       class="ods-breadcrumb custom-class"
       data-testid="breadcrumb-test"
     >
-      <div
+      <button
         class="ods-breadcrumb__item"
+        type="button"
       >
-        <span>
-          item 1
-        </span>
-         
         <svg
           fill="currentColor"
           height="12"
@@ -85,40 +83,14 @@ test('renders breadcrumb with array string', () => {
         >
           <path
             clip-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
             fill-rule="evenodd"
           />
         </svg>
-      </div>
-      <div
-        class="ods-breadcrumb__item"
-      >
-        <span>
-          item 2
-        </span>
-         
-        <svg
-          fill="currentColor"
-          height="12"
-          viewBox="0 0 20 20"
-          width="12"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </div>
-      <div
-        class="ods-breadcrumb__item"
-      >
         <span>
           item 3
         </span>
-         
-      </div>
+      </button>
     </div>
   `);
 });
