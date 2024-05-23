@@ -42,20 +42,21 @@
 
   &.ods-transaction-list-item--readonly {
     pointer-events: none;
+
     &:hover {
       background-color: inherit;
     }
   }
 
   &--chevron {
-    & .ods-transaction-list-item__content {
+    .ods-transaction-list-item__content {
       padding: $spacing-stack-xs $spacing-stack-xxs $spacing-stack-xs
         $spacing-stack-xs;
     }
   }
 
   &--readonly {
-    & .ods-transaction-list-item__content {
+    .ods-transaction-list-item__content {
       padding: $spacing-stack-xs;
     }
   }
@@ -198,6 +199,6 @@
 
 .ods-transaction-list-item__chevron {
   color: $color-interface-dark-up;
-  min-width: 20px;
   min-height: 20px;
+  min-width: 20px;
 }
