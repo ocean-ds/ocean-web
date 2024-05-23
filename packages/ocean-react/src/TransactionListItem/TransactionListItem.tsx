@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { ChevronRight } from '@useblu/ocean-icons-react';
 
 export type TransactionListItemProps = {
   /**
@@ -38,6 +39,8 @@ export type TransactionListItemProps = {
    * Determines the sub list of items inside the parent item.
    */
   subItens?: React.ReactElement;
+  withChevron?: boolean;
+  readOnly?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const TransactionListItem = React.forwardRef<
@@ -57,13 +60,20 @@ const TransactionListItem = React.forwardRef<
       time,
       subItens,
       className,
+      withChevron,
+      readOnly,
       ...rest
     },
     ref
   ) => (
     <div
       ref={ref}
-      className={classNames('ods-transaction-list-item', className)}
+      className={classNames(
+        'ods-transaction-list-item',
+        { 'ods-transaction-list-item--chevron': withChevron },
+        { 'ods-transaction-list-item--readonly': readOnly },
+        className
+      )}
       {...rest}
     >
       <div className="ods-transaction-list-item__content">
@@ -95,6 +105,11 @@ const TransactionListItem = React.forwardRef<
             <div className="ods-transaction-list-item__time">{time}</div>
           )}
         </div>
+        {withChevron && !readOnly && (
+          <span className="ods-transaction-list-item__chevron">
+            <ChevronRight size={20} />
+          </span>
+        )}
       </div>
       {subItens && (
         <div className="ods-transaction-list-item__sub-itens">{subItens}</div>
