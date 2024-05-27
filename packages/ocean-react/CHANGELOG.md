@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.59.0](https://github.com/ocean-ds/ocean-web/compare/v1.58.0...v1.59.0) (2024-05-16)
+
+### Features
+
+- mobile bradcrumbs ([#1100](https://github.com/ocean-ds/ocean-web/issues/1100)) ([2668a53](https://github.com/ocean-ds/ocean-web/commit/2668a53511ed0222afb71f43d9aca1288c9c2689))
+
 # [1.58.0](https://github.com/ocean-ds/ocean-web/compare/v1.57.1...v1.58.0) (2024-05-15)
 
 ### Features
