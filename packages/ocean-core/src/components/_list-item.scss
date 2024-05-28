@@ -48,6 +48,17 @@
     }
   }
 
+  &--isloading {
+    pointer-events: none;
+  }
+
+  &--isloading .ods-transaction-list-item__content {
+    &:hover,
+    &:focus {
+      background-color: $color-interface-light-pure;
+    }
+  }
+
   .ods-transaction-list-item__sub-itens {
     .ods-transaction-list-item {
       background-color: transparent;

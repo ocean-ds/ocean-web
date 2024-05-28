@@ -41,6 +41,7 @@ export type TransactionListItemProps = {
   subItens?: React.ReactElement;
   withChevron?: boolean;
   readOnly?: boolean;
+  isLoading?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const TransactionListItem = React.forwardRef<
@@ -62,6 +63,7 @@ const TransactionListItem = React.forwardRef<
       className,
       withChevron,
       readOnly,
+      isLoading,
       ...rest
     },
     ref
@@ -72,6 +74,7 @@ const TransactionListItem = React.forwardRef<
         'ods-transaction-list-item',
         { 'ods-transaction-list-item--chevron': withChevron },
         { 'ods-transaction-list-item--readonly': readOnly },
+        { 'ods-transaction-list-item--isloading': isLoading },
         className
       )}
       {...rest}
