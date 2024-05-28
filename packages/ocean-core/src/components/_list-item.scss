@@ -106,9 +106,9 @@
 }
 
 .ods-transaction-list-item__information {
+  margin: 0 $spacing-inline-xs 0 12px;
   overflow: hidden;
   width: 100%;
-  margin: 0 $spacing-inline-xs 0 12px;
 
   @include media-breakpoint-down(sm) {
     margin: 0 $spacing-inline-xxs 0 0;
@@ -170,12 +170,12 @@
   margin-bottom: $spacing-inline-xxxs;
   white-space: nowrap;
 
-  &--positive {
-    color: $color-status-positive-deep;
-  }
-
   @include media-breakpoint-down(sm) {
     font-size: $font-size-xxs;
+  }
+
+  &--positive {
+    color: $color-status-positive-deep;
   }
 }
 
@@ -194,8 +194,12 @@
 }
 
 .ods-transaction-list-item__chevron {
-  margin-left: 12px;
   color: $color-interface-dark-up;
+  margin-left: 12px;
   min-height: 20px;
   min-width: 20px;
+
+  @include media-breakpoint-down(sm) {
+    margin-left: $spacing-inline-xxs;
+  }
 }
