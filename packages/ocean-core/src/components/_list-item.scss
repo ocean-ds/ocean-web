@@ -156,7 +156,7 @@
 }
 
 .ods-transaction-list-item__level3 {
-  color: $color-interface-dark-up;
+  color: $color-interface-dark-down;
   font-family: $font-family-base;
   font-size: $font-size-xxxs;
   font-weight: $font-weight-medium;
@@ -173,7 +173,7 @@
 .ods-transaction-list-item__value {
   color: $color-interface-dark-pure;
   font-family: $font-family-base;
-  font-size: $font-size-xxs;
+  font-size: $font-size-xs;
   font-weight: $font-weight-medium;
   margin-bottom: $spacing-inline-xxxs;
   white-space: nowrap;
