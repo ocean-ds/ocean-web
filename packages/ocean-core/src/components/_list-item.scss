@@ -2,14 +2,9 @@
 
 .ods-transaction-list-item__icon {
   align-items: center;
-  background-color: $color-interface-light-up;
-  border-radius: 40px;
   color: $color-interface-dark-up;
   display: flex;
-  height: 40px;
   justify-content: center;
-  min-width: 40px;
-  width: 40px;
 
   @include media-breakpoint-down(sm) {
     display: none;
@@ -26,18 +21,10 @@
   &:hover,
   &:focus {
     background-color: $color-interface-light-up;
-
-    .ods-transaction-list-item__icon {
-      background-color: $color-interface-light-down;
-    }
   }
 
   &:active {
     background-color: $color-interface-light-deep;
-
-    .ods-transaction-list-item__icon {
-      background-color: $color-interface-light-down;
-    }
   }
 
   &.ods-transaction-list-item--readonly {
@@ -103,7 +90,7 @@
 .ods-transaction-list-item__content {
   align-items: center;
   box-sizing: border-box;
-  column-gap: 12px;
+  // column-gap: 12px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -121,6 +108,11 @@
 .ods-transaction-list-item__information {
   overflow: hidden;
   width: 100%;
+  margin: 0 $spacing-inline-xs 0 12px;
+
+  @include media-breakpoint-down(sm) {
+    margin: 0 $spacing-inline-xxs 0 0;
+  }
 }
 
 .ods-transaction-list-item__sub-information {
@@ -181,6 +173,10 @@
   &--positive {
     color: $color-status-positive-deep;
   }
+
+  @include media-breakpoint-down(sm) {
+    font-size: $font-size-xxs;
+  }
 }
 
 .ods-transaction-list-item__tags {
@@ -198,6 +194,7 @@
 }
 
 .ods-transaction-list-item__chevron {
+  margin-left: 12px;
   color: $color-interface-dark-up;
   min-height: 20px;
   min-width: 20px;
