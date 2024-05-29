@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.59.1](https://github.com/ocean-ds/ocean-web/compare/v1.59.0...v1.59.1) (2024-05-29)
+
+### Bug Fixes
+
+- adjust on transaction list item ([#1101](https://github.com/ocean-ds/ocean-web/issues/1101)) ([a8fd429](https://github.com/ocean-ds/ocean-web/commit/a8fd42946502676a556e93897d1167139b34ef8e))
+
 # [1.59.0](https://github.com/ocean-ds/ocean-web/compare/v1.58.0...v1.59.0) (2024-05-16)
 
 ### Features
