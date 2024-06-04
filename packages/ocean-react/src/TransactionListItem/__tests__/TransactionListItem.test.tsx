@@ -26,7 +26,7 @@ test('renders default element properly', () => {
     class="ods-transaction-list-item__content"
   >
     <div
-      class="ods-transaction-list-item__information"
+      class="ods-transaction-list-item__information ods-transaction-list-item__information--with-icon"
     >
       <div
         class="ods-transaction-list-item__level1"
@@ -71,7 +71,7 @@ test('renders default element properly with all possible information', () => {
       mock-exclamation-circle-outline
     </div>
     <div
-      class="ods-transaction-list-item__information"
+      class="ods-transaction-list-item__information ods-transaction-list-item__information--with-icon"
     >
       <div
         class="ods-transaction-list-item__level4"
