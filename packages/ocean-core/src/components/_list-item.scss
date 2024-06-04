@@ -116,13 +116,17 @@
 }
 
 .ods-transaction-list-item__information {
-  margin: 0 $spacing-inline-xs 0 12px;
+  margin: 0 $spacing-inline-xs 0 0;
   overflow: hidden;
   width: 100%;
 
   @include media-breakpoint-down(sm) {
     margin: 0 $spacing-inline-xxs 0 0;
   }
+}
+
+.ods-transaction-list-item__information--with-icon {
+  margin: 0 $spacing-inline-xs 0 12px;
 }
 
 .ods-transaction-list-item__sub-information {
