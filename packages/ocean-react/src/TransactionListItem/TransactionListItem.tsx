@@ -81,7 +81,11 @@ const TransactionListItem = React.forwardRef<
     >
       <div className="ods-transaction-list-item__content">
         {icon && <div className="ods-transaction-list-item__icon">{icon}</div>}
-        <div className="ods-transaction-list-item__information">
+        <div
+          className={`ods-transaction-list-item__information ${
+            icon ? 'ods-transaction-list-item__information--with-icon' : ''
+          }`}
+        >
           {level4 && (
             <div className="ods-transaction-list-item__level4">{level4}</div>
           )}
