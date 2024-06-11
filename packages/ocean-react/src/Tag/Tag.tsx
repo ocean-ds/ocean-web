@@ -17,7 +17,12 @@ export type TagProps = {
     | 'neutral-03'
     | 'default';
   /**
-   * Sets a custon icon for the Tag.
+   * Sets the size of the Tag.
+   * @default 'medium'
+   */
+  size: 'small' | 'medium';
+  /**
+   * Sets a custom icon for the Tag.
    */
   icon?: React.ReactElement;
   /**
@@ -31,6 +36,7 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
     {
       children,
       type = 'default',
+      size = 'medium',
       className,
       icon,
       setIconOff = false,
@@ -41,7 +47,12 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
     <div
       ref={ref}
       role="Tag"
-      className={classNames('ods-tag', `ods-tag--${type}`, className)}
+      className={classNames(
+        'ods-tag',
+        `ods-tag--${type}`,
+        `ods-tag--${size}`,
+        className
+      )}
       {...rest}
     >
       {!setIconOff && <TagIcon type={type} icon={icon} />}

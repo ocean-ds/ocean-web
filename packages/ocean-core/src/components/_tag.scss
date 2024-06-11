@@ -7,12 +7,23 @@
   color: $color-interface-dark-down;
   display: flex;
   font-family: $font-family-base;
-  font-size: $font-size-xxxs;
-  font-weight: 600;
+  gap: $spacing-stack-xxxs;
   justify-content: left;
-  line-height: $line-height-comfy;
-  padding: math.div($spacing-stack-xxxs, 2) $spacing-stack-xxxs;
   width: fit-content;
+
+  &--medium {
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
+    padding: math.div($spacing-stack-xxxs, 4) $spacing-stack-xxs;
+  }
+
+  &--small {
+    font-size: 10px;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+    padding: math.div($spacing-stack-xxxs, 1.6) $spacing-stack-xxxs;
+  }
 
   &--negative {
     background-color: $color-status-negative-up;
@@ -92,7 +103,6 @@
   }
 
   &__content {
-    margin: 0 $spacing-stack-xxxs;
     white-space: nowrap;
   }
 }
