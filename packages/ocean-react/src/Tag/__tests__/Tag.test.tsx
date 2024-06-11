@@ -35,11 +35,11 @@ test('renders default element properly', () => {
 });
 
 test('renders positive element properly', () => {
-  setup({ type: 'positive' });
+  setup({ type: 'positive', size: 'small' });
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--positive ods-tag--medium"
+      class="ods-tag ods-tag--positive ods-tag--small"
       role="Tag"
     >
       mock-check-circle-outline
@@ -150,23 +150,6 @@ test('renders warning element without icon by properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--warning ods-tag--medium"
-      role="Tag"
-    >
-      <div
-        class="ods-tag__content"
-      >
-        Hello There!
-      </div>
-    </div>
-  `);
-});
-
-test('renders small element properly', () => {
-  setup({ size: 'small' });
-
-  expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
-    <div
-      class="ods-tag ods-tag--default ods-tag--small"
       role="Tag"
     >
       <div
