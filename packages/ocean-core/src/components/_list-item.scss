@@ -2,14 +2,9 @@
 
 .ods-transaction-list-item__icon {
   align-items: center;
-  background-color: $color-interface-light-up;
-  border-radius: 40px;
   color: $color-interface-dark-up;
   display: flex;
-  height: 40px;
   justify-content: center;
-  min-width: 40px;
-  width: 40px;
 
   @include media-breakpoint-down(sm) {
     display: none;
@@ -26,17 +21,41 @@
   &:hover,
   &:focus {
     background-color: $color-interface-light-up;
-
-    .ods-transaction-list-item__icon {
-      background-color: $color-interface-light-down;
-    }
   }
 
   &:active {
     background-color: $color-interface-light-deep;
+  }
 
-    .ods-transaction-list-item__icon {
-      background-color: $color-interface-light-down;
+  &.ods-transaction-list-item--readonly {
+    pointer-events: none;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
+
+  &--chevron {
+    .ods-transaction-list-item__content {
+      padding: $spacing-stack-xs $spacing-stack-xxs $spacing-stack-xs
+        $spacing-stack-xs;
+    }
+  }
+
+  &--readonly {
+    .ods-transaction-list-item__content {
+      padding: $spacing-stack-xs;
+    }
+  }
+
+  &--isloading {
+    pointer-events: none;
+  }
+
+  &--isloading .ods-transaction-list-item__content {
+    &:hover,
+    &:focus {
+      background-color: $color-interface-light-pure;
     }
   }
 
@@ -82,7 +101,6 @@
 .ods-transaction-list-item__content {
   align-items: center;
   box-sizing: border-box;
-  column-gap: $spacing-stack-xxs;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -98,8 +116,17 @@
 }
 
 .ods-transaction-list-item__information {
+  margin: 0 $spacing-inline-xs 0 0;
   overflow: hidden;
   width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    margin: 0 $spacing-inline-xxs 0 0;
+  }
+}
+
+.ods-transaction-list-item__information--with-icon {
+  margin: 0 $spacing-inline-xs 0 12px;
 }
 
 .ods-transaction-list-item__sub-information {
@@ -110,7 +137,7 @@
   color: $color-interface-dark-pure;
   font-family: $font-family-base;
   font-size: $font-size-xs;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-regular;
   margin-bottom: $spacing-inline-xxxs;
 }
 
@@ -135,7 +162,7 @@
 }
 
 .ods-transaction-list-item__level3 {
-  color: $color-interface-dark-up;
+  color: $color-interface-dark-down;
   font-family: $font-family-base;
   font-size: $font-size-xxxs;
   font-weight: $font-weight-medium;
@@ -153,9 +180,13 @@
   color: $color-interface-dark-pure;
   font-family: $font-family-base;
   font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-medium;
   margin-bottom: $spacing-inline-xxxs;
   white-space: nowrap;
+
+  @include media-breakpoint-down(sm) {
+    font-size: $font-size-xxs;
+  }
 
   &--positive {
     color: $color-status-positive-deep;
@@ -174,4 +205,15 @@
   font-family: $font-family-base;
   font-size: $font-size-xxxs;
   font-weight: $font-weight-medium;
+}
+
+.ods-transaction-list-item__chevron {
+  color: $color-interface-dark-up;
+  margin-left: 12px;
+  min-height: 20px;
+  min-width: 20px;
+
+  @include media-breakpoint-down(sm) {
+    margin-left: $spacing-inline-xxs;
+  }
 }
