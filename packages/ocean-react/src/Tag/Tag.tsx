@@ -20,7 +20,7 @@ export type TagProps = {
    * Sets the size of the Tag.
    * @default 'medium'
    */
-  size: 'small' | 'medium';
+  size?: 'small' | 'medium';
   /**
    * Sets a custom icon for the Tag.
    */
