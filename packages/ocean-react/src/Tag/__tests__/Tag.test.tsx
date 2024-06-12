@@ -22,7 +22,7 @@ test('renders default element properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--default ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--default"
       role="Tag"
     >
       <div
@@ -39,7 +39,7 @@ test('renders positive element properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--positive ods-tag--small"
+      class="ods-tag ods-tag--small ods-tag--small__with-icon ods-tag--positive"
       role="Tag"
     >
       mock-check-circle-outline
@@ -57,7 +57,7 @@ test('renders neutral-02 element properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--neutral-02 ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--neutral-02"
       role="Tag"
     >
       <div
@@ -74,7 +74,7 @@ test('renders neutral-03 element properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--neutral-03 ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--neutral-03"
       role="Tag"
     >
       <div
@@ -91,7 +91,7 @@ test('renders negative element properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--negative ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--negative"
       role="Tag"
     >
       mock-x-circle-outline
@@ -109,7 +109,7 @@ test('renders element with a custom icon', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--default ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--default"
       role="Tag"
     >
       <div
@@ -131,7 +131,7 @@ test('renders warning element properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--warning ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--warning"
       role="Tag"
     >
       mock-exclamation-circle-outline
@@ -149,7 +149,41 @@ test('renders warning element without icon by properly', () => {
 
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
-      class="ods-tag ods-tag--warning ods-tag--medium"
+      class="ods-tag ods-tag--medium ods-tag--warning"
+      role="Tag"
+    >
+      <div
+        class="ods-tag__content"
+      >
+        Hello There!
+      </div>
+    </div>
+  `);
+});
+
+test('renders highlight element with important element properly', () => {
+  setup({ variant: 'highlight', type: 'important' });
+
+  expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
+    <div
+      class="ods-tag ods-tag--medium ods-tag--highlight__important"
+      role="Tag"
+    >
+      <div
+        class="ods-tag__content"
+      >
+        Hello There!
+      </div>
+    </div>
+  `);
+});
+
+test('renders highlight element with neutral element properly', () => {
+  setup({ variant: 'highlight', type: 'neutral' });
+
+  expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
+    <div
+      class="ods-tag ods-tag--medium ods-tag--highlight__neutral"
       role="Tag"
     >
       <div

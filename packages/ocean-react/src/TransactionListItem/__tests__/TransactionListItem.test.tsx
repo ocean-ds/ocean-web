@@ -106,7 +106,7 @@ test('renders default element properly with all possible information', () => {
             class="ods-transaction-list-item__tags"
           >
             <div
-              class="ods-tag ods-tag--default ods-tag--medium"
+              class="ods-tag ods-tag--medium ods-tag--default"
               role="Tag"
             >
               <div
