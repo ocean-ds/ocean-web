@@ -1,5 +1,13 @@
 @use 'sass:math';
 
+@mixin highlight {
+  color: $color-interface-light-pure;
+  font-size: 10px;
+  font-weight: $font-weight-extrabold;
+  line-height: 10px;
+  padding: $spacing-stack-xxxs $spacing-stack-xxs;
+}
+
 .ods-tag {
   align-items: center;
   background-color: $color-interface-light-up;
@@ -14,15 +22,31 @@
   &--medium {
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
-    line-height: $line-height-comfy;
-    padding: math.div($spacing-stack-xxxs, 4) $spacing-stack-xxs;
+    line-height: 12px;
+    padding: $spacing-stack-xxxs $spacing-stack-xxs;
+
+    &__with-icon {
+      padding: 2px $spacing-stack-xxs;
+    }
   }
 
   &--small {
-    font-size: 10px;
+    font-size: 8px;
     font-weight: $font-weight-bold;
-    line-height: $line-height-medium;
-    padding: math.div($spacing-stack-xxxs, 1.6) $spacing-stack-xxxs;
+    line-height: 8px;
+    padding: $spacing-stack-xxxs $spacing-stack-xxxs;
+  }
+
+  &--highlight {
+    &__important {
+      @include highlight;
+      background-color: $color-highlight-pure;
+    }
+
+    &__neutral {
+      @include highlight;
+      background-color: $color-brand-primary-down;
+    }
   }
 
   &--negative {
