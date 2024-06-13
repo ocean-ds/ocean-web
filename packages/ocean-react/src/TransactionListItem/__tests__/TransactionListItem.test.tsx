@@ -19,31 +19,31 @@ test('renders default element properly', () => {
 
   expect(document.querySelector('.ods-transaction-list-item'))
     .toMatchInlineSnapshot(`
-<div
-  class="ods-transaction-list-item"
->
-  <div
-    class="ods-transaction-list-item__content"
-  >
     <div
-      class="ods-transaction-list-item__information "
+      class="ods-transaction-list-item"
     >
       <div
-        class="ods-transaction-list-item__level1"
+        class="ods-transaction-list-item__content"
       >
-        Bank Transfer
+        <div
+          class="ods-transaction-list-item__information "
+        >
+          <div
+            class="ods-transaction-list-item__level1"
+          >
+            Bank Transfer
+          </div>
+        </div>
+        <div
+          class="ods-transaction-list-item__sub-information"
+        >
+          <div
+            class="ods-transaction-list-item__value"
+          />
+        </div>
       </div>
     </div>
-    <div
-      class="ods-transaction-list-item__sub-information"
-    >
-      <div
-        class="ods-transaction-list-item__value"
-      />
-    </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 test('renders default element properly with all possible information', () => {
@@ -59,72 +59,72 @@ test('renders default element properly with all possible information', () => {
 
   expect(document.querySelector('.ods-transaction-list-item'))
     .toMatchInlineSnapshot(`
-<div
-  class="ods-transaction-list-item"
->
-  <div
-    class="ods-transaction-list-item__content"
-  >
     <div
-      class="ods-transaction-list-item__icon"
-    >
-      mock-exclamation-circle-outline
-    </div>
-    <div
-      class="ods-transaction-list-item__information ods-transaction-list-item__information--with-icon"
+      class="ods-transaction-list-item"
     >
       <div
-        class="ods-transaction-list-item__level4"
-      >
-        Level 4
-      </div>
-      <div
-        class="ods-transaction-list-item__level1"
-      >
-        Bank Transfer
-      </div>
-      <div
-        class="ods-transaction-list-item__level2"
-      >
-        Level 2
-      </div>
-      <div
-        class="ods-transaction-list-item__level3"
-      >
-        Level 3
-      </div>
-    </div>
-    <div
-      class="ods-transaction-list-item__sub-information"
-    >
-      <div
-        class="ods-transaction-list-item__value"
-      >
-        U$ 00.000,00
-      </div>
-      <div
-        class="ods-transaction-list-item__tags"
+        class="ods-transaction-list-item__content"
       >
         <div
-          class="ods-tag ods-tag--default"
-          role="Tag"
+          class="ods-transaction-list-item__icon"
+        >
+          mock-exclamation-circle-outline
+        </div>
+        <div
+          class="ods-transaction-list-item__information ods-transaction-list-item__information--with-icon"
         >
           <div
-            class="ods-tag__content"
+            class="ods-transaction-list-item__level4"
           >
-            Tag
+            Level 4
+          </div>
+          <div
+            class="ods-transaction-list-item__level1"
+          >
+            Bank Transfer
+          </div>
+          <div
+            class="ods-transaction-list-item__level2"
+          >
+            Level 2
+          </div>
+          <div
+            class="ods-transaction-list-item__level3"
+          >
+            Level 3
+          </div>
+        </div>
+        <div
+          class="ods-transaction-list-item__sub-information"
+        >
+          <div
+            class="ods-transaction-list-item__value"
+          >
+            U$ 00.000,00
+          </div>
+          <div
+            class="ods-transaction-list-item__tags"
+          >
+            <div
+              class="ods-tag ods-tag--medium ods-tag--default"
+              role="Tag"
+            >
+              <div
+                class="ods-tag__content"
+              >
+                Tag
+              </div>
+            </div>
+          </div>
+          <div
+            class="ods-transaction-list-item__time"
+          >
+            9:00
           </div>
         </div>
       </div>
-      <div
-        class="ods-transaction-list-item__time"
-      >
-        9:00
-      </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
 
 test('renders default element properly with sub transaction-list-items', () => {
@@ -139,37 +139,6 @@ test('renders default element properly with sub transaction-list-items', () => {
 
   expect(document.querySelector('.ods-transaction-list-item'))
     .toMatchInlineSnapshot(`
-<div
-  class="ods-transaction-list-item"
->
-  <div
-    class="ods-transaction-list-item__content"
-  >
-    <div
-      class="ods-transaction-list-item__icon"
-    >
-      mock-exclamation-circle-outline
-    </div>
-    <div
-      class="ods-transaction-list-item__information ods-transaction-list-item__information--with-icon"
-    >
-      <div
-        class="ods-transaction-list-item__level1"
-      >
-        Bank Transfer
-      </div>
-    </div>
-    <div
-      class="ods-transaction-list-item__sub-information"
-    >
-      <div
-        class="ods-transaction-list-item__value"
-      />
-    </div>
-  </div>
-  <div
-    class="ods-transaction-list-item__sub-itens"
-  >
     <div
       class="ods-transaction-list-item"
     >
@@ -187,7 +156,7 @@ test('renders default element properly with sub transaction-list-items', () => {
           <div
             class="ods-transaction-list-item__level1"
           >
-            Sub
+            Bank Transfer
           </div>
         </div>
         <div
@@ -198,8 +167,39 @@ test('renders default element properly with sub transaction-list-items', () => {
           />
         </div>
       </div>
+      <div
+        class="ods-transaction-list-item__sub-itens"
+      >
+        <div
+          class="ods-transaction-list-item"
+        >
+          <div
+            class="ods-transaction-list-item__content"
+          >
+            <div
+              class="ods-transaction-list-item__icon"
+            >
+              mock-exclamation-circle-outline
+            </div>
+            <div
+              class="ods-transaction-list-item__information ods-transaction-list-item__information--with-icon"
+            >
+              <div
+                class="ods-transaction-list-item__level1"
+              >
+                Sub
+              </div>
+            </div>
+            <div
+              class="ods-transaction-list-item__sub-information"
+            >
+              <div
+                class="ods-transaction-list-item__value"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-`);
+  `);
 });
