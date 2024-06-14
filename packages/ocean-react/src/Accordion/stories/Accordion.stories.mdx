@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Accordion from '../Accordion';
+
+<Meta title="Components/Accordion" component={Accordion} />
+
+# Accordion API
+
+The API documentation of the Accordion React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { Accordion } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas>
+  <Story name="default">
+    <div style={{ maxWidth: '530px' }}>
+      <Accordion
+        title="Accordion item title"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Semper dui odio augue et arcu. Amet, nisi, nullam magna ultrices. Feugiat volutpat rutrum vitae neque, neque at. Fames sollicitudin in vulputate adipiscing mattis eleifend."
+      />
+    </div>
+  </Story>
+</Canvas>
+
+## CSS
+
+| Global class                         | Description                                                   |
+| ------------------------------------ | ------------------------------------------------------------- |
+| .ods-accordion                       | Styles applied to the root element.                           |
+| .ods-accordion\_\_header             | Styles applied to the header content of element.              |
+| .ods-accordion\_\_header--collapsed  | Styles applied to the header content of element if collapsed. |
+| .ods-accordion\_\_icon               | Styles applied to the icon element.                           |
+| .ods-accordion\_\_icon--rotated      | Styles applied to the icon element if collapsed.              |
+| .ods-accordion\_\_content            | Styles applied to the content of element.                     |
+| .ods-accordion\_\_content--collapsed | Styles applied to the content of element id collapsed.        |
+| .ods-accordion\_\_description        | Styles applied to the description element.                    |

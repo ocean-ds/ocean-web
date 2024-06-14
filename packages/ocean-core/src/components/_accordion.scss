@@ -1,0 +1,81 @@
+.ods-accordion {
+  border-bottom: 1px solid $color-interface-light-down;
+  padding: $spacing-stack-xs 0;
+  width: 100%;
+
+  &__header {
+    align-items: center;
+    background-color: transparent;
+    border: hidden;
+    cursor: pointer;
+    display: flex;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    &:hover {
+      color: $color-brand-primary-down;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &--collapsed {
+      color: $color-interface-dark-down;
+    }
+
+    &:not(.ods-accordion__header--collapsed) {
+      color: $color-brand-primary-down;
+    }
+  }
+
+  &__icon {
+    height: 16px;
+    transition: transform 0.3s ease, fill 0.3s ease;
+    width: 16px;
+
+    &--rotated {
+      color: $color-interface-dark-down;
+    }
+
+    &:not(.ods-accordion__icon--rotated) {
+      color: $color-brand-primary-down;
+      transform: rotate(180deg);
+    }
+
+    .ods-accordion__header:hover & {
+      fill: $color-brand-primary-down;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    will-change: max-height;
+
+    &--collapsed {
+      max-height: 0;
+    }
+
+    &:not(.ods-accordion__content--collapsed) {
+      max-height: 800px;
+      transition: max-height 0.4s ease;
+    }
+  }
+
+  &__description {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-regular;
+    line-height: 21px;
+    margin: 0;
+    padding-top: $spacing-stack-xxs;
+  }
+}
