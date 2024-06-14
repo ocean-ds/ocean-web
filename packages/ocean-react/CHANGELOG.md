@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.62.0](https://github.com/ocean-ds/ocean-web/compare/v1.61.0...v1.62.0) (2024-06-14)
+
+### Features
+
+- create accordion component ([#1106](https://github.com/ocean-ds/ocean-web/issues/1106)) ([f685167](https://github.com/ocean-ds/ocean-web/commit/f685167ca6e7293670b751bc583e7f5aacc8c01a))
+
 # [1.61.0](https://github.com/ocean-ds/ocean-web/compare/v1.60.0...v1.61.0) (2024-06-14)
 
 ### Features
