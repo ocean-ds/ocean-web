@@ -16,7 +16,7 @@ const Accordion = ({
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const onHandleAccordion = () => {
-    setIsCollapsed(!isCollapsed);
+    setIsCollapsed((prevState) => !prevState);
   };
 
   return (
