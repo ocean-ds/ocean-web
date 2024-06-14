@@ -20,6 +20,7 @@ interface DrawerProps {
   iconAlignment?: 'right' | 'left';
   anchorEl?: RefObject<HTMLDivElement> | null;
   onMouseOutDrawer?: (event?: MouseEvent<HTMLDivElement>) => void;
+  size?: 'small' | 'large';
 }
 
 const Drawer = ({
@@ -32,9 +33,9 @@ const Drawer = ({
   iconAlignment = 'right',
   anchorEl,
   onMouseOutDrawer,
+  size = 'small',
 }: DrawerProps): React.ReactElement => {
   const drawerRef = useRef<HTMLDivElement>(null);
-
   const handleOverlayClose = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       event.preventDefault();
@@ -48,11 +49,11 @@ const Drawer = ({
     const position = anchorEl.current.getBoundingClientRect();
 
     if (align === 'right') {
-      const size = window.innerWidth - position.left;
+      const positionSize = window.innerWidth - position.left;
 
       return {
-        width: `${size}px`,
-        right: `${size}px`,
+        width: `${positionSize}px`,
+        right: `${positionSize}px`,
         left: 'auto',
       };
     }
@@ -90,7 +91,8 @@ const Drawer = ({
         className={classNames(
           'ods-drawer',
           open && 'ods-drawer--open',
-          `ods-drawer--${align}`
+          `ods-drawer--${align}`,
+          `ods-drawer--${size}`
         )}
         onMouseLeave={onMouseOutDrawer}
       >

@@ -25,7 +25,7 @@ test('renders drawer component properly', () => {
 
   expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
     <div
-      class="ods-drawer ods-drawer--open ods-drawer--right"
+      class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small"
     >
       <div
         class="ods-drawer__content--header ods-drawer__content--header--right"
@@ -55,7 +55,7 @@ test('renders drawer attached to div on right', () => {
 
   expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
     <div
-      class="ods-drawer ods-drawer--open ods-drawer--right"
+      class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small"
     >
       <div
         class="ods-drawer__content--header ods-drawer__content--header--right"
@@ -85,7 +85,67 @@ test('renders drawer attached to div on left', () => {
 
   expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
     <div
-      class="ods-drawer ods-drawer--open ods-drawer--left"
+      class="ods-drawer ods-drawer--open ods-drawer--left ods-drawer--small"
+    >
+      <div
+        class="ods-drawer__content--header ods-drawer__content--header--right"
+      >
+        <button
+          class="ods-btn ods-btn--md ods-btn--primary"
+          type="button"
+        >
+          mock-x-outline-xvg
+        </button>
+      </div>
+      <p>
+        Drawer content!
+      </p>
+    </div>
+  `);
+});
+
+test('renders drawer small drawer', () => {
+  render(
+    <AttachedDrawer size="small">
+      <p>Drawer content!</p>
+    </AttachedDrawer>
+  );
+
+  fireEvent.click(screen.getByRole('button', { name: 'Open drawer' }));
+
+  expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
+    <div
+      class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small"
+    >
+      <div
+        class="ods-drawer__content--header ods-drawer__content--header--right"
+      >
+        <button
+          class="ods-btn ods-btn--md ods-btn--primary"
+          type="button"
+        >
+          mock-x-outline-xvg
+        </button>
+      </div>
+      <p>
+        Drawer content!
+      </p>
+    </div>
+  `);
+});
+
+test('renders drawer large drawer', () => {
+  render(
+    <AttachedDrawer size="large">
+      <p>Drawer content!</p>
+    </AttachedDrawer>
+  );
+
+  fireEvent.click(screen.getByRole('button', { name: 'Open drawer' }));
+
+  expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
+    <div
+      class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--large"
     >
       <div
         class="ods-drawer__content--header ods-drawer__content--header--right"
