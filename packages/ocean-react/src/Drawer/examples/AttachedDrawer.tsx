@@ -8,6 +8,7 @@ export interface SimpleDrawerProps {
   open?: boolean;
   align?: 'left' | 'right';
   iconAlignment?: 'left' | 'right';
+  size?: 'small' | 'large';
 }
 
 const SimpleDrawer = ({
@@ -15,6 +16,7 @@ const SimpleDrawer = ({
   open,
   align,
   iconAlignment,
+  size,
 }: SimpleDrawerProps): React.ReactElement => {
   const anchorRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -63,6 +65,7 @@ const SimpleDrawer = ({
         iconAlignment={iconAlignment}
         align={align}
         anchorEl={anchorRef}
+        size={size}
       >
         {children}
       </Drawer>
