@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.61.0](https://github.com/ocean-ds/ocean-web/compare/v1.60.0...v1.61.0) (2024-06-14)
+
+### Features
+
+- drawer ([#1105](https://github.com/ocean-ds/ocean-web/issues/1105)) ([1c749e0](https://github.com/ocean-ds/ocean-web/commit/1c749e011aa19acf67f1deb0cc15e47618f40e3f))
+
 # [1.60.0](https://github.com/ocean-ds/ocean-web/compare/v1.59.3...v1.60.0) (2024-06-13)
 
 ### Features
