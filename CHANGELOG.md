@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.60.0](https://github.com/ocean-ds/ocean-web/compare/v1.59.3...v1.60.0) (2024-06-13)
+
+### Features
+
+- add tag size variant ([#1104](https://github.com/ocean-ds/ocean-web/issues/1104)) ([90e4a71](https://github.com/ocean-ds/ocean-web/commit/90e4a716c21902069d4260c0e6e71bf62f8f48c7))
+
 ## [1.59.3](https://github.com/ocean-ds/ocean-web/compare/v1.59.2...v1.59.3) (2024-06-06)
 
 ### Bug Fixes
