@@ -38,6 +38,8 @@ import { Drawer } from '@useblu/ocean-react';
 | .ods-drawer\_\overlay--open    | Transitional styles applied to the overlay after open.        |
 | .ods-drawer                    | Styles applied to the drawer content.                         |
 | .ods-drawer--open              | Transitional styles applied to the drawer content after open. |
+| .ods-drawer--small             | Styled applied to drawer size                                 |
+| .ods-drawer--large             | Styled applied to drawer size                                 |
 | .ods-drawer\_\_content--header | Styles applied to the drawer content header.                  |
 
 ## Playground
@@ -49,6 +51,7 @@ import { Drawer } from '@useblu/ocean-react';
       open: false,
       align: 'right',
       iconAlignment: 'right',
+      size: 'small',
     }}
     parameters={{
       controls: { exclude: /^onMouseOutDrawer*/ },
@@ -67,6 +70,11 @@ import { Drawer } from '@useblu/ocean-react';
         name: 'align',
         options: ['right', 'left'],
         control: { type: 'select' },
+      },
+      size: {
+        name: 'size',
+        options: ['small', 'large'],
+        control: { type: 'radio' },
       },
     }}
   >
@@ -129,7 +137,7 @@ import { Drawer } from '@useblu/ocean-react';
               variant="secondary"
               size="md"
               blocked
-              style={{ margin: '0 8px 0 0' }}
+              style={{ margin: '0 12px 0 0' }}
             >
               Default
             </Button>
@@ -152,6 +160,7 @@ import { Drawer } from '@useblu/ocean-react';
       open: false,
       align: 'right',
       iconAlignment: 'right',
+      size: 'small',
     }}
     parameters={{
       controls: { exclude: /^onMouseOutDrawer*/ },
@@ -170,6 +179,11 @@ import { Drawer } from '@useblu/ocean-react';
         name: 'align',
         options: ['right', 'left'],
         control: { type: 'select' },
+      },
+      size: {
+        name: 'size',
+        options: ['small', 'large'],
+        control: { type: 'radio' },
       },
     }}
   >
