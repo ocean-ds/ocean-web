@@ -29,7 +29,14 @@
   top: 0;
   transition: all 335ms ease-out 0ms;
   visibility: hidden;
-  width: 378px;
+
+  &--small {
+    width: 378px;
+  }
+
+  &--large {
+    width: 476px;
+  }
 
   &--right {
     left: auto;
@@ -60,7 +67,7 @@
 
 .ods-drawer__content--header {
   display: flex;
-  height: 48px;
+  min-height: 48px;
   padding: 0 24px;
 
   &--left {
@@ -88,5 +95,9 @@
     &:hover {
       background-color: $color-interface-light-pure;
     }
+  }
+
+  @media (max-width: 767px) {
+    padding: 0 16px;
   }
 }
