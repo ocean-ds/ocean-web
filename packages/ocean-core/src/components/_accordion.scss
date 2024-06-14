@@ -41,11 +41,11 @@
 
     &--rotated {
       color: $color-interface-dark-down;
-      transform: rotate(180deg);
     }
 
     &:not(.ods-accordion__icon--rotated) {
       color: $color-brand-primary-down;
+      transform: rotate(180deg);
     }
 
     .ods-accordion__header:hover & {
