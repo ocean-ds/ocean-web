@@ -13,7 +13,7 @@ const Accordion = ({
   description,
   className,
 }: AccordionProps): JSX.Element => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const onHandleAccordion = () => {
     setIsCollapsed((prevState) => !prevState);
