@@ -15,13 +15,13 @@ test('renders element properly', () => {
       class="ods-accordion"
     >
       <button
-        aria-expanded="true"
-        class="ods-accordion__header"
+        aria-expanded="false"
+        class="ods-accordion__header ods-accordion__header--collapsed"
         type="button"
       >
         Title
         <svg
-          class="ods-accordion__icon"
+          class="ods-accordion__icon ods-accordion__icon--rotated"
           fill="currentColor"
           height="24"
           viewBox="0 0 20 20"
@@ -36,7 +36,7 @@ test('renders element properly', () => {
         </svg>
       </button>
       <div
-        class="ods-accordion__content"
+        class="ods-accordion__content ods-accordion__content--collapsed"
       >
         <p
           class="ods-accordion__description"
