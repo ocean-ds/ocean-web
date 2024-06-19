@@ -3,6 +3,7 @@
   display: flex;
   gap: $spacing-inset-xs;
   list-style-type: none;
+  padding: $spacing-inline-xxxs 0;
 
   &__icon {
     height: 24px;
