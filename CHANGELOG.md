@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.63.0](https://github.com/ocean-ds/ocean-web/compare/v1.62.2...v1.63.0) (2024-06-20)
+
+### Features
+
+- update typography ([#1109](https://github.com/ocean-ds/ocean-web/issues/1109)) ([aed315b](https://github.com/ocean-ds/ocean-web/commit/aed315be06fc0188481a278a5996be6d44d3bb90))
+
 ## [1.62.2](https://github.com/ocean-ds/ocean-web/compare/v1.62.1...v1.62.2) (2024-06-18)
 
 **Note:** Version bump only for package root
