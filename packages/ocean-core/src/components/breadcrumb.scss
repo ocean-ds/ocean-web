@@ -1,6 +1,8 @@
 .ods-breadcrumb {
   align-items: center;
   display: flex;
+  font-family: $font-family-base;
+  font-size: $font-size-xxxs;
   gap: 4px;
   padding: 6px 0;
 
@@ -23,11 +25,16 @@
     border: transparent;
     outline: 1px solid transparent;
     padding: 0;
+
+    svg {
+      color: $color-interface-dark-down;
+    }
   }
 
   span,
   button,
   a {
+    background-color: transparent;
     color: $color-interface-dark-up;
     font-family: $font-family-base;
     font-size: $font-size-xxxs;
