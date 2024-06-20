@@ -13,6 +13,8 @@ export const defaultTypesMapping: Record<string, string> = {
   lead: 'p',
   description: 'p',
   caption: 'p',
+  captionbold: 'p',
+  eyebrow: 'p',
 };
 
 export type Variant =
@@ -26,7 +28,9 @@ export type Variant =
   | 'paragraph'
   | 'lead'
   | 'description'
-  | 'caption';
+  | 'caption'
+  | 'captionbold'
+  | 'eyebrow';
 
 export type TypographyProps = {
   /**

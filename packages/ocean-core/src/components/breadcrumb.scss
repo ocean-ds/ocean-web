@@ -4,6 +4,10 @@
   gap: 4px;
   padding: 6px 0;
 
+  @media (max-width: 576px) {
+    padding: 10px 0;
+  }
+
   svg {
     color: $color-interface-dark-up;
   }
@@ -18,6 +22,7 @@
     background: none;
     border: transparent;
     outline: 1px solid transparent;
+    padding: 0;
   }
 
   span,

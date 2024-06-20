@@ -4491,14 +4491,16 @@
   resolved "https://registry.yarnpkg.com/@useblu/ocean-icons-react/-/ocean-icons-react-1.4.0.tgz#dab6b0fb82013759a8aa10224aee9dd563be6162"
   integrity sha512-EG2ugojIyVUW3Njyyp4jE5o4RV3DArmz2PKACMWnKiaX/ZYCpveF9snyolNuNRnQ9zjn0NAMctkzhtq1NM6ojA==
 
-"@useblu/ocean-tokens@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@useblu/ocean-tokens/-/ocean-tokens-3.5.0.tgz#e79e547e015c6fac2d2e2439423acd7fdb39e6cd"
-  integrity sha512-eR5bCqX6fDk1K4e2Gb1F6Ru5WLK97fJVWYd991CRX49vUgJ7M4xnyFrfFqddI7yPAr2lY1U5wH+zTKDrDivHKg==
+"@useblu/ocean-tokens@3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@useblu/ocean-tokens/-/ocean-tokens-3.8.0.tgz#5da116a0a2a513d79e20865c246fde4113963fa1"
+  integrity sha512-BGFdz/QnTaJNCQyamyoBXHOzEKlGKaTQ5OKVCjCeGz4ZPmTbNMFY+0blTvFUzq7rtpAZkzeLR9Wz+KBWZ2AfUA==
   dependencies:
     gulp "^4.0.2"
     gulp-dom "^1.0.0"
     gulp-load-plugins "^2.0.7"
+    gulp-sourcemaps "^3.0.0"
+    gulp-typescript "^5.0.1"
     immutable "^4.0.0"
     lodash "^4.17.21"
     theo "^8.1.5"
@@ -4959,7 +4961,7 @@ ansi-colors@^1.0.1:
   dependencies:
     ansi-wrap "^0.1.0"
 
-ansi-colors@^3.0.0:
+ansi-colors@^3.0.0, ansi-colors@^3.0.5:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-3.2.4.tgz#e3a3da4bfbae6c86a9c285625de124a234026fbf"
   integrity sha512-hHUXGagefjN2iRrID63xckIvotOXOojhQKWIPUZ4mNUZ9nLZW+7FMNoE1lOkEhNWYsx/7ysGIuJYCiMAA9FnrA==
@@ -10127,6 +10129,18 @@ gulp-sourcemaps@^3.0.0:
     source-map "^0.6.0"
     strip-bom-string "^1.0.0"
     through2 "^2.0.0"
+
+gulp-typescript@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-typescript/-/gulp-typescript-5.0.1.tgz#96c6565a6eb31e08c2aae1c857b1a079e6226d94"
+  integrity sha512-YuMMlylyJtUSHG1/wuSVTrZp60k1dMEFKYOvDf7OvbAJWrDtxxD4oZon4ancdWwzjj30ztiidhe4VXJniF0pIQ==
+  dependencies:
+    ansi-colors "^3.0.5"
+    plugin-error "^1.0.1"
+    source-map "^0.7.3"
+    through2 "^3.0.0"
+    vinyl "^2.1.0"
+    vinyl-fs "^3.0.3"
 
 gulp@^4.0.2:
   version "4.0.2"
@@ -17789,7 +17803,7 @@ through2@^2.0.0, through2@^2.0.3, through2@~2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-through2@^3.0.1:
+through2@^3.0.0, through2@^3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/through2/-/through2-3.0.2.tgz#99f88931cfc761ec7678b41d5d7336b5b6a07bf4"
   integrity sha512-enaDQ4MUyP2W6ZyT6EsMzqBPZaM/avg8iuo+l2d3QCs0J+6RaqkHV/2/lOwDTueBHeJ/2LG9lrLW3d5rWPucuQ==
@@ -18678,7 +18692,7 @@ vfile@^4.0.0:
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
 
-vinyl-fs@^3.0.0:
+vinyl-fs@^3.0.0, vinyl-fs@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/vinyl-fs/-/vinyl-fs-3.0.3.tgz#c85849405f67428feabbbd5c5dbdd64f47d31bc7"
   integrity sha512-vIu34EkyNyJxmP0jscNzWBSygh7VWhqun6RmqVfXePrOwi9lhvRs//dOaGOTRUQr4tx7/zd26Tk5WeSVZitgng==
@@ -18721,7 +18735,7 @@ vinyl-sourcemaps-apply@^0.2.1:
   dependencies:
     source-map "^0.5.1"
 
-vinyl@^2.0.0, vinyl@^2.2.1:
+vinyl@^2.0.0, vinyl@^2.1.0, vinyl@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/vinyl/-/vinyl-2.2.1.tgz#23cfb8bbab5ece3803aa2c0a1eb28af7cbba1974"
   integrity sha512-LII3bXRFBZLlezoG5FfZVcXflZgWP/4dCwKtxd5ky9+LOtM4CS3bIRQsmR1KMnMW07jpE8fqR2lcxPZ+8sJIcw==
