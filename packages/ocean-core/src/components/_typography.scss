@@ -71,6 +71,7 @@
     font-family: $font-family-base;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
+    line-height: $line-height-comfy;
   }
 
   &__description {
@@ -84,7 +85,7 @@
   }
 
   &__captionbold {
-    color: $color_interface_dark_up;
+    color: $color-interface-dark-down;
     font-family: $font-family-base;
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
@@ -96,7 +97,7 @@
     font-family: $font-family-base;
     font-size: $font-size-xxxs;
     font-weight: $font-weight-bold;
-    letter-spacing: 2.8px;
+    letter-spacing: 1.8px;
     line-height: $line-height-comfy;
     text-transform: uppercase;
   }
