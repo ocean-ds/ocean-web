@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.63.1](https://github.com/ocean-ds/ocean-web/compare/v1.63.0...v1.63.1) (2024-06-20)
+
+### Bug Fixes
+
+- adjust breadcrumb and typography ([#1110](https://github.com/ocean-ds/ocean-web/issues/1110)) ([75860e4](https://github.com/ocean-ds/ocean-web/commit/75860e4bc7ea0cb8bdead4fbe7f776ad5244d54b))
+
 # [1.63.0](https://github.com/ocean-ds/ocean-web/compare/v1.62.2...v1.63.0) (2024-06-20)
 
 ### Features
