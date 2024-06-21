@@ -37,3 +37,13 @@ test('renders a medium link', () => {
   render(<Link data-testid="link-test" size="md" />);
   expect(screen.getByTestId('link-test')).toHaveClass('ods-link--md');
 });
+
+test('renders a tiny link', () => {
+  render(<Link data-testid="link-test" size="tiny" />);
+  expect(screen.getByTestId('link-test')).toHaveClass('ods-link--tiny');
+});
+
+test('renders a disabled link', () => {
+  render(<Link data-testid="link-test" disabled />);
+  expect(screen.getByTestId('link-test')).toHaveClass('ods-link--disabled');
+});

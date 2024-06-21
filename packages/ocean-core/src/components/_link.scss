@@ -3,19 +3,46 @@
   font-family: $font-family-base;
   font-weight: $font-weight-medium;
   line-height: $line-height-tight;
+  text-decoration: underline;
+
+  &--chevron {
+    svg {
+      margin-left: 2px;
+    }
+  }
+
+  &--tiny {
+    font-size: $font-size-xxxs;
+    line-height: 12px;
+
+    svg {
+      height: 14px;
+      margin-left: 0;
+      width: 14px;
+    }
+  }
+
+  &--external {
+    svg {
+      margin-left: $spacing-inline-xxxs;
+    }
+  }
 
   &--sm {
     font-size: $font-size-xxs;
+    line-height: 14px;
   }
 
   &--md {
     font-size: $font-size-xs;
+    line-height: 16px;
   }
 
   &--primary {
     color: $color-brand-primary-pure;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $color-brand-primary-down;
       text-decoration: underline;
     }
@@ -24,7 +51,8 @@
   &--inverse {
     color: $color-complementary-down;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $color-complementary-up;
       text-decoration: underline;
     }
@@ -33,19 +61,22 @@
   &--neutral {
     color: $color-interface-dark-down;
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: $color-brand-primary-down;
       text-decoration: underline;
     }
+  }
+
+  &--disabled {
+    color: $color-interface-dark-up;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 
   &--with-icon {
     align-items: center;
     display: flex;
     flex-direction: row;
-  }
-
-  svg {
-    margin-left: $spacing-inline-xxxs;
   }
 }
