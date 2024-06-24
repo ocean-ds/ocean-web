@@ -65,6 +65,7 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
       <div
         ref={ref}
         {...rest}
+        data-testid="card-list-item"
         className={classNames(
           'ods-card-list-item',
           `ods-card-list-item--size-${size}`,
