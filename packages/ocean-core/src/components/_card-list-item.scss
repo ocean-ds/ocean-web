@@ -19,10 +19,8 @@
   width: 320px;
 
   &__leading-icon {
-    color: $color-brand-primary-down;
-    transition: 200ms;
-
     svg {
+      color: $color-brand-primary-down;
       height: $spacing-stack-sm;
       width: $spacing-stack-sm;
     }
@@ -77,10 +75,6 @@
 
   &:hover:not(.ods-card-list-item--disabled, .ods-card-list-item--loading) {
     background-color: $color-interface-light-up;
-
-    &:not(.ods-card-list-item--size-small) .ods-card-list-item__leading-icon {
-      background-color: rgba(184, 195, 255, 0.16);
-    }
   }
 
   &--disabled {
