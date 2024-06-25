@@ -19,11 +19,12 @@
   }
 
   &__element {
-    max-height: 69.19px;
+    max-height: 145px;
   }
 
   &__icon {
     align-items: start;
+    color: $color-interface-dark-up;
     display: flex;
     flex-direction: column;
     justify-content: center;
