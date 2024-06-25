@@ -168,6 +168,7 @@ const TokenInput: React.FC<TokenInputProps> = memo(
                   onChange={handleOnChange}
                   onKeyDown={handleOnKeyDown}
                   onPaste={handleOnPaste}
+                  disabled={disabled}
                 />
               </div>
             ))}
