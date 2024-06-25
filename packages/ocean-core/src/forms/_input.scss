@@ -80,7 +80,7 @@
     }
 
     input {
-      padding: 0 4px;
+      padding: 0 $spacing-inline-xxxs;
     }
   }
 
@@ -88,17 +88,23 @@
     flex-direction: row-reverse;
 
     input {
-      padding: 0 4px;
+      padding: 0 $spacing-inline-xs;
     }
 
     .ods-input__adornment {
-      padding: 0 0 0 16px;
+      padding: 0 0 0 $spacing-inline-xs;
     }
   }
 
   &--right {
     .ods-input__adornment {
-      margin-left: -12px;
+      margin-left: -$spacing-inline-xxs-extra;
+    }
+  }
+
+  &--adornment {
+    input {
+      padding: 0 $spacing-inline-xxxs;
     }
   }
 }

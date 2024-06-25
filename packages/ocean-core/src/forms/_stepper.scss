@@ -26,4 +26,21 @@
   &__stepper-controls_minus {
     padding-left: 4px;
   }
+
+  .ods-input--amount--zero {
+    svg {
+      color: $color-interface-light-deep;
+    }
+
+    input {
+      color: $color-interface-light-deep;
+    }
+  }
+
+  .ods-input--amount--zero:hover,
+  .ods-input--amount--zero:focus {
+    svg {
+      color: $color-interface-dark-deep;
+    }
+  }
 }
