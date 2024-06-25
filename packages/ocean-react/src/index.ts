@@ -34,6 +34,9 @@ export * from './Carousel';
 export { default as Input } from './Input';
 export * from './Input';
 
+export { default as TokenInput } from './TokenInput';
+export * from './TokenInput';
+
 export { default as Checkbox } from './Checkbox';
 export * from './Checkbox';
 
