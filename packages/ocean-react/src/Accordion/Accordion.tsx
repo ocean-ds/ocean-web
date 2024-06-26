@@ -28,6 +28,7 @@ const Accordion = ({
           'ods-accordion__header--collapsed': isCollapsed,
         })}
         aria-expanded={!isCollapsed}
+        data-testid="accordion-header"
       >
         {title}
         <ChevronDown
