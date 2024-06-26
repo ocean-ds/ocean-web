@@ -74,4 +74,11 @@ describe('CardListItem', () => {
       'ods-card-list-item--full-width'
     );
   });
+
+  test('renders the loading state', () => {
+    render(<CardListItem title="Test Title" loading />);
+    expect(screen.getByTestId('card-list-item')).toHaveClass(
+      'ods-card-list-item--loading'
+    );
+  });
 });
