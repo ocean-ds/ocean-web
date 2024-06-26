@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.64.0](https://github.com/ocean-ds/ocean-web/compare/v1.63.1...v1.64.0) (2024-06-26)
+
+### Features
+
+- update card list item component ([#1113](https://github.com/ocean-ds/ocean-web/issues/1113)) ([1c8cf3d](https://github.com/ocean-ds/ocean-web/commit/1c8cf3df19e2d0313d11a06975e845fcf23788a4))
+
 ## [1.63.1](https://github.com/ocean-ds/ocean-web/compare/v1.63.0...v1.63.1) (2024-06-20)
 
 ### Bug Fixes
