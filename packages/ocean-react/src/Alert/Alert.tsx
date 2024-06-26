@@ -62,12 +62,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           'ods-alert',
           `ods-alert--${type}`,
           longSize && 'ods-alert--long',
+          button && 'ods-alert--with-button',
           className
         )}
         {...rest}
       >
         {longSize ? (
-          <>
+          <div>
             <div
               className={classNames(
                 'ods-alert__header',
@@ -82,7 +83,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
               )}
             </div>
             {title && <div className="alert__content">{children}</div>}
-          </>
+          </div>
         ) : (
           <>
             <div
