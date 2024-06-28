@@ -14,6 +14,7 @@ type SelectHookType = {
   onSelect: (newOption: OptionProps) => void;
   isExpanded: boolean;
   setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const useSelect = ({
@@ -31,6 +32,7 @@ const useSelect = ({
   const isControlled = Boolean(value);
   const [selected, setSelected] = useState<OptionProps>();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [search, setSearch] = useState('');
 
   const currentIndex = selected ? selected.index : -1;
 
@@ -91,6 +93,28 @@ const useSelect = ({
     else if (defaultValue && !selected) selectByValue(defaultValue);
   }, [defaultValue, isControlled, selectByValue, selected, value]);
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (search) {
+      timer = setTimeout(() => {
+        const optionList = [
+          ...optionsMemo.slice(currentIndex + 1),
+          ...optionsMemo.slice(0, currentIndex + 1),
+        ];
+
+        const option = optionList.find((o) =>
+          o.label.toLowerCase().startsWith(search.toLowerCase())
+        );
+
+        if (option) selectByIndex(option.index);
+        setSearch('');
+      }, 500);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, optionsMemo, search, selectByIndex]);
+
   return {
     controlId,
     labelId,
@@ -101,6 +125,7 @@ const useSelect = ({
     onSelect,
     isExpanded,
     setIsExpanded,
+    setSearch,
   };
 };
 

@@ -43,6 +43,7 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
     onSelect,
     isExpanded,
     setIsExpanded,
+    setSearch,
   } = useSelect({
     options: filteredOptions,
     id,
@@ -72,9 +73,11 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
       const incremental = mapEventsWithInc[key];
       if (incremental != null) {
         selectClosestOption(incremental);
+
+        setSearch((keysSoFar) => keysSoFar + key);
       }
     },
-    [filteredOptions.length, selectClosestOption]
+    [filteredOptions.length, selectClosestOption, setSearch]
   );
 
   const handleListboxKeyDown = useCallback(
