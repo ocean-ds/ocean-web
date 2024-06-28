@@ -1,13 +1,13 @@
 .ods-alert {
   align-items: flex-start;
   background-color: $color-interface-light-up;
-  border-radius: $border-radius-md;
+  border-radius: $border-radius-sm;
   color: $color-interface-dark-down;
   display: flex;
   flex-direction: column;
   font-family: $font-family-base;
   font-size: $font-size-xxxs;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-medium;
   justify-content: center;
   line-height: $line-height-comfy;
   padding: $spacing-stack-xs;
@@ -23,6 +23,10 @@
   &--with-button {
     padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xxs-extra
       $spacing-stack-xs;
+
+    &__no-title {
+      font-size: $font-size-xxs;
+    }
   }
 
   &--error {
@@ -116,7 +120,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 2px;
+    gap: $spacing-stack-xxxs;
   }
 
   &__icon {
@@ -153,7 +157,13 @@
   &__title {
     color: $color-brand-primary-down;
     font-size: $font-size-xxs;
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-extrabold;
     line-height: $line-height-loose;
+  }
+
+  &__content {
+    &--no-title {
+      padding-top: 0;
+    }
   }
 }
