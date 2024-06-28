@@ -35,7 +35,6 @@ const Select: React.FC<SelectProps> = ({
     onSelect,
     isExpanded,
     setIsExpanded,
-    setSearch,
   } = useSelect({
     options: optionsProp,
     id,
@@ -61,10 +60,8 @@ const Select: React.FC<SelectProps> = ({
 
       const incremental = mapEventsWithInc[key];
       if (incremental != null) selectClosestOption(incremental);
-
-      setSearch((keysSoFar) => keysSoFar + key);
     },
-    [options.length, selectClosestOption, setSearch]
+    [options.length, selectClosestOption]
   );
 
   const handleListboxKeyDown = useCallback(
