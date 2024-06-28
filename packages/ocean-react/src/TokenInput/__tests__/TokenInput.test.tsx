@@ -5,12 +5,9 @@ import TokenInput from '../TokenInput';
 const onChangeToken = jest.fn();
 
 beforeAll(() => {
-  const mockGetRandomValues = () =>
-    new Uint8Array(16).map(() => Math.floor(Math.random() * 256));
-  const mGetRandomValues = jest.fn(mockGetRandomValues);
+  const mGetRandomValues = jest.fn().mockReturnValueOnce(new Uint32Array(4));
   Object.defineProperty(window, 'crypto', {
     value: { getRandomValues: mGetRandomValues },
-    configurable: true,
   });
 });
 
@@ -91,13 +88,6 @@ test('should be disabled when the disabled prop is true', () => {
 
   const inputs = screen.getAllByTestId('token-input-test');
   inputs.forEach((input) => {
-    const mockGetRandomValues = () =>
-      new Uint8Array(16).map(() => Math.floor(Math.random() * 256));
-    const mGetRandomValues = jest.fn(mockGetRandomValues);
-    Object.defineProperty(window, 'crypto', {
-      value: { getRandomValues: mGetRandomValues },
-      configurable: true,
-    });
     expect(input).toBeDisabled();
   });
 });
