@@ -36,8 +36,13 @@ const TokenInput: React.FC<TokenInputProps> = memo(
       Array(digitsQuantity).fill('')
     );
 
-    const generateRandomKey = (): string =>
-      Math.random().toString(36).slice(2, 11);
+    const generateRandomKey = () => {
+      const array = new Uint8Array(16);
+      window.crypto.getRandomValues(array);
+      return Array.from(array, (byte) =>
+        byte.toString(16).padStart(2, '0')
+      ).join('');
+    };
 
     const handleTokenChange = useCallback(
       (code: string[]) => {
