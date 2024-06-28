@@ -21,7 +21,7 @@ const DigitInput = memo(({ focus, autoFocus, ...rest }: DigitInputProps) => {
     }
   }, [autoFocus, focus, prevFocus]);
 
-  return <input ref={inputRef} {...rest} />;
+  return <input data-testid="token-input-test" ref={inputRef} {...rest} />;
 });
 
 DigitInput.displayName = 'DigitInput';

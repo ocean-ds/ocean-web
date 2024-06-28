@@ -7,7 +7,7 @@ export interface TokenInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
   errorMessage?: string;
-  autoFocus: boolean;
+  autoFocus?: boolean;
   digitsQuantity: number;
   onChangeToken(value: string): void;
   className?: string;
