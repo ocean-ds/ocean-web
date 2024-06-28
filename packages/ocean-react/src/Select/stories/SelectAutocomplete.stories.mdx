@@ -1,0 +1,69 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import SelectAutocomplete from '../SelectAutocomplete';
+
+<Meta
+  title="Components/Inputs/SelectAutocomplete"
+  component={SelectAutocomplete}
+  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+/>
+
+# SelectAutocomplete API
+
+The API documentation of the SelectAutocomplete React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { SelectAutocomplete } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas>
+  <Story
+    name="SelectAutocomplete"
+    args={{
+      label: 'Label',
+      placeholder: 'Placeholder...',
+      helperText: 'Some text here!',
+      error: false,
+      disabled: false,
+      options: Array.from(Array(10), (x, index) => ({
+        value: `opt-${index + 1}`,
+        label: `Option ${index + 1}`,
+      })),
+    }}
+    parameters={{
+      controls: { exclude: /^blocked*/ },
+    }}
+    argTypes={{
+      value: { control: null },
+    }}
+  >
+    {(args) => <SelectAutocomplete {...args} />}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+Any other props supplied will be provided to the SelectAutocomplete component.
+
+## CSS
+
+| Global class                                 | Description                                                |
+| -------------------------------------------- | ---------------------------------------------------------- |
+| .ods-select-autocomplete\_\_root             | Styles applied to the root element.                        |
+| .ods-select-autocomplete\_\_arrow            | Styles applied to the arrow element.                       |
+| .ods-select-autocomplete\_\_arrow--up        | Styles applied to the arrow element if the popup is open.  |
+| .ods-select-autocomplete\_\_arrow--down      | Styles applied to the arrow element if the popup is close. |
+| .ods-select-autocomplete\_\_arrow--disabled  | Styles applied to the arrow element if disabled={true}.    |
+| .ods-select-autocomplete\_\_listbox          | Styles applied to the listbox element.                     |
+| .ods-select-autocomplete\_\_listbox-wrapper  | Styles applied to the popup element.                       |
+| .ods-select-autocomplete\_\_option           | Styles applied to the option element.                      |
+| .ods-select-autocomplete\_\_option--selected | Styles applied to the selected option in the listbox.      |
+
+## Inheritance
+
+The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
