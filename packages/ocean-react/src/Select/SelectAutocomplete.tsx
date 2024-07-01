@@ -155,11 +155,7 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
             onKeyDown={handleListboxKeyDown}
             aria-expanded={isExpanded || undefined}
             aria-haspopup="listbox"
-            aria-labelledby={
-              ariaLabel
-                ? undefined
-                : [labelId, controlId].filter(Boolean).join(' ')
-            }
+            aria-labelledby={ariaLabel ? undefined : labelId}
             aria-label={ariaLabel}
             value={inputValue}
             onChange={handleInputChange}
@@ -171,6 +167,7 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
               'ods-select-autocomplete__arrow--down': !isExpanded,
               'ods-select-autocomplete__arrow--disabled': disabled,
             })}
+            data-testid="select-autocomplete-test"
           />
           {name && (
             <input type="hidden" name={name} value={selected?.value || ''} />
