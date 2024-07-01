@@ -62,8 +62,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           'ods-alert',
           `ods-alert--${type}`,
           longSize && 'ods-alert--long',
-          button && 'ods-alert--with-button',
-          button && !title && 'ods-alert--with-button__no-title',
+          button && !title && 'ods-alert--with-button-no-title',
           className
         )}
         {...rest}
