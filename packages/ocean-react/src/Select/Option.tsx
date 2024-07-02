@@ -44,9 +44,7 @@ const Option = React.memo<OptionProps>((option) => {
       role="option"
       className={classNames(
         'ods-select__option',
-        'ods-select-autocomplete__option',
         isSelected && 'ods-select__option--selected',
-        isSelected && 'ods-select-autocomplete__option--selected',
         className
       )}
       onClick={handleClick}

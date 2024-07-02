@@ -54,10 +54,11 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    const eventValue = event.target.value;
+    setInputValue(eventValue);
     setIsExpanded(true);
 
-    if (event.target.value === '') {
+    if (eventValue === '' || !!eventValue) {
       onSelect({
         value: '',
         label: '',
@@ -166,7 +167,7 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
             aria-haspopup="listbox"
             aria-labelledby={ariaLabel ? undefined : labelId}
             aria-label={ariaLabel}
-            value={inputValue || selected?.label || ''}
+            value={selected?.label || inputValue}
             onChange={handleInputChange}
             placeholder={placeholder}
             autoFocus

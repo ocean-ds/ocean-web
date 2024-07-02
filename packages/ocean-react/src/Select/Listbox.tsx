@@ -1,6 +1,4 @@
 import React, { useContext, useEffect, useRef } from 'react';
-
-import classNames from 'classnames';
 import Context from './context';
 import { OptionProps } from './types';
 import Option from './Option';
@@ -20,12 +18,7 @@ const Listbox = React.memo<ListboxProps>(({ id, options, onKeyDown }) => {
   }, []);
 
   return (
-    <div
-      className={classNames(
-        'ods-select__listbox-wrapper',
-        'ods-select-autocomplete__listbox-wrapper'
-      )}
-    >
+    <div className="ods-select__listbox-wrapper">
       <ul
         ref={refListbox}
         id={id}
@@ -38,10 +31,7 @@ const Listbox = React.memo<ListboxProps>(({ id, options, onKeyDown }) => {
         // navigation keys, such as `Down Arrow`, are pressed, the JavaScript
         // changes the value.
         aria-activedescendant={selected?.id || undefined}
-        className={classNames(
-          'ods-select__listbox',
-          'ods-select-autocomplete__listbox'
-        )}
+        className="ods-select__listbox"
         onKeyDown={onKeyDown}
       >
         {options.map(({ value, index, ...rest }) => (
