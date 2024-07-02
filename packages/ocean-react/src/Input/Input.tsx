@@ -27,9 +27,6 @@ export type InputProps = {
    */
   disabled?: boolean;
   /**
-   * Sets a custon adornment to be iside of the `input` element.
-   */
-  /**
    * Specifies the default value of the text field
    */
   defaultValue?: string;
@@ -42,7 +39,7 @@ export type InputProps = {
    */
   position?: 'right' | 'left';
   /**
-   *
+   * Sets a custon adornment to be iside of the `input` element.
    */
   adornment?: React.ReactElement;
 } & Omit<FormControlProps, 'children'> &
@@ -92,7 +89,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             error && 'ods-input--error',
             position === 'left' && 'ods-input--left',
             adornment && !filled ? 'ods-input--disabled--text' : '',
-            className
+            className,
+            {
+              'ods-input--adornment': typeof adornment === 'string',
+            }
           )}
         >
           <input

@@ -121,7 +121,11 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             className
           )}
         >
-          <div className="ods-input--root">
+          <div
+            className={classNames('ods-input--root', {
+              'ods-input--amount--zero': amount === 0,
+            })}
+          >
             <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus">
               <IconButton
                 size="sm"
@@ -149,6 +153,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
                 if (!isNaN(inputedValue)) setAmout(inputedValue);
               }}
               defaultValue={defaultValue}
+              placeholder="0"
               value={amount}
               {...rest}
             />

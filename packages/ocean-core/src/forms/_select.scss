@@ -33,9 +33,9 @@
     }
 
     &:disabled {
-      background-color: $color-interface-light-down;
-      border-color: $color-interface-light-down;
-      color: $color-interface-dark-up;
+      background-color: $color-interface-light-up;
+      border: hidden;
+      color: $color-interface-light-deep;
       cursor: not-allowed;
     }
 

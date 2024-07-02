@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef } from 'react';
-
 import Context from './context';
 import { OptionProps } from './types';
 import Option from './Option';
@@ -9,7 +8,6 @@ type ListboxProps = {
   options: OptionProps[];
   onKeyDown: React.KeyboardEventHandler;
 };
-
 const Listbox = React.memo<ListboxProps>(({ id, options, onKeyDown }) => {
   const { selected } = useContext(Context);
   const refListbox = useRef<HTMLUListElement | null>(null);
