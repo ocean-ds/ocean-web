@@ -62,12 +62,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
           'ods-alert',
           `ods-alert--${type}`,
           longSize && 'ods-alert--long',
+          button && !title && 'ods-alert--with-button-no-title',
           className
         )}
         {...rest}
       >
         {longSize ? (
-          <>
+          <div>
             <div
               className={classNames(
                 'ods-alert__header',
@@ -82,7 +83,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
               )}
             </div>
             {title && <div className="alert__content">{children}</div>}
-          </>
+          </div>
         ) : (
           <>
             <div
@@ -94,7 +95,13 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
               {alertIcon}
               <div className="ods-alert__text">
                 {title && <div className="ods-alert__title">{title}</div>}
-                <div className="alert__content">{children}</div>
+                <div
+                  className={classNames('alert__content', {
+                    'alert__content--no-title': !title,
+                  })}
+                >
+                  {children}
+                </div>
               </div>
               {button && (
                 <div className="ods-alert__button">
@@ -106,7 +113,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             </div>
             {button && (
               <div className="ods-alert__button--mobile">
-                <Link size="sm" onClick={buttonAction} icon="externalLink">
+                <Link size="tiny" onClick={buttonAction} icon="linkChevron">
                   {button}
                 </Link>
               </div>

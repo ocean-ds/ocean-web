@@ -17,44 +17,44 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-<div
-  class="ods-topbar ods-topbar-extend ods-topbar-default"
->
-  <div
-    class="ods-topbar-actions"
-  >
     <div
-      class="ods-topbar-left"
+      class="ods-topbar ods-topbar-extend ods-topbar-default"
     >
-      <span>
-        <svg
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="ods-topbar-actions"
+      >
+        <div
+          class="ods-topbar-left"
         >
-          <path
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-          />
-        </svg>
-      </span>
+          <span>
+            <svg
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m10 19-7-7m0 0 7-7m-7 7h18"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+      <div
+        class="ods-topbar-title"
+      >
+        Title
+        <span>
+          Description
+        </span>
+      </div>
     </div>
-  </div>
-  <div
-    class="ods-topbar-title"
-  >
-    Title
-    <span>
-      Description
-    </span>
-  </div>
-</div>
-`);
+  `);
 });
 test('should render the buttons and Click', () => {
   const { container } = render(

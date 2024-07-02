@@ -106,7 +106,7 @@ test('renders element properly', () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M19 9l-7 7-7-7"
+                  d="m19 9-7 7-7-7"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"

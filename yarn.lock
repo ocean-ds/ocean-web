@@ -4486,10 +4486,10 @@
     "@typescript-eslint/types" "5.14.0"
     eslint-visitor-keys "^3.0.0"
 
-"@useblu/ocean-icons-react@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@useblu/ocean-icons-react/-/ocean-icons-react-1.4.0.tgz#dab6b0fb82013759a8aa10224aee9dd563be6162"
-  integrity sha512-EG2ugojIyVUW3Njyyp4jE5o4RV3DArmz2PKACMWnKiaX/ZYCpveF9snyolNuNRnQ9zjn0NAMctkzhtq1NM6ojA==
+"@useblu/ocean-icons-react@1.23.1":
+  version "1.23.1"
+  resolved "https://registry.yarnpkg.com/@useblu/ocean-icons-react/-/ocean-icons-react-1.23.1.tgz#f893fe6a84ac1eec091424b81963108fba724adb"
+  integrity sha512-ZEJqimv8bXpx22CNGCGvu3SDLYnvXRi4CTlhvfA5Hx5jGGS3c5lA9r7exEE2cCQ5YVmrq5aShAO2zy+c11nc9w==
 
 "@useblu/ocean-tokens@3.8.0":
   version "3.8.0"

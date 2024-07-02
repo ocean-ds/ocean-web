@@ -66,52 +66,20 @@ describe('Alert', () => {
     setup({ title: 'Test Title', size: 'long' });
 
     expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-    <div
-      class="ods-alert ods-alert--default ods-alert--long"
-      role="alert"
-    >
       <div
-        class="ods-alert__header ods-alert__header--margin"
+        class="ods-alert ods-alert--default ods-alert--long"
+        role="alert"
       >
-        mock-information-circle-outline
-        <div
-          class="ods-alert__title"
-        >
-          Test Title
-        </div>
-      </div>
-      <div
-        class="alert__content"
-      >
-        <div
-          class="ods-alert__content"
-        >
-          Hello There!
-        </div>
-      </div>
-    </div>
-    `);
-  });
-
-  test('checks short description snapshot', () => {
-    setup({ title: 'Test Title', size: 'short' });
-
-    expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-    <div
-      class="ods-alert ods-alert--default"
-      role="alert"
-    >
-      <div
-        class="ods-alert__header"
-      >
-        mock-information-circle-outline
-        <div
-          class="ods-alert__text"
-        >
+        <div>
           <div
-            class="ods-alert__title"
+            class="ods-alert__header ods-alert__header--margin"
           >
-            Test Title
+            mock-information-circle-outline
+            <div
+              class="ods-alert__title"
+            >
+              Test Title
+            </div>
           </div>
           <div
             class="alert__content"
@@ -124,37 +92,73 @@ describe('Alert', () => {
           </div>
         </div>
       </div>
-    </div>
     `);
+  });
+
+  test('checks short description snapshot', () => {
+    setup({ title: 'Test Title', size: 'short' });
+
+    expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
+          <div
+            class="ods-alert ods-alert--default"
+            role="alert"
+          >
+            <div
+              class="ods-alert__header"
+            >
+              mock-information-circle-outline
+              <div
+                class="ods-alert__text"
+              >
+                <div
+                  class="ods-alert__title"
+                >
+                  Test Title
+                </div>
+                <div
+                  class="alert__content"
+                >
+                  <div
+                    class="ods-alert__content"
+                  >
+                    Hello There!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `);
   });
 
   test('checks custom icon', () => {
     setup({ icon: <StarOutline /> });
 
     expect(document.querySelector('.ods-alert')).toMatchInlineSnapshot(`
-    <div
-      class="ods-alert ods-alert--default ods-alert--long"
-      role="alert"
-    >
       <div
-        class="ods-alert__header"
+        class="ods-alert ods-alert--default ods-alert--long"
+        role="alert"
       >
-        <div
-          class="ods-alert__icon"
-        >
-          mock-start-circle-outline
-        </div>
-        <div
-          class="alert__content"
-        >
+        <div>
           <div
-            class="ods-alert__content"
+            class="ods-alert__header"
           >
-            Hello There!
+            <div
+              class="ods-alert__icon"
+            >
+              mock-start-circle-outline
+            </div>
+            <div
+              class="alert__content"
+            >
+              <div
+                class="ods-alert__content"
+              >
+                Hello There!
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     `);
   });
 });

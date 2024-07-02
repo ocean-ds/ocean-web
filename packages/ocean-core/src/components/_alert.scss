@@ -1,7 +1,7 @@
 .ods-alert {
   align-items: flex-start;
   background-color: $color-interface-light-up;
-  border-radius: $border-radius-md;
+  border-radius: $border-radius-sm;
   color: $color-interface-dark-down;
   display: flex;
   flex-direction: column;
@@ -13,8 +13,16 @@
   padding: $spacing-stack-xs;
 
   @include media-breakpoint-up(sm) {
+    flex-direction: row;
+
     &__button--mobile {
       display: none;
+    }
+  }
+
+  &--with-button-no-title {
+    @include media-breakpoint-up(sm) {
+      font-size: $font-size-xxs;
     }
   }
 
@@ -33,8 +41,22 @@
       background-color: $color-status-negative-pure;
     }
 
+    .ods-btn--primary:hover,
+    .ods-btn--primary:focus {
+      background-color: $color-status-negative-down;
+    }
+
+    .ods-btn--primary:active {
+      background-color: $color-status-negative-deep;
+    }
+
     .ods-link {
       color: $color-status-negative-pure;
+    }
+
+    .ods-link:hover,
+    .ods-link:focus {
+      color: $color-status-negative-down;
     }
   }
 
@@ -53,8 +75,22 @@
       background-color: $color-status-warning-deep;
     }
 
+    .ods-btn--primary:hover,
+    .ods-btn--primary:focus {
+      background-color: $color-status-warning-down;
+    }
+
+    .ods-btn--primary:active {
+      background-color: $color-status-warning-deep;
+    }
+
     .ods-link {
       color: $color-status-warning-deep;
+    }
+
+    .ods-link:hover,
+    .ods-link:focus {
+      color: $color-status-warning-down;
     }
   }
 
@@ -73,8 +109,22 @@
       background-color: $color-status-positive-deep;
     }
 
+    .ods-btn--primary:hover,
+    .ods-btn--primary:focus {
+      background-color: $color-status-positive-down;
+    }
+
+    .ods-btn--primary:active {
+      background-color: $color-status-positive-deep;
+    }
+
     .ods-link {
       color: $color-status-positive-deep;
+    }
+
+    .ods-link:hover,
+    .ods-link:focus {
+      color: $color-status-positive-down;
     }
   }
 
@@ -82,6 +132,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    gap: $spacing-stack-xxxs;
   }
 
   &__icon {
@@ -96,7 +147,7 @@
     }
 
     &--mobile {
-      margin-top: $spacing-stack-xxs;
+      margin: $spacing-stack-xxs-extra 0 0 $spacing-inline-md;
     }
 
     .ods-btn {
@@ -118,7 +169,13 @@
   &__title {
     color: $color-brand-primary-down;
     font-size: $font-size-xxs;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-comfy;
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-loose;
+  }
+
+  &__content {
+    &--no-title {
+      padding-top: 0;
+    }
   }
 }

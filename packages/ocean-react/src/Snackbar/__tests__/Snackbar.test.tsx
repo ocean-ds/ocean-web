@@ -32,7 +32,7 @@ test('renders element properly', () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M12 16v-4 4zm0-8h.01H12zm9 4a9 9 0 10-18 0 9 9 0 0018 0z"
+              d="M12 16v-4 4zm0-8h.01H12zm9 4a9 9 0 1 0-18 0 9 9 0 0 0 18 0z"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
