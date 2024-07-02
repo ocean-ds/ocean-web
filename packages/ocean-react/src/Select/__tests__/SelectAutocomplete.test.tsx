@@ -18,179 +18,168 @@ interface IOptionProps {
 jest.useFakeTimers('modern');
 window.HTMLElement.prototype.scrollIntoView = jest.fn();
 
+const options: IOptionProps[] = [
+  { value: 'visa', label: 'Visa' },
+  { value: 'mastercard', label: 'Mastercard' },
+  { value: 'american-express', label: 'American Express' },
+  { value: 'elo', label: 'Elo' },
+  { value: 'hipercard', label: 'Hipercard' },
+  { value: 'discover-network', label: 'Discover Network' },
+  { value: 'diners-club', label: 'Diners Club' },
+  { value: 'other', label: 'Other' },
+];
+
 const setup = (props?: Partial<SelectProps>) => {
   const onChangeFn = jest.fn();
+  const utils = render(
+    <div>
+      <SelectAutocomplete
+        id="sel-2"
+        name="sel-2"
+        options={options}
+        {...props}
+        onChange={onChangeFn}
+      />
+      <button type="button">Another interactive element</button>
+    </div>
+  );
+  const input = screen.getByTestId(
+    'select-autocomplete-test'
+  ) as HTMLInputElement;
 
   return {
-    ...render(
-      <div>
-        <SelectAutocomplete
-          id="sel-2"
-          name="sel-2"
-          options={[
-            { value: 'visa', label: 'Visa' },
-            { value: 'mastercard', label: 'Mastercard' },
-            { value: 'american-express', label: 'American Express' },
-            { value: 'elo', label: 'Elo' },
-            { value: 'hipercard', label: 'Hipercard' },
-            { value: 'discover-network', label: 'Discover Network' },
-            { value: 'diners-club', label: 'Diners Club' },
-            { value: 'other', label: 'Other' },
-          ]}
-          {...props}
-          onChange={onChangeFn}
-        />
-        <button type="button">Another interactive element</button>
-      </div>
-    ),
+    ...utils,
+    input,
     onChangeFn,
   };
 };
 
-const options: IOptionProps[] = [
-  { value: '1', label: 'Option 1' },
-  { value: '2', label: 'Option 2' },
-  { value: '3', label: 'Option 3' },
-];
 afterEach(cleanup);
 
 test('should render the SelectAutocomplete component', () => {
-  const { container } = render(
-    <SelectAutocomplete
-      label="Custom label"
-      id="my-select"
-      options={options}
-      placeholder="Select some option"
-      className="custom-class"
-    />
-  );
+  const { container } = setup({
+    label: 'Custom label',
+    id: 'my-select',
+    placeholder: 'Select some option',
+    className: 'custom-class',
+  });
 
   expect(container).toMatchInlineSnapshot(`
     <div>
-      <div
-        class="ods-form-control__root"
-      >
+      <div>
         <div
-          class="ods-form-control__header"
+          class="ods-form-control__root"
         >
           <div
-            class="ods-form-control__label"
-          >
-            <span
-              class="ods-form-label"
-              id="label--my-select"
-            >
-              Custom label
-            </span>
-          </div>
-        </div>
-        <div
-          class="ods-form-control__element"
-        >
-          <div
-            class="ods-select-autocomplete__root"
+            class="ods-form-control__header"
           >
             <div
-              class="ods-form-control__root"
+              class="ods-form-control__label"
+            >
+              <span
+                class="ods-form-label"
+                id="label--my-select"
+              >
+                Custom label
+              </span>
+            </div>
+          </div>
+          <div
+            class="ods-form-control__element"
+          >
+            <div
+              class="ods-select-autocomplete__root"
             >
               <div
-                class="ods-form-control__element"
+                class="ods-form-control__root"
               >
                 <div
-                  class="ods-input ods-input--disabled--text ods-select-autocomplete__arrow ods-select-autocomplete__arrow--down"
+                  class="ods-form-control__element"
                 >
-                  <input
-                    aria-haspopup="listbox"
-                    aria-labelledby="label--my-select"
-                    data-testid="select-autocomplete-test"
-                    id="my-select"
-                    placeholder="Select some option"
-                    type="text"
-                    value=""
-                  />
                   <div
-                    class="ods-input__adornment ods-input__adornment--placeholder"
+                    class="ods-input ods-input--disabled--text ods-select-autocomplete__arrow ods-select-autocomplete__arrow--down"
                   >
-                    <svg
-                      fill="none"
-                      height="24"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <input
+                      aria-haspopup="listbox"
+                      aria-labelledby="label--my-select"
+                      data-testid="select-autocomplete-test"
+                      id="my-select"
+                      placeholder="Select some option"
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      class="ods-input__adornment ods-input__adornment--placeholder"
                     >
-                      <path
-                        d="M19 9l-7 7-7-7"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      />
-                    </svg>
+                      <svg
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M19 9l-7 7-7-7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
+              <input
+                name="sel-2"
+                type="hidden"
+                value=""
+              />
             </div>
           </div>
         </div>
+        <button
+          type="button"
+        >
+          Another interactive element
+        </button>
       </div>
     </div>
   `);
 });
 
 test('renders correctly with required props', () => {
-  render(<SelectAutocomplete options={options} />);
+  setup();
   expect(screen.getByTestId('select-autocomplete-test')).toBeInTheDocument();
 });
 
 test('opens dropdown on click', () => {
-  render(<SelectAutocomplete options={options} />);
-  const input = screen.getByTestId(
-    'select-autocomplete-test'
-  ) as HTMLInputElement;
+  const { input } = setup();
   fireEvent.click(input);
   expect(screen.getByRole('listbox')).toBeInTheDocument();
 });
 
-test('filters options based on input', () => {
-  render(<SelectAutocomplete options={options} />);
-  const input = screen.getByTestId(
-    'select-autocomplete-test'
-  ) as HTMLInputElement;
-  fireEvent.click(input);
-  fireEvent.change(input, { target: { value: 'Option 2' } });
-  expect(screen.getByText('Option 2')).toBeInTheDocument();
-  expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
-});
-
 test('selects an option on click', () => {
-  render(<SelectAutocomplete options={options} />);
-  const input = screen.getByTestId(
-    'select-autocomplete-test'
-  ) as HTMLInputElement;
+  const { input } = setup();
   fireEvent.click(input);
-  const option = screen.getByText('Option 1');
+  const option = screen.getByText('Hipercard');
   fireEvent.click(option);
-  expect(input.value).toBe('Option 1');
+  expect(input.value).toBe('Hipercard');
 });
 
 test('applies ARIA attributes correctly', () => {
-  render(<SelectAutocomplete options={options} label="Test Label" />);
-  const input = screen.getByTestId(
-    'select-autocomplete-test'
-  ) as HTMLInputElement;
+  const { input } = setup({ label: 'Test Label' });
   const label = screen.getByText('Test Label');
   expect(input).toHaveAttribute('aria-labelledby', label.id);
 });
 
 test('displays helper text and error message', () => {
-  render(<SelectAutocomplete options={options} helperText="Error message" />);
+  setup({ helperText: 'Error message' });
   expect(screen.getByText('Error message')).toBeInTheDocument();
 });
 
 test('should open the dropdown when input is clicked', async () => {
-  setup();
-  const input = screen.getByTestId('select-autocomplete-test');
-
+  const { input } = setup();
   fireEvent.click(input);
 
   await waitFor(() => {
@@ -199,9 +188,7 @@ test('should open the dropdown when input is clicked', async () => {
 });
 
 test('should filter options based on user input', async () => {
-  setup();
-  const input = screen.getByTestId('select-autocomplete-test');
-
+  const { input } = setup();
   fireEvent.click(input);
   fireEvent.change(input, { target: { value: 'visa' } });
 
@@ -210,9 +197,7 @@ test('should filter options based on user input', async () => {
 });
 
 test('should select option with keyboard navigation', async () => {
-  const { onChangeFn } = setup();
-  const input = screen.getByTestId('select-autocomplete-test');
-
+  const { input, onChangeFn } = setup();
   fireEvent.click(input);
   fireEvent.keyDown(input, { key: 'ArrowDown' });
   fireEvent.keyDown(input, { key: 'ArrowDown' });
@@ -230,9 +215,7 @@ test('should select option with keyboard navigation', async () => {
 });
 
 test('should select option when clicking with the mouse', async () => {
-  const { onChangeFn } = setup();
-  const input = screen.getByTestId('select-autocomplete-test');
-
+  const { input, onChangeFn } = setup();
   fireEvent.click(input);
   fireEvent.click(screen.getByText('Mastercard'));
 
@@ -248,9 +231,7 @@ test('should select option when clicking with the mouse', async () => {
 });
 
 test('should close the dropdown when input loses focus', async () => {
-  setup();
-  const input = screen.getByTestId('select-autocomplete-test');
-
+  const { input } = setup();
   fireEvent.click(input);
   fireEvent.blur(input);
 
@@ -260,9 +241,7 @@ test('should close the dropdown when input loses focus', async () => {
 });
 
 test('should type "American Express" into the input', () => {
-  setup();
-  const input = screen.getByTestId('select-autocomplete-test');
-
+  const { input } = setup();
   fireEvent.click(input);
   fireEvent.change(input, { target: { value: 'American Express' } });
 
