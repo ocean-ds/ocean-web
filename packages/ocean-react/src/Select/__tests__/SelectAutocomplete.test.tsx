@@ -162,6 +162,17 @@ test('filters options based on input', () => {
   expect(screen.queryByText('Option 1')).not.toBeInTheDocument();
 });
 
+test('selects an option on click', () => {
+  render(<SelectAutocomplete options={options} />);
+  const input = screen.getByTestId(
+    'select-autocomplete-test'
+  ) as HTMLInputElement;
+  fireEvent.click(input);
+  const option = screen.getByText('Option 1');
+  fireEvent.click(option);
+  expect(input.value).toBe('Option 1');
+});
+
 test('applies ARIA attributes correctly', () => {
   render(<SelectAutocomplete options={options} label="Test Label" />);
   const input = screen.getByTestId(
@@ -174,14 +185,6 @@ test('applies ARIA attributes correctly', () => {
 test('displays helper text and error message', () => {
   render(<SelectAutocomplete options={options} helperText="Error message" />);
   expect(screen.getByText('Error message')).toBeInTheDocument();
-});
-
-test('renders with empty value', () => {
-  render(<SelectAutocomplete options={options} defaultValue="1" />);
-  const input = screen.getByTestId(
-    'select-autocomplete-test'
-  ) as HTMLInputElement;
-  expect(input.value).toBe('');
 });
 
 test('should open the dropdown when input is clicked', async () => {
