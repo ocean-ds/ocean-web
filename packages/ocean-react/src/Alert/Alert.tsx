@@ -113,7 +113,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             </div>
             {button && (
               <div className="ods-alert__button--mobile">
-                <Link size="sm" onClick={buttonAction} icon="linkChevron">
+                <Link size="tiny" onClick={buttonAction} icon="linkChevron">
                   {button}
                 </Link>
               </div>
