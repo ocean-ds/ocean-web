@@ -53,6 +53,11 @@
     .ods-link {
       color: $color-status-negative-pure;
     }
+
+    .ods-link:hover,
+    .ods-link:focus {
+      color: $color-status-negative-down;
+    }
   }
 
   &--warning {
@@ -82,6 +87,11 @@
     .ods-link {
       color: $color-status-warning-deep;
     }
+
+    .ods-link:hover,
+    .ods-link:focus {
+      color: $color-status-warning-down;
+    }
   }
 
   &--success {
@@ -110,6 +120,11 @@
 
     .ods-link {
       color: $color-status-positive-deep;
+    }
+
+    .ods-link:hover,
+    .ods-link:focus {
+      color: $color-status-positive-down;
     }
   }
 
