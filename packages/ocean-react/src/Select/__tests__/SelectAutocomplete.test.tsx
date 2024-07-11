@@ -247,3 +247,11 @@ test('should type "American Express" into the input', () => {
 
   expect(input).toHaveValue('American Express');
 });
+
+test('should render "Nenhuma opção encontrada." if no reults found', () => {
+  const { input } = setup();
+  fireEvent.click(input);
+  fireEvent.change(input, { target: { value: 'Non-existent option' } });
+
+  expect(screen.getByText('Nenhuma opção encontrada.')).toBeInTheDocument();
+});
