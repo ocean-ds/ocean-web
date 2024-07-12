@@ -1,7 +1,8 @@
 .ods-textarea {
   background-color: $color-interface-light-pure;
-  border: $border-width-hairline solid $color-interface-light-deep;
+  border: hidden;
   border-radius: $border-radius-sm;
+  box-shadow: 0 0 0 $border-width-hairline $color-interface-light-deep;
   box-sizing: border-box;
   color: $color-interface-dark-deep;
   font-family: $font-family-base;
@@ -22,25 +23,22 @@
   &:focus,
   &:active,
   &:focus-within {
-    border: $border-width-thin solid $color-brand-primary-down;
+    box-shadow: 0 0 0 $border-width-thin $color-brand-primary-down;
   }
 
   &:disabled {
     background-color: $color-interface-light-up;
     border: hidden;
+    box-shadow: 0 0 0 $border-width-hairline $color-interface-light-up;
     color: $color-interface-light-deep;
     cursor: not-allowed;
-
-    &:active {
-      border-color: $color-interface-light-down;
-    }
   }
 
   &--filled {
-    border: $border-width-hairline solid $color-brand-primary-up;
+    box-shadow: 0 0 0 $border-width-hairline $color-brand-primary-up;
   }
 
   &--error {
-    border-color: $color-status-negative-pure;
+    box-shadow: 0 0 0 $border-width-hairline $color-status-negative-pure;
   }
 }

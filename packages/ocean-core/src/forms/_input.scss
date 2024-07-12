@@ -37,8 +37,7 @@
   &:focus-within {
     border-color: $color-brand-primary-down;
     border-width: $border-width-thin;
-    margin-left: -1px;
-    margin-right: -1px;
+    margin: 0 -1px;
   }
 
   &--filled {
@@ -51,18 +50,22 @@
 
   &--disabled {
     background-color: $color-interface-light-up;
-    border: hidden;
+    border: $border-width-hairline solid $color-interface-light-up;
+    color: $color-interface-light-deep;
     cursor: not-allowed;
 
     input {
+      background-color: $color-interface-light-up;
       color: $color-interface-light-deep;
       cursor: not-allowed;
     }
 
     &:hover,
     &:focus,
-    &:active {
-      border-color: $color-brand-primary-down;
+    &:active,
+    &:focus-within {
+      border: $border-width-hairline solid $color-interface-light-up;
+      margin: 0;
     }
   }
 
@@ -73,12 +76,20 @@
     height: 100%;
     padding-right: $spacing-inline-xs;
 
+    &--start {
+      color: $color-interface-dark-deep;
+    }
+
     &--placeholder {
       color: $color-interface-light-deep;
     }
 
     input {
       padding: 0 $spacing-inline-xxxs;
+    }
+
+    svg {
+      color: $color-interface-dark-up;
     }
   }
 

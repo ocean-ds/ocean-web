@@ -44,3 +44,9 @@
     }
   }
 }
+
+.ods-input--amount--disabled:hover {
+  svg {
+    color: $color-interface-light-deep;
+  }
+}

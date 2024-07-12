@@ -123,7 +123,8 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
         >
           <div
             className={classNames('ods-input--root', {
-              'ods-input--amount--zero': amount === 0,
+              'ods-input--amount--zero': amount === 0 && !disabled,
+              'ods-input--amount--disabled': disabled,
             })}
           >
             <div className="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus">
