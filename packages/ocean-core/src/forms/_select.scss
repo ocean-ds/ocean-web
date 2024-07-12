@@ -1,6 +1,5 @@
 .ods-select {
   &__root {
-    margin: 1px;
     min-width: 237px;
   }
 
@@ -90,11 +89,11 @@
     cursor: pointer;
     display: flex;
     flex: 1;
-    font-family: $font-family-highlight;
+    font-family: $font-family-base;
     font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
     height: 40px;
-    line-height: $line-height-medium;
+    line-height: $line-height-comfy;
     list-style: none;
     margin: 0;
     min-width: 0;

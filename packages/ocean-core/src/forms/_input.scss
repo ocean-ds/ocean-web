@@ -8,8 +8,8 @@
   height: 48px;
 
   input {
-    border: $border-width-hairline solid transparent;
     border-radius: $border-radius-sm;
+    border-width: 0;
     box-sizing: border-box;
     color: $color-interface-dark-deep;
     font-family: $font-family-base;
@@ -37,10 +37,7 @@
   &:focus-within {
     border-color: $color-brand-primary-down;
     border-width: $border-width-thin;
-
-    input {
-      border-width: 0;
-    }
+    margin-left: -1px;
   }
 
   &--filled {
