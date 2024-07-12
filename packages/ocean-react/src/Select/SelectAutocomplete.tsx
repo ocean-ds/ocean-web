@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { ChevronDownOutline } from '@useblu/ocean-icons-react';
+import { ChevronDown } from '@useblu/ocean-icons-react';
 
 import FormControl from '../FormControl';
 import FormLabel from '../FormLabel';
@@ -171,7 +171,7 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
             onChange={handleInputChange}
             placeholder={placeholder}
             autoFocus
-            adornment={<ChevronDownOutline />}
+            adornment={<ChevronDown />}
             className={classNames('ods-select-autocomplete__arrow', {
               'ods-select-autocomplete__arrow--up': isExpanded,
               'ods-select-autocomplete__arrow--down': !isExpanded,
