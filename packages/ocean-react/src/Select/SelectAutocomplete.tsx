@@ -170,7 +170,6 @@ const SelectAutocomplete: React.FC<SelectProps> = ({
             value={selected?.label || inputValue}
             onChange={handleInputChange}
             placeholder={placeholder}
-            autoFocus
             adornment={<ChevronDown />}
             className={classNames('ods-select-autocomplete__arrow', {
               'ods-select-autocomplete__arrow--up': isExpanded,
