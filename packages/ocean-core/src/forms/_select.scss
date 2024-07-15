@@ -85,7 +85,7 @@
 
   &__option {
     align-items: center;
-    color: $color-interface-dark-deep;
+    color: $color-interface-dark-down;
     cursor: pointer;
     display: flex;
     flex: 1;
@@ -106,16 +106,17 @@
       white-space: nowrap;
     }
 
-    &--selected,
-    &:hover,
-    &:focus,
-    &:active {
+    &--selected {
       background-color: $color-interface-light-up;
       color: $color-brand-primary-pure;
       font-weight: $font-weight-bold;
     }
 
-    &:hover:not(&--selected) {
+    &:hover:not(&--selected),
+    &:focus:not(&--selected),
+    &:active:not(&--selected) {
+      background-color: $color-interface-light-up;
+      color: $color-interface-dark-down;
       font-weight: $font-weight-regular;
     }
   }
