@@ -33,7 +33,7 @@
 
     &:disabled {
       background-color: $color-interface-light-up;
-      border: hidden;
+      border-color: $color-interface-light-up;
       color: $color-interface-light-deep;
       cursor: not-allowed;
     }
