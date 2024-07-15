@@ -9,7 +9,6 @@
     box-shadow: 0 0 0 $border-width-hairline $color-interface-light-deep;
     box-sizing: border-box;
     height: 48px;
-    padding: 0 $spacing-inline-xs;
     width: 48px;
 
     &:hover,
@@ -31,6 +30,7 @@
     height: 100%;
     line-height: $line-height-medium;
     outline: none;
+    text-align: center;
     width: 100%;
   }
 
