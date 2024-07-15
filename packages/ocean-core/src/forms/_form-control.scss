@@ -19,11 +19,12 @@
   }
 
   &__element {
-    max-height: 69.19px;
+    max-height: 145px;
   }
 
   &__icon {
     align-items: start;
+    color: $color-interface-dark-up;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,7 +42,8 @@
     color: $color-interface-dark-up;
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
-    line-height: $line-height-tight;
+    line-height: $line-height-loose;
+    margin-bottom: 0;
     margin-top: $spacing-stack-xxxs;
 
     &--error {

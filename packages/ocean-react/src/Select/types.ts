@@ -5,6 +5,7 @@ export type RawValueType = string | number;
 type OptionType = {
   value: RawValueType;
   label: string;
+  disabled?: boolean;
   className?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [propName: string]: any;

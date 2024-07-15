@@ -41,12 +41,14 @@
   }
 
   &--disabled {
-    color: $color-interface-dark-up;
+    color: $color-interface-light-deep;
     cursor: not-allowed;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       background-color: inherit;
-      color: $color-interface-dark-up;
+      color: $color-interface-light-deep;
     }
   }
 }

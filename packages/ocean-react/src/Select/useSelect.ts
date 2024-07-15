@@ -48,7 +48,7 @@ const useSelect = ({
 
   const onSelect = useCallback(
     (option: OptionProps, canEmitChangeEvent = true) => {
-      if (selected?.id === option.id) return;
+      if (selected?.id === option.id || option.disabled) return;
 
       setSelected(option);
       if (canEmitChangeEvent && onChange) {
