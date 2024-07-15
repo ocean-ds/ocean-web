@@ -12,7 +12,7 @@ import Context from './context';
 import { OptionProps } from './types';
 
 const Option = React.memo<OptionProps>((option) => {
-  const { label, className, id, index, ...rest } = option;
+  const { label, className, id, index, disabled, ...rest } = option;
   const { selected, onSelect, setIsExpanded, refSelControl } =
     useContext(Context);
   const isSelected = useMemo(
@@ -45,6 +45,8 @@ const Option = React.memo<OptionProps>((option) => {
       className={classNames(
         'ods-select__option',
         isSelected && 'ods-select__option--selected',
+        // disabled option
+        disabled && 'ods-select__option--disabled',
         className
       )}
       onClick={handleClick}

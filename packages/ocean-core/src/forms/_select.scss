@@ -109,15 +109,21 @@
     &--selected {
       background-color: $color-interface-light-up;
       color: $color-brand-primary-pure;
-      font-weight: $font-weight-bold;
+      font-weight: $font-weight-medium;
     }
 
-    &:hover:not(&--selected),
-    &:focus:not(&--selected),
-    &:active:not(&--selected) {
+    &:hover:not(&--selected, &--disabled),
+    &:focus:not(&--selected, &--disabled),
+    &:active:not(&--selected, &--disabled) {
       background-color: $color-interface-light-up;
       color: $color-interface-dark-down;
       font-weight: $font-weight-regular;
+    }
+
+    &--disabled {
+      background-color: $color-interface-light-pure;
+      color: $color-interface-dark-up;
+      cursor: not-allowed;
     }
   }
 }
