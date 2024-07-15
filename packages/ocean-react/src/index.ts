@@ -49,7 +49,8 @@ export * from './Link';
 export { default as TextArea } from './TextArea';
 export * from './TextArea';
 
-export { default as Select } from './Select';
+export { default as Select } from './Select/Select';
+export { default as SelectAutocomplete } from './Select/SelectAutocomplete';
 export * from './Select';
 
 export { default as Switch } from './Switch';
