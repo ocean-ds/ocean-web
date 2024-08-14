@@ -21,6 +21,7 @@ export type WebNotificationProps = {
   position?: Position;
   className?: string;
   title?: string;
+  onKeyDown?: React.KeyboardEventHandler;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
@@ -35,6 +36,7 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
       position = 'bottom-right',
       className,
       title,
+      onKeyDown,
     },
     ref
   ) => {
@@ -97,8 +99,7 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
                   <div
                     className="ods-web-notification__action"
                     onClick={dispatchAction}
-                    role="button"
-                    tabIndex={0}
+                    onKeyDown={onKeyDown}
                   >
                     <div
                       className={`ods-web-notification__action-text-${type}`}
@@ -111,8 +112,7 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
               <div
                 className="ods-web-notification__wrapper"
                 onClick={closeWebNotification}
-                role="button"
-                tabIndex={0}
+                onKeyDown={onKeyDown}
               >
                 <X size={16} />
               </div>
