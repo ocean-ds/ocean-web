@@ -27,102 +27,12 @@ $max-notifications: 10;
   align-items: center;
   background: $color-interface-dark-deep;
   border-radius: $border-radius-sm;
+  bottom: $initial-bottom;
   display: flex;
   min-height: 63px;
   position: fixed;
+
   width: 348px;
-
-  bottom: $initial-bottom;
-
-  &.position-1 {
-    bottom: $initial-bottom;
-  }
-
-  @for $i from 2 through $max-notifications {
-    &.position-#{$i} {
-      bottom: $initial-bottom + ($i - 1) * $notification-spacing;
-    }
-  }
-
-  @media (max-width: 767px) {
-    left: 3%;
-    margin: 0;
-    right: 5%;
-    width: 93%;
-  }
-
-  &__bottom-right-default {
-    @include down-animate-function($progress-default-timer, right);
-  }
-
-  &__bottom-right-action {
-    @include down-animate-function($progress-action-timer, right);
-  }
-
-  &__bottom-left-default {
-    @include down-animate-function($progress-default-timer, left);
-  }
-
-  &__bottom-left-action {
-    @include down-animate-function($progress-action-timer, left);
-  }
-
-  &__container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    min-height: 39px;
-    gap: $spacing-inline-xxs-extra;
-    min-width: 233px;
-  }
-
-  &__main-content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  &__content {
-    display: flex;
-    max-width: 328px;
-    padding: $spacing-inline-xxs-extra $spacing-inline-xs;
-    width: 328px;
-    z-index: 1;
-    gap: $spacing-inline-xxs-extra;
-  }
-
-  &__title {
-    align-items: center;
-    color: $color-interface-light-pure;
-    display: flex;
-    flex: 1;
-    font-family: $font-family-base;
-    font-size: $font-size-xxs;
-    font-weight: $font-weight-regular;
-    line-height: 21px;
-    margin: 0;
-    padding: 0;
-    word-break: break-word;
-  }
-
-  &__description {
-    color: $color-interface-light-down;
-    font-family: $font-family-base;
-    font-size: $font-size-xxxs;
-    font-weight: $font-weight-regular;
-    line-height: 18px;
-    margin: 0;
-    padding: 0;
-    word-break: break-word;
-  }
-
-  &__wrapper {
-    color: #b6b9cc;
-    width: 24px;
-    height: 20px;
-    cursor: pointer;
-  }
 
   &__action {
     align-items: center;
@@ -139,16 +49,106 @@ $max-notifications: 10;
     color: $color-brand-primary-up;
   }
 
-  &__action-text-positive {
-    color: $color-status-positive-pure;
-  }
-
   &__action-text-negative {
     color: $color-status-negative-pure;
   }
 
+  &__action-text-positive {
+    color: $color-status-positive-pure;
+  }
+
   &__action-text-warning {
     color: $color-status-warning-pure;
+  }
+
+  &__bottom-left-action {
+    @include down-animate-function($progress-action-timer, left);
+  }
+
+  &__bottom-left-default {
+    @include down-animate-function($progress-default-timer, left);
+  }
+
+  &__bottom-right-action {
+    @include down-animate-function($progress-action-timer, right);
+  }
+
+  &__bottom-right-default {
+    @include down-animate-function($progress-default-timer, right);
+  }
+
+  &__content {
+    display: flex;
+    gap: $spacing-inline-xxs-extra;
+    max-width: 328px;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xs;
+    width: 328px;
+    z-index: 1;
+  }
+
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-inline-xxs-extra;
+    min-height: 39px;
+    min-width: 233px;
+    width: 100%;
+  }
+
+  &__description {
+    color: $color-interface-light-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-regular;
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+    word-break: break-word;
+  }
+
+  &__main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__title {
+    align-items: center;
+    color: $color-interface-light-pure;
+    display: flex;
+    flex: 1;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-regular;
+    line-height: 21px;
+    margin: 0;
+    padding: 0;
+    word-break: break-word;
+  }
+
+  &__wrapper {
+    color: #b6b9cc;
+    cursor: pointer;
+    height: 20px;
+    width: 24px;
+  }
+
+  @for $i from 2 through $max-notifications {
+    &.position-#{$i} {
+      bottom: $initial-bottom + ($i - 1) * $notification-spacing;
+    }
+  }
+
+  @media (max-width: 767px) {
+    left: 3%;
+    margin: 0;
+    right: 5%;
+    width: 93%;
+  }
+
+  &.position-1 {
+    bottom: $initial-bottom;
   }
 }
 
