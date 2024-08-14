@@ -9,11 +9,7 @@ import { X } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 import useWebNotification from './hook/useWebNotification';
 
-export type Position =
-  | 'bottom-left'
-  | 'top-left'
-  | 'top-right'
-  | 'bottom-right';
+export type Position = 'bottom-left' | 'bottom-right';
 
 export type WebNotificationProps = {
   type?: 'info' | 'positive' | 'warning';
