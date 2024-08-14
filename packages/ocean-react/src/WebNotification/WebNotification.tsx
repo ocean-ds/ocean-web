@@ -1,7 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+  useRef,
+} from 'react';
 import { X } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
-
 import useWebNotification from './hook/useWebNotification';
 
 export type Position =
@@ -19,9 +24,8 @@ export type WebNotificationProps = {
   actionLabel?: string;
   position?: Position;
   className?: string;
+  title?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
-
-// let notificationCounter = -30;
 
 const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
   (
@@ -34,6 +38,7 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
       actionLabel,
       position = 'bottom-right',
       className,
+      title,
     },
     ref
   ) => {
@@ -44,10 +49,19 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
       action,
     });
 
-    // Increment counter and calculate z-index
-    // eslint-disable-next-line no-plusplus
-    // notificationCounter += 70;
-    // const zIndex = notificationCounter;
+    const [notificationIndex, setNotificationIndex] = useState<number>(0);
+    const notificationRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      if (isOpen) {
+        const notifications = Array.from(
+          document.querySelectorAll('.ods-web-notification')
+        ).reverse();
+        const index =
+          notifications.findIndex((el) => el === notificationRef.current) + 1;
+        setNotificationIndex(index);
+      }
+    }, [isOpen]);
 
     return (
       <>
@@ -55,19 +69,33 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
           <div
             className={classNames(
               'ods-web-notification',
+              `position-${notificationIndex}`,
               `ods-web-notification__${position}-${
                 action ? 'action' : 'default'
               }`,
               className
             )}
-            ref={ref}
-            // style={{ bottom: zIndex }}
+            ref={(el) => {
+              notificationRef.current = el;
+              if (ref) {
+                if (typeof ref === 'function') {
+                  ref(el);
+                } else {
+                  (
+                    ref as React.MutableRefObject<HTMLDivElement | null>
+                  ).current = el;
+                }
+              }
+            }}
             data-testid="web-notification-test"
           >
             <div className="ods-web-notification__content">
               <div className="ods-web-notification__container">
-                <div className="ods-web-notification__description">
-                  {description}
+                <div className="ods-web-notification__main-content">
+                  <div className="ods-web-notification__title">{title}</div>
+                  <div className="ods-web-notification__description">
+                    {description}
+                  </div>
                 </div>
                 {action && (
                   <div

@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders element properly: 
+    <div
+      class="ods-web-notification position-1 ods-web-notification__bottom-right-default"
+      data-testid="web-notification-test"
+    >
+      <div class="ods-web-notification__content">
+        <div class="ods-web-notification__container">
+           <div class="ods-web-notification__title">
+            Title
+          </div>
+          <div class="ods-web-notification__description">
+            Hello, this is a notification
+          </div>
+        </div>
+        <div
+          class="ods-web-notification__wrapper"
+        >
+          <svg
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+   1`] = `
+<div
+  class="ods-web-notification position-1 ods-web-notification__bottom-right-default custom-class"
+  data-testid="web-notification-test"
+>
+  <div
+    class="ods-web-notification__content"
+  >
+    <div
+      class="ods-web-notification__container"
+    >
+      <div
+        class="ods-web-notification__main-content"
+      >
+        <div
+          class="ods-web-notification__title"
+        />
+        <div
+          class="ods-web-notification__description"
+        >
+          Hello, this is a notification
+        </div>
+      </div>
+    </div>
+    <div
+      class="ods-web-notification__wrapper"
+    >
+      <svg
+        fill="currentColor"
+        height="16"
+        viewBox="0 0 20 20"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M4.293 4.293a1 1 0 0 1 1.414 0L10 8.586l4.293-4.293a1 1 0 1 1 1.414 1.414L11.414 10l4.293 4.293a1 1 0 0 1-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L8.586 10 4.293 5.707a1 1 0 0 1 0-1.414z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

@@ -49,6 +49,7 @@ return (
     isOpen={open}
     setIsOpen={setOpen}
     description="Hello, I'm a web notification!!"
+    title="Title"
     type="info"
   />
 );
@@ -64,6 +65,7 @@ return (
 | ------------------------------------ | ----------------------------------------------- |
 | .ods-web-notification                | Styles applied to the root element.             |
 | .ods-web-notification\_\_description | Styles applied to the description text          |
+| .ods-web-notification\_\_title       | Styles applied to the title text                |
 | .ods-web-notification\_\_content     | Styles applied to the element content.          |
 | .ods-web-notification\_\_label       | Styles applied to the element label.            |
 | .ods-web-notification\_\_action      | Styles applied to the element action container. |
@@ -78,6 +80,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
     args={{
       type: 'info',
       description: 'Description',
+      title: 'Title',
       isOpen: false,
       action: false,
       actionLabel: 'Action',
@@ -87,6 +90,9 @@ If that's not sufficient, you can check the [implementation of the component](ht
       type: {
         options: ['info', 'positive', 'warning'],
         control: { type: 'select' },
+      },
+      title: {
+        control: 'text',
       },
       description: {
         control: 'text',
@@ -111,6 +117,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
         <DinamicWebNotification
           type={props.type}
           description={props.description}
+          title={props.title}
           position={props.position}
           actionLabel={props.actionLabel}
           action={props.action}

@@ -1,21 +1,24 @@
-// $progress-default-timer: 4s;
-// $progress-action-timer: 10s;
+$progress-default-timer: 4s;
+$progress-action-timer: 10s;
 $slide-animate-timer: 150ms;
+$notification-spacing: 70px;
+$initial-bottom: 40px;
+$max-notifications: 10;
 
 @mixin up-animate-function($timer, $side) {
-  animation-delay: 0s, calc($timer - 0.1s);
+  animation-delay: 0s, 2s;
   animation-duration: $slide-animate-timer, $slide-animate-timer;
-  animation-name: moveInDown, moveInDownBack;
-  animation-timing-function: ease-out forwards, ease-out forwards;
+  animation-name: moveInDown;
+  animation-timing-function: ease-out forwards;
   top: $font-size-xl;
   #{$side}: $font-size-xl;
 }
 
 @mixin down-animate-function($timer, $side) {
-  animation-delay: 0s, calc($timer - 0.1s);
+  animation-delay: 0s, 2s;
   animation-duration: $slide-animate-timer, $slide-animate-timer;
-  animation-name: moveInUp, moveInUpBack;
-  animation-timing-function: ease-out forwards, ease-out forwards;
+  animation-name: moveInUp;
+  animation-timing-function: ease-out forwards;
   bottom: $font-size-xl;
   #{$side}: $font-size-xl;
 }
@@ -29,6 +32,18 @@ $slide-animate-timer: 150ms;
   position: fixed;
   width: 348px;
 
+  bottom: $initial-bottom;
+
+  &.position-1 {
+    bottom: $initial-bottom;
+  }
+
+  @for $i from 2 through $max-notifications {
+    &.position-#{$i} {
+      bottom: $initial-bottom + ($i - 1) * $notification-spacing;
+    }
+  }
+
   @media (max-width: 767px) {
     left: 3%;
     margin: 0;
@@ -36,37 +51,37 @@ $slide-animate-timer: 150ms;
     width: 93%;
   }
 
-  // &__top-right-default {
-  //   @include up-animate-function($progress-default-timer, right);
-  // }
+  &__top-right-default {
+    @include up-animate-function($progress-default-timer, right);
+  }
 
-  // &__top-right-action {
-  //   @include up-animate-function($progress-action-timer, right);
-  // }
+  &__top-right-action {
+    @include up-animate-function($progress-action-timer, right);
+  }
 
-  // &__top-left-default {
-  //   @include up-animate-function($progress-default-timer, left);
-  // }
+  &__top-left-default {
+    @include up-animate-function($progress-default-timer, left);
+  }
 
-  // &__top-left-action {
-  //   @include up-animate-function($progress-action-timer, left);
-  // }
+  &__top-left-action {
+    @include up-animate-function($progress-action-timer, left);
+  }
 
-  // &__bottom-right-default {
-  //   @include down-animate-function($progress-default-timer, right);
-  // }
+  &__bottom-right-default {
+    @include down-animate-function($progress-default-timer, right);
+  }
 
-  // &__bottom-right-action {
-  //   @include down-animate-function($progress-action-timer, right);
-  // }
+  &__bottom-right-action {
+    @include down-animate-function($progress-action-timer, right);
+  }
 
-  // &__bottom-left-default {
-  //   @include down-animate-function($progress-default-timer, left);
-  // }
+  &__bottom-left-default {
+    @include down-animate-function($progress-default-timer, left);
+  }
 
-  // &__bottom-left-action {
-  //   @include down-animate-function($progress-action-timer, left);
-  // }
+  &__bottom-left-action {
+    @include down-animate-function($progress-action-timer, left);
+  }
 
   &__container {
     display: flex;
@@ -74,19 +89,26 @@ $slide-animate-timer: 150ms;
     width: 100%;
     align-items: center;
     min-height: 39px;
-    gap: 12px;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 233px;
+  }
+
+  &__main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   &__content {
     display: flex;
     max-width: 328px;
-    padding: 12px $spacing-inline-xs;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xs;
     width: 328px;
     z-index: 1;
-    gap: 12px;
+    gap: $spacing-inline-xxs-extra;
   }
 
-  &__description {
+  &__title {
     align-items: center;
     color: $color-interface-light-pure;
     display: flex;
@@ -96,14 +118,23 @@ $slide-animate-timer: 150ms;
     font-weight: $font-weight-regular;
     line-height: 21px;
     margin: 0;
-    max-height: 42px;
-    overflow: hidden;
     padding: 0;
-    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+
+  &__description {
+    color: $color-interface-light-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-regular;
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+    word-break: break-word;
   }
 
   &__wrapper {
-    color: '#B6B9CC';
+    color: #b6b9cc;
     width: 24px;
     height: 20px;
     cursor: pointer;
