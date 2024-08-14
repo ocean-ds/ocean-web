@@ -68,12 +68,22 @@ $slide-animate-timer: 150ms;
   //   @include down-animate-function($progress-action-timer, left);
   // }
 
+  &__container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    min-height: 39px;
+    gap: 12px;
+  }
+
   &__content {
     display: flex;
     max-width: 328px;
     padding: 12px $spacing-inline-xs;
     width: 328px;
     z-index: 1;
+    gap: 12px;
   }
 
   &__description {
@@ -88,8 +98,15 @@ $slide-animate-timer: 150ms;
     margin: 0;
     max-height: 42px;
     overflow: hidden;
-    padding: 0 $spacing-inline-xs;
+    padding: 0;
     text-overflow: ellipsis;
+  }
+
+  &__wrapper {
+    color: '#B6B9CC';
+    width: 24px;
+    height: 20px;
+    cursor: pointer;
   }
 
   &__action {

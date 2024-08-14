@@ -64,21 +64,9 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
             // style={{ bottom: zIndex }}
             data-testid="web-notification-test"
           >
-            <div className="ods-web-notification__content" style={{ gap: 12 }}>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  width: '100%',
-                  alignItems: 'center',
-                  minHeight: 39,
-                  gap: 12,
-                }}
-              >
-                <div
-                  className="ods-web-notification__description"
-                  style={{ padding: 0 }}
-                >
+            <div className="ods-web-notification__content">
+              <div className="ods-web-notification__container">
+                <div className="ods-web-notification__description">
                   {description}
                 </div>
                 {action && (
@@ -95,13 +83,7 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
                 )}
               </div>
               <div
-                id="wrapper"
-                style={{
-                  color: '#B6B9CC',
-                  width: 24,
-                  height: 20,
-                  cursor: 'pointer',
-                }}
+                className="ods-web-notification__wrapper"
                 onClick={closeWebNotification}
               >
                 <X size={16} />
