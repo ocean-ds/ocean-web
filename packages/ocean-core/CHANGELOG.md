@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.68.0](https://github.com/ocean-ds/ocean-web/compare/v1.67.0...v1.68.0) (2024-08-15)
+
+### Features
+
+- create web notification component ([#1117](https://github.com/ocean-ds/ocean-web/issues/1117)) ([3d3ef2d](https://github.com/ocean-ds/ocean-web/commit/3d3ef2da18e20e203dc3e281a0301749849e08c5))
+
 # [1.67.0](https://github.com/ocean-ds/ocean-web/compare/v1.66.0...v1.67.0) (2024-07-15)
 
 ### Features
