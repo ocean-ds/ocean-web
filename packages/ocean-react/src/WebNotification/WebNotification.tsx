@@ -8,6 +8,8 @@ import React, {
 import { X } from '@useblu/ocean-icons-react';
 import classNames from 'classnames';
 import useWebNotification from './hook/useWebNotification';
+import Typography from '../Typography';
+import Link from '../Link';
 
 export type Position = 'bottom-left' | 'bottom-right';
 
@@ -21,7 +23,6 @@ export type WebNotificationProps = {
   position?: Position;
   className?: string;
   title?: string;
-  onKeyDown?: React.KeyboardEventHandler;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
@@ -36,7 +37,6 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
       position = 'bottom-right',
       className,
       title,
-      onKeyDown,
     },
     ref
   ) => {
@@ -52,12 +52,14 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
 
     useEffect(() => {
       if (isOpen) {
-        const notifications = Array.from(
+        const allOpenedNotifications = Array.from(
           document.querySelectorAll('.ods-web-notification')
         ).reverse();
-        const index =
-          notifications.findIndex((el) => el === notificationRef.current) + 1;
-        setNotificationIndex(index);
+        const notificationPosition =
+          allOpenedNotifications.findIndex(
+            (el) => el === notificationRef.current
+          ) + 1;
+        setNotificationIndex(notificationPosition);
       }
     }, [isOpen]);
 
@@ -88,33 +90,27 @@ const WebNotification = React.forwardRef<HTMLDivElement, WebNotificationProps>(
             data-testid="web-notification-test"
           >
             <div className="ods-web-notification__content">
-              <div className="ods-web-notification__container">
-                <div className="ods-web-notification__main-content">
-                  <div className="ods-web-notification__title">{title}</div>
-                  <div className="ods-web-notification__description">
-                    {description}
-                  </div>
+              <div className="ods-web-notification__wrapper">
+                <div className="ods-web-notification__body">
+                  <Typography variant="description" inverse>
+                    {title}
+                  </Typography>
+                  <Typography variant="caption">{description}</Typography>
                 </div>
                 {action && (
-                  <div
-                    className="ods-web-notification__action"
-                    onClick={dispatchAction}
-                    onKeyDown={onKeyDown}
-                  >
-                    <div
+                  <>
+                    <Link
+                      onClick={dispatchAction}
                       className={`ods-web-notification__action-text-${type}`}
+                      size="sm"
                     >
                       {actionLabel ?? 'action'}
-                    </div>
-                  </div>
+                    </Link>
+                  </>
                 )}
               </div>
-              <div
-                className="ods-web-notification__wrapper"
-                onClick={closeWebNotification}
-                onKeyDown={onKeyDown}
-              >
-                <X size={16} />
+              <div className="ods-web-notification__close-button">
+                <X size={16} onClick={closeWebNotification} />
               </div>
             </div>
           </div>

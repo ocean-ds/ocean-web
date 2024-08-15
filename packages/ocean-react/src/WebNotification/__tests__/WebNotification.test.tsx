@@ -18,16 +18,27 @@ test('renders element properly', () => {
       data-testid="web-notification-test"
     >
       <div class="ods-web-notification__content">
-        <div class="ods-web-notification__container">
-           <div class="ods-web-notification__title">
-            Title
+        <div class="ods-web-notification__wrapper">
+          <div class="ods-web-notification__body">
+            <div
+              class="ods-typography ods-typography--description ods-typography--inverse"
+            >
+              Title
+            </div>
+            <div
+              class="ods-typography ods-typography--caption"
+            >
+              Hello, this is a notification
+            </div>
           </div>
-          <div class="ods-web-notification__description">
-            Hello, this is a notification
+          <div
+            class="ods-web-notification__action-text-info"
+          >
+            Action Label
           </div>
         </div>
         <div
-          class="ods-web-notification__wrapper"
+          class="ods-web-notification__close-button"
         >
           <svg
             fill="none"
