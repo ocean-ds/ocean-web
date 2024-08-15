@@ -110,3 +110,6 @@ export * from './CardListItem';
 
 export { default as Chips } from './Chips';
 export * from './Chips';
+
+export { default as WebNotification } from './WebNotification';
+export * from './WebNotification';

@@ -1,0 +1,215 @@
+$progress-default-timer: 4s;
+$progress-action-timer: 10s;
+$slide-animate-timer: 150ms;
+$notification-spacing: 70px;
+$initial-bottom: 40px;
+$max-notifications: 10;
+
+@mixin up-animate-function($timer, $side) {
+  animation-delay: 0s, 2s;
+  animation-duration: $slide-animate-timer, $slide-animate-timer;
+  animation-name: moveInDown;
+  animation-timing-function: ease-out forwards;
+  top: $font-size-xl;
+  #{$side}: $font-size-xl;
+}
+
+@mixin down-animate-function($timer, $side) {
+  animation-delay: 0s, 2s;
+  animation-duration: $slide-animate-timer, $slide-animate-timer;
+  animation-name: moveInUp;
+  animation-timing-function: ease-out forwards;
+  bottom: $font-size-xl;
+  #{$side}: $font-size-xl;
+}
+
+.ods-web-notification {
+  align-items: center;
+  background: $color-interface-dark-deep;
+  border-radius: $border-radius-tiny;
+  bottom: $initial-bottom;
+  display: flex;
+  min-height: 63px;
+  position: fixed;
+  width: 348px;
+
+  &__action-text-info {
+    color: $color-brand-primary-up;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-brand-primary-up;
+    }
+  }
+
+  &__action-text-positive {
+    color: $color-status-positive-pure;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-status-positive-pure;
+    }
+  }
+
+  &__action-text-warning {
+    color: $color-status-warning-pure;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-status-warning-pure;
+    }
+  }
+
+  &__bottom-left-action {
+    @include down-animate-function($progress-action-timer, left);
+  }
+
+  &__bottom-left-default {
+    @include down-animate-function($progress-default-timer, left);
+  }
+
+  &__bottom-right-action {
+    @include down-animate-function($progress-action-timer, right);
+  }
+
+  &__bottom-right-default {
+    @include down-animate-function($progress-default-timer, right);
+  }
+
+  &__content {
+    display: flex;
+    gap: $spacing-inline-xxs-extra;
+    max-width: 328px;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+      $spacing-inline-xxs-extra $spacing-inline-xs;
+    width: 328px;
+    z-index: 1;
+  }
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-inline-xxs-extra;
+    min-height: 39px;
+    min-width: 233px;
+    width: 100%;
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    .ods-link {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    p {
+      word-break: break-word;
+    }
+  }
+
+  &__close-button {
+    color: $color-interface-dark-up;
+    cursor: pointer;
+    display: flex;
+    padding: 0 $spacing-inline-xxxs $spacing-inline-xxxs;
+  }
+
+  @for $i from 2 through $max-notifications {
+    &.position-#{$i} {
+      bottom: $initial-bottom + ($i - 1) * $notification-spacing;
+    }
+  }
+
+  @media (max-width: 767px) {
+    left: 3%;
+    margin: 0;
+    right: 5%;
+    width: 93%;
+  }
+
+  &.position-1 {
+    bottom: $initial-bottom;
+  }
+}
+
+@keyframes moveInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveInDownBack {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
+@keyframes moveInUp {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveInUpBack {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
+
+@keyframes progress {
+  0% {
+    border-bottom-left-radius: $spacing-inline-xxxs;
+    border-top-left-radius: $spacing-inline-xxxs;
+    width: 0%;
+  }
+
+  100% {
+    border-bottom-right-radius: $spacing-inline-xxxs;
+    border-top-right-radius: $spacing-inline-xxxs;
+    width: 100%;
+  }
+}
+
+.ods-typography {
+  &__caption {
+    color: $color-interface-light-down;
+  }
+}
