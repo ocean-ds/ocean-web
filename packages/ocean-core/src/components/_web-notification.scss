@@ -83,7 +83,8 @@ $max-notifications: 10;
     display: flex;
     gap: $spacing-inline-xxs-extra;
     max-width: 328px;
-    padding: 12px 8px 12px 16px;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+      $spacing-inline-xxs-extra $spacing-inline-xs;
     width: 328px;
     z-index: 1;
   }
@@ -121,7 +122,7 @@ $max-notifications: 10;
   }
 
   &__close-button {
-    color: #b6b9cc;
+    color: $color-interface-dark-up;
     cursor: pointer;
     display: flex;
     padding: 0 $spacing-inline-xxxs $spacing-inline-xxxs;
