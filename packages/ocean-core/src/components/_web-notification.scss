@@ -114,16 +114,14 @@ $max-notifications: 10;
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
 
-    .ods-typography {
-      &__caption {
-        color: $color-interface-light-down;
-      }
-    }
+  &__body .ods-typography__caption {
+    color: $color-interface-light-down;
+  }
 
-    p {
-      word-break: break-word;
-    }
+  &__body p {
+    word-break: break-word;
   }
 
   &__close-button {
