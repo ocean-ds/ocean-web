@@ -26,6 +26,13 @@
     }
   }
 
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
