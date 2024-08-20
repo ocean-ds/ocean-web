@@ -121,7 +121,7 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
               </div>
             )}
           </div>
-          {tag && tag}
+          {tag && <div>{tag}</div>}
         </div>
 
         {actionIcon && (
