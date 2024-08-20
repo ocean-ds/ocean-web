@@ -121,7 +121,7 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
               </div>
             )}
           </div>
-          {tag && <div className="ods-card-list-item__content__tag">{tag}</div>}
+          {tag && tag}
         </div>
 
         {actionIcon && (
