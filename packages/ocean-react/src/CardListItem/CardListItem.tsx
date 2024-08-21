@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
 import classNames from 'classnames';
+import Tag from '../Tag';
 
 type CardListItemProps = {
   /*
@@ -35,9 +36,9 @@ type CardListItemProps = {
    */
   fullWidth?: boolean;
   /*
-   * The tag or element to be displayed in the tag area of the item.
+   * The tag name to be displayed in the tag area.
    */
-  tag?: string | React.ReactElement;
+  tag?: string;
   /*
    * The function to call when the card list item is clicked.
    */
@@ -107,26 +108,29 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
         {leadingIcon && (
           <div className="ods-card-list-item__leading-icon">{leadingIcon}</div>
         )}
-        <div className="ods-card-list-item__wrapper">
-          <div className="ods-card-list-item__content">
-            <div className="ods-card-list-item__content__title">{title}</div>
-            {description && (
-              <div className="ods-card-list-item__content__description">
-                {description}
-              </div>
-            )}
-            {caption && size === 'medium' && (
-              <div className="ods-card-list-item__content__caption">
-                {caption}
-              </div>
-            )}
-          </div>
-          {tag && <div>{tag}</div>}
+        <div className="ods-card-list-item__content">
+          <div className="ods-card-list-item__content__title">{title}</div>
+          {description && (
+            <div className="ods-card-list-item__content__description">
+              {description}
+            </div>
+          )}
+          {caption && size === 'medium' && (
+            <div className="ods-card-list-item__content__caption">
+              {caption}
+            </div>
+          )}
         </div>
-
-        {actionIcon && (
-          <div className="ods-card-list-item__action">{actionIcon}</div>
-        )}
+        <div className="ods-card-list-item__wrapper">
+          {tag && (
+            <Tag variant="highlight" type="important">
+              {tag}
+            </Tag>
+          )}
+          {actionIcon && (
+            <div className="ods-card-list-item__action">{actionIcon}</div>
+          )}
+        </div>
       </div>
     )
 );
