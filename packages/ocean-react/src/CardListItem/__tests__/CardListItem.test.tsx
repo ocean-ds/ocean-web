@@ -81,4 +81,13 @@ describe('CardListItem', () => {
       'ods-card-list-item--loading'
     );
   });
+
+  test('renders the tag', () => {
+    render(<CardListItem title="Test Title" tag="Novo Relatório" />);
+
+    expect(screen.getByText('Novo Relatório')).toBeInTheDocument();
+
+    const tagElement = screen.getByText('Novo Relatório').closest('div');
+    expect(tagElement).toHaveClass('ods-tag__content');
+  });
 });

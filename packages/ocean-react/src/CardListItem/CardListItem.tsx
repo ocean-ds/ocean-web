@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
 import classNames from 'classnames';
+import Tag from '../Tag';
 
 type CardListItemProps = {
   /*
@@ -35,6 +36,10 @@ type CardListItemProps = {
    */
   fullWidth?: boolean;
   /*
+   * The tag name to be displayed in the tag area.
+   */
+  tag?: string;
+  /*
    * The function to call when the card list item is clicked.
    */
   onClick?: () => void;
@@ -57,6 +62,7 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
       fullWidth = false,
       onClick,
       loading,
+      tag,
       ...rest
     },
     ref
@@ -115,9 +121,16 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
             </div>
           )}
         </div>
-        {actionIcon && (
-          <div className="ods-card-list-item__action">{actionIcon}</div>
-        )}
+        <div className="ods-card-list-item__wrapper">
+          {tag && (
+            <Tag variant="highlight" type="important">
+              {tag}
+            </Tag>
+          )}
+          {actionIcon && (
+            <div className="ods-card-list-item__action">{actionIcon}</div>
+          )}
+        </div>
       </div>
     )
 );

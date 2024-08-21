@@ -26,6 +26,13 @@
     }
   }
 
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-inline-xxs;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
