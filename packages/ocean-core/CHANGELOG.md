@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.69.0](https://github.com/ocean-ds/ocean-web/compare/v1.68.1...v1.69.0) (2024-08-21)
+
+### Features
+
+- add optionally tag on card list item ([#1119](https://github.com/ocean-ds/ocean-web/issues/1119)) ([d300d12](https://github.com/ocean-ds/ocean-web/commit/d300d1282d6910555304f358bfd4dfe9d4991da3))
+
 ## [1.68.1](https://github.com/ocean-ds/ocean-web/compare/v1.68.0...v1.68.1) (2024-08-19)
 
 ### Bug Fixes
