@@ -49,7 +49,7 @@ test('renders element properly', () => {
           class="ods-input ods-input--amount custom-class"
         >
           <div
-            class="ods-input--root"
+            class="ods-input--root ods-input--amount--zero"
           >
             <div
               class="ods-input--amount__stepper-controls ods-input--amount__stepper-controls_minus"
@@ -67,6 +67,7 @@ test('renders element properly', () => {
             </div>
             <input
               data-testid="stepper-test"
+              placeholder="0"
               type="text"
               value="0"
             />
@@ -357,6 +358,7 @@ test('renders with error status', () => {
             </div>
             <input
               data-testid="stepper-test"
+              placeholder="0"
               type="text"
               value="2"
             />

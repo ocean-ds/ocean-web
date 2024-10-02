@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-react",
-  "version": "1.65.0",
+  "version": "1.69.0",
   "private": false,
   "description": "React components that implement Ocean's Design System.",
   "main": "dist/index.js",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@reach/auto-id": "0.16.0",
-    "@useblu/ocean-icons-react": "1.4.0",
+    "@useblu/ocean-icons-react": "1.23.1",
     "chart.js": "^3.9.1",
     "classnames": "2.3.1",
     "date-fns": "^2.29.1",

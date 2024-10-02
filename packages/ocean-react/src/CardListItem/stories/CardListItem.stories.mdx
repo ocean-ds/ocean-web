@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import CardListItem from '../CardListItem';
+import Tag from '../../Tag';
 
 <Meta title="Components/CardListItem" component={CardListItem} />
 
@@ -24,6 +25,7 @@ import { CardListItem } from '@useblu/ocean-react';
       caption="Caption"
       leadingIcon={<PlaceholderOutline />}
       actionIcon={<PlaceholderOutline />}
+      tag="Label"
     />
   </Story>
 </Canvas>
@@ -70,6 +72,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       disabled: false,
       size: 'medium',
       onClick: () => null,
+      tag: 'Label',
       fullWidth: false,
     }}
   >

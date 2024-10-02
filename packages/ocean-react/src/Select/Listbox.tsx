@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useRef } from 'react';
-
+import classNames from 'classnames';
 import Context from './context';
 import { OptionProps } from './types';
 import Option from './Option';
+import Typography from '../Typography';
 
 type ListboxProps = {
   id: string;
   options: OptionProps[];
   onKeyDown: React.KeyboardEventHandler;
 };
-
 const Listbox = React.memo<ListboxProps>(({ id, options, onKeyDown }) => {
   const { selected } = useContext(Context);
   const refListbox = useRef<HTMLUListElement | null>(null);
+  const withoutOptions = options.length === 0;
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -33,12 +34,23 @@ const Listbox = React.memo<ListboxProps>(({ id, options, onKeyDown }) => {
         // navigation keys, such as `Down Arrow`, are pressed, the JavaScript
         // changes the value.
         aria-activedescendant={selected?.id || undefined}
-        className="ods-select__listbox"
+        className={classNames(
+          'ods-select__listbox',
+          'ods-select-autocomplete__listbox',
+          {
+            'ods-select-autocomplete__listbox--empty': withoutOptions,
+          }
+        )}
         onKeyDown={onKeyDown}
       >
         {options.map(({ value, index, ...rest }) => (
           <Option key={value} value={value} index={index} {...rest} />
         ))}
+        {withoutOptions && (
+          <Typography variant="description">
+            Nenhuma opção encontrada.
+          </Typography>
+        )}
       </ul>
     </div>
   );

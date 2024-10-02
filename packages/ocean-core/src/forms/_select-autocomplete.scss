@@ -1,0 +1,50 @@
+.ods-select-autocomplete {
+  &__root {
+    min-width: 237px;
+  }
+
+  &__listbox--empty {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-inline-xxs-extra 0;
+
+    .ods-typography__description {
+      color: $color-interface-dark-up;
+    }
+  }
+}
+
+.ods-select-autocomplete__arrow {
+  justify-self: center;
+
+  svg {
+    color: $color-interface-dark-down;
+    height: 20px;
+    max-height: 20px;
+    max-width: 20px;
+    width: 20px;
+  }
+
+  &--up {
+    svg {
+      transform: rotate(-180deg);
+      transition: transform 0.3s;
+    }
+  }
+
+  &--down {
+    svg {
+      transform: rotate(0);
+      transition: transform 0.3s;
+    }
+  }
+
+  &--disabled {
+    color: $color-interface-light-deep;
+
+    svg {
+      color: $color-interface-light-deep;
+    }
+  }
+}

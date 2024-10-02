@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.69.0](https://github.com/ocean-ds/ocean-web/compare/v1.68.1...v1.69.0) (2024-08-21)
+
+### Features
+
+- add optionally tag on card list item ([#1119](https://github.com/ocean-ds/ocean-web/issues/1119)) ([d300d12](https://github.com/ocean-ds/ocean-web/commit/d300d1282d6910555304f358bfd4dfe9d4991da3))
+
+## [1.68.1](https://github.com/ocean-ds/ocean-web/compare/v1.68.0...v1.68.1) (2024-08-19)
+
+### Bug Fixes
+
+- web notification style ([#1118](https://github.com/ocean-ds/ocean-web/issues/1118)) ([7e6ad5a](https://github.com/ocean-ds/ocean-web/commit/7e6ad5a32ad64cb0349a69e129bcfabe9bb5d73a))
+
+# [1.68.0](https://github.com/ocean-ds/ocean-web/compare/v1.67.0...v1.68.0) (2024-08-15)
+
+### Features
+
+- create web notification component ([#1117](https://github.com/ocean-ds/ocean-web/issues/1117)) ([3d3ef2d](https://github.com/ocean-ds/ocean-web/commit/3d3ef2da18e20e203dc3e281a0301749849e08c5))
+
+# [1.67.0](https://github.com/ocean-ds/ocean-web/compare/v1.66.0...v1.67.0) (2024-07-15)
+
+### Features
+
+- update input ([#1114](https://github.com/ocean-ds/ocean-web/issues/1114)) ([114d564](https://github.com/ocean-ds/ocean-web/commit/114d5640cf22d553216363c19cde717c6ed8726a))
+
+# [1.66.0](https://github.com/ocean-ds/ocean-web/compare/v1.65.0...v1.66.0) (2024-07-02)
+
+### Features
+
+- update alert ([#1115](https://github.com/ocean-ds/ocean-web/issues/1115)) ([3386652](https://github.com/ocean-ds/ocean-web/commit/338665214afa9268e8e09c0d71812a40fab8ab0b))
+
 # [1.65.0](https://github.com/ocean-ds/ocean-web/compare/v1.64.0...v1.65.0) (2024-06-26)
 
 ### Features

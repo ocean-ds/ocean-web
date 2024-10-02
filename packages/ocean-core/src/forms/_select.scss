@@ -1,6 +1,5 @@
 .ods-select {
   &__root {
-    margin: 1px;
     min-width: 237px;
   }
 
@@ -33,9 +32,9 @@
     }
 
     &:disabled {
-      background-color: $color-interface-light-down;
-      border-color: $color-interface-light-down;
-      color: $color-interface-dark-up;
+      background-color: $color-interface-light-up;
+      border-color: $color-interface-light-up;
+      color: $color-interface-light-deep;
       cursor: not-allowed;
     }
 
@@ -58,23 +57,6 @@
 
     &--empty {
       color: $color-interface-light-deep;
-    }
-  }
-
-  &__arrow {
-    display: flex;
-    justify-self: center;
-
-    &--up {
-      transform: rotate(-180deg);
-    }
-
-    &--down {
-      transform: rotate(0);
-    }
-
-    &--disabled {
-      color: $color-interface-dark-up;
     }
   }
 
@@ -103,15 +85,15 @@
 
   &__option {
     align-items: center;
-    color: $color-interface-dark-deep;
+    color: $color-interface-dark-down;
     cursor: pointer;
     display: flex;
     flex: 1;
-    font-family: $font-family-highlight;
+    font-family: $font-family-base;
     font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
     height: 40px;
-    line-height: $line-height-medium;
+    line-height: $line-height-comfy;
     list-style: none;
     margin: 0;
     min-width: 0;
@@ -124,17 +106,59 @@
       white-space: nowrap;
     }
 
-    &--selected,
-    &:hover,
-    &:focus,
-    &:active {
+    &--selected {
       background-color: $color-interface-light-up;
       color: $color-brand-primary-pure;
-      font-weight: $font-weight-bold;
+      font-weight: $font-weight-medium;
     }
 
-    &:hover:not(&--selected) {
+    &:hover:not(&--selected, &--disabled),
+    &:focus:not(&--selected, &--disabled),
+    &:active:not(&--selected, &--disabled) {
+      background-color: $color-interface-light-up;
+      color: $color-interface-dark-down;
       font-weight: $font-weight-regular;
+    }
+
+    &--disabled {
+      background-color: $color-interface-light-pure;
+      color: $color-interface-dark-up;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.ods-select__arrow {
+  display: flex;
+  justify-self: center;
+
+  svg {
+    color: $color-interface-dark-down;
+    height: 20px;
+    max-height: 20px;
+    max-width: 20px;
+    width: 20px;
+  }
+
+  &--down {
+    svg {
+      transform: rotate(0);
+      transition: transform 0.3s;
+    }
+  }
+
+  &--up {
+    svg {
+      transform: rotate(-180deg);
+      transition: transform 0.3s;
+    }
+  }
+
+  &--disabled {
+    color: $color-interface-light-deep;
+
+    svg {
+      color: $color-interface-light-deep;
     }
   }
 }
