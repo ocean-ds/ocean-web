@@ -4,6 +4,21 @@
   position: absolute;
   width: 0;
 
+  &__root-container {
+    display: flex;
+    flex-direction: column;
+
+    &__error-message {
+      color: $color-status-negative-pure;
+      font-family: $font-family-base;
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-comfy;
+      padding-top: $spacing-inline-xxs;
+      word-break: break-word;
+    }
+  }
+
   &__root {
     display: inline-flex;
     user-select: none;
