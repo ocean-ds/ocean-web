@@ -12,7 +12,7 @@
       color: $color-status-negative-pure;
       font-family: $font-family-base;
       font-size: $font-size-xxxs;
-      font-weight: $font-weight-regular;
+      font-weight: $font-weight-medium;
       line-height: $line-height-comfy;
       padding-top: $spacing-inline-xxs;
       word-break: break-word;
@@ -71,11 +71,12 @@
     &::after {
       border: 0;
       border-top: 2px solid #fff;
+      border-radius: 1px;
       height: 0;
       margin: 0;
       position: absolute;
       transform: none;
-      width: 14px;
+      width: 12px;
     }
   }
 
