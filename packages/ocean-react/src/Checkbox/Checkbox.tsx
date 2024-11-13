@@ -18,32 +18,47 @@ export type CheckboxProps = {
    * @default false
    */
   error?: boolean;
+
+  /**
+   * The label of error
+   */
+  errorMessage?: string;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ error, className, label, id, indeterminate, ...rest }, ref) => (
-    <label className="ods-checkbox__root" htmlFor={id}>
-      <input
-        ref={ref}
-        id={id}
-        className={classNames('ods-checkbox', className)}
-        {...rest}
-        type="checkbox"
-        data-indeterminate={indeterminate}
-      />
-      <span
-        className={classNames(
-          'ods-checkbox__checkmark',
-          indeterminate && 'ods-checkbox__checkmark--indeterminate',
-          error && 'ods-checkbox__checkmark--error'
+  (
+    { error, errorMessage, className, label, id, indeterminate, ...rest },
+    ref
+  ) => (
+    <div className="ods-checkbox__root-container">
+      <label className="ods-checkbox__root" htmlFor={id}>
+        <input
+          ref={ref}
+          id={id}
+          className={classNames('ods-checkbox', className)}
+          {...rest}
+          type="checkbox"
+          data-indeterminate={indeterminate}
+        />
+        <span
+          className={classNames(
+            'ods-checkbox__checkmark',
+            indeterminate && 'ods-checkbox__checkmark--indeterminate',
+            error && 'ods-checkbox__checkmark--error'
+          )}
+        />
+        {label && (
+          <span className="ods-typography ods-typography__description ods-checkbox__label">
+            {label}
+          </span>
         )}
-      />
-      {label && (
-        <span className="ods-typography ods-typography__description ods-checkbox__label">
-          {label}
+      </label>
+      {error && errorMessage && (
+        <span className="ods-checkbox__root-container__error-message">
+          {errorMessage}
         </span>
       )}
-    </label>
+    </div>
   )
 );
 

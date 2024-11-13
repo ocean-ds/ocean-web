@@ -9,18 +9,22 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-    <label
-      class="ods-checkbox__root"
+    <div
+      class="ods-checkbox__root-container"
     >
-      <input
-        class="ods-checkbox custom-class"
-        data-testid="checkbox-test"
-        type="checkbox"
-      />
-      <span
-        class="ods-checkbox__checkmark"
-      />
-    </label>
+      <label
+        class="ods-checkbox__root"
+      >
+        <input
+          class="ods-checkbox custom-class"
+          data-testid="checkbox-test"
+          type="checkbox"
+        />
+        <span
+          class="ods-checkbox__checkmark"
+        />
+      </label>
+    </div>
   `);
 
   expect(screen.getByTestId('checkbox-test')).toHaveAttribute(
@@ -37,34 +41,49 @@ test('renders a label for the checkbox', () => {
 test('renders indeterminate state of the checkbox', () => {
   const { container } = render(<Checkbox indeterminate />);
   expect(container.firstChild).toMatchInlineSnapshot(`
-    <label
-      class="ods-checkbox__root"
+    <div
+      class="ods-checkbox__root-container"
     >
-      <input
-        class="ods-checkbox"
-        data-indeterminate="true"
-        type="checkbox"
-      />
-      <span
-        class="ods-checkbox__checkmark ods-checkbox__checkmark--indeterminate"
-      />
-    </label>
+      <label
+        class="ods-checkbox__root"
+      >
+        <input
+          class="ods-checkbox"
+          data-indeterminate="true"
+          type="checkbox"
+        />
+        <span
+          class="ods-checkbox__checkmark ods-checkbox__checkmark--indeterminate"
+        />
+      </label>
+    </div>
   `);
 });
 
 test('renders error state of the checkbox', () => {
   const { container } = render(<Checkbox error />);
   expect(container.firstChild).toMatchInlineSnapshot(`
-    <label
-      class="ods-checkbox__root"
+    <div
+      class="ods-checkbox__root-container"
     >
-      <input
-        class="ods-checkbox"
-        type="checkbox"
-      />
-      <span
-        class="ods-checkbox__checkmark ods-checkbox__checkmark--error"
-      />
-    </label>
+      <label
+        class="ods-checkbox__root"
+      >
+        <input
+          class="ods-checkbox"
+          type="checkbox"
+        />
+        <span
+          class="ods-checkbox__checkmark ods-checkbox__checkmark--error"
+        />
+      </label>
+    </div>
   `);
+});
+
+test('renders error state of the checkbox with error message', () => {
+  render(<Checkbox error errorMessage="message of error" />);
+  const error = screen.getByText('message of error');
+
+  expect(error).toBeInTheDocument();
 });
