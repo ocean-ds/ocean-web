@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.69.1](https://github.com/ocean-ds/ocean-web/compare/v1.69.0...v1.69.1) (2024-11-13)
+
+### Bug Fixes
+
+- checkbox border radius ([#1120](https://github.com/ocean-ds/ocean-web/issues/1120)) ([821429d](https://github.com/ocean-ds/ocean-web/commit/821429d660f275319657518cf77c1c828d3344bf))
+
 # [1.69.0](https://github.com/ocean-ds/ocean-web/compare/v1.68.1...v1.69.0) (2024-08-21)
 
 ### Features
