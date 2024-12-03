@@ -2,7 +2,7 @@
   align-items: flex-start;
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-down;
-  border-radius: $border-radius-md;
+  border-radius: $border-radius-sm;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -14,6 +14,13 @@
 
   &:is(:hover, :focus) {
     background-color: $color-interface-light-up;
+  }
+
+  &--blocked,
+  &--with-badge {
+    .ods-shortcut__content--horizontal {
+      margin-right: 16px;
+    }
   }
 
   &--disabled {
