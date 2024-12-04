@@ -86,8 +86,7 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 error={!disabled && error}
                 inputMode="numeric"
                 helperText={
-                  (!disabled && !showDayPicker && error && helperText) ||
-                  undefined
+                  (!disabled && !showDayPicker && helperText) || undefined
                 }
                 maxLength={10}
               />
@@ -120,8 +119,7 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 error={!disabled && error}
                 inputMode="numeric"
                 helperText={
-                  (!disabled && !showDayPicker && error && helperText) ||
-                  undefined
+                  (!disabled && !showDayPicker && helperText) || undefined
                 }
                 maxLength={10}
               />
