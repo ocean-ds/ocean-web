@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.70.1](https://github.com/ocean-ds/ocean-web/compare/v1.70.0...v1.70.1) (2024-12-04)
+
+### Bug Fixes
+
+- adjust bug when show helper text in date components ([#1122](https://github.com/ocean-ds/ocean-web/issues/1122)) ([e825a0f](https://github.com/ocean-ds/ocean-web/commit/e825a0fc9875de7d45ea79605ac11ef41187206c))
+
 # [1.70.0](https://github.com/ocean-ds/ocean-web/compare/v1.69.1...v1.70.0) (2024-12-04)
 
 ### Features
