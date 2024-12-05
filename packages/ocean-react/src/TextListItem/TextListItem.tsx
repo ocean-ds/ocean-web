@@ -91,7 +91,12 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
 
     const textListitem = useMemo(
       () => (
-        <div ref={elementRef} onClick={onActionClick}>
+        <div
+          ref={elementRef}
+          onClick={onActionClick}
+          role="button"
+          tabIndex={0}
+        >
           <div
             className={classNames('ods-text-list-item', className, {
               'ods-text-list-item--with-action': withAction,
