@@ -96,12 +96,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
 
     const textListitem = useMemo(
       () => (
-        <button
-          ref={buttonElementRef}
-          onClick={onActionClick}
-          type="button"
-          className="ods-text-list-item--button"
-        >
+        <>
           <div
             className={classNames('ods-text-list-item', className, {
               'ods-text-list-item--with-action': withAction,
@@ -142,7 +137,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
             )}
             {withAction && <ChevronRight />}
           </div>
-        </button>
+        </>
       ),
       [
         title,
@@ -152,7 +147,6 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
         infoText,
         infoTextType,
         withAction,
-        onActionClick,
         checkbox,
         radio,
         className,
@@ -178,7 +172,16 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
       );
     }
 
-    return textListitem;
+    return (
+      <button
+        ref={buttonElementRef}
+        onClick={onActionClick}
+        type="button"
+        className="ods-text-list-item--button"
+      >
+        {textListitem}
+      </button>
+    );
   }
 );
 

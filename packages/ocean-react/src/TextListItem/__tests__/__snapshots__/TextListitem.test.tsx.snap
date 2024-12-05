@@ -21,29 +21,24 @@ exports[`TextListItem should render with a checkbox if the checkbox prop is prov
         <span
           class="ods-typography ods-typography__description ods-checkbox__label"
         >
-          <button
-            class="ods-text-list-item--button"
-            type="button"
+          <div
+            class="ods-text-list-item ods-text-list-item--selectable"
           >
             <div
-              class="ods-text-list-item ods-text-list-item--selectable"
+              class="ods-text-list-item__default-content"
             >
-              <div
-                class="ods-text-list-item__default-content"
+              <p
+                class="ods-typography ods-typography__paragraph"
               >
-                <p
-                  class="ods-typography ods-typography__paragraph"
-                >
-                  Sample Title
-                </p>
-                <p
-                  class="ods-typography ods-typography__description"
-                >
-                  Sample Description
-                </p>
-              </div>
+                Sample Title
+              </p>
+              <p
+                class="ods-typography ods-typography__description"
+              >
+                Sample Description
+              </p>
             </div>
-          </button>
+          </div>
         </span>
       </label>
     </div>
@@ -70,29 +65,24 @@ exports[`TextListItem should render with a radio if the radio prop is provided 1
       <span
         class="ods-typography ods-typography__description ods-radio__label"
       >
-        <button
-          class="ods-text-list-item--button"
-          type="button"
+        <div
+          class="ods-text-list-item ods-text-list-item--selectable"
         >
           <div
-            class="ods-text-list-item ods-text-list-item--selectable"
+            class="ods-text-list-item__default-content"
           >
-            <div
-              class="ods-text-list-item__default-content"
+            <p
+              class="ods-typography ods-typography__paragraph"
             >
-              <p
-                class="ods-typography ods-typography__paragraph"
-              >
-                Sample Title
-              </p>
-              <p
-                class="ods-typography ods-typography__description"
-              >
-                Sample Description
-              </p>
-            </div>
+              Sample Title
+            </p>
+            <p
+              class="ods-typography ods-typography__description"
+            >
+              Sample Description
+            </p>
           </div>
-        </button>
+        </div>
       </span>
     </label>
   </div>
