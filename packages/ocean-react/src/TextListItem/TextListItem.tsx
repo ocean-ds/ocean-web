@@ -96,48 +96,46 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
 
     const textListitem = useMemo(
       () => (
-        <>
-          <div
-            className={classNames('ods-text-list-item', className, {
-              'ods-text-list-item--with-action': withAction,
-              'ods-text-list-item--wide': isWide,
-              'ods-text-list-item--selectable': checkbox || radio,
-            })}
-            ref={ref}
-            {...rest}
-          >
-            <div className="ods-text-list-item__default-content">
-              <p className="ods-typography ods-typography__paragraph">
-                {title}
-                {tagLabel && (
-                  <Tag type="neutral" size="medium">
-                    {tagLabel}
-                  </Tag>
-                )}
-              </p>
-              <p className="ods-typography ods-typography__description">
-                {description}
-              </p>
-              {caption && (
-                <p className="ods-typography ods-typography__captionbold">
-                  {caption}
-                </p>
+        <div
+          className={classNames('ods-text-list-item', className, {
+            'ods-text-list-item--with-action': withAction,
+            'ods-text-list-item--wide': isWide,
+            'ods-text-list-item--selectable': checkbox || radio,
+          })}
+          ref={ref}
+          {...rest}
+        >
+          <div className="ods-text-list-item__default-content">
+            <p className="ods-typography ods-typography__paragraph">
+              {title}
+              {tagLabel && (
+                <Tag type="neutral" size="medium">
+                  {tagLabel}
+                </Tag>
               )}
-            </div>
-            {infoText && (
-              <p
-                className={classNames(
-                  'ods-typography ods-typography__description',
-                  'ods-text-list-item__info-text',
-                  `ods-text-list-item__info-text--${infoTextType}`
-                )}
-              >
-                {infoText}
+            </p>
+            <p className="ods-typography ods-typography__description">
+              {description}
+            </p>
+            {caption && (
+              <p className="ods-typography ods-typography__captionbold">
+                {caption}
               </p>
             )}
-            {withAction && <ChevronRight />}
           </div>
-        </>
+          {infoText && (
+            <p
+              className={classNames(
+                'ods-typography ods-typography__description',
+                'ods-text-list-item__info-text',
+                `ods-text-list-item__info-text--${infoTextType}`
+              )}
+            >
+              {infoText}
+            </p>
+          )}
+          {withAction && <ChevronRight />}
+        </div>
       ),
       [
         title,
