@@ -70,13 +70,18 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
     },
     ref
   ) => {
-    const elementRef = useRef<HTMLDivElement | null>(null);
+    const buttonElementRef = useRef<HTMLButtonElement | null>(null);
+    const divElementRef = useRef<HTMLDivElement | null>(null);
     const [isWide, setIsWide] = useState(false);
 
     useEffect(() => {
       const updateWidth = () => {
-        if (elementRef.current) {
-          const width = elementRef.current.offsetWidth;
+        if (buttonElementRef.current) {
+          const width = buttonElementRef.current.offsetWidth;
+          setIsWide(width >= 992);
+        }
+        if (divElementRef.current) {
+          const width = divElementRef.current.offsetWidth;
           setIsWide(width >= 992);
         }
       };
@@ -91,11 +96,11 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
 
     const textListitem = useMemo(
       () => (
-        <div
-          ref={elementRef}
+        <button
+          ref={buttonElementRef}
           onClick={onActionClick}
-          role="button"
-          tabIndex={0}
+          type="button"
+          className="ods-text-list-item--button"
         >
           <div
             className={classNames('ods-text-list-item', className, {
@@ -137,7 +142,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
             )}
             {withAction && <ChevronRight />}
           </div>
-        </div>
+        </button>
       ),
       [
         title,
@@ -159,7 +164,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
 
     if (checkbox) {
       return (
-        <div className="ods-text-list-item-selectable" ref={elementRef}>
+        <div className="ods-text-list-item-selectable" ref={divElementRef}>
           <Checkbox {...checkbox} label={textListitem} />
         </div>
       );
@@ -167,7 +172,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
 
     if (radio) {
       return (
-        <div className="ods-text-list-item-selectable" ref={elementRef}>
+        <div className="ods-text-list-item-selectable" ref={divElementRef}>
           <Radio {...radio} label={textListitem} />
         </div>
       );
