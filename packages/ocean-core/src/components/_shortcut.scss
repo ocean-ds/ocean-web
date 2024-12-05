@@ -2,7 +2,7 @@
   align-items: flex-start;
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-down;
-  border-radius: $border-radius-md;
+  border-radius: $border-radius-sm;
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -16,8 +16,15 @@
     background-color: $color-interface-light-up;
   }
 
+  &--blocked,
+  &--with-badge {
+    .ods-shortcut__content--horizontal {
+      margin-right: $spacing-inline-xs;
+    }
+  }
+
   &--disabled {
-    background-color: rgba(235, 236, 245, 0.64);
+    background-color: $color-interface-light-up;
     border-color: transparent;
     cursor: not-allowed;
 
@@ -36,11 +43,16 @@
     }
   }
 
+  &--tiny.ods-shortcut--horizontal.ods-shortcut--blocked,
+  &--tiny.ods-shortcut--horizontal.ods-shortcut--with-badge {
+    min-width: 116px;
+  }
+
   &--small {
     min-width: 116px;
 
-    &.ods-shortcut--horizontal {
-      min-width: 140px;
+    .ods-shortcut__content--vertical {
+      gap: 26px;
     }
   }
 
@@ -52,7 +64,7 @@
     }
 
     .ods-shortcut__content--vertical {
-      gap: 12px;
+      gap: $spacing-inline-xs;
     }
   }
 
@@ -81,9 +93,7 @@
   }
 
   &__label {
-    color: $color-interface-dark-deep;
-    font-weight: 900;
-    height: max-content;
+    height: 16px;
   }
 
   &__description {
