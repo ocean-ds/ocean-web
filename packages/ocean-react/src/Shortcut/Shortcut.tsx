@@ -36,6 +36,7 @@ const Shortcut = ({
       blocked && 'ods-shortcut--blocked',
       disabled && 'ods-shortcut--disabled',
       fullWidth && 'ods-shortcut--full-width',
+      count && 'ods-shortcut--with-badge',
       `ods-shortcut--${orientation}`
     )}
     {...rest}

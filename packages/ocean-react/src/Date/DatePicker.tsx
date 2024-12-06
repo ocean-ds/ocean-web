@@ -84,8 +84,7 @@ const DatePickerSingle = React.forwardRef<
                 error={!disabled && error}
                 inputMode="numeric"
                 helperText={
-                  (!disabled && !showDayPicker && error && helperText) ||
-                  undefined
+                  (!disabled && !showDayPicker && helperText) || undefined
                 }
                 maxLength={10}
               />

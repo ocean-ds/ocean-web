@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.71.0](https://github.com/ocean-ds/ocean-web/compare/v1.70.1...v1.71.0) (2024-12-06)
+
+### Features
+
+- create text list item ([#1123](https://github.com/ocean-ds/ocean-web/issues/1123)) ([ae17cd7](https://github.com/ocean-ds/ocean-web/commit/ae17cd7b094ee696a88fd981e67b3326ff3c9b40))
+
+# [1.70.0](https://github.com/ocean-ds/ocean-web/compare/v1.69.1...v1.70.0) (2024-12-04)
+
+### Features
+
+- update shortcut ([#1121](https://github.com/ocean-ds/ocean-web/issues/1121)) ([f4cd7f3](https://github.com/ocean-ds/ocean-web/commit/f4cd7f359132dfd3c85ed53962c118a9c83d0509))
+
 ## [1.69.1](https://github.com/ocean-ds/ocean-web/compare/v1.69.0...v1.69.1) (2024-11-13)
 
 ### Bug Fixes
