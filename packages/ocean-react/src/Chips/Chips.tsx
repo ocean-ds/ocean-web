@@ -41,7 +41,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   onChange,
   onClose,
   onConfirm,
-  onClean
+  onClean,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = React.useState<number>(0);

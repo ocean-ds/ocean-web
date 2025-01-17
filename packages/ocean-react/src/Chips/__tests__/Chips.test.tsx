@@ -87,7 +87,14 @@ describe('Chips', () => {
       { label: 'Option 1', value: '1' },
       { label: 'Option 2', value: '2' },
     ];
-    render(<Chips label="Test Label" multiChoice options={options} onConfirm={handleConfirm} />);
+    render(
+      <Chips
+        label="Test Label"
+        multiChoice
+        options={options}
+        onConfirm={handleConfirm}
+      />
+    );
 
     fireEvent.click(screen.getByRole('button'));
 
@@ -106,7 +113,14 @@ describe('Chips', () => {
       { label: 'Option 1', value: '1' },
       { label: 'Option 2', value: '2' },
     ];
-    render(<Chips label="Test Label" multiChoice options={options} onClean={handleClean} />);
+    render(
+      <Chips
+        label="Test Label"
+        multiChoice
+        options={options}
+        onClean={handleClean}
+      />
+    );
 
     fireEvent.click(screen.getByRole('button'));
 
