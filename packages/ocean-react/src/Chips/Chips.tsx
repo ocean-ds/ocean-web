@@ -21,6 +21,8 @@ interface IChips {
   onClick?: () => void;
   onChange?: (value: ChipValue[] | ChipValue) => void;
   onClose?: () => void;
+  onConfirm?: (value: ChipValue[] | ChipValue) => void;
+  onClean?: () => void;
 }
 
 const Chips: React.FunctionComponent<IChips> = ({
@@ -38,6 +40,8 @@ const Chips: React.FunctionComponent<IChips> = ({
   onClick,
   onChange,
   onClose,
+  onConfirm,
+  onClean
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = React.useState<number>(0);
@@ -129,13 +133,15 @@ const Chips: React.FunctionComponent<IChips> = ({
     setSelectedOptions([]);
     setCounter(0);
     setSelectionIsOpen(false);
-    if (onClose) onClose();
     if (onChange) onChange([]);
+    if (onClean) onClean();
+    if (onClose) onClose();
   };
 
   const filterOptions = () => {
     setSelectionIsOpen(false);
 
+    if (onConfirm) onConfirm(selectedOptions);
     if (onClose) onClose();
   };
 

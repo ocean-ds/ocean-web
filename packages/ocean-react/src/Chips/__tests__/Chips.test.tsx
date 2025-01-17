@@ -81,6 +81,44 @@ describe('Chips', () => {
     });
   });
 
+  test('calls onConfirm when clicked', async () => {
+    const handleConfirm = jest.fn();
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+    render(<Chips label="Test Label" multiChoice options={options} onConfirm={handleConfirm} />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Filtrar')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Filtrar' }));
+
+    expect(handleConfirm).toHaveBeenCalled();
+  });
+
+  test('calls onClean when clicked', async () => {
+    const handleClean = jest.fn();
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+    render(<Chips label="Test Label" multiChoice options={options} onClean={handleClean} />);
+
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Limpar')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'Limpar' }));
+
+    expect(handleClean).toHaveBeenCalled();
+  });
+
   test('calls onClick when clicked', () => {
     const handleClick = jest.fn();
     render(<Chips label="Test Label" onClick={handleClick} />);
