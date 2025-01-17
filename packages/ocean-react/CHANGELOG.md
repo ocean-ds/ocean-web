@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.74.0](https://github.com/ocean-ds/ocean-web/compare/v1.73.0...v1.74.0) (2025-01-17)
+
+### Features
+
+- include events for buttons when multichoice ([#1127](https://github.com/ocean-ds/ocean-web/issues/1127)) ([7eb5aed](https://github.com/ocean-ds/ocean-web/commit/7eb5aed6299ce8c13166c51e40a361b66cda84c6))
+
 # [1.73.0](https://github.com/ocean-ds/ocean-web/compare/v1.72.0...v1.73.0) (2024-12-26)
 
 ### Features
