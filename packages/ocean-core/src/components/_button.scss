@@ -201,8 +201,15 @@
 
   &:disabled,
   &:disabled &:hover {
-    background-color: $color-interface-light-down;
+    background-color: $color-interface-light-up;
     color: $color-interface-dark-up;
     cursor: not-allowed;
+  }
+
+  &--text:disabled,
+  &--text-critical:disabled,
+  &--text-tertiary:disabled,
+  &--text-tertiary-critical:disabled {
+    background-color: transparent;
   }
 }
