@@ -94,7 +94,9 @@ The `header` variant displays only the header (title and subtitle) and the count
   >
     {(props) => (
       <RenderCardGroup {...props}>
-        {props.showChildren && <p style={{ padding: '16px' }}>Children</p>}
+        {props.showChildren && (
+          <p style={{ padding: '16px', margin: 0 }}>Children</p>
+        )}
       </RenderCardGroup>
     )}
   </Story>
