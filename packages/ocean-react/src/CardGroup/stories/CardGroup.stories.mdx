@@ -70,7 +70,12 @@ The `header` variant displays only the header (title and subtitle) and the count
       subtitle="Subtitulo"
       count={10}
       children={
-        <div style={{ padding: '16px' }}>Texto da área de uso flexível</div>
+        <p
+          style={{ padding: '16px' }}
+          className="ods-typography ods-typography__description"
+        >
+          Middle optional content
+        </p>
       }
       actionLabel="Action label"
     />
@@ -95,7 +100,12 @@ The `header` variant displays only the header (title and subtitle) and the count
     {(props) => (
       <RenderCardGroup {...props}>
         {props.showChildren && (
-          <p style={{ padding: '16px', margin: 0 }}>Children</p>
+          <p
+            style={{ padding: '16px' }}
+            className="ods-typography ods-typography__description"
+          >
+            Middle optional content
+          </p>
         )}
       </RenderCardGroup>
     )}
