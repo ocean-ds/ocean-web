@@ -47,6 +47,10 @@ export type TextListItemProps = {
    */
   radio?: RadioProps;
   /**
+   * Disable the component.
+   */
+  disabled?: boolean;
+  /**
    * The class name of the component.
    */
   className?: string;
@@ -65,6 +69,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
       onActionClick,
       checkbox,
       radio,
+      disabled,
       className,
       ...rest
     },
@@ -105,7 +110,11 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
           ref={ref}
           {...rest}
         >
-          <div className="ods-text-list-item__default-content">
+          <div
+            className={classNames('ods-text-list-item__default-content', {
+              'ods-text-list-item__default-content--disabled': disabled,
+            })}
+          >
             <p className="ods-typography ods-typography__paragraph">
               {title}
               {tagLabel && (
@@ -151,21 +160,32 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
         isWide,
         ref,
         rest,
+        disabled,
       ]
     );
 
     if (checkbox) {
       return (
-        <div className="ods-text-list-item-selectable" ref={divElementRef}>
-          <Checkbox {...checkbox} label={textListitem} />
+        <div
+          className={classNames('ods-text-list-item-selectable', {
+            'ods-text-list-item-selectable--disabled': disabled,
+          })}
+          ref={divElementRef}
+        >
+          <Checkbox disabled={disabled} {...checkbox} label={textListitem} />
         </div>
       );
     }
 
     if (radio) {
       return (
-        <div className="ods-text-list-item-selectable" ref={divElementRef}>
-          <Radio {...radio} label={textListitem} />
+        <div
+          className={classNames('ods-text-list-item-selectable', {
+            'ods-text-list-item-selectable--disabled': disabled,
+          })}
+          ref={divElementRef}
+        >
+          <Radio disabled={disabled} {...radio} label={textListitem} />
         </div>
       );
     }

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.75.0](https://github.com/ocean-ds/ocean-web/compare/v1.74.0...v1.75.0) (2025-01-28)
+
+### Features
+
+- update button ([#1128](https://github.com/ocean-ds/ocean-web/issues/1128)) ([cade258](https://github.com/ocean-ds/ocean-web/commit/cade258f64c4a9a3dcaec1b6e80e5af3c027d6e4))
+
+# [1.73.0](https://github.com/ocean-ds/ocean-web/compare/v1.72.0...v1.73.0) (2024-12-26)
+
+### Features
+
+- add disabled text list item ([#1125](https://github.com/ocean-ds/ocean-web/issues/1125)) ([56e6bba](https://github.com/ocean-ds/ocean-web/commit/56e6bba63a60f55798de64d9abdeb16340269d16))
+
 # [1.72.0](https://github.com/ocean-ds/ocean-web/compare/v1.71.0...v1.72.0) (2024-12-06)
 
 ### Features
