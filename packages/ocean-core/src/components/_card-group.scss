@@ -1,0 +1,56 @@
+.ods-card-group {
+  border: 1px solid $color-interface-light-down;
+  border-radius: $border-width-heavy;
+  width: 100%;
+
+  &--header {
+    border: hidden;
+    border-bottom: 1px solid $color-interface-light-down;
+    border-radius: 0;
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    gap: $spacing-inline-xs;
+    justify-content: space-between;
+    padding: $spacing-inline-xs;
+
+    &--content {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-stack-xxxs;
+    }
+  }
+
+  &__action {
+    align-items: center;
+    background-color: $color-interface-light-pure;
+    border: hidden;
+    box-sizing: border-box;
+    color: $color-brand-primary-pure;
+    display: flex;
+    gap: $spacing-inline-xs;
+    justify-content: space-between;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+      $spacing-inline-xxs-extra $spacing-inline-xs;
+    width: 100%;
+
+    &--label {
+      font-family: $font-family-base;
+      font-size: $font-size-xxs;
+      font-weight: $font-weight-bold;
+      line-height: 15.4px;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $color-interface-light-up;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: $color-interface-light-down;
+    }
+  }
+}
