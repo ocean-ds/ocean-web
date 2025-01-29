@@ -1,6 +1,6 @@
 .ods-card-group {
   border: 1px solid $color-interface-light-down;
-  border-radius: $border-width-heavy;
+  border-radius: $border-radius-sm;
   width: 100%;
 
   &--header {
@@ -27,14 +27,13 @@
     align-items: center;
     background-color: $color-interface-light-pure;
     border: hidden;
-    border-radius: $border-width-heavy;
+    border-radius: 0 0 7px 7px;
     box-sizing: border-box;
     color: $color-brand-primary-pure;
     display: flex;
     gap: $spacing-inline-xs;
     justify-content: space-between;
-    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
-      $spacing-inline-xxs-extra $spacing-inline-xs;
+    padding: 14px $spacing-inline-xxs 14px $spacing-inline-xs;
     width: 100%;
 
     &--label {

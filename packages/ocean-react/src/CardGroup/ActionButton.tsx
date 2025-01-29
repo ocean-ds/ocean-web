@@ -19,7 +19,7 @@ const ActionButton = ({
       aria-label={actionLabel}
     >
       <span className="ods-card-group__action--label">{actionLabel}</span>
-      <ChevronRight size={24} />
+      <ChevronRight size={20} />
     </button>
   </>
 );
