@@ -28,6 +28,9 @@ export * from './Alert';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as CardGroup } from './CardGroup';
+export * from './CardGroup';
+
 export { default as Carousel } from './Carousel';
 export * from './Carousel';
 
