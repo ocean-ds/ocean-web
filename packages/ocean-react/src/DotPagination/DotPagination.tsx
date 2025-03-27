@@ -32,6 +32,11 @@ const DotPagination: React.FunctionComponent<IDotPagination> = ({
           })}
           onClick={() => handleDotClick(index)}
           data-testid={`dot-${index}`}
+          role="button"
+          tabIndex={0}
+          aria-label={`Dot ${index + 1} ${
+            activeDot === index ? '(active)' : ''
+          }`}
         />
       ))}
     </div>
