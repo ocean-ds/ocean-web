@@ -5,17 +5,21 @@ import classNames from 'classnames';
 export interface IDotPagination {
   items: number;
   activeItem: number;
+  onActiveChange?: (index: number) => void;
 }
 
 const DotPagination: React.FunctionComponent<IDotPagination> = ({
   items,
   activeItem,
+  onActiveChange,
 }) => {
   const [activeDot, setActiveDot] = React.useState<number>(activeItem);
   const validItems = Math.max(1, Math.floor(items));
 
   const handleDotClick = (index: number) => {
     setActiveDot(index);
+
+    if (onActiveChange) onActiveChange(index);
   };
 
   useEffect(() => {

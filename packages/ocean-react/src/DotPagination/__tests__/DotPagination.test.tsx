@@ -37,6 +37,7 @@ test('renders the fourth activeItem items four', () => {
 
   expect(document.firstChild).toMatchInlineSnapshot(`DocumentType {}`);
 });
+
 test('handles dot click and updates activeDot', () => {
   setup({ activeItem: 0, items: 3 });
 
@@ -46,4 +47,25 @@ test('handles dot click and updates activeDot', () => {
   expect(screen.getByTestId('dot-1')).toHaveClass(
     'dot-pagination__dot--active'
   );
+});
+
+test('calls onActiveChange when a dot is clicked', () => {
+  const onActiveChangeMock = jest.fn();
+  setup({ activeItem: 0, items: 3, onActiveChange: onActiveChangeMock });
+
+  const dotToClick = screen.getByTestId('dot-1');
+  dotToClick.click();
+
+  expect(onActiveChangeMock).toHaveBeenCalledTimes(1);
+  expect(onActiveChangeMock).toHaveBeenCalledWith(1);
+});
+
+test('does not call onActiveChange if not provided', () => {
+  const onActiveChangeMock = jest.fn();
+  setup({ activeItem: 0, items: 3 });
+
+  const dotToClick = screen.getByTestId('dot-1');
+  dotToClick.click();
+
+  expect(onActiveChangeMock).not.toHaveBeenCalled();
 });
