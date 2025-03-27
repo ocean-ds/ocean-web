@@ -37,6 +37,11 @@ const DotPagination: React.FunctionComponent<IDotPagination> = ({
           aria-label={`Dot ${index + 1} ${
             activeDot === index ? '(active)' : ''
           }`}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleDotClick(index);
+            }
+          }}
         />
       ))}
     </div>
