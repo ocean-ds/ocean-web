@@ -1,0 +1,21 @@
+.dot-pagination {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-inline-xxs;
+  justify-content: center;
+
+  &__dot {
+    background-color: $color-interface-light-deep;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 6px;
+    transition: all 250ms ease-in-out;
+    width: 6px;
+
+    &--active {
+      background-color: $color-brand-primary-pure;
+      width: 12px;
+    }
+  }
+}
