@@ -1,0 +1,207 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import Badge from '../../Badge';
+import ContentRow from '../../_stories/components/ContentRow.tsx';
+import getComponentPath from '../utils/getComponentPath';
+
+<Meta
+  title={getComponentPath('badge')}
+  component={Badge}
+  parameters={{
+    previewTabs: {
+      docs: { index: -1 },
+      canvas: { title: 'Sandbox' },
+    },
+  }}
+/>
+
+# Badge
+
+- [Overview](#overview)
+- [Usage](#usage)
+- [Variants](#variants)
+- [Props](#props)
+- [Custom](#customization)
+
+<br />
+<br />
+
+## Overview <a name="overview"></a>
+
+A badge is an essential component within a design system, designed to provide a visually
+appealing way to highlight important information or draw the user's attention to specific
+events, notifications, or statuses. It is often used in user interfaces to indicate the number
+of unread notifications, the count of items in a shopping cart, the rating of an item, or
+any other relevant data that needs to be emphasized.
+
+<Canvas
+  additionalActions={[
+    {
+      title: 'Code in GitHub',
+      onClick: () => {
+        window.open(
+          'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-react/src/Badge',
+          '_blank'
+        );
+      },
+    },
+  ]}
+>
+  <Story
+    name="Usage"
+    args={{
+      variation: 'small',
+      color: '',
+      count: 2,
+    }}
+    argTypes={{
+      variation: {
+        options: ['tiny', 'small', 'medium'],
+        control: { type: 'select' },
+        defaultValue: 'tiny',
+        description:
+          'Determines the type of Badge, with default icon and colors for each type',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: 'small' },
+        },
+      },
+      color: {
+        options: ['brand', 'complementary', 'alert', 'neutral'],
+        control: { type: 'select' },
+        defaultValue: 'brand',
+        description: 'Determines the type of Badge colors scheam.',
+        type: { name: 'string', required: false },
+        table: {
+          defaultValue: { summary: '' },
+        },
+      },
+      count: {
+        control: { type: 'number' },
+        defaultValue: 2,
+        description: 'Determines the number of that badge should display',
+        type: { name: 'number', required: false },
+        table: {
+          defaultValue: { summary: null },
+        },
+      },
+    }}
+  >
+    {(props) => (
+      <ContentRow direction="row">
+        <Badge count={2} {...props} />
+      </ContentRow>
+    )}
+  </Story>
+</Canvas>
+
+## Usage <a name="usage"></a>
+
+```jsx
+import { Badge } from '@useblu/ocean-react';
+
+const MyComponent = () => {
+  return <Badge count={0} />;
+};
+```
+
+## Single digits <a name="variants"></a>
+
+Displays only one digit and its size is fixed.
+
+<Canvas>
+  <Story name="Single digits">
+    <ContentRow direction="row">
+      <Badge count={1} />
+      <Badge count={2} />
+      <Badge count={3} />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Multiple digits
+
+Displays 2 or more digits and its size increases with the number of characters.
+When there is an overflow above 99, a "+" is added to make the sizes default.
+
+<Canvas>
+  <Story name="Multiple digits">
+    <ContentRow direction="row">
+      <Badge count={10} />
+      <Badge count={55} />
+      <Badge count={100} />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Dot
+
+Informs that there is something new or needing to be resolved in a certain part of the interface.
+It does not display any numerical value and can be used when there is no space for any other Badge.
+
+<Canvas>
+  <Story name="Dot">
+    <ContentRow>
+      <Badge variation="tiny" />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Color
+
+The default badge color is `$color-brand-primary-pure` but it is possible to use other colors depending
+on the context. Colors should vary according to predefined options.
+
+<Canvas>
+  <Story name="Colors">
+    <ContentRow>
+      <Badge variation="small" count={10} color="brand" />
+      <Badge variation="small" count={15} color="complementary" />
+      <Badge variation="small" count={2} color="alert" />
+      <Badge variation="small" count={56} color="neutral" />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Sizes
+
+The `variation` parameter of the Badge component allows for customization of the badge's dimensions,
+ensuring it aligns harmoniously with the overall user interface. This parameter offers flexibility in tailoring the
+badge's visual appearance based on the specific context and requirements.
+
+<Canvas>
+  <Story name="Sizes">
+    <ContentRow direction="row">
+      <Badge variation="tiny" count={10} color="brand" />
+      <Badge variation="small" count={15} color="complementary" />
+      <Badge variation="medium" count={2} color="alert" />
+    </ContentRow>
+  </Story>
+</Canvas>
+
+## Props <a name="props"></a>
+
+<ArgsTable story="Usage" of="." />
+
+## Custom <a name="customization"></a>
+
+CSS provides a powerful toolset for controlling the visual presentation of a website or application,
+and knowing how to customize it is crucial for building designs that are consistent, user-friendly,
+and responsive. By working closely with designers and stakeholders, developers can create reusable CSS
+styles that define the look and feel of various elements, making it easy to maintain a cohesive design system.
+
+<br />
+
+| Global class            | Description                                                   |
+| ----------------------- | ------------------------------------------------------------- |
+| .ods-tag                | Styles applied to the root element.                           |
+| .ods-tag--default       | Styles applied to the root element with a default type.       |
+| .ods-tag--primary       | Styles applied to the root element with a primary type.       |
+| .ods-tag--complementary | Styles applied to the root element with a complementary type. |
+| .ods-tag--negative      | Styles applied to the root element with a negative type.      |
+| .ods-tag--warning       | Styles applied to the root element with a warning type.       |
+| .ods-tag--positive      | Styles applied to the root element with a positive type.      |
+| .ods-tag\_\_icon        | Styles applied to the icon element.                           |
+| .ods-tag\_\_content     | Styles applied to the content element.                        |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Badge/Badge.tsx) for more detail.
