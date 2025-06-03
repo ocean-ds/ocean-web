@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { ChevronRight } from '@useblu/ocean-icons-react';
 
 export type TransactionListItemProps = {
   /**
@@ -38,6 +39,9 @@ export type TransactionListItemProps = {
    * Determines the sub list of items inside the parent item.
    */
   subItens?: React.ReactElement;
+  withChevron?: boolean;
+  readOnly?: boolean;
+  isLoading?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const TransactionListItem = React.forwardRef<
@@ -57,18 +61,31 @@ const TransactionListItem = React.forwardRef<
       time,
       subItens,
       className,
+      withChevron,
+      readOnly,
+      isLoading,
       ...rest
     },
     ref
   ) => (
     <div
       ref={ref}
-      className={classNames('ods-transaction-list-item', className)}
+      className={classNames(
+        'ods-transaction-list-item',
+        { 'ods-transaction-list-item--chevron': withChevron },
+        { 'ods-transaction-list-item--readonly': readOnly },
+        { 'ods-transaction-list-item--isloading': isLoading },
+        className
+      )}
       {...rest}
     >
       <div className="ods-transaction-list-item__content">
         {icon && <div className="ods-transaction-list-item__icon">{icon}</div>}
-        <div className="ods-transaction-list-item__information">
+        <div
+          className={`ods-transaction-list-item__information ${
+            icon ? 'ods-transaction-list-item__information--with-icon' : ''
+          }`}
+        >
           {level4 && (
             <div className="ods-transaction-list-item__level4">{level4}</div>
           )}
@@ -95,6 +112,11 @@ const TransactionListItem = React.forwardRef<
             <div className="ods-transaction-list-item__time">{time}</div>
           )}
         </div>
+        {withChevron && !readOnly && (
+          <span className="ods-transaction-list-item__chevron">
+            <ChevronRight size={20} />
+          </span>
+        )}
       </div>
       {subItens && (
         <div className="ods-transaction-list-item__sub-itens">{subItens}</div>

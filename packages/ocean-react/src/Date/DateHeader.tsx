@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import { format, Locale } from 'date-fns';
@@ -17,6 +17,21 @@ const DatePickerHeader: React.FC<IProps> = ({
 }) => {
   const { goToMonth, nextMonth, previousMonth } = useNavigation();
 
+  const [selectedMonth, setSelectedMonth] = useState<Date>(displayMonth);
+
+  const handlePreviousMonthClick = () => {
+    if (previousMonth) {
+      goToMonth(previousMonth);
+      setSelectedMonth(previousMonth);
+    }
+  };
+
+  const handleNextMonthClick = () => {
+    if (nextMonth) {
+      goToMonth(nextMonth);
+      setSelectedMonth(nextMonth);
+    }
+  };
   return (
     <div className="ods-date__caption">
       <IconButton
@@ -28,12 +43,12 @@ const DatePickerHeader: React.FC<IProps> = ({
           'ods-date__navButtonPrev-datepicker': mode === 'single',
         })}
         disabled={!previousMonth}
-        onClick={() => previousMonth && goToMonth(previousMonth)}
+        onClick={handlePreviousMonthClick}
       >
         <ChevronLeft size={20} />
       </IconButton>
       <h2 data-testid="calendar-caption-month">
-        {format(displayMonth, 'MMMM yyyy', { locale })}
+        {format(selectedMonth, 'MMMM yyyy', { locale })}
       </h2>
       <IconButton
         type="button"
@@ -44,7 +59,7 @@ const DatePickerHeader: React.FC<IProps> = ({
           'ods-date__navButtonNext-datepicker': mode === 'single',
         })}
         disabled={!nextMonth}
-        onClick={() => nextMonth && goToMonth(nextMonth)}
+        onClick={handleNextMonthClick}
       >
         <ChevronRight size={20} />
       </IconButton>

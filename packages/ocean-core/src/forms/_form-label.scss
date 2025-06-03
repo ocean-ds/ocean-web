@@ -4,10 +4,9 @@
   font-family: $font-family-base;
   font-size: $font-size-xxs;
   font-weight: $font-weight-regular;
-  line-height: $line-height-medium;
-  margin-bottom: $spacing-stack-xxs;
+  line-height: $line-height-tight;
 
   &--disabled {
-    color: $color-interface-dark-up;
+    color: $color-interface-light-deep;
   }
 }

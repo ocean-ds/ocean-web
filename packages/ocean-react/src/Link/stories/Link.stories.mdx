@@ -105,7 +105,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       size: {
         name: 'size',
-        options: ['sm', 'md'],
+        options: ['sm', 'md', 'tiny'],
         control: { type: 'select' },
       },
       icon: {
@@ -115,6 +115,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
     }}
   >
-    {(props) => <Link {...props} />}
+    {(props) => <Link href="https://www.google.com.br/?hl=pt-BR" {...props} />}
   </Story>
 </Canvas>

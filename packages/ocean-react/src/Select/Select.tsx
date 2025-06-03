@@ -1,6 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import classNames from 'classnames';
-import { ChevronDownOutline } from '@useblu/ocean-icons-react';
+import { ChevronDown } from '@useblu/ocean-icons-react';
 
 import FormControl from '../FormControl';
 import FormLabel from '../FormLabel';
@@ -167,7 +167,7 @@ const Select: React.FC<SelectProps> = ({
                 'ods-select__arrow--disabled': disabled,
               })}
             >
-              <ChevronDownOutline size={20} />
+              <ChevronDown size={20} />
             </div>
             {name && (
               <input type="hidden" name={name} value={selected?.value || ''} />

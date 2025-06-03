@@ -3,8 +3,12 @@ import * as DateFns from 'date-fns';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
-import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
-import { DatePickerProps, DatePickerFields } from '../types/DateRange.types';
+import { DateRange, ClassNames } from 'react-day-picker';
+import {
+  DatePickerFields,
+  IDatePickerReturn,
+  IDatePickerProps,
+} from '../types/DateRange.types';
 
 import {
   handleValidateStartsToday,
@@ -12,31 +16,6 @@ import {
   formatDay,
   getInputPlaceholder,
 } from '../utils/dateUtils';
-
-type IDatePickerProps = Pick<
-  DatePickerProps,
-  'values' | 'onSelect' | 'startsToday' | 'locale'
->;
-
-type IDatePickerReturn = {
-  input1Ref: React.Ref<HTMLInputElement>;
-  input2Ref: React.Ref<HTMLInputElement>;
-  showDayPicker: boolean;
-  fromDate: Date;
-  toDate: Date;
-  selectedDays: DateRange;
-  CustomStyles: ClassNames;
-  localeOption: DateFns.Locale;
-  currentField: string;
-  inputPlaceholder: string;
-  handleDayMouseEnter: (day: Date) => void;
-  handleDayClick: (day: Date) => void;
-  inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-  createHandleToggleClick: (fieldId: string) => void;
-  disabledDays: (day: Date) => boolean;
-  formatDay: DateFormatter;
-  handleCloseByOutside: () => void;
-};
 
 export default function useDatePicker({
   values,
@@ -55,8 +34,12 @@ export default function useDatePicker({
 
   const [showDayPicker, setShowDayPicker] = React.useState(false);
   const [currentField, setCurrentField] = React.useState<string>('');
+  const [currentMonthToDisplay, setCurrentMonthToDisplay] =
+    React.useState<Date>();
   const [datePickerCache, setDatePickerCache] =
     React.useState<DatePickerFields>({ from: '', to: '' });
+  const [firstInputClicked, setFirstInputClicked] =
+    React.useState<boolean>(false);
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
@@ -84,6 +67,7 @@ export default function useDatePicker({
       const formattedDay = DateFns.format(day, localeDateFormat);
 
       if (currentField === 'start-date') {
+        updateCurrentMonth(formattedDay);
         if (day > toDate) {
           updateState({ from: formattedDay, to: '' }, true);
         } else {
@@ -105,7 +89,46 @@ export default function useDatePicker({
     }
   };
 
+  const updateCurrentMonth = (date: string) => {
+    const parsedDate = DateFns.parse(date, 'dd/MM/yyyy', new Date());
+    setCurrentMonthToDisplay(parsedDate);
+  };
+
+  const isValidDate = (date: Date | undefined): boolean =>
+    date instanceof Date && !Number.isNaN(date.getTime());
+
+  const getSelectedDate = () =>
+    firstInputClicked ? selectedDays.from : selectedDays.to;
+
+  const handleDisplayMonth = (displayMonth: Date) => {
+    const selectedDate = getSelectedDate();
+    const monthToShowOnHeader = isValidDate(selectedDate)
+      ? selectedDate
+      : undefined;
+
+    return monthToShowOnHeader || displayMonth;
+  };
+
   const createHandleToggleClick = (fieldId: string) => {
+    const isValidStartDate =
+      fieldId === 'start-date' && isValidDate(selectedDays.from);
+    const isValidEndDate =
+      fieldId === 'end-date' && isValidDate(selectedDays.to);
+
+    const updateValuesAndInputClicked = (
+      date: string,
+      isFirstInputClicked: boolean
+    ) => {
+      updateCurrentMonth(date);
+      setFirstInputClicked(isFirstInputClicked);
+    };
+
+    if (isValidStartDate) {
+      updateValuesAndInputClicked(values.from, true);
+    } else if (isValidEndDate) {
+      updateValuesAndInputClicked(values.to, false);
+    }
+
     setShowDayPicker(!showDayPicker);
     setCurrentField(fieldId);
   };
@@ -205,5 +228,7 @@ export default function useDatePicker({
     disabledDays,
     formatDay,
     handleCloseByOutside,
+    handleDisplayMonth,
+    currentMonthToDisplay,
   };
 }

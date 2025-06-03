@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import CardListItem from '../CardListItem';
+import Tag from '../../Tag';
+
+<Meta title="Components/CardListItem" component={CardListItem} />
+
+# CrossSellCard APIs
+
+The API documentation of the CardListItem React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { CardListItem } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <CardListItem
+      title="Title"
+      description="Description"
+      caption="Caption"
+      leadingIcon={<PlaceholderOutline />}
+      actionIcon={<PlaceholderOutline />}
+      tag="Label"
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+## CSS
+
+| Global class                                  | Description                                                        |
+| --------------------------------------------- | ------------------------------------------------------------------ |
+| .ods-card-list-item                           | Styles applied to the root element.                                |
+| .ods-card-list-item--size-small               | Styles applied to the root element when size is set to small.      |
+| .ods-card-list-item--size-medium              | Styles applied to the root element when size is set to medium.     |
+| .ods-card-list-item--disabled                 | Styles applied to the root element when the component is disabled. |
+| .ods-card-list-item--full-width               | Styles applied to the root element when is set to full width.      |
+| .ods-card-list-item\_\_leading-icon           | Styles applied to the leading icon.                                |
+| .ods-card-list-item\_\_content                | Styles applied to the content element.                             |
+| .ods-card-list-item\_\_content\_\_title       | Styles applied to the content title.                               |
+| .ods-card-list-item\_\_content\_\_description | Styles applied to the content description.                         |
+| .ods-card-list-item\_\_content\_\_caption     | Styles applied to the content caption.                             |
+| .ods-card-list-item\_\_action-icon            | Styles applied to the action icon.                                 |
+| .ods-card-list-item--loading                  | Styles applied to the root element when loading                    |
+| .ods-card-list-item\_\_circle                 | Styles applied to the content of loading representing icon         |
+| .ods-card-list-item\_\_lines                  | Styles applied to the content of loading representing a box        |
+| .ods-card-list-item**lines**line1             | Styles applied to the content of loading representing a line       |
+| .ods-card-list-item**lines**line2             | Styles applied to the content of loading representing a line       |
+| .ods-card-list-item**lines**line3             | Styles applied to the content of loading representing a line       |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/CardListItem/CardListItem.tsx) for more detail.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      title: 'Title',
+      description: 'Description',
+      caption: 'Caption',
+      leadingIcon: <PlaceholderOutline />,
+      actionIcon: <PlaceholderOutline />,
+      disabled: false,
+      size: 'medium',
+      onClick: () => null,
+      tag: 'Label',
+      fullWidth: false,
+    }}
+  >
+    {(props) => <CardListItem {...props} />}
+  </Story>
+</Canvas>

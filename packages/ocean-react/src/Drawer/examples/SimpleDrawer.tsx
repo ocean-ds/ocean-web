@@ -8,6 +8,7 @@ export interface SimpleDrawerProps {
   open?: boolean;
   align?: 'left' | 'right';
   iconAlignment?: 'left' | 'right';
+  size?: 'small' | 'large';
 }
 
 const SimpleDrawer = ({
@@ -15,6 +16,7 @@ const SimpleDrawer = ({
   open,
   align,
   iconAlignment,
+  size,
 }: SimpleDrawerProps): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,6 +35,7 @@ const SimpleDrawer = ({
         overlayClose={toggleOverlayClose}
         iconAlignment={iconAlignment}
         align={align}
+        size={size}
       >
         {children}
       </Drawer>

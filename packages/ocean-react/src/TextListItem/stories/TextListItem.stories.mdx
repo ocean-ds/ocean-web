@@ -1,0 +1,70 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import TextListItem from '../TextListItem';
+
+<Meta title="Components/List/TextListItem" component={TextListItem} />
+
+# Text List Item API
+
+The API documentation of the Text List Item React component. Learn more about the props and the CSS customization points.
+
+## Import
+
+```javascript
+import { TextListItem } from '@useblu/ocean-react';
+```
+
+## Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <TextListItem
+      title={'Título do componente'}
+      description={'Descrição do componente para o storybook'}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of="." />
+
+The ref is forwarded to the root element.
+
+Any other props supplied will be provided to the root element (native element).
+
+## CSS
+
+| Global class                                     | Description                                  |
+| ------------------------------------------------ | -------------------------------------------- |
+| .ods-text-list-item                              | Styles applied to the root element.          |
+| .ods-text-list-item--with-action                 | Styles applied if with action.               |
+| .ods-text-list-item--wide                        | Styles applied if element is wide            |
+| .ods-text-list-item--selectable                  | Styles applied if has checkbox or radio.     |
+| .ods-text-list-item\_\_default-content           | Styles applied to the default text content.  |
+| .ods-text-list-item\_\_default-content--disabled | Styles applied to the disabled text content. |
+| .ods-text-list-item\_\_info-text                 | Styles applied to the info text.             |
+| .ods-text-list-item\_\_info-text--neutral        | Styles applied if info text type neutral.    |
+| .ods-text-list-item\_\_info-text--positive       | Styles applied if info text type positive.   |
+| .ods-text-list-item-selectable                   | Styles applied if is selectable.             |
+| .ods-text-list-item-selectable--disabled         | Styles applied to the disabled selectable.   |
+
+If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/TextListItem) for more detail.
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      description: 'Lorem ipsum dolor sit amet.',
+      title: 'Title',
+    }}
+    argTypes={{
+      checkbox: { name: 'checkbox', control: 'boolean' },
+      radio: { name: 'radio', control: 'boolean' },
+    }}
+  >
+    {(props) => {
+      const { ...rest } = props;
+      return <TextListItem {...rest} />;
+    }}
+  </Story>
+</Canvas>

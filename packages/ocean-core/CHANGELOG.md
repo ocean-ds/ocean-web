@@ -3,6 +3,236 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.78.0](https://github.com/ocean-ds/ocean-web/compare/v1.77.1...v1.78.0) (2025-03-31)
+
+### Features
+
+- create dot pagination ([#1132](https://github.com/ocean-ds/ocean-web/issues/1132)) ([264737b](https://github.com/ocean-ds/ocean-web/commit/264737be811319cc4bd556bbfebb3fedb162b240))
+
+# [1.77.0](https://github.com/ocean-ds/ocean-web/compare/v1.76.0...v1.77.0) (2025-01-30)
+
+### Features
+
+- adjust style ([#1130](https://github.com/ocean-ds/ocean-web/issues/1130)) ([ab00ac9](https://github.com/ocean-ds/ocean-web/commit/ab00ac997868675a469b626a8f62194f0b516bc1))
+
+# [1.76.0](https://github.com/ocean-ds/ocean-web/compare/v1.75.0...v1.76.0) (2025-01-30)
+
+### Features
+
+- create card group ([#1129](https://github.com/ocean-ds/ocean-web/issues/1129)) ([7d01634](https://github.com/ocean-ds/ocean-web/commit/7d01634c691d96a265e85ea108d7d36399a8ca8f))
+
+# [1.75.0](https://github.com/ocean-ds/ocean-web/compare/v1.74.0...v1.75.0) (2025-01-28)
+
+### Features
+
+- update button ([#1128](https://github.com/ocean-ds/ocean-web/issues/1128)) ([cade258](https://github.com/ocean-ds/ocean-web/commit/cade258f64c4a9a3dcaec1b6e80e5af3c027d6e4))
+
+# [1.73.0](https://github.com/ocean-ds/ocean-web/compare/v1.72.0...v1.73.0) (2024-12-26)
+
+### Features
+
+- add disabled text list item ([#1125](https://github.com/ocean-ds/ocean-web/issues/1125)) ([56e6bba](https://github.com/ocean-ds/ocean-web/commit/56e6bba63a60f55798de64d9abdeb16340269d16))
+
+# [1.72.0](https://github.com/ocean-ds/ocean-web/compare/v1.71.0...v1.72.0) (2024-12-06)
+
+### Features
+
+- update text list item ([#1124](https://github.com/ocean-ds/ocean-web/issues/1124)) ([e1e8e81](https://github.com/ocean-ds/ocean-web/commit/e1e8e81a8e10c961dc7fef75c567a25bf2d87de1))
+
+# [1.71.0](https://github.com/ocean-ds/ocean-web/compare/v1.70.1...v1.71.0) (2024-12-06)
+
+### Features
+
+- create text list item ([#1123](https://github.com/ocean-ds/ocean-web/issues/1123)) ([ae17cd7](https://github.com/ocean-ds/ocean-web/commit/ae17cd7b094ee696a88fd981e67b3326ff3c9b40))
+
+# [1.70.0](https://github.com/ocean-ds/ocean-web/compare/v1.69.1...v1.70.0) (2024-12-04)
+
+### Features
+
+- update shortcut ([#1121](https://github.com/ocean-ds/ocean-web/issues/1121)) ([f4cd7f3](https://github.com/ocean-ds/ocean-web/commit/f4cd7f359132dfd3c85ed53962c118a9c83d0509))
+
+## [1.69.1](https://github.com/ocean-ds/ocean-web/compare/v1.69.0...v1.69.1) (2024-11-13)
+
+### Bug Fixes
+
+- checkbox border radius ([#1120](https://github.com/ocean-ds/ocean-web/issues/1120)) ([821429d](https://github.com/ocean-ds/ocean-web/commit/821429d660f275319657518cf77c1c828d3344bf))
+
+# [1.69.0](https://github.com/ocean-ds/ocean-web/compare/v1.68.1...v1.69.0) (2024-08-21)
+
+### Features
+
+- add optionally tag on card list item ([#1119](https://github.com/ocean-ds/ocean-web/issues/1119)) ([d300d12](https://github.com/ocean-ds/ocean-web/commit/d300d1282d6910555304f358bfd4dfe9d4991da3))
+
+## [1.68.1](https://github.com/ocean-ds/ocean-web/compare/v1.68.0...v1.68.1) (2024-08-19)
+
+### Bug Fixes
+
+- web notification style ([#1118](https://github.com/ocean-ds/ocean-web/issues/1118)) ([7e6ad5a](https://github.com/ocean-ds/ocean-web/commit/7e6ad5a32ad64cb0349a69e129bcfabe9bb5d73a))
+
+# [1.68.0](https://github.com/ocean-ds/ocean-web/compare/v1.67.0...v1.68.0) (2024-08-15)
+
+### Features
+
+- create web notification component ([#1117](https://github.com/ocean-ds/ocean-web/issues/1117)) ([3d3ef2d](https://github.com/ocean-ds/ocean-web/commit/3d3ef2da18e20e203dc3e281a0301749849e08c5))
+
+# [1.67.0](https://github.com/ocean-ds/ocean-web/compare/v1.66.0...v1.67.0) (2024-07-15)
+
+### Features
+
+- update input ([#1114](https://github.com/ocean-ds/ocean-web/issues/1114)) ([114d564](https://github.com/ocean-ds/ocean-web/commit/114d5640cf22d553216363c19cde717c6ed8726a))
+
+# [1.66.0](https://github.com/ocean-ds/ocean-web/compare/v1.65.0...v1.66.0) (2024-07-02)
+
+### Features
+
+- update alert ([#1115](https://github.com/ocean-ds/ocean-web/issues/1115)) ([3386652](https://github.com/ocean-ds/ocean-web/commit/338665214afa9268e8e09c0d71812a40fab8ab0b))
+
+# [1.65.0](https://github.com/ocean-ds/ocean-web/compare/v1.64.0...v1.65.0) (2024-06-26)
+
+### Features
+
+- update link ([#1111](https://github.com/ocean-ds/ocean-web/issues/1111)) ([8aa0bf2](https://github.com/ocean-ds/ocean-web/commit/8aa0bf2c4ad0c82e5a4f0c66595d8883edea93c8))
+
+# [1.64.0](https://github.com/ocean-ds/ocean-web/compare/v1.63.1...v1.64.0) (2024-06-26)
+
+### Features
+
+- update card list item component ([#1113](https://github.com/ocean-ds/ocean-web/issues/1113)) ([1c8cf3d](https://github.com/ocean-ds/ocean-web/commit/1c8cf3df19e2d0313d11a06975e845fcf23788a4))
+
+## [1.63.1](https://github.com/ocean-ds/ocean-web/compare/v1.63.0...v1.63.1) (2024-06-20)
+
+### Bug Fixes
+
+- adjust breadcrumb and typography ([#1110](https://github.com/ocean-ds/ocean-web/issues/1110)) ([75860e4](https://github.com/ocean-ds/ocean-web/commit/75860e4bc7ea0cb8bdead4fbe7f776ad5244d54b))
+
+# [1.63.0](https://github.com/ocean-ds/ocean-web/compare/v1.62.2...v1.63.0) (2024-06-20)
+
+### Features
+
+- update typography ([#1109](https://github.com/ocean-ds/ocean-web/issues/1109)) ([aed315b](https://github.com/ocean-ds/ocean-web/commit/aed315be06fc0188481a278a5996be6d44d3bb90))
+
+## [1.62.2](https://github.com/ocean-ds/ocean-web/compare/v1.62.1...v1.62.2) (2024-06-18)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+# [1.62.0](https://github.com/ocean-ds/ocean-web/compare/v1.61.0...v1.62.0) (2024-06-14)
+
+### Features
+
+- create accordion component ([#1106](https://github.com/ocean-ds/ocean-web/issues/1106)) ([f685167](https://github.com/ocean-ds/ocean-web/commit/f685167ca6e7293670b751bc583e7f5aacc8c01a))
+
+# [1.61.0](https://github.com/ocean-ds/ocean-web/compare/v1.60.0...v1.61.0) (2024-06-14)
+
+### Features
+
+- drawer ([#1105](https://github.com/ocean-ds/ocean-web/issues/1105)) ([1c749e0](https://github.com/ocean-ds/ocean-web/commit/1c749e011aa19acf67f1deb0cc15e47618f40e3f))
+
+# [1.60.0](https://github.com/ocean-ds/ocean-web/compare/v1.59.3...v1.60.0) (2024-06-13)
+
+### Features
+
+- add tag size variant ([#1104](https://github.com/ocean-ds/ocean-web/issues/1104)) ([90e4a71](https://github.com/ocean-ds/ocean-web/commit/90e4a716c21902069d4260c0e6e71bf62f8f48c7))
+
+## [1.59.3](https://github.com/ocean-ds/ocean-web/compare/v1.59.2...v1.59.3) (2024-06-06)
+
+### Bug Fixes
+
+- adjust alert content ([#1103](https://github.com/ocean-ds/ocean-web/issues/1103)) ([af0acce](https://github.com/ocean-ds/ocean-web/commit/af0acce751bfd2980665fe2530a8d6b8f4ac25db))
+
+## [1.59.2](https://github.com/ocean-ds/ocean-web/compare/v1.59.1...v1.59.2) (2024-06-05)
+
+### Bug Fixes
+
+- transaction list item ([#1102](https://github.com/ocean-ds/ocean-web/issues/1102)) ([94768d5](https://github.com/ocean-ds/ocean-web/commit/94768d5f50d45ca5f3779c92b6496f87952c20b2))
+
+## [1.59.1](https://github.com/ocean-ds/ocean-web/compare/v1.59.0...v1.59.1) (2024-05-29)
+
+### Bug Fixes
+
+- adjust on transaction list item ([#1101](https://github.com/ocean-ds/ocean-web/issues/1101)) ([a8fd429](https://github.com/ocean-ds/ocean-web/commit/a8fd42946502676a556e93897d1167139b34ef8e))
+
+# [1.59.0](https://github.com/ocean-ds/ocean-web/compare/v1.58.0...v1.59.0) (2024-05-16)
+
+### Features
+
+- mobile bradcrumbs ([#1100](https://github.com/ocean-ds/ocean-web/issues/1100)) ([2668a53](https://github.com/ocean-ds/ocean-web/commit/2668a53511ed0222afb71f43d9aca1288c9c2689))
+
+# [1.58.0](https://github.com/ocean-ds/ocean-web/compare/v1.57.1...v1.58.0) (2024-05-15)
+
+### Features
+
+- alert button ([#1099](https://github.com/ocean-ds/ocean-web/issues/1099)) ([425e015](https://github.com/ocean-ds/ocean-web/commit/425e01503db7be486b9dbb0d43c631a891aca799))
+
+## [1.57.1](https://github.com/ocean-ds/ocean-web/compare/v1.57.0...v1.57.1) (2024-04-18)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+# [1.57.0](https://github.com/ocean-ds/ocean-web/compare/v1.56.0...v1.57.0) (2024-04-18)
+
+### Features
+
+- create unordered list component ([#1097](https://github.com/ocean-ds/ocean-web/issues/1097)) ([d590bd6](https://github.com/ocean-ds/ocean-web/commit/d590bd6f9ccd95d8549c4f0e07bf12a695b61036))
+
+# [1.55.0](https://github.com/ocean-ds/ocean-web/compare/v1.54.1...v1.55.0) (2024-03-27)
+
+### Features
+
+- selected value at chips ([#1094](https://github.com/ocean-ds/ocean-web/issues/1094)) ([07c6c58](https://github.com/ocean-ds/ocean-web/commit/07c6c58a1492489c1b83e357d96139a68cb24d05))
+
+## [1.54.1](https://github.com/ocean-ds/ocean-web/compare/v1.54.0...v1.54.1) (2024-03-26)
+
+### Bug Fixes
+
+- adjust optins columns ([#1093](https://github.com/ocean-ds/ocean-web/issues/1093)) ([b49ed7c](https://github.com/ocean-ds/ocean-web/commit/b49ed7cc28408a1cce4a2f6366b7c8799bff563e))
+
+# [1.54.0](https://github.com/ocean-ds/ocean-web/compare/v1.53.0...v1.54.0) (2024-03-25)
+
+### Features
+
+- add multi choice options on chips ([#1092](https://github.com/ocean-ds/ocean-web/issues/1092)) ([fc239e5](https://github.com/ocean-ds/ocean-web/commit/fc239e5e66b556c2c1580aab1735077e378e17c7))
+
+# [1.53.0](https://github.com/ocean-ds/ocean-web/compare/v1.52.2...v1.53.0) (2024-03-21)
+
+### Features
+
+- create chips component ([#1091](https://github.com/ocean-ds/ocean-web/issues/1091)) ([7fc498a](https://github.com/ocean-ds/ocean-web/commit/7fc498a565fe78a42c29bc7051796dc8560c301f))
+
+## [1.52.2](https://github.com/ocean-ds/ocean-web/compare/v1.52.1...v1.52.2) (2024-01-30)
+
+### Bug Fixes
+
+- add padding breadcumb ([#1090](https://github.com/ocean-ds/ocean-web/issues/1090)) ([63becce](https://github.com/ocean-ds/ocean-web/commit/63beccebc27af53c80944327b56edc08ead726f6))
+
+## [1.52.1](https://github.com/ocean-ds/ocean-web/compare/v1.52.0...v1.52.1) (2024-01-22)
+
+### Bug Fixes
+
+- adjusts on Date component ([#1088](https://github.com/ocean-ds/ocean-web/issues/1088)) ([23bd270](https://github.com/ocean-ds/ocean-web/commit/23bd2701aa16e976ee88ac05f02cfb08929fb932))
+
+# [1.52.0](https://github.com/ocean-ds/ocean-web/compare/v1.51.0...v1.52.0) (2023-11-14)
+
+### Features
+
+- create button variants ([#1086](https://github.com/ocean-ds/ocean-web/issues/1086)) ([92551ad](https://github.com/ocean-ds/ocean-web/commit/92551ad2c1cc94cd7910d10a62dad0e1e63ac2ce))
+
+# [1.51.0](https://github.com/ocean-ds/ocean-web/compare/v1.50.1...v1.51.0) (2023-11-14)
+
+### Features
+
+- adjust color and font size list ([#1085](https://github.com/ocean-ds/ocean-web/issues/1085)) ([1e93aaa](https://github.com/ocean-ds/ocean-web/commit/1e93aaa7bcbd54837db39ebbded0e70fe958a2ba))
+
+## [1.50.1](https://github.com/ocean-ds/ocean-web/compare/v1.50.0...v1.50.1) (2023-10-02)
+
+### Bug Fixes
+
+- remove input jump on hover ([#1084](https://github.com/ocean-ds/ocean-web/issues/1084)) ([99ce61c](https://github.com/ocean-ds/ocean-web/commit/99ce61cb6364e26cf4753561dd186d7604fa98ad))
+
+# [1.50.0](https://github.com/ocean-ds/ocean-web/compare/v1.49.0...v1.50.0) (2023-09-27)
+
+### Features
+
+- create card list item ([#1082](https://github.com/ocean-ds/ocean-web/issues/1082)) ([21f665b](https://github.com/ocean-ds/ocean-web/commit/21f665bc6e793bfc672687adb028e61f57a955c4))
+
 # [1.49.0](https://github.com/ocean-ds/ocean-web/compare/v1.48.1...v1.49.0) (2023-09-01)
 
 ### Features

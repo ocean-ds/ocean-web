@@ -1,6 +1,7 @@
 import React from 'react';
-
+import * as DateFns from 'date-fns';
 import { Locale } from 'date-fns';
+import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
 
 export type DatePickerFields = {
   from: string;
@@ -67,3 +68,30 @@ export type DatePickerProps = {
    */
   className?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
+
+export type IDatePickerProps = Pick<
+  DatePickerProps,
+  'values' | 'onSelect' | 'startsToday' | 'locale'
+>;
+
+export type IDatePickerReturn = {
+  input1Ref: React.Ref<HTMLInputElement>;
+  input2Ref: React.Ref<HTMLInputElement>;
+  showDayPicker: boolean;
+  fromDate: Date;
+  toDate: Date;
+  selectedDays: DateRange;
+  CustomStyles: ClassNames;
+  localeOption: DateFns.Locale;
+  currentField: string;
+  inputPlaceholder: string;
+  handleDayMouseEnter: (day: Date) => void;
+  handleDayClick: (day: Date) => void;
+  inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
+  createHandleToggleClick: (fieldId: string) => void;
+  disabledDays: (day: Date) => boolean;
+  formatDay: DateFormatter;
+  handleCloseByOutside: () => void;
+  handleDisplayMonth: (displayMonth: Date) => Date;
+  currentMonthToDisplay: Date | undefined;
+};

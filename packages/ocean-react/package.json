@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-react",
-  "version": "1.49.0",
+  "version": "1.78.0",
   "private": false,
   "description": "React components that implement Ocean's Design System.",
   "main": "dist/index.js",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@reach/auto-id": "0.16.0",
-    "@useblu/ocean-icons-react": "1.4.0",
+    "@useblu/ocean-icons-react": "1.23.1",
     "chart.js": "^3.9.1",
     "classnames": "2.3.1",
     "date-fns": "^2.29.1",
@@ -42,7 +42,8 @@
     "react-day-picker": "8.0.7",
     "react-dropzone": "^12.0.4",
     "react-modal": "3.13.1",
-    "react-slick": "^0.28.1"
+    "react-slick": "^0.28.1",
+    "react-use": "^17.5.0"
   },
   "devDependencies": {
     "@types/classnames": "2.3.1",
@@ -52,7 +53,6 @@
     "@types/rollup-plugin-peer-deps-external": "^2.2.0"
   },
   "peerDependencies": {
-    "@useblu/ocean-core": "0.2.7",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },

@@ -3,6 +3,9 @@ import classNames from 'classnames';
 
 import AlertIcon from './AlertIcon';
 
+import Button from '../Button';
+import Link from '../Link';
+
 export type AlertProps = {
   /**
    * Determines the type of alert, with default icon and colors for each type
@@ -14,14 +17,42 @@ export type AlertProps = {
    */
   title?: string;
   /**
-   * Sets a custon icon for the Alert.
+   * Sets a custom icon for the Alert.
    */
   icon?: React.ReactElement;
+  /**
+   * Sets a size of the description.
+   */
+  size?: 'short' | 'long';
+  /**
+   * Sets a button label.
+   */
+  button?: string;
+  /**
+   * Sets a button action.
+   */
+  buttonAction?: () => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ children, type = 'default', title, className, icon, ...rest }, ref) => {
+  (
+    {
+      children,
+      type = 'default',
+      title,
+      className,
+      icon,
+      size = 'long',
+      button,
+      buttonAction,
+      ...rest
+    },
+    ref
+  ) => {
     const alertIcon = <AlertIcon type={type} icon={icon} />;
+
+    const longSize = size === 'long' && !button;
+    const marginHeader = longSize && children && title;
 
     return (
       <div
@@ -30,20 +61,65 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         className={classNames(
           'ods-alert',
           `ods-alert--${type}`,
-          title && 'ods-alert--has-header',
+          longSize && 'ods-alert--long',
+          button && !title && 'ods-alert--with-button-no-title',
           className
         )}
         {...rest}
       >
-        {title ? (
-          <div className="ods-alert__header">
-            {alertIcon}
-            <div className="ods-alert__title">{title}</div>
+        {longSize ? (
+          <div>
+            <div
+              className={classNames(
+                'ods-alert__header',
+                marginHeader && 'ods-alert__header--margin'
+              )}
+            >
+              {alertIcon}
+              {title ? (
+                <div className="ods-alert__title">{title}</div>
+              ) : (
+                <div className="alert__content">{children}</div>
+              )}
+            </div>
+            {title && <div className="alert__content">{children}</div>}
           </div>
         ) : (
-          alertIcon
+          <>
+            <div
+              className={classNames(
+                'ods-alert__header',
+                marginHeader && 'ods-alert__header--margin'
+              )}
+            >
+              {alertIcon}
+              <div className="ods-alert__text">
+                {title && <div className="ods-alert__title">{title}</div>}
+                <div
+                  className={classNames('alert__content', {
+                    'alert__content--no-title': !title,
+                  })}
+                >
+                  {children}
+                </div>
+              </div>
+              {button && (
+                <div className="ods-alert__button">
+                  <Button size="sm" onClick={buttonAction}>
+                    {button}
+                  </Button>
+                </div>
+              )}
+            </div>
+            {button && (
+              <div className="ods-alert__button--mobile">
+                <Link size="tiny" onClick={buttonAction} icon="linkChevron">
+                  {button}
+                </Link>
+              </div>
+            )}
+          </>
         )}
-        <div className="ods-alert__content">{children}</div>
       </div>
     );
   }

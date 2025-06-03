@@ -1,0 +1,154 @@
+.ods-chips {
+  display: inline-block;
+  position: relative;
+
+  &__button {
+    background: $color-interface-light-up;
+    border: 0;
+    border-radius: $spacing-inline-sm;
+    color: $color-brand-primary-pure;
+    display: flex;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    gap: $spacing-inline-xxxs;
+    height: 32px;
+    padding: $spacing-stack-xxs $spacing-stack-xs;
+
+    &:hover,
+    &:focus {
+      background: $color-interface-light-down;
+    }
+
+    &:active {
+      background: $color-brand-primary-pure;
+      color: $color-interface-light-pure;
+    }
+
+    &:active .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-light-pure;
+      color: $color-brand-primary-pure;
+    }
+
+    > svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    &--disabled {
+      background: $color-interface-light-up;
+      pointer-events: none;
+    }
+
+    &--disabled .ods-chips__label {
+      color: $color-interface-dark-up;
+    }
+
+    &--disabled .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-dark-up;
+    }
+
+    &--disabled > svg {
+      color: $color-interface-dark-up;
+    }
+
+    &--active {
+      background: $color-brand-primary-pure;
+      color: $color-interface-light-pure;
+    }
+
+    &--active:hover,
+    &--active:focus {
+      background: $color-brand-primary-pure;
+    }
+
+    &--active .ods-chips__badge > .ods-badge__content {
+      background: $color-interface-light-pure;
+      color: $color-brand-primary-pure;
+    }
+  }
+
+  &__label {
+    margin: 0;
+  }
+
+  &__options {
+    background: $color-interface-light-pure;
+    border: 1px solid $color-interface-light-down;
+    border-radius: $border-radius-sm;
+    box-shadow: $shadow-level-2;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-inset-xxs 0;
+    position: absolute;
+    top: 38px;
+    width: auto;
+
+    &--content {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      max-height: 200px;
+      -ms-overflow-style: none;
+      overflow-y: auto;
+      scrollbar-width: none;
+      width: 220px;
+    }
+
+    &--content--columns-2 {
+      display: grid;
+      grid-column-gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      min-width: 296px;
+      width: auto;
+    }
+
+    &--content--columns-3 {
+      display: grid;
+      grid-column-gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      min-width: 436px;
+      width: auto;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--option {
+      align-items: center;
+      background-color: $color-interface-light-pure;
+      border: 0;
+      color: $color-interface-dark-down;
+      display: flex;
+      font-size: $font-size-xxs;
+      font-weight: $font-weight-regular;
+      gap: $spacing-inline-xxs;
+      min-height: 40px;
+      padding: $spacing-stack-xxs 12px;
+      text-wrap: nowrap;
+      width: 100%;
+    }
+
+    &--option--selected {
+      background-color: $color-interface-light-up;
+      border-radius: $border-radius-sm;
+      color: $color-brand-primary-pure;
+      font-weight: $font-weight-bold;
+    }
+
+    &--option:hover {
+      background-color: $color-interface-light-up;
+      border-radius: $border-radius-sm;
+      color: $color-brand-primary-pure;
+    }
+
+    &--footer {
+      border-top: $border-width-hairline solid $color-interface-light-down;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xs
+        $spacing-stack-xxs;
+    }
+  }
+}

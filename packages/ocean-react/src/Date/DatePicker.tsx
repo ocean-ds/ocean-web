@@ -45,6 +45,7 @@ const DatePickerSingle = React.forwardRef<
       disabledDays,
       formatDay,
       handleCloseByOutside,
+      currentMonthToDisplay,
     } = useDatePicker({ value, onSelect, startsToday, locale });
 
     return (
@@ -83,8 +84,7 @@ const DatePickerSingle = React.forwardRef<
                 error={!disabled && error}
                 inputMode="numeric"
                 helperText={
-                  (!disabled && !showDayPicker && error && helperText) ||
-                  undefined
+                  (!disabled && !showDayPicker && helperText) || undefined
                 }
                 maxLength={10}
               />
@@ -102,6 +102,7 @@ const DatePickerSingle = React.forwardRef<
                   formatters={{ formatDay }}
                   selected={selectedDay}
                   disabled={disabledDays}
+                  defaultMonth={currentMonthToDisplay}
                   components={{
                     Caption: ({ displayMonth }: CaptionProps) =>
                       DateHeader({

@@ -1,15 +1,14 @@
 @mixin headings {
-  color: $color-interface-dark-pure;
-  font-family: $font-family-highlight;
+  color: $color_interface_dark_deep;
+  font-family: $font-family-base;
   font-weight: $font-weight-extrabold;
-  line-height: $line-height-medium;
 }
 
 @mixin subtitles {
   color: $color-interface-dark-down;
   font-family: $font-family-base;
   font-weight: $font-weight-regular;
-  line-height: $line-height-medium;
+  line-height: $line-height-loose;
 }
 
 @mixin texts {
@@ -25,40 +24,41 @@
   &__heading1 {
     @include headings;
     font-size: $font-size-lg;
+    line-height: $line-height-medium;
   }
 
   &__heading2 {
     @include headings;
     font-size: $font-size-md;
+    line-height: $line-height-medium;
   }
 
   &__heading3 {
     @include headings;
     font-size: $font-size-sm;
+    line-height: $line-height-medium;
   }
 
   &__heading4 {
     @include headings;
     font-size: $font-size-xs;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-medium;
+    line-height: $line-height-loose;
   }
 
   &__heading5 {
     @include headings;
     font-size: $font-size-xxs;
-    font-weight: $font-weight-bold;
-    line-height: $line-height-medium;
+    line-height: $line-height-loose;
   }
 
   &__subtitle1 {
     @include subtitles;
-    font-size: $font-size-md;
+    font-size: $font-size-sm;
   }
 
   &__subtitle2 {
     @include subtitles;
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
   }
 
   &__paragraph {
@@ -71,6 +71,7 @@
     font-family: $font-family-base;
     font-size: $font-size-sm;
     font-weight: $font-weight-bold;
+    line-height: $line-height-comfy;
   }
 
   &__description {
@@ -79,11 +80,26 @@
   }
 
   &__caption {
+    @include texts;
+    font-size: $font-size-xxxs;
+  }
+
+  &__captionbold {
     color: $color-interface-dark-down;
     font-family: $font-family-base;
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
     line-height: $line-height-comfy;
+  }
+
+  &__eyebrow {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    letter-spacing: 1.8px;
+    line-height: $line-height-comfy;
+    text-transform: uppercase;
   }
 
   &--inverse {

@@ -1,5 +1,13 @@
 @use 'sass:math';
 
+@mixin highlight {
+  color: $color-interface-light-pure;
+  font-size: 10px;
+  font-weight: $font-weight-extrabold;
+  line-height: 10px;
+  padding: $spacing-stack-xxxs $spacing-stack-xxs;
+}
+
 .ods-tag {
   align-items: center;
   background-color: $color-interface-light-up;
@@ -7,12 +15,39 @@
   color: $color-interface-dark-down;
   display: flex;
   font-family: $font-family-base;
-  font-size: $font-size-xxxs;
-  font-weight: 600;
+  gap: $spacing-stack-xxxs;
   justify-content: left;
-  line-height: $line-height-comfy;
-  padding: math.div($spacing-stack-xxxs, 2) $spacing-stack-xxxs;
   width: fit-content;
+
+  &--medium {
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: 12px;
+    padding: $spacing-stack-xxxs $spacing-stack-xxs;
+
+    &__with-icon {
+      padding: 2px $spacing-stack-xxs 2px 6px;
+    }
+  }
+
+  &--small {
+    font-size: 8px;
+    font-weight: $font-weight-bold;
+    line-height: 8px;
+    padding: $spacing-stack-xxxs $spacing-stack-xxxs;
+  }
+
+  &--highlight {
+    &__important {
+      @include highlight;
+      background-color: $color-highlight-pure;
+    }
+
+    &__neutral {
+      @include highlight;
+      background-color: $color-brand-primary-down;
+    }
+  }
 
   &--negative {
     background-color: $color-status-negative-up;
@@ -27,14 +62,14 @@
   }
 
   &--warning {
-    background-color: $color-status-neutral-up;
+    background-color: $color-status-warning-up;
 
     .ods-tag__icon {
-      fill: $color-status-neutral-deep;
+      fill: $color-status-warning-deep;
     }
 
     .ods-tag__content {
-      color: $color-status-neutral-deep;
+      color: $color-status-warning-deep;
     }
   }
 
@@ -92,7 +127,6 @@
   }
 
   &__content {
-    margin: 0 $spacing-stack-xxxs;
     white-space: nowrap;
   }
 }
