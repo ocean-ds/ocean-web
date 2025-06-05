@@ -1,6 +1,10 @@
 .ods-card-group {
   border: 1px solid $color-interface-light-down;
   border-radius: $border-radius-sm;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
   width: 100%;
 
   &--header {
@@ -13,6 +17,7 @@
     align-items: center;
     display: flex;
     gap: $spacing-inline-xs;
+    height: 100%;
     justify-content: space-between;
     padding: $spacing-inline-xs;
 

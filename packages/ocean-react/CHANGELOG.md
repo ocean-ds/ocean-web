@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.78.0](https://github.com/ocean-ds/ocean-web/compare/v1.77.1...v1.78.0) (2025-03-31)
+
+### Features
+
+- create dot pagination ([#1132](https://github.com/ocean-ds/ocean-web/issues/1132)) ([264737b](https://github.com/ocean-ds/ocean-web/commit/264737be811319cc4bd556bbfebb3fedb162b240))
+
+## [1.77.1](https://github.com/ocean-ds/ocean-web/compare/v1.77.0...v1.77.1) (2025-02-04)
+
+### Bug Fixes
+
+- remove peer dependency ([#1131](https://github.com/ocean-ds/ocean-web/issues/1131)) ([607ee06](https://github.com/ocean-ds/ocean-web/commit/607ee069693fa7aaec4824303cb9974ce92ddbdd))
+
 # [1.76.0](https://github.com/ocean-ds/ocean-web/compare/v1.75.0...v1.76.0) (2025-01-30)
 
 ### Features
