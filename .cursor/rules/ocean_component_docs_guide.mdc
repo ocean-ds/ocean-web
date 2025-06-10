@@ -1,0 +1,396 @@
+# Ocean Web - Component Documentation Guidelines
+
+Esta documentação estabelece padrões para criar documentação de componentes no ocean-web que seja clara, consistente e amigável para IA.
+
+## Estrutura Padrão
+
+### 1. Cabeçalho e Metadados
+
+```mdx
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import ComponentName from '../ComponentName';
+
+<Meta
+  title="Components/ComponentName"
+  component={ComponentName}
+  argTypes={
+    {
+      // Configure argTypes para controles do Storybook
+    }
+  }
+/>
+```
+
+### 2. Título e Descrição
+
+```mdx
+# ComponentName
+
+[Descrição concisa e clara do propósito do componente]
+
+## Overview
+
+[Explicação mais detalhada do componente, suas capacidades e contexto de uso]
+```
+
+### 3. Seções Obrigatórias
+
+#### Import
+
+````mdx
+## Import
+
+```javascript
+import { ComponentName } from '@useblu/ocean-react';
+```
+````
+
+````
+
+#### Usage (Uso Básico)
+```mdx
+## Usage
+
+[Descrição dos padrões de uso comum]
+
+### Basic Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <ComponentName>Basic Example</ComponentName>
+  </Story>
+</Canvas>
+
+### Common Patterns
+
+[Exemplos de código para padrões comuns de uso]
+````
+
+#### API Reference
+
+```mdx
+## API Reference
+
+[Descrição base do componente]
+
+| Prop     | Type | Default | Description                          |
+| -------- | ---- | ------- | ------------------------------------ |
+| propName | type | default | Descrição detalhada com casos de uso |
+```
+
+#### Examples
+
+```mdx
+## Examples
+
+### PropName
+
+[Descrição da prop e quando usar]
+
+[Lista de casos de uso com bullets]
+
+<Canvas withSource="open" withToolbar>
+  <Story name="prop-example">
+    <ComponentName propName="value">Example</ComponentName>
+  </Story>
+</Canvas>
+```
+
+#### Props
+
+```mdx
+## Props
+
+<ArgsTable of={ComponentName} />
+
+The ref is forwarded to the root element. Any other props supplied will be provided to the root element.
+```
+
+#### Playground
+
+```mdx
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      children: 'Component Content',
+    }}
+  >
+    {(args) => <ComponentName {...args} />}
+  </Story>
+</Canvas>
+```
+
+## Padrões de Escrita
+
+### Descrições de Props
+
+- Use descrições claras e concisas
+- Inclua casos de uso específicos
+- Mencione valores padrão
+- Adicione exemplos quando apropriado
+
+**Bom:**
+
+```
+| variant | "primary" \| "secondary" | "primary" | The visual style of the component. Use primary for main actions, secondary for alternatives. |
+```
+
+**Ruim:**
+
+```
+| variant | string | "primary" | The variant to use. |
+```
+
+### Exemplos de Código
+
+- Sempre inclua exemplos práticos
+- Use nomes descritivos para props
+- Inclua contexto de layout quando relevante
+- Forneça exemplos de agrupamento/composição
+
+### Casos de Uso
+
+- Liste casos de uso específicos para cada prop
+- Use bullets para facilitar leitura
+- Inclua exemplos de texto/conteúdo
+- Mencione considerações de acessibilidade
+
+## Seções Específicas por Tipo
+
+### Para Componentes de Formulário
+
+````mdx
+## Form Integration
+
+### Usage in Forms
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <ComponentName name="fieldName" />
+  <Button type="submit">Submit</Button>
+</form>
+```
+````
+
+### Validation
+
+[Exemplos de validação e estados de erro]
+
+````
+
+### Para Componentes Interativos
+```mdx
+## Event Handling
+
+| Handler | Type | Description | Example |
+|---------|------|-------------|---------|
+| onClick | function | Click event handler | ```jsx <Component onClick={handleClick} /> ``` |
+````
+
+### Para Componentes com Estados
+
+```mdx
+## States
+
+### Loading State
+
+[Quando e como usar]
+
+### Disabled State
+
+[Quando e como usar]
+
+### Error State
+
+[Quando e como usar]
+```
+
+## Guidelines para IA-Friendly Documentation
+
+### 1. Estrutura Consistente
+
+- Sempre siga a mesma ordem de seções
+- Use headers hierárquicos corretamente
+- Mantenha formatação consistente
+
+### 2. Exemplos Práticos
+
+- Inclua exemplos de código completos
+- Forneça exemplos de layout/composição
+- Mostre padrões de uso comuns
+- Inclua exemplos de integração
+
+### 3. Contexto de Uso
+
+- Explique QUANDO usar cada prop/variante
+- Forneça exemplos de texto apropriado
+- Inclua considerações de UX
+- Mencione melhores práticas
+
+### 4. Casos de Uso Específicos
+
+```mdx
+### Size Variations
+
+Use the `size` prop to control the component size:
+
+- `sm`: For compact interfaces or inline with text
+- `md`: Standard size for most use cases
+- `lg`: For prominent actions or better touch targets
+
+<Canvas withSource="open" withToolbar>
+  <Story name="sizes">
+    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+      <Component size="sm">Small</Component>
+      <Component size="md">Medium</Component>
+      <Component size="lg">Large</Component>
+    </div>
+  </Story>
+</Canvas>
+```
+
+## Template Base
+
+````mdx
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import ComponentName from '../ComponentName';
+
+<Meta
+  title="Components/ComponentName"
+  component={ComponentName}
+  argTypes={
+    {
+      // Configure argTypes
+    }
+  }
+/>
+
+# ComponentName
+
+[Descrição concisa do propósito]
+
+## Overview
+
+[Descrição detalhada e contexto de uso]
+
+## Import
+
+```javascript
+import { ComponentName } from '@useblu/ocean-react';
+```
+````
+
+## Usage
+
+### Basic Usage
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <ComponentName>Content</ComponentName>
+  </Story>
+</Canvas>
+
+### Common Patterns
+
+[Exemplos de padrões comuns]
+
+## API Reference
+
+| Prop  | Type | Default | Description                |
+| ----- | ---- | ------- | -------------------------- |
+| prop1 | type | default | Description with use cases |
+
+## Examples
+
+### PropName
+
+[Descrição e casos de uso]
+
+<Canvas withSource="open" withToolbar>
+  <Story name="prop-example">
+    <ComponentName prop="value">Example</ComponentName>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={ComponentName} />
+
+The ref is forwarded to the root element.
+
+## Playground
+
+<Canvas>
+  <Story name="playground" args={{ children: 'Content' }}>
+    {(args) => <ComponentName {...args} />}
+  </Story>
+</Canvas>
+```
+
+## Checklist de Qualidade
+
+### ✅ Estrutura
+
+- [ ] Seguiu a estrutura padrão
+- [ ] Todas as seções obrigatórias presentes
+- [ ] Headers hierárquicos corretos
+- [ ] Import correto
+
+### ✅ Conteúdo
+
+- [ ] Descrição clara do propósito
+- [ ] API Reference completa
+- [ ] Exemplos práticos para cada prop
+- [ ] Casos de uso específicos
+- [ ] Padrões de layout/composição
+
+### ✅ Exemplos
+
+- [ ] Código funcional
+- [ ] Nomes descritivos
+- [ ] Contexto de uso claro
+- [ ] Exemplos de integração
+
+### ✅ IA-Friendly
+
+- [ ] Estrutura consistente
+- [ ] Exemplos reutilizáveis
+- [ ] Contexto de uso claro
+- [ ] Padrões bem documentados
+
+## Ferramentas e Recursos
+
+### Extensões Recomendadas
+
+- MDX Language Support
+- Storybook Snippets
+- TypeScript Hero
+
+### Scripts Úteis
+
+```bash
+# Gerar documentação base
+npm run generate:docs ComponentName
+
+# Validar documentação
+npm run validate:docs
+
+# Preview local
+npm run storybook
+```
+
+## Exemplos de Referência
+
+- ✅ [Button](packages/ocean-react/src/Button/stories/Button.stories.mdx) - Exemplo completo
+- 🔄 [Input](packages/ocean-react/src/Input/stories/Input.stories.mdx) - Em andamento
+- 📝 [Modal](packages/ocean-react/src/Modal/stories/Modal.stories.mdx) - Planejado
+
+---
+
+**Versão:** 1.0  
+**Última atualização:** [Data atual]  
+**Responsável:** Equipe Ocean Web  
+**Review:** Necessário antes de merge

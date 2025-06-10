@@ -52,9 +52,13 @@ import Button from '../Button';
   }}
 />
 
-# Button API
+# Button
 
-The API documentation of the Button React component. Learn more about the props and the CSS customization points.
+Trigger an action or event, such as submitting a form or displaying a dialog.
+
+## Overview
+
+The Button component is a fundamental UI element used to trigger actions or events in user interfaces. It supports various styles, sizes, and states to accommodate different use cases and design requirements.
 
 ## Import
 
@@ -64,13 +68,29 @@ import { Button } from '@useblu/ocean-react';
 
 ## Usage
 
+The Button component can be used in various contexts. Here are some common patterns:
+
+### Basic Usage
+
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
     <Button>Click Here!</Button>
   </Story>
 </Canvas>
 
-## Variations
+## API Reference
+
+The Button component is based on the `button` element and supports all standard button attributes.
+
+| Prop     | Type                                                                                                                                                      | Default   | Description                                                                                                            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
+| variant  | "primary" \| "primaryCritical" \| "secondary" \| "secondaryCritical" \| "text" \| "textCritical" \| "textTertiary" \| "textTertiaryCritical" \| "inverse" | "primary" | The visual style of the button. Use primary for main actions, secondary for alternatives, and text for subtle actions. |
+| size     | "sm" \| "md" \| "lg"                                                                                                                                      | "md"      | The size of the button. Use sm for compact interfaces, md for standard use, and lg for prominent actions.              |
+| blocked  | boolean                                                                                                                                                   | false     | When true, the button spans the full width of its container. Useful for mobile interfaces and form submissions.        |
+| loading  | boolean                                                                                                                                                   | false     | Shows a loading spinner and disables the button. Use during async operations.                                          |
+| disabled | boolean                                                                                                                                                   | false     | Prevents user interaction with the button. Use when the action is not available.                                       |
+
+## Examples
 
 <Canvas withSource="open" withToolbar>
   <Story name="variations">
@@ -88,7 +108,13 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
-## Size
+### Size
+
+Use the `size` prop to control the size of the button. Each size has specific use cases:
+
+- `sm`: For compact interfaces or inline with text
+- `md`: Standard size for most use cases
+- `lg`: For prominent call-to-action buttons
 
 <Canvas withSource="open" withToolbar>
   <Story name="size">
@@ -100,7 +126,13 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
-## Blocked
+### Blocked
+
+Use the `blocked` prop to make the button span the full width of its container. Common use cases:
+
+- Form submit buttons
+- Mobile interfaces
+- Card or modal footers
 
 <Canvas withSource="open" withToolbar>
   <Story name="blocked">
@@ -108,7 +140,13 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
-## Disabled
+### Disabled
+
+Use the `disabled` prop to prevent user interaction with the button. Common use cases:
+
+- When the action is not available
+- When required fields are not filled
+- During processing
 
 <Canvas withSource="open" withToolbar>
   <Story name="disabled">
@@ -116,7 +154,9 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
-## Disabled on color
+### Disabled States
+
+Here are examples of disabled states for each variant. Use these patterns to indicate when actions are not available.
 
 <Canvas withSource="open" withToolbar>
   <Story name="disabled-on-variant">
@@ -146,13 +186,19 @@ import { Button } from '@useblu/ocean-react';
         Text TertiaryCritical
       </Button>
       <Button variant="inverse" disabled>
-        inverse
+        Inverse
       </Button>
     </div>
   </Story>
 </Canvas>
 
-## Loading
+### Loading
+
+Use the `loading` prop to show a loading state. Common use cases:
+
+- During form submissions
+- During async operations
+- To prevent double-clicks
 
 <Canvas withSource="open" withToolbar>
   <Story name="loading">
@@ -160,7 +206,9 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
-## Loading auto on color
+### Loading States
+
+Here are examples of loading states for each variant. Use these patterns to indicate ongoing operations.
 
 <Canvas withSource="open" withToolbar>
   <Story name="loading-auto-on-color">
@@ -196,7 +244,9 @@ import { Button } from '@useblu/ocean-react';
   </Story>
 </Canvas>
 
-## Loading variations on size
+### Loading Sizes
+
+Here are examples of loading states for each size. Use these patterns to maintain consistency with your interface.
 
 <Canvas withSource="open" withToolbar>
   <Story name="loading-on-size">
@@ -213,14 +263,6 @@ import { Button } from '@useblu/ocean-react';
     </div>
   </Story>
 </Canvas>
-
-## Props
-
-<ArgsTable story="Usage" of="." />
-
-The ref is forwarded to the root element.
-
-Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
@@ -239,7 +281,11 @@ Any other props supplied will be provided to the root element (native element).
 | .ods-btn--[sm,md,lg]             | Specifies the width of the button.                      |
 | .ods-btn--blocked                | Spans the full width of the Button parent.              |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Button/Button.tsx) for more detail.
+## Props
+
+<ArgsTable of={Button} />
+
+The ref is forwarded to the root element. Any other props supplied will be provided to the root element (native element).
 
 ## Playground
 
@@ -248,49 +294,70 @@ If that's not sufficient, you can check the [implementation of the component](ht
     name="playground"
     args={{
       children: 'My Button',
-      blocked: false,
-      disabled: false,
-      loading: false,
-    }}
-    argTypes={{
-      children: {
-        name: 'children',
-        control: 'text',
-      },
-      variant: {
-        name: 'variant',
-        options: [
-          'primary',
-          'primaryCritical',
-          'secondary',
-          'secondaryCritical',
-          'text',
-          'textCritical',
-          'textTertiary',
-          'textTertiaryCritical',
-          'inverse',
-        ],
-        control: { type: 'select' },
-      },
-      size: {
-        name: 'size',
-        options: ['sm', 'md', 'lg'],
-        control: { type: 'select' },
-      },
-      blocked: {
-        name: 'blocked',
-        control: 'boolean',
-      },
-      disabled: {
-        name: 'disabled',
-        control: 'boolean',
-      },
-      loading: {
-        name: 'loading',
-        control: 'boolean',
-      },
     }}
   >
-    {(props) => <Button {...props} onClick={() => alert('clicked')} />}
+    {(args) => <Button {...args} />}
   </Story>
 </Canvas>
+
+## Button Types
+
+The Button component supports all standard HTML button types. The `type` attribute determines the button's behavior in forms and interactions.
+
+| Type     | Description         | Use Case                                         | Example                                        |
+| -------- | ------------------- | ------------------------------------------------ | ---------------------------------------------- |
+| `button` | Default button type | General purpose actions, JavaScript interactions | `jsx <Button type="button">Click me</Button> ` |
+| `submit` | Submits form data   | Form submissions, data saving                    | `jsx <Button type="submit">Save</Button> `     |
+| `reset`  | Resets form fields  | Form reset functionality                         | `jsx <Button type="reset">Reset</Button> `     |
+
+### Usage Examples
+
+#### Form Submission
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <input type="text" />
+  <Button type="submit">Submit Form</Button>
+  <Button type="button" variant="secondary">
+    Cancel
+  </Button>
+</form>
+```
+
+#### Form Reset
+
+```jsx
+<form>
+  <input type="text" />
+  <Button type="submit">Save</Button>
+  <Button type="reset" variant="secondary">
+    Reset Form
+  </Button>
+</form>
+```
+
+#### General Purpose
+
+```jsx
+<Button type="button" onClick={handleClick}>
+  Custom Action
+</Button>
+```
+
+### Best Practices
+
+1. **Form Submissions**
+
+   - Use `type="submit"` for the main form submission button
+   - Use `type="button"` for secondary actions in forms
+   - Use `type="reset"` sparingly and only when form reset is necessary
+
+2. **JavaScript Interactions**
+
+   - Use `type="button"` for buttons that trigger JavaScript functions
+   - This prevents accidental form submissions
+
+3. **Accessibility**
+   - Always specify the `type` attribute
+   - Use appropriate types for better screen reader support
+   - Maintain consistent behavior across the application
