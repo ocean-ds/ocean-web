@@ -1,17 +1,91 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
-import { EyeOutline } from '@useblu/ocean-icons-react';
+import {
+  InfoOutline,
+  HelpOutline,
+  QuestionMarkOutline,
+} from '@useblu/ocean-icons-react';
 
 <Meta
-  title="Components/Inputs/With Tooltip"
+  title="Components/Inputs/Input with Tooltip"
   component={Input}
-  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+  argTypes={{
+    type: {
+      name: 'type',
+      description: 'The type of the input element.',
+      table: {
+        type: { summary: '"text" | "email" | "password" | "number"' },
+        defaultValue: { summary: 'text' },
+      },
+      control: {
+        type: 'select',
+        options: ['text', 'email', 'password', 'number'],
+      },
+    },
+    label: {
+      name: 'label',
+      description: 'The label for the input field.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    tooltipMessage: {
+      name: 'tooltipMessage',
+      description: 'Tooltip message displayed on label hover.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    placeholder: {
+      name: 'placeholder',
+      description: 'The placeholder text for the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    helperText: {
+      name: 'helperText',
+      description: 'Helper text displayed below the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    error: {
+      name: 'error',
+      description: 'Sets the input styles to error state.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Disables the input field.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+  }}
 />
 
-# Input With Tooltip API
+# Input with Tooltip
 
-The API documentation of the Input type With Icon React component.
-Learn more about the props and the CSS customization points.
+Enhanced input component with tooltip functionality for providing additional context and guidance without cluttering the interface.
+
+## Overview
+
+Input with tooltip extends the standard input component by adding contextual help through tooltip messages. Tooltips appear when hovering over the label and provide additional information, validation rules, formatting requirements, or helpful hints without taking up permanent space in the interface. Perfect for complex forms or when space is limited.
 
 ## Import
 
@@ -21,80 +95,325 @@ import { Input } from '@useblu/ocean-react';
 
 ## Usage
 
-<Canvas>
-  <Story
-    name="With Tooltip"
-    args={{
-      label: 'With Tooltip',
-      placeholder: 'Placeholder...',
-      position: 'right',
-      helperText: 'Some text here!',
-      error: false,
-      disabled: false,
-      type: 'text',
-    }}
-    parameters={{
-      controls: { exclude: /^blocked*/ },
-    }}
-    argTypes={{
-      type: {
-        options: ['text', 'number', 'password'],
-        control: { type: 'select' },
-      },
-      position: {
-        options: ['right', 'left'],
-        control: { type: 'select' },
-      },
-      label: {
-        control: 'text',
-      },
-      tooltipMessage: {
-        control: 'text',
-      },
-      placeholder: {
-        control: 'text',
-      },
-      defaultValue: {
-        control: 'text',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
-    }}
-  >
-    {(props) => (
-      <Input
-        id="input-with-tooltip"
-        tooltipMessage="Tooltip Message!"
-        {...props}
-      />
-    )}
+Tooltips provide contextual help and additional information that supplements the main label and helper text.
+
+### Basic Tooltip Input
+
+<Canvas withSource="open" withToolbar>
+  <Story name="basic">
+    <Input
+      label="Password"
+      name="password"
+      type="password"
+      placeholder="Enter your password"
+      tooltipMessage="Password must be at least 8 characters long and include numbers and special characters"
+      helperText="Choose a strong password"
+    />
   </Story>
 </Canvas>
 
-## Props
+### Common Tooltip Patterns
 
-<ArgsTable of="." />
+1. **Validation Rules**
 
-The ref is forwarded to the root element.
+   ```jsx
+   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+     <Input
+       label="Username"
+       name="username"
+       type="text"
+       placeholder="Enter username"
+       tooltipMessage="Username must be 3-20 characters long, contain only letters, numbers, and underscores"
+       helperText="This will be your unique identifier"
+     />
+     <Input
+       label="Email"
+       name="email"
+       type="email"
+       placeholder="your@email.com"
+       tooltipMessage="We use your email for account verification and important notifications. We never share your email with third parties."
+       helperText="Enter a valid email address"
+     />
+   </div>
+   ```
 
-Any other props supplied will be provided to the root element (native element).
+2. **Formatting Guidelines**
+   ```jsx
+   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+     <Input
+       label="Phone Number"
+       name="phone"
+       type="tel"
+       placeholder="(11) 99999-9999"
+       tooltipMessage="Enter your phone number with area code. Format: (XX) XXXXX-XXXX for mobile or (XX) XXXX-XXXX for landline"
+       helperText="Include area code"
+     />
+     <Input
+       label="Tax ID"
+       name="taxId"
+       type="text"
+       placeholder="000.000.000-00"
+       tooltipMessage="Enter your CPF (for individuals) or CNPJ (for companies). Use only numbers or include formatting dots and dashes"
+       helperText="Personal or company tax identification"
+     />
+   </div>
+   ```
+
+## Examples
+
+### Tooltip Content Types
+
+Different types of information that work well in tooltips:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="content-types">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Strong Password"
+        name="strongPassword"
+        type="password"
+        placeholder="Enter password"
+        tooltipMessage="Requirements: At least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (!@#$%^&*)"
+        helperText="Password strength will be shown below"
+      />
+      <Input
+        label="Credit Card Number"
+        name="creditCard"
+        type="text"
+        placeholder="1234 5678 9012 3456"
+        tooltipMessage="Your credit card information is encrypted and secure. We support Visa, Mastercard, American Express, and Discover cards."
+        helperText="16-digit card number"
+      />
+      <Input
+        label="Project Name"
+        name="projectName"
+        type="text"
+        placeholder="My Awesome Project"
+        tooltipMessage="Choose a descriptive name for your project. You can change this later in project settings. Names must be unique within your organization."
+        helperText="This will be visible to team members"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Complex Form Example
+
+Real-world example with multiple tooltip inputs:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="form-example">
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '500px',
+      }}
+    >
+      <Input
+        label="Company Name"
+        name="companyName"
+        type="text"
+        placeholder="Enter company name"
+        tooltipMessage="Enter the official legal name of your company as it appears on government documents. This will be used for billing and legal purposes."
+        helperText="Legal business name"
+        required
+      />
+      <Input
+        label="Annual Revenue"
+        name="revenue"
+        type="text"
+        placeholder="$1,000,000"
+        tooltipMessage="Enter your company's total annual revenue from the most recent completed fiscal year. This helps us provide appropriate service levels and pricing."
+        helperText="Last fiscal year revenue"
+      />
+      <Input
+        label="Business Registration Number"
+        name="businessId"
+        type="text"
+        placeholder="12.345.678/0001-90"
+        tooltipMessage="Enter your CNPJ (Cadastro Nacional da Pessoa Jurídica) number. This is required for Brazilian companies to issue invoices and for tax reporting purposes."
+        helperText="CNPJ format: XX.XXX.XXX/XXXX-XX"
+        required
+      />
+      <Input
+        label="Contact Email"
+        name="contactEmail"
+        type="email"
+        placeholder="contact@company.com"
+        tooltipMessage="This email will receive important notifications about your account, including billing updates, security alerts, and service announcements. Make sure this is monitored regularly."
+        helperText="Primary business email"
+        required
+      />
+    </form>
+  </Story>
+</Canvas>
+
+### Tooltip Length Variations
+
+Examples of short and long tooltip content:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="tooltip-lengths">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Nickname"
+        name="nickname"
+        type="text"
+        placeholder="Enter nickname"
+        tooltipMessage="3-15 characters only"
+        helperText="Optional display name"
+      />
+      <Input
+        label="API Key"
+        name="apiKey"
+        type="text"
+        placeholder="sk-..."
+        tooltipMessage="API keys are used to authenticate your requests to our service. Keep this secure and never share it publicly. If compromised, regenerate immediately from your account settings. Keys have different permission levels based on your subscription plan."
+        helperText="Keep this secret and secure"
+      />
+      <Input
+        label="Department Code"
+        name="deptCode"
+        type="text"
+        placeholder="IT-001"
+        tooltipMessage="Use your organization's standard department codes"
+        helperText="Internal department identifier"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### States with Tooltips
+
+Tooltip inputs in different states:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Normal Field"
+        name="normal"
+        type="text"
+        placeholder="Enter value"
+        tooltipMessage="This is a normal input field with tooltip functionality. Hover over the label to see this message."
+        helperText="Standard input with tooltip"
+      />
+      <Input
+        label="Error Field"
+        name="error"
+        type="email"
+        placeholder="invalid-email"
+        tooltipMessage="Email addresses must contain an @ symbol and a valid domain name. Common formats include user@domain.com or user@subdomain.domain.org"
+        helperText="Please enter a valid email address"
+        error
+      />
+      <Input
+        label="Disabled Field"
+        name="disabled"
+        type="text"
+        placeholder="Cannot edit"
+        tooltipMessage="This field is disabled because the information is automatically populated based on your account settings. Contact support if you need to change this value."
+        helperText="Field is automatically populated"
+        disabled
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Security Information Tooltips
+
+Examples for sensitive data with security context:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="security-tooltips">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Social Security Number"
+        name="ssn"
+        type="text"
+        placeholder="XXX-XX-XXXX"
+        tooltipMessage="Your SSN is encrypted and stored securely. We use this information only for identity verification and tax reporting as required by law. This data is never shared with third parties."
+        helperText="Required for tax purposes"
+      />
+      <Input
+        label="Bank Account Number"
+        name="bankAccount"
+        type="text"
+        placeholder="Account number"
+        tooltipMessage="Bank account information is protected with 256-bit encryption. We use this only for direct deposit payments. You can update or remove this information at any time in your account settings."
+        helperText="For direct deposit payments"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+## API Reference
+
+Tooltip input specific properties and usage guidelines.
+
+| Prop           | Type    | Default   | Description                                                                                                    |
+| -------------- | ------- | --------- | -------------------------------------------------------------------------------------------------------------- |
+| tooltipMessage | string  | undefined | Content displayed in the tooltip. Should provide helpful context, validation rules, or additional information. |
+| label          | string  | undefined | Main label for the input. Tooltip appears when hovering over this label.                                       |
+| helperText     | string  | undefined | Text below input. Use for brief hints; use tooltip for detailed explanations.                                  |
+| type           | string  | "text"    | Input type. Should match the context of the tooltip content.                                                   |
+| placeholder    | string  | undefined | Placeholder text. Should work well with both label and tooltip content.                                        |
+| error          | boolean | false     | Error state. Tooltip can explain validation requirements when field is in error state.                         |
+| disabled       | boolean | false     | Disabled state. Tooltip can explain why field is disabled.                                                     |
+
+## Tooltip Content Guidelines
+
+### When to Use Tooltips
+
+- **Validation Rules**: Complex password requirements, format specifications
+- **Security Information**: Explanation of data usage, encryption details
+- **Context Information**: Additional details that don't fit in helper text
+- **Business Rules**: Explain why certain information is required
+- **Examples**: Show format examples for complex data entry
+
+### Content Best Practices
+
+- **Be Concise**: While tooltips can be longer than helper text, keep them focused
+- **Use Plain Language**: Avoid technical jargon unless necessary
+- **Provide Value**: Don't repeat information already visible
+- **Be Specific**: Give actionable guidance rather than generic statements
+- **Consider Length**: Very long tooltips may be hard to read
+
+### Accessibility
+
+- Tooltips should be accessible via keyboard navigation
+- Content should be available to screen readers
+- Don't rely solely on tooltips for critical information
 
 ## CSS
 
-| Global class               | Description                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------- |
-| .ods-input                 | Styles applied to the input element.                                                           |
-| .ods-input--filled         | Styles applied to the input element when it's filled.                                          |
-| .ods-input--error          | Styles applied to the input element if error={true}.                                           |
-| .ods-input--left           | Styles applied to the input element if position="left".                                        |
-| .ods-input--disabled--text | Styles applied to the element if it doesn't have any text and doesn't have an icon as default. |
+| Global class         | Description                                  |
+| -------------------- | -------------------------------------------- |
+| .ods-input           | Styles applied to the root element.          |
+| .ods-input--filled   | Styles applied when input has content.       |
+| .ods-input--disabled | Styles applied when input is disabled.       |
+| .ods-input--error    | Styles applied when input is in error state. |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
+## Props
 
-## Inheritance
+<ArgsTable of={Input} />
 
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+The ref is forwarded to the input element. Any other props supplied will be provided to the input element.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      label: 'Input with Tooltip',
+      tooltipMessage: 'This is helpful tooltip information',
+      placeholder: 'Enter text...',
+      helperText: 'Helper text',
+      type: 'text',
+    }}
+  >
+    {(args) => <Input {...args} />}
+  </Story>
+</Canvas>

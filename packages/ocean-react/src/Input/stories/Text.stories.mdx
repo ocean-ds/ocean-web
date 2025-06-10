@@ -1,17 +1,74 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
-import { EyeOutline } from '@useblu/ocean-icons-react';
 
 <Meta
-  title="Components/Inputs/Text"
+  title="Components/Inputs/Text Input"
   component={Input}
-  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+  argTypes={{
+    type: {
+      name: 'type',
+      description: 'The type of the input element.',
+      table: {
+        type: { summary: '"text"' },
+        defaultValue: { summary: 'text' },
+      },
+      control: { type: null },
+    },
+    label: {
+      name: 'label',
+      description: 'The label for the input field.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    placeholder: {
+      name: 'placeholder',
+      description: 'The placeholder text for the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    helperText: {
+      name: 'helperText',
+      description: 'Helper text displayed below the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    error: {
+      name: 'error',
+      description: 'Sets the input styles to error state.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Disables the input field.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+  }}
 />
 
-# Input Text API
+# Text Input
 
-The API documentation of the Input type Text React component.
-Learn more about the props and the CSS customization points.
+Specialized text input component for collecting general text data with validation and accessibility features.
+
+## Overview
+
+Text inputs are the most common form control for collecting user-entered text data. They support various validation states, helper text, and accessibility features. Use text inputs for names, addresses, descriptions, and other free-form text content.
 
 ## Import
 
@@ -21,74 +78,189 @@ import { Input } from '@useblu/ocean-react';
 
 ## Usage
 
-<Canvas>
-  <Story
-    name="Text"
-    args={{
-      label: 'Text Input',
-      placeholder: 'Placeholder...',
-      position: 'left',
-      helperText: 'Some text here!',
-      error: false,
-      disabled: false,
-      type: 'text',
-    }}
-    parameters={{
-      controls: { exclude: /^blocked*/ },
-    }}
-    argTypes={{
-      type: {
-        options: ['text', 'number', 'password'],
-        control: { type: 'select' },
-      },
-      position: {
-        options: ['right', 'left'],
-        control: { type: 'select' },
-      },
-      label: {
-        control: 'text',
-      },
-      adornment: {
-        control: 'text',
-      },
-      placeholder: {
-        control: 'text',
-      },
-      defaultValue: {
-        control: 'text',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
-    }}
-  >
-    {(props) => <Input id="input-currency" {...props} />}
+Text inputs are designed for collecting textual information from users with proper validation and feedback.
+
+### Basic Text Input
+
+<Canvas withSource="open" withToolbar>
+  <Story name="basic">
+    <Input
+      label="Full Name"
+      name="fullName"
+      type="text"
+      placeholder="Enter your full name"
+      helperText="First and last name"
+    />
   </Story>
 </Canvas>
 
-## Props
+### Common Text Input Patterns
 
-<ArgsTable of="." />
+1. **Personal Information**
 
-The ref is forwarded to the root element.
+   ```jsx
+   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+     <Input
+       label="First Name"
+       name="firstName"
+       type="text"
+       placeholder="John"
+       required
+     />
+     <Input
+       label="Last Name"
+       name="lastName"
+       type="text"
+       placeholder="Doe"
+       required
+     />
+     <Input
+       label="Company"
+       name="company"
+       type="text"
+       placeholder="Ocean Design System"
+       helperText="Optional"
+     />
+   </div>
+   ```
 
-Any other props supplied will be provided to the root element (native element).
+2. **Address Information**
+   ```jsx
+   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+     <Input
+       label="Street Address"
+       name="address"
+       type="text"
+       placeholder="123 Main Street"
+       helperText="Include apartment or suite number"
+     />
+     <Input label="City" name="city" type="text" placeholder="São Paulo" />
+   </div>
+   ```
+
+## Examples
+
+### States
+
+Text inputs support various states to provide user feedback:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Normal State"
+        name="normal"
+        type="text"
+        placeholder="Enter your name"
+        helperText="This is a normal text input"
+      />
+      <Input
+        label="Error State"
+        name="error"
+        type="text"
+        placeholder="Enter your name"
+        helperText="Name is required"
+        error
+      />
+      <Input
+        label="Disabled State"
+        name="disabled"
+        type="text"
+        placeholder="Cannot be edited"
+        helperText="This field is disabled"
+        disabled
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Form Example
+
+Real-world example of text inputs in a contact form:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="form-example">
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
+      <Input
+        label="Full Name"
+        name="fullName"
+        type="text"
+        placeholder="Enter your full name"
+        helperText="As it appears on official documents"
+        required
+      />
+      <Input
+        label="Job Title"
+        name="jobTitle"
+        type="text"
+        placeholder="Software Engineer"
+        helperText="Your current position"
+      />
+      <Input
+        label="Company"
+        name="company"
+        type="text"
+        placeholder="Your company name"
+        helperText="Leave blank if not applicable"
+      />
+      <Input
+        label="Address"
+        name="address"
+        type="text"
+        placeholder="123 Main Street, Apt 4B"
+        helperText="Complete address including apartment/suite"
+      />
+    </form>
+  </Story>
+</Canvas>
+
+## API Reference
+
+Text input specific properties and usage guidelines.
+
+| Prop        | Type    | Default   | Description                                                                   |
+| ----------- | ------- | --------- | ----------------------------------------------------------------------------- |
+| type        | "text"  | "text"    | Always "text" for text inputs. Provides standard text input behavior.         |
+| label       | string  | undefined | Label text for the input. Essential for accessibility and user understanding. |
+| placeholder | string  | undefined | Example text shown when input is empty. Should demonstrate expected format.   |
+| helperText  | string  | undefined | Additional guidance or validation messages for the user.                      |
+| error       | boolean | false     | When true, displays error styling. Use with form validation.                  |
+| disabled    | boolean | false     | When true, prevents user interaction. Use when field is not available.        |
 
 ## CSS
 
-| Global class               | Description                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------- |
-| .ods-input                 | Styles applied to the input element.                                                           |
-| .ods-input--filled         | Styles applied to the input element when it's filled.                                          |
-| .ods-input--error          | Styles applied to the input element if error={true}.                                           |
-| .ods-input--left           | Styles applied to the input element if position="left".                                        |
-| .ods-input--disabled--text | Styles applied to the element if it doesn't have any text and doesn't have an icon as default. |
+| Global class         | Description                                  |
+| -------------------- | -------------------------------------------- |
+| .ods-input           | Styles applied to the root element.          |
+| .ods-input--filled   | Styles applied when input has content.       |
+| .ods-input--disabled | Styles applied when input is disabled.       |
+| .ods-input--error    | Styles applied when input is in error state. |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
+## Props
 
-## Inheritance
+<ArgsTable of={Input} />
 
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+The ref is forwarded to the input element. Any other props supplied will be provided to the input element.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      label: 'Text Input',
+      placeholder: 'Enter text here...',
+      helperText: 'Helper text',
+      type: 'text',
+    }}
+  >
+    {(args) => <Input {...args} />}
+  </Story>
+</Canvas>

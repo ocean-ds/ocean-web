@@ -1,10 +1,15 @@
 .flex-story {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   padding: 8px;
+  flex-wrap: wrap;
 }
 
 .input-story {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 360px;
+  max-width: 100%;
 }

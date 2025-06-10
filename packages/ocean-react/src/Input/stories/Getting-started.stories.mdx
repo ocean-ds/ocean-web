@@ -1,0 +1,503 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Input from '../Input';
+import Stepper from '../../Stepper';
+import Select from '../../Select';
+import TextArea from '../../TextArea';
+import Showcase from '../../_stories/components/Showcase';
+
+import {
+  EyeOutline,
+  SearchOutline,
+  MailOutline,
+  LockClosedOutline,
+} from '@useblu/ocean-icons-react';
+
+<Meta title="Components/Inputs/Getting-starter" />
+
+# Input Component - Getting Started
+
+A comprehensive guide to using the Input component and its variations in the Ocean Design System.
+
+## Overview
+
+The Input component is a versatile form element that supports various input types, adornments, tooltips, and states. It's designed to handle data collection in forms while maintaining consistency and accessibility across your application.
+
+### Key Features
+
+- **Multiple Input Types**: Support for text, email, password, number, tel, url, and search
+- **Flexible Adornments**: Icons, currency symbols, and custom elements
+- **State Management**: Normal, error, disabled, and focused states
+- **Accessibility**: Built-in ARIA support and keyboard navigation
+- **Tooltip Support**: Contextual help without cluttering the interface
+- **Form Integration**: Works seamlessly with form libraries and validation
+
+## Quick Start
+
+### Installation
+
+```bash
+npm install @useblu/ocean-react
+```
+
+### Basic Import
+
+```javascript
+import { Input } from '@useblu/ocean-react';
+```
+
+### Simple Example
+
+<Canvas withSource="open">
+  <Story name="quick-start">
+    <Input
+      label="Email Address"
+      name="email"
+      type="email"
+      placeholder="Enter your email"
+      helperText="We'll never share your email"
+    />
+  </Story>
+</Canvas>
+
+## Input Types Overview
+
+### Text Input
+
+Basic text input for general text data collection.
+
+<Canvas withSource="open">
+  <Story name="text-overview">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Full Name"
+        name="fullName"
+        type="text"
+        placeholder="Enter your full name"
+        helperText="First and last name"
+      />
+      <Input
+        label="Username"
+        name="username"
+        type="text"
+        placeholder="Choose a username"
+        helperText="3-20 characters, letters and numbers only"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Email Input
+
+Specialized for email address collection with built-in validation.
+
+<Canvas withSource="open">
+  <Story name="email-overview">
+    <Input
+      label="Email Address"
+      name="email"
+      type="email"
+      placeholder="your@email.com"
+      helperText="We use this for account verification"
+      adornment={<MailOutline size={20} />}
+    />
+  </Story>
+</Canvas>
+
+### Password Input
+
+Secure password input with visibility toggle functionality.
+
+<Canvas withSource="open">
+  <Story name="password-overview">
+    <Input
+      label="Password"
+      name="password"
+      type="password"
+      placeholder="Enter your password"
+      helperText="Minimum 8 characters"
+      adornment={<LockClosedOutline size={20} />}
+    />
+  </Story>
+</Canvas>
+
+### Number Input
+
+Numeric input with built-in number validation.
+
+<Canvas withSource="open">
+  <Story name="number-overview">
+    <Input
+      label="Age"
+      name="age"
+      type="number"
+      placeholder="Enter your age"
+      helperText="Must be 18 or older"
+    />
+  </Story>
+</Canvas>
+
+## Adornment Patterns
+
+### Currency Input
+
+Perfect for monetary values with currency symbols.
+
+<Canvas withSource="open">
+  <Story name="currency-overview">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Price"
+        name="price"
+        type="text"
+        placeholder="0.00"
+        helperText="Enter amount in USD"
+        adornment={<span>$</span>}
+        position="left"
+      />
+      <Input
+        label="Salary"
+        name="salary"
+        type="text"
+        placeholder="5000.00"
+        helperText="Monthly gross salary"
+        adornment={<span>R$</span>}
+        position="left"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Search Input
+
+Enhanced search functionality with search icon.
+
+<Canvas withSource="open">
+  <Story name="search-overview">
+    <Input
+      label="Search Products"
+      name="search"
+      type="search"
+      placeholder="Search for products..."
+      helperText="Use keywords to find products"
+      adornment={<SearchOutline size={20} />}
+      position="right"
+    />
+  </Story>
+</Canvas>
+
+### Icon Adornments
+
+Visual context through meaningful icons.
+
+<Canvas withSource="open">
+  <Story name="icons-overview">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="your@email.com"
+        adornment={<MailOutline size={20} />}
+        position="left"
+      />
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Enter password"
+        adornment={<EyeOutline size={20} />}
+        position="right"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+## Interactive Features
+
+### Tooltip Integration
+
+Provide additional context without cluttering the interface.
+
+<Canvas withSource="open">
+  <Story name="tooltip-overview">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Complex Password"
+        name="complexPassword"
+        type="password"
+        placeholder="Enter password"
+        tooltipMessage="Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters"
+        helperText="Choose a strong password"
+      />
+      <Input
+        label="Tax ID"
+        name="taxId"
+        type="text"
+        placeholder="000.000.000-00"
+        tooltipMessage="Enter your CPF (individuals) or CNPJ (companies). This information is encrypted and used only for tax purposes."
+        helperText="Individual or company tax ID"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+## Input States
+
+### Normal State
+
+Standard input ready for user interaction.
+
+<Canvas withSource="open">
+  <Story name="normal-state">
+    <Input
+      label="Normal Input"
+      name="normal"
+      type="text"
+      placeholder="Enter text..."
+      helperText="This is a normal input state"
+    />
+  </Story>
+</Canvas>
+
+### Error State
+
+Input with validation error styling and messaging.
+
+<Canvas withSource="open">
+  <Story name="error-state">
+    <Input
+      label="Invalid Email"
+      name="invalidEmail"
+      type="email"
+      placeholder="invalid-email"
+      helperText="Please enter a valid email address"
+      error
+    />
+  </Story>
+</Canvas>
+
+### Disabled State
+
+Input that cannot be interacted with.
+
+<Canvas withSource="open">
+  <Story name="disabled-state">
+    <Input
+      label="Disabled Input"
+      name="disabled"
+      type="text"
+      placeholder="Cannot edit"
+      helperText="This field is automatically filled"
+      disabled
+    />
+  </Story>
+</Canvas>
+
+## Common Use Cases
+
+### Registration Form
+
+Complete user registration with various input types.
+
+<Canvas withSource="open">
+  <Story name="registration-form">
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
+      <Input
+        label="Full Name"
+        name="fullName"
+        type="text"
+        placeholder="Enter your full name"
+        helperText="First and last name"
+        required
+      />
+      <Input
+        label="Email Address"
+        name="email"
+        type="email"
+        placeholder="your@email.com"
+        helperText="Used for account verification"
+        adornment={<MailOutline size={20} />}
+        required
+      />
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Choose a strong password"
+        tooltipMessage="Password must be at least 8 characters and include numbers and special characters"
+        helperText="Minimum 8 characters"
+        adornment={<LockClosedOutline size={20} />}
+        required
+      />
+      <Input
+        label="Phone Number"
+        name="phone"
+        type="tel"
+        placeholder="(11) 99999-9999"
+        helperText="Include area code"
+      />
+    </form>
+  </Story>
+</Canvas>
+
+### E-commerce Product Form
+
+Product information with currency and numeric inputs.
+
+<Canvas withSource="open">
+  <Story name="ecommerce-form">
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
+      <Input
+        label="Product Name"
+        name="productName"
+        type="text"
+        placeholder="Enter product name"
+        helperText="Descriptive product title"
+        required
+      />
+      <Input
+        label="Price"
+        name="price"
+        type="text"
+        placeholder="0.00"
+        helperText="Product selling price"
+        adornment={<span>$</span>}
+        position="left"
+        required
+      />
+      <Input
+        label="Quantity in Stock"
+        name="quantity"
+        type="number"
+        placeholder="0"
+        helperText="Available inventory"
+        required
+      />
+      <Input
+        label="SKU"
+        name="sku"
+        type="text"
+        placeholder="PROD-001"
+        helperText="Unique product identifier"
+        tooltipMessage="Stock Keeping Unit - used for inventory tracking and should be unique across all products"
+      />
+    </form>
+  </Story>
+</Canvas>
+
+### Search and Filter Interface
+
+Search functionality with various filter options.
+
+<Canvas withSource="open">
+  <Story name="search-interface">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '500px',
+      }}
+    >
+      <Input
+        label="Search Products"
+        name="productSearch"
+        type="search"
+        placeholder="Search for products, brands, or categories..."
+        helperText="Use keywords to find what you're looking for"
+        adornment={<SearchOutline size={20} />}
+        position="right"
+      />
+      <div style={{ display: 'flex', gap: '16px' }}>
+        <Input
+          label="Min Price"
+          name="minPrice"
+          type="text"
+          placeholder="0.00"
+          helperText="Minimum price"
+          adornment={<span>$</span>}
+          position="left"
+        />
+        <Input
+          label="Max Price"
+          name="maxPrice"
+          type="text"
+          placeholder="1000.00"
+          helperText="Maximum price"
+          adornment={<span>$</span>}
+          position="left"
+        />
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## Best Practices
+
+### When to Use Input Component
+
+✅ **Do use Input for:**
+
+- Single-line text data collection
+- Email addresses, passwords, and URLs
+- Numeric values with validation
+- Search functionality
+- Form fields with clear labels
+
+❌ **Don't use Input for:**
+
+- Multi-line text (use TextArea instead)
+- Selecting from predefined options (use Select instead)
+- Date selection (use DatePicker instead)
+- File uploads (use FileUpload instead)
+
+### Accessibility Guidelines
+
+- Always provide clear, descriptive labels
+- Use appropriate input types for better mobile keyboards
+- Include helpful placeholder text and helper text
+- Use tooltips for additional context, not essential information
+- Ensure proper tab order and keyboard navigation
+- Provide clear error messages and validation feedback
+
+### Content Guidelines
+
+- **Labels**: Clear, concise, and descriptive
+- **Placeholders**: Show format examples or brief hints
+- **Helper Text**: Provide context or formatting requirements
+- **Tooltips**: Additional information that doesn't fit elsewhere
+- **Error Messages**: Specific, actionable guidance for fixing issues
+
+## Component Variations
+
+The Input component is part of a larger family of form components:
+
+- **Input**: Single-line text input (this component)
+- **TextArea**: Multi-line text input
+- **Select**: Dropdown selection from options
+- **Stepper**: Numeric input with increment/decrement controls
+- **DatePicker**: Date and time selection
+- **FileUpload**: File selection and upload
+
+## Next Steps
+
+- **Detailed Documentation**: Visit individual component pages for comprehensive API references
+- **Form Integration**: Learn about form validation and state management
+- **Design Tokens**: Understand the design system tokens used in Input components
+- **Advanced Patterns**: Explore complex form patterns and validation strategies
+
+Explore the specific Input variations in the sidebar to learn more about each implementation pattern and see detailed examples.

@@ -1,17 +1,92 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
-import { EyeOutline } from '@useblu/ocean-icons-react';
 
 <Meta
-  title="Components/Inputs/Currency"
+  title="Components/Inputs/Currency Input"
   component={Input}
-  decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+  argTypes={{
+    type: {
+      name: 'type',
+      description: 'The type of the input element.',
+      table: {
+        type: { summary: '"text"' },
+        defaultValue: { summary: 'text' },
+      },
+      control: { type: null },
+    },
+    label: {
+      name: 'label',
+      description: 'The label for the input field.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    placeholder: {
+      name: 'placeholder',
+      description: 'The placeholder text for the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    adornment: {
+      name: 'adornment',
+      description: 'Currency symbol or text displayed inside input.',
+      table: {
+        type: { summary: 'React.ReactElement | string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    position: {
+      name: 'position',
+      description: 'Position of the currency adornment.',
+      table: {
+        type: { summary: '"left" | "right"' },
+        defaultValue: { summary: 'right' },
+      },
+      control: { type: 'select', options: ['left', 'right'] },
+    },
+    helperText: {
+      name: 'helperText',
+      description: 'Helper text displayed below the input.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: undefined },
+      },
+      control: { type: 'text' },
+    },
+    error: {
+      name: 'error',
+      description: 'Sets the input styles to error state.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Disables the input field.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+  }}
 />
 
-# Input Currency API
+# Currency Input
 
-The API documentation of the Input type Currency React component.
-Learn more about the props and the CSS customization points.
+Specialized input component for collecting monetary values with currency symbols and proper formatting guidance.
+
+## Overview
+
+Currency inputs are designed for collecting monetary values with visual currency indicators. They use text input type for better formatting control and support both left and right positioned currency symbols. Essential for e-commerce, financial forms, and any application handling monetary transactions.
 
 ## Import
 
@@ -21,75 +96,298 @@ import { Input } from '@useblu/ocean-react';
 
 ## Usage
 
-<Canvas>
-  <Story
-    name="Currency"
-    args={{
-      label: 'Currency Input',
-      placeholder: '5.00',
-      adornment: 'U$',
-      position: 'left',
-      helperText: 'Some text here!',
-      error: false,
-      disabled: false,
-      type: 'text',
-    }}
-    parameters={{
-      controls: { exclude: /^blocked*/ },
-    }}
-    argTypes={{
-      type: {
-        options: ['text', 'number', 'password'],
-        control: { type: 'select' },
-      },
-      position: {
-        options: ['right', 'left'],
-        control: { type: 'select' },
-      },
-      label: {
-        control: 'text',
-      },
-      adornment: {
-        control: 'text',
-      },
-      placeholder: {
-        control: 'text',
-      },
-      defaultValue: {
-        control: 'text',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
-    }}
-  >
-    {(props) => <Input id="input-currency" {...props} />}
+Currency inputs provide clear visual indication of the expected monetary format and currency type.
+
+### Basic Currency Input
+
+<Canvas withSource="open" withToolbar>
+  <Story name="basic">
+    <Input
+      label="Price"
+      name="price"
+      type="text"
+      placeholder="0.00"
+      adornment={<span>R$</span>}
+      position="left"
+      helperText="Enter the price in Brazilian Real"
+    />
   </Story>
 </Canvas>
 
-## Props
+### Common Currency Patterns
 
-<ArgsTable of="." />
+1. **Different Currency Symbols**
 
-The ref is forwarded to the root element.
+   ```jsx
+   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+     <Input
+       label="Price (BRL)"
+       name="priceBRL"
+       type="text"
+       placeholder="0.00"
+       adornment={<span>R$</span>}
+       position="left"
+     />
+     <Input
+       label="Price (USD)"
+       name="priceUSD"
+       type="text"
+       placeholder="0.00"
+       adornment={<span>$</span>}
+       position="left"
+     />
+     <Input
+       label="Price (EUR)"
+       name="priceEUR"
+       type="text"
+       placeholder="0.00"
+       adornment={<span>€</span>}
+       position="left"
+     />
+   </div>
+   ```
 
-Any other props supplied will be provided to the root element (native element).
+2. **Position Variations**
+   ```jsx
+   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+     <Input
+       label="Amount (Left Symbol)"
+       name="amountLeft"
+       type="text"
+       placeholder="0.00"
+       adornment={<span>$</span>}
+       position="left"
+     />
+     <Input
+       label="Amount (Right Symbol)"
+       name="amountRight"
+       type="text"
+       placeholder="0.00"
+       adornment={<span>USD</span>}
+       position="right"
+     />
+   </div>
+   ```
+
+## Examples
+
+### Currency Symbols
+
+Different currencies with appropriate symbols and positioning:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="currencies">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Brazilian Real"
+        name="brl"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Brazilian currency"
+      />
+      <Input
+        label="US Dollar"
+        name="usd"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>$</span>}
+        position="left"
+        helperText="US currency"
+      />
+      <Input
+        label="Euro"
+        name="eur"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>€</span>}
+        position="left"
+        helperText="European currency"
+      />
+      <Input
+        label="British Pound"
+        name="gbp"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>£</span>}
+        position="left"
+        helperText="British currency"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Adornment Positions
+
+Currency symbols can be positioned on either side:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="positions">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Symbol on Left"
+        name="leftSymbol"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>$</span>}
+        position="left"
+        helperText="Common for most currencies"
+      />
+      <Input
+        label="Code on Right"
+        name="rightCode"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>USD</span>}
+        position="right"
+        helperText="Useful for currency codes"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### States
+
+Currency inputs support various states for validation and feedback:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label="Normal Price"
+        name="normal"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Enter the product price"
+      />
+      <Input
+        label="Invalid Price"
+        name="error"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Price must be greater than 0"
+        error
+      />
+      <Input
+        label="Disabled Price"
+        name="disabled"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Price is automatically calculated"
+        disabled
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### E-commerce Example
+
+Real-world example in a product pricing form:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="ecommerce-example">
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
+      <Input
+        label="Product Price"
+        name="productPrice"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Final price including taxes"
+        required
+      />
+      <Input
+        label="Cost Price"
+        name="costPrice"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Your cost for this product"
+      />
+      <Input
+        label="Shipping Cost"
+        name="shipping"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Additional shipping charges"
+      />
+      <Input
+        label="Discount Amount"
+        name="discount"
+        type="text"
+        placeholder="0.00"
+        adornment={<span>R$</span>}
+        position="left"
+        helperText="Discount value (if applicable)"
+      />
+    </form>
+  </Story>
+</Canvas>
+
+## API Reference
+
+Currency input specific properties and usage guidelines.
+
+| Prop        | Type                         | Default   | Description                                                                                   |
+| ----------- | ---------------------------- | --------- | --------------------------------------------------------------------------------------------- |
+| type        | "text"                       | "text"    | Always "text" for currency inputs. Provides better formatting control than "number".          |
+| adornment   | React.ReactElement \| string | undefined | Currency symbol or code. Use symbols ($, €, £) for left position, codes (USD, EUR) for right. |
+| position    | "left" \| "right"            | "right"   | Position of currency adornment. Left is common for symbols, right for currency codes.         |
+| label       | string                       | undefined | Label describing the monetary field. Include currency context when helpful.                   |
+| placeholder | string                       | undefined | Example format (e.g., "0.00"). Should match expected decimal places.                          |
+| helperText  | string                       | undefined | Additional context about currency, formatting, or calculation rules.                          |
+| error       | boolean                      | false     | When true, displays error styling. Use with validation for invalid amounts.                   |
+| disabled    | boolean                      | false     | When true, prevents editing. Use for calculated or readonly monetary values.                  |
 
 ## CSS
 
-| Global class               | Description                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------- |
-| .ods-input                 | Styles applied to the input element.                                                           |
-| .ods-input--filled         | Styles applied to the input element when it's filled.                                          |
-| .ods-input--error          | Styles applied to the input element if error={true}.                                           |
-| .ods-input--left           | Styles applied to the input element if position="left".                                        |
-| .ods-input--disabled--text | Styles applied to the element if it doesn't have any text and doesn't have an icon as default. |
+| Global class            | Description                                       |
+| ----------------------- | ------------------------------------------------- |
+| .ods-input              | Styles applied to the root element.               |
+| .ods-input--filled      | Styles applied when input has content.            |
+| .ods-input--disabled    | Styles applied when input is disabled.            |
+| .ods-input--error       | Styles applied when input is in error state.      |
+| .ods-input--left        | Styles applied when adornment is positioned left. |
+| .ods-input\_\_adornment | Styles applied to the currency adornment element. |
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Input/Input.tsx) for more detail.
+## Props
 
-## Inheritance
+<ArgsTable of={Input} />
 
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+The ref is forwarded to the input element. Any other props supplied will be provided to the input element.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      label: 'Currency Input',
+      placeholder: '0.00',
+      adornment: 'R$',
+      position: 'left',
+      helperText: 'Enter amount',
+      type: 'text',
+    }}
+  >
+    {(args) => <Input {...args} adornment={<span>{args.adornment}</span>} />}
+  </Story>
+</Canvas>
