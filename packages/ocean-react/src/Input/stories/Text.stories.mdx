@@ -7,55 +7,61 @@ import Input from '../Input';
   argTypes={{
     type: {
       name: 'type',
-      description: 'The type of the input element.',
+      description:
+        'O tipo do elemento input. Sempre "text" para inputs de texto, fornecendo comportamento padrão de entrada de texto.',
       table: {
         type: { summary: '"text"' },
-        defaultValue: { summary: 'text' },
+        defaultValue: { summary: '"text"' },
       },
       control: { type: null },
     },
     label: {
       name: 'label',
-      description: 'The label for the input field.',
+      description:
+        'O rótulo do campo de entrada. Essencial para acessibilidade e compreensão do usuário sobre o que inserir.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: undefined },
+        defaultValue: { summary: 'undefined' },
       },
       control: { type: 'text' },
     },
     placeholder: {
       name: 'placeholder',
-      description: 'The placeholder text for the input.',
+      description:
+        'Texto de exemplo mostrado quando o input está vazio. Deve demonstrar o formato esperado ou dar dicas sobre o conteúdo.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: undefined },
+        defaultValue: { summary: 'undefined' },
       },
       control: { type: 'text' },
     },
     helperText: {
       name: 'helperText',
-      description: 'Helper text displayed below the input.',
+      description:
+        'Texto de ajuda exibido abaixo do input. Use para orientações adicionais ou mensagens de validação.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: undefined },
+        defaultValue: { summary: 'undefined' },
       },
       control: { type: 'text' },
     },
     error: {
       name: 'error',
-      description: 'Sets the input styles to error state.',
+      description:
+        'Quando true, aplica estilos de estado de erro ao input. Use com validação de formulário para indicar problemas.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
       control: { type: 'boolean' },
     },
     disabled: {
       name: 'disabled',
-      description: 'Disables the input field.',
+      description:
+        'Quando true, desabilita o campo de entrada. Use quando o campo não estiver disponível ou aplicável no contexto atual.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: { summary: 'false' },
       },
       control: { type: 'boolean' },
     },
@@ -64,119 +70,280 @@ import Input from '../Input';
 
 # Text Input
 
-Specialized text input component for collecting general text data with validation and accessibility features.
+Componente especializado de entrada de texto para coletar dados textuais gerais com recursos de validação e acessibilidade.
 
-## Overview
+## Visão Geral
 
-Text inputs are the most common form control for collecting user-entered text data. They support various validation states, helper text, and accessibility features. Use text inputs for names, addresses, descriptions, and other free-form text content.
+Text inputs são o controle de formulário mais comum para coletar dados de texto inseridos pelo usuário. Eles suportam vários estados de validação, texto de ajuda e recursos de acessibilidade. Use text inputs para nomes, endereços, descrições e outros conteúdos de texto livre.
 
-## Import
+## Importação
 
 ```javascript
 import { Input } from '@useblu/ocean-react';
 ```
 
-## Usage
+## Uso
 
-Text inputs are designed for collecting textual information from users with proper validation and feedback.
+Text inputs são projetados para coletar informações textuais dos usuários com validação e feedback adequados.
 
-### Basic Text Input
+### Uso Básico
 
 <Canvas withSource="open" withToolbar>
-  <Story name="basic">
+  <Story name="usage">
     <Input
-      label="Full Name"
+      label="Nome Completo"
       name="fullName"
       type="text"
-      placeholder="Enter your full name"
-      helperText="First and last name"
+      placeholder="Digite seu nome completo"
+      helperText="Primeiro e último nome"
     />
   </Story>
 </Canvas>
 
-### Common Text Input Patterns
+### Padrões Comuns
 
-1. **Personal Information**
+```jsx
+// Informações pessoais básicas
+<Input
+  label="Nome Completo"
+  name="fullName"
+  type="text"
+  placeholder="João Silva"
+  required
+/>
 
-   ```jsx
-   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-     <Input
-       label="First Name"
-       name="firstName"
-       type="text"
-       placeholder="John"
-       required
-     />
-     <Input
-       label="Last Name"
-       name="lastName"
-       type="text"
-       placeholder="Doe"
-       required
-     />
-     <Input
-       label="Company"
-       name="company"
-       type="text"
-       placeholder="Ocean Design System"
-       helperText="Optional"
-     />
-   </div>
-   ```
+// Em formulários com validação
+<form onSubmit={handleSubmit}>
+  <Input
+    label="Endereço"
+    name="address"
+    type="text"
+    placeholder="Rua das Flores, 123"
+    helperText="Inclua número do apartamento se aplicável"
+  />
+  <Button type="submit">Enviar</Button>
+</form>
 
-2. **Address Information**
-   ```jsx
-   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-     <Input
-       label="Street Address"
-       name="address"
-       type="text"
-       placeholder="123 Main Street"
-       helperText="Include apartment or suite number"
-     />
-     <Input label="City" name="city" type="text" placeholder="São Paulo" />
-   </div>
-   ```
+// Com estado de erro
+<Input
+  label="Email"
+  name="email"
+  type="text"
+  placeholder="seu@email.com"
+  helperText="Email é obrigatório"
+  error
+/>
+```
 
-## Examples
+## Referência da API
 
-### States
+O componente Text Input é baseado no elemento `input` e suporta todos os atributos padrão HTML.
 
-Text inputs support various states to provide user feedback:
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>type</td>
+      <td>
+        <code>"text"</code>
+      </td>
+      <td>
+        <code>"text"</code>
+      </td>
+      <td>
+        Sempre "text" para inputs de texto. Fornece comportamento padrão de
+        entrada de texto.
+      </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Texto do rótulo para o input. Essencial para acessibilidade e
+        compreensão do usuário.
+      </td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Texto de exemplo mostrado quando input está vazio. Deve demonstrar
+        formato esperado.
+      </td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>Orientações adicionais ou mensagens de validação para o usuário.</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Quando true, exibe estilo de erro. Use com validação de formulário.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Quando true, impede interação do usuário. Use quando campo não estiver
+        disponível.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Exemplos
+
+### Estados
+
+Text inputs suportam vários estados para fornecer feedback ao usuário:
 
 <Canvas withSource="open" withToolbar>
   <Story name="states">
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
       <Input
-        label="Normal State"
+        label="Estado Normal"
         name="normal"
         type="text"
-        placeholder="Enter your name"
-        helperText="This is a normal text input"
+        placeholder="Digite seu nome"
+        helperText="Este é um input de texto normal"
       />
       <Input
-        label="Error State"
+        label="Estado de Erro"
         name="error"
         type="text"
-        placeholder="Enter your name"
-        helperText="Name is required"
+        placeholder="Digite seu nome"
+        helperText="Nome é obrigatório"
         error
       />
       <Input
-        label="Disabled State"
+        label="Estado Desabilitado"
         name="disabled"
         type="text"
-        placeholder="Cannot be edited"
-        helperText="This field is disabled"
+        placeholder="Não pode ser editado"
+        helperText="Este campo está desabilitado"
         disabled
       />
     </div>
   </Story>
 </Canvas>
 
-### Form Example
+### Informações Pessoais
 
-Real-world example of text inputs in a contact form:
+Padrões comuns para coleta de informações pessoais:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="personal-info">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
+      <Input
+        label="Primeiro Nome"
+        name="firstName"
+        type="text"
+        placeholder="João"
+        required
+      />
+      <Input
+        label="Sobrenome"
+        name="lastName"
+        type="text"
+        placeholder="Silva"
+        required
+      />
+      <Input
+        label="Empresa"
+        name="company"
+        type="text"
+        placeholder="Ocean Design System"
+        helperText="Opcional"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Informações de Endereço
+
+Exemplo de uso para coleta de endereços:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="address-info">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        maxWidth: '400px',
+      }}
+    >
+      <Input
+        label="Endereço"
+        name="address"
+        type="text"
+        placeholder="Rua das Flores, 123"
+        helperText="Inclua número do apartamento ou complemento"
+      />
+      <Input label="Cidade" name="city" type="text" placeholder="São Paulo" />
+      <Input
+        label="Bairro"
+        name="neighborhood"
+        type="text"
+        placeholder="Vila Madalena"
+        helperText="Opcional"
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Exemplo de Formulário Completo
+
+Exemplo real de text inputs em um formulário de contato:
 
 <Canvas withSource="open" withToolbar>
   <Story name="form-example">
@@ -186,68 +353,144 @@ Real-world example of text inputs in a contact form:
         flexDirection: 'column',
         gap: '16px',
         maxWidth: '400px',
+        padding: '16px',
+        border: '1px solid #e0e0e0',
+        borderRadius: '8px',
       }}
     >
       <Input
-        label="Full Name"
+        label="Nome Completo"
         name="fullName"
         type="text"
-        placeholder="Enter your full name"
-        helperText="As it appears on official documents"
+        placeholder="Digite seu nome completo"
+        helperText="Como aparece em documentos oficiais"
         required
       />
       <Input
-        label="Job Title"
+        label="Cargo"
         name="jobTitle"
         type="text"
-        placeholder="Software Engineer"
-        helperText="Your current position"
+        placeholder="Engenheiro de Software"
+        helperText="Sua posição atual"
       />
       <Input
-        label="Company"
+        label="Empresa"
         name="company"
         type="text"
-        placeholder="Your company name"
-        helperText="Leave blank if not applicable"
+        placeholder="Nome da sua empresa"
+        helperText="Deixe em branco se não aplicável"
       />
       <Input
-        label="Address"
+        label="Endereço"
         name="address"
         type="text"
-        placeholder="123 Main Street, Apt 4B"
-        helperText="Complete address including apartment/suite"
+        placeholder="Rua das Flores, 123, Apto 4B"
+        helperText="Endereço completo incluindo apartamento/complemento"
       />
     </form>
   </Story>
 </Canvas>
 
-## API Reference
+## Integração com Formulários
 
-Text input specific properties and usage guidelines.
+### Uso em Formulários
 
-| Prop        | Type    | Default   | Description                                                                   |
-| ----------- | ------- | --------- | ----------------------------------------------------------------------------- |
-| type        | "text"  | "text"    | Always "text" for text inputs. Provides standard text input behavior.         |
-| label       | string  | undefined | Label text for the input. Essential for accessibility and user understanding. |
-| placeholder | string  | undefined | Example text shown when input is empty. Should demonstrate expected format.   |
-| helperText  | string  | undefined | Additional guidance or validation messages for the user.                      |
-| error       | boolean | false     | When true, displays error styling. Use with form validation.                  |
-| disabled    | boolean | false     | When true, prevents user interaction. Use when field is not available.        |
+```jsx
+<form onSubmit={handleSubmit}>
+  <Input label="Nome" name="name" type="text" required />
+  <Button type="submit">Enviar</Button>
+</form>
+```
 
-## CSS
+### Validação
 
-| Global class         | Description                                  |
-| -------------------- | -------------------------------------------- |
-| .ods-input           | Styles applied to the root element.          |
-| .ods-input--filled   | Styles applied when input has content.       |
-| .ods-input--disabled | Styles applied when input is disabled.       |
-| .ods-input--error    | Styles applied when input is in error state. |
+```jsx
+<form onSubmit={handleSubmit}>
+  <Input
+    label="Nome Completo"
+    name="fullName"
+    type="text"
+    error={errors.fullName}
+    helperText={errors.fullName || 'Digite seu nome completo'}
+    required
+  />
+  <Button type="submit" disabled={!isFormValid}>
+    {isSubmitting ? 'Enviando...' : 'Enviar'}
+  </Button>
+</form>
+```
+
+## Melhores Práticas
+
+### 1. Uso Geral
+
+- Use labels descritivos que indiquem claramente o que deve ser inserido
+- Forneça placeholders que demonstrem o formato esperado
+- Use helperText para orientações adicionais ou requisitos específicos
+- Mantenha consistência no uso de campos obrigatórios
+
+### 2. Validação
+
+- Use o estado `error` junto com `helperText` para mensagens de erro claras
+- Forneça feedback em tempo real quando apropriado
+- Mantenha mensagens de erro específicas e acionáveis
+
+### 3. Acessibilidade
+
+- Sempre forneça labels para todos os inputs
+- Use `helperText` para informações importantes sobre o campo
+- Mantenha contraste adequado em todos os estados
+- Garanta que campos desabilitados sejam claramente identificáveis
+
+### 4. Design e UX
+
+- Agrupe campos relacionados logicamente
+- Use larguras apropriadas para o tipo de conteúdo esperado
+- Considere o contexto mobile para tamanhos de toque adequados
+- Mantenha hierarquia visual clara em formulários
+
+## Classes CSS
+
+<table>
+  <thead>
+    <tr>
+      <th>Classe Global</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>.ods-input</code>
+      </td>
+      <td>Estilos aplicados ao elemento raiz.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--filled</code>
+      </td>
+      <td>Estilos aplicados quando input tem conteúdo.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--disabled</code>
+      </td>
+      <td>Estilos aplicados quando input está desabilitado.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--error</code>
+      </td>
+      <td>Estilos aplicados quando input está em estado de erro.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Props
 
 <ArgsTable of={Input} />
 
-The ref is forwarded to the input element. Any other props supplied will be provided to the input element.
+A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será passada para o elemento input.
 
 ## Playground
 
@@ -256,8 +499,8 @@ The ref is forwarded to the input element. Any other props supplied will be prov
     name="playground"
     args={{
       label: 'Text Input',
-      placeholder: 'Enter text here...',
-      helperText: 'Helper text',
+      placeholder: 'Digite o texto aqui...',
+      helperText: 'Texto de ajuda',
       type: 'text',
     }}
   >

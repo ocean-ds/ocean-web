@@ -1,3 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
 # Ocean Web - Component Documentation Guidelines
 
 Esta documentação estabelece padrões para criar documentação de componentes no ocean-web que seja clara, consistente e amigável para IA.
@@ -13,11 +18,18 @@ import ComponentName from '../ComponentName';
 <Meta
   title="Components/ComponentName"
   component={ComponentName}
-  argTypes={
-    {
-      // Configure argTypes para controles do Storybook
-    }
-  }
+  argTypes={{
+    propName: {
+      name: 'propName',
+      description: 'Descrição detalhada da prop.',
+      table: {
+        type: { summary: '"value1" | "value2"' },
+        defaultValue: { summary: 'value1' },
+      },
+      control: { type: 'select' },
+      options: ['value1', 'value2'],
+    },
+  }}
 />
 ```
 
@@ -28,70 +40,96 @@ import ComponentName from '../ComponentName';
 
 [Descrição concisa e clara do propósito do componente]
 
-## Overview
+## Visão Geral
 
 [Explicação mais detalhada do componente, suas capacidades e contexto de uso]
 ```
 
 ### 3. Seções Obrigatórias
 
-#### Import
+#### Importação
 
 ````mdx
-## Import
+## Importação
 
 ```javascript
 import { ComponentName } from '@useblu/ocean-react';
 ```
 ````
 
-````
+#### Uso
 
-#### Usage (Uso Básico)
 ```mdx
-## Usage
+## Uso
 
-[Descrição dos padrões de uso comum]
+O componente ComponentName pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
 
-### Basic Usage
+### Uso Básico
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <ComponentName>Basic Example</ComponentName>
+    <ComponentName>Exemplo Básico</ComponentName>
   </Story>
 </Canvas>
 
-### Common Patterns
+### Padrões Comuns
 
-[Exemplos de código para padrões comuns de uso]
+```jsx
+// Exemplo de uso comum
+<ComponentName prop="value">Conteúdo</ComponentName>
+
+// Exemplo em formulários
+<form onSubmit={handleSubmit}>
+  <ComponentName name="fieldName" />
+</form>
+```
 ````
 
-#### API Reference
+#### Referência da API
 
 ```mdx
-## API Reference
+## Referência da API
 
-[Descrição base do componente]
+O componente ComponentName é baseado no elemento `element` e suporta todos os atributos padrão.
 
-| Prop     | Type | Default | Description                          |
-| -------- | ---- | ------- | ------------------------------------ |
-| propName | type | default | Descrição detalhada com casos de uso |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>propName</td>
+      <td><code>"value1" | "value2"</code></td>
+      <td><code>"value1"</code></td>
+      <td>Descrição detalhada com casos de uso específicos.</td>
+    </tr>
+  </tbody>
+</table>
 ```
 
-#### Examples
+#### Exemplos
 
 ```mdx
-## Examples
+## Exemplos
 
 ### PropName
 
-[Descrição da prop e quando usar]
+Use a prop `propName` para controlar o comportamento:
 
-[Lista de casos de uso com bullets]
+- `value1`: Para casos de uso específicos
+- `value2`: Para situações alternativas
 
 <Canvas withSource="open" withToolbar>
   <Story name="prop-example">
-    <ComponentName propName="value">Example</ComponentName>
+    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+      <ComponentName propName="value1">Exemplo 1</ComponentName>
+      <ComponentName propName="value2">Exemplo 2</ComponentName>
+    </div>
   </Story>
 </Canvas>
 ```
@@ -103,7 +141,7 @@ import { ComponentName } from '@useblu/ocean-react';
 
 <ArgsTable of={ComponentName} />
 
-The ref is forwarded to the root element. Any other props supplied will be provided to the root element.
+A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será passada para o elemento raiz.
 ```
 
 #### Playground
@@ -115,10 +153,243 @@ The ref is forwarded to the root element. Any other props supplied will be provi
   <Story
     name="playground"
     args={{
-      children: 'Component Content',
+      children: 'Conteúdo do Componente',
+      propName: 'value1',
     }}
   >
     {(args) => <ComponentName {...args} />}
+  </Story>
+</Canvas>
+```
+
+## Observações Importantes Baseadas na Documentação do Button
+
+### 1. Uso de Tabelas HTML
+
+**✅ SEMPRE use tabelas HTML para API Reference:**
+
+```mdx
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>variant</td>
+      <td><code>"primary" | "secondary"</code></td>
+      <td><code>"primary"</code></td>
+      <td>O estilo visual do componente. Use primary para ações principais, secondary para alternativas.</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+**❌ NÃO use tabelas Markdown para API Reference:**
+```mdx
+| Prop | Type | Default | Description |
+|---|---|---|----|
+```
+
+### 2. Estrutura de argTypes Detalhada
+
+**✅ Configure argTypes completos no Meta:**
+
+```mdx
+<Meta
+  title="Components/ComponentName"
+  component={ComponentName}
+  argTypes={{
+    variant: {
+      name: 'variant',
+      description: 'A variante visual do componente.',
+      table: {
+        type: { summary: '"primary" | "secondary"' },
+        defaultValue: { summary: 'primary' },
+      },
+      control: { type: 'select' },
+      options: ['primary', 'secondary'],
+    },
+    size: {
+      name: 'size',
+      description: 'O tamanho do componente.',
+      table: {
+        type: { summary: '"sm" | "md" | "lg"' },
+        defaultValue: { summary: 'md' },
+      },
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg'],
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Desabilita o componente.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+  }}
+/>
+```
+
+### 3. Seções Específicas Avançadas
+
+#### Para Componentes de Formulário
+
+```mdx
+## Integração com Formulários
+
+### Uso em Formulários
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <ComponentName name="fieldName" />
+  <Button type="submit">Submit</Button>
+</form>
+```
+
+### Validação
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <ComponentName required />
+  <Button type="submit" disabled={!isFormValid} loading={isSubmitting}>
+    {isSubmitting ? 'Validando...' : 'Criar'}
+  </Button>
+</form>
+```
+````
+
+#### Melhores Práticas
+
+```mdx
+## Melhores Práticas
+
+### 1. Uso Geral
+
+- Use `variant="primary"` para ações principais (máximo 1 por tela)
+- Use `variant="secondary"` para ações alternativas
+- Mantenha consistência no uso de tamanhos
+
+### 2. Interações JavaScript
+
+- Use `type="button"` para ações que acionam funções JavaScript
+- Isso previne comportamentos indesejados
+
+### 3. Acessibilidade
+
+- Sempre especifique atributos apropriados
+- Use textos descritivos que indiquem claramente a função
+- Forneça feedback visual claro para estados
+- Mantenha comportamento consistente
+
+### 4. Design e UX
+
+- Use tamanhos apropriados para o contexto
+- Mantenha hierarquia visual clara
+- Considere o contexto mobile
+```
+
+#### Classes CSS (quando aplicável)
+
+```mdx
+## Classes CSS
+
+<table>
+  <thead>
+    <tr>
+      <th>Classe Global</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>.ods-component</code></td>
+      <td>Estilos aplicados ao elemento raiz.</td>
+    </tr>
+    <tr>
+      <td><code>.ods-component--variant</code></td>
+      <td>Define estilos específicos da variante.</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 4. Padrões de Layout em Stories
+
+**✅ Use containers apropriados para demonstrar o componente:**
+
+```mdx
+<Canvas withSource="open" withToolbar>
+  <Story name="variants">
+    <div style={{
+      display: 'flex',
+      gap: '8px',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+    }}>
+      <ComponentName variant="primary">Primary</ComponentName>
+      <ComponentName variant="secondary">Secondary</ComponentName>
+    </div>
+  </Story>
+</Canvas>
+```
+
+**✅ Para componentes de largura total:**
+
+```mdx
+<Canvas withSource="open" withToolbar>
+  <Story name="blocked">
+    <div style={{
+      width: '500px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <ComponentName blocked>Componente Bloco</ComponentName>
+    </div>
+  </Story>
+</Canvas>
+```
+
+### 5. Descrições de Props Melhoradas
+
+**✅ Inclua contexto de uso nas descrições:**
+
+```
+O estilo visual do componente. Use primary para ações principais, secondary para alternativas e text para ações sutis.
+```
+
+**✅ Mencione casos de uso específicos:**
+
+```
+O tamanho do componente. Use sm para interfaces compactas, md para uso padrão e lg para ações proeminentes.
+```
+
+**✅ Explique comportamentos:**
+
+```
+Quando true, o componente ocupa toda a largura do container. Útil para interfaces mobile e envios de formulário.
+```
+
+### 6. Exemplos por Estado
+
+**✅ Mostre todos os estados relevantes:**
+
+```mdx
+### Estados Desabilitados por Variante
+
+<Canvas withSource="open" withToolbar>
+  <Story name="disabled-variants">
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      <ComponentName variant="primary" disabled>Primary</ComponentName>
+      <ComponentName variant="secondary" disabled>Secondary</ComponentName>
+    </div>
   </Story>
 </Canvas>
 ```
@@ -131,17 +402,18 @@ The ref is forwarded to the root element. Any other props supplied will be provi
 - Inclua casos de uso específicos
 - Mencione valores padrão
 - Adicione exemplos quando apropriado
+- **NOVO:** Explique o impacto visual/comportamental
 
 **Bom:**
 
 ```
-| variant | "primary" \| "secondary" | "primary" | The visual style of the component. Use primary for main actions, secondary for alternatives. |
+O estilo visual do botão. Use primary para ações principais, secondary para alternativas e text para ações sutis.
 ```
 
 **Ruim:**
 
 ```
-| variant | string | "primary" | The variant to use. |
+The variant to use.
 ```
 
 ### Exemplos de Código
@@ -150,6 +422,7 @@ The ref is forwarded to the root element. Any other props supplied will be provi
 - Use nomes descritivos para props
 - Inclua contexto de layout quando relevante
 - Forneça exemplos de agrupamento/composição
+- **NOVO:** Use containers com estilos inline para demonstração
 
 ### Casos de Uso
 
@@ -157,15 +430,16 @@ The ref is forwarded to the root element. Any other props supplied will be provi
 - Use bullets para facilitar leitura
 - Inclua exemplos de texto/conteúdo
 - Mencione considerações de acessibilidade
+- **NOVO:** Agrupe por contexto (formulários, navegação, etc.)
 
 ## Seções Específicas por Tipo
 
 ### Para Componentes de Formulário
 
 ````mdx
-## Form Integration
+## Integração com Formulários
 
-### Usage in Forms
+### Uso em Formulários
 
 ```jsx
 <form onSubmit={handleSubmit}>
@@ -173,40 +447,62 @@ The ref is forwarded to the root element. Any other props supplied will be provi
   <Button type="submit">Submit</Button>
 </form>
 ```
-````
 
-### Validation
+### Validação
 
 [Exemplos de validação e estados de erro]
-
 ````
 
 ### Para Componentes Interativos
-```mdx
-## Event Handling
 
-| Handler | Type | Description | Example |
-|---------|------|-------------|---------|
-| onClick | function | Click event handler | ```jsx <Component onClick={handleClick} /> ``` |
-````
+```mdx
+## Manipulação de Eventos
+
+<table>
+  <thead>
+    <tr>
+      <th>Handler</th>
+      <th>Tipo</th>
+      <th>Descrição</th>
+      <th>Exemplo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClick</td>
+      <td>function</td>
+      <td>Manipulador de evento de clique</td>
+      <td><code>&lt;Component onClick={handleClick} /&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+```
 
 ### Para Componentes com Estados
 
 ```mdx
-## States
+## Estados
 
-### Loading State
-
-[Quando e como usar]
-
-### Disabled State
+### Estado de Carregamento
 
 [Quando e como usar]
 
-### Error State
+### Estado Desabilitado
+
+[Quando e como usar]
+
+### Estado de Erro
 
 [Quando e como usar]
 ```
+
+## Best Practices
+
+[Casos de uso]
+
+[Interações JavaScript]
+
+[Acessibilidade]
 
 ## Guidelines para IA-Friendly Documentation
 
@@ -215,6 +511,7 @@ The ref is forwarded to the root element. Any other props supplied will be provi
 - Sempre siga a mesma ordem de seções
 - Use headers hierárquicos corretamente
 - Mantenha formatação consistente
+- **NOVO:** Use tabelas HTML para todas as referências de API
 
 ### 2. Exemplos Práticos
 
@@ -222,6 +519,7 @@ The ref is forwarded to the root element. Any other props supplied will be provi
 - Forneça exemplos de layout/composição
 - Mostre padrões de uso comuns
 - Inclua exemplos de integração
+- **NOVO:** Use containers com estilos inline para demonstração
 
 ### 3. Contexto de Uso
 
@@ -229,30 +527,31 @@ The ref is forwarded to the root element. Any other props supplied will be provi
 - Forneça exemplos de texto apropriado
 - Inclua considerações de UX
 - Mencione melhores práticas
+- **NOVO:** Agrupe exemplos por contexto de uso
 
 ### 4. Casos de Uso Específicos
 
 ```mdx
-### Size Variations
+### Variações de Tamanho
 
-Use the `size` prop to control the component size:
+Use a prop `size` para controlar o tamanho do componente:
 
-- `sm`: For compact interfaces or inline with text
-- `md`: Standard size for most use cases
-- `lg`: For prominent actions or better touch targets
+- `sm`: Para interfaces compactas ou inline com texto
+- `md`: Tamanho padrão para a maioria dos casos de uso
+- `lg`: Para ações proeminentes ou melhores alvos de toque
 
 <Canvas withSource="open" withToolbar>
   <Story name="sizes">
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <Component size="sm">Small</Component>
-      <Component size="md">Medium</Component>
-      <Component size="lg">Large</Component>
+      <Component size="sm">Pequeno</Component>
+      <Component size="md">Médio</Component>
+      <Component size="lg">Grande</Component>
     </div>
   </Story>
 </Canvas>
 ```
 
-## Template Base
+## Template Base Atualizado
 
 ````mdx
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
@@ -261,57 +560,96 @@ import ComponentName from '../ComponentName';
 <Meta
   title="Components/ComponentName"
   component={ComponentName}
-  argTypes={
-    {
-      // Configure argTypes
-    }
-  }
+  argTypes={{
+    variant: {
+      name: 'variant',
+      description: 'A variante visual do componente.',
+      table: {
+        type: { summary: '"primary" | "secondary"' },
+        defaultValue: { summary: 'primary' },
+      },
+      control: { type: 'select' },
+      options: ['primary', 'secondary'],
+    },
+  }}
 />
 
 # ComponentName
 
 [Descrição concisa do propósito]
 
-## Overview
+## Visão Geral
 
 [Descrição detalhada e contexto de uso]
 
-## Import
+## Importação
 
 ```javascript
 import { ComponentName } from '@useblu/ocean-react';
 ```
-````
 
-## Usage
+## Uso
 
-### Basic Usage
+O componente ComponentName pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
+
+### Uso Básico
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <ComponentName>Content</ComponentName>
+    <ComponentName>Conteúdo</ComponentName>
   </Story>
 </Canvas>
 
-### Common Patterns
+### Padrões Comuns
 
-[Exemplos de padrões comuns]
+```jsx
+// Exemplo básico
+<ComponentName>Conteúdo</ComponentName>
 
-## API Reference
+// Em formulários
+<form onSubmit={handleSubmit}>
+  <ComponentName name="field" />
+</form>
+```
 
-| Prop  | Type | Default | Description                |
-| ----- | ---- | ------- | -------------------------- |
-| prop1 | type | default | Description with use cases |
+## Referência da API
 
-## Examples
+O componente ComponentName é baseado no elemento `element` e suporta todos os atributos padrão.
 
-### PropName
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>variant</td>
+      <td><code>"primary" | "secondary"</code></td>
+      <td><code>"primary"</code></td>
+      <td>O estilo visual do componente. Use primary para ações principais, secondary para alternativas.</td>
+    </tr>
+  </tbody>
+</table>
 
-[Descrição e casos de uso]
+## Exemplos
+
+### Variantes
+
+Use a prop `variant` para definir o estilo visual:
+
+- `primary`: Para ações principais
+- `secondary`: Para ações alternativas
 
 <Canvas withSource="open" withToolbar>
-  <Story name="prop-example">
-    <ComponentName prop="value">Example</ComponentName>
+  <Story name="variants">
+    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+      <ComponentName variant="primary">Primary</ComponentName>
+      <ComponentName variant="secondary">Secondary</ComponentName>
+    </div>
   </Story>
 </Canvas>
 
@@ -319,18 +657,24 @@ import { ComponentName } from '@useblu/ocean-react';
 
 <ArgsTable of={ComponentName} />
 
-The ref is forwarded to the root element.
+A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será passada para o elemento raiz.
 
 ## Playground
 
 <Canvas>
-  <Story name="playground" args={{ children: 'Content' }}>
+  <Story
+    name="playground"
+    args={{
+      children: 'Conteúdo',
+      variant: 'primary',
+    }}
+  >
     {(args) => <ComponentName {...args} />}
   </Story>
 </Canvas>
-```
+````
 
-## Checklist de Qualidade
+## Checklist de Qualidade Atualizado
 
 ### ✅ Estrutura
 
@@ -338,14 +682,16 @@ The ref is forwarded to the root element.
 - [ ] Todas as seções obrigatórias presentes
 - [ ] Headers hierárquicos corretos
 - [ ] Import correto
+- [ ] **NOVO:** Tabelas HTML usadas para API Reference
 
 ### ✅ Conteúdo
 
 - [ ] Descrição clara do propósito
-- [ ] API Reference completa
+- [ ] API Reference completa com tabelas HTML
 - [ ] Exemplos práticos para cada prop
 - [ ] Casos de uso específicos
 - [ ] Padrões de layout/composição
+- [ ] **NOVO:** argTypes detalhados no Meta
 
 ### ✅ Exemplos
 
@@ -353,6 +699,7 @@ The ref is forwarded to the root element.
 - [ ] Nomes descritivos
 - [ ] Contexto de uso claro
 - [ ] Exemplos de integração
+- [ ] **NOVO:** Containers com estilos inline para demonstração
 
 ### ✅ IA-Friendly
 
@@ -360,6 +707,7 @@ The ref is forwarded to the root element.
 - [ ] Exemplos reutilizáveis
 - [ ] Contexto de uso claro
 - [ ] Padrões bem documentados
+- [ ] **NOVO:** Tabelas HTML para referências de API
 
 ## Ferramentas e Recursos
 
@@ -384,13 +732,30 @@ npm run storybook
 
 ## Exemplos de Referência
 
-- ✅ [Button](packages/ocean-react/src/Button/stories/Button.stories.mdx) - Exemplo completo
-- 🔄 [Input](packages/ocean-react/src/Input/stories/Input.stories.mdx) - Em andamento
-- 📝 [Modal](packages/ocean-react/src/Modal/stories/Modal.stories.mdx) - Planejado
+- ✅ [Button](mdc:packages/ocean-react/src/Button/stories/Button.stories.mdx) - Exemplo completo
+- ✅ [Currency Input](mdc:packages/ocean-react/src/Input/stories/Currency.stories.mdx) - Exemplo atualizado
+- 🔄 [Input](mdc:packages/ocean-react/src/Input/stories/Input.stories.mdx) - Em andamento
+- 📝 [Modal](mdc:packages/ocean-react/src/Modal/stories/Modal.stories.mdx) - Planejado
 
 ---
 
-**Versão:** 1.0  
-**Última atualização:** [Data atual]  
+**Versão:** 2.1  
+**Última atualização:** Dezembro 2024  
 **Responsável:** Equipe Ocean Web  
 **Review:** Necessário antes de merge
+
+## Changelog
+
+### v2.1 - Dezembro 2024
+- ✅ Atualizado para usar tabelas HTML padrão
+- ✅ Simplificado template base
+- ✅ Atualizado checklist de qualidade
+- ✅ Adicionado Currency Input como exemplo de referência
+
+### v2.0 - Dezembro 2024
+- ✅ Melhorada estrutura de argTypes no Meta
+- ✅ Adicionados padrões de layout com estilos inline
+- ✅ Expandidas seções de melhores práticas
+- ✅ Melhoradas descrições de props com contexto de uso
+- ✅ Adicionada seção de Classes CSS
+- ✅ Atualizado template base com todas as melhorias
