@@ -1,0 +1,1021 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import {
+  // Colors
+  colorBrandPrimaryPure,
+  colorBrandPrimaryUp,
+  colorBrandPrimaryDown,
+  colorBrandPrimaryDeep,
+  colorHighlightPure,
+  colorComplementaryPure,
+  colorStatusPositivePure,
+  colorStatusPositiveUp,
+  colorStatusPositiveDown,
+  colorStatusPositiveDeep,
+  colorStatusNegativePure,
+  colorStatusNegativeUp,
+  colorStatusNegativeDown,
+  colorStatusNegativeDeep,
+  colorStatusWarningPure,
+  colorStatusWarningUp,
+  colorStatusWarningDown,
+  colorStatusWarningDeep,
+  colorInterfaceLightPure,
+  colorInterfaceLightUp,
+  colorInterfaceLightDown,
+  colorInterfaceLightDeep,
+  colorInterfaceDarkPure,
+  colorInterfaceDarkUp,
+  colorInterfaceDarkDown,
+  colorInterfaceDarkDeep,
+  // Spacing
+  spacingInlineXxxs,
+  spacingInlineXxs,
+  spacingInlineXs,
+  spacingInlineSm,
+  spacingInlineMd,
+  spacingInlineLg,
+  // Border Radius
+  borderRadiusTiny,
+  borderRadiusSm,
+  borderRadiusMd,
+  borderRadiusLg,
+  borderRadiusCircular,
+  // Shadows
+  shadowLevel1,
+  shadowLevel2,
+  shadowLevel3,
+  shadowLevel4,
+  // Typography
+  fontSizeXxxs,
+  fontSizeXxs,
+  fontSizeXs,
+  fontSizeSm,
+  fontSizeMd,
+  fontSizeLg,
+  fontSizeXl,
+  fontWeightLight,
+  fontWeightRegular,
+  fontWeightMedium,
+  fontWeightBold,
+  lineHeightMedium,
+  lineHeightComfy,
+  fontFamilyBase,
+} from '@useblu/ocean-tokens/web/tokens';
+
+<Meta title="Foundation/Design Tokens" />
+
+# Design Tokens
+
+Design Tokens são os valores fundamentais que definem a identidade visual do Ocean Design System. Eles garantem consistência em cores, tipografia, espaçamento, sombras e outros elementos visuais em todos os produtos.
+
+## O que são Design Tokens
+
+Design Tokens são pares nome-valor que armazenam decisões de design visual. Eles servem como a "fonte única da verdade" para elementos de design, garantindo consistência e facilitando atualizações em escala.
+
+### Vantagens dos Design Tokens
+
+- **Consistência**: Valores padronizados em todos os produtos
+- **Manutenibilidade**: Atualizações centralizadas se propagam automaticamente
+- **Colaboração**: Linguagem comum entre design e desenvolvimento
+- **Escalabilidade**: Facilita crescimento e evolução do sistema
+
+## Cores
+
+### Paleta da Marca
+
+As cores da marca Ocean refletem a identidade visual e são usadas em elementos-chave da interface.
+
+<Canvas>
+  <Story name="Brand Colors">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryPure,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Primary Pure</strong>
+            <br />
+            {colorBrandPrimaryPure}
+            <br />
+            colorBrandPrimaryPure
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryDeep,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Primary Deep</strong>
+            <br />
+            {colorBrandPrimaryDeep}
+            <br />
+            colorBrandPrimaryDeep
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryUp,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Primary Up</strong>
+            <br />
+            {colorBrandPrimaryUp}
+            <br />
+            colorBrandPrimaryUp
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryDown,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Primary Down</strong>
+            <br />
+            {colorBrandPrimaryDown}
+            <br />
+            colorBrandPrimaryDown
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+### Cores de Status
+
+Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status possui 4 variantes para diferentes contextos de uso.
+
+#### Status Positive (Sucesso)
+
+<Canvas>
+  <Story name="Status Positive Colors">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusPositivePure,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Positive Pure</strong>
+            <br />
+            {colorStatusPositivePure}
+            <br />
+            colorStatusPositivePure
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusPositiveUp,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorStatusPositivePure}`,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Positive Up</strong>
+            <br />
+            {colorStatusPositiveUp}
+            <br />
+            colorStatusPositiveUp
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusPositiveDown,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Positive Down</strong>
+            <br />
+            {colorStatusPositiveDown}
+            <br />
+            colorStatusPositiveDown
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusPositiveDeep,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Positive Deep</strong>
+            <br />
+            {colorStatusPositiveDeep}
+            <br />
+            colorStatusPositiveDeep
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+#### Status Negative (Erro)
+
+<Canvas>
+  <Story name="Status Negative Colors">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusNegativePure,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Negative Pure</strong>
+            <br />
+            {colorStatusNegativePure}
+            <br />
+            colorStatusNegativePure
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusNegativeUp,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorStatusNegativePure}`,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Negative Up</strong>
+            <br />
+            {colorStatusNegativeUp}
+            <br />
+            colorStatusNegativeUp
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusNegativeDown,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Negative Down</strong>
+            <br />
+            {colorStatusNegativeDown}
+            <br />
+            colorStatusNegativeDown
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusNegativeDeep,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Negative Deep</strong>
+            <br />
+            {colorStatusNegativeDeep}
+            <br />
+            colorStatusNegativeDeep
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+#### Status Warning (Aviso)
+
+<Canvas>
+  <Story name="Status Warning Colors">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusWarningPure,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Warning Pure</strong>
+            <br />
+            {colorStatusWarningPure}
+            <br />
+            colorStatusWarningPure
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusWarningUp,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorStatusWarningPure}`,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Warning Up</strong>
+            <br />
+            {colorStatusWarningUp}
+            <br />
+            colorStatusWarningUp
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusWarningDown,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Warning Down</strong>
+            <br />
+            {colorStatusWarningDown}
+            <br />
+            colorStatusWarningDown
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorStatusWarningDeep,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Warning Deep</strong>
+            <br />
+            {colorStatusWarningDeep}
+            <br />
+            colorStatusWarningDeep
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+#### Cor Complementar
+
+<Canvas>
+  <Story name="Complementary Color">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorComplementaryPure,
+              height: '60px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Complementary Pure</strong>
+            <br />
+            {colorComplementaryPure}
+            <br />
+            colorComplementaryPure
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+### Cores de Interface
+
+Escala de cores neutras para texto, bordas, fundos e outros elementos estruturais.
+
+<Canvas>
+  <Story name="Interface Colors">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              backgroundColor: colorInterfaceDarkPure,
+              height: '50px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Dark Pure</strong>
+            <br />
+            {colorInterfaceDarkPure}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              backgroundColor: colorInterfaceDarkDeep,
+              height: '50px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Dark Deep</strong>
+            <br />
+            {colorInterfaceDarkDeep}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              backgroundColor: colorInterfaceDarkDown,
+              height: '50px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Dark Down</strong>
+            <br />
+            {colorInterfaceDarkDown}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              backgroundColor: colorInterfaceDarkUp,
+              height: '50px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Dark Up</strong>
+            <br />
+            {colorInterfaceDarkUp}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightDown,
+              height: '50px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorInterfaceLightDeep}`,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Light Down</strong>
+            <br />
+            {colorInterfaceLightDown}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightPure,
+              height: '50px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorInterfaceLightDeep}`,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Light Pure</strong>
+            <br />
+            {colorInterfaceLightPure}
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Tipografia
+
+### Escala Tipográfica
+
+A escala tipográfica do Ocean fornece hierarquia visual e legibilidade consistente.
+
+<Canvas>
+  <Story name="Typography Scale">
+    <div style={{ maxWidth: '800px' }}>
+      <div
+        style={{
+          fontSize: fontSizeLg,
+          lineHeight: lineHeightMedium,
+          fontFamily: fontFamilyBase,
+          fontWeight: fontWeightBold,
+          marginBottom: spacingInlineXs,
+        }}
+      >
+        Heading 1 ({fontSizeLg}) - Para títulos principais
+      </div>
+      <div
+        style={{
+          fontSize: fontSizeMd,
+          lineHeight: lineHeightMedium,
+          fontFamily: fontFamilyBase,
+          fontWeight: fontWeightMedium,
+          marginBottom: spacingInlineXs,
+        }}
+      >
+        Heading 2 ({fontSizeMd}) - Para seções importantes
+      </div>
+      <div
+        style={{
+          fontSize: fontSizeSm,
+          lineHeight: lineHeightMedium,
+          fontFamily: fontFamilyBase,
+          fontWeight: fontWeightMedium,
+          marginBottom: spacingInlineXs,
+        }}
+      >
+        Heading 3 ({fontSizeSm}) - Para subseções
+      </div>
+      <div
+        style={{
+          fontSize: fontSizeXs,
+          lineHeight: lineHeightComfy,
+          fontFamily: fontFamilyBase,
+          fontWeight: fontWeightRegular,
+          marginBottom: spacingInlineXs,
+        }}
+      >
+        Paragraph ({fontSizeXs}) - O texto do parágrafo é usado para a maioria
+        do conteúdo de leitura e fornece informações detalhadas ao usuário.
+      </div>
+      <div
+        style={{
+          fontSize: fontSizeXxs,
+          lineHeight: lineHeightMedium,
+          fontFamily: fontFamilyBase,
+          fontWeight: fontWeightRegular,
+          color: colorInterfaceDarkDown,
+        }}
+      >
+        Caption ({fontSizeXxs}) - Texto de apoio para legendas e informações
+        secundárias.
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## Espaçamento
+
+Sistema de espaçamento consistente baseado nos tokens do Ocean.
+
+<Canvas>
+  <Story name="Spacing Scale">
+    <div>
+      {[
+        {
+          token: 'spacingInlineXxxs',
+          value: spacingInlineXxxs,
+          usage: 'Espaçamento mínimo',
+        },
+        {
+          token: 'spacingInlineXxs',
+          value: spacingInlineXxs,
+          usage: 'Espaçamento pequeno',
+        },
+        {
+          token: 'spacingInlineXs',
+          value: spacingInlineXs,
+          usage: 'Espaçamento padrão',
+        },
+        {
+          token: 'spacingInlineSm',
+          value: spacingInlineSm,
+          usage: 'Espaçamento médio',
+        },
+        {
+          token: 'spacingInlineMd',
+          value: spacingInlineMd,
+          usage: 'Espaçamento entre seções',
+        },
+        {
+          token: 'spacingInlineLg',
+          value: spacingInlineLg,
+          usage: 'Espaçamento entre blocos',
+        },
+      ].map((space) => (
+        <div
+          key={space.token}
+          style={{
+            marginBottom: spacingInlineXs,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              width: space.value,
+              height: '20px',
+              backgroundColor: colorBrandPrimaryPure,
+              marginRight: spacingInlineXs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>{space.value}</strong> ({space.token}) - {space.usage}
+          </Typography>
+        </div>
+      ))}
+    </div>
+  </Story>
+</Canvas>
+
+## Border Radius
+
+Valores padronizados para bordas arredondadas do Ocean.
+
+<Canvas>
+  <Story name="Border Radius">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: colorBrandPrimaryPure,
+              borderRadius: borderRadiusTiny,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Tiny</strong>
+            <br />
+            {borderRadiusTiny}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: colorBrandPrimaryPure,
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Small</strong>
+            <br />
+            {borderRadiusSm}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: colorBrandPrimaryPure,
+              borderRadius: borderRadiusMd,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Medium</strong>
+            <br />
+            {borderRadiusMd}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: colorBrandPrimaryPure,
+              borderRadius: borderRadiusLg,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Large</strong>
+            <br />
+            {borderRadiusLg}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={2}>
+          <div
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: colorBrandPrimaryPure,
+              borderRadius: borderRadiusCircular,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Circular</strong>
+            <br />
+            {borderRadiusCircular}
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Sombras
+
+Sistema de elevação que cria hierarquia visual e profundidade.
+
+<Canvas>
+  <Story name="Shadows">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              width: '120px',
+              height: '80px',
+              backgroundColor: colorInterfaceLightPure,
+              borderRadius: borderRadiusSm,
+              boxShadow: shadowLevel1,
+              marginBottom: spacingInlineXs,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="caption">Level 1</Typography>
+          </div>
+          <Typography variant="caption">
+            <strong>Shadow Level 1</strong>
+            <br />
+            {shadowLevel1}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              width: '120px',
+              height: '80px',
+              backgroundColor: colorInterfaceLightPure,
+              borderRadius: borderRadiusSm,
+              boxShadow: shadowLevel2,
+              marginBottom: spacingInlineXs,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="caption">Level 2</Typography>
+          </div>
+          <Typography variant="caption">
+            <strong>Shadow Level 2</strong>
+            <br />
+            {shadowLevel2}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              width: '120px',
+              height: '80px',
+              backgroundColor: colorInterfaceLightPure,
+              borderRadius: borderRadiusSm,
+              boxShadow: shadowLevel3,
+              marginBottom: spacingInlineXs,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="caption">Level 3</Typography>
+          </div>
+          <Typography variant="caption">
+            <strong>Shadow Level 3</strong>
+            <br />
+            {shadowLevel3}
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              width: '120px',
+              height: '80px',
+              backgroundColor: colorInterfaceLightPure,
+              borderRadius: borderRadiusSm,
+              boxShadow: shadowLevel4,
+              marginBottom: spacingInlineXs,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="caption">Level 4</Typography>
+          </div>
+          <Typography variant="caption">
+            <strong>Shadow Level 4</strong>
+            <br />
+            {shadowLevel4}
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Como Usar
+
+### Importação
+
+```jsx
+import {
+  colorBrandPrimaryPure,
+  spacingInlineXs,
+  borderRadiusSm,
+  shadowLevel2,
+} from '@useblu/ocean-tokens/web/tokens';
+```
+
+### Em JavaScript/React
+
+```jsx
+// Usando tokens importados
+const MyComponent = () => (
+  <div
+    style={{
+      color: colorBrandPrimaryPure,
+      padding: spacingInlineXs,
+      borderRadius: borderRadiusSm,
+      boxShadow: shadowLevel2,
+    }}
+  >
+    Conteúdo
+  </div>
+);
+```
+
+### Em SCSS
+
+```scss
+// Importando tokens SCSS
+@import '@useblu/ocean-tokens/web/tokens';
+
+.my-component {
+  color: $color-brand-primary-pure;
+  padding: $spacing-inline-xs;
+  border-radius: $border-radius-sm;
+  box-shadow: $shadow-level-2;
+}
+```
+
+### Tokens Disponíveis
+
+#### Cores da Marca
+
+- `colorBrandPrimaryPure` - Cor principal da marca
+- `colorBrandPrimaryUp` - Versão mais clara
+- `colorBrandPrimaryDown` - Versão intermediária
+- `colorBrandPrimaryDeep` - Versão mais escura
+
+#### Cores de Status
+
+##### Status Positive (Sucesso)
+
+- `colorStatusPositivePure` - `rgb(61, 204, 100)` - Cor principal para sucesso
+- `colorStatusPositiveUp` - `rgb(242, 253, 245)` - Versão muito clara (fundos)
+- `colorStatusPositiveDown` - `rgb(122, 220, 148)` - Versão intermediária (hover)
+- `colorStatusPositiveDeep` - `rgb(45, 169, 79)` - Versão mais escura (pressed)
+
+##### Status Negative (Erro)
+
+- `colorStatusNegativePure` - `rgb(245, 69, 110)` - Cor principal para erro
+- `colorStatusNegativeUp` - `rgb(255, 241, 244)` - Versão muito clara (fundos)
+- `colorStatusNegativeDown` - `rgb(242, 117, 146)` - Versão intermediária (hover)
+- `colorStatusNegativeDeep` - `rgb(211, 20, 65)` - Versão mais escura (pressed)
+
+##### Status Warning (Aviso)
+
+- `colorStatusWarningPure` - `rgb(255, 163, 71)` - Cor principal para aviso
+- `colorStatusWarningUp` - `rgb(255, 247, 240)` - Versão muito clara (fundos)
+- `colorStatusWarningDown` - `rgb(255, 189, 122)` - Versão intermediária (hover)
+- `colorStatusWarningDeep` - `rgb(255, 138, 20)` - Versão mais escura (pressed)
+
+##### Cor Complementar
+
+- `colorComplementaryPure` - `rgb(19, 189, 189)` - Azul complementar
+
+#### Cores de Interface
+
+- `colorInterfaceLightPure` - Branco
+- `colorInterfaceLightUp` - Cinza muito claro
+- `colorInterfaceLightDown` - Cinza claro
+- `colorInterfaceDarkPure` - Preto
+- `colorInterfaceDarkUp` - Cinza médio
+- `colorInterfaceDarkDown` - Cinza escuro
+
+#### Espaçamento
+
+- `spacingInlineXxxs` ({spacingInlineXxxs}) - Mínimo
+- `spacingInlineXxs` ({spacingInlineXxs}) - Pequeno
+- `spacingInlineXs` ({spacingInlineXs}) - Padrão
+- `spacingInlineSm` ({spacingInlineSm}) - Médio
+- `spacingInlineMd` ({spacingInlineMd}) - Grande
+- `spacingInlineLg` ({spacingInlineLg}) - Extra grande
+
+#### Border Radius
+
+- `borderRadiusTiny` ({borderRadiusTiny})
+- `borderRadiusSm` ({borderRadiusSm})
+- `borderRadiusMd` ({borderRadiusMd})
+- `borderRadiusLg` ({borderRadiusLg})
+- `borderRadiusCircular` ({borderRadiusCircular})
+
+#### Sombras
+
+- `shadowLevel1` - Elevação mínima
+- `shadowLevel2` - Elevação baixa
+- `shadowLevel3` - Elevação média
+- `shadowLevel4` - Elevação alta
+
+#### Tipografia
+
+- Tamanhos: `fontSizeXxxs` até `fontSizeGiant`
+- Pesos: `fontWeightLight` até `fontWeightExtrabold`
+- Altura de linha: `lineHeightTight` até `lineHeightComfy`
+- Família: `fontFamilyBase` (Nunito Sans), `fontFamilyHighlight` (Avenir)
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use sempre tokens em vez de valores hard-coded
+- Importe apenas os tokens que você precisa
+- Mantenha consistência com a nomenclatura dos tokens
+- Use tokens semânticos quando apropriado
+- Use as variantes corretas das cores de status:
+  - **Pure**: Para textos, ícones e bordas principais
+  - **Up**: Para fundos de alertas e cards de status
+  - **Down**: Para estados de hover
+  - **Deep**: Para estados de pressed/active
+
+### ❌ Evite
+
+- Criar valores personalizados sem necessidade
+- Usar valores hard-coded que já existem como tokens
+- Modificar valores de tokens diretamente
+- Misturar diferentes sistemas de design
+- Usar variantes incorretas (ex: usar "Deep" para fundos claros)
+
+## Referência Completa
+
+Para explorar todos os tokens disponíveis, consulte:
+
+- **Pacote**: `@useblu/ocean-tokens`
+- **Versão Web**: `@useblu/ocean-tokens/web/tokens`
+- **Documentação**: [Ocean Tokens no NPM](https://www.npmjs.com/package/@useblu/ocean-tokens)
