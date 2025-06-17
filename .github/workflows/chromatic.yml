@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0 # 👈 Required to retrieve git history
 
       - name: Use Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '16.x'
 
@@ -52,6 +52,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          buildScriptName: 'build:storybook'
 
       - name: Publish to Chromatic and auto accept changes
         if: ${{ github.actor != 'dependabot[bot]' && github.ref == 'refs/heads/main' }}
@@ -59,4 +60,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          buildScriptName: 'build:storybook'
           autoAcceptChanges: true # 👈 Option to accept all changes
