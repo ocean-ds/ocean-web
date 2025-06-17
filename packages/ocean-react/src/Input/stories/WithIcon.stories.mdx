@@ -8,6 +8,43 @@ import {
   PhoneOutline,
 } from '@useblu/ocean-icons-react';
 
+export const ICON_LABELS = {
+  buscar: 'Buscar',
+  email: 'Email',
+  senha: 'Senha',
+  telefone: 'Telefone',
+  usuario: 'Usuário',
+  confirmarSenha: 'Confirmar Senha',
+  codigoSeguranca: 'Código de Segurança',
+  buscarProdutos: 'Buscar Produtos',
+  pesquisar: 'Pesquisar',
+};
+
+export const ICON_HELPER_TEXTS = {
+  usePalavrasChave: 'Use palavras-chave para encontrar produtos',
+  clqueOlhoVisibilidade: 'Clique no olho para alternar visibilidade',
+  pressioneEnterBuscar: 'Pressione Enter para buscar',
+  emailValido: 'Digite um email válido',
+  senhaSegura: 'Use uma senha segura',
+  telefoneComDDD: 'Inclua o DDD',
+  usuarioUnico: 'Nome de usuário único',
+  senhasDevemCoincidir: 'Senhas devem coincidir',
+  codigoTresDigitos: 'Código de 3 dígitos',
+  digite3Caracteres: 'Digite pelo menos 3 caracteres para buscar',
+};
+
+export const ICON_PLACEHOLDERS = {
+  buscarProdutos: 'Buscar produtos...',
+  seuEmail: 'seu@email.com',
+  digiteSenha: 'Digite sua senha',
+  telefoneExemplo: '(11) 99999-9999',
+  digitePesquisar: 'Digite para buscar...',
+  nomeUsuario: 'nome_usuario',
+  confirmarSenha: 'Confirme sua senha',
+  cvv: 'CVV',
+  buscarAqui: 'Buscar aqui...',
+};
+
 <Meta
   title="Components/Inputs/Input com Ícones"
   component={Input}
@@ -116,12 +153,12 @@ import {
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
     <Input
-      label="Buscar"
+      label={ICON_LABELS.buscar}
       name="search"
       type="search"
-      placeholder="Buscar produtos..."
+      placeholder={ICON_PLACEHOLDERS.buscarProdutos}
       adornment={<SearchOutline size={20} />}
-      helperText="Use palavras-chave para encontrar produtos"
+      helperText={ICON_HELPER_TEXTS.usePalavrasChave}
     />
   </Story>
 </Canvas>
@@ -132,45 +169,48 @@ import {
 // Campos de formulário com ícones
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
   <Input
-    label="Email"
+    label={ICON_LABELS.email}
     name="email"
     type="email"
-    placeholder="seu@email.com"
+    placeholder={ICON_PLACEHOLDERS.seuEmail}
     adornment={<MailOutline size={20} />}
+    helperText={ICON_HELPER_TEXTS.emailValido}
   />
   <Input
-    label="Senha"
+    label={ICON_LABELS.senha}
     name="password"
     type="password"
-    placeholder="Digite sua senha"
+    placeholder={ICON_PLACEHOLDERS.digiteSenha}
     adornment={<LockClosedOutline size={20} />}
+    helperText={ICON_HELPER_TEXTS.senhaSegura}
   />
   <Input
-    label="Telefone"
+    label={ICON_LABELS.telefone}
     name="phone"
     type="tel"
-    placeholder="(11) 99999-9999"
+    placeholder={ICON_PLACEHOLDERS.telefoneExemplo}
     adornment={<PhoneOutline size={20} />}
+    helperText={ICON_HELPER_TEXTS.telefoneComDDD}
   />
 </div>
 
 // Ícones interativos
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
   <Input
-    label="Senha"
+    label={ICON_LABELS.senha}
     name="password"
     type="password"
-    placeholder="Digite sua senha"
+    placeholder={ICON_PLACEHOLDERS.digiteSenha}
     adornment={<EyeOutline size={20} />}
-    helperText="Clique no olho para alternar visibilidade"
+    helperText={ICON_HELPER_TEXTS.clqueOlhoVisibilidade}
   />
   <Input
-    label="Buscar Produtos"
+    label={ICON_LABELS.buscarProdutos}
     name="search"
     type="search"
-    placeholder="Digite para buscar..."
+    placeholder={ICON_PLACEHOLDERS.digitePesquisar}
     adornment={<SearchOutline size={20} />}
-    helperText="Pressione Enter para buscar"
+    helperText={ICON_HELPER_TEXTS.pressioneEnterBuscar}
   />
 </div>
 ```
@@ -233,36 +273,36 @@ Diferentes ícones para diferentes contextos de input:
       }}
     >
       <Input
-        label="Email"
+        label={ICON_LABELS.email}
         name="email"
         type="email"
-        placeholder="seu@email.com"
+        placeholder={ICON_PLACEHOLDERS.seuEmail}
         adornment={<MailOutline size={20} />}
-        helperText="Nunca compartilharemos seu email"
+        helperText={ICON_HELPER_TEXTS.emailValido}
       />
       <Input
-        label="Senha"
+        label={ICON_LABELS.senha}
         name="password"
         type="password"
-        placeholder="Digite sua senha"
+        placeholder={ICON_PLACEHOLDERS.digiteSenha}
         adornment={<LockClosedOutline size={20} />}
-        helperText="Mínimo de 8 caracteres"
+        helperText={ICON_HELPER_TEXTS.senhaSegura}
       />
       <Input
-        label="Telefone"
+        label={ICON_LABELS.telefone}
         name="phone"
         type="tel"
-        placeholder="(11) 99999-9999"
+        placeholder={ICON_PLACEHOLDERS.telefoneExemplo}
         adornment={<PhoneOutline size={20} />}
-        helperText="Inclua o DDD"
+        helperText={ICON_HELPER_TEXTS.telefoneComDDD}
       />
       <Input
-        label="Buscar"
+        label={ICON_LABELS.buscar}
         name="search"
         type="search"
-        placeholder="Buscar qualquer coisa..."
+        placeholder={ICON_PLACEHOLDERS.buscarAqui}
         adornment={<SearchOutline size={20} />}
-        helperText="Use palavras-chave para melhores resultados"
+        helperText={ICON_HELPER_TEXTS.usePalavrasChave}
       />
     </div>
   </Story>
@@ -283,22 +323,22 @@ Diferentes ícones para diferentes contextos de input:
       }}
     >
       <Input
-        label="Buscar (Ícone à Direita)"
+        label={ICON_LABELS.buscar}
         name="searchRight"
         type="search"
-        placeholder="Buscar produtos..."
+        placeholder={ICON_PLACEHOLDERS.buscarProdutos}
         adornment={<SearchOutline size={20} />}
         position="right"
-        helperText="Ícone no lado direito"
+        helperText={ICON_HELPER_TEXTS.digite3Caracteres}
       />
       <Input
-        label="Buscar (Ícone à Esquerda)"
+        label={ICON_LABELS.buscar}
         name="searchLeft"
         type="search"
-        placeholder="Buscar produtos..."
+        placeholder={ICON_PLACEHOLDERS.buscarProdutos}
         adornment={<SearchOutline size={20} />}
         position="left"
-        helperText="Ícone no lado esquerdo"
+        helperText={ICON_HELPER_TEXTS.digite3Caracteres}
       />
     </div>
   </Story>
@@ -319,20 +359,20 @@ Diferentes ícones para diferentes contextos de input:
       }}
     >
       <Input
-        label="Senha"
+        label={ICON_LABELS.senha}
         name="password"
         type="password"
-        placeholder="Digite sua senha"
+        placeholder={ICON_PLACEHOLDERS.digiteSenha}
         adornment={<EyeOutline size={20} />}
-        helperText="Clique no ícone para mostrar/ocultar senha"
+        helperText={ICON_HELPER_TEXTS.clqueOlhoVisibilidade}
       />
       <Input
-        label="Buscar"
+        label={ICON_LABELS.buscar}
         name="search"
         type="search"
-        placeholder="Digite para buscar..."
+        placeholder={ICON_PLACEHOLDERS.digitePesquisar}
         adornment={<SearchOutline size={20} />}
-        helperText="Pressione Enter ou clique no ícone para buscar"
+        helperText={ICON_HELPER_TEXTS.pressioneEnterBuscar}
       />
     </div>
   </Story>
@@ -345,18 +385,18 @@ Diferentes ícones para diferentes contextos de input:
 ```jsx
 <form onSubmit={handleSubmit}>
   <Input
-    label="Email"
+    label={ICON_LABELS.email}
     name="email"
     type="email"
-    placeholder="seu@email.com"
+    placeholder={ICON_PLACEHOLDERS.seuEmail}
     adornment={<MailOutline size={20} />}
     required
   />
   <Input
-    label="Senha"
+    label={ICON_LABELS.senha}
     name="password"
     type="password"
-    placeholder="Digite sua senha"
+    placeholder={ICON_PLACEHOLDERS.digiteSenha}
     adornment={<LockClosedOutline size={20} />}
     required
   />
@@ -369,13 +409,13 @@ Diferentes ícones para diferentes contextos de input:
 ```jsx
 <form onSubmit={handleSubmit}>
   <Input
-    label="Email"
+    label={ICON_LABELS.email}
     name="email"
     type="email"
-    placeholder="seu@email.com"
+    placeholder={ICON_PLACEHOLDERS.seuEmail}
     adornment={<MailOutline size={20} />}
     error={errors.email}
-    helperText={errors.email || 'Digite um email válido'}
+    helperText={errors.email || ICON_HELPER_TEXTS.emailValido}
     required
   />
   <Button type="submit" disabled={!isFormValid}>
@@ -463,10 +503,10 @@ A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será 
   <Story
     name="playground"
     args={{
-      label: 'Input com Ícone',
-      placeholder: 'Digite aqui...',
-      helperText: 'Texto de ajuda',
-      type: 'text',
+      label: ICON_LABELS.buscar,
+      placeholder: ICON_PLACEHOLDERS.buscarAqui,
+      helperText: ICON_HELPER_TEXTS.usePalavrasChave,
+      type: 'search',
       adornment: <SearchOutline size={20} />,
       position: 'right',
     }}

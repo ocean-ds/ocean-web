@@ -1,9 +1,5 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
-import Stepper from '../../Stepper';
-import Select from '../../Select';
-import TextArea from '../../TextArea';
-import Showcase from '../../_stories/components/Showcase';
 
 import {
   EyeOutline,
@@ -12,294 +8,523 @@ import {
   LockClosedOutline,
 } from '@useblu/ocean-icons-react';
 
-<Meta title="Components/Inputs/Getting-starter" />
+export const INPUT_GETTING_STARTED_LABELS = {
+  emailAddress: 'Email',
+  fullName: 'Nome Completo',
+  username: 'Nome de Usuário',
+  password: 'Senha',
+  age: 'Idade',
+  phoneNumber: 'Telefone',
+  searchProducts: 'Buscar Produtos',
+  complexPassword: 'Senha Complexa',
+  taxId: 'CPF/CNPJ',
+  normalField: 'Campo Normal',
+  errorField: 'Campo com Erro',
+  disabledField: 'Campo Desabilitado',
+  registrationTitle: 'Formulário de Registro',
+  ecommerceTitle: 'Formulário de E-commerce',
+  productName: 'Nome do Produto',
+  price: 'Preço',
+  quantityStock: 'Quantidade em Estoque',
+  sku: 'SKU',
+};
 
-# Input Component - Getting Started
+export const INPUT_GETTING_STARTED_HELPER_TEXTS = {
+  emailVerification: 'Usado para verificação da conta',
+  fullNameFormat: 'Nome e sobrenome',
+  usernameRules: '3-20 caracteres, letras e números apenas',
+  passwordSecurity: 'Mínimo 8 caracteres',
+  ageRequirement: 'Deve ser maior de 18 anos',
+  phoneFormat: 'Inclua o DDD',
+  searchKeywords: 'Use palavras-chave para encontrar produtos',
+  passwordComplexity: 'Escolha uma senha segura',
+  taxIdInfo: 'CPF para pessoas físicas ou CNPJ para empresas',
+  normalState: 'Estado normal do campo',
+  validationError: 'Por favor, insira um email válido',
+  autoFilled: 'Este campo é preenchido automaticamente',
+  productTitle: 'Título descritivo do produto',
+  sellingPrice: 'Preço de venda do produto',
+  availableInventory: 'Inventário disponível',
+  uniqueIdentifier: 'Identificador único do produto',
+};
 
-A comprehensive guide to using the Input component and its variations in the Ocean Design System.
+export const INPUT_GETTING_STARTED_PLACEHOLDERS = {
+  emailExample: 'seu@email.com',
+  fullNameExample: 'Digite seu nome completo',
+  usernameExample: 'Escolha um nome de usuário',
+  passwordExample: 'Digite sua senha',
+  ageExample: 'Digite sua idade',
+  phoneExample: '(11) 99999-9999',
+  searchExample: 'Digite sua busca...',
+  strongPasswordExample: 'Digite uma senha forte',
+  invalidEmail: 'email-inválido',
+  cannotEdit: 'Não pode editar',
+  productNameExample: 'Digite o nome do produto',
+  priceExample: '0,00',
+  quantityExample: '0',
+  skuExample: 'PROD-001',
+  typeHere: 'Digite algo...',
+};
 
-## Overview
+export const INPUT_GETTING_STARTED_TOOLTIPS = {
+  passwordComplexity:
+    'A senha deve conter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas, números e caracteres especiais',
+  taxIdPurpose:
+    'Digite seu CPF (pessoas físicas) ou CNPJ (empresas). Esta informação é criptografada e usada apenas para fins fiscais.',
+  skuExplanation:
+    'Stock Keeping Unit - usado para controle de estoque e deve ser único em todos os produtos',
+  registrationPassword:
+    'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
+};
 
-The Input component is a versatile form element that supports various input types, adornments, tooltips, and states. It's designed to handle data collection in forms while maintaining consistency and accessibility across your application.
+<Meta
+  title="Components/Inputs/Getting Started"
+  component={Input}
+  argTypes={{
+    type: {
+      name: 'type',
+      description: 'O tipo do input que define comportamento e validação.',
+      table: {
+        type: {
+          summary:
+            '"text" | "email" | "password" | "number" | "tel" | "url" | "search"',
+        },
+        defaultValue: { summary: 'text' },
+      },
+      control: { type: 'select' },
+      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+    },
+    label: {
+      name: 'label',
+      description: 'O rótulo do campo que identifica seu propósito.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      control: { type: 'text' },
+    },
+    placeholder: {
+      name: 'placeholder',
+      description: 'Texto de exemplo que aparece quando o campo está vazio.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      control: { type: 'text' },
+    },
+    helperText: {
+      name: 'helperText',
+      description: 'Texto auxiliar que fornece contexto ou instruções.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+      control: { type: 'text' },
+    },
+    error: {
+      name: 'error',
+      description: 'Define se o campo está em estado de erro.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Desabilita a interação com o campo.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    required: {
+      name: 'required',
+      description: 'Marca o campo como obrigatório.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+  }}
+/>
 
-### Key Features
+# Input - Guia de Início
 
-- **Multiple Input Types**: Support for text, email, password, number, tel, url, and search
-- **Flexible Adornments**: Icons, currency symbols, and custom elements
-- **State Management**: Normal, error, disabled, and focused states
-- **Accessibility**: Built-in ARIA support and keyboard navigation
-- **Tooltip Support**: Contextual help without cluttering the interface
-- **Form Integration**: Works seamlessly with form libraries and validation
+Guia completo para usar o componente Input e suas variações no Ocean Design System.
 
-## Quick Start
+## Visão Geral
 
-### Installation
+O componente Input é um elemento versátil para coleta de dados em formulários, oferecendo suporte a diversos tipos de entrada, ícones, tooltips e estados. Foi projetado para manter consistência e acessibilidade em toda a aplicação.
 
-```bash
-npm install @useblu/ocean-react
-```
+### Principais Características
 
-### Basic Import
+- **Múltiplos Tipos**: Suporte para text, email, password, number, tel, url e search
+- **Adornments Flexíveis**: Ícones, símbolos de moeda e elementos customizados
+- **Gerenciamento de Estados**: Estados normal, erro, desabilitado e foco
+- **Acessibilidade**: Suporte ARIA integrado e navegação por teclado
+- **Integração com Formulários**: Funciona perfeitamente com bibliotecas de formulários
+
+## Importação
 
 ```javascript
 import { Input } from '@useblu/ocean-react';
 ```
 
-### Simple Example
+## Uso
 
-<Canvas withSource="open">
-  <Story name="quick-start">
+O componente Input pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
+
+### Uso Básico
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
     <Input
-      label="Email Address"
+      label={INPUT_GETTING_STARTED_LABELS.emailAddress}
       name="email"
       type="email"
-      placeholder="Enter your email"
-      helperText="We'll never share your email"
+      placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample}
+      helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification}
     />
   </Story>
 </Canvas>
 
-## Input Types Overview
+### Padrões Comuns
 
-### Text Input
+```jsx
+// Uso básico
+<Input
+  label={INPUT_GETTING_STARTED_LABELS.fullName}
+  name="fullName"
+  type="text"
+  placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.fullNameExample}
+/>
 
-Basic text input for general text data collection.
+// Em formulários com validação
+<form onSubmit={handleSubmit}>
+  <Input
+    label={INPUT_GETTING_STARTED_LABELS.emailAddress}
+    name="email"
+    type="email"
+    required
+    error={!!errors.email}
+    helperText={errors.email?.message || INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification}
+  />
+  <Button type="submit">Enviar</Button>
+</form>
 
-<Canvas withSource="open">
-  <Story name="text-overview">
+// Com ícones e adornments
+<Input
+  label={INPUT_GETTING_STARTED_LABELS.searchProducts}
+  name="search"
+  type="search"
+  placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.searchExample}
+  adornment={<SearchOutline size={20} />}
+  position="right"
+/>
+```
+
+## Referência da API
+
+O componente Input é baseado no elemento `input` e suporta todos os atributos padrão HTML.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>type</td>
+      <td>
+        <code>
+          "text" | "email" | "password" | "number" | "tel" | "url" | "search"
+        </code>
+      </td>
+      <td>
+        <code>"text"</code>
+      </td>
+      <td>
+        Define o tipo do input e comportamento de validação. Use email para
+        validação automática, password para campos seguros, number para valores
+        numéricos.
+      </td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>""</code>
+      </td>
+      <td>
+        Rótulo que identifica o propósito do campo. Sempre forneça labels
+        descritivos para acessibilidade.
+      </td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>""</code>
+      </td>
+      <td>
+        Texto de exemplo que aparece quando vazio. Use para mostrar formato ou
+        exemplo de conteúdo.
+      </td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>""</code>
+      </td>
+      <td>
+        Texto auxiliar que fornece contexto ou instruções. Útil para explicar
+        requisitos ou formato esperado.
+      </td>
+    </tr>
+    <tr>
+      <td>adornment</td>
+      <td>
+        <code>ReactNode</code>
+      </td>
+      <td>
+        <code>null</code>
+      </td>
+      <td>
+        Elemento adicional (ícone, símbolo) exibido junto ao input. Use para
+        contexto visual ou funcionalidade extra.
+      </td>
+    </tr>
+    <tr>
+      <td>position</td>
+      <td>
+        <code>"left" | "right"</code>
+      </td>
+      <td>
+        <code>"right"</code>
+      </td>
+      <td>
+        Posição do adornment. Use left para símbolos de moeda, right para ícones
+        de ação.
+      </td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Define se o campo está em estado de erro. Ativa estilos visuais de erro
+        e modifica a cor do helperText.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Desabilita a interação com o campo. Use para campos calculados
+        automaticamente ou indisponíveis.
+      </td>
+    </tr>
+    <tr>
+      <td>required</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Marca o campo como obrigatório. Adiciona indicação visual e atributo
+        HTML para validação.
+      </td>
+    </tr>
+    <tr>
+      <td>tooltipMessage</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>""</code>
+      </td>
+      <td>
+        Mensagem de tooltip para informações contextuais. Use para explicações
+        que não cabem no helperText.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Exemplos
+
+### Tipos de Input
+
+Use a prop `type` para definir o comportamento e validação:
+
+- `text`: Para dados de texto geral
+- `email`: Para endereços de email com validação automática
+- `password`: Para campos de senha com ocultação
+- `number`: Para valores numéricos
+- `tel`: Para números de telefone
+- `url`: Para endereços web
+- `search`: Para funcionalidade de busca
+
+<Canvas withSource="open" withToolbar>
+  <Story name="input-types">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Full Name"
+        label={INPUT_GETTING_STARTED_LABELS.fullName}
         name="fullName"
         type="text"
-        placeholder="Enter your full name"
-        helperText="First and last name"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.fullNameExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.fullNameFormat}
       />
       <Input
-        label="Username"
-        name="username"
-        type="text"
-        placeholder="Choose a username"
-        helperText="3-20 characters, letters and numbers only"
+        label={INPUT_GETTING_STARTED_LABELS.emailAddress}
+        name="email"
+        type="email"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification}
+        adornment={<MailOutline size={20} />}
+      />
+      <Input
+        label={INPUT_GETTING_STARTED_LABELS.password}
+        name="password"
+        type="password"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.passwordExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.passwordSecurity}
+        adornment={<LockClosedOutline size={20} />}
+      />
+      <Input
+        label={INPUT_GETTING_STARTED_LABELS.age}
+        name="age"
+        type="number"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.ageExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.ageRequirement}
       />
     </div>
   </Story>
 </Canvas>
 
-### Email Input
+### Adornments
 
-Specialized for email address collection with built-in validation.
+Use a prop `adornment` com `position` para adicionar ícones ou símbolos:
 
-<Canvas withSource="open">
-  <Story name="email-overview">
-    <Input
-      label="Email Address"
-      name="email"
-      type="email"
-      placeholder="your@email.com"
-      helperText="We use this for account verification"
-      adornment={<MailOutline size={20} />}
-    />
-  </Story>
-</Canvas>
+- `position="left"`: Para símbolos de moeda, prefixos
+- `position="right"`: Para ícones de ação, sufixos
 
-### Password Input
-
-Secure password input with visibility toggle functionality.
-
-<Canvas withSource="open">
-  <Story name="password-overview">
-    <Input
-      label="Password"
-      name="password"
-      type="password"
-      placeholder="Enter your password"
-      helperText="Minimum 8 characters"
-      adornment={<LockClosedOutline size={20} />}
-    />
-  </Story>
-</Canvas>
-
-### Number Input
-
-Numeric input with built-in number validation.
-
-<Canvas withSource="open">
-  <Story name="number-overview">
-    <Input
-      label="Age"
-      name="age"
-      type="number"
-      placeholder="Enter your age"
-      helperText="Must be 18 or older"
-    />
-  </Story>
-</Canvas>
-
-## Adornment Patterns
-
-### Currency Input
-
-Perfect for monetary values with currency symbols.
-
-<Canvas withSource="open">
-  <Story name="currency-overview">
+<Canvas withSource="open" withToolbar>
+  <Story name="adornments">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Price"
+        label={INPUT_GETTING_STARTED_LABELS.price}
         name="price"
         type="text"
-        placeholder="0.00"
-        helperText="Enter amount in USD"
-        adornment={<span>$</span>}
-        position="left"
-      />
-      <Input
-        label="Salary"
-        name="salary"
-        type="text"
-        placeholder="5000.00"
-        helperText="Monthly gross salary"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.priceExample}
+        helperText="Valor em reais"
         adornment={<span>R$</span>}
         position="left"
       />
-    </div>
-  </Story>
-</Canvas>
-
-### Search Input
-
-Enhanced search functionality with search icon.
-
-<Canvas withSource="open">
-  <Story name="search-overview">
-    <Input
-      label="Search Products"
-      name="search"
-      type="search"
-      placeholder="Search for products..."
-      helperText="Use keywords to find products"
-      adornment={<SearchOutline size={20} />}
-      position="right"
-    />
-  </Story>
-</Canvas>
-
-### Icon Adornments
-
-Visual context through meaningful icons.
-
-<Canvas withSource="open">
-  <Story name="icons-overview">
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Email"
-        name="email"
-        type="email"
-        placeholder="your@email.com"
-        adornment={<MailOutline size={20} />}
-        position="left"
-      />
-      <Input
-        label="Password"
-        name="password"
-        type="password"
-        placeholder="Enter password"
-        adornment={<EyeOutline size={20} />}
+        label={INPUT_GETTING_STARTED_LABELS.searchProducts}
+        name="search"
+        type="search"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.searchExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.searchKeywords}
+        adornment={<SearchOutline size={20} />}
         position="right"
       />
     </div>
   </Story>
 </Canvas>
 
-## Interactive Features
+### Estados
 
-### Tooltip Integration
+O componente suporta diferentes estados visuais:
 
-Provide additional context without cluttering the interface.
-
-<Canvas withSource="open">
-  <Story name="tooltip-overview">
+<Canvas withSource="open" withToolbar>
+  <Story name="states">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Complex Password"
-        name="complexPassword"
-        type="password"
-        placeholder="Enter password"
-        tooltipMessage="Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters"
-        helperText="Choose a strong password"
+        label={INPUT_GETTING_STARTED_LABELS.normalField}
+        name="normal"
+        type="text"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.typeHere}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.normalState}
       />
       <Input
-        label="Tax ID"
-        name="taxId"
+        label={INPUT_GETTING_STARTED_LABELS.errorField}
+        name="error"
+        type="email"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.invalidEmail}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.validationError}
+        error
+      />
+      <Input
+        label={INPUT_GETTING_STARTED_LABELS.disabledField}
+        name="disabled"
         type="text"
-        placeholder="000.000.000-00"
-        tooltipMessage="Enter your CPF (individuals) or CNPJ (companies). This information is encrypted and used only for tax purposes."
-        helperText="Individual or company tax ID"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.cannotEdit}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.autoFilled}
+        disabled
       />
     </div>
   </Story>
 </Canvas>
 
-## Input States
+### Tooltip
 
-### Normal State
+Use `tooltipMessage` para informações contextuais adicionais:
 
-Standard input ready for user interaction.
-
-<Canvas withSource="open">
-  <Story name="normal-state">
-    <Input
-      label="Normal Input"
-      name="normal"
-      type="text"
-      placeholder="Enter text..."
-      helperText="This is a normal input state"
-    />
+<Canvas withSource="open" withToolbar>
+  <Story name="tooltip">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label={INPUT_GETTING_STARTED_LABELS.complexPassword}
+        name="complexPassword"
+        type="password"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.strongPasswordExample}
+        tooltipMessage={INPUT_GETTING_STARTED_TOOLTIPS.passwordComplexity}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.passwordComplexity}
+      />
+      <Input
+        label={INPUT_GETTING_STARTED_LABELS.taxId}
+        name="taxId"
+        type="text"
+        placeholder="000.000.000-00"
+        tooltipMessage={INPUT_GETTING_STARTED_TOOLTIPS.taxIdPurpose}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.taxIdInfo}
+      />
+    </div>
   </Story>
 </Canvas>
 
-### Error State
+## Integração com Formulários
 
-Input with validation error styling and messaging.
+### Formulário de Registro
 
-<Canvas withSource="open">
-  <Story name="error-state">
-    <Input
-      label="Invalid Email"
-      name="invalidEmail"
-      type="email"
-      placeholder="invalid-email"
-      helperText="Please enter a valid email address"
-      error
-    />
-  </Story>
-</Canvas>
-
-### Disabled State
-
-Input that cannot be interacted with.
-
-<Canvas withSource="open">
-  <Story name="disabled-state">
-    <Input
-      label="Disabled Input"
-      name="disabled"
-      type="text"
-      placeholder="Cannot edit"
-      helperText="This field is automatically filled"
-      disabled
-    />
-  </Story>
-</Canvas>
-
-## Common Use Cases
-
-### Registration Form
-
-Complete user registration with various input types.
-
-<Canvas withSource="open">
+<Canvas withSource="open" withToolbar>
   <Story name="registration-form">
     <form
       style={{
@@ -310,48 +535,46 @@ Complete user registration with various input types.
       }}
     >
       <Input
-        label="Full Name"
+        label={INPUT_GETTING_STARTED_LABELS.fullName}
         name="fullName"
         type="text"
-        placeholder="Enter your full name"
-        helperText="First and last name"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.fullNameExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.fullNameFormat}
         required
       />
       <Input
-        label="Email Address"
+        label={INPUT_GETTING_STARTED_LABELS.emailAddress}
         name="email"
         type="email"
-        placeholder="your@email.com"
-        helperText="Used for account verification"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification}
         adornment={<MailOutline size={20} />}
         required
       />
       <Input
-        label="Password"
+        label={INPUT_GETTING_STARTED_LABELS.password}
         name="password"
         type="password"
-        placeholder="Choose a strong password"
-        tooltipMessage="Password must be at least 8 characters and include numbers and special characters"
-        helperText="Minimum 8 characters"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.strongPasswordExample}
+        tooltipMessage={INPUT_GETTING_STARTED_TOOLTIPS.registrationPassword}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.passwordSecurity}
         adornment={<LockClosedOutline size={20} />}
         required
       />
       <Input
-        label="Phone Number"
+        label={INPUT_GETTING_STARTED_LABELS.phoneNumber}
         name="phone"
         type="tel"
-        placeholder="(11) 99999-9999"
-        helperText="Include area code"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.phoneExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.phoneFormat}
       />
     </form>
   </Story>
 </Canvas>
 
-### E-commerce Product Form
+### Formulário de E-commerce
 
-Product information with currency and numeric inputs.
-
-<Canvas withSource="open">
+<Canvas withSource="open" withToolbar>
   <Story name="ecommerce-form">
     <form
       style={{
@@ -362,142 +585,104 @@ Product information with currency and numeric inputs.
       }}
     >
       <Input
-        label="Product Name"
+        label={INPUT_GETTING_STARTED_LABELS.productName}
         name="productName"
         type="text"
-        placeholder="Enter product name"
-        helperText="Descriptive product title"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.productNameExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.productTitle}
         required
       />
       <Input
-        label="Price"
+        label={INPUT_GETTING_STARTED_LABELS.price}
         name="price"
         type="text"
-        placeholder="0.00"
-        helperText="Product selling price"
-        adornment={<span>$</span>}
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.priceExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.sellingPrice}
+        adornment={<span>R$</span>}
         position="left"
         required
       />
       <Input
-        label="Quantity in Stock"
+        label={INPUT_GETTING_STARTED_LABELS.quantityStock}
         name="quantity"
         type="number"
-        placeholder="0"
-        helperText="Available inventory"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.quantityExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.availableInventory}
         required
       />
       <Input
-        label="SKU"
+        label={INPUT_GETTING_STARTED_LABELS.sku}
         name="sku"
         type="text"
-        placeholder="PROD-001"
-        helperText="Unique product identifier"
-        tooltipMessage="Stock Keeping Unit - used for inventory tracking and should be unique across all products"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.skuExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.uniqueIdentifier}
+        tooltipMessage={INPUT_GETTING_STARTED_TOOLTIPS.skuExplanation}
       />
     </form>
   </Story>
 </Canvas>
 
-### Search and Filter Interface
+## Melhores Práticas
 
-Search functionality with various filter options.
+### 1. Uso Geral
 
-<Canvas withSource="open">
-  <Story name="search-interface">
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '500px',
-      }}
-    >
-      <Input
-        label="Search Products"
-        name="productSearch"
-        type="search"
-        placeholder="Search for products, brands, or categories..."
-        helperText="Use keywords to find what you're looking for"
-        adornment={<SearchOutline size={20} />}
-        position="right"
-      />
-      <div style={{ display: 'flex', gap: '16px' }}>
-        <Input
-          label="Min Price"
-          name="minPrice"
-          type="text"
-          placeholder="0.00"
-          helperText="Minimum price"
-          adornment={<span>$</span>}
-          position="left"
-        />
-        <Input
-          label="Max Price"
-          name="maxPrice"
-          type="text"
-          placeholder="1000.00"
-          helperText="Maximum price"
-          adornment={<span>$</span>}
-          position="left"
-        />
-      </div>
-    </div>
+- Use tipos apropriados para melhor validação e teclados móveis
+- Sempre forneça labels descritivos para acessibilidade
+- Use placeholders para mostrar formato ou exemplos
+- Combine helperText e tooltips para orientação clara
+
+### 2. Tipos de Input
+
+- `email`: Para endereços de email com validação automática
+- `password`: Para campos seguros com ocultação de texto
+- `number`: Para valores numéricos com validação
+- `tel`: Para números de telefone com teclado numérico no mobile
+- `search`: Para funcionalidade de busca com comportamento específico
+
+### 3. Adornments
+
+- Use `position="left"` para símbolos de moeda e prefixos
+- Use `position="right"` para ícones de ação e funcionalidades
+- Mantenha ícones simples e reconhecíveis
+- Use tamanho 20px para ícones Ocean Icons
+
+### 4. Estados e Validação
+
+- Use `error` para campos com validação falhada
+- Combine com helperText para mensagens de erro específicas
+- Use `disabled` apenas quando necessário e explique o motivo
+- Marque campos obrigatórios com `required`
+
+### 5. Acessibilidade
+
+- Sempre forneça labels claros e descritivos
+- Use helperText para instruções importantes
+- Mantenha ordem de tabulação lógica
+- Forneça feedback claro para estados de erro
+- Use tooltips para informações adicionais, não essenciais
+
+## Props
+
+<ArgsTable of={Input} />
+
+A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será passada para o elemento raiz.
+
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      label: INPUT_GETTING_STARTED_LABELS.emailAddress,
+      name: 'field',
+      type: 'email',
+      placeholder: INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample,
+      helperText: INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification,
+      error: false,
+      disabled: false,
+      required: false,
+    }}
+  >
+    {(args) => <Input {...args} />}
   </Story>
 </Canvas>
-
-## Best Practices
-
-### When to Use Input Component
-
-✅ **Do use Input for:**
-
-- Single-line text data collection
-- Email addresses, passwords, and URLs
-- Numeric values with validation
-- Search functionality
-- Form fields with clear labels
-
-❌ **Don't use Input for:**
-
-- Multi-line text (use TextArea instead)
-- Selecting from predefined options (use Select instead)
-- Date selection (use DatePicker instead)
-- File uploads (use FileUpload instead)
-
-### Accessibility Guidelines
-
-- Always provide clear, descriptive labels
-- Use appropriate input types for better mobile keyboards
-- Include helpful placeholder text and helper text
-- Use tooltips for additional context, not essential information
-- Ensure proper tab order and keyboard navigation
-- Provide clear error messages and validation feedback
-
-### Content Guidelines
-
-- **Labels**: Clear, concise, and descriptive
-- **Placeholders**: Show format examples or brief hints
-- **Helper Text**: Provide context or formatting requirements
-- **Tooltips**: Additional information that doesn't fit elsewhere
-- **Error Messages**: Specific, actionable guidance for fixing issues
-
-## Component Variations
-
-The Input component is part of a larger family of form components:
-
-- **Input**: Single-line text input (this component)
-- **TextArea**: Multi-line text input
-- **Select**: Dropdown selection from options
-- **Stepper**: Numeric input with increment/decrement controls
-- **DatePicker**: Date and time selection
-- **FileUpload**: File selection and upload
-
-## Next Steps
-
-- **Detailed Documentation**: Visit individual component pages for comprehensive API references
-- **Form Integration**: Learn about form validation and state management
-- **Design Tokens**: Understand the design system tokens used in Input components
-- **Advanced Patterns**: Explore complex form patterns and validation strategies
-
-Explore the specific Input variations in the sidebar to learn more about each implementation pattern and see detailed examples.

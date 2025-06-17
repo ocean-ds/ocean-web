@@ -3,6 +3,11 @@ description:
 globs: 
 alwaysApply: false
 ---
+---
+description:
+globs:
+alwaysApply: false
+---
 # Ocean Web - Component Documentation Guidelines
 
 Esta documentação estabelece padrões para criar documentação de componentes no ocean-web que seja clara, consistente e amigável para IA.
@@ -14,6 +19,24 @@ Esta documentação estabelece padrões para criar documentação de componentes
 ```mdx
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import ComponentName from '../ComponentName';
+
+export const COMPONENT_LABELS = {
+  basicLabel: 'Label Básico',
+  advancedLabel: 'Label Avançado',
+  requiredField: 'Campo Obrigatório',
+};
+
+export const COMPONENT_HELPER_TEXTS = {
+  basicHelp: 'Texto de ajuda básico',
+  validationHelp: 'Mensagem de validação',
+  formatHelp: 'Formato esperado do campo',
+};
+
+export const COMPONENT_PLACEHOLDERS = {
+  basicPlaceholder: 'Digite algo...',
+  emailPlaceholder: 'seu@email.com',
+  numberPlaceholder: '0',
+};
 
 <Meta
   title="Components/ComponentName"
@@ -68,19 +91,34 @@ O componente ComponentName pode ser usado em vários contextos. Aqui estão algu
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <ComponentName>Exemplo Básico</ComponentName>
+    <ComponentName
+      label={COMPONENT_LABELS.basicLabel}
+      placeholder={COMPONENT_PLACEHOLDERS.basicPlaceholder}
+      helperText={COMPONENT_HELPER_TEXTS.basicHelp}
+    >
+      Exemplo Básico
+    </ComponentName>
   </Story>
 </Canvas>
 
 ### Padrões Comuns
 
 ```jsx
-// Exemplo de uso comum
-<ComponentName prop="value">Conteúdo</ComponentName>
+// Exemplo de uso comum usando variáveis
+<ComponentName
+  label={COMPONENT_LABELS.basicLabel}
+  placeholder={COMPONENT_PLACEHOLDERS.basicPlaceholder}
+>
+  Conteúdo
+</ComponentName>
 
 // Exemplo em formulários
 <form onSubmit={handleSubmit}>
-  <ComponentName name="fieldName" />
+  <ComponentName
+    label={COMPONENT_LABELS.requiredField}
+    name="fieldName"
+    required
+  />
 </form>
 ```
 ````
@@ -127,8 +165,18 @@ Use a prop `propName` para controlar o comportamento:
 <Canvas withSource="open" withToolbar>
   <Story name="prop-example">
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <ComponentName propName="value1">Exemplo 1</ComponentName>
-      <ComponentName propName="value2">Exemplo 2</ComponentName>
+      <ComponentName
+        propName="value1"
+        label={COMPONENT_LABELS.basicLabel}
+      >
+        {COMPONENT_LABELS.basicLabel}
+      </ComponentName>
+      <ComponentName
+        propName="value2"
+        label={COMPONENT_LABELS.advancedLabel}
+      >
+        {COMPONENT_LABELS.advancedLabel}
+      </ComponentName>
     </div>
   </Story>
 </Canvas>
@@ -153,11 +201,188 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
   <Story
     name="playground"
     args={{
-      children: 'Conteúdo do Componente',
+      children: COMPONENT_LABELS.basicLabel,
       propName: 'value1',
     }}
   >
     {(args) => <ComponentName {...args} />}
+  </Story>
+</Canvas>
+```
+
+## Uso de Variáveis Exportadas
+
+### Por que Usar Variáveis
+
+**✅ SEMPRE use variáveis exportadas para:**
+
+- Labels de campos
+- Textos de ajuda (helperText)
+- Placeholders
+- Mensagens de validação
+- Conteúdo repetido ou reutilizável
+
+**Benefícios:**
+
+- **Consistência**: Mesmos textos em todos os exemplos
+- **Manutenibilidade**: Mudanças centralizadas
+- **Reutilização**: Fácil acesso aos valores
+- **Legibilidade**: Código mais limpo e organizado
+
+### Padrão de Nomenclatura
+
+```mdx
+export const CURRENCY_LABELS = {
+  price: 'Preço',
+  productPrice: 'Preço do Produto',
+  realBrasileiro: 'Real Brasileiro',
+};
+
+export const CURRENCY_HELPER_TEXTS = {
+  digitePrecoBrasileiro: 'Digite o preço em Real brasileiro',
+  moedaBrasileira: 'Moeda brasileira',
+  precoMaiorZero: 'O preço deve ser maior que 0',
+};
+
+export const CURRENCY_PLACEHOLDERS = {
+  priceAmount: '0,00',
+  dollarAmount: '0.00',
+  euroAmount: '0,00',
+};
+```
+
+### Estrutura das Variáveis
+
+**1. COMPONENT_LABELS**: Para rótulos de campos
+
+```mdx
+export const COMPONENT_LABELS = {
+  basicField: 'Campo Básico',
+  requiredField: 'Campo Obrigatório',
+  optionalField: 'Campo Opcional',
+  primaryButton: 'Botão Principal',
+  secondaryButton: 'Botão Secundário',
+};
+```
+
+**2. COMPONENT_HELPER_TEXTS**: Para textos de ajuda
+
+```mdx
+export const COMPONENT_HELPER_TEXTS = {
+  basicInstruction: 'Digite as informações solicitadas',
+  formatRequirement: 'Use o formato DD/MM/AAAA',
+  validationMessage: 'Este campo é obrigatório',
+  emailVerification: 'Usado para verificação da conta',
+  passwordSecurity: 'Mínimo 8 caracteres',
+};
+```
+
+**3. COMPONENT_PLACEHOLDERS**: Para textos de exemplo
+
+```mdx
+export const COMPONENT_PLACEHOLDERS = {
+  emailExample: 'seu@email.com',
+  phoneExample: '(11) 99999-9999',
+  dateExample: 'DD/MM/AAAA',
+  defaultAmount: '0,00',
+  searchQuery: 'Digite sua busca...',
+};
+```
+
+### Exemplo Completo de Uso
+
+```mdx
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import Input from '../Input';
+
+export const INPUT_LABELS = {
+  email: 'Email',
+  password: 'Senha',
+  fullName: 'Nome Completo',
+  phoneNumber: 'Telefone',
+};
+
+export const INPUT_HELPER_TEXTS = {
+  emailVerification: 'Usado para verificação da conta',
+  passwordSecurity: 'Mínimo 8 caracteres',
+  fullNameFormat: 'Nome e sobrenome',
+  phoneFormat: 'Inclua o DDD',
+};
+
+export const INPUT_PLACEHOLDERS = {
+  emailExample: 'seu@email.com',
+  passwordExample: 'Digite sua senha',
+  fullNameExample: 'João Silva',
+  phoneExample: '(11) 99999-9999',
+};
+
+<Meta title="Components/Input" component={Input} />
+
+# Input
+
+## Uso Básico
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Input
+      label={INPUT_LABELS.email}
+      placeholder={INPUT_PLACEHOLDERS.emailExample}
+      helperText={INPUT_HELPER_TEXTS.emailVerification}
+    />
+  </Story>
+</Canvas>
+
+## Formulário Completo
+
+<Canvas withSource="open" withToolbar>
+  <Story name="form-example">
+    <form style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Input
+        label={INPUT_LABELS.fullName}
+        placeholder={INPUT_PLACEHOLDERS.fullNameExample}
+        helperText={INPUT_HELPER_TEXTS.fullNameFormat}
+      />
+      <Input
+        label={INPUT_LABELS.email}
+        type="email"
+        placeholder={INPUT_PLACEHOLDERS.emailExample}
+        helperText={INPUT_HELPER_TEXTS.emailVerification}
+      />
+      <Input
+        label={INPUT_LABELS.password}
+        type="password"
+        placeholder={INPUT_PLACEHOLDERS.passwordExample}
+        helperText={INPUT_HELPER_TEXTS.passwordSecurity}
+      />
+      <Input
+        label={INPUT_LABELS.phoneNumber}
+        type="tel"
+        placeholder={INPUT_PLACEHOLDERS.phoneExample}
+        helperText={INPUT_HELPER_TEXTS.phoneFormat}
+      />
+    </form>
+  </Story>
+</Canvas>
+```
+
+### Playground com Variáveis
+
+```mdx
+## Playground
+
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      label: INPUT_LABELS.email,
+      placeholder: INPUT_PLACEHOLDERS.emailExample,
+      helperText: INPUT_HELPER_TEXTS.emailVerification,
+      type: 'email',
+      error: false,
+      disabled: false,
+    }}
+  >
+    {(args) => <Input {...args} />}
   </Story>
 </Canvas>
 ```
@@ -248,7 +473,10 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
 
 ```jsx
 <form onSubmit={handleSubmit}>
-  <ComponentName name="fieldName" />
+  <ComponentName
+    label={COMPONENT_LABELS.requiredField}
+    name="fieldName"
+  />
   <Button type="submit">Submit</Button>
 </form>
 ```
@@ -257,7 +485,12 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
 
 ```jsx
 <form onSubmit={handleSubmit}>
-  <ComponentName required />
+  <ComponentName
+    label={COMPONENT_LABELS.validatedField}
+    required
+    error={!!errors.field}
+    helperText={errors.field?.message || COMPONENT_HELPER_TEXTS.normalHelp}
+  />
   <Button type="submit" disabled={!isFormValid} loading={isSubmitting}>
     {isSubmitting ? 'Validando...' : 'Criar'}
   </Button>
@@ -333,8 +566,18 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
       flexWrap: 'wrap',
       alignItems: 'center',
     }}>
-      <ComponentName variant="primary">Primary</ComponentName>
-      <ComponentName variant="secondary">Secondary</ComponentName>
+      <ComponentName
+        variant="primary"
+        label={COMPONENT_LABELS.primary}
+      >
+        {COMPONENT_LABELS.primary}
+      </ComponentName>
+      <ComponentName
+        variant="secondary"
+        label={COMPONENT_LABELS.secondary}
+      >
+        {COMPONENT_LABELS.secondary}
+      </ComponentName>
     </div>
   </Story>
 </Canvas>
@@ -351,7 +594,12 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      <ComponentName blocked>Componente Bloco</ComponentName>
+      <ComponentName
+        blocked
+        label={COMPONENT_LABELS.blockedExample}
+      >
+        {COMPONENT_LABELS.blockedExample}
+      </ComponentName>
     </div>
   </Story>
 </Canvas>
@@ -379,7 +627,7 @@ Quando true, o componente ocupa toda a largura do container. Útil para interfac
 
 ### 6. Exemplos por Estado
 
-**✅ Mostre todos os estados relevantes:**
+**✅ Mostre todos os estados relevantes usando variáveis:**
 
 ```mdx
 ### Estados Desabilitados por Variante
@@ -387,8 +635,20 @@ Quando true, o componente ocupa toda a largura do container. Útil para interfac
 <Canvas withSource="open" withToolbar>
   <Story name="disabled-variants">
     <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      <ComponentName variant="primary" disabled>Primary</ComponentName>
-      <ComponentName variant="secondary" disabled>Secondary</ComponentName>
+      <ComponentName
+        variant="primary"
+        disabled
+        label={COMPONENT_LABELS.disabledPrimary}
+      >
+        {COMPONENT_LABELS.disabledPrimary}
+      </ComponentName>
+      <ComponentName
+        variant="secondary"
+        disabled
+        label={COMPONENT_LABELS.disabledSecondary}
+      >
+        {COMPONENT_LABELS.disabledSecondary}
+      </ComponentName>
     </div>
   </Story>
 </Canvas>
@@ -418,39 +678,43 @@ The variant to use.
 
 ### Exemplos de Código
 
-- Sempre inclua exemplos práticos
+- Sempre inclua exemplos práticos usando as variáveis exportadas
 - Use nomes descritivos para props
 - Inclua contexto de layout quando relevante
 - Forneça exemplos de agrupamento/composição
 - **NOVO:** Use containers com estilos inline para demonstração
+- **NOVO:** Use variáveis exportadas consistentemente
 
 ### Casos de Uso
 
 - Liste casos de uso específicos para cada prop
 - Use bullets para facilitar leitura
-- Inclua exemplos de texto/conteúdo
+- Inclua exemplos de texto/conteúdo usando as variáveis
 - Mencione considerações de acessibilidade
-- **NOVO:** Agrupe por contexto (formulários, navegação, etc.)
+- **NOVO:** Agrupe por contexto (formuláavegação, etc.)
 
-## Seções Específicas por Tipo
+## Seçõpor Tipo
 
-### Para Componentes de Formulário
+### Para Componen Formulário
 
 ````mdx
-## Integração com Formulários
+egração com Formulários
 
 ### Uso em Formulários
 
 ```jsx
 <form onSubmit={handleSubmit}>
-  <ComponentName name="fieldName" />
+  <ComponentName
+    label={COMPONENT_LABELS.fieldName}
+    name="fieldName"
+  />
   <Button type="submit">Submit</Button>
 </form>
 ```
 
 ### Validação
 
-[Exemplos de validação e estados de erro]
+[Exemplos de validação e estados de erro usando variáveis]
 ````
 
 ### Para Componentes Interativos
@@ -512,19 +776,21 @@ The variant to use.
 - Use headers hierárquicos corretamente
 - Mantenha formatação consistente
 - **NOVO:** Use tabelas HTML para todas as referências de API
+- **NOVO:** Use variáveis exportadas para todos os textos reutilizáveis
 
 ### 2. Exemplos Práticos
 
-- Inclua exemplos de código completos
+- Inclua exemplos de código completos usando variáveis
 - Forneça exemplos de layout/composição
 - Mostre padrões de uso comuns
 - Inclua exemplos de integração
 - **NOVO:** Use containers com estilos inline para demonstração
+- **NOVO:** Mantenha consistência através de variáveis exportadas
 
 ### 3. Contexto de Uso
 
 - Explique QUANDO usar cada prop/variante
-- Forneça exemplos de texto apropriado
+- Forneça exemplos de texto apropriado usando as variáveis
 - Inclua considerações de UX
 - Mencione melhores práticas
 - **NOVO:** Agrupe exemplos por contexto de uso
@@ -543,9 +809,24 @@ Use a prop `size` para controlar o tamanho do componente:
 <Canvas withSource="open" withToolbar>
   <Story name="sizes">
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <Component size="sm">Pequeno</Component>
-      <Component size="md">Médio</Component>
-      <Component size="lg">Grande</Component>
+      <Component
+        size="sm"
+        label={COMPONENT_LABELS.smallSize}
+      >
+        {COMPONENT_LABELS.smallSize}
+      </Component>
+      <Component
+        size="md"
+        label={COMPONENT_LABELS.mediumSize}
+      >
+        {COMPONENT_LABELS.mediumSize}
+      </Component>
+      <Component
+        size="lg"
+        label={COMPONENT_LABELS.largeSize}
+      >
+        {COMPONENT_LABELS.largeSize}
+      </Component>
     </div>
   </Story>
 </Canvas>
@@ -556,6 +837,25 @@ Use a prop `size` para controlar o tamanho do componente:
 ````mdx
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import ComponentName from '../ComponentName';
+
+export const COMPONENT_LABELS = {
+  basic: 'Componente Básico',
+  primary: 'Primário',
+  secondary: 'Secundário',
+  disabled: 'Desabilitado',
+};
+
+export const COMPONENT_HELPER_TEXTS = {
+  basicHelp: 'Texto de ajuda básico',
+  primaryHelp: 'Use para ações principais',
+  secondaryHelp: 'Use para ações secundárias',
+  disabledHelp: 'Campo desabilitado',
+};
+
+export const COMPONENT_PLACEHOLDERS = {
+  basicPlaceholder: 'Digite algo...',
+  advancedPlaceholder: 'Conteúdo avançado...',
+};
 
 <Meta
   title="Components/ComponentName"
@@ -596,7 +896,9 @@ O componente ComponentName pode ser usado em vários contextos. Aqui estão algu
 
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
-    <ComponentName>Conteúdo</ComponentName>
+    <ComponentName label={COMPONENT_LABELS.basic}>
+      {COMPONENT_LABELS.basic}
+    </ComponentName>
   </Story>
 </Canvas>
 
@@ -604,11 +906,16 @@ O componente ComponentName pode ser usado em vários contextos. Aqui estão algu
 
 ```jsx
 // Exemplo básico
-<ComponentName>Conteúdo</ComponentName>
+<ComponentName label={COMPONENT_LABELS.basic}>
+  {COMPONENT_LABELS.basic}
+</ComponentName>
 
 // Em formulários
 <form onSubmit={handleSubmit}>
-  <ComponentName name="field" />
+  <ComponentName
+    label={COMPONENT_LABELS.primary}
+    name="field"
+  />
 </form>
 ```
 
@@ -647,8 +954,18 @@ Use a prop `variant` para definir o estilo visual:
 <Canvas withSource="open" withToolbar>
   <Story name="variants">
     <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <ComponentName variant="primary">Primary</ComponentName>
-      <ComponentName variant="secondary">Secondary</ComponentName>
+      <ComponentName
+        variant="primary"
+        label={COMPONENT_LABELS.primary}
+      >
+        {COMPONENT_LABELS.primary}
+      </ComponentName>
+      <ComponentName
+        variant="secondary"
+        label={COMPONENT_LABELS.secondary}
+      >
+        {COMPONENT_LABELS.secondary}
+      </ComponentName>
     </div>
   </Story>
 </Canvas>
@@ -665,7 +982,7 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
   <Story
     name="playground"
     args={{
-      children: 'Conteúdo',
+      children: COMPONENT_LABELS.basic,
       variant: 'primary',
     }}
   >
@@ -683,23 +1000,26 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
 - [ ] Headers hierárquicos corretos
 - [ ] Import correto
 - [ ] **NOVO:** Tabelas HTML usadas para API Reference
+- [ ] **NOVO:** Variáveis exportadas definidas no início (sem comentários)
 
 ### ✅ Conteúdo
 
 - [ ] Descrição clara do propósito
 - [ ] API Reference completa com tabelas HTML
-- [ ] Exemplos práticos para cada prop
+- [ ] Exemplos práticos para cada prop usando variáveis
 - [ ] Casos de uso específicos
 - [ ] Padrões de layout/composição
 - [ ] **NOVO:** argTypes detalhados no Meta
+- [ ] **NOVO:** Uso consistente das variáveis exportadas
 
 ### ✅ Exemplos
 
 - [ ] Código funcional
-- [ ] Nomes descritivos
+- [ ] Nomes descritivos usando variáveis
 - [ ] Contexto de uso claro
 - [ ] Exemplos de integração
 - [ ] **NOVO:** Containers com estilos inline para demonstração
+- [ ] **NOVO:** Variáveis usadas em todos os Stories
 
 ### ✅ IA-Friendly
 
@@ -708,6 +1028,7 @@ A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será p
 - [ ] Contexto de uso claro
 - [ ] Padrões bem documentados
 - [ ] **NOVO:** Tabelas HTML para referências de API
+- [ ] **NOVO:** Variáveis exportadas para manutenibilidade (sem comentários)
 
 ## Ferramentas e Recursos
 
@@ -733,29 +1054,14 @@ npm run storybook
 ## Exemplos de Referência
 
 - ✅ [Button](mdc:packages/ocean-react/src/Button/stories/Button.stories.mdx) - Exemplo completo
-- ✅ [Currency Input](mdc:packages/ocean-react/src/Input/stories/Currency.stories.mdx) - Exemplo atualizado
+- ✅ [Currency Input](mdc:packages/ocean-react/src/Input/stories/Currency.stories.mdx) - Exemplo com variáveis exportadas
+- ✅ [Input Getting Started](mdc:packages/ocean-react/src/Input/stories/Getting-started.stories.mdx) - Exemplo atualizado
 - 🔄 [Input](mdc:packages/ocean-react/src/Input/stories/Input.stories.mdx) - Em andamento
 - 📝 [Modal](mdc:packages/ocean-react/src/Modal/stories/Modal.stories.mdx) - Planejado
 
 ---
 
-**Versão:** 2.1  
+**Versão:** 2.3  
 **Última atualização:** Dezembro 2024  
 **Responsável:** Equipe Ocean Web  
 **Review:** Necessário antes de merge
-
-## Changelog
-
-### v2.1 - Dezembro 2024
-- ✅ Atualizado para usar tabelas HTML padrão
-- ✅ Simplificado template base
-- ✅ Atualizado checklist de qualidade
-- ✅ Adicionado Currency Input como exemplo de referência
-
-### v2.0 - Dezembro 2024
-- ✅ Melhorada estrutura de argTypes no Meta
-- ✅ Adicionados padrões de layout com estilos inline
-- ✅ Expandidas seções de melhores práticas
-- ✅ Melhoradas descrições de props com contexto de uso
-- ✅ Adicionada seção de Classes CSS
-- ✅ Atualizado template base com todas as melhorias

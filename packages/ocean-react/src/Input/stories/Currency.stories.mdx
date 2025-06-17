@@ -1,6 +1,46 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
 
+export const CURRENCY_LABELS = {
+  price: 'Preço',
+  productPrice: 'Preço do Produto',
+  realBrasileiro: 'Real Brasileiro',
+  dolarAmericano: 'Dólar Americano',
+  euro: 'Euro',
+  libraEsterlina: 'Libra Esterlina',
+  simboloEsquerda: 'Símbolo à Esquerda',
+  codigoDireita: 'Código à Direita',
+  precoNormal: 'Preço Normal',
+  precoInvalido: 'Preço Inválido',
+  precoDesabilitado: 'Preço Desabilitado',
+  valorValido: 'Valor Válido',
+  valorMuitoAlto: 'Valor Muito Alto',
+  valorObrigatorio: 'Valor Obrigatório',
+  precoCusto: 'Preço de Custo',
+  frete: 'Frete',
+  desconto: 'Desconto',
+};
+
+export const CURRENCY_HELPER_TEXTS = {
+  digitePrecoBrasileiro: 'Digite o preço em Real brasileiro',
+  moedaBrasileira: 'Moeda brasileira',
+  moedaAmericana: 'Moeda americana',
+  moedaEuropeia: 'Moeda europeia',
+  moedaBritanica: 'Moeda britânica',
+  comumMaioriaMoedas: 'Comum para a maioria das moedas',
+  utilCodigosMoeda: 'Útil para códigos de moeda',
+  digitePrecoProduto: 'Digite o preço do produto',
+  precoMaiorZero: 'O preço deve ser maior que 0',
+  precoCalculadoAuto: 'Preço calculado automaticamente',
+  valorDentroLimite: 'Valor dentro do limite permitido',
+  valorExcedeLimite: 'Valor excede o limite máximo de R$ 5.000,00',
+  campoObrigatorio: 'Este campo é obrigatório',
+  precoFinalImpostos: 'Preço final incluindo impostos',
+  custoProduto: 'Seu custo para este produto',
+  custosEnvio: 'Custos adicionais de envio',
+  valorDesconto: 'Valor do desconto (se aplicável)',
+};
+
 <Meta
   title="Components/Inputs/Currency Input"
   component={Input}
@@ -112,13 +152,13 @@ Os inputs de moeda fornecem indicação visual clara do formato monetário esper
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
     <Input
-      label="Preço"
+      label={CURRENCY_LABELS.price}
       name="price"
       type="text"
       placeholder="0,00"
       adornment={<span>R$</span>}
       position="left"
-      helperText="Digite o preço em Real brasileiro"
+      helperText={CURRENCY_HELPER_TEXTS.digitePrecoBrasileiro}
     />
   </Story>
 </Canvas>
@@ -292,40 +332,40 @@ Use a prop `adornment` com diferentes símbolos de moeda:
   <Story name="currencies">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Real Brasileiro"
+        label={CURRENCY_LABELS.realBrasileiro}
         name="brl"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Moeda brasileira"
+        helperText={CURRENCY_HELPER_TEXTS.moedaBrasileira}
       />
       <Input
-        label="Dólar Americano"
+        label={CURRENCY_LABELS.dolarAmericano}
         name="usd"
         type="text"
         placeholder="0.00"
         adornment={<span>$</span>}
         position="left"
-        helperText="Moeda americana"
+        helperText={CURRENCY_HELPER_TEXTS.moedaAmericana}
       />
       <Input
-        label="Euro"
+        label={CURRENCY_LABELS.euro}
         name="eur"
         type="text"
         placeholder="0,00"
         adornment={<span>€</span>}
         position="left"
-        helperText="Moeda europeia"
+        helperText={CURRENCY_HELPER_TEXTS.moedaEuropeia}
       />
       <Input
-        label="Libra Esterlina"
+        label={CURRENCY_LABELS.libraEsterlina}
         name="gbp"
         type="text"
         placeholder="0.00"
         adornment={<span>£</span>}
         position="left"
-        helperText="Moeda britânica"
+        helperText={CURRENCY_HELPER_TEXTS.moedaBritanica}
       />
     </div>
   </Story>
@@ -342,22 +382,22 @@ Use a prop `position` para controlar onde o símbolo aparece:
   <Story name="positions">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Símbolo à Esquerda"
+        label={CURRENCY_LABELS.simboloEsquerda}
         name="leftSymbol"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Comum para a maioria das moedas"
+        helperText={CURRENCY_HELPER_TEXTS.comumMaioriaMoedas}
       />
       <Input
-        label="Código à Direita"
+        label={CURRENCY_LABELS.codigoDireita}
         name="rightCode"
         type="text"
         placeholder="0,00"
         adornment={<span>BRL</span>}
         position="right"
-        helperText="Útil para códigos de moeda"
+        helperText={CURRENCY_HELPER_TEXTS.utilCodigosMoeda}
       />
     </div>
   </Story>
@@ -371,32 +411,32 @@ Os inputs de moeda suportam vários estados para validação e feedback:
   <Story name="states">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Preço Normal"
+        label={CURRENCY_LABELS.precoNormal}
         name="normal"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Digite o preço do produto"
+        helperText={CURRENCY_HELPER_TEXTS.digitePrecoProduto}
       />
       <Input
-        label="Preço Inválido"
+        label={CURRENCY_LABELS.precoInvalido}
         name="error"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="O preço deve ser maior que 0"
+        helperText={CURRENCY_HELPER_TEXTS.precoMaiorZero}
         error
       />
       <Input
-        label="Preço Desabilitado"
+        label={CURRENCY_LABELS.precoDesabilitado}
         name="disabled"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Preço calculado automaticamente"
+        helperText={CURRENCY_HELPER_TEXTS.precoCalculadoAuto}
         disabled
       />
     </div>
@@ -411,32 +451,32 @@ Exemplos de diferentes estados para validação:
   <Story name="validation-states">
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label="Valor Válido"
+        label={CURRENCY_LABELS.valorValido}
         name="valid"
         type="text"
         value="150,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Valor dentro do limite permitido"
+        helperText={CURRENCY_HELPER_TEXTS.valorDentroLimite}
       />
       <Input
-        label="Valor Muito Alto"
+        label={CURRENCY_LABELS.valorMuitoAlto}
         name="tooHigh"
         type="text"
         value="10.000,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Valor excede o limite máximo de R$ 5.000,00"
+        helperText={CURRENCY_HELPER_TEXTS.valorExcedeLimite}
         error
       />
       <Input
-        label="Valor Obrigatório"
+        label={CURRENCY_LABELS.valorObrigatorio}
         name="required"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Este campo é obrigatório"
+        helperText={CURRENCY_HELPER_TEXTS.campoObrigatorio}
         error
       />
     </div>
@@ -458,41 +498,41 @@ Exemplo prático em um formulário de precificação de produto:
       }}
     >
       <Input
-        label="Preço do Produto"
+        label={CURRENCY_LABELS.productPrice}
         name="productPrice"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Preço final incluindo impostos"
+        helperText={CURRENCY_HELPER_TEXTS.precoFinalImpostos}
         required
       />
       <Input
-        label="Preço de Custo"
+        label={CURRENCY_LABELS.precoCusto}
         name="costPrice"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Seu custo para este produto"
+        helperText={CURRENCY_HELPER_TEXTS.custoProduto}
       />
       <Input
-        label="Frete"
+        label={CURRENCY_LABELS.frete}
         name="shipping"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Custos adicionais de envio"
+        helperText={CURRENCY_HELPER_TEXTS.custosEnvio}
       />
       <Input
-        label="Desconto"
+        label={CURRENCY_LABELS.desconto}
         name="discount"
         type="text"
         placeholder="0,00"
         adornment={<span>R$</span>}
         position="left"
-        helperText="Valor do desconto (se aplicável)"
+        helperText={CURRENCY_HELPER_TEXTS.valorDesconto}
       />
     </form>
   </Story>
@@ -506,7 +546,7 @@ Exemplo prático em um formulário de precificação de produto:
 <form onSubmit={handleSubmit}>
   <div>
     <Input
-      label="Valor da Compra"
+      label={CURRENCY_LABELS.price}
       name="purchaseAmount"
       type="text"
       placeholder="0,00"
@@ -526,7 +566,7 @@ Exemplo prático em um formulário de precificação de produto:
 ```jsx
 <form onSubmit={handleSubmit}>
   <Input
-    label="Preço"
+    label={CURRENCY_LABELS.price}
     name="price"
     type="text"
     placeholder="0,00"
@@ -534,7 +574,9 @@ Exemplo prático em um formulário de precificação de produto:
     position="left"
     error={priceError}
     helperText={
-      priceError ? 'Preço deve ser maior que R$ 0,01' : 'Digite o preço'
+      priceError
+        ? CURRENCY_HELPER_TEXTS.precoMaiorZero
+        : CURRENCY_HELPER_TEXTS.digitePrecoBrasileiro
     }
   />
   <Button type="submit" disabled={!isFormValid} loading={isSubmitting}>
@@ -634,11 +676,11 @@ A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será 
   <Story
     name="playground"
     args={{
-      label: 'Input de Moeda',
+      label: CURRENCY_LABELS.price,
       placeholder: '0,00',
       adornment: 'R$',
       position: 'left',
-      helperText: 'Digite o valor',
+      helperText: CURRENCY_HELPER_TEXTS.digitePrecoBrasileiro,
       type: 'text',
       error: false,
       disabled: false,

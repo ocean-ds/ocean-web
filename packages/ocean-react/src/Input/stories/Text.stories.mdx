@@ -1,6 +1,53 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Input from '../Input';
 
+export const TEXT_LABELS = {
+  nomeCompleto: 'Nome Completo',
+  endereco: 'Endereço',
+  email: 'Email',
+  telefone: 'Telefone',
+  descricao: 'Descrição',
+  titulo: 'Título',
+  mensagem: 'Mensagem',
+  observacoes: 'Observações',
+  nome: 'Nome',
+  sobrenome: 'Sobrenome',
+  empresa: 'Empresa',
+  cargo: 'Cargo',
+  cidade: 'Cidade',
+  cep: 'CEP',
+  comentarios: 'Comentários',
+};
+
+export const TEXT_HELPER_TEXTS = {
+  primeiroUltimoNome: 'Primeiro e último nome',
+  incluaNumeroApartamento: 'Inclua número do apartamento se aplicável',
+  emailObrigatorio: 'Email é obrigatório',
+  telefoneComDDD: 'Inclua o DDD',
+  descricaoDetalhada: 'Descrição detalhada do item',
+  tituloDescritivo: 'Título descritivo e claro',
+  mensagemDetalhada: 'Escreva sua mensagem detalhada',
+  observacoesAdicionais: 'Observações adicionais opcionais',
+  nomeUsuario: 'Nome que aparecerá no perfil',
+  sobrenomeCompleto: 'Sobrenome completo',
+  nomeEmpresa: 'Nome da empresa onde trabalha',
+  cargoAtual: 'Seu cargo atual',
+  cidadeOndeVive: 'Cidade onde você vive',
+  cepCompleto: 'CEP com 8 dígitos',
+  comentariosOpcionais: 'Comentários opcionais',
+};
+
+export const TEXT_PLACEHOLDERS = {
+  joaoSilva: 'João Silva',
+  ruaFlores123: 'Rua das Flores, 123',
+  seuEmail: 'seu@email.com',
+  telefoneExemplo: '(11) 99999-9999',
+  descricaoExemplo: 'Descreva o item...',
+  tituloExemplo: 'Digite o título...',
+  mensagemExemplo: 'Escreva sua mensagem...',
+  observacoesExemplo: 'Observações adicionais...',
+};
+
 <Meta
   title="Components/Inputs/Text Input"
   component={Input}
@@ -91,11 +138,11 @@ Text inputs são projetados para coletar informações textuais dos usuários co
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
     <Input
-      label="Nome Completo"
+      label={TEXT_LABELS.nomeCompleto}
       name="fullName"
       type="text"
-      placeholder="Digite seu nome completo"
-      helperText="Primeiro e último nome"
+      placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+      helperText={TEXT_HELPER_TEXTS.primeiroUltimoNome}
     />
   </Story>
 </Canvas>
@@ -105,32 +152,32 @@ Text inputs são projetados para coletar informações textuais dos usuários co
 ```jsx
 // Informações pessoais básicas
 <Input
-  label="Nome Completo"
+  label={TEXT_LABELS.nomeCompleto}
   name="fullName"
   type="text"
-  placeholder="João Silva"
+  placeholder={TEXT_PLACEHOLDERS.joaoSilva}
   required
 />
 
 // Em formulários com validação
 <form onSubmit={handleSubmit}>
   <Input
-    label="Endereço"
+    label={TEXT_LABELS.endereco}
     name="address"
     type="text"
-    placeholder="Rua das Flores, 123"
-    helperText="Inclua número do apartamento se aplicável"
+    placeholder={TEXT_PLACEHOLDERS.ruaFlores123}
+    helperText={TEXT_HELPER_TEXTS.incluaNumeroApartamento}
   />
   <Button type="submit">Enviar</Button>
 </form>
 
 // Com estado de erro
 <Input
-  label="Email"
+  label={TEXT_LABELS.email}
   name="email"
   type="text"
-  placeholder="seu@email.com"
-  helperText="Email é obrigatório"
+  placeholder={TEXT_PLACEHOLDERS.seuEmail}
+  helperText={TEXT_HELPER_TEXTS.emailObrigatorio}
   error
 />
 ```
@@ -243,26 +290,26 @@ Text inputs suportam vários estados para fornecer feedback ao usuário:
       }}
     >
       <Input
-        label="Estado Normal"
+        label={TEXT_LABELS.nome}
         name="normal"
         type="text"
-        placeholder="Digite seu nome"
-        helperText="Este é um input de texto normal"
+        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        helperText={TEXT_HELPER_TEXTS.nomeUsuario}
       />
       <Input
-        label="Estado de Erro"
+        label={TEXT_LABELS.nome}
         name="error"
         type="text"
-        placeholder="Digite seu nome"
-        helperText="Nome é obrigatório"
+        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        helperText={TEXT_HELPER_TEXTS.emailObrigatorio}
         error
       />
       <Input
-        label="Estado Desabilitado"
+        label={TEXT_LABELS.nome}
         name="disabled"
         type="text"
-        placeholder="Não pode ser editado"
-        helperText="Este campo está desabilitado"
+        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        helperText={TEXT_HELPER_TEXTS.comentariosOpcionais}
         disabled
       />
     </div>
@@ -284,25 +331,27 @@ Padrões comuns para coleta de informações pessoais:
       }}
     >
       <Input
-        label="Primeiro Nome"
+        label={TEXT_LABELS.nome}
         name="firstName"
         type="text"
-        placeholder="João"
+        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        helperText={TEXT_HELPER_TEXTS.nomeUsuario}
         required
       />
       <Input
-        label="Sobrenome"
+        label={TEXT_LABELS.sobrenome}
         name="lastName"
         type="text"
-        placeholder="Silva"
+        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        helperText={TEXT_HELPER_TEXTS.sobrenomeCompleto}
         required
       />
       <Input
-        label="Empresa"
+        label={TEXT_LABELS.empresa}
         name="company"
         type="text"
-        placeholder="Ocean Design System"
-        helperText="Opcional"
+        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        helperText={TEXT_HELPER_TEXTS.nomeEmpresa}
       />
     </div>
   </Story>
@@ -323,19 +372,25 @@ Exemplo de uso para coleta de endereços:
       }}
     >
       <Input
-        label="Endereço"
+        label={TEXT_LABELS.endereco}
         name="address"
         type="text"
-        placeholder="Rua das Flores, 123"
-        helperText="Inclua número do apartamento ou complemento"
+        placeholder={TEXT_PLACEHOLDERS.ruaFlores123}
+        helperText={TEXT_HELPER_TEXTS.incluaNumeroApartamento}
       />
-      <Input label="Cidade" name="city" type="text" placeholder="São Paulo" />
       <Input
-        label="Bairro"
+        label={TEXT_LABELS.cidade}
+        name="city"
+        type="text"
+        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        helperText={TEXT_HELPER_TEXTS.cidadeOndeVive}
+      />
+      <Input
+        label={TEXT_LABELS.cep}
         name="neighborhood"
         type="text"
-        placeholder="Vila Madalena"
-        helperText="Opcional"
+        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        helperText={TEXT_HELPER_TEXTS.cepCompleto}
       />
     </div>
   </Story>
@@ -359,33 +414,33 @@ Exemplo real de text inputs em um formulário de contato:
       }}
     >
       <Input
-        label="Nome Completo"
+        label={TEXT_LABELS.nomeCompleto}
         name="fullName"
         type="text"
-        placeholder="Digite seu nome completo"
-        helperText="Como aparece em documentos oficiais"
+        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        helperText={TEXT_HELPER_TEXTS.primeiroUltimoNome}
         required
       />
       <Input
-        label="Cargo"
+        label={TEXT_LABELS.cargo}
         name="jobTitle"
         type="text"
-        placeholder="Engenheiro de Software"
-        helperText="Sua posição atual"
+        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        helperText={TEXT_HELPER_TEXTS.cargoAtual}
       />
       <Input
-        label="Empresa"
+        label={TEXT_LABELS.empresa}
         name="company"
         type="text"
-        placeholder="Nome da sua empresa"
-        helperText="Deixe em branco se não aplicável"
+        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        helperText={TEXT_HELPER_TEXTS.nomeEmpresa}
       />
       <Input
-        label="Endereço"
+        label={TEXT_LABELS.endereco}
         name="address"
         type="text"
-        placeholder="Rua das Flores, 123, Apto 4B"
-        helperText="Endereço completo incluindo apartamento/complemento"
+        placeholder={TEXT_PLACEHOLDERS.ruaFlores123}
+        helperText={TEXT_HELPER_TEXTS.incluaNumeroApartamento}
       />
     </form>
   </Story>
@@ -498,9 +553,9 @@ A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será 
   <Story
     name="playground"
     args={{
-      label: 'Text Input',
-      placeholder: 'Digite o texto aqui...',
-      helperText: 'Texto de ajuda',
+      label: TEXT_LABELS.nomeCompleto,
+      placeholder: TEXT_PLACEHOLDERS.joaoSilva,
+      helperText: TEXT_HELPER_TEXTS.primeiroUltimoNome,
       type: 'text',
     }}
   >

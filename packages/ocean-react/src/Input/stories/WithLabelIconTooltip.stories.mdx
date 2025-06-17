@@ -6,6 +6,57 @@ import {
   QuestionMarkOutline,
 } from '@useblu/ocean-icons-react';
 
+export const TOOLTIP_LABELS = {
+  senha: 'Senha',
+  nomeUsuario: 'Nome de Usuário',
+  email: 'Email',
+  telefone: 'Telefone',
+  cpfCnpj: 'CPF/CNPJ',
+  dataNascimento: 'Data de Nascimento',
+  valorMoeda: 'Valor em Moeda',
+  observacoes: 'Observações',
+};
+
+export const TOOLTIP_MESSAGES = {
+  senhaRequisitos:
+    'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
+  usuarioRequisitos:
+    'O nome de usuário deve ter entre 3 e 20 caracteres, contendo apenas letras, números e underscores',
+  emailPrivacidade:
+    'Usamos seu email para verificação de conta e notificações importantes. Nunca compartilhamos seu email com terceiros.',
+  telefoneFormato:
+    'Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo',
+  cpfCnpjFormato:
+    'Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços',
+  dataFormato: 'Digite a data no formato DD/MM/AAAA. Exemplo: 15/08/1990',
+  valorExemplo:
+    'Digite valores monetários usando vírgula como separador decimal. Exemplo: 1.234,56',
+  observacoesLimite:
+    'Máximo de 500 caracteres. Use para informações adicionais relevantes ao contexto',
+};
+
+export const TOOLTIP_HELPER_TEXTS = {
+  escolhaSenhaForte: 'Escolha uma senha forte',
+  identificadorUnico: 'Este será seu identificador único',
+  emailValido: 'Digite um email válido',
+  incluaDDD: 'Inclua o DDD',
+  identificacaoFiscal: 'Identificação fiscal pessoal ou empresarial',
+  formatoCorreto: 'Use o formato correto',
+  valorMonetario: 'Valor em reais (R$)',
+  informacoesAdicionais: 'Informações adicionais opcionais',
+};
+
+export const TOOLTIP_PLACEHOLDERS = {
+  digiteSenha: 'Digite sua senha',
+  nomeUsuario: 'Digite seu nome de usuário',
+  seuEmail: 'seu@email.com',
+  telefoneExemplo: '(11) 99999-9999',
+  cpfExemplo: '000.000.000-00',
+  dataExemplo: 'DD/MM/AAAA',
+  valorExemplo: '1.234,56',
+  observacoesExemplo: 'Digite suas observações...',
+};
+
 <Meta
   title="Components/Inputs/Input com Tooltip"
   component={Input}
@@ -121,12 +172,12 @@ Tooltips fornecem ajuda contextual e informações adicionais que complementam o
 <Canvas withSource="open" withToolbar>
   <Story name="usage">
     <Input
-      label="Senha"
+      label={TOOLTIP_LABELS.senha}
       name="password"
       type="password"
-      placeholder="Digite sua senha"
-      tooltipMessage="A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais"
-      helperText="Escolha uma senha forte"
+      placeholder={TOOLTIP_PLACEHOLDERS.digiteSenha}
+      tooltipMessage={TOOLTIP_MESSAGES.senhaRequisitos}
+      helperText={TOOLTIP_HELPER_TEXTS.escolhaSenhaForte}
     />
   </Story>
 </Canvas>
@@ -137,40 +188,40 @@ Tooltips fornecem ajuda contextual e informações adicionais que complementam o
 // Regras de validação
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
   <Input
-    label="Nome de Usuário"
+    label={TOOLTIP_LABELS.nomeUsuario}
     name="username"
     type="text"
-    placeholder="Digite seu nome de usuário"
-    tooltipMessage="O nome de usuário deve ter entre 3 e 20 caracteres, contendo apenas letras, números e underscores"
-    helperText="Este será seu identificador único"
+    placeholder={TOOLTIP_PLACEHOLDERS.nomeUsuario}
+    tooltipMessage={TOOLTIP_MESSAGES.usuarioRequisitos}
+    helperText={TOOLTIP_HELPER_TEXTS.identificadorUnico}
   />
   <Input
-    label="Email"
+    label={TOOLTIP_LABELS.email}
     name="email"
     type="email"
-    placeholder="seu@email.com"
-    tooltipMessage="Usamos seu email para verificação de conta e notificações importantes. Nunca compartilhamos seu email com terceiros."
-    helperText="Digite um email válido"
+    placeholder={TOOLTIP_PLACEHOLDERS.seuEmail}
+    tooltipMessage={TOOLTIP_MESSAGES.emailPrivacidade}
+    helperText={TOOLTIP_HELPER_TEXTS.emailValido}
   />
 </div>
 
 // Diretrizes de formatação
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
   <Input
-    label="Telefone"
+    label={TOOLTIP_LABELS.telefone}
     name="phone"
     type="tel"
-    placeholder="(11) 99999-9999"
-    tooltipMessage="Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo"
-    helperText="Inclua o DDD"
+    placeholder={TOOLTIP_PLACEHOLDERS.telefoneExemplo}
+    tooltipMessage={TOOLTIP_MESSAGES.telefoneFormato}
+    helperText={TOOLTIP_HELPER_TEXTS.incluaDDD}
   />
   <Input
-    label="CPF/CNPJ"
+    label={TOOLTIP_LABELS.cpfCnpj}
     name="taxId"
     type="text"
-    placeholder="000.000.000-00"
-    tooltipMessage="Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços"
-    helperText="Identificação fiscal pessoal ou empresarial"
+    placeholder={TOOLTIP_PLACEHOLDERS.cpfExemplo}
+    tooltipMessage={TOOLTIP_MESSAGES.cpfCnpjFormato}
+    helperText={TOOLTIP_HELPER_TEXTS.identificacaoFiscal}
   />
 </div>
 ```
@@ -222,28 +273,28 @@ Diferentes tipos de informação que funcionam bem em tooltips:
       }}
     >
       <Input
-        label="Senha Forte"
+        label={TOOLTIP_LABELS.senha}
         name="strongPassword"
         type="password"
-        placeholder="Digite sua senha"
-        tooltipMessage="Requisitos: Mínimo de 8 caracteres, 1 letra maiúscula, 1 minúscula, 1 número e 1 caractere especial (!@#$%^&*)"
-        helperText="A força da senha será mostrada abaixo"
+        placeholder={TOOLTIP_PLACEHOLDERS.digiteSenha}
+        tooltipMessage={TOOLTIP_MESSAGES.senhaRequisitos}
+        helperText={TOOLTIP_HELPER_TEXTS.escolhaSenhaForte}
       />
       <Input
-        label="Número do Cartão"
+        label={TOOLTIP_LABELS.valorMoeda}
         name="creditCard"
         type="text"
-        placeholder="1234 5678 9012 3456"
-        tooltipMessage="Suas informações de cartão são criptografadas e seguras. Aceitamos Visa, Mastercard, American Express e Discover."
-        helperText="Número do cartão com 16 dígitos"
+        placeholder={TOOLTIP_PLACEHOLDERS.valorExemplo}
+        tooltipMessage={TOOLTIP_MESSAGES.valorExemplo}
+        helperText={TOOLTIP_HELPER_TEXTS.valorMonetario}
       />
       <Input
-        label="Nome do Projeto"
+        label={TOOLTIP_LABELS.observacoes}
         name="projectName"
         type="text"
-        placeholder="Meu Projeto Incrível"
-        tooltipMessage="Escolha um nome descritivo para seu projeto. Você pode alterá-lo depois nas configurações. Nomes devem ser únicos na sua organização."
-        helperText="Este será visível para membros da equipe"
+        placeholder={TOOLTIP_PLACEHOLDERS.observacoesExemplo}
+        tooltipMessage={TOOLTIP_MESSAGES.observacoesLimite}
+        helperText={TOOLTIP_HELPER_TEXTS.informacoesAdicionais}
       />
     </div>
   </Story>
@@ -267,38 +318,38 @@ Exemplo real com múltiplos inputs com tooltip:
       }}
     >
       <Input
-        label="Nome da Empresa"
+        label={TOOLTIP_LABELS.nomeUsuario}
         name="companyName"
         type="text"
-        placeholder="Digite o nome da empresa"
-        tooltipMessage="Digite o nome legal oficial da sua empresa como aparece em documentos governamentais. Será usado para faturamento e fins legais."
-        helperText="Nome legal da empresa"
+        placeholder={TOOLTIP_PLACEHOLDERS.nomeUsuario}
+        tooltipMessage={TOOLTIP_MESSAGES.usuarioRequisitos}
+        helperText={TOOLTIP_HELPER_TEXTS.identificadorUnico}
         required
       />
       <Input
-        label="Faturamento Anual"
+        label={TOOLTIP_LABELS.valorMoeda}
         name="revenue"
         type="text"
-        placeholder="R$ 1.000.000"
-        tooltipMessage="Digite o faturamento total anual da sua empresa do último ano fiscal completo. Isso nos ajuda a fornecer níveis de serviço e preços apropriados."
-        helperText="Faturamento do último ano fiscal"
+        placeholder={TOOLTIP_PLACEHOLDERS.valorExemplo}
+        tooltipMessage={TOOLTIP_MESSAGES.valorExemplo}
+        helperText={TOOLTIP_HELPER_TEXTS.valorMonetario}
       />
       <Input
-        label="CNPJ"
+        label={TOOLTIP_LABELS.cpfCnpj}
         name="businessId"
         type="text"
-        placeholder="12.345.678/0001-90"
-        tooltipMessage="Digite seu número de CNPJ. É necessário para empresas brasileiras emitirem notas fiscais e para fins de relatórios fiscais."
-        helperText="Formato: XX.XXX.XXX/XXXX-XX"
+        placeholder={TOOLTIP_PLACEHOLDERS.cpfExemplo}
+        tooltipMessage={TOOLTIP_MESSAGES.cpfCnpjFormato}
+        helperText={TOOLTIP_HELPER_TEXTS.identificacaoFiscal}
         required
       />
       <Input
-        label="Email de Contato"
+        label={TOOLTIP_LABELS.email}
         name="contactEmail"
         type="email"
-        placeholder="contato@empresa.com"
-        tooltipMessage="Este email receberá notificações importantes sobre sua conta, incluindo atualizações de faturamento, alertas de segurança e anúncios de serviço. Certifique-se de que seja monitorado regularmente."
-        helperText="Email comercial principal"
+        placeholder={TOOLTIP_PLACEHOLDERS.seuEmail}
+        tooltipMessage={TOOLTIP_MESSAGES.emailPrivacidade}
+        helperText={TOOLTIP_HELPER_TEXTS.emailValido}
         required
       />
     </form>
@@ -312,11 +363,11 @@ Exemplo real com múltiplos inputs com tooltip:
 ```jsx
 <form onSubmit={handleSubmit}>
   <Input
-    label="Nome Completo"
+    label={TOOLTIP_LABELS.nomeUsuario}
     name="fullName"
     type="text"
-    placeholder="Digite seu nome completo"
-    tooltipMessage="Digite seu nome completo como aparece em documentos oficiais"
+    placeholder={TOOLTIP_PLACEHOLDERS.nomeUsuario}
+    tooltipMessage={TOOLTIP_MESSAGES.usuarioRequisitos}
     required
   />
   <Button type="submit">Enviar</Button>
@@ -328,13 +379,13 @@ Exemplo real com múltiplos inputs com tooltip:
 ```jsx
 <form onSubmit={handleSubmit}>
   <Input
-    label="Email"
+    label={TOOLTIP_LABELS.email}
     name="email"
     type="email"
-    placeholder="seu@email.com"
-    tooltipMessage="Seu email será usado para notificações importantes"
+    placeholder={TOOLTIP_PLACEHOLDERS.seuEmail}
+    tooltipMessage={TOOLTIP_MESSAGES.emailPrivacidade}
     error={errors.email}
-    helperText={errors.email || 'Digite um email válido'}
+    helperText={errors.email || TOOLTIP_HELPER_TEXTS.emailValido}
     required
   />
   <Button type="submit" disabled={!isFormValid}>
@@ -416,12 +467,11 @@ A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será 
   <Story
     name="playground"
     args={{
-      label: 'Input com Tooltip',
-      placeholder: 'Digite aqui...',
-      helperText: 'Texto de ajuda',
-      tooltipMessage:
-        'Mensagem do tooltip que aparece ao passar o mouse sobre o rótulo',
-      type: 'text',
+      label: TOOLTIP_LABELS.senha,
+      placeholder: TOOLTIP_PLACEHOLDERS.digiteSenha,
+      helperText: TOOLTIP_HELPER_TEXTS.escolhaSenhaForte,
+      tooltipMessage: TOOLTIP_MESSAGES.senhaRequisitos,
+      type: 'password',
     }}
   >
     {(args) => <Input {...args} />}
