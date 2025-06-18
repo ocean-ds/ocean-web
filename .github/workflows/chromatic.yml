@@ -10,15 +10,6 @@ jobs:
     if: ${{ github.actor != 'dependabot[bot]' && (github.secret_source != 'push' || github.event_name == 'pull_request_target') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Node.js 16
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16.x'
-          cache: 'yarn'
-
-      - name: Check Node version
-        run: node -v
-
       - name: Checkout
         if: github.event_name == 'push'
         uses: actions/checkout@v4
@@ -32,9 +23,18 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0 # 👈 Required to retrieve git history
 
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+
+      - name: Check Node version
+        run: node -v
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
       - uses: actions/cache@v4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
