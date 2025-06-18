@@ -22,7 +22,6 @@ import {
   colorStatusWarningDown,
   colorStatusWarningDeep,
   colorInterfaceLightPure,
-  colorInterfaceLightUp,
   colorInterfaceLightDown,
   colorInterfaceLightDeep,
   colorInterfaceDarkPure,
@@ -94,23 +93,6 @@ As cores da marca Ocean refletem a identidade visual e são usadas em elementos-
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorBrandPrimaryPure,
-              height: '80px',
-              borderRadius: borderRadiusSm,
-              marginBottom: spacingInlineXxs,
-            }}
-          ></div>
-          <Typography variant="caption">
-            <strong>Primary Pure</strong>
-            <br />
-            {colorBrandPrimaryPure}
-            <br />
-            colorBrandPrimaryPure
-          </Typography>
-        </Grid.Col>
-        <Grid.Col md={3}>
-          <div
-            style={{
               backgroundColor: colorBrandPrimaryDeep,
               height: '80px',
               borderRadius: borderRadiusSm,
@@ -128,18 +110,18 @@ As cores da marca Ocean refletem a identidade visual e são usadas em elementos-
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorBrandPrimaryUp,
+              backgroundColor: colorBrandPrimaryPure,
               height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
           ></div>
           <Typography variant="caption">
-            <strong>Primary Up</strong>
+            <strong>Primary Pure</strong>
             <br />
-            {colorBrandPrimaryUp}
+            {colorBrandPrimaryPure}
             <br />
-            colorBrandPrimaryUp
+            colorBrandPrimaryPure
           </Typography>
         </Grid.Col>
         <Grid.Col md={3}>
@@ -157,6 +139,23 @@ As cores da marca Ocean refletem a identidade visual e são usadas em elementos-
             {colorBrandPrimaryDown}
             <br />
             colorBrandPrimaryDown
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryUp,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Primary Up</strong>
+            <br />
+            {colorBrandPrimaryUp}
+            <br />
+            colorBrandPrimaryUp
           </Typography>
         </Grid.Col>
       </Grid.Row>
@@ -177,8 +176,25 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
+              backgroundColor: colorStatusPositiveDeep,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Positive Deep</strong>
+            <br />
+            {colorStatusPositiveDeep}
+            <br />
+            colorStatusPositiveDeep
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
               backgroundColor: colorStatusPositivePure,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -194,26 +210,8 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorStatusPositiveUp,
-              height: '60px',
-              borderRadius: borderRadiusSm,
-              marginBottom: spacingInlineXxs,
-              border: `1px solid ${colorStatusPositivePure}`,
-            }}
-          ></div>
-          <Typography variant="caption">
-            <strong>Positive Up</strong>
-            <br />
-            {colorStatusPositiveUp}
-            <br />
-            colorStatusPositiveUp
-          </Typography>
-        </Grid.Col>
-        <Grid.Col md={3}>
-          <div
-            style={{
               backgroundColor: colorStatusPositiveDown,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -229,18 +227,19 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorStatusPositiveDeep,
-              height: '60px',
+              backgroundColor: colorStatusPositiveUp,
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorStatusPositivePure}`,
             }}
           ></div>
           <Typography variant="caption">
-            <strong>Positive Deep</strong>
+            <strong>Positive Up</strong>
             <br />
-            {colorStatusPositiveDeep}
+            {colorStatusPositiveUp}
             <br />
-            colorStatusPositiveDeep
+            colorStatusPositiveUp
           </Typography>
         </Grid.Col>
       </Grid.Row>
@@ -257,8 +256,25 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
+              backgroundColor: colorStatusNegativeDeep,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Negative Deep</strong>
+            <br />
+            {colorStatusNegativeDeep}
+            <br />
+            colorStatusNegativeDeep
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
               backgroundColor: colorStatusNegativePure,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -274,26 +290,8 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorStatusNegativeUp,
-              height: '60px',
-              borderRadius: borderRadiusSm,
-              marginBottom: spacingInlineXxs,
-              border: `1px solid ${colorStatusNegativePure}`,
-            }}
-          ></div>
-          <Typography variant="caption">
-            <strong>Negative Up</strong>
-            <br />
-            {colorStatusNegativeUp}
-            <br />
-            colorStatusNegativeUp
-          </Typography>
-        </Grid.Col>
-        <Grid.Col md={3}>
-          <div
-            style={{
               backgroundColor: colorStatusNegativeDown,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -309,18 +307,19 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorStatusNegativeDeep,
-              height: '60px',
+              backgroundColor: colorStatusNegativeUp,
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorStatusNegativePure}`,
             }}
           ></div>
           <Typography variant="caption">
-            <strong>Negative Deep</strong>
+            <strong>Negative Up</strong>
             <br />
-            {colorStatusNegativeDeep}
+            {colorStatusNegativeUp}
             <br />
-            colorStatusNegativeDeep
+            colorStatusNegativeUp
           </Typography>
         </Grid.Col>
       </Grid.Row>
@@ -337,8 +336,25 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
+              backgroundColor: colorStatusWarningDeep,
+              height: '80px',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          ></div>
+          <Typography variant="caption">
+            <strong>Warning Deep</strong>
+            <br />
+            {colorStatusWarningDeep}
+            <br />
+            colorStatusWarningDeep
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={3}>
+          <div
+            style={{
               backgroundColor: colorStatusWarningPure,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -354,26 +370,8 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorStatusWarningUp,
-              height: '60px',
-              borderRadius: borderRadiusSm,
-              marginBottom: spacingInlineXxs,
-              border: `1px solid ${colorStatusWarningPure}`,
-            }}
-          ></div>
-          <Typography variant="caption">
-            <strong>Warning Up</strong>
-            <br />
-            {colorStatusWarningUp}
-            <br />
-            colorStatusWarningUp
-          </Typography>
-        </Grid.Col>
-        <Grid.Col md={3}>
-          <div
-            style={{
               backgroundColor: colorStatusWarningDown,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -389,18 +387,19 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
         <Grid.Col md={3}>
           <div
             style={{
-              backgroundColor: colorStatusWarningDeep,
-              height: '60px',
+              backgroundColor: colorStatusWarningUp,
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
+              border: `1px solid ${colorStatusWarningPure}`,
             }}
           ></div>
           <Typography variant="caption">
-            <strong>Warning Deep</strong>
+            <strong>Warning Up</strong>
             <br />
-            {colorStatusWarningDeep}
+            {colorStatusWarningUp}
             <br />
-            colorStatusWarningDeep
+            colorStatusWarningUp
           </Typography>
         </Grid.Col>
       </Grid.Row>
@@ -418,7 +417,7 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
           <div
             style={{
               backgroundColor: colorComplementaryPure,
-              height: '60px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -448,7 +447,7 @@ Escala de cores neutras para texto, bordas, fundos e outros elementos estruturai
           <div
             style={{
               backgroundColor: colorInterfaceDarkPure,
-              height: '50px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -463,7 +462,7 @@ Escala de cores neutras para texto, bordas, fundos e outros elementos estruturai
           <div
             style={{
               backgroundColor: colorInterfaceDarkDeep,
-              height: '50px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -478,7 +477,7 @@ Escala de cores neutras para texto, bordas, fundos e outros elementos estruturai
           <div
             style={{
               backgroundColor: colorInterfaceDarkDown,
-              height: '50px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -493,7 +492,7 @@ Escala de cores neutras para texto, bordas, fundos e outros elementos estruturai
           <div
             style={{
               backgroundColor: colorInterfaceDarkUp,
-              height: '50px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
             }}
@@ -508,7 +507,7 @@ Escala de cores neutras para texto, bordas, fundos e outros elementos estruturai
           <div
             style={{
               backgroundColor: colorInterfaceLightDown,
-              height: '50px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
               border: `1px solid ${colorInterfaceLightDeep}`,
@@ -524,7 +523,7 @@ Escala de cores neutras para texto, bordas, fundos e outros elementos estruturai
           <div
             style={{
               backgroundColor: colorInterfaceLightPure,
-              height: '50px',
+              height: '80px',
               borderRadius: borderRadiusSm,
               marginBottom: spacingInlineXxs,
               border: `1px solid ${colorInterfaceLightDeep}`,
@@ -869,6 +868,36 @@ Sistema de elevação que cria hierarquia visual e profundidade.
   </Story>
 </Canvas>
 
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use sempre tokens em vez de valores hard-coded
+- Importe apenas os tokens que você precisa
+- Mantenha consistência com a nomenclatura dos tokens
+- Use tokens semânticos quando apropriado
+- Use as variantes corretas das cores de status:
+  - **Pure**: Para textos, ícones e bordas principais
+  - **Up**: Para fundos de alertas e cards de status
+  - **Down**: Para estados de hover
+  - **Deep**: Para estados de pressed/active
+
+### ❌ Evite
+
+- Criar valores personalizados sem necessidade
+- Usar valores hard-coded que já existem como tokens
+- Modificar valores de tokens diretamente
+- Misturar diferentes sistemas de design
+- Usar variantes incorretas (ex: usar "Deep" para fundos claros)
+
+## Referência Completa
+
+Para explorar todos os tokens disponíveis, consulte:
+
+- **Pacote**: `@useblu/ocean-tokens`
+- **Versão Web**: `@useblu/ocean-tokens/web/tokens`
+- **Documentação**: [Ocean Tokens no NPM](https://www.npmjs.com/package/@useblu/ocean-tokens)
+
 ## Como Usar
 
 ### Importação
@@ -918,33 +947,33 @@ const MyComponent = () => (
 
 #### Cores da Marca
 
-- `colorBrandPrimaryPure` - Cor principal da marca
-- `colorBrandPrimaryUp` - Versão mais clara
-- `colorBrandPrimaryDown` - Versão intermediária
 - `colorBrandPrimaryDeep` - Versão mais escura
+- `colorBrandPrimaryPure` - Cor principal da marca
+- `colorBrandPrimaryDown` - Versão intermediária
+- `colorBrandPrimaryUp` - Versão mais clara
 
 #### Cores de Status
 
 ##### Status Positive (Sucesso)
 
-- `colorStatusPositivePure` - `rgb(61, 204, 100)` - Cor principal para sucesso
-- `colorStatusPositiveUp` - `rgb(242, 253, 245)` - Versão muito clara (fundos)
-- `colorStatusPositiveDown` - `rgb(122, 220, 148)` - Versão intermediária (hover)
 - `colorStatusPositiveDeep` - `rgb(45, 169, 79)` - Versão mais escura (pressed)
+- `colorStatusPositivePure` - `rgb(61, 204, 100)` - Cor principal para sucesso
+- `colorStatusPositiveDown` - `rgb(122, 220, 148)` - Versão intermediária (hover)
+- `colorStatusPositiveUp` - `rgb(242, 253, 245)` - Versão muito clara (fundos)
 
 ##### Status Negative (Erro)
 
-- `colorStatusNegativePure` - `rgb(245, 69, 110)` - Cor principal para erro
-- `colorStatusNegativeUp` - `rgb(255, 241, 244)` - Versão muito clara (fundos)
-- `colorStatusNegativeDown` - `rgb(242, 117, 146)` - Versão intermediária (hover)
 - `colorStatusNegativeDeep` - `rgb(211, 20, 65)` - Versão mais escura (pressed)
+- `colorStatusNegativePure` - `rgb(245, 69, 110)` - Cor principal para erro
+- `colorStatusNegativeDown` - `rgb(242, 117, 146)` - Versão intermediária (hover)
+- `colorStatusNegativeUp` - `rgb(255, 241, 244)` - Versão muito clara (fundos)
 
 ##### Status Warning (Aviso)
 
-- `colorStatusWarningPure` - `rgb(255, 163, 71)` - Cor principal para aviso
-- `colorStatusWarningUp` - `rgb(255, 247, 240)` - Versão muito clara (fundos)
-- `colorStatusWarningDown` - `rgb(255, 189, 122)` - Versão intermediária (hover)
 - `colorStatusWarningDeep` - `rgb(255, 138, 20)` - Versão mais escura (pressed)
+- `colorStatusWarningPure` - `rgb(255, 163, 71)` - Cor principal para aviso
+- `colorStatusWarningDown` - `rgb(255, 189, 122)` - Versão intermediária (hover)
+- `colorStatusWarningUp` - `rgb(255, 247, 240)` - Versão muito clara (fundos)
 
 ##### Cor Complementar
 
@@ -952,12 +981,12 @@ const MyComponent = () => (
 
 #### Cores de Interface
 
-- `colorInterfaceLightPure` - Branco
-- `colorInterfaceLightUp` - Cinza muito claro
-- `colorInterfaceLightDown` - Cinza claro
 - `colorInterfaceDarkPure` - Preto
-- `colorInterfaceDarkUp` - Cinza médio
+- `colorInterfaceDarkDeep` - Cinza muito escuro
 - `colorInterfaceDarkDown` - Cinza escuro
+- `colorInterfaceDarkUp` - Cinza médio
+- `colorInterfaceLightDown` - Cinza claro
+- `colorInterfaceLightPure` - Branco
 
 #### Espaçamento
 
@@ -989,33 +1018,3 @@ const MyComponent = () => (
 - Pesos: `fontWeightLight` até `fontWeightExtrabold`
 - Altura de linha: `lineHeightTight` até `lineHeightComfy`
 - Família: `fontFamilyBase` (Nunito Sans), `fontFamilyHighlight` (Avenir)
-
-## Melhores Práticas
-
-### ✅ Faça
-
-- Use sempre tokens em vez de valores hard-coded
-- Importe apenas os tokens que você precisa
-- Mantenha consistência com a nomenclatura dos tokens
-- Use tokens semânticos quando apropriado
-- Use as variantes corretas das cores de status:
-  - **Pure**: Para textos, ícones e bordas principais
-  - **Up**: Para fundos de alertas e cards de status
-  - **Down**: Para estados de hover
-  - **Deep**: Para estados de pressed/active
-
-### ❌ Evite
-
-- Criar valores personalizados sem necessidade
-- Usar valores hard-coded que já existem como tokens
-- Modificar valores de tokens diretamente
-- Misturar diferentes sistemas de design
-- Usar variantes incorretas (ex: usar "Deep" para fundos claros)
-
-## Referência Completa
-
-Para explorar todos os tokens disponíveis, consulte:
-
-- **Pacote**: `@useblu/ocean-tokens`
-- **Versão Web**: `@useblu/ocean-tokens/web/tokens`
-- **Documentação**: [Ocean Tokens no NPM](https://www.npmjs.com/package/@useblu/ocean-tokens)
