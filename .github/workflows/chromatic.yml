@@ -10,11 +10,6 @@ jobs:
     if: ${{ github.actor != 'dependabot[bot]' && (github.secret_source != 'push' || github.event_name == 'pull_request_target') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Use Node.js environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16.x'
-
       - name: Checkout
         if: github.event_name == 'push'
         uses: actions/checkout@v4
@@ -27,6 +22,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0 # 👈 Required to retrieve git history
+
+      - name: Use Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16.x'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
