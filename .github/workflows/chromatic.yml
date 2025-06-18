@@ -51,7 +51,11 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --ignore-engines
+        run: yarn install --frozen-lockfile --ignore-engines
+
+      - name: Install dependencies (fallback if engines conflict)
+        if: failure()
+        run: yarn install --ignore-engines
 
       - name: Build all
         run: yarn build
