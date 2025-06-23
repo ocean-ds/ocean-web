@@ -407,7 +407,11 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
   </Story>
 </Canvas>
 
-#### Cor Complementar
+##### Cor Complementar
+
+**Quando usar a Cor Complementar:**
+
+- **Complementary Pure**: Use para elementos de destaque secundário, ícones especiais, elementos decorativos e quando precisar de uma cor alternativa à marca principal que mantenha harmonia visual
 
 <Canvas>
   <Story name="Complementary Color">
@@ -434,6 +438,8 @@ Cores que comunicam estado, feedback e contexto ao usuário. Cada cor de status 
     </Grid.Container>
   </Story>
 </Canvas>
+
+- `colorComplementaryPure` - `rgb(19, 189, 189)` - Azul complementar
 
 ### Cores de Interface
 
@@ -872,23 +878,12 @@ Sistema de elevação que cria hierarquia visual e profundidade.
 
 ### ✅ Faça
 
-- Use sempre tokens em vez de valores hard-coded
-- Importe apenas os tokens que você precisa
-- Mantenha consistência com a nomenclatura dos tokens
-- Use tokens semânticos quando apropriado
-- Use as variantes corretas das cores de status:
-  - **Pure**: Para textos, ícones e bordas principais
-  - **Up**: Para fundos de alertas e cards de status
-  - **Down**: Para estados de hover
-  - **Deep**: Para estados de pressed/active
+Use as variantes corretas das cores de status:
 
-### ❌ Evite
-
-- Criar valores personalizados sem necessidade
-- Usar valores hard-coded que já existem como tokens
-- Modificar valores de tokens diretamente
-- Misturar diferentes sistemas de design
-- Usar variantes incorretas (ex: usar "Deep" para fundos claros)
+- **Pure**: Para textos, ícones e bordas principais
+- **Up**: Para fundos de alertas e cards de status
+- **Down**: Para estados de hover
+- **Deep**: Para estados de pressed/active
 
 ## Referência Completa
 
@@ -974,10 +969,6 @@ const MyComponent = () => (
 - `colorStatusWarningPure` - `rgb(255, 163, 71)` - Cor principal para aviso
 - `colorStatusWarningDown` - `rgb(255, 189, 122)` - Versão intermediária (hover)
 - `colorStatusWarningUp` - `rgb(255, 247, 240)` - Versão muito clara (fundos)
-
-##### Cor Complementar
-
-- `colorComplementaryPure` - `rgb(19, 189, 189)` - Azul complementar
 
 #### Cores de Interface
 
