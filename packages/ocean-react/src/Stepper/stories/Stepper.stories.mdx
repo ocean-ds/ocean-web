@@ -2,83 +2,623 @@ import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Stepper from '../Stepper';
 import { EyeOutline, PlusOutline } from '@useblu/ocean-icons-react';
 
+export const STEPPER_LABELS = {
+  basicLabel: 'Quantidade',
+  quantityLabel: 'Quantidade de itens',
+  ageLabel: 'Idade',
+  priceLabel: 'Preço unitário',
+  stockLabel: 'Estoque disponível',
+  guestsLabel: 'Número de convidados',
+  portionsLabel: 'Porções',
+  requiredField: 'Campo Obrigatório',
+};
+
+export const STEPPER_HELPER_TEXTS = {
+  basicHelp: 'Use os botões + e - para ajustar o valor',
+  quantityHelp: 'Selecione a quantidade desejada do produto',
+  ageHelp: 'Informe sua idade em anos completos',
+  priceHelp: 'Defina o preço por unidade do produto',
+  stockHelp: 'Quantidade disponível em estoque',
+  guestsHelp: 'Quantas pessoas participarão do evento',
+  portionsHelp: 'Número de porções da receita',
+  validationError: 'Este campo é obrigatório',
+  minValueHelp: 'Valor mínimo permitido',
+  maxValueHelp: 'Valor máximo permitido',
+};
+
+export const STEPPER_PLACEHOLDERS = {
+  basicPlaceholder: '0',
+  quantityPlaceholder: 'Digite a quantidade',
+  agePlaceholder: 'Ex: 25',
+  pricePlaceholder: '0,00',
+  stockPlaceholder: 'Quantidade em estoque',
+  guestsPlaceholder: 'Número de pessoas',
+  portionsPlaceholder: 'Porções',
+};
+
+export const STEPPER_SCENARIOS = {
+  basic: { min: 0, max: 100, defaultValue: 1 },
+  quantity: { min: 1, max: 50, defaultValue: 1 },
+  age: { min: 0, max: 120, defaultValue: 18 },
+  price: { min: 0, max: 9999, defaultValue: 10 },
+  stock: { min: 0, max: 1000, defaultValue: 0 },
+  guests: { min: 1, max: 200, defaultValue: 2 },
+  portions: { min: 1, max: 20, defaultValue: 4 },
+  noLimits: { min: undefined, max: undefined, defaultValue: 0 },
+};
+
+export const STEPPER_LIMIT_EXAMPLES = {
+  withLimitsLabel: 'Com limites (1-10)',
+  withLimitsHelp: 'Valor entre 1 e 10',
+  minOnlyLabel: 'Apenas mínimo (min: 0)',
+  minOnlyHelp: 'Valor mínimo de 0, sem máximo',
+  maxOnlyLabel: 'Apenas máximo (max: 100)',
+  maxOnlyHelp: 'Valor máximo de 100, sem mínimo',
+  noLimitsLabel: 'Sem limites',
+  noLimitsHelp: 'Qualquer valor numérico',
+};
+
 <Meta
   title="Components/Inputs/Stepper"
   decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
   component={Stepper}
+  argTypes={{
+    label: {
+      name: 'label',
+      description: 'O rótulo do campo stepper.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+    placeholder: {
+      name: 'placeholder',
+      description: 'Texto exibido quando o campo está vazio.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+    helperText: {
+      name: 'helperText',
+      description: 'Texto de ajuda exibido abaixo do campo.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+    error: {
+      name: 'error',
+      description: 'Quando true, aplica o estilo de erro ao campo.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Quando true, desabilita o campo stepper.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    min: {
+      name: 'min',
+      description: 'Valor mínimo permitido.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'number' },
+    },
+    max: {
+      name: 'max',
+      description: 'Valor máximo permitido.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'number' },
+    },
+    value: {
+      name: 'value',
+      description: 'O valor atual do stepper.',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'number' },
+    },
+  }}
 />
 
-# Stepper API
+# Stepper
 
-The API documentation of the Stepper React component. Learn more about the props and the CSS customization points.
+Componente de entrada numérica com botões de incremento e decremento para ajuste preciso de valores.
 
-## Import
+## Visão Geral
+
+O componente Stepper oferece uma interface intuitiva para entrada de valores numéricos, especialmente útil quando o usuário precisa ajustar quantidades com precisão. Inclui botões visuais para incrementar e decrementar valores, além de suporte a limites mínimos e máximos.
+
+## Importação
 
 ```javascript
 import { Stepper } from '@useblu/ocean-react';
 ```
 
-## Usage
+## Uso
 
-<Canvas>
-  <Story
-    name="Stepper"
-    args={{
-      label: 'Label',
-      min: 0,
-      placeholder: 'Placeholder...',
-      helperText: 'Some text here!',
-      error: false,
-      disabled: false,
-    }}
-    parameters={{
-      controls: { exclude: /^blocked*/ },
-    }}
-    argTypes={{
-      label: {
-        control: 'text',
-      },
-      min: {
-        control: 'number',
-      },
-      max: {
-        control: 'number',
-      },
-      placeholder: {
-        control: 'text',
-      },
-      disabled: {
-        control: 'boolean',
-      },
-      helperText: {
-        control: 'text',
-      },
-    }}
-  >
-    {(props) => <Stepper id="stepper-playground" {...props} />}
+O componente Stepper pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
+
+### Uso Básico
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Stepper
+      label={STEPPER_LABELS.basicLabel}
+      placeholder={STEPPER_PLACEHOLDERS.basicPlaceholder}
+      helperText={STEPPER_HELPER_TEXTS.basicHelp}
+      min={STEPPER_SCENARIOS.basic.min}
+      max={STEPPER_SCENARIOS.basic.max}
+    />
   </Story>
 </Canvas>
 
+### Padrões Comuns
+
+```jsx
+// Exemplo básico usando variáveis
+<Stepper
+  label={STEPPER_LABELS.quantityLabel}
+  placeholder={STEPPER_PLACEHOLDERS.quantityPlaceholder}
+  helperText={STEPPER_HELPER_TEXTS.quantityHelp}
+  min={STEPPER_SCENARIOS.quantity.min}
+  max={STEPPER_SCENARIOS.quantity.max}
+/>
+
+// Em formulários com validação
+<form onSubmit={handleSubmit}>
+  <Stepper
+    label={STEPPER_LABELS.requiredField}
+    placeholder={STEPPER_PLACEHOLDERS.guestsPlaceholder}
+    helperText={STEPPER_HELPER_TEXTS.guestsHelp}
+    error={false}
+    min={STEPPER_SCENARIOS.guests.min}
+    max={STEPPER_SCENARIOS.guests.max}
+    required
+  />
+</form>
+```
+
+## Referência da API
+
+O componente Stepper é baseado no elemento `input` com controles adicionais e suporta todos os atributos padrão.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        O rótulo do campo stepper. Exibido acima do campo para identificação.
+      </td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Texto exibido quando o campo está vazio. Fornece orientação sobre o
+        valor esperado.
+      </td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Texto de ajuda exibido abaixo do campo. Use para instruções ou
+        validação.
+      </td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Quando true, aplica o estilo de erro ao campo. Use para indicar
+        problemas de validação.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Quando true, desabilita o campo stepper. Use quando a entrada não é
+        permitida.
+      </td>
+    </tr>
+    <tr>
+      <td>min</td>
+      <td>
+        <code>number</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Valor mínimo permitido. Os botões de decremento respeitam este limite.
+      </td>
+    </tr>
+    <tr>
+      <td>max</td>
+      <td>
+        <code>number</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Valor máximo permitido. Os botões de incremento respeitam este limite.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>
+        <code>number</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        O valor atual do stepper. Use para controlar o estado do componente.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Exemplos
+
+### Diferentes Cenários de Uso
+
+Demonstração com diferentes tipos de valores numéricos:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="different-scenarios">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Stepper
+        label={STEPPER_LABELS.quantityLabel}
+        placeholder={STEPPER_PLACEHOLDERS.quantityPlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.quantityHelp}
+        min={STEPPER_SCENARIOS.quantity.min}
+        max={STEPPER_SCENARIOS.quantity.max}
+      />
+      <Stepper
+        label={STEPPER_LABELS.ageLabel}
+        placeholder={STEPPER_PLACEHOLDERS.agePlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.ageHelp}
+        min={STEPPER_SCENARIOS.age.min}
+        max={STEPPER_SCENARIOS.age.max}
+      />
+      <Stepper
+        label={STEPPER_LABELS.guestsLabel}
+        placeholder={STEPPER_PLACEHOLDERS.guestsPlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.guestsHelp}
+        min={STEPPER_SCENARIOS.guests.min}
+        max={STEPPER_SCENARIOS.guests.max}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Estados de Erro
+
+Use a prop `error` para indicar problemas de validação:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="error-states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Stepper
+        label={STEPPER_LABELS.requiredField}
+        placeholder={STEPPER_PLACEHOLDERS.stockPlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.validationError}
+        error={true}
+        min={STEPPER_SCENARIOS.stock.min}
+        max={STEPPER_SCENARIOS.stock.max}
+      />
+      <Stepper
+        label={STEPPER_LABELS.stockLabel}
+        placeholder={STEPPER_PLACEHOLDERS.stockPlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.stockHelp}
+        error={false}
+        min={STEPPER_SCENARIOS.stock.min}
+        max={STEPPER_SCENARIOS.stock.max}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Estados Desabilitados
+
+Use a prop `disabled` quando a entrada não é permitida:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="disabled-states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Stepper
+        label={STEPPER_LABELS.priceLabel}
+        placeholder={STEPPER_PLACEHOLDERS.pricePlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.priceHelp}
+        disabled={true}
+        min={STEPPER_SCENARIOS.price.min}
+        max={STEPPER_SCENARIOS.price.max}
+      />
+      <Stepper
+        label={STEPPER_LABELS.portionsLabel}
+        placeholder={STEPPER_PLACEHOLDERS.portionsPlaceholder}
+        helperText={STEPPER_HELPER_TEXTS.portionsHelp}
+        disabled={false}
+        min={STEPPER_SCENARIOS.portions.min}
+        max={STEPPER_SCENARIOS.portions.max}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Limites Mínimos e Máximos
+
+Demonstração de diferentes configurações de limites:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="limits-demo">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Stepper
+        label={STEPPER_LIMIT_EXAMPLES.withLimitsLabel}
+        helperText={STEPPER_LIMIT_EXAMPLES.withLimitsHelp}
+        min={1}
+        max={10}
+        defaultValue={5}
+      />
+      <Stepper
+        label={STEPPER_LIMIT_EXAMPLES.minOnlyLabel}
+        helperText={STEPPER_LIMIT_EXAMPLES.minOnlyHelp}
+        min={0}
+        defaultValue={0}
+      />
+      <Stepper
+        label={STEPPER_LIMIT_EXAMPLES.maxOnlyLabel}
+        helperText={STEPPER_LIMIT_EXAMPLES.maxOnlyHelp}
+        max={100}
+        defaultValue={50}
+      />
+      <Stepper
+        label={STEPPER_LIMIT_EXAMPLES.noLimitsLabel}
+        helperText={STEPPER_LIMIT_EXAMPLES.noLimitsHelp}
+        defaultValue={0}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+## Integração com Formulários
+
+### Uso em Formulários
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <Stepper
+    label={STEPPER_LABELS.quantityLabel}
+    placeholder={STEPPER_PLACEHOLDERS.quantityPlaceholder}
+    name="quantity"
+    min={STEPPER_SCENARIOS.quantity.min}
+    max={STEPPER_SCENARIOS.quantity.max}
+  />
+  <Button type="submit">Enviar</Button>
+</form>
+```
+
+### Validação
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <Stepper
+    label={STEPPER_LABELS.requiredField}
+    placeholder={STEPPER_PLACEHOLDERS.agePlaceholder}
+    helperText={STEPPER_HELPER_TEXTS.ageHelp}
+    error={false}
+    min={STEPPER_SCENARIOS.age.min}
+    max={STEPPER_SCENARIOS.age.max}
+    required
+  />
+  <Button type="submit" disabled={false}>
+    Criar
+  </Button>
+</form>
+```
+
+### Controle de Estado
+
+```jsx
+function QuantitySelector() {
+  const [quantity, setQuantity] = useState(1);
+  const [price] = useState(29.99);
+
+  return (
+    <div>
+      <Stepper
+        label={STEPPER_LABELS.quantityLabel}
+        value={quantity}
+        onChange={(e) => setQuantity(Number(e.target.value))}
+        min={1}
+        max={10}
+      />
+      <p>Total: R$ {(quantity * price).toFixed(2)}</p>
+    </div>
+  );
+}
+```
+
+## Classes CSS
+
+<table>
+  <thead>
+    <tr>
+      <th>Classe Global</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>.ods-input</code>
+      </td>
+      <td>Estilos aplicados ao elemento input.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--filled</code>
+      </td>
+      <td>Estilos aplicados ao input quando está preenchido.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--error</code>
+      </td>
+      <td>Estilos aplicados ao input quando error={true}.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--left</code>
+      </td>
+      <td>Estilos aplicados ao input quando position="left".</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-input--disabled--text</code>
+      </td>
+      <td>Estilos aplicados quando não há texto e não há ícone padrão.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Melhores Práticas
+
+### 1. Uso Geral
+
+- Use para valores numéricos que precisam de ajuste preciso
+- Sempre defina limites mínimos e máximos quando apropriado
+- Forneça labels descritivos que indiquem a unidade de medida
+- Use placeholders que mostrem o formato esperado
+
+### 2. Limites e Validação
+
+- Defina `min` e `max` para prevenir valores inválidos
+- Use validação para valores obrigatórios
+- Forneça feedback claro sobre limites atingidos
+- Considere valores padrão sensatos
+
+### 3. Acessibilidade
+
+- Sempre use labels apropriados
+- Forneça helperText descritivo sobre os limites
+- Mantenha navegação por teclado funcional
+- Use aria-labels para botões de incremento/decremento
+
+### 4. Design e UX
+
+- Use para quantidades pequenas a médias (até 100)
+- Para valores grandes, considere input numérico simples
+- Mantenha botões de fácil acesso em dispositivos móveis
+- Forneça feedback visual para limites atingidos
+
+### 5. Performance
+
+- Use debounce para onChange em casos de cálculos complexos
+- Evite re-renderizações desnecessárias
+- Considere usar defaultValue em vez de value quando possível
+
 ## Props
 
-<ArgsTable of="." />
+<ArgsTable of={Stepper} />
 
-The ref is forwarded to the root element.
+A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será passada para o elemento raiz.
 
-Any other props supplied will be provided to the root element (native element).
+## Playground
 
-## CSS
+<Canvas>
+  <Story
+    name="playground"
+    args={{
+      label: STEPPER_LABELS.basicLabel,
+      min: STEPPER_SCENARIOS.basic.min,
+      placeholder: STEPPER_PLACEHOLDERS.basicPlaceholder,
+      helperText: STEPPER_HELPER_TEXTS.basicHelp,
+      error: false,
+      disabled: false,
+    }}
+    argTypes={{
+      label: {
+        control: { type: 'text' },
+      },
+      min: {
+        control: { type: 'number' },
+      },
+      max: {
+        control: { type: 'number' },
+      },
+      placeholder: {
+        control: { type: 'text' },
+      },
+      disabled: {
+        control: { type: 'boolean' },
+      },
+      helperText: {
+        control: { type: 'text' },
+      },
+    }}
+  >
+    {(props) => <Stepper {...props} />}
+  </Story>
+</Canvas>
 
-| Global class               | Description                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------- |
-| .ods-input                 | Styles applied to the input element.                                                           |
-| .ods-input--filled         | Styles applied to the input element when it's filled.                                          |
-| .ods-input--error          | Styles applied to the input element if error={true}.                                           |
-| .ods-input--left           | Styles applied to the input element if position="left".                                        |
-| .ods-input--disabled--text | Styles applied to the element if it doesn't have any text and doesn't have an icon as default. |
+## Herança
 
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Stepper/Stepper.tsx) for more detail.
+As props do componente [FormControl](?path=/docs/components-formcontrol--page) também estão disponíveis.
 
-## Inheritance
-
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+Se isso não for suficiente, você pode verificar a [implementação do componente](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Stepper/Stepper.tsx) para mais detalhes.

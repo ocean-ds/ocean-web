@@ -1,78 +1,575 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import Select from '../Select';
 
+export const SELECT_LABELS = {
+  basicLabel: 'Selecione uma opção',
+  countryLabel: 'País',
+  categoryLabel: 'Categoria',
+  priorityLabel: 'Prioridade',
+  statusLabel: 'Status',
+  requiredField: 'Campo Obrigatório',
+};
+
+export const SELECT_HELPER_TEXTS = {
+  basicHelp: 'Escolha uma das opções disponíveis',
+  countryHelp: 'Selecione o país de origem',
+  categoryHelp: 'Escolha a categoria do produto',
+  priorityHelp: 'Defina a prioridade da tarefa',
+  statusHelp: 'Atualize o status do item',
+  validationError: 'Este campo é obrigatório',
+  formatHelp: 'Use as setas para navegar ou digite para buscar',
+};
+
+export const SELECT_PLACEHOLDERS = {
+  basicPlaceholder: 'Selecione...',
+  countryPlaceholder: 'Escolha um país',
+  categoryPlaceholder: 'Selecione uma categoria',
+  priorityPlaceholder: 'Defina a prioridade',
+  statusPlaceholder: 'Escolha o status',
+  searchPlaceholder: 'Digite para buscar...',
+};
+
+export const SELECT_OPTIONS = {
+  countries: [
+    { value: 'br', label: 'Brasil' },
+    { value: 'us', label: 'Estados Unidos' },
+    { value: 'ca', label: 'Canadá' },
+    { value: 'mx', label: 'México' },
+    { value: 'ar', label: 'Argentina' },
+  ],
+  categories: [
+    { value: 'electronics', label: 'Eletrônicos' },
+    { value: 'clothing', label: 'Vestuário' },
+    { value: 'books', label: 'Livros' },
+    { value: 'home', label: 'Casa e Jardim' },
+    { value: 'sports', label: 'Esportes' },
+  ],
+  priorities: [
+    { value: 'low', label: 'Baixa' },
+    { value: 'medium', label: 'Média' },
+    { value: 'high', label: 'Alta' },
+    { value: 'urgent', label: 'Urgente' },
+  ],
+  statuses: [
+    { value: 'pending', label: 'Pendente' },
+    { value: 'in-progress', label: 'Em Andamento' },
+    { value: 'completed', label: 'Concluído' },
+    { value: 'cancelled', label: 'Cancelado' },
+  ],
+};
+
 <Meta
   title="Components/Inputs/Select"
   component={Select}
   decorators={[(storyFn) => <div className="input-story">{storyFn()}</div>]}
+  argTypes={{
+    label: {
+      name: 'label',
+      description: 'O rótulo do campo select.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+    placeholder: {
+      name: 'placeholder',
+      description: 'Texto exibido quando nenhuma opção está selecionada.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+    helperText: {
+      name: 'helperText',
+      description: 'Texto de ajuda exibido abaixo do campo.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+    error: {
+      name: 'error',
+      description: 'Quando true, aplica o estilo de erro ao campo.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      name: 'disabled',
+      description: 'Quando true, desabilita o campo select.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: { type: 'boolean' },
+    },
+    options: {
+      name: 'options',
+      description: 'Array de opções disponíveis no select.',
+      table: {
+        type: { summary: 'Array' },
+        defaultValue: { summary: '[]' },
+      },
+      control: { type: 'object' },
+    },
+    value: {
+      name: 'value',
+      description: 'O valor atualmente selecionado.',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+      control: { type: 'text' },
+    },
+  }}
 />
 
-# Select API
+# Select
 
-The API documentation of the Select React component. Learn more about the props and the CSS customization points.
+Componente de seleção que permite escolher uma opção de uma lista predefinida.
 
-## Import
+## Visão Geral
+
+O componente Select oferece uma interface intuitiva para seleção de opções, com suporte a busca, navegação por teclado e estados visuais claros. Ideal para formulários que requerem escolha entre opções específicas.
+
+## Importação
 
 ```javascript
 import { Select } from '@useblu/ocean-react';
 ```
 
-## Usage
+## Uso
+
+O componente Select pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
+
+### Uso Básico
+
+<Canvas withSource="open" withToolbar>
+  <Story name="usage">
+    <Select
+      label={SELECT_LABELS.basicLabel}
+      placeholder={SELECT_PLACEHOLDERS.basicPlaceholder}
+      helperText={SELECT_HELPER_TEXTS.basicHelp}
+      options={SELECT_OPTIONS.countries}
+    />
+  </Story>
+</Canvas>
+
+### Padrões Comuns
+
+```jsx
+// Exemplo básico usando variáveis
+<Select
+  label={SELECT_LABELS.countryLabel}
+  placeholder={SELECT_PLACEHOLDERS.countryPlaceholder}
+  helperText={SELECT_HELPER_TEXTS.countryHelp}
+  options={SELECT_OPTIONS.countries}
+/>
+
+// Em formulários com validação
+<form onSubmit={handleSubmit}>
+  <Select
+    label={SELECT_LABELS.requiredField}
+    placeholder={SELECT_PLACEHOLDERS.categoryPlaceholder}
+    helperText={SELECT_HELPER_TEXTS.categoryHelp}
+    error={false}
+    options={SELECT_OPTIONS.categories}
+    required
+  />
+</form>
+```
+
+## Referência da API
+
+O componente Select é baseado no elemento `select` e suporta todos os atributos padrão.
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Tipo</th>
+      <th>Padrão</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        O rótulo do campo select. Exibido acima do campo para identificação.
+      </td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Texto exibido quando nenhuma opção está selecionada. Fornece orientação
+        ao usuário.
+      </td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        Texto de ajuda exibido abaixo do campo. Use para instruções ou
+        validação.
+      </td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Quando true, aplica o estilo de erro ao campo. Use para indicar
+        problemas de validação.
+      </td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>
+        <code>boolean</code>
+      </td>
+      <td>
+        <code>false</code>
+      </td>
+      <td>
+        Quando true, desabilita o campo select. Use quando a seleção não é
+        permitida.
+      </td>
+    </tr>
+    <tr>
+      <td>options</td>
+      <td>
+        <code>Array</code>
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>
+        Array de opções disponíveis no select. Cada opção deve ter value e
+        label.
+      </td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>
+        <code>undefined</code>
+      </td>
+      <td>
+        O valor atualmente selecionado. Use para controlar o estado do
+        componente.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Exemplos
+
+### Estados de Erro
+
+Use a prop `error` para indicar problemas de validação:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="error-states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Select
+        label={SELECT_LABELS.requiredField}
+        placeholder={SELECT_PLACEHOLDERS.categoryPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.validationError}
+        error={true}
+        options={SELECT_OPTIONS.categories}
+      />
+      <Select
+        label={SELECT_LABELS.statusLabel}
+        placeholder={SELECT_PLACEHOLDERS.statusPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.statusHelp}
+        error={false}
+        options={SELECT_OPTIONS.statuses}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Estados Desabilitados
+
+Use a prop `disabled` quando a seleção não é permitida:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="disabled-states">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Select
+        label={SELECT_LABELS.priorityLabel}
+        placeholder={SELECT_PLACEHOLDERS.priorityPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.priorityHelp}
+        disabled={true}
+        options={SELECT_OPTIONS.priorities}
+      />
+      <Select
+        label={SELECT_LABELS.countryLabel}
+        placeholder={SELECT_PLACEHOLDERS.countryPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.countryHelp}
+        disabled={false}
+        options={SELECT_OPTIONS.countries}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+### Diferentes Conjuntos de Opções
+
+Demonstração de diferentes tipos de dados:
+
+<Canvas withSource="open" withToolbar>
+  <Story name="different-options">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <Select
+        label={SELECT_LABELS.countryLabel}
+        placeholder={SELECT_PLACEHOLDERS.countryPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.countryHelp}
+        options={SELECT_OPTIONS.countries}
+      />
+      <Select
+        label={SELECT_LABELS.categoryLabel}
+        placeholder={SELECT_PLACEHOLDERS.categoryPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.categoryHelp}
+        options={SELECT_OPTIONS.categories}
+      />
+      <Select
+        label={SELECT_LABELS.priorityLabel}
+        placeholder={SELECT_PLACEHOLDERS.priorityPlaceholder}
+        helperText={SELECT_HELPER_TEXTS.priorityHelp}
+        options={SELECT_OPTIONS.priorities}
+      />
+    </div>
+  </Story>
+</Canvas>
+
+## Integração com Formulários
+
+### Uso em Formulários
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <Select
+    label={SELECT_LABELS.categoryLabel}
+    placeholder={SELECT_PLACEHOLDERS.categoryPlaceholder}
+    name="category"
+    options={SELECT_OPTIONS.categories}
+  />
+  <Button type="submit">Enviar</Button>
+</form>
+```
+
+### Validação
+
+```jsx
+<form onSubmit={handleSubmit}>
+  <Select
+    label={SELECT_LABELS.requiredField}
+    placeholder={SELECT_PLACEHOLDERS.statusPlaceholder}
+    helperText={SELECT_HELPER_TEXTS.statusHelp}
+    error={false}
+    options={SELECT_OPTIONS.statuses}
+    required
+  />
+  <Button type="submit" disabled={false}>
+    Criar
+  </Button>
+</form>
+```
+
+## Classes CSS
+
+<table>
+  <thead>
+    <tr>
+      <th>Classe Global</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>.ods-select__root</code>
+      </td>
+      <td>Estilos aplicados ao elemento raiz.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__control</code>
+      </td>
+      <td>Estilos aplicados ao elemento de controle.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__control--expanded</code>
+      </td>
+      <td>Estilos aplicados ao controle quando o popup está aberto.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__control--filled</code>
+      </td>
+      <td>Estilos aplicados ao controle quando há uma opção selecionada.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__control--error</code>
+      </td>
+      <td>Estilos aplicados ao controle quando error={true}.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__value</code>
+      </td>
+      <td>Estilos aplicados ao elemento de valor.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__value--empty</code>
+      </td>
+      <td>Estilos aplicados ao valor quando o placeholder aparece.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__arrow</code>
+      </td>
+      <td>Estilos aplicados ao elemento de seta.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__arrow--down</code>
+      </td>
+      <td>Estilos aplicados à seta quando o popup está fechado.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__arrow--up</code>
+      </td>
+      <td>Estilos aplicados à seta quando o popup está aberto.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__arrow--disabled</code>
+      </td>
+      <td>Estilos aplicados à seta quando disabled={true}.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__listbox-wrapper</code>
+      </td>
+      <td>Estilos aplicados ao elemento popup.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__listbox</code>
+      </td>
+      <td>Estilos aplicados ao elemento listbox.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__option</code>
+      </td>
+      <td>Estilos aplicados ao elemento de opção.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__option--selected</code>
+      </td>
+      <td>Estilos aplicados à opção selecionada no listbox.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>.ods-select__option--disabled</code>
+      </td>
+      <td>Estilos aplicados à opção desabilitada no listbox.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Melhores Práticas
+
+### 1. Uso Geral
+
+- Use labels descritivos que indiquem claramente o que deve ser selecionado
+- Forneça helperText para orientar o usuário sobre as opções disponíveis
+- Mantenha listas de opções organizadas e lógicas
+- Use placeholders informativos quando apropriado
+
+### 2. Validação
+
+- Use a prop `error` para indicar problemas de validação
+- Forneça mensagens de erro claras no helperText
+- Considere usar validação em tempo real para melhor UX
+
+### 3. Acessibilidade
+
+- Sempre use labels apropriados
+- Forneça helperText descritivo
+- Mantenha navegação por teclado funcional
+- Use textos descritivos para as opções
+
+### 4. Design e UX
+
+- Agrupe opções relacionadas logicamente
+- Use textos consistentes para opções similares
+- Considere o contexto mobile para listas longas
+- Mantenha hierarquia visual clara
+
+## Props
+
+<ArgsTable of={Select} />
+
+A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será passada para o elemento raiz.
+
+## Playground
 
 <Canvas>
   <Story
-    name="Select"
+    name="playground"
     args={{
-      label: 'Label',
-      placeholder: 'Placeholder...',
-      helperText: 'Some text here!',
+      label: SELECT_LABELS.basicLabel,
+      placeholder: SELECT_PLACEHOLDERS.basicPlaceholder,
+      helperText: SELECT_HELPER_TEXTS.basicHelp,
       error: false,
       disabled: false,
-      options: Array.from(Array(10), (x, index) => ({
-        value: `opt-${index + 1}`,
-        label: `Option ${index + 1}`,
-      })),
-    }}
-    parameters={{
-      controls: { exclude: /^blocked*/ },
-    }}
-    argTypes={{
-      value: { control: null },
+      options: SELECT_OPTIONS.countries,
     }}
   >
     {(args) => <Select {...args} />}
   </Story>
 </Canvas>
 
-## Props
+## Herança
 
-<ArgsTable of="." />
+As props do componente [FormControl](?path=/docs/components-formcontrol--page) também estão disponíveis.
 
-Any other props supplied will be provided to the select component.
-
-## CSS
-
-| Global class                     | Description                                                          |
-| -------------------------------- | -------------------------------------------------------------------- |
-| .ods-select\_\_root              | Styles applied to the root element.                                  |
-| .ods-select\_\_control           | Styles applied to the control element.                               |
-| .ods-select\_\_control--expanded | Styles applied to the control element if the popup is open.          |
-| .ods-select\_\_control--filled   | Styles applied to the control element when it has a selected option. |
-| .ods-select\_\_control--error    | Styles applied to the control element if error={true}.               |
-| .ods-select\_\_value             | Styles applied to the value element.                                 |
-| .ods-select\_\_value--empty      | Styles applied to the value element when placeholder appears.        |
-| .ods-select\_\_arrow             | Styles applied to the arrow element.                                 |
-| .ods-select\_\_arrow--down       | Styles applied to the arrow element if the popup is close.           |
-| .ods-select\_\_arrow--up         | Styles applied to the arrow element if the popup is open.            |
-| .ods-select\_\_arrow--disabled   | Styles applied to the arrow element if disabled={true}.              |
-| .ods-select\_\_listbox-wrapper   | Styles applied to the popup element.                                 |
-| .ods-select\_\_listbox           | Styles applied to the listbox element.                               |
-| .ods-select\_\_option            | Styles applied to the option element.                                |
-| .ods-select\_\_option--selected  | Styles applied to the selected option in the listbox.                |
-| .ods-select\_\_option--disabled  | Styles applied to the disabled option in the listbox.                |
-
-If that's not sufficient, you can check the [implementation of the component](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Select/Select.tsx) for more detail.
-
-## Inheritance
-
-The props of the [FormControl](?path=/docs/components-formcontrol--page) component are also available.
+Se isso não for suficiente, você pode verificar a [implementação do componente](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Select/Select.tsx) para mais detalhes.
