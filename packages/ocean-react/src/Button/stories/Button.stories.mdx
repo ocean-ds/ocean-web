@@ -213,8 +213,8 @@ Use a prop `variant` para definir o estilo visual do botão:
 - `primaryCritical`: Para ações principais destrutivas
 - `secondary`: Para ações secundárias e alternativas
 - `secondaryCritical`: Para ações secundárias destrutivas
-- `text`: Para ações sutis e links
-- `textCritical`: Para ações de texto destrutivas
+- `text`: Para ações sutis e links (referente ao tertiary no handoff)
+- `textCritical`: Para ações de texto destrutivas (referente ao tertiaryCritical no handoff)
 - `textTertiary`: Para ações terciárias discretas
 - `textTertiaryCritical`: Para ações terciárias destrutivas
 - `inverse`: Para uso em fundos escuros
@@ -233,8 +233,8 @@ Use a prop `variant` para definir o estilo visual do botão:
       <Button variant="primaryCritical">Primary Critical</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondaryCritical">Secondary Critical</Button>
-      <Button variant="text">Text</Button>
-      <Button variant="textCritical">Text Critical</Button>
+      <Button variant="text">Text - Tertiary</Button>
+      <Button variant="textCritical">Text Critical - Tertiary Critical</Button>
       <Button variant="textTertiary">Text Tertiary</Button>
       <Button variant="textTertiaryCritical">Text Tertiary Critical</Button>
       <Button variant="inverse">Inverse</Button>
