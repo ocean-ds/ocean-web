@@ -11,7 +11,7 @@ import Button from '../Button';
       table: {
         type: {
           summary:
-            '"primary" | "primaryCritical" | "secondary" | "secondaryCritical" | "text" | "textCritical" | "textTertiary" | "textTertiaryCritical" | "inverse"',
+            '"primary" | "primaryCritical" | "secondary" | "secondaryCritical" | "tertiary" | "tertiaryCritical" | "textTertiary" | "textTertiaryCritical" | "inverse"',
         },
         defaultValue: { summary: 'primary' },
       },
@@ -21,8 +21,8 @@ import Button from '../Button';
         'primaryCritical',
         'secondary',
         'secondaryCritical',
-        'text',
-        'textCritical',
+        'tertiary',
+        'tertiaryCritical',
         'textTertiary',
         'textTertiaryCritical',
         'inverse',
@@ -107,7 +107,7 @@ O componente Button pode ser usado em vários contextos. Aqui estão alguns padr
 <Button variant="secondary">Cancelar</Button>
 
 // Botão de texto para ações sutis
-<Button variant="text">Editar</Button>
+<Button variant="tertiary">Editar</Button>
 
 // Botão em formulários
 <form onSubmit={handleSubmit}>
@@ -136,8 +136,8 @@ O componente Button é baseado no elemento `button` e suporta todos os atributos
       <td>
         <code>
           "primary" | "primaryCritical" | "secondary" | "secondaryCritical" |
-          "text" | "textCritical" | "textTertiary" | "textTertiaryCritical" |
-          "inverse"
+          "tertiary" | "tertiaryCritical" | "textTertiary" |
+          "textTertiaryCritical" | "inverse"
         </code>
       </td>
       <td>
@@ -145,7 +145,7 @@ O componente Button é baseado no elemento `button` e suporta todos os atributos
       </td>
       <td>
         O estilo visual do botão. Use primary para ações principais, secondary
-        para alternativas e text para ações sutis.
+        para alternativas e tertiary para ações sutis.
       </td>
     </tr>
     <tr>
@@ -213,11 +213,13 @@ Use a prop `variant` para definir o estilo visual do botão:
 - `primaryCritical`: Para ações principais destrutivas
 - `secondary`: Para ações secundárias e alternativas
 - `secondaryCritical`: Para ações secundárias destrutivas
-- `text`: Para ações sutis e links (referente ao tertiary no handoff)
-- `textCritical`: Para ações de texto destrutivas (referente ao tertiaryCritical no handoff)
+- `tertiary`: Para ações terciárias discretas
+- `tertiaryCritical`: Para ações terciárias destrutivas
 - `textTertiary`: Para ações terciárias discretas
 - `textTertiaryCritical`: Para ações terciárias destrutivas
 - `inverse`: Para uso em fundos escuros
+- <s>text</s>: (deprecated)
+- <s>textCritical</s>: (deprecated)
 
 <Canvas withSource="open" withToolbar>
   <Story name="variants">
@@ -233,8 +235,8 @@ Use a prop `variant` para definir o estilo visual do botão:
       <Button variant="primaryCritical">Primary Critical</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondaryCritical">Secondary Critical</Button>
-      <Button variant="text">Tertiary</Button>
-      <Button variant="textCritical">Tertiary Critical</Button>
+      <Button variant="tertiary">Tertiary</Button>
+      <Button variant="tertiaryCritical">Tertiary Critical</Button>
       <Button variant="textTertiary">Text Tertiary</Button>
       <Button variant="textTertiaryCritical">Text Tertiary Critical</Button>
       <Button variant="inverse">Inverse</Button>
@@ -305,8 +307,8 @@ Use a prop `disabled` para impedir a interação do usuário:
       <Button variant="secondary" disabled>
         Secondary Desabilitado
       </Button>
-      <Button variant="text" disabled>
-        Text Desabilitado
+      <Button variant="tertiary" disabled>
+        Tertiary Desabilitado
       </Button>
     </div>
   </Story>
@@ -338,11 +340,11 @@ Exemplos de estados desabilitados para cada variante:
       <Button variant="secondaryCritical" disabled>
         Secondary Critical
       </Button>
-      <Button variant="text" disabled>
-        Text
+      <Button variant="tertiary" disabled>
+        Tertiary
       </Button>
-      <Button variant="textCritical" disabled>
-        Text Critical
+      <Button variant="tertiaryCritical" disabled>
+        Tertiary Critical
       </Button>
       <Button variant="textTertiary" disabled>
         Text Tertiary
@@ -372,7 +374,7 @@ Use a prop `loading` para exibir um estado de carregamento:
       <Button variant="secondary" loading>
         Processando
       </Button>
-      <Button variant="text" loading>
+      <Button variant="tertiary" loading>
         Salvando
       </Button>
     </div>
@@ -405,11 +407,11 @@ Exemplos de estados de carregamento para cada variante:
       <Button variant="secondaryCritical" loading>
         Secondary Critical
       </Button>
-      <Button variant="text" loading>
-        Text
+      <Button variant="tertiary" loading>
+        Tertiary
       </Button>
-      <Button variant="textCritical" loading>
-        Text Critical
+      <Button variant="tertiaryCritical" loading>
+        Tertiary Critical
       </Button>
       <Button variant="textTertiary" loading>
         Text Tertiary
@@ -590,7 +592,7 @@ O componente Button suporta todos os tipos padrão de botão HTML. O atributo `t
 
 - Use `primary` para ações principais (máximo 1 por tela)
 - Use `secondary` para ações alternativas
-- Use `text` para ações sutis ou links
+- Use `tertiary` para ações sutis ou links
 - Mantenha consistência no uso de tamanhos
 - Use `blocked` em interfaces mobile para melhor usabilidade
 
@@ -636,15 +638,15 @@ O componente Button suporta todos os tipos padrão de botão HTML. O atributo `t
     </tr>
     <tr>
       <td>
-        <code>.ods-btn--text</code>
+        <code>.ods-btn--tertiary</code>
       </td>
-      <td>Define estilos do botão text.</td>
+      <td>Define estilos do botão tertiary.</td>
     </tr>
     <tr>
       <td>
-        <code>.ods-btn--text-critical</code>
+        <code>.ods-btn--tertiary-critical</code>
       </td>
-      <td>Define estilos do botão text critical.</td>
+      <td>Define estilos do botão tertiary critical.</td>
     </tr>
     <tr>
       <td>
