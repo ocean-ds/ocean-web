@@ -6,9 +6,12 @@ import {
   commonArgTypes,
   SharedBestPractices,
   SharedCssClasses,
+  SharedUsageExamples,
   createApiReference,
   createIntroduction,
+  createCommonPatterns,
   defaultUsageDecorator,
+  containerStyles,
 } from './_shared';
 
 const TEXT_LABELS = {
@@ -122,11 +125,8 @@ const Introduction = (): JSX.Element =>
   );
 
 // Padrões Comuns
-const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Informações pessoais básicas
+const CommonPatterns = (): JSX.Element =>
+  createCommonPatterns(`// Informações pessoais básicas
 <Input
   label="Nome Completo"
   name="fullName"
@@ -155,44 +155,10 @@ const CommonPatterns = (): JSX.Element => (
   placeholder="seu@email.com"
   helperText="Email é obrigatório"
   error
-/>`}
-    />
-  </>
-);
+/>`);
 
 // Exemplos de Uso
-const UsageExamples = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Integração com Formulários</DocBlock.Heading>
-
-    <h3>Uso em Formulários</h3>
-    <DocBlock.Source
-      dark
-      code={`<form onSubmit={handleSubmit}>
-  <Input label="Nome" name="name" type="text" required />
-  <Button type="submit">Enviar</Button>
-</form>`}
-    />
-
-    <h3>Validação</h3>
-    <DocBlock.Source
-      dark
-      code={`<form onSubmit={handleSubmit}>
-  <Input
-    label="Nome Completo"
-    name="fullName"
-    type="text"
-    error={errors.fullName}
-    helperText={errors.fullName || 'Digite seu nome completo'}
-    required
-  />
-  <Button type="submit" disabled={!isFormValid}>
-    {isSubmitting ? 'Enviando...' : 'Enviar'}
-  </Button>
-</form>`}
-    />
-  </>
-);
+const UsageExamples = SharedUsageExamples;
 
 // Melhores Práticas
 const BestPractices = SharedBestPractices;
@@ -236,14 +202,7 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
-      }}
-    >
+    <div style={containerStyles.form}>
       <Input
         label={TEXT_LABELS.nome}
         name="normal"
@@ -276,14 +235,7 @@ export const PersonalInfo: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
-      }}
-    >
+    <div style={containerStyles.form}>
       <Input
         label={TEXT_LABELS.nome}
         name="firstName"
@@ -316,14 +268,7 @@ export const AddressInfo: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
-      }}
-    >
+    <div style={containerStyles.form}>
       <Input
         label={TEXT_LABELS.endereco}
         name="address"
@@ -356,10 +301,7 @@ export const FormExample: Story = {
   render: () => (
     <form
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
+        ...containerStyles.form,
         padding: '16px',
         border: '1px solid #e0e0e0',
         borderRadius: '8px',

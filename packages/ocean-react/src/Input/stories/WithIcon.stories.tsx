@@ -12,10 +12,13 @@ import Input from '../Input';
 import {
   commonArgTypes,
   SharedCssClasses,
+  SharedUsageExamples,
   createApiReference,
   createIntroduction,
+  createCommonPatterns,
   defaultUsageDecorator,
   adornmentSpecificProps,
+  containerStyles,
 } from './_shared';
 
 const ICON_LABELS = {
@@ -133,11 +136,8 @@ import {
   );
 
 // Padrões Comuns
-const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Campos de formulário com ícones
+const CommonPatterns = (): JSX.Element =>
+  createCommonPatterns(`// Campos de formulário com ícones
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
   <Input
     label="Email"
@@ -183,63 +183,12 @@ const CommonPatterns = (): JSX.Element => (
     adornment={<SearchOutline size={20} />}
     helperText="Pressione Enter para buscar"
   />
-</div>`}
-    />
-  </>
-);
+</div>`);
 
 // Exemplos de Uso
-const UsageExamples = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Integração com Formulários</DocBlock.Heading>
+const UsageExamples = SharedUsageExamples;
 
-    <h3>Uso em Formulários</h3>
-    <DocBlock.Source
-      dark
-      code={`<form onSubmit={handleSubmit}>
-  <Input
-    label="Email"
-    name="email"
-    type="email"
-    placeholder="seu@email.com"
-    adornment={<MailOutline size={20} />}
-    required
-  />
-  <Input
-    label="Senha"
-    name="password"
-    type="password"
-    placeholder="Digite sua senha"
-    adornment={<LockClosedOutline size={20} />}
-    required
-  />
-  <Button type="submit">Enviar</Button>
-</form>`}
-    />
-
-    <h3>Validação</h3>
-    <DocBlock.Source
-      dark
-      code={`<form onSubmit={handleSubmit}>
-  <Input
-    label="Email"
-    name="email"
-    type="email"
-    placeholder="seu@email.com"
-    adornment={<MailOutline size={20} />}
-    error={errors.email}
-    helperText={errors.email || 'Digite um email válido'}
-    required
-  />
-  <Button type="submit" disabled={!isFormValid}>
-    {isSubmitting ? 'Enviando...' : 'Enviar'}
-  </Button>
-</form>`}
-    />
-  </>
-);
-
-// Melhores Práticas
+// Melhores Práticas específicas para ícones
 const BestPractices = (): JSX.Element => (
   <>
     <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
@@ -329,14 +278,7 @@ export const Contexts: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
-      }}
-    >
+    <div style={containerStyles.form}>
       <Input
         label={ICON_LABELS.email}
         name="email"
@@ -378,14 +320,7 @@ export const Positions: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
-      }}
-    >
+    <div style={containerStyles.form}>
       <Input
         label={ICON_LABELS.buscar}
         name="searchRight"
@@ -413,14 +348,7 @@ export const Interactive: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        maxWidth: '400px',
-      }}
-    >
+    <div style={containerStyles.form}>
       <Input
         label={ICON_LABELS.senha}
         name="password"

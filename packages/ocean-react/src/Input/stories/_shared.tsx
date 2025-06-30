@@ -376,3 +376,116 @@ export const createIntroduction = (
     />
   </>
 );
+
+// Templates para CommonPatterns compartilhados
+export const createCommonPatterns = (codeExample: string): JSX.Element => (
+  <>
+    <DocBlock.Source dark code={codeExample} />
+  </>
+);
+
+// Componentes de Usage Examples compartilhados
+export const SharedUsageExamples = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Integração com Formulários</DocBlock.Heading>
+
+    <h3>Uso em Formulários</h3>
+    <DocBlock.Source
+      dark
+      code={`<form onSubmit={handleSubmit}>
+  <Input
+    label="Campo"
+    name="field"
+    type="text"
+    placeholder="Digite aqui..."
+    required
+  />
+  <Button type="submit">Enviar</Button>
+</form>`}
+    />
+
+    <h3>Validação</h3>
+    <DocBlock.Source
+      dark
+      code={`<form onSubmit={handleSubmit}>
+  <Input
+    label="Campo"
+    name="field"
+    type="text"
+    error={fieldError}
+    helperText={
+      fieldError
+        ? 'Mensagem de erro específica'
+        : 'Texto de ajuda normal'
+    }
+    required
+  />
+  <Button type="submit" disabled={!isFormValid} loading={isSubmitting}>
+    {isSubmitting ? 'Enviando...' : 'Enviar'}
+  </Button>
+</form>`}
+    />
+  </>
+);
+
+// Templates de código compartilhados
+export const commonCodeExamples = {
+  basicUsage: `// Input básico
+<Input
+  label="Campo"
+  name="field"
+  type="text"
+  placeholder="Digite aqui..."
+  helperText="Texto de ajuda"
+/>`,
+
+  formUsage: `// Em formulários
+<form onSubmit={handleSubmit}>
+  <Input
+    label="Nome"
+    name="name"
+    type="text"
+    placeholder="Seu nome..."
+    required
+  />
+  <Button type="submit">Enviar</Button>
+</form>`,
+
+  validation: `// Com validação
+<Input
+  label="Email"
+  name="email"
+  type="email"
+  error={emailError}
+  helperText={emailError || 'Digite um email válido'}
+  required
+/>`,
+
+  withStates: `// Diferentes estados
+<div>
+  <Input label="Normal" name="normal" type="text" />
+  <Input label="Com erro" name="error" type="text" error />
+  <Input label="Desabilitado" name="disabled" type="text" disabled />
+</div>`,
+};
+
+// Estilos compartilhados para containers
+export const containerStyles = {
+  column: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    gap: '16px',
+  },
+  form: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    gap: '16px',
+    maxWidth: '400px',
+  },
+  centered: {
+    display: 'flex' as const,
+    justifyContent: 'center' as const,
+    alignItems: 'center' as const,
+    minWidth: '300px',
+  },
+};
