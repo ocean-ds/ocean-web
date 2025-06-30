@@ -19,6 +19,8 @@ import {
   SharedCssClasses,
   SharedUsageExamples,
   commonCodeExamples,
+  defaultUsageControls,
+  tooltipApiReference,
 } from './_shared';
 
 const INPUT_GETTING_STARTED_LABELS = {
@@ -150,14 +152,7 @@ const CommonPatterns = createCommonPatterns([
   commonCodeExamples.withIcon,
 ]);
 
-const ApiReference = createApiReference([
-  {
-    prop: 'tooltipMessage',
-    type: 'string',
-    default: 'undefined',
-    description: 'Mensagem de tooltip para informações contextuais.',
-  },
-]);
+const ApiReference = createApiReference(tooltipApiReference);
 
 export const Usage: Story = {
   args: {
@@ -169,18 +164,7 @@ export const Usage: Story = {
   },
   decorators: defaultUsageDecorator,
   parameters: {
-    controls: {
-      include: [
-        'type',
-        'label',
-        'placeholder',
-        'helperText',
-        'error',
-        'disabled',
-        'required',
-        'tooltipMessage',
-      ],
-    },
+    controls: defaultUsageControls,
   },
 };
 

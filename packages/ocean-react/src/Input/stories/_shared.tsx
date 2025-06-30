@@ -133,9 +133,9 @@ export const createIntroduction =
               {features.map((feature) => (
                 <li
                   key={feature.replace(/[^a-zA-Z0-9]/g, '-').substring(0, 30)}
-                >
-                  {feature}
-                </li>
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{ __html: feature }}
+                />
               ))}
             </ul>
           </>
@@ -767,3 +767,63 @@ export const containerStyles = {
     flexWrap: 'wrap' as const,
   },
 };
+
+// Constantes comuns de texto
+export const COMMON_LABELS = {
+  email: 'Email',
+  senha: 'Senha',
+  telefone: 'Telefone',
+  nomeCompleto: 'Nome Completo',
+  cpfCnpj: 'CPF/CNPJ',
+};
+
+export const COMMON_PLACEHOLDERS = {
+  seuEmail: 'seu@email.com',
+  digiteSenha: 'Digite sua senha',
+  telefoneExemplo: '(11) 99999-9999',
+  nomeCompleto: 'João Silva',
+  cpfExemplo: '000.000.000-00',
+};
+
+export const COMMON_HELPER_TEXTS = {
+  emailVerificacao: 'Usado para verificação da conta',
+  senhaForte: 'Escolha uma senha forte',
+  incluaDDD: 'Inclua o DDD',
+  primeiroUltimoNome: 'Primeiro e último nome',
+  identificacaoFiscal: 'Identificação fiscal pessoal ou empresarial',
+};
+
+export const COMMON_TOOLTIPS = {
+  senhaRequisitos:
+    'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
+  emailPrivacidade:
+    'Usamos seu email para verificação de conta e notificações importantes.',
+  telefoneFormato:
+    'Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo',
+  cpfCnpjFormato:
+    'Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços',
+};
+
+// Parâmetros de controle padrão para Usage story
+export const defaultUsageControls = {
+  include: [
+    'type',
+    'label',
+    'placeholder',
+    'helperText',
+    'error',
+    'disabled',
+    'required',
+    'tooltipMessage',
+  ],
+};
+
+// API Reference padrão para tooltip
+export const tooltipApiReference = [
+  {
+    prop: 'tooltipMessage',
+    type: 'string',
+    default: 'undefined',
+    description: 'Mensagem de tooltip para informações contextuais.',
+  },
+];

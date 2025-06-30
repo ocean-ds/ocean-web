@@ -14,6 +14,8 @@ import {
   TooltipCssClasses,
   SharedUsageExamples,
   commonCodeExamples,
+  defaultUsageControls,
+  tooltipApiReference,
 } from './_shared';
 
 const TOOLTIP_LABELS = {
@@ -123,15 +125,7 @@ const CommonPatterns = createCommonPatterns([
 />`,
 ]);
 
-const ApiReference = createApiReference([
-  {
-    prop: 'tooltipMessage',
-    type: 'string',
-    default: 'undefined',
-    description:
-      'Mensagem exibida no tooltip ao passar o mouse sobre o rótulo. Use para informações adicionais ou regras de validação.',
-  },
-]);
+const ApiReference = createApiReference(tooltipApiReference);
 
 export const Usage: Story = {
   args: {
@@ -144,18 +138,7 @@ export const Usage: Story = {
   },
   decorators: defaultUsageDecorator,
   parameters: {
-    controls: {
-      include: [
-        'type',
-        'label',
-        'placeholder',
-        'tooltipMessage',
-        'helperText',
-        'error',
-        'disabled',
-        'required',
-      ],
-    },
+    controls: defaultUsageControls,
   },
 };
 
