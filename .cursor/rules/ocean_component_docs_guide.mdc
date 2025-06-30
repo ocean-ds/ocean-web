@@ -3,7 +3,6 @@ description:
 globs:
 alwaysApply: false
 ---
-
 # Ocean Web - Component Documentation Guidelines (TSX)
 
 Esta documentação estabelece padrões para criar documentação de componentes no ocean-web usando **TypeScript (.tsx)** e **Storybook Blocks** para documentação personalizada, clara, consistente e amigável para IA.
@@ -60,6 +59,7 @@ const meta: Meta<typeof ComponentName> = {
           <UsageExamples />
           <BestPractices />
           <CssClasses />
+          <ApiReference />
         </>
       ),
     },
@@ -107,13 +107,13 @@ export const Usage: Story = {
 const Introduction = (): JSX.Element => (
   <>
     <DocBlock.Title />
-    <DocBlock.Description>
+    <DocBlock.Markdown>
       [Descrição concisa do propósito do componente]
-    </DocBlock.Description>
+    </DocBlock.Markdown>
     <DocBlock.Heading>Visão Geral</DocBlock.Heading>
-    <DocBlock.Description>
+    <DocBlock.Markdown>
       [Descrição detalhada do componente, suas capacidades e contexto de uso]
-    </DocBlock.Description>
+    </DocBlock.Markdown>
     <DocBlock.Heading>Importação</DocBlock.Heading>
     <DocBlock.Source
       dark
@@ -235,9 +235,9 @@ const States = (): JSX.Element => (
 ```tsx
 const StatesDescription = (): JSX.Element => (
   <>
-    <DocBlock.Description>
+    <DocBlock.Markdown>
       Use as props de estado para diferentes contextos:
-    </DocBlock.Description>
+    </DocBlock.Markdown>
     <ul>
       <li>
         <code>disabled</code>: Quando a ação não está disponível
@@ -337,6 +337,165 @@ const CssClasses = (): JSX.Element => (
         </tr>
       </tbody>
     </table>
+  </>
+);
+```
+
+### 13. Referência da API
+
+```tsx
+const ApiReference = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Referência da API</DocBlock.Heading>
+    <DocBlock.Markdown>
+      O componente é baseado no elemento HTML apropriado e suporta todos os atributos padrão relevantes.
+    </DocBlock.Markdown>
+    <table style={{ width: '100%' }}>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>variant</td>
+          <td><code>&quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot;</code></td>
+          <td><code>&quot;primary&quot;</code></td>
+          <td>Define a variante visual do componente. Primary para ações principais, secondary para alternativas, tertiary para ações discretas.</td>
+        </tr>
+        <tr>
+          <td>size</td>
+          <td><code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</code></td>
+          <td><code>&quot;md&quot;</code></td>
+          <td>Controla o tamanho do componente. Pequeno (sm), médio (md) ou grande (lg).</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, desabilita o componente e impede interação do usuário.</td>
+        </tr>
+        <tr>
+          <td>loading</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, exibe um estado de carregamento com indicador visual apropriado.</td>
+        </tr>
+        <tr>
+          <td>blocked</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, faz o componente ocupar toda a largura disponível do container.</td>
+        </tr>
+      </tbody>
+    </table>
+    <DocBlock.Markdown>
+      A ref é encaminhada para o elemento HTML subjacente. Qualquer outra prop fornecida será passada para o elemento apropriado.
+    </DocBlock.Markdown>
+  </>
+);
+```
+
+**Exemplos específicos por tipo de componente:**
+
+**Para componentes de entrada (Input, TextArea, etc.):**
+```tsx
+const ApiReference = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Referência da API</DocBlock.Heading>
+    <DocBlock.Markdown>
+      O componente de entrada é baseado no elemento input e suporta todos os atributos padrão de input.
+    </DocBlock.Markdown>
+    <table style={{ width: '100%' }}>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>type</td>
+          <td><code>&quot;text&quot; | &quot;email&quot; | &quot;password&quot;</code></td>
+          <td><code>&quot;text&quot;</code></td>
+          <td>Define o tipo de entrada do campo.</td>
+        </tr>
+        <tr>
+          <td>label</td>
+          <td><code>string</code></td>
+          <td><code>undefined</code></td>
+          <td>Rótulo descritivo do campo de entrada.</td>
+        </tr>
+        <tr>
+          <td>placeholder</td>
+          <td><code>string</code></td>
+          <td><code>undefined</code></td>
+          <td>Texto de orientação exibido quando o campo está vazio.</td>
+        </tr>
+        <tr>
+          <td>helperText</td>
+          <td><code>string</code></td>
+          <td><code>undefined</code></td>
+          <td>Texto auxiliar para fornecer contexto adicional.</td>
+        </tr>
+        <tr>
+          <td>error</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, exibe o estilo de erro para indicar validação falhou.</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, desabilita o campo e impede edição.</td>
+        </tr>
+      </tbody>
+    </table>
+  </>
+);
+```
+
+**Para componentes especializados (Currency Input):**
+```tsx
+const ApiReference = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Referência da API</DocBlock.Heading>
+    <DocBlock.Markdown>
+      O componente Currency Input é baseado no elemento input e suporta todos os atributos padrão de input.
+    </DocBlock.Markdown>
+    <table style={{ width: '100%' }}>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>adornment</td>
+          <td><code>React.ReactElement | string</code></td>
+          <td><code>undefined</code></td>
+          <td>Símbolo ou código da moeda. Use símbolos ($, €, £) para posição esquerda, códigos (USD, EUR) para direita.</td>
+        </tr>
+        <tr>
+          <td>position</td>
+          <td><code>&quot;left&quot; | &quot;right&quot;</code></td>
+          <td><code>&quot;right&quot;</code></td>
+          <td>Posição do adorno da moeda. Esquerda é comum para símbolos, direita para códigos de moeda.</td>
+        </tr>
+      </tbody>
+    </table>
+    <DocBlock.Markdown>
+      A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será passada para o elemento input.
+    </DocBlock.Markdown>
   </>
 );
 ```
@@ -533,6 +692,7 @@ const ButtonType = (): JSX.Element => (
 7. **UsageExamples** - Exemplos práticos detalhados
 8. **BestPractices** - Guidelines e melhores práticas
 9. **CssClasses** - Documentação das classes CSS
+10. **ApiReference** - Referência completa das props e tipos
 
 ### ✅ Nomenclatura de Componentes
 
@@ -668,6 +828,7 @@ export const Variants: Story = {
 - [ ] `UsageExamples` com casos práticos
 - [ ] `BestPractices` com guidelines
 - [ ] `CssClasses` documentando classes
+- [ ] `ApiReference` com tabela completa de props
 
 ### ✅ Stories e Layout
 
