@@ -12,6 +12,7 @@ import {
   createCommonPatterns,
   defaultUsageDecorator,
   containerStyles,
+  commonCodeExamples,
 } from './_shared';
 
 const TEXT_LABELS = {
@@ -118,36 +119,23 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 // Componente de Introdução
-const Introduction = (): JSX.Element =>
-  createIntroduction(
-    'Componente especializado de entrada de texto para coletar dados textuais gerais com recursos de validação e acessibilidade.',
-    'Text inputs são o controle de formulário mais comum para coletar dados de texto inseridos pelo usuário. Eles suportam vários estados de validação, texto de ajuda e recursos de acessibilidade. Use text inputs para nomes, endereços, descrições e outros conteúdos de texto livre.'
-  );
+const Introduction = createIntroduction(
+  'Componente especializado de entrada de texto para coletar dados textuais gerais com recursos de validação e acessibilidade.',
+  'Text inputs são o controle de formulário mais comum para coletar dados de texto inseridos pelo usuário. Eles suportam vários estados de validação, texto de ajuda e recursos de acessibilidade. Use text inputs para nomes, endereços, descrições e outros conteúdos de texto livre.'
+);
 
 // Padrões Comuns
-const CommonPatterns = (): JSX.Element =>
-  createCommonPatterns(`// Informações pessoais básicas
+const CommonPatterns = createCommonPatterns([
+  commonCodeExamples.basicUsage,
+  `// Informações pessoais básicas
 <Input
   label="Nome Completo"
   name="fullName"
   type="text"
   placeholder="João Silva"
   required
-/>
-
-// Em formulários com validação
-<form onSubmit={handleSubmit}>
-  <Input
-    label="Endereço"
-    name="address"
-    type="text"
-    placeholder="Rua das Flores, 123"
-    helperText="Inclua número do apartamento se aplicável"
-  />
-  <Button type="submit">Enviar</Button>
-</form>
-
-// Com estado de erro
+/>`,
+  `// Com estado de erro
 <Input
   label="Email"
   name="email"
@@ -155,7 +143,8 @@ const CommonPatterns = (): JSX.Element =>
   placeholder="seu@email.com"
   helperText="Email é obrigatório"
   error
-/>`);
+/>`,
+]);
 
 // Exemplos de Uso
 const UsageExamples = SharedUsageExamples;
@@ -167,22 +156,7 @@ const BestPractices = SharedBestPractices;
 const CssClasses = SharedCssClasses;
 
 // Referência da API
-const ApiReference = (): JSX.Element =>
-  createApiReference(
-    <tr>
-      <td>type</td>
-      <td>
-        <code>&quot;text&quot;</code>
-      </td>
-      <td>
-        <code>&quot;text&quot;</code>
-      </td>
-      <td>
-        Sempre &quot;text&quot; para inputs de texto. Fornece comportamento
-        padrão de entrada de texto.
-      </td>
-    </tr>
-  );
+const ApiReference = createApiReference();
 
 // Story principal com controles ativos
 export const Usage: Story = {

@@ -17,8 +17,8 @@ import {
   createIntroduction,
   createCommonPatterns,
   defaultUsageDecorator,
-  adornmentSpecificProps,
   containerStyles,
+  commonCodeExamples,
 } from './_shared';
 
 const ICON_LABELS = {
@@ -123,21 +123,15 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 // Componente de Introdução
-const Introduction = (): JSX.Element =>
-  createIntroduction(
-    'Componente de entrada aprimorado com ícones para melhorar a experiência do usuário e fornecer contexto visual.',
-    'Inputs com ícones fornecem contexto visual e usabilidade aprimorada através da adição de ícones relevantes aos campos de entrada. Os ícones podem indicar o propósito do input, fornecer funcionalidade interativa ou melhorar a hierarquia visual. Casos comuns incluem campos de busca, alternância de senha, informações de contato e gatilhos de ação.',
-    `import { Input } from '@useblu/ocean-react';
-import {
-  SearchOutline,
-  EyeOutline,
-  MailOutline,
-} from '@useblu/ocean-icons-react';`
-  );
+const Introduction = createIntroduction(
+  'Componente de entrada aprimorado com ícones para melhorar a experiência do usuário e fornecer contexto visual.',
+  'Inputs com ícones fornecem contexto visual e usabilidade aprimorada através da adição de ícones relevantes aos campos de entrada. Os ícones podem indicar o propósito do input, fornecer funcionalidade interativa ou melhorar a hierarquia visual. Casos comuns incluem campos de busca, alternância de senha, informações de contato e gatilhos de ação.'
+);
 
 // Padrões Comuns
-const CommonPatterns = (): JSX.Element =>
-  createCommonPatterns(`// Campos de formulário com ícones
+const CommonPatterns = createCommonPatterns([
+  commonCodeExamples.withIcon,
+  `// Campos de formulário com ícones
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
   <Input
     label="Email"
@@ -155,35 +149,17 @@ const CommonPatterns = (): JSX.Element =>
     adornment={<LockClosedOutline size={20} />}
     helperText="Use uma senha segura"
   />
-  <Input
-    label="Telefone"
-    name="phone"
-    type="tel"
-    placeholder="(11) 99999-9999"
-    adornment={<PhoneOutline size={20} />}
-    helperText="Inclua o DDD"
-  />
-</div>
-
-// Ícones interativos
-<div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-  <Input
-    label="Senha"
-    name="password"
-    type="password"
-    placeholder="Digite sua senha"
-    adornment={<EyeOutline size={20} />}
-    helperText="Clique no olho para alternar visibilidade"
-  />
-  <Input
-    label="Buscar Produtos"
-    name="search"
-    type="search"
-    placeholder="Digite para buscar..."
-    adornment={<SearchOutline size={20} />}
-    helperText="Pressione Enter para buscar"
-  />
-</div>`);
+</div>`,
+  `// Ícones interativos
+<Input
+  label="Senha"
+  name="password"
+  type="password"
+  placeholder="Digite sua senha"
+  adornment={<EyeOutline size={20} />}
+  helperText="Clique no olho para alternar visibilidade"
+/>`,
+]);
 
 // Exemplos de Uso
 const UsageExamples = SharedUsageExamples;
@@ -235,28 +211,22 @@ const BestPractices = (): JSX.Element => (
 const CssClasses = SharedCssClasses;
 
 // Referência da API
-const ApiReference = (): JSX.Element =>
-  createApiReference(
-    <>
-      <tr>
-        <td>type</td>
-        <td>
-          <code>
-            &quot;text&quot; | &quot;email&quot; | &quot;password&quot; |
-            &quot;search&quot; | &quot;tel&quot;
-          </code>
-        </td>
-        <td>
-          <code>&quot;text&quot;</code>
-        </td>
-        <td>
-          Define o comportamento e validação específica para cada tipo de
-          entrada.
-        </td>
-      </tr>
-      {adornmentSpecificProps}
-    </>
-  );
+const ApiReference = createApiReference([
+  {
+    prop: 'adornment',
+    type: 'React.ReactElement',
+    default: 'undefined',
+    description:
+      'Ícone ou elemento adicional exibido junto ao input. Use para contexto visual ou funcionalidade extra.',
+  },
+  {
+    prop: 'position',
+    type: '"left" | "right"',
+    default: '"right"',
+    description:
+      'Posição do adorno. Use left para símbolos de contexto, right para ícones de ação.',
+  },
+]);
 
 // Story principal com controles ativos
 export const Usage: Story = {
