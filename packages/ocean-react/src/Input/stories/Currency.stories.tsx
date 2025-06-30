@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Input from '../Input';
+import { defaultUsageDecorator } from './_shared';
 
 const CURRENCY_LABELS = {
   price: 'Preço',
@@ -588,19 +589,7 @@ export const Usage: Story = {
     position: 'left',
     helperText: CURRENCY_HELPER_TEXTS.digitePrecoBrasileiro,
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '300px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: defaultUsageDecorator,
 };
 
 export const Currencies: Story = {

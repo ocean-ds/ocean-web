@@ -2,6 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Input from '../Input';
+import {
+  commonArgTypes,
+  SharedBestPractices,
+  SharedCssClasses,
+  createApiReference,
+  createIntroduction,
+  defaultUsageDecorator,
+} from './_shared';
 
 const TEXT_LABELS = {
   nomeCompleto: 'Nome Completo',
@@ -55,6 +63,7 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   argTypes: {
+    ...commonArgTypes,
     type: {
       name: 'type',
       description:
@@ -65,77 +74,11 @@ const meta: Meta<typeof Input> = {
       },
       control: { type: null },
     },
-    label: {
-      name: 'label',
-      description:
-        'O rótulo do campo de entrada. Essencial para acessibilidade e compreensão do usuário sobre o que inserir.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { type: 'text' },
-    },
-    placeholder: {
-      name: 'placeholder',
-      description:
-        'Texto de exemplo mostrado quando o input está vazio. Deve demonstrar o formato esperado ou dar dicas sobre o conteúdo.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { type: 'text' },
-    },
-    helperText: {
-      name: 'helperText',
-      description:
-        'Texto de ajuda exibido abaixo do input. Use para orientações adicionais ou mensagens de validação.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { type: 'text' },
-    },
-    error: {
-      name: 'error',
-      description:
-        'Quando true, aplica estilos de estado de erro ao input. Use com validação de formulário para indicar problemas.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-      control: { type: 'boolean' },
-    },
-    disabled: {
-      name: 'disabled',
-      description:
-        'Quando true, desabilita o campo de entrada. Use quando o campo não estiver disponível ou aplicável no contexto atual.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-      control: { type: 'boolean' },
-    },
-    htmlFor: {
-      control: { type: null },
-    },
     adornment: {
-      control: { type: null },
-    },
-    defaultValue: {
       control: { type: null },
     },
     position: {
       control: { type: null },
-    },
-    tooltipMessage: {
-      name: 'tooltipMessage',
-      description:
-        'Mensagem de tooltip exibida ao passar o mouse sobre o ícone de ajuda.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
-      },
-      control: { type: 'text' },
     },
   },
   parameters: {
@@ -172,27 +115,11 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 // Componente de Introdução
-const Introduction = (): JSX.Element => (
-  <>
-    <DocBlock.Title />
-    <DocBlock.Markdown>
-      Componente especializado de entrada de texto para coletar dados textuais
-      gerais com recursos de validação e acessibilidade.
-    </DocBlock.Markdown>
-    <DocBlock.Heading>Visão Geral</DocBlock.Heading>
-    <DocBlock.Markdown>
-      Text inputs são o controle de formulário mais comum para coletar dados de
-      texto inseridos pelo usuário. Eles suportam vários estados de validação,
-      texto de ajuda e recursos de acessibilidade. Use text inputs para nomes,
-      endereços, descrições e outros conteúdos de texto livre.
-    </DocBlock.Markdown>
-    <DocBlock.Heading>Importação</DocBlock.Heading>
-    <DocBlock.Source
-      dark
-      code={`import { Input } from '@useblu/ocean-react';`}
-    />
-  </>
-);
+const Introduction = (): JSX.Element =>
+  createIntroduction(
+    'Componente especializado de entrada de texto para coletar dados textuais gerais com recursos de validação e acessibilidade.',
+    'Text inputs são o controle de formulário mais comum para coletar dados de texto inseridos pelo usuário. Eles suportam vários estados de validação, texto de ajuda e recursos de acessibilidade. Use text inputs para nomes, endereços, descrições e outros conteúdos de texto livre.'
+  );
 
 // Padrões Comuns
 const CommonPatterns = (): JSX.Element => (
@@ -268,195 +195,28 @@ const UsageExamples = (): JSX.Element => (
 );
 
 // Melhores Práticas
-const BestPractices = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
-
-    <h3>1. Uso Geral</h3>
-    <ul>
-      <li>
-        Use labels descritivos que indiquem claramente o que deve ser inserido
-      </li>
-      <li>Forneça placeholders que demonstrem o formato esperado</li>
-      <li>
-        Use helperText para orientações adicionais ou requisitos específicos
-      </li>
-      <li>Mantenha consistência no uso de campos obrigatórios</li>
-    </ul>
-
-    <h3>2. Validação</h3>
-    <ul>
-      <li>
-        Use o estado <code>error</code> junto com <code>helperText</code> para
-        mensagens de erro claras
-      </li>
-      <li>Forneça feedback em tempo real quando apropriado</li>
-      <li>Mantenha mensagens de erro específicas e acionáveis</li>
-    </ul>
-
-    <h3>3. Acessibilidade</h3>
-    <ul>
-      <li>Sempre forneça labels para todos os inputs</li>
-      <li>
-        Use <code>helperText</code> para informações importantes sobre o campo
-      </li>
-      <li>Mantenha contraste adequado em todos os estados</li>
-      <li>Garanta que campos desabilitados sejam claramente identificáveis</li>
-    </ul>
-
-    <h3>4. Design e UX</h3>
-    <ul>
-      <li>Agrupe campos relacionados logicamente</li>
-      <li>Use larguras apropriadas para o tipo de conteúdo esperado</li>
-      <li>Considere o contexto mobile para tamanhos de toque adequados</li>
-      <li>Mantenha hierarquia visual clara em formulários</li>
-    </ul>
-  </>
-);
+const BestPractices = SharedBestPractices;
 
 // Classes CSS
-const CssClasses = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Classes CSS</DocBlock.Heading>
-    <table>
-      <thead>
-        <tr>
-          <th>Classe Global</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code>.ods-input</code>
-          </td>
-          <td>Estilos aplicados ao elemento raiz.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--filled</code>
-          </td>
-          <td>Estilos aplicados quando input tem conteúdo.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--disabled</code>
-          </td>
-          <td>Estilos aplicados quando input está desabilitado.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--error</code>
-          </td>
-          <td>Estilos aplicados quando input está em estado de erro.</td>
-        </tr>
-      </tbody>
-    </table>
-  </>
-);
+const CssClasses = SharedCssClasses;
 
 // Referência da API
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Referência da API</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente Text Input é baseado no elemento input e suporta todos os
-      atributos padrão HTML.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>type</td>
-          <td>
-            <code>&quot;text&quot;</code>
-          </td>
-          <td>
-            <code>&quot;text&quot;</code>
-          </td>
-          <td>
-            Sempre &quot;text&quot; para inputs de texto. Fornece comportamento
-            padrão de entrada de texto.
-          </td>
-        </tr>
-        <tr>
-          <td>label</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Texto do rótulo para o input. Essencial para acessibilidade e
-            compreensão do usuário.
-          </td>
-        </tr>
-        <tr>
-          <td>placeholder</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Texto de exemplo mostrado quando input está vazio. Deve demonstrar
-            formato esperado.
-          </td>
-        </tr>
-        <tr>
-          <td>helperText</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Orientações adicionais ou mensagens de validação para o usuário.
-          </td>
-        </tr>
-        <tr>
-          <td>error</td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Quando true, exibe estilo de erro. Use com validação de formulário.
-          </td>
-        </tr>
-        <tr>
-          <td>disabled</td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Quando true, impede interação do usuário. Use quando campo não
-            estiver disponível.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento input. Qualquer outra prop fornecida
-      será passada para o elemento input.
-    </DocBlock.Markdown>
-  </>
-);
+const ApiReference = (): JSX.Element =>
+  createApiReference(
+    <tr>
+      <td>type</td>
+      <td>
+        <code>&quot;text&quot;</code>
+      </td>
+      <td>
+        <code>&quot;text&quot;</code>
+      </td>
+      <td>
+        Sempre &quot;text&quot; para inputs de texto. Fornece comportamento
+        padrão de entrada de texto.
+      </td>
+    </tr>
+  );
 
 // Story principal com controles ativos
 export const Usage: Story = {
@@ -467,22 +227,7 @@ export const Usage: Story = {
     placeholder: TEXT_PLACEHOLDERS.joaoSilva,
     helperText: TEXT_HELPER_TEXTS.primeiroUltimoNome,
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '300px',
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: defaultUsageDecorator,
 };
 
 // Stories visuais com controles desabilitados
