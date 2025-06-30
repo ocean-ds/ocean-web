@@ -1,1067 +1,698 @@
 ---
-description: 
-globs: 
-alwaysApply: false
----
----
 description:
 globs:
 alwaysApply: false
 ---
-# Ocean Web - Component Documentation Guidelines
 
-Esta documentação estabelece padrões para criar documentação de componentes no ocean-web que seja clara, consistente e amigável para IA.
+# Ocean Web - Component Documentation Guidelines (TSX)
 
-## Estrutura Padrão
+Esta documentação estabelece padrões para criar documentação de componentes no ocean-web usando **TypeScript (.tsx)** e **Storybook Blocks** para documentação personalizada, clara, consistente e amigável para IA.
 
-### 1. Cabeçalho e Metadados
+## Estrutura Padrão TSX
 
-```mdx
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+### 1. Imports e Meta Base
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import * as DocBlock from '@storybook/blocks';
+import React from 'react';
 import ComponentName from '../ComponentName';
 
-export const COMPONENT_LABELS = {
-  basicLabel: 'Label Básico',
-  advancedLabel: 'Label Avançado',
-  requiredField: 'Campo Obrigatório',
-};
-
-export const COMPONENT_HELPER_TEXTS = {
-  basicHelp: 'Texto de ajuda básico',
-  validationHelp: 'Mensagem de validação',
-  formatHelp: 'Formato esperado do campo',
-};
-
-export const COMPONENT_PLACEHOLDERS = {
-  basicPlaceholder: 'Digite algo...',
-  emailPlaceholder: 'seu@email.com',
-  numberPlaceholder: '0',
-};
-
-<Meta
-  title="Components/ComponentName"
-  component={ComponentName}
-  argTypes={{
-    propName: {
-      name: 'propName',
-      description: 'Descrição detalhada da prop.',
-      table: {
-        type: { summary: '"value1" | "value2"' },
-        defaultValue: { summary: 'value1' },
-      },
-      control: { type: 'select' },
-      options: ['value1', 'value2'],
-    },
-  }}
-/>
-```
-
-### 2. Título e Descrição
-
-```mdx
-# ComponentName
-
-[Descrição concisa e clara do propósito do componente]
-
-## Visão Geral
-
-[Explicação mais detalhada do componente, suas capacidades e contexto de uso]
-```
-
-### 3. Seções Obrigatórias
-
-#### Importação
-
-````mdx
-## Importação
-
-```javascript
-import { ComponentName } from '@useblu/ocean-react';
-```
-````
-
-#### Uso
-
-```mdx
-## Uso
-
-O componente ComponentName pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
-
-### Uso Básico
-
-<Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <ComponentName
-      label={COMPONENT_LABELS.basicLabel}
-      placeholder={COMPONENT_PLACEHOLDERS.basicPlaceholder}
-      helperText={COMPONENT_HELPER_TEXTS.basicHelp}
-    >
-      Exemplo Básico
-    </ComponentName>
-  </Story>
-</Canvas>
-
-### Padrões Comuns
-
-```jsx
-// Exemplo de uso comum usando variáveis
-<ComponentName
-  label={COMPONENT_LABELS.basicLabel}
-  placeholder={COMPONENT_PLACEHOLDERS.basicPlaceholder}
->
-  Conteúdo
-</ComponentName>
-
-// Exemplo em formulários
-<form onSubmit={handleSubmit}>
-  <ComponentName
-    label={COMPONENT_LABELS.requiredField}
-    name="fieldName"
-    required
-  />
-</form>
-```
-````
-
-#### Referência da API
-
-```mdx
-## Referência da API
-
-O componente ComponentName é baseado no elemento `element` e suporta todos os atributos padrão.
-
-<table>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Tipo</th>
-      <th>Padrão</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>propName</td>
-      <td><code>"value1" | "value2"</code></td>
-      <td><code>"value1"</code></td>
-      <td>Descrição detalhada com casos de uso específicos.</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-#### Exemplos
-
-```mdx
-## Exemplos
-
-### PropName
-
-Use a prop `propName` para controlar o comportamento:
-
-- `value1`: Para casos de uso específicos
-- `value2`: Para situações alternativas
-
-<Canvas withSource="open" withToolbar>
-  <Story name="prop-example">
-    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <ComponentName
-        propName="value1"
-        label={COMPONENT_LABELS.basicLabel}
-      >
-        {COMPONENT_LABELS.basicLabel}
-      </ComponentName>
-      <ComponentName
-        propName="value2"
-        label={COMPONENT_LABELS.advancedLabel}
-      >
-        {COMPONENT_LABELS.advancedLabel}
-      </ComponentName>
-    </div>
-  </Story>
-</Canvas>
-```
-
-#### Props
-
-```mdx
-## Props
-
-<ArgsTable of={ComponentName} />
-
-A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será passada para o elemento raiz.
-```
-
-#### Playground
-
-```mdx
-## Playground
-
-<Canvas>
-  <Story
-    name="playground"
-    args={{
-      children: COMPONENT_LABELS.basicLabel,
-      propName: 'value1',
-    }}
-  >
-    {(args) => <ComponentName {...args} />}
-  </Story>
-</Canvas>
-```
-
-## Uso de Variáveis Exportadas
-
-### Por que Usar Variáveis
-
-**✅ SEMPRE use variáveis exportadas para:**
-
-- Labels de campos
-- Textos de ajuda (helperText)
-- Placeholders
-- Mensagens de validação
-- Conteúdo repetido ou reutilizável
-
-**Benefícios:**
-
-- **Consistência**: Mesmos textos em todos os exemplos
-- **Manutenibilidade**: Mudanças centralizadas
-- **Reutilização**: Fácil acesso aos valores
-- **Legibilidade**: Código mais limpo e organizado
-
-### Padrão de Nomenclatura
-
-```mdx
-export const CURRENCY_LABELS = {
-  price: 'Preço',
-  productPrice: 'Preço do Produto',
-  realBrasileiro: 'Real Brasileiro',
-};
-
-export const CURRENCY_HELPER_TEXTS = {
-  digitePrecoBrasileiro: 'Digite o preço em Real brasileiro',
-  moedaBrasileira: 'Moeda brasileira',
-  precoMaiorZero: 'O preço deve ser maior que 0',
-};
-
-export const CURRENCY_PLACEHOLDERS = {
-  priceAmount: '0,00',
-  dollarAmount: '0.00',
-  euroAmount: '0,00',
-};
-```
-
-### Estrutura das Variáveis
-
-**1. COMPONENT_LABELS**: Para rótulos de campos
-
-```mdx
-export const COMPONENT_LABELS = {
-  basicField: 'Campo Básico',
-  requiredField: 'Campo Obrigatório',
-  optionalField: 'Campo Opcional',
-  primaryButton: 'Botão Principal',
-  secondaryButton: 'Botão Secundário',
-};
-```
-
-**2. COMPONENT_HELPER_TEXTS**: Para textos de ajuda
-
-```mdx
-export const COMPONENT_HELPER_TEXTS = {
-  basicInstruction: 'Digite as informações solicitadas',
-  formatRequirement: 'Use o formato DD/MM/AAAA',
-  validationMessage: 'Este campo é obrigatório',
-  emailVerification: 'Usado para verificação da conta',
-  passwordSecurity: 'Mínimo 8 caracteres',
-};
-```
-
-**3. COMPONENT_PLACEHOLDERS**: Para textos de exemplo
-
-```mdx
-export const COMPONENT_PLACEHOLDERS = {
-  emailExample: 'seu@email.com',
-  phoneExample: '(11) 99999-9999',
-  dateExample: 'DD/MM/AAAA',
-  defaultAmount: '0,00',
-  searchQuery: 'Digite sua busca...',
-};
-```
-
-### Exemplo Completo de Uso
-
-```mdx
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import Input from '../Input';
-
-export const INPUT_LABELS = {
-  email: 'Email',
-  password: 'Senha',
-  fullName: 'Nome Completo',
-  phoneNumber: 'Telefone',
-};
-
-export const INPUT_HELPER_TEXTS = {
-  emailVerification: 'Usado para verificação da conta',
-  passwordSecurity: 'Mínimo 8 caracteres',
-  fullNameFormat: 'Nome e sobrenome',
-  phoneFormat: 'Inclua o DDD',
-};
-
-export const INPUT_PLACEHOLDERS = {
-  emailExample: 'seu@email.com',
-  passwordExample: 'Digite sua senha',
-  fullNameExample: 'João Silva',
-  phoneExample: '(11) 99999-9999',
-};
-
-<Meta title="Components/Input" component={Input} />
-
-# Input
-
-## Uso Básico
-
-<Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <Input
-      label={INPUT_LABELS.email}
-      placeholder={INPUT_PLACEHOLDERS.emailExample}
-      helperText={INPUT_HELPER_TEXTS.emailVerification}
-    />
-  </Story>
-</Canvas>
-
-## Formulário Completo
-
-<Canvas withSource="open" withToolbar>
-  <Story name="form-example">
-    <form style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <Input
-        label={INPUT_LABELS.fullName}
-        placeholder={INPUT_PLACEHOLDERS.fullNameExample}
-        helperText={INPUT_HELPER_TEXTS.fullNameFormat}
-      />
-      <Input
-        label={INPUT_LABELS.email}
-        type="email"
-        placeholder={INPUT_PLACEHOLDERS.emailExample}
-        helperText={INPUT_HELPER_TEXTS.emailVerification}
-      />
-      <Input
-        label={INPUT_LABELS.password}
-        type="password"
-        placeholder={INPUT_PLACEHOLDERS.passwordExample}
-        helperText={INPUT_HELPER_TEXTS.passwordSecurity}
-      />
-      <Input
-        label={INPUT_LABELS.phoneNumber}
-        type="tel"
-        placeholder={INPUT_PLACEHOLDERS.phoneExample}
-        helperText={INPUT_HELPER_TEXTS.phoneFormat}
-      />
-    </form>
-  </Story>
-</Canvas>
-```
-
-### Playground com Variáveis
-
-```mdx
-## Playground
-
-<Canvas>
-  <Story
-    name="playground"
-    args={{
-      label: INPUT_LABELS.email,
-      placeholder: INPUT_PLACEHOLDERS.emailExample,
-      helperText: INPUT_HELPER_TEXTS.emailVerification,
-      type: 'email',
-      error: false,
-      disabled: false,
-    }}
-  >
-    {(args) => <Input {...args} />}
-  </Story>
-</Canvas>
-```
-
-## Observações Importantes Baseadas na Documentação do Button
-
-### 1. Uso de Tabelas HTML
-
-**✅ SEMPRE use tabelas HTML para API Reference:**
-
-```mdx
-<table>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Tipo</th>
-      <th>Padrão</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>variant</td>
-      <td><code>"primary" | "secondary"</code></td>
-      <td><code>"primary"</code></td>
-      <td>O estilo visual do componente. Use primary para ações principais, secondary para alternativas.</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-**❌ NÃO use tabelas Markdown para API Reference:**
-```mdx
-| Prop | Type | Default | Description |
-|---|---|---|----|
-```
-
-### 2. Estrutura de argTypes Detalhada
-
-**✅ Configure argTypes completos no Meta:**
-
-```mdx
-<Meta
-  title="Components/ComponentName"
-  component={ComponentName}
-  argTypes={{
+const meta: Meta<typeof ComponentName> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  tags: ['autodocs'],
+  argTypes: {
     variant: {
-      name: 'variant',
       description: 'A variante visual do componente.',
-      table: {
-        type: { summary: '"primary" | "secondary"' },
-        defaultValue: { summary: 'primary' },
-      },
-      control: { type: 'select' },
-      options: ['primary', 'secondary'],
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary'],
     },
     size: {
-      name: 'size',
       description: 'O tamanho do componente.',
-      table: {
-        type: { summary: '"sm" | "md" | "lg"' },
-        defaultValue: { summary: 'md' },
-      },
-      control: { type: 'select' },
+      control: 'select',
       options: ['sm', 'md', 'lg'],
     },
     disabled: {
-      name: 'disabled',
       description: 'Desabilita o componente.',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-      control: { type: 'boolean' },
+      control: 'boolean',
     },
-  }}
-/>
-```
-
-### 3. Seções Específicas Avançadas
-
-#### Para Componentes de Formulário
-
-```mdx
-## Integração com Formulários
-
-### Uso em Formulários
-
-```jsx
-<form onSubmit={handleSubmit}>
-  <ComponentName
-    label={COMPONENT_LABELS.requiredField}
-    name="fieldName"
-  />
-  <Button type="submit">Submit</Button>
-</form>
-```
-
-### Validação
-
-```jsx
-<form onSubmit={handleSubmit}>
-  <ComponentName
-    label={COMPONENT_LABELS.validatedField}
-    required
-    error={!!errors.field}
-    helperText={errors.field?.message || COMPONENT_HELPER_TEXTS.normalHelp}
-  />
-  <Button type="submit" disabled={!isFormValid} loading={isSubmitting}>
-    {isSubmitting ? 'Validando...' : 'Criar'}
-  </Button>
-</form>
-```
-````
-
-#### Melhores Práticas
-
-```mdx
-## Melhores Práticas
-
-### 1. Uso Geral
-
-- Use `variant="primary"` para ações principais (máximo 1 por tela)
-- Use `variant="secondary"` para ações alternativas
-- Mantenha consistência no uso de tamanhos
-
-### 2. Interações JavaScript
-
-- Use `type="button"` para ações que acionam funções JavaScript
-- Isso previne comportamentos indesejados
-
-### 3. Acessibilidade
-
-- Sempre especifique atributos apropriados
-- Use textos descritivos que indiquem claramente a função
-- Forneça feedback visual claro para estados
-- Mantenha comportamento consistente
-
-### 4. Design e UX
-
-- Use tamanhos apropriados para o contexto
-- Mantenha hierarquia visual clara
-- Considere o contexto mobile
-```
-
-#### Classes CSS (quando aplicável)
-
-```mdx
-## Classes CSS
-
-<table>
-  <thead>
-    <tr>
-      <th>Classe Global</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>.ods-component</code></td>
-      <td>Estilos aplicados ao elemento raiz.</td>
-    </tr>
-    <tr>
-      <td><code>.ods-component--variant</code></td>
-      <td>Define estilos específicos da variante.</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-### 4. Padrões de Layout em Stories
-
-**✅ Use containers apropriados para demonstrar o componente:**
-
-```mdx
-<Canvas withSource="open" withToolbar>
-  <Story name="variants">
-    <div style={{
-      display: 'flex',
-      gap: '8px',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-    }}>
-      <ComponentName
-        variant="primary"
-        label={COMPONENT_LABELS.primary}
-      >
-        {COMPONENT_LABELS.primary}
-      </ComponentName>
-      <ComponentName
-        variant="secondary"
-        label={COMPONENT_LABELS.secondary}
-      >
-        {COMPONENT_LABELS.secondary}
-      </ComponentName>
-    </div>
-  </Story>
-</Canvas>
-```
-
-**✅ Para componentes de largura total:**
-
-```mdx
-<Canvas withSource="open" withToolbar>
-  <Story name="blocked">
-    <div style={{
-      width: '500px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <ComponentName
-        blocked
-        label={COMPONENT_LABELS.blockedExample}
-      >
-        {COMPONENT_LABELS.blockedExample}
-      </ComponentName>
-    </div>
-  </Story>
-</Canvas>
-```
-
-### 5. Descrições de Props Melhoradas
-
-**✅ Inclua contexto de uso nas descrições:**
-
-```
-O estilo visual do componente. Use primary para ações principais, secondary para alternativas e text para ações sutis.
-```
-
-**✅ Mencione casos de uso específicos:**
-
-```
-O tamanho do componente. Use sm para interfaces compactas, md para uso padrão e lg para ações proeminentes.
-```
-
-**✅ Explique comportamentos:**
-
-```
-Quando true, o componente ocupa toda a largura do container. Útil para interfaces mobile e envios de formulário.
-```
-
-### 6. Exemplos por Estado
-
-**✅ Mostre todos os estados relevantes usando variáveis:**
-
-```mdx
-### Estados Desabilitados por Variante
-
-<Canvas withSource="open" withToolbar>
-  <Story name="disabled-variants">
-    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-      <ComponentName
-        variant="primary"
-        disabled
-        label={COMPONENT_LABELS.disabledPrimary}
-      >
-        {COMPONENT_LABELS.disabledPrimary}
-      </ComponentName>
-      <ComponentName
-        variant="secondary"
-        disabled
-        label={COMPONENT_LABELS.disabledSecondary}
-      >
-        {COMPONENT_LABELS.disabledSecondary}
-      </ComponentName>
-    </div>
-  </Story>
-</Canvas>
-```
-
-## Padrões de Escrita
-
-### Descrições de Props
-
-- Use descrições claras e concisas
-- Inclua casos de uso específicos
-- Mencione valores padrão
-- Adicione exemplos quando apropriado
-- **NOVO:** Explique o impacto visual/comportamental
-
-**Bom:**
-
-```
-O estilo visual do botão. Use primary para ações principais, secondary para alternativas e text para ações sutis.
-```
-
-**Ruim:**
-
-```
-The variant to use.
-```
-
-### Exemplos de Código
-
-- Sempre inclua exemplos práticos usando as variáveis exportadas
-- Use nomes descritivos para props
-- Inclua contexto de layout quando relevante
-- Forneça exemplos de agrupamento/composição
-- **NOVO:** Use containers com estilos inline para demonstração
-- **NOVO:** Use variáveis exportadas consistentemente
-
-### Casos de Uso
-
-- Liste casos de uso específicos para cada prop
-- Use bullets para facilitar leitura
-- Inclua exemplos de texto/conteúdo usando as variáveis
-- Mencione considerações de acessibilidade
-- **NOVO:** Agrupe por contexto (formuláavegação, etc.)
-
-## Seçõpor Tipo
-
-### Para Componen Formulário
-
-````mdx
-egração com Formulários
-
-### Uso em Formulários
-
-```jsx
-<form onSubmit={handleSubmit}>
-  <ComponentName
-    label={COMPONENT_LABELS.fieldName}
-    name="fieldName"
-  />
-  <Button type="submit">Submit</Button>
-</form>
-```
-
-### Validação
-
-[Exemplos de validação e estados de erro usando variáveis]
-````
-
-### Para Componentes Interativos
-
-```mdx
-## Manipulação de Eventos
-
-<table>
-  <thead>
-    <tr>
-      <th>Handler</th>
-      <th>Tipo</th>
-      <th>Descrição</th>
-      <th>Exemplo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>onClick</td>
-      <td>function</td>
-      <td>Manipulador de evento de clique</td>
-      <td><code>&lt;Component onClick={handleClick} /&gt;</code></td>
-    </tr>
-  </tbody>
-</table>
-```
-
-### Para Componentes com Estados
-
-```mdx
-## Estados
-
-### Estado de Carregamento
-
-[Quando e como usar]
-
-### Estado Desabilitado
-
-[Quando e como usar]
-
-### Estado de Erro
-
-[Quando e como usar]
-```
-
-## Best Practices
-
-[Casos de uso]
-
-[Interações JavaScript]
-
-[Acessibilidade]
-
-## Guidelines para IA-Friendly Documentation
-
-### 1. Estrutura Consistente
-
-- Sempre siga a mesma ordem de seções
-- Use headers hierárquicos corretamente
-- Mantenha formatação consistente
-- **NOVO:** Use tabelas HTML para todas as referências de API
-- **NOVO:** Use variáveis exportadas para todos os textos reutilizáveis
-
-### 2. Exemplos Práticos
-
-- Inclua exemplos de código completos usando variáveis
-- Forneça exemplos de layout/composição
-- Mostre padrões de uso comuns
-- Inclua exemplos de integração
-- **NOVO:** Use containers com estilos inline para demonstração
-- **NOVO:** Mantenha consistência através de variáveis exportadas
-
-### 3. Contexto de Uso
-
-- Explique QUANDO usar cada prop/variante
-- Forneça exemplos de texto apropriado usando as variáveis
-- Inclua considerações de UX
-- Mencione melhores práticas
-- **NOVO:** Agrupe exemplos por contexto de uso
-
-### 4. Casos de Uso Específicos
-
-```mdx
-### Variações de Tamanho
-
-Use a prop `size` para controlar o tamanho do componente:
-
-- `sm`: Para interfaces compactas ou inline com texto
-- `md`: Tamanho padrão para a maioria dos casos de uso
-- `lg`: Para ações proeminentes ou melhores alvos de toque
-
-<Canvas withSource="open" withToolbar>
-  <Story name="sizes">
-    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <Component
-        size="sm"
-        label={COMPONENT_LABELS.smallSize}
-      >
-        {COMPONENT_LABELS.smallSize}
-      </Component>
-      <Component
-        size="md"
-        label={COMPONENT_LABELS.mediumSize}
-      >
-        {COMPONENT_LABELS.mediumSize}
-      </Component>
-      <Component
-        size="lg"
-        label={COMPONENT_LABELS.largeSize}
-      >
-        {COMPONENT_LABELS.largeSize}
-      </Component>
-    </div>
-  </Story>
-</Canvas>
-```
-
-## Template Base Atualizado
-
-````mdx
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import ComponentName from '../ComponentName';
-
-export const COMPONENT_LABELS = {
-  basic: 'Componente Básico',
-  primary: 'Primário',
-  secondary: 'Secundário',
-  disabled: 'Desabilitado',
-};
-
-export const COMPONENT_HELPER_TEXTS = {
-  basicHelp: 'Texto de ajuda básico',
-  primaryHelp: 'Use para ações principais',
-  secondaryHelp: 'Use para ações secundárias',
-  disabledHelp: 'Campo desabilitado',
-};
-
-export const COMPONENT_PLACEHOLDERS = {
-  basicPlaceholder: 'Digite algo...',
-  advancedPlaceholder: 'Conteúdo avançado...',
-};
-
-<Meta
-  title="Components/ComponentName"
-  component={ComponentName}
-  argTypes={{
-    variant: {
-      name: 'variant',
-      description: 'A variante visual do componente.',
-      table: {
-        type: { summary: '"primary" | "secondary"' },
-        defaultValue: { summary: 'primary' },
-      },
-      control: { type: 'select' },
-      options: ['primary', 'secondary'],
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Introduction />
+          <DocBlock.Heading>Uso</DocBlock.Heading>
+          <DocBlock.Canvas of={Usage} />
+          <DocBlock.Controls of={Usage} />
+          <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
+          <CommonPatterns />
+          <DocBlock.Heading>Exemplos</DocBlock.Heading>
+          <h3 id="variantes">Variantes</h3>
+          <VariantsList />
+          <Variants />
+          <h3 id="tamanhos">Tamanhos</h3>
+          <Sizes />
+          <h3 id="estados">Estados</h3>
+          <StatesDescription />
+          <States />
+          <UsageExamples />
+          <BestPractices />
+          <CssClasses />
+        </>
+      ),
     },
-  }}
-/>
+  },
+};
 
-# ComponentName
+export default meta;
 
-[Descrição concisa do propósito]
-
-## Visão Geral
-
-[Descrição detalhada e contexto de uso]
-
-## Importação
-
-```javascript
-import { ComponentName } from '@useblu/ocean-react';
+type Story = StoryObj<typeof ComponentName>;
 ```
 
-## Uso
+### 2. Story Principal (ÚNICA EXPORTADA)
 
-O componente ComponentName pode ser usado em vários contextos. Aqui estão alguns padrões comuns:
+```tsx
+export const Usage: Story = {
+  args: {
+    children: 'Texto do Componente',
+    variant: 'primary',
+    size: 'md',
+  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
+};
+```
 
-### Uso Básico
+**⚠️ IMPORTANTE**: Apenas o `Usage` deve ser exportado. As outras stories visuais devem ser componentes locais para evitar que apareçam como itens separados no sidebar do Storybook.
 
-<Canvas withSource="open" withToolbar>
-  <Story name="usage">
-    <ComponentName label={COMPONENT_LABELS.basic}>
-      {COMPONENT_LABELS.basic}
-    </ComponentName>
-  </Story>
-</Canvas>
+### 3. Componente de Introdução
 
-### Padrões Comuns
+```tsx
+const Introduction = (): JSX.Element => (
+  <>
+    <DocBlock.Title />
+    <DocBlock.Description>
+      [Descrição concisa do propósito do componente]
+    </DocBlock.Description>
+    <DocBlock.Heading>Visão Geral</DocBlock.Heading>
+    <DocBlock.Description>
+      [Descrição detalhada do componente, suas capacidades e contexto de uso]
+    </DocBlock.Description>
+    <DocBlock.Heading>Importação</DocBlock.Heading>
+    <DocBlock.Source
+      dark
+      code={`import { ComponentName } from '@useblu/ocean-react';`}
+    />
+  </>
+);
+```
 
-```jsx
-// Exemplo básico
-<ComponentName label={COMPONENT_LABELS.basic}>
-  {COMPONENT_LABELS.basic}
-</ComponentName>
+### 4. Padrões Comuns
+
+```tsx
+const CommonPatterns = (): JSX.Element => (
+  <>
+    <DocBlock.Source
+      dark
+      code={`// Exemplo básico
+<ComponentName variant="primary">Conteúdo</ComponentName>
+
+// Exemplo secundário
+<ComponentName variant="secondary">Alternativo</ComponentName>
 
 // Em formulários
 <form onSubmit={handleSubmit}>
-  <ComponentName
-    label={COMPONENT_LABELS.primary}
-    name="field"
-  />
-</form>
+  <ComponentName name="field" />
+</form>`}
+    />
+  </>
+);
 ```
 
-## Referência da API
+### 5. Lista de Variantes
 
-O componente ComponentName é baseado no elemento `element` e suporta todos os atributos padrão.
+```tsx
+const VariantsList = () => (
+  <ul>
+    <li>
+      <code>primary</code>: Para ações principais e call-to-actions
+    </li>
+    <li>
+      <code>secondary</code>: Para ações secundárias e alternativas
+    </li>
+    <li>
+      <code>tertiary</code>: Para ações terciárias discretas
+    </li>
+  </ul>
+);
+```
 
-<table>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Tipo</th>
-      <th>Padrão</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>variant</td>
-      <td><code>"primary" | "secondary"</code></td>
-      <td><code>"primary"</code></td>
-      <td>O estilo visual do componente. Use primary para ações principais, secondary para alternativas.</td>
-    </tr>
-  </tbody>
-</table>
+### 6. Componentes Visuais (NÃO EXPORTADOS)
 
-## Exemplos
+```tsx
+// ✅ CORRETO: Componente local, não exportado
+const Variants = (): JSX.Element => (
+  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+    <ComponentName variant="primary">primary</ComponentName>
+    <ComponentName variant="secondary">secondary</ComponentName>
+    <ComponentName variant="tertiary">tertiary</ComponentName>
+  </div>
+);
 
-### Variantes
-
-Use a prop `variant` para definir o estilo visual:
-
-- `primary`: Para ações principais
-- `secondary`: Para ações alternativas
-
-<Canvas withSource="open" withToolbar>
-  <Story name="variants">
-    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-      <ComponentName
-        variant="primary"
-        label={COMPONENT_LABELS.primary}
-      >
-        {COMPONENT_LABELS.primary}
-      </ComponentName>
-      <ComponentName
-        variant="secondary"
-        label={COMPONENT_LABELS.secondary}
-      >
-        {COMPONENT_LABELS.secondary}
-      </ComponentName>
-    </div>
-  </Story>
-</Canvas>
-
-## Props
-
-<ArgsTable of={ComponentName} />
-
-A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida será passada para o elemento raiz.
-
-## Playground
-
-<Canvas>
-  <Story
-    name="playground"
-    args={{
-      children: COMPONENT_LABELS.basic,
-      variant: 'primary',
+// ✅ CORRETO: Componente local, não exportado
+const Sizes = (): JSX.Element => (
+  <div
+    style={{
+      display: 'flex',
+      gap: '16px',
+      flexWrap: 'wrap',
+      alignItems: 'center',
     }}
   >
-    {(args) => <ComponentName {...args} />}
-  </Story>
-</Canvas>
-````
+    <ComponentName size="sm">Pequeno</ComponentName>
+    <ComponentName size="md">Médio</ComponentName>
+    <ComponentName size="lg">Grande</ComponentName>
+  </div>
+);
 
-## Checklist de Qualidade Atualizado
-
-### ✅ Estrutura
-
-- [ ] Seguiu a estrutura padrão
-- [ ] Todas as seções obrigatórias presentes
-- [ ] Headers hierárquicos corretos
-- [ ] Import correto
-- [ ] **NOVO:** Tabelas HTML usadas para API Reference
-- [ ] **NOVO:** Variáveis exportadas definidas no início (sem comentários)
-
-### ✅ Conteúdo
-
-- [ ] Descrição clara do propósito
-- [ ] API Reference completa com tabelas HTML
-- [ ] Exemplos práticos para cada prop usando variáveis
-- [ ] Casos de uso específicos
-- [ ] Padrões de layout/composição
-- [ ] **NOVO:** argTypes detalhados no Meta
-- [ ] **NOVO:** Uso consistente das variáveis exportadas
-
-### ✅ Exemplos
-
-- [ ] Código funcional
-- [ ] Nomes descritivos usando variáveis
-- [ ] Contexto de uso claro
-- [ ] Exemplos de integração
-- [ ] **NOVO:** Containers com estilos inline para demonstração
-- [ ] **NOVO:** Variáveis usadas em todos os Stories
-
-### ✅ IA-Friendly
-
-- [ ] Estrutura consistente
-- [ ] Exemplos reutilizáveis
-- [ ] Contexto de uso claro
-- [ ] Padrões bem documentados
-- [ ] **NOVO:** Tabelas HTML para referências de API
-- [ ] **NOVO:** Variáveis exportadas para manutenibilidade (sem comentários)
-
-## Ferramentas e Recursos
-
-### Extensões Recomendadas
-
-- MDX Language Support
-- Storybook Snippets
-- TypeScript Hero
-
-### Scripts Úteis
-
-```bash
-# Gerar documentação base
-npm run generate:docs ComponentName
-
-# Validar documentação
-npm run validate:docs
-
-# Preview local
-npm run storybook
+// ✅ CORRETO: Componente local, não exportado
+const States = (): JSX.Element => (
+  <div
+    style={{
+      display: 'flex',
+      gap: '16px',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+    }}
+  >
+    <ComponentName disabled>Desabilitado</ComponentName>
+    <ComponentName loading>Carregando</ComponentName>
+  </div>
+);
 ```
 
-## Exemplos de Referência
+### 7. Renderização Direta (SEM DocBlock.Canvas)
 
-- ✅ [Button](mdc:packages/ocean-react/src/Button/stories/Button.stories.mdx) - Exemplo completo
-- ✅ [Currency Input](mdc:packages/ocean-react/src/Input/stories/Currency.stories.mdx) - Exemplo com variáveis exportadas
-- ✅ [Input Getting Started](mdc:packages/ocean-react/src/Input/stories/Getting-started.stories.mdx) - Exemplo atualizado
-- 🔄 [Input](mdc:packages/ocean-react/src/Input/stories/Input.stories.mdx) - Em andamento
-- 📝 [Modal](mdc:packages/ocean-react/src/Modal/stories/Modal.stories.mdx) - Planejado
+```tsx
+// ✅ CORRETO: Renderização direta do componente
+<h3 id="variantes">Variantes</h3>
+<VariantsList />
+<Variants />
+
+// ❌ INCORRETO: Usando DocBlock.Canvas (cria item no sidebar)
+<h3>Variantes</h3>
+<VariantsList />
+<DocBlock.Canvas of={Variants} />
+```
+
+### 8. IDs para Ancoragem
+
+```tsx
+// ✅ SEMPRE adicione IDs às seções para permitir ancoragem
+<h3 id="variantes">Variantes</h3>
+<h3 id="tamanhos">Tamanhos</h3>
+<h3 id="estados">Estados</h3>
+```
+
+### 9. Componentes de Descrição
+
+```tsx
+const StatesDescription = (): JSX.Element => (
+  <>
+    <DocBlock.Description>
+      Use as props de estado para diferentes contextos:
+    </DocBlock.Description>
+    <ul>
+      <li>
+        <code>disabled</code>: Quando a ação não está disponível
+      </li>
+      <li>
+        <code>loading</code>: Durante operações assíncronas
+      </li>
+    </ul>
+  </>
+);
+```
+
+### 10. Exemplos de Uso
+
+```tsx
+const UsageExamples = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
+
+    <h3>Uso Básico</h3>
+    <DocBlock.Source
+      dark
+      code={`<ComponentName variant="primary">
+  Conteúdo Básico
+</ComponentName>`}
+    />
+
+    <h3>Em Formulários</h3>
+    <DocBlock.Source
+      dark
+      code={`<form onSubmit={handleSubmit}>
+  <ComponentName
+    name="fieldName"
+    required
+  />
+  <Button type="submit">Enviar</Button>
+</form>`}
+    />
+  </>
+);
+```
+
+### 11. Melhores Práticas
+
+```tsx
+const BestPractices = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
+
+    <h3>1. Uso Geral</h3>
+    <ul>
+      <li>
+        Use <code>variant=&quot;primary&quot;</code> para ações principais
+      </li>
+      <li>
+        Use <code>variant=&quot;secondary&quot;</code> para ações alternativas
+      </li>
+      <li>Mantenha consistência no uso de tamanhos</li>
+    </ul>
+
+    <h3>2. Acessibilidade</h3>
+    <ul>
+      <li>Sempre especifique atributos apropriados</li>
+      <li>Use textos descritivos que indiquem claramente a função</li>
+      <li>Forneça feedback visual claro para estados</li>
+      <li>Mantenha comportamento consistente em toda a aplicação</li>
+    </ul>
+  </>
+);
+```
+
+### 12. Classes CSS
+
+```tsx
+const CssClasses = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Classes CSS</DocBlock.Heading>
+    <table>
+      <thead>
+        <tr>
+          <th>Classe</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>.ods-component</code>
+          </td>
+          <td>Estilos aplicados ao elemento raiz.</td>
+        </tr>
+        <tr>
+          <td>
+            <code>.ods-component--variant</code>
+          </td>
+          <td>Define estilos específicos da variante.</td>
+        </tr>
+      </tbody>
+    </table>
+  </>
+);
+```
+
+## Padrões Específicos
+
+### Sidebar Limpo vs Sidebar com Itens
+
+**✅ PADRÃO CORRETO (Sidebar Limpo):**
+
+```
+- Button
+  - Docs ← Única entrada, documentação completa
+```
+
+**❌ PADRÃO INCORRETO (Sidebar Poluído):**
+
+```
+- Button
+  - Docs
+  - Usage
+  - Variants
+  - Size
+  - Blocked
+  - Disabled
+  - Loading
+  - Loading Size
+```
+
+### Exports vs Componentes Locais
+
+```tsx
+// ✅ CORRETO: Apenas Usage exportado
+export const Usage: Story = { /* ... */ };
+
+// ✅ CORRETO: Componentes visuais locais
+const Variants = (): JSX.Element => (/* ... */);
+const Sizes = (): JSX.Element => (/* ... */);
+const States = (): JSX.Element => (/* ... */);
+
+// ❌ INCORRETO: Exportando componentes visuais
+export const Variants = (): JSX.Element => (/* ... */);
+export const Sizes = (): JSX.Element => (/* ... */);
+```
+
+### Renderização na Documentação
+
+```tsx
+// ✅ CORRETO: Renderização direta
+<h3 id="variantes">Variantes</h3>
+<VariantsList />
+<Variants />
+
+// ❌ INCORRETO: DocBlock.Canvas com stories exportadas
+<h3>Variantes</h3>
+<VariantsList />
+<DocBlock.Canvas of={Variants} />
+```
+
+### Decorators para Layout
+
+```tsx
+export const Usage: Story = {
+  args: {
+    children: 'Texto do Componente',
+  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
+};
+```
+
+### ArgTypes Detalhados
+
+```tsx
+argTypes: {
+  variant: {
+    description: 'A variante visual do componente.',
+    control: 'select',
+    options: ['primary', 'secondary', 'tertiary'],
+  },
+  size: {
+    description: 'O tamanho do componente.',
+    control: 'select',
+    options: ['sm', 'md', 'lg'],
+  },
+  disabled: {
+    description: 'Desabilita o componente.',
+    control: 'boolean',
+  },
+  loading: {
+    description: 'Exibe um estado de carregamento.',
+    control: 'boolean',
+  },
+  blocked: {
+    description: 'Faz o componente ocupar toda a largura disponível.',
+    control: 'boolean',
+  },
+},
+```
+
+### Containers de Layout
+
+```tsx
+// Para componentes inline
+<div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  {/* Componentes */}
+</div>
+
+// Para componentes alinhados
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+}}>
+  {/* Componentes */}
+</div>
+
+// Para componentes de largura total
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  minWidth: '300px',
+}}>
+  {/* Componente */}
+</div>
+```
+
+### Tratamento de Aspas
+
+**✅ SEMPRE escape aspas em JSX:**
+
+```tsx
+// ❌ Incorreto - causa erro de linter
+<li>Use <code>type="submit"</code> para envios</li>
+
+// ✅ Correto
+<li>Use <code>type=&quot;submit&quot;</code> para envios</li>
+```
+
+### Tabelas de Referência
+
+```tsx
+const ButtonType = (): JSX.Element => (
+  <table style={{ width: '100%' }}>
+    <thead>
+      <tr>
+        <th>Prop</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+        <th>Exemplo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>variant</td>
+        <td>string</td>
+        <td>Define o estilo visual</td>
+        <td>
+          <DocBlock.Source code={`<Component variant="primary" />`} />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+);
+```
+
+## Estrutura Organizacional
+
+### ✅ Ordem das Seções
+
+1. **Introduction** - Título, descrição e importação
+2. **Usage** - Story principal com controles
+3. **CommonPatterns** - Padrões comuns de código
+4. **Variants** - Lista e demonstração de variantes
+5. **Sizes** - Demonstração de tamanhos
+6. **States** - Estados especiais (disabled, loading, etc.)
+7. **UsageExamples** - Exemplos práticos detalhados
+8. **BestPractices** - Guidelines e melhores práticas
+9. **CssClasses** - Documentação das classes CSS
+
+### ✅ Nomenclatura de Componentes
+
+- **PascalCase** para componentes React
+- **Nomes descritivos** que indicam a função
+- **Sufixo "Description"** para componentes explicativos
+  - **Plural** para listas (VariantsList, UsageExamples)
+
+## ⚠️ PADRÃO ATUALIZADO: Sidebar com Controles Seletivos
+
+### ✅ Abordagem Atual (Recomendada)
+
+Todas as seções aparecem no sidebar, mas apenas `Usage` tem controles ativos:
+
+```
+- Button
+  - Docs
+  - Usage         ← Controles ATIVOS (variant, size, etc.)
+  - Variants      ← Controles DESABILITADOS (apenas visualização)
+  - Size          ← Controles DESABILITADOS (apenas visualização)
+  - Blocked       ← Controles DESABILITADOS (apenas visualização)
+  - Disabled      ← Controles DESABILITADOS (apenas visualização)
+  - Loading       ← Controles DESABILITADOS (apenas visualização)
+  - LoadingSize   ← Controles DESABILITADOS (apenas visualização)
+```
+
+### Vantagens desta Abordagem
+
+- ✅ **Navegação completa**: Todas as seções acessíveis pelo sidebar
+- ✅ **Controles focados**: Apenas Usage permite interação
+- ✅ **Visualização limpa**: Seções visuais sem controles desnecessários
+- ✅ **Experiência intuitiva**: Usuário testa no Usage, visualiza nas outras seções
+
+### Como Implementar Controles Seletivos
+
+**1. Story Usage com controles completos:**
+
+```tsx
+export const Usage: Story = {
+  args: { children: 'Texto' },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{ minWidth: '300px', display: 'flex', justifyContent: 'center' }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
+  // Controles ativos por padrão
+};
+```
+
+**2. Stories visuais sem controles:**
+
+```tsx
+export const Variants: Story = {
+  parameters: {
+    controls: { disable: true }, // ← Desabilita controles
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <Button variant="primary">primary</Button>
+      <Button variant="secondary">secondary</Button>
+      {/* ... outros botões */}
+    </div>
+  ),
+};
+
+export const Size: Story = {
+  parameters: {
+    controls: { disable: true }, // ← Desabilita controles
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+      <Button size="sm">Pequeno</Button>
+      <Button size="md">Médio</Button>
+      <Button size="lg">Grande</Button>
+    </div>
+  ),
+};
+```
+
+**3. Documentação com DocBlock.Canvas:**
+
+```tsx
+<DocBlock.Heading>Exemplos</DocBlock.Heading>
+<h3>Variantes</h3>
+<VariantsList />
+<DocBlock.Canvas of={Variants} />
+<h3>Tamanhos</h3>
+<DocBlock.Canvas of={Size} />
+```
+
+**4. Padrão de configuração:**
+
+```tsx
+// ✅ CORRETO: Apenas Usage tem controles
+export const Usage: Story = { /* sem parameters.controls */ };
+
+// ✅ CORRETO: Outras stories sem controles
+export const Variants: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (/* JSX */)
+};
+```
+
+## Checklist de Qualidade
+
+### ✅ Estrutura TSX
+
+- [ ] Imports corretos (`Meta`, `StoryObj`, `DocBlock`)
+- [ ] Story `Usage` exportada com controles ativos
+- [ ] Stories visuais exportadas com controles desabilitados
+- [ ] ArgTypes configurados apropriadamente
+- [ ] `parameters.docs.page` implementado
+- [ ] Aspas escapadas com `&quot;`
+
+### ✅ Sidebar com Controles Seletivos
+
+- [ ] Todas as seções aparecem no sidebar
+- [ ] `Usage` story tem controles ativos
+- [ ] Stories visuais têm `parameters.controls.disable: true`
+- [ ] Navegação fluida entre seções
+- [ ] Canvas renderizado corretamente com DocBlock.Canvas
+
+### ✅ Componentes de Documentação
+
+- [ ] `Introduction` com título e visão geral
+- [ ] `CommonPatterns` com exemplos de código
+- [ ] `VariantsList` explicando cada variante
+- [ ] Componentes visuais (`Variants`, `Sizes`, `States`)
+- [ ] `UsageExamples` com casos práticos
+- [ ] `BestPractices` com guidelines
+- [ ] `CssClasses` documentando classes
+
+### ✅ Stories e Layout
+
+- [ ] `Usage` story principal com decorator
+- [ ] Decorator com layout apropriado (minWidth: 300px)
+- [ ] Containers com estilos apropriados
+- [ ] Exemplos representativos
+
+### ✅ Qualidade
+
+- [ ] TypeScript correto
+- [ ] Sem erros de linter
+- [ ] Documentação clara e completa
+- [ ] Padrão consistente com Button.stories.tsx
+- [ ] Navegação fluida sem canvas separados
 
 ---
 
-**Versão:** 2.3  
+**Versão:** 3.3  
 **Última atualização:** Dezembro 2024  
-**Responsável:** Equipe Ocean Web  
-**Review:** Necessário antes de merge
+**Baseado em:** Button.stories.tsx (sidebar com âncoras)  
+**Formato:** TypeScript (.tsx) com Storybook Blocks  
+**Responsável:** Equipe Ocean Web
+
+**Opções de Implementação:**
+
+- **Opção 1:** Sidebar limpo (documentação unificada)
+- **Opção 2:** Sidebar com âncoras (navegação por seções) ← Configuração atual
