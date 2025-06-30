@@ -12,11 +12,11 @@ const INPUT_GETTING_STARTED_LABELS = {
   emailAddress: 'Email',
   fullName: 'Nome Completo',
   username: 'Nome de Usuário',
-  passwordLabel: 'Senha',
+  secureField: 'Senha',
   age: 'Idade',
   phoneNumber: 'Telefone',
   searchProducts: 'Buscar Produtos',
-  complexPasswordLabel: 'Senha Complexa',
+  complexSecureField: 'Senha Complexa',
   taxId: 'CPF/CNPJ',
   normalField: 'Campo Normal',
   errorField: 'Campo com Erro',
@@ -33,11 +33,11 @@ const INPUT_GETTING_STARTED_HELPER_TEXTS = {
   emailVerification: 'Usado para verificação da conta',
   fullNameFormat: 'Nome e sobrenome',
   usernameRules: '3-20 caracteres, letras e números apenas',
-  passwordSecurityLabel: 'Mínimo 8 caracteres',
+  securityRequirement: 'Mínimo 8 caracteres',
   ageRequirement: 'Deve ser maior de 18 anos',
   phoneFormat: 'Inclua o DDD',
   searchKeywords: 'Use palavras-chave para encontrar produtos',
-  passwordComplexityLabel: 'Escolha uma senha segura',
+  securityAdvice: 'Escolha uma senha segura',
   taxIdInfo: 'CPF para pessoas físicas ou CNPJ para empresas',
   normalState: 'Estado normal do campo',
   validationError: 'Por favor, insira um email válido',
@@ -52,11 +52,11 @@ const INPUT_GETTING_STARTED_PLACEHOLDERS = {
   emailExample: 'seu@email.com',
   fullNameExample: 'Digite seu nome completo',
   usernameExample: 'Escolha um nome de usuário',
-  passwordExampleLabel: 'Digite sua senha',
+  secureFieldExample: 'Digite sua senha',
   ageExample: 'Digite sua idade',
   phoneExample: '(11) 99999-9999',
   searchExample: 'Digite sua busca...',
-  strongPasswordExampleLabel: 'Digite uma senha forte',
+  strongSecureFieldExample: 'Digite uma senha forte',
   invalidEmail: 'email-inválido',
   cannotEdit: 'Não pode editar',
   productNameExample: 'Digite o nome do produto',
@@ -67,13 +67,13 @@ const INPUT_GETTING_STARTED_PLACEHOLDERS = {
 };
 
 const INPUT_GETTING_STARTED_TOOLTIPS = {
-  passwordComplexityTooltip:
+  securityRequirementsTooltip:
     'A senha deve conter pelo menos 8 caracteres, incluindo maiúsculas, minúsculas, números e caracteres especiais',
   taxIdPurpose:
     'Digite seu CPF (pessoas físicas) ou CNPJ (empresas). Esta informação é criptografada e usada apenas para fins fiscais.',
   skuExplanation:
     'Stock Keeping Unit - usado para controle de estoque e deve ser único em todos os produtos',
-  registrationPasswordTooltip:
+  registrationSecurityTooltip:
     'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
 };
 
@@ -733,11 +733,11 @@ export const InputTypes: Story = {
         adornment={<MailOutline size={20} />}
       />
       <Input
-        label={INPUT_GETTING_STARTED_LABELS.passwordLabel}
+        label={INPUT_GETTING_STARTED_LABELS.secureField}
         name="password"
         type="password"
-        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.passwordExampleLabel}
-        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.passwordSecurityLabel}
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.secureFieldExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.securityRequirement}
         adornment={<LockClosedOutline size={20} />}
       />
       <Input
@@ -819,16 +819,16 @@ export const Tooltip: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <Input
-        label={INPUT_GETTING_STARTED_LABELS.complexPasswordLabel}
+        label={INPUT_GETTING_STARTED_LABELS.complexSecureField}
         name="complexPassword"
         type="password"
         placeholder={
-          INPUT_GETTING_STARTED_PLACEHOLDERS.strongPasswordExampleLabel
+          INPUT_GETTING_STARTED_PLACEHOLDERS.strongSecureFieldExample
         }
         tooltipMessage={
-          INPUT_GETTING_STARTED_TOOLTIPS.passwordComplexityTooltip
+          INPUT_GETTING_STARTED_TOOLTIPS.securityRequirementsTooltip
         }
-        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.passwordComplexityLabel}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.securityAdvice}
       />
       <Input
         label={INPUT_GETTING_STARTED_LABELS.taxId}
@@ -873,16 +873,16 @@ export const RegistrationForm: Story = {
         required
       />
       <Input
-        label={INPUT_GETTING_STARTED_LABELS.passwordLabel}
+        label={INPUT_GETTING_STARTED_LABELS.secureField}
         name="password"
         type="password"
         placeholder={
-          INPUT_GETTING_STARTED_PLACEHOLDERS.strongPasswordExampleLabel
+          INPUT_GETTING_STARTED_PLACEHOLDERS.strongSecureFieldExample
         }
         tooltipMessage={
-          INPUT_GETTING_STARTED_TOOLTIPS.registrationPasswordTooltip
+          INPUT_GETTING_STARTED_TOOLTIPS.registrationSecurityTooltip
         }
-        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.passwordSecurityLabel}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.securityRequirement}
         adornment={<LockClosedOutline size={20} />}
         required
       />
