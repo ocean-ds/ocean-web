@@ -770,42 +770,6 @@ export const containerStyles = {
   },
 };
 
-// Constantes comuns de texto
-export const COMMON_LABELS = {
-  email: 'Email',
-  senha: 'Senha',
-  telefone: 'Telefone',
-  nomeCompleto: 'Nome Completo',
-  cpfCnpj: 'CPF/CNPJ',
-};
-
-export const COMMON_PLACEHOLDERS = {
-  seuEmail: 'seu@email.com',
-  digiteSenha: 'Digite sua senha',
-  telefoneExemplo: '(11) 99999-9999',
-  nomeCompleto: 'João Silva',
-  cpfExemplo: '000.000.000-00',
-};
-
-export const COMMON_HELPER_TEXTS = {
-  emailVerificacao: 'Usado para verificação da conta',
-  senhaForte: 'Escolha uma senha forte',
-  incluaDDD: 'Inclua o DDD',
-  primeiroUltimoNome: 'Primeiro e último nome',
-  identificacaoFiscal: 'Identificação fiscal pessoal ou empresarial',
-};
-
-export const COMMON_TOOLTIPS = {
-  senhaRequisitos:
-    'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
-  emailPrivacidade:
-    'Usamos seu email para verificação de conta e notificações importantes.',
-  telefoneFormato:
-    'Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo',
-  cpfCnpjFormato:
-    'Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços',
-};
-
 // Parâmetros de controle padrão para Usage story
 export const defaultUsageControls = {
   include: [
@@ -881,49 +845,182 @@ export const createStandardDocsPage = <T,>(
   return DocsPage;
 };
 
-// Constantes mais abrangentes para inputs
+// Constantes consolidadas para todos os tipos de Input
 export const INPUT_COMMON_DATA = {
   LABELS: {
+    // Básico
     email: 'Email',
     senha: 'Senha',
     telefone: 'Telefone',
     nomeCompleto: 'Nome Completo',
     cpfCnpj: 'CPF/CNPJ',
-    preco: 'Preço',
-    buscar: 'Buscar',
     usuario: 'Usuário',
+    idade: 'Idade',
+
+    // Endereço
     endereco: 'Endereço',
     cidade: 'Cidade',
     cep: 'CEP',
+
+    // Profissional
     empresa: 'Empresa',
     cargo: 'Cargo',
-    idade: 'Idade',
+
+    // Texto
+    nome: 'Nome',
+    sobrenome: 'Sobrenome',
+    titulo: 'Título',
+    descricao: 'Descrição',
+    mensagem: 'Mensagem',
+    observacoes: 'Observações',
+    comentarios: 'Comentários',
+
+    // Busca e Ícone
+    buscar: 'Buscar',
+    buscarProdutos: 'Buscar Produtos',
+    pesquisar: 'Pesquisar',
+    confirmarSenha: 'Confirmar Senha',
+    codigoSeguranca: 'Código de Segurança',
+
+    // Moeda
+    preco: 'Preço',
+    realBrasileiro: 'Real Brasileiro',
+    dolarAmericano: 'Dólar Americano',
+    euro: 'Euro',
+    libraEsterlina: 'Libra Esterlina',
+    precoCusto: 'Preço de Custo',
+    frete: 'Frete',
+    desconto: 'Desconto',
+
+    // Estados
+    campoNormal: 'Campo Normal',
+    campoComErro: 'Campo com Erro',
+    campoDesabilitado: 'Campo Desabilitado',
+
+    // E-commerce
+    nomeProduto: 'Nome do Produto',
+    quantidadeEstoque: 'Quantidade em Estoque',
+    sku: 'SKU',
   },
+
   PLACEHOLDERS: {
+    // Básico
     seuEmail: 'seu@email.com',
     digiteSenha: 'Digite sua senha',
     telefoneExemplo: '(11) 99999-9999',
     nomeCompleto: 'João Silva',
     cpfExemplo: '000.000.000-00',
-    precoExemplo: '0,00',
-    buscarExemplo: 'Digite para buscar...',
-    nomeUsuario: 'Digite seu nome de usuário',
+    nomeUsuario: 'nome_usuario',
+    idadeExemplo: '25',
+
+    // Endereço
     enderecoExemplo: 'Rua das Flores, 123',
     cidadeExemplo: 'São Paulo',
     cepExemplo: '00000-000',
+
+    // Profissional
+    empresaExemplo: 'Nome da Empresa',
+    cargoExemplo: 'Seu cargo',
+
+    // Texto
+    tituloExemplo: 'Digite o título...',
+    descricaoExemplo: 'Descreva o item...',
+    mensagemExemplo: 'Escreva sua mensagem...',
+    observacoesExemplo: 'Observações adicionais...',
+
+    // Busca
+    buscarExemplo: 'Digite para buscar...',
+    buscarProdutos: 'Buscar produtos...',
+    digitePesquisar: 'Digite para pesquisar...',
+    buscarAqui: 'Buscar aqui...',
+    confirmarSenha: 'Confirme sua senha',
+    cvv: 'CVV',
+
+    // Moeda
+    precoExemplo: '0,00',
+    valorExemplo: '1.234,56',
+
+    // Estados
+    digitarAqui: 'Digite algo...',
+    emailInvalido: 'email-inválido',
+    naoEditar: 'Não pode editar',
+
+    // E-commerce
+    nomeProdutoExemplo: 'Digite o nome do produto',
+    quantidadeExemplo: '0',
+    skuExemplo: 'PROD-001',
   },
+
   HELPER_TEXTS: {
+    // Básico
     emailVerificacao: 'Usado para verificação da conta',
     senhaForte: 'Escolha uma senha forte',
     incluaDDD: 'Inclua o DDD',
     primeiroUltimoNome: 'Primeiro e último nome',
     identificacaoFiscal: 'Identificação fiscal pessoal ou empresarial',
-    valorEmReais: 'Valor em reais',
-    usePalavrasChave: 'Use palavras-chave para encontrar',
     identificadorUnico: 'Este será seu identificador único',
     minimoCaracteres: 'Mínimo 8 caracteres',
+    idadeMaior18: 'Deve ser maior de 18 anos',
+
+    // Endereço
     incluaApartamento: 'Inclua número do apartamento se aplicável',
+    cidadeOndeVive: 'Cidade onde você vive',
+    cepCompleto: 'CEP com 8 dígitos',
+
+    // Profissional
+    nomeEmpresaTrabalha: 'Nome da empresa onde trabalha',
+    cargoAtual: 'Seu cargo atual',
+
+    // Texto
+    nomeUsuario: 'Nome que aparecerá no perfil',
+    sobrenomeCompleto: 'Sobrenome completo',
+    tituloDescritivo: 'Título descritivo e claro',
+    descricaoDetalhada: 'Descrição detalhada do item',
+    mensagemDetalhada: 'Escreva sua mensagem detalhada',
+    observacoesAdicionais: 'Observações adicionais opcionais',
+    comentariosOpcionais: 'Comentários opcionais',
+
+    // Busca e Ícone
+    usePalavrasChave: 'Use palavras-chave para encontrar produtos',
+    pressioneEnterBuscar: 'Pressione Enter para buscar',
+    cliqueBolinha: 'Clique no olho para alternar visibilidade',
+    emailValido: 'Digite um email válido',
+    senhaSegura: 'Use uma senha segura',
+    telefoneComDDD: 'Inclua o DDD',
+    usuarioUnico: 'Nome de usuário único',
+    senhasDevemCoincidir: 'Senhas devem coincidir',
+    codigoTresDigitos: 'Código de 3 dígitos',
+    digite3Caracteres: 'Digite pelo menos 3 caracteres para buscar',
+
+    // Moeda
+    valorEmReais: 'Valor em reais',
+    digitePrecoBrasileiro: 'Digite o preço em Real brasileiro',
+    moedaBrasileira: 'Moeda brasileira',
+    moedaAmericana: 'Moeda americana',
+    moedaEuropeia: 'Moeda europeia',
+    moedaBritanica: 'Moeda britânica',
+    digitePrecoProduto: 'Digite o preço do produto',
+    precoMaiorZero: 'O preço deve ser maior que 0',
+    precoCalculadoAuto: 'Preço calculado automaticamente',
+    valorDentroLimite: 'Valor dentro do limite permitido',
+    valorExcedeLimite: 'Valor excede o limite máximo de R$ 5.000,00',
+    campoObrigatorio: 'Este campo é obrigatório',
+    custoProduto: 'Seu custo para este produto',
+    custosEnvio: 'Custos adicionais de envio',
+    valorDesconto: 'Valor do desconto (se aplicável)',
+
+    // Estados
+    estadoNormal: 'Estado normal do campo',
+    erroValidacao: 'Por favor, insira um email válido',
+    preenchidoAuto: 'Este campo é preenchido automaticamente',
+
+    // E-commerce
+    tituloDescriptivoProduto: 'Título descritivo do produto',
+    precoVendaProduto: 'Preço de venda do produto',
+    inventarioDisponivel: 'Inventário disponível',
+    identificadorUnicoProduto: 'Identificador único do produto',
   },
+
   TOOLTIPS: {
     senhaRequisitos:
       'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
@@ -933,5 +1030,23 @@ export const INPUT_COMMON_DATA = {
       'Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo',
     cpfCnpjFormato:
       'Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços',
+    usuarioRequisitos:
+      'O nome de usuário deve ter entre 3 e 20 caracteres, contendo apenas letras, números e underscores',
+    valorExemplo:
+      'Digite valores monetários usando vírgula como separador decimal. Exemplo: 1.234,56',
+    observacoesLimite:
+      'Máximo de 500 caracteres. Use para informações adicionais relevantes ao contexto',
+    skuExplicacao:
+      'SKU (Stock Keeping Unit) é um código único para identificar produtos no estoque',
+    registroSeguranca:
+      'A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos especiais',
+    taxIdProposito:
+      'Usado para verificação fiscal. Digite CPF para pessoa física ou CNPJ para pessoa jurídica',
   },
 };
+
+// Aliases para backward compatibility (a serem removidos após migração)
+export const COMMON_LABELS = INPUT_COMMON_DATA.LABELS;
+export const COMMON_PLACEHOLDERS = INPUT_COMMON_DATA.PLACEHOLDERS;
+export const COMMON_HELPER_TEXTS = INPUT_COMMON_DATA.HELPER_TEXTS;
+export const COMMON_TOOLTIPS = INPUT_COMMON_DATA.TOOLTIPS;
