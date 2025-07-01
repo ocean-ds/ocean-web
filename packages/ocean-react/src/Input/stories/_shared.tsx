@@ -1,5 +1,7 @@
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import Input from '../Input';
 
 // Configurações comuns de ArgTypes
 export const commonArgTypes = {
@@ -827,3 +829,109 @@ export const tooltipApiReference = [
     description: 'Mensagem de tooltip para informações contextuais.',
   },
 ];
+
+// Função para criar estrutura de meta comum
+export const createMetaStructure = (
+  title: string,
+  argTypes: Record<string, unknown>,
+  pageComponent: () => JSX.Element
+): Meta<typeof Input> => ({
+  title,
+  component: Input,
+  tags: ['autodocs'] as const,
+  argTypes,
+  parameters: {
+    docs: {
+      page: pageComponent,
+    },
+  },
+});
+
+// Função para criar página de documentação padrão
+export const createStandardDocsPage = <T,>(
+  Introduction: () => JSX.Element,
+  Usage: StoryObj<T>,
+  CommonPatterns: () => JSX.Element,
+  examples: Array<{ title: string; story: StoryObj<T> }>,
+  components: Array<React.ComponentType>,
+  ApiReference: () => JSX.Element
+): (() => JSX.Element) => {
+  const DocsPage = (): JSX.Element => (
+    <>
+      <Introduction />
+      <DocBlock.Heading>Uso</DocBlock.Heading>
+      <DocBlock.Canvas of={Usage} />
+      <DocBlock.Controls of={Usage} />
+      <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
+      <CommonPatterns />
+      <DocBlock.Heading>Exemplos</DocBlock.Heading>
+      {examples.map(({ title, story }) => (
+        <React.Fragment key={title}>
+          <h3>{title}</h3>
+          <DocBlock.Canvas of={story} />
+        </React.Fragment>
+      ))}
+      {components.map((Component) => (
+        <Component key={Component.displayName || Component.name} />
+      ))}
+      <ApiReference />
+    </>
+  );
+  DocsPage.displayName = 'DocsPage';
+  return DocsPage;
+};
+
+// Constantes mais abrangentes para inputs
+export const INPUT_COMMON_DATA = {
+  LABELS: {
+    email: 'Email',
+    senha: 'Senha',
+    telefone: 'Telefone',
+    nomeCompleto: 'Nome Completo',
+    cpfCnpj: 'CPF/CNPJ',
+    preco: 'Preço',
+    buscar: 'Buscar',
+    usuario: 'Usuário',
+    endereco: 'Endereço',
+    cidade: 'Cidade',
+    cep: 'CEP',
+    empresa: 'Empresa',
+    cargo: 'Cargo',
+    idade: 'Idade',
+  },
+  PLACEHOLDERS: {
+    seuEmail: 'seu@email.com',
+    digiteSenha: 'Digite sua senha',
+    telefoneExemplo: '(11) 99999-9999',
+    nomeCompleto: 'João Silva',
+    cpfExemplo: '000.000.000-00',
+    precoExemplo: '0,00',
+    buscarExemplo: 'Digite para buscar...',
+    nomeUsuario: 'Digite seu nome de usuário',
+    enderecoExemplo: 'Rua das Flores, 123',
+    cidadeExemplo: 'São Paulo',
+    cepExemplo: '00000-000',
+  },
+  HELPER_TEXTS: {
+    emailVerificacao: 'Usado para verificação da conta',
+    senhaForte: 'Escolha uma senha forte',
+    incluaDDD: 'Inclua o DDD',
+    primeiroUltimoNome: 'Primeiro e último nome',
+    identificacaoFiscal: 'Identificação fiscal pessoal ou empresarial',
+    valorEmReais: 'Valor em reais',
+    usePalavrasChave: 'Use palavras-chave para encontrar',
+    identificadorUnico: 'Este será seu identificador único',
+    minimoCaracteres: 'Mínimo 8 caracteres',
+    incluaApartamento: 'Inclua número do apartamento se aplicável',
+  },
+  TOOLTIPS: {
+    senhaRequisitos:
+      'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
+    emailPrivacidade:
+      'Usamos seu email para verificação de conta e notificações importantes.',
+    telefoneFormato:
+      'Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo',
+    cpfCnpjFormato:
+      'Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços',
+  },
+};

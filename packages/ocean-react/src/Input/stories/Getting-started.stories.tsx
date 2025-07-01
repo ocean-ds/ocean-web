@@ -21,6 +21,7 @@ import {
   commonCodeExamples,
   defaultUsageControls,
   tooltipApiReference,
+  INPUT_COMMON_DATA,
 } from './_shared';
 
 const INPUT_GETTING_STARTED_LABELS = {
@@ -156,11 +157,11 @@ const ApiReference = createApiReference(tooltipApiReference);
 
 export const Usage: Story = {
   args: {
-    label: INPUT_GETTING_STARTED_LABELS.emailAddress,
+    label: INPUT_COMMON_DATA.LABELS.email,
     name: 'email',
     type: 'email',
-    placeholder: INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample,
-    helperText: INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification,
+    placeholder: INPUT_COMMON_DATA.PLACEHOLDERS.seuEmail,
+    helperText: INPUT_COMMON_DATA.HELPER_TEXTS.emailVerificacao,
   },
   decorators: defaultUsageDecorator,
   parameters: {

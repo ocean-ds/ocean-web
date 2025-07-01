@@ -16,30 +16,13 @@ import {
   commonCodeExamples,
   defaultUsageControls,
   tooltipApiReference,
+  INPUT_COMMON_DATA,
 } from './_shared';
 
-const TOOLTIP_LABELS = {
-  senha: 'Senha',
-  nomeUsuario: 'Nome de Usuário',
-  email: 'Email',
-  telefone: 'Telefone',
-  cpfCnpj: 'CPF/CNPJ',
-  dataNascimento: 'Data de Nascimento',
-  valorMoeda: 'Valor em Moeda',
-  observacoes: 'Observações',
-};
-
+// Constantes específicas do tooltip (não disponíveis no compartilhado)
 const TOOLTIP_MESSAGES = {
-  senhaRequisitos:
-    'A senha deve ter pelo menos 8 caracteres e incluir números e caracteres especiais',
   usuarioRequisitos:
     'O nome de usuário deve ter entre 3 e 20 caracteres, contendo apenas letras, números e underscores',
-  emailPrivacidade:
-    'Usamos seu email para verificação de conta e notificações importantes. Nunca compartilhamos seu email com terceiros.',
-  telefoneFormato:
-    'Digite seu número de telefone com DDD. Formato: (XX) XXXXX-XXXX para celular ou (XX) XXXX-XXXX para fixo',
-  cpfCnpjFormato:
-    'Digite seu CPF (para pessoas físicas) ou CNPJ (para empresas). Use apenas números ou inclua pontos e traços',
   dataFormato: 'Digite a data no formato DD/MM/AAAA. Exemplo: 15/08/1990',
   valorExemplo:
     'Digite valores monetários usando vírgula como separador decimal. Exemplo: 1.234,56',
@@ -47,23 +30,7 @@ const TOOLTIP_MESSAGES = {
     'Máximo de 500 caracteres. Use para informações adicionais relevantes ao contexto',
 };
 
-const TOOLTIP_HELPER_TEXTS = {
-  escolhaSenhaForte: 'Escolha uma senha forte',
-  identificadorUnico: 'Este será seu identificador único',
-  emailValido: 'Digite um email válido',
-  incluaDDD: 'Inclua o DDD',
-  identificacaoFiscal: 'Identificação fiscal pessoal ou empresarial',
-  formatoCorreto: 'Use o formato correto',
-  valorMonetario: 'Valor em reais (R$)',
-  informacoesAdicionais: 'Informações adicionais opcionais',
-};
-
 const TOOLTIP_PLACEHOLDERS = {
-  digiteSenha: 'Digite sua senha',
-  nomeUsuario: 'Digite seu nome de usuário',
-  seuEmail: 'seu@email.com',
-  telefoneExemplo: '(11) 99999-9999',
-  cpfExemplo: '000.000.000-00',
   dataExemplo: 'DD/MM/AAAA',
   valorExemplo: '1.234,56',
   observacoesExemplo: 'Digite suas observações...',
@@ -129,12 +96,12 @@ const ApiReference = createApiReference(tooltipApiReference);
 
 export const Usage: Story = {
   args: {
-    label: TOOLTIP_LABELS.senha,
+    label: INPUT_COMMON_DATA.LABELS.senha,
     name: 'password',
     type: 'password',
-    placeholder: TOOLTIP_PLACEHOLDERS.digiteSenha,
-    tooltipMessage: TOOLTIP_MESSAGES.senhaRequisitos,
-    helperText: TOOLTIP_HELPER_TEXTS.escolhaSenhaForte,
+    placeholder: INPUT_COMMON_DATA.PLACEHOLDERS.digiteSenha,
+    tooltipMessage: INPUT_COMMON_DATA.TOOLTIPS.senhaRequisitos,
+    helperText: INPUT_COMMON_DATA.HELPER_TEXTS.senhaForte,
   },
   decorators: defaultUsageDecorator,
   parameters: {
@@ -156,28 +123,28 @@ export const ContentTypes: Story = {
       }}
     >
       <Input
-        label={TOOLTIP_LABELS.senha}
+        label={INPUT_COMMON_DATA.LABELS.senha}
         name="strongPassword"
         type="password"
-        placeholder={TOOLTIP_PLACEHOLDERS.digiteSenha}
-        tooltipMessage={TOOLTIP_MESSAGES.senhaRequisitos}
-        helperText={TOOLTIP_HELPER_TEXTS.escolhaSenhaForte}
+        placeholder={INPUT_COMMON_DATA.PLACEHOLDERS.digiteSenha}
+        tooltipMessage={INPUT_COMMON_DATA.TOOLTIPS.senhaRequisitos}
+        helperText={INPUT_COMMON_DATA.HELPER_TEXTS.senhaForte}
       />
       <Input
-        label={TOOLTIP_LABELS.valorMoeda}
+        label="Valor em Moeda"
         name="creditCard"
         type="text"
         placeholder={TOOLTIP_PLACEHOLDERS.valorExemplo}
         tooltipMessage={TOOLTIP_MESSAGES.valorExemplo}
-        helperText={TOOLTIP_HELPER_TEXTS.valorMonetario}
+        helperText={INPUT_COMMON_DATA.HELPER_TEXTS.valorEmReais}
       />
       <Input
-        label={TOOLTIP_LABELS.observacoes}
+        label="Observações"
         name="projectName"
         type="text"
         placeholder={TOOLTIP_PLACEHOLDERS.observacoesExemplo}
         tooltipMessage={TOOLTIP_MESSAGES.observacoesLimite}
-        helperText={TOOLTIP_HELPER_TEXTS.informacoesAdicionais}
+        helperText="Informações adicionais opcionais"
       />
     </div>
   ),
@@ -200,38 +167,38 @@ export const FormExample: Story = {
       }}
     >
       <Input
-        label={TOOLTIP_LABELS.nomeUsuario}
+        label={INPUT_COMMON_DATA.LABELS.usuario}
         name="companyName"
         type="text"
-        placeholder={TOOLTIP_PLACEHOLDERS.nomeUsuario}
+        placeholder={INPUT_COMMON_DATA.PLACEHOLDERS.nomeUsuario}
         tooltipMessage={TOOLTIP_MESSAGES.usuarioRequisitos}
-        helperText={TOOLTIP_HELPER_TEXTS.identificadorUnico}
+        helperText={INPUT_COMMON_DATA.HELPER_TEXTS.identificadorUnico}
         required
       />
       <Input
-        label={TOOLTIP_LABELS.valorMoeda}
+        label="Valor em Moeda"
         name="revenue"
         type="text"
         placeholder={TOOLTIP_PLACEHOLDERS.valorExemplo}
         tooltipMessage={TOOLTIP_MESSAGES.valorExemplo}
-        helperText={TOOLTIP_HELPER_TEXTS.valorMonetario}
+        helperText={INPUT_COMMON_DATA.HELPER_TEXTS.valorEmReais}
       />
       <Input
-        label={TOOLTIP_LABELS.cpfCnpj}
+        label={INPUT_COMMON_DATA.LABELS.cpfCnpj}
         name="businessId"
         type="text"
-        placeholder={TOOLTIP_PLACEHOLDERS.cpfExemplo}
-        tooltipMessage={TOOLTIP_MESSAGES.cpfCnpjFormato}
-        helperText={TOOLTIP_HELPER_TEXTS.identificacaoFiscal}
+        placeholder={INPUT_COMMON_DATA.PLACEHOLDERS.cpfExemplo}
+        tooltipMessage={INPUT_COMMON_DATA.TOOLTIPS.cpfCnpjFormato}
+        helperText={INPUT_COMMON_DATA.HELPER_TEXTS.identificacaoFiscal}
         required
       />
       <Input
-        label={TOOLTIP_LABELS.email}
+        label={INPUT_COMMON_DATA.LABELS.email}
         name="contactEmail"
         type="email"
-        placeholder={TOOLTIP_PLACEHOLDERS.seuEmail}
-        tooltipMessage={TOOLTIP_MESSAGES.emailPrivacidade}
-        helperText={TOOLTIP_HELPER_TEXTS.emailValido}
+        placeholder={INPUT_COMMON_DATA.PLACEHOLDERS.seuEmail}
+        tooltipMessage={INPUT_COMMON_DATA.TOOLTIPS.emailPrivacidade}
+        helperText="Digite um email válido"
         required
       />
     </form>
