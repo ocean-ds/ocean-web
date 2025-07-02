@@ -2,60 +2,61 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Select from '../Select';
+import {
+  createIntroduction,
+  createCommonPatterns,
+  createBestPractices,
+  createCssClasses,
+  createApiReference,
+  createCodeList,
+  createStatesDescription,
+  createDefaultDecorator,
+  commonFormArgTypes,
+  sharedContainerStyles,
+  type IntroductionConfig,
+  type CommonPatternsConfig,
+  type BestPracticesConfig,
+  type CssClass,
+  type ApiReferenceConfig,
+} from '../../_stories/shared-components';
 
 type Story = StoryObj<typeof Select>;
 
-// Componente de Introdução
-const Introduction = (): JSX.Element => (
-  <>
-    <DocBlock.Title />
-    <DocBlock.Markdown>
-      Componente de seleção que permite escolher uma opção de uma lista
-      predefinida.
-    </DocBlock.Markdown>
-    <DocBlock.Heading>Visão Geral</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente Select oferece uma interface intuitiva para seleção de
-      opções, com suporte a busca, navegação por teclado e estados visuais
-      claros. Ideal para formulários que requerem escolha entre opções
-      específicas.
-    </DocBlock.Markdown>
-    <h3>Principais Características</h3>
-    <ul>
-      <li>
-        <strong>Lista Expansível</strong>: Interface dropdown com opções
-        organizadas
-      </li>
-      <li>
-        <strong>Busca Integrada</strong>: Filtragem de opções por digitação
-      </li>
-      <li>
-        <strong>Navegação por Teclado</strong>: Suporte completo a
-        acessibilidade
-      </li>
-      <li>
-        <strong>Estados Visuais</strong>: Feedback claro para seleção e
-        validação
-      </li>
-      <li>
-        <strong>Configurável</strong>: Suporte a diferentes tipos de dados e
-        formatos
-      </li>
-    </ul>
-    <DocBlock.Heading>Importação</DocBlock.Heading>
-    <DocBlock.Source
-      dark
-      code={`import { Select } from '@useblu/ocean-react';`}
-    />
-  </>
-);
+// Configurações para componentes de documentação
+const introductionConfig: IntroductionConfig = {
+  description:
+    'Componente de seleção que permite escolher uma opção de uma lista predefinida.',
+  overview:
+    'O componente Select oferece uma interface intuitiva para seleção de opções, com suporte a busca, navegação por teclado e estados visuais claros. Ideal para formulários que requerem escolha entre opções específicas.',
+  characteristics: [
+    {
+      title: 'Lista Expansível',
+      description: 'Interface dropdown com opções organizadas',
+    },
+    {
+      title: 'Busca Integrada',
+      description: 'Filtragem de opções por digitação',
+    },
+    {
+      title: 'Navegação por Teclado',
+      description: 'Suporte completo a acessibilidade',
+    },
+    {
+      title: 'Estados Visuais',
+      description: 'Feedback claro para seleção e validação',
+    },
+    {
+      title: 'Configurável',
+      description: 'Suporte a diferentes tipos de dados e formatos',
+    },
+  ],
+  importPath: `import { Select } from '@useblu/ocean-react';`,
+};
 
-// Padrões Comuns
-const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Uso básico
+const commonPatternsConfig: CommonPatternsConfig = {
+  patterns: [
+    {
+      code: `// Uso básico
 <Select
   label="Selecione uma opção"
   placeholder="Selecione..."
@@ -84,49 +85,194 @@ const CommonPatterns = (): JSX.Element => (
     options={categories}
     required
   />
-</form>`}
-    />
-  </>
-);
+</form>`,
+    },
+  ],
+};
+
+const bestPracticesConfig: BestPracticesConfig = {
+  sections: [
+    {
+      title: '1. Uso Geral',
+      items: [
+        'Use labels descritivos que expliquem claramente o propósito da seleção',
+        'Forneça helper text quando necessário para orientar o usuário',
+        'Mantenha as opções organizadas em ordem lógica (alfabética, por importância)',
+        'Use placeholders que indiquem a ação esperada ("Selecione um país")',
+      ],
+    },
+    {
+      title: '2. Organização das Opções',
+      items: [
+        'Use Select para listas de até 20 itens (use SelectAutocomplete para mais)',
+        'Ordene opções alfabeticamente ou por importância/frequência de uso',
+        'Evite opções com textos muito similares que possam confundir',
+        'Considere agrupar categorias quando aplicável',
+      ],
+    },
+    {
+      title: '3. Acessibilidade',
+      items: [
+        'Sempre forneça labels descritivos para leitores de tela',
+        'Use helper text para orientações importantes',
+        'Mantenha estados visuais claros (erro, desabilitado)',
+        'Garanta que a navegação por teclado funcione corretamente',
+      ],
+    },
+    {
+      title: '4. Design e UX',
+      items: [
+        'Evite labels genéricos como "Selecione" ou "Escolha"',
+        'Use placeholders informativos que demonstrem o conteúdo esperado',
+        'Forneça feedback visual claro para estados de validação',
+        'Mantenha consistência visual em toda a aplicação',
+      ],
+    },
+  ],
+};
+
+const cssClasses: CssClass[] = [
+  {
+    name: '.ods-select',
+    description: 'Estilos aplicados ao elemento raiz.',
+  },
+  {
+    name: '.ods-select__label',
+    description: 'Estilos aplicados ao label do campo.',
+  },
+  {
+    name: '.ods-select__input',
+    description: 'Estilos aplicados ao campo de input do select.',
+  },
+  {
+    name: '.ods-select__dropdown',
+    description: 'Estilos aplicados ao container do dropdown.',
+  },
+  {
+    name: '.ods-select__option',
+    description: 'Estilos aplicados a cada opção individual.',
+  },
+  {
+    name: '.ods-select__option--selected',
+    description: 'Estilos aplicados à opção atualmente selecionada.',
+  },
+  {
+    name: '.ods-select__option--disabled',
+    description: 'Estilos aplicados a opções desabilitadas.',
+  },
+  {
+    name: '.ods-select__helper-text',
+    description: 'Estilos aplicados ao texto de ajuda.',
+  },
+  {
+    name: '.ods-select--error',
+    description:
+      'Estilos aplicados quando o componente está em estado de erro.',
+  },
+  {
+    name: '.ods-select--disabled',
+    description: 'Estilos aplicados quando o componente está desabilitado.',
+  },
+];
+
+const apiReferenceConfig: ApiReferenceConfig = {
+  description:
+    'O componente Select é baseado no elemento HTML select e suporta todos os atributos padrão relevantes.',
+  props: [
+    {
+      name: 'options',
+      type: 'Option[]',
+      defaultValue: '[]',
+      description:
+        'Array de opções para seleção. Cada opção deve ter value e label.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Valor atualmente selecionado no select.',
+    },
+    {
+      name: 'onChange',
+      type: '(value: string) => void',
+      defaultValue: 'undefined',
+      description: 'Callback chamado quando o valor selecionado muda.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Rótulo descritivo do campo de seleção.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Texto exibido quando nenhuma opção está selecionada.',
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Texto de ajuda exibido abaixo do campo.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Quando true, aplica o estilo de erro ao campo.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Quando true, desabilita o campo select.',
+    },
+  ],
+  additionalTypes: [
+    {
+      name: 'Tipo Option',
+      code: `interface Option {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}`,
+    },
+  ],
+  footer:
+    'A ref é encaminhada para o elemento select. Qualquer outra prop fornecida será passada para o elemento select.',
+};
+
+// Criação dos componentes usando os factories
+const Introduction = createIntroduction(introductionConfig);
+const CommonPatterns = createCommonPatterns(commonPatternsConfig);
+const BestPractices = createBestPractices(bestPracticesConfig);
+const CssClasses = createCssClasses(cssClasses);
+const ApiReference = createApiReference(apiReferenceConfig);
 
 // Lista de Tipos de Opções
-const OptionTypesList = (): JSX.Element => (
-  <ul>
-    <li>
-      <code>Países/Localizações</code>: Para formulários geográficos
-    </li>
-    <li>
-      <code>Categorias</code>: Para classificação de produtos ou conteúdo
-    </li>
-    <li>
-      <code>Status/Estados</code>: Para workflows e processos
-    </li>
-    <li>
-      <code>Prioridades</code>: Para sistemas de tarefas e tickets
-    </li>
-  </ul>
-);
+const OptionTypesList = createCodeList([
+  { code: 'Países/Localizações', description: 'Para formulários geográficos' },
+  {
+    code: 'Categorias',
+    description: 'Para classificação de produtos ou conteúdo',
+  },
+  { code: 'Status/Estados', description: 'Para workflows e processos' },
+  { code: 'Prioridades', description: 'Para sistemas de tarefas e tickets' },
+]);
 
 // Descrição dos Estados
-const StatesDescription = (): JSX.Element => (
-  <>
-    <DocBlock.Markdown>
-      Use as props de estado para diferentes contextos:
-    </DocBlock.Markdown>
-    <ul>
-      <li>
-        <code>error</code>: Quando há problemas de validação ou seleção
-        obrigatória
-      </li>
-      <li>
-        <code>disabled</code>: Quando a seleção não está disponível
-      </li>
-      <li>
-        <code>helperText</code>: Para fornecer orientações sobre as opções
-      </li>
-    </ul>
-  </>
-);
+const StatesDescription = createStatesDescription([
+  {
+    state: 'error',
+    description: 'Quando há problemas de validação ou seleção obrigatória',
+  },
+  { state: 'disabled', description: 'Quando a seleção não está disponível' },
+  {
+    state: 'helperText',
+    description: 'Para fornecer orientações sobre as opções',
+  },
+]);
 
 // Exemplos de Uso
 const UsageExamples = (): JSX.Element => (
@@ -182,258 +328,6 @@ const UsageExamples = (): JSX.Element => (
   </>
 );
 
-// Melhores Práticas
-const BestPractices = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
-
-    <h3>1. Uso Geral</h3>
-    <ul>
-      <li>
-        Use labels descritivos que expliquem claramente o propósito da seleção
-      </li>
-      <li>Forneça helper text quando necessário para orientar o usuário</li>
-      <li>
-        Mantenha as opções organizadas em ordem lógica (alfabética, por
-        importância)
-      </li>
-      <li>
-        Use placeholders que indiquem a ação esperada (&ldquo;Selecione um
-        país&rdquo;)
-      </li>
-    </ul>
-
-    <h3>2. Organização das Opções</h3>
-    <ul>
-      <li>
-        Use Select para listas de até 20 itens (use SelectAutocomplete para
-        mais)
-      </li>
-      <li>
-        Ordene opções alfabeticamente ou por importância/frequência de uso
-      </li>
-      <li>Evite opções com textos muito similares que possam confundir</li>
-      <li>Considere agrupar categorias quando aplicável</li>
-    </ul>
-
-    <h3>3. Acessibilidade</h3>
-    <ul>
-      <li>Sempre forneça labels descritivos para leitores de tela</li>
-      <li>Use helper text para orientações importantes</li>
-      <li>Mantenha estados visuais claros (erro, desabilitado)</li>
-      <li>Garanta que a navegação por teclado funcione corretamente</li>
-    </ul>
-
-    <h3>4. Design e UX</h3>
-    <ul>
-      <li>
-        Evite labels genéricos como &ldquo;Selecione&rdquo; ou
-        &ldquo;Escolha&rdquo;
-      </li>
-      <li>Use placeholders informativos que demonstrem o conteúdo esperado</li>
-      <li>Forneça feedback visual claro para estados de validação</li>
-      <li>Mantenha consistência visual em toda a aplicação</li>
-    </ul>
-  </>
-);
-
-// Classes CSS
-const CssClasses = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Classes CSS</DocBlock.Heading>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Classe</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code>.ods-select</code>
-          </td>
-          <td>Estilos aplicados ao elemento raiz.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__label</code>
-          </td>
-          <td>Estilos aplicados ao label do campo.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__input</code>
-          </td>
-          <td>Estilos aplicados ao campo de input do select.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__dropdown</code>
-          </td>
-          <td>Estilos aplicados ao container do dropdown.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__option</code>
-          </td>
-          <td>Estilos aplicados a cada opção individual.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__option--selected</code>
-          </td>
-          <td>Estilos aplicados à opção atualmente selecionada.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__option--disabled</code>
-          </td>
-          <td>Estilos aplicados a opções desabilitadas.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select__helper-text</code>
-          </td>
-          <td>Estilos aplicados ao texto de ajuda.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select--error</code>
-          </td>
-          <td>Estilos aplicados quando o componente está em estado de erro.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-select--disabled</code>
-          </td>
-          <td>Estilos aplicados quando o componente está desabilitado.</td>
-        </tr>
-      </tbody>
-    </table>
-  </>
-);
-
-// Referência da API
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Referência da API</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente Select é baseado no elemento HTML select e suporta todos os
-      atributos padrão relevantes.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>options</td>
-          <td>
-            <code>Option[]</code>
-          </td>
-          <td>
-            <code>[]</code>
-          </td>
-          <td>
-            Array de opções para seleção. Cada opção deve ter value e label.
-          </td>
-        </tr>
-        <tr>
-          <td>value</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Valor atualmente selecionado no select.</td>
-        </tr>
-        <tr>
-          <td>onChange</td>
-          <td>
-            <code>(value: string) =&gt; void</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Callback chamado quando o valor selecionado muda.</td>
-        </tr>
-        <tr>
-          <td>label</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Rótulo descritivo do campo de seleção.</td>
-        </tr>
-        <tr>
-          <td>placeholder</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Texto exibido quando nenhuma opção está selecionada.</td>
-        </tr>
-        <tr>
-          <td>helperText</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Texto de ajuda exibido abaixo do campo.</td>
-        </tr>
-        <tr>
-          <td>error</td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>Quando true, aplica o estilo de erro ao campo.</td>
-        </tr>
-        <tr>
-          <td>disabled</td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>Quando true, desabilita o campo select.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h4>Tipo Option</h4>
-    <DocBlock.Source
-      dark
-      code={`interface Option {
-  value: string;
-  label: string;
-  disabled?: boolean;
-}`}
-    />
-
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento select. Qualquer outra prop fornecida
-      será passada para o elemento select.
-    </DocBlock.Markdown>
-  </>
-);
-
 // Story principal com controles ativos
 export const Usage: Story = {
   args: {
@@ -450,13 +344,7 @@ export const Usage: Story = {
       { value: 'ar', label: 'Argentina' },
     ],
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div style={{ minWidth: '300px' }}>
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createDefaultDecorator(),
 };
 
 // Stories visuais com controles desabilitados
@@ -465,7 +353,7 @@ export const OptionTypes: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={sharedContainerStyles.showcase}>
       <Select
         label="País"
         placeholder="Escolha um país"
@@ -510,39 +398,34 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={sharedContainerStyles.showcase}>
       <Select
         label="Campo Obrigatório"
-        placeholder="Selecione uma categoria"
+        placeholder="Selecione uma opção"
         helperText="Este campo é obrigatório"
         error
         options={[
-          { value: 'electronics', label: 'Eletrônicos' },
-          { value: 'clothing', label: 'Vestuário' },
-          { value: 'books', label: 'Livros' },
+          { value: 'option1', label: 'Opção 1' },
+          { value: 'option2', label: 'Opção 2' },
         ]}
       />
       <Select
-        label="Status"
-        placeholder="Escolha o status"
-        helperText="Atualize o status do item"
+        label="Campo Normal"
+        placeholder="Selecione uma opção"
+        helperText="Campo em estado normal"
         options={[
-          { value: 'pending', label: 'Pendente' },
-          { value: 'in-progress', label: 'Em Andamento' },
-          { value: 'completed', label: 'Concluído' },
-          { value: 'cancelled', label: 'Cancelado' },
+          { value: 'option1', label: 'Opção 1' },
+          { value: 'option2', label: 'Opção 2' },
         ]}
       />
       <Select
-        label="Prioridade"
-        placeholder="Defina a prioridade"
-        helperText="Defina a prioridade da tarefa"
+        label="Campo Desabilitado"
+        placeholder="Não disponível"
+        helperText="Este campo está desabilitado"
         disabled
         options={[
-          { value: 'low', label: 'Baixa' },
-          { value: 'medium', label: 'Média' },
-          { value: 'high', label: 'Alta' },
-          { value: 'urgent', label: 'Urgente' },
+          { value: 'option1', label: 'Opção 1' },
+          { value: 'option2', label: 'Opção 2' },
         ]}
       />
     </div>
@@ -555,59 +438,18 @@ const meta: Meta<typeof Select> = {
   component: Select,
   tags: ['autodocs'],
   argTypes: {
-    value: {
-      description: 'O valor atualmente selecionado.',
-      control: 'text',
-    },
-    label: {
-      description: 'O rótulo do campo select.',
-      control: 'text',
-    },
-    placeholder: {
-      description: 'Texto exibido quando nenhuma opção está selecionada.',
-      control: 'text',
-    },
-    helperText: {
-      description: 'Texto de ajuda exibido abaixo do campo.',
-      control: 'text',
-    },
-    error: {
-      description: 'Quando true, aplica o estilo de erro ao campo.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: 'Quando true, desabilita o campo select.',
-      control: 'boolean',
-    },
+    ...commonFormArgTypes,
     options: {
-      description: 'Array de opções disponíveis no select.',
+      description: 'Array de opções para seleção.',
       control: { type: null },
     },
     onChange: {
-      description: 'Callback chamado quando o valor muda.',
+      description: 'Callback chamado quando valor muda.',
       control: { type: null },
     },
-    ariaLabel: {
-      control: { type: null },
-    },
-    name: {
-      control: { type: null },
-    },
-    id: {
-      control: { type: null },
-    },
-    tooltipMessage: {
-      control: { type: null },
-      table: { disable: true },
-    },
-    htmlFor: {
-      control: { type: null },
-    },
-    className: {
-      control: { type: null },
-    },
-    autoFocus: {
-      control: { type: null },
+    value: {
+      description: 'Valor selecionado.',
+      control: 'text',
     },
   },
   parameters: {
@@ -621,7 +463,7 @@ const meta: Meta<typeof Select> = {
           <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
           <CommonPatterns />
           <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3 id="tipos-opcoes">Tipos de Opções</h3>
+          <h3 id="tipos-de-opcoes">Tipos de Opções</h3>
           <OptionTypesList />
           <DocBlock.Canvas of={OptionTypes} />
           <h3 id="estados">Estados</h3>

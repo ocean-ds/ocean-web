@@ -2,132 +2,61 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Stepper from '../Stepper';
+import {
+  createIntroduction,
+  createCommonPatterns,
+  createBestPractices,
+  createCssClasses,
+  createApiReference,
+  createCodeList,
+  createStatesDescription,
+  createDefaultDecorator,
+  commonFormArgTypes,
+  sharedContainerStyles,
+  type IntroductionConfig,
+  type CommonPatternsConfig,
+  type BestPracticesConfig,
+  type CssClass,
+  type ApiReferenceConfig,
+} from '../../_stories/shared-components';
 
 type Story = StoryObj<typeof Stepper>;
 
-// Constantes do Stepper
-const STEPPER_DATA = {
-  LABELS: {
-    basicLabel: 'Quantidade',
-    quantityLabel: 'Quantidade de itens',
-    ageLabel: 'Idade',
-    priceLabel: 'Preço unitário',
-    stockLabel: 'Estoque disponível',
-    guestsLabel: 'Número de convidados',
-    portionsLabel: 'Porções',
-    requiredField: 'Campo Obrigatório',
-    withLimits: 'Com limites (1-10)',
-    minOnly: 'Apenas mínimo (min: 0)',
-    maxOnly: 'Apenas máximo (max: 100)',
-    noLimits: 'Sem limites',
-  },
-  HELPER_TEXTS: {
-    basicHelp: 'Use os botões + e - para ajustar o valor',
-    quantityHelp: 'Selecione a quantidade desejada do produto',
-    ageHelp: 'Informe sua idade em anos completos',
-    priceHelp: 'Defina o preço por unidade do produto',
-    stockHelp: 'Quantidade disponível em estoque',
-    guestsHelp: 'Quantas pessoas participarão do evento',
-    portionsHelp: 'Número de porções da receita',
-    validationError: 'Este campo é obrigatório',
-    minValueHelp: 'Valor mínimo permitido',
-    maxValueHelp: 'Valor máximo permitido',
-    withLimitsHelp: 'Valor entre 1 e 10',
-    minOnlyHelp: 'Valor mínimo de 0, sem máximo',
-    maxOnlyHelp: 'Valor máximo de 100, sem mínimo',
-    noLimitsHelp: 'Qualquer valor numérico',
-  },
-  PLACEHOLDERS: {
-    basicPlaceholder: '0',
-    quantityPlaceholder: 'Digite a quantidade',
-    agePlaceholder: 'Ex: 25',
-    pricePlaceholder: '0,00',
-    stockPlaceholder: 'Quantidade em estoque',
-    guestsPlaceholder: 'Número de pessoas',
-    portionsPlaceholder: 'Porções',
-  },
-  SCENARIOS: {
-    basic: { min: 0, max: 100, defaultValue: 1 },
-    quantity: { min: 1, max: 50, defaultValue: 1 },
-    age: { min: 0, max: 120, defaultValue: 18 },
-    price: { min: 0, max: 9999, defaultValue: 10 },
-    stock: { min: 0, max: 1000, defaultValue: 0 },
-    guests: { min: 1, max: 200, defaultValue: 2 },
-    portions: { min: 1, max: 20, defaultValue: 4 },
-    noLimits: { min: undefined, max: undefined, defaultValue: 0 },
-    withLimits: { min: 1, max: 10, defaultValue: 5 },
-    minOnly: { min: 0, max: undefined, defaultValue: 0 },
-    maxOnly: { min: undefined, max: 100, defaultValue: 50 },
-  },
+// Configurações para componentes de documentação
+const introductionConfig: IntroductionConfig = {
+  description:
+    'Componente de entrada numérica com botões de incremento e decremento para ajuste preciso de valores.',
+  overview:
+    'O componente Stepper oferece uma interface intuitiva para entrada de valores numéricos, especialmente útil quando o usuário precisa ajustar quantidades com precisão. Inclui botões visuais para incrementar e decrementar valores, além de suporte a limites mínimos e máximos.',
+  characteristics: [
+    {
+      title: 'Controles Visuais',
+      description: 'Botões + e - para ajuste fácil de valores',
+    },
+    {
+      title: 'Limites Configuráveis',
+      description: 'Suporte a valores mínimos e máximos',
+    },
+    {
+      title: 'Validação Integrada',
+      description: 'Previne valores fora dos limites automaticamente',
+    },
+    {
+      title: 'Entrada Manual',
+      description: 'Permite digitação direta além dos botões',
+    },
+    {
+      title: 'Acessibilidade',
+      description: 'Navegação por teclado e leitores de tela',
+    },
+  ],
+  importPath: `import { Stepper } from '@useblu/ocean-react';`,
 };
 
-// Estilos de container
-const containerStyles = {
-  form: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '16px',
-    maxWidth: '400px',
-  },
-  showcase: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '16px',
-  },
-};
-
-// Componente de Introdução
-const Introduction = (): JSX.Element => (
-  <>
-    <DocBlock.Title />
-    <DocBlock.Markdown>
-      Componente de entrada numérica com botões de incremento e decremento para
-      ajuste preciso de valores.
-    </DocBlock.Markdown>
-    <DocBlock.Heading>Visão Geral</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente Stepper oferece uma interface intuitiva para entrada de
-      valores numéricos, especialmente útil quando o usuário precisa ajustar
-      quantidades com precisão. Inclui botões visuais para incrementar e
-      decrementar valores, além de suporte a limites mínimos e máximos.
-    </DocBlock.Markdown>
-    <h3>Principais Características</h3>
-    <ul>
-      <li>
-        <strong>Controles Visuais</strong>: Botões + e - para ajuste fácil de
-        valores
-      </li>
-      <li>
-        <strong>Limites Configuráveis</strong>: Suporte a valores mínimos e
-        máximos
-      </li>
-      <li>
-        <strong>Validação Integrada</strong>: Previne valores fora dos limites
-        automaticamente
-      </li>
-      <li>
-        <strong>Entrada Manual</strong>: Permite digitação direta além dos
-        botões
-      </li>
-      <li>
-        <strong>Acessibilidade</strong>: Navegação por teclado e leitores de
-        tela
-      </li>
-    </ul>
-    <DocBlock.Heading>Importação</DocBlock.Heading>
-    <DocBlock.Source
-      dark
-      code={`import { Stepper } from '@useblu/ocean-react';`}
-    />
-  </>
-);
-
-// Padrões Comuns
-const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Uso básico
+const commonPatternsConfig: CommonPatternsConfig = {
+  patterns: [
+    {
+      code: `// Uso básico
 <Stepper
   label="Quantidade"
   placeholder="0"
@@ -154,133 +83,275 @@ const CommonPatterns = (): JSX.Element => (
     max={200}
     required
   />
-</form>`}
-    />
-  </>
-);
+</form>`,
+    },
+  ],
+};
+
+const bestPracticesConfig: BestPracticesConfig = {
+  sections: [
+    {
+      title: '1. Uso Geral',
+      items: [
+        'Use para valores numéricos que precisam de ajuste fino',
+        'Defina limites apropriados (min/max) para prevenir valores inválidos',
+        'Forneça labels claros indicando o que o valor representa',
+        'Use placeholders que mostrem valores de exemplo',
+      ],
+    },
+    {
+      title: '2. Limites e Validação',
+      items: [
+        'Sempre defina limites lógicos para o contexto de uso',
+        'Use validação para campos obrigatórios',
+        'Forneça feedback sobre limites quando necessário',
+        'Considere valores padrão apropriados',
+      ],
+    },
+    {
+      title: '3. Cenários de Uso',
+      items: [
+        'Ideal para quantidades, idades, preços em valores pequenos',
+        'Use para valores até 100 para melhor experiência',
+        'Para valores grandes, considere usar Input numérico',
+        'Adequado para ajustes de configuração e preferências',
+      ],
+    },
+    {
+      title: '4. Acessibilidade',
+      items: [
+        'Garanta que os botões sejam acessíveis por teclado',
+        'Use labels descritivos para leitores de tela',
+        'Forneça feedback sobre limites alcançados',
+        'Mantenha estados visuais claros (desabilitado, erro)',
+      ],
+    },
+  ],
+};
+
+const cssClasses: CssClass[] = [
+  {
+    name: '.ods-stepper',
+    description: 'Estilos aplicados ao elemento raiz do stepper.',
+  },
+  {
+    name: '.ods-stepper__input',
+    description: 'Estilos aplicados ao campo de input numérico.',
+  },
+  {
+    name: '.ods-stepper__button',
+    description: 'Estilos aplicados aos botões de incremento e decremento.',
+  },
+  {
+    name: '.ods-stepper__button--increment',
+    description:
+      'Estilos aplicados especificamente ao botão de incremento (+).',
+  },
+  {
+    name: '.ods-stepper__button--decrement',
+    description:
+      'Estilos aplicados especificamente ao botão de decremento (-).',
+  },
+  {
+    name: '.ods-stepper--error',
+    description:
+      'Estilos aplicados quando o componente está em estado de erro.',
+  },
+  {
+    name: '.ods-stepper--disabled',
+    description: 'Estilos aplicados quando o componente está desabilitado.',
+  },
+];
+
+const apiReferenceConfig: ApiReferenceConfig = {
+  description:
+    'O componente Stepper é baseado no elemento HTML input[type="number"] e suporta todos os atributos numéricos relevantes.',
+  props: [
+    {
+      name: 'label',
+      type: 'string',
+      defaultValue: 'undefined',
+      description:
+        'O rótulo do campo stepper. Exibido acima do campo para identificação.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Texto exibido quando o campo está vazio.',
+    },
+    {
+      name: 'helperText',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Texto de ajuda exibido abaixo do campo.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Quando true, aplica o estilo de erro ao campo.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Quando true, desabilita o campo e os botões.',
+    },
+    {
+      name: 'min',
+      type: 'number',
+      defaultValue: 'undefined',
+      description: 'Valor mínimo permitido.',
+    },
+    {
+      name: 'max',
+      type: 'number',
+      defaultValue: 'undefined',
+      description: 'Valor máximo permitido.',
+    },
+    {
+      name: 'value',
+      type: 'number',
+      defaultValue: 'undefined',
+      description: 'O valor atual do stepper (modo controlado).',
+    },
+    {
+      name: 'defaultValue',
+      type: 'number',
+      defaultValue: 'undefined',
+      description: 'Valor inicial do stepper (modo não controlado).',
+    },
+    {
+      name: 'onChange',
+      type: '(value: number) => void',
+      defaultValue: 'undefined',
+      description: 'Callback chamado quando o valor do stepper muda.',
+    },
+  ],
+  footer:
+    'A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será passada para o elemento input.',
+};
+
+// Criação dos componentes usando os factories
+const Introduction = createIntroduction(introductionConfig);
+const CommonPatterns = createCommonPatterns(commonPatternsConfig);
+const BestPractices = createBestPractices(bestPracticesConfig);
+const CssClasses = createCssClasses(cssClasses);
+const ApiReference = createApiReference(apiReferenceConfig);
 
 // Lista de Cenários de Uso
-const UsageScenariosList = (): JSX.Element => (
-  <ul>
-    <li>
-      <code>Quantidades</code>: Para produtos, itens em carrinho, estoque
-    </li>
-    <li>
-      <code>Idades/Anos</code>: Para formulários de cadastro e filtros
-    </li>
-    <li>
-      <code>Capacidades</code>: Número de pessoas, porções, vagas
-    </li>
-    <li>
-      <code>Valores Pequenos</code>: Até 100 unidades para melhor UX
-    </li>
-  </ul>
-);
+const UsageScenariosList = createCodeList([
+  {
+    code: 'Quantidades',
+    description: 'Para produtos, itens em carrinho, estoque',
+  },
+  {
+    code: 'Idades/Anos',
+    description: 'Para formulários de cadastro e filtros',
+  },
+  { code: 'Capacidades', description: 'Número de pessoas, porções, vagas' },
+  { code: 'Valores Pequenos', description: 'Até 100 unidades para melhor UX' },
+]);
+
+// Descrição dos Estados
+const StatesDescription = createStatesDescription([
+  {
+    state: 'error',
+    description: 'Quando há problemas de validação ou valores inválidos',
+  },
+  { state: 'disabled', description: 'Quando a entrada não está disponível' },
+  {
+    state: 'helperText',
+    description: 'Para fornecer orientações sobre limites e uso',
+  },
+]);
 
 // Demonstração de Cenários
 const UsageScenarios = (): JSX.Element => (
-  <div style={containerStyles.showcase}>
+  <div style={sharedContainerStyles.showcase}>
     <Stepper
-      label={STEPPER_DATA.LABELS.quantityLabel}
-      placeholder={STEPPER_DATA.PLACEHOLDERS.quantityPlaceholder}
-      helperText={STEPPER_DATA.HELPER_TEXTS.quantityHelp}
-      min={STEPPER_DATA.SCENARIOS.quantity.min}
-      max={STEPPER_DATA.SCENARIOS.quantity.max}
+      label="Quantidade de itens"
+      placeholder="Digite a quantidade"
+      helperText="Selecione a quantidade desejada do produto"
+      min={1}
+      max={50}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.ageLabel}
-      placeholder={STEPPER_DATA.PLACEHOLDERS.agePlaceholder}
-      helperText={STEPPER_DATA.HELPER_TEXTS.ageHelp}
-      min={STEPPER_DATA.SCENARIOS.age.min}
-      max={STEPPER_DATA.SCENARIOS.age.max}
+      label="Idade"
+      placeholder="Ex: 25"
+      helperText="Informe sua idade em anos completos"
+      min={0}
+      max={120}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.guestsLabel}
-      placeholder={STEPPER_DATA.PLACEHOLDERS.guestsPlaceholder}
-      helperText={STEPPER_DATA.HELPER_TEXTS.guestsHelp}
-      min={STEPPER_DATA.SCENARIOS.guests.min}
-      max={STEPPER_DATA.SCENARIOS.guests.max}
+      label="Número de convidados"
+      placeholder="Número de pessoas"
+      helperText="Quantas pessoas participarão do evento"
+      min={1}
+      max={200}
     />
   </div>
 );
 
-// Descrição dos Estados
-const StatesDescription = (): JSX.Element => (
-  <>
-    <DocBlock.Markdown>
-      Use as props de estado para diferentes contextos:
-    </DocBlock.Markdown>
-    <ul>
-      <li>
-        <code>error</code>: Quando há problemas de validação ou valores
-        inválidos
-      </li>
-      <li>
-        <code>disabled</code>: Quando a entrada não está disponível
-      </li>
-      <li>
-        <code>helperText</code>: Para fornecer instruções sobre limites e uso
-      </li>
-    </ul>
-  </>
-);
-
 // Demonstração de Estados
 const States = (): JSX.Element => (
-  <div style={containerStyles.showcase}>
+  <div style={sharedContainerStyles.showcase}>
     <Stepper
-      label={STEPPER_DATA.LABELS.requiredField}
-      placeholder={STEPPER_DATA.PLACEHOLDERS.stockPlaceholder}
-      helperText={STEPPER_DATA.HELPER_TEXTS.validationError}
+      label="Campo Obrigatório"
+      placeholder="0"
+      helperText="Este campo é obrigatório"
       error
-      min={STEPPER_DATA.SCENARIOS.stock.min}
-      max={STEPPER_DATA.SCENARIOS.stock.max}
+      min={1}
+      max={10}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.stockLabel}
-      placeholder={STEPPER_DATA.PLACEHOLDERS.stockPlaceholder}
-      helperText={STEPPER_DATA.HELPER_TEXTS.stockHelp}
-      error={false}
-      min={STEPPER_DATA.SCENARIOS.stock.min}
-      max={STEPPER_DATA.SCENARIOS.stock.max}
+      label="Quantidade"
+      placeholder="0"
+      helperText="Use os botões + e - para ajustar o valor"
+      min={0}
+      max={100}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.priceLabel}
-      placeholder={STEPPER_DATA.PLACEHOLDERS.pricePlaceholder}
-      helperText={STEPPER_DATA.HELPER_TEXTS.priceHelp}
+      label="Campo Desabilitado"
+      placeholder="0"
+      helperText="Campo desabilitado"
       disabled
-      min={STEPPER_DATA.SCENARIOS.price.min}
-      max={STEPPER_DATA.SCENARIOS.price.max}
+      min={0}
+      max={100}
+      defaultValue={5}
     />
   </div>
 );
 
 // Demonstração de Limites
 const LimitsDemo = (): JSX.Element => (
-  <div style={containerStyles.showcase}>
+  <div style={sharedContainerStyles.showcase}>
     <Stepper
-      label={STEPPER_DATA.LABELS.withLimits}
-      helperText={STEPPER_DATA.HELPER_TEXTS.withLimitsHelp}
-      min={STEPPER_DATA.SCENARIOS.withLimits.min}
-      max={STEPPER_DATA.SCENARIOS.withLimits.max}
-      defaultValue={STEPPER_DATA.SCENARIOS.withLimits.defaultValue}
+      label="Com limites (1-10)"
+      placeholder="0"
+      helperText="Valor entre 1 e 10"
+      min={1}
+      max={10}
+      defaultValue={5}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.minOnly}
-      helperText={STEPPER_DATA.HELPER_TEXTS.minOnlyHelp}
-      min={STEPPER_DATA.SCENARIOS.minOnly.min}
-      defaultValue={STEPPER_DATA.SCENARIOS.minOnly.defaultValue}
+      label="Apenas mínimo (min: 0)"
+      placeholder="0"
+      helperText="Valor mínimo de 0, sem máximo"
+      min={0}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.maxOnly}
-      helperText={STEPPER_DATA.HELPER_TEXTS.maxOnlyHelp}
-      max={STEPPER_DATA.SCENARIOS.maxOnly.max}
-      defaultValue={STEPPER_DATA.SCENARIOS.maxOnly.defaultValue}
+      label="Apenas máximo (max: 100)"
+      placeholder="0"
+      helperText="Valor máximo de 100, sem mínimo"
+      max={100}
+      defaultValue={50}
     />
     <Stepper
-      label={STEPPER_DATA.LABELS.noLimits}
-      helperText={STEPPER_DATA.HELPER_TEXTS.noLimitsHelp}
-      defaultValue={STEPPER_DATA.SCENARIOS.noLimits.defaultValue}
+      label="Sem limites"
+      placeholder="0"
+      helperText="Qualquer valor numérico"
     />
   </div>
 );
@@ -289,70 +360,52 @@ const LimitsDemo = (): JSX.Element => (
 const UsageExamples = (): JSX.Element => (
   <>
     <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente Stepper é ideal para entrada de valores numéricos com
-      controle preciso. Aqui estão alguns exemplos práticos de implementação:
-    </DocBlock.Markdown>
 
-    <h3>Integração com Formulários</h3>
+    <h3>Quantidades em E-commerce</h3>
+    <DocBlock.Source
+      dark
+      code={`<Stepper
+  label="Quantidade"
+  min={1}
+  max={50}
+  defaultValue={1}
+  helperText="Quantidade disponível em estoque: 50"
+/>`}
+    />
+
+    <h3>Configurações de Usuário</h3>
     <DocBlock.Source
       dark
       code={`<form onSubmit={handleSubmit}>
   <Stepper
-    label="Quantidade de itens"
-    placeholder="Digite a quantidade"
-    name="quantity"
-    min={1}
-    max={50}
+    name="age"
+    label="Idade"
+    min={0}
+    max={120}
+    helperText="Sua idade em anos completos"
+    required
   />
-  <Button type="submit">Adicionar ao Carrinho</Button>
+  <Button type="submit">Salvar</Button>
 </form>`}
     />
 
-    <h3>Controle de Estado</h3>
+    <h3>Com Validação</h3>
     <DocBlock.Source
       dark
-      code={`function QuantitySelector() {
-  const [quantity, setQuantity] = useState(1);
-  const [price] = useState(29.99);
-
-  const handleQuantityChange = (e) => {
-    setQuantity(Number(e.target.value));
-  };
-
-  return (
-    <div>
-      <Stepper
-        label="Quantidade"
-        value={quantity}
-        onChange={handleQuantityChange}
-        min={1}
-        max={10}
-      />
-      <p>Total: R$ {(quantity * price).toFixed(2)}</p>
-    </div>
-  );
-}`}
-    />
-
-    <h3>Validação em Tempo Real</h3>
-    <DocBlock.Source
-      dark
-      code={`const [guests, setGuests] = useState(0);
+      code={`const [guests, setGuests] = useState(1);
 const [error, setError] = useState(false);
 
-const handleGuestsChange = (e) => {
-  const value = Number(e.target.value);
+const handleChange = (value) => {
   setGuests(value);
-  setError(value < 1);
+  setError(value < 1 || value > 200);
 };
 
 <Stepper
-  label="Número de convidados"
+  label="Número de Convidados"
   value={guests}
-  onChange={handleGuestsChange}
+  onChange={handleChange}
   error={error}
-  helperText={error ? "Mínimo de 1 convidado" : "Quantas pessoas participarão"}
+  helperText={error ? "Número deve estar entre 1 e 200" : "Quantas pessoas participarão?"}
   min={1}
   max={200}
 />`}
@@ -360,282 +413,36 @@ const handleGuestsChange = (e) => {
   </>
 );
 
-// Melhores Práticas
-const BestPractices = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
-
-    <h3>1. Uso Geral</h3>
-    <ul>
-      <li>Use para valores numéricos que precisam de ajuste preciso</li>
-      <li>Sempre defina limites mínimos e máximos quando apropriado</li>
-      <li>Forneça labels descritivos que indiquem a unidade de medida</li>
-      <li>Use placeholders que mostrem o formato esperado</li>
-    </ul>
-
-    <h3>2. Limites e Validação</h3>
-    <ul>
-      <li>Defina min e max para prevenir valores inválidos</li>
-      <li>Use validação para valores obrigatórios</li>
-      <li>Forneça feedback claro sobre limites atingidos</li>
-      <li>Considere valores padrão sensatos</li>
-    </ul>
-
-    <h3>3. Ranges Recomendados</h3>
-    <ul>
-      <li>Use para quantidades pequenas a médias (até 100)</li>
-      <li>Para valores grandes, considere input numérico simples</li>
-      <li>Mantenha botões de fácil acesso em dispositivos móveis</li>
-      <li>Forneça feedback visual para limites atingidos</li>
-    </ul>
-
-    <h3>4. Acessibilidade</h3>
-    <ul>
-      <li>Sempre use labels apropriados</li>
-      <li>Forneça helperText descritivo sobre os limites</li>
-      <li>Mantenha navegação por teclado funcional</li>
-      <li>Use aria-labels para botões de incremento/decremento</li>
-    </ul>
-
-    <h3>5. Performance</h3>
-    <ul>
-      <li>Use debounce para onChange em casos de cálculos complexos</li>
-      <li>Evite re-renderizações desnecessárias</li>
-      <li>Considere usar defaultValue em vez de value quando possível</li>
-      <li>Implemente throttling para mudanças rápidas</li>
-    </ul>
-  </>
-);
-
-// Classes CSS
-const CssClasses = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Classes CSS</DocBlock.Heading>
-    <table>
-      <thead>
-        <tr>
-          <th>Classe Global</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code>.ods-input</code>
-          </td>
-          <td>Estilos aplicados ao elemento input principal.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--filled</code>
-          </td>
-          <td>Estilos aplicados ao input quando está preenchido.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--error</code>
-          </td>
-          <td>Estilos aplicados ao input quando error=true.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--left</code>
-          </td>
-          <td>Estilos aplicados ao input quando position=&quot;left&quot;.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-input--disabled--text</code>
-          </td>
-          <td>Estilos aplicados quando não há texto e não há ícone padrão.</td>
-        </tr>
-      </tbody>
-    </table>
-  </>
-);
-
-// Referência da API
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>API Reference</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente Stepper é baseado no elemento input com controles adicionais
-      e suporta todos os atributos padrão de input.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code>label</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            O rótulo do campo stepper. Exibido acima do campo para
-            identificação.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>placeholder</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Texto exibido quando o campo está vazio. Fornece orientação sobre o
-            valor esperado.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>helperText</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Texto de ajuda exibido abaixo do campo. Use para instruções ou
-            validação.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>error</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Quando true, aplica o estilo de erro ao campo. Use para indicar
-            problemas de validação.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>disabled</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Quando true, desabilita o campo stepper. Use quando a entrada não é
-            permitida.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>min</code>
-          </td>
-          <td>
-            <code>number</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Valor mínimo permitido. Os botões de decremento respeitam este
-            limite.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>max</code>
-          </td>
-          <td>
-            <code>number</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Valor máximo permitido. Os botões de incremento respeitam este
-            limite.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>value</code>
-          </td>
-          <td>
-            <code>number</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            O valor atual do stepper. Use para controlar o estado do componente.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento input. Qualquer outra prop fornecida
-      será passada para o elemento input.
-    </DocBlock.Markdown>
-  </>
-);
-
 // Story principal com controles ativos
 export const Usage: Story = {
   args: {
-    label: STEPPER_DATA.LABELS.basicLabel,
-    placeholder: STEPPER_DATA.PLACEHOLDERS.basicPlaceholder,
-    helperText: STEPPER_DATA.HELPER_TEXTS.basicHelp,
-    min: STEPPER_DATA.SCENARIOS.basic.min,
-    max: STEPPER_DATA.SCENARIOS.basic.max,
+    label: 'Quantidade',
+    placeholder: '0',
+    helperText: 'Use os botões + e - para ajustar o valor',
     error: false,
     disabled: false,
+    min: 0,
+    max: 100,
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div style={{ minWidth: '300px' }}>
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createDefaultDecorator(),
 };
 
-// Stories visuais sem controles
-export const DifferentScenarios: Story = {
+// Stories visuais com controles desabilitados
+export const UsageScenariosStory: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => <UsageScenarios />,
 };
 
-export const ErrorStates: Story = {
+export const StatesStory: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => <States />,
 };
 
-export const LimitsConfiguration: Story = {
+export const LimitsDemoStory: Story = {
   parameters: {
     controls: { disable: true },
   },
@@ -648,30 +455,7 @@ const meta: Meta<typeof Stepper> = {
   component: Stepper,
   tags: ['autodocs'],
   argTypes: {
-    value: {
-      description: 'O valor atual do stepper.',
-      control: 'number',
-    },
-    label: {
-      description: 'O rótulo do campo stepper.',
-      control: 'text',
-    },
-    placeholder: {
-      description: 'Texto exibido quando o campo está vazio.',
-      control: 'text',
-    },
-    helperText: {
-      description: 'Texto de ajuda exibido abaixo do campo.',
-      control: 'text',
-    },
-    error: {
-      description: 'Quando true, aplica o estilo de erro ao campo.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: 'Quando true, desabilita o campo stepper.',
-      control: 'boolean',
-    },
+    ...commonFormArgTypes,
     min: {
       description: 'Valor mínimo permitido.',
       control: 'number',
@@ -680,17 +464,16 @@ const meta: Meta<typeof Stepper> = {
       description: 'Valor máximo permitido.',
       control: 'number',
     },
-    tooltipMessage: {
-      control: { type: null },
-      table: { disable: true },
+    value: {
+      description: 'Valor atual do stepper.',
+      control: 'number',
     },
-    htmlFor: {
-      control: { type: null },
+    defaultValue: {
+      description: 'Valor inicial do stepper.',
+      control: 'number',
     },
-    className: {
-      control: { type: null },
-    },
-    autoFocus: {
+    onChange: {
+      description: 'Callback chamado quando valor muda.',
       control: { type: null },
     },
   },
@@ -705,14 +488,14 @@ const meta: Meta<typeof Stepper> = {
           <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
           <CommonPatterns />
           <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3 id="cenarios">Cenários de Uso</h3>
+          <h3 id="cenarios-uso">Cenários de Uso</h3>
           <UsageScenariosList />
-          <DocBlock.Canvas of={DifferentScenarios} />
+          <DocBlock.Canvas of={UsageScenariosStory} />
           <h3 id="estados">Estados</h3>
           <StatesDescription />
-          <DocBlock.Canvas of={ErrorStates} />
-          <h3 id="limites">Configuração de Limites</h3>
-          <DocBlock.Canvas of={LimitsConfiguration} />
+          <DocBlock.Canvas of={StatesStory} />
+          <h3 id="limites">Limites</h3>
+          <DocBlock.Canvas of={LimitsDemoStory} />
           <UsageExamples />
           <BestPractices />
           <CssClasses />

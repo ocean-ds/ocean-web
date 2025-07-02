@@ -2,113 +2,60 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import TokenInput from '../TokenInput';
+import {
+  createIntroduction,
+  createCommonPatterns,
+  createBestPractices,
+  createCssClasses,
+  createApiReference,
+  createCodeList,
+  createStatesDescription,
+  createDefaultDecorator,
+  sharedContainerStyles,
+  type IntroductionConfig,
+  type CommonPatternsConfig,
+  type BestPracticesConfig,
+  type CssClass,
+  type ApiReferenceConfig,
+} from '../../_stories/shared-components';
 
 type Story = StoryObj<typeof TokenInput>;
 
-// Constantes do TokenInput
-const TOKEN_INPUT_DATA = {
-  LABELS: {
-    codigoVerificacao: 'Código de Verificação',
-    codigoSMS: 'Código SMS',
-    codigoEmail: 'Código do Email',
-    codigoAutenticacao: 'Código de Autenticação',
-    codigoSeguranca: 'Código de Segurança',
-    codigoAcesso: 'Código de Acesso',
-    codigoConfirmacao: 'Código de Confirmação',
-    campoObrigatorio: 'Campo Obrigatório',
-    codigoCurto: 'Código Curto (3 dígitos)',
-    codigoLongo: 'Código Longo (8 dígitos)',
-  },
-  HELPER_TEXTS: {
-    digiteCodigo: 'Digite o código recebido',
-    verificarSMS: 'Verifique o código enviado por SMS',
-    conferirEmail: 'Confira o código em seu email',
-    usarAutenticador: 'Use o código do seu aplicativo autenticador',
-    codigoSeguranca6: 'Código de segurança de 6 dígitos',
-    acessoTemporario: 'Código de acesso temporário',
-    confirmarOperacao: 'Código para confirmar a operação',
-    codigoIncorreto: 'Código incorreto ou expirado',
-    campoObrigatorio: 'Este campo é obrigatório',
-    formatoInvalido: 'Formato do código inválido',
-    codigosRapidos: 'Para códigos rápidos',
-    codigosEstendidos: 'Para códigos estendidos',
-    campoDesabilitado: 'Campo desabilitado',
-  },
-  SCENARIOS: {
-    basic: { digitsQuantity: 4 },
-    sms: { digitsQuantity: 6 },
-    email: { digitsQuantity: 6 },
-    auth: { digitsQuantity: 6 },
-    security: { digitsQuantity: 6 },
-    access: { digitsQuantity: 4 },
-    confirmation: { digitsQuantity: 6 },
-    short: { digitsQuantity: 3 },
-    long: { digitsQuantity: 8 },
-  },
+// Configurações para componentes de documentação
+const introductionConfig: IntroductionConfig = {
+  description:
+    'Componente especializado para entrada de códigos de verificação e tokens numéricos com campos individuais para cada dígito.',
+  overview:
+    'O componente TokenInput oferece uma interface otimizada para entrada de códigos de verificação, como tokens SMS, códigos de email, ou códigos de autenticação. Cada dígito é exibido em um campo separado, proporcionando melhor experiência visual e de usabilidade. Suporta navegação automática entre campos e validação de formato.',
+  characteristics: [
+    {
+      title: 'Campos Individuais',
+      description: 'Cada dígito em campo separado para melhor UX',
+    },
+    {
+      title: 'Navegação Automática',
+      description: 'Avança automaticamente entre campos',
+    },
+    {
+      title: 'Suporte a Colagem',
+      description: 'Permite colar códigos completos',
+    },
+    {
+      title: 'Validação Integrada',
+      description: 'Estados de erro e validação em tempo real',
+    },
+    {
+      title: 'Configurável',
+      description: 'Número de dígitos flexível conforme necessidade',
+    },
+  ],
+  importPath: `import { TokenInput } from '@useblu/ocean-react';`,
 };
 
-// Estilos de container
-const containerStyles = {
-  form: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '16px',
-    maxWidth: '400px',
-  },
-};
-
-// Componente de Introdução
-const Introduction = (): JSX.Element => (
-  <>
-    <DocBlock.Title />
-    <DocBlock.Markdown>
-      Componente especializado para entrada de códigos de verificação e tokens
-      numéricos com campos individuais para cada dígito.
-    </DocBlock.Markdown>
-    <DocBlock.Heading>Visão Geral</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente TokenInput oferece uma interface otimizada para entrada de
-      códigos de verificação, como tokens SMS, códigos de email, ou códigos de
-      autenticação. Cada dígito é exibido em um campo separado, proporcionando
-      melhor experiência visual e de usabilidade. Suporta navegação automática
-      entre campos e validação de formato.
-    </DocBlock.Markdown>
-    <h3>Principais Características</h3>
-    <ul>
-      <li>
-        <strong>Campos Individuais</strong>: Cada dígito em campo separado para
-        melhor UX
-      </li>
-      <li>
-        <strong>Navegação Automática</strong>: Avança automaticamente entre
-        campos
-      </li>
-      <li>
-        <strong>Suporte a Colagem</strong>: Permite colar códigos completos
-      </li>
-      <li>
-        <strong>Validação Integrada</strong>: Estados de erro e validação em
-        tempo real
-      </li>
-      <li>
-        <strong>Configurável</strong>: Número de dígitos flexível conforme
-        necessidade
-      </li>
-    </ul>
-    <DocBlock.Heading>Importação</DocBlock.Heading>
-    <DocBlock.Source
-      dark
-      code={`import { TokenInput } from '@useblu/ocean-react';`}
-    />
-  </>
-);
-
-// Padrões Comuns
-const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Uso básico
+const commonPatternsConfig: CommonPatternsConfig = {
+  patterns: [
+    {
+      code: `// Uso básico
 <TokenInput
   label="Código de Verificação"
   digitsQuantity={4}
@@ -130,126 +77,244 @@ const CommonPatterns = (): JSX.Element => (
   value={token}
   onChangeToken={setToken}
   errorMessage="Código para confirmar a operação"
-/>`}
-    />
-  </>
-);
+/>`,
+    },
+  ],
+};
+
+const bestPracticesConfig: BestPracticesConfig = {
+  sections: [
+    {
+      title: '1. Uso Geral',
+      items: [
+        'Use para códigos de verificação e tokens de autenticação',
+        'Escolha a quantidade de dígitos apropriada para o contexto',
+        'Forneça labels claros indicando de onde vem o código',
+        'Use errorMessage para orientar sobre onde encontrar o código',
+      ],
+    },
+    {
+      title: '2. Quantidades Recomendadas',
+      items: [
+        '3 dígitos: Para códigos rápidos e simples',
+        '4 dígitos: Códigos de acesso e verificação básica',
+        '6 dígitos: SMS, email e autenticação 2FA (mais comum)',
+        '8 dígitos: Códigos estendidos e alta segurança',
+      ],
+    },
+    {
+      title: '3. Experiência do Usuário',
+      items: [
+        'Permita colagem de códigos completos',
+        'Implemente navegação automática entre campos',
+        'Forneça feedback visual claro para estados de erro',
+        'Considere auto-submit quando código for preenchido',
+      ],
+    },
+    {
+      title: '4. Acessibilidade',
+      items: [
+        'Use labels descritivos para cada campo',
+        'Forneça instruções claras no errorMessage',
+        'Mantenha navegação por teclado fluida',
+        'Use estados visuais distintos para erro e sucesso',
+      ],
+    },
+  ],
+};
+
+const cssClasses: CssClass[] = [
+  {
+    name: '.ods-token-input',
+    description: 'Estilos aplicados ao elemento raiz do token input.',
+  },
+  {
+    name: '.ods-token-input__field',
+    description: 'Estilos aplicados a cada campo individual de dígito.',
+  },
+  {
+    name: '.ods-token-input__field--filled',
+    description: 'Estilos aplicados aos campos que contêm dígitos.',
+  },
+  {
+    name: '.ods-token-input__field--focused',
+    description: 'Estilos aplicados ao campo atualmente focado.',
+  },
+  {
+    name: '.ods-token-input--error',
+    description:
+      'Estilos aplicados quando o componente está em estado de erro.',
+  },
+  {
+    name: '.ods-token-input--disabled',
+    description: 'Estilos aplicados quando o componente está desabilitado.',
+  },
+];
+
+const apiReferenceConfig: ApiReferenceConfig = {
+  description:
+    'O componente TokenInput é baseado em múltiplos elementos input[type="text"] para entrada de códigos numéricos.',
+  props: [
+    {
+      name: 'label',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'O rótulo do campo token input. Exibido acima dos campos.',
+    },
+    {
+      name: 'digitsQuantity',
+      type: 'number',
+      defaultValue: '6',
+      description: 'Número de dígitos/campos a serem exibidos.',
+    },
+    {
+      name: 'errorMessage',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'Mensagem de instrução ou erro exibida abaixo dos campos.',
+    },
+    {
+      name: 'error',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Quando true, aplica o estilo de erro ao componente.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      defaultValue: 'false',
+      description: 'Quando true, desabilita todos os campos.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      defaultValue: 'undefined',
+      description: 'O valor atual do token (modo controlado).',
+    },
+    {
+      name: 'onChangeToken',
+      type: '(value: string) => void',
+      defaultValue: 'undefined',
+      description: 'Callback chamado quando o valor do token muda.',
+    },
+    {
+      name: 'onComplete',
+      type: '(value: string) => void',
+      defaultValue: 'undefined',
+      description: 'Callback chamado quando todos os dígitos são preenchidos.',
+    },
+  ],
+  footer:
+    'O componente gerencia automaticamente o foco e a navegação entre os campos individuais.',
+};
+
+// Criação dos componentes usando os factories
+const Introduction = createIntroduction(introductionConfig);
+const CommonPatterns = createCommonPatterns(commonPatternsConfig);
+const BestPractices = createBestPractices(bestPracticesConfig);
+const CssClasses = createCssClasses(cssClasses);
+const ApiReference = createApiReference(apiReferenceConfig);
 
 // Lista de Quantidades de Dígitos
-const DigitsQuantityList = (): JSX.Element => (
-  <ul>
-    <li>
-      <code>3 dígitos</code>: Para códigos rápidos e simples
-    </li>
-    <li>
-      <code>4 dígitos</code>: Códigos de acesso e verificação básica
-    </li>
-    <li>
-      <code>6 dígitos</code>: SMS, email e autenticação 2FA (mais comum)
-    </li>
-    <li>
-      <code>8 dígitos</code>: Códigos estendidos e alta segurança
-    </li>
-  </ul>
-);
+const DigitsQuantityList = createCodeList([
+  { code: '3 dígitos', description: 'Para códigos rápidos e simples' },
+  { code: '4 dígitos', description: 'Códigos de acesso e verificação básica' },
+  {
+    code: '6 dígitos',
+    description: 'SMS, email e autenticação 2FA (mais comum)',
+  },
+  { code: '8 dígitos', description: 'Códigos estendidos e alta segurança' },
+]);
+
+// Descrição dos Estados
+const StatesDescription = createStatesDescription([
+  {
+    state: 'error',
+    description: 'Quando o código inserido é inválido ou expirado',
+  },
+  { state: 'disabled', description: 'Quando a entrada não está disponível' },
+  {
+    state: 'errorMessage',
+    description: 'Para fornecer feedback específico ao usuário',
+  },
+]);
 
 // Demonstração de Diferentes Quantidades de Dígitos
 const DigitsQuantity = (): JSX.Element => (
-  <div style={containerStyles.form}>
+  <div style={sharedContainerStyles.showcase}>
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoCurto}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.short.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.codigosRapidos}
+      label="Código Curto (3 dígitos)"
+      digitsQuantity={3}
+      errorMessage="Para códigos rápidos"
       onChangeToken={(value) => console.log('Token 3 dígitos:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoVerificacao}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.basic.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.digiteCodigo}
+      label="Código de Verificação"
+      digitsQuantity={4}
+      errorMessage="Digite o código recebido"
       onChangeToken={(value) => console.log('Token básico:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoSMS}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.sms.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.verificarSMS}
+      label="Código SMS"
+      digitsQuantity={6}
+      errorMessage="Verifique o código enviado por SMS"
       onChangeToken={(value) => console.log('Token SMS:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoLongo}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.long.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.codigosEstendidos}
+      label="Código Longo (8 dígitos)"
+      digitsQuantity={8}
+      errorMessage="Para códigos estendidos"
       onChangeToken={(value) => console.log('Token 8 dígitos:', value)}
     />
   </div>
 );
 
-// Descrição dos Estados
-const StatesDescription = (): JSX.Element => (
-  <>
-    <DocBlock.Markdown>
-      Use as props de estado para diferentes contextos:
-    </DocBlock.Markdown>
-    <ul>
-      <li>
-        <code>error</code>: Quando o código inserido é inválido ou expirado
-      </li>
-      <li>
-        <code>disabled</code>: Quando a entrada não está disponível
-      </li>
-      <li>
-        <code>errorMessage</code>: Para fornecer feedback específico ao usuário
-      </li>
-    </ul>
-  </>
-);
-
 // Demonstração de Estados
 const States = (): JSX.Element => (
-  <div style={containerStyles.form}>
+  <div style={sharedContainerStyles.showcase}>
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.campoObrigatorio}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.auth.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.codigoIncorreto}
+      label="Código Incorreto"
+      digitsQuantity={6}
       error
+      errorMessage="Código incorreto ou expirado"
       onChangeToken={(value) => console.log('Token com erro:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoAutenticacao}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.auth.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.usarAutenticador}
-      error={false}
+      label="Código de Verificação"
+      digitsQuantity={6}
+      errorMessage="Digite o código recebido"
       onChangeToken={(value) => console.log('Token normal:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoSeguranca}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.security.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.campoDesabilitado}
+      label="Campo Desabilitado"
+      digitsQuantity={6}
       disabled
+      errorMessage="Campo desabilitado"
       onChangeToken={(value) => console.log('Token desabilitado:', value)}
     />
   </div>
 );
 
-// Cenários Comuns de Uso
+// Demonstração de Cenários Comuns
 const CommonScenarios = (): JSX.Element => (
-  <div style={containerStyles.form}>
+  <div style={sharedContainerStyles.showcase}>
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoSMS}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.sms.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.verificarSMS}
-      onChangeToken={(value) => console.log('Token SMS:', value)}
+      label="Código SMS"
+      digitsQuantity={6}
+      errorMessage="Verifique o código enviado por SMS"
+      onChangeToken={(value) => console.log('SMS:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoEmail}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.email.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.conferirEmail}
-      onChangeToken={(value) => console.log('Token Email:', value)}
+      label="Código do Email"
+      digitsQuantity={6}
+      errorMessage="Confira o código em seu email"
+      onChangeToken={(value) => console.log('Email:', value)}
     />
     <TokenInput
-      label={TOKEN_INPUT_DATA.LABELS.codigoConfirmacao}
-      digitsQuantity={TOKEN_INPUT_DATA.SCENARIOS.confirmation.digitsQuantity}
-      errorMessage={TOKEN_INPUT_DATA.HELPER_TEXTS.confirmarOperacao}
-      onChangeToken={(value) => console.log('Token Confirmação:', value)}
+      label="Código de Autenticação"
+      digitsQuantity={6}
+      errorMessage="Use o código do seu aplicativo autenticador"
+      onChangeToken={(value) => console.log('2FA:', value)}
     />
   </div>
 );
@@ -258,295 +323,89 @@ const CommonScenarios = (): JSX.Element => (
 const UsageExamples = (): JSX.Element => (
   <>
     <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente TokenInput é ideal para códigos de verificação e
-      autenticação. Aqui estão alguns exemplos práticos de implementação:
-    </DocBlock.Markdown>
 
-    <h3>Integração com Formulários</h3>
+    <h3>Verificação por SMS</h3>
+    <DocBlock.Source
+      dark
+      code={`<TokenInput
+  label="Código SMS"
+  digitsQuantity={6}
+  errorMessage="Digite o código enviado para seu celular"
+  onChangeToken={handleSMSCode}
+  onComplete={handleCodeComplete}
+/>`}
+    />
+
+    <h3>Autenticação 2FA</h3>
     <DocBlock.Source
       dark
       code={`<form onSubmit={handleSubmit}>
   <TokenInput
-    label="Código SMS"
+    label="Código do Autenticador"
     digitsQuantity={6}
-    name="verificationCode"
-    onChangeToken={handleTokenChange}
+    error={hasError}
+    errorMessage={hasError ? "Código inválido" : "Use o código do seu app autenticador"}
+    onChangeToken={setAuthCode}
   />
   <Button type="submit">Verificar</Button>
 </form>`}
     />
 
-    <h3>Validação em Tempo Real</h3>
+    <h3>Com Validação</h3>
     <DocBlock.Source
       dark
-      code={`const [token, setToken] = useState('');
+      code={`const [code, setCode] = useState('');
 const [error, setError] = useState(false);
 
-const handleTokenChange = (value) => {
-  setToken(value);
-  setError(false);
+const handleCodeChange = (value) => {
+  setCode(value);
+  if (value.length === 6) {
+    // Validar código
+    const isValid = validateCode(value);
+    setError(!isValid);
+  }
 };
 
 <TokenInput
-  label="Código de Autenticação"
+  label="Código de Verificação"
   digitsQuantity={6}
-  value={token}
-  onChangeToken={handleTokenChange}
+  value={code}
+  onChangeToken={handleCodeChange}
   error={error}
-  errorMessage={error ? "Código incorreto" : "Digite o código recebido"}
+  errorMessage={error ? "Código inválido" : "Digite o código recebido"}
 />`}
     />
-  </>
-);
-
-// Melhores Práticas
-const BestPractices = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
-
-    <h3>1. Uso Geral</h3>
-    <ul>
-      <li>Use para códigos de verificação e tokens numéricos</li>
-      <li>Defina o número correto de dígitos conforme o tipo de código</li>
-      <li>Forneça labels claros que indiquem o tipo de verificação</li>
-      <li>Use mensagens de erro específicas para cada cenário</li>
-    </ul>
-
-    <h3>2. Quantidade de Dígitos</h3>
-    <ul>
-      <li>SMS: geralmente 6 dígitos</li>
-      <li>Email: 4-6 dígitos</li>
-      <li>Autenticação 2FA: 6 dígitos</li>
-      <li>Códigos de acesso: 4-8 dígitos</li>
-      <li>Considere o padrão do seu sistema</li>
-    </ul>
-
-    <h3>3. Acessibilidade</h3>
-    <ul>
-      <li>Sempre use labels apropriados</li>
-      <li>Mantenha navegação por teclado funcional</li>
-      <li>Use aria-labels para contexto adicional</li>
-      <li>Forneça instruções claras sobre o código esperado</li>
-    </ul>
-
-    <h3>4. Segurança</h3>
-    <ul>
-      <li>Não armazene tokens em localStorage</li>
-      <li>Implemente timeout adequado</li>
-      <li>Use HTTPS para transmissão</li>
-      <li>Considere rate limiting para tentativas</li>
-    </ul>
-  </>
-);
-
-// Classes CSS
-const CssClasses = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Classes CSS</DocBlock.Heading>
-    <table>
-      <thead>
-        <tr>
-          <th>Classe Global</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code>.ods-token-input</code>
-          </td>
-          <td>Estilos aplicados ao container principal do componente.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-token-input__input</code>
-          </td>
-          <td>Estilos aplicados a cada campo individual de dígito.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-token-input--error</code>
-          </td>
-          <td>Estilos aplicados ao componente quando error=true.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>.ods-token-input--disabled</code>
-          </td>
-          <td>Estilos aplicados ao componente quando disabled=true.</td>
-        </tr>
-      </tbody>
-    </table>
-  </>
-);
-
-// Referência da API
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>API Reference</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O componente TokenInput é baseado em múltiplos elementos input e suporta
-      atributos customizados.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code>label</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            O rótulo do campo token input. Exibido acima dos campos para
-            identificação.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>errorMessage</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Mensagem de erro exibida quando error é true. Substitui o helperText
-            em caso de erro.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>error</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Quando true, aplica o estilo de erro aos campos. Use para indicar
-            problemas de validação.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>disabled</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Quando true, desabilita todos os campos do token input. Use quando a
-            entrada não é permitida.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>digitsQuantity</code>
-          </td>
-          <td>
-            <code>number</code>
-          </td>
-          <td>
-            <code>4</code>
-          </td>
-          <td>
-            Número de dígitos do token. Define quantos campos individuais serão
-            exibidos.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>value</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            O valor atual do token input. Use para controlar o estado do
-            componente.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>onChangeToken</code>
-          </td>
-          <td>
-            <code>function</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            Função chamada quando o valor muda. Recebe o valor completo do token
-            como parâmetro.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento raiz. Qualquer outra prop fornecida
-      será passada para o elemento raiz.
-    </DocBlock.Markdown>
   </>
 );
 
 // Story principal com controles ativos
 export const Usage: Story = {
   args: {
-    label: TOKEN_INPUT_DATA.LABELS.codigoVerificacao,
-    digitsQuantity: TOKEN_INPUT_DATA.SCENARIOS.basic.digitsQuantity,
-    errorMessage: TOKEN_INPUT_DATA.HELPER_TEXTS.digiteCodigo,
+    label: 'Código de Verificação',
+    digitsQuantity: 6,
+    errorMessage: 'Digite o código recebido',
     error: false,
     disabled: false,
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div style={{ minWidth: '300px' }}>
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createDefaultDecorator(),
 };
 
-// Stories visuais sem controles
-export const DigitsQuantityVariations: Story = {
+// Stories visuais com controles desabilitados
+export const DigitsQuantityStory: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => <DigitsQuantity />,
 };
 
-export const ErrorStates: Story = {
+export const StatesStory: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => <States />,
 };
 
-export const UsageScenarios: Story = {
+export const CommonScenariosStory: Story = {
   parameters: {
     controls: { disable: true },
   },
@@ -559,45 +418,32 @@ const meta: Meta<typeof TokenInput> = {
   component: TokenInput,
   tags: ['autodocs'],
   argTypes: {
-    value: {
-      description: 'O valor atual do token input.',
+    label: {
+      description: 'O rótulo do token input.',
       control: 'text',
     },
-    label: {
-      description: 'O rótulo do campo token input.',
-      control: 'text',
+    digitsQuantity: {
+      description: 'Número de dígitos a serem exibidos.',
+      control: 'number',
     },
     errorMessage: {
-      description: 'Mensagem de erro exibida quando error é true.',
+      description: 'Mensagem de instrução ou erro.',
       control: 'text',
     },
     error: {
-      description: 'Quando true, aplica o estilo de erro ao campo.',
+      description: 'Quando true, aplica o estilo de erro.',
       control: 'boolean',
     },
     disabled: {
-      description: 'Quando true, desabilita o campo token input.',
+      description: 'Quando true, desabilita o componente.',
       control: 'boolean',
     },
-    digitsQuantity: {
-      description: 'Número de dígitos do token.',
-      control: 'number',
-    },
-    onChangeToken: {
-      description: 'Função chamada quando o valor muda.',
-      control: { type: null },
-    },
-    tooltipMessage: {
-      description: 'Mensagem exibida no tooltip.',
+    value: {
+      description: 'Valor atual do token.',
       control: 'text',
     },
-    htmlFor: {
-      control: { type: null },
-    },
-    className: {
-      control: { type: null },
-    },
-    autoFocus: {
+    onChangeToken: {
+      description: 'Callback chamado quando valor muda.',
       control: { type: null },
     },
   },
@@ -612,14 +458,14 @@ const meta: Meta<typeof TokenInput> = {
           <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
           <CommonPatterns />
           <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3 id="digitos">Quantidade de Dígitos</h3>
+          <h3 id="quantidades-digitos">Quantidades de Dígitos</h3>
           <DigitsQuantityList />
-          <DocBlock.Canvas of={DigitsQuantityVariations} />
+          <DocBlock.Canvas of={DigitsQuantityStory} />
           <h3 id="estados">Estados</h3>
           <StatesDescription />
-          <DocBlock.Canvas of={ErrorStates} />
-          <h3 id="cenarios">Cenários de Uso</h3>
-          <DocBlock.Canvas of={UsageScenarios} />
+          <DocBlock.Canvas of={StatesStory} />
+          <h3 id="cenarios-comuns">Cenários Comuns</h3>
+          <DocBlock.Canvas of={CommonScenariosStory} />
           <UsageExamples />
           <BestPractices />
           <CssClasses />
