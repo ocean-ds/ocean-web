@@ -11,10 +11,13 @@ import {
   createCodeList,
   createStatesDescription,
   createDefaultDecorator,
+  createStatesDemo,
   commonFormArgTypes,
   sharedContainerStyles,
   SELECT_COMMON_DATA,
   generateNumberOptions,
+  COMMON_SELECT_PROPS,
+  COMMON_SELECT_CSS_CLASSES,
   type IntroductionConfig,
   type CommonPatternsConfig,
   type BestPracticesConfig,
@@ -132,73 +135,10 @@ const bestPracticesConfig: BestPracticesConfig = {
   ],
 };
 
-const cssClasses: CssClass[] = [
-  {
-    name: '.ods-select__root',
-    description: 'Estilos aplicados ao elemento raiz.',
-  },
-  {
-    name: '.ods-select__control',
-    description: 'Estilos aplicados ao elemento de controle.',
-  },
-  {
-    name: '.ods-select__control--expanded',
-    description: 'Estilos aplicados ao controle quando o popup está aberto.',
-  },
-  {
-    name: '.ods-select__control--filled',
-    description: 'Estilos aplicados quando há uma opção selecionada.',
-  },
-  {
-    name: '.ods-select__control--error',
-    description: 'Estilos aplicados ao controle quando error=true.',
-  },
-  {
-    name: '.ods-select__value',
-    description: 'Estilos aplicados ao elemento de valor.',
-  },
-  {
-    name: '.ods-select__value--empty',
-    description: 'Estilos aplicados ao valor quando o placeholder aparece.',
-  },
-  {
-    name: '.ods-select__arrow',
-    description: 'Estilos aplicados ao elemento de seta.',
-  },
-  {
-    name: '.ods-select__arrow--down',
-    description: 'Estilos aplicados à seta quando o popup está fechado.',
-  },
-  {
-    name: '.ods-select__arrow--up',
-    description: 'Estilos aplicados à seta quando o popup está aberto.',
-  },
-  {
-    name: '.ods-select__arrow--disabled',
-    description: 'Estilos aplicados à seta quando disabled=true.',
-  },
-  {
-    name: '.ods-select__listbox-wrapper',
-    description: 'Estilos aplicados ao elemento popup.',
-  },
-  {
-    name: '.ods-select__listbox',
-    description: 'Estilos aplicados ao elemento listbox.',
-  },
-  {
-    name: '.ods-select__option',
-    description: 'Estilos aplicados ao elemento de opção.',
-  },
-  {
-    name: '.ods-select__option--selected',
-    description: 'Estilos aplicados à opção selecionada no listbox.',
-  },
-  {
-    name: '.ods-select__option--disabled',
-    description: 'Estilos aplicados à opção desabilitada no listbox.',
-  },
-];
+// Usando CSS Classes comuns
+const cssClasses: CssClass[] = COMMON_SELECT_CSS_CLASSES;
 
+// Usando props comuns + props específicas do Select
 const apiReferenceConfig: ApiReferenceConfig = {
   description:
     'O componente Select é baseado no elemento select e suporta todos os atributos padrão de select.',
@@ -222,37 +162,7 @@ const apiReferenceConfig: ApiReferenceConfig = {
       defaultValue: 'undefined',
       description: 'Callback chamado quando a seleção muda.',
     },
-    {
-      name: 'label',
-      type: 'string',
-      defaultValue: 'undefined',
-      description:
-        'O rótulo do campo select. Exibido acima do campo para identificação.',
-    },
-    {
-      name: 'placeholder',
-      type: 'string',
-      defaultValue: 'undefined',
-      description: 'Texto exibido quando nenhuma opção está selecionada.',
-    },
-    {
-      name: 'helperText',
-      type: 'string',
-      defaultValue: 'undefined',
-      description: 'Texto de ajuda exibido abaixo do campo.',
-    },
-    {
-      name: 'error',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Quando true, aplica o estilo de erro ao campo.',
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Quando true, desabilita o campo select.',
-    },
+    ...COMMON_SELECT_PROPS,
   ],
   footer:
     'A ref é encaminhada para o elemento select. Qualquer outra prop fornecida será passada para o elemento select.',
@@ -322,31 +232,8 @@ const DataTypes = (): JSX.Element => (
   </div>
 );
 
-// Demonstração de Estados
-const States = (): JSX.Element => (
-  <div style={sharedContainerStyles.showcase}>
-    <Select
-      label="Campo Obrigatório"
-      placeholder="Selecione uma opção..."
-      helperText="Este campo é obrigatório"
-      error
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-    <Select
-      label="Campo Normal"
-      placeholder="Selecione uma opção..."
-      helperText="Campo em estado normal"
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-    <Select
-      label="Campo Desabilitado"
-      placeholder="Não disponível"
-      helperText="Campo desabilitado"
-      disabled
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-  </div>
-);
+// Usando demonstração de Estados compartilhada
+const States = createStatesDemo(Select, SELECT_COMMON_DATA.PRIORITIES);
 
 // Demonstração de Tamanhos de Lista
 const ListSizes = (): JSX.Element => (

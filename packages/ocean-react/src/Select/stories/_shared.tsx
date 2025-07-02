@@ -333,3 +333,196 @@ export const generateNumberOptions = (
     value: `opt-${index + 1}`,
     label: `${prefix} ${index + 1}`,
   }));
+
+// Dados expandidos para demonstrações
+export const LARGE_CITIES = [
+  'São Paulo',
+  'Rio de Janeiro',
+  'Brasília',
+  'Salvador',
+  'Fortaleza',
+  'Belo Horizonte',
+  'Manaus',
+  'Curitiba',
+  'Recife',
+  'Goiânia',
+  'Belém',
+  'Porto Alegre',
+  'Guarulhos',
+  'Campinas',
+  'São Luís',
+  'São Gonçalo',
+  'Maceió',
+  'Duque de Caxias',
+  'Campo Grande',
+  'Natal',
+  'Teresina',
+  'São Bernardo do Campo',
+  'Nova Iguaçu',
+  'João Pessoa',
+  'Santo André',
+  'Osasco',
+  'Jaboatão dos Guararapes',
+  'São José dos Campos',
+  'Ribeirão Preto',
+].map((city) => ({
+  value: city.toLowerCase().replace(/\s+/g, '-'),
+  label: city,
+}));
+
+export const PRODUCTS = [
+  'Smartphone Galaxy Pro',
+  'Notebook Dell Inspiron',
+  'Tablet iPad Air',
+  'Headphone Sony',
+  'Camera Canon EOS',
+  'Monitor LG UltraWide',
+  'Teclado Mecânico',
+  'Mouse Gamer RGB',
+  'SSD Kingston 1TB',
+  'Memória RAM 16GB',
+  'Placa de Vídeo RTX',
+  'Processador Intel i7',
+  'Impressora HP LaserJet',
+  'Webcam Logitech 4K',
+  'Caixa de Som JBL',
+  'Carregador Wireless',
+].map((product) => ({
+  value: product.toLowerCase().replace(/\s+/g, '-'),
+  label: product,
+}));
+
+// Props comuns da API para Select/SelectAutocomplete
+export const COMMON_SELECT_PROPS: ApiProp[] = [
+  {
+    name: 'label',
+    type: 'string',
+    defaultValue: 'undefined',
+    description:
+      'O rótulo do campo. Exibido acima do campo para identificação.',
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    defaultValue: 'undefined',
+    description: 'Texto exibido quando nenhuma opção está selecionada.',
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    defaultValue: 'undefined',
+    description: 'Texto de ajuda exibido abaixo do campo.',
+  },
+  {
+    name: 'error',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Quando true, aplica o estilo de erro ao campo.',
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Quando true, desabilita o campo.',
+  },
+];
+
+// CSS Classes comuns para Select
+export const COMMON_SELECT_CSS_CLASSES: CssClass[] = [
+  {
+    name: '.ods-select__root',
+    description: 'Estilos aplicados ao elemento raiz.',
+  },
+  {
+    name: '.ods-select__control',
+    description: 'Estilos aplicados ao elemento de controle.',
+  },
+  {
+    name: '.ods-select__control--expanded',
+    description: 'Estilos aplicados ao controle quando o popup está aberto.',
+  },
+  {
+    name: '.ods-select__control--filled',
+    description: 'Estilos aplicados quando há uma opção selecionada.',
+  },
+  {
+    name: '.ods-select__control--error',
+    description: 'Estilos aplicados ao controle quando error=true.',
+  },
+  {
+    name: '.ods-select__value',
+    description: 'Estilos aplicados ao elemento de valor.',
+  },
+  {
+    name: '.ods-select__value--empty',
+    description: 'Estilos aplicados ao valor quando o placeholder aparece.',
+  },
+  {
+    name: '.ods-select__arrow',
+    description: 'Estilos aplicados ao elemento de seta.',
+  },
+  {
+    name: '.ods-select__arrow--down',
+    description: 'Estilos aplicados à seta quando o popup está fechado.',
+  },
+  {
+    name: '.ods-select__arrow--up',
+    description: 'Estilos aplicados à seta quando o popup está aberto.',
+  },
+  {
+    name: '.ods-select__arrow--disabled',
+    description: 'Estilos aplicados à seta quando disabled=true.',
+  },
+  {
+    name: '.ods-select__listbox-wrapper',
+    description: 'Estilos aplicados ao elemento popup.',
+  },
+  {
+    name: '.ods-select__listbox',
+    description: 'Estilos aplicados ao elemento listbox.',
+  },
+  {
+    name: '.ods-select__option',
+    description: 'Estilos aplicados ao elemento de opção.',
+  },
+  {
+    name: '.ods-select__option--selected',
+    description: 'Estilos aplicados à opção selecionada no listbox.',
+  },
+  {
+    name: '.ods-select__option--disabled',
+    description: 'Estilos aplicados à opção desabilitada no listbox.',
+  },
+];
+
+// Factory para criar demonstração de estados
+export const createStatesDemo = (
+  Component: React.ComponentType<any>,
+  options: Array<{ value: string; label: string }>
+): React.FC => {
+  const StatesDemoComponent = (): JSX.Element => (
+    <div style={sharedContainerStyles.showcase}>
+      <Component
+        label="Campo com Erro"
+        placeholder="Selecione uma opção..."
+        helperText="Este campo tem um erro"
+        error
+        options={options}
+      />
+      <Component
+        label="Campo Normal"
+        placeholder="Selecione uma opção..."
+        helperText="Campo em estado normal"
+        options={options}
+      />
+      <Component
+        label="Campo Desabilitado"
+        placeholder="Não disponível"
+        helperText="Campo desabilitado"
+        disabled
+        options={options}
+      />
+    </div>
+  );
+  return StatesDemoComponent;
+};

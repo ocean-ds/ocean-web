@@ -11,10 +11,14 @@ import {
   createCodeList,
   createStatesDescription,
   createDefaultDecorator,
+  createStatesDemo,
   commonFormArgTypes,
   sharedContainerStyles,
   SELECT_COMMON_DATA,
   generateNumberOptions,
+  LARGE_CITIES,
+  PRODUCTS,
+  COMMON_SELECT_PROPS,
   type IntroductionConfig,
   type CommonPatternsConfig,
   type BestPracticesConfig,
@@ -188,38 +192,8 @@ const apiReferenceConfig: ApiReferenceConfig = {
       defaultValue: 'undefined',
       description: 'Valor atual do campo de busca (modo controlado).',
     },
-    {
-      name: 'label',
-      type: 'string',
-      defaultValue: 'undefined',
-      description:
-        'O rótulo do campo. Exibido acima do campo para identificação.',
-    },
-    {
-      name: 'placeholder',
-      type: 'string',
-      defaultValue: 'undefined',
-      description:
-        'Texto exibido quando o campo está vazio. Use para orientar sobre a busca.',
-    },
-    {
-      name: 'helperText',
-      type: 'string',
-      defaultValue: 'undefined',
-      description: 'Texto de ajuda exibido abaixo do campo.',
-    },
-    {
-      name: 'error',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Quando true, aplica o estilo de erro ao campo.',
-    },
-    {
-      name: 'disabled',
-      type: 'boolean',
-      defaultValue: 'false',
-      description: 'Quando true, desabilita o campo de busca.',
-    },
+    // Props comuns com outros componentes de formulário
+    ...COMMON_SELECT_PROPS,
     {
       name: 'noOptionsText',
       type: 'string',
@@ -268,63 +242,7 @@ const StatesDescription = createStatesDescription([
   { state: 'loading', description: 'Durante buscas em APIs externas' },
 ]);
 
-// Dados de exemplo expandidos
-const LARGE_CITIES = [
-  'São Paulo',
-  'Rio de Janeiro',
-  'Brasília',
-  'Salvador',
-  'Fortaleza',
-  'Belo Horizonte',
-  'Manaus',
-  'Curitiba',
-  'Recife',
-  'Goiânia',
-  'Belém',
-  'Porto Alegre',
-  'Guarulhos',
-  'Campinas',
-  'São Luís',
-  'São Gonçalo',
-  'Maceió',
-  'Duque de Caxias',
-  'Campo Grande',
-  'Natal',
-  'Teresina',
-  'São Bernardo do Campo',
-  'Nova Iguaçu',
-  'João Pessoa',
-  'Santo André',
-  'Osasco',
-  'Jaboatão dos Guararapes',
-  'São José dos Campos',
-  'Ribeirão Preto',
-].map((city) => ({
-  value: city.toLowerCase().replace(/\s+/g, '-'),
-  label: city,
-}));
-
-const PRODUCTS = [
-  'Smartphone Galaxy Pro',
-  'Notebook Dell Inspiron',
-  'Tablet iPad Air',
-  'Headphone Sony',
-  'Camera Canon EOS',
-  'Monitor LG UltraWide',
-  'Teclado Mecânico',
-  'Mouse Gamer RGB',
-  'SSD Kingston 1TB',
-  'Memória RAM 16GB',
-  'Placa de Vídeo RTX',
-  'Processador Intel i7',
-  'Impressora HP LaserJet',
-  'Webcam Logitech 4K',
-  'Caixa de Som JBL',
-  'Carregador Wireless',
-].map((product) => ({
-  value: product.toLowerCase().replace(/\s+/g, '-'),
-  label: product,
-}));
+// Usando dados de exemplo compartilhados do _shared.tsx
 
 // Demonstração de Casos de Uso
 const UseCases = (): JSX.Element => (
@@ -350,30 +268,10 @@ const UseCases = (): JSX.Element => (
   </div>
 );
 
-// Demonstração de Estados
-const States = (): JSX.Element => (
-  <div style={sharedContainerStyles.showcase}>
-    <SelectAutocomplete
-      label="Busca com Erro"
-      placeholder="Digite para buscar..."
-      helperText="Nenhum resultado encontrado"
-      error
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-    <SelectAutocomplete
-      label="Busca Normal"
-      placeholder="Digite para buscar..."
-      helperText="Campo em estado normal"
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-    <SelectAutocomplete
-      label="Busca Desabilitada"
-      placeholder="Não disponível"
-      helperText="Campo desabilitado"
-      disabled
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-  </div>
+// Usando demonstração de Estados compartilhada
+const States = createStatesDemo(
+  SelectAutocomplete,
+  SELECT_COMMON_DATA.PRIORITIES
 );
 
 // Demonstração de Performance
