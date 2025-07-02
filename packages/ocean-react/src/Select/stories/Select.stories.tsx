@@ -10,9 +10,12 @@ import {
   createApiReference,
   createCodeList,
   createStatesDescription,
-  createDefaultDecorator,
   createStatesDemo,
-  commonFormArgTypes,
+  createDataTypesDemo,
+  createDisabledControlsStory,
+  createSelectArgTypes,
+  createUsageStory,
+  createDocsPage,
   sharedContainerStyles,
   SELECT_COMMON_DATA,
   generateNumberOptions,
@@ -21,7 +24,6 @@ import {
   type IntroductionConfig,
   type CommonPatternsConfig,
   type BestPracticesConfig,
-  type CssClass,
   type ApiReferenceConfig,
 } from './_shared';
 
@@ -136,7 +138,7 @@ const bestPracticesConfig: BestPracticesConfig = {
 };
 
 // Usando CSS Classes comuns
-const cssClasses: CssClass[] = COMMON_SELECT_CSS_CLASSES;
+const cssClasses = COMMON_SELECT_CSS_CLASSES;
 
 // Usando props comuns + props específicas do Select
 const apiReferenceConfig: ApiReferenceConfig = {
@@ -202,35 +204,8 @@ const StatesDescription = createStatesDescription([
   },
 ]);
 
-// Demonstração de Tipos de Dados
-const DataTypes = (): JSX.Element => (
-  <div style={sharedContainerStyles.showcase}>
-    <Select
-      label="País"
-      placeholder="Selecione um país..."
-      helperText="Escolha seu país de residência"
-      options={SELECT_COMMON_DATA.COUNTRIES}
-    />
-    <Select
-      label="Categoria"
-      placeholder="Selecione uma categoria..."
-      helperText="Escolha a categoria do produto"
-      options={SELECT_COMMON_DATA.CATEGORIES}
-    />
-    <Select
-      label="Prioridade"
-      placeholder="Defina a prioridade..."
-      helperText="Selecione o nível de prioridade"
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-    <Select
-      label="Status"
-      placeholder="Escolha o status..."
-      helperText="Defina o status atual"
-      options={SELECT_COMMON_DATA.STATUSES}
-    />
-  </div>
-);
+// Usando demonstração de Tipos de Dados compartilhada
+const DataTypes = createDataTypesDemo(Select);
 
 // Usando demonstração de Estados compartilhada
 const States = createStatesDemo(Select, SELECT_COMMON_DATA.PRIORITIES);
@@ -316,83 +291,49 @@ const handlePriorityChange = (value) => {
 );
 
 // Story principal com controles ativos
-export const Usage: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Placeholder...',
-    helperText: 'Some text here!',
-    error: false,
-    disabled: false,
-    options: generateNumberOptions(10),
-  },
-  decorators: createDefaultDecorator(),
-};
+export const Usage: Story = createUsageStory();
 
 // Stories visuais com controles desabilitados
-export const DataTypesStory: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <DataTypes />,
-};
-
-export const StatesStory: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <States />,
-};
-
-export const ListSizesStory: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <ListSizes />,
-};
+export const DataTypesStory: Story = createDisabledControlsStory(DataTypes);
+export const StatesStory: Story = createDisabledControlsStory(States);
+export const ListSizesStory: Story = createDisabledControlsStory(ListSizes);
 
 // Meta configuration
 const meta: Meta<typeof Select> = {
   title: 'Components/Inputs/Select',
   component: Select,
   tags: ['autodocs'],
-  argTypes: {
-    ...commonFormArgTypes,
-    // Ocultando props técnicas completamente da documentação
-    id: { table: { disable: true } },
-    defaultValue: { table: { disable: true } },
-    name: { table: { disable: true } },
-    ariaLabel: { table: { disable: true } },
-    onChange: { table: { disable: true } },
-    className: { table: { disable: true } },
-    tooltipMessage: { table: { disable: true } },
-    options: { table: { disable: true } },
-    value: { table: { disable: true } },
-  },
+  argTypes: createSelectArgTypes(),
   parameters: {
     docs: {
-      page: () => (
-        <>
-          <Introduction />
-          <DocBlock.Heading>Uso</DocBlock.Heading>
-          <DocBlock.Canvas of={Usage} />
-          <DocBlock.Controls of={Usage} />
-          <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
-          <CommonPatterns />
-          <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3 id="tipos-dados">Tipos de Dados</h3>
-          <DataTypesList />
-          <DocBlock.Canvas of={DataTypesStory} />
-          <h3 id="estados">Estados</h3>
-          <StatesDescription />
-          <DocBlock.Canvas of={StatesStory} />
-          <h3 id="tamanhos-lista">Tamanhos de Lista</h3>
-          <DocBlock.Canvas of={ListSizesStory} />
-          <UsageExamples />
-          <BestPractices />
-          <CssClasses />
-          <ApiReference />
-        </>
-      ),
+      page: createDocsPage({
+        Introduction,
+        Usage,
+        CommonPatterns,
+        sections: [
+          {
+            id: 'tipos-dados',
+            title: 'Tipos de Dados',
+            list: DataTypesList,
+            story: DataTypesStory,
+          },
+          {
+            id: 'estados',
+            title: 'Estados',
+            list: StatesDescription,
+            story: StatesStory,
+          },
+          {
+            id: 'tamanhos-lista',
+            title: 'Tamanhos de Lista',
+            story: ListSizesStory,
+          },
+        ],
+        UsageExamples,
+        BestPractices,
+        CssClasses,
+        ApiReference,
+      }),
     },
   },
 };

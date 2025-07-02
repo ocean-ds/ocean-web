@@ -10,9 +10,11 @@ import {
   createApiReference,
   createCodeList,
   createStatesDescription,
-  createDefaultDecorator,
   createStatesDemo,
-  commonFormArgTypes,
+  createDisabledControlsStory,
+  createSelectArgTypes,
+  createUsageStory,
+  createDocsPage,
   sharedContainerStyles,
   SELECT_COMMON_DATA,
   generateNumberOptions,
@@ -22,7 +24,6 @@ import {
   type IntroductionConfig,
   type CommonPatternsConfig,
   type BestPracticesConfig,
-  type CssClass,
   type ApiReferenceConfig,
 } from './_shared';
 
@@ -134,7 +135,7 @@ const bestPracticesConfig: BestPracticesConfig = {
   ],
 };
 
-const cssClasses: CssClass[] = [
+const cssClasses = [
   {
     name: '.ods-select-autocomplete__root',
     description: 'Estilos aplicados ao elemento raiz.',
@@ -361,92 +362,62 @@ const handleSearch = useMemo(
 );
 
 // Story principal com controles ativos
-export const Usage: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Placeholder...',
-    helperText: 'Some text here!',
-    error: false,
-    disabled: false,
-    options: generateNumberOptions(10).map((opt) => ({
-      ...opt,
-      disabled: opt.value === 'opt-3',
-    })),
-  },
-  decorators: createDefaultDecorator(),
-};
+export const Usage: Story = createUsageStory(
+  generateNumberOptions(10).map((opt) => ({
+    ...opt,
+    disabled: opt.value === 'opt-3',
+  }))
+);
 
 // Stories visuais com controles desabilitados
-export const UseCasesStory: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <UseCases />,
-};
-
-export const StatesStory: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <States />,
-};
-
-export const PerformanceStory: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <Performance />,
-};
+export const UseCasesStory: Story = createDisabledControlsStory(UseCases);
+export const StatesStory: Story = createDisabledControlsStory(States);
+export const PerformanceStory: Story = createDisabledControlsStory(Performance);
 
 // Meta configuration
 const meta: Meta<typeof SelectAutocomplete> = {
   title: 'Components/Inputs/SelectAutocomplete',
   component: SelectAutocomplete,
   tags: ['autodocs'],
-  argTypes: {
-    ...commonFormArgTypes,
+  argTypes: createSelectArgTypes({
     noOptionsText: {
       description: 'Texto exibido quando nenhuma opção corresponde à busca.',
       control: 'text',
     },
-    // Ocultando props técnicas completamente da documentação
-    id: { table: { disable: true } },
-    defaultValue: { table: { disable: true } },
-    name: { table: { disable: true } },
-    ariaLabel: { table: { disable: true } },
-    onChange: { table: { disable: true } },
+    // Props específicas do SelectAutocomplete
     onInputChange: { table: { disable: true } },
-    className: { table: { disable: true } },
-    tooltipMessage: { table: { disable: true } },
-    options: { table: { disable: true } },
-    value: { table: { disable: true } },
     inputValue: { table: { disable: true } },
-  },
+  }),
   parameters: {
     docs: {
-      page: () => (
-        <>
-          <Introduction />
-          <DocBlock.Heading>Uso</DocBlock.Heading>
-          <DocBlock.Canvas of={Usage} />
-          <DocBlock.Controls of={Usage} />
-          <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
-          <CommonPatterns />
-          <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3 id="casos-uso">Casos de Uso</h3>
-          <UseCasesList />
-          <DocBlock.Canvas of={UseCasesStory} />
-          <h3 id="estados">Estados</h3>
-          <StatesDescription />
-          <DocBlock.Canvas of={StatesStory} />
-          <h3 id="performance">Performance</h3>
-          <DocBlock.Canvas of={PerformanceStory} />
-          <UsageExamples />
-          <BestPractices />
-          <CssClasses />
-          <ApiReference />
-        </>
-      ),
+      page: createDocsPage({
+        Introduction,
+        Usage,
+        CommonPatterns,
+        sections: [
+          {
+            id: 'casos-uso',
+            title: 'Casos de Uso',
+            list: UseCasesList,
+            story: UseCasesStory,
+          },
+          {
+            id: 'estados',
+            title: 'Estados',
+            list: StatesDescription,
+            story: StatesStory,
+          },
+          {
+            id: 'performance',
+            title: 'Performance',
+            story: PerformanceStory,
+          },
+        ],
+        UsageExamples,
+        BestPractices,
+        CssClasses,
+        ApiReference,
+      }),
     },
   },
 };

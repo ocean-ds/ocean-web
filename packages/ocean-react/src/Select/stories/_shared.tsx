@@ -526,3 +526,123 @@ export const createStatesDemo = (
   );
   return StatesDemoComponent;
 };
+
+// Factory para criar demonstração de tipos de dados
+export const createDataTypesDemo = (
+  Component: React.ComponentType<any>
+): React.FC => {
+  const DataTypesDemoComponent = (): JSX.Element => (
+    <div style={sharedContainerStyles.showcase}>
+      <Component
+        label="País"
+        placeholder="Selecione um país..."
+        helperText="Escolha seu país de residência"
+        options={SELECT_COMMON_DATA.COUNTRIES}
+      />
+      <Component
+        label="Categoria"
+        placeholder="Selecione uma categoria..."
+        helperText="Escolha a categoria do produto"
+        options={SELECT_COMMON_DATA.CATEGORIES}
+      />
+      <Component
+        label="Prioridade"
+        placeholder="Defina a prioridade..."
+        helperText="Selecione o nível de prioridade"
+        options={SELECT_COMMON_DATA.PRIORITIES}
+      />
+      <Component
+        label="Status"
+        placeholder="Escolha o status..."
+        helperText="Defina o status atual"
+        options={SELECT_COMMON_DATA.STATUSES}
+      />
+    </div>
+  );
+  return DataTypesDemoComponent;
+};
+
+// Factory para criar story com controles desabilitados
+export const createDisabledControlsStory = (component: React.FC): any => ({
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => React.createElement(component),
+});
+
+// Factory para criar argTypes comuns dos Select
+export const createSelectArgTypes = (
+  specificProps: Record<string, any> = {}
+): Record<string, any> => ({
+  ...commonFormArgTypes,
+  ...specificProps,
+  // Props técnicas ocultas
+  id: { table: { disable: true } },
+  defaultValue: { table: { disable: true } },
+  name: { table: { disable: true } },
+  ariaLabel: { table: { disable: true } },
+  onChange: { table: { disable: true } },
+  className: { table: { disable: true } },
+  tooltipMessage: { table: { disable: true } },
+  options: { table: { disable: true } },
+  value: { table: { disable: true } },
+});
+
+// Factory para criar Usage story
+export const createUsageStory = (
+  defaultOptions = generateNumberOptions(10),
+  customArgs: Record<string, any> = {}
+): any => ({
+  args: {
+    label: 'Label',
+    placeholder: 'Placeholder...',
+    helperText: 'Some text here!',
+    error: false,
+    disabled: false,
+    options: defaultOptions,
+    ...customArgs,
+  },
+  decorators: createDefaultDecorator(),
+});
+
+// Template para página de documentação
+export const createDocsPage = (config: {
+  Introduction: React.FC;
+  Usage: any;
+  CommonPatterns: React.FC;
+  sections: Array<{
+    id: string;
+    title: string;
+    list?: React.FC;
+    story: any;
+  }>;
+  UsageExamples: React.FC;
+  BestPractices: React.FC;
+  CssClasses: React.FC;
+  ApiReference: React.FC;
+}): React.FC => {
+  const DocsPageComponent = (): JSX.Element => (
+    <>
+      <config.Introduction />
+      <DocBlock.Heading>Uso</DocBlock.Heading>
+      <DocBlock.Canvas of={config.Usage} />
+      <DocBlock.Controls of={config.Usage} />
+      <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
+      <config.CommonPatterns />
+      <DocBlock.Heading>Exemplos</DocBlock.Heading>
+      {config.sections.map((section) => (
+        <React.Fragment key={section.id}>
+          <h3 id={section.id}>{section.title}</h3>
+          {section.list && <section.list />}
+          <DocBlock.Canvas of={section.story} />
+        </React.Fragment>
+      ))}
+      <config.UsageExamples />
+      <config.BestPractices />
+      <config.CssClasses />
+      <config.ApiReference />
+    </>
+  );
+  DocsPageComponent.displayName = 'DocsPageComponent';
+  return DocsPageComponent;
+};
