@@ -145,8 +145,8 @@ export const createCommonPatterns = (
 ): React.FC => {
   const CommonPatternsComponent = (): JSX.Element => (
     <>
-      {config.patterns.map((pattern, index) => (
-        <div key={pattern.title || `pattern-${index}`}>
+      {config.patterns.map((pattern) => (
+        <div key={pattern.title}>
           {pattern.title && <h3>{pattern.title}</h3>}
           <DocBlock.Source dark code={pattern.code} />
         </div>
@@ -617,34 +617,64 @@ export const createListSizesDemo = (
   const ListSizesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
       <Component
-        label="Lista Pequena (5 opções)"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.SMALL_LIST_HELP}
-        options={SELECT_COMMON_DATA.PRIORITIES}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.LIST_SIZE_SMALL)}
       />
       <Component
-        label="Lista Média (8 opções)"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.MEDIUM_LIST_HELP}
-        options={SELECT_COMMON_DATA.COUNTRIES}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.LIST_SIZE_MEDIUM)}
       />
       <Component
-        label="Lista Grande (10+ opções)"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.LARGE_LIST_HELP}
-        options={generateNumberOptions(15, 'Opção')}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.LIST_SIZE_LARGE)}
       />
     </div>
   );
   return ListSizesDemoComponent;
 };
 
+// Helper para resolver referências de texto como SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC
+const resolveTextReference = (textRef: string): string => {
+  if (typeof textRef !== 'string' || !textRef.startsWith('SHARED_TEXTS.')) {
+    return textRef;
+  }
+
+  const parts = textRef.split('.');
+  if (parts.length === 3) {
+    const [, category, key] = parts;
+    const categoryObj = (SHARED_TEXTS as any)[category];
+    return categoryObj?.[key] || textRef;
+  }
+  return textRef;
+};
+
+// Helper para resolver referências de opções
+const resolveOptions = (optionsRef: string) => {
+  switch (optionsRef) {
+    case 'LARGE_CITIES':
+      return LARGE_CITIES;
+    case 'PRODUCTS':
+      return PRODUCTS;
+    case 'SELECT_COMMON_DATA.COUNTRIES':
+      return SELECT_COMMON_DATA.COUNTRIES;
+    case 'SELECT_COMMON_DATA.PRIORITIES':
+      return SELECT_COMMON_DATA.PRIORITIES;
+    case 'SELECT_COMMON_DATA.CATEGORIES':
+      return SELECT_COMMON_DATA.CATEGORIES;
+    case 'SELECT_COMMON_DATA.STATUSES':
+      return SELECT_COMMON_DATA.STATUSES;
+    case 'generateNumberOptions(15, "Opção")':
+      return generateNumberOptions(15, 'Opção');
+    default:
+      return [];
+  }
+};
+
 // Helper para resolver referências de opções e criar props do componente
 const createComponentProps = (config: any) => ({
   label: config.label,
-  placeholder: config.placeholder,
-  helperText: config.helperText,
+  placeholder: resolveTextReference(config.placeholder),
+  helperText: resolveTextReference(config.helperText),
   options: resolveOptions(config.options),
+  ...(config.error && { error: config.error }),
+  ...(config.disabled && { disabled: config.disabled }),
 });
 
 // Factory para criar demonstração de casos de uso para SelectAutocomplete
@@ -739,23 +769,15 @@ export const createStatesDemo = (
   const StatesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
       <Component
-        label="Campo com Erro"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.ERROR_STATE}
-        error
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.STATE_ERROR)}
         options={options}
       />
       <Component
-        label="Campo Normal"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.NORMAL_STATE}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.STATE_NORMAL)}
         options={options}
       />
       <Component
-        label="Campo Desabilitado"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.NOT_AVAILABLE}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.DISABLED_STATE}
-        disabled
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.STATE_DISABLED)}
         options={options}
       />
     </div>
@@ -770,28 +792,16 @@ export const createDataTypesDemo = (
   const DataTypesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
       <Component
-        label="País"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_COUNTRY}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.COUNTRY_HELP}
-        options={SELECT_COMMON_DATA.COUNTRIES}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_COUNTRY)}
       />
       <Component
-        label="Categoria"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_CATEGORY}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.CATEGORY_HELP}
-        options={SELECT_COMMON_DATA.CATEGORIES}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_CATEGORY)}
       />
       <Component
-        label="Prioridade"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_PRIORITY}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.PRIORITY_HELP}
-        options={SELECT_COMMON_DATA.PRIORITIES}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_PRIORITY)}
       />
       <Component
-        label="Status"
-        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_STATUS}
-        helperText={SHARED_TEXTS.HELPER_TEXTS.STATUS_HELP}
-        options={SELECT_COMMON_DATA.STATUSES}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_STATUS)}
       />
     </div>
   );
@@ -1101,20 +1111,68 @@ export const DEMO_COMPONENTS_CONFIG = {
     helperText: 'Ótimo para catálogos',
     options: 'PRODUCTS',
   },
-};
-
-// Helper para resolver referências de opções
-const resolveOptions = (optionsRef: string) => {
-  switch (optionsRef) {
-    case 'LARGE_CITIES':
-      return LARGE_CITIES;
-    case 'PRODUCTS':
-      return PRODUCTS;
-    case 'SELECT_COMMON_DATA.COUNTRIES':
-      return SELECT_COMMON_DATA.COUNTRIES;
-    default:
-      return [];
-  }
+  // Configurações para List Size Demo
+  LIST_SIZE_SMALL: {
+    label: 'Lista Pequena (5 opções)',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.SMALL_LIST_HELP',
+    options: 'SELECT_COMMON_DATA.PRIORITIES',
+  },
+  LIST_SIZE_MEDIUM: {
+    label: 'Lista Média (8 opções)',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.MEDIUM_LIST_HELP',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
+  LIST_SIZE_LARGE: {
+    label: 'Lista Grande (10+ opções)',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.LARGE_LIST_HELP',
+    options: 'generateNumberOptions(15, "Opção")',
+  },
+  // Configurações para States Demo
+  STATE_ERROR: {
+    label: 'Campo com Erro',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.ERROR_STATE',
+    error: true,
+  },
+  STATE_NORMAL: {
+    label: 'Campo Normal',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.NORMAL_STATE',
+  },
+  STATE_DISABLED: {
+    label: 'Campo Desabilitado',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.NOT_AVAILABLE',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.DISABLED_STATE',
+    disabled: true,
+  },
+  // Configurações para Data Types Demo
+  DATA_COUNTRY: {
+    label: 'País',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_COUNTRY',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.COUNTRY_HELP',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
+  DATA_CATEGORY: {
+    label: 'Categoria',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_CATEGORY',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.CATEGORY_HELP',
+    options: 'SELECT_COMMON_DATA.CATEGORIES',
+  },
+  DATA_PRIORITY: {
+    label: 'Prioridade',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_PRIORITY',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.PRIORITY_HELP',
+    options: 'SELECT_COMMON_DATA.PRIORITIES',
+  },
+  DATA_STATUS: {
+    label: 'Status',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_STATUS',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.STATUS_HELP',
+    options: 'SELECT_COMMON_DATA.STATUSES',
+  },
 };
 
 // Códigos de exemplo compartilhados
