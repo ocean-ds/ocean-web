@@ -1055,254 +1055,179 @@ export const createDocsPage = (config: {
   return DocsPageComponent;
 };
 
-// Factory para criar configurações de demo com menos duplicação
-const createDemoConfig = (
-  key: string,
-  label: string,
-  placeholder: string,
-  helperText: string,
-  options: string,
-  additionalProps: Record<string, any> = {}
-) => ({
-  key,
-  label,
-  placeholder,
-  helperText,
-  options,
-  ...additionalProps,
-});
-
-// Configurações unificadas para todos os demos - otimizadas
+// Configurações unificadas para todos os demos - versão simplificada
 export const DEMO_CONFIGS = [
   // Autocomplete demos
-  createDemoConfig(
-    'city',
-    'Cidade',
-    'Digite para buscar cidades...',
-    'Comece digitando o nome da cidade',
-    'LARGE_CITIES'
-  ),
-  createDemoConfig(
-    'product',
-    'Produto',
-    'Buscar produtos...',
-    'Digite o nome ou categoria do produto',
-    'PRODUCTS'
-  ),
-  createDemoConfig(
-    'client',
-    'Cliente',
-    'Nome do cliente...',
-    'Digite para filtrar clientes',
-    'SELECT_COMMON_DATA.COUNTRIES'
-  ),
+  {
+    key: 'city',
+    label: 'Cidade',
+    placeholder: 'Digite para buscar cidades...',
+    helperText: 'Comece digitando o nome da cidade',
+    options: 'LARGE_CITIES',
+  },
+  {
+    key: 'product',
+    label: 'Produto',
+    placeholder: 'Buscar produtos...',
+    helperText: 'Digite o nome ou categoria do produto',
+    options: 'PRODUCTS',
+  },
+  {
+    key: 'client',
+    label: 'Cliente',
+    placeholder: 'Nome do cliente...',
+    helperText: 'Digite para filtrar clientes',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
 
   // Performance demos
-  createDemoConfig(
-    'small',
-    'Lista Pequena (8 opções)',
-    'Buscar...',
-    'Use Select simples para poucas opções',
-    'SELECT_COMMON_DATA.COUNTRIES'
-  ),
-  createDemoConfig(
-    'large',
-    'Lista Grande (30+ opções)',
-    'Digite para filtrar...',
-    'Ideal para listas grandes',
-    'LARGE_CITIES'
-  ),
-  createDemoConfig(
-    'productsList',
-    'Lista com Produtos (16 opções)',
-    'Buscar produtos...',
-    'Ótimo para catálogos',
-    'PRODUCTS'
-  ),
+  {
+    key: 'small',
+    label: 'Lista Pequena (8 opções)',
+    placeholder: 'Buscar...',
+    helperText: 'Use Select simples para poucas opções',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
+  {
+    key: 'large',
+    label: 'Lista Grande (30+ opções)',
+    placeholder: 'Digite para filtrar...',
+    helperText: 'Ideal para listas grandes',
+    options: 'LARGE_CITIES',
+  },
+  {
+    key: 'productsList',
+    label: 'Lista com Produtos (16 opções)',
+    placeholder: 'Buscar produtos...',
+    helperText: 'Ótimo para catálogos',
+    options: 'PRODUCTS',
+  },
 
   // List size demos
-  createDemoConfig(
-    'listSizeSmall',
-    'Lista Pequena (5 opções)',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
-    'SHARED_TEXTS.HELPER_TEXTS.SMALL_LIST_HELP',
-    'SELECT_COMMON_DATA.PRIORITIES'
-  ),
-  createDemoConfig(
-    'listSizeMedium',
-    'Lista Média (8 opções)',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
-    'SHARED_TEXTS.HELPER_TEXTS.MEDIUM_LIST_HELP',
-    'SELECT_COMMON_DATA.COUNTRIES'
-  ),
-  createDemoConfig(
-    'listSizeLarge',
-    'Lista Grande (10+ opções)',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
-    'SHARED_TEXTS.HELPER_TEXTS.LARGE_LIST_HELP',
-    'generateNumberOptions(15, "Opção")'
-  ),
+  {
+    key: 'listSizeSmall',
+    label: 'Lista Pequena (5 opções)',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.SMALL_LIST_HELP',
+    options: 'SELECT_COMMON_DATA.PRIORITIES',
+  },
+  {
+    key: 'listSizeMedium',
+    label: 'Lista Média (8 opções)',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.MEDIUM_LIST_HELP',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
+  {
+    key: 'listSizeLarge',
+    label: 'Lista Grande (10+ opções)',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.LARGE_LIST_HELP',
+    options: 'generateNumberOptions(15, "Opção")',
+  },
 
   // State demos
-  createDemoConfig(
-    'stateError',
-    'Campo com Erro',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
-    'SHARED_TEXTS.HELPER_TEXTS.ERROR_STATE',
-    '',
-    { error: true }
-  ),
-  createDemoConfig(
-    'stateNormal',
-    'Campo Normal',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
-    'SHARED_TEXTS.HELPER_TEXTS.NORMAL_STATE',
-    ''
-  ),
-  createDemoConfig(
-    'stateDisabled',
-    'Campo Desabilitado',
-    'SHARED_TEXTS.PLACEHOLDERS.NOT_AVAILABLE',
-    'SHARED_TEXTS.HELPER_TEXTS.DISABLED_STATE',
-    '',
-    { disabled: true }
-  ),
+  {
+    key: 'stateError',
+    label: 'Campo com Erro',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.ERROR_STATE',
+    error: true,
+  },
+  {
+    key: 'stateNormal',
+    label: 'Campo Normal',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.NORMAL_STATE',
+  },
+  {
+    key: 'stateDisabled',
+    label: 'Campo Desabilitado',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.NOT_AVAILABLE',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.DISABLED_STATE',
+    disabled: true,
+  },
 
   // Data type demos
-  createDemoConfig(
-    'dataCountry',
-    'País',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_COUNTRY',
-    'SHARED_TEXTS.HELPER_TEXTS.COUNTRY_HELP',
-    'SELECT_COMMON_DATA.COUNTRIES'
-  ),
-  createDemoConfig(
-    'dataCategory',
-    'Categoria',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_CATEGORY',
-    'SHARED_TEXTS.HELPER_TEXTS.CATEGORY_HELP',
-    'SELECT_COMMON_DATA.CATEGORIES'
-  ),
-  createDemoConfig(
-    'dataPriority',
-    'Prioridade',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_PRIORITY',
-    'SHARED_TEXTS.HELPER_TEXTS.PRIORITY_HELP',
-    'SELECT_COMMON_DATA.PRIORITIES'
-  ),
-  createDemoConfig(
-    'dataStatus',
-    'Status',
-    'SHARED_TEXTS.PLACEHOLDERS.SELECT_STATUS',
-    'SHARED_TEXTS.HELPER_TEXTS.STATUS_HELP',
-    'SELECT_COMMON_DATA.STATUSES'
-  ),
+  {
+    key: 'dataCountry',
+    label: 'País',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_COUNTRY',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.COUNTRY_HELP',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
+  {
+    key: 'dataCategory',
+    label: 'Categoria',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_CATEGORY',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.CATEGORY_HELP',
+    options: 'SELECT_COMMON_DATA.CATEGORIES',
+  },
+  {
+    key: 'dataPriority',
+    label: 'Prioridade',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_PRIORITY',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.PRIORITY_HELP',
+    options: 'SELECT_COMMON_DATA.PRIORITIES',
+  },
+  {
+    key: 'dataStatus',
+    label: 'Status',
+    placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_STATUS',
+    helperText: 'SHARED_TEXTS.HELPER_TEXTS.STATUS_HELP',
+    options: 'SELECT_COMMON_DATA.STATUSES',
+  },
 ];
 
-// Códigos de exemplo compartilhados - otimizados para reduzir duplicações
-const createSelectExample = (
-  label: string,
-  placeholder: string,
-  helperText: string,
-  options: string,
-  onChange?: string,
-  error?: boolean,
-  name?: string,
-  required?: boolean
-): string => {
-  const props = [
-    `label="${label}"`,
-    `placeholder="${placeholder}"`,
-    `helperText="${helperText}"`,
-    `options={${options}}`,
-    ...(onChange ? [`onChange={${onChange}}`] : []),
-    ...(error ? [`error={${error}}`] : []),
-    ...(name ? [`name="${name}"`] : []),
-    ...(required ? ['required'] : []),
-  ];
+// Códigos de exemplo compartilhados - versão simplificada
+const COUNTRY_EXAMPLE = `<Select
+  label="País"
+  placeholder="Selecione um país..."
+  helperText="Escolha seu país de residência"
+  options={countries}
+  onChange={handleCountryChange}
+/>`;
 
-  return `<Select\n  ${props.join('\n  ')}\n/>`;
-};
+const CATEGORY_EXAMPLE = `<Select
+  label="Categoria"
+  placeholder="Selecione uma categoria..."
+  error={hasError}
+  helperText={hasError ? "Este campo é obrigatório" : "Selecione uma categoria"}
+  options={categories}
+/>`;
 
-const createAutocompleteExample = (
-  label: string,
-  placeholder: string,
-  helperText: string,
-  options: string,
-  onChange?: string,
-  onInputChange?: string,
-  error?: boolean,
-  name?: string,
-  required?: boolean
-): string => {
-  const props = [
-    `label="${label}"`,
-    `placeholder="${placeholder}"`,
-    `helperText="${helperText}"`,
-    `options={${options}}`,
-    ...(onChange ? [`onChange={${onChange}}`] : []),
-    ...(onInputChange ? [`onInputChange={${onInputChange}}`] : []),
-    ...(error ? [`error={${error}}`] : []),
-    ...(name ? [`name="${name}"`] : []),
-    ...(required ? ['required'] : []),
-  ];
+const PRIORITY_FORM_EXAMPLE = `<Select
+  name="priority"
+  label="Prioridade"
+  placeholder="Defina a prioridade..."
+  helperText="Selecione o nível de urgência"
+  required
+  options={priorities}
+/>`;
 
-  return `<SelectAutocomplete\n  ${props.join('\n  ')}\n/>`;
-};
-
-// Exemplos reutilizáveis
-const COUNTRY_EXAMPLE = createSelectExample(
-  'País',
-  'Selecione um país...',
-  'Escolha seu país de residência',
-  'countries',
-  'handleCountryChange'
-);
-
-const CATEGORY_EXAMPLE = createSelectExample(
-  'Categoria',
-  'Selecione uma categoria...',
-  'hasError ? "Este campo é obrigatório" : "Selecione uma categoria"',
-  'categories',
-  undefined,
-  true
-);
-
-const PRIORITY_FORM_EXAMPLE = createSelectExample(
-  'Prioridade',
-  'Defina a prioridade...',
-  'Selecione o nível de urgência',
-  'priorities',
-  undefined,
-  false,
-  'priority',
-  true
-);
-
-const CITY_SEARCH_EXAMPLE = createAutocompleteExample(
-  'Cidade',
-  'Digite para buscar cidades...',
-  'Comece digitando o nome da cidade',
-  'cities',
-  'handleCitySelect'
-);
+const CITY_SEARCH_EXAMPLE = `<SelectAutocomplete
+  label="Cidade"
+  placeholder="Digite para buscar cidades..."
+  helperText="Comece digitando o nome da cidade"
+  options={cities}
+  onChange={handleCitySelect}
+/>`;
 
 export const SHARED_CODE_EXAMPLES = {
   CITY_SEARCH: CITY_SEARCH_EXAMPLE,
   CONTROLLED_STATE: `const [inputValue, setInputValue] = useState('');
 const [selectedValue, setSelectedValue] = useState('');
 
-${createAutocompleteExample(
-  'Produto',
-  'Buscar produtos...',
-  'Digite para filtrar produtos',
-  'filteredProducts',
-  'setSelectedValue',
-  'setInputValue'
-).replace(
-  '<SelectAutocomplete',
-  '<SelectAutocomplete\n  inputValue={inputValue}\n  value={selectedValue}'
-)}`,
+<SelectAutocomplete
+  label="Produto"
+  placeholder="Buscar produtos..."
+  helperText="Digite para filtrar produtos"
+  inputValue={inputValue}
+  value={selectedValue}
+  onInputChange={setInputValue}
+  onChange={setSelectedValue}
+  options={filteredProducts}
+/>`,
   SERVER_SEARCH: `const [options, setOptions] = useState([]);
 const [loading, setLoading] = useState(false);
 
@@ -1317,14 +1242,14 @@ const handleSearch = useMemo(
   []
 );
 
-${createAutocompleteExample(
-  'Cliente',
-  'Digite pelo menos 2 caracteres...',
-  'Busca em servidor',
-  'options',
-  undefined,
-  'handleSearch'
-).replace('/>', '\n  loading={loading}\n/>')}`,
+<SelectAutocomplete
+  label="Cliente"
+  placeholder="Digite pelo menos 2 caracteres..."
+  helperText="Busca em servidor"
+  onInputChange={handleSearch}
+  options={options}
+  loading={loading}
+/>`,
   SELECT_PATTERNS: `// Uso básico
 ${COUNTRY_EXAMPLE}
 
@@ -1339,42 +1264,38 @@ ${CATEGORY_EXAMPLE}
 ${CITY_SEARCH_EXAMPLE}
 
 // Com validação de busca
-${createAutocompleteExample(
-  'Produto',
-  'Digite para filtrar produtos...',
-  'hasError ? "Produto não encontrado" : "Digite para filtrar produtos"',
-  'products',
-  undefined,
-  'handleSearch',
-  true
-)}
+<SelectAutocomplete
+  label="Produto"
+  placeholder="Digite para filtrar produtos..."
+  error={hasError}
+  helperText={hasError ? "Produto não encontrado" : "Digite para filtrar produtos"}
+  options={products}
+  onInputChange={handleSearch}
+/>
 
 // Em formulários complexos
 <form onSubmit={handleSubmit}>
-  ${createAutocompleteExample(
-    'Cliente',
-    'Nome do cliente...',
-    'Digite para filtrar clientes',
-    'customers',
-    'handleCustomerSelect',
-    undefined,
-    false,
-    'customer',
-    true
-  )}
+  <SelectAutocomplete
+    name="customer"
+    label="Cliente"
+    placeholder="Nome do cliente..."
+    helperText="Digite para filtrar clientes"
+    required
+    options={customers}
+    onChange={handleCustomerSelect}
+  />
 </form>`,
 
   SELECT_FORM_VALIDATION: `<form onSubmit={handleSubmit}>
-  ${createSelectExample(
-    'Categoria',
-    'Selecione uma categoria...',
-    'hasError ? "Categoria é obrigatória" : "Selecione uma categoria"',
-    'categories',
-    undefined,
-    true,
-    'category',
-    true
-  )}
+  <Select
+    name="category"
+    label="Categoria"
+    placeholder="Selecione uma categoria..."
+    error={hasError}
+    helperText={hasError ? "Categoria é obrigatória" : "Selecione uma categoria"}
+    options={categories}
+    required
+  />
   <Button type="submit">Salvar</Button>
 </form>`,
   SELECT_CONTROLLED_STATE: `const [priority, setPriority] = useState('');
@@ -1385,13 +1306,15 @@ const handlePriorityChange = (value) => {
   setError(!value); // Valida se foi selecionado
 };
 
-${createSelectExample(
-  'Prioridade',
-  'Selecione uma prioridade...',
-  'error ? "Selecione uma prioridade" : "Defina o nível de urgência"',
-  'priorities',
-  'handlePriorityChange'
-).replace('<Select', '<Select\n  value={priority}\n  error={error}')},`,
+<Select
+  label="Prioridade"
+  placeholder="Selecione uma prioridade..."
+  value={priority}
+  error={error}
+  helperText={error ? "Selecione uma prioridade" : "Defina o nível de urgência"}
+  options={priorities}
+  onChange={handlePriorityChange}
+/>`,
 };
 
 // Constantes compartilhadas para textos comuns
