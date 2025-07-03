@@ -548,35 +548,7 @@ export const COMMON_SELECT_AUTOCOMPLETE_CSS_CLASSES: CssClass[] = [
 export const createSelectCommonPatterns = (): CommonPatternsConfig => ({
   patterns: [
     {
-      code: `// Uso básico
-<Select
-  label="País"
-  placeholder="Selecione um país..."
-  helperText="Escolha seu país de residência"
-  options={[
-    { value: 'br', label: 'Brasil' },
-    { value: 'us', label: 'Estados Unidos' },
-    { value: 'fr', label: 'França' }
-  ]}
-/>
-
-// Com validação
-<Select
-  label="Categoria"
-  error={hasError}
-  helperText={hasError ? "Este campo é obrigatório" : "Selecione uma categoria"}
-  options={categories}
-/>
-
-// Em formulários
-<form onSubmit={handleSubmit}>
-  <Select
-    name="priority"
-    label="Prioridade"
-    required
-    options={priorities}
-  />
-</form>`,
+      code: SHARED_CODE_EXAMPLES.SELECT_PATTERNS,
     },
   ],
 });
@@ -586,33 +558,7 @@ export const createSelectAutocompleteCommonPatterns =
   (): CommonPatternsConfig => ({
     patterns: [
       {
-        code: `// Busca em lista grande
-<SelectAutocomplete
-  label="Cidade"
-  placeholder="Digite para buscar..."
-  helperText="Comece digitando o nome da cidade"
-  options={cities}
-/>
-
-// Com validação de busca
-<SelectAutocomplete
-  label="Produto"
-  error={hasError}
-  helperText={hasError ? "Produto não encontrado" : "Digite para filtrar produtos"}
-  options={products}
-  onInputChange={handleSearch}
-/>
-
-// Em formulários complexos
-<form onSubmit={handleSubmit}>
-  <SelectAutocomplete
-    name="customer"
-    label="Cliente"
-    required
-    options={customers}
-    onChange={handleCustomerSelect}
-  />
-</form>`,
+        code: SHARED_CODE_EXAMPLES.AUTOCOMPLETE_PATTERNS,
       },
     ],
   });
@@ -626,50 +572,19 @@ export const createSelectUsageExamples = (): React.FC => {
       <h3>Seleção de País</h3>
       <DocBlock.Source
         dark
-        code={`<Select
-  label="País"
-  placeholder="Selecione seu país..."
-  helperText="Escolha seu país de residência"
-  options={countries}
-  onChange={handleCountryChange}
-/>`}
+        code={SHARED_CODE_EXAMPLES.SELECT_COUNTRY_EXAMPLE}
       />
 
       <h3>Formulários com Validação</h3>
       <DocBlock.Source
         dark
-        code={`<form onSubmit={handleSubmit}>
-  <Select
-    name="category"
-    label="Categoria"
-    error={hasError}
-    helperText={hasError ? "Categoria é obrigatória" : "Selecione uma categoria"}
-    options={categories}
-    required
-  />
-  <Button type="submit">Salvar</Button>
-</form>`}
+        code={SHARED_CODE_EXAMPLES.SELECT_FORM_VALIDATION}
       />
 
       <h3>Com Estado Controlado</h3>
       <DocBlock.Source
         dark
-        code={`const [priority, setPriority] = useState('');
-const [error, setError] = useState(false);
-
-const handlePriorityChange = (value) => {
-  setPriority(value);
-  setError(!value); // Valida se foi selecionado
-};
-
-<Select
-  label="Prioridade"
-  value={priority}
-  onChange={handlePriorityChange}
-  error={error}
-  helperText={error ? "Selecione uma prioridade" : "Defina o nível de urgência"}
-  options={priorities}
-/>`}
+        code={SHARED_CODE_EXAMPLES.SELECT_CONTROLLED_STATE}
       />
     </>
   );
@@ -683,59 +598,13 @@ export const createSelectAutocompleteUsageExamples = (): React.FC => {
       <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
 
       <h3>Busca de Cidades</h3>
-      <DocBlock.Source
-        dark
-        code={`<SelectAutocomplete
-  label="Cidade"
-  placeholder="Digite para buscar cidades..."
-  helperText="Comece digitando o nome da cidade"
-  options={cities}
-  onChange={handleCitySelect}
-/>`}
-      />
+      <DocBlock.Source dark code={SHARED_CODE_EXAMPLES.CITY_SEARCH} />
 
       <h3>Com Estado Controlado</h3>
-      <DocBlock.Source
-        dark
-        code={`const [inputValue, setInputValue] = useState('');
-const [selectedValue, setSelectedValue] = useState('');
-
-<SelectAutocomplete
-  label="Produto"
-  inputValue={inputValue}
-  value={selectedValue}
-  onInputChange={setInputValue}
-  onChange={setSelectedValue}
-  options={filteredProducts}
-  placeholder="Buscar produtos..."
-/>`}
-      />
+      <DocBlock.Source dark code={SHARED_CODE_EXAMPLES.CONTROLLED_STATE} />
 
       <h3>Com Busca no Servidor</h3>
-      <DocBlock.Source
-        dark
-        code={`const [options, setOptions] = useState([]);
-const [loading, setLoading] = useState(false);
-
-const handleSearch = useMemo(
-  () => debounce(async (query) => {
-    if (query.length < 2) return;
-    setLoading(true);
-    const results = await searchAPI(query);
-    setOptions(results);
-    setLoading(false);
-  }, 300),
-  []
-);
-
-<SelectAutocomplete
-  label="Cliente"
-  placeholder="Digite pelo menos 2 caracteres..."
-  onInputChange={handleSearch}
-  options={options}
-  loading={loading}
-/>`}
-      />
+      <DocBlock.Source dark code={SHARED_CODE_EXAMPLES.SERVER_SEARCH} />
     </>
   );
   return SelectAutocompleteUsageExamples;
@@ -749,20 +618,20 @@ export const createListSizesDemo = (
     <div style={sharedContainerStyles.showcase}>
       <Component
         label="Lista Pequena (5 opções)"
-        placeholder="Selecione..."
-        helperText="Ideal para poucas opções"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.SMALL_LIST_HELP}
         options={SELECT_COMMON_DATA.PRIORITIES}
       />
       <Component
         label="Lista Média (8 opções)"
-        placeholder="Selecione..."
-        helperText="Boa para categorias principais"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.MEDIUM_LIST_HELP}
         options={SELECT_COMMON_DATA.COUNTRIES}
       />
       <Component
         label="Lista Grande (10+ opções)"
-        placeholder="Selecione..."
-        helperText="Para muitas opções, considere busca"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.LARGE_LIST_HELP}
         options={generateNumberOptions(15, 'Opção')}
       />
     </div>
@@ -770,30 +639,23 @@ export const createListSizesDemo = (
   return ListSizesDemoComponent;
 };
 
+// Helper para resolver referências de opções e criar props do componente
+const createComponentProps = (config: any) => ({
+  label: config.label,
+  placeholder: config.placeholder,
+  helperText: config.helperText,
+  options: resolveOptions(config.options),
+});
+
 // Factory para criar demonstração de casos de uso para SelectAutocomplete
 export const createUseCasesDemo = (
   Component: React.ComponentType<any>
 ): React.FC => {
   const UseCasesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
-      <Component
-        label="Cidade"
-        placeholder="Digite para buscar cidades..."
-        helperText="Comece digitando o nome da cidade"
-        options={LARGE_CITIES}
-      />
-      <Component
-        label="Produto"
-        placeholder="Buscar produtos..."
-        helperText="Digite o nome ou categoria do produto"
-        options={PRODUCTS}
-      />
-      <Component
-        label="Cliente"
-        placeholder="Nome do cliente..."
-        helperText="Digite para filtrar clientes"
-        options={SELECT_COMMON_DATA.COUNTRIES}
-      />
+      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.CITY)} />
+      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.PRODUCT)} />
+      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.CLIENT)} />
     </div>
   );
   return UseCasesDemoComponent;
@@ -805,23 +667,10 @@ export const createPerformanceDemo = (
 ): React.FC => {
   const PerformanceDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
+      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.SMALL_LIST)} />
+      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.LARGE_LIST)} />
       <Component
-        label="Lista Pequena (8 opções)"
-        placeholder="Buscar..."
-        helperText="Use Select simples para poucas opções"
-        options={SELECT_COMMON_DATA.COUNTRIES}
-      />
-      <Component
-        label="Lista Grande (30+ opções)"
-        placeholder="Digite para filtrar..."
-        helperText="Ideal para listas grandes"
-        options={LARGE_CITIES}
-      />
-      <Component
-        label="Lista com Produtos (16 opções)"
-        placeholder="Buscar produtos..."
-        helperText="Ótimo para catálogos"
-        options={PRODUCTS}
+        {...createComponentProps(DEMO_COMPONENTS_CONFIG.PRODUCTS_LIST)}
       />
     </div>
   );
@@ -891,21 +740,21 @@ export const createStatesDemo = (
     <div style={sharedContainerStyles.showcase}>
       <Component
         label="Campo com Erro"
-        placeholder="Selecione uma opção..."
-        helperText="Este campo tem um erro"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.ERROR_STATE}
         error
         options={options}
       />
       <Component
         label="Campo Normal"
-        placeholder="Selecione uma opção..."
-        helperText="Campo em estado normal"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.NORMAL_STATE}
         options={options}
       />
       <Component
         label="Campo Desabilitado"
-        placeholder="Não disponível"
-        helperText="Campo desabilitado"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.NOT_AVAILABLE}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.DISABLED_STATE}
         disabled
         options={options}
       />
@@ -922,26 +771,26 @@ export const createDataTypesDemo = (
     <div style={sharedContainerStyles.showcase}>
       <Component
         label="País"
-        placeholder="Selecione um país..."
-        helperText="Escolha seu país de residência"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_COUNTRY}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.COUNTRY_HELP}
         options={SELECT_COMMON_DATA.COUNTRIES}
       />
       <Component
         label="Categoria"
-        placeholder="Selecione uma categoria..."
-        helperText="Escolha a categoria do produto"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_CATEGORY}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.CATEGORY_HELP}
         options={SELECT_COMMON_DATA.CATEGORIES}
       />
       <Component
         label="Prioridade"
-        placeholder="Defina a prioridade..."
-        helperText="Selecione o nível de prioridade"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_PRIORITY}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.PRIORITY_HELP}
         options={SELECT_COMMON_DATA.PRIORITIES}
       />
       <Component
         label="Status"
-        placeholder="Escolha o status..."
-        helperText="Defina o status atual"
+        placeholder={SHARED_TEXTS.PLACEHOLDERS.SELECT_STATUS}
+        helperText={SHARED_TEXTS.HELPER_TEXTS.STATUS_HELP}
         options={SELECT_COMMON_DATA.STATUSES}
       />
     </div>
@@ -1212,4 +1061,217 @@ export const createDocsPage = (config: {
   );
   DocsPageComponent.displayName = 'DocsPageComponent';
   return DocsPageComponent;
+};
+
+// Dados compartilhados para demonstrações
+export const DEMO_COMPONENTS_CONFIG = {
+  CITY: {
+    label: 'Cidade',
+    placeholder: 'Digite para buscar cidades...',
+    helperText: 'Comece digitando o nome da cidade',
+    options: 'LARGE_CITIES', // referência para ser resolvida
+  },
+  PRODUCT: {
+    label: 'Produto',
+    placeholder: 'Buscar produtos...',
+    helperText: 'Digite o nome ou categoria do produto',
+    options: 'PRODUCTS', // referência para ser resolvida
+  },
+  CLIENT: {
+    label: 'Cliente',
+    placeholder: 'Nome do cliente...',
+    helperText: 'Digite para filtrar clientes',
+    options: 'SELECT_COMMON_DATA.COUNTRIES', // referência para ser resolvida
+  },
+  SMALL_LIST: {
+    label: 'Lista Pequena (8 opções)',
+    placeholder: 'Buscar...',
+    helperText: 'Use Select simples para poucas opções',
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
+  },
+  LARGE_LIST: {
+    label: 'Lista Grande (30+ opções)',
+    placeholder: 'Digite para filtrar...',
+    helperText: 'Ideal para listas grandes',
+    options: 'LARGE_CITIES',
+  },
+  PRODUCTS_LIST: {
+    label: 'Lista com Produtos (16 opções)',
+    placeholder: 'Buscar produtos...',
+    helperText: 'Ótimo para catálogos',
+    options: 'PRODUCTS',
+  },
+};
+
+// Helper para resolver referências de opções
+const resolveOptions = (optionsRef: string) => {
+  switch (optionsRef) {
+    case 'LARGE_CITIES':
+      return LARGE_CITIES;
+    case 'PRODUCTS':
+      return PRODUCTS;
+    case 'SELECT_COMMON_DATA.COUNTRIES':
+      return SELECT_COMMON_DATA.COUNTRIES;
+    default:
+      return [];
+  }
+};
+
+// Códigos de exemplo compartilhados
+export const SHARED_CODE_EXAMPLES = {
+  CITY_SEARCH: `<SelectAutocomplete
+  label="${DEMO_COMPONENTS_CONFIG.CITY.label}"
+  placeholder="${DEMO_COMPONENTS_CONFIG.CITY.placeholder}"
+  helperText="${DEMO_COMPONENTS_CONFIG.CITY.helperText}"
+  options={cities}
+  onChange={handleCitySelect}
+/>`,
+  CONTROLLED_STATE: `const [inputValue, setInputValue] = useState('');
+const [selectedValue, setSelectedValue] = useState('');
+
+<SelectAutocomplete
+  label="Produto"
+  inputValue={inputValue}
+  value={selectedValue}
+  onInputChange={setInputValue}
+  onChange={setSelectedValue}
+  options={filteredProducts}
+  placeholder="Buscar produtos..."
+/>`,
+  SERVER_SEARCH: `const [options, setOptions] = useState([]);
+const [loading, setLoading] = useState(false);
+
+const handleSearch = useMemo(
+  () => debounce(async (query) => {
+    if (query.length < 2) return;
+    setLoading(true);
+    const results = await searchAPI(query);
+    setOptions(results);
+    setLoading(false);
+  }, 300),
+  []
+);
+
+<SelectAutocomplete
+  label="Cliente"
+  placeholder="Digite pelo menos 2 caracteres..."
+  onInputChange={handleSearch}
+  options={options}
+  loading={loading}
+/>`,
+  SELECT_PATTERNS: `// Uso básico
+<Select
+  label="País"
+  placeholder="Selecione um país..."
+  helperText="Escolha seu país de residência"
+  options={[
+    { value: 'br', label: 'Brasil' },
+    { value: 'us', label: 'Estados Unidos' },
+    { value: 'fr', label: 'França' }
+  ]}
+/>
+
+// Com validação
+<Select
+  label="Categoria"
+  error={hasError}
+  helperText={hasError ? "Este campo é obrigatório" : "Selecione uma categoria"}
+  options={categories}
+/>
+
+// Em formulários
+<form onSubmit={handleSubmit}>
+  <Select
+    name="priority"
+    label="Prioridade"
+    required
+    options={priorities}
+  />
+</form>`,
+  AUTOCOMPLETE_PATTERNS: `// Busca em lista grande
+<SelectAutocomplete
+  label="Cidade"
+  placeholder="Digite para buscar..."
+  helperText="Comece digitando o nome da cidade"
+  options={cities}
+/>
+
+// Com validação de busca
+<SelectAutocomplete
+  label="Produto"
+  error={hasError}
+  helperText={hasError ? "Produto não encontrado" : "Digite para filtrar produtos"}
+  options={products}
+  onInputChange={handleSearch}
+/>
+
+// Em formulários complexos
+<form onSubmit={handleSubmit}>
+  <SelectAutocomplete
+    name="customer"
+    label="Cliente"
+    required
+    options={customers}
+    onChange={handleCustomerSelect}
+  />
+</form>`,
+  SELECT_COUNTRY_EXAMPLE: `<Select
+  label="País"
+  placeholder="Selecione seu país..."
+  helperText="Escolha seu país de residência"
+  options={countries}
+  onChange={handleCountryChange}
+/>`,
+  SELECT_FORM_VALIDATION: `<form onSubmit={handleSubmit}>
+  <Select
+    name="category"
+    label="Categoria"
+    error={hasError}
+    helperText={hasError ? "Categoria é obrigatória" : "Selecione uma categoria"}
+    options={categories}
+    required
+  />
+  <Button type="submit">Salvar</Button>
+</form>`,
+  SELECT_CONTROLLED_STATE: `const [priority, setPriority] = useState('');
+const [error, setError] = useState(false);
+
+const handlePriorityChange = (value) => {
+  setPriority(value);
+  setError(!value); // Valida se foi selecionado
+};
+
+<Select
+  label="Prioridade"
+  value={priority}
+  onChange={handlePriorityChange}
+  error={error}
+  helperText={error ? "Selecione uma prioridade" : "Defina o nível de urgência"}
+  options={priorities}
+/>`,
+};
+
+// Constantes compartilhadas para textos comuns
+export const SHARED_TEXTS = {
+  PLACEHOLDERS: {
+    SELECT_OPTION: 'Selecione uma opção...',
+    SELECT_COUNTRY: 'Selecione um país...',
+    SELECT_CATEGORY: 'Selecione uma categoria...',
+    SELECT_PRIORITY: 'Defina a prioridade...',
+    SELECT_STATUS: 'Escolha o status...',
+    SELECT_GENERIC: 'Selecione...',
+    NOT_AVAILABLE: 'Não disponível',
+  },
+  HELPER_TEXTS: {
+    ERROR_STATE: 'Este campo tem um erro',
+    NORMAL_STATE: 'Campo em estado normal',
+    DISABLED_STATE: 'Campo desabilitado',
+    COUNTRY_HELP: 'Escolha seu país de residência',
+    CATEGORY_HELP: 'Escolha a categoria do produto',
+    PRIORITY_HELP: 'Selecione o nível de prioridade',
+    STATUS_HELP: 'Defina o status atual',
+    SMALL_LIST_HELP: 'Ideal para poucas opções',
+    MEDIUM_LIST_HELP: 'Boa para categorias principais',
+    LARGE_LIST_HELP: 'Para muitas opções, considere busca',
+  },
 };
