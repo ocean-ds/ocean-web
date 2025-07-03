@@ -101,6 +101,8 @@
     }
   }
 
+  &--tertiary,
+  &--tertiary-critical,
   &--text,
   &--text-critical {
     background-color: transparent;
@@ -118,10 +120,12 @@
     }
   }
 
+  &--tertiary,
   &--text {
     color: $color-brand-primary-pure;
   }
 
+  &--tertiary-critical,
   &--text-critical {
     color: $color-status-negative-pure;
   }
@@ -189,7 +193,12 @@
 
   &--loading {
     .ods-progress {
+      align-items: center;
+      display: flex;
+      height: 100%;
+      justify-content: center;
       margin: auto;
+      width: 100%;
     }
 
     > span {
@@ -206,6 +215,8 @@
     cursor: not-allowed;
   }
 
+  &--tertiary:disabled,
+  &--tertiary-critical:disabled,
   &--text:disabled,
   &--text-critical:disabled,
   &--text-tertiary:disabled,

@@ -1,0 +1,859 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Ocean Web - Component Documentation Guidelines (TSX)
+
+Esta documentação estabelece padrões para criar documentação de componentes no ocean-web usando **TypeScript (.tsx)** e **Storybook Blocks** para documentação personalizada, clara, consistente e amigável para IA.
+
+## Estrutura Padrão TSX
+
+### 1. Imports e Meta Base
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import * as DocBlock from '@storybook/blocks';
+import React from 'react';
+import ComponentName from '../ComponentName';
+
+const meta: Meta<typeof ComponentName> = {
+  title: 'Components/ComponentName',
+  component: ComponentName,
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      description: 'A variante visual do componente.',
+      control: 'select',
+      options: ['primary', 'secondary', 'tertiary'],
+    },
+    size: {
+      description: 'O tamanho do componente.',
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+    },
+    disabled: {
+      description: 'Desabilita o componente.',
+      control: 'boolean',
+    },
+  },
+  parameters: {
+    docs: {
+      page: () => (
+        <>
+          <Introduction />
+          <DocBlock.Heading>Uso</DocBlock.Heading>
+          <DocBlock.Canvas of={Usage} />
+          <DocBlock.Controls of={Usage} />
+          <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
+          <CommonPatterns />
+          <DocBlock.Heading>Exemplos</DocBlock.Heading>
+          <h3 id="variantes">Variantes</h3>
+          <VariantsList />
+          <Variants />
+          <h3 id="tamanhos">Tamanhos</h3>
+          <Sizes />
+          <h3 id="estados">Estados</h3>
+          <StatesDescription />
+          <States />
+          <UsageExamples />
+          <BestPractices />
+          <CssClasses />
+          <ApiReference />
+        </>
+      ),
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof ComponentName>;
+```
+
+### 2. Story Principal (ÚNICA EXPORTADA)
+
+```tsx
+export const Usage: Story = {
+  args: {
+    children: 'Texto do Componente',
+    variant: 'primary',
+    size: 'md',
+  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
+};
+```
+
+**⚠️ IMPORTANTE**: Apenas o `Usage` deve ser exportado. As outras stories visuais devem ser componentes locais para evitar que apareçam como itens separados no sidebar do Storybook.
+
+### 3. Componente de Introdução
+
+```tsx
+const Introduction = (): JSX.Element => (
+  <>
+    <DocBlock.Title />
+    <DocBlock.Markdown>
+      [Descrição concisa do propósito do componente]
+    </DocBlock.Markdown>
+    <DocBlock.Heading>Visão Geral</DocBlock.Heading>
+    <DocBlock.Markdown>
+      [Descrição detalhada do componente, suas capacidades e contexto de uso]
+    </DocBlock.Markdown>
+    <DocBlock.Heading>Importação</DocBlock.Heading>
+    <DocBlock.Source
+      dark
+      code={`import { ComponentName } from '@useblu/ocean-react';`}
+    />
+  </>
+);
+```
+
+### 4. Padrões Comuns
+
+```tsx
+const CommonPatterns = (): JSX.Element => (
+  <>
+    <DocBlock.Source
+      dark
+      code={`// Exemplo básico
+<ComponentName variant="primary">Conteúdo</ComponentName>
+
+// Exemplo secundário
+<ComponentName variant="secondary">Alternativo</ComponentName>
+
+// Em formulários
+<form onSubmit={handleSubmit}>
+  <ComponentName name="field" />
+</form>`}
+    />
+  </>
+);
+```
+
+### 5. Lista de Variantes
+
+```tsx
+const VariantsList = () => (
+  <ul>
+    <li>
+      <code>primary</code>: Para ações principais e call-to-actions
+    </li>
+    <li>
+      <code>secondary</code>: Para ações secundárias e alternativas
+    </li>
+    <li>
+      <code>tertiary</code>: Para ações terciárias discretas
+    </li>
+  </ul>
+);
+```
+
+### 6. Componentes Visuais (NÃO EXPORTADOS)
+
+```tsx
+// ✅ CORRETO: Componente local, não exportado
+const Variants = (): JSX.Element => (
+  <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+    <ComponentName variant="primary">primary</ComponentName>
+    <ComponentName variant="secondary">secondary</ComponentName>
+    <ComponentName variant="tertiary">tertiary</ComponentName>
+  </div>
+);
+
+// ✅ CORRETO: Componente local, não exportado
+const Sizes = (): JSX.Element => (
+  <div
+    style={{
+      display: 'flex',
+      gap: '16px',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+    }}
+  >
+    <ComponentName size="sm">Pequeno</ComponentName>
+    <ComponentName size="md">Médio</ComponentName>
+    <ComponentName size="lg">Grande</ComponentName>
+  </div>
+);
+
+// ✅ CORRETO: Componente local, não exportado
+const States = (): JSX.Element => (
+  <div
+    style={{
+      display: 'flex',
+      gap: '16px',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+    }}
+  >
+    <ComponentName disabled>Desabilitado</ComponentName>
+    <ComponentName loading>Carregando</ComponentName>
+  </div>
+);
+```
+
+### 7. Renderização Direta (SEM DocBlock.Canvas)
+
+```tsx
+// ✅ CORRETO: Renderização direta do componente
+<h3 id="variantes">Variantes</h3>
+<VariantsList />
+<Variants />
+
+// ❌ INCORRETO: Usando DocBlock.Canvas (cria item no sidebar)
+<h3>Variantes</h3>
+<VariantsList />
+<DocBlock.Canvas of={Variants} />
+```
+
+### 8. IDs para Ancoragem
+
+```tsx
+// ✅ SEMPRE adicione IDs às seções para permitir ancoragem
+<h3 id="variantes">Variantes</h3>
+<h3 id="tamanhos">Tamanhos</h3>
+<h3 id="estados">Estados</h3>
+```
+
+### 9. Componentes de Descrição
+
+```tsx
+const StatesDescription = (): JSX.Element => (
+  <>
+    <DocBlock.Markdown>
+      Use as props de estado para diferentes contextos:
+    </DocBlock.Markdown>
+    <ul>
+      <li>
+        <code>disabled</code>: Quando a ação não está disponível
+      </li>
+      <li>
+        <code>loading</code>: Durante operações assíncronas
+      </li>
+    </ul>
+  </>
+);
+```
+
+### 10. Exemplos de Uso
+
+```tsx
+const UsageExamples = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
+
+    <h3>Uso Básico</h3>
+    <DocBlock.Source
+      dark
+      code={`<ComponentName variant="primary">
+  Conteúdo Básico
+</ComponentName>`}
+    />
+
+    <h3>Em Formulários</h3>
+    <DocBlock.Source
+      dark
+      code={`<form onSubmit={handleSubmit}>
+  <ComponentName
+    name="fieldName"
+    required
+  />
+  <Button type="submit">Enviar</Button>
+</form>`}
+    />
+  </>
+);
+```
+
+### 11. Melhores Práticas
+
+```tsx
+const BestPractices = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Melhores Práticas</DocBlock.Heading>
+
+    <h3>1. Uso Geral</h3>
+    <ul>
+      <li>
+        Use <code>variant=&quot;primary&quot;</code> para ações principais
+      </li>
+      <li>
+        Use <code>variant=&quot;secondary&quot;</code> para ações alternativas
+      </li>
+      <li>Mantenha consistência no uso de tamanhos</li>
+    </ul>
+
+    <h3>2. Acessibilidade</h3>
+    <ul>
+      <li>Sempre especifique atributos apropriados</li>
+      <li>Use textos descritivos que indiquem claramente a função</li>
+      <li>Forneça feedback visual claro para estados</li>
+      <li>Mantenha comportamento consistente em toda a aplicação</li>
+    </ul>
+  </>
+);
+```
+
+### 12. Classes CSS
+
+```tsx
+const CssClasses = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Classes CSS</DocBlock.Heading>
+    <table>
+      <thead>
+        <tr>
+          <th>Classe</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>.ods-component</code>
+          </td>
+          <td>Estilos aplicados ao elemento raiz.</td>
+        </tr>
+        <tr>
+          <td>
+            <code>.ods-component--variant</code>
+          </td>
+          <td>Define estilos específicos da variante.</td>
+        </tr>
+      </tbody>
+    </table>
+  </>
+);
+```
+
+### 13. Referência da API
+
+```tsx
+const ApiReference = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Referência da API</DocBlock.Heading>
+    <DocBlock.Markdown>
+      O componente é baseado no elemento HTML apropriado e suporta todos os atributos padrão relevantes.
+    </DocBlock.Markdown>
+    <table style={{ width: '100%' }}>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>variant</td>
+          <td><code>&quot;primary&quot; | &quot;secondary&quot; | &quot;tertiary&quot;</code></td>
+          <td><code>&quot;primary&quot;</code></td>
+          <td>Define a variante visual do componente. Primary para ações principais, secondary para alternativas, tertiary para ações discretas.</td>
+        </tr>
+        <tr>
+          <td>size</td>
+          <td><code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</code></td>
+          <td><code>&quot;md&quot;</code></td>
+          <td>Controla o tamanho do componente. Pequeno (sm), médio (md) ou grande (lg).</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, desabilita o componente e impede interação do usuário.</td>
+        </tr>
+        <tr>
+          <td>loading</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, exibe um estado de carregamento com indicador visual apropriado.</td>
+        </tr>
+        <tr>
+          <td>blocked</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, faz o componente ocupar toda a largura disponível do container.</td>
+        </tr>
+      </tbody>
+    </table>
+    <DocBlock.Markdown>
+      A ref é encaminhada para o elemento HTML subjacente. Qualquer outra prop fornecida será passada para o elemento apropriado.
+    </DocBlock.Markdown>
+  </>
+);
+```
+
+**Exemplos específicos por tipo de componente:**
+
+**Para componentes de entrada (Input, TextArea, etc.):**
+```tsx
+const ApiReference = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Referência da API</DocBlock.Heading>
+    <DocBlock.Markdown>
+      O componente de entrada é baseado no elemento input e suporta todos os atributos padrão de input.
+    </DocBlock.Markdown>
+    <table style={{ width: '100%' }}>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>type</td>
+          <td><code>&quot;text&quot; | &quot;email&quot; | &quot;password&quot;</code></td>
+          <td><code>&quot;text&quot;</code></td>
+          <td>Define o tipo de entrada do campo.</td>
+        </tr>
+        <tr>
+          <td>label</td>
+          <td><code>string</code></td>
+          <td><code>undefined</code></td>
+          <td>Rótulo descritivo do campo de entrada.</td>
+        </tr>
+        <tr>
+          <td>placeholder</td>
+          <td><code>string</code></td>
+          <td><code>undefined</code></td>
+          <td>Texto de orientação exibido quando o campo está vazio.</td>
+        </tr>
+        <tr>
+          <td>helperText</td>
+          <td><code>string</code></td>
+          <td><code>undefined</code></td>
+          <td>Texto auxiliar para fornecer contexto adicional.</td>
+        </tr>
+        <tr>
+          <td>error</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, exibe o estilo de erro para indicar validação falhou.</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td><code>boolean</code></td>
+          <td><code>false</code></td>
+          <td>Quando true, desabilita o campo e impede edição.</td>
+        </tr>
+      </tbody>
+    </table>
+  </>
+);
+```
+
+**Para componentes especializados (Currency Input):**
+```tsx
+const ApiReference = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Referência da API</DocBlock.Heading>
+    <DocBlock.Markdown>
+      O componente Currency Input é baseado no elemento input e suporta todos os atributos padrão de input.
+    </DocBlock.Markdown>
+    <table style={{ width: '100%' }}>
+      <thead>
+        <tr>
+          <th>Prop</th>
+          <th>Tipo</th>
+          <th>Padrão</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>adornment</td>
+          <td><code>React.ReactElement | string</code></td>
+          <td><code>undefined</code></td>
+          <td>Símbolo ou código da moeda. Use símbolos ($, €, £) para posição esquerda, códigos (USD, EUR) para direita.</td>
+        </tr>
+        <tr>
+          <td>position</td>
+          <td><code>&quot;left&quot; | &quot;right&quot;</code></td>
+          <td><code>&quot;right&quot;</code></td>
+          <td>Posição do adorno da moeda. Esquerda é comum para símbolos, direita para códigos de moeda.</td>
+        </tr>
+      </tbody>
+    </table>
+    <DocBlock.Markdown>
+      A ref é encaminhada para o elemento input. Qualquer outra prop fornecida será passada para o elemento input.
+    </DocBlock.Markdown>
+  </>
+);
+```
+
+## Padrões Específicos
+
+### Sidebar Limpo vs Sidebar com Itens
+
+**✅ PADRÃO CORRETO (Sidebar Limpo):**
+
+```
+- Button
+  - Docs ← Única entrada, documentação completa
+```
+
+**❌ PADRÃO INCORRETO (Sidebar Poluído):**
+
+```
+- Button
+  - Docs
+  - Usage
+  - Variants
+  - Size
+  - Blocked
+  - Disabled
+  - Loading
+  - Loading Size
+```
+
+### Exports vs Componentes Locais
+
+```tsx
+// ✅ CORRETO: Apenas Usage exportado
+export const Usage: Story = { /* ... */ };
+
+// ✅ CORRETO: Componentes visuais locais
+const Variants = (): JSX.Element => (/* ... */);
+const Sizes = (): JSX.Element => (/* ... */);
+const States = (): JSX.Element => (/* ... */);
+
+// ❌ INCORRETO: Exportando componentes visuais
+export const Variants = (): JSX.Element => (/* ... */);
+export const Sizes = (): JSX.Element => (/* ... */);
+```
+
+### Renderização na Documentação
+
+```tsx
+// ✅ CORRETO: Renderização direta
+<h3 id="variantes">Variantes</h3>
+<VariantsList />
+<Variants />
+
+// ❌ INCORRETO: DocBlock.Canvas com stories exportadas
+<h3>Variantes</h3>
+<VariantsList />
+<DocBlock.Canvas of={Variants} />
+```
+
+### Decorators para Layout
+
+```tsx
+export const Usage: Story = {
+  args: {
+    children: 'Texto do Componente',
+  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
+};
+```
+
+### ArgTypes Detalhados
+
+```tsx
+argTypes: {
+  variant: {
+    description: 'A variante visual do componente.',
+    control: 'select',
+    options: ['primary', 'secondary', 'tertiary'],
+  },
+  size: {
+    description: 'O tamanho do componente.',
+    control: 'select',
+    options: ['sm', 'md', 'lg'],
+  },
+  disabled: {
+    description: 'Desabilita o componente.',
+    control: 'boolean',
+  },
+  loading: {
+    description: 'Exibe um estado de carregamento.',
+    control: 'boolean',
+  },
+  blocked: {
+    description: 'Faz o componente ocupar toda a largura disponível.',
+    control: 'boolean',
+  },
+},
+```
+
+### Containers de Layout
+
+```tsx
+// Para componentes inline
+<div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  {/* Componentes */}
+</div>
+
+// Para componentes alinhados
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+}}>
+  {/* Componentes */}
+</div>
+
+// Para componentes de largura total
+<div style={{
+  display: 'flex',
+  gap: '16px',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  minWidth: '300px',
+}}>
+  {/* Componente */}
+</div>
+```
+
+### Tratamento de Aspas
+
+**✅ SEMPRE escape aspas em JSX:**
+
+```tsx
+// ❌ Incorreto - causa erro de linter
+<li>Use <code>type="submit"</code> para envios</li>
+
+// ✅ Correto
+<li>Use <code>type=&quot;submit&quot;</code> para envios</li>
+```
+
+### Tabelas de Referência
+
+```tsx
+const ButtonType = (): JSX.Element => (
+  <table style={{ width: '100%' }}>
+    <thead>
+      <tr>
+        <th>Prop</th>
+        <th>Tipo</th>
+        <th>Descrição</th>
+        <th>Exemplo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>variant</td>
+        <td>string</td>
+        <td>Define o estilo visual</td>
+        <td>
+          <DocBlock.Source code={`<Component variant="primary" />`} />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+);
+```
+
+## Estrutura Organizacional
+
+### ✅ Ordem das Seções
+
+1. **Introduction** - Título, descrição e importação
+2. **Usage** - Story principal com controles
+3. **CommonPatterns** - Padrões comuns de código
+4. **Variants** - Lista e demonstração de variantes
+5. **Sizes** - Demonstração de tamanhos
+6. **States** - Estados especiais (disabled, loading, etc.)
+7. **UsageExamples** - Exemplos práticos detalhados
+8. **BestPractices** - Guidelines e melhores práticas
+9. **CssClasses** - Documentação das classes CSS
+10. **ApiReference** - Referência completa das props e tipos
+
+### ✅ Nomenclatura de Componentes
+
+- **PascalCase** para componentes React
+- **Nomes descritivos** que indicam a função
+- **Sufixo "Description"** para componentes explicativos
+  - **Plural** para listas (VariantsList, UsageExamples)
+
+## ⚠️ PADRÃO ATUALIZADO: Sidebar com Controles Seletivos
+
+### ✅ Abordagem Atual (Recomendada)
+
+Todas as seções aparecem no sidebar, mas apenas `Usage` tem controles ativos:
+
+```
+- Button
+  - Docs
+  - Usage         ← Controles ATIVOS (variant, size, etc.)
+  - Variants      ← Controles DESABILITADOS (apenas visualização)
+  - Size          ← Controles DESABILITADOS (apenas visualização)
+  - Blocked       ← Controles DESABILITADOS (apenas visualização)
+  - Disabled      ← Controles DESABILITADOS (apenas visualização)
+  - Loading       ← Controles DESABILITADOS (apenas visualização)
+  - LoadingSize   ← Controles DESABILITADOS (apenas visualização)
+```
+
+### Vantagens desta Abordagem
+
+- ✅ **Navegação completa**: Todas as seções acessíveis pelo sidebar
+- ✅ **Controles focados**: Apenas Usage permite interação
+- ✅ **Visualização limpa**: Seções visuais sem controles desnecessários
+- ✅ **Experiência intuitiva**: Usuário testa no Usage, visualiza nas outras seções
+
+### Como Implementar Controles Seletivos
+
+**1. Story Usage com controles completos:**
+
+```tsx
+export const Usage: Story = {
+  args: { children: 'Texto' },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{ minWidth: '300px', display: 'flex', justifyContent: 'center' }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
+  // Controles ativos por padrão
+};
+```
+
+**2. Stories visuais sem controles:**
+
+```tsx
+export const Variants: Story = {
+  parameters: {
+    controls: { disable: true }, // ← Desabilita controles
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <Button variant="primary">primary</Button>
+      <Button variant="secondary">secondary</Button>
+      {/* ... outros botões */}
+    </div>
+  ),
+};
+
+export const Size: Story = {
+  parameters: {
+    controls: { disable: true }, // ← Desabilita controles
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+      <Button size="sm">Pequeno</Button>
+      <Button size="md">Médio</Button>
+      <Button size="lg">Grande</Button>
+    </div>
+  ),
+};
+```
+
+**3. Documentação com DocBlock.Canvas:**
+
+```tsx
+<DocBlock.Heading>Exemplos</DocBlock.Heading>
+<h3>Variantes</h3>
+<VariantsList />
+<DocBlock.Canvas of={Variants} />
+<h3>Tamanhos</h3>
+<DocBlock.Canvas of={Size} />
+```
+
+**4. Padrão de configuração:**
+
+```tsx
+// ✅ CORRETO: Apenas Usage tem controles
+export const Usage: Story = { /* sem parameters.controls */ };
+
+// ✅ CORRETO: Outras stories sem controles
+export const Variants: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (/* JSX */)
+};
+```
+
+## Checklist de Qualidade
+
+### ✅ Estrutura TSX
+
+- [ ] Imports corretos (`Meta`, `StoryObj`, `DocBlock`)
+- [ ] Story `Usage` exportada com controles ativos
+- [ ] Stories visuais exportadas com controles desabilitados
+- [ ] ArgTypes configurados apropriadamente
+- [ ] `parameters.docs.page` implementado
+- [ ] Aspas escapadas com `&quot;`
+
+### ✅ Sidebar com Controles Seletivos
+
+- [ ] Todas as seções aparecem no sidebar
+- [ ] `Usage` story tem controles ativos
+- [ ] Stories visuais têm `parameters.controls.disable: true`
+- [ ] Navegação fluida entre seções
+- [ ] Canvas renderizado corretamente com DocBlock.Canvas
+
+### ✅ Componentes de Documentação
+
+- [ ] `Introduction` com título e visão geral
+- [ ] `CommonPatterns` com exemplos de código
+- [ ] `VariantsList` explicando cada variante
+- [ ] Componentes visuais (`Variants`, `Sizes`, `States`)
+- [ ] `UsageExamples` com casos práticos
+- [ ] `BestPractices` com guidelines
+- [ ] `CssClasses` documentando classes
+- [ ] `ApiReference` com tabela completa de props
+
+### ✅ Stories e Layout
+
+- [ ] `Usage` story principal com decorator
+- [ ] Decorator com layout apropriado (minWidth: 300px)
+- [ ] Containers com estilos apropriados
+- [ ] Exemplos representativos
+
+### ✅ Qualidade
+
+- [ ] TypeScript correto
+- [ ] Sem erros de linter
+- [ ] Documentação clara e completa
+- [ ] Padrão consistente com Button.stories.tsx
+- [ ] Navegação fluida sem canvas separados
+
+---
+
+**Versão:** 3.3  
+**Última atualização:** Dezembro 2024  
+**Baseado em:** Button.stories.tsx (sidebar com âncoras)  
+**Formato:** TypeScript (.tsx) com Storybook Blocks  
+**Responsável:** Equipe Ocean Web
+
+**Opções de Implementação:**
+
+- **Opção 1:** Sidebar limpo (documentação unificada)
+- **Opção 2:** Sidebar com âncoras (navegação por seções) ← Configuração atual
