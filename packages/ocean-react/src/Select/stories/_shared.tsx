@@ -113,29 +113,6 @@ export const commonFormArgTypes = {
   },
 };
 
-export const commonFormArgTypes2 = {
-  label: {
-    description: 'O rótulo do campo.',
-    control: 'text',
-  },
-  placeholder: {
-    description: 'Texto exibido quando o campo está vazio.',
-    control: 'text',
-  },
-  helperText: {
-    description: 'Texto de ajuda exibido abaixo do campo.',
-    control: 'text',
-  },
-  error: {
-    description: 'Quando true, aplica o estilo de erro ao campo.',
-    control: 'boolean',
-  },
-  disabled: {
-    description: 'Quando true, desabilita o campo.',
-    control: 'boolean',
-  },
-};
-
 // Factory para criar componente de Introdução
 export const createIntroduction = (config: IntroductionConfig): React.FC => {
   const IntroductionComponent = (): JSX.Element => (
@@ -617,7 +594,7 @@ export const createSelectUsageExamples = (): React.FC =>
   createUsageExamplesConfig([
     {
       title: 'Seleção de País',
-      code: SHARED_CODE_EXAMPLES.SELECT_COUNTRY_EXAMPLE,
+      code: SELECT_COUNTRY_EXAMPLE,
     },
     {
       title: 'Formulários com Validação',
@@ -1193,6 +1170,14 @@ export const DEMO_CONFIGS = [
 ];
 
 // Códigos de exemplo compartilhados
+const SELECT_COUNTRY_EXAMPLE = `<Select
+  label="País"
+  placeholder="Selecione um país..."
+  helperText="Escolha seu país de residência"
+  options={countries}
+  onChange={handleCountryChange}
+/>`;
+
 export const SHARED_CODE_EXAMPLES = {
   CITY_SEARCH: `<SelectAutocomplete
   label="Cidade"
@@ -1239,11 +1224,8 @@ const handleSearch = useMemo(
   label="País"
   placeholder="Selecione um país..."
   helperText="Escolha seu país de residência"
-  options={[
-    { value: 'br', label: 'Brasil' },
-    { value: 'us', label: 'Estados Unidos' },
-    { value: 'fr', label: 'França' }
-  ]}
+  options={countries}
+  onChange={handleCountryChange}
 />
 
 // Com validação
@@ -1290,13 +1272,7 @@ const handleSearch = useMemo(
     onChange={handleCustomerSelect}
   />
 </form>`,
-  SELECT_COUNTRY_EXAMPLE: `<Select
-  label="País"
-  placeholder="Selecione seu país..."
-  helperText="Escolha seu país de residência"
-  options={countries}
-  onChange={handleCountryChange}
-/>`,
+
   SELECT_FORM_VALIDATION: `<form onSubmit={handleSubmit}>
   <Select
     name="category"
