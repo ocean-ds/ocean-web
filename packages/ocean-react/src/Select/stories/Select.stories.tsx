@@ -29,13 +29,16 @@ import {
 
 type Story = StoryObj<typeof Select>;
 
-// Criação dos componentes usando as configurações compartilhadas
+// Component creation using shared configurations
 const Introduction = createIntroduction(SELECT_INTRODUCTION_CONFIG);
 const CommonPatterns = createCommonPatterns(createSelectCommonPatterns());
 const BestPractices = createBestPractices(SELECT_BEST_PRACTICES_CONFIG);
 const CssClasses = createCssClasses(COMMON_SELECT_CSS_CLASSES);
+const DataTypesList = createCodeList(SELECT_DATA_TYPES_LIST);
+const StatesDescription = createStatesDescription(SELECT_STATES_DESCRIPTION);
+const UsageExamples = createSelectUsageExamples();
 
-// API Reference específica do Select
+// API Reference
 const apiReferenceConfig: ApiReferenceConfig = {
   description:
     'O componente Select é baseado no elemento select e suporta todos os atributos padrão de select.',
@@ -45,20 +48,13 @@ const apiReferenceConfig: ApiReferenceConfig = {
 };
 const ApiReference = createApiReference(apiReferenceConfig);
 
-// Listas de dados usando as configurações compartilhadas
-const DataTypesList = createCodeList(SELECT_DATA_TYPES_LIST);
-const StatesDescription = createStatesDescription(SELECT_STATES_DESCRIPTION);
-
-// Demonstrações usando os factories compartilhados
+// Demo components
 const DataTypes = createDataTypesDemo(Select);
 const States = createStatesDemo(Select, SELECT_COMMON_DATA.PRIORITIES);
 const ListSizes = createListSizesDemo(Select);
-const UsageExamples = createSelectUsageExamples();
 
-// Story principal com controles ativos
+// Stories
 export const Usage: Story = createUsageStory();
-
-// Stories visuais com controles desabilitados
 export const DataTypesStory: Story = createDisabledControlsStory(DataTypes);
 export const StatesStory: Story = createDisabledControlsStory(States);
 export const ListSizesStory: Story = createDisabledControlsStory(ListSizes);

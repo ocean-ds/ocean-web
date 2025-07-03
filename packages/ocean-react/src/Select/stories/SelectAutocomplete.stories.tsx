@@ -30,7 +30,7 @@ import {
 
 type Story = StoryObj<typeof SelectAutocomplete>;
 
-// Criação dos componentes usando as configurações compartilhadas
+// Component creation using shared configurations
 const Introduction = createIntroduction(
   SELECT_AUTOCOMPLETE_INTRODUCTION_CONFIG
 );
@@ -41,8 +41,13 @@ const BestPractices = createBestPractices(
   SELECT_AUTOCOMPLETE_BEST_PRACTICES_CONFIG
 );
 const CssClasses = createCssClasses(COMMON_SELECT_AUTOCOMPLETE_CSS_CLASSES);
+const UseCasesList = createCodeList(SELECT_AUTOCOMPLETE_USE_CASES_LIST);
+const StatesDescription = createStatesDescription(
+  SELECT_AUTOCOMPLETE_STATES_DESCRIPTION
+);
+const UsageExamples = createSelectAutocompleteUsageExamples();
 
-// API Reference específica do SelectAutocomplete
+// API Reference
 const apiReferenceConfig: ApiReferenceConfig = {
   description:
     'O componente SelectAutocomplete é baseado no elemento input com funcionalidades de autocomplete e suporta todos os atributos padrão de input.',
@@ -52,30 +57,21 @@ const apiReferenceConfig: ApiReferenceConfig = {
 };
 const ApiReference = createApiReference(apiReferenceConfig);
 
-// Listas de dados usando as configurações compartilhadas
-const UseCasesList = createCodeList(SELECT_AUTOCOMPLETE_USE_CASES_LIST);
-const StatesDescription = createStatesDescription(
-  SELECT_AUTOCOMPLETE_STATES_DESCRIPTION
-);
-
-// Demonstrações usando os factories compartilhados
+// Demo components
 const UseCases = createUseCasesDemo(SelectAutocomplete);
 const States = createStatesDemo(
   SelectAutocomplete,
   SELECT_COMMON_DATA.PRIORITIES
 );
 const Performance = createPerformanceDemo(SelectAutocomplete);
-const UsageExamples = createSelectAutocompleteUsageExamples();
 
-// Story principal com controles ativos
+// Stories
 export const Usage: Story = createUsageStory(
   generateNumberOptions(10).map((opt) => ({
     ...opt,
     disabled: opt.value === 'opt-3',
   }))
 );
-
-// Stories visuais com controles desabilitados
 export const UseCasesStory: Story = createDisabledControlsStory(UseCases);
 export const StatesStory: Story = createDisabledControlsStory(States);
 export const PerformanceStory: Story = createDisabledControlsStory(Performance);
@@ -90,7 +86,6 @@ const meta: Meta<typeof SelectAutocomplete> = {
       description: 'Texto exibido quando nenhuma opção corresponde à busca.',
       control: 'text',
     },
-    // Props específicas do SelectAutocomplete
     onInputChange: { table: { disable: true } },
     inputValue: { table: { disable: true } },
   }),
@@ -113,11 +108,7 @@ const meta: Meta<typeof SelectAutocomplete> = {
             list: StatesDescription,
             story: StatesStory,
           },
-          {
-            id: 'performance',
-            title: 'Performance',
-            story: PerformanceStory,
-          },
+          { id: 'performance', title: 'Performance', story: PerformanceStory },
         ],
         UsageExamples,
         BestPractices,

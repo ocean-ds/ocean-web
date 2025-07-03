@@ -28,9 +28,12 @@ export const sharedContainerStyles = {
 };
 
 // Tipos para configuração de componentes de documentação
-export interface IntroductionConfig {
+export interface BaseConfig {
   title?: string;
   description: string;
+}
+
+export interface IntroductionConfig extends BaseConfig {
   overview: string;
   characteristics?: Array<{
     title: string;
@@ -65,8 +68,7 @@ export interface ApiProp {
   description: string;
 }
 
-export interface ApiReferenceConfig {
-  description: string;
+export interface ApiReferenceConfig extends BaseConfig {
   props: ApiProp[];
   footer?: string;
   inheritance?: string;
@@ -393,7 +395,7 @@ export const PRODUCTS = [
 }));
 
 // Props comuns da API para Select/SelectAutocomplete
-export const COMMON_SELECT_PROPS: ApiProp[] = [
+export const BASE_SELECT_PROPS: ApiProp[] = [
   {
     name: 'label',
     type: 'string',
@@ -428,7 +430,7 @@ export const COMMON_SELECT_PROPS: ApiProp[] = [
 ];
 
 // Props de controle compartilhadas entre Select e SelectAutocomplete
-export const SHARED_CONTROL_PROPS: ApiProp[] = [
+export const CONTROL_PROPS: ApiProp[] = [
   {
     name: 'value',
     type: 'string',
@@ -849,8 +851,8 @@ export const createUsageStory = (
 // Props específicas do Select
 export const SELECT_SPECIFIC_PROPS: ApiProp[] = [
   OPTIONS_PROP,
-  ...SHARED_CONTROL_PROPS,
-  ...COMMON_SELECT_PROPS,
+  ...CONTROL_PROPS,
+  ...BASE_SELECT_PROPS,
 ];
 
 // Props específicas do SelectAutocomplete
@@ -860,7 +862,7 @@ export const SELECT_AUTOCOMPLETE_SPECIFIC_PROPS: ApiProp[] = [
     description:
       'Array de opções para seleção e busca. Cada opção deve ter value e label.',
   },
-  ...SHARED_CONTROL_PROPS,
+  ...CONTROL_PROPS,
   {
     name: 'onInputChange',
     type: '(inputValue: string) => void',
@@ -879,7 +881,7 @@ export const SELECT_AUTOCOMPLETE_SPECIFIC_PROPS: ApiProp[] = [
     defaultValue: '"Nenhuma opção"',
     description: 'Texto exibido quando nenhuma opção corresponde à busca.',
   },
-  ...COMMON_SELECT_PROPS,
+  ...BASE_SELECT_PROPS,
 ];
 
 // Configurações compartilhadas
