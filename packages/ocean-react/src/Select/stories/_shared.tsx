@@ -427,6 +427,31 @@ export const COMMON_SELECT_PROPS: ApiProp[] = [
   },
 ];
 
+// Props de controle compartilhadas entre Select e SelectAutocomplete
+export const SHARED_CONTROL_PROPS: ApiProp[] = [
+  {
+    name: 'value',
+    type: 'string',
+    defaultValue: 'undefined',
+    description: 'O valor atual selecionado (modo controlado).',
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    defaultValue: 'undefined',
+    description: 'Callback chamado quando a seleção muda.',
+  },
+];
+
+// Prop de opções compartilhada
+export const OPTIONS_PROP: ApiProp = {
+  name: 'options',
+  type: 'Array<{ value: string; label: string; disabled?: boolean }>',
+  defaultValue: '[]',
+  description:
+    'Array de opções para seleção. Cada opção deve ter value e label.',
+};
+
 // CSS Classes comuns para Select
 export const COMMON_SELECT_CSS_CLASSES: CssClass[] = [
   {
@@ -969,49 +994,19 @@ export const createUsageStory = (
 
 // Props específicas do Select
 export const SELECT_SPECIFIC_PROPS: ApiProp[] = [
-  {
-    name: 'options',
-    type: 'Array<{ value: string; label: string; disabled?: boolean }>',
-    defaultValue: '[]',
-    description:
-      'Array de opções para seleção. Cada opção deve ter value e label.',
-  },
-  {
-    name: 'value',
-    type: 'string',
-    defaultValue: 'undefined',
-    description: 'O valor atual selecionado (modo controlado).',
-  },
-  {
-    name: 'onChange',
-    type: '(value: string) => void',
-    defaultValue: 'undefined',
-    description: 'Callback chamado quando a seleção muda.',
-  },
+  OPTIONS_PROP,
+  ...SHARED_CONTROL_PROPS,
   ...COMMON_SELECT_PROPS,
 ];
 
 // Props específicas do SelectAutocomplete
 export const SELECT_AUTOCOMPLETE_SPECIFIC_PROPS: ApiProp[] = [
   {
-    name: 'options',
-    type: 'Array<{ value: string; label: string; disabled?: boolean }>',
-    defaultValue: '[]',
+    ...OPTIONS_PROP,
     description:
       'Array de opções para seleção e busca. Cada opção deve ter value e label.',
   },
-  {
-    name: 'value',
-    type: 'string',
-    defaultValue: 'undefined',
-    description: 'O valor atual selecionado (modo controlado).',
-  },
-  {
-    name: 'onChange',
-    type: '(value: string) => void',
-    defaultValue: 'undefined',
-    description: 'Callback chamado quando a seleção muda.',
-  },
+  ...SHARED_CONTROL_PROPS,
   {
     name: 'onInputChange',
     type: '(inputValue: string) => void',
