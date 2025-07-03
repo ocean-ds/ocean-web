@@ -614,17 +614,15 @@ export const createSelectAutocompleteUsageExamples = (): React.FC => {
 export const createListSizesDemo = (
   Component: React.ComponentType<any>
 ): React.FC => {
+  const keys = ['listSizeSmall', 'listSizeMedium', 'listSizeLarge'];
   const ListSizesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.LIST_SIZE_SMALL)}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.LIST_SIZE_MEDIUM)}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.LIST_SIZE_LARGE)}
-      />
+      {keys.map((key) => (
+        <Component
+          key={key}
+          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
+        />
+      ))}
     </div>
   );
   return ListSizesDemoComponent;
@@ -681,11 +679,15 @@ const createComponentProps = (config: any) => ({
 export const createUseCasesDemo = (
   Component: React.ComponentType<any>
 ): React.FC => {
+  const keys = ['city', 'product', 'client'];
   const UseCasesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
-      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.CITY)} />
-      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.PRODUCT)} />
-      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.CLIENT)} />
+      {keys.map((key) => (
+        <Component
+          key={key}
+          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
+        />
+      ))}
     </div>
   );
   return UseCasesDemoComponent;
@@ -695,13 +697,15 @@ export const createUseCasesDemo = (
 export const createPerformanceDemo = (
   Component: React.ComponentType<any>
 ): React.FC => {
+  const keys = ['small', 'large', 'productsList'];
   const PerformanceDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
-      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.SMALL_LIST)} />
-      <Component {...createComponentProps(DEMO_COMPONENTS_CONFIG.LARGE_LIST)} />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.PRODUCTS_LIST)}
-      />
+      {keys.map((key) => (
+        <Component
+          key={key}
+          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
+        />
+      ))}
     </div>
   );
   return PerformanceDemoComponent;
@@ -766,20 +770,16 @@ export const createStatesDemo = (
   Component: React.ComponentType<any>,
   options: Array<{ value: string; label: string }>
 ): React.FC => {
+  const keys = ['stateError', 'stateNormal', 'stateDisabled'];
   const StatesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.STATE_ERROR)}
-        options={options}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.STATE_NORMAL)}
-        options={options}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.STATE_DISABLED)}
-        options={options}
-      />
+      {keys.map((key) => (
+        <Component
+          key={key}
+          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
+          options={options}
+        />
+      ))}
     </div>
   );
   return StatesDemoComponent;
@@ -789,20 +789,15 @@ export const createStatesDemo = (
 export const createDataTypesDemo = (
   Component: React.ComponentType<any>
 ): React.FC => {
+  const keys = ['dataCountry', 'dataCategory', 'dataPriority', 'dataStatus'];
   const DataTypesDemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_COUNTRY)}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_CATEGORY)}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_PRIORITY)}
-      />
-      <Component
-        {...createComponentProps(DEMO_COMPONENTS_CONFIG.DATA_STATUS)}
-      />
+      {keys.map((key) => (
+        <Component
+          key={key}
+          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
+        />
+      ))}
     </div>
   );
   return DataTypesDemoComponent;
@@ -1073,114 +1068,127 @@ export const createDocsPage = (config: {
   return DocsPageComponent;
 };
 
-// Dados compartilhados para demonstrações
-export const DEMO_COMPONENTS_CONFIG = {
-  CITY: {
+// Configurações unificadas para todos os demos
+export const DEMO_CONFIGS = [
+  {
+    key: 'city',
     label: 'Cidade',
     placeholder: 'Digite para buscar cidades...',
     helperText: 'Comece digitando o nome da cidade',
-    options: 'LARGE_CITIES', // referência para ser resolvida
+    options: 'LARGE_CITIES',
   },
-  PRODUCT: {
+  {
+    key: 'product',
     label: 'Produto',
     placeholder: 'Buscar produtos...',
     helperText: 'Digite o nome ou categoria do produto',
-    options: 'PRODUCTS', // referência para ser resolvida
+    options: 'PRODUCTS',
   },
-  CLIENT: {
+  {
+    key: 'client',
     label: 'Cliente',
     placeholder: 'Nome do cliente...',
     helperText: 'Digite para filtrar clientes',
-    options: 'SELECT_COMMON_DATA.COUNTRIES', // referência para ser resolvida
+    options: 'SELECT_COMMON_DATA.COUNTRIES',
   },
-  SMALL_LIST: {
+  {
+    key: 'small',
     label: 'Lista Pequena (8 opções)',
     placeholder: 'Buscar...',
     helperText: 'Use Select simples para poucas opções',
     options: 'SELECT_COMMON_DATA.COUNTRIES',
   },
-  LARGE_LIST: {
+  {
+    key: 'large',
     label: 'Lista Grande (30+ opções)',
     placeholder: 'Digite para filtrar...',
     helperText: 'Ideal para listas grandes',
     options: 'LARGE_CITIES',
   },
-  PRODUCTS_LIST: {
+  {
+    key: 'productsList',
     label: 'Lista com Produtos (16 opções)',
     placeholder: 'Buscar produtos...',
     helperText: 'Ótimo para catálogos',
     options: 'PRODUCTS',
   },
-  // Configurações para List Size Demo
-  LIST_SIZE_SMALL: {
+  {
+    key: 'listSizeSmall',
     label: 'Lista Pequena (5 opções)',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.SMALL_LIST_HELP',
     options: 'SELECT_COMMON_DATA.PRIORITIES',
   },
-  LIST_SIZE_MEDIUM: {
+  {
+    key: 'listSizeMedium',
     label: 'Lista Média (8 opções)',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.MEDIUM_LIST_HELP',
     options: 'SELECT_COMMON_DATA.COUNTRIES',
   },
-  LIST_SIZE_LARGE: {
+  {
+    key: 'listSizeLarge',
     label: 'Lista Grande (10+ opções)',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.LARGE_LIST_HELP',
     options: 'generateNumberOptions(15, "Opção")',
   },
-  // Configurações para States Demo
-  STATE_ERROR: {
+  {
+    key: 'stateError',
     label: 'Campo com Erro',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.ERROR_STATE',
     error: true,
   },
-  STATE_NORMAL: {
+  {
+    key: 'stateNormal',
     label: 'Campo Normal',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_OPTION',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.NORMAL_STATE',
   },
-  STATE_DISABLED: {
+  {
+    key: 'stateDisabled',
     label: 'Campo Desabilitado',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.NOT_AVAILABLE',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.DISABLED_STATE',
     disabled: true,
   },
-  // Configurações para Data Types Demo
-  DATA_COUNTRY: {
+  {
+    key: 'dataCountry',
     label: 'País',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_COUNTRY',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.COUNTRY_HELP',
     options: 'SELECT_COMMON_DATA.COUNTRIES',
   },
-  DATA_CATEGORY: {
+  {
+    key: 'dataCategory',
     label: 'Categoria',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_CATEGORY',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.CATEGORY_HELP',
     options: 'SELECT_COMMON_DATA.CATEGORIES',
   },
-  DATA_PRIORITY: {
+  {
+    key: 'dataPriority',
     label: 'Prioridade',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_PRIORITY',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.PRIORITY_HELP',
     options: 'SELECT_COMMON_DATA.PRIORITIES',
   },
-  DATA_STATUS: {
+  {
+    key: 'dataStatus',
     label: 'Status',
     placeholder: 'SHARED_TEXTS.PLACEHOLDERS.SELECT_STATUS',
     helperText: 'SHARED_TEXTS.HELPER_TEXTS.STATUS_HELP',
     options: 'SELECT_COMMON_DATA.STATUSES',
   },
-};
+];
 
 // Códigos de exemplo compartilhados
 export const SHARED_CODE_EXAMPLES = {
   CITY_SEARCH: `<SelectAutocomplete
-  label="${DEMO_COMPONENTS_CONFIG.CITY.label}"
-  placeholder="${DEMO_COMPONENTS_CONFIG.CITY.placeholder}"
-  helperText="${DEMO_COMPONENTS_CONFIG.CITY.helperText}"
+  label="Cidade"
+  placeholder="Digite para buscar cidades..."
+  helperText="Comece digitando o nome da cidade"
   options={cities}
   onChange={handleCitySelect}
 />`,
