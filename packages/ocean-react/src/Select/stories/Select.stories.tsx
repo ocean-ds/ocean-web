@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as DocBlock from '@storybook/blocks';
-import React from 'react';
 import Select from '../Select';
 import {
   createIntroduction,
@@ -16,279 +14,46 @@ import {
   createSelectArgTypes,
   createUsageStory,
   createDocsPage,
-  sharedContainerStyles,
+  createSelectCommonPatterns,
+  createSelectUsageExamples,
+  createListSizesDemo,
   SELECT_COMMON_DATA,
-  generateNumberOptions,
-  COMMON_SELECT_PROPS,
   COMMON_SELECT_CSS_CLASSES,
-  type IntroductionConfig,
-  type CommonPatternsConfig,
-  type BestPracticesConfig,
+  SELECT_INTRODUCTION_CONFIG,
+  SELECT_BEST_PRACTICES_CONFIG,
+  SELECT_SPECIFIC_PROPS,
+  SELECT_DATA_TYPES_LIST,
+  SELECT_STATES_DESCRIPTION,
   type ApiReferenceConfig,
 } from './_shared';
 
 type Story = StoryObj<typeof Select>;
 
-// Configurações para componentes de documentação
-const introductionConfig: IntroductionConfig = {
-  description:
-    'Componente de seleção que permite ao usuário escolher uma opção de uma lista suspensa.',
-  overview:
-    'O componente Select oferece uma interface limpa e intuitiva para seleção de opções em listas. É ideal para formulários onde o usuário precisa escolher entre múltiplas alternativas pré-definidas. Suporta placeholder, validação de erro, estado desabilitado e texto de ajuda.',
-  characteristics: [
-    {
-      title: 'Lista Suspensa',
-      description: 'Interface compacta que se expande para mostrar opções',
-    },
-    {
-      title: 'Busca Integrada',
-      description: 'Permite filtrar opções conforme o usuário digita',
-    },
-    {
-      title: 'Validação',
-      description: 'Estados de erro e validação em tempo real',
-    },
-    {
-      title: 'Acessibilidade',
-      description: 'Navegação por teclado e suporte a leitores de tela',
-    },
-    {
-      title: 'Customizável',
-      description: 'Suporte a placeholder, helper text e estados visuais',
-    },
-  ],
-  importPath: `import { Select } from '@useblu/ocean-react';`,
-};
+// Criação dos componentes usando as configurações compartilhadas
+const Introduction = createIntroduction(SELECT_INTRODUCTION_CONFIG);
+const CommonPatterns = createCommonPatterns(createSelectCommonPatterns());
+const BestPractices = createBestPractices(SELECT_BEST_PRACTICES_CONFIG);
+const CssClasses = createCssClasses(COMMON_SELECT_CSS_CLASSES);
 
-const commonPatternsConfig: CommonPatternsConfig = {
-  patterns: [
-    {
-      code: `// Uso básico
-<Select
-  label="País"
-  placeholder="Selecione um país..."
-  helperText="Escolha seu país de residência"
-  options={[
-    { value: 'br', label: 'Brasil' },
-    { value: 'us', label: 'Estados Unidos' },
-    { value: 'fr', label: 'França' }
-  ]}
-/>
-
-// Com validação
-<Select
-  label="Categoria"
-  error={hasError}
-  helperText={hasError ? "Este campo é obrigatório" : "Selecione uma categoria"}
-  options={categories}
-/>
-
-// Em formulários
-<form onSubmit={handleSubmit}>
-  <Select
-    name="priority"
-    label="Prioridade"
-    required
-    options={priorities}
-  />
-</form>`,
-    },
-  ],
-};
-
-const bestPracticesConfig: BestPracticesConfig = {
-  sections: [
-    {
-      title: '1. Uso Geral',
-      items: [
-        'Use para listas de 3 a 100 opções para melhor performance',
-        'Forneça labels descritivos que indiquem claramente o propósito',
-        'Use placeholders que orientem sobre a ação esperada',
-        'Mantenha as opções em ordem lógica (alfabética, por frequência)',
-      ],
-    },
-    {
-      title: '2. Organização das Opções',
-      items: [
-        'Para até 10 opções: ordem alfabética ou por importância',
-        'Para 10-50 opções: considere agrupamento por categoria',
-        'Para 50+ opções: implemente busca ou use SelectAutocomplete',
-        'Coloque opções mais comuns no topo quando apropriado',
-      ],
-    },
-    {
-      title: '3. Acessibilidade',
-      items: [
-        'Sempre forneça labels apropriados para leitores de tela',
-        'Use helperText para orientações específicas',
-        'Mantenha navegação por teclado funcional (Enter, Esc, setas)',
-        'Forneça feedback claro sobre seleção atual',
-      ],
-    },
-    {
-      title: '4. Design e UX',
-      items: [
-        'Use placeholders que indiquem a ação (&ldquo;Selecione...&rdquo;)',
-        'Forneça feedback visual claro para estados de erro',
-        'Considere o contexto mobile - opções grandes o suficiente',
-        'Mantenha consistência com outros campos do formulário',
-      ],
-    },
-  ],
-};
-
-// Usando CSS Classes comuns
-const cssClasses = COMMON_SELECT_CSS_CLASSES;
-
-// Usando props comuns + props específicas do Select
+// API Reference específica do Select
 const apiReferenceConfig: ApiReferenceConfig = {
   description:
     'O componente Select é baseado no elemento select e suporta todos os atributos padrão de select.',
-  props: [
-    {
-      name: 'options',
-      type: 'Array<{ value: string; label: string; disabled?: boolean }>',
-      defaultValue: '[]',
-      description:
-        'Array de opções para seleção. Cada opção deve ter value e label.',
-    },
-    {
-      name: 'value',
-      type: 'string',
-      defaultValue: 'undefined',
-      description: 'O valor atual selecionado (modo controlado).',
-    },
-    {
-      name: 'onChange',
-      type: '(value: string) => void',
-      defaultValue: 'undefined',
-      description: 'Callback chamado quando a seleção muda.',
-    },
-    ...COMMON_SELECT_PROPS,
-  ],
+  props: SELECT_SPECIFIC_PROPS,
   footer:
     'A ref é encaminhada para o elemento select. Qualquer outra prop fornecida será passada para o elemento select.',
 };
-
-// Criação dos componentes usando os factories
-const Introduction = createIntroduction(introductionConfig);
-const CommonPatterns = createCommonPatterns(commonPatternsConfig);
-const BestPractices = createBestPractices(bestPracticesConfig);
-const CssClasses = createCssClasses(cssClasses);
 const ApiReference = createApiReference(apiReferenceConfig);
 
-// Lista de Tipos de Dados
-const DataTypesList = createCodeList([
-  {
-    code: 'Países',
-    description: 'Para seleção de localização e nacionalidade',
-  },
-  {
-    code: 'Categorias',
-    description: 'Para classificação de produtos ou conteúdo',
-  },
-  { code: 'Prioridades', description: 'Para tarefas, tickets e urgência' },
-  { code: 'Status', description: 'Para estados de processo e workflow' },
-]);
+// Listas de dados usando as configurações compartilhadas
+const DataTypesList = createCodeList(SELECT_DATA_TYPES_LIST);
+const StatesDescription = createStatesDescription(SELECT_STATES_DESCRIPTION);
 
-// Descrição dos Estados
-const StatesDescription = createStatesDescription([
-  {
-    state: 'error',
-    description: 'Quando há problemas de validação ou seleção obrigatória',
-  },
-  { state: 'disabled', description: 'Quando a seleção não está disponível' },
-  {
-    state: 'helperText',
-    description: 'Para fornecer contexto sobre as opções',
-  },
-]);
-
-// Usando demonstração de Tipos de Dados compartilhada
+// Demonstrações usando os factories compartilhados
 const DataTypes = createDataTypesDemo(Select);
-
-// Usando demonstração de Estados compartilhada
 const States = createStatesDemo(Select, SELECT_COMMON_DATA.PRIORITIES);
-
-// Demonstração de Tamanhos de Lista
-const ListSizes = (): JSX.Element => (
-  <div style={sharedContainerStyles.showcase}>
-    <Select
-      label="Lista Pequena (5 opções)"
-      placeholder="Selecione..."
-      helperText="Ideal para poucas opções"
-      options={SELECT_COMMON_DATA.PRIORITIES}
-    />
-    <Select
-      label="Lista Média (8 opções)"
-      placeholder="Selecione..."
-      helperText="Boa para categorias principais"
-      options={SELECT_COMMON_DATA.COUNTRIES}
-    />
-    <Select
-      label="Lista Grande (10+ opções)"
-      placeholder="Selecione..."
-      helperText="Para muitas opções, considere busca"
-      options={generateNumberOptions(15, 'Opção')}
-    />
-  </div>
-);
-
-// Exemplos de Uso
-const UsageExamples = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
-
-    <h3>Seleção de País</h3>
-    <DocBlock.Source
-      dark
-      code={`<Select
-  label="País"
-  placeholder="Selecione seu país..."
-  helperText="Escolha seu país de residência"
-  options={countries}
-  onChange={handleCountryChange}
-/>`}
-    />
-
-    <h3>Formulários com Validação</h3>
-    <DocBlock.Source
-      dark
-      code={`<form onSubmit={handleSubmit}>
-  <Select
-    name="category"
-    label="Categoria"
-    error={hasError}
-    helperText={hasError ? "Categoria é obrigatória" : "Selecione uma categoria"}
-    options={categories}
-    required
-  />
-  <Button type="submit">Salvar</Button>
-</form>`}
-    />
-
-    <h3>Com Estado Controlado</h3>
-    <DocBlock.Source
-      dark
-      code={`const [priority, setPriority] = useState('');
-const [error, setError] = useState(false);
-
-const handlePriorityChange = (value) => {
-  setPriority(value);
-  setError(!value); // Valida se foi selecionado
-};
-
-<Select
-  label="Prioridade"
-  value={priority}
-  onChange={handlePriorityChange}
-  error={error}
-  helperText={error ? "Selecione uma prioridade" : "Defina o nível de urgência"}
-  options={priorities}
-/>`}
-    />
-  </>
-);
+const ListSizes = createListSizesDemo(Select);
+const UsageExamples = createSelectUsageExamples();
 
 // Story principal com controles ativos
 export const Usage: Story = createUsageStory();
