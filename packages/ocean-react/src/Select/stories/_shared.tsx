@@ -551,89 +551,84 @@ export const COMMON_SELECT_AUTOCOMPLETE_CSS_CLASSES: CssClass[] = [
   },
 ];
 
-// Factory para criar Common Patterns para Select
-export const createSelectCommonPatterns = (): CommonPatternsConfig => ({
+// Unified factory para criar Common Patterns
+const createCommonPatternsConfig = (
+  codeExample: string
+): CommonPatternsConfig => ({
   patterns: [
     {
-      code: SHARED_CODE_EXAMPLES.SELECT_PATTERNS,
+      code: codeExample,
     },
   ],
 });
 
+// Factory para criar Common Patterns para Select
+export const createSelectCommonPatterns = (): CommonPatternsConfig =>
+  createCommonPatternsConfig(SHARED_CODE_EXAMPLES.SELECT_PATTERNS);
+
 // Factory para criar Common Patterns para SelectAutocomplete
 export const createSelectAutocompleteCommonPatterns =
-  (): CommonPatternsConfig => ({
-    patterns: [
-      {
-        code: SHARED_CODE_EXAMPLES.AUTOCOMPLETE_PATTERNS,
-      },
-    ],
-  });
+  (): CommonPatternsConfig =>
+    createCommonPatternsConfig(SHARED_CODE_EXAMPLES.AUTOCOMPLETE_PATTERNS);
+
+// Unified factory para criar Usage Examples
+const createUsageExamplesConfig = (
+  examples: Array<{ title: string; code: string }>
+): React.FC => {
+  const UsageExamplesComponent = (): JSX.Element => (
+    <>
+      <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
+      {examples.map((example) => (
+        <div key={example.title}>
+          <h3>{example.title}</h3>
+          <DocBlock.Source dark code={example.code} />
+        </div>
+      ))}
+    </>
+  );
+  return UsageExamplesComponent;
+};
 
 // Factory para criar Usage Examples para Select
-export const createSelectUsageExamples = (): React.FC => {
-  const SelectUsageExamples = (): JSX.Element => (
-    <>
-      <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
-
-      <h3>Seleção de País</h3>
-      <DocBlock.Source
-        dark
-        code={SHARED_CODE_EXAMPLES.SELECT_COUNTRY_EXAMPLE}
-      />
-
-      <h3>Formulários com Validação</h3>
-      <DocBlock.Source
-        dark
-        code={SHARED_CODE_EXAMPLES.SELECT_FORM_VALIDATION}
-      />
-
-      <h3>Com Estado Controlado</h3>
-      <DocBlock.Source
-        dark
-        code={SHARED_CODE_EXAMPLES.SELECT_CONTROLLED_STATE}
-      />
-    </>
-  );
-  return SelectUsageExamples;
-};
+export const createSelectUsageExamples = (): React.FC =>
+  createUsageExamplesConfig([
+    {
+      title: 'Seleção de País',
+      code: SHARED_CODE_EXAMPLES.SELECT_COUNTRY_EXAMPLE,
+    },
+    {
+      title: 'Formulários com Validação',
+      code: SHARED_CODE_EXAMPLES.SELECT_FORM_VALIDATION,
+    },
+    {
+      title: 'Com Estado Controlado',
+      code: SHARED_CODE_EXAMPLES.SELECT_CONTROLLED_STATE,
+    },
+  ]);
 
 // Factory para criar Usage Examples para SelectAutocomplete
-export const createSelectAutocompleteUsageExamples = (): React.FC => {
-  const SelectAutocompleteUsageExamples = (): JSX.Element => (
-    <>
-      <DocBlock.Heading>Exemplos de Uso</DocBlock.Heading>
-
-      <h3>Busca de Cidades</h3>
-      <DocBlock.Source dark code={SHARED_CODE_EXAMPLES.CITY_SEARCH} />
-
-      <h3>Com Estado Controlado</h3>
-      <DocBlock.Source dark code={SHARED_CODE_EXAMPLES.CONTROLLED_STATE} />
-
-      <h3>Com Busca no Servidor</h3>
-      <DocBlock.Source dark code={SHARED_CODE_EXAMPLES.SERVER_SEARCH} />
-    </>
-  );
-  return SelectAutocompleteUsageExamples;
-};
+export const createSelectAutocompleteUsageExamples = (): React.FC =>
+  createUsageExamplesConfig([
+    { title: 'Busca de Cidades', code: SHARED_CODE_EXAMPLES.CITY_SEARCH },
+    {
+      title: 'Com Estado Controlado',
+      code: SHARED_CODE_EXAMPLES.CONTROLLED_STATE,
+    },
+    {
+      title: 'Com Busca no Servidor',
+      code: SHARED_CODE_EXAMPLES.SERVER_SEARCH,
+    },
+  ]);
 
 // Factory para criar demonstração de tamanhos de lista
 export const createListSizesDemo = (
   Component: React.ComponentType<any>
-): React.FC => {
-  const keys = ['listSizeSmall', 'listSizeMedium', 'listSizeLarge'];
-  const ListSizesDemoComponent = (): JSX.Element => (
-    <div style={sharedContainerStyles.showcase}>
-      {keys.map((key) => (
-        <Component
-          key={key}
-          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
-        />
-      ))}
-    </div>
-  );
-  return ListSizesDemoComponent;
-};
+): React.FC =>
+  createDemoComponent(Component, [
+    'listSizeSmall',
+    'listSizeMedium',
+    'listSizeLarge',
+  ]);
 
 // Helper para resolver referências de texto como SHARED_TEXTS.PLACEHOLDERS.SELECT_GENERIC
 const resolveTextReference = (textRef: string): string => {
@@ -682,41 +677,36 @@ const createComponentProps = (config: any) => ({
   ...(config.disabled && { disabled: config.disabled }),
 });
 
-// Factory para criar demonstração de casos de uso para SelectAutocomplete
-export const createUseCasesDemo = (
-  Component: React.ComponentType<any>
+// Unified demo component factory
+export const createDemoComponent = (
+  Component: React.ComponentType<any>,
+  keys: string[],
+  additionalProps: Record<string, any> = {}
 ): React.FC => {
-  const keys = ['city', 'product', 'client'];
-  const UseCasesDemoComponent = (): JSX.Element => (
+  const DemoComponent = (): JSX.Element => (
     <div style={sharedContainerStyles.showcase}>
       {keys.map((key) => (
         <Component
           key={key}
           {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
+          {...additionalProps}
         />
       ))}
     </div>
   );
-  return UseCasesDemoComponent;
+  return DemoComponent;
 };
+
+// Factory para criar demonstração de casos de uso para SelectAutocomplete
+export const createUseCasesDemo = (
+  Component: React.ComponentType<any>
+): React.FC => createDemoComponent(Component, ['city', 'product', 'client']);
 
 // Factory para criar demonstração de performance para SelectAutocomplete
 export const createPerformanceDemo = (
   Component: React.ComponentType<any>
-): React.FC => {
-  const keys = ['small', 'large', 'productsList'];
-  const PerformanceDemoComponent = (): JSX.Element => (
-    <div style={sharedContainerStyles.showcase}>
-      {keys.map((key) => (
-        <Component
-          key={key}
-          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
-        />
-      ))}
-    </div>
-  );
-  return PerformanceDemoComponent;
-};
+): React.FC =>
+  createDemoComponent(Component, ['small', 'large', 'productsList']);
 
 // Listas de dados para documentação
 export const SELECT_DATA_TYPES_LIST = [
@@ -776,39 +766,23 @@ export const SELECT_AUTOCOMPLETE_STATES_DESCRIPTION = [
 export const createStatesDemo = (
   Component: React.ComponentType<any>,
   options: Array<{ value: string; label: string }>
-): React.FC => {
-  const keys = ['stateError', 'stateNormal', 'stateDisabled'];
-  const StatesDemoComponent = (): JSX.Element => (
-    <div style={sharedContainerStyles.showcase}>
-      {keys.map((key) => (
-        <Component
-          key={key}
-          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
-          options={options}
-        />
-      ))}
-    </div>
+): React.FC =>
+  createDemoComponent(
+    Component,
+    ['stateError', 'stateNormal', 'stateDisabled'],
+    { options }
   );
-  return StatesDemoComponent;
-};
 
 // Factory para criar demonstração de tipos de dados
 export const createDataTypesDemo = (
   Component: React.ComponentType<any>
-): React.FC => {
-  const keys = ['dataCountry', 'dataCategory', 'dataPriority', 'dataStatus'];
-  const DataTypesDemoComponent = (): JSX.Element => (
-    <div style={sharedContainerStyles.showcase}>
-      {keys.map((key) => (
-        <Component
-          key={key}
-          {...createComponentProps(DEMO_CONFIGS.find((cfg) => cfg.key === key))}
-        />
-      ))}
-    </div>
-  );
-  return DataTypesDemoComponent;
-};
+): React.FC =>
+  createDemoComponent(Component, [
+    'dataCountry',
+    'dataCategory',
+    'dataPriority',
+    'dataStatus',
+  ]);
 
 // Factory para criar story com controles desabilitados
 export const createDisabledControlsStory = (component: React.FC): any => ({
@@ -950,9 +924,16 @@ export const SELECT_AUTOCOMPLETE_INTRODUCTION_CONFIG: IntroductionConfig = {
   importPath: `import { SelectAutocomplete } from '@useblu/ocean-react';`,
 };
 
+// Unified factory para criar Best Practices Config
+const createBestPracticesConfig = (
+  sections: Array<{ title: string; items: string[] }>
+): BestPracticesConfig => ({
+  sections,
+});
+
 // Configurações de Best Practices comuns
-export const SELECT_BEST_PRACTICES_CONFIG: BestPracticesConfig = {
-  sections: [
+export const SELECT_BEST_PRACTICES_CONFIG: BestPracticesConfig =
+  createBestPracticesConfig([
     {
       title: '1. Uso Geral',
       items: [
@@ -989,11 +970,10 @@ export const SELECT_BEST_PRACTICES_CONFIG: BestPracticesConfig = {
         'Mantenha consistência com outros campos do formulário',
       ],
     },
-  ],
-};
+  ]);
 
-export const SELECT_AUTOCOMPLETE_BEST_PRACTICES_CONFIG: BestPracticesConfig = {
-  sections: [
+export const SELECT_AUTOCOMPLETE_BEST_PRACTICES_CONFIG: BestPracticesConfig =
+  createBestPracticesConfig([
     {
       title: '1. Quando Usar',
       items: [
@@ -1030,8 +1010,7 @@ export const SELECT_AUTOCOMPLETE_BEST_PRACTICES_CONFIG: BestPracticesConfig = {
         'Garanta que Escape limpe a busca e feche a lista',
       ],
     },
-  ],
-};
+  ]);
 
 // Template para página de documentação
 export const createDocsPage = (config: {
