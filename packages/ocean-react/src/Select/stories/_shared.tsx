@@ -1279,14 +1279,16 @@ const PRIORITY_FORM_EXAMPLE = createSelectExample(
   true
 );
 
+const CITY_SEARCH_EXAMPLE = createAutocompleteExample(
+  'Cidade',
+  'Digite para buscar cidades...',
+  'Comece digitando o nome da cidade',
+  'cities',
+  'handleCitySelect'
+);
+
 export const SHARED_CODE_EXAMPLES = {
-  CITY_SEARCH: createAutocompleteExample(
-    'Cidade',
-    'Digite para buscar cidades...',
-    'Comece digitando o nome da cidade',
-    'cities',
-    'handleCitySelect'
-  ),
+  CITY_SEARCH: CITY_SEARCH_EXAMPLE,
   CONTROLLED_STATE: `const [inputValue, setInputValue] = useState('');
 const [selectedValue, setSelectedValue] = useState('');
 
@@ -1334,12 +1336,7 @@ ${CATEGORY_EXAMPLE}
   ${PRIORITY_FORM_EXAMPLE}
 </form>`,
   AUTOCOMPLETE_PATTERNS: `// Busca em lista grande
-${createAutocompleteExample(
-  'Cidade',
-  'Digite para buscar...',
-  'Comece digitando o nome da cidade',
-  'cities'
-)}
+${CITY_SEARCH_EXAMPLE}
 
 // Com validação de busca
 ${createAutocompleteExample(
@@ -1368,14 +1365,16 @@ ${createAutocompleteExample(
 </form>`,
 
   SELECT_FORM_VALIDATION: `<form onSubmit={handleSubmit}>
-  <Select
-    name="category"
-    label="Categoria"
-    error={hasError}
-    helperText={hasError ? "Categoria é obrigatória" : "Selecione uma categoria"}
-    options={categories}
-    required
-  />
+  ${createSelectExample(
+    'Categoria',
+    'Selecione uma categoria...',
+    'hasError ? "Categoria é obrigatória" : "Selecione uma categoria"',
+    'categories',
+    undefined,
+    true,
+    'category',
+    true
+  )}
   <Button type="submit">Salvar</Button>
 </form>`,
   SELECT_CONTROLLED_STATE: `const [priority, setPriority] = useState('');
@@ -1386,14 +1385,13 @@ const handlePriorityChange = (value) => {
   setError(!value); // Valida se foi selecionado
 };
 
-<Select
-  label="Prioridade"
-  value={priority}
-  onChange={handlePriorityChange}
-  error={error}
-  helperText={error ? "Selecione uma prioridade" : "Defina o nível de urgência"}
-  options={priorities}
-/>`,
+${createSelectExample(
+  'Prioridade',
+  'Selecione uma prioridade...',
+  'error ? "Selecione uma prioridade" : "Defina o nível de urgência"',
+  'priorities',
+  'handlePriorityChange'
+).replace('<Select', '<Select\n  value={priority}\n  error={error}')},`,
 };
 
 // Constantes compartilhadas para textos comuns
