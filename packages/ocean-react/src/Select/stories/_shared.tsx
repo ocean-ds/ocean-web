@@ -113,6 +113,29 @@ export const commonFormArgTypes = {
   },
 };
 
+export const commonFormArgTypes2 = {
+  label: {
+    description: 'O rótulo do campo.',
+    control: 'text',
+  },
+  placeholder: {
+    description: 'Texto exibido quando o campo está vazio.',
+    control: 'text',
+  },
+  helperText: {
+    description: 'Texto de ajuda exibido abaixo do campo.',
+    control: 'text',
+  },
+  error: {
+    description: 'Quando true, aplica o estilo de erro ao campo.',
+    control: 'boolean',
+  },
+  disabled: {
+    description: 'Quando true, desabilita o campo.',
+    control: 'boolean',
+  },
+};
+
 // Factory para criar componente de Introdução
 export const createIntroduction = (config: IntroductionConfig): React.FC => {
   const IntroductionComponent = (): JSX.Element => (
