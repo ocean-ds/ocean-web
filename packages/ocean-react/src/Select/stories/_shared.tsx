@@ -137,7 +137,7 @@ export const createIntroduction = (config: IntroductionConfig): React.FC => {
       <DocBlock.Source
         dark
         code={
-          config.importPath ||
+          config.importPath ??
           `import { ComponentName } from '@useblu/ocean-react';`
         }
       />
@@ -640,7 +640,7 @@ const resolveTextReference = (textRef: string): string => {
   if (parts.length === 3) {
     const [, category, key] = parts;
     const categoryObj = (SHARED_TEXTS as any)[category];
-    return categoryObj?.[key] || textRef;
+    return categoryObj?.[key] ?? textRef;
   }
   return textRef;
 };
