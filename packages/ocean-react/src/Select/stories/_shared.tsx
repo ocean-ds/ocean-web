@@ -84,6 +84,11 @@ export interface StateDescription {
   description: string;
 }
 
+export interface UsageExample {
+  title: string;
+  code: string;
+}
+
 // ArgTypes comuns para formulários
 export const commonFormArgTypes = {
   label: {
