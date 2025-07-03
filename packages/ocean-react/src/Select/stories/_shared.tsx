@@ -459,97 +459,98 @@ export const OPTIONS_PROP: ApiProp = {
     'Array de opções para seleção. Cada opção deve ter value e label.',
 };
 
+// Factory para criar classes CSS comuns
+const createCssClassesForComponent = (
+  prefix: string,
+  isAutocomplete = false
+): CssClass[] => {
+  const baseClasses: CssClass[] = [
+    {
+      name: `.${prefix}__root`,
+      description: 'Estilos aplicados ao elemento raiz.',
+    },
+    {
+      name: `.${prefix}__arrow`,
+      description: 'Estilos aplicados ao elemento de seta.',
+    },
+    {
+      name: `.${prefix}__arrow--up`,
+      description: 'Estilos aplicados à seta quando o popup está aberto.',
+    },
+    {
+      name: `.${prefix}__arrow--down`,
+      description: 'Estilos aplicados à seta quando o popup está fechado.',
+    },
+    {
+      name: `.${prefix}__arrow--disabled`,
+      description: 'Estilos aplicados à seta quando disabled=true.',
+    },
+  ];
+
+  if (!isAutocomplete) {
+    // Classes específicas do Select
+    const selectSpecificClasses: CssClass[] = [
+      {
+        name: `.${prefix}__control`,
+        description: 'Estilos aplicados ao elemento de controle.',
+      },
+      {
+        name: `.${prefix}__control--expanded`,
+        description:
+          'Estilos aplicados ao controle quando o popup está aberto.',
+      },
+      {
+        name: `.${prefix}__control--filled`,
+        description: 'Estilos aplicados quando há uma opção selecionada.',
+      },
+      {
+        name: `.${prefix}__control--error`,
+        description: 'Estilos aplicados ao controle quando error=true.',
+      },
+      {
+        name: `.${prefix}__value`,
+        description: 'Estilos aplicados ao elemento de valor.',
+      },
+      {
+        name: `.${prefix}__value--empty`,
+        description: 'Estilos aplicados ao valor quando o placeholder aparece.',
+      },
+      {
+        name: `.${prefix}__listbox-wrapper`,
+        description: 'Estilos aplicados ao elemento popup.',
+      },
+      {
+        name: `.${prefix}__listbox`,
+        description: 'Estilos aplicados ao elemento listbox.',
+      },
+      {
+        name: `.${prefix}__option`,
+        description: 'Estilos aplicados ao elemento de opção.',
+      },
+      {
+        name: `.${prefix}__option--selected`,
+        description: 'Estilos aplicados à opção selecionada no listbox.',
+      },
+      {
+        name: `.${prefix}__option--disabled`,
+        description: 'Estilos aplicados à opção desabilitada no listbox.',
+      },
+    ];
+
+    // Insere as classes específicas do Select após a classe root
+    return [baseClasses[0], ...selectSpecificClasses, ...baseClasses.slice(1)];
+  }
+
+  return baseClasses;
+};
+
 // CSS Classes comuns para Select
-export const COMMON_SELECT_CSS_CLASSES: CssClass[] = [
-  {
-    name: '.ods-select__root',
-    description: 'Estilos aplicados ao elemento raiz.',
-  },
-  {
-    name: '.ods-select__control',
-    description: 'Estilos aplicados ao elemento de controle.',
-  },
-  {
-    name: '.ods-select__control--expanded',
-    description: 'Estilos aplicados ao controle quando o popup está aberto.',
-  },
-  {
-    name: '.ods-select__control--filled',
-    description: 'Estilos aplicados quando há uma opção selecionada.',
-  },
-  {
-    name: '.ods-select__control--error',
-    description: 'Estilos aplicados ao controle quando error=true.',
-  },
-  {
-    name: '.ods-select__value',
-    description: 'Estilos aplicados ao elemento de valor.',
-  },
-  {
-    name: '.ods-select__value--empty',
-    description: 'Estilos aplicados ao valor quando o placeholder aparece.',
-  },
-  {
-    name: '.ods-select__arrow',
-    description: 'Estilos aplicados ao elemento de seta.',
-  },
-  {
-    name: '.ods-select__arrow--down',
-    description: 'Estilos aplicados à seta quando o popup está fechado.',
-  },
-  {
-    name: '.ods-select__arrow--up',
-    description: 'Estilos aplicados à seta quando o popup está aberto.',
-  },
-  {
-    name: '.ods-select__arrow--disabled',
-    description: 'Estilos aplicados à seta quando disabled=true.',
-  },
-  {
-    name: '.ods-select__listbox-wrapper',
-    description: 'Estilos aplicados ao elemento popup.',
-  },
-  {
-    name: '.ods-select__listbox',
-    description: 'Estilos aplicados ao elemento listbox.',
-  },
-  {
-    name: '.ods-select__option',
-    description: 'Estilos aplicados ao elemento de opção.',
-  },
-  {
-    name: '.ods-select__option--selected',
-    description: 'Estilos aplicados à opção selecionada no listbox.',
-  },
-  {
-    name: '.ods-select__option--disabled',
-    description: 'Estilos aplicados à opção desabilitada no listbox.',
-  },
-];
+export const COMMON_SELECT_CSS_CLASSES: CssClass[] =
+  createCssClassesForComponent('ods-select', false);
 
 // CSS Classes para SelectAutocomplete
-export const COMMON_SELECT_AUTOCOMPLETE_CSS_CLASSES: CssClass[] = [
-  {
-    name: '.ods-select-autocomplete__root',
-    description: 'Estilos aplicados ao elemento raiz.',
-  },
-  {
-    name: '.ods-select-autocomplete__arrow',
-    description: 'Estilos aplicados ao elemento de seta.',
-  },
-  {
-    name: '.ods-select-autocomplete__arrow--up',
-    description: 'Estilos aplicados à seta quando o popup está aberto.',
-  },
-  {
-    name: '.ods-select-autocomplete__arrow--down',
-    description: 'Estilos aplicados à seta quando o popup está fechado.',
-  },
-  {
-    name: '.ods-select-autocomplete__arrow--disabled',
-    description: 'Estilos aplicados à seta quando disabled=true.',
-  },
-];
+export const COMMON_SELECT_AUTOCOMPLETE_CSS_CLASSES: CssClass[] =
+  createCssClassesForComponent('ods-select-autocomplete', true);
 
 // Unified factory para criar Common Patterns
 const createCommonPatternsConfig = (
