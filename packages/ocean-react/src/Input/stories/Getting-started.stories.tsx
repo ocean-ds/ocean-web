@@ -1,11 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
-import {
-  SearchOutline,
-  MailOutline,
-  LockClosedOutline,
-} from '@useblu/ocean-icons-react';
+import { MailOutline, LockClosedOutline } from '@useblu/ocean-icons-react';
 import Input from '../Input';
 import {
   commonArgTypes,
@@ -225,12 +221,12 @@ export const Adornments: Story = {
         position="left"
       />
       <Input
-        label={INPUT_GETTING_STARTED_LABELS.searchProducts}
-        name="search"
-        type="search"
-        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.searchExample}
-        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.searchKeywords}
-        adornment={<SearchOutline size={20} />}
+        label={INPUT_GETTING_STARTED_LABELS.emailAddress}
+        name="email"
+        type="email"
+        placeholder={INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample}
+        helperText={INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification}
+        adornment={<MailOutline size={20} />}
         position="right"
       />
     </div>
