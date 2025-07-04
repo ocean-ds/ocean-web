@@ -95,11 +95,11 @@ test('renders secondary button', () => {
   );
 });
 
-test('renders a text button', () => {
-  render(<Button data-testid="btn-test" variant="text" />);
+test('renders a tertiary button', () => {
+  render(<Button data-testid="btn-test" variant="tertiary" />);
 
   expect(screen.getByTestId('btn-test')).toHaveClass(
-    'ods-btn ods-btn--md ods-btn--text',
+    'ods-btn ods-btn--md ods-btn--tertiary',
     { exact: true }
   );
 });
@@ -116,9 +116,11 @@ test('renders a critical primary button', () => {
   );
 });
 
-test('renders a critical text button', () => {
-  render(<Button data-testid="btn-test" variant="textCritical" />);
-  expect(screen.getByTestId('btn-test')).toHaveClass('ods-btn--text-critical');
+test('renders a tertiary critical button', () => {
+  render(<Button data-testid="btn-test" variant="tertiaryCritical" />);
+  expect(screen.getByTestId('btn-test')).toHaveClass(
+    'ods-btn--tertiary-critical'
+  );
 });
 
 test('renders a full width button', () => {

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.79.0](https://github.com/ocean-ds/ocean-web/compare/v1.78.0...v1.79.0) (2025-07-03)
+
+### Features
+
+- button and input documentation update ([#1134](https://github.com/ocean-ds/ocean-web/issues/1134)) ([d194c63](https://github.com/ocean-ds/ocean-web/commit/d194c63fcbce8700c351bb39d342992dee5a28ea))
+
 # [1.78.0](https://github.com/ocean-ds/ocean-web/compare/v1.77.1...v1.78.0) (2025-03-31)
 
 ### Features
