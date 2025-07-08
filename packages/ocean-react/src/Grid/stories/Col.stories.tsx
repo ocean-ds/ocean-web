@@ -25,12 +25,14 @@ const BREAKPOINT_OPTIONS = [
 const BREAKPOINT_TYPE_SUMMARY =
   'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}';
 
+const NUMBER_OF_COLUMNS_OPTIONS = 'The number of columns to span on';
+
 const BREAKPOINT_CONFIGS = {
-  xs: 'The number of columns to span on extra small devices (<576px)',
-  sm: 'The number of columns to span on small devices (≥576px)',
-  md: 'The number of columns to span on medium devices (≥768px)',
-  lg: 'The number of columns to span on large devices (≥992px)',
-  xl: 'The number of columns to span on extra large devices (≥1200px)',
+  xs: `${NUMBER_OF_COLUMNS_OPTIONS} extra small devices (<576px)`,
+  sm: `${NUMBER_OF_COLUMNS_OPTIONS} small devices (≥576px)`,
+  md: `${NUMBER_OF_COLUMNS_OPTIONS} medium devices (≥768px)`,
+  lg: `${NUMBER_OF_COLUMNS_OPTIONS} large devices (≥992px)`,
+  xl: `${NUMBER_OF_COLUMNS_OPTIONS} extra large devices (≥1200px)`,
 };
 
 const createBreakpointArgType = (
