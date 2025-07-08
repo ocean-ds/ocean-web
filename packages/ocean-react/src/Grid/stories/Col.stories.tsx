@@ -11,7 +11,7 @@ import {
 } from './_shared';
 
 // Constantes reutilizáveis
-const BREAKPOINT_OPTIONS = [
+const COL_BREAKPOINT_OPTIONS = [
   true,
   false,
   'auto',
@@ -29,28 +29,28 @@ const BREAKPOINT_OPTIONS = [
   '12',
 ];
 
-const BREAKPOINT_TYPE_SUMMARY =
+const COL_BREAKPOINT_TYPE_SUMMARY =
   'boolean | "auto" | "1".."12" | {span?: boolean | "auto" | "1".."12", offset?: "1".."12"}';
 
-const BREAKPOINT_BASE_DESCRIPTION = 'The number of columns to span on';
+const COL_BREAKPOINT_BASE_DESCRIPTION = 'The number of columns to span on';
 
-const BREAKPOINT_CONFIGS = {
-  xs: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.xs}`,
-  sm: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.sm}`,
-  md: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.md}`,
-  lg: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.lg}`,
-  xl: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.xl}`,
+const COL_BREAKPOINT_CONFIGS = {
+  xs: `${COL_BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.xs}`,
+  sm: `${COL_BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.sm}`,
+  md: `${COL_BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.md}`,
+  lg: `${COL_BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.lg}`,
+  xl: `${COL_BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.xl}`,
 };
 
 const createBreakpointArgType = (
-  breakpoint: keyof typeof BREAKPOINT_CONFIGS
+  breakpoint: keyof typeof COL_BREAKPOINT_CONFIGS
 ) => ({
-  description: BREAKPOINT_CONFIGS[breakpoint],
+  description: COL_BREAKPOINT_CONFIGS[breakpoint],
   control: 'select',
-  options: BREAKPOINT_OPTIONS,
+  options: COL_BREAKPOINT_OPTIONS,
   table: {
     type: {
-      summary: BREAKPOINT_TYPE_SUMMARY,
+      summary: COL_BREAKPOINT_TYPE_SUMMARY,
     },
   },
 });
@@ -313,8 +313,8 @@ const CssClasses = (): JSX.Element => (
 
 const ApiReference = createApiReferenceTable(
   'Col',
-  BREAKPOINT_CONFIGS,
-  BREAKPOINT_TYPE_SUMMARY,
+  COL_BREAKPOINT_CONFIGS,
+  COL_BREAKPOINT_TYPE_SUMMARY,
   [
     {
       prop: 'children',
