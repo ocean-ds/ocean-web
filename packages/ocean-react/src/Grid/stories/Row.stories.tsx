@@ -96,6 +96,14 @@ export default meta;
 
 type Story = StoryObj<typeof Row>;
 
+const RenderColumns = (columns: number) => (
+  <>
+    {Array.from({ length: columns }).map((_, index) => (
+      <Col key={`coluna-${index + 1}`}>Coluna {index + 1}</Col>
+    ))}
+  </>
+);
+
 const Introduction = (): JSX.Element => (
   <>
     <DocBlock.Title />
@@ -138,8 +146,7 @@ const CommonPatterns = (): JSX.Element => (
     dark
     code={`// Row básico
 <Row>
-  <Col>Coluna 1</Col>
-  <Col>Coluna 2</Col>
+  ${RenderColumns(3)}
 </Row>
 
 // Row sem gutters
@@ -150,10 +157,7 @@ const CommonPatterns = (): JSX.Element => (
 
 // Row com colunas definidas
 <Row xs="2" md="4">
-  <Col>Coluna 1</Col>
-  <Col>Coluna 2</Col>
-  <Col>Coluna 3</Col>
-  <Col>Coluna 4</Col>
+  ${RenderColumns(2)}
 </Row>`}
   />
 );
@@ -161,26 +165,12 @@ const CommonPatterns = (): JSX.Element => (
 export const Usage: Story = {
   args: {
     noGutters: false,
-    children: (
-      <>
-        <Col>Coluna 1</Col>
-        <Col>Coluna 2</Col>
-        <Col>Coluna 3</Col>
-      </>
-    ),
+    children: RenderColumns(3),
   },
   decorators: createStoryDecorator(),
 };
 
-const BasicRow = (): JSX.Element => (
-  <div className="show-grid">
-    <Row>
-      <Col>Coluna 1</Col>
-      <Col>Coluna 2</Col>
-      <Col>Coluna 3</Col>
-    </Row>
-  </div>
-);
+const BasicRow = (): JSX.Element => <Row>{RenderColumns(3)}</Row>;
 
 const NoGuttersRow = (): JSX.Element => (
   <div className="show-grid">
@@ -195,10 +185,7 @@ const NoGuttersRow = (): JSX.Element => (
 const RowColumns = (): JSX.Element => (
   <div className="show-grid">
     <Row xs="1" sm="2" md="4">
-      <Col>Coluna 1</Col>
-      <Col>Coluna 2</Col>
-      <Col>Coluna 3</Col>
-      <Col>Coluna 4</Col>
+      {RenderColumns(4)}
     </Row>
   </div>
 );
