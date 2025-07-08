@@ -127,10 +127,9 @@ const Introduction = (): JSX.Element => (
 );
 
 const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Row básico
+  <DocBlock.Source
+    dark
+    code={`// Row básico
 <Row>
   <Col>Coluna 1</Col>
   <Col>Coluna 2</Col>
@@ -149,8 +148,7 @@ const CommonPatterns = (): JSX.Element => (
   <Col>Coluna 3</Col>
   <Col>Coluna 4</Col>
 </Row>`}
-    />
-  </>
+  />
 );
 
 export const Usage: Story = {

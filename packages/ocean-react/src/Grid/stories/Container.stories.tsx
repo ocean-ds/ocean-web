@@ -105,10 +105,9 @@ const Introduction = (): JSX.Element => (
 );
 
 const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Container padrão (com max-width)
+  <DocBlock.Source
+    dark
+    code={`// Container padrão (com max-width)
 <Container>
   <div>Conteúdo centralizado</div>
 </Container>
@@ -122,8 +121,7 @@ const CommonPatterns = (): JSX.Element => (
 <Container fluid="md">
   <div>Fluido até md, depois com max-width</div>
 </Container>`}
-    />
-  </>
+  />
 );
 
 export const Usage: Story = {

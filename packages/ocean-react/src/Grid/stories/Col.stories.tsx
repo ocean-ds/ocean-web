@@ -151,10 +151,9 @@ const Introduction = (): JSX.Element => (
 );
 
 const CommonPatterns = (): JSX.Element => (
-  <>
-    <DocBlock.Source
-      dark
-      code={`// Col básico (largura automática)
+  <DocBlock.Source
+    dark
+    code={`// Col básico (largura automática)
 <Col>Conteúdo</Col>
 
 // Col com largura específica
@@ -165,8 +164,7 @@ const CommonPatterns = (): JSX.Element => (
 
 // Col responsivo
 <Col xs="12" sm="6" md="4" lg="3">Responsivo`}
-    />
-  </>
+  />
 );
 
 export const Usage: Story = {
