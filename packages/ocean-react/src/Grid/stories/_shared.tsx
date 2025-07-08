@@ -9,6 +9,14 @@ export const DEMO_STYLE = {
   textAlign: 'center',
 } as const;
 
+export const SCREEN_SIZES = {
+  xs: 'Extra small devices (<576px).',
+  sm: 'Small devices (≥576px).  ',
+  md: 'Medium devices (≥768px).',
+  lg: 'Large devices (≥992px).',
+  xl: 'Extra large devices (≥1200px).',
+};
+
 export const DemoWrapper = ({
   children,
 }: {

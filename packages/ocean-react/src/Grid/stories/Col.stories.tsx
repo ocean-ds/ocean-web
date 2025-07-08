@@ -7,6 +7,7 @@ import {
   DemoContent,
   createStoryDecorator,
   createApiReferenceTable,
+  SCREEN_SIZES,
 } from './_shared';
 
 // Constantes reutilizáveis
@@ -34,11 +35,11 @@ const BREAKPOINT_TYPE_SUMMARY =
 const BREAKPOINT_BASE_DESCRIPTION = 'The number of columns to span on';
 
 const BREAKPOINT_CONFIGS = {
-  xs: `${BREAKPOINT_BASE_DESCRIPTION} extra small devices (<576px).`,
-  sm: `${BREAKPOINT_BASE_DESCRIPTION} small devices (≥576px).`,
-  md: `${BREAKPOINT_BASE_DESCRIPTION} medium devices (≥768px).`,
-  lg: `${BREAKPOINT_BASE_DESCRIPTION} large devices (≥992px).`,
-  xl: `${BREAKPOINT_BASE_DESCRIPTION} extra large devices (≥1200px).`,
+  xs: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.xs}`,
+  sm: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.sm}`,
+  md: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.md}`,
+  lg: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.lg}`,
+  xl: `${BREAKPOINT_BASE_DESCRIPTION} ${SCREEN_SIZES.xl}`,
 };
 
 const createBreakpointArgType = (

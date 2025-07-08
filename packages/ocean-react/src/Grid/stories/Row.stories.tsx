@@ -3,7 +3,11 @@ import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Row from '../Row';
 import Col from '../Col';
-import { createStoryDecorator, createApiReferenceTable } from './_shared';
+import {
+  createStoryDecorator,
+  createApiReferenceTable,
+  SCREEN_SIZES,
+} from './_shared';
 
 // Constantes reutilizáveis
 const ROW_COLUMN_OPTIONS = ['1', '2', '3', '4', '5', '6'];
@@ -14,11 +18,11 @@ const ROW_BASE_DESCRIPTION =
   'The number of columns that will fit next to each other on';
 
 const ROW_BREAKPOINT_CONFIGS = {
-  xs: `${ROW_BASE_DESCRIPTION} extra small devices (<576px).`,
-  sm: `${ROW_BASE_DESCRIPTION} small devices (≥576px).`,
-  md: `${ROW_BASE_DESCRIPTION} medium devices (≥768px).`,
-  lg: `${ROW_BASE_DESCRIPTION} large devices (≥992px).`,
-  xl: `${ROW_BASE_DESCRIPTION} extra large devices (≥1200px).`,
+  xs: `${ROW_BASE_DESCRIPTION} ${SCREEN_SIZES.xs}`,
+  sm: `${ROW_BASE_DESCRIPTION} ${SCREEN_SIZES.sm}`,
+  md: `${ROW_BASE_DESCRIPTION} ${SCREEN_SIZES.md}`,
+  lg: `${ROW_BASE_DESCRIPTION} ${SCREEN_SIZES.lg}`,
+  xl: `${ROW_BASE_DESCRIPTION} ${SCREEN_SIZES.xl}`,
 };
 
 const createRowBreakpointArgType = (
