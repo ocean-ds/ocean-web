@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Col from '../Col';
+import { DemoWrapper, DemoContent, createStoryDecorator } from './_shared';
 
 // Constantes reutilizáveis
 const BREAKPOINT_OPTIONS = [
@@ -23,7 +24,7 @@ const BREAKPOINT_OPTIONS = [
 ];
 
 const BREAKPOINT_TYPE_SUMMARY =
-  'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}';
+  'boolean | "auto" | "1".."12" | {span?: boolean | "auto" | "1".."12", offset?: "1".."12"}';
 
 const NUMBER_OF_COLUMNS_OPTIONS = 'The number of columns to span on';
 
@@ -47,23 +48,6 @@ const createBreakpointArgType = (
     },
   },
 });
-
-const DEMO_STYLE = {
-  padding: '20px',
-  backgroundColor: '#f0f0f0',
-  border: '1px solid #ccc',
-  textAlign: 'center',
-} as const;
-
-const DemoWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="show-grid">
-    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
-  </div>
-);
-
-const DemoContent = ({ children }: { children: React.ReactNode }) => (
-  <div style={DEMO_STYLE}>{children}</div>
-);
 
 const meta: Meta<typeof Col> = {
   title: 'Components/Grid/Col',
@@ -175,15 +159,7 @@ export const Usage: Story = {
     md: '6',
     children: <DemoContent>Col responsivo</DemoContent>,
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div className="show-grid" style={{ minWidth: '300px' }}>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <StoryComponent />
-        </div>
-      </div>
-    ),
-  ],
+  decorators: createStoryDecorator(),
 };
 
 const BasicCol = (): JSX.Element => (
@@ -262,8 +238,8 @@ const BestPractices = (): JSX.Element => (
 
     <h3>1. Larguras Responsivas</h3>
     <ul>
-      <li>Use xs=&quot;12&quot; para mobile (largura total)</li>
-      <li>Use md=&quot;6&quot; para desktop (meia largura)</li>
+      <li>Use xs=12 para mobile (largura total)</li>
+      <li>Use md=6 para desktop (meia largura)</li>
       <li>Considere o conteúdo ao definir larguras</li>
     </ul>
 

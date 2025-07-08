@@ -3,19 +3,22 @@ import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Row from '../Row';
 import Col from '../Col';
+import { createStoryDecorator } from './_shared';
 
 // Constantes reutilizáveis
 const ROW_COLUMN_OPTIONS = ['1', '2', '3', '4', '5', '6'];
 
-const ROW_COLUMN_TYPE_SUMMARY =
-  '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;';
+const ROW_COLUMN_TYPE_SUMMARY = '"1" | "2" | "3" | "4" | "5" | "6"';
+
+const ROW_BASE_DESCRIPTION =
+  'The number of columns that will fit next to each other on';
 
 const ROW_BREAKPOINT_CONFIGS = {
-  xs: 'The number of columns that will fit next to each other on extra small devices (<576px).',
-  sm: 'The number of columns that will fit next to each other on small devices (≥576px).',
-  md: 'The number of columns that will fit next to each other on medium devices (≥768px).',
-  lg: 'The number of columns that will fit next to each other on large devices (≥992px).',
-  xl: 'The number of columns that will fit next to each other on extra large devices (≥1200px).',
+  xs: `${ROW_BASE_DESCRIPTION} extra small devices (<576px).`,
+  sm: `${ROW_BASE_DESCRIPTION} small devices (≥576px).`,
+  md: `${ROW_BASE_DESCRIPTION} medium devices (≥768px).`,
+  lg: `${ROW_BASE_DESCRIPTION} large devices (≥992px).`,
+  xl: `${ROW_BASE_DESCRIPTION} extra large devices (≥1200px).`,
 };
 
 const createRowBreakpointArgType = (
@@ -162,13 +165,7 @@ export const Usage: Story = {
       </>
     ),
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div className="show-grid" style={{ minWidth: '300px' }}>
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createStoryDecorator(),
 };
 
 const BasicRow = (): JSX.Element => (
@@ -272,7 +269,7 @@ const BestPractices = (): JSX.Element => (
     <h3>2. Responsividade</h3>
     <ul>
       <li>Defina row columns para diferentes breakpoints</li>
-      <li>xs=&quot;1&quot; para mobile, md=&quot;3&quot; para desktop</li>
+      <li>xs=1 para mobile, md=3 para desktop</li>
       <li>Considere o conteúdo ao definir o número de colunas</li>
     </ul>
 

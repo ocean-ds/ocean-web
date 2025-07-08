@@ -2,6 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Container from '../Container';
+import {
+  ContainerDemoContent,
+  ContainerDemoWrapper,
+  createContainerStoryDecorator,
+} from './_shared';
 
 const meta: Meta<typeof Container> = {
   title: 'Components/Grid/Container',
@@ -128,82 +133,42 @@ export const Usage: Story = {
   args: {
     fluid: false,
     children: (
-      <div
-        style={{
-          padding: '20px',
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
-          textAlign: 'center',
-        }}
-      >
+      <ContainerDemoContent>
         Container com largura máxima (padrão)
-      </div>
+      </ContainerDemoContent>
     ),
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '500px',
-          backgroundColor: '#e0e0e0',
-          padding: '10px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createContainerStoryDecorator(),
 };
 
 const DefaultContainer = (): JSX.Element => (
-  <div style={{ backgroundColor: '#e0e0e0', padding: '10px' }}>
+  <ContainerDemoWrapper>
     <Container>
-      <div
-        style={{
-          padding: '20px',
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
-          textAlign: 'center',
-        }}
-      >
+      <ContainerDemoContent>
         Container padrão com max-width
-      </div>
+      </ContainerDemoContent>
     </Container>
-  </div>
+  </ContainerDemoWrapper>
 );
 
 const FluidContainer = (): JSX.Element => (
-  <div style={{ backgroundColor: '#e0e0e0', padding: '10px' }}>
+  <ContainerDemoWrapper>
     <Container fluid>
-      <div
-        style={{
-          padding: '20px',
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
-          textAlign: 'center',
-        }}
-      >
+      <ContainerDemoContent>
         Container fluido (100% largura)
-      </div>
+      </ContainerDemoContent>
     </Container>
-  </div>
+  </ContainerDemoWrapper>
 );
 
 const BreakpointContainer = (): JSX.Element => (
-  <div style={{ backgroundColor: '#e0e0e0', padding: '10px' }}>
+  <ContainerDemoWrapper>
     <Container fluid="md">
-      <div
-        style={{
-          padding: '20px',
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
-          textAlign: 'center',
-        }}
-      >
+      <ContainerDemoContent>
         Container fluido até breakpoint md
-      </div>
+      </ContainerDemoContent>
     </Container>
-  </div>
+  </ContainerDemoWrapper>
 );
 
 const UsageExamples = (): JSX.Element => (
