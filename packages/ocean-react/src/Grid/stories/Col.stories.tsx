@@ -3,148 +3,76 @@ import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Col from '../Col';
 
+// Constantes reutilizáveis
+const BREAKPOINT_OPTIONS = [
+  true,
+  false,
+  'auto',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+];
+
+const BREAKPOINT_TYPE_SUMMARY =
+  'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}';
+
+const BREAKPOINT_CONFIGS = {
+  xs: 'The number of columns to span on extra small devices (<576px)',
+  sm: 'The number of columns to span on small devices (≥576px)',
+  md: 'The number of columns to span on medium devices (≥768px)',
+  lg: 'The number of columns to span on large devices (≥992px)',
+  xl: 'The number of columns to span on extra large devices (≥1200px)',
+};
+
+const createBreakpointArgType = (
+  breakpoint: keyof typeof BREAKPOINT_CONFIGS
+) => ({
+  description: BREAKPOINT_CONFIGS[breakpoint],
+  control: 'select',
+  options: BREAKPOINT_OPTIONS,
+  table: {
+    type: {
+      summary: BREAKPOINT_TYPE_SUMMARY,
+    },
+  },
+});
+
+const DEMO_STYLE = {
+  padding: '20px',
+  backgroundColor: '#f0f0f0',
+  border: '1px solid #ccc',
+  textAlign: 'center',
+} as const;
+
+const DemoWrapper = ({ children }: { children: React.ReactNode }) => (
+  <div className="show-grid">
+    <div style={{ display: 'flex', gap: '10px' }}>{children}</div>
+  </div>
+);
+
+const DemoContent = ({ children }: { children: React.ReactNode }) => (
+  <div style={DEMO_STYLE}>{children}</div>
+);
+
 const meta: Meta<typeof Col> = {
   title: 'Components/Grid/Col',
   component: Col,
   tags: ['autodocs'],
   argTypes: {
-    xs: {
-      description:
-        'The number of columns to span on extra small devices (<576px)',
-      control: 'select',
-      options: [
-        true,
-        false,
-        'auto',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-      ],
-      table: {
-        type: {
-          summary:
-            'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}',
-        },
-      },
-    },
-    sm: {
-      description: 'The number of columns to span on small devices (≥576px)',
-      control: 'select',
-      options: [
-        true,
-        false,
-        'auto',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-      ],
-      table: {
-        type: {
-          summary:
-            'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}',
-        },
-      },
-    },
-    md: {
-      description: 'The number of columns to span on medium devices (≥768px)',
-      control: 'select',
-      options: [
-        true,
-        false,
-        'auto',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-      ],
-      table: {
-        type: {
-          summary:
-            'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}',
-        },
-      },
-    },
-    lg: {
-      description: 'The number of columns to span on large devices (≥992px)',
-      control: 'select',
-      options: [
-        true,
-        false,
-        'auto',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-      ],
-      table: {
-        type: {
-          summary:
-            'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}',
-        },
-      },
-    },
-    xl: {
-      description:
-        'The number of columns to span on extra large devices (≥1200px)',
-      control: 'select',
-      options: [
-        true,
-        false,
-        'auto',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-      ],
-      table: {
-        type: {
-          summary:
-            'boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; | {span?: boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot;, offset?: &quot;1&quot;..&quot;12&quot;}',
-        },
-      },
-    },
+    xs: createBreakpointArgType('xs'),
+    sm: createBreakpointArgType('sm'),
+    md: createBreakpointArgType('md'),
+    lg: createBreakpointArgType('lg'),
+    xl: createBreakpointArgType('xl'),
     children: {
       description: 'Conteúdo da coluna.',
       control: false,
@@ -245,18 +173,7 @@ export const Usage: Story = {
   args: {
     xs: '12',
     md: '6',
-    children: (
-      <div
-        style={{
-          padding: '20px',
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
-          textAlign: 'center',
-        }}
-      >
-        Col responsivo
-      </div>
-    ),
+    children: <DemoContent>Col responsivo</DemoContent>,
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -270,79 +187,35 @@ export const Usage: Story = {
 };
 
 const BasicCol = (): JSX.Element => (
-  <div className="show-grid">
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <Col>
-        <div
-          style={{
-            padding: '20px',
-            backgroundColor: '#f0f0f0',
-            border: '1px solid #ccc',
-            textAlign: 'center',
-          }}
-        >
-          Col básico
-        </div>
-      </Col>
-    </div>
-  </div>
+  <DemoWrapper>
+    <Col>
+      <DemoContent>Col básico</DemoContent>
+    </Col>
+  </DemoWrapper>
 );
 
 const ResponsiveCol = (): JSX.Element => (
-  <div className="show-grid">
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <Col xs="12" sm="6" md="4" lg="3">
-        <div
-          style={{
-            padding: '20px',
-            backgroundColor: '#f0f0f0',
-            border: '1px solid #ccc',
-            textAlign: 'center',
-          }}
-        >
-          Responsivo
-        </div>
-      </Col>
-    </div>
-  </div>
+  <DemoWrapper>
+    <Col xs="12" sm="6" md="4" lg="3">
+      <DemoContent>Responsivo</DemoContent>
+    </Col>
+  </DemoWrapper>
 );
 
 const OffsetCol = (): JSX.Element => (
-  <div className="show-grid">
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <Col md={{ span: '6', offset: '3' }}>
-        <div
-          style={{
-            padding: '20px',
-            backgroundColor: '#f0f0f0',
-            border: '1px solid #ccc',
-            textAlign: 'center',
-          }}
-        >
-          Com offset
-        </div>
-      </Col>
-    </div>
-  </div>
+  <DemoWrapper>
+    <Col md={{ span: '6', offset: '3' }}>
+      <DemoContent>Com offset</DemoContent>
+    </Col>
+  </DemoWrapper>
 );
 
 const AutoCol = (): JSX.Element => (
-  <div className="show-grid">
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <Col xs="auto">
-        <div
-          style={{
-            padding: '20px',
-            backgroundColor: '#f0f0f0',
-            border: '1px solid #ccc',
-            textAlign: 'center',
-          }}
-        >
-          Auto width
-        </div>
-      </Col>
-    </div>
-  </div>
+  <DemoWrapper>
+    <Col xs="auto">
+      <DemoContent>Auto width</DemoContent>
+    </Col>
+  </DemoWrapper>
 );
 
 const UsageExamples = (): JSX.Element => (
@@ -456,106 +329,56 @@ const CssClasses = (): JSX.Element => (
   </>
 );
 
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Referência da API</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O Col é baseado no elemento div e suporta todos os atributos HTML padrão.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>xs</td>
-          <td>
-            <code>
-              boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; |
-              object
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns to span on extra small devices (&lt;576px).
-          </td>
-        </tr>
-        <tr>
-          <td>sm</td>
-          <td>
-            <code>
-              boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; |
-              object
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>The number of columns to span on small devices (≥576px).</td>
-        </tr>
-        <tr>
-          <td>md</td>
-          <td>
-            <code>
-              boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; |
-              object
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>The number of columns to span on medium devices (≥768px).</td>
-        </tr>
-        <tr>
-          <td>lg</td>
-          <td>
-            <code>
-              boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; |
-              object
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>The number of columns to span on large devices (≥992px).</td>
-        </tr>
-        <tr>
-          <td>xl</td>
-          <td>
-            <code>
-              boolean | &quot;auto&quot; | &quot;1&quot;..&quot;12&quot; |
-              object
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns to span on extra large devices (≥1200px).
-          </td>
-        </tr>
-        <tr>
-          <td>children</td>
-          <td>
-            <code>ReactNode</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Conteúdo da coluna.</td>
-        </tr>
-      </tbody>
-    </table>
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
-      será passada para o elemento div.
-    </DocBlock.Markdown>
-  </>
-);
+const ApiReference = (): JSX.Element => {
+  const breakpointProps = Object.entries(BREAKPOINT_CONFIGS).map(
+    ([key, description]) => (
+      <tr key={key}>
+        <td>{key}</td>
+        <td>
+          <code>{BREAKPOINT_TYPE_SUMMARY}</code>
+        </td>
+        <td>
+          <code>undefined</code>
+        </td>
+        <td>{description}</td>
+      </tr>
+    )
+  );
+
+  return (
+    <>
+      <DocBlock.Heading>Referência da API</DocBlock.Heading>
+      <DocBlock.Markdown>
+        O Col é baseado no elemento div e suporta todos os atributos HTML
+        padrão.
+      </DocBlock.Markdown>
+      <table style={{ width: '100%' }}>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          {breakpointProps}
+          <tr>
+            <td>children</td>
+            <td>
+              <code>ReactNode</code>
+            </td>
+            <td>
+              <code>undefined</code>
+            </td>
+            <td>Conteúdo da coluna.</td>
+          </tr>
+        </tbody>
+      </table>
+      <DocBlock.Markdown>
+        A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
+        será passada para o elemento div.
+      </DocBlock.Markdown>
+    </>
+  );
+};
