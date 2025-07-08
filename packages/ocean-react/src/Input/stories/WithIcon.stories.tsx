@@ -3,10 +3,11 @@ import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import {
   EyeOutline,
-  SearchOutline,
+  EyeOffOutline,
   LockClosedOutline,
   MailOutline,
   PhoneOutline,
+  CreditCardOutline,
 } from '@useblu/ocean-icons-react';
 import Input from '../Input';
 import {
@@ -22,40 +23,32 @@ import {
 } from './_shared';
 
 const ICON_LABELS = {
-  buscar: 'Buscar',
   email: 'Email',
   senha: 'Senha',
   telefone: 'Telefone',
   usuario: 'Usuário',
   confirmarSenha: 'Confirmar Senha',
   codigoSeguranca: 'Código de Segurança',
-  buscarProdutos: 'Buscar Produtos',
-  pesquisar: 'Pesquisar',
 };
 
 const ICON_HELPER_TEXTS = {
-  usePalavrasChave: 'Use palavras-chave para encontrar produtos',
+  clqueOlhoMostrar: 'Clique no olho para mostrar a senha',
   clqueOlhoVisibilidade: 'Clique no olho para alternar visibilidade',
-  pressioneEnterBuscar: 'Pressione Enter para buscar',
   emailValido: 'Digite um email válido',
   senhaSegura: 'Use uma senha segura',
   telefoneComDDD: 'Inclua o DDD',
   usuarioUnico: 'Nome de usuário único',
   senhasDevemCoincidir: 'Senhas devem coincidir',
   codigoTresDigitos: 'Código de 3 dígitos',
-  digite3Caracteres: 'Digite pelo menos 3 caracteres para buscar',
 };
 
 const ICON_PLACEHOLDERS = {
-  buscarProdutos: 'Buscar produtos...',
   seuEmail: 'seu@email.com',
   digiteSenha: 'Digite sua senha',
   telefoneExemplo: '(11) 99999-9999',
-  digitePesquisar: 'Digite para buscar...',
   nomeUsuario: 'nome_usuario',
   confirmarSenha: 'Confirme sua senha',
   cvv: 'CVV',
-  buscarAqui: 'Buscar aqui...',
 };
 
 const meta: Meta<typeof Input> = {
@@ -69,12 +62,12 @@ const meta: Meta<typeof Input> = {
       description:
         'O tipo do elemento input. Define o comportamento e validação específica para cada tipo de entrada.',
       table: {
-        type: { summary: '"text" | "email" | "password" | "search" | "tel"' },
+        type: { summary: '"text" | "email" | "password" | "tel"' },
         defaultValue: { summary: '"text"' },
       },
       control: {
         type: 'select',
-        options: ['text', 'email', 'password', 'search', 'tel'],
+        options: ['text', 'email', 'password', 'tel'],
       },
     },
     adornment: {
@@ -107,6 +100,10 @@ const meta: Meta<typeof Input> = {
           <h3>Posições de Ícones</h3>
           <DocBlock.Canvas of={Positions} />
           <h3>Ícones Interativos</h3>
+          <DocBlock.Markdown>
+            Demonstração de ícones funcionais que respondem a cliques do
+            usuário. O ícone indica a ação que será executada quando clicado:
+          </DocBlock.Markdown>
           <DocBlock.Canvas of={Interactive} />
           <UsageExamples />
           <BestPractices />
@@ -125,7 +122,7 @@ type Story = StoryObj<typeof Input>;
 // Componente de Introdução
 const Introduction = createIntroduction(
   'Componente de entrada aprimorado com ícones para melhorar a experiência do usuário e fornecer contexto visual.',
-  'Inputs com ícones fornecem contexto visual e usabilidade aprimorada através da adição de ícones relevantes aos campos de entrada. Os ícones podem indicar o propósito do input, fornecer funcionalidade interativa ou melhorar a hierarquia visual. Casos comuns incluem campos de busca, alternância de senha, informações de contato e gatilhos de ação.'
+  'Inputs com ícones fornecem contexto visual e usabilidade aprimorada através da adição de ícones relevantes aos campos de entrada. Os ícones podem indicar o propósito do input, fornecer funcionalidade interativa ou melhorar a hierarquia visual. Casos comuns incluem alternância de senha, informações de contato, códigos de segurança e gatilhos de ação.'
 );
 
 // Padrões Comuns
@@ -150,14 +147,35 @@ const CommonPatterns = createCommonPatterns([
     helperText="Use uma senha segura"
   />
 </div>`,
-  `// Ícones interativos
+  `// Ícones interativos - alternância de senha
+const [showPassword, setShowPassword] = useState(false);
+
 <Input
   label="Senha"
   name="password"
-  type="password"
+  type={showPassword ? 'text' : 'password'}
   placeholder="Digite sua senha"
-  adornment={<EyeOutline size={20} />}
-  helperText="Clique no olho para alternar visibilidade"
+  adornment={
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+      aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+    >
+      {showPassword ? <EyeOffOutline size={20} /> : <EyeOutline size={20} />}
+    </button>
+  }
+  helperText={showPassword ? 'Clique para ocultar' : 'Clique para mostrar'}
+/>
+
+// CVV com ícone de cartão
+<Input
+  label="CVV"
+  name="cvv"
+  type="text"
+  placeholder="123"
+  adornment={<CreditCardOutline size={20} />}
+  helperText="Código de 3 dígitos"
 />`,
 ]);
 
@@ -174,15 +192,27 @@ const BestPractices = (): JSX.Element => (
       <li>Use ícones que sejam intuitivos e amplamente reconhecidos</li>
       <li>Mantenha consistência no uso de ícones em toda a aplicação</li>
       <li>Escolha ícones que complementem o propósito do campo</li>
+      <li>
+        Para ícones interativos, use elementos clicáveis com handlers
+        apropriados
+      </li>
       <li>Evite ícones decorativos sem significado funcional</li>
     </ul>
 
-    <h3>2. Posicionamento</h3>
+    <h3>2. Posicionamento e Comportamento</h3>
     <ul>
       <li>
-        Use ícones à direita para ações interativas (ex: mostrar/ocultar senha)
+        Use ícones à direita para ações interativas (ex: alternar visibilidade
+        da senha)
       </li>
-      <li>Use ícones à esquerda para indicar o tipo de conteúdo esperado</li>
+      <li>
+        Use ícones à esquerda para indicar o tipo de conteúdo esperado (ex:
+        email, telefone)
+      </li>
+      <li>
+        Para ícones interativos, mostre a ação que será executada, não o estado
+        atual
+      </li>
       <li>Mantenha consistência no posicionamento de ícones similares</li>
       <li>Considere o layout em dispositivos móveis ao posicionar ícones</li>
     </ul>
@@ -193,13 +223,19 @@ const BestPractices = (): JSX.Element => (
       <li>
         Use <code>aria-label</code> para descrever a função do ícone
       </li>
+      <li>
+        Para ícones interativos, use elementos <code>button</code> apropriados
+      </li>
       <li>Mantenha contraste adequado entre ícones e fundo</li>
-      <li>Garanta que ícones interativos sejam facilmente clicáveis</li>
+      <li>
+        Garanta que ícones interativos sejam facilmente clicáveis (mínimo 44px)
+      </li>
+      <li>Forneça feedback visual claro para estados de hover e focus</li>
     </ul>
 
     <h3>4. Design e UX</h3>
     <ul>
-      <li>Mantenha o tamanho dos ícones consistente (recomendado: 20px)</li>
+      <li>Mantenha o tamanho dos ícones consistente (recomendado: 24px)</li>
       <li>Use cores que se integrem com o tema da aplicação</li>
       <li>Evite sobrecarregar o input com múltiplos ícones</li>
       <li>Considere estados de hover e focus para ícones interativos</li>
@@ -231,13 +267,13 @@ const ApiReference = createApiReference([
 // Story principal com controles ativos
 export const Usage: Story = {
   args: {
-    label: ICON_LABELS.buscar,
-    name: 'search',
-    type: 'search',
-    placeholder: ICON_PLACEHOLDERS.buscarProdutos,
-    adornment: <SearchOutline size={20} />,
+    label: ICON_LABELS.email,
+    name: 'email',
+    type: 'email',
+    placeholder: ICON_PLACEHOLDERS.seuEmail,
+    adornment: <MailOutline size={20} />,
     position: 'right',
-    helperText: ICON_HELPER_TEXTS.usePalavrasChave,
+    helperText: ICON_HELPER_TEXTS.emailValido,
   },
   decorators: defaultUsageDecorator,
 };
@@ -274,12 +310,12 @@ export const Contexts: Story = {
         helperText={ICON_HELPER_TEXTS.telefoneComDDD}
       />
       <Input
-        label={ICON_LABELS.buscar}
-        name="search"
-        type="search"
-        placeholder={ICON_PLACEHOLDERS.buscarAqui}
-        adornment={<SearchOutline size={20} />}
-        helperText={ICON_HELPER_TEXTS.usePalavrasChave}
+        label={ICON_LABELS.codigoSeguranca}
+        name="cvv"
+        type="text"
+        placeholder={ICON_PLACEHOLDERS.cvv}
+        adornment={<CreditCardOutline size={20} />}
+        helperText={ICON_HELPER_TEXTS.codigoTresDigitos}
       />
     </div>
   ),
@@ -292,25 +328,68 @@ export const Positions: Story = {
   render: () => (
     <div style={containerStyles.form}>
       <Input
-        label={ICON_LABELS.buscar}
-        name="searchRight"
-        type="search"
-        placeholder={ICON_PLACEHOLDERS.buscarProdutos}
-        adornment={<SearchOutline size={20} />}
+        label={ICON_LABELS.email}
+        name="emailRight"
+        type="email"
+        placeholder={ICON_PLACEHOLDERS.seuEmail}
+        adornment={<MailOutline size={20} />}
         position="right"
-        helperText={ICON_HELPER_TEXTS.digite3Caracteres}
+        helperText={ICON_HELPER_TEXTS.emailValido}
       />
       <Input
-        label={ICON_LABELS.buscar}
-        name="searchLeft"
-        type="search"
-        placeholder={ICON_PLACEHOLDERS.buscarProdutos}
-        adornment={<SearchOutline size={20} />}
+        label={ICON_LABELS.email}
+        name="emailLeft"
+        type="email"
+        placeholder={ICON_PLACEHOLDERS.seuEmail}
+        adornment={<MailOutline size={20} />}
         position="left"
-        helperText={ICON_HELPER_TEXTS.digite3Caracteres}
+        helperText={ICON_HELPER_TEXTS.emailValido}
       />
     </div>
   ),
+};
+
+const InteractivePasswordInput = (): JSX.Element => {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  return (
+    <Input
+      label={ICON_LABELS.senha}
+      name="password"
+      type={showPassword ? 'text' : 'password'}
+      placeholder={ICON_PLACEHOLDERS.digiteSenha}
+      adornment={
+        <button
+          type="button"
+          onClick={togglePasswordVisibility}
+          style={{
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+        >
+          {showPassword ? (
+            <EyeOffOutline size={20} />
+          ) : (
+            <EyeOutline size={20} />
+          )}
+        </button>
+      }
+      helperText={
+        showPassword
+          ? 'Clique no olho para ocultar a senha'
+          : 'Clique no olho para mostrar a senha'
+      }
+    />
+  );
 };
 
 export const Interactive: Story = {
@@ -319,21 +398,14 @@ export const Interactive: Story = {
   },
   render: () => (
     <div style={containerStyles.form}>
+      <InteractivePasswordInput />
       <Input
-        label={ICON_LABELS.senha}
-        name="password"
+        label={ICON_LABELS.confirmarSenha}
+        name="confirmPassword"
         type="password"
-        placeholder={ICON_PLACEHOLDERS.digiteSenha}
-        adornment={<EyeOutline size={20} />}
-        helperText={ICON_HELPER_TEXTS.clqueOlhoVisibilidade}
-      />
-      <Input
-        label={ICON_LABELS.buscar}
-        name="search"
-        type="search"
-        placeholder={ICON_PLACEHOLDERS.digitePesquisar}
-        adornment={<SearchOutline size={20} />}
-        helperText={ICON_HELPER_TEXTS.pressioneEnterBuscar}
+        placeholder={ICON_PLACEHOLDERS.confirmarSenha}
+        adornment={<LockClosedOutline size={20} />}
+        helperText={ICON_HELPER_TEXTS.senhasDevemCoincidir}
       />
     </div>
   ),
