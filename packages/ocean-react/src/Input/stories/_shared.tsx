@@ -5,11 +5,6 @@ import Input from '../Input';
 
 // Configurações comuns de ArgTypes
 export const commonArgTypes = {
-  type: {
-    description: 'O tipo do input que define comportamento e validação.',
-    control: 'select',
-    options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
-  },
   label: {
     description: 'O rótulo do campo que identifica seu propósito.',
     control: 'text',
@@ -34,6 +29,9 @@ export const commonArgTypes = {
     description: 'Marca o campo como obrigatório.',
     control: 'boolean',
   },
+  type: {
+    table: { disable: true },
+  },
   defaultValue: {
     table: { disable: true },
   },
@@ -44,9 +42,6 @@ export const commonArgTypes = {
 
 // ArgTypes específicos para adornments
 export const adornmentSpecificProps = {
-  adornment: {
-    table: { disable: true },
-  },
   position: {
     table: { disable: true },
   },
@@ -105,6 +100,7 @@ export const currencySpecificProps = {
   tooltipMessage: {
     description: 'Mensagem exibida no tooltip do label.',
     control: { type: 'text' },
+    type: 'string',
   },
 };
 
