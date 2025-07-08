@@ -3,7 +3,7 @@ import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Row from '../Row';
 import Col from '../Col';
-import { createStoryDecorator } from './_shared';
+import { createStoryDecorator, createApiReferenceTable } from './_shared';
 
 // Constantes reutilizáveis
 const ROW_COLUMN_OPTIONS = ['1', '2', '3', '4', '5', '6'];
@@ -326,69 +326,23 @@ const CssClasses = (): JSX.Element => (
   </>
 );
 
-const ApiReference = (): JSX.Element => {
-  const breakpointProps = Object.entries(ROW_BREAKPOINT_CONFIGS).map(
-    ([key, description]) => (
-      <tr key={key}>
-        <td>{key}</td>
-        <td>
-          <code>{ROW_COLUMN_TYPE_SUMMARY}</code>
-        </td>
-        <td>
-          <code>undefined</code>
-        </td>
-        <td>{description}</td>
-      </tr>
-    )
-  );
-
-  return (
-    <>
-      <DocBlock.Heading>Referência da API</DocBlock.Heading>
-      <DocBlock.Markdown>
-        O Row é baseado no elemento div e suporta todos os atributos HTML
-        padrão.
-      </DocBlock.Markdown>
-      <table style={{ width: '100%' }}>
-        <thead>
-          <tr>
-            <th>Prop</th>
-            <th>Tipo</th>
-            <th>Padrão</th>
-            <th>Descrição</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>noGutters</td>
-            <td>
-              <code>boolean</code>
-            </td>
-            <td>
-              <code>false</code>
-            </td>
-            <td>
-              Removes the gutter spacing between Cols as well as any added
-              negative margins.
-            </td>
-          </tr>
-          {breakpointProps}
-          <tr>
-            <td>children</td>
-            <td>
-              <code>ReactNode</code>
-            </td>
-            <td>
-              <code>undefined</code>
-            </td>
-            <td>Colunas da linha (componentes Col).</td>
-          </tr>
-        </tbody>
-      </table>
-      <DocBlock.Markdown>
-        A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
-        será passada para o elemento div.
-      </DocBlock.Markdown>
-    </>
-  );
-};
+const ApiReference = createApiReferenceTable(
+  'Row',
+  ROW_BREAKPOINT_CONFIGS,
+  ROW_COLUMN_TYPE_SUMMARY,
+  [
+    {
+      prop: 'noGutters',
+      type: 'boolean',
+      default: 'false',
+      description:
+        'Removes the gutter spacing between Cols as well as any added negative margins.',
+    },
+    {
+      prop: 'children',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Colunas da linha (componentes Col).',
+    },
+  ]
+);

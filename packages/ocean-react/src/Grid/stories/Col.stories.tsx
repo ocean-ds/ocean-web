@@ -2,7 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Col from '../Col';
-import { DemoWrapper, DemoContent, createStoryDecorator } from './_shared';
+import {
+  DemoWrapper,
+  DemoContent,
+  createStoryDecorator,
+  createApiReferenceTable,
+} from './_shared';
 
 // Constantes reutilizáveis
 const BREAKPOINT_OPTIONS = [
@@ -26,14 +31,12 @@ const BREAKPOINT_OPTIONS = [
 const BREAKPOINT_TYPE_SUMMARY =
   'boolean | "auto" | "1".."12" | {span?: boolean | "auto" | "1".."12", offset?: "1".."12"}';
 
-const NUMBER_OF_COLUMNS_OPTIONS = 'The number of columns to span on';
-
 const BREAKPOINT_CONFIGS = {
-  xs: `${NUMBER_OF_COLUMNS_OPTIONS} extra small devices (<576px)`,
-  sm: `${NUMBER_OF_COLUMNS_OPTIONS} small devices (≥576px)`,
-  md: `${NUMBER_OF_COLUMNS_OPTIONS} medium devices (≥768px)`,
-  lg: `${NUMBER_OF_COLUMNS_OPTIONS} large devices (≥992px)`,
-  xl: `${NUMBER_OF_COLUMNS_OPTIONS} extra large devices (≥1200px)`,
+  xs: 'The number of columns to span on extra small devices (<576px)',
+  sm: 'The number of columns to span on small devices (≥576px)',
+  md: 'The number of columns to span on medium devices (≥768px)',
+  lg: 'The number of columns to span on large devices (≥992px)',
+  xl: 'The number of columns to span on extra large devices (≥1200px)',
 };
 
 const createBreakpointArgType = (
@@ -305,56 +308,16 @@ const CssClasses = (): JSX.Element => (
   </>
 );
 
-const ApiReference = (): JSX.Element => {
-  const breakpointProps = Object.entries(BREAKPOINT_CONFIGS).map(
-    ([key, description]) => (
-      <tr key={key}>
-        <td>{key}</td>
-        <td>
-          <code>{BREAKPOINT_TYPE_SUMMARY}</code>
-        </td>
-        <td>
-          <code>undefined</code>
-        </td>
-        <td>{description}</td>
-      </tr>
-    )
-  );
-
-  return (
-    <>
-      <DocBlock.Heading>Referência da API</DocBlock.Heading>
-      <DocBlock.Markdown>
-        O Col é baseado no elemento div e suporta todos os atributos HTML
-        padrão.
-      </DocBlock.Markdown>
-      <table style={{ width: '100%' }}>
-        <thead>
-          <tr>
-            <th>Prop</th>
-            <th>Tipo</th>
-            <th>Padrão</th>
-            <th>Descrição</th>
-          </tr>
-        </thead>
-        <tbody>
-          {breakpointProps}
-          <tr>
-            <td>children</td>
-            <td>
-              <code>ReactNode</code>
-            </td>
-            <td>
-              <code>undefined</code>
-            </td>
-            <td>Conteúdo da coluna.</td>
-          </tr>
-        </tbody>
-      </table>
-      <DocBlock.Markdown>
-        A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
-        será passada para o elemento div.
-      </DocBlock.Markdown>
-    </>
-  );
-};
+const ApiReference = createApiReferenceTable(
+  'Col',
+  BREAKPOINT_CONFIGS,
+  BREAKPOINT_TYPE_SUMMARY,
+  [
+    {
+      prop: 'children',
+      type: 'ReactNode',
+      default: 'undefined',
+      description: 'Conteúdo da coluna.',
+    },
+  ]
+);

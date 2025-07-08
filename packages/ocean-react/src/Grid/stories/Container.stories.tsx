@@ -6,6 +6,7 @@ import {
   ContainerDemoContent,
   ContainerDemoWrapper,
   createContainerStoryDecorator,
+  createApiReferenceTable,
 } from './_shared';
 
 const meta: Meta<typeof Container> = {
@@ -289,63 +290,24 @@ const CssClasses = (): JSX.Element => (
   </>
 );
 
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Referência da API</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O Container é baseado no elemento div e suporta todos os atributos HTML
-      padrão.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>fluid</td>
-          <td>
-            <code>
-              boolean | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; |
-              &quot;xl&quot;
-            </code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Allow the Container to fill all of its available horizontal space.
-          </td>
-        </tr>
-        <tr>
-          <td>children</td>
-          <td>
-            <code>ReactNode</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Conteúdo do container.</td>
-        </tr>
-        <tr>
-          <td>className</td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>CSS classes adicionais para o container.</td>
-        </tr>
-      </tbody>
-    </table>
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
-      será passada para o elemento div.
-    </DocBlock.Markdown>
-  </>
-);
+const ApiReference = createApiReferenceTable('Container', {}, '', [
+  {
+    prop: 'fluid',
+    type: 'boolean | "sm" | "md" | "lg" | "xl"',
+    default: 'false',
+    description:
+      'Allow the Container to fill all of its available horizontal space.',
+  },
+  {
+    prop: 'children',
+    type: 'ReactNode',
+    default: 'undefined',
+    description: 'Conteúdo do container.',
+  },
+  {
+    prop: 'className',
+    type: 'string',
+    default: 'undefined',
+    description: 'CSS classes adicionais para o container.',
+  },
+]);
