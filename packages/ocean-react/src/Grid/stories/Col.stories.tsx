@@ -77,12 +77,12 @@ const meta: Meta<typeof Col> = {
     docs: {
       page: () => (
         <>
-          <Introduction />
+          <ColIntroduction />
           <DocBlock.Heading>Uso</DocBlock.Heading>
           <DocBlock.Canvas of={Usage} />
           <DocBlock.Controls of={Usage} />
           <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
-          <CommonPatterns />
+          <ColCommonPatterns />
           <DocBlock.Heading>Exemplos</DocBlock.Heading>
           <h3 id="basico">Col Básico</h3>
           <BasicCol />
@@ -106,7 +106,7 @@ export default meta;
 
 type Story = StoryObj<typeof Col>;
 
-const Introduction = (): JSX.Element => (
+const ColIntroduction = (): JSX.Element => (
   <>
     <DocBlock.Title />
     <DocBlock.Markdown>
@@ -142,7 +142,7 @@ const Introduction = (): JSX.Element => (
   </>
 );
 
-const CommonPatterns = (): JSX.Element => (
+const ColCommonPatterns = (): JSX.Element => (
   <DocBlock.Source
     dark
     code={`// Col básico (largura automática)

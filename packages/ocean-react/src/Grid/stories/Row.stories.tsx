@@ -69,12 +69,12 @@ const meta: Meta<typeof Row> = {
     docs: {
       page: () => (
         <>
-          <Introduction />
+          <RowIntroduction />
           <DocBlock.Heading>Uso</DocBlock.Heading>
           <DocBlock.Canvas of={Usage} />
           <DocBlock.Controls of={Usage} />
           <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
-          <CommonPatterns />
+          <RowsCommonPatterns />
           <DocBlock.Heading>Exemplos</DocBlock.Heading>
           <h3 id="basico">Row Básico</h3>
           <BasicRow />
@@ -104,7 +104,7 @@ const RenderColumns = (columns: number) => (
   </>
 );
 
-const Introduction = (): JSX.Element => (
+const RowIntroduction = (): JSX.Element => (
   <>
     <DocBlock.Title />
     <DocBlock.Markdown>
@@ -141,7 +141,7 @@ const Introduction = (): JSX.Element => (
   </>
 );
 
-const CommonPatterns = (): JSX.Element => (
+const RowsCommonPatterns = (): JSX.Element => (
   <DocBlock.Source
     dark
     code={`// Row básico
