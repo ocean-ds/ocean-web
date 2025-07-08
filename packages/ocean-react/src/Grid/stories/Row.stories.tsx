@@ -4,6 +4,33 @@ import React from 'react';
 import Row from '../Row';
 import Col from '../Col';
 
+// Constantes reutilizáveis
+const ROW_COLUMN_OPTIONS = ['1', '2', '3', '4', '5', '6'];
+
+const ROW_COLUMN_TYPE_SUMMARY =
+  '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;';
+
+const ROW_BREAKPOINT_CONFIGS = {
+  xs: 'The number of columns that will fit next to each other on extra small devices (<576px).',
+  sm: 'The number of columns that will fit next to each other on small devices (≥576px).',
+  md: 'The number of columns that will fit next to each other on medium devices (≥768px).',
+  lg: 'The number of columns that will fit next to each other on large devices (≥992px).',
+  xl: 'The number of columns that will fit next to each other on extra large devices (≥1200px).',
+};
+
+const createRowBreakpointArgType = (
+  breakpoint: keyof typeof ROW_BREAKPOINT_CONFIGS
+) => ({
+  description: ROW_BREAKPOINT_CONFIGS[breakpoint],
+  control: 'select',
+  options: ROW_COLUMN_OPTIONS,
+  table: {
+    type: {
+      summary: ROW_COLUMN_TYPE_SUMMARY,
+    },
+  },
+});
+
 const meta: Meta<typeof Row> = {
   title: 'Components/Grid/Row',
   component: Row,
@@ -18,66 +45,11 @@ const meta: Meta<typeof Row> = {
         defaultValue: { summary: 'false' },
       },
     },
-    xs: {
-      description:
-        'The number of columns that will fit next to each other on extra small devices (<576px).',
-      control: 'select',
-      options: ['1', '2', '3', '4', '5', '6'],
-      table: {
-        type: {
-          summary:
-            '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;',
-        },
-      },
-    },
-    sm: {
-      description:
-        'The number of columns that will fit next to each other on small devices (≥576px).',
-      control: 'select',
-      options: ['1', '2', '3', '4', '5', '6'],
-      table: {
-        type: {
-          summary:
-            '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;',
-        },
-      },
-    },
-    md: {
-      description:
-        'The number of columns that will fit next to each other on medium devices (≥768px).',
-      control: 'select',
-      options: ['1', '2', '3', '4', '5', '6'],
-      table: {
-        type: {
-          summary:
-            '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;',
-        },
-      },
-    },
-    lg: {
-      description:
-        'The number of columns that will fit next to each other on large devices (≥992px).',
-      control: 'select',
-      options: ['1', '2', '3', '4', '5', '6'],
-      table: {
-        type: {
-          summary:
-            '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;',
-        },
-      },
-    },
-    xl: {
-      description:
-        'The number of columns that will fit next to each other on extra large devices (≥1200px).',
-      control: 'select',
-      options: ['1', '2', '3', '4', '5', '6'],
-      table: {
-        type: {
-          summary:
-            '&quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot;',
-        },
-      },
-    },
+    xs: createRowBreakpointArgType('xs'),
+    sm: createRowBreakpointArgType('sm'),
+    md: createRowBreakpointArgType('md'),
+    lg: createRowBreakpointArgType('lg'),
+    xl: createRowBreakpointArgType('xl'),
     children: {
       description: 'Colunas da linha (componentes Col).',
       control: false,
@@ -359,130 +331,69 @@ const CssClasses = (): JSX.Element => (
   </>
 );
 
-const ApiReference = (): JSX.Element => (
-  <>
-    <DocBlock.Heading>Referência da API</DocBlock.Heading>
-    <DocBlock.Markdown>
-      O Row é baseado no elemento div e suporta todos os atributos HTML padrão.
-    </DocBlock.Markdown>
-    <table style={{ width: '100%' }}>
-      <thead>
-        <tr>
-          <th>Prop</th>
-          <th>Tipo</th>
-          <th>Padrão</th>
-          <th>Descrição</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>noGutters</td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>
-            Removes the gutter spacing between Cols as well as any added
-            negative margins.
-          </td>
-        </tr>
-        <tr>
-          <td>xs</td>
-          <td>
-            <code>
-              &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; |
-              &quot;5&quot; | &quot;6&quot;
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns that will fit next to each other on extra
-            small devices (&lt;576px).
-          </td>
-        </tr>
-        <tr>
-          <td>sm</td>
-          <td>
-            <code>
-              &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; |
-              &quot;5&quot; | &quot;6&quot;
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns that will fit next to each other on small
-            devices (≥576px).
-          </td>
-        </tr>
-        <tr>
-          <td>md</td>
-          <td>
-            <code>
-              &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; |
-              &quot;5&quot; | &quot;6&quot;
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns that will fit next to each other on medium
-            devices (≥768px).
-          </td>
-        </tr>
-        <tr>
-          <td>lg</td>
-          <td>
-            <code>
-              &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; |
-              &quot;5&quot; | &quot;6&quot;
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns that will fit next to each other on large
-            devices (≥992px).
-          </td>
-        </tr>
-        <tr>
-          <td>xl</td>
-          <td>
-            <code>
-              &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; |
-              &quot;5&quot; | &quot;6&quot;
-            </code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>
-            The number of columns that will fit next to each other on extra
-            large devices (≥1200px).
-          </td>
-        </tr>
-        <tr>
-          <td>children</td>
-          <td>
-            <code>ReactNode</code>
-          </td>
-          <td>
-            <code>undefined</code>
-          </td>
-          <td>Colunas da linha (componentes Col).</td>
-        </tr>
-      </tbody>
-    </table>
-    <DocBlock.Markdown>
-      A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
-      será passada para o elemento div.
-    </DocBlock.Markdown>
-  </>
-);
+const ApiReference = (): JSX.Element => {
+  const breakpointProps = Object.entries(ROW_BREAKPOINT_CONFIGS).map(
+    ([key, description]) => (
+      <tr key={key}>
+        <td>{key}</td>
+        <td>
+          <code>{ROW_COLUMN_TYPE_SUMMARY}</code>
+        </td>
+        <td>
+          <code>undefined</code>
+        </td>
+        <td>{description}</td>
+      </tr>
+    )
+  );
+
+  return (
+    <>
+      <DocBlock.Heading>Referência da API</DocBlock.Heading>
+      <DocBlock.Markdown>
+        O Row é baseado no elemento div e suporta todos os atributos HTML
+        padrão.
+      </DocBlock.Markdown>
+      <table style={{ width: '100%' }}>
+        <thead>
+          <tr>
+            <th>Prop</th>
+            <th>Tipo</th>
+            <th>Padrão</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>noGutters</td>
+            <td>
+              <code>boolean</code>
+            </td>
+            <td>
+              <code>false</code>
+            </td>
+            <td>
+              Removes the gutter spacing between Cols as well as any added
+              negative margins.
+            </td>
+          </tr>
+          {breakpointProps}
+          <tr>
+            <td>children</td>
+            <td>
+              <code>ReactNode</code>
+            </td>
+            <td>
+              <code>undefined</code>
+            </td>
+            <td>Colunas da linha (componentes Col).</td>
+          </tr>
+        </tbody>
+      </table>
+      <DocBlock.Markdown>
+        A ref é encaminhada para o elemento div. Qualquer outra prop fornecida
+        será passada para o elemento div.
+      </DocBlock.Markdown>
+    </>
+  );
+};
