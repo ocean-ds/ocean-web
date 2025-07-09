@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.82.0](https://github.com/ocean-ds/ocean-web/compare/v1.81.0...v1.82.0) (2025-07-09)
+
+### Features
+
+- grid doc ([#1142](https://github.com/ocean-ds/ocean-web/issues/1142)) ([60e6d60](https://github.com/ocean-ds/ocean-web/commit/60e6d60d992a447cac9f8ca42b32cb8a9c8a6481))
+
 # [1.81.0](https://github.com/ocean-ds/ocean-web/compare/v1.80.1...v1.81.0) (2025-07-08)
 
 ### Features
