@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.82.0](https://github.com/ocean-ds/ocean-web/compare/v1.81.0...v1.82.0) (2025-07-09)
+
+### Features
+
+- grid doc ([#1142](https://github.com/ocean-ds/ocean-web/issues/1142)) ([60e6d60](https://github.com/ocean-ds/ocean-web/commit/60e6d60d992a447cac9f8ca42b32cb8a9c8a6481))
+
+# [1.81.0](https://github.com/ocean-ds/ocean-web/compare/v1.80.1...v1.81.0) (2025-07-08)
+
+### Features
+
+- file uploader doc ([#1141](https://github.com/ocean-ds/ocean-web/issues/1141)) ([6f554f4](https://github.com/ocean-ds/ocean-web/commit/6f554f4831cf3950985b6ffb476c8b9aeed81b29))
+
+## [1.80.1](https://github.com/ocean-ds/ocean-web/compare/v1.80.0...v1.80.1) (2025-07-08)
+
+### Bug Fixes
+
+- input docs ([#1140](https://github.com/ocean-ds/ocean-web/issues/1140)) ([177b96a](https://github.com/ocean-ds/ocean-web/commit/177b96a35d557208b9f06d18e2132aab7b607d39))
+
+# [1.80.0](https://github.com/ocean-ds/ocean-web/compare/v1.79.0...v1.80.0) (2025-07-08)
+
+### Features
+
+- token input docs update ([#1139](https://github.com/ocean-ds/ocean-web/issues/1139)) ([892723c](https://github.com/ocean-ds/ocean-web/commit/892723c20c6bd8f1fe8c9c3b7555cb115701fb80))
+
 # [1.79.0](https://github.com/ocean-ds/ocean-web/compare/v1.78.0...v1.79.0) (2025-07-03)
 
 ### Features
