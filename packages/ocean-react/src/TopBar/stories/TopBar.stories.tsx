@@ -352,6 +352,8 @@ const CommonPatterns = (): JSX.Element => (
   description="Personalize sua experiência"
   leftIcon={<ArrowLeftOutline />}
   rightIcon={<DotsVertical />}
+  onLeftAction={() => navigate(-1)}
+  onRightAction={() => setShowOptions(true)}
 />`}
     />
   </>
