@@ -1,9 +1,6 @@
-import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
-import TransactionListItem from '../../TransactionListItem';
-import SubHeader from '../../SubHeader';
-import Tag from '../../Tag';
-import List from '../List';
-
+import type { Meta, StoryObj } from '@storybook/react';
+import * as DocBlock from '@storybook/blocks';
+import React from 'react';
 import {
   StarOutline,
   Reply,
@@ -14,45 +11,96 @@ import {
   EyeOutline,
   CurrencyDollarOutline,
 } from '@useblu/ocean-icons-react';
+import TransactionListItem from '../../TransactionListItem';
+import SubHeader from '../../SubHeader';
+import Tag from '../../Tag';
+import List from '../List';
 
-<Meta
-  title="Examples/List"
-  component={List}
-  decorators={[(storyFn) => <div className="show-grid">{storyFn()}</div>]}
-  parameters={{ layout: 'padded' }}
-/>
+const meta: Meta<typeof List> = {
+  title: 'Examples/List',
+  component: List,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'padded',
+    docs: {
+      page: () => (
+        <>
+          <Introduction />
+          <DocBlock.Heading>Documentação</DocBlock.Heading>
+          <DocsSection />
+        </>
+      ),
+    },
+  },
+};
 
-# Lists
+export default meta;
 
-Lists are continuous, vertical indexes of text or images.
+type Story = StoryObj<typeof List>;
 
-Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.
+const Introduction = (): JSX.Element => (
+  <>
+    <DocBlock.Title />
+    <DocBlock.Markdown>
+      Lists são índices contínuos e verticais de texto ou imagens.
+    </DocBlock.Markdown>
+    <DocBlock.Markdown>
+      Lists são um grupo contínuo de texto ou imagens. Elas são compostas por
+      itens contendo ações primárias e suplementares, que são representadas por
+      ícones e texto.
+    </DocBlock.Markdown>
+  </>
+);
 
-## Simple List
+// Componente temporário para referência das stories
+const DocsSection = (): JSX.Element => (
+  <>
+    <DocBlock.Heading>Exemplos Básicos</DocBlock.Heading>
+    <DocBlock.Canvas of={SimpleList} />
 
-List can be used to show many diferent types of information
+    <DocBlock.Heading>Variações do TransactionListItem</DocBlock.Heading>
 
-<Canvas withSource="open" withToolbar>
-  <Story name="simple-list">
+    <h3>Informação Completa</h3>
+    <DocBlock.Canvas of={AllLevelInformation} />
+
+    <h3>Valor Positivo</h3>
+    <DocBlock.Canvas of={WithPositiveValue} />
+
+    <h3>Com Tags</h3>
+    <DocBlock.Canvas of={WithTags} />
+
+    <h3>Ícones Personalizados</h3>
+    <DocBlock.Canvas of={WithCustomIcons} />
+
+    <h3>Com Sub-itens</h3>
+    <DocBlock.Canvas of={WithSubItems} />
+
+    <DocBlock.Heading>Casos de Uso Avançados</DocBlock.Heading>
+
+    <h3>Múltiplos Usos</h3>
+    <DocBlock.Canvas of={MultipleUsages} />
+
+    <h3>Lista de Pagamentos</h3>
+    <DocBlock.Canvas of={PaymentsList} />
+
+    <h3>Transações Bancárias</h3>
+    <DocBlock.Canvas of={BankTransactions} />
+  </>
+);
+
+export const SimpleList: Story = {
+  render: () => (
     <List>
       <TransactionListItem icon={<StarOutline />}>Item 1</TransactionListItem>
       <TransactionListItem icon={<Reply />}>Item 2</TransactionListItem>
       <TransactionListItem>Item 3</TransactionListItem>
       <TransactionListItem>Item 4</TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-# Transaction List Item Variations
-
-Transaction List Itens are component to be used inside the List component, they are prepare to show a muilt level of information.
-
-## All level of information
-
-with many levels of information, all the possibilities are displayed down below.
-
-<Canvas withSource="open" withToolbar>
-  <Story name="all-level-information">
+export const AllLevelInformation: Story = {
+  render: () => (
     <List>
       <TransactionListItem
         icon={<EyeOutline />}
@@ -66,13 +114,11 @@ with many levels of information, all the possibilities are displayed down below.
         Level 1
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## With positive value
-
-<Canvas withSource="open">
-  <Story name="with-positve">
+export const WithPositiveValue: Story = {
+  render: () => (
     <List>
       <TransactionListItem
         icon={<SwitchHorizontal />}
@@ -84,19 +130,15 @@ with many levels of information, all the possibilities are displayed down below.
         TransactionListItem Received
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## With Tags
-
-you can set one or a list of custom Tag element with the parameter `tags`:
-
-<Canvas withSource="open">
-  <Story name="with-tags">
+export const WithTags: Story = {
+  render: () => (
     <List>
       <TransactionListItem
         icon={<SwitchHorizontal />}
-        tags={<Tag type="negative"> blocked </Tag>}
+        tags={<Tag type="negative">blocked</Tag>}
         time="9:00"
         value="+ U$ 146,90"
         level2="In-n-Out Burgers LA"
@@ -105,15 +147,11 @@ you can set one or a list of custom Tag element with the parameter `tags`:
         TransactionListItem Received
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## Custom Icons
-
-you can set a custom Icon for the transaction with the parameter `icon`:
-
-<Canvas withSource="open">
-  <Story name="with-icons">
+export const WithCustomIcons: Story = {
+  render: () => (
     <List>
       <TransactionListItem
         icon={<StarOutline />}
@@ -123,15 +161,11 @@ you can set a custom Icon for the transaction with the parameter `icon`:
         Star
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## TransactionListItem with subitens
-
-you can set one or a list of sub TransactionListItem element with the parameter `subItens`:
-
-<Canvas withSource="open">
-  <Story name="with-sub-itens">
+export const WithSubItems: Story = {
+  render: () => (
     <List>
       <TransactionListItem
         icon={<CreditCardOutline />}
@@ -151,15 +185,11 @@ you can set one or a list of sub TransactionListItem element with the parameter 
         Monthly Income
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## Multiple usages
-
-You can also display the diferent kinds of List Itens element in a list view:
-
-<Canvas withSource="open">
-  <Story name="multiple-usages">
+export const MultipleUsages: Story = {
+  render: () => (
     <List>
       <SubHeader>Today</SubHeader>
       <TransactionListItem
@@ -197,7 +227,7 @@ You can also display the diferent kinds of List Itens element in a list view:
         Monthly Income
       </TransactionListItem>
       <TransactionListItem
-        className="ods-list\_\_item"
+        className="ods-list__item"
         icon={<SwitchHorizontal />}
         time="9:00"
         value="+ U$ 1.546,90"
@@ -208,13 +238,11 @@ You can also display the diferent kinds of List Itens element in a list view:
         Bank Transfer
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## Payments List
-
-<Canvas withSource="open">
-  <Story name="payments-list">
+export const PaymentsList: Story = {
+  render: () => (
     <List>
       <SubHeader>Today, July 15</SubHeader>
       <TransactionListItem
@@ -261,13 +289,11 @@ You can also display the diferent kinds of List Itens element in a list view:
         Payment to supplier
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
 
-## Bank Transactions
-
-<Canvas withSource="open">
-  <Story name="bank-transactions">
+export const BankTransactions: Story = {
+  render: () => (
     <List>
       <SubHeader
         subtitle={
@@ -284,7 +310,7 @@ You can also display the diferent kinds of List Itens element in a list view:
         time="9:00"
         level2="IImosest Furniture and Upholstery Industry"
       >
-        Brank Transfer
+        Bank Transfer
       </TransactionListItem>
       <TransactionListItem
         icon={<SwitchHorizontal />}
@@ -292,7 +318,7 @@ You can also display the diferent kinds of List Itens element in a list view:
         time="9:00"
         level2="Moved Pampa Almt."
       >
-        Brank Transfer
+        Bank Transfer
       </TransactionListItem>
       <TransactionListItem
         icon={<SwitchHorizontal />}
@@ -301,7 +327,7 @@ You can also display the diferent kinds of List Itens element in a list view:
         time="9:00"
         level2="Moved Pampa Almt."
       >
-        Brank Transfer
+        Bank Transfer
       </TransactionListItem>
       <SubHeader
         subtitle={
@@ -321,5 +347,5 @@ You can also display the diferent kinds of List Itens element in a list view:
         Credit Card
       </TransactionListItem>
     </List>
-  </Story>
-</Canvas>
+  ),
+};
