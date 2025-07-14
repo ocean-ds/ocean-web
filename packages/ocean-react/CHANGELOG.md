@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.84.0](https://github.com/ocean-ds/ocean-web/compare/v1.83.0...v1.84.0) (2025-07-11)
+
+### Features
+
+- simple list doc ([#1145](https://github.com/ocean-ds/ocean-web/issues/1145)) ([bd0c5e9](https://github.com/ocean-ds/ocean-web/commit/bd0c5e9bb122a92a65ec54d7f2408af2c279366b))
+
+# [1.83.0](https://github.com/ocean-ds/ocean-web/compare/v1.82.0...v1.83.0) (2025-07-10)
+
+### Features
+
+- tag doc ([#1143](https://github.com/ocean-ds/ocean-web/issues/1143)) ([c197b3c](https://github.com/ocean-ds/ocean-web/commit/c197b3cba59fc81c72b45ef1e0cfd8630122474c))
+
 # [1.82.0](https://github.com/ocean-ds/ocean-web/compare/v1.81.0...v1.82.0) (2025-07-09)
 
 ### Features
