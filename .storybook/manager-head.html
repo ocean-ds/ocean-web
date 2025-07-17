@@ -7,54 +7,66 @@
 <link rel="icon" type="image/png" href="ocean-ds.png" sizes="192x192" />
 
 <script>
-  // Script para adicionar href aos botões de navegação
+  // Script que adiciona href aos botões sem quebrar a funcionalidade do Storybook
   (function () {
     'use strict';
 
     function addHrefToButtons() {
-      console.log('Procurando botões de navegação...');
-
       // Seleciona botões de navegação
       const buttons = document.querySelectorAll(
-        '[data-testid="sidebar-item"], .sidebar-item, [data-item-id]'
+        '[data-item-id], .sidebar-item, [data-testid="sidebar-item"]'
       );
-
-      console.log('Encontrados', buttons.length, 'botões');
 
       buttons.forEach((button, index) => {
         if (button.hasAttribute('data-href-added')) {
-          console.log('Botão', index, 'já processado');
           return;
         }
 
         const text = button.textContent?.trim();
-        console.log('Botão', index, 'texto:', text);
 
         if (!text) return;
 
-        // Gera href baseado no texto
-        const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, '-');
-        const href = `#${cleanText}`;
+        // Gera href para indexação
+        const href = generateIndexableHref(text, button);
 
-        console.log('Adicionando href:', href, 'ao botão:', text);
-
-        // Adiciona href ao botão
+        // Adiciona href ao botão (mantém como botão)
         button.setAttribute('href', href);
         button.setAttribute('data-href-added', 'true');
 
-        // Adiciona cursor pointer
+        // Adiciona cursor pointer para indicar que é clicável
         button.style.cursor = 'pointer';
 
-        console.log('Href adicionado com sucesso ao botão:', text);
+        // Adiciona evento de clique que preserva a funcionalidade original
+        button.addEventListener('click', function (e) {
+          // Permite que o Storybook processe o clique normalmente
+          // O href será usado apenas para indexação
+        });
       });
     }
 
-    function init() {
-      console.log('Iniciando script de navegação...');
+    function generateIndexableHref(text, button) {
+      const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
+      // Tenta extrair informações do botão
+      const itemId = button.getAttribute('data-item-id');
+      const parentId = button.getAttribute('data-parent-id');
+
+      // Gera URLs específicas para indexação
+      if (itemId && parentId) {
+        // Formato: /docs/components/component-name
+        return `/ocean-web/index.html?path=/docs/${parentId}/${cleanText}`;
+      } else if (itemId) {
+        // Formato: /docs/component-name
+        return `/ocean-web/index.html?path=/docs/${cleanText}`;
+      } else {
+        // Formato padrão
+        return `#${cleanText}`;
+      }
+    }
+
+    function init() {
       // Executa após o carregamento
       setTimeout(() => {
-        console.log('Executando addHrefToButtons...');
         addHrefToButtons();
       }, 2000);
 
@@ -62,9 +74,6 @@
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.type === 'childList') {
-            console.log(
-              'Mudança detectada no DOM, executando addHrefToButtons...'
-            );
             setTimeout(addHrefToButtons, 100);
           }
         });
