@@ -23,6 +23,10 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
+  features: {
+    // V6 é mais compatível com static generation
+    storyStoreV7: false,
+  },
   typescript: {
     check: false,
     reactDocgen: 'react-docgen-typescript',
@@ -54,6 +58,31 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.extensions = config.resolve.extensions || [];
       config.resolve.extensions.push('.ts', '.tsx');
+    }
+
+    // Otimizações para geração estática
+    if (config.optimization) {
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          // Criar chunk específico para stories
+          stories: {
+            name: 'stories',
+            chunks: 'all',
+            test: /\.stories\.(js|jsx|ts|tsx|mdx)$/,
+            priority: 20,
+          },
+          // Chunk para componentes
+          components: {
+            name: 'components',
+            chunks: 'all',
+            test: /packages\/ocean-react\/src\/(?!.*\.stories\.).*\.(js|jsx|ts|tsx)$/,
+            priority: 15,
+          },
+        },
+      };
     }
 
     return config;
