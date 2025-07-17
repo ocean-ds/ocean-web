@@ -187,18 +187,21 @@ ${urls.join('\n')}
 
   const outputPath = path.join(__dirname, '../storybook-static/sitemap.xml');
 
-  // Verificar se o diretório existe
+  // Criar diretório se não existir
   const outputDir = path.dirname(outputPath);
   if (!fs.existsSync(outputDir)) {
-    console.log(
-      `Diretório ${outputDir} não existe. Execute 'yarn build:storybook' primeiro.`
-    );
-    return;
+    console.log(`📁 Criando diretório: ${outputDir}`);
+    fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  fs.writeFileSync(outputPath, sitemapContent, 'utf8');
-  console.log(`✅ Sitemap gerado com sucesso em: ${outputPath}`);
-  console.log(`📊 Total de URLs: ${stories.length + 1}`);
+  try {
+    fs.writeFileSync(outputPath, sitemapContent, 'utf8');
+    console.log(`✅ Sitemap gerado com sucesso em: ${outputPath}`);
+    console.log(`📊 Total de URLs: ${stories.length + 1}`);
+  } catch (error) {
+    console.error(`❌ Erro ao gerar sitemap: ${error.message}`);
+    process.exit(1);
+  }
 }
 
 // Executar se chamado diretamente
