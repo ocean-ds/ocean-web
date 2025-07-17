@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 function generateSitemap() {
   const baseUrl = 'https://ocean-ds.github.io/ocean-web';
@@ -97,4 +97,4 @@ if (require.main === module) {
   generateSitemap();
 }
 
-export default generateSitemap;
+module.exports = { generateSitemap };
