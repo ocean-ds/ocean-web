@@ -5,3 +5,91 @@
 
 <link rel="shortcut icon" href="ocean-ds.ico" />
 <link rel="icon" type="image/png" href="ocean-ds.png" sizes="192x192" />
+
+<script>
+  // Script que adiciona href aos botões sem quebrar a funcionalidade do Storybook
+  (function () {
+    'use strict';
+
+    function addHrefToButtons() {
+      // Seleciona botões de navegação
+      const buttons = document.querySelectorAll(
+        '[data-item-id], .sidebar-item, [data-testid="sidebar-item"]'
+      );
+
+      buttons.forEach((button, index) => {
+        if (button.hasAttribute('data-href-added')) {
+          return;
+        }
+
+        const text = button.textContent?.trim();
+
+        if (!text) return;
+
+        // Gera href para indexação
+        const href = generateIndexableHref(text, button);
+
+        // Adiciona href ao botão (mantém como botão)
+        button.setAttribute('href', href);
+        button.setAttribute('data-href-added', 'true');
+
+        // Adiciona cursor pointer para indicar que é clicável
+        button.style.cursor = 'pointer';
+
+        // Adiciona evento de clique que preserva a funcionalidade original
+        button.addEventListener('click', function (e) {
+          // Permite que o Storybook processe o clique normalmente
+          // O href será usado apenas para indexação
+        });
+      });
+    }
+
+    function generateIndexableHref(text, button) {
+      const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+      // Tenta extrair informações do botão
+      const itemId = button.getAttribute('data-item-id');
+      const parentId = button.getAttribute('data-parent-id');
+
+      // Gera URLs específicas para indexação
+      if (itemId && parentId) {
+        // Formato: /docs/components/component-name
+        return `/ocean-web/index.html?path=/docs/${parentId}/${cleanText}`;
+      } else if (itemId) {
+        // Formato: /docs/component-name
+        return `/ocean-web/index.html?path=/docs/${cleanText}`;
+      } else {
+        // Formato padrão
+        return `#${cleanText}`;
+      }
+    }
+
+    function init() {
+      // Executa após o carregamento
+      setTimeout(() => {
+        addHrefToButtons();
+      }, 2000);
+
+      // Observa mudanças no DOM
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            setTimeout(addHrefToButtons, 100);
+          }
+        });
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    // Executa quando o script for carregado
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
