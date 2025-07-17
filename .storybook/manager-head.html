@@ -5,3 +5,82 @@
 
 <link rel="shortcut icon" href="ocean-ds.ico" />
 <link rel="icon" type="image/png" href="ocean-ds.png" sizes="192x192" />
+
+<script>
+  // Script para adicionar href aos botões de navegação
+  (function () {
+    'use strict';
+
+    function addHrefToButtons() {
+      console.log('Procurando botões de navegação...');
+
+      // Seleciona botões de navegação
+      const buttons = document.querySelectorAll(
+        '[data-testid="sidebar-item"], .sidebar-item, [data-item-id]'
+      );
+
+      console.log('Encontrados', buttons.length, 'botões');
+
+      buttons.forEach((button, index) => {
+        if (button.hasAttribute('data-href-added')) {
+          console.log('Botão', index, 'já processado');
+          return;
+        }
+
+        const text = button.textContent?.trim();
+        console.log('Botão', index, 'texto:', text);
+
+        if (!text) return;
+
+        // Gera href baseado no texto
+        const cleanText = text.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        const href = `#${cleanText}`;
+
+        console.log('Adicionando href:', href, 'ao botão:', text);
+
+        // Adiciona href ao botão
+        button.setAttribute('href', href);
+        button.setAttribute('data-href-added', 'true');
+
+        // Adiciona cursor pointer
+        button.style.cursor = 'pointer';
+
+        console.log('Href adicionado com sucesso ao botão:', text);
+      });
+    }
+
+    function init() {
+      console.log('Iniciando script de navegação...');
+
+      // Executa após o carregamento
+      setTimeout(() => {
+        console.log('Executando addHrefToButtons...');
+        addHrefToButtons();
+      }, 2000);
+
+      // Observa mudanças no DOM
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            console.log(
+              'Mudança detectada no DOM, executando addHrefToButtons...'
+            );
+            setTimeout(addHrefToButtons, 100);
+          }
+        });
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    // Executa quando o script for carregado
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
