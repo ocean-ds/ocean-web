@@ -7,10 +7,7 @@
   "scripts": {
     "prepare": "husky install",
     "build:libs": "lerna run build --stream",
-    "build:storybook": "storybook build -s .storybook/assets && node scripts/generate-sitemap.js",
-    "prerender:demo": "node scripts/prerender-stories.js",
-    "test:seo": "./scripts/test-seo.sh",
-    "test:manual": "./scripts/manual-tests.sh",
+    "build:storybook": "storybook build -s .storybook/assets",
     "build": "run-s build:libs build:storybook",
     "test": "jest",
     "coverage": "jest --coverage",
