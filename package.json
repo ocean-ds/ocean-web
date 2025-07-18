@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "husky install",
     "build:libs": "lerna run build --stream",
-    "build:storybook": "storybook build -s .storybook/assets && node scripts/generate-sitemap.js && echo \"Build completed at $(date)\" > storybook-static/build-info.txt",
+    "build:storybook": "storybook build -s .storybook/assets && node scripts/generate-sitemap.js",
     "prerender:demo": "node scripts/prerender-stories.js",
     "test:seo": "./scripts/test-seo.sh",
     "test:manual": "./scripts/manual-tests.sh",
@@ -22,7 +22,7 @@
     "watch:storybook": "storybook dev -p 6006 -s .storybook/assets",
     "storybook": "npm-run-all build:libs --parallel watch:*",
     "predeploy:storybook": "lerna run build --stream",
-    "deploy:storybook": "storybook-to-ghpages -s build:storybook -o storybook-static",
+    "deploy:storybook": "storybook-to-ghpages -s build:storybook",
     "cm": "cz",
     "version": "prettier --write '**/{CHANGELOG.md,lerna.json}'",
     "prepublishOnly": "ts-node ./scripts/copy-files.ts"
