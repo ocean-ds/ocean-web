@@ -1,0 +1,85 @@
+name: Deploy Ocean Documentation
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'packages/ocean-docs/**'
+      - 'packages/ocean-react/**'
+      - 'packages/ocean-core/**'
+      - '.github/workflows/deploy-docs.yml'
+      - 'package.json'
+  pull_request:
+    branches:
+      - master
+      - main
+    paths:
+      - 'packages/ocean-docs/**'
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Ocean packages
+        run: yarn build:libs
+
+      - name: Build documentation
+        run: yarn build:docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./packages/ocean-docs/build
+
+  test-build:
+    name: Test Build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Ocean packages
+        run: yarn build:libs
+
+      - name: Test documentation build
+        run: yarn build:docs
+
+      - name: Test serve
+        run: |
+          cd packages/ocean-docs
+          yarn serve &
+          sleep 10
+          curl -f http://localhost:3000/ || exit 1
