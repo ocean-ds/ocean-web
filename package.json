@@ -131,6 +131,7 @@
     "glob-parent": "^5.1.2",
     "immer": "^9.0.6",
     "node-sass": "^7.0.0",
+    "postcss-scss": "4.0.9",
     "trim": "^1.0.1"
   }
 }
