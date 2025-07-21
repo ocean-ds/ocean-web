@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.87.0](https://github.com/ocean-ds/ocean-web/compare/v1.86.0...v1.87.0) (2025-07-21)
+
+### Features
+
+- add new domain ([#1155](https://github.com/ocean-ds/ocean-web/issues/1155)) ([c9dfca8](https://github.com/ocean-ds/ocean-web/commit/c9dfca856594598da365b0a33c2f8d9e7023be51))
+
 # [1.86.0](https://github.com/ocean-ds/ocean-web/compare/v1.85.0...v1.86.0) (2025-07-21)
 
 ### Features
