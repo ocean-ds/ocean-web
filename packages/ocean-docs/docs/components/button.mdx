@@ -1,0 +1,214 @@
+---
+title: Button
+sidebar_label: Button
+sidebar_position: 2
+---
+
+import { Button } from '@useblu/ocean-react';
+
+# Button
+
+O componente Button é usado para acionar uma ação ou evento, como submeter um formulário, abrir um diálogo, cancelar uma ação ou executar uma operação de delete.
+
+## Uso básico
+
+```tsx live
+<Button variant="primary">Botão primário</Button>
+```
+
+## Variantes
+
+O Button tem diferentes variantes para diferentes contextos de uso:
+
+### Primary
+
+```tsx live
+<Button variant="primary">Botão primário</Button>
+```
+
+### Secondary
+
+```tsx live
+<Button variant="secondary">Botão secundário</Button>
+```
+
+### Tertiary
+
+```tsx live
+<Button variant="tertiary">Botão terciário</Button>
+```
+
+## Tamanhos
+
+### Small
+
+```tsx live
+<Button size="sm" variant="primary">
+  Pequeno
+</Button>
+```
+
+### Medium (padrão)
+
+```tsx live
+<Button size="md" variant="primary">
+  Médio
+</Button>
+```
+
+### Large
+
+```tsx live
+<Button size="lg" variant="primary">
+  Grande
+</Button>
+```
+
+## Estados
+
+### Disabled
+
+```tsx live
+<Button variant="primary" disabled>
+  Botão desabilitado
+</Button>
+```
+
+### Loading
+
+```tsx live
+<Button variant="primary" loading>
+  Carregando...
+</Button>
+```
+
+## Com ícones
+
+```tsx live
+<div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+  <Button variant="primary" iconLeft="plus">
+    Adicionar
+  </Button>
+  <Button variant="secondary" iconRight="arrow-right">
+    Continuar
+  </Button>
+  <Button variant="tertiary" iconLeft="download">
+    Download
+  </Button>
+</div>
+```
+
+## Largura total
+
+```tsx live
+<Button variant="primary" fullWidth>
+  Botão de largura total
+</Button>
+```
+
+## API
+
+### Props
+
+| Prop        | Tipo                                     | Padrão      | Descrição                                    |
+| ----------- | ---------------------------------------- | ----------- | -------------------------------------------- |
+| `variant`   | `'primary' \| 'secondary' \| 'tertiary'` | `'primary'` | Define o estilo visual do botão              |
+| `size`      | `'sm' \| 'md' \| 'lg'`                   | `'md'`      | Define o tamanho do botão                    |
+| `disabled`  | `boolean`                                | `false`     | Desabilita o botão                           |
+| `loading`   | `boolean`                                | `false`     | Mostra estado de carregamento                |
+| `fullWidth` | `boolean`                                | `false`     | Faz o botão ocupar toda a largura disponível |
+| `iconLeft`  | `string`                                 | -           | Nome do ícone à esquerda do texto            |
+| `iconRight` | `string`                                 | -           | Nome do ícone à direita do texto             |
+| `onClick`   | `(event: MouseEvent) => void`            | -           | Função chamada ao clicar no botão            |
+| `type`      | `'button' \| 'submit' \| 'reset'`        | `'button'`  | Tipo do botão HTML                           |
+| `className` | `string`                                 | -           | Classes CSS adicionais                       |
+| `children`  | `ReactNode`                              | -           | Conteúdo do botão                            |
+
+### Eventos
+
+- `onClick`: Disparado quando o botão é clicado
+- `onFocus`: Disparado quando o botão recebe foco
+- `onBlur`: Disparado quando o botão perde foco
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                   |
+| ----------------- | ------------------------ |
+| `Tab`             | Move o foco para o botão |
+| `Space` / `Enter` | Ativa o botão            |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use variante `primary` para a ação principal da página
+- Use texto claro e conciso que descreva a ação
+- Mantenha consistência no uso de ícones
+- Use estado `loading` durante operações assíncronas
+
+### ❌ Não faça
+
+- Não use múltiplos botões `primary` na mesma tela
+- Não use texto muito longo em botões
+- Não omita o estado `disabled` quando apropriado
+- Não use apenas ícones sem texto para ações críticas
+
+## Exemplos de uso
+
+### Formulário de login
+
+```tsx
+function LoginForm() {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    // Lógica de login
+    setLoading(false);
+  };
+
+  return (
+    <form>
+      {/* campos do formulário */}
+      <Button variant="primary" type="submit" loading={loading} fullWidth>
+        Entrar
+      </Button>
+    </form>
+  );
+}
+```
+
+### Ações em cards
+
+```tsx
+function ProductCard() {
+  return (
+    <div className="card">
+      <h3>Produto</h3>
+      <p>Descrição do produto...</p>
+      <div style={{ display: 'flex', gap: '8px' }}>
+        <Button variant="primary" size="sm">
+          Comprar
+        </Button>
+        <Button variant="tertiary" size="sm" iconLeft="heart">
+          Favoritar
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [IconButton](/components/icon-button) - Para botões apenas com ícone
+- [Link](/components/link) - Para navegação entre páginas
+- [Fundamentos - Interações](/foundations/interaction-patterns)
