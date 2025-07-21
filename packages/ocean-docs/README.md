@@ -1,5 +1,7 @@
 # Ocean Design System Documentation
 
+> Updated to Node.js 18
+
 Documentação oficial do Ocean Design System construída com [Docusaurus](https://docusaurus.io/).
 
 ## 🚀 Início rápido
