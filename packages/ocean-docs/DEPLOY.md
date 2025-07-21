@@ -1,228 +1,117 @@
-# Guia de Deploy - Ocean Documentation
+# Ocean Design System - Deploy Guide
 
-Este guia explica como fazer deploy da documentação Ocean no GitHub Pages.
+O Ocean Design System é deployado automaticamente via GitHub Actions para GitHub Pages com duas documentações coexistindo:
 
-## 🚀 GitHub Pages (Configuração Principal)
+## 🌊 **URLs de Produção**
 
-### Deploy Automático (CI/CD)
+### **Storybook (Componentes Interativos)**
 
-O deploy automático está configurado via GitHub Actions:
+- **URL**: `https://ocean-ds.github.io/ocean-web`
+- **Workflow**: `.github/workflows/site.yml`
+- **Trigger**: Push para `master`
+- **Conteúdo**: Storybook com todos os componentes interativos
 
-- **Trigger**: Push para branch `master` ou `main`
-- **Arquivo**: `.github/workflows/deploy-docs.yml`
-- **URL**: `https://useblu.github.io/ocean-web/`
+### **Docusaurus (Documentação Principal)**
 
-### Deploy Manual
+- **URL**: `https://ocean-ds.github.io/ocean-web/docs`
+- **Workflow**: `.github/workflows/deploy-docs.yml`
+- **Trigger**: Push para `master` ou `main`
+- **Conteúdo**: Guias, tutoriais, e documentação textual
+
+## 🔄 **Deploy Automático**
+
+### **Quando acontece:**
+
+```yaml
+# Ambos os workflows são executados em:
+on:
+  push:
+    branches: [master, main]
+```
+
+### **Como funciona:**
+
+1. **Storybook** → Deploy para **raiz** da `gh-pages`
+2. **Docusaurus** → Deploy para **subpasta `/docs`** da `gh-pages`
+3. **Sem conflitos** - paths diferentes
+
+## 🛠️ **Deploy Manual**
+
+### **Build local do Docusaurus:**
 
 ```bash
-# No diretório raiz
-yarn deploy:docs
-
-# Ou diretamente no ocean-docs
 cd packages/ocean-docs
-yarn deploy:gh-pages
+yarn build
+yarn serve  # Preview local
 ```
 
-### Configuração
-
-1. **Habilitar GitHub Pages** no repositório:
-
-   - Vá em Settings > Pages
-   - Source: Deploy from a branch
-   - Branch: `gh-pages`
-
-2. **Workflow automático** (já configurado):
-   - O arquivo `.github/workflows/deploy-docs.yml` faz deploy automático
-   - Executa quando há push para `master`/`main`
-   - Testa build em Pull Requests
-
-## 🔧 Scripts Disponíveis
-
-### Projeto Raiz
+### **Deploy manual (se necessário):**
 
 ```bash
-# Iniciar documentação em desenvolvimento
-yarn start:docs
-
-# Build da documentação
+# Root do projeto
 yarn build:docs
-
-# Deploy para GitHub Pages
-yarn deploy:docs
+yarn deploy:docs  # Deploy via Docusaurus CLI
 ```
 
-### Ocean Docs
+## 📁 **Estrutura GitHub Pages**
+
+```
+gh-pages branch:
+├── index.html              # Storybook (raiz)
+├── static/                 # Assets do Storybook
+├── docs/                   # Docusaurus
+│   ├── index.html         # Homepage da documentação
+│   ├── components/        # Páginas de componentes
+│   └── assets/           # Assets do Docusaurus
+└── .nojekyll             # Necessário para SPAs
+```
+
+## 🔗 **Navegação Entre Sites**
+
+- **Do Storybook → Docusaurus**: Link "Docs" no header
+- **Do Docusaurus → Storybook**: Link "Storybook" no footer
+- **Cross-reference**: Ambos linkam entre si automaticamente
+
+## 🚨 **Troubleshooting**
+
+### **Deploy falhou:**
+
+1. Verificar se ambos workflows não executaram simultaneamente
+2. Verificar logs em Actions tab do GitHub
+3. Confirmar permissões do GITHUB_TOKEN
+
+### **URLs não funcionam:**
+
+1. Verificar `baseUrl` no `docusaurus.config.ts`
+2. Confirmar `destination_dir` no workflow
+3. Aguardar propagação DNS (até 10 minutos)
+
+### **Conflitos de cache:**
 
 ```bash
-# Desenvolvimento
-yarn start
-
-# Build
-yarn build
-
-# Deploy para GitHub Pages
-yarn deploy:gh-pages
-
-# Servir build localmente
-yarn serve
-
-# Limpar cache
-yarn clear
+# Limpar cache local
+rm -rf packages/ocean-docs/build
+rm -rf packages/ocean-docs/.docusaurus
+yarn build:docs
 ```
-
-## 🌐 URL de Acesso
-
-### Produção
-
-- **GitHub Pages**: `https://useblu.github.io/ocean-web/`
-
-### Preview/Staging
-
-- **GitHub Actions**: Validação de build em PRs
-
-## ⚙️ Configurações Avançadas
-
-### Variáveis de Ambiente
-
-```bash
-# .env (desenvolvimento)
-BROWSER=none
-PORT=3000
-
-# .env.production (produção)
-NODE_ENV=production
-BABEL_ENV=production
-```
-
-### Customização de Base URL
-
-Configuração atual em `docusaurus.config.ts`:
-
-```ts
-const config: Config = {
-  url: 'https://useblu.github.io',
-  baseUrl: '/ocean-web/',
-  organizationName: 'useblu',
-  projectName: 'ocean-web',
-  deploymentBranch: 'gh-pages',
-};
-```
-
-## 🐛 Troubleshooting
-
-### Problemas Comuns
-
-**Build falha por falta de memória**
-
-```bash
-# Aumentar limite de memória do Node.js
-NODE_OPTIONS="--max_old_space_size=4096" yarn build
-```
-
-**Base URL incorreta**
-
-```bash
-# Verificar configuração no docusaurus.config.ts
-# GitHub Pages: baseUrl: '/ocean-web/'
-```
-
-**Assets não carregam**
-
-```bash
-# Verificar se trailingSlash está correto
-# GitHub Pages: trailingSlash: false
-```
-
-**Deploy GitHub Pages falha**
-
-```bash
-# Verificar permissões do GITHUB_TOKEN
-# Settings > Actions > General > Workflow permissions
-```
-
-### Logs e Debug
-
-```bash
-# Build com logs verbosos
-yarn build --verbose
-
-# Debug do Docusaurus
-DEBUG=docusaurus:* yarn start
-
-# Analisar bundle size
-yarn build --analyze
-```
-
-## 📊 Monitoramento
-
-### Analytics
-
-Adicionar Google Analytics no `docusaurus.config.ts`:
-
-```ts
-themeConfig: {
-  gtag: {
-    trackingID: 'G-XXXXXXXXXX',
-    anonymizeIP: true,
-  },
-}
-```
-
-### Performance
-
-- **Lighthouse CI** automático nos PRs
-- **Bundle analyzer** para otimização
-- **Core Web Vitals** monitoring
-
-## 🔒 Segurança
-
-### Headers de Segurança
-
-GitHub Pages fornece:
-
-- **HTTPS** automático
-- **Basic security headers**
-- **DDoS protection**
-
-## 💡 Alternativas (Para Referência)
-
-### AWS S3 + CloudFront
-
-```bash
-# Build
-yarn build
-
-# Upload para S3 (configure AWS CLI primeiro)
-aws s3 sync build/ s3://your-bucket-name --delete
-
-# Invalidar CloudFront
-aws cloudfront create-invalidation --distribution-id YOUR_ID --paths "/*"
-```
-
-### Docker
-
-```dockerfile
-# Dockerfile
-FROM node:18-alpine as builder
-WORKDIR /app
-COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile
-COPY . .
-RUN yarn build
-
-FROM nginx:alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
-
-## 📈 Próximos Passos
-
-1. **Configurar analytics**
-2. **Configurar monitoramento**
-3. **Automatizar atualizações de componentes**
-4. **Integrar com Storybook**
 
 ---
 
-Para dúvidas ou problemas, abra uma [issue no GitHub](https://github.com/useblu/ocean-web/issues) com a tag `documentation`.
+## 📝 **Configuração Atual**
+
+**Docusaurus Config:**
+
+```typescript
+url: 'https://ocean-ds.github.io',
+baseUrl: '/ocean-web/docs/',
+organizationName: 'ocean-ds',
+projectName: 'ocean-web',
+```
+
+**Deploy Workflow:**
+
+```yaml
+destination_dir: docs # Subpasta no gh-pages
+```
+
+Esta configuração garante que ambas as documentações coexistam sem conflitos! 🎉

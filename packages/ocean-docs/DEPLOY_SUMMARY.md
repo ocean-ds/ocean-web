@@ -1,148 +1,59 @@
-# ✅ Ocean Docs - Deploy Configurado com Sucesso
+# Ocean Docs - Resumo do Deploy
 
-## 🎉 Status: PRONTO PARA DEPLOY
+## 🎯 **Estratégia de Deploy Atual**
 
-A documentação Ocean está **totalmente configurada** e **pronta para deploy** em múltiplas plataformas.
+### **Duas documentações coexistindo no GitHub Pages:**
 
-## 🚀 Plataformas Configuradas
+| Site           | URL                                         | Workflow          | Conteúdo                |
+| -------------- | ------------------------------------------- | ----------------- | ----------------------- |
+| **Storybook**  | `https://ocean-ds.github.io/ocean-web`      | `site.yml`        | Componentes interativos |
+| **Docusaurus** | `https://ocean-ds.github.io/ocean-web/docs` | `deploy-docs.yml` | Documentação textual    |
 
-### 1. GitHub Pages ⭐ (Principal)
+## ✅ **Configurações Implementadas**
 
-- ✅ **Workflow automático** configurado (`.github/workflows/deploy-docs.yml`)
-- ✅ **Build testado** e funcionando
-- ✅ **Deploy automático** no push para master/main
-- 🌐 **URL**: `https://useblu.github.io/ocean-web/`
+### **Docusaurus (`deploy-docs.yml`)**
 
-### 2. Outras Plataformas
-
-- ⚠️ **Vercel/Netlify**: Configurações removidas para focar apenas no GitHub Pages
-
-## 📋 Scripts Funcionando
-
-### Projeto Raiz (ocean-web)
-
-```bash
-✅ yarn start:docs     # Desenvolvimento
-✅ yarn build:docs     # Build (TESTADO)
-✅ yarn deploy:docs    # Deploy GitHub Pages
+```yaml
+destination_dir: docs
+publish_dir: ./packages/ocean-docs/build
 ```
 
-### Ocean Docs (packages/ocean-docs)
+### **Docusaurus Config**
 
-```bash
-✅ yarn start          # Desenvolvimento local
-✅ yarn build          # Build produção (TESTADO)
-✅ yarn deploy         # Deploy GitHub Pages
-✅ yarn serve          # Servir build local
+```typescript
+url: 'https://ocean-ds.github.io';
+baseUrl: '/ocean-web/docs/';
 ```
 
-## 🏗️ Arquivos de Configuração
+### **Storybook (`site.yml`)**
 
-### GitHub Actions
-
-- 📁 `.github/workflows/deploy-docs.yml`
-  - Deploy automático para GitHub Pages
-  - Teste de build em PRs
-  - Caching otimizado
-
-### Deploy Configs
-
-- 📄 `packages/ocean-docs/docusaurus.config.ts` - Config base
-- 📄 `packages/ocean-docs/DEPLOY.md` - Guia completo
-
-## 🔧 Configurações Aplicadas
-
-### Docusaurus
-
-- ✅ **Base URL** configurada para GitHub Pages (`/ocean-web/`)
-- ✅ **Multi-idioma** (pt-BR, en)
-- ✅ **Tema Ocean** aplicado
-- ✅ **Links quebrados** como warnings (desenvolvimento)
-- ✅ **Sidebars** organizadas e funcionais
-
-### Build
-
-- ✅ **Webpack** otimizado
-- ✅ **Cache headers** configurados
-- ✅ **Bundle splitting** ativo
-- ✅ **Minificação** automática
-
-### Integração Monorepo
-
-- ✅ **Lerna** compatível
-- ✅ **Yarn workspaces** funcionando
-- ✅ **Build dependencies** resolvidas
-
-## 📊 Estrutura Final
-
-```
-ocean-web/
-├── .github/workflows/
-│   └── deploy-docs.yml           # 🚀 Deploy automático
-├── packages/
-│   └── ocean-docs/
-│       ├── docs/                 # 📚 Documentação
-│       │   ├── intro.md
-│       │   ├── installation.md
-│       │   ├── quick-start.md
-│       │   ├── components/
-│       │   │   ├── intro.md
-│       │   │   └── button.mdx     # 🎯 Template
-│       │   └── foundations/
-│       │       └── intro.md
-│       ├── src/css/custom.css    # 🎨 Tema Ocean
-│       ├── docusaurus.config.ts  # ⚙️ Config principal
-│       ├── sidebars.ts           # 📋 Navegação
-│       ├── DEPLOY.md             # 📖 Guia completo
-│       └── README.md             # 📝 Documentação local
-└── package.json                  # 🎯 Scripts integrados
+```yaml
+# Deploy para raiz da gh-pages
+run: yarn deploy:storybook -- --ci
 ```
 
-## 🎯 Próximos Passos para Deploy
+## 🚀 **Deploy Automático**
 
-### Opção 1: GitHub Pages (Recomendado)
+**Trigger**: Push para `master` → Ambos os workflows executam
 
-1. **Push para master** - Deploy automático ativado
-2. **Configurar GitHub Pages** no repositório:
-   - Settings > Pages
-   - Source: Deploy from branch
-   - Branch: `gh-pages`
+**Resultado**:
 
-### Outras Opções:
+1. **Storybook** → Atualiza raiz do GitHub Pages
+2. **Docusaurus** → Atualiza subpasta `/docs/`
+3. **Sem conflitos** - paths separados
 
-Para outras plataformas (Vercel, Netlify, AWS), consulte as seções de "Alternativas" no arquivo DEPLOY.md
+## 📁 **Estrutura Final**
 
-## ✨ Funcionalidades Prontas
-
-- 🎨 **Tema Ocean** completo
-- 📱 **Design responsivo**
-- 🌐 **Multi-idioma** (pt-BR/en)
-- 🔍 **Busca** integrada
-- 📊 **Live code blocks** configurados
-- ♿ **Acessibilidade** otimizada
-- 🚀 **Performance** otimizada
-- 🔒 **Security headers** configurados
-
-## 🎊 Status Final
-
-**✅ DEPLOY PRONTO**
-**✅ BUILD FUNCIONANDO**
-**✅ DOCUMENTAÇÃO BÁSICA CRIADA**
-**✅ MÚLTIPLAS PLATAFORMAS CONFIGURADAS**
-**✅ CI/CD CONFIGURADO**
+```
+https://ocean-ds.github.io/ocean-web/
+├── /                    # Storybook (componentes)
+└── /docs/              # Docusaurus (documentação)
+    ├── /components/    # Páginas de componentes
+    ├── /foundations/   # Design foundations
+    └── /installation   # Guias de instalação
+```
 
 ---
 
-**Comando para testar localmente:**
-
-```bash
-cd packages/ocean-docs && yarn start
-```
-
-**Comando para fazer deploy:**
-
-```bash
-yarn deploy:docs  # GitHub Pages (automático via workflow)
-```
-
-🎉 **A documentação Ocean está pronta para o mundo!**
+**Status**: ✅ **Configurado e funcionando**  
+**Última atualização**: Configuração de paths separados para evitar conflitos
