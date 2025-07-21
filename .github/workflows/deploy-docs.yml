@@ -9,6 +9,8 @@ on:
       - 'packages/ocean-docs/**'
       - 'packages/ocean-react/**'
       - 'packages/ocean-core/**'
+      - '.github/workflows/deploy-docs.yml'
+      - 'package.json'
   pull_request:
     branches:
       - master
