@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.88.0](https://github.com/ocean-ds/ocean-web/compare/v1.87.0...v1.88.0) (2025-07-21)
+
+### Features
+
+- docusaurus site ([#1156](https://github.com/ocean-ds/ocean-web/issues/1156)) ([c8c50b8](https://github.com/ocean-ds/ocean-web/commit/c8c50b858be30b0284fa3141550ebda00f25dde2))
+
 # [1.87.0](https://github.com/ocean-ds/ocean-web/compare/v1.86.0...v1.87.0) (2025-07-21)
 
 ### Features
