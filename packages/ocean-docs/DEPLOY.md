@@ -1,12 +1,10 @@
 # Guia de Deploy - Ocean Documentation
 
-Este guia explica como fazer deploy da documentação Ocean em diferentes plataformas.
+Este guia explica como fazer deploy da documentação Ocean no GitHub Pages.
 
-## 🚀 Opções de Deploy
+## 🚀 GitHub Pages (Configuração Principal)
 
-### 1. GitHub Pages (Recomendado)
-
-#### Deploy Automático (CI/CD)
+### Deploy Automático (CI/CD)
 
 O deploy automático está configurado via GitHub Actions:
 
@@ -14,7 +12,7 @@ O deploy automático está configurado via GitHub Actions:
 - **Arquivo**: `.github/workflows/deploy-docs.yml`
 - **URL**: `https://useblu.github.io/ocean-web/`
 
-#### Deploy Manual
+### Deploy Manual
 
 ```bash
 # No diretório raiz
@@ -25,7 +23,7 @@ cd packages/ocean-docs
 yarn deploy:gh-pages
 ```
 
-#### Configuração
+### Configuração
 
 1. **Habilitar GitHub Pages** no repositório:
 
@@ -33,104 +31,10 @@ yarn deploy:gh-pages
    - Source: Deploy from a branch
    - Branch: `gh-pages`
 
-2. **Configurar domínio customizado** (opcional):
-   - Edite `.github/workflows/deploy-docs.yml`
-   - Altere a linha `cname: ocean-docs.useblu.com.br`
-
-### 2. Vercel
-
-#### Deploy Automático
-
-1. **Conectar repositório**:
-
-   - Vá em [vercel.com](https://vercel.com)
-   - Import project from GitHub
-   - Selecione o repositório `ocean-web`
-
-2. **Configurar projeto**:
-   - Root Directory: `packages/ocean-docs`
-   - Framework Preset: `Docusaurus 2`
-   - Build Command: `yarn build`
-   - Output Directory: `build`
-
-#### Deploy Manual
-
-```bash
-cd packages/ocean-docs
-yarn deploy:vercel
-```
-
-#### Configuração
-
-O arquivo `vercel.json` já está configurado com:
-
-- Build otimizado
-- Cache headers
-- SPA routing
-
-### 3. Netlify
-
-#### Deploy Automático
-
-1. **Conectar repositório**:
-
-   - Vá em [netlify.com](https://netlify.com)
-   - New site from Git
-   - Conecte com GitHub
-
-2. **Configurar build**:
-   - Base directory: `packages/ocean-docs`
-   - Build command: `yarn build`
-   - Publish directory: `packages/ocean-docs/build`
-
-#### Deploy Manual
-
-```bash
-cd packages/ocean-docs
-yarn deploy:netlify
-```
-
-#### Configuração
-
-O arquivo `netlify.toml` já está configurado com:
-
-- Build settings
-- Redirects para SPA
-- Cache headers
-- Environment variables
-
-### 4. Outros Serviços
-
-#### AWS S3 + CloudFront
-
-```bash
-# Build
-yarn build
-
-# Upload para S3 (configure AWS CLI primeiro)
-aws s3 sync build/ s3://your-bucket-name --delete
-
-# Invalidar CloudFront
-aws cloudfront create-invalidation --distribution-id YOUR_ID --paths "/*"
-```
-
-#### Docker
-
-```dockerfile
-# Dockerfile
-FROM node:18-alpine as builder
-WORKDIR /app
-COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile
-COPY . .
-RUN yarn build
-
-FROM nginx:alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
+2. **Workflow automático** (já configurado):
+   - O arquivo `.github/workflows/deploy-docs.yml` faz deploy automático
+   - Executa quando há push para `master`/`main`
+   - Testa build em Pull Requests
 
 ## 🔧 Scripts Disponíveis
 
@@ -156,10 +60,8 @@ yarn start
 # Build
 yarn build
 
-# Deploy para diferentes plataformas
-yarn deploy:gh-pages    # GitHub Pages
-yarn deploy:vercel      # Vercel
-yarn deploy:netlify     # Netlify
+# Deploy para GitHub Pages
+yarn deploy:gh-pages
 
 # Servir build localmente
 yarn serve
@@ -168,17 +70,14 @@ yarn serve
 yarn clear
 ```
 
-## 🌐 URLs de Acesso
+## 🌐 URL de Acesso
 
 ### Produção
 
 - **GitHub Pages**: `https://useblu.github.io/ocean-web/`
-- **Domínio customizado**: `https://ocean-docs.useblu.com.br` (se configurado)
 
 ### Preview/Staging
 
-- **Vercel**: URLs automáticas para cada PR
-- **Netlify**: Deploy previews automáticos
 - **GitHub Actions**: Validação de build em PRs
 
 ## ⚙️ Configurações Avançadas
@@ -197,24 +96,17 @@ BABEL_ENV=production
 
 ### Customização de Base URL
 
-Para diferentes ambientes, edite `docusaurus.config.ts`:
+Configuração atual em `docusaurus.config.ts`:
 
 ```ts
 const config: Config = {
-  url: process.env.DEPLOY_URL || 'https://useblu.github.io',
-  baseUrl: process.env.BASE_URL || '/ocean-web/',
-  // ...
+  url: 'https://useblu.github.io',
+  baseUrl: '/ocean-web/',
+  organizationName: 'useblu',
+  projectName: 'ocean-web',
+  deploymentBranch: 'gh-pages',
 };
 ```
-
-### CDN e Performance
-
-Para melhor performance:
-
-1. **Ativar Brotli/Gzip** no servidor
-2. **Configurar cache headers** (já incluído nas configs)
-3. **Usar CDN** para assets estáticos
-4. **Minificação** automática pelo Docusaurus
 
 ## 🐛 Troubleshooting
 
@@ -231,7 +123,7 @@ NODE_OPTIONS="--max_old_space_size=4096" yarn build
 
 ```bash
 # Verificar configuração no docusaurus.config.ts
-# Deve corresponder ao caminho do deploy
+# GitHub Pages: baseUrl: '/ocean-web/'
 ```
 
 **Assets não carregam**
@@ -239,7 +131,6 @@ NODE_OPTIONS="--max_old_space_size=4096" yarn build
 ```bash
 # Verificar se trailingSlash está correto
 # GitHub Pages: trailingSlash: false
-# Netlify/Vercel: trailingSlash: true (opcional)
 ```
 
 **Deploy GitHub Pages falha**
@@ -287,28 +178,50 @@ themeConfig: {
 
 ### Headers de Segurança
 
-Já configurados para:
+GitHub Pages fornece:
 
-- **CSP** (Content Security Policy)
-- **HSTS** (HTTP Strict Transport Security)
-- **X-Frame-Options**
-- **X-Content-Type-Options**
+- **HTTPS** automático
+- **Basic security headers**
+- **DDoS protection**
 
-### Domínio Customizado
+## 💡 Alternativas (Para Referência)
 
-Para configurar HTTPS customizado:
+### AWS S3 + CloudFront
 
-1. **GitHub Pages**: Adicionar CNAME no workflow
-2. **Vercel**: Domínio automático com SSL
-3. **Netlify**: SSL automático Let's Encrypt
+```bash
+# Build
+yarn build
+
+# Upload para S3 (configure AWS CLI primeiro)
+aws s3 sync build/ s3://your-bucket-name --delete
+
+# Invalidar CloudFront
+aws cloudfront create-invalidation --distribution-id YOUR_ID --paths "/*"
+```
+
+### Docker
+
+```dockerfile
+# Dockerfile
+FROM node:18-alpine as builder
+WORKDIR /app
+COPY package*.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+COPY . .
+RUN yarn build
+
+FROM nginx:alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 ## 📈 Próximos Passos
 
-1. **Configurar domínio customizado**
-2. **Ativar analytics**
-3. **Configurar monitoramento**
-4. **Automatizar atualizações de componentes**
-5. **Integrar com Storybook**
+1. **Configurar analytics**
+2. **Configurar monitoramento**
+3. **Automatizar atualizações de componentes**
+4. **Integrar com Storybook**
 
 ---
 

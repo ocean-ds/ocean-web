@@ -13,17 +13,9 @@ A documentação Ocean está **totalmente configurada** e **pronta para deploy**
 - ✅ **Deploy automático** no push para master/main
 - 🌐 **URL**: `https://useblu.github.io/ocean-web/`
 
-### 2. Vercel
+### 2. Outras Plataformas
 
-- ✅ **Configuração** pronta (`vercel.json`)
-- ✅ **Framework preset** configurado para Docusaurus 2
-- ✅ **Deploy manual** disponível
-
-### 3. Netlify
-
-- ✅ **Configuração** pronta (`netlify.toml`)
-- ✅ **Build settings** otimizados
-- ✅ **Deploy manual** disponível
+- ⚠️ **Vercel/Netlify**: Configurações removidas para focar apenas no GitHub Pages
 
 ## 📋 Scripts Funcionando
 
@@ -41,8 +33,6 @@ A documentação Ocean está **totalmente configurada** e **pronta para deploy**
 ✅ yarn start          # Desenvolvimento local
 ✅ yarn build          # Build produção (TESTADO)
 ✅ yarn deploy         # Deploy GitHub Pages
-✅ yarn deploy:vercel  # Deploy Vercel
-✅ yarn deploy:netlify # Deploy Netlify
 ✅ yarn serve          # Servir build local
 ```
 
@@ -57,8 +47,6 @@ A documentação Ocean está **totalmente configurada** e **pronta para deploy**
 
 ### Deploy Configs
 
-- 📄 `packages/ocean-docs/vercel.json` - Configuração Vercel
-- 📄 `packages/ocean-docs/netlify.toml` - Configuração Netlify
 - 📄 `packages/ocean-docs/docusaurus.config.ts` - Config base
 - 📄 `packages/ocean-docs/DEPLOY.md` - Guia completo
 
@@ -103,8 +91,6 @@ ocean-web/
 │       │   └── foundations/
 │       │       └── intro.md
 │       ├── src/css/custom.css    # 🎨 Tema Ocean
-│       ├── vercel.json           # ▲ Config Vercel
-│       ├── netlify.toml          # 🟢 Config Netlify
 │       ├── docusaurus.config.ts  # ⚙️ Config principal
 │       ├── sidebars.ts           # 📋 Navegação
 │       ├── DEPLOY.md             # 📖 Guia completo
@@ -122,17 +108,9 @@ ocean-web/
    - Source: Deploy from branch
    - Branch: `gh-pages`
 
-### Opção 2: Vercel
+### Outras Opções:
 
-1. Conectar repositório no [vercel.com](https://vercel.com)
-2. Configurar root directory: `packages/ocean-docs`
-3. Deploy automático
-
-### Opção 3: Netlify
-
-1. Conectar repositório no [netlify.com](https://netlify.com)
-2. Base directory: `packages/ocean-docs`
-3. Deploy automático
+Para outras plataformas (Vercel, Netlify, AWS), consulte as seções de "Alternativas" no arquivo DEPLOY.md
 
 ## ✨ Funcionalidades Prontas
 
@@ -164,7 +142,7 @@ cd packages/ocean-docs && yarn start
 **Comando para fazer deploy:**
 
 ```bash
-yarn deploy:docs  # GitHub Pages
+yarn deploy:docs  # GitHub Pages (automático via workflow)
 ```
 
 🎉 **A documentação Ocean está pronta para o mundo!**
