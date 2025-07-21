@@ -14,15 +14,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://useblu.github.io',
+  url: 'https://ocean-ds.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ocean-web/',
+  baseUrl: '/docusaurus/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'useblu', // Usually your GitHub org/user name.
-  projectName: 'ocean-web', // Usually your repo name.
+  organizationName: 'ocean-ds', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -46,7 +46,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/useblu/ocean-web/tree/master/packages/ocean-docs/',
+            'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-docs/',
           routeBasePath: '/', // Serve the docs at the site's root
         },
         blog: false, // Disable the blog plugin for component documentation
@@ -86,7 +86,7 @@ const config: Config = {
           label: 'Guias',
         },
         {
-          href: 'https://github.com/useblu/ocean-web',
+          href: 'https://github.com/ocean-ds/ocean-web',
           label: 'GitHub',
           position: 'right',
         },
@@ -117,11 +117,11 @@ const config: Config = {
           items: [
             {
               label: 'GitHub Issues',
-              href: 'https://github.com/useblu/ocean-web/issues',
+              href: 'https://github.com/ocean-ds/ocean-web/issues',
             },
             {
               label: 'Storybook',
-              href: 'https://ocean.useblu.com.br',
+              href: 'https://ocean-ds.github.io/ocean-web',
             },
           ],
         },
@@ -130,7 +130,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/useblu/ocean-web',
+              href: 'https://github.com/ocean-ds/ocean-web',
             },
             {
               label: 'npm',
