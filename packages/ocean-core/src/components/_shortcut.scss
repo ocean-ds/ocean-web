@@ -94,6 +94,10 @@
 
   &__label {
     height: 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    line-height: 1;
   }
 
   &__description {

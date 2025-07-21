@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { LockClosed } from '@useblu/ocean-icons-react';
 import Badge from '../Badge';
+import Tag from '../Tag/Tag';
 
 type ShortcutSize = 'tiny' | 'small' | 'medium';
 
@@ -15,6 +16,7 @@ export type ShortcutProps = {
   count?: number;
   fullWidth?: boolean;
   orientation?: 'horizontal' | 'vertical';
+  tag?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const Shortcut = ({
@@ -27,6 +29,7 @@ const Shortcut = ({
   fullWidth = false,
   orientation = 'horizontal',
   count,
+  tag,
   ...rest
 }: ShortcutProps): React.ReactElement => (
   <div
@@ -64,18 +67,21 @@ const Shortcut = ({
       <h5
         className={classNames(
           'ods-shortcut__label',
-          'ods-typography',
           'ods-typography__heading5'
         )}
       >
         {label}
       </h5>
+      {tag && (
+        <Tag variant="highlight" type="important">
+          {tag}
+        </Tag>
+      )}
     </div>
     {size === 'medium' && description && (
       <span
         className={classNames(
           'ods-shortcut__description',
-          'ods-typography',
           'ods-typography__description'
         )}
       >
