@@ -23,10 +23,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0 # 👈 Required to retrieve git history
 
-      - name: Setup Node.js 16
+      - name: Setup Node.js 18
         uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           cache: 'yarn'
 
       - name: Check Node version

@@ -1,0 +1,214 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Import Ocean Core styles */
+@import '@useblu/ocean-core/dist/ocean.css';
+
+/* Ocean Design System color palette */
+:root {
+  /* Primary colors - Ocean Blue */
+  --ifm-color-primary: #0066cc;
+  --ifm-color-primary-dark: #005bb8;
+  --ifm-color-primary-darker: #0056ad;
+  --ifm-color-primary-darkest: #00478f;
+  --ifm-color-primary-light: #1a75d6;
+  --ifm-color-primary-lighter: #2d7fdb;
+  --ifm-color-primary-lightest: #4d94e5;
+
+  /* Ocean spacing scale */
+  --ifm-spacing-horizontal: 1rem;
+  --ifm-spacing-vertical: 1rem;
+
+  /* Typography */
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', sans-serif;
+  --ifm-font-family-monospace: 'Fira Code', 'SF Mono', Monaco, Inconsolata,
+    'Roboto Mono', source-code-pro, monospace;
+  --ifm-code-font-size: 95%;
+  --ifm-line-height-base: 1.6;
+
+  /* Border radius */
+  --ifm-border-radius: 8px;
+  --ifm-button-border-radius: 6px;
+  --ifm-card-border-radius: 12px;
+
+  /* Shadows */
+  --ifm-box-shadow-tl: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --ifm-box-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --ifm-box-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+  /* Code highlighting */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 102, 204, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-height: 4rem;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+  /* Sidebar */
+  --ifm-sidebar-width: 280px;
+  --doc-sidebar-width: 280px;
+
+  /* Content */
+  --ifm-container-width: 1200px;
+  --ifm-container-width-xl: 1400px;
+}
+
+/* Dark mode colors */
+[data-theme='dark'] {
+  --ifm-color-primary: #4d94e5;
+  --ifm-color-primary-dark: #2d7fdb;
+  --ifm-color-primary-darker: #1a75d6;
+  --ifm-color-primary-darkest: #0066cc;
+  --ifm-color-primary-light: #6ba3ea;
+  --ifm-color-primary-lighter: #7fadef;
+  --ifm-color-primary-lightest: #a3c2f4;
+
+  --docusaurus-highlighted-code-line-bg: rgba(77, 148, 229, 0.2);
+
+  --ifm-navbar-background-color: #1b1b1d;
+  --ifm-background-color: #1b1b1d;
+  --ifm-background-surface-color: #2b2b2d;
+}
+
+/* Custom components styling */
+.hero {
+  background: linear-gradient(135deg, #0066cc 0%, #4d94e5 100%);
+  color: white;
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Code blocks */
+.prism-code {
+  border-radius: var(--ifm-border-radius);
+  box-shadow: var(--ifm-box-shadow-md);
+}
+
+/* Tables */
+.table-of-contents {
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: 1rem;
+}
+
+/* Cards and content blocks */
+.card {
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: var(--ifm-box-shadow-md);
+  border: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--ifm-box-shadow-lg);
+}
+
+/* API tables */
+.api-table {
+  margin: 1.5rem 0;
+}
+
+.api-table th {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+.api-table td code {
+  background-color: var(--ifm-color-emphasis-200);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+/* Navigation improvements */
+.navbar__title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.navbar__item {
+  font-weight: 500;
+}
+
+/* Sidebar improvements */
+.theme-doc-sidebar-item-link {
+  border-radius: 6px;
+  margin: 2px 0;
+  transition: all 0.15s ease;
+}
+
+.theme-doc-sidebar-item-link:hover {
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.theme-doc-sidebar-item-link--active {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+.theme-doc-sidebar-item-link--active:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+/* Content improvements */
+.markdown h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.markdown h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  padding-bottom: 0.5rem;
+}
+
+.markdown h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Live code blocks styling */
+.live-editor {
+  border-radius: var(--ifm-border-radius);
+  margin-bottom: 1rem;
+}
+
+.live-preview {
+  border-radius: var(--ifm-border-radius);
+  padding: 1.5rem;
+  border: 2px solid var(--ifm-color-emphasis-200);
+  background-color: var(--ifm-background-surface-color);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+}

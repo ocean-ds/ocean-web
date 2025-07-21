@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.87.0](https://github.com/ocean-ds/ocean-web/compare/v1.86.0...v1.87.0) (2025-07-21)
+
+### Features
+
+- add new domain ([#1155](https://github.com/ocean-ds/ocean-web/issues/1155)) ([c9dfca8](https://github.com/ocean-ds/ocean-web/commit/c9dfca856594598da365b0a33c2f8d9e7023be51))
+
+# [1.86.0](https://github.com/ocean-ds/ocean-web/compare/v1.85.0...v1.86.0) (2025-07-21)
+
+### Features
+
+- add ocean docs docusaurus ([#1153](https://github.com/ocean-ds/ocean-web/issues/1153)) ([1de3ca1](https://github.com/ocean-ds/ocean-web/commit/1de3ca136705d14cea29a35c78dc01f397fd46f3))
+- add sitemap ([#1149](https://github.com/ocean-ds/ocean-web/issues/1149)) ([64e5338](https://github.com/ocean-ds/ocean-web/commit/64e5338530ee63c1aeb6ad4c2ec42d4653e901bc))
+- add sitemap ([#1152](https://github.com/ocean-ds/ocean-web/issues/1152)) ([6b88a2e](https://github.com/ocean-ds/ocean-web/commit/6b88a2ee9ea4de0ab8787144bb90523f4e5bdbf5)), closes [#1149](https://github.com/ocean-ds/ocean-web/issues/1149)
+- adjust sitemap ([#1150](https://github.com/ocean-ds/ocean-web/issues/1150)) ([2a9caa0](https://github.com/ocean-ds/ocean-web/commit/2a9caa071b8c655f5cdf4e032df5b346c7961b7c))
+- adjust sitemap ([#1151](https://github.com/ocean-ds/ocean-web/issues/1151)) ([4801a14](https://github.com/ocean-ds/ocean-web/commit/4801a14a1a95eeb1d5f1c88e7fee43ce0ef0affb)), closes [#1150](https://github.com/ocean-ds/ocean-web/issues/1150)
+
 # [1.85.0](https://github.com/ocean-ds/ocean-web/compare/v1.84.0...v1.85.0) (2025-07-16)
 
 ### Features
