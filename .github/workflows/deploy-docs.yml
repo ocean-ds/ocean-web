@@ -50,7 +50,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./packages/ocean-docs/build
-          destination_dir: docusaurus
+          destination_dir: docs
 
   test-build:
     name: Test Build
