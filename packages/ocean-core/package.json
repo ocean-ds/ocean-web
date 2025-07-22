@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-core",
-  "version": "1.79.0",
+  "version": "1.86.0",
   "private": false,
   "description": "UIkit css that implement Ocean's Design System.",
   "files": [
@@ -51,7 +51,8 @@
     "gulp-size": "^4.0.1",
     "gulp-sourcemaps": "^3.0.0",
     "node-sass": "^7.0.1",
-    "postcss": "^8.2.9",
+    "postcss": "^8.4.29",
+    "postcss-scss": "^4.0.9",
     "stylelint": "^14.1.0",
     "stylelint-config-sass-guidelines": "^9.0.0"
   },
@@ -60,6 +61,7 @@
   ],
   "stylelint": {
     "extends": "stylelint-config-sass-guidelines",
+    "customSyntax": "postcss-scss",
     "rules": {
       "max-nesting-depth": 2,
       "selector-class-pattern": null
