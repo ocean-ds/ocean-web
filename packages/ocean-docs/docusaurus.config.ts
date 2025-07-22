@@ -6,7 +6,7 @@ import type { Config } from '@docusaurus/types';
 const config: Config = {
   title: 'Ocean Design System',
   tagline: 'A comprehensive design system for modern web applications',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/ocean-ds.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -43,13 +43,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-docs/',
-          routeBasePath: '/', // Serve the docs at the site's root
+          routeBasePath: '/',
         },
-        blog: false, // Disable the blog plugin for component documentation
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -58,33 +56,13 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/ocean-social-card.jpg',
+    image: 'img/ocean-ds.png',
     navbar: {
-      title: 'Ocean Design System',
       logo: {
         alt: 'Ocean Design System Logo',
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'componentsSidebar',
-          position: 'left',
-          label: 'Componentes',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'foundationsSidebar',
-          position: 'left',
-          label: 'Fundamentos',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Guias',
-        },
         {
           href: 'https://github.com/ocean-ds/ocean-web',
           label: 'GitHub',
