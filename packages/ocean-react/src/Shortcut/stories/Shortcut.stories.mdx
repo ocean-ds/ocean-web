@@ -40,6 +40,7 @@ If that's not sufficient, you can check the [implementation of the component](ht
       fullWidth: false,
       blocked: false,
       disabled: false,
+      tag: undefined,
     }}
     parameters={{
       controls: { exclude: /^icon*/ },
@@ -70,6 +71,9 @@ If that's not sufficient, you can check the [implementation of the component](ht
       },
       count: {
         control: 'number',
+      },
+      tag: {
+        control: 'text',
       },
     }}
   >
