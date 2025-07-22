@@ -93,11 +93,11 @@
   }
 
   &__label {
-    height: 16px;
-    margin: 0;
-    display: flex;
     align-items: center;
+    display: flex;
+    height: 16px;
     line-height: 1;
+    margin: 0;
   }
 
   &__description {
