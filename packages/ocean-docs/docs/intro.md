@@ -13,7 +13,6 @@ O Ocean Design System fornece uma biblioteca abrangente de componentes React reu
 
 Nossos componentes são construídos seguindo os princípios:
 
-- **Acessibilidade em primeiro lugar** - Todos os componentes seguem as diretrizes WCAG 2.1
 - **TypeScript nativo** - Tipagem completa para melhor experiência de desenvolvimento
 - **Composição sobre configuração** - Componentes flexíveis que se combinam bem
 - **Design consistente** - Todos os componentes seguem o mesmo sistema de design
@@ -119,36 +118,16 @@ interface CommonProps {
 }
 ```
 
-### Acessibilidade
-
-Todos os componentes incluem atributos ARIA apropriados e suporte a navegação por teclado quando aplicável.
-
-### Temas
-
-Os componentes respondem automaticamente ao tema fornecido pelo `OceanProvider`:
-
-```tsx
-import { OceanProvider, Button } from '@useblu/ocean-react';
-
-function App() {
-  return (
-    <OceanProvider theme="dark">
-      <Button variant="primary">Botão com tema escuro</Button>
-    </OceanProvider>
-  );
-}
-```
-
 ## Contribuindo
 
 Encontrou um bug ou tem uma sugestão de melhoria?
 
-- [Abra uma issue](https://github.com/useblu/ocean-web/issues)
+- [Abra uma issue](https://github.com/ocean-ds/ocean-web/issues)
 - [Veja o guia de contribuição](/development/contributing)
-- [Consulte nosso Storybook](https://ocean.useblu.com.br) para exemplos interativos
+- [Consulte nosso Storybook](https://ocean-ds.github.io/ocean-web) para exemplos interativos
 
 ## Próximos passos
 
 - Explore um componente específico na sidebar
-- Consulte os [fundamentos](/foundations) para entender o sistema de design
-- Veja o [guia de desenvolvimento](/development) para contribuir
+- Consulte os [fundamentos](/foundations/intro) para entender o sistema de design
+- Veja o [guia de desenvolvimento](/guides/installation) para contribuir
