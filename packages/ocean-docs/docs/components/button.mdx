@@ -5,10 +5,44 @@ sidebar_position: 2
 ---
 
 import { Button } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # Button
 
 O componente Button é usado para acionar uma ação ou evento, como submeter um formulário, abrir um diálogo, cancelar uma ação ou executar uma operação de delete.
+
+## Importação
+
+```tsx
+import { Button } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Button } from '@useblu/ocean-react/Button';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ButtonProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyButton: React.FC<ButtonProps> = (props) => {
+  return <Button {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Button no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-button--usage"
+  height={500}
+  title="Button - Playground Interativo"
+/>
 
 ## Uso básico
 
@@ -26,10 +60,22 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 <Button variant="primary">Botão primário</Button>
 ```
 
+### Primary Critical
+
+```tsx live
+<Button variant="primaryCritical">Ação destrutiva principal</Button>
+```
+
 ### Secondary
 
 ```tsx live
 <Button variant="secondary">Botão secundário</Button>
+```
+
+### Secondary Critical
+
+```tsx live
+<Button variant="secondaryCritical">Ação destrutiva secundária</Button>
 ```
 
 ### Tertiary
@@ -37,6 +83,44 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 ```tsx live
 <Button variant="tertiary">Botão terciário</Button>
 ```
+
+### Tertiary Critical
+
+```tsx live
+<Button variant="tertiaryCritical">Ação destrutiva terciária</Button>
+```
+
+### Text Tertiary
+
+```tsx live
+<Button variant="textTertiary">Texto terciário</Button>
+```
+
+### Text Tertiary Critical
+
+```tsx live
+<Button variant="textTertiaryCritical">Texto destrutivo</Button>
+```
+
+### Inverse
+
+```tsx live
+<div style={{ background: '#1a1a1a', padding: '16px', borderRadius: '8px' }}>
+  <Button variant="inverse">Botão inverso</Button>
+</div>
+```
+
+### Guia de uso das variantes
+
+- **primary**: Para ações principais e call-to-actions (máximo 1 por tela)
+- **primaryCritical**: Para ações principais destrutivas (deletar, remover)
+- **secondary**: Para ações secundárias e alternativas
+- **secondaryCritical**: Para ações secundárias destrutivas
+- **tertiary**: Para ações terciárias discretas
+- **tertiaryCritical**: Para ações terciárias destrutivas
+- **textTertiary**: Para ações discretas estilo link
+- **textTertiaryCritical**: Para ações destrutivas discretas
+- **inverse**: Para uso em fundos escuros
 
 ## Tamanhos
 
@@ -82,47 +166,82 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 </Button>
 ```
 
-## Com ícones
-
-```tsx live
-<div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-  <Button variant="primary" iconLeft="plus">
-    Adicionar
-  </Button>
-  <Button variant="secondary" iconRight="arrow-right">
-    Continuar
-  </Button>
-  <Button variant="tertiary" iconLeft="download">
-    Download
-  </Button>
-</div>
-```
-
 ## Largura total
 
 ```tsx live
-<Button variant="primary" fullWidth>
+<Button variant="primary" blocked>
   Botão de largura total
 </Button>
 ```
+
+## Tipos de botão
+
+O componente Button suporta todos os tipos padrão de botão HTML. O atributo `type` determina o comportamento do botão em formulários.
+
+### Button (padrão)
+
+```tsx live
+<Button type="button" variant="primary">
+  Ação personalizada
+</Button>
+```
+
+### Submit
+
+```tsx live
+<form
+  onSubmit={(e) => {
+    e.preventDefault();
+    alert('Formulário enviado!');
+  }}
+>
+  <input type="text" placeholder="Digite algo..." />
+  <Button type="submit" variant="primary">
+    Enviar
+  </Button>
+</form>
+```
+
+### Reset
+
+```tsx live
+<form>
+  <input
+    type="text"
+    defaultValue="Texto inicial"
+    placeholder="Digite algo..."
+  />
+  <Button type="reset" variant="secondary">
+    Limpar
+  </Button>
+</form>
+```
+
+### Guia de tipos
+
+| Tipo     | Descrição                   | Caso de Uso                               |
+| -------- | --------------------------- | ----------------------------------------- |
+| `button` | Tipo padrão de botão        | Ações gerais, interações JavaScript       |
+| `submit` | Envia dados do formulário   | Envios de formulário, salvamento de dados |
+| `reset`  | Reseta campos do formulário | Funcionalidade de reset de formulário     |
 
 ## API
 
 ### Props
 
-| Prop        | Tipo                                     | Padrão      | Descrição                                    |
-| ----------- | ---------------------------------------- | ----------- | -------------------------------------------- |
-| `variant`   | `'primary' \| 'secondary' \| 'tertiary'` | `'primary'` | Define o estilo visual do botão              |
-| `size`      | `'sm' \| 'md' \| 'lg'`                   | `'md'`      | Define o tamanho do botão                    |
-| `disabled`  | `boolean`                                | `false`     | Desabilita o botão                           |
-| `loading`   | `boolean`                                | `false`     | Mostra estado de carregamento                |
-| `fullWidth` | `boolean`                                | `false`     | Faz o botão ocupar toda a largura disponível |
-| `iconLeft`  | `string`                                 | -           | Nome do ícone à esquerda do texto            |
-| `iconRight` | `string`                                 | -           | Nome do ícone à direita do texto             |
-| `onClick`   | `(event: MouseEvent) => void`            | -           | Função chamada ao clicar no botão            |
-| `type`      | `'button' \| 'submit' \| 'reset'`        | `'button'`  | Tipo do botão HTML                           |
-| `className` | `string`                                 | -           | Classes CSS adicionais                       |
-| `children`  | `ReactNode`                              | -           | Conteúdo do botão                            |
+| Prop        | Tipo                                                                                                                                                                | Padrão      | Descrição                                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------- |
+| `variant`   | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical' \| 'textTertiary' \| 'textTertiaryCritical' \| 'inverse'` | `'primary'` | Define o estilo visual do botão              |
+| `size`      | `'sm' \| 'md' \| 'lg'`                                                                                                                                              | `'md'`      | Define o tamanho do botão                    |
+| `disabled`  | `boolean`                                                                                                                                                           | `false`     | Desabilita o botão                           |
+| `loading`   | `boolean`                                                                                                                                                           | `false`     | Mostra estado de carregamento                |
+| `blocked`   | `boolean`                                                                                                                                                           | `false`     | Faz o botão ocupar toda a largura disponível |
+| `iconLeft`  | `string`                                                                                                                                                            | -           | Nome do ícone à esquerda do texto            |
+| `iconRight` | `string`                                                                                                                                                            | -           | Nome do ícone à direita do texto             |
+| `onClick`   | `(event: MouseEvent) => void`                                                                                                                                       | -           | Função chamada ao clicar no botão            |
+| `type`      | `'button' \| 'submit' \| 'reset'`                                                                                                                                   | `'button'`  | Tipo do botão HTML                           |
+| `className` | `string`                                                                                                                                                            | -           | Classes CSS adicionais                       |
+| `children`  | `ReactNode`                                                                                                                                                         | -           | Conteúdo do botão                            |
 
 ### Eventos
 
@@ -137,6 +256,17 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 - ✅ Atributos ARIA apropriados
 - ✅ Suporte a screen readers
 - ✅ Contraste adequado em todos os estados
+- ✅ Estados disabled adequadamente sinalizados
+- ✅ Estados loading com feedback adequado
+- ✅ Semântica HTML correta com tipos de botão apropriados
+
+### Considerações importantes
+
+- **Tipos semânticos**: Use `type="submit"` para envios, `type="button"` para ações
+- **Estados disabled**: Botões desabilitados não recebem foco e são anunciados corretamente
+- **Estados loading**: O texto do botão muda para indicar o carregamento
+- **Contraste**: Todas as variantes atendem aos padrões WCAG AA
+- **Textos descritivos**: Use textos que indiquem claramente a ação a ser executada
 
 ### Navegação por teclado
 
@@ -145,67 +275,78 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 | `Tab`             | Move o foco para o botão |
 | `Space` / `Enter` | Ativa o botão            |
 
+## CSS Classes
+
+O componente Button utiliza as seguintes classes CSS que podem ser utilizadas para customizações:
+
+| Classe                             | Descrição                                          |
+| ---------------------------------- | -------------------------------------------------- |
+| `.ods-btn`                         | Estilos aplicados ao elemento raiz                 |
+| `.ods-btn--primary`                | Define cor de fundo e texto primária do botão      |
+| `.ods-btn--primary-critical`       | Define estilos do botão primary critical           |
+| `.ods-btn--secondary`              | Define cor de fundo e texto secundária do botão    |
+| `.ods-btn--secondary-critical`     | Define estilos do botão secondary critical         |
+| `.ods-btn--tertiary`               | Define estilos do botão tertiary                   |
+| `.ods-btn--tertiary-critical`      | Define estilos do botão tertiary critical          |
+| `.ods-btn--text-tertiary`          | Define estilos do botão text tertiary              |
+| `.ods-btn--text-tertiary-critical` | Define estilos do botão text tertiary critical     |
+| `.ods-btn--inverse`                | Use o botão inverse em fundos escuros              |
+| `.ods-btn--blocked`                | Faz o botão ocupar toda a largura do container pai |
+
 ## Melhores práticas
 
-### ✅ Faça
+### 1. Envios de Formulário
 
-- Use variante `primary` para a ação principal da página
-- Use texto claro e conciso que descreva a ação
-- Mantenha consistência no uso de ícones
-- Use estado `loading` durante operações assíncronas
+#### ✅ Faça
 
-### ❌ Não faça
+- Use `type="submit"` para o botão principal de envio do formulário
+- Use `type="button"` para ações secundárias em formulários
+- Use `type="reset"` com parcimônia e apenas quando o reset do formulário for necessário
+- Combine `loading` com `disabled` durante envios para prevenir cliques duplos
 
-- Não use múltiplos botões `primary` na mesma tela
-- Não use texto muito longo em botões
-- Não omita o estado `disabled` quando apropriado
-- Não use apenas ícones sem texto para ações críticas
+#### ❌ Não faça
 
-## Exemplos de uso
+- Não use múltiplos botões de submit no mesmo formulário
+- Não omita validação antes de habilitar o botão de envio
 
-### Formulário de login
+### 2. Interações JavaScript
 
-```tsx
-function LoginForm() {
-  const [loading, setLoading] = useState(false);
+#### ✅ Faça
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    // Lógica de login
-    setLoading(false);
-  };
+- Use `type="button"` para botões que acionam funções JavaScript
+- Forneça feedback visual claro para estados (loading, disabled)
+- Use textos descritivos que indiquem claramente a ação
 
-  return (
-    <form>
-      {/* campos do formulário */}
-      <Button variant="primary" type="submit" loading={loading} fullWidth>
-        Entrar
-      </Button>
-    </form>
-  );
-}
-```
+#### ❌ Não faça
 
-### Ações em cards
+- Não use `type="submit"` para ações que não enviam formulários
+- Isso previne envios acidentais de formulário
 
-```tsx
-function ProductCard() {
-  return (
-    <div className="card">
-      <h3>Produto</h3>
-      <p>Descrição do produto...</p>
-      <div style={{ display: 'flex', gap: '8px' }}>
-        <Button variant="primary" size="sm">
-          Comprar
-        </Button>
-        <Button variant="tertiary" size="sm" iconLeft="heart">
-          Favoritar
-        </Button>
-      </div>
-    </div>
-  );
-}
-```
+### 3. Performance e Responsividade
+
+#### ✅ Faça
+
+- Use `loading` para operações assíncronas e prevenir cliques duplos
+- Combine `disabled` com validação de formulário para melhor UX
+- Use `blocked` em interfaces mobile para melhor usabilidade
+- Implemente debounce em ações que podem ser acionadas rapidamente
+
+#### ❌ Não faça
+
+- Não deixe botões sem feedback durante carregamentos
+- Não use muitos botões primários na mesma tela
+- Não ignore estados de carregamento em operações demoradas
+
+## Visão geral das variantes
+
+Veja todas as variantes do Button em ação:
+
+<StorybookEmbed
+  storyId="components-button--variants"
+  height={350}
+  showToolbar={false}
+  title="Button - Todas as Variantes"
+/>
 
 ## Links relacionados
 

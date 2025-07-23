@@ -13,25 +13,24 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  // Tutorial sidebar for getting started guides
-  tutorialSidebar: [
+  // Main sidebar with all sections
+  mainSidebar: [
     'intro',
-    'installation',
-    'quick-start',
-    // Categorias serão adicionadas conforme novos documentos forem criados
-  ],
-
-  // Components sidebar for all React components
-  componentsSidebar: [
-    'components/intro',
-    'components/button',
-    // Mais componentes serão adicionados conforme documentados
-  ],
-
-  // Foundations sidebar for design foundations
-  foundationsSidebar: [
-    'foundations/intro',
-    // Fundamentos serão adicionados conforme documentados
+    {
+      type: 'category',
+      label: 'Componentes',
+      items: ['components/button'],
+    },
+    {
+      type: 'category',
+      label: 'Fundamentos',
+      items: ['foundations/intro'],
+    },
+    {
+      type: 'category',
+      label: 'Guias',
+      items: ['guides/installation', 'guides/quick-start'],
+    },
   ],
 };
 
