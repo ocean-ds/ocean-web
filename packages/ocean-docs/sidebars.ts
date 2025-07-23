@@ -19,7 +19,11 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Componentes',
-      items: ['components/button'],
+      items: [
+        'components/button',
+        'components/list',
+        'components/transactionlistitem',
+      ],
     },
     {
       type: 'category',
