@@ -20,14 +20,18 @@ on:
       - 'packages/ocean-react/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: deploy-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy to GitHub Pages
+  build-and-deploy:
+    name: Build and Deploy Documentation
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
 
     steps:
       - name: Checkout
@@ -44,26 +48,31 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build Ocean packages
-        run: yarn build:libs
+      # Build todos os pacotes
+      - name: Build all packages
+        run: |
+          yarn build:libs
+          yarn build:storybook
+          yarn build:docs
 
-      # Deploy do Storybook primeiro (na raiz)
-      - name: Deploy Storybook
-        run: yarn deploy:storybook -- --ci --keep-files docs/
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      # Prepara o diretório de deploy
+      - name: Prepare deployment directory
+        run: |
+          # Cria diretório temporário para o deploy
+          mkdir -p ./deploy-temp
+          # Move o Storybook para a raiz
+          cp -r storybook-static/* ./deploy-temp/
+          # Move o Docusaurus para /docs
+          mkdir -p ./deploy-temp/docs
+          cp -r packages/ocean-docs/build/* ./deploy-temp/docs/
 
-      # Depois build e deploy do Docusaurus em /docs
-      - name: Build documentation
-        run: yarn build:docs
-
+      # Deploy único para GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/ocean-docs/build
-          destination_dir: docs
-          keep_files: true # Mantém os arquivos do Storybook na raiz
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./deploy-temp
+          force_orphan: true
 
   test-build:
     name: Test Build
@@ -85,14 +94,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build Ocean packages
-        run: yarn build:libs
-
-      - name: Build Storybook
-        run: yarn build:storybook
-
-      - name: Build documentation
-        run: yarn build:docs
+      - name: Build all packages
+        run: |
+          yarn build:libs
+          yarn build:storybook
+          yarn build:docs
 
       - name: Test serve documentation
         run: |
