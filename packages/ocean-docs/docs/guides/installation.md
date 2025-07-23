@@ -141,14 +141,6 @@ import { Input } from '@useblu/ocean-react/Input';
 import { Modal } from '@useblu/ocean-react/Modal';
 ```
 
-## Próximos passos
-
-Agora que você tem o Ocean instalado, você pode:
-
-- [Criar seu primeiro componente](/quick-start)
-- [Explorar todos os componentes](/components)
-- [Entender os fundamentos do design](/foundations)
-
 ## Troubleshooting
 
 ### Problemas comuns
@@ -172,6 +164,6 @@ Verifique se você importou o CSS do Ocean Core corretamente.
 
 Se você encontrar problemas durante a instalação:
 
-- [Abra uma issue no GitHub](https://github.com/useblu/ocean-web/issues)
-- Confira nossas [discussões](https://github.com/useblu/ocean-web/discussions)
-- Consulte nosso [Storybook](https://ocean.useblu.com.br) para exemplos
+- [Abra uma issue no GitHub](https://github.com/ocean-ds/ocean-web/issues)
+- Confira nossas [discussões](https://github.com/ocean-ds/ocean-web/issues)
+- Consulte nosso [Storybook](https://ocean-ds.github.io/ocean-web) para exemplos
