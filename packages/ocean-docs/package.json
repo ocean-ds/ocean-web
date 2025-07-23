@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-docs",
-  "version": "1.90.0",
+  "version": "1.90.1",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
