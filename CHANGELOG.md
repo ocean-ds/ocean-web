@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.90.0](https://github.com/ocean-ds/ocean-web/compare/v1.89.1...v1.90.0) (2025-07-23)
+
+### Bug Fixes
+
+- token on deploy-docs.yml ([#1164](https://github.com/ocean-ds/ocean-web/issues/1164)) ([d5fae49](https://github.com/ocean-ds/ocean-web/commit/d5fae49e6fa354d95ee92d2d088f616d35079acb))
+
+### Features
+
+- update docs config ([#1162](https://github.com/ocean-ds/ocean-web/issues/1162)) ([9dd4c63](https://github.com/ocean-ds/ocean-web/commit/9dd4c6313303ad16b3204f49280fa4f477573fff))
+
+## [1.89.1](https://github.com/ocean-ds/ocean-web/compare/v1.89.0...v1.89.1) (2025-07-22)
+
+### Bug Fixes
+
+- adjust line-height in Shortcut component styles for improved layout ([#1159](https://github.com/ocean-ds/ocean-web/issues/1159)) ([b1cb5e8](https://github.com/ocean-ds/ocean-web/commit/b1cb5e8feded1b182a85150350ca083bd0783d28))
+
 # [1.89.0](https://github.com/ocean-ds/ocean-web/compare/v1.88.0...v1.89.0) (2025-07-22)
 
 ### Features

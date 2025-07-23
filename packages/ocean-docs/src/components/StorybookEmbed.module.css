@@ -1,0 +1,54 @@
+.storybookEmbed {
+  margin: 1.5rem 0;
+  border: 2px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-border-radius);
+  overflow: hidden;
+  box-shadow: var(--ifm-box-shadow-md);
+  transition: box-shadow 0.2s ease;
+}
+
+.storybookEmbed:hover {
+  box-shadow: var(--ifm-box-shadow-lg);
+}
+
+.iframe {
+  border: none;
+  display: block;
+  background: white;
+}
+
+.footer {
+  background: var(--ifm-background-surface-color);
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  text-align: center;
+}
+
+.link {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: none;
+}
+
+/* Dark mode support */
+[data-theme='dark'] .iframe {
+  background: var(--ifm-background-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .storybookEmbed {
+    margin: 1rem 0;
+  }
+
+  .footer {
+    padding: 0.5rem;
+  }
+}

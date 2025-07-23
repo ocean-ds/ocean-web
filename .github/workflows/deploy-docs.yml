@@ -17,6 +17,7 @@ on:
       - main
     paths:
       - 'packages/ocean-docs/**'
+      - 'packages/ocean-react/**'
 
 jobs:
   deploy:
@@ -42,6 +43,13 @@ jobs:
       - name: Build Ocean packages
         run: yarn build:libs
 
+      # Deploy do Storybook primeiro (na raiz)
+      - name: Deploy Storybook
+        run: yarn deploy:storybook -- --ci --keep-files docs/
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      # Depois build e deploy do Docusaurus em /docs
       - name: Build documentation
         run: yarn build:docs
 
@@ -51,6 +59,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./packages/ocean-docs/build
           destination_dir: docs
+          keep_files: true # Mantém os arquivos do Storybook na raiz
 
   test-build:
     name: Test Build
@@ -75,12 +84,21 @@ jobs:
       - name: Build Ocean packages
         run: yarn build:libs
 
-      - name: Test documentation build
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: Build documentation
         run: yarn build:docs
 
-      - name: Test serve
+      - name: Test serve documentation
         run: |
           cd packages/ocean-docs
           yarn serve &
           sleep 10
           curl -f http://localhost:3000/ || exit 1
+
+      - name: Test serve Storybook
+        run: |
+          yarn serve:storybook &
+          sleep 10
+          curl -f http://localhost:6006/ || exit 1
