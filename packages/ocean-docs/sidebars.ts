@@ -19,6 +19,13 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Componentes',
+      link: {
+        type: 'generated-index',
+        title: 'Componentes',
+        slug: '/components',
+        description:
+          'Documentação de todos os componentes do Ocean Design System.',
+      },
       items: [
         'components/button',
         'components/list',
@@ -28,11 +35,24 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Fundamentos',
+      link: {
+        type: 'generated-index',
+        title: 'Fundamentos',
+        slug: '/foundations',
+        description:
+          'Documentação de todos os fundamentos do Ocean Design System.',
+      },
       items: ['foundations/intro'],
     },
     {
       type: 'category',
       label: 'Guias',
+      link: {
+        type: 'generated-index',
+        title: 'Guias',
+        slug: '/guides',
+        description: 'Tutoriais e guias para usar o Ocean Design System.',
+      },
       items: ['guides/installation', 'guides/quick-start'],
     },
   ],
