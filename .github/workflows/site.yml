@@ -32,6 +32,6 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Deploy documentation
-        run: yarn deploy:storybook -- --ci
+        run: yarn deploy:storybook -- --ci --keep-files docs/
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}

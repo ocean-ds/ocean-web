@@ -13,25 +13,48 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  // Tutorial sidebar for getting started guides
-  tutorialSidebar: [
+  // Main sidebar with all sections
+  mainSidebar: [
     'intro',
-    'installation',
-    'quick-start',
-    // Categorias serão adicionadas conforme novos documentos forem criados
-  ],
-
-  // Components sidebar for all React components
-  componentsSidebar: [
-    'components/intro',
-    'components/button',
-    // Mais componentes serão adicionados conforme documentados
-  ],
-
-  // Foundations sidebar for design foundations
-  foundationsSidebar: [
-    'foundations/intro',
-    // Fundamentos serão adicionados conforme documentados
+    {
+      type: 'category',
+      label: 'Componentes',
+      link: {
+        type: 'generated-index',
+        title: 'Componentes',
+        slug: '/components',
+        description:
+          'Documentação de todos os componentes do Ocean Design System.',
+      },
+      items: [
+        'components/button',
+        'components/list',
+        'components/transactionlistitem',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Fundamentos',
+      link: {
+        type: 'generated-index',
+        title: 'Fundamentos',
+        slug: '/foundations',
+        description:
+          'Documentação de todos os fundamentos do Ocean Design System.',
+      },
+      items: ['foundations/intro'],
+    },
+    {
+      type: 'category',
+      label: 'Guias',
+      link: {
+        type: 'generated-index',
+        title: 'Guias',
+        slug: '/guides',
+        description: 'Tutoriais e guias para usar o Ocean Design System.',
+      },
+      items: ['guides/installation', 'guides/quick-start'],
+    },
   ],
 };
 

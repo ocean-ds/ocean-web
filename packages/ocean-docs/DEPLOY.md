@@ -103,7 +103,7 @@ yarn build:docs
 
 ```typescript
 url: 'https://ocean-ds.github.io',
-baseUrl: '/ocean-web/docs/',
+baseUrl: '/ocean-web/docs',
 organizationName: 'ocean-ds',
 projectName: 'ocean-web',
 ```

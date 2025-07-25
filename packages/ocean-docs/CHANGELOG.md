@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.91.0](https://github.com/ocean-ds/ocean-web/compare/v1.90.2...v1.91.0) (2025-07-23)
+
+### Features
+
+- create list doc ([#1168](https://github.com/ocean-ds/ocean-web/issues/1168)) ([2c47e6e](https://github.com/ocean-ds/ocean-web/commit/2c47e6e63ff7e8307283963b93b8e88449c2d658))
+
+## [1.90.2](https://github.com/ocean-ds/ocean-web/compare/v1.90.1...v1.90.2) (2025-07-23)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.90.1](https://github.com/ocean-ds/ocean-web/compare/v1.90.0...v1.90.1) (2025-07-23)
+
+### Bug Fixes
+
+- remove slash from base url ([#1165](https://github.com/ocean-ds/ocean-web/issues/1165)) ([a90ee97](https://github.com/ocean-ds/ocean-web/commit/a90ee9737db572ef1260e606663778578b28c3a4))
+
+# [1.90.0](https://github.com/ocean-ds/ocean-web/compare/v1.89.1...v1.90.0) (2025-07-23)
+
+### Features
+
+- update docs config ([#1162](https://github.com/ocean-ds/ocean-web/issues/1162)) ([9dd4c63](https://github.com/ocean-ds/ocean-web/commit/9dd4c6313303ad16b3204f49280fa4f477573fff))
+
+## [1.89.1](https://github.com/ocean-ds/ocean-web/compare/v1.89.0...v1.89.1) (2025-07-22)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.89.0](https://github.com/ocean-ds/ocean-web/compare/v1.88.0...v1.89.0) (2025-07-22)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
 # [1.88.0](https://github.com/ocean-ds/ocean-web/compare/v1.87.0...v1.88.0) (2025-07-21)
 
 ### Features

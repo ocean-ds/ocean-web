@@ -17,12 +17,21 @@ on:
       - main
     paths:
       - 'packages/ocean-docs/**'
+      - 'packages/ocean-react/**'
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Deploy to GitHub Pages
+  build-and-deploy:
+    name: Build and Deploy Documentation
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
 
     steps:
       - name: Checkout
@@ -39,18 +48,31 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build Ocean packages
-        run: yarn build:libs
+      # Build todos os pacotes
+      - name: Build all packages
+        run: |
+          yarn build:libs
+          yarn build:storybook
+          yarn build:docs
 
-      - name: Build documentation
-        run: yarn build:docs
+      # Prepara o diretório de deploy
+      - name: Prepare deployment directory
+        run: |
+          # Cria diretório temporário para o deploy
+          mkdir -p ./deploy-temp
+          # Move o Storybook para a raiz
+          cp -r storybook-static/* ./deploy-temp/
+          # Move o Docusaurus para /docs
+          mkdir -p ./deploy-temp/docs
+          cp -r packages/ocean-docs/build/* ./deploy-temp/docs/
 
+      # Deploy único para GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/ocean-docs/build
-          destination_dir: docs
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./deploy-temp
+          force_orphan: true
 
   test-build:
     name: Test Build
@@ -72,15 +94,21 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build Ocean packages
-        run: yarn build:libs
+      - name: Build all packages
+        run: |
+          yarn build:libs
+          yarn build:storybook
+          yarn build:docs
 
-      - name: Test documentation build
-        run: yarn build:docs
-
-      - name: Test serve
+      - name: Test serve documentation
         run: |
           cd packages/ocean-docs
           yarn serve &
           sleep 10
           curl -f http://localhost:3000/ || exit 1
+
+      - name: Test serve Storybook
+        run: |
+          yarn serve:storybook &
+          sleep 10
+          curl -f http://localhost:6006/ || exit 1

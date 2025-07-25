@@ -6,7 +6,7 @@ import type { Config } from '@docusaurus/types';
 const config: Config = {
   title: 'Ocean Design System',
   tagline: 'A comprehensive design system for modern web applications',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/ocean-ds.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -16,11 +16,9 @@ const config: Config = {
   // Set the production url of your site here
   url: 'https://ocean-ds.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ocean-web/docs/',
+  baseUrl: '/ocean-web/docs',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'ocean-ds', // Usually your GitHub org/user name.
   projectName: 'ocean-web', // Usually your repo name.
   deploymentBranch: 'gh-pages',
@@ -29,9 +27,6 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'pt-BR',
     locales: ['pt-BR', 'en'],
@@ -43,13 +38,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-docs/',
-          routeBasePath: '/', // Serve the docs at the site's root
+          routeBasePath: '/',
         },
-        blog: false, // Disable the blog plugin for component documentation
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -58,33 +51,13 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/ocean-social-card.jpg',
+    image: 'img/ocean-ds.png',
     navbar: {
-      title: 'Ocean Design System',
       logo: {
         alt: 'Ocean Design System Logo',
         src: 'img/logo.svg',
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'componentsSidebar',
-          position: 'left',
-          label: 'Componentes',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'foundationsSidebar',
-          position: 'left',
-          label: 'Fundamentos',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Guias',
-        },
         {
           href: 'https://github.com/ocean-ds/ocean-web',
           label: 'GitHub',
@@ -108,7 +81,7 @@ const config: Config = {
             },
             {
               label: 'Guia de Instalação',
-              to: '/intro',
+              to: '/guides',
             },
           ],
         },

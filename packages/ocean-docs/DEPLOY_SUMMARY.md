@@ -22,7 +22,7 @@ publish_dir: ./packages/ocean-docs/build
 
 ```typescript
 url: 'https://ocean-ds.github.io';
-baseUrl: '/ocean-web/docs/';
+baseUrl: '/ocean-web/docs';
 ```
 
 ### **Storybook (`site.yml`)**
@@ -45,7 +45,7 @@ run: yarn deploy:storybook -- --ci
 ## 📁 **Estrutura Final**
 
 ```
-https://ocean-ds.github.io/ocean-web/
+https://ocean-ds.github.io/ocean-web
 ├── /                    # Storybook (componentes)
 └── /docs/              # Docusaurus (documentação)
     ├── /components/    # Páginas de componentes

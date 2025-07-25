@@ -25,7 +25,7 @@ test('renders shortcut component properly', () => {
           mock-home-xvg
         </div>
         <h5
-          class="ods-shortcut__label ods-typography ods-typography__heading5"
+          class="ods-shortcut__label ods-typography__heading5"
         >
           Label
         </h5>
@@ -50,13 +50,13 @@ test('renders shortcut component with description', () => {
           mock-home-xvg
         </div>
         <h5
-          class="ods-shortcut__label ods-typography ods-typography__heading5"
+          class="ods-shortcut__label ods-typography__heading5"
         >
           Label
         </h5>
       </div>
       <span
-        class="ods-shortcut__description ods-typography ods-typography__description"
+        class="ods-shortcut__description ods-typography__description"
       >
         Description
       </span>

@@ -93,7 +93,11 @@
   }
 
   &__label {
-    height: 16px;
+    align-items: center;
+    display: flex;
+    height: 24px;
+    line-height: normal;
+    margin: 0;
   }
 
   &__description {

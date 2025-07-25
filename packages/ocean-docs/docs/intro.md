@@ -1,68 +1,133 @@
 ---
 slug: /
 title: Ocean Design System
-sidebar_label: Introdução
+sidebar_label: Visão Geral
 sidebar_position: 1
 ---
 
-# Ocean Design System
+# Componentes Ocean
 
-Bem-vindo ao **Ocean Design System** - um sistema de design abrangente para aplicações web modernas.
+O Ocean Design System fornece uma biblioteca abrangente de componentes React reutilizáveis, totalmente tipados e acessíveis.
 
-## O que é o Ocean?
+## Filosofia dos componentes
 
-O Ocean é um sistema de design que fornece componentes reutilizáveis, diretrizes de design e ferramentas para criar interfaces de usuário consistentes e acessíveis. Ele é construído com React, TypeScript e styled-components.
+Nossos componentes são construídos seguindo os princípios:
 
-## Principais características
+- **TypeScript nativo** - Tipagem completa para melhor experiência de desenvolvimento
+- **Composição sobre configuração** - Componentes flexíveis que se combinam bem
+- **Design consistente** - Todos os componentes seguem o mesmo sistema de design
+- **Performance** - Otimizados para renderização eficiente
 
-- 🎨 **Componentes prontos** - Mais de 40 componentes React totalmente customizáveis
-- 🎯 **TypeScript** - Totalmente tipado para melhor experiência de desenvolvimento
-- 🎪 **Styled Components** - Estilização dinâmica e temas personalizáveis
-- ♿ **Acessibilidade** - Componentes seguem as diretrizes WCAG 2.1
-- 📱 **Responsivo** - Design mobile-first com breakpoints consistentes
-- 🧪 **Testado** - Cobertura de testes abrangente
+## Categorias de componentes
 
-## Começando rapidamente
+### 🔤 Inputs
 
-### Instalação
+Componentes para entrada de dados do usuário:
 
-```bash
-# Usando npm
-npm install @useblu/ocean-react @useblu/ocean-core
+- [Input](/components/input) - Campo de texto básico
+- [TextArea](/components/textarea) - Campo de texto multilinha
+- [Checkbox](/components/checkbox) - Seleção múltipla
+- [Radio](/components/radio) - Seleção única
+- [Select](/components/select) - Lista de opções
+- [Switch](/components/switch) - Alternar estado
+- [FileUploader](/components/file-uploader) - Upload de arquivos
+- [Search](/components/search) - Campo de busca
+- [TokenInput](/components/token-input) - Input com tokens
 
-# Usando yarn
-yarn add @useblu/ocean-react @useblu/ocean-core
-```
+### 🧭 Navigation
 
-### Uso básico
+Componentes para navegação:
+
+- [Button](/components/button) - Botões de ação
+- [Link](/components/link) - Links e navegação
+- [Breadcrumb](/components/breadcrumb) - Navegação hierárquica
+- [Pagination](/components/pagination) - Paginação de conteúdo
+- [Steps](/components/steps) - Passos de processo
+- [TopBar](/components/top-bar) - Barra superior
+
+### 📊 Data Display
+
+Componentes para exibição de dados:
+
+- [Badge](/components/badge) - Indicadores pequenos
+- [Tag](/components/tag) - Etiquetas e categorias
+- [List](/components/list) - Listas estruturadas
+- [CardGroup](/components/card-group) - Agrupamento de cards
+- [CardListItem](/components/card-list-item) - Item de lista em card
+- [Carousel](/components/carousel) - Carrossel de conteúdo
+- [Chart](/components/chart) - Gráficos e visualizações
+- [Progress](/components/progress) - Barras de progresso
+
+### 💬 Feedback
+
+Componentes para feedback do usuário:
+
+- [Alert](/components/alert) - Mensagens de alerta
+- [Snackbar](/components/snackbar) - Notificações temporárias
+- [Tooltip](/components/tooltip) - Dicas contextuais
+- [Modal](/components/modal) - Diálogos modais
+- [Drawer](/components/drawer) - Painéis laterais
+
+### 📐 Layout
+
+Componentes para estruturação:
+
+- [Container](/components/container) - Container responsivo
+- [Grid](/components/grid) - Sistema de grid flexível
+- [Divider](/components/divider) - Separadores visuais
+- [Accordion](/components/accordion) - Conteúdo expansível
+- [SubHeader](/components/sub-header) - Cabeçalhos de seção
+
+### ✏️ Typography
+
+Componentes tipográficos:
+
+- [Typography](/components/typography) - Texto estilizado
+- [FormLabel](/components/form-label) - Rótulos de formulário
+
+### 🛠️ Utilities
+
+Componentes utilitários:
+
+- [Shortcut](/components/shortcut) - Atalhos de teclado
+- [Chips](/components/chips) - Chips selecionáveis
+- [IconButton](/components/icon-button) - Botões com ícone
+- [WebNotification](/components/web-notification) - Notificações do navegador
+
+## Padrões de uso
+
+### Importação
 
 ```tsx
-import React from 'react';
-import { Button, OceanProvider } from '@useblu/ocean-react';
+// Importação individual (recomendado)
+import { Button } from '@useblu/ocean-react';
 
-function App() {
-  return (
-    <OceanProvider>
-      <Button variant="primary">Meu primeiro botão Ocean</Button>
-    </OceanProvider>
-  );
+// Ou importação específica para melhor tree-shaking
+import { Button } from '@useblu/ocean-react/Button';
+```
+
+### Props padrão
+
+Todos os componentes Ocean compartilham algumas props comuns:
+
+```tsx
+interface CommonProps {
+  className?: string;
+  'data-testid'?: string;
+  id?: string;
 }
 ```
 
-## Estrutura da documentação
-
-- **[Componentes](/components)** - Documentação completa de todos os componentes
-- **[Fundamentos](/foundations)** - Design tokens, cores, tipografia e princípios
-- **[Guias](/installation)** - Guias de instalação e desenvolvimento
-
 ## Contribuindo
 
-O Ocean é um projeto open source. Contribuições são sempre bem-vindas!
+Encontrou um bug ou tem uma sugestão de melhoria?
 
-- [GitHub Repository](https://github.com/useblu/ocean-web)
-- [Issues](https://github.com/useblu/ocean-web/issues)
-- [Storybook](https://ocean.useblu.com.br)
+- [Abra uma issue](https://github.com/ocean-ds/ocean-web/issues)
+- [Veja o guia de contribuição](/development/contributing)
+- [Consulte nosso Storybook](https://ocean-ds.github.io/ocean-web) para exemplos interativos
 
----
+## Próximos passos
 
-Pronto para começar? Confira nosso [guia de instalação](/installation) ou explore nossos [componentes](/components).
+- Explore um componente específico na sidebar
+- Consulte os [fundamentos](/foundations/intro) para entender o sistema de design
+- Veja o [guia de desenvolvimento](/guides/installation) para contribuir

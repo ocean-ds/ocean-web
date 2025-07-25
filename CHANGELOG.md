@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.91.0](https://github.com/ocean-ds/ocean-web/compare/v1.90.2...v1.91.0) (2025-07-23)
+
+### Features
+
+- create list doc ([#1168](https://github.com/ocean-ds/ocean-web/issues/1168)) ([2c47e6e](https://github.com/ocean-ds/ocean-web/commit/2c47e6e63ff7e8307283963b93b8e88449c2d658))
+
+## [1.90.2](https://github.com/ocean-ds/ocean-web/compare/v1.90.1...v1.90.2) (2025-07-23)
+
+**Note:** Version bump only for package root
+
+## [1.90.1](https://github.com/ocean-ds/ocean-web/compare/v1.90.0...v1.90.1) (2025-07-23)
+
+### Bug Fixes
+
+- remove slash from base url ([#1165](https://github.com/ocean-ds/ocean-web/issues/1165)) ([a90ee97](https://github.com/ocean-ds/ocean-web/commit/a90ee9737db572ef1260e606663778578b28c3a4))
+
+# [1.90.0](https://github.com/ocean-ds/ocean-web/compare/v1.89.1...v1.90.0) (2025-07-23)
+
+### Bug Fixes
+
+- token on deploy-docs.yml ([#1164](https://github.com/ocean-ds/ocean-web/issues/1164)) ([d5fae49](https://github.com/ocean-ds/ocean-web/commit/d5fae49e6fa354d95ee92d2d088f616d35079acb))
+
+### Features
+
+- update docs config ([#1162](https://github.com/ocean-ds/ocean-web/issues/1162)) ([9dd4c63](https://github.com/ocean-ds/ocean-web/commit/9dd4c6313303ad16b3204f49280fa4f477573fff))
+
+## [1.89.1](https://github.com/ocean-ds/ocean-web/compare/v1.89.0...v1.89.1) (2025-07-22)
+
+### Bug Fixes
+
+- adjust line-height in Shortcut component styles for improved layout ([#1159](https://github.com/ocean-ds/ocean-web/issues/1159)) ([b1cb5e8](https://github.com/ocean-ds/ocean-web/commit/b1cb5e8feded1b182a85150350ca083bd0783d28))
+
+# [1.89.0](https://github.com/ocean-ds/ocean-web/compare/v1.88.0...v1.89.0) (2025-07-22)
+
+### Features
+
+- enhance Shortcut component with tag support ([#1157](https://github.com/ocean-ds/ocean-web/issues/1157)) ([7eb29fe](https://github.com/ocean-ds/ocean-web/commit/7eb29fe87f142e596fc09d8ce5461f4987df6b02))
+
 # [1.88.0](https://github.com/ocean-ds/ocean-web/compare/v1.87.0...v1.88.0) (2025-07-21)
 
 ### Features
