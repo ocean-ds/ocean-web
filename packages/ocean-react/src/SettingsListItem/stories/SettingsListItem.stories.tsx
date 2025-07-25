@@ -598,7 +598,7 @@ export const StrikethroughExample: Story = {
         display: 'flex',
         flexDirection: 'column',
         gap: '16px',
-        width: '600',
+        width: '600px',
       }}
     >
       <SettingsListItem
