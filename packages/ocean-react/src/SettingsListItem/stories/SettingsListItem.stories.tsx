@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import SettingsListItem, { SettingListItemProps } from '../SettingsListItem';
 
-// Estilos reutilizáveis para as stories
 const storyStyles = {
   singleItem: { width: '360px' },
   singleItemWide: { width: '320px' },
@@ -57,7 +56,7 @@ interface StoryControls extends SettingListItemProps {
 }
 
 const meta: Meta<StoryControls> = {
-  title: 'Components/SettingsListItem',
+  title: 'Components/List/SettingsListItem',
   component: SettingsListItem,
   tags: ['autodocs'],
   argTypes: {
