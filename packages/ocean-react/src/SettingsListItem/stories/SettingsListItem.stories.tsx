@@ -2,6 +2,35 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import SettingsListItem, { SettingListItemProps } from '../SettingsListItem';
 
+// Estilos reutilizáveis para as stories
+const storyStyles = {
+  singleItem: { width: '360px' },
+  singleItemWide: { width: '320px' },
+  columnContainer: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    gap: '16px',
+    width: '360px',
+  },
+  columnContainerWide: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    gap: '16px',
+    width: '400px',
+  },
+  columnContainerExtraWide: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    gap: '16px',
+    width: '600px',
+  },
+  columnContainerSimple: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    gap: '16px',
+  },
+};
+
 interface StoryControls extends SettingListItemProps {
   hasButton: boolean;
   buttonText: string;
@@ -300,7 +329,7 @@ export const Usage: Story = {
   ),
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
-      <div style={{ width: '360px' }}>
+      <div style={storyStyles.singleItem}>
         <StoryComponent />
       </div>
     ),
@@ -319,14 +348,7 @@ export const QuickExamples: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '360px',
-      }}
-    >
+    <div style={storyStyles.columnContainer}>
       <SettingsListItem
         title="Com Button Primário"
         description="Item com botão de ação principal"
@@ -441,7 +463,7 @@ export const Loading: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ width: '320px' }}>
+    <div style={storyStyles.singleItemWide}>
       <SettingsListItem
         title="Tema da Interface"
         description="Escolha entre tema claro, escuro ou automático"
@@ -468,14 +490,7 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '400PX',
-      }}
-    >
+    <div style={storyStyles.columnContainerWide}>
       <SettingsListItem
         title="Estado Padrão"
         description="Item em estado normal de funcionamento"
@@ -546,14 +561,7 @@ export const InvertedType: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '600PX',
-      }}
-    >
+    <div style={storyStyles.columnContainerExtraWide}>
       <SettingsListItem
         title="Notificações Push"
         description="Tipo padrão - título maior, descrição menor"
@@ -593,14 +601,7 @@ export const StrikethroughExample: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '600px',
-      }}
-    >
+    <div style={storyStyles.columnContainerExtraWide}>
       <SettingsListItem
         title="Plano Premium"
         description="Novo preço: R$ 29,90/mês"
@@ -635,14 +636,7 @@ export const BlockedItems: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '360px',
-      }}
-    >
+    <div style={storyStyles.columnContainer}>
       <SettingsListItem
         title="Funcionalidade Premium"
         description="Esta funcionalidade está disponível apenas no plano premium"
@@ -687,7 +681,7 @@ export const Complete: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={storyStyles.columnContainerSimple}>
       <SettingsListItem
         title="Invertido"
         description="Item com descrição invertida"
