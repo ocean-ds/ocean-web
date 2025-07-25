@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import SettingsListItem, { SettingListItemProps } from '../SettingsListItem';
 
-// Interface para os controles customizados do Storybook
 interface StoryControls extends SettingListItemProps {
   hasButton: boolean;
   buttonText: string;
@@ -33,62 +32,148 @@ const meta: Meta<StoryControls> = {
   component: SettingsListItem,
   tags: ['autodocs'],
   argTypes: {
-    showDivider: {
-      control: 'boolean',
-      table: {
-        category: '🎨 Aparência',
-        defaultValue: { summary: 'true' },
-      },
-    },
     // === CONTEÚDO PRINCIPAL ===
     title: {
-      description: 'Título principal do item de configuração.',
+      description: 'Título principal do item de configuração (obrigatório).',
       control: 'text',
       table: {
         category: '📝 Conteúdo',
+        type: { summary: 'string' },
       },
     },
     description: {
-      description: 'Descrição detalhada do item de configuração.',
+      description: 'Descrição detalhada do item de configuração (opcional).',
       control: 'text',
       table: {
         category: '📝 Conteúdo',
+        type: { summary: 'string' },
       },
     },
     strikethroughDescription: {
-      description: 'Descrição com linha cortada.',
+      description:
+        'Texto a ser exibido com linha cortada quando state="strikethrough" e type="inverted" (opcional).',
       control: 'text',
       table: {
         category: '📝 Conteúdo',
+        type: { summary: 'string' },
       },
     },
     caption: {
-      description: 'Legenda ou informação adicional.',
+      description: 'Legenda ou informação adicional em destaque (opcional).',
       control: 'text',
       table: {
         category: '📝 Conteúdo',
+        type: { summary: 'string' },
       },
     },
     errorMessage: {
-      description: 'Mensagem de erro quando presente.',
+      description: 'Mensagem de erro exibida abaixo do conteúdo (opcional).',
       control: 'text',
       table: {
         category: '📝 Conteúdo',
+        type: { summary: 'string' },
       },
     },
+
+    // === APARÊNCIA ===
+    showDivider: {
+      description: 'Controla se deve exibir o divisor visual do item.',
+      control: 'boolean',
+      table: {
+        category: '🎨 Aparência',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    type: {
+      description:
+        'Tipo visual que inverte a hierarquia do título e descrição.',
+      control: 'select',
+      options: ['default', 'inverted'],
+      table: {
+        category: '🎨 Aparência',
+        type: { summary: "'default' | 'inverted'" },
+        defaultValue: { summary: "'default'" },
+      },
+    },
+
+    // === ESTADOS E COMPORTAMENTO ===
+    disabled: {
+      description: 'Desabilita o item e todos os elementos internos.',
+      control: 'boolean',
+      table: {
+        category: '⚙️ Estados',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    loading: {
+      description: 'Exibe skeleton de carregamento substituindo o conteúdo.',
+      control: 'boolean',
+      table: {
+        category: '⚙️ Estados',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    state: {
+      description: 'Estado visual do item que afeta cores e estilos.',
+      control: 'select',
+      options: [
+        'default',
+        'inactive',
+        'positive',
+        'warning',
+        'highlight',
+        'highlight-lead',
+        'strikethrough',
+      ],
+      table: {
+        category: '⚙️ Estados',
+        type: {
+          summary:
+            "'default' | 'inactive' | 'positive' | 'warning' | 'highlight' | 'highlight-lead' | 'strikethrough'",
+        },
+        defaultValue: { summary: "'default'" },
+      },
+    },
+    blocked: {
+      description: 'Exibe ícone de cadeado indicando funcionalidade bloqueada.',
+      control: 'boolean',
+      table: {
+        category: '⚙️ Estados',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+
+    // === PROPS INTERNAS (não editáveis diretamente) ===
     button: {
+      description:
+        'Props do Button. Use os controles "Button" abaixo para configurar.',
       control: false,
+      table: {
+        category: '🔧 Props Internas',
+        type: { summary: 'ButtonProps' },
+      },
     },
     tag: {
+      description:
+        'Props da Tag. Use os controles "Tag" abaixo para configurar.',
       control: false,
+      table: {
+        category: '🔧 Props Internas',
+        type: { summary: 'TagProps' },
+      },
     },
-    // === BUTTON CONTROLS ===
+
+    // === CONTROLES DO PLAYGROUND (Button) ===
     hasButton: {
       name: 'Exibir Botão',
       description: 'Mostra ou oculta o botão no item.',
       control: 'boolean',
       table: {
-        category: '🔘 Button',
+        category: '🔘 Button (Playground)',
       },
     },
     buttonText: {
@@ -97,7 +182,7 @@ const meta: Meta<StoryControls> = {
       control: 'text',
       if: { arg: 'hasButton', truthy: true },
       table: {
-        category: '🔘 Button',
+        category: '🔘 Button (Playground)',
       },
     },
     buttonVariant: {
@@ -117,17 +202,17 @@ const meta: Meta<StoryControls> = {
       ],
       if: { arg: 'hasButton', truthy: true },
       table: {
-        category: '🔘 Button',
+        category: '🔘 Button (Playground)',
       },
     },
 
-    // === TAG CONTROLS ===
+    // === CONTROLES DO PLAYGROUND (Tag) ===
     hasTag: {
       name: 'Exibir Tag',
       description: 'Mostra ou oculta a tag no item.',
       control: 'boolean',
       table: {
-        category: '🏷️ Tag',
+        category: '🏷️ Tag (Playground)',
       },
     },
     tagText: {
@@ -136,7 +221,7 @@ const meta: Meta<StoryControls> = {
       control: 'text',
       if: { arg: 'hasTag', truthy: true },
       table: {
-        category: '🏷️ Tag',
+        category: '🏷️ Tag (Playground)',
       },
     },
     tagType: {
@@ -154,54 +239,7 @@ const meta: Meta<StoryControls> = {
       ],
       if: { arg: 'hasTag', truthy: true },
       table: {
-        category: '🏷️ Tag',
-      },
-    },
-
-    // === ESTADOS E COMPORTAMENTO ===
-    disabled: {
-      description: 'Desabilita o item de configuração.',
-      control: 'boolean',
-      table: {
-        category: '⚙️ Estados',
-      },
-    },
-    loading: {
-      description: 'Exibe estado de carregamento.',
-      control: 'boolean',
-      table: {
-        category: '⚙️ Estados',
-      },
-    },
-    type: {
-      description: 'Tipo visual do item.',
-      control: 'select',
-      options: ['default', 'inverted'],
-      table: {
-        category: '🎨 Aparência',
-      },
-    },
-    state: {
-      description: 'Estado do item.',
-      control: 'select',
-      options: [
-        'default',
-        'inactive',
-        'positive',
-        'warning',
-        'highlight',
-        'highlight-light',
-        'strikethrough',
-      ],
-      table: {
-        category: '⚙️ Estados',
-      },
-    },
-    blocked: {
-      description: 'Bloqueia o item de configuração.',
-      control: 'boolean',
-      table: {
-        category: '⚙️ Estados',
+        category: '🏷️ Tag (Playground)',
       },
     },
   },
@@ -225,6 +263,9 @@ export const Usage: Story = {
     disabled: false,
     loading: false,
     type: 'default',
+    state: 'default',
+    showDivider: true,
+    blocked: false,
   },
   render: ({
     hasButton,
@@ -272,7 +313,7 @@ export const QuickExamples: Story = {
     docs: {
       description: {
         story:
-          '✨ **Exemplos prontos** com as configurações mais comuns do SettingsListItem',
+          '✨ **Exemplos de uso** mostrando as principais combinações de props do SettingsListItem com Button e Tag.',
       },
     },
     controls: { disable: true },
@@ -416,8 +457,233 @@ export const Loading: Story = {
   ),
 };
 
+export const States: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '🎨 **Estados visuais** demonstrando diferentes valores da prop `state` e seus efeitos visuais.',
+      },
+    },
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '400PX',
+      }}
+    >
+      <SettingsListItem
+        title="Estado Padrão"
+        description="Item em estado normal de funcionamento"
+        caption="Configuração ativa"
+        state="default"
+        tag={{ children: 'Normal', variant: 'default', type: 'neutral' }}
+      />
+
+      <SettingsListItem
+        title="Estado Inativo"
+        description="Item temporariamente desativado"
+        caption="Funcionalidade pausada"
+        state="inactive"
+        type="inverted"
+        tag={{ children: 'Inativo', variant: 'default', type: 'neutral-02' }}
+      />
+
+      <SettingsListItem
+        title="Estado Positivo"
+        description="Item funcionando perfeitamente"
+        caption="Tudo funcionando bem"
+        state="positive"
+        type="inverted"
+        tag={{ children: 'Sucesso', variant: 'default', type: 'positive' }}
+      />
+
+      <SettingsListItem
+        title="Estado de Aviso"
+        description="Item que precisa de atenção"
+        caption="Verificação recomendada"
+        state="warning"
+        type="inverted"
+        tag={{ children: 'Atenção', variant: 'default', type: 'warning' }}
+      />
+
+      <SettingsListItem
+        title="Estado em Destaque"
+        description="Item destacado para chamar atenção"
+        caption="Configuração importante"
+        state="highlight"
+        type="inverted"
+        button={{ children: 'Configurar', variant: 'primary', size: 'sm' }}
+      />
+
+      <SettingsListItem
+        title="Destaque Principal"
+        description="Item com máxima prioridade visual"
+        caption="Ação prioritária necessária"
+        state="highlight-lead"
+        button={{
+          children: 'Ação Prioritária',
+          variant: 'primary',
+          size: 'sm',
+        }}
+      />
+    </div>
+  ),
+};
+
+export const InvertedType: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '🔄 **Tipo invertido** demonstrando como `type="inverted"` altera a hierarquia visual do título e descrição.',
+      },
+    },
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '600PX',
+      }}
+    >
+      <SettingsListItem
+        title="Notificações Push"
+        description="Tipo padrão - título maior, descrição menor"
+        caption="Hierarquia normal"
+        type="inverted"
+        button={{ children: 'Configurar', variant: 'secondary', size: 'sm' }}
+      />
+
+      <SettingsListItem
+        title="Notificações Push"
+        description="Tipo invertido - descrição maior, título menor"
+        caption="Hierarquia invertida"
+        type="inverted"
+        button={{ children: 'Configurar', variant: 'secondary', size: 'sm' }}
+      />
+
+      <SettingsListItem
+        title="Configuração Avançada"
+        description="No tipo invertido, a descrição ganha mais destaque visual"
+        caption="Ideal quando a descrição é mais importante"
+        type="inverted"
+        state="highlight"
+        tag={{ children: 'Avançado', variant: 'default', type: 'neutral-03' }}
+      />
+    </div>
+  ),
+};
+
+export const StrikethroughExample: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '✂️ **Texto cortado** demonstrando como usar `strikethroughDescription` com `type="inverted"` e `state="strikethrough"`.',
+      },
+    },
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '600',
+      }}
+    >
+      <SettingsListItem
+        title="Plano Premium"
+        description="Novo preço: R$ 29,90/mês"
+        strikethroughDescription="Preço antigo: R$ 39,90/mês"
+        caption="Oferta limitada até o final do mês"
+        type="inverted"
+        state="strikethrough"
+        button={{ children: 'Assinar', variant: 'primary', size: 'sm' }}
+      />
+
+      <SettingsListItem
+        title="Upgrade de Conta"
+        description="Funcionalidades premium liberadas"
+        strikethroughDescription="Conta básica"
+        caption="Upgrade realizado com sucesso"
+        type="inverted"
+        state="strikethrough"
+        tag={{ children: 'Atualizado', variant: 'default', type: 'positive' }}
+      />
+    </div>
+  ),
+};
+
+export const BlockedItems: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '🔒 **Itens bloqueados** demonstrando o uso da prop `blocked` que exibe ícone de cadeado.',
+      },
+    },
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '360px',
+      }}
+    >
+      <SettingsListItem
+        title="Funcionalidade Premium"
+        description="Esta funcionalidade está disponível apenas no plano premium"
+        caption="Faça upgrade para acessar"
+        blocked
+      />
+
+      <SettingsListItem
+        title="Análise Avançada"
+        description="Relatórios detalhados e insights personalizados"
+        caption="Bloqueado - upgrade necessário"
+        blocked
+      />
+
+      <SettingsListItem
+        title="API Enterprise"
+        description="Acesso completo à API com limites estendidos"
+        caption="Funcionalidade corporativa"
+        blocked
+        disabled
+      />
+
+      <SettingsListItem
+        title="Funcionalidade Premium"
+        description="Esta funcionalidade está disponível apenas no plano premium"
+        caption="Faça upgrade para acessar"
+        blocked
+        type="inverted"
+      />
+    </div>
+  ),
+};
+
 export const Complete: Story = {
   parameters: {
+    docs: {
+      description: {
+        story:
+          '📚 **Visão geral completa** com exemplos dos principais casos de uso do componente.',
+      },
+    },
     controls: { disable: true },
   },
   render: () => (

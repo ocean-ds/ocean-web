@@ -53,12 +53,11 @@
 
     .ods-typography__paragraph--strikethrough {
       color: $color-status-positive-deep;
-      display: flex;
-      gap: $spacing-inline-xxxs;
     }
 
     .ods-typography__paragraph--strikethrough-text {
       color: $color-interface-dark-up;
+      margin-right: $spacing-inline-xxxs;
       text-decoration: line-through;
     }
   }
