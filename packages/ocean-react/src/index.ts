@@ -119,3 +119,6 @@ export * from './Chips';
 
 export { default as WebNotification } from './WebNotification';
 export * from './WebNotification';
+
+export { default as SettingsListItem } from './SettingsListItem';
+export * from './SettingsListItem';

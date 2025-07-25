@@ -1,0 +1,25 @@
+.ods-settings-list-item {
+  align-items: center;
+  display: flex;
+  gap: $spacing-inline-xs;
+  justify-content: space-between;
+  padding: $spacing-inline-xs;
+
+  &__actions {
+    align-items: center;
+    display: flex;
+    height: 100%;
+
+    svg {
+      color: $color-interface-dark-up;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+
+  &--divider {
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
+  }
+}
