@@ -217,16 +217,7 @@ const CustomCard = styled.div`
 `;
 ```
 
-## 8. Próximos passos
-
-Agora que você já configurou o Ocean, você pode:
-
-- **[Explorar todos os componentes](/components)** - Veja a documentação completa
-- **[Entender os fundamentos](/foundations)** - Aprenda sobre design tokens
-- **[Ver exemplos no Storybook](https://ocean.useblu.com.br)** - Componentes interativos
-- **[Configurar seu ambiente de desenvolvimento](/development/setup)** - Para contribuir
-
-## 9. Dicas importantes
+## 8. Dicas importantes
 
 ### ✅ Boas práticas
 
@@ -255,12 +246,12 @@ Agora que você já configurou o Ocean, você pode:
 
 - Certifique-se de que está usando TypeScript 4.0+
 
-## 10. Recursos adicionais
+## 9. Recursos adicionais
 
-- [GitHub Repository](https://github.com/useblu/ocean-web)
-- [Storybook Interativo](https://ocean.useblu.com.br)
+- [GitHub Repository](https://github.com/ocean-ds/ocean-web)
+- [Storybook Interativo](https://ocean-ds.github.io/ocean-web)
 - [NPM Package](https://www.npmjs.com/package/@useblu/ocean-react)
-- [Issues e Suporte](https://github.com/useblu/ocean-web/issues)
+- [Issues e Suporte](https://github.com/ocean-ds/ocean-web/issues)
 
 ---
 

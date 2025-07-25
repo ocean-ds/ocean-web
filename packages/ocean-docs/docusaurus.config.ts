@@ -81,7 +81,7 @@ const config: Config = {
             },
             {
               label: 'Guia de Instalação',
-              to: '/intro',
+              to: '/guides',
             },
           ],
         },

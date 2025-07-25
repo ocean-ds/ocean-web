@@ -1,0 +1,290 @@
+---
+title: List
+sidebar_label: List
+sidebar_position: 3
+---
+
+import { List, TransactionListItem } from '@useblu/ocean-react';
+import { StarOutline, Reply, LockClosed } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# List
+
+Container para organizar itens de lista, especialmente TransactionListItem. Fornece a estrutura base para listas de transações, notificações e outros itens que seguem o padrão de design do Ocean.
+
+## Importação
+
+```tsx
+import { List } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { List } from '@useblu/ocean-react/List';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ListProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyList: React.FC<ListProps> = (props) => {
+  return <List {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente List no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list--usage"
+  height={500}
+  title="List - Playground Interativo"
+/>
+
+## Uso básico
+
+```tsx live
+<List>
+  <TransactionListItem>Item simples 1</TransactionListItem>
+  <TransactionListItem>Item simples 2</TransactionListItem>
+  <TransactionListItem>Item simples 3</TransactionListItem>
+</List>
+```
+
+## Variações
+
+### Lista com ícones
+
+Use ícones para melhor identificação visual dos itens:
+
+```tsx live
+<List>
+  <TransactionListItem icon={<StarOutline />}>
+    Item com estrela
+  </TransactionListItem>
+  <TransactionListItem icon={<Reply />}>Item com resposta</TransactionListItem>
+  <TransactionListItem icon={<LockClosed />}>
+    Item com cadeado
+  </TransactionListItem>
+</List>
+```
+
+<StorybookEmbed
+  storyId="components-list--icons-list"
+  height={300}
+  showToolbar={false}
+  title="List - Com Ícones"
+/>
+
+### Lista com valores
+
+Para transações financeiras ou valores numéricos:
+
+```tsx live
+<List>
+  <TransactionListItem value="R$ 100,00" positive>
+    Receita
+  </TransactionListItem>
+  <TransactionListItem value="R$ 50,00">Despesa</TransactionListItem>
+  <TransactionListItem value="R$ 25,50" positive>
+    Crédito
+  </TransactionListItem>
+</List>
+```
+
+<StorybookEmbed
+  storyId="components-list--values-list"
+  height={300}
+  showToolbar={false}
+  title="List - Com Valores"
+/>
+
+### Lista com tags e informações adicionais
+
+Para categorização e detalhes extras:
+
+```tsx live
+<List>
+  <TransactionListItem
+    level2="Informação secundária"
+    tags="Pendente"
+    time="10:30"
+  >
+    Item com tag
+  </TransactionListItem>
+  <TransactionListItem level2="Outra informação" tags="Aprovado" time="14:15">
+    Item aprovado
+  </TransactionListItem>
+</List>
+```
+
+<StorybookEmbed
+  storyId="components-list--tags-list"
+  height={300}
+  showToolbar={false}
+  title="List - Com Tags"
+/>
+
+### Lista com subitens
+
+Para mostrar hierarquia e detalhes aninhados:
+
+```tsx live
+<List>
+  <TransactionListItem
+    withChevron
+    subItens={
+      <List>
+        <TransactionListItem level2="Detalhe 1">Subitem 1</TransactionListItem>
+        <TransactionListItem level2="Detalhe 2">Subitem 2</TransactionListItem>
+      </List>
+    }
+  >
+    Item principal com subitens
+  </TransactionListItem>
+</List>
+```
+
+<StorybookEmbed
+  storyId="components-list--sub-items-list"
+  height={350}
+  showToolbar={false}
+  title="List - Com Subitens"
+/>
+
+## Exemplos práticos
+
+### Lista de transações
+
+```tsx live
+<List>
+  <TransactionListItem
+    icon={<StarOutline />}
+    level2="Banco do Brasil"
+    value="R$ 150,00"
+    time="09:30"
+    positive
+  >
+    Transferência recebida
+  </TransactionListItem>
+  <TransactionListItem
+    icon={<Reply />}
+    level2="Pagamento"
+    value="R$ 75,50"
+    time="14:20"
+  >
+    Compra no cartão
+  </TransactionListItem>
+</List>
+```
+
+### Lista de notificações
+
+```tsx live
+<List>
+  <TransactionListItem
+    icon={<LockClosed />}
+    level2="Segurança"
+    tags="Importante"
+    time="10:15"
+  >
+    Nova tentativa de login
+  </TransactionListItem>
+  <TransactionListItem level2="Sistema" tags="Info" time="08:45">
+    Atualização disponível
+  </TransactionListItem>
+</List>
+```
+
+## API
+
+### Props
+
+| Prop        | Tipo              | Padrão | Descrição                                          |
+| ----------- | ----------------- | ------ | -------------------------------------------------- |
+| `children`  | `React.ReactNode` | -      | Conteúdo da lista (geralmente TransactionListItem) |
+| `className` | `string`          | -      | Classes CSS adicionais para customização           |
+
+### Elementos HTML suportados
+
+O componente List é baseado no elemento `<div>` e suporta todos os atributos padrão de div.
+
+## Acessibilidade
+
+- ✅ Estrutura semântica correta para listas
+- ✅ Suporte a navegação por teclado
+- ✅ Compatível com screen readers
+- ✅ Estados de foco adequados nos itens
+
+### Navegação por teclado
+
+| Tecla             | Função                                  |
+| ----------------- | --------------------------------------- |
+| `Tab`             | Navega entre os itens da lista          |
+| `Space` / `Enter` | Ativa itens interativos                 |
+| `Arrow Up/Down`   | Navega verticalmente (quando aplicável) |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use `TransactionListItem` como filhos do componente List
+- Mantenha consistência na estrutura dos itens dentro da mesma lista
+- Use ícones apropriados para melhor identificação visual
+- Use `level2`, `level3` e `level4` para informações hierárquicas
+- Use `value` para valores monetários ou numéricos
+- Use `positive` para valores positivos (receitas, créditos)
+- Use `tags` para status ou categorização
+- Use `time` para timestamps ou horários
+
+### ❌ Não faça
+
+- Não misture diferentes tipos de conteúdo na mesma lista
+- Não omita informações importantes de acessibilidade
+- Não use listas muito longas sem paginação ou virtualização
+- Não negligencie o estado de carregamento para dados dinâmicos
+
+### Estrutura e Organização
+
+- **Use TransactionListItem**: Principal componente para itens da lista
+- **Consistência**: Mantenha padrão similar entre itens da mesma lista
+- **Hierarquia**: Use `subItens` para mostrar detalhes adicionais
+- **Interatividade**: Use `withChevron` para indicar itens expansíveis
+
+### Estados e Feedback
+
+- **Loading**: Use `isLoading` para indicar carregamento de dados
+- **Feedback visual**: Forneça indicações visuais para diferentes estados
+- **Responsividade**: Adapte layout para diferentes tamanhos de tela
+
+## Visão geral de todas as variações
+
+Veja todas as variações do List em ação:
+
+<StorybookEmbed
+  storyId="components-list--basic-list"
+  height={250}
+  showToolbar={false}
+  title="List - Visão Geral"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do List](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variações e casos de uso
+- ✅ **Playground** para experimentação rápida
+
+## Links relacionados
+
+- [TransactionListItem](/components/transactionlistitem) - Componente principal para itens de lista
+- [Button](/components/button) - Para ações em listas
+- [Storybook - List](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list--docs) - Documentação técnica
