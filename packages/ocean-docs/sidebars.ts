@@ -30,6 +30,7 @@ const sidebars: SidebarsConfig = {
         'components/button',
         'components/list',
         'components/transactionlistitem',
+        'components/settingslistitem',
       ],
     },
     {
