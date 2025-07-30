@@ -1,24 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import { MailOutline, LockClosedOutline } from '@useblu/ocean-icons-react';
 import Input from '../Input';
-import {
-  commonArgTypes,
-  adornmentSpecificProps,
-  tooltipSpecificProps,
-  defaultUsageDecorator,
-  createIntroduction,
-  createCommonPatterns,
-  createApiReference,
-  SharedBestPractices,
-  SharedCssClasses,
-  SharedUsageExamples,
-  commonCodeExamples,
-  defaultUsageControls,
-  tooltipApiReference,
-  INPUT_COMMON_DATA,
-} from './_shared';
 
 const INPUT_GETTING_STARTED_LABELS = {
   emailAddress: 'Email',
@@ -94,35 +77,48 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   argTypes: {
-    ...commonArgTypes,
-    ...adornmentSpecificProps,
-    ...tooltipSpecificProps,
-  },
-  parameters: {
-    docs: {
-      page: () => (
-        <>
-          <Introduction />
-          <DocBlock.Heading>Uso</DocBlock.Heading>
-          <DocBlock.Canvas of={Usage} />
-          <DocBlock.Controls of={Usage} />
-          <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
-          <CommonPatterns />
-          <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3>Tipos de Input</h3>
-          <DocBlock.Canvas of={InputTypes} />
-          <h3>Adornments</h3>
-          <DocBlock.Canvas of={Adornments} />
-          <h3>Estados</h3>
-          <DocBlock.Canvas of={States} />
-          <h3>Tooltip</h3>
-          <DocBlock.Canvas of={Tooltip} />
-          <SharedUsageExamples />
-          <SharedBestPractices />
-          <SharedCssClasses />
-          <ApiReference />
-        </>
-      ),
+    label: {
+      description: 'Rótulo do campo de entrada.',
+      control: 'text',
+    },
+    type: {
+      description: 'Tipo do input.',
+      control: 'select',
+      options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search'],
+    },
+    placeholder: {
+      description: 'Texto de placeholder.',
+      control: 'text',
+    },
+    helperText: {
+      description: 'Texto de ajuda exibido abaixo do campo.',
+      control: 'text',
+    },
+    error: {
+      description: 'Define se o campo está em estado de erro.',
+      control: 'boolean',
+    },
+    disabled: {
+      description: 'Desabilita o campo.',
+      control: 'boolean',
+    },
+    required: {
+      description: 'Indica se o campo é obrigatório.',
+      control: 'boolean',
+    },
+    tooltipMessage: {
+      description: 'Mensagem do tooltip.',
+      control: 'text',
+    },
+    // Props ocultas das actions e controles
+    adornment: {
+      table: { disable: true },
+    },
+    position: {
+      table: { disable: true },
+    },
+    htmlFor: {
+      table: { disable: true },
     },
   },
 };
@@ -131,38 +127,30 @@ export default meta;
 
 type Story = StoryObj<typeof Input>;
 
-const Introduction = createIntroduction(
-  'Guia completo para usar o componente Input e suas variações no Ocean Design System.',
-  'O componente Input é um elemento versátil para coleta de dados em formulários, oferecendo suporte a diversos tipos de entrada, ícones, tooltips e estados. Foi projetado para manter consistência e acessibilidade em toda a aplicação.',
-  [
-    '<strong>Múltiplos Tipos</strong>: Suporte para text, email, password, number, tel, url e search',
-    '<strong>Adornments Flexíveis</strong>: Ícones, símbolos de moeda e elementos customizados',
-    '<strong>Gerenciamento de Estados</strong>: Estados normal, erro, desabilitado e foco',
-    '<strong>Acessibilidade</strong>: Suporte ARIA integrado e navegação por teclado',
-    '<strong>Integração com Tooltip</strong>: Informações contextuais sem poluir a interface',
-  ]
-);
-
-const CommonPatterns = createCommonPatterns([
-  commonCodeExamples.basicUsage,
-  commonCodeExamples.withValidation,
-  commonCodeExamples.withIcon,
-]);
-
-const ApiReference = createApiReference(tooltipApiReference);
-
 export const Usage: Story = {
   args: {
-    label: INPUT_COMMON_DATA.LABELS.email,
+    label: INPUT_GETTING_STARTED_LABELS.emailAddress,
     name: 'email',
     type: 'email',
-    placeholder: INPUT_COMMON_DATA.PLACEHOLDERS.seuEmail,
-    helperText: INPUT_COMMON_DATA.HELPER_TEXTS.emailVerificacao,
+    placeholder: INPUT_GETTING_STARTED_PLACEHOLDERS.emailExample,
+    helperText: INPUT_GETTING_STARTED_HELPER_TEXTS.emailVerification,
   },
-  decorators: defaultUsageDecorator,
-  parameters: {
-    controls: defaultUsageControls,
-  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
 };
 
 export const InputTypes: Story = {

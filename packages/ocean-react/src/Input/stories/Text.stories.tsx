@@ -1,19 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import Input from '../Input';
-import {
-  commonArgTypes,
-  SharedBestPractices,
-  SharedCssClasses,
-  SharedUsageExamples,
-  createApiReference,
-  createIntroduction,
-  createCommonPatterns,
-  defaultUsageDecorator,
-  containerStyles,
-  commonCodeExamples,
-} from './_shared';
 
 const TEXT_LABELS = {
   nomeCompleto: 'Nome Completo',
@@ -67,16 +54,42 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   argTypes: {
-    ...commonArgTypes,
+    label: {
+      description: 'O rótulo do campo que identifica seu propósito.',
+      control: 'text',
+    },
+    placeholder: {
+      description: 'Texto de exemplo que aparece quando o campo está vazio.',
+      control: 'text',
+    },
+    helperText: {
+      description: 'Texto auxiliar que fornece contexto ou instruções.',
+      control: 'text',
+    },
+    error: {
+      description: 'Define se o campo está em estado de erro.',
+      control: 'boolean',
+    },
+    disabled: {
+      description: 'Desabilita a interação com o campo.',
+      control: 'boolean',
+    },
+    required: {
+      description: 'Marca o campo como obrigatório.',
+      control: 'boolean',
+    },
     type: {
-      name: 'type',
       description:
-        'O tipo do elemento input. Sempre &quot;text&quot; para inputs de texto, fornecendo comportamento padrão de entrada de texto.',
+        'O tipo do elemento input. Sempre "text" para inputs de texto, fornecendo comportamento padrão de entrada de texto.',
       table: {
         type: { summary: '"text"' },
         defaultValue: { summary: '"text"' },
       },
       control: { type: null },
+    },
+    name: {
+      description: 'Nome do campo para identificação no formulário.',
+      control: 'text',
     },
     adornment: {
       control: { type: null },
@@ -84,32 +97,11 @@ const meta: Meta<typeof Input> = {
     position: {
       control: { type: null },
     },
-  },
-  parameters: {
-    docs: {
-      page: () => (
-        <>
-          <Introduction />
-          <DocBlock.Heading>Uso</DocBlock.Heading>
-          <DocBlock.Canvas of={Usage} />
-          <DocBlock.Controls of={Usage} />
-          <DocBlock.Heading>Padrões comuns</DocBlock.Heading>
-          <CommonPatterns />
-          <DocBlock.Heading>Exemplos</DocBlock.Heading>
-          <h3>Estados</h3>
-          <DocBlock.Canvas of={States} />
-          <h3>Informações Pessoais</h3>
-          <DocBlock.Canvas of={PersonalInfo} />
-          <h3>Informações de Endereço</h3>
-          <DocBlock.Canvas of={AddressInfo} />
-          <h3>Formulário Completo</h3>
-          <DocBlock.Canvas of={FormExample} />
-          <UsageExamples />
-          <BestPractices />
-          <CssClasses />
-          <ApiReference />
-        </>
-      ),
+    defaultValue: {
+      table: { disable: true },
+    },
+    htmlFor: {
+      table: { disable: true },
     },
   },
 };
@@ -117,46 +109,6 @@ const meta: Meta<typeof Input> = {
 export default meta;
 
 type Story = StoryObj<typeof Input>;
-
-// Componente de Introdução
-const Introduction = createIntroduction(
-  'Componente especializado de entrada de texto para coletar dados textuais gerais com recursos de validação e acessibilidade.',
-  'Text inputs são o controle de formulário mais comum para coletar dados de texto inseridos pelo usuário. Eles suportam vários estados de validação, texto de ajuda e recursos de acessibilidade. Use text inputs para nomes, endereços, descrições e outros conteúdos de texto livre.'
-);
-
-// Padrões Comuns
-const CommonPatterns = createCommonPatterns([
-  commonCodeExamples.basicUsage,
-  `// Informações pessoais básicas
-<Input
-  label="Nome Completo"
-  name="fullName"
-  type="text"
-  placeholder="João Silva"
-  required
-/>`,
-  `// Com estado de erro
-<Input
-  label="Email"
-  name="email"
-  type="text"
-  placeholder="seu@email.com"
-  helperText="Email é obrigatório"
-  error
-/>`,
-]);
-
-// Exemplos de Uso
-const UsageExamples = SharedUsageExamples;
-
-// Melhores Práticas
-const BestPractices = SharedBestPractices;
-
-// Classes CSS
-const CssClasses = SharedCssClasses;
-
-// Referência da API
-const ApiReference = createApiReference();
 
 // Story principal com controles ativos
 export const Usage: Story = {
@@ -167,7 +119,22 @@ export const Usage: Story = {
     placeholder: TEXT_PLACEHOLDERS.joaoSilva,
     helperText: TEXT_HELPER_TEXTS.primeiroUltimoNome,
   },
-  decorators: defaultUsageDecorator,
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          gap: '16px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StoryComponent />
+      </div>
+    ),
+  ],
 };
 
 // Stories visuais com controles desabilitados
@@ -176,7 +143,14 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={containerStyles.form}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '300px',
+      }}
+    >
       <Input
         label={TEXT_LABELS.nome}
         name="normal"
@@ -189,7 +163,7 @@ export const States: Story = {
         name="error"
         type="text"
         placeholder={TEXT_PLACEHOLDERS.joaoSilva}
-        helperText={TEXT_HELPER_TEXTS.emailObrigatorio}
+        helperText="Campo obrigatório"
         error
       />
       <Input
@@ -197,7 +171,7 @@ export const States: Story = {
         name="disabled"
         type="text"
         placeholder={TEXT_PLACEHOLDERS.joaoSilva}
-        helperText={TEXT_HELPER_TEXTS.comentariosOpcionais}
+        helperText="Campo desabilitado"
         disabled
       />
     </div>
@@ -209,12 +183,19 @@ export const PersonalInfo: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={containerStyles.form}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '300px',
+      }}
+    >
       <Input
         label={TEXT_LABELS.nome}
         name="firstName"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        placeholder="João"
         helperText={TEXT_HELPER_TEXTS.nomeUsuario}
         required
       />
@@ -222,7 +203,7 @@ export const PersonalInfo: Story = {
         label={TEXT_LABELS.sobrenome}
         name="lastName"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.joaoSilva}
+        placeholder="Silva"
         helperText={TEXT_HELPER_TEXTS.sobrenomeCompleto}
         required
       />
@@ -230,7 +211,7 @@ export const PersonalInfo: Story = {
         label={TEXT_LABELS.empresa}
         name="company"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        placeholder="Nome da empresa"
         helperText={TEXT_HELPER_TEXTS.nomeEmpresa}
       />
     </div>
@@ -242,7 +223,14 @@ export const AddressInfo: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={containerStyles.form}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '300px',
+      }}
+    >
       <Input
         label={TEXT_LABELS.endereco}
         name="address"
@@ -254,14 +242,14 @@ export const AddressInfo: Story = {
         label={TEXT_LABELS.cidade}
         name="city"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        placeholder="São Paulo"
         helperText={TEXT_HELPER_TEXTS.cidadeOndeVive}
       />
       <Input
         label={TEXT_LABELS.cep}
-        name="neighborhood"
+        name="zipCode"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        placeholder="01234-567"
         helperText={TEXT_HELPER_TEXTS.cepCompleto}
       />
     </div>
@@ -275,7 +263,10 @@ export const FormExample: Story = {
   render: () => (
     <form
       style={{
-        ...containerStyles.form,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        width: '350px',
         padding: '16px',
         border: '1px solid #e0e0e0',
         borderRadius: '8px',
@@ -293,14 +284,14 @@ export const FormExample: Story = {
         label={TEXT_LABELS.cargo}
         name="jobTitle"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        placeholder="Desenvolvedor"
         helperText={TEXT_HELPER_TEXTS.cargoAtual}
       />
       <Input
         label={TEXT_LABELS.empresa}
         name="company"
         type="text"
-        placeholder={TEXT_PLACEHOLDERS.observacoesExemplo}
+        placeholder="Nome da empresa"
         helperText={TEXT_HELPER_TEXTS.nomeEmpresa}
       />
       <Input
