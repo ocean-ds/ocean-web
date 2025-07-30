@@ -35,7 +35,7 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'components/inputs/index',
           },
-          items: ['components/inputs', 'components/inputs/text-input'],
+          items: ['components/inputs/index', 'components/inputs/text-input'],
         },
         'components/list',
         'components/transactionlistitem',
