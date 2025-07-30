@@ -28,15 +28,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         'components/button',
-        {
-          type: 'category',
-          label: 'Inputs',
-          link: {
-            type: 'doc',
-            id: 'components/inputs/index',
-          },
-          items: ['components/inputs/index', 'components/inputs/text-input'],
-        },
+        'components/input',
         'components/list',
         'components/transactionlistitem',
         'components/settingslistitem',
