@@ -49,6 +49,32 @@ const TEXT_PLACEHOLDERS = {
   observacoesExemplo: 'Observações adicionais...',
 };
 
+const STORY_STYLES = {
+  centeredContainer: {
+    minWidth: '300px',
+    display: 'flex',
+    gap: '16px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
+  } as React.CSSProperties,
+  columnContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+    width: '300px',
+  } as React.CSSProperties,
+  formContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+    width: '350px',
+    padding: '16px',
+    border: '1px solid #e0e0e0',
+    borderRadius: '8px',
+  } as React.CSSProperties,
+};
+
 const meta: Meta<typeof Input> = {
   title: 'Components/Inputs/Text Input',
   component: Input,
@@ -121,16 +147,7 @@ export const Usage: Story = {
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '300px',
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <div style={STORY_STYLES.centeredContainer}>
         <StoryComponent />
       </div>
     ),
@@ -143,14 +160,7 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '300px',
-      }}
-    >
+    <div style={STORY_STYLES.columnContainer}>
       <Input
         label={TEXT_LABELS.nome}
         name="normal"
@@ -183,14 +193,7 @@ export const PersonalInfo: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '300px',
-      }}
-    >
+    <div style={STORY_STYLES.columnContainer}>
       <Input
         label={TEXT_LABELS.nome}
         name="firstName"
@@ -223,14 +226,7 @@ export const AddressInfo: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '300px',
-      }}
-    >
+    <div style={STORY_STYLES.columnContainer}>
       <Input
         label={TEXT_LABELS.endereco}
         name="address"
@@ -261,17 +257,7 @@ export const FormExample: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <form
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        width: '350px',
-        padding: '16px',
-        border: '1px solid #e0e0e0',
-        borderRadius: '8px',
-      }}
-    >
+    <form style={STORY_STYLES.formContainer}>
       <Input
         label={TEXT_LABELS.nomeCompleto}
         name="fullName"
