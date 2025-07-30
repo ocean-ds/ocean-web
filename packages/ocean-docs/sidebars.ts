@@ -39,6 +39,7 @@ const sidebars: SidebarsConfig = {
         },
         'components/list',
         'components/transactionlistitem',
+        'components/settingslistitem',
       ],
     },
     {

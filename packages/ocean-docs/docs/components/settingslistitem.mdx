@@ -1,0 +1,355 @@
+---
+title: SettingsListItem
+sidebar_label: SettingsListItem
+sidebar_position: 4
+---
+
+import { SettingsListItem, Button, Tag } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# SettingsListItem
+
+O componente SettingsListItem é usado para exibir itens de configuração de forma organizada, com suporte a botões de ação, tags de status, estados visuais e mensagens de erro. Ideal para telas de configurações, preferências e painéis de controle.
+
+## Importação
+
+```tsx
+import { SettingsListItem } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { SettingsListItem } from '@useblu/ocean-react/SettingsListItem';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { SettingListItemProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MySettingsItem: React.FC<SettingListItemProps> = (props) => {
+  return <SettingsListItem {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente SettingsListItem no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-settingslistitem--usage"
+  height={700}
+  title="SettingsListItem - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do SettingsListItem](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-settingslistitem--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Com botão de ação
+
+```tsx live
+<SettingsListItem
+  title="Autenticação de Dois Fatores"
+  description="Adicione uma camada extra de segurança à sua conta"
+  caption="Recomendado para maior segurança"
+  button={{
+    children: 'Ativar',
+    variant: 'primary',
+    size: 'sm',
+  }}
+/>
+```
+
+## Com tag de status
+
+```tsx live
+<SettingsListItem
+  title="Sincronização Automática"
+  description="Sincronize seus dados automaticamente em todos os dispositivos"
+  caption="Última sincronização: agora"
+  tag={{
+    children: 'Ativo',
+    variant: 'default',
+    type: 'positive',
+  }}
+/>
+```
+
+## Estados Visuais
+
+### Estado de destaque
+
+```tsx live
+<SettingsListItem
+  title="Configuração Importante"
+  description="Esta configuração precisa de sua atenção"
+  caption="Ação recomendada"
+  state="highlight"
+  type="inverted"
+  button={{
+    children: 'Configurar',
+    variant: 'primary',
+    size: 'sm',
+  }}
+/>
+```
+
+### Estado de aviso
+
+```tsx live
+<SettingsListItem
+  title="Backup de Dados"
+  description="Configure o backup automático dos seus dados"
+  caption="Configuração pendente"
+  state="warning"
+  type="inverted"
+  tag={{
+    children: 'Atenção',
+    variant: 'default',
+    type: 'warning',
+  }}
+/>
+```
+
+### Estado de carregamento
+
+```tsx live
+<SettingsListItem
+  title="Aplicando Configurações"
+  description="Salvando suas preferências..."
+  caption="Por favor, aguarde"
+  loading
+  button={{
+    children: 'Fazer Upgrade',
+    variant: 'primary',
+    size: 'sm',
+  }}
+/>
+```
+
+### Estado desabilitado
+
+```tsx live
+<SettingsListItem
+  title="Funcionalidade Beta"
+  description="Esta funcionalidade está temporariamente indisponível"
+  caption="Em manutenção"
+  disabled
+  button={{
+    children: 'Configurar',
+    variant: 'secondary',
+    size: 'sm',
+  }}
+/>
+```
+
+## Tipo invertido
+
+O tipo invertido altera a hierarquia visual, dando mais destaque à descrição:
+
+```tsx live
+<SettingsListItem
+  title="Tema da Interface"
+  description="Escolha entre tema claro, escuro ou automático baseado no sistema"
+  caption="Altera toda a aparência da aplicação"
+  type="inverted"
+  button={{
+    children: 'Personalizar',
+    variant: 'secondary',
+    size: 'sm',
+  }}
+/>
+```
+
+## Funcionalidade bloqueada
+
+Para indicar funcionalidades que requerem upgrade ou permissões especiais:
+
+```tsx live
+<SettingsListItem
+  title="Análise Avançada"
+  description="Relatórios detalhados e insights personalizados"
+  caption="Disponível no plano Premium"
+  blocked
+/>
+```
+
+## Texto cortado (strikethrough)
+
+Útil para indicar mudanças de preço ou funcionalidades substituídas:
+
+```tsx live
+<SettingsListItem
+  title="Plano Premium"
+  description="Novo preço: R$ 29,90/mês"
+  strikethroughDescription="Preço antigo: R$ 39,90/mês"
+  caption="Oferta limitada"
+  type="inverted"
+  state="strikethrough"
+  button={{
+    children: 'Assinar Agora',
+    variant: 'primary',
+    size: 'sm',
+  }}
+/>
+```
+
+## Com mensagem de erro
+
+```tsx live
+<SettingsListItem
+  title="Sincronização na Nuvem"
+  description="Não foi possível conectar com os servidores"
+  caption="Última tentativa: há 5 minutos"
+  errorMessage="Erro de conexão com o servidor"
+  button={{
+    children: 'Tentar Novamente',
+    variant: 'secondary',
+    size: 'sm',
+  }}
+/>
+```
+
+## API
+
+### Props
+
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------- |
+| `title`                    | `string`                                                                                                   | -           | Título principal do item (obrigatório)                                             |
+| `description`              | `string`                                                                                                   | -           | Descrição detalhada do item (opcional)                                             |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Texto com linha cortada (funciona com `type="inverted"` + `state="strikethrough"`) |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou informação adicional em destaque                                        |
+| `errorMessage`             | `string`                                                                                                   | -           | Mensagem de erro exibida abaixo do conteúdo                                        |
+| `button`                   | `ButtonProps`                                                                                              | -           | Props do botão de ação (size é forçado para 'sm')                                  |
+| `tag`                      | `TagProps`                                                                                                 | -           | Props da tag de status (size é forçado para 'medium')                              |
+| `showDivider`              | `boolean`                                                                                                  | `true`      | Controla se deve exibir o divisor visual                                           |
+| `blocked`                  | `boolean`                                                                                                  | `false`     | Exibe ícone de cadeado indicando funcionalidade bloqueada                          |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o item e todos os elementos internos                                    |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento substituindo o conteúdo                             |
+| `type`                     | `'default' \| 'inverted'`                                                                                  | `'default'` | Tipo visual que altera a hierarquia do título e descrição                          |
+| `state`                    | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Estado visual do item que afeta cores e estilos                                    |
+
+### Props do Button
+
+Quando usar a prop `button`, você pode passar qualquer prop do componente Button, exceto `size` que é sempre 'sm':
+
+| Prop       | Tipo                                                                                                                                                                | Descrição                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `variant`  | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical' \| 'textTertiary' \| 'textTertiaryCritical' \| 'inverse'` | Variante visual do botão   |
+| `children` | `ReactNode`                                                                                                                                                         | Texto ou conteúdo do botão |
+| `onClick`  | `(event: MouseEvent) => void`                                                                                                                                       | Função chamada ao clicar   |
+
+### Props da Tag
+
+Quando usar a prop `tag`, você pode passar qualquer prop do componente Tag, exceto `size` que é sempre 'medium':
+
+| Prop       | Tipo                                                                                              | Descrição                          |
+| ---------- | ------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `type`     | `'positive' \| 'warning' \| 'negative' \| 'neutral' \| 'neutral-02' \| 'neutral-03' \| 'default'` | Tipo da tag com cores predefinidas |
+| `variant`  | `'default' \| 'highlight'`                                                                        | Variante visual da tag             |
+| `children` | `ReactNode`                                                                                       | Texto ou conteúdo da tag           |
+
+## Guia de estados visuais
+
+| Estado           | Quando usar                                   | Exemplo de uso                        |
+| ---------------- | --------------------------------------------- | ------------------------------------- |
+| `default`        | Estado normal de funcionamento                | Configurações gerais                  |
+| `inactive`       | Funcionalidade temporariamente desativada     | Recursos pausados pelo usuário        |
+| `positive`       | Funcionalidade funcionando perfeitamente      | Sincronização ativa                   |
+| `warning`        | Situação que precisa de atenção               | Configuração pendente                 |
+| `highlight`      | Item que precisa ser destacado                | Configuração importante               |
+| `highlight-lead` | Item com máxima prioridade visual             | Ação crítica necessária               |
+| `strikethrough`  | Indicar mudanças ou funcionalidades obsoletas | Preços antigos, recursos substituídos |
+
+## Guia de tipos
+
+| Tipo       | Hierarquia visual             | Quando usar                                       |
+| ---------- | ----------------------------- | ------------------------------------------------- |
+| `default`  | Título maior, descrição menor | Quando o título é mais importante que a descrição |
+| `inverted` | Descrição maior, título menor | Quando a descrição é mais importante que o título |
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis em elementos interativos
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+- ✅ Estados disabled e loading adequadamente sinalizados
+- ✅ Semântica HTML correta
+- ✅ Ícone de bloqueio é anunciado adequadamente
+
+### Considerações importantes
+
+- **Estados loading**: O skeleton substitui o conteúdo e é anunciado corretamente
+- **Estados disabled**: Elementos internos são desabilitados e não recebem foco
+- **Mensagens de erro**: São associadas ao item e anunciadas por screen readers
+- **Ícone de bloqueio**: Indica visualmente funcionalidades restritas
+- **Navegação**: Botões e elementos interativos mantêm ordem lógica de tabulação
+
+### Navegação por teclado
+
+| Tecla             | Função                                 |
+| ----------------- | -------------------------------------- |
+| `Tab`             | Move o foco para elementos interativos |
+| `Space` / `Enter` | Ativa botões quando em foco            |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos claros e concisos que descrevam a funcionalidade
+- Combine `state="highlight"` com ações importantes
+- Use `type="inverted"` quando a descrição for mais importante
+- Implemente `loading` durante operações assíncronas
+- Use `blocked` para indicar funcionalidades premium/restritas
+- Combine `errorMessage` com botões de "tentar novamente"
+- use apenas um botão ou tag ou block, não misture os três
+
+### ❌ Não faça
+
+- Não use textos muito longos em títulos
+- Não abuse de estados de destaque (`highlight`)
+- Não omita feedback durante carregamentos
+- Não use `strikethroughDescription` sem `type="inverted"` + `state="strikethrough"`
+- Não combine muitos elementos visuais sem propósito claro
+
+## Visão geral dos estados
+
+Veja todos os estados do SettingsListItem em ação:
+
+<StorybookEmbed
+  storyId="components-list-settingslistitem--states"
+  height={600}
+  showToolbar={false}
+  title="SettingsListItem - Estados Visuais"
+/>
+
+## Exemplos completos
+
+Veja combinações complexas do componente:
+
+<StorybookEmbed
+  storyId="components-list-settingslistitem--quickexamples"
+  height={600}
+  showToolbar={false}
+  title="SettingsListItem - Exemplos de Uso"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para entender as props do botão de ação
+- [Tag](/components/tag) - Para entender as props da tag de status
+- [List](/components/list) - Para listagens simples sem configurações
+- [Storybook - SettingsListItem](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-settingslistitem--docs) - Documentação técnica completa
