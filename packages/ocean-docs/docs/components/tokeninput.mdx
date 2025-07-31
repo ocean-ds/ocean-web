@@ -1,0 +1,277 @@
+---
+title: TokenInput
+sidebar_label: TokenInput
+sidebar_position: 2
+---
+
+import { TokenInput } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TokenInput
+
+Campo de entrada especializado para códigos de verificação, tokens de autenticação, PINs e outros tipos de entrada de código sequencial.
+
+## Importação
+
+```tsx
+import { TokenInput } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TokenInput } from '@useblu/ocean-react/TokenInput';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TokenInputProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<TokenInputProps> = (props) => {
+  return <TokenInput {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente TokenInput no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-inputs-tokeninput--usage"
+  height={500}
+  title="TokenInput - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TokenInput](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-tokeninput--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<TokenInput
+  label="Código de Verificação"
+  digitsQuantity={4}
+  onChangeToken={(value) => console.log('Token:', value)}
+/>
+```
+
+## Quantidades de Dígitos
+
+O TokenInput suporta diferentes quantidades de dígitos para diferentes contextos:
+
+<StorybookEmbed
+  storyId="components-inputs-tokeninput--digits-quantity"
+  height={300}
+  showToolbar={false}
+  title="TokenInput - Quantidades de Dígitos"
+/>
+
+### Guia de uso das quantidades
+
+- **4 dígitos**: PINs e códigos curtos
+- **6 dígitos**: Códigos de verificação TOKEN/Email padrão
+- **8 dígitos**: Códigos de autenticação estendidos
+
+## Estados
+
+O componente suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-inputs-tokeninput--states"
+  height={200}
+  showToolbar={false}
+  title="TokenInput - Estados"
+/>
+
+### Estados disponíveis
+
+- **Normal**: Estado padrão para entrada de código
+- **Disabled**: Quando o campo não está disponível para edição
+- **Error**: Quando há erro de validação ou código inválido
+
+## Validação Interativa
+
+Exemplo de validação com feedback em tempo real:
+
+<StorybookEmbed
+  storyId="components-inputs-tokeninput--validation"
+  height={250}
+  showToolbar={false}
+  title="TokenInput - Validação Interativa"
+/>
+
+## Exemplos de Uso
+
+### Verificação de Código TOKEN
+
+```tsx
+const [tokenCode, setTokenCode] = useState('');
+const [isValidating, setIsValidating] = useState(false);
+const [error, setError] = useState('');
+
+const handleTokenVerification = async (code: string) => {
+  if (code.length === 6) {
+    setIsValidating(true);
+    try {
+      await verifyTokenCode(code);
+      setError('');
+    } catch (err) {
+      setError('Código inválido. Tente novamente.');
+    } finally {
+      setIsValidating(false);
+    }
+  }
+};
+
+return (
+  <TokenInput
+    label="Código de Verificação TOKEN"
+    digitsQuantity={6}
+    error={!!error}
+    errorMessage={error}
+    disabled={isValidating}
+    onChangeToken={handleTokenVerification}
+  />
+);
+```
+
+### Código de Autenticação
+
+```tsx
+const [authCode, setAuthCode] = useState('');
+const [isSubmitting, setIsSubmitting] = useState(false);
+
+const handleAuthCodeSubmit = async (code: string) => {
+  if (code.length === 8) {
+    setIsSubmitting(true);
+    try {
+      await authenticateWithCode(code);
+      onAuthSuccess();
+    } catch (error) {
+      onAuthError('Código de autenticação inválido.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+};
+
+return (
+  <form onSubmit={handleSubmit}>
+    <TokenInput
+      label="Código de Autenticação"
+      digitsQuantity={8}
+      disabled={isSubmitting}
+      onChangeToken={handleAuthCodeSubmit}
+    />
+    <Button type="submit" disabled={authCode.length !== 8 || isSubmitting}>
+      {isSubmitting ? 'Verificando...' : 'Autenticar'}
+    </Button>
+  </form>
+);
+```
+
+## API
+
+### Props
+
+| Prop             | Tipo                      | Padrão  | Descrição                                        |
+| ---------------- | ------------------------- | ------- | ------------------------------------------------ |
+| `digitsQuantity` | `number`                  | -       | Quantidade de dígitos do token (obrigatório)     |
+| `onChangeToken`  | `(value: string) => void` | -       | Callback quando o token é alterado (obrigatório) |
+| `label`          | `string`                  | -       | Rótulo descritivo do campo                       |
+| `error`          | `boolean`                 | `false` | Exibe estilo de erro                             |
+| `errorMessage`   | `string`                  | -       | Mensagem de erro exibida quando error é true     |
+| `disabled`       | `boolean`                 | `false` | Desabilita o campo                               |
+| `autoFocus`      | `boolean`                 | `true`  | Foca automaticamente no primeiro campo           |
+| `tooltipMessage` | `string`                  | -       | Mensagem de ajuda em tooltip                     |
+| `htmlFor`        | `string`                  | -       | ID para associação com label                     |
+| `className`      | `string`                  | -       | Classes CSS adicionais                           |
+
+### Eventos
+
+- `onChangeToken`: Disparado quando o valor do token é alterado
+- Suporte a eventos padrão de input HTML (onFocus, onBlur, etc.)
+
+## Funcionalidades
+
+### Navegação Automática
+
+- **Enter/Space**: Move para o próximo campo
+- **Backspace**: Remove dígito e volta para campo anterior
+- **Arrow Keys**: Navega entre campos
+- **Tab**: Move foco para próximo elemento da página
+
+### Colagem de Código
+
+- Suporte a colagem de códigos completos
+- Distribui automaticamente os dígitos pelos campos
+- Filtra caracteres não numéricos
+
+### Validação
+
+- Validação em tempo real
+- Suporte a diferentes tipos de validação
+- Feedback visual imediato
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Labels associados corretamente
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla        | Função                                    |
+| ------------ | ----------------------------------------- |
+| `Tab`        | Move foco para o componente               |
+| `Arrow keys` | Navega entre campos                       |
+| `Backspace`  | Remove dígito e volta para campo anterior |
+| `0-9`        | Insere dígito e avança automaticamente    |
+| `Ctrl+V`     | Cola código completo                      |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use `autoFocus` para melhor experiência do usuário
+- Forneça labels descritivos e claros
+- Implemente validação apenas quando todos os dígitos estiverem preenchidos
+- Use mensagens de erro específicas e úteis
+- Considere limitações de tentativas para segurança
+- Use quantidades de dígitos apropriadas para cada contexto
+
+### ❌ Não faça
+
+- Não valide códigos incompletos
+- Não omita labels para acessibilidade
+- Não implemente validação muito restritiva durante a digitação
+- Não ignore estados de carregamento durante validação
+- Não use quantidades de dígitos inadequadas para o contexto
+
+## Classes CSS
+
+| Classe                       | Descrição                                 |
+| ---------------------------- | ----------------------------------------- |
+| `.ods-token-input`           | Estilos aplicados ao container principal  |
+| `.ods-token-input__input`    | Estilos aplicados a cada campo individual |
+| `.ods-token-input--error`    | Estilos aplicados no estado de erro       |
+| `.ods-token-input--disabled` | Estilos aplicados no estado desabilitado  |
+
+## Links relacionados
+
+- [Input](/components/input) - Para entrada de texto geral
+- [Button](/components/button) - Para ações após validação
+- [Storybook - TokenInput](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-tokeninput--docs) - Documentação técnica
