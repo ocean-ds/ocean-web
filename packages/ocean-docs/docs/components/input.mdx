@@ -1,0 +1,250 @@
+---
+title: Input
+sidebar_label: Input
+---
+
+import { Input } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Input
+
+O componente Input é um campo de entrada fundamental que permite aos usuários inserir dados textuais em formulários. Suporta diversos tipos de entrada, validação, estados visuais e elementos decorativos como ícones e símbolos de moeda.
+
+## Importação
+
+```tsx
+import { Input } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Input } from '@useblu/ocean-react/Input';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { InputProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<InputProps> = (props) => {
+  return <Input {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Input no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-input--usage"
+  height={500}
+  title="Input - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Input](https://ocean-ds.github.io/ocean-web/?path=/docs/components-input--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Input
+  label="Nome Completo"
+  placeholder="João Silva"
+  helperText="Primeiro e último nome"
+/>
+```
+
+## Estados
+
+O Input possui diferentes estados visuais para comunicar status e interações:
+
+### Estados básicos
+
+<StorybookEmbed
+  storyId="components-input--states"
+  height={400}
+  showToolbar={false}
+  title="Input - Estados básicos"
+/>
+
+- **Normal**: Estado padrão do input
+- **Error**: Indica validação com falha ou entrada inválida
+- **Disabled**: Campo desabilitado para interação
+
+## Tipos de Input
+
+O Input suporta diferentes tipos de entrada para otimizar a experiência do usuário:
+
+<StorybookEmbed
+  storyId="components-input--types"
+  height={600}
+  showToolbar={false}
+  title="Input - Tipos de entrada"
+/>
+
+### Guia de uso dos tipos
+
+- **text**: Para textos gerais (nome, título, etc.)
+- **email**: Para endereços de email com validação nativa
+- **password**: Para senhas com caracteres ocultos
+- **number**: Para valores numéricos
+
+## Input com Ícones
+
+Adicione ícones para melhor identificação visual e orientação do usuário:
+
+<StorybookEmbed
+  storyId="components-input--with-icons"
+  height={500}
+  showToolbar={false}
+  title="Input - Com ícones"
+/>
+
+### Posicionamento de ícones
+
+- **left**: Ícone à esquerda (mais comum)
+- **right**: Ícone à direita (menos comum)
+
+## Input de Moeda
+
+Para valores monetários, use adornos com símbolos ou códigos de moeda:
+
+<StorybookEmbed
+  storyId="components-input--currency"
+  height={450}
+  showToolbar={false}
+  title="Input - Valores monetários"
+/>
+
+### Convenções de moeda
+
+- **Símbolos à esquerda**: R$, $, € (mais intuitivo)
+- **Códigos à direita**: BRL, USD, EUR (contexto internacional)
+- **Ícones**: Para representações visuais genéricas
+
+## Input com Tooltip
+
+Use tooltips para fornecer informações contextuais complementares:
+
+<StorybookEmbed
+  storyId="components-input--with-tooltip"
+  height={400}
+  showToolbar={false}
+  title="Input - Com tooltip"
+/>
+
+## Exemplo de Formulário
+
+Veja como combinar inputs em um formulário completo:
+
+<StorybookEmbed
+  storyId="components-input--form-example"
+  height={500}
+  showToolbar={false}
+  title="Input - Exemplo de formulário"
+/>
+
+## API
+
+### Props
+
+| Prop             | Tipo                                                                        | Padrão   | Descrição                              |
+| ---------------- | --------------------------------------------------------------------------- | -------- | -------------------------------------- |
+| `type`           | `'text' \| 'email' \| 'number' \| 'password' \| 'search' \| 'tel' \| 'url'` | `'text'` | Tipo do input que define comportamento |
+| `label`          | `string`                                                                    | -        | Rótulo do campo                        |
+| `placeholder`    | `string`                                                                    | -        | Texto de exemplo quando vazio          |
+| `helperText`     | `string`                                                                    | -        | Texto de ajuda abaixo do campo         |
+| `error`          | `boolean`                                                                   | `false`  | Define estado de erro                  |
+| `disabled`       | `boolean`                                                                   | `false`  | Desabilita o campo                     |
+| `required`       | `boolean`                                                                   | `false`  | Marca como obrigatório                 |
+| `defaultValue`   | `string`                                                                    | -        | Valor inicial do campo                 |
+| `value`          | `string`                                                                    | -        | Valor controlado                       |
+| `tooltipMessage` | `string`                                                                    | -        | Mensagem do tooltip                    |
+| `adornment`      | `React.ReactElement`                                                        | -        | Ícone ou texto decorativo              |
+| `position`       | `'left' \| 'right'`                                                         | `'left'` | Posição do adornment                   |
+| `name`           | `string`                                                                    | -        | Nome do campo no formulário            |
+| `id`             | `string`                                                                    | -        | ID único do elemento                   |
+| `className`      | `string`                                                                    | -        | Classes CSS adicionais                 |
+| `onChange`       | `(event: ChangeEvent<HTMLInputElement>) => void`                            | -        | Callback de mudança de valor           |
+
+### Eventos
+
+- **onChange**: Disparado quando o valor do input é alterado
+- **onFocus**: Disparado quando o input recebe foco
+- **onBlur**: Disparado quando o input perde foco
+- **onKeyDown**: Disparado ao pressionar uma tecla
+
+## Acessibilidade
+
+- ✅ **Navegação por teclado**: Suporte completo com Tab e teclas de navegação
+- ✅ **Labels apropriados**: Associação correta entre label e input
+- ✅ **Estados de foco**: Indicação visual clara do foco
+- ✅ **Textos de ajuda**: Associados corretamente com aria-describedby
+- ✅ **Mensagens de erro**: Comunicadas via screen readers
+- ✅ **Validação nativa**: Aproveita validação HTML5 quando apropriado
+
+### Navegação por teclado
+
+| Tecla           | Função                           |
+| --------------- | -------------------------------- |
+| `Tab`           | Move foco para/do input          |
+| `Shift + Tab`   | Move foco para elemento anterior |
+| Teclas de texto | Inserem caracteres no campo      |
+| `Backspace`     | Remove caractere anterior        |
+| `Delete`        | Remove caractere seguinte        |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- **Use labels descritivos** que indiquem claramente o conteúdo esperado
+- **Forneça placeholders informativos** que demonstrem o formato esperado
+- **Implemente validação clara** com mensagens de erro úteis
+- **Use o tipo correto** para cada contexto (email, tel, password, etc.)
+- **Agrupe campos relacionados** logicamente em formulários
+- **Use helperText** para orientações importantes
+- **Implemente estados de loading** para operações assíncronas
+
+### ❌ Não faça
+
+- **Não use placeholder como label** - sempre forneça um label real
+- **Não omita validação** em campos obrigatórios
+- **Não use tipos incorretos** (ex: text para email)
+- **Não ignore estados de erro** - sempre forneça feedback claro
+- **Não sobrecarregue tooltips** com informações essenciais
+- **Não desabilite campos** sem explicar o motivo
+- **Não implemente validação confusa** ou contraditória
+
+## Casos especiais
+
+<StorybookEmbed
+  storyId="components-input--special-cases"
+  height={500}
+  showToolbar={false}
+  title="Input - Casos especiais"
+/>
+
+### Tratamento de casos específicos
+
+- **Campos preenchidos**: Mantenha estado visual adequado
+- **Validação em tempo real**: Use debouncing para melhor performance
+- **Campos longos**: Considere responsividade e quebra de linha
+- **Campos obrigatórios com erro**: Combine required + error para feedback claro
+
+## Links relacionados
+
+- [TextArea](/components/textarea) - Para textos multilinha
+- [Select](/components/select) - Para seleção de opções
+- [Checkbox](/components/checkbox) - Para seleções múltiplas
+- [Radio](/components/radio) - Para seleção única
+- [Storybook - Input](https://ocean-ds.github.io/ocean-web/?path=/docs/components-input--docs) - Documentação técnica completa
