@@ -30,6 +30,8 @@ const sidebars: SidebarsConfig = {
         'components/button',
         'components/input',
         'components/tokeninput',
+        'components/select',
+        'components/selectautocomplete',
         'components/list',
         'components/settingslistitem',
         'components/textlistitem',
