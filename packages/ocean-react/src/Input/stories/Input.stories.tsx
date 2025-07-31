@@ -81,7 +81,7 @@ const STORY_STYLES = {
 };
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Components/Inputs/Input',
   component: Input,
   tags: ['autodocs'],
   argTypes: {
