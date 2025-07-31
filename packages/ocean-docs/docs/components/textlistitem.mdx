@@ -1,0 +1,221 @@
+---
+title: TextListItem
+sidebar_label: TextListItem
+---
+
+import { TextListItem } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TextListItem
+
+Um componente versátil para exibir informações em lista com suporte a seleção, ações e customização visual.
+
+## Importação
+
+```tsx
+import { TextListItem } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TextListItem } from '@useblu/ocean-react/TextListItem';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TextListItemProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<TextListItemProps> = (props) => {
+  return <TextListItem {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente TextListItem no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-textlistitem--usage"
+  height={500}
+  title="TextListItem - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TextListItem](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-textlistitem--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<TextListItem
+  title="Título do item"
+  description="Descrição do item da lista"
+  withAction
+/>
+```
+
+## Funcionalidades
+
+### Com Tag
+
+Adicione uma tag visual ao lado do título:
+
+```tsx live
+<TextListItem
+  title="Item com tag"
+  description="Este item possui uma tag"
+  tagLabel="Nova"
+  withAction
+/>
+```
+
+### Com Legenda
+
+Inclua texto adicional de legenda:
+
+```tsx live
+<TextListItem
+  title="Item com legenda"
+  description="Este item possui uma legenda"
+  caption="Legenda adicional"
+  withAction
+/>
+```
+
+### Com Texto Informativo
+
+Exiba informações adicionais como valores ou status:
+
+<StorybookEmbed
+  storyId="components-list-textlistitem--with-info-text"
+  height={300}
+  showToolbar={false}
+  title="TextListItem - Texto Informativo"
+/>
+
+### Com Checkbox
+
+Transforme em item selecionável com checkbox:
+
+<StorybookEmbed
+  storyId="components-list-textlistitem--with-checkbox"
+  height={300}
+  showToolbar={false}
+  title="TextListItem - Com Checkbox"
+/>
+
+### Com Radio Button
+
+Use para seleção única em grupos:
+
+<StorybookEmbed
+  storyId="components-list-textlistitem--with-radio"
+  height={300}
+  showToolbar={false}
+  title="TextListItem - Com Radio"
+/>
+
+## Estados
+
+### Desabilitado
+
+<StorybookEmbed
+  storyId="components-list-textlistitem--disabled"
+  height={250}
+  showToolbar={false}
+  title="TextListItem - Estado Desabilitado"
+/>
+
+### Exemplo Completo
+
+Veja todas as funcionalidades juntas:
+
+<StorybookEmbed
+  storyId="components-list-textlistitem--complete"
+  height={200}
+  showToolbar={false}
+  title="TextListItem - Exemplo Completo"
+/>
+
+## API
+
+### Props
+
+| Prop            | Tipo                      | Padrão      | Descrição                                     |
+| --------------- | ------------------------- | ----------- | --------------------------------------------- |
+| `title`         | `string`                  | -           | Título do item (obrigatório)                  |
+| `description`   | `string`                  | -           | Descrição do item (obrigatório)               |
+| `caption`       | `string`                  | -           | Texto de legenda adicional                    |
+| `tagLabel`      | `string`                  | -           | Texto da tag exibida ao lado do título        |
+| `infoText`      | `string`                  | -           | Texto informativo adicional                   |
+| `infoTextType`  | `'neutral' \| 'positive'` | `'neutral'` | Tipo do texto informativo                     |
+| `withAction`    | `boolean`                 | `false`     | Exibe ícone de ação no lado direito           |
+| `onActionClick` | `() => void`              | -           | Callback quando o item é clicado              |
+| `checkbox`      | `CheckboxProps`           | -           | Props do checkbox (torna o item selecionável) |
+| `radio`         | `RadioProps`              | -           | Props do radio (torna o item selecionável)    |
+| `disabled`      | `boolean`                 | `false`     | Desabilita o componente                       |
+| `className`     | `string`                  | -           | Classes CSS adicionais                        |
+
+### Eventos
+
+- `onActionClick`: Disparado quando o item é clicado (apenas se `withAction` for true)
+
+## Comportamentos de Renderização
+
+O TextListItem se adapta automaticamente baseado nas props fornecidas:
+
+1. **Com checkbox**: Renderiza como item selecionável com checkbox
+2. **Com radio**: Renderiza como item selecionável com radio button
+3. **Com onActionClick**: Renderiza como botão clicável
+4. **Simples**: Renderiza como div estática
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados para seleção
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                                     |
+| ----------------- | ------------------------------------------ |
+| `Tab`             | Move o foco para o item                    |
+| `Space` / `Enter` | Ativa checkbox/radio ou clica no item      |
+| `Arrow keys`      | Navega entre itens de radio no mesmo grupo |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos claros e descritivos
+- Mantenha descrições concisas mas informativas
+- Use `infoTextType="positive"` para valores monetários positivos
+- Agrupe itens relacionados visualmente
+- Use `withAction` para indicar items clicáveis
+
+### ❌ Não faça
+
+- Não use textos muito longos no título
+- Não misture checkbox e radio no mesmo grupo
+- Não omita a propriedade `name` em grupos de radio
+- Não ignore o estado `disabled` quando apropriado
+
+## Links relacionados
+
+- [List](/components/list) - Para listas completas
+- [Checkbox](/components/checkbox) - Para seleção múltipla
+- [Radio](/components/radio) - Para seleção única
+- [Tag](/components/tag) - Para marcações visuais
+- [Storybook - TextListItem](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-textlistitem--docs) - Documentação técnica
