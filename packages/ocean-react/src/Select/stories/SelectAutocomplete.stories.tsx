@@ -75,6 +75,24 @@ const defaultOptions = [
   { value: 'py', label: 'Paraguai' },
 ];
 
+const defaultDecorator = [
+  (StoryComponent: React.ComponentType): JSX.Element => (
+    <div
+      style={{
+        minWidth: '300px',
+        maxWidth: '400px',
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <StoryComponent />
+    </div>
+  ),
+];
+
 export const Usage: Story = {
   args: {
     label: 'País',
@@ -84,21 +102,7 @@ export const Usage: Story = {
     disabled: false,
     options: defaultOptions,
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: defaultDecorator,
 };
 
 export const States: Story = {
@@ -106,15 +110,7 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '24px',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-      }}
-    >
+    <div>
       <SelectAutocomplete
         label="Normal"
         placeholder="Digite para buscar..."
