@@ -1,0 +1,255 @@
+---
+title: UnorderedListItem
+sidebar_label: UnorderedListItem
+sidebar_position: 8
+---
+
+import { UnorderedListItem } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# UnorderedListItem
+
+O componente UnorderedListItem é usado para criar itens de lista não ordenada com ícones e textos descritivos. Ideal para listas de recursos, benefícios, itens de navegação ou qualquer conteúdo que precise de estruturação visual clara.
+
+## Importação
+
+```tsx
+import { UnorderedListItem } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { UnorderedListItem } from '@useblu/ocean-react/UnorderedListItem';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { UnorderedListItemProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyListItem: React.FC<UnorderedListItemProps> = (props) => {
+  return <UnorderedListItem {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente UnorderedListItem no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-unorderedlistitem--usage"
+  height={550}
+  title="UnorderedListItem - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do UnorderedListItem](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-unorderedlistitem--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<UnorderedListItem
+  description="Lorem ipsum dolor sit amet consectetur porta feugiat faucibus scelerisque."
+  iconVariant="chevron"
+/>
+```
+
+## Variantes de Ícone
+
+O UnorderedListItem suporta três variantes de ícone para diferentes contextos de uso:
+
+<StorybookEmbed
+  storyId="components-list-unorderedlistitem--icon-variants"
+  height={400}
+  showToolbar={false}
+  title="UnorderedListItem - Variantes de ícone"
+/>
+
+### Guia de uso das variantes
+
+- **chevron**: Ícone de seta para direita (16px) - ideal para navegação e listas simples
+- **outline**: Ícone outline personalizado (24px) - para ícones informativos e descritivos
+- **solid**: Ícone solid personalizado (20px) - para ícones de destaque e call-to-actions
+
+## Com e Sem Título
+
+O componente pode ser usado com ou sem título, dependendo da hierarquia de informações desejada:
+
+### Com título
+
+<StorybookEmbed
+  storyId="components-list-unorderedlistitem--with-title"
+  height={350}
+  showToolbar={false}
+  title="UnorderedListItem - Com título"
+/>
+
+### Sem título
+
+<StorybookEmbed
+  storyId="components-list-unorderedlistitem--without-title"
+  height={350}
+  showToolbar={false}
+  title="UnorderedListItem - Sem título"
+/>
+
+## Exemplos Práticos
+
+### Lista de Benefícios
+
+Ideal para destacar vantagens ou características de um produto ou serviço:
+
+<StorybookEmbed
+  storyId="components-list-unorderedlistitem--benefits-list"
+  height={350}
+  showToolbar={false}
+  title="UnorderedListItem - Lista de benefícios"
+/>
+
+```tsx
+<div>
+  <UnorderedListItem
+    title="Segurança"
+    description="Seus dados estão protegidos com criptografia de ponta a ponta"
+    iconVariant="solid"
+    icon={LockClosedOutline}
+  />
+  <UnorderedListItem
+    title="Velocidade"
+    description="Transações processadas em segundos"
+    iconVariant="solid"
+    icon={CheckCircleOutline}
+  />
+  <UnorderedListItem
+    title="Suporte 24/7"
+    description="Atendimento disponível a qualquer momento"
+    iconVariant="solid"
+    icon={SupportOutline}
+  />
+</div>
+```
+
+### Lista de Navegação
+
+Perfect para menus e opções de navegação:
+
+<StorybookEmbed
+  storyId="components-list-unorderedlistitem--navigation-list"
+  height={350}
+  showToolbar={false}
+  title="UnorderedListItem - Lista de navegação"
+/>
+
+```tsx
+<div>
+  <UnorderedListItem
+    description="Configurações da conta"
+    iconVariant="chevron"
+  />
+  <UnorderedListItem
+    description="Histórico de transações"
+    iconVariant="chevron"
+  />
+  <UnorderedListItem
+    description="Preferências de notificação"
+    iconVariant="chevron"
+  />
+</div>
+```
+
+## API
+
+### Props
+
+| Prop          | Tipo                                | Padrão | Descrição                                    |
+| ------------- | ----------------------------------- | ------ | -------------------------------------------- |
+| `description` | `string`                            | -      | Texto descritivo obrigatório do item         |
+| `iconVariant` | `'chevron' \| 'outline' \| 'solid'` | -      | Variante do ícone a ser exibido              |
+| `icon`        | `IconType`                          | -      | Ícone personalizado (quando não for chevron) |
+| `title`       | `string`                            | -      | Título opcional do item                      |
+| `className`   | `string`                            | -      | Classes CSS adicionais                       |
+
+### Tipos
+
+```tsx
+type IconType = React.ForwardRefExoticComponent<
+  {
+    size: number | undefined;
+  } & React.SVGProps<SVGSVGElement> &
+    React.RefAttributes<SVGSVGElement>
+>;
+```
+
+## Acessibilidade
+
+- ✅ **Estrutura semântica**: Usa elementos apropriados para leitores de tela
+- ✅ **Contraste adequado**: Texto e ícones respeitam padrões de contraste
+- ✅ **Ícones decorativos**: Ícones complementam o texto, não substituem informação
+- ✅ **Navegação por teclado**: Quando usado em listas interativas
+- ✅ **Textos significativos**: Descrições claras e contextualmente relevantes
+
+## Melhores práticas
+
+### ✅ Faça
+
+- **Use chevron para navegação** - ideal para menus e listas clicáveis
+- **Use outline para informação** - ícones que complementam o conteúdo descritivo
+- **Use solid para destaque** - call-to-actions e características importantes
+- **Mantenha consistência visual** - use a mesma variante em toda a lista
+- **Seja conciso nas descrições** - textos claros e diretos
+- **Use títulos quando necessário** - para hierarquia e melhor organização
+- **Escolha ícones representativos** - que reforcem o significado do texto
+
+### ❌ Não faça
+
+- **Não misture variantes** sem propósito - pode gerar inconsistência visual
+- **Não use textos muito longos** - pode quebrar o layout em dispositivos pequenos
+- **Não dependa apenas do ícone** - sempre forneça texto descritivo
+- **Não ignore hierarquia** - use títulos consistentemente quando apropriado
+- **Não sobrecarregue com informação** - mantenha o conteúdo focado
+- **Não use ícones genéricos** - escolha ícones que agregam significado
+- **Não negligencie responsividade** - teste em diferentes tamanhos de tela
+
+## Casos de uso comuns
+
+### 🏢 **Páginas de produto/serviço**
+
+- Lista de recursos e benefícios
+- Especificações técnicas
+- Vantagens competitivas
+
+### 🧭 **Navegação e menus**
+
+- Opções de configuração
+- Itens de menu lateral
+- Links para seções
+
+### 📋 **Listas informativas**
+
+- Passos de processo
+- Requisitos e critérios
+- Funcionalidades disponíveis
+
+### 💼 **Conteúdo corporativo**
+
+- Valores da empresa
+- Políticas e diretrizes
+- Benefícios para funcionários
+
+## Links relacionados
+
+- [List](/components/list) - Para listas mais complexas com múltiplos itens
+- [Typography](/components/typography) - Para elementos de texto
+- [Accordion](/components/accordion) - Para conteúdo expansível
+- [CardListItem](/components/card-list-item) - Para itens de lista em formato de card
+- [Storybook - UnorderedListItem](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-unorderedlistitem--docs) - Documentação técnica completa
