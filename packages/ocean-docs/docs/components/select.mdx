@@ -1,0 +1,307 @@
+---
+title: Select
+sidebar_label: Select
+sidebar_position: 2
+---
+
+import { Select } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Select
+
+Campo de seleção que permite ao usuário escolher uma opção a partir de uma lista predefinida de valores.
+
+## Importação
+
+```tsx
+import { Select } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Select } from '@useblu/ocean-react/Select';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { SelectProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<SelectProps> = (props) => {
+  return <Select {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Select no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-inputs-select--usage"
+  height={500}
+  title="Select - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Select](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-select--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Select
+  label="País"
+  placeholder="Selecione um país..."
+  options={[
+    { value: 'br', label: 'Brasil' },
+    { value: 'us', label: 'Estados Unidos' },
+    { value: 'ca', label: 'Canadá' },
+  ]}
+  onChange={(option) => console.log('Selecionado:', option)}
+/>
+```
+
+## Estados
+
+O componente suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-inputs-select--states"
+  height={400}
+  showToolbar={false}
+  title="Select - Estados"
+/>
+
+### Estados disponíveis
+
+- **Normal**: Estado padrão para seleção
+- **Com valor selecionado**: Quando uma opção já está selecionada
+- **Disabled**: Quando o campo não está disponível para seleção
+- **Error**: Quando há erro de validação
+
+## Opções Desabilitadas
+
+É possível desabilitar opções específicas dentro do menu:
+
+<StorybookEmbed
+  storyId="components-inputs-select--with-disabled-options"
+  height={300}
+  showToolbar={false}
+  title="Select - Opções Desabilitadas"
+/>
+
+## Muitas Opções
+
+O componente suporta listas longas com scroll interno:
+
+<StorybookEmbed
+  storyId="components-inputs-select--many-options"
+  height={300}
+  showToolbar={false}
+  title="Select - Muitas Opções"
+/>
+
+## Exemplos de Uso
+
+### Select Controlado
+
+```tsx
+const [selectedCountry, setSelectedCountry] = useState('');
+
+const countries = [
+  { value: 'br', label: 'Brasil' },
+  { value: 'us', label: 'Estados Unidos' },
+  { value: 'ca', label: 'Canadá' },
+  { value: 'mx', label: 'México' },
+];
+
+return (
+  <Select
+    label="País"
+    placeholder="Selecione um país..."
+    value={selectedCountry}
+    options={countries}
+    onChange={(option) => setSelectedCountry(option.value)}
+  />
+);
+```
+
+### Select Não Controlado
+
+```tsx
+const countries = [
+  { value: 'br', label: 'Brasil' },
+  { value: 'us', label: 'Estados Unidos' },
+  { value: 'ca', label: 'Canadá' },
+];
+
+return (
+  <Select
+    label="País"
+    placeholder="Selecione um país..."
+    defaultValue="br"
+    options={countries}
+    onChange={(option) => console.log('Selecionado:', option)}
+  />
+);
+```
+
+### Select com Validação
+
+```tsx
+const [selectedValue, setSelectedValue] = useState('');
+const [hasError, setHasError] = useState(false);
+
+const handleChange = (option) => {
+  setSelectedValue(option.value);
+  setHasError(false);
+};
+
+const handleSubmit = () => {
+  if (!selectedValue) {
+    setHasError(true);
+  }
+};
+
+return (
+  <form onSubmit={handleSubmit}>
+    <Select
+      label="Categoria obrigatória"
+      placeholder="Selecione uma categoria..."
+      value={selectedValue}
+      options={categories}
+      error={hasError}
+      helperText={
+        hasError ? 'Este campo é obrigatório' : 'Escolha uma categoria'
+      }
+      onChange={handleChange}
+    />
+    <Button type="submit">Enviar</Button>
+  </form>
+);
+```
+
+## API
+
+### Props
+
+| Prop           | Tipo                           | Padrão  | Descrição                                           |
+| -------------- | ------------------------------ | ------- | --------------------------------------------------- |
+| `options`      | `OptionType[]`                 | -       | Array de opções que populam o menu (obrigatório)    |
+| `label`        | `string`                       | -       | Rótulo do campo de seleção                          |
+| `placeholder`  | `string`                       | -       | Texto exibido quando nenhuma opção está selecionada |
+| `value`        | `string \| number`             | -       | Valor selecionado (modo controlado)                 |
+| `defaultValue` | `string \| number`             | -       | Valor padrão selecionado (modo não controlado)      |
+| `onChange`     | `(option: OptionType) => void` | -       | Callback quando uma opção é selecionada             |
+| `error`        | `boolean`                      | `false` | Exibe estilo de erro                                |
+| `disabled`     | `boolean`                      | `false` | Desabilita o campo                                  |
+| `helperText`   | `string`                       | -       | Texto de ajuda exibido abaixo do campo              |
+| `id`           | `string`                       | -       | ID do elemento select                               |
+| `name`         | `string`                       | -       | Nome do campo para formulários                      |
+| `ariaLabel`    | `string`                       | -       | Label de acessibilidade                             |
+| `className`    | `string`                       | -       | Classes CSS adicionais                              |
+
+### OptionType
+
+```tsx
+type OptionType = {
+  value: string | number;
+  label: string;
+  disabled?: boolean;
+  className?: string;
+  [propName: string]: any;
+};
+```
+
+### Eventos
+
+- `onChange`: Disparado quando uma opção é selecionada
+- Suporte a eventos padrão de formulário
+
+## Funcionalidades
+
+### Navegação por Teclado
+
+- **Enter/Space**: Abre o menu de opções
+- **Arrow Up/Down**: Navega pelas opções
+- **Escape**: Fecha o menu
+- **Tab**: Move foco para próximo elemento
+
+### Acessibilidade
+
+- Suporte completo a ARIA
+- Labels associados corretamente
+- Estados de foco visíveis
+- Navegação por teclado
+- Suporte a screen readers
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Labels associados corretamente
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                   |
+| ----------------- | ------------------------ |
+| `Tab`             | Move foco para o campo   |
+| `Enter` / `Space` | Abre o menu de opções    |
+| `Arrow Up/Down`   | Navega pelas opções      |
+| `Escape`          | Fecha o menu             |
+| `Home`            | Move para primeira opção |
+| `End`             | Move para última opção   |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use labels descritivos e claros
+- Forneça placeholder informativo
+- Ordene opções logicamente (alfabética, por frequência, etc.)
+- Use helperText para orientações adicionais
+- Implemente validação quando necessário
+- Desabilite opções que não estão disponíveis temporariamente
+
+### ❌ Não faça
+
+- Não omita o label para acessibilidade
+- Não use muitas opções sem search (considere SelectAutocomplete)
+- Não ignore estados de erro
+- Não use opções com labels muito longas
+- Não implemente validação muito restritiva
+
+## Classes CSS
+
+| Classe                           | Descrição                                     |
+| -------------------------------- | --------------------------------------------- |
+| `.ods-select__root`              | Estilos aplicados ao elemento raiz            |
+| `.ods-select__control`           | Estilos aplicados ao controle                 |
+| `.ods-select__control--expanded` | Estilos aplicados quando o menu está aberto   |
+| `.ods-select__control--filled`   | Estilos aplicados quando há valor selecionado |
+| `.ods-select__control--error`    | Estilos aplicados no estado de erro           |
+| `.ods-select__value`             | Estilos aplicados ao valor exibido            |
+| `.ods-select__arrow`             | Estilos aplicados ao ícone de seta            |
+| `.ods-select__listbox`           | Estilos aplicados ao menu de opções           |
+| `.ods-select__option`            | Estilos aplicados a cada opção                |
+| `.ods-select__option--selected`  | Estilos aplicados à opção selecionada         |
+| `.ods-select__option--disabled`  | Estilos aplicados às opções desabilitadas     |
+
+## Links relacionados
+
+- [SelectAutocomplete](/components/selectautocomplete) - Para seleção com filtro
+- [Input](/components/input) - Para entrada de texto
+- [Button](/components/button) - Para ações de formulário
+- [Storybook - Select](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-select--docs) - Documentação técnica

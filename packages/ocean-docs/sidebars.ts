@@ -29,6 +29,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'components/button',
         'components/input',
+        'components/select',
+        'components/selectautocomplete',
         'components/list',
         'components/transactionlistitem',
         'components/settingslistitem',
