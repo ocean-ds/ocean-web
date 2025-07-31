@@ -1,68 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import SelectAutocomplete from '../SelectAutocomplete';
+import { sharedArgTypes, defaultDecorator, emptyHandler } from './shared';
 
-const meta: Meta<typeof SelectAutocomplete> = {
-  title: 'Components/Inputs/SelectAutocomplete',
-  component: SelectAutocomplete,
-  tags: ['autodocs'],
-  argTypes: {
-    label: {
-      description: 'Rótulo do campo de seleção com autocomplete.',
-      control: 'text',
-    },
-    placeholder: {
-      description: 'Texto de placeholder exibido no campo de entrada.',
-      control: 'text',
-    },
-    helperText: {
-      description: 'Texto de ajuda exibido abaixo do campo.',
-      control: 'text',
-    },
-    error: {
-      description: 'Quando true, exibe o estilo de erro.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: 'Desabilita o campo e impede a digitação e seleção.',
-      control: 'boolean',
-    },
-    tooltipMessage: {
-      description: 'Mensagem de ajuda exibida em tooltip no label.',
-      control: 'text',
-    },
-    id: {
-      table: { disable: true },
-    },
-    name: {
-      table: { disable: true },
-    },
-    value: {
-      table: { disable: true },
-    },
-    defaultValue: {
-      table: { disable: true },
-    },
-    ariaLabel: {
-      table: { disable: true },
-    },
-    onChange: {
-      table: { disable: true },
-    },
-    className: {
-      table: { disable: true },
-    },
-    options: {
-      table: { disable: true },
-    },
-  },
-};
-
-export default meta;
-
-type Story = StoryObj<typeof SelectAutocomplete>;
-
-const defaultOptions = [
+// Opções específicas do SelectAutocomplete (com mais opções para demonstrar o filtro)
+const autocompleteOptions = [
   { value: 'br', label: 'Brasil' },
   { value: 'us', label: 'Estados Unidos' },
   { value: 'ca', label: 'Canadá' },
@@ -75,23 +17,30 @@ const defaultOptions = [
   { value: 'py', label: 'Paraguai' },
 ];
 
-const defaultDecorator = [
-  (StoryComponent: React.ComponentType): JSX.Element => (
-    <div
-      style={{
-        minWidth: '300px',
-        maxWidth: '400px',
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <StoryComponent />
-    </div>
-  ),
-];
+const meta: Meta<typeof SelectAutocomplete> = {
+  title: 'Components/Inputs/SelectAutocomplete',
+  component: SelectAutocomplete,
+  tags: ['autodocs'],
+  argTypes: {
+    ...sharedArgTypes,
+    label: {
+      description: 'Rótulo do campo de seleção com autocomplete.',
+      control: 'text',
+    },
+    placeholder: {
+      description: 'Texto de placeholder exibido no campo de entrada.',
+      control: 'text',
+    },
+    disabled: {
+      description: 'Desabilita o campo e impede a digitação e seleção.',
+      control: 'boolean',
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof SelectAutocomplete>;
 
 export const Usage: Story = {
   args: {
@@ -100,9 +49,9 @@ export const Usage: Story = {
     helperText: 'Digite o nome do país para filtrar as opções',
     error: false,
     disabled: false,
-    options: defaultOptions,
+    options: autocompleteOptions,
   },
-  decorators: defaultDecorator,
+  decorators: [defaultDecorator],
 };
 
 export const States: Story = {
@@ -114,37 +63,29 @@ export const States: Story = {
       <SelectAutocomplete
         label="Normal"
         placeholder="Digite para buscar..."
-        options={defaultOptions.slice(0, 5)}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        options={autocompleteOptions.slice(0, 5)}
+        onChange={emptyHandler}
       />
       <SelectAutocomplete
         label="Com valor selecionado"
         defaultValue="br"
-        options={defaultOptions.slice(0, 5)}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        options={autocompleteOptions.slice(0, 5)}
+        onChange={emptyHandler}
       />
       <SelectAutocomplete
         label="Desabilitado"
         placeholder="Campo desabilitado"
-        options={defaultOptions.slice(0, 5)}
+        options={autocompleteOptions.slice(0, 5)}
         disabled
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
       <SelectAutocomplete
         label="Com erro"
         placeholder="Campo com erro"
-        options={defaultOptions.slice(0, 5)}
+        options={autocompleteOptions.slice(0, 5)}
         error
         helperText="Este campo é obrigatório"
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
     </div>
   ),
@@ -176,9 +117,7 @@ export const WithDisabledOptions: Story = {
           { value: 'ar', label: 'Argentina' },
           { value: 'cl', label: 'Chile' },
         ]}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
     </div>
   ),
@@ -209,9 +148,7 @@ export const LargeDataset: Story = {
             65 + (index % 26)
           )}`,
         }))}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
     </div>
   ),

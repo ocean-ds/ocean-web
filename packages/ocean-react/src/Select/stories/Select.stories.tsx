@@ -1,96 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import Select from '../Select';
+import {
+  sharedArgTypes,
+  defaultOptions,
+  defaultDecorator,
+  emptyHandler,
+} from './shared';
 
 const meta: Meta<typeof Select> = {
   title: 'Components/Inputs/Select',
   component: Select,
   tags: ['autodocs'],
-  argTypes: {
-    label: {
-      description: 'Rótulo do campo de seleção.',
-      control: 'text',
-    },
-    placeholder: {
-      description:
-        'Texto de placeholder exibido quando nenhuma opção está selecionada.',
-      control: 'text',
-    },
-    helperText: {
-      description: 'Texto de ajuda exibido abaixo do campo.',
-      control: 'text',
-    },
-    error: {
-      description: 'Quando true, exibe o estilo de erro.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: 'Desabilita o campo e impede a seleção.',
-      control: 'boolean',
-    },
-    tooltipMessage: {
-      description: 'Mensagem de ajuda exibida em tooltip no label.',
-      control: 'text',
-    },
-    id: {
-      table: { disable: true },
-    },
-    name: {
-      table: { disable: true },
-    },
-    value: {
-      table: { disable: true },
-    },
-    defaultValue: {
-      table: { disable: true },
-    },
-    ariaLabel: {
-      table: { disable: true },
-    },
-    onChange: {
-      table: { disable: true },
-    },
-    className: {
-      table: { disable: true },
-    },
-    options: {
-      table: { disable: true },
-    },
-  },
+  argTypes: sharedArgTypes,
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Select>;
-
-const defaultOptions = [
-  { value: 'br', label: 'Brasil' },
-  { value: 'us', label: 'Estados Unidos' },
-  { value: 'ca', label: 'Canadá' },
-  { value: 'mx', label: 'México' },
-  { value: 'ar', label: 'Argentina' },
-  { value: 'cl', label: 'Chile' },
-  { value: 'pe', label: 'Peru' },
-  { value: 'co', label: 'Colômbia' },
-];
-
-const defaultDecorator = [
-  (StoryComponent: React.ComponentType): JSX.Element => (
-    <div
-      style={{
-        minWidth: '300px',
-        maxWidth: '400px',
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <StoryComponent />
-    </div>
-  ),
-];
 
 export const Usage: Story = {
   args: {
@@ -101,7 +28,7 @@ export const Usage: Story = {
     disabled: false,
     options: defaultOptions,
   },
-  decorators: defaultDecorator,
+  decorators: [defaultDecorator],
 };
 
 export const States: Story = {
@@ -114,26 +41,20 @@ export const States: Story = {
         label="Normal"
         placeholder="Selecione uma opção..."
         options={defaultOptions.slice(0, 4)}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
       <Select
         label="Com valor selecionado"
         defaultValue="br"
         options={defaultOptions.slice(0, 4)}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
       <Select
         label="Desabilitado"
         placeholder="Campo desabilitado"
         options={defaultOptions.slice(0, 4)}
         disabled
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
       <Select
         label="Com erro"
@@ -141,9 +62,7 @@ export const States: Story = {
         options={defaultOptions.slice(0, 4)}
         error
         helperText="Este campo é obrigatório"
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
     </div>
   ),
@@ -174,9 +93,7 @@ export const WithDisabledOptions: Story = {
           { value: 'mx', label: 'México', disabled: true },
           { value: 'ar', label: 'Argentina' },
         ]}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
     </div>
   ),
@@ -204,9 +121,7 @@ export const ManyOptions: Story = {
           value: `opt-${index + 1}`,
           label: `Opção ${index + 1}`,
         }))}
-        onChange={() => {
-          // Handler vazio para demo
-        }}
+        onChange={emptyHandler}
       />
     </div>
   ),
