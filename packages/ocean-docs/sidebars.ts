@@ -32,6 +32,8 @@ const sidebars: SidebarsConfig = {
         'components/list',
         'components/transactionlistitem',
         'components/settingslistitem',
+        'components/textlistitem',
+        'components/unordered-list-item',
       ],
     },
     {
