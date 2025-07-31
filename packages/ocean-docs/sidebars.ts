@@ -29,10 +29,11 @@ const sidebars: SidebarsConfig = {
       items: [
         'components/button',
         'components/input',
+        'components/tokeninput',
         'components/list',
-        'components/transactionlistitem',
         'components/settingslistitem',
         'components/textlistitem',
+        'components/transactionlistitem',
         'components/unordered-list-item',
       ],
     },
