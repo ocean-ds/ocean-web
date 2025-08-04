@@ -19,6 +19,7 @@ test('renders element properly', () => {
         <textarea
           class="ods-textarea custom-class"
           data-testid="textarea-test"
+          rows="4"
         />
       </div>
     </div>
