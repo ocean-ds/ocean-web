@@ -1,0 +1,243 @@
+---
+title: TextArea
+sidebar_label: TextArea
+sidebar_position: 17
+---
+
+import { TextArea } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TextArea
+
+O componente TextArea é usado para entrada de texto de múltiplas linhas, ideal para comentários, descrições, mensagens e outros conteúdos extensos.
+
+## Importação
+
+```tsx
+import { TextArea } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TextArea } from '@useblu/ocean-react/TextArea';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TextAreaProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyTextArea: React.FC<TextAreaProps> = (props) => {
+  return <TextArea {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente TextArea no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-inputs-textarea--usage"
+  height={500}
+  title="TextArea - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TextArea](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-textarea--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os estados e variações
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<TextArea
+  label="Comentário"
+  placeholder="Digite seu comentário aqui..."
+  helperText="Máximo de 500 caracteres"
+/>
+```
+
+## Estados
+
+O TextArea suporta diferentes estados visuais para melhor experiência do usuário:
+
+### Estado Normal
+
+```tsx live
+<TextArea
+  label="Descrição"
+  placeholder="Digite uma descrição..."
+  helperText="Campo de preenchimento opcional"
+/>
+```
+
+### Estado de Erro
+
+```tsx live
+<TextArea
+  label="Comentário"
+  placeholder="Digite seu comentário..."
+  helperText="Este campo é obrigatório"
+  error
+/>
+```
+
+### Estado Desabilitado
+
+```tsx live
+<TextArea
+  label="Campo Bloqueado"
+  placeholder="Este campo não pode ser editado"
+  helperText="Campo desabilitado para edição"
+  disabled
+/>
+```
+
+## Com Conteúdo Inicial
+
+```tsx live
+<TextArea
+  label="Mensagem"
+  defaultValue="Esta é uma mensagem de exemplo que já vem preenchida no campo de texto."
+  helperText="Você pode editar este conteúdo"
+/>
+```
+
+## Controle de Linhas
+
+```tsx live
+<TextArea
+  label="Descrição Detalhada"
+  placeholder="Digite uma descrição completa..."
+  rows={6}
+  helperText="Campo expandido com mais linhas visíveis"
+/>
+```
+
+## Com Tooltip
+
+Use o `tooltipMessage` para fornecer informações adicionais sobre o campo:
+
+```tsx live
+<TextArea
+  label="Observações"
+  tooltipMessage="Use este campo para adicionar informações importantes que serão revisadas pela equipe"
+  placeholder="Digite suas observações..."
+  helperText="Campo opcional para comentários"
+/>
+```
+
+## Estados Visuais
+
+Veja todos os estados do TextArea em ação:
+
+<StorybookEmbed
+  storyId="components-inputs-textarea--states"
+  height={400}
+  showToolbar={false}
+  title="TextArea - Estados Visuais"
+/>
+
+## API
+
+### Props
+
+| Prop             | Tipo                           | Padrão  | Descrição                                    |
+| ---------------- | ------------------------------ | ------- | -------------------------------------------- |
+| `label`          | `string`                       | -       | Rótulo do campo de texto                     |
+| `tooltipMessage` | `string`                       | -       | Texto do tooltip exibido ao lado do label    |
+| `placeholder`    | `string`                       | -       | Texto exibido quando o campo está vazio      |
+| `helperText`     | `string`                       | -       | Texto de ajuda exibido abaixo do campo       |
+| `error`          | `boolean`                      | `false` | Indica se o campo está em estado de erro     |
+| `disabled`       | `boolean`                      | `false` | Desabilita o campo de texto                  |
+| `value`          | `string`                       | -       | Valor atual do campo (modo controlado)       |
+| `defaultValue`   | `string`                       | -       | Valor inicial do campo (modo não controlado) |
+| `onChange`       | `(event: ChangeEvent) => void` | -       | Função chamada quando o valor muda           |
+| `rows`           | `number`                       | -       | Número de linhas visíveis do textarea        |
+| `cols`           | `number`                       | -       | Número de colunas do textarea                |
+| `maxLength`      | `number`                       | -       | Número máximo de caracteres                  |
+| `id`             | `string`                       | -       | ID único do elemento                         |
+| `className`      | `string`                       | -       | Classes CSS adicionais                       |
+
+### Eventos
+
+- `onChange`: Disparado quando o conteúdo do campo muda
+- `onFocus`: Disparado quando o campo recebe foco
+- `onBlur`: Disparado quando o campo perde foco
+
+## Herança
+
+O TextArea herda todas as propriedades do componente [FormControl](/components/formcontrol) e do elemento HTML `<textarea>`.
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Associação correta entre label e campo
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla    | Função                          |
+| -------- | ------------------------------- |
+| `Tab`    | Move o foco para o campo        |
+| `Enter`  | Quebra de linha dentro do campo |
+| `Ctrl+A` | Seleciona todo o texto          |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use labels descritivos que expliquem claramente o propósito do campo
+- Forneça `helperText` para orientar o usuário sobre o formato esperado
+- Use `tooltipMessage` para informações adicionais sobre o campo sem poluir a interface
+- Use estado `error` junto com mensagens de validação claras
+- Configure `rows` apropriado baseado no conteúdo esperado
+- Use `placeholder` para dar exemplos do formato desejado
+
+### ❌ Não faça
+
+- Não use apenas placeholder sem label
+- Não omita feedback de erro quando a validação falha
+- Não use campos muito pequenos para conteúdo extenso
+- Não ignore estados de carregamento durante validação assíncrona
+- Não use `disabled` sem explicar o motivo no `helperText`
+
+## Com Tooltip Interativo
+
+Veja o tooltip em ação:
+
+<StorybookEmbed
+  storyId="components-inputs-textarea--with-tooltip"
+  height={400}
+  showToolbar={false}
+  title="TextArea - Exemplos com Tooltip"
+/>
+
+## Exemplos com Estados
+
+Veja diferentes configurações do TextArea:
+
+<StorybookEmbed
+  storyId="components-inputs-textarea--with-content"
+  height={400}
+  showToolbar={false}
+  title="TextArea - Exemplos com Conteúdo"
+/>
+
+## Links relacionados
+
+- [Input](/components/input) - Para entrada de texto de linha única
+- [FormControl](/components/formcontrol) - Componente base para controles de formulário
+- [Select](/components/select) - Para seleção de opções
+- [Storybook - TextArea](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-textarea--docs) - Documentação técnica

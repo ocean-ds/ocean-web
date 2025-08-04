@@ -12,6 +12,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     {
       className,
       label,
+      tooltipMessage,
       placeholder,
       helperText,
       error,
@@ -20,6 +21,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       onChange,
       value,
       defaultValue,
+      rows = 4,
       ...rest
     },
     ref
@@ -33,6 +35,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <FormControl
         label={label}
+        tooltipMessage={tooltipMessage}
         htmlFor={id}
         helperText={helperText}
         error={error}
@@ -52,6 +55,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           placeholder={placeholder}
           defaultValue={defaultValue}
           value={value}
+          rows={rows}
           {...rest}
         />
       </FormControl>
