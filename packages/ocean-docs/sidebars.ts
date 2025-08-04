@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
         'components/input',
         'components/tokeninput',
         'components/textarea',
+        'components/stepper',
         'components/select',
         'components/selectautocomplete',
         'components/list',

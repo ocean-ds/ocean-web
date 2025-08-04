@@ -1,0 +1,289 @@
+---
+title: Stepper
+sidebar_label: Stepper
+sidebar_position: 18
+---
+
+import { Stepper } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Stepper
+
+O componente Stepper é usado para entrada de valores numéricos com botões de incremento e decremento, ideal para quantidade de itens, configurações numéricas e controles precisos.
+
+## Importação
+
+```tsx
+import { Stepper } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Stepper } from '@useblu/ocean-react/Stepper';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { StepperProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyStepper: React.FC<StepperProps> = (props) => {
+  return <Stepper {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Stepper no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-inputs-stepper--usage"
+  height={500}
+  title="Stepper - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Stepper](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-stepper--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os estados e configurações
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Stepper
+  label="Quantidade"
+  helperText="Selecione a quantidade desejada"
+  min={0}
+  max={10}
+/>
+```
+
+## Estados
+
+O Stepper suporta diferentes estados visuais para melhor experiência do usuário:
+
+### Estado Normal
+
+```tsx live
+<Stepper label="Itens" helperText="Quantidade de itens" min={0} max={5} />
+```
+
+### Estado de Erro
+
+```tsx live
+<Stepper
+  label="Quantidade Obrigatória"
+  helperText="Este campo é obrigatório"
+  error
+  min={1}
+  max={5}
+/>
+```
+
+### Estado Desabilitado
+
+```tsx live
+<Stepper
+  label="Valor Fixo"
+  helperText="Quantidade não pode ser alterada"
+  disabled
+  min={0}
+  max={5}
+  defaultValue={3}
+/>
+```
+
+## Limites Mínimo e Máximo
+
+### Definindo Limites
+
+```tsx live
+<Stepper
+  label="Pessoas por Mesa"
+  helperText="Mínimo 1, máximo 8 pessoas"
+  min={1}
+  max={8}
+  defaultValue={2}
+/>
+```
+
+### Apenas Mínimo
+
+```tsx live
+<Stepper
+  label="Idade"
+  helperText="Idade mínima: 18 anos"
+  min={18}
+  defaultValue={25}
+/>
+```
+
+### Faixa Específica
+
+```tsx live
+<Stepper
+  label="Nota (5-10)"
+  helperText="Avalie de 5 a 10"
+  min={5}
+  max={10}
+  defaultValue={7}
+/>
+```
+
+## Com Tooltip
+
+Use o `tooltipMessage` para fornecer informações adicionais sobre o campo:
+
+```tsx live
+<Stepper
+  label="Convidados"
+  tooltipMessage="Número total de convidados incluindo acompanhantes"
+  helperText="Capacidade máxima do local: 50 pessoas"
+  min={1}
+  max={50}
+  defaultValue={10}
+/>
+```
+
+## Diferentes Configurações
+
+Veja diferentes configurações de limites:
+
+<StorybookEmbed
+  storyId="components-inputs-stepper--min-max-limits"
+  height={400}
+  showToolbar={false}
+  title="Stepper - Limites Mínimo e Máximo"
+/>
+
+## Estados Visuais
+
+Veja todos os estados do Stepper em ação:
+
+<StorybookEmbed
+  storyId="components-inputs-stepper--states"
+  height={400}
+  showToolbar={false}
+  title="Stepper - Estados Visuais"
+/>
+
+## API
+
+### Props
+
+| Prop             | Tipo                           | Padrão  | Descrição                                    |
+| ---------------- | ------------------------------ | ------- | -------------------------------------------- |
+| `label`          | `string`                       | -       | Rótulo do campo numérico                     |
+| `tooltipMessage` | `string`                       | -       | Texto do tooltip exibido ao lado do label    |
+| `helperText`     | `string`                       | -       | Texto de ajuda exibido abaixo do campo       |
+| `error`          | `boolean`                      | `false` | Indica se o campo está em estado de erro     |
+| `disabled`       | `boolean`                      | `false` | Desabilita o campo numérico                  |
+| `min`            | `number`                       | `0`     | Valor mínimo aceito                          |
+| `max`            | `number`                       | -       | Valor máximo aceito                          |
+| `value`          | `number`                       | -       | Valor atual do campo (modo controlado)       |
+| `defaultValue`   | `number`                       | -       | Valor inicial do campo (modo não controlado) |
+| `onChange`       | `(event: ChangeEvent) => void` | -       | Função chamada quando o valor muda           |
+| `id`             | `string`                       | -       | ID único do elemento                         |
+| `className`      | `string`                       | -       | Classes CSS adicionais                       |
+
+### Eventos
+
+- `onChange`: Disparado quando o valor do stepper muda
+- `onFocus`: Disparado quando o campo recebe foco
+- `onBlur`: Disparado quando o campo perde foco
+
+## Herança
+
+O Stepper herda todas as propriedades do componente [FormControl](/components/formcontrol) e do elemento HTML `<input>`.
+
+## Controles
+
+O Stepper oferece múltiplas formas de interação:
+
+### Botões de Incremento/Decremento
+
+- **Botão -**: Diminui o valor em 1 unidade
+- **Botão +**: Aumenta o valor em 1 unidade
+- **Desabilitação automática**: Botões desabilitam quando atingem os limites
+
+### Navegação por Teclado
+
+| Tecla        | Função                   |
+| ------------ | ------------------------ |
+| `Tab`        | Move o foco para o campo |
+| `Arrow Up`   | Incrementa o valor em 1  |
+| `Arrow Down` | Decrementa o valor em 1  |
+| `Enter`      | Confirma o valor atual   |
+
+### Entrada Manual
+
+- Digite diretamente no campo para inserir valores
+- Validação automática contra limites mín/máx
+- Formatação automática de números
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis em todos os botões
+- ✅ Associação correta entre label e campo
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+- ✅ Indicação visual clara de limites atingidos
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use labels descritivos que expliquem claramente o propósito do campo
+- Defina limites mínimo e máximo apropriados para o contexto
+- Forneça `helperText` indicando a faixa de valores aceitos
+- Use `tooltipMessage` para explicar regras ou restrições específicas
+- Configure valores padrão sensatos para melhor UX
+- Use estado `error` com mensagens claras de validação
+
+### ❌ Não faça
+
+- Não omita limites quando eles são importantes para o negócio
+- Não use para valores decimais complexos (prefira Input type="number")
+- Não defina faixas muito grandes sem controles adicionais
+- Não ignore feedback de erro durante validação
+- Não use `disabled` sem explicar o motivo
+- Não configure limites inconsistentes (min > max)
+
+## Com Tooltip Interativo
+
+Veja o tooltip em ação:
+
+<StorybookEmbed
+  storyId="components-inputs-stepper--with-tooltip"
+  height={400}
+  showToolbar={false}
+  title="Stepper - Exemplos com Tooltip"
+/>
+
+## Exemplos com Valores
+
+Veja diferentes configurações iniciais:
+
+<StorybookEmbed
+  storyId="components-inputs-stepper--with-values"
+  height={400}
+  showToolbar={false}
+  title="Stepper - Exemplos com Valores Iniciais"
+/>
+
+## Links relacionados
+
+- [Input](/components/input) - Para entrada de texto ou números com formato livre
+- [FormControl](/components/formcontrol) - Componente base para controles de formulário
+- [Select](/components/select) - Para seleção de opções pré-definidas
+- [Storybook - Stepper](https://ocean-ds.github.io/ocean-web/?path=/docs/components-inputs-stepper--docs) - Documentação técnica

@@ -63,6 +63,9 @@ const meta: Meta<typeof TextArea> = {
       control: 'number',
       defaultValue: 4,
     },
+    htmlFor: {
+      table: { disable: true },
+    },
   },
 };
 
