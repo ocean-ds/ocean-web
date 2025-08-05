@@ -30,6 +30,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     {
       className,
       label,
+      tooltipMessage,
       helperText,
       error,
       id,
@@ -106,6 +107,7 @@ const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     return (
       <FormControl
         label={label}
+        tooltipMessage={tooltipMessage}
         htmlFor={id}
         helperText={helperText}
         error={error}

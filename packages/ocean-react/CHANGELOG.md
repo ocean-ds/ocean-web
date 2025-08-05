@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.98.0](https://github.com/ocean-ds/ocean-web/compare/v1.97.0...v1.98.0) (2025-08-04)
+
+### Features
+
+- select and stepper docs ([#1175](https://github.com/ocean-ds/ocean-web/issues/1175)) ([2f60bad](https://github.com/ocean-ds/ocean-web/commit/2f60bad3255bb1606cdf2cae57230d45ab2d3fac))
+
 # [1.97.0](https://github.com/ocean-ds/ocean-web/compare/v1.96.0...v1.97.0) (2025-07-31)
 
 ### Features
