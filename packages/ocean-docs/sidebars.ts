@@ -27,6 +27,7 @@ const sidebars: SidebarsConfig = {
           'Documentação de todos os componentes do Ocean Design System.',
       },
       items: [
+        'components/accordion',
         'components/button',
         'components/input',
         'components/tokeninput',

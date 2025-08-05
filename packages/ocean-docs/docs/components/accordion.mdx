@@ -1,0 +1,160 @@
+---
+title: Accordion
+sidebar_label: Accordion
+---
+
+import { Accordion } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Accordion
+
+O componente Accordion permite organizar conteúdo em seções expansíveis e recolhíveis, melhorando a experiência do usuário ao navegar por grandes quantidades de informação.
+
+## Importação
+
+```tsx
+import { Accordion } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Accordion } from '@useblu/ocean-react/Accordion';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { AccordionProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<AccordionProps> = (props) => {
+  return <Accordion {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Accordion no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-accordion--usage"
+  height={500}
+  title="Accordion - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Accordion](https://ocean-ds.github.io/ocean-web/?path=/docs/components-accordion--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de diferentes cenários de uso
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Accordion
+  title="Título do Accordion"
+  description="Este é o conteúdo que será exibido quando o accordion for expandido."
+/>
+```
+
+## Múltiplos Accordions
+
+Veja como múltiplos accordions funcionam independentemente:
+
+<StorybookEmbed
+  storyId="components-accordion--multiple-accordions"
+  height={400}
+  showToolbar={false}
+  title="Accordion - Múltiplos Accordions"
+/>
+
+## Diferentes tipos de conteúdo
+
+### Conteúdo longo
+
+```tsx live
+<Accordion
+  title="Accordion com Conteúdo Longo"
+  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+/>
+```
+
+### Conteúdo curto
+
+```tsx live
+<Accordion
+  title="Accordion com Conteúdo Curto"
+  description="Conteúdo breve e direto."
+/>
+```
+
+## API
+
+### Props
+
+| Prop          | Tipo     | Padrão | Descrição                                      |
+| ------------- | -------- | ------ | ---------------------------------------------- |
+| `title`       | `string` | -      | O título do accordion exibido no cabeçalho     |
+| `description` | `string` | -      | O conteúdo descritivo exibido quando expandido |
+| `className`   | `string` | -      | Classes CSS adicionais para customização       |
+
+### Comportamento
+
+- O accordion inicia sempre no estado **recolhido**
+- Clique no cabeçalho alterna entre expandido/recolhido
+- Cada accordion mantém seu próprio estado independentemente
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Atributo `aria-expanded` para indicar estado
+- ✅ Botão semântico para interação
+- ✅ Estados de foco visíveis
+- ✅ Suporte a screen readers
+
+### Navegação por teclado
+
+| Tecla             | Função                       |
+| ----------------- | ---------------------------- |
+| `Tab`             | Move o foco para o accordion |
+| `Space` / `Enter` | Expande/recolhe o accordion  |
+
+## Classes CSS
+
+| Classe Global                        | Descrição                                       |
+| ------------------------------------ | ----------------------------------------------- |
+| `.ods-accordion`                     | Estilos aplicados ao elemento raiz              |
+| `.ods-accordion__header`             | Estilos aplicados ao cabeçalho do elemento      |
+| `.ods-accordion__header--collapsed`  | Estilos aplicados ao cabeçalho quando recolhido |
+| `.ods-accordion__icon`               | Estilos aplicados ao ícone                      |
+| `.ods-accordion__icon--rotated`      | Estilos aplicados ao ícone quando recolhido     |
+| `.ods-accordion__content`            | Estilos aplicados ao conteúdo                   |
+| `.ods-accordion__content--collapsed` | Estilos aplicados ao conteúdo quando recolhido  |
+| `.ods-accordion__description`        | Estilos aplicados à descrição                   |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos claros e descritivos
+- Mantenha o conteúdo organizado e conciso
+- Use accordions para agrupar informações relacionadas
+- Considere o estado inicial baseado na importância do conteúdo
+
+### ❌ Não faça
+
+- Não aninhes accordions muito profundamente
+- Não use para conteúdo crítico que deve estar sempre visível
+- Não sobrecarregue com muito conteúdo em um único accordion
+- Não esconda informações essenciais dentro de accordions
+
+## Links relacionados
+
+- [List](/components/list) - Para listagem de itens simples
+- [Storybook - Accordion](https://ocean-ds.github.io/ocean-web/?path=/docs/components-accordion--docs) - Documentação técnica
