@@ -6,253 +6,272 @@ sidebar_position: 3
 
 # Início Rápido
 
-Este guia vai te ajudar a começar a usar o Ocean Design System em poucos minutos.
+Comece a usar o Ocean Design System em 5 minutos.
 
 ## 1. Instalação
 
-Primeiro, instale os pacotes necessários:
-
 ```bash
-npm install @useblu/ocean-react @useblu/ocean-core
-# ou
-yarn add @useblu/ocean-react @useblu/ocean-core
+npm install @useblu/ocean-react
 ```
 
-## 2. Configuração básica
+## 2. Importar estilos
 
-### Configure o Provider
+No seu arquivo principal CSS (ex: `src/index.css`):
 
-Envolva sua aplicação com o `OceanProvider`:
+```css
+@import '@useblu/ocean-react/dist/ocean.css';
+```
+
+## 3. Usar componentes
 
 ```tsx
-// src/App.tsx
 import React from 'react';
-import { OceanProvider } from '@useblu/ocean-react';
-import { MyComponent } from './MyComponent';
+import { Button, Input, Badge } from '@useblu/ocean-react';
 
 function App() {
   return (
-    <OceanProvider>
-      <MyComponent />
-    </OceanProvider>
-  );
-}
+    <div style={{ padding: '20px' }}>
+      <h1>Minha primeira página Ocean</h1>
 
-export default App;
-```
-
-### Importe os estilos
-
-Adicione os estilos CSS do Ocean no seu arquivo principal:
-
-```css
-/* src/index.css */
-@import '@useblu/ocean-core/dist/ocean.css';
-```
-
-## 3. Primeiro componente
-
-Agora você pode usar qualquer componente do Ocean:
-
-```tsx
-// src/MyComponent.tsx
-import React from 'react';
-import { Button, Input, Card } from '@useblu/ocean-react';
-
-export function MyComponent() {
-  return (
-    <Card>
-      <h2>Meu primeiro componente Ocean</h2>
       <Input label="Nome" placeholder="Digite seu nome" />
+
       <Button variant="primary" style={{ marginTop: '16px' }}>
         Salvar
       </Button>
-    </Card>
-  );
-}
-```
 
-## 4. Exemplo completo
-
-Aqui está um exemplo de formulário de login usando vários componentes:
-
-```tsx
-import React, { useState } from 'react';
-import {
-  OceanProvider,
-  Container,
-  Card,
-  Input,
-  Button,
-  Alert,
-  Typography,
-} from '@useblu/ocean-react';
-
-function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    // Simular login
-    setTimeout(() => {
-      setLoading(false);
-      alert('Login realizado!');
-    }, 2000);
-  };
-
-  return (
-    <Container maxWidth="sm">
-      <Card style={{ padding: '2rem', marginTop: '2rem' }}>
-        <Typography variant="h2" style={{ marginBottom: '1.5rem' }}>
-          Entrar
-        </Typography>
-
-        <Alert type="info" style={{ marginBottom: '1.5rem' }}>
-          Use qualquer email e senha para testar
-        </Alert>
-
-        <form onSubmit={handleSubmit}>
-          <Input
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="seu.email@exemplo.com"
-            style={{ marginBottom: '1rem' }}
-            required
-          />
-
-          <Input
-            label="Senha"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Sua senha"
-            style={{ marginBottom: '1.5rem' }}
-            required
-          />
-
-          <Button type="submit" variant="primary" loading={loading} fullWidth>
-            {loading ? 'Entrando...' : 'Entrar'}
-          </Button>
-        </form>
-      </Card>
-    </Container>
-  );
-}
-
-function App() {
-  return (
-    <OceanProvider>
-      <LoginForm />
-    </OceanProvider>
+      <Badge count={3} color="brand" />
+    </div>
   );
 }
 
 export default App;
 ```
 
-## 5. Customização de tema
+## Exemplos práticos
 
-Você pode personalizar o tema passando propriedades para o `OceanProvider`:
+### Formulário de contato
 
 ```tsx
-import { OceanProvider } from '@useblu/ocean-react';
+import React, { useState } from 'react';
+import { Input, Button, Alert } from '@useblu/ocean-react';
 
-const customTheme = {
-  colors: {
-    primary: {
-      main: '#ff6b35',
-      light: '#ff8f65',
-      dark: '#e55a2b',
-      contrast: '#ffffff',
-    },
-  },
-  spacing: {
-    xs: '4px',
-    sm: '8px',
-    md: '16px',
-    lg: '24px',
-    xl: '32px',
-  },
-};
+function ContactForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-function App() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <Alert type="success">
+        Obrigado, {name}! Mensagem enviada com sucesso.
+      </Alert>
+    );
+  }
+
   return (
-    <OceanProvider theme={customTheme}>{/* Sua aplicação */}</OceanProvider>
+    <form onSubmit={handleSubmit} style={{ maxWidth: '400px' }}>
+      <Input
+        label="Nome"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Seu nome completo"
+        required
+      />
+
+      <Input
+        label="Email"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="seu@email.com"
+        style={{ marginTop: '16px' }}
+        required
+      />
+
+      <Button type="submit" variant="primary" style={{ marginTop: '16px' }}>
+        Enviar mensagem
+      </Button>
+    </form>
   );
 }
 ```
 
-## 6. TypeScript
-
-O Ocean tem suporte completo ao TypeScript. As tipagens são incluídas automaticamente:
+### Lista com badges
 
 ```tsx
-import { ButtonProps, InputProps } from '@useblu/ocean-react';
+import React from 'react';
+import { Badge } from '@useblu/ocean-react';
 
-// As props são totalmente tipadas
-const MyButton: React.FC<ButtonProps> = (props) => {
-  return <Button {...props} />;
-};
+const tasks = [
+  { id: 1, title: 'Tarefa 1', status: 'pending', count: 3 },
+  { id: 2, title: 'Tarefa 2', status: 'completed', count: 1 },
+  { id: 3, title: 'Tarefa 3', status: 'urgent', count: 5 },
+];
+
+function TaskList() {
+  return (
+    <div>
+      <h2>Minhas Tarefas</h2>
+      {tasks.map((task) => (
+        <div
+          key={task.id}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            marginBottom: '8px',
+          }}
+        >
+          <span>{task.title}</span>
+          <Badge
+            count={task.count}
+            color={task.status === 'urgent' ? 'alert' : 'brand'}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
 ```
 
-## 7. Styled Components
+### Navegação com breadcrumb
 
-Você pode usar styled-components com os tokens do Ocean:
+```tsx
+import React from 'react';
+import { Breadcrumb } from '@useblu/ocean-react';
+
+function ProductPage() {
+  return (
+    <div>
+      <Breadcrumb
+        items={[
+          <a href="/" rel="noopener noreferrer">
+            Home
+          </a>,
+          <a href="/produtos" rel="noopener noreferrer">
+            Produtos
+          </a>,
+          <a href="/produtos/eletronicos" rel="noopener noreferrer">
+            Eletrônicos
+          </a>,
+          'Smartphone',
+        ]}
+      />
+
+      <h1 style={{ marginTop: '16px' }}>Smartphone XYZ</h1>
+
+      <p>Detalhes do produto...</p>
+    </div>
+  );
+}
+```
+
+## Ícones
+
+Instale os ícones separadamente:
+
+```bash
+npm install @useblu/ocean-icons-react
+```
+
+Use os ícones:
+
+```tsx
+import React from 'react';
+import { Star, Heart, ShoppingCart } from '@useblu/ocean-icons-react';
+import { Button } from '@useblu/ocean-react';
+
+function ProductCard() {
+  return (
+    <div
+      style={{
+        border: '1px solid #e0e0e0',
+        borderRadius: '8px',
+        padding: '16px',
+        maxWidth: '300px',
+      }}
+    >
+      <h3>Produto Incrível</h3>
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <Star size={16} />
+        <Star size={16} />
+        <Star size={16} />
+        <Star size={16} />
+        <Star size={16} />
+        <span style={{ marginLeft: '8px' }}>5.0</span>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          gap: '8px',
+          marginTop: '16px',
+        }}
+      >
+        <Button variant="primary">
+          <ShoppingCart size={16} style={{ marginRight: '8px' }} />
+          Comprar
+        </Button>
+
+        <Button variant="secondary">
+          <Heart size={16} />
+        </Button>
+      </div>
+    </div>
+  );
+}
+```
+
+## Design Tokens
+
+Para usar tokens de design diretamente:
+
+```bash
+npm install @useblu/ocean-tokens
+```
 
 ```tsx
 import styled from 'styled-components';
-import { getTokens } from '@useblu/ocean-react';
+import {
+  colorInterfaceLightPure,
+  fontSizeLg,
+  spacingMd,
+  borderRadiusMd,
+} from '@useblu/ocean-tokens';
 
 const CustomCard = styled.div`
-  background: ${getTokens().colors.surface};
-  padding: ${getTokens().spacing.lg};
-  border-radius: ${getTokens().borderRadius.md};
-  box-shadow: ${getTokens().shadows.md};
+  background: ${colorInterfaceLightPure};
+  font-size: ${fontSizeLg};
+  padding: ${spacingMd};
+  border-radius: ${borderRadiusMd};
 `;
 ```
 
-## 8. Dicas importantes
+## Próximos passos
 
-### ✅ Boas práticas
+### Explore os componentes
 
-- Sempre use o `OceanProvider` na raiz da aplicação
-- Importe os estilos CSS uma única vez
-- Use os componentes Ocean ao invés de HTML nativo quando possível
-- Aproveite o sistema de design tokens para consistência
+- 📖 [Navegue pelos componentes](/components)
+- 🎨 [Experimente no Storybook](https://ocean-ds.github.io/ocean-web)
 
-### ⚠️ Cuidados
+### Recursos avançados
 
-- Não esqueça de importar os estilos CSS
-- Certifique-se de que as versões do React são compatíveis (18+)
-- Use styled-components v5 ou v6 para compatibilidade
+- [Design Tokens](https://github.com/ocean-ds/ocean-tokens) - Sistema de tokens de design
+- [Ícones](https://github.com/ocean-ds/ocean-icons) - Biblioteca de ícones SVG
+- [CSS Framework](https://github.com/ocean-ds/ocean-web/tree/master/packages/ocean-core) - Estilos CSS puros
 
-### 🔧 Troubleshooting
+### Comunidade
 
-**Estilos não carregaram?**
-
-- Verifique se importou `@useblu/ocean-core/dist/ocean.css`
-
-**Componentes não encontrados?**
-
-- Verifique se instalou `@useblu/ocean-react`
-
-**Erro de TypeScript?**
-
-- Certifique-se de que está usando TypeScript 4.0+
-
-## 9. Recursos adicionais
-
-- [GitHub Repository](https://github.com/ocean-ds/ocean-web)
-- [Storybook Interativo](https://ocean-ds.github.io/ocean-web)
-- [NPM Package](https://www.npmjs.com/package/@useblu/ocean-react)
-- [Issues e Suporte](https://github.com/ocean-ds/ocean-web/issues)
+- 🐛 [Reportar bug](https://github.com/ocean-ds/ocean-web/issues)
+- 💡 [Sugerir melhoria](https://github.com/ocean-ds/ocean-web/issues)
+- 📦 [Pacotes no NPM](https://www.npmjs.com/search?q=%40useblu%2Focean)
 
 ---
 
-🎉 **Parabéns!** Você já está pronto para criar interfaces incríveis com o Ocean Design System.
+🎉 **Pronto!** Você já pode criar interfaces incríveis com o Ocean Design System.
