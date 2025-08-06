@@ -6,7 +6,7 @@ sidebar_position: 2
 
 # Instalação
 
-Aprenda como instalar e configurar o Ocean Design System no seu projeto.
+Aprenda como instalar e configurar o Ocean Design System no seu projeto React.
 
 ## Pré-requisitos
 
@@ -14,156 +14,158 @@ Aprenda como instalar e configurar o Ocean Design System no seu projeto.
 - React 18.0 ou superior
 - TypeScript (recomendado)
 
-## Instalação dos pacotes
+## Instalação
 
-### Usando npm
-
-```bash
-npm install @useblu/ocean-react @useblu/ocean-core
-```
-
-### Usando yarn
+### Pacote principal
 
 ```bash
-yarn add @useblu/ocean-react @useblu/ocean-core
+npm install @useblu/ocean-react
 ```
-
-### Usando pnpm
 
 ```bash
-pnpm add @useblu/ocean-react @useblu/ocean-core
+yarn add @useblu/ocean-react
 ```
 
-## Configuração inicial
+Este pacote inclui todos os componentes React do Ocean Design System.
 
-### 1. Provider do Ocean
+### Pacotes complementares (opcionais)
 
-Envolva sua aplicação com o `OceanProvider` para fornecer o tema e configurações globais:
+#### Design Tokens
+
+```bash
+npm install @useblu/ocean-tokens
+```
+
+Para usar os design tokens diretamente (cores, espaçamentos, tipografia):
 
 ```tsx
-import React from 'react';
-import { OceanProvider } from '@useblu/ocean-react';
-import App from './App';
-
-function Root() {
-  return (
-    <OceanProvider>
-      <App />
-    </OceanProvider>
-  );
-}
-
-export default Root;
+import {
+  colorInterfaceLightPure,
+  fontSizeLg,
+  spacingMd,
+} from '@useblu/ocean-tokens';
 ```
 
-### 2. Importar estilos CSS
+#### Ícones
 
-Importe os estilos base do Ocean Core no seu arquivo principal CSS ou no `index.css`:
+```bash
+npm install @useblu/ocean-icons-react
+```
+
+Para usar os ícones SVG do Ocean:
+
+```tsx
+import { Star, Heart, Search } from '@useblu/ocean-icons-react';
+
+function MyComponent() {
+  return (
+    <div>
+      <Star size={24} />
+      <Heart size={32} />
+      <Search size={16} />
+    </div>
+  );
+}
+```
+
+#### CSS Base
+
+```bash
+npm install @useblu/ocean-core
+```
+
+Para usar apenas os estilos CSS do Ocean (sem componentes React):
 
 ```css
-@import '@useblu/ocean-core/dist/ocean.css';
+@import '@useblu/ocean-core';
 ```
 
-Ou se você estiver usando Sass/SCSS:
+## Configuração
 
-```scss
-@import '@useblu/ocean-core/src/index.scss';
+### Importar estilos
+
+Importe os estilos CSS no seu arquivo principal (ex: `src/index.css`):
+
+```css
+@import '@useblu/ocean-react/dist/ocean.css';
 ```
 
-### 3. Configurar TypeScript (opcional)
-
-Se você estiver usando TypeScript, adicione as tipagens ao seu `tsconfig.json`:
-
-```json
-{
-  "compilerOptions": {
-    "types": ["@useblu/ocean-react"]
-  }
-}
-```
-
-## Configuração avançada
-
-### Customização de tema
-
-Você pode personalizar o tema passando propriedades customizadas para o `OceanProvider`:
+### Uso básico
 
 ```tsx
 import React from 'react';
-import { OceanProvider } from '@useblu/ocean-react';
+import { Button, Input, Badge } from '@useblu/ocean-react';
 
-const customTheme = {
-  colors: {
-    primary: '#0066cc',
-    secondary: '#6b7280',
-  },
-  spacing: {
-    xs: '4px',
-    sm: '8px',
-    md: '16px',
-    lg: '24px',
-    xl: '32px',
-  },
-};
-
-function Root() {
+function App() {
   return (
-    <OceanProvider theme={customTheme}>
-      <App />
-    </OceanProvider>
+    <div>
+      <Button variant="primary">Clique aqui</Button>
+      <Input label="Nome" placeholder="Digite seu nome" />
+      <Badge count={5} color="brand" />
+    </div>
   );
 }
+
+export default App;
 ```
 
-### Configuração com Styled Components
+## Tree Shaking (otimização)
 
-Se você já usa styled-components no seu projeto, certifique-se de que a versão seja compatível:
-
-```bash
-# Para styled-components v6
-npm install styled-components@^6.0.0
-
-# Para styled-components v5
-npm install styled-components@^5.3.0
-```
-
-### Bundle analyzer
-
-Para otimizar o bundle size, você pode importar apenas os componentes que você usa:
+Para reduzir o tamanho do bundle, importe apenas os componentes que você usa:
 
 ```tsx
-// ❌ Não recomendado - importa tudo
-import { Button, Input, Modal } from '@useblu/ocean-react';
-
-// ✅ Recomendado - tree shaking automático
+// ✅ Recomendado - importação específica
 import { Button } from '@useblu/ocean-react/Button';
 import { Input } from '@useblu/ocean-react/Input';
-import { Modal } from '@useblu/ocean-react/Modal';
+
+// ❌ Evite - importa toda a biblioteca
+import { Button, Input } from '@useblu/ocean-react';
 ```
 
-## Troubleshooting
+## Verificar instalação
 
-### Problemas comuns
+Para verificar se tudo está funcionando, crie um componente simples:
 
-**Erro: styled-components não encontrado**
+```tsx
+import React from 'react';
+import { Button } from '@useblu/ocean-react';
+
+function TestComponent() {
+  return (
+    <Button variant="primary" onClick={() => alert('Ocean funcionando!')}>
+      Testar Ocean
+    </Button>
+  );
+}
+
+export default TestComponent;
+```
+
+## Problemas comuns
+
+### Estilos não aparecem
+
+Verifique se você importou o CSS:
+
+```css
+@import '@useblu/ocean-react/dist/ocean.css';
+```
+
+### Erro de módulo não encontrado
+
+Certifique-se de que instalou o pacote:
 
 ```bash
-npm install styled-components
+npm install @useblu/ocean-react
 ```
 
-**Erro: React não encontrado**
+### Problemas de tipagem TypeScript
 
-```bash
-npm install react react-dom
-```
+As tipagens estão incluídas no pacote. Se houver problemas, reinicie o TypeScript server no seu editor.
 
-**Estilos não carregados**
-Verifique se você importou o CSS do Ocean Core corretamente.
+## Suporte
 
-### Suporte
-
-Se você encontrar problemas durante a instalação:
-
-- [Abra uma issue no GitHub](https://github.com/ocean-ds/ocean-web/issues)
-- Confira nossas [discussões](https://github.com/ocean-ds/ocean-web/issues)
-- Consulte nosso [Storybook](https://ocean-ds.github.io/ocean-web) para exemplos
+- 📚 [Documentação dos componentes](/)
+- 🎨 [Storybook interativo](https://ocean-ds.github.io/ocean-web)
+- 🐛 [Reportar problemas](https://github.com/ocean-ds/ocean-web/issues)
+- 📦 [NPM Package](https://www.npmjs.com/package/@useblu/ocean-react)
