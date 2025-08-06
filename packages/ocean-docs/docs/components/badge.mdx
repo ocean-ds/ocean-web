@@ -1,0 +1,235 @@
+---
+title: Badge
+sidebar_label: Badge
+sidebar_position: 3
+---
+
+import { Badge } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Badge
+
+O Badge é um componente visual usado para exibir notificações, contadores ou rótulos informativos de forma destacada. Ele pode mostrar números (com limite de 99+) ou texto curto.
+
+## Importação
+
+```tsx
+import { Badge } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Badge } from '@useblu/ocean-react/Badge';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { BadgeProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<BadgeProps> = (props) => {
+  return <Badge {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Badge no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-badge--usage"
+  height={500}
+  title="Badge - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Badge](https://ocean-ds.github.io/ocean-web/?path=/docs/components-badge--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+### Com contador
+
+```tsx live
+<Badge count={5} color="brand" />
+```
+
+### Com texto
+
+```tsx live
+<Badge color="brand">Novo</Badge>
+```
+
+### Tiny (apenas indicador)
+
+```tsx live
+<Badge variation="tiny" color="brand" />
+```
+
+## Variações de tamanho
+
+O Badge oferece três tamanhos diferentes:
+
+### Tiny
+
+Exibe apenas um pequeno indicador visual, sem texto ou números.
+
+```tsx live
+<Badge variation="tiny" color="brand" />
+```
+
+### Small (padrão)
+
+Tamanho padrão, adequado para a maioria dos casos de uso.
+
+```tsx live
+<Badge variation="small" count={5} color="brand" />
+```
+
+### Medium
+
+Maior e mais visível, ideal para contadores importantes.
+
+```tsx live
+<Badge variation="medium" count={99} color="brand" />
+```
+
+## Cores disponíveis
+
+Veja todas as cores do Badge em ação:
+
+<StorybookEmbed
+  storyId="components-badge--colors"
+  height={350}
+  showToolbar={false}
+  title="Badge - Todas as Cores"
+/>
+
+### Guia de uso das cores
+
+- **brand**: Para notificações principais e contadores importantes
+- **complementary**: Para informações secundárias ou categorias
+- **alert**: Para avisos, erros ou ações urgentes
+- **neutral**: Para informações gerais ou estados neutros
+
+## Comportamentos especiais
+
+### Contador com limite
+
+O Badge automaticamente exibe "99+" quando o contador excede 99:
+
+<StorybookEmbed
+  storyId="components-badge--with-count"
+  height={250}
+  showToolbar={false}
+  title="Badge - Comportamento do Contador"
+/>
+
+### Variação Tiny
+
+A variação tiny mostra apenas um pequeno indicador, ignorando texto ou contador:
+
+<StorybookEmbed
+  storyId="components-badge--tiny"
+  height={200}
+  showToolbar={false}
+  title="Badge - Variação Tiny"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                                                 | Padrão    | Descrição                                             |
+| ----------- | ---------------------------------------------------- | --------- | ----------------------------------------------------- |
+| `variation` | `'tiny' \| 'small' \| 'medium'`                      | `'small'` | Define o tamanho do badge                             |
+| `color`     | `'brand' \| 'complementary' \| 'alert' \| 'neutral'` | -         | Define a cor do badge                                 |
+| `count`     | `number`                                             | -         | Número a ser exibido (máximo 99+)                     |
+| `children`  | `ReactNode`                                          | -         | Texto do badge (usado quando count não está definido) |
+| `className` | `string`                                             | -         | Classes CSS adicionais                                |
+
+### Comportamento das props
+
+- Se `count` for definido, o Badge exibirá o número
+- Se `count` não for definido e `children` estiver presente, exibirá o texto
+- Se `variation` for `'tiny'`, apenas o indicador visual será mostrado
+- Contadores acima de 99 são automaticamente truncados para "99+"
+
+## Acessibilidade
+
+- ✅ Atributo `role="tag"` para identificação semântica
+- ✅ Contraste adequado em todas as variações de cor
+- ✅ Tamanhos adequados para visualização
+- ✅ Suporte a screen readers
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use cores semanticamente apropriadas (alert para erros, brand para principais)
+- Mantenha textos curtos e descritivos
+- Use `tiny` para indicadores discretos
+- Use `medium` para contadores importantes que precisam chamar atenção
+
+### ❌ Não faça
+
+- Não use textos muito longos em badges
+- Não misture diferentes cores sem propósito semântico
+- Não use badges como únicos indicadores de informações críticas
+- Não ignore a hierarquia visual ao escolher tamanhos
+
+## Exemplos de uso
+
+### Notificação de mensagens
+
+```tsx live
+<div>
+  <span>Mensagens</span>
+  <Badge count={3} color="brand" />
+</div>
+```
+
+### Status de produto
+
+```tsx live
+<div>
+  <span>Produto</span>
+  <Badge color="complementary">Novo</Badge>
+</div>
+```
+
+### Indicador de erro
+
+```tsx live
+<div>
+  <span>Formulário</span>
+  <Badge count={2} color="alert" />
+  <span>erros</span>
+</div>
+```
+
+## Visão geral das variações
+
+Veja todas as variações do Badge em ação:
+
+<StorybookEmbed
+  storyId="components-badge--variations"
+  height={300}
+  showToolbar={false}
+  title="Badge - Todas as Variações"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações com badges de notificação
+- [Alert](/components/alert) - Para mensagens de feedback mais detalhadas
+- [Storybook - Badge](https://ocean-ds.github.io/ocean-web/?path=/docs/components-badge--docs) - Documentação técnica
