@@ -1,0 +1,343 @@
+---
+title: Breadcrumb
+sidebar_label: Breadcrumb
+sidebar_position: 4
+---
+
+import { Breadcrumb } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Breadcrumb
+
+O Breadcrumb é um componente de navegação que mostra a localização atual do usuário dentro da hierarquia do site, fornecendo um caminho de navegação claro e facilitando o retorno a níveis anteriores.
+
+## Importação
+
+```tsx
+import { Breadcrumb } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Breadcrumb } from '@useblu/ocean-react/Breadcrumb';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { BreadcrumbProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<BreadcrumbProps> = (props) => {
+  return <Breadcrumb {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Breadcrumb no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-breadcrumb--usage"
+  height={500}
+  title="Breadcrumb - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Breadcrumb](https://ocean-ds.github.io/ocean-web/?path=/docs/components-breadcrumb--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de diferentes tipos de navegação
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+### Com links navegáveis
+
+```tsx live
+<Breadcrumb
+  items={[
+    <a href="/" rel="noopener noreferrer">
+      Home
+    </a>,
+    <a href="/products" rel="noopener noreferrer">
+      Produtos
+    </a>,
+    'Smartphone',
+  ]}
+/>
+```
+
+### ❌ Uso incorreto (apenas strings)
+
+```tsx live
+// NÃO faça: itens intermediários como strings não são navegáveis
+<Breadcrumb items={['Início', 'Categoria', 'Página Atual']} />
+```
+
+### Item único
+
+```tsx live
+<Breadcrumb items={['Página Única']} />
+```
+
+## Tipos de conteúdo
+
+O Breadcrumb suporta diferentes tipos de itens no array:
+
+### ✅ Uso correto (links + última string)
+
+Todos os itens devem ser links navegáveis, exceto o último que representa a página atual. Use elementos `<a>` ou componentes de link para criar navegação funcional:
+
+<StorybookEmbed
+  storyId="components-breadcrumb--with-links"
+  height={250}
+  showToolbar={false}
+  title="Breadcrumb - Uso Correto"
+/>
+
+## Comportamento responsivo
+
+O Breadcrumb adapta-se automaticamente a diferentes tamanhos de tela para otimizar a experiência do usuário:
+
+<StorybookEmbed
+  storyId="components-breadcrumb--responsive-behavior"
+  height={450}
+  showToolbar={false}
+  title="Breadcrumb - Comportamento Responsivo"
+/>
+
+### Desktop
+
+- Mostra todos os itens com separadores (ícones de seta)
+- Links e texto são exibidos normalmente
+- Navegação completa da hierarquia
+
+### Mobile (≤ 576px)
+
+- Mostra apenas o último item (página atual)
+- Adiciona um botão "Voltar" com ícone de seta para a esquerda
+- Ao clicar no botão, executa `window.history.back()`
+- Economiza espaço em telas pequenas
+
+### Como testar o comportamento responsivo
+
+1. **Ferramentas de Desenvolvedor**: Use F12 e selecione um dispositivo móvel
+2. **Redimensionar janela**: Reduza a largura da janela para ≤576px
+3. **Dispositivo real**: Teste em um smartphone ou tablet
+
+## Caminhos longos
+
+O componente funciona bem com hierarquias profundas:
+
+<StorybookEmbed
+  storyId="components-breadcrumb--long-path"
+  height={300}
+  showToolbar={false}
+  title="Breadcrumb - Caminho Longo"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                         | Padrão | Descrição                                                                                                              |
+| ----------- | ---------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `items`     | `Array<ReactNode \| string>` | -      | Array de elementos do breadcrumb. Todos devem ser links navegáveis, EXCETO o último que deve ser string (página atual) |
+| `className` | `string`                     | -      | Classes CSS adicionais                                                                                                 |
+
+### Comportamento dos itens
+
+- **Links/Âncoras**: Todos os itens intermediários devem ser elementos navegáveis (`<a>`, `<Link>`, etc.)
+- **String (último item)**: Apenas o último item deve ser uma string, representando a página atual
+- **Navegação**: Itens intermediários como strings quebram a funcionalidade de navegação
+- **Separadores**: Adicionados automaticamente entre itens (exceto o último)
+
+#### ⚠️ Regra importante
+
+**APENAS o último item pode ser string** - todos os outros devem ser links clicáveis para manter a navegação funcional.
+
+#### Exemplos de uso correto vs incorreto
+
+```tsx
+// ✅ CORRETO: Links + última string
+<Breadcrumb
+  items={[
+    <a href="/">Home</a>,           // ✅ Link navegável
+    <a href="/docs">Docs</a>,       // ✅ Link navegável
+    'Breadcrumb'                    // ✅ String para página atual
+  ]}
+/>
+
+// ❌ INCORRETO: Strings intermediárias
+<Breadcrumb
+  items={[
+    'Home',          // ❌ String não navegável
+    'Docs',          // ❌ String não navegável
+    'Breadcrumb'     // ✅ Última string OK
+  ]}
+/>
+```
+
+## Acessibilidade
+
+- ✅ Estrutura semântica apropriada para navegação
+- ✅ Navegação por teclado funcional em links
+- ✅ Comportamento responsivo que melhora usabilidade mobile
+- ✅ Indicação clara da posição atual na hierarquia
+
+### Navegação por teclado
+
+| Tecla           | Função                                |
+| --------------- | ------------------------------------- |
+| `Tab`           | Move o foco entre os links navegáveis |
+| `Enter`/`Space` | Ativa o link em foco                  |
+
+## Considerações responsivas
+
+### Estratégia mobile-first
+
+O Breadcrumb do Ocean foi projetado com uma estratégia mobile-first que prioriza a usabilidade em dispositivos pequenos:
+
+```tsx live
+// Este breadcrumb se adapta automaticamente
+<Breadcrumb
+  items={[
+    <a href="/" rel="noopener noreferrer">
+      Home
+    </a>,
+    <a href="/loja" rel="noopener noreferrer">
+      Loja
+    </a>,
+    <a href="/loja/categoria" rel="noopener noreferrer">
+      Categoria
+    </a>,
+    'Produto',
+  ]}
+/>
+```
+
+### Vantagens do comportamento responsivo
+
+- **Mobile**: Economiza espaço precioso na tela
+- **UX consistente**: Mantém a funcionalidade de navegação
+- **Acessibilidade**: Botão "voltar" funciona com navegadores e screen readers
+- **Performance**: Não renderiza elementos desnecessários no mobile
+
+## Melhores práticas
+
+### ✅ Faça
+
+- **Use links navegáveis para TODOS os itens exceto o último**
+- Use o último item como string (página atual)
+- Mantenha rótulos concisos e descritivos
+- Represente a hierarquia real da aplicação
+- Teste o comportamento responsivo em dispositivos móveis
+- **Considere o comportamento mobile** ao planejar hierarquias longas
+
+### ❌ Não faça
+
+- **NUNCA use strings para itens intermediários** - isso quebra a navegação
+- Não crie hierarquias falsas ou confusas
+- Não use rótulos muito longos que quebrem o layout
+- Não omita níveis importantes da navegação
+- Não deixe de testar a funcionalidade "voltar" no mobile
+- Não use breadcrumbs em páginas sem hierarquia clara
+- **Não assuma que todos os itens serão visíveis** em dispositivos móveis
+
+## Casos de uso comuns
+
+### E-commerce
+
+```tsx live
+<Breadcrumb
+  items={[
+    <a href="/" rel="noopener noreferrer">
+      Home
+    </a>,
+    <a href="/categoria" rel="noopener noreferrer">
+      Eletrônicos
+    </a>,
+    <a href="/categoria/smartphones" rel="noopener noreferrer">
+      Smartphones
+    </a>,
+    'iPhone 15 Pro',
+  ]}
+/>
+```
+
+### Documentação
+
+```tsx live
+<Breadcrumb
+  items={[
+    <a href="/" rel="noopener noreferrer">
+      Docs
+    </a>,
+    <a href="/components" rel="noopener noreferrer">
+      Componentes
+    </a>,
+    'Breadcrumb',
+  ]}
+/>
+```
+
+### Área administrativa
+
+```tsx live
+<Breadcrumb
+  items={[
+    <a href="/admin" rel="noopener noreferrer">
+      Admin
+    </a>,
+    <a href="/admin/users" rel="noopener noreferrer">
+      Usuários
+    </a>,
+    <a href="/admin/users/123" rel="noopener noreferrer">
+      João Silva
+    </a>,
+    'Editar Perfil',
+  ]}
+/>
+```
+
+## Integração com roteadores
+
+### React Router
+
+```tsx
+import { Link } from 'react-router-dom';
+
+<Breadcrumb
+  items={[
+    <Link to="/">Home</Link>,
+    <Link to="/products">Produtos</Link>,
+    'Produto Atual',
+  ]}
+/>;
+```
+
+### Next.js
+
+```tsx
+import Link from 'next/link';
+
+<Breadcrumb
+  items={[
+    <Link href="/">Home</Link>,
+    <Link href="/products">Produtos</Link>,
+    'Produto Atual',
+  ]}
+/>;
+```
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações de navegação
+- [Link](/components/link) - Para links individuais
+- [Storybook - Breadcrumb](https://ocean-ds.github.io/ocean-web/?path=/docs/components-breadcrumb--docs) - Documentação técnica
