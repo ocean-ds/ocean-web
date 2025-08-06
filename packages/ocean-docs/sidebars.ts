@@ -28,6 +28,7 @@ const sidebars: SidebarsConfig = {
       },
       items: [
         'components/accordion',
+        'components/alert',
         'components/button',
         'components/input',
         'components/tokeninput',

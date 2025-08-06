@@ -1,0 +1,281 @@
+---
+title: Alert
+sidebar_label: Alert
+---
+
+import { Alert } from '@useblu/ocean-react';
+import { StarOutline } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Alert
+
+O componente Alert exibe mensagens importantes para o usuário, fornecendo feedback visual através de diferentes tipos e estilos que comunicam contexto específico.
+
+## Importação
+
+```tsx
+import { Alert } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Alert } from '@useblu/ocean-react/Alert';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { AlertProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<AlertProps> = (props) => {
+  return <Alert {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Alert no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-alert--usage"
+  height={500}
+  title="Alert - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Alert](https://ocean-ds.github.io/ocean-web/?path=/docs/components-alert--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os tipos e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Alert>
+  <strong>Atenção</strong>: Esta é uma mensagem informativa!
+</Alert>
+```
+
+## Tipos de alerta
+
+O Alert oferece quatro tipos diferentes que definem ícone e cores automaticamente:
+
+<StorybookEmbed
+  storyId="components-alert--types"
+  height={350}
+  showToolbar={false}
+  title="Alert - Tipos de Alerta"
+/>
+
+### Default
+
+```tsx live
+<Alert>Esta é uma mensagem informativa.</Alert>
+```
+
+### Success
+
+```tsx live
+<Alert type="success">Esta é uma mensagem de sucesso.</Alert>
+```
+
+### Warning
+
+```tsx live
+<Alert type="warning">Esta é uma mensagem de aviso.</Alert>
+```
+
+### Error
+
+```tsx live
+<Alert type="error">Esta é uma mensagem de erro.</Alert>
+```
+
+## Com título
+
+Use a propriedade `title` para exibir um título formatado acima da mensagem:
+
+<StorybookEmbed
+  storyId="components-alert--with-title"
+  height={400}
+  showToolbar={false}
+  title="Alert - Com Título"
+/>
+
+```tsx live
+<Alert type="success" title="Operação realizada com sucesso!">
+  Seus dados foram salvos e você receberá uma confirmação por email.
+</Alert>
+```
+
+## Ícone customizado
+
+Use a propriedade `icon` para definir um ícone SVG customizado:
+
+```tsx live
+<Alert
+  title="Alerta com ícone customizado!"
+  icon={<StarOutline size={24} stroke="#5872f5" />}
+>
+  Este alerta usa um ícone personalizado em vez do padrão.
+</Alert>
+```
+
+## Tamanhos
+
+### Short
+
+```tsx live
+<Alert title="Título Curto" size="short">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</Alert>
+```
+
+### Long (padrão)
+
+```tsx live
+<Alert title="Título Longo" size="long">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</Alert>
+```
+
+## Com botão
+
+Adicione um botão de ação usando as propriedades `button` e `buttonAction`:
+
+<StorybookEmbed
+  storyId="components-alert--with-button"
+  height={450}
+  showToolbar={false}
+  title="Alert - Com Botão"
+/>
+
+```tsx live
+<Alert
+  type="warning"
+  title="Confirmação necessária"
+  button="Confirmar"
+  buttonAction={() => alert('Ação confirmada!')}
+>
+  Esta ação não pode ser desfeita. Deseja continuar?
+</Alert>
+```
+
+## API
+
+### Props
+
+| Prop           | Tipo                                             | Padrão      | Descrição                                    |
+| -------------- | ------------------------------------------------ | ----------- | -------------------------------------------- |
+| `type`         | `'default' \| 'success' \| 'warning' \| 'error'` | `'default'` | Tipo do alerta com ícone e cores específicas |
+| `title`        | `string`                                         | -           | Título do alerta                             |
+| `icon`         | `React.ReactElement`                             | -           | Ícone customizado                            |
+| `size`         | `'short' \| 'long'`                              | `'long'`    | Tamanho da descrição                         |
+| `button`       | `string`                                         | -           | Texto do botão                               |
+| `buttonAction` | `() => void`                                     | -           | Função executada ao clicar no botão          |
+| `className`    | `string`                                         | -           | Classes CSS adicionais                       |
+| `children`     | `ReactNode`                                      | -           | Conteúdo do alerta                           |
+
+### Comportamento
+
+- Todos os alertas incluem `role="alert"` para acessibilidade
+- O componente usa `React.forwardRef` para ref forwarding
+- Suporte completo a props nativas do elemento `div`
+
+## Acessibilidade
+
+- ✅ Role `alert` para comunicação com screen readers
+- ✅ Cores e ícones que comunicam significado visualmente
+- ✅ Contraste adequado em todos os tipos
+- ✅ Suporte completo a navegação por teclado nos botões
+- ✅ Ref forwarding para integração com bibliotecas
+
+### Semântica
+
+- **Role `alert`**: Comunica imediatamente o conteúdo aos screen readers
+- **Ícones significativos**: Cada tipo tem ícone específico para reforçar o contexto
+- **Hierarquia visual**: Título e conteúdo claramente estruturados
+
+## Classes CSS
+
+| Classe Global                      | Descrição                                        |
+| ---------------------------------- | ------------------------------------------------ |
+| `.ods-alert`                       | Estilos aplicados ao elemento raiz               |
+| `.ods-alert--long`                 | Estilos aplicados quando é tamanho longo         |
+| `.ods-alert--with-button-no-title` | Estilos aplicados quando tem botão e sem título  |
+| `.ods-alert--error`                | Estilos aplicados com tipo error                 |
+| `.ods-alert--warning`              | Estilos aplicados com tipo warning               |
+| `.ods-alert--success`              | Estilos aplicados com tipo success               |
+| `.ods-alert__header`               | Estilos aplicados ao elemento header             |
+| `.ods-alert__header--margin`       | Estilos aplicados ao header com margem inferior  |
+| `.ods-alert__icon`                 | Estilos aplicados ao elemento ícone              |
+| `.ods-alert__title`                | Estilos aplicados ao elemento título             |
+| `.ods-alert__content`              | Estilos aplicados ao elemento conteúdo           |
+| `.ods-alert__button`               | Estilos aplicados ao elemento botão              |
+| `.ods-alert__button--mobile`       | Estilos aplicados ao botão na visualização móvel |
+
+## Guia de uso dos tipos
+
+### 🔵 Default
+
+- Informações gerais
+- Dicas e orientações
+- Comunicação neutra
+
+### 🟢 Success
+
+- Confirmação de ações bem-sucedidas
+- Feedback positivo
+- Conclusão de processos
+
+### 🟡 Warning
+
+- Avisos importantes
+- Ações que precisam de atenção
+- Situações que podem ter consequências
+
+### 🔴 Error
+
+- Erros e falhas
+- Problemas que impedem continuidade
+- Validações que falharam
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use o tipo apropriado para cada contexto
+- Mantenha mensagens claras e concisas
+- Use títulos descritivos quando necessário
+- Forneça ações claras com botões quando aplicável
+
+### ❌ Não faça
+
+- Não abuse de alertas de erro para informações simples
+- Não use múltiplos alertas sem relação na mesma tela
+- Não esconda informações críticas em alertas dismissíveis
+- Não use alertas para conteúdo que sempre deve estar visível
+
+## Visão geral dos tipos
+
+Veja todos os tipos de Alert em ação:
+
+<StorybookEmbed
+  storyId="components-alert--types"
+  height={350}
+  showToolbar={false}
+  title="Alert - Todos os Tipos"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações principais
+- [Snackbar](/components/snackbar) - Para notificações temporárias
+- [Storybook - Alert](https://ocean-ds.github.io/ocean-web/?path=/docs/components-alert--docs) - Documentação técnica
