@@ -32,6 +32,7 @@ const sidebars: SidebarsConfig = {
         'components/badge',
         'components/breadcrumb',
         'components/button',
+        'components/cardgroup',
         'components/input',
         'components/tokeninput',
         'components/textarea',
