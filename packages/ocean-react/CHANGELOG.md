@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.100.0](https://github.com/ocean-ds/ocean-web/compare/v1.99.0...v1.100.0) (2025-08-06)
+
+### Features
+
+- badge and breadcrumbs docs ([#1177](https://github.com/ocean-ds/ocean-web/issues/1177)) ([befc810](https://github.com/ocean-ds/ocean-web/commit/befc810f7b688fba7035a0d7d0420b4094ea3385))
+
 # [1.99.0](https://github.com/ocean-ds/ocean-web/compare/v1.98.0...v1.99.0) (2025-08-06)
 
 ### Features
