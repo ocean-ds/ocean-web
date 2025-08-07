@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.101.0](https://github.com/ocean-ds/ocean-web/compare/v1.100.0...v1.101.0) (2025-08-07)
+
+### Features
+
+- card group and card list item docs ([#1178](https://github.com/ocean-ds/ocean-web/issues/1178)) ([048ad42](https://github.com/ocean-ds/ocean-web/commit/048ad42cd312fd1d2634ebec010b26b536f2f19d))
+
 # [1.100.0](https://github.com/ocean-ds/ocean-web/compare/v1.99.0...v1.100.0) (2025-08-06)
 
 ### Features
