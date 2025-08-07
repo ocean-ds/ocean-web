@@ -1,4 +1,4 @@
-const mockedDoughnutData = [
+export const mockedDoughnutData = [
   {
     id: 1,
     count: 35,
