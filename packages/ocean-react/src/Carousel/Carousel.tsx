@@ -34,6 +34,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const settings = {
     dots: true,
+    arrows: true,
     infinite,
     speed: 1500,
     slidesToShow: columnsAsNumber,

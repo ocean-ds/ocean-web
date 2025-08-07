@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
         'components/button',
         'components/cardgroup',
         'components/cardlistitem',
+        'components/carousel',
         'components/input',
         'components/tokeninput',
         'components/textarea',
