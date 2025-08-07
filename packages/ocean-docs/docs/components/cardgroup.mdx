@@ -1,0 +1,253 @@
+---
+title: CardGroup
+sidebar_label: CardGroup
+sidebar_position: 5
+---
+
+import { CardGroup } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# CardGroup
+
+O CardGroup é um componente usado para agrupar informações relacionadas em um layout organizado. Ele suporta diferentes variantes (minimal e header) e pode incluir título, subtítulo, contador e uma ação clicável.
+
+## Importação
+
+```tsx
+import { CardGroup } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { CardGroup } from '@useblu/ocean-react/CardGroup';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ICardGroupProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<ICardGroupProps> = (props) => {
+  return <CardGroup {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente CardGroup no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-cardgroup--usage"
+  height={500}
+  title="CardGroup - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do CardGroup](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardgroup--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+### Card minimal com conteúdo
+
+```tsx live
+<CardGroup
+  title="Meu Card"
+  subtitle="Descrição do card"
+  count={5}
+  actionLabel="Ver mais"
+>
+  <div style={{ padding: '16px' }}>
+    <p>Conteúdo do card</p>
+  </div>
+</CardGroup>
+```
+
+### Card header (apenas cabeçalho)
+
+```tsx live
+<CardGroup
+  title="Estatísticas"
+  subtitle="Resumo dos dados"
+  count={25}
+  variant="header"
+/>
+```
+
+## Variantes
+
+O CardGroup oferece duas variantes principais:
+
+### Minimal (padrão)
+
+A variante minimal exibe o conteúdo principal e a ação (se fornecida):
+
+<StorybookEmbed
+  storyId="components-cardgroup--variants"
+  height={400}
+  showToolbar={false}
+  title="CardGroup - Variantes"
+/>
+
+### Header
+
+A variante header exibe apenas o cabeçalho (título e subtítulo) e o contador, sem conteúdo adicional ou ação.
+
+## Exemplo com conteúdo personalizado
+
+O CardGroup aceita qualquer conteúdo React como children:
+
+<StorybookEmbed
+  storyId="components-cardgroup--with-children"
+  height={350}
+  showToolbar={false}
+  title="CardGroup - Com Conteúdo"
+/>
+
+## Contador opcional
+
+O contador é exibido quando a prop `count` é fornecida:
+
+<StorybookEmbed
+  storyId="components-cardgroup--without-count"
+  height={300}
+  showToolbar={false}
+  title="CardGroup - Sem Contador"
+/>
+
+## Ações interativas
+
+Cards podem incluir botões de ação para navegação ou funcionalidades:
+
+<StorybookEmbed
+  storyId="components-cardgroup--action-examples"
+  height={350}
+  showToolbar={false}
+  title="CardGroup - Exemplos de Ação"
+/>
+
+## API
+
+### Props
+
+| Prop          | Tipo                    | Padrão      | Descrição                                                                   |
+| ------------- | ----------------------- | ----------- | --------------------------------------------------------------------------- |
+| `title`       | `string`                | -           | O título exibido no cabeçalho                                               |
+| `subtitle`    | `string`                | -           | O subtítulo exibido no cabeçalho                                            |
+| `variant`     | `'minimal' \| 'header'` | `'minimal'` | A variante do componente que define o layout                                |
+| `count`       | `number`                | -           | O valor exibido no contador. Se undefined, o contador fica oculto           |
+| `actionLabel` | `string`                | -           | O texto do botão de ação                                                    |
+| `actionClick` | `() => void`            | -           | Função chamada quando o botão de ação é clicado                             |
+| `children`    | `ReactNode`             | -           | Conteúdo adicional exibido abaixo do cabeçalho (apenas na variante minimal) |
+
+### Comportamento das variantes
+
+- **Minimal**: Exibe título, subtítulo, contador, conteúdo personalizado e ação
+- **Header**: Exibe apenas título, subtítulo e contador (sem conteúdo ou ação)
+
+## Classes CSS
+
+| Classe                             | Descrição                                          |
+| ---------------------------------- | -------------------------------------------------- |
+| `.ods-card-group`                  | Estilos aplicados ao elemento raiz                 |
+| `.ods-card-group--minimal`         | Estilos aplicados quando a variante é minimal      |
+| `.ods-card-group--header`          | Estilos aplicados quando a variante é header       |
+| `.ods-card-group__header`          | Estilos aplicados ao container do cabeçalho        |
+| `.ods-card-group__header--content` | Estilos aplicados ao conteúdo interno do cabeçalho |
+| `.ods-card-group__action`          | Estilos aplicados ao botão de ação                 |
+| `.ods-card-group__action--label`   | Estilos aplicados ao rótulo do botão de ação       |
+
+## Casos de uso comuns
+
+### Dashboard com estatísticas
+
+```tsx live
+<div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+  <CardGroup title="Vendas" subtitle="Hoje" count={42} variant="header" />
+  <CardGroup title="Usuários" subtitle="Online" count={128} variant="header" />
+</div>
+```
+
+### Lista de tarefas
+
+```tsx live
+<CardGroup
+  title="Tarefas Pendentes"
+  subtitle="Projeto Alpha"
+  count={8}
+  actionLabel="Ver todas"
+>
+  <div style={{ padding: '16px' }}>
+    <ul style={{ margin: 0, paddingLeft: '20px' }}>
+      <li>Revisar código</li>
+      <li>Atualizar documentação</li>
+      <li>Fazer deploy</li>
+    </ul>
+  </div>
+</CardGroup>
+```
+
+### Card de notificações
+
+```tsx live
+<CardGroup
+  title="Notificações"
+  subtitle="Últimas 24 horas"
+  count={15}
+  actionLabel="Marcar como lidas"
+>
+  <div style={{ padding: '16px' }}>
+    <p style={{ margin: 0 }}>
+      Você tem 15 notificações não lidas. Clique em "Marcar como lidas" para
+      visualizá-las.
+    </p>
+  </div>
+</CardGroup>
+```
+
+## Acessibilidade
+
+- ✅ Estrutura semântica apropriada
+- ✅ Navegação por teclado funcional no botão de ação
+- ✅ Atributos ARIA adequados
+- ✅ Suporte a screen readers
+
+### Navegação por teclado
+
+| Tecla           | Função                           |
+| --------------- | -------------------------------- |
+| `Tab`           | Move o foco para o botão de ação |
+| `Enter`/`Space` | Ativa a ação do botão            |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos descritivos e concisos
+- Mantenha subtítulos informativos mas breves
+- Use a variante header para informações resumidas
+- Use a variante minimal para conteúdo mais detalhado
+- Forneça ações relevantes ao contexto
+
+### ❌ Não faça
+
+- Não use títulos muito longos que quebrem o layout
+- Não omita subtítulos quando o contexto não for óbvio
+- Não use a variante header com conteúdo complexo
+- Não deixe de testar as ações dos botões
+- Não sobrecarregue o card com muito conteúdo
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações isoladas
+- [Badge](/components/badge) - Para indicadores numéricos
+- [Storybook - CardGroup](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardgroup--docs) - Documentação técnica
