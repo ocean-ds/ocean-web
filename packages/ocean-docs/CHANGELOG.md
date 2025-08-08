@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.102.0](https://github.com/ocean-ds/ocean-web/compare/v1.101.0...v1.102.0) (2025-08-08)
+
+### Features
+
+- carousel and chart docs ([#1179](https://github.com/ocean-ds/ocean-web/issues/1179)) ([991f807](https://github.com/ocean-ds/ocean-web/commit/991f807c7cd0237eae8e0ebed28372a09ba74270))
+
 # [1.101.0](https://github.com/ocean-ds/ocean-web/compare/v1.100.0...v1.101.0) (2025-08-07)
 
 ### Features
