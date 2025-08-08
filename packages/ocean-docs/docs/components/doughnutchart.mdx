@@ -1,0 +1,292 @@
+---
+title: DoughnutChart
+sidebar_label: DoughnutChart
+---
+
+import { DoughnutChart } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# DoughnutChart
+
+O componente DoughnutChart cria gráficos de rosca interativos e informativos para exibir dados proporcionais. É construído sobre Chart.js e react-chartjs-2, oferecendo visualizações elegantes com legendas personalizáveis e valores centrais opcionais.
+
+## Importação
+
+```tsx
+import { DoughnutChart } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { DoughnutChart } from '@useblu/ocean-react/Chart';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type {
+  DoughnutChartProps,
+  IDoughnutChartData,
+} from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyChart: React.FC<DoughnutChartProps> = (props) => {
+  return <DoughnutChart {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente DoughnutChart no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-doughnutchart--usage"
+  height={500}
+  title="DoughnutChart - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do DoughnutChart](https://ocean-ds.github.io/ocean-web/?path=/docs/components-doughnutchart--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de diferentes tipos de dados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<DoughnutChart
+  title="Vendas por Categoria"
+  subtitle="Janeiro 2024"
+  centerChartValue="100"
+  centerChartLabel="Total de Vendas"
+  data={[
+    {
+      id: 1,
+      count: 60,
+      percentage: 60,
+      color: '#0025E0',
+      descriptionLevel1: 'Eletrônicos',
+      descriptionLevel2: '60 unidades',
+    },
+    {
+      id: 2,
+      count: 40,
+      percentage: 40,
+      color: '#13BDBD',
+      descriptionLevel1: 'Roupas',
+      descriptionLevel2: '40 unidades',
+    },
+  ]}
+/>
+```
+
+## Gráfico simples
+
+Para gráficos mais simples, você pode omitir os valores centrais:
+
+<StorybookEmbed
+  storyId="components-doughnutchart--without-center-labels"
+  height={350}
+  showToolbar={false}
+  title="DoughnutChart - Sem Rótulos Centrais"
+/>
+
+```tsx live
+<DoughnutChart
+  title="Distribuição de Recursos"
+  subtitle="Orçamento 2024"
+  data={[
+    {
+      id: 1,
+      count: 50,
+      percentage: 50,
+      color: '#3DCC64',
+      descriptionLevel1: 'Desenvolvimento',
+    },
+    {
+      id: 2,
+      count: 30,
+      percentage: 30,
+      color: '#FFA347',
+      descriptionLevel1: 'Marketing',
+    },
+    {
+      id: 3,
+      count: 20,
+      percentage: 20,
+      color: '#F5456E',
+      descriptionLevel1: 'Suporte',
+    },
+  ]}
+/>
+```
+
+## Múltiplos conjuntos de dados
+
+Veja exemplos com diferentes tipos de dados e contextos:
+
+<StorybookEmbed
+  storyId="components-doughnutchart--multiple-data-sets"
+  height={600}
+  showToolbar={false}
+  title="DoughnutChart - Múltiplos Exemplos"
+/>
+
+## Estrutura dos dados
+
+O DoughnutChart aceita um array de objetos com a seguinte estrutura:
+
+```tsx
+const data = [
+  {
+    id: 1, // Identificador único
+    count: 35, // Valor numérico
+    percentage: 35, // Porcentagem para exibição
+    color: '#13BDBD', // Cor do segmento
+    descriptionLevel1: 'A vencer', // Descrição principal
+    descriptionLevel2: '35 faturas', // Descrição secundária (opcional)
+  },
+  // ... mais itens
+];
+```
+
+## API
+
+### Props
+
+| Prop               | Tipo                   | Padrão | Descrição                                   |
+| ------------------ | ---------------------- | ------ | ------------------------------------------- |
+| `title`            | `string`               | -      | Título do gráfico (obrigatório)             |
+| `subtitle`         | `string`               | -      | Subtítulo do gráfico (obrigatório)          |
+| `data`             | `IDoughnutChartData[]` | -      | Array de dados para o gráfico (obrigatório) |
+| `centerChartValue` | `string`               | -      | Valor exibido no centro do gráfico          |
+| `centerChartLabel` | `string`               | -      | Rótulo exibido no centro do gráfico         |
+| `className`        | `string`               | -      | Classes CSS adicionais                      |
+
+### Tipo IDoughnutChartData
+
+| Propriedade         | Tipo                            | Obrigatório | Descrição                        |
+| ------------------- | ------------------------------- | ----------- | -------------------------------- |
+| `id`                | `string \| number`              | ✅          | Identificador único do item      |
+| `count`             | `number`                        | ✅          | Valor numérico                   |
+| `percentage`        | `number`                        | ✅          | Porcentagem para exibição        |
+| `color`             | `string`                        | ✅          | Cor do segmento (hex, rgb, etc.) |
+| `descriptionLevel1` | `string \| number \| ReactNode` | ✅          | Descrição principal na legenda   |
+| `descriptionLevel2` | `string \| number \| ReactNode` | ❌          | Descrição secundária na legenda  |
+
+## Acessibilidade
+
+- ✅ Suporte completo a screen readers
+- ✅ Estrutura semântica apropriada
+- ✅ Contraste adequado nas cores padrão
+- ✅ Navegação por teclado
+- ✅ Atributos ARIA apropriados
+
+### Navegação por teclado
+
+| Tecla | Função                      |
+| ----- | --------------------------- |
+| `Tab` | Move o foco entre elementos |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use cores contrastantes e distintas para cada segmento
+- Forneça descrições claras e concisas nas legendas
+- Utilize valores percentuais que somem aproximadamente 100%
+- Inclua valores centrais quando relevante para o contexto
+- Mantenha o número de segmentos entre 2-6 para melhor legibilidade
+
+### ❌ Não faça
+
+- Não use muitas cores similares ou baixo contraste
+- Não inclua mais de 7-8 segmentos no gráfico
+- Não omita informações importantes nas descrições
+- Não use valores percentuais que não reflitam os dados reais
+- Não ignore a ordem lógica dos dados (do maior para o menor, por exemplo)
+
+## Cores recomendadas
+
+Use as cores do Ocean Design System para consistência visual:
+
+```tsx
+const oceanColors = [
+  '#0025E0', // Primary Blue
+  '#13BDBD', // Teal
+  '#3DCC64', // Green
+  '#FFA347', // Orange
+  '#F5456E', // Pink
+  '#9CA3AF', // Gray
+];
+```
+
+## Casos de uso comuns
+
+### Dashboard financeiro
+
+```tsx
+<DoughnutChart
+  title="Receitas por Fonte"
+  subtitle="Último Trimestre"
+  centerChartValue="R$ 1.2M"
+  centerChartLabel="Total Arrecadado"
+  data={receitas}
+/>
+```
+
+### Status de projetos
+
+```tsx
+<DoughnutChart
+  title="Status dos Projetos"
+  subtitle="Sprint Atual"
+  centerChartValue="24"
+  centerChartLabel="Projetos Ativos"
+  data={statusProjetos}
+/>
+```
+
+### Análise de vendas
+
+```tsx
+<DoughnutChart
+  title="Vendas por Região"
+  subtitle="Dezembro 2024"
+  centerChartValue="2.847"
+  centerChartLabel="Vendas Totais"
+  data={vendasRegiao}
+/>
+```
+
+## Estilização
+
+O componente aplica as seguintes classes CSS:
+
+| Classe Global                                  | Descrição                          |
+| ---------------------------------------------- | ---------------------------------- |
+| `.ods-chart`                                   | Estilos aplicados ao elemento raiz |
+| `.ods-chart__title-and-subtitle`               | Container do título e subtítulo    |
+| `.ods-chart__canvas`                           | Container do gráfico               |
+| `.ods-chart__canvas__center-legend`            | Legenda central do gráfico         |
+| `.ods-chart__legend`                           | Container da legenda inferior      |
+| `.ods-chart__legend__row`                      | Linha individual da legenda        |
+| `.ods-chart__legend__row__description`         | Descrição na linha da legenda      |
+| `.ods-chart__legend__row__description-circle`  | Círculo colorido na legenda        |
+| `.ods-chart__legend__row__percent`             | Porcentagem na linha da legenda    |
+| `.ods-chart__legend__row__description-level-2` | Descrição secundária na legenda    |
+
+Para customizações mais avançadas, consulte a [implementação do componente](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Chart/DoughnutChart.tsx).
+
+## Links relacionados
+
+- [Progress](/components/progress) - Para barras de progresso lineares
+- [Badge](/components/badge) - Para indicadores simples
+- [CardGroup](/components/cardgroup) - Para agrupamento de métricas
+- [Storybook - DoughnutChart](https://ocean-ds.github.io/ocean-web/?path=/docs/components-doughnutchart--docs) - Documentação técnica completa
