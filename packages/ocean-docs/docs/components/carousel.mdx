@@ -1,0 +1,266 @@
+---
+title: Carousel
+sidebar_label: Carousel
+---
+
+import { Carousel } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Carousel
+
+O componente Carousel permite exibir uma série de conteúdos de forma horizontal com navegação por setas e indicadores. É construído sobre a biblioteca react-slick e oferece suporte a múltiplas colunas, scroll infinito e reprodução automática.
+
+## ⚠️ Navegação por setas
+
+As **setas de navegação aparecem apenas quando você passa o mouse sobre o carousel** (em desktop). Em dispositivos móveis, as setas ficam ocultas e a navegação é feita por gestos de arrastar (swipe).
+
+## Importação
+
+```tsx
+import { Carousel } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Carousel } from '@useblu/ocean-react/Carousel';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { CarouselProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyCarousel: React.FC<CarouselProps> = (props) => {
+  return <Carousel {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Carousel no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-carousel--usage"
+  height={500}
+  title="Carousel - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Carousel](https://ocean-ds.github.io/ocean-web/?path=/docs/components-carousel--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e configurações
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Carousel columns={1}>
+  <div>Slide 1</div>
+  <div>Slide 2</div>
+  <div>Slide 3</div>
+</Carousel>
+```
+
+## Múltiplas colunas
+
+O Carousel suporta de 1 a 5 colunas para exibir múltiplos itens simultaneamente:
+
+<StorybookEmbed
+  storyId="components-carousel--all-columns"
+  height={600}
+  showToolbar={false}
+  title="Carousel - Múltiplas Colunas"
+/>
+
+### 2 Colunas
+
+```tsx live
+<Carousel columns={2}>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+</Carousel>
+```
+
+### 3 Colunas
+
+```tsx live
+<Carousel columns={3}>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+  <div>Item 5</div>
+  <div>Item 6</div>
+</Carousel>
+```
+
+## Scroll infinito
+
+Habilite o scroll infinito para permitir navegação contínua:
+
+<StorybookEmbed
+  storyId="components-carousel--infinite-scroll"
+  height={400}
+  showToolbar={false}
+  title="Carousel - Scroll Infinito"
+/>
+
+```tsx live
+<Carousel columns={2} infinite={true}>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+</Carousel>
+```
+
+## Reprodução automática
+
+Ative o autoplay para navegação automática dos slides:
+
+<StorybookEmbed
+  storyId="components-carousel--autoplay"
+  height={250}
+  showToolbar={false}
+  title="Carousel - Autoplay"
+/>
+
+```tsx live
+<Carousel columns={1} autoplay={true} infinite={true}>
+  <div>Slide com Autoplay 1</div>
+  <div>Slide com Autoplay 2</div>
+  <div>Slide com Autoplay 3</div>
+</Carousel>
+```
+
+## API
+
+### Props
+
+| Prop       | Tipo                            | Padrão  | Descrição                                          |
+| ---------- | ------------------------------- | ------- | -------------------------------------------------- |
+| `columns`  | `1 \| 2 \| 3 \| 4 \| 5 \| null` | `1`     | Determina o número de colunas no carrossel         |
+| `infinite` | `boolean`                       | `false` | Determina se o componente pode rolar infinitamente |
+| `autoplay` | `boolean`                       | `false` | Ativa a reprodução automática do carrossel         |
+| `children` | `ReactNode`                     | -       | Elementos filho a serem exibidos no carrossel      |
+
+### Configurações Internas
+
+O componente utiliza internamente as seguintes configurações do react-slick:
+
+- **Velocidade**: 1500ms para transições
+- **Velocidade do autoplay**: 8000ms (8 segundos)
+- **Navegação**: Setas com ícones ChevronLeft e ChevronRight
+- **Indicadores**: Dots personalizados abaixo do carrossel
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Setas de navegação acessíveis
+- ✅ Indicadores (dots) com suporte a screen readers
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+
+### Navegação disponível
+
+#### 🖱️ Desktop
+
+- **Setas de navegação**: Aparecem ao passar o mouse sobre o carousel
+- **Indicadores (dots)**: Sempre visíveis abaixo do carousel
+- **Teclado**: Navegação com setas do teclado quando focado
+- **Arrastar**: Funciona com clique e arrastar
+
+#### 📱 Mobile
+
+- **Gestos de swipe**: Arrastar para navegar entre slides
+- **Indicadores (dots)**: Sempre visíveis para navegação direta
+- **Setas**: Ocultas em dispositivos móveis
+
+### Navegação por teclado
+
+| Tecla             | Função                         |
+| ----------------- | ------------------------------ |
+| `Tab`             | Move o foco entre controles    |
+| `Space` / `Enter` | Ativa botões de navegação      |
+| `Seta Esquerda`   | Slide anterior (quando focado) |
+| `Seta Direita`    | Próximo slide (quando focado)  |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use `infinite={true}` para melhor experiência em carrosséis com poucos itens
+- Combine `autoplay` com `infinite` para rotação contínua
+- Escolha o número de colunas baseado no tamanho do conteúdo
+- Forneça conteúdo com altura consistente para melhor visual
+- Use autoplay apenas quando apropriado (ex: banners promocionais)
+- Informe aos usuários que podem arrastar ou usar as setas (que aparecem no hover)
+- Teste o comportamento hover das setas em dispositivos desktop
+
+### ❌ Não faça
+
+- Não use muitas colunas em telas pequenas
+- Não ative autoplay em conteúdo crítico que precisa ser lido
+- Não use carrossel para conteúdo essencial sem alternativas de navegação
+- Não misture conteúdos com alturas muito diferentes no mesmo carrossel
+- Não espere que as setas estejam sempre visíveis - elas aparecem no hover
+
+## Casos de uso comuns
+
+### Banner promocional
+
+```tsx
+<Carousel columns={1} autoplay={true} infinite={true}>
+  <img src="/banner1.jpg" alt="Promoção 1" />
+  <img src="/banner2.jpg" alt="Promoção 2" />
+  <img src="/banner3.jpg" alt="Promoção 3" />
+</Carousel>
+```
+
+### Galeria de produtos
+
+```tsx
+<Carousel columns={4} infinite={false}>
+  {produtos.map((produto) => (
+    <ProductCard key={produto.id} produto={produto} />
+  ))}
+</Carousel>
+```
+
+### Depoimentos
+
+```tsx
+<Carousel columns={1} infinite={true}>
+  {depoimentos.map((depoimento) => (
+    <TestimonialCard key={depoimento.id} depoimento={depoimento} />
+  ))}
+</Carousel>
+```
+
+## Estilização
+
+O componente aplica as seguintes classes CSS:
+
+| Classe Global        | Descrição                                             |
+| -------------------- | ----------------------------------------------------- |
+| `.ods-carousel`      | Estilos aplicados ao elemento raiz                    |
+| `.ods-carousel-dots` | Estilos aplicados ao container dos indicadores (dots) |
+| `.columns-{number}`  | Classe específica para o número de colunas            |
+
+Para customizações mais avançadas, consulte a [implementação do componente](https://github.com/ocean-ds/ocean-web/blob/master/packages/ocean-react/src/Carousel/Carousel.tsx).
+
+## Links relacionados
+
+- [List](/components/list) - Para listas simples de itens
+- [Grid](/components/grid) - Para layouts em grade
+- [CardGroup](/components/cardgroup) - Para agrupamento de cards
+- [Storybook - Carousel](https://ocean-ds.github.io/ocean-web/?path=/docs/components-carousel--docs) - Documentação técnica completa
