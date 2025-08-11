@@ -1,0 +1,430 @@
+---
+title: Chips
+sidebar_label: Chips
+---
+
+import { Chips } from '@useblu/ocean-react';
+import { Adjustments, Filter } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Chips
+
+O componente Chips é usado para permitir que os usuários filtrem conteúdo, façam seleções ou visualizem tags. É ideal para interfaces de filtros, seleção de categorias e organização de conteúdo.
+
+## Importação
+
+```tsx
+import { Chips } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Chips } from '@useblu/ocean-react/Chips';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ChipValue } from '@useblu/ocean-react';
+
+// Tipo para opções do chip
+interface ChipOption {
+  label: string;
+  value: string;
+}
+
+// Uso em componente customizado
+const MyChips: React.FC = () => {
+  const options: ChipValue[] = [
+    { label: 'Opção 1', value: '1' },
+    { label: 'Opção 2', value: '2' },
+  ];
+
+  return <Chips label="Selecione" options={options} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Chips no playground interativo do Storybook. No playground você pode testar as props principais como `label`, `disabled`, `multiChoice`, `clearLabel`, `filterLabel`, `initialCounter` e `actived`:
+
+<StorybookEmbed
+  storyId="components-chips--usage"
+  height={500}
+  title="Chips - Playground Interativo"
+/>
+
+## Uso básico
+
+```tsx live
+<Chips
+  label="Selecione uma categoria"
+  options={[
+    { label: 'Eletrônicos', value: 'eletronicos' },
+    { label: 'Roupas', value: 'roupas' },
+    { label: 'Casa e Jardim', value: 'casa-jardim' },
+  ]}
+/>
+```
+
+## Tipos de seleção
+
+### Seleção única (padrão)
+
+Para permitir apenas uma opção selecionada:
+
+```tsx live
+<Chips
+  label="Escolha uma opção"
+  options={[
+    { label: 'Preço baixo', value: 'preco-baixo' },
+    { label: 'Preço alto', value: 'preco-alto' },
+    { label: 'Mais vendidos', value: 'mais-vendidos' },
+    { label: 'Lançamentos', value: 'lancamentos' },
+  ]}
+/>
+```
+
+### Seleção múltipla
+
+Para permitir múltiplas opções selecionadas:
+
+```tsx live
+<Chips
+  label="Filtros aplicados"
+  multiChoice
+  options={[
+    { label: 'Frete grátis', value: 'frete-gratis' },
+    { label: 'Avaliação 5★', value: 'avaliacao-5' },
+    { label: 'Promoção', value: 'promocao' },
+    { label: 'Entrega rápida', value: 'entrega-rapida' },
+  ]}
+  clearLabel="Limpar"
+  filterLabel="Aplicar filtros"
+/>
+```
+
+### Guia de uso dos tipos
+
+- **Seleção única**: Para filtros mutuamente exclusivos (ex: ordenação)
+- **Seleção múltipla**: Para filtros que podem ser combinados (ex: características)
+
+## Com ícones
+
+```tsx live
+<div>
+  <Chips
+    label="Filtros avançados"
+    icon={<Adjustments />}
+    options={[
+      { label: 'Data recente', value: 'data-recente' },
+      { label: 'Mais relevante', value: 'mais-relevante' },
+    ]}
+  />
+  <br />
+  <Chips
+    label="Filtrar resultados"
+    icon={<Filter />}
+    multiChoice
+    options={[
+      { label: 'Frete grátis', value: 'frete-gratis' },
+      { label: 'Promoção', value: 'promocao' },
+    ]}
+    clearLabel="Limpar"
+    filterLabel="Aplicar"
+  />
+</div>
+```
+
+## Com contador
+
+Para exibir quantidade de itens selecionados ou notificações:
+
+```tsx live
+<div>
+  <Chips
+    label="Itens selecionados"
+    initialCounter={3}
+    options={[
+      { label: 'Todos', value: 'todos' },
+      { label: 'Selecionados', value: 'selecionados' },
+    ]}
+  />
+</div>
+```
+
+## Estados
+
+### Normal, ativo e desabilitado
+
+```tsx live
+<div>
+  <Chips label="Estado normal" options={[{ label: 'Opção', value: '1' }]} />
+  <br />
+  <Chips
+    label="Estado ativo"
+    actived
+    options={[{ label: 'Opção', value: '1' }]}
+  />
+  <br />
+  <Chips
+    label="Estado desabilitado"
+    disabled
+    options={[{ label: 'Opção', value: '1' }]}
+  />
+</div>
+```
+
+## Chip simples (sem opções)
+
+Para chips que funcionam como botões:
+
+```tsx live
+<div>
+  <Chips label="Chip simples" />
+  <br />
+  <Chips label="Com ícone" icon={<Filter />} />
+  <br />
+  <Chips label="Com contador" initialCounter={5} />
+</div>
+```
+
+## Exemplos práticos
+
+### Sistema de filtros de e-commerce
+
+```tsx live
+function EcommerceFilters() {
+  const [selectedCategory, setSelectedCategory] = React.useState(null);
+  const [selectedFilters, setSelectedFilters] = React.useState([]);
+
+  const categories = [
+    { label: 'Eletrônicos', value: 'eletronicos' },
+    { label: 'Roupas', value: 'roupas' },
+    { label: 'Casa', value: 'casa' },
+  ];
+
+  const filters = [
+    { label: 'Frete grátis', value: 'frete-gratis' },
+    { label: 'Promoção', value: 'promocao' },
+    { label: 'Avaliação 5★', value: 'avaliacao-5' },
+  ];
+
+  return (
+    <div>
+      <h4>Categoria</h4>
+      <Chips
+        label="Selecione uma categoria"
+        options={categories}
+        selectedValue={selectedCategory}
+        onChange={setSelectedCategory}
+      />
+
+      <h4 style={{ marginTop: '20px' }}>Filtros</h4>
+      <Chips
+        label="Filtros adicionais"
+        multiChoice
+        options={filters}
+        selectedValue={selectedFilters}
+        onChange={setSelectedFilters}
+        clearLabel="Limpar filtros"
+        filterLabel="Aplicar"
+      />
+
+      {selectedCategory && (
+        <p style={{ marginTop: '16px', fontSize: '14px' }}>
+          Categoria: {selectedCategory.label}
+        </p>
+      )}
+
+      {selectedFilters.length > 0 && (
+        <p style={{ fontSize: '14px' }}>
+          Filtros: {selectedFilters.map((f) => f.label).join(', ')}
+        </p>
+      )}
+    </div>
+  );
+}
+```
+
+### Tags de conteúdo
+
+```tsx live
+function ContentTags() {
+  const tags = [
+    { label: 'React', value: 'react' },
+    { label: 'TypeScript', value: 'typescript' },
+    { label: 'JavaScript', value: 'javascript' },
+    { label: 'CSS', value: 'css' },
+  ];
+
+  return (
+    <div>
+      <h4>Tags do artigo</h4>
+      {tags.map((tag) => (
+        <Chips
+          key={tag.value}
+          label={tag.label}
+          style={{ marginRight: '8px', marginBottom: '8px' }}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+## API
+
+### Props
+
+| Prop             | Tipo                                        | Padrão      | Descrição                                           |
+| ---------------- | ------------------------------------------- | ----------- | --------------------------------------------------- |
+| `label`          | `string`                                    | -           | Texto do rótulo exibido no chip                     |
+| `icon`           | `ReactNode`                                 | -           | Ícone opcional exibido antes do texto               |
+| `disabled`       | `boolean`                                   | `false`     | Desabilita o chip                                   |
+| `multiChoice`    | `boolean`                                   | `false`     | Permite seleção múltipla de opções                  |
+| `options`        | `ChipValue[]`                               | `[]`        | Array de opções disponíveis para seleção            |
+| `defaultValue`   | `ChipValue`                                 | -           | Valor padrão selecionado                            |
+| `clearLabel`     | `string`                                    | `'Limpar'`  | Texto do botão de limpar (modo múltipla escolha)    |
+| `filterLabel`    | `string`                                    | `'Filtrar'` | Texto do botão de filtrar (modo múltipla escolha)   |
+| `initialCounter` | `number`                                    | -           | Contador inicial exibido no badge                   |
+| `actived`        | `boolean`                                   | `false`     | Se verdadeiro, o chip aparece no estado ativo       |
+| `selectedValue`  | `ChipValue \| ChipValue[]`                  | -           | Valor(es) selecionado(s) controlado externamente    |
+| `onClick`        | `() => void`                                | -           | Função chamada ao clicar no chip                    |
+| `onChange`       | `(value: ChipValue \| ChipValue[]) => void` | -           | Função chamada quando a seleção muda                |
+| `onClose`        | `() => void`                                | -           | Função chamada quando o dropdown é fechado          |
+| `onConfirm`      | `(value: ChipValue \| ChipValue[]) => void` | -           | Função chamada ao confirmar seleção (modo múltiplo) |
+| `onClean`        | `() => void`                                | -           | Função chamada ao limpar seleção                    |
+
+### Tipos
+
+```tsx
+interface ChipValue {
+  label: string;
+  value: string;
+}
+```
+
+### Eventos
+
+- `onClick`: Disparado quando o chip é clicado (chips sem opções)
+- `onChange`: Disparado quando a seleção de opções muda
+- `onClose`: Disparado quando o dropdown de opções é fechado
+- `onConfirm`: Disparado ao confirmar seleção no modo múltipla escolha
+- `onClean`: Disparado ao limpar todas as seleções
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Semântica de botão adequada
+- ✅ Estados disabled adequadamente sinalizados
+- ✅ Fechamento automático ao clicar fora
+
+### Considerações importantes
+
+- **Labels descritivos**: Use textos claros que indiquem o propósito do filtro
+- **Feedback visual**: Estados ativos e selecionados são claramente indicados
+- **Modo múltiplo**: Inclui checkboxes para indicar seleções múltiplas
+- **Navegação**: Dropdown fecha automaticamente após seleção (modo único)
+
+### Navegação por teclado
+
+| Tecla             | Função                          |
+| ----------------- | ------------------------------- |
+| `Tab`             | Move o foco para o chip         |
+| `Space` / `Enter` | Abre/fecha dropdown ou clica    |
+| `Escape`          | Fecha dropdown aberto           |
+| `Arrow Up/Down`   | Navega pelas opções no dropdown |
+
+## CSS Classes
+
+O componente Chips utiliza as seguintes classes CSS que podem ser utilizadas para customizações:
+
+| Classe                                  | Descrição                                 |
+| --------------------------------------- | ----------------------------------------- |
+| `.ods-chips`                            | Container principal do componente         |
+| `.ods-chips__button`                    | Estilos aplicados ao botão principal      |
+| `.ods-chips__button--disabled`          | Estilos para estado desabilitado          |
+| `.ods-chips__button--active`            | Estilos para estado ativo/selecionado     |
+| `.ods-chips__label`                     | Estilos aplicados ao texto do label       |
+| `.ods-chips__badge`                     | Estilos aplicados ao badge contador       |
+| `.ods-chips__options`                   | Container do dropdown de opções           |
+| `.ods-chips__options--content`          | Container do conteúdo das opções          |
+| `.ods-chips__options--option`           | Estilos de cada opção individual          |
+| `.ods-chips__options--option--selected` | Estilos para opção selecionada            |
+| `.ods-chips__options--footer`           | Footer com botões (modo múltipla escolha) |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use labels claros e descritivos para o propósito do filtro
+- Implemente `onChange` para controlar seleções
+- Use modo múltiplo para filtros que podem ser combinados
+- Forneça `clearLabel` e `filterLabel` descritivos no modo múltiplo
+- Use ícones relevantes para melhor identificação visual
+- Implemente estados controlados para sincronização com o estado da aplicação
+
+### ❌ Não faça
+
+- Não use chips para navegação entre páginas (use Link)
+- Não omita labels em chips com muitas opções
+- Não misture chips de seleção única com múltipla na mesma interface
+- Não use textos muito longos nas opções (prejudica usabilidade)
+- Não ignore o evento `onClose` quando precisar de feedback de fechamento
+
+## Variações visuais
+
+Veja todas as variações do Chips em ação:
+
+<StorybookEmbed
+  storyId="components-chips--states"
+  height={350}
+  showToolbar={false}
+  title="Chips - Todos os Estados"
+/>
+
+## Com ícones
+
+Veja exemplos de chips com ícones:
+
+<StorybookEmbed
+  storyId="components-chips--with-icon"
+  height={350}
+  showToolbar={false}
+  title="Chips - Com Ícones"
+/>
+
+## Seleção múltipla
+
+Veja o comportamento da seleção múltipla:
+
+<StorybookEmbed
+  storyId="components-chips--multi-choice"
+  height={400}
+  showToolbar={false}
+  title="Chips - Seleção Múltipla"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Chips](https://ocean-ds.github.io/ocean-web/?path=/docs/components-chips--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os estados e variações
+- ✅ **Playground** para experimentação rápida
+
+## Links relacionados
+
+- [Badge](/components/badge) - Para indicadores simples e contadores
+- [Button](/components/button) - Para ações principais
+- [Select](/components/select) - Para seleção em dropdowns tradicionais
+- [Checkbox](/components/checkbox) - Para seleções múltiplas em formulários
+- [Storybook - Chips](https://ocean-ds.github.io/ocean-web/?path=/docs/components-chips--docs) - Documentação técnica
