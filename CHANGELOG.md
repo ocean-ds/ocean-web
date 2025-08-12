@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.103.0](https://github.com/ocean-ds/ocean-web/compare/v1.102.0...v1.103.0) (2025-08-12)
+
+### Features
+
+- checkbox and chips docs ([#1181](https://github.com/ocean-ds/ocean-web/issues/1181)) ([2532c51](https://github.com/ocean-ds/ocean-web/commit/2532c51f50bc95705e78ec9977df29298c202f1a))
+- remoce unused doc ([#1180](https://github.com/ocean-ds/ocean-web/issues/1180)) ([dfa183c](https://github.com/ocean-ds/ocean-web/commit/dfa183c1d3ac779cbdcff9924ee099ede4e92856))
+
 # [1.102.0](https://github.com/ocean-ds/ocean-web/compare/v1.101.0...v1.102.0) (2025-08-08)
 
 ### Features
