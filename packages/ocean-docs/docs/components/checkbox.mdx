@@ -1,0 +1,326 @@
+---
+title: Checkbox
+sidebar_label: Checkbox
+---
+
+import { Checkbox } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Checkbox
+
+O componente Checkbox é usado para permitir que os usuários selecionem uma ou múltiplas opções de um conjunto de escolhas. É ideal para formulários, configurações e listas de tarefas.
+
+## Importação
+
+```tsx
+import { Checkbox } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Checkbox } from '@useblu/ocean-react/Checkbox';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { CheckboxProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyCheckbox: React.FC<CheckboxProps> = (props) => {
+  return <Checkbox {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Checkbox no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-checkbox--usage"
+  height={500}
+  title="Checkbox - Playground Interativo"
+/>
+
+## Uso básico
+
+```tsx live
+<Checkbox id="basic-checkbox" label="Aceito os termos e condições" />
+```
+
+## Estados
+
+O Checkbox tem diferentes estados para diferentes contextos:
+
+### Não selecionado
+
+```tsx live
+<Checkbox id="unchecked" label="Opção não selecionada" />
+```
+
+### Selecionado
+
+```tsx live
+<Checkbox id="checked" label="Opção selecionada" checked />
+```
+
+### Indeterminado
+
+```tsx live
+<Checkbox id="indeterminate" label="Estado indeterminado" indeterminate />
+```
+
+### Desabilitado
+
+```tsx live
+<div>
+  <Checkbox
+    id="disabled-unchecked"
+    label="Desabilitado não selecionado"
+    disabled
+  />
+  <Checkbox
+    id="disabled-checked"
+    label="Desabilitado selecionado"
+    disabled
+    checked
+  />
+</div>
+```
+
+### Guia de uso dos estados
+
+- **Não selecionado**: Estado padrão do checkbox
+- **Selecionado**: Quando a opção foi escolhida pelo usuário
+- **Indeterminado**: Para representar seleção parcial (ex: alguns itens de uma lista selecionados)
+- **Desabilitado**: Quando a opção não está disponível para interação
+
+## Com mensagem de erro
+
+```tsx live
+<div>
+  <Checkbox
+    id="error-checkbox"
+    label="Campo obrigatório"
+    error
+    errorMessage="Este campo é obrigatório"
+  />
+  <Checkbox
+    id="error-checked"
+    label="Campo com erro mas selecionado"
+    error
+    errorMessage="Verificação necessária"
+    checked
+  />
+</div>
+```
+
+## Sem rótulo
+
+Para casos especiais onde o rótulo é fornecido externamente:
+
+```tsx live
+<div>
+  <Checkbox id="no-label-1" />
+  <Checkbox id="no-label-2" checked />
+  <Checkbox id="no-label-3" indeterminate />
+</div>
+```
+
+## Exemplos práticos
+
+### Lista de tarefas
+
+```tsx live
+function TodoList() {
+  const [tasks, setTasks] = React.useState([
+    { id: 1, label: 'Revisar documentação', completed: true },
+    { id: 2, label: 'Implementar testes', completed: false },
+    { id: 3, label: 'Deploy para produção', completed: false },
+  ]);
+
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  return (
+    <div>
+      {tasks.map((task) => (
+        <Checkbox
+          key={task.id}
+          id={`task-${task.id}`}
+          label={task.label}
+          checked={task.completed}
+          onChange={() => toggleTask(task.id)}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+### Seleção com "Selecionar todos"
+
+```tsx live
+function SelectAllExample() {
+  const [items, setItems] = React.useState([
+    { id: 1, label: 'Item 1', selected: false },
+    { id: 2, label: 'Item 2', selected: true },
+    { id: 3, label: 'Item 3', selected: false },
+  ]);
+
+  const selectedCount = items.filter((item) => item.selected).length;
+  const allSelected = selectedCount === items.length;
+  const someSelected = selectedCount > 0 && selectedCount < items.length;
+
+  const toggleAll = () => {
+    const newValue = !allSelected;
+    setItems(items.map((item) => ({ ...item, selected: newValue })));
+  };
+
+  const toggleItem = (id) => {
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, selected: !item.selected } : item
+      )
+    );
+  };
+
+  return (
+    <div>
+      <Checkbox
+        id="select-all"
+        label="Selecionar todos"
+        checked={allSelected}
+        indeterminate={someSelected}
+        onChange={toggleAll}
+      />
+      <div>
+        {items.map((item) => (
+          <Checkbox
+            key={item.id}
+            id={`item-${item.id}`}
+            label={item.label}
+            checked={item.selected}
+            onChange={() => toggleItem(item.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+## API
+
+### Props
+
+| Prop            | Tipo                           | Padrão  | Descrição                                              |
+| --------------- | ------------------------------ | ------- | ------------------------------------------------------ |
+| `id`            | `string`                       | -       | ID único do checkbox (obrigatório para acessibilidade) |
+| `label`         | `ReactNode`                    | -       | O conteúdo do rótulo do checkbox                       |
+| `checked`       | `boolean`                      | `false` | Se verdadeiro, o checkbox aparece selecionado          |
+| `disabled`      | `boolean`                      | `false` | Desabilita o checkbox                                  |
+| `indeterminate` | `boolean`                      | `false` | Se verdadeiro, mostra estado indeterminado             |
+| `error`         | `boolean`                      | `false` | Se verdadeiro, exibe o checkbox em estado de erro      |
+| `errorMessage`  | `string`                       | -       | Mensagem de erro a ser exibida                         |
+| `onChange`      | `(event: ChangeEvent) => void` | -       | Função chamada quando o estado muda                    |
+| `className`     | `string`                       | -       | Classes CSS adicionais                                 |
+
+### Eventos
+
+- `onChange`: Disparado quando o estado do checkbox muda
+- `onFocus`: Disparado quando o checkbox recebe foco
+- `onBlur`: Disparado quando o checkbox perde foco
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Associação correta entre label e input
+- ✅ Estados disabled adequadamente sinalizados
+- ✅ Semântica HTML correta
+
+### Considerações importantes
+
+- **ID obrigatório**: Sempre forneça um `id` único para associação com o label
+- **Labels descritivos**: Use textos claros que indiquem o que está sendo selecionado
+- **Estado indeterminado**: Útil para representar seleção parcial em grupos
+- **Validação**: Combine com `error` e `errorMessage` para feedback adequado
+
+### Navegação por teclado
+
+| Tecla   | Função                       |
+| ------- | ---------------------------- |
+| `Tab`   | Move o foco para o checkbox  |
+| `Space` | Alterna o estado do checkbox |
+
+## CSS Classes
+
+O componente Checkbox utiliza as seguintes classes CSS que podem ser utilizadas para customizações:
+
+| Classe                                         | Descrição                                |
+| ---------------------------------------------- | ---------------------------------------- |
+| `.ods-checkbox__root-container`                | Container principal do componente        |
+| `.ods-checkbox__root`                          | Estilos aplicados ao elemento label raiz |
+| `.ods-checkbox`                                | Estilos aplicados ao elemento input      |
+| `.ods-checkbox__checkmark`                     | Estilos aplicados ao span de marcação    |
+| `.ods-checkbox__checkmark--indeterminate`      | Estilos para estado indeterminado        |
+| `.ods-checkbox__checkmark--error`              | Estilos para estado de erro              |
+| `.ods-checkbox__label`                         | Estilos aplicados ao texto do label      |
+| `.ods-checkbox__root-container__error-message` | Estilos para mensagem de erro            |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use IDs únicos para cada checkbox
+- Forneça labels descritivos e claros
+- Use estado `indeterminate` para seleção parcial em grupos
+- Combine `error` com `errorMessage` para validação
+- Implemente validação antes de envios de formulário
+- Use estados `disabled` quando apropriado
+
+### ❌ Não faça
+
+- Não omita o `id` do checkbox (prejudica acessibilidade)
+- Não use checkboxes para opções mutuamente exclusivas (use Radio)
+- Não ignore estados de erro em validações
+- Não use textos de label muito longos
+- Não abuse do estado `indeterminate` fora de contextos apropriados
+
+## Estados visuais
+
+Veja todos os estados do Checkbox em ação:
+
+<StorybookEmbed
+  storyId="components-checkbox--states"
+  height={350}
+  showToolbar={false}
+  title="Checkbox - Todos os Estados"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Checkbox](https://ocean-ds.github.io/ocean-web/?path=/docs/components-checkbox--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os estados
+- ✅ **Playground** para experimentação rápida
+
+## Links relacionados
+
+- [Radio](/components/radio) - Para seleção única entre múltiplas opções
+- [Switch](/components/switch) - Para configurações on/off
+- [FormControl](/components/form-control) - Para agrupamento de campos de formulário
+- [Storybook - Checkbox](https://ocean-ds.github.io/ocean-web/?path=/docs/components-checkbox--docs) - Documentação técnica

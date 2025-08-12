@@ -35,6 +35,8 @@ const sidebars: SidebarsConfig = {
         'components/cardgroup',
         'components/cardlistitem',
         'components/carousel',
+        'components/checkbox',
+        'components/chips',
         'components/doughnutchart',
         'components/input',
         'components/tokeninput',
