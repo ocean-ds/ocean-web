@@ -1,0 +1,309 @@
+---
+title: Typography
+sidebar_label: Typography
+sidebar_position: 20
+---
+
+import { Typography } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Typography
+
+O componente Typography fornece um conjunto consistente de estilos tipográficos para toda a aplicação, garantindo hierarquia visual clara e boa legibilidade.
+
+## Pré-requisitos
+
+Para usar o Typography corretamente, certifique-se de que configurou as fontes do Ocean Design System.
+
+📋 **Veja o guia completo:** [Instalação → Configurar fontes](/guides/installation#1-configurar-fontes)
+
+## Importação
+
+```tsx
+import { Typography } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Typography } from '@useblu/ocean-react/Typography';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TypographyProps, Variant } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<TypographyProps> = (props) => {
+  return <Typography {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Typography no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-typography--usage"
+  height={500}
+  title="Typography - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Typography](https://ocean-ds.github.io/ocean-web/?path=/docs/components-typography--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Typography variant="paragraph">
+  Este é um exemplo de texto usando a variante paragraph.
+</Typography>
+```
+
+## Variantes Tipográficas
+
+### Headings (Títulos)
+
+Os headings seguem uma hierarquia semântica e visual clara:
+
+```tsx live
+<div>
+  <Typography variant="heading1">Heading 1 - Título Principal</Typography>
+  <Typography variant="heading2">Heading 2 - Título Secundário</Typography>
+  <Typography variant="heading3">Heading 3 - Título Terciário</Typography>
+  <Typography variant="heading4">Heading 4 - Título Quaternário</Typography>
+  <Typography variant="heading5">Heading 5 - Título Quinário</Typography>
+</div>
+```
+
+### Subtitles (Subtítulos)
+
+```tsx live
+<div>
+  <Typography variant="subtitle1">Subtitle 1 - Subtítulo Principal</Typography>
+  <Typography variant="subtitle2">Subtitle 2 - Subtítulo Secundário</Typography>
+</div>
+```
+
+### Body Text (Texto de Corpo)
+
+```tsx live
+<div>
+  <Typography variant="paragraph">
+    Paragraph - Texto padrão para corpo de conteúdo e descrições gerais.
+  </Typography>
+  <Typography variant="lead">
+    Lead - Texto destacado para introduções e chamadas importantes.
+  </Typography>
+  <Typography variant="description">
+    Description - Texto para descrições detalhadas e explicações.
+  </Typography>
+</div>
+```
+
+### Captions (Legendas)
+
+```tsx live
+<div>
+  <Typography variant="caption">
+    Caption - Texto pequeno para legendas
+  </Typography>
+  <Typography variant="captionbold">
+    Caption Bold - Texto pequeno em negrito para destaques
+  </Typography>
+  <Typography variant="eyebrow">
+    EYEBROW - Texto pequeno em maiúsculas
+  </Typography>
+</div>
+```
+
+## Modo Inverso
+
+Para uso em fundos escuros, utilize a prop `inverse`:
+
+```tsx live
+<div>
+  <div>
+    <Typography variant="heading2" inverse>
+      Heading 2 Inverso
+    </Typography>
+    <Typography variant="paragraph" inverse>
+      Paragraph inverso para uso em fundos escuros
+    </Typography>
+    <Typography variant="caption" inverse>
+      Caption inverso
+    </Typography>
+  </div>
+</div>
+```
+
+## Hierarquia Tipográfica
+
+Veja todas as variantes disponíveis:
+
+<StorybookEmbed
+  storyId="components-typography--all-variants"
+  height={600}
+  showToolbar={false}
+  title="Typography - Todas as Variantes"
+/>
+
+## Guia de Uso das Variantes
+
+### ✅ Quando usar cada variante
+
+- **heading1**: Títulos principais de páginas (máximo 1 por página)
+- **heading2**: Títulos de seções principais
+- **heading3**: Títulos de subseções
+- **heading4**: Títulos de componentes ou cards
+- **heading5**: Títulos menores dentro de componentes
+- **subtitle1**: Subtítulos importantes que complementam headings
+- **subtitle2**: Subtítulos secundários
+- **paragraph**: Texto padrão para conteúdo geral
+- **lead**: Texto de destaque, introduções importantes
+- **description**: Descrições detalhadas, textos explicativos
+- **caption**: Legendas, metadados, informações auxiliares
+- **captionbold**: Legendas que precisam de destaque
+- **eyebrow**: Labels, tags, categorias em maiúsculas
+
+### 📏 Hierarquia Visual
+
+1. **heading1** → Maior peso visual
+2. **heading2** → Seções principais
+3. **heading3** → Subseções
+4. **subtitle1** → Complementos importantes
+5. **lead** → Texto destacado
+6. **paragraph** → Texto padrão
+7. **description** → Texto explicativo
+8. **subtitle2** → Subtítulos menores
+9. **captionbold** → Legendas em destaque
+10. **caption** → Legendas padrão
+11. **eyebrow** → Labels e tags
+
+## API
+
+### Props
+
+| Prop        | Tipo                                                                                                                                                                                    | Padrão  | Descrição                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------- |
+| `variant`   | `'heading1' \| 'heading2' \| 'heading3' \| 'heading4' \| 'heading5' \| 'subtitle1' \| 'subtitle2' \| 'paragraph' \| 'lead' \| 'description' \| 'caption' \| 'captionbold' \| 'eyebrow'` | -       | Define o estilo tipográfico e elemento HTML |
+| `inverse`   | `boolean`                                                                                                                                                                               | `false` | Aplica estilo inverso para fundos escuros   |
+| `children`  | `ReactNode`                                                                                                                                                                             | -       | Conteúdo de texto do componente             |
+| `className` | `string`                                                                                                                                                                                | -       | Classes CSS adicionais                      |
+
+### Mapeamento de Elementos HTML
+
+O componente automatically mapeia variantes para elementos HTML semânticamente corretos:
+
+- **heading1-5** → `<h1>` a `<h5>`
+- **subtitle1-2** → `<h6>`
+- **paragraph, lead, description, caption, captionbold, eyebrow** → `<p>`
+
+## Acessibilidade
+
+- ✅ **Hierarquia semântica**: Elementos HTML corretos para cada variante
+- ✅ **Contraste adequado**: Cores que atendem diretrizes WCAG
+- ✅ **Legibilidade**: Tamanhos e espaçamentos otimizados
+- ✅ **Screen readers**: Estrutura semântica clara
+- ✅ **Modo inverso**: Contraste adequado em fundos escuros
+
+### Boas práticas de acessibilidade
+
+- Use headings em ordem hierárquica (h1 → h2 → h3)
+- Não pule níveis de heading
+- Use apenas um h1 por página
+- Prefira elementos semânticos corretos
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Mantenha hierarquia visual consistente
+- Use `heading1` apenas para título principal da página
+- Aplique `inverse` em fundos escuros
+- Escolha variantes baseado no contexto e importância
+- Use `lead` para introduções importantes
+- Use `eyebrow` para categorização
+- Configure as fontes seguindo o [guia de instalação](/guides/installation)
+
+### ❌ Não faça
+
+- Não use múltiplos `heading1` na mesma página
+- Não pule níveis de heading (h1 → h3)
+- Não use headings apenas por estilo visual
+- Não ignore contraste em fundos coloridos
+- Não use variantes inadequadas para o contexto
+
+## CSS Classes
+
+O componente gera as seguintes classes CSS:
+
+```css
+.ods-typography                   /* Classe base */
+.ods-typography__heading1         /* Variante heading1 */
+.ods-typography__heading2         /* Variante heading2 */
+.ods-typography__heading3         /* Variante heading3 */
+.ods-typography__heading4         /* Variante heading4 */
+.ods-typography__heading5         /* Variante heading5 */
+.ods-typography__subtitle1        /* Variante subtitle1 */
+.ods-typography__subtitle2        /* Variante subtitle2 */
+.ods-typography__paragraph        /* Variante paragraph */
+.ods-typography__lead             /* Variante lead */
+.ods-typography__description      /* Variante description */
+.ods-typography__caption          /* Variante caption */
+.ods-typography__captionbold      /* Variante captionbold */
+.ods-typography__eyebrow          /* Variante eyebrow */
+.ods-typography--inverse          /* Modificador inverso */
+```
+
+## Exemplos Práticos
+
+### Estrutura de Página
+
+```tsx
+<div>
+  <Typography variant="heading1">Título da Página</Typography>
+  <Typography variant="lead">
+    Introdução importante da página que destaca o conteúdo principal.
+  </Typography>
+
+  <Typography variant="heading2">Seção Principal</Typography>
+  <Typography variant="paragraph">
+    Conteúdo detalhado da seção com informações importantes.
+  </Typography>
+
+  <Typography variant="heading3">Subseção</Typography>
+  <Typography variant="description">
+    Descrição detalhada da subseção com explicações técnicas.
+  </Typography>
+</div>
+```
+
+### Card com Hierarquia
+
+```tsx
+<div>
+  <Typography variant="eyebrow">CATEGORIA</Typography>
+  <Typography variant="heading4">Título do Card</Typography>
+  <Typography variant="subtitle2">Subtítulo complementar</Typography>
+  <Typography variant="paragraph">
+    Conteúdo principal do card com informações relevantes.
+  </Typography>
+  <Typography variant="caption">Informação adicional</Typography>
+</div>
+```
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações e navegação
+- [Link](/components/link) - Para links e navegação textual
+- [Storybook - Typography](https://ocean-ds.github.io/ocean-web/?path=/docs/components-typography--docs) - Documentação técnica

@@ -14,7 +14,18 @@ Comece a usar o Ocean Design System em 5 minutos.
 npm install @useblu/ocean-react
 ```
 
-## 2. Importar estilos
+## 2. Configurar fontes
+
+Adicione as fontes do Ocean no `<head>` do seu HTML:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn-libscore.blu.com.br/assets/fonts/fonts.css"
+/>
+```
+
+## 3. Importar estilos
 
 No seu arquivo principal CSS (ex: `src/index.css`):
 
@@ -22,7 +33,7 @@ No seu arquivo principal CSS (ex: `src/index.css`):
 @import '@useblu/ocean-react/dist/ocean.css';
 ```
 
-## 3. Usar componentes
+## 4. Usar componentes
 
 ```tsx
 import React from 'react';
