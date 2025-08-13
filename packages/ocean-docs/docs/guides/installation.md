@@ -82,7 +82,94 @@ Para usar apenas os estilos CSS do Ocean (sem componentes React):
 
 ## Configuração
 
-### Importar estilos
+### 1. Configurar fontes
+
+**⚠️ Importante:** Configure as fontes antes de importar os estilos CSS.
+
+Adicione a CDN das fontes no `<head>` do seu HTML:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn-libscore.blu.com.br/assets/fonts/fonts.css"
+/>
+```
+
+#### Diferentes frameworks:
+
+**Create React App / Vite** - No `public/index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minha Aplicação</title>
+
+    <!-- Fontes do Ocean Design System -->
+    <link
+      rel="stylesheet"
+      href="https://cdn-libscore.blu.com.br/assets/fonts/fonts.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+**Next.js** - No `pages/_document.js` ou `app/layout.tsx`:
+
+```tsx
+// pages/_document.js (Pages Router)
+import { Html, Head, Main, NextScript } from 'next/document';
+
+export default function Document() {
+  return (
+    <Html>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdn-libscore.blu.com.br/assets/fonts/fonts.css"
+        />
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  );
+}
+
+// app/layout.tsx (App Router)
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="pt-BR">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn-libscore.blu.com.br/assets/fonts/fonts.css"
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+**Alternativa via CSS** - No arquivo CSS principal:
+
+```css
+/* Primeira linha do seu arquivo CSS principal */
+@import url('https://cdn-libscore.blu.com.br/assets/fonts/fonts.css');
+```
+
+### 2. Importar estilos
 
 Importe os estilos CSS no seu arquivo principal (ex: `src/index.css`):
 
@@ -142,6 +229,24 @@ export default TestComponent;
 ```
 
 ## Problemas comuns
+
+### Fontes não aparecem / Typography com fonte errada
+
+Verifique se você configurou a CDN das fontes:
+
+```html
+<!-- Deve estar no <head> do HTML -->
+<link
+  rel="stylesheet"
+  href="https://cdn-libscore.blu.com.br/assets/fonts/fonts.css"
+/>
+```
+
+Ou se importou via CSS (deve ser a primeira linha):
+
+```css
+@import url('https://cdn-libscore.blu.com.br/assets/fonts/fonts.css');
+```
 
 ### Estilos não aparecem
 
