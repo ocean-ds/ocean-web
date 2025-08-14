@@ -1,0 +1,286 @@
+---
+title: CrossSellCard
+sidebar_label: CrossSellCard
+sidebar_position: 8
+---
+
+import { CrossSellCard } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# CrossSellCard
+
+O componente CrossSellCard é usado para promover produtos, serviços ou ações relacionadas, incentivando o usuário a explorar ofertas adicionais ou realizar conversões.
+
+## Importação
+
+```tsx
+import { CrossSellCard } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { CrossSellCard } from '@useblu/ocean-react/CrossSellCard';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { CrossSellCardProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyCard: React.FC<CrossSellCardProps> = (props) => {
+  return <CrossSellCard {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente CrossSellCard no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-crosssellcard--usage"
+  height={500}
+  title="CrossSellCard - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do CrossSellCard](https://ocean-ds.github.io/ocean-web/?path=/docs/components-crosssellcard--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<CrossSellCard
+  title="Oferta Especial"
+  description="Aproveite nossa promoção exclusiva com até 50% de desconto."
+  ctaText="Ver Oferta"
+  ctaAction={() => alert('Oferta clicada!')}
+/>
+```
+
+## Variações
+
+### Com Imagem
+
+```tsx live
+<CrossSellCard
+  title="Produtos Premium"
+  description="Descubra nossa linha premium com qualidade superior e design exclusivo."
+  imageSrc="/img/logo.svg"
+  ctaText="Explorar"
+  ctaAction={() => alert('Explorar clicado!')}
+/>
+```
+
+### Sem Imagem
+
+```tsx live
+<CrossSellCard
+  title="Cadastre-se Agora"
+  description="Crie sua conta e tenha acesso a benefícios exclusivos e ofertas personalizadas."
+  ctaText="Criar Conta"
+  ctaAction={() => alert('Criar conta clicada!')}
+/>
+```
+
+### Com Ícone Customizado
+
+```tsx live
+<CrossSellCard
+  title="Lista de Favoritos"
+  description="Salve seus produtos preferidos na sua lista de desejos."
+  ctaText="Adicionar aos Favoritos"
+  customIcon={<Heart />}
+  ctaAction={() => alert('Favoritos clicado!')}
+/>
+```
+
+## Exemplos Práticos
+
+### Cards de Ofertas Financeiras
+
+```tsx
+import { CrossSellCard } from '@useblu/ocean-react';
+import { Star, CreditCard, TrendingUp } from '@useblu/ocean-icons-react';
+
+function FinancialOffers() {
+  return (
+    <div>
+      <CrossSellCard
+        title="Cashback Especial"
+        description="Ganhe 10% de cashback em todas as suas compras este mês."
+        ctaText="Ativar Cashback"
+        customIcon={<Star />}
+        ctaAction={() => console.log('Activate cashback')}
+      />
+
+      <CrossSellCard
+        title="Cartão de Crédito"
+        description="Solicite seu cartão sem anuidade e com limite pré-aprovado."
+        ctaText="Solicitar Cartão"
+        customIcon={<CreditCard />}
+        ctaAction={() => console.log('Request card')}
+      />
+
+      <CrossSellCard
+        title="Investimentos"
+        description="Comece a investir com apenas R$ 10 e faça seu dinheiro render."
+        ctaText="Começar a Investir"
+        customIcon={<TrendingUp />}
+        ctaAction={() => console.log('Start investing')}
+      />
+    </div>
+  );
+}
+```
+
+### Cards de E-commerce
+
+```tsx
+import { CrossSellCard } from '@useblu/ocean-react';
+import { ShoppingCart, Gift, Truck } from '@useblu/ocean-icons-react';
+
+function EcommerceCards() {
+  return (
+    <div>
+      <CrossSellCard
+        title="Frete Grátis"
+        description="Ganhe frete grátis em compras acima de R$ 99."
+        imageSrc="/images/free-shipping.jpg"
+        ctaText="Aproveitar Oferta"
+        ctaAction={() => console.log('Free shipping')}
+      />
+
+      <CrossSellCard
+        title="Programa de Fidelidade"
+        description="Acumule pontos a cada compra e troque por descontos."
+        ctaText="Participar"
+        customIcon={<Gift />}
+        ctaAction={() => console.log('Join loyalty')}
+      />
+    </div>
+  );
+}
+```
+
+## Variações Visuais
+
+Veja todas as variações do CrossSellCard:
+
+<StorybookEmbed
+  storyId="components-crosssellcard--examples"
+  height={600}
+  showToolbar={false}
+  title="CrossSellCard - Exemplos Práticos"
+/>
+
+## API
+
+### Props
+
+| Prop          | Tipo          | Padrão | Descrição                                       |
+| ------------- | ------------- | ------ | ----------------------------------------------- |
+| `title`       | `string`      | -      | Título principal do card (obrigatório)          |
+| `description` | `string`      | -      | Descrição detalhada do card (obrigatório)       |
+| `ctaText`     | `string`      | -      | Texto do botão call-to-action (obrigatório)     |
+| `ctaAction`   | `() => void`  | -      | Função executada ao clicar no CTA (obrigatório) |
+| `imageSrc`    | `string`      | -      | URL da imagem a ser exibida (opcional)          |
+| `customIcon`  | `JSX.Element` | -      | Ícone customizado para o botão CTA (opcional)   |
+| `className`   | `string`      | -      | Classes CSS adicionais                          |
+
+### Eventos
+
+- `ctaAction`: Disparado quando o botão call-to-action é clicado
+
+## Acessibilidade
+
+- ✅ **Navegação por teclado**: Botão CTA acessível via Tab
+- ✅ **Screen readers**: Estrutura semântica clara
+- ✅ **Contraste adequado**: Cores que atendem diretrizes WCAG
+- ✅ **Estados de foco**: Indicação visual clara do foco
+- ✅ **Botão semântico**: Uso correto de elemento `<button>`
+
+### Navegação por teclado
+
+| Tecla             | Função                       |
+| ----------------- | ---------------------------- |
+| `Tab`             | Move o foco para o botão CTA |
+| `Space` / `Enter` | Ativa o botão CTA            |
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use títulos claros e concisos que descrevam a oferta
+- Escreva descrições que expliquem o benefício para o usuário
+- Use CTAs com verbos de ação ("Ativar", "Solicitar", "Começar")
+- Escolha imagens relevantes que complementem o conteúdo
+- Use ícones customizados quando apropriado
+- Configure as fontes seguindo o [guia de instalação](/guides/installation)
+
+### ❌ Não faça
+
+- Não use títulos genéricos ou vagos
+- Não sobrecarregue a descrição com muito texto
+- Não use CTAs passivos ("Mais informações", "Clique aqui")
+- Não use imagens irrelevantes ou de baixa qualidade
+- Não abuse de ícones customizados desnecessários
+- Não implemente ações críticas sem confirmação
+
+## Quando Usar
+
+### ✅ Ideal para:
+
+- **Cross-selling**: Promover produtos/serviços relacionados
+- **Up-selling**: Oferecer upgrades ou versões premium
+- **Onboarding**: Guiar usuários para próximos passos
+- **Promoções**: Destacar ofertas especiais ou limitadas
+- **Conversão**: Incentivar ações específicas
+
+### ❌ Evite para:
+
+- Informações críticas que requerem atenção imediata
+- Navegação principal do sistema
+- Conteúdo que não envolve ação do usuário
+- Múltiplas ofertas conflitantes na mesma tela
+
+## CSS Classes
+
+O componente gera as seguintes classes CSS:
+
+| Classe                              | Descrição                             |
+| ----------------------------------- | ------------------------------------- |
+| `.ods-cross-sell-card`              | Classe base aplicada ao elemento raiz |
+| `.ods-cross-sell-card__content`     | Container do conteúdo principal       |
+| `.ods-cross-sell-card__information` | Container de título e descrição       |
+| `.ods-cross-sell-card__title`       | Elemento do título do card            |
+| `.ods-cross-sell-card__description` | Elemento da descrição do card         |
+| `.ods-cross-sell-card__image`       | Elemento da imagem do card            |
+| `.ods-cross-sell-card__cta`         | Botão call-to-action                  |
+| `.ods-cross-sell-card__cta-icon`    | Ícone do botão CTA                    |
+
+## Ícones Customizados
+
+Veja exemplos com diferentes ícones:
+
+<StorybookEmbed
+  storyId="components-crosssellcard--custom-icons"
+  height={400}
+  showToolbar={false}
+  title="CrossSellCard - Ícones Customizados"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações principais
+- [CardGroup](/components/cardgroup) - Para agrupamento de cards
+- [Badge](/components/badge) - Para destacar informações
+- [Storybook - CrossSellCard](https://ocean-ds.github.io/ocean-web/?path=/docs/components-crosssellcard--docs) - Documentação técnica

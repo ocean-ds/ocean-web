@@ -1,0 +1,308 @@
+---
+title: Divider
+sidebar_label: Divider
+sidebar_position: 9
+---
+
+import { Divider } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Divider
+
+O componente Divider cria uma linha horizontal de separação visual entre seções de conteúdo, melhorando a organização e legibilidade da interface.
+
+## Importação
+
+```tsx
+import { Divider } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Divider } from '@useblu/ocean-react/Divider';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ComponentPropsWithoutRef } from 'react';
+
+// O Divider herda todas as props do elemento HTML hr
+type DividerProps = ComponentPropsWithoutRef<'hr'>;
+```
+
+## Playground Interativo
+
+Explore o componente Divider no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-divider--usage"
+  height={400}
+  title="Divider - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Divider](https://ocean-ds.github.io/ocean-web/?path=/docs/components-divider--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variações e casos de uso
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<div>
+  <p>Conteúdo antes do divisor</p>
+  <Divider />
+  <p>Conteúdo depois do divisor</p>
+</div>
+```
+
+## Variações
+
+### Com largura customizada
+
+```tsx live
+<div>
+  <p>Divisor com 200px de largura:</p>
+  <Divider />
+</div>
+```
+
+### Com espaçamento customizado
+
+```tsx live
+<div>
+  <p>Conteúdo antes</p>
+  <Divider />
+  <p>Conteúdo depois com mais espaçamento</p>
+</div>
+```
+
+### Largura total
+
+```tsx live
+<div>
+  <p>Conteúdo ocupando toda a largura disponível</p>
+  <Divider />
+  <p>Divisor ocupa toda a largura do container</p>
+</div>
+```
+
+## Diferentes Larguras
+
+Veja exemplos com diferentes larguras:
+
+<StorybookEmbed
+  storyId="components-divider--different-widths"
+  height={350}
+  showToolbar={false}
+  title="Divider - Diferentes Larguras"
+/>
+
+## Uso em Conteúdo
+
+Exemplo de como usar o Divider para separar seções de conteúdo:
+
+<StorybookEmbed
+  storyId="components-divider--in-content"
+  height={400}
+  showToolbar={false}
+  title="Divider - Separando Conteúdo"
+/>
+
+## Casos de Uso Práticos
+
+### Separação de Seções
+
+```tsx
+function ArticleSection() {
+  return (
+    <article>
+      <section>
+        <h2>Introdução</h2>
+        <p>Conteúdo da introdução...</p>
+      </section>
+
+      <Divider />
+
+      <section>
+        <h2>Desenvolvimento</h2>
+        <p>Conteúdo do desenvolvimento...</p>
+      </section>
+
+      <Divider />
+
+      <section>
+        <h2>Conclusão</h2>
+        <p>Conteúdo da conclusão...</p>
+      </section>
+    </article>
+  );
+}
+```
+
+### Listas com Separadores
+
+```tsx
+function MenuList() {
+  const menuItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+
+  return (
+    <div>
+      {menuItems.map((item, index) => (
+        <div key={item}>
+          <div>{item}</div>
+          {index < menuItems.length - 1 && <Divider />}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+### Cards e Formulários
+
+```tsx
+function ProfileCard() {
+  return (
+    <div>
+      <h3>Informações Pessoais</h3>
+      <p>Nome: João Silva</p>
+      <p>Email: joao@email.com</p>
+
+      <Divider />
+
+      <h3>Informações de Contato</h3>
+      <p>Telefone: (11) 99999-9999</p>
+      <p>Endereço: São Paulo, SP</p>
+
+      <Divider />
+
+      <h3>Preferências</h3>
+      <p>Notificações: Ativadas</p>
+      <p>Tema: Claro</p>
+    </div>
+  );
+}
+```
+
+## Uso em Listas
+
+Veja como usar o Divider em listas:
+
+<StorybookEmbed
+  storyId="components-divider--in-lists"
+  height={300}
+  showToolbar={false}
+  title="Divider - Em Listas"
+/>
+
+## API
+
+### Props
+
+O Divider herda todas as props do elemento HTML `<hr>`:
+
+| Prop      | Tipo                             | Padrão | Descrição                            |
+| --------- | -------------------------------- | ------ | ------------------------------------ |
+| `...rest` | `ComponentPropsWithoutRef<'hr'>` | -      | Todas as props padrão do elemento hr |
+
+### Customização via CSS
+
+O Divider pode ser customizado através de CSS:
+
+```css
+/* Customizar cor */
+.ods-divider {
+  border-color: #your-color;
+}
+
+/* Customizar espessura */
+.ods-divider {
+  border-width: 2px;
+}
+
+/* Customizar estilo */
+.ods-divider {
+  border-style: dashed;
+}
+```
+
+## Acessibilidade
+
+- ✅ **Elemento semântico**: Usa o elemento `<hr>` nativo
+- ✅ **Screen readers**: Interpretado corretamente como separador
+- ✅ **Navegação**: Não interfere na navegação por teclado
+- ✅ **Contraste**: Visível em diferentes temas
+
+### Considerações de acessibilidade
+
+- O elemento `<hr>` é semanticamente correto para separação de conteúdo
+- Screen readers interpretam como uma pausa ou separação
+- Não é focalizável por teclado, o que é o comportamento esperado
+- Mantém separação visual adequada para usuários com baixa visão
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use para separar seções logicamente distintas
+- Aplique margens consistentes para espaçamento adequado
+- Use larguras apropriadas ao contexto (100% para separação total)
+- Combine com espaçamento vertical para melhor hierarquia visual
+
+### ❌ Não faça
+
+- Não use como elemento decorativo desnecessário
+- Não aplique cores muito chamativas que quebrem a harmonia
+- Não use múltiplos divisores consecutivos sem conteúdo entre eles
+- Não use como substituto para organização de layout adequada
+
+## Quando Usar
+
+### ✅ Ideal para:
+
+- **Separação de seções** em artigos ou páginas
+- **Organização de listas** com itens distintos
+- **Divisão de conteúdo** em cards ou modais
+- **Hierarquia visual** em formulários longos
+- **Separação temática** em interfaces complexas
+
+### ❌ Evite para:
+
+- Separação de elementos que devem ser visualmente agrupados
+- Divisão desnecessária de conteúdo relacionado
+- Uso puramente decorativo sem função semântica
+- Substituição de espaçamento adequado em layouts
+
+## CSS Classes
+
+O componente gera as seguintes classes CSS:
+
+| Classe         | Descrição                           |
+| -------------- | ----------------------------------- |
+| `.ods-divider` | Classe base aplicada ao elemento hr |
+
+## Exemplos Responsivos
+
+Veja como o Divider se comporta em diferentes contextos:
+
+<StorybookEmbed
+  storyId="components-divider--responsive-example"
+  height={350}
+  showToolbar={false}
+  title="Divider - Exemplo Responsivo"
+/>
+
+## Links relacionados
+
+- [Typography](/components/typography) - Para hierarquia de textos
+- [List](/components/list) - Para organização de listas
+- [CardGroup](/components/cardgroup) - Para agrupamento de conteúdo
+- [Storybook - Divider](https://ocean-ds.github.io/ocean-web/?path=/docs/components-divider--docs) - Documentação técnica

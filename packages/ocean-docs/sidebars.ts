@@ -37,6 +37,8 @@ const sidebars: SidebarsConfig = {
         'components/carousel',
         'components/checkbox',
         'components/chips',
+        'components/crosssellcard',
+        'components/divider',
         'components/doughnutchart',
         'components/input',
         'components/tokeninput',
