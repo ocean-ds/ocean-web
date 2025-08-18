@@ -43,6 +43,7 @@ const sidebars: SidebarsConfig = {
         'components/datepicker',
         'components/dotpagination',
         'components/doughnutchart',
+        'components/drawer',
         'components/input',
         'components/tokeninput',
         'components/textarea',

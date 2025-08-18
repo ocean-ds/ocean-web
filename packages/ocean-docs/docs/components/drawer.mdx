@@ -1,0 +1,325 @@
+---
+title: Drawer
+sidebar_label: Drawer
+sidebar_position: 9
+---
+
+import { Drawer } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Drawer
+
+O componente Drawer é um painel lateral que desliza para dentro da tela, ideal para navegação secundária, filtros, formulários ou qualquer conteúdo que precisa ser acessível sem sair do contexto principal. Oferece flexibilidade de posicionamento e tamanhos para diferentes casos de uso.
+
+## Importação
+
+```tsx
+import { Drawer } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Drawer } from '@useblu/ocean-react/Drawer';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { DrawerProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyDrawer: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+  const [open, setOpen] = React.useState(isOpen);
+
+  return (
+    <Drawer
+      open={open}
+      onDrawerClose={() => setOpen(false)}
+      overlayClose={() => setOpen(false)}
+      align="right"
+      size="small"
+    >
+      <div>Conteúdo do drawer</div>
+    </Drawer>
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente Drawer no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-drawer--usage"
+  height={500}
+  title="Drawer - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Drawer](https://ocean-ds.github.io/ocean-web/?path=/docs/components-drawer--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+function BasicDrawer() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Abrir Drawer</button>
+      <Drawer
+        open={open}
+        onDrawerClose={() => setOpen(false)}
+        overlayClose={() => setOpen(false)}
+      >
+        <div>
+          <h3>Título do Drawer</h3>
+          <p>Conteúdo do drawer aqui.</p>
+        </div>
+      </Drawer>
+    </>
+  );
+}
+```
+
+## Drawer anexado
+
+Exemplo de drawer anexado a um elemento específico da página:
+
+<StorybookEmbed
+  storyId="components-drawer--attached"
+  height={500}
+  showToolbar={false}
+  title="Drawer - Anexado"
+/>
+
+## API
+
+### Props
+
+| Prop               | Tipo                                           | Padrão         | Descrição                                   |
+| ------------------ | ---------------------------------------------- | -------------- | ------------------------------------------- |
+| `children`         | `ReactNode`                                    | -              | Conteúdo a ser exibido dentro do drawer     |
+| `open`             | `boolean`                                      | -              | Controla se o drawer está aberto            |
+| `onDrawerClose`    | `(event: MouseEvent \| KeyboardEvent) => void` | -              | Função chamada quando o drawer é fechado    |
+| `overlayClose`     | `(event?: MouseEvent) => void`                 | -              | Função chamada quando clica no overlay      |
+| `headerIcon`       | `ReactNode`                                    | `<XOutline />` | Ícone customizado para o cabeçalho          |
+| `align`            | `'left' \| 'right'`                            | `'right'`      | Posição do drawer na tela                   |
+| `iconAlignment`    | `'left' \| 'right'`                            | `'right'`      | Alinhamento do ícone no cabeçalho           |
+| `anchorEl`         | `RefObject<HTMLDivElement> \| null`            | -              | Elemento de referência para posicionamento  |
+| `onMouseOutDrawer` | `(event?: MouseEvent) => void`                 | -              | Função chamada quando o mouse sai do drawer |
+| `size`             | `'small' \| 'large'`                           | `'small'`      | Tamanho do drawer                           |
+
+### Eventos
+
+- `onDrawerClose`: Disparado quando o usuário clica no ícone de fechar
+- `overlayClose`: Disparado quando o usuário clica no overlay de fundo
+- `onMouseOutDrawer`: Disparado quando o mouse sai da área do drawer
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                         | Descrição                                   |
+| ------------------------------ | ------------------------------------------- |
+| `.ods-overlay`                 | Overlay de fundo do drawer                  |
+| `.ods-overlay--open`           | Modificador para o overlay quando aberto    |
+| `.ods-drawer`                  | Container principal do drawer               |
+| `.ods-drawer--open`            | Modificador para o drawer quando aberto     |
+| `.ods-drawer--left`            | Modificador para drawer alinhado à esquerda |
+| `.ods-drawer--right`           | Modificador para drawer alinhado à direita  |
+| `.ods-drawer--small`           | Modificador para drawer de tamanho pequeno  |
+| `.ods-drawer--large`           | Modificador para drawer de tamanho grande   |
+| `.ods-drawer__content--header` | Cabeçalho do drawer                         |
+
+#### Exemplo de customização
+
+```css
+/* Customizar overlay */
+.ods-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Customizar drawer */
+.ods-drawer {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px 0 0 8px; /* Para drawer à direita */
+}
+
+/* Customizar tamanhos */
+.ods-drawer--small {
+  width: 320px;
+}
+
+.ods-drawer--large {
+  width: 480px;
+}
+
+/* Animações customizadas */
+.ods-drawer--open {
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Foco automático no drawer quando aberto
+- ✅ Escape para fechar o drawer
+- ✅ Overlay clicável para fechar
+- ✅ Atributos ARIA apropriados
+- ✅ Gestão de foco para screen readers
+
+### Navegação por teclado
+
+| Tecla    | Função                 |
+| -------- | ---------------------- |
+| `Escape` | Fecha o drawer         |
+| `Tab`    | Navega pelos elementos |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para navegação secundária e filtros
+- Implemente fechamento via Escape e overlay
+- Mantenha o conteúdo organizado e focado
+- Use tamanho apropriado para o conteúdo
+- Forneça feedback visual claro de abertura/fechamento
+
+### ❌ Não faça
+
+- Não use para conteúdo crítico que deve estar sempre visível
+- Não omita formas de fechar o drawer
+- Não coloque múltiplos drawers abertos simultaneamente
+- Não use drawer muito largo que cubra todo o conteúdo principal
+- Não esqueça de gerenciar o foco adequadamente
+
+## Casos de uso comuns
+
+### Navegação secundária
+
+```tsx
+function NavigationDrawer() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>☰ Menu</button>
+      <Drawer
+        open={open}
+        onDrawerClose={() => setOpen(false)}
+        overlayClose={() => setOpen(false)}
+        align="left"
+        size="small"
+      >
+        <nav>
+          <ul>
+            <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+              <a href="/profile">Perfil</a>
+            </li>
+            <li>
+              <a href="/settings">Configurações</a>
+            </li>
+          </ul>
+        </nav>
+      </Drawer>
+    </>
+  );
+}
+```
+
+### Formulário lateral
+
+```tsx
+function FormDrawer() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Novo Item</button>
+      <Drawer
+        open={open}
+        onDrawerClose={() => setOpen(false)}
+        overlayClose={() => setOpen(false)}
+        align="right"
+        size="large"
+      >
+        <div>
+          <h2>Criar Novo Item</h2>
+          <form>
+            <input type="text" placeholder="Nome" />
+            <textarea placeholder="Descrição"></textarea>
+            <div>
+              <button type="button" onClick={() => setOpen(false)}>
+                Cancelar
+              </button>
+              <button type="submit">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </Drawer>
+    </>
+  );
+}
+```
+
+### Painel de filtros
+
+```tsx
+function FilterDrawer() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>🔍 Filtros</button>
+      <Drawer
+        open={open}
+        onDrawerClose={() => setOpen(false)}
+        overlayClose={() => setOpen(false)}
+        align="right"
+        size="small"
+      >
+        <div>
+          <h3>Filtros</h3>
+          <div>
+            <label>Categoria</label>
+            <select>
+              <option>Todas</option>
+              <option>Eletrônicos</option>
+              <option>Roupas</option>
+            </select>
+          </div>
+          <div>
+            <label>Preço</label>
+            <input type="range" min="0" max="1000" />
+          </div>
+          <button onClick={() => setOpen(false)}>Aplicar Filtros</button>
+        </div>
+      </Drawer>
+    </>
+  );
+}
+```
+
+## Links relacionados
+
+- [Modal](/components/modal) - Para conteúdo modal que bloqueia a interação
+- [Accordion](/components/accordion) - Para conteúdo expansível inline
+- [Tabs](/components/tabs) - Para navegação entre seções relacionadas
+- [Storybook - Drawer](https://ocean-ds.github.io/ocean-web/?path=/docs/components-drawer--docs) - Documentação técnica
