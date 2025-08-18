@@ -1,0 +1,426 @@
+---
+title: DatePicker
+sidebar_label: DatePicker
+sidebar_position: 11
+---
+
+import { DatePicker } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# DatePicker
+
+O DatePicker é um componente para seleção de datas únicas, ideal para campos como data de nascimento, agendamentos, prazos e vencimentos. Oferece uma interface intuitiva com calendário e suporte a internacionalização.
+
+## Importação
+
+```tsx
+import { DatePicker } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { DatePicker } from '@useblu/ocean-react/DatePicker';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { DatePickerSingleProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyDatePicker: React.FC<DatePickerSingleProps> = (props) => {
+  return <DatePicker {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente DatePicker no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-datepicker--usage"
+  height={500}
+  title="DatePicker - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do DatePicker](https://ocean-ds.github.io/ocean-web/?path=/docs/components-datepicker--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variações e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+import { useState } from 'react';
+
+function BasicDatePicker() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker label="Selecione uma data" value={date} onSelect={setDate} />
+  );
+}
+```
+
+## Estados do Componente
+
+### Normal
+
+```tsx live
+import { useState } from 'react';
+
+function NormalDatePicker() {
+  const [date, setDate] = useState('');
+
+  return <DatePicker label="Data normal" value={date} onSelect={setDate} />;
+}
+```
+
+### Com erro
+
+```tsx live
+import { useState } from 'react';
+
+function ErrorDatePicker() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Data obrigatória"
+      value={date}
+      onSelect={setDate}
+      error={true}
+      helperText="Este campo é obrigatório"
+    />
+  );
+}
+```
+
+### Desabilitado
+
+```tsx live
+<DatePicker
+  label="Data desabilitada"
+  value=""
+  onSelect={() => {}}
+  disabled={true}
+/>
+```
+
+## Estados Visuais
+
+Veja todos os estados do DatePicker:
+
+<StorybookEmbed
+  storyId="components-datepicker--states"
+  height={800}
+  showToolbar={false}
+  title="DatePicker - Estados"
+/>
+
+## Funcionalidades Especiais
+
+### Campo editável
+
+```tsx live
+import { useState } from 'react';
+
+function EditableDatePicker() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Data editável"
+      value={date}
+      onSelect={setDate}
+      editable
+      helperText="Você pode digitar a data ou usar o calendário"
+    />
+  );
+}
+```
+
+### Limitando a partir de hoje
+
+```tsx live
+import { useState } from 'react';
+
+function FutureDatePicker() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Data do agendamento"
+      value={date}
+      onSelect={setDate}
+      startsToday
+      helperText="Selecione uma data a partir de hoje"
+    />
+  );
+}
+```
+
+## Restrições e Validações
+
+Veja exemplos com diferentes restrições:
+
+<StorybookEmbed
+  storyId="components-datepicker--with-restrictions"
+  height={500}
+  showToolbar={false}
+  title="DatePicker - Com Restrições"
+/>
+
+## Internacionalização
+
+O DatePicker suporta diferentes idiomas através do date-fns:
+
+<StorybookEmbed
+  storyId="components-datepicker--localization"
+  height={400}
+  showToolbar={false}
+  title="DatePicker - Localização"
+/>
+
+### Configuração de idiomas
+
+```tsx
+import { ptBR, enUS } from 'date-fns/locale';
+
+// Português (padrão)
+<DatePicker
+  label="Data"
+  value={date}
+  onSelect={setDate}
+  locale={ptBR}
+/>
+
+// Inglês
+<DatePicker
+  label="Date"
+  value={date}
+  onSelect={setDate}
+  locale={enUS}
+/>
+```
+
+## Casos de Uso Práticos
+
+### Informações pessoais
+
+```tsx
+import { useState } from 'react';
+
+function PersonalInfoForm() {
+  const [birthDate, setBirthDate] = useState('');
+  const [startDate, setStartDate] = useState('');
+
+  return (
+    <div>
+      <DatePicker
+        label="Data de nascimento"
+        value={birthDate}
+        onSelect={setBirthDate}
+      />
+
+      <DatePicker
+        label="Data de admissão"
+        value={startDate}
+        onSelect={setStartDate}
+        helperText="Data de início na empresa"
+      />
+    </div>
+  );
+}
+```
+
+### Agendamentos
+
+```tsx
+import { useState } from 'react';
+
+function AppointmentForm() {
+  const [appointmentDate, setAppointmentDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Data da consulta"
+      value={appointmentDate}
+      onSelect={setAppointmentDate}
+      startsToday
+      helperText="Selecione uma data disponível"
+    />
+  );
+}
+```
+
+### Prazos e vencimentos
+
+```tsx
+import { useState } from 'react';
+
+function DeadlineForm() {
+  const [deadline, setDeadline] = useState('');
+  const [deliveryDate, setDeliveryDate] = useState('');
+
+  return (
+    <div>
+      <DatePicker
+        label="Data de vencimento"
+        value={deadline}
+        onSelect={setDeadline}
+        startsToday
+      />
+
+      <DatePicker
+        label="Prazo de entrega"
+        value={deliveryDate}
+        onSelect={setDeliveryDate}
+        editable
+        helperText="Digite ou selecione a data"
+      />
+    </div>
+  );
+}
+```
+
+## Validação
+
+### Implementação de validação
+
+```tsx
+import { useState } from 'react';
+
+function ValidatedDatePicker() {
+  const [date, setDate] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleSelect = (selectedDate: string) => {
+    setDate(selectedDate);
+    setError(!selectedDate); // Erro se não há data selecionada
+  };
+
+  return (
+    <DatePicker
+      label="Data obrigatória"
+      value={date}
+      onSelect={handleSelect}
+      error={error}
+      helperText={error ? 'Este campo é obrigatório' : 'Data válida'}
+    />
+  );
+}
+```
+
+## API
+
+### Props
+
+| Prop          | Tipo                     | Padrão  | Descrição                                       |
+| ------------- | ------------------------ | ------- | ----------------------------------------------- |
+| `label`       | `string`                 | -       | Label do campo de entrada                       |
+| `value`       | `string`                 | -       | Valor da data selecionada (obrigatório)         |
+| `onSelect`    | `(date: string) => void` | -       | Função chamada ao selecionar data (obrigatório) |
+| `editable`    | `boolean`                | `false` | Permite edição manual do campo                  |
+| `disabled`    | `boolean`                | `false` | Desabilita o componente                         |
+| `error`       | `boolean`                | `false` | Exibe estado de erro                            |
+| `helperText`  | `string`                 | -       | Texto de ajuda ou erro                          |
+| `startsToday` | `boolean`                | `false` | Limita seleção a partir da data atual           |
+| `locale`      | `Locale`                 | `ptBR`  | Locale do date-fns para internacionalização     |
+| `className`   | `string`                 | -       | Classes CSS adicionais                          |
+
+### Eventos
+
+- `onSelect`: Disparado quando uma data é selecionada no calendário
+
+## Acessibilidade
+
+- ✅ **Navegação por teclado**: Suporte completo para Tab, setas, Enter e Escape
+- ✅ **Screen readers**: Labels e estados anunciados corretamente
+- ✅ **Foco visual**: Indicação clara do elemento focado
+- ✅ **ARIA attributes**: Implementação correta de atributos ARIA
+- ✅ **Contraste**: Cores adequadas para diferentes níveis de visão
+
+### Navegação por teclado
+
+| Tecla             | Função                           |
+| ----------------- | -------------------------------- |
+| `Tab`             | Navega entre elementos           |
+| `Space` / `Enter` | Abre/fecha calendário            |
+| `Setas`           | Navega entre datas no calendário |
+| `Page Up/Down`    | Navega entre meses               |
+| `Home/End`        | Vai para início/fim da semana    |
+| `Escape`          | Fecha o calendário               |
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use DatePicker para seleção de datas únicas
+- Configure `startsToday` para datas futuras obrigatórias
+- Forneça `helperText` explicativo para orientar o usuário
+- Use `locale` apropriado para seu público-alvo
+- Implemente validação com estado `error`
+- Use labels descritivos que expliquem o propósito
+
+### ❌ Não faça
+
+- Não use DatePicker para intervalos de datas (use DateRange)
+- Não omita `onSelect` ou `value` (props obrigatórias)
+- Não ignore validação de datas inválidas
+- Não use textos de erro genéricos sem contexto
+- Não desabilite sem explicar o motivo no `helperText`
+
+## Quando Usar
+
+### ✅ Ideal para:
+
+- **Datas de nascimento** e informações pessoais
+- **Prazos e vencimentos** únicos
+- **Agendamentos** de eventos pontuais
+- **Datas de contrato** e documentos
+- **Marcos e milestones** específicos
+
+### ❌ Evite para:
+
+- Seleção de intervalos de datas (use DateRange)
+- Seleção de horários (use TimePicker dedicado)
+- Múltiplas datas não contínuas
+- Datas muito distantes sem navegação otimizada
+
+## CSS Classes
+
+O componente gera as seguintes classes CSS:
+
+| Classe                      | Descrição                            |
+| --------------------------- | ------------------------------------ |
+| `.ods-date`                 | Classe base aplicada ao componente   |
+| `.ods-date__calendar`       | Container do calendário modal        |
+| `.ods-date__caption-single` | Título do mês no DatePicker          |
+| `.ods-date__navButtons`     | Container dos botões de navegação    |
+| `.ods-date__navButtonPrev`  | Botão de mês anterior                |
+| `.ods-date__navButtonNext`  | Botão de próximo mês                 |
+| `.ods-date__navIcon`        | Ícone dos botões de navegação        |
+| `.ods-date__table`          | Tabela do calendário                 |
+| `.ods-date__head`           | Cabeçalho da tabela (dias da semana) |
+| `.ods-date__body`           | Corpo da tabela (dias do mês)        |
+| `.ods-date__row`            | Linha da tabela                      |
+| `.ods-date__cell`           | Célula da tabela                     |
+| `.ods-date__day`            | Elemento do dia                      |
+| `.ods-date__today`          | Dia atual destacado                  |
+| `.ods-date__selected`       | Dia selecionado                      |
+| `.ods-date__disabled`       | Dias desabilitados                   |
+
+## Links relacionados
+
+- [DateRange](/components/daterange) - Para seleção de intervalos de datas
+- [Input](/components/input) - Para entrada de dados base
+- [FormControl](/components/formcontrol) - Para controle de formulários
+- [Storybook - DatePicker](https://ocean-ds.github.io/ocean-web/?path=/docs/components-datepicker--docs) - Documentação técnica

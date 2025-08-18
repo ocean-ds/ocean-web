@@ -11,7 +11,7 @@ Aprenda como instalar e configurar o Ocean Design System no seu projeto React.
 ## Pré-requisitos
 
 - Node.js 16.0 ou superior
-- React 18.0 ou superior
+- React 17.0
 - TypeScript (recomendado)
 
 ## Instalação

@@ -1,0 +1,256 @@
+---
+title: DotPagination
+sidebar_label: DotPagination
+sidebar_position: 8
+---
+
+import { DotPagination } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# DotPagination
+
+O componente DotPagination é usado para navegação entre seções de conteúdo, especialmente em carrosséis, slideshows e wizards. Oferece uma interface visual simples com pontos clicáveis que indicam o progresso e permitem navegação direta.
+
+## Importação
+
+```tsx
+import { DotPagination } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { DotPagination } from '@useblu/ocean-react/DotPagination';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { IDotPagination } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyCarousel: React.FC<{ totalSlides: number }> = ({ totalSlides }) => {
+  const [activeSlide, setActiveSlide] = React.useState(0);
+
+  return (
+    <DotPagination
+      items={totalSlides}
+      activeItem={activeSlide}
+      onActiveChange={setActiveSlide}
+    />
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente DotPagination no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-dotpagination--usage"
+  height={400}
+  title="DotPagination - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do DotPagination](https://ocean-ds.github.io/ocean-web/?path=/docs/components-dotpagination--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<DotPagination items={4} activeItem={1} />
+```
+
+## Tamanhos diferentes
+
+O DotPagination se adapta automaticamente ao número de itens:
+
+<StorybookEmbed
+  storyId="components-dotpagination--different-sizes"
+  height={400}
+  showToolbar={false}
+  title="DotPagination - Diferentes tamanhos"
+/>
+
+## Estados ativos
+
+Veja como o componente se comporta com diferentes posições ativas:
+
+<StorybookEmbed
+  storyId="components-dotpagination--active-states"
+  height={300}
+  showToolbar={false}
+  title="DotPagination - Estados ativos"
+/>
+
+## Exemplo interativo
+
+```tsx live
+function InteractiveDotPagination() {
+  const [activeItem, setActiveItem] = React.useState(0);
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        alignItems: 'center',
+      }}
+    >
+      <p>Item ativo: {activeItem + 1}</p>
+      <DotPagination
+        items={5}
+        activeItem={activeItem}
+        onActiveChange={setActiveItem}
+      />
+    </div>
+  );
+}
+```
+
+## API
+
+### Props
+
+| Prop             | Tipo                      | Padrão | Descrição                                |
+| ---------------- | ------------------------- | ------ | ---------------------------------------- |
+| `items`          | `number`                  | -      | Número total de pontos a serem exibidos  |
+| `activeItem`     | `number`                  | -      | Índice do ponto ativo (baseado em 0)     |
+| `onActiveChange` | `(index: number) => void` | -      | Função chamada quando um ponto é clicado |
+
+### Eventos
+
+- `onActiveChange`: Disparado quando um ponto é clicado, recebe o índice do ponto como parâmetro
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                         | Descrição                         |
+| ------------------------------ | --------------------------------- |
+| `.dot-pagination`              | Container principal do componente |
+| `.dot-pagination__dot`         | Cada ponto individual             |
+| `.dot-pagination__dot--active` | Modificador para o ponto ativo    |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o container */
+.dot-pagination {
+  gap: 12px; /* Espaçamento entre pontos */
+}
+
+/* Customizar pontos */
+.dot-pagination__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Customizar ponto ativo */
+.dot-pagination__dot--active {
+  background-color: #007bff;
+  transform: scale(1.2);
+}
+
+/* Estados de hover e foco */
+.dot-pagination__dot:hover,
+.dot-pagination__dot:focus {
+  background-color: #999;
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados para screen readers
+- ✅ Labels descritivos para cada ponto
+- ✅ Indicação do estado ativo para tecnologias assistivas
+
+### Navegação por teclado
+
+| Tecla             | Função                      |
+| ----------------- | --------------------------- |
+| `Tab`             | Move o foco entre os pontos |
+| `Space` / `Enter` | Ativa o ponto em foco       |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para indicar progresso em wizards e formulários multi-etapa
+- Use em carrosséis e galerias de imagens
+- Mantenha o número de pontos razoável (máximo 8-10)
+- Implemente navegação por teclado ao usar com carrosséis
+- Use junto com controles de navegação anterior/próximo
+
+### ❌ Não faça
+
+- Não use para grandes quantidades de páginas (use paginação numérica)
+- Não omita o callback `onActiveChange` se a navegação for necessária
+- Não use como única forma de navegação em interfaces complexas
+- Não esqueça de sincronizar com o conteúdo correspondente
+
+## Casos de uso comuns
+
+### Em carrosséis
+
+```tsx
+function ImageCarousel({ images }) {
+  const [currentImage, setCurrentImage] = React.useState(0);
+
+  return (
+    <div>
+      <img src={images[currentImage]} alt={`Imagem ${currentImage + 1}`} />
+      <DotPagination
+        items={images.length}
+        activeItem={currentImage}
+        onActiveChange={setCurrentImage}
+      />
+    </div>
+  );
+}
+```
+
+### Em wizards
+
+```tsx
+function SetupWizard() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const steps = ['Informações', 'Preferências', 'Confirmação'];
+
+  return (
+    <div>
+      <h2>{steps[currentStep]}</h2>
+      {/* Conteúdo do step */}
+      <DotPagination
+        items={steps.length}
+        activeItem={currentStep}
+        onActiveChange={setCurrentStep}
+      />
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [Carousel](/components/carousel) - Para navegação de conteúdo com transições
+- [Stepper](/components/stepper) - Para indicação de progresso linear
+- [Steps](/components/steps) - Para processos sequenciais complexos
+- [Storybook - DotPagination](https://ocean-ds.github.io/ocean-web/?path=/docs/components-dotpagination--docs) - Documentação técnica

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.106.0](https://github.com/ocean-ds/ocean-web/compare/v1.105.0...v1.106.0) (2025-08-18)
+
+### Features
+
+- cross sell card and divider ([#1184](https://github.com/ocean-ds/ocean-web/issues/1184)) ([b5291a9](https://github.com/ocean-ds/ocean-web/commit/b5291a925ba412a55436cedb6291cb3bf39d06ba))
+
+# [1.105.0](https://github.com/ocean-ds/ocean-web/compare/v1.104.0...v1.105.0) (2025-08-14)
+
+### Features
+
+- cross sell card and divider ([#1183](https://github.com/ocean-ds/ocean-web/issues/1183)) ([acdbcec](https://github.com/ocean-ds/ocean-web/commit/acdbcece349950b27135621c8ff10f4036bdd789))
+
 # [1.104.0](https://github.com/ocean-ds/ocean-web/compare/v1.103.0...v1.104.0) (2025-08-12)
 
 ### Features
