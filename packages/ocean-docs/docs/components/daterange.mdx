@@ -1,0 +1,452 @@
+---
+title: DateRange
+sidebar_label: DateRange
+sidebar_position: 12
+---
+
+import { DateRange } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# DateRange
+
+O DateRange é um componente para seleção de intervalos de datas, ideal para reservas, filtros de relatórios, períodos de trabalho e campanhas. Oferece uma interface intuitiva para seleção de data inicial e final.
+
+## Importação
+
+```tsx
+import { DateRange } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { DateRange } from '@useblu/ocean-react/DateRange';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { DatePickerProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyDateRange: React.FC<DatePickerProps> = (props) => {
+  return <DateRange {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente DateRange no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-daterange--usage"
+  height={500}
+  title="DateRange - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do DateRange](https://ocean-ds.github.io/ocean-web/?path=/docs/components-daterange--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variações e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+import { useState } from 'react';
+
+function BasicDateRange() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+
+  return (
+    <DateRange
+      labels={{ from: 'Data inicial', to: 'Data final' }}
+      values={dates}
+      onSelect={setDates}
+    />
+  );
+}
+```
+
+## Estados do Componente
+
+### Normal
+
+```tsx live
+import { useState } from 'react';
+
+function NormalDateRange() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+
+  return (
+    <DateRange
+      labels={{ from: 'Data inicial', to: 'Data final' }}
+      values={dates}
+      onSelect={setDates}
+    />
+  );
+}
+```
+
+### Com erro
+
+```tsx live
+import { useState } from 'react';
+
+function ErrorDateRange() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+
+  return (
+    <DateRange
+      labels={{ from: 'Data inicial', to: 'Data final' }}
+      values={dates}
+      onSelect={setDates}
+      error={true}
+      helperText="Período obrigatório"
+    />
+  );
+}
+```
+
+### Desabilitado
+
+```tsx live
+<DateRange
+  labels={{ from: 'Data inicial', to: 'Data final' }}
+  values={{ from: '', to: '' }}
+  onSelect={() => {}}
+  disabled={true}
+/>
+```
+
+## Estados Visuais
+
+Veja todos os estados do DateRange:
+
+<StorybookEmbed
+  storyId="components-daterange--states"
+  height={800}
+  showToolbar={false}
+  title="DateRange - Estados"
+/>
+
+## Funcionalidades Especiais
+
+### Campos editáveis
+
+```tsx live
+import { useState } from 'react';
+
+function EditableDateRange() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+
+  return (
+    <DateRange
+      labels={{ from: 'Data inicial', to: 'Data final' }}
+      values={dates}
+      onSelect={setDates}
+      editable
+      helperText="Você pode digitar as datas ou usar o calendário"
+    />
+  );
+}
+```
+
+### Limitando a partir de hoje
+
+```tsx live
+import { useState } from 'react';
+
+function FutureDateRange() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+
+  return (
+    <DateRange
+      labels={{ from: 'Check-in', to: 'Check-out' }}
+      values={dates}
+      onSelect={setDates}
+      startsToday
+      helperText="Selecione datas a partir de hoje"
+    />
+  );
+}
+```
+
+## Restrições e Validações
+
+Veja exemplos com diferentes restrições:
+
+<StorybookEmbed
+  storyId="components-daterange--with-restrictions"
+  height={500}
+  showToolbar={false}
+  title="DateRange - Com Restrições"
+/>
+
+## Internacionalização
+
+O DateRange suporta diferentes idiomas através do date-fns:
+
+<StorybookEmbed
+  storyId="components-daterange--localization"
+  height={400}
+  showToolbar={false}
+  title="DateRange - Localização"
+/>
+
+### Configuração de idiomas
+
+```tsx
+import { ptBR, enUS } from 'date-fns/locale';
+
+// Português (padrão)
+<DateRange
+  labels={{ from: 'Data inicial', to: 'Data final' }}
+  values={dates}
+  onSelect={setDates}
+  locale={ptBR}
+/>
+
+// Inglês
+<DateRange
+  labels={{ from: 'Start date', to: 'End date' }}
+  values={dates}
+  onSelect={setDates}
+  locale={enUS}
+/>
+```
+
+## Casos de Uso Práticos
+
+### Reservas e hospedagem
+
+```tsx
+import { useState } from 'react';
+
+function HotelReservation() {
+  const [stayPeriod, setStayPeriod] = useState({ from: '', to: '' });
+  const [carRental, setCarRental] = useState({ from: '', to: '' });
+
+  return (
+    <div>
+      <DateRange
+        labels={{ from: 'Check-in', to: 'Check-out' }}
+        values={stayPeriod}
+        onSelect={setStayPeriod}
+        startsToday
+        helperText="Período da sua estadia"
+      />
+
+      <DateRange
+        labels={{ from: 'Início da reserva', to: 'Fim da reserva' }}
+        values={carRental}
+        onSelect={setCarRental}
+        helperText="Período de locação do veículo"
+      />
+    </div>
+  );
+}
+```
+
+### Relatórios e análises
+
+```tsx
+import { useState } from 'react';
+
+function ReportFilters() {
+  const [reportPeriod, setReportPeriod] = useState({ from: '', to: '' });
+  const [analysisPeriod, setAnalysisPeriod] = useState({ from: '', to: '' });
+
+  return (
+    <div>
+      <DateRange
+        labels={{ from: 'Data inicial', to: 'Data final' }}
+        values={reportPeriod}
+        onSelect={setReportPeriod}
+        editable
+        helperText="Período para geração do relatório"
+      />
+
+      <DateRange
+        labels={{ from: 'Início do período', to: 'Fim do período' }}
+        values={analysisPeriod}
+        onSelect={setAnalysisPeriod}
+        helperText="Intervalo de análise dos dados"
+      />
+    </div>
+  );
+}
+```
+
+### Projetos e campanhas
+
+```tsx
+import { useState } from 'react';
+
+function ProjectPlanning() {
+  const [projectPeriod, setProjectPeriod] = useState({ from: '', to: '' });
+  const [campaignPeriod, setCampaignPeriod] = useState({ from: '', to: '' });
+
+  return (
+    <div>
+      <DateRange
+        labels={{ from: 'Início do projeto', to: 'Prazo de entrega' }}
+        values={projectPeriod}
+        onSelect={setProjectPeriod}
+        startsToday
+      />
+
+      <DateRange
+        labels={{ from: 'Início da campanha', to: 'Fim da campanha' }}
+        values={campaignPeriod}
+        onSelect={setCampaignPeriod}
+        helperText="Período de veiculação"
+      />
+    </div>
+  );
+}
+```
+
+## Validação
+
+### Implementação de validação
+
+```tsx
+import { useState } from 'react';
+
+function ValidatedDateRange() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+  const [error, setError] = useState(false);
+
+  const handleSelect = (selectedDates: { from: string; to: string }) => {
+    setDates(selectedDates);
+    // Erro se ambas as datas não estão selecionadas
+    setError(!selectedDates.from || !selectedDates.to);
+  };
+
+  return (
+    <DateRange
+      labels={{ from: 'Data inicial', to: 'Data final' }}
+      values={dates}
+      onSelect={handleSelect}
+      error={error}
+      helperText={error ? 'Selecione ambas as datas' : 'Período válido'}
+    />
+  );
+}
+```
+
+## API
+
+### Props
+
+| Prop          | Tipo                                            | Padrão  | Descrição                                        |
+| ------------- | ----------------------------------------------- | ------- | ------------------------------------------------ |
+| `labels`      | `{ from: string; to: string }`                  | -       | Labels dos campos inicial e final (obrigatório)  |
+| `values`      | `{ from: string; to: string }`                  | -       | Valores das datas selecionadas (obrigatório)     |
+| `onSelect`    | `(dates: { from: string; to: string }) => void` | -       | Função chamada ao selecionar datas (obrigatório) |
+| `editable`    | `boolean`                                       | `false` | Permite edição manual dos campos                 |
+| `disabled`    | `boolean`                                       | `false` | Desabilita o componente                          |
+| `error`       | `boolean`                                       | `false` | Exibe estado de erro                             |
+| `helperText`  | `string`                                        | -       | Texto de ajuda ou erro                           |
+| `startsToday` | `boolean`                                       | `false` | Limita seleção a partir da data atual            |
+| `locale`      | `Locale`                                        | `ptBR`  | Locale do date-fns para internacionalização      |
+| `className`   | `string`                                        | -       | Classes CSS adicionais                           |
+
+### Eventos
+
+- `onSelect`: Disparado quando um intervalo de datas é selecionado no calendário
+
+## Acessibilidade
+
+- ✅ **Navegação por teclado**: Suporte completo para Tab, setas, Enter e Escape
+- ✅ **Screen readers**: Labels e estados anunciados corretamente
+- ✅ **Foco visual**: Indicação clara do elemento focado
+- ✅ **ARIA attributes**: Implementação correta de atributos ARIA
+- ✅ **Contraste**: Cores adequadas para diferentes níveis de visão
+
+### Navegação por teclado
+
+| Tecla             | Função                           |
+| ----------------- | -------------------------------- |
+| `Tab`             | Navega entre elementos           |
+| `Space` / `Enter` | Abre/fecha calendário            |
+| `Setas`           | Navega entre datas no calendário |
+| `Page Up/Down`    | Navega entre meses               |
+| `Home/End`        | Vai para início/fim da semana    |
+| `Escape`          | Fecha o calendário               |
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use DateRange para seleção de intervalos de datas
+- Configure `startsToday` para períodos futuros obrigatórios
+- Forneça `labels` descritivos para cada campo
+- Use `helperText` para explicar o propósito do intervalo
+- Implemente validação para garantir que ambas as datas são selecionadas
+- Use `locale` apropriado para seu público-alvo
+
+### ❌ Não faça
+
+- Não use DateRange para datas únicas (use DatePicker)
+- Não omita `onSelect`, `values` ou `labels` (props obrigatórias)
+- Não ignore validação de intervalos inválidos
+- Não use labels genéricos sem contexto
+- Não desabilite sem explicar o motivo no `helperText`
+
+## Quando Usar
+
+### ✅ Ideal para:
+
+- **Reservas e estadias** (hotéis, viagens)
+- **Períodos de trabalho** e projetos
+- **Filtros de relatórios** por data
+- **Promoções e campanhas** com duração
+- **Períodos de férias** e ausências
+- **Análises temporais** de dados
+
+### ❌ Evite para:
+
+- Seleção de datas únicas (use DatePicker)
+- Seleção de horários (use TimePicker dedicado)
+- Múltiplas datas não contínuas
+- Intervalos muito específicos com granularidade de horas
+
+## CSS Classes
+
+O componente gera as seguintes classes CSS:
+
+| Classe                      | Descrição                                |
+| --------------------------- | ---------------------------------------- |
+| `.ods-date`                 | Classe base aplicada ao componente       |
+| `.ods-date__calendar`       | Container do calendário modal            |
+| `.ods-date__caption`        | Título do mês no DateRange               |
+| `.ods-date__navButtons`     | Container dos botões de navegação        |
+| `.ods-date__navButtonPrev`  | Botão de mês anterior                    |
+| `.ods-date__navButtonNext`  | Botão de próximo mês                     |
+| `.ods-date__navIcon`        | Ícone dos botões de navegação            |
+| `.ods-date__table`          | Tabela do calendário                     |
+| `.ods-date__head`           | Cabeçalho da tabela (dias da semana)     |
+| `.ods-date__body`           | Corpo da tabela (dias do mês)            |
+| `.ods-date__row`            | Linha da tabela                          |
+| `.ods-date__cell`           | Célula da tabela                         |
+| `.ods-date__day`            | Elemento do dia                          |
+| `.ods-date__today`          | Dia atual destacado                      |
+| `.ods-date__selected`       | Dias selecionados                        |
+| `.ods-date__disabled`       | Dias desabilitados                       |
+| `.ods-date__selectedStart`  | Primeiro dia do range selecionado        |
+| `.ods-date__selectedEnd`    | Último dia do range selecionado          |
+| `.ods-date__selectedMiddle` | Dias intermediários do range selecionado |
+
+## Links relacionados
+
+- [DatePicker](/components/datepicker) - Para seleção de datas únicas
+- [Input](/components/input) - Para entrada de dados base
+- [FormControl](/components/formcontrol) - Para controle de formulários
+- [Storybook - DateRange](https://ocean-ds.github.io/ocean-web/?path=/docs/components-daterange--docs) - Documentação técnica

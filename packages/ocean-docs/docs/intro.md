@@ -30,7 +30,6 @@ Componentes para entrada de dados do usuário:
 - [Radio](/components/radio) - Seleção única
 - [Select](/components/select) - Lista de opções
 - [Switch](/components/switch) - Alternar estado
-- [FileUploader](/components/file-uploader) - Upload de arquivos
 - [Search](/components/search) - Campo de busca
 - [TokenInput](/components/token-input) - Input com tokens
 

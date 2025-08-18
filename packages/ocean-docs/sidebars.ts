@@ -39,6 +39,8 @@ const sidebars: SidebarsConfig = {
         'components/chips',
         'components/crosssellcard',
         'components/divider',
+        'components/daterange',
+        'components/datepicker',
         'components/doughnutchart',
         'components/input',
         'components/tokeninput',
