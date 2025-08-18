@@ -41,6 +41,7 @@ const sidebars: SidebarsConfig = {
         'components/divider',
         'components/daterange',
         'components/datepicker',
+        'components/dotpagination',
         'components/doughnutchart',
         'components/input',
         'components/tokeninput',
