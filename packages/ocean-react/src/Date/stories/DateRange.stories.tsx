@@ -3,6 +3,15 @@ import React, { useState } from 'react';
 import { ptBR, enUS } from 'date-fns/locale';
 import DateRange from '../DateRange';
 import type { DatePickerFields } from '../types/DateRange.types';
+import {
+  createDateDecorator,
+  createStatesContainer,
+  createLocalizationContainer,
+  createRestrictionsContainer,
+  commonArgTypes,
+  commonArgs,
+  noControlsParameters,
+} from './shared';
 
 const meta: Meta<typeof DateRange> = {
   title: 'Components/DateRange',
@@ -21,34 +30,7 @@ const meta: Meta<typeof DateRange> = {
       description: 'Função chamada quando datas são selecionadas.',
       control: false,
     },
-    editable: {
-      description: 'Permite edição manual dos campos de input.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: 'Desabilita o componente.',
-      control: 'boolean',
-    },
-    error: {
-      description: 'Exibe estado de erro.',
-      control: 'boolean',
-    },
-    helperText: {
-      description: 'Texto de ajuda ou erro.',
-      control: 'text',
-    },
-    startsToday: {
-      description: 'Define se a seleção começa na data atual.',
-      control: 'boolean',
-    },
-    locale: {
-      description: 'Locale para internacionalização (objeto date-fns).',
-      control: false,
-    },
-    className: {
-      description: 'Classes CSS adicionais.',
-      control: false,
-    },
+    ...commonArgTypes,
   },
 };
 
@@ -86,49 +68,16 @@ const DateRangeWrapper: React.FC<DateRangeWrapperProps> = (props) => {
 export const Usage: Story = {
   args: {
     labels: { from: 'Data inicial', to: 'Data final' },
-    editable: false,
-    disabled: false,
-    error: false,
-    startsToday: false,
-    helperText: '',
+    ...commonArgs,
   },
   render: (args) => <DateRangeWrapper {...args} />,
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '400px',
-          height: '400px',
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          padding: '16px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createDateDecorator('400px'),
 };
 
 export const States: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
+  parameters: noControlsParameters,
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px',
-        width: '400px',
-        height: '1000px',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}
-    >
+    <div style={createStatesContainer('400px')}>
       <div>
         <h4>Normal</h4>
         <DateRangeWrapper labels={{ from: 'Data inicial', to: 'Data final' }} />
@@ -173,21 +122,9 @@ export const States: Story = {
 };
 
 export const WithRestrictions: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
+  parameters: noControlsParameters,
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px',
-        width: '400px',
-        height: '500px',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}
-    >
+    <div style={createRestrictionsContainer('400px')}>
       <div>
         <h4>A partir de hoje</h4>
         <DateRangeWrapper
@@ -201,21 +138,9 @@ export const WithRestrictions: Story = {
 };
 
 export const Localization: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
+  parameters: noControlsParameters,
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px',
-        width: '400px',
-        height: '600px',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}
-    >
+    <div style={createLocalizationContainer('400px')}>
       <div>
         <h4>Português (padrão)</h4>
         <DateRangeWrapper

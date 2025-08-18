@@ -2,6 +2,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { ptBR, enUS } from 'date-fns/locale';
 import DatePicker from '../DatePicker';
+import {
+  createDateDecorator,
+  createStatesContainer,
+  createLocalizationContainer,
+  createRestrictionsContainer,
+  commonArgTypes,
+  commonArgs,
+  noControlsParameters,
+} from './shared';
 
 const meta: Meta<typeof DatePicker> = {
   title: 'Components/DatePicker',
@@ -20,34 +29,7 @@ const meta: Meta<typeof DatePicker> = {
       description: 'Função chamada quando uma data é selecionada.',
       control: false,
     },
-    editable: {
-      description: 'Permite edição manual do campo de input.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: 'Desabilita o componente.',
-      control: 'boolean',
-    },
-    error: {
-      description: 'Exibe estado de erro.',
-      control: 'boolean',
-    },
-    helperText: {
-      description: 'Texto de ajuda ou erro.',
-      control: 'text',
-    },
-    startsToday: {
-      description: 'Define se a seleção começa na data atual.',
-      control: 'boolean',
-    },
-    locale: {
-      description: 'Locale para internacionalização (objeto date-fns).',
-      control: false,
-    },
-    className: {
-      description: 'Classes CSS adicionais.',
-      control: false,
-    },
+    ...commonArgTypes,
   },
 };
 
@@ -80,50 +62,16 @@ const DatePickerWrapper: React.FC<DatePickerWrapperProps> = (props) => {
 export const Usage: Story = {
   args: {
     label: 'Selecione uma data',
-    editable: false,
-    disabled: false,
-    error: false,
-    startsToday: false,
-    helperText: '',
+    ...commonArgs,
   },
   render: (args) => <DatePickerWrapper {...args} />,
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '300px',
-          height: '400px',
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          padding: '16px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: createDateDecorator('300px'),
 };
 
 export const States: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
+  parameters: noControlsParameters,
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px',
-        width: '300px',
-        height: '1000px',
-        justifyContent: 'flex-start',
-        alignItems: 'centers',
-        zIndex: 1000,
-      }}
-    >
+    <div style={createStatesContainer('300px')}>
       <div>
         <h4>Normal</h4>
         <DatePickerWrapper label="Data normal" />
@@ -161,20 +109,9 @@ export const States: Story = {
 };
 
 export const WithRestrictions: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
+  parameters: noControlsParameters,
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        height: '500px',
-        gap: '24px',
-        width: '300px',
-      }}
-    >
+    <div style={createRestrictionsContainer('300px')}>
       <div>
         <h4>A partir de hoje</h4>
         <DatePickerWrapper
@@ -188,20 +125,9 @@ export const WithRestrictions: Story = {
 };
 
 export const Localization: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
+  parameters: noControlsParameters,
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: '24px',
-        width: '300px',
-        height: '500px',
-      }}
-    >
+    <div style={createLocalizationContainer('300px', '500px')}>
       <div>
         <h4>Português (padrão)</h4>
         <DatePickerWrapper label="Data em português" locale={ptBR} />
