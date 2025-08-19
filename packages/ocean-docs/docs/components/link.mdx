@@ -1,0 +1,369 @@
+---
+title: Link
+sidebar_label: Link
+sidebar_position: 14
+---
+
+import { Link } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Link
+
+O componente Link é um elemento de navegação que fornece estrutura consistente e acessibilidade adequada para links internos e externos. Suporta diferentes variantes de cor, tamanhos e ícones opcionais.
+
+## Importação
+
+```tsx
+import { Link } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Link } from '@useblu/ocean-react/Link';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { LinkProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyLink: React.FC<{ url: string; text: string }> = ({ url, text }) => {
+  return (
+    <Link href={url} variant="primary">
+      {text}
+    </Link>
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente Link no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-link--usage"
+  height={300}
+  title="Link - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Link](https://ocean-ds.github.io/ocean-web/?path=/docs/components-link--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Link href="https://example.com">Link de exemplo</Link>
+```
+
+## Variantes
+
+O Link suporta três variantes de cor:
+
+<StorybookEmbed
+  storyId="components-link--variants"
+  height={250}
+  showToolbar={false}
+  title="Link - Variantes"
+/>
+
+## Tamanhos
+
+O Link suporta três tamanhos diferentes:
+
+<StorybookEmbed
+  storyId="components-link--sizes"
+  height={250}
+  showToolbar={false}
+  title="Link - Tamanhos"
+/>
+
+## Com ícones
+
+O Link pode incluir ícones opcionais:
+
+<StorybookEmbed
+  storyId="components-link--with-icons"
+  height={200}
+  showToolbar={false}
+  title="Link - Com Ícones"
+/>
+
+## Estados
+
+O Link suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-link--states"
+  height={200}
+  showToolbar={false}
+  title="Link - Estados"
+/>
+
+## Em contexto
+
+Veja como o Link se comporta dentro de um texto:
+
+<StorybookEmbed
+  storyId="components-link--in-context"
+  height={300}
+  showToolbar={false}
+  title="Link - Em Contexto"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                                  | Padrão      | Descrição               |
+| ----------- | ------------------------------------- | ----------- | ----------------------- |
+| `children`  | `ReactNode`                           | -           | Conteúdo do link        |
+| `variant`   | `'primary' \| 'inverse' \| 'neutral'` | `'primary'` | Variante de cor do link |
+| `size`      | `'sm' \| 'md' \| 'tiny'`              | `'md'`      | Tamanho do link         |
+| `icon`      | `'linkChevron' \| 'externalLink'`     | -           | Ícone opcional do link  |
+| `disabled`  | `boolean`                             | `false`     | Desabilita o link       |
+| `href`      | `string`                              | -           | URL de destino do link  |
+| `className` | `string`                              | -           | Classes CSS adicionais  |
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                 | Descrição                   |
+| ---------------------- | --------------------------- |
+| `.ods-link`            | Container principal do Link |
+| `.ods-link__content`   | Conteúdo do link            |
+| `.ods-link__icon`      | Ícone do link               |
+| `.ods-link--with-icon` | Modificador quando há ícone |
+| `.ods-link--primary`   | Variante primária           |
+| `.ods-link--inverse`   | Variante inversa            |
+| `.ods-link--neutral`   | Variante neutra             |
+| `.ods-link--sm`        | Tamanho pequeno             |
+| `.ods-link--md`        | Tamanho médio               |
+| `.ods-link--tiny`      | Tamanho tiny                |
+| `.ods-link--disabled`  | Estado desabilitado         |
+| `.ods-link--chevron`   | Ícone chevron               |
+| `.ods-link--external`  | Ícone link externo          |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o link principal */
+.ods-link {
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Customizar variante primária */
+.ods-link--primary {
+  color: #007bff;
+}
+
+.ods-link--primary:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Customizar variante neutra */
+.ods-link--neutral {
+  color: #666;
+}
+
+.ods-link--neutral:hover {
+  color: #333;
+}
+
+/* Customizar estado desabilitado */
+.ods-link--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Customizar ícones */
+.ods-link--with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ods-link__icon {
+  font-size: 0.875em;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Boas práticas
+
+- **Use `href` válido** para todos os links
+- **Use `target="_blank"`** para links externos
+- **Use `rel="noopener noreferrer"`** para links externos
+- **Use `aria-label`** para links sem texto descritivo
+- **Use ícones apropriados** para indicar o tipo de link
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para navegação interna e externa
+- Sempre forneça um `href` válido
+- Use texto descritivo para o link
+- Use `target="_blank"` para links externos
+- Use ícones apropriados (`externalLink` para externos)
+- Use variante `primary` para links importantes
+- Use variante `neutral` para links secundários
+
+### ❌ Não faça
+
+- Não use para botões (use Button ou IconButton)
+- Não use texto genérico como "Clique aqui"
+- Não omita `href` ou use `href="#"` sem propósito
+- Não ignore estados de foco e hover
+- Não use links para ações que não navegam
+- Não use variante `inverse` sem contexto adequado
+
+## Casos de uso comuns
+
+### Link interno
+
+```tsx
+function InternalLink() {
+  return (
+    <Link href="/documentacao" variant="primary">
+      Ver documentação
+    </Link>
+  );
+}
+```
+
+### Link externo
+
+```tsx
+function ExternalLink() {
+  return (
+    <Link
+      href="https://github.com/ocean-ds/ocean-web"
+      target="_blank"
+      rel="noopener noreferrer"
+      icon="externalLink"
+      variant="primary"
+    >
+      Repositório no GitHub
+    </Link>
+  );
+}
+```
+
+### Link com chevron
+
+```tsx
+function LinkWithChevron() {
+  return (
+    <Link href="/proxima-pagina" icon="linkChevron" variant="primary">
+      Próxima página
+    </Link>
+  );
+}
+```
+
+### Link desabilitado
+
+```tsx
+function DisabledLink() {
+  return (
+    <Link href="#" disabled variant="neutral">
+      Link indisponível
+    </Link>
+  );
+}
+```
+
+### Link em texto
+
+```tsx
+function LinkInText() {
+  return (
+    <p>
+      Para mais informações, consulte nossa{' '}
+      <Link href="/documentacao" variant="primary">
+        documentação completa
+      </Link>{' '}
+      ou visite nosso{' '}
+      <Link
+        href="https://example.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        icon="externalLink"
+        variant="neutral"
+      >
+        site externo
+      </Link>
+      .
+    </p>
+  );
+}
+```
+
+### Link de navegação
+
+```tsx
+function NavigationLinks() {
+  return (
+    <nav>
+      <Link href="/inicio" variant="primary">
+        Início
+      </Link>
+      <Link href="/sobre" variant="neutral">
+        Sobre
+      </Link>
+      <Link href="/contato" variant="neutral">
+        Contato
+      </Link>
+    </nav>
+  );
+}
+```
+
+### Link com tamanho personalizado
+
+```tsx
+function CustomSizeLinks() {
+  return (
+    <div>
+      <Link href="#" size="tiny" variant="neutral">
+        Link pequeno
+      </Link>
+      <Link href="#" size="sm" variant="primary">
+        Link pequeno
+      </Link>
+      <Link href="#" size="md" variant="primary">
+        Link padrão
+      </Link>
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [Button](/components/button) - Botão para ações
+- [IconButton](/components/iconbutton) - Botão com ícone
+- [Typography](/components/typography) - Texto e títulos
+- [Breadcrumb](/components/breadcrumb) - Navegação em breadcrumb
+- [Storybook - Link](https://ocean-ds.github.io/ocean-web/?path=/docs/components-link--docs) - Documentação técnica
