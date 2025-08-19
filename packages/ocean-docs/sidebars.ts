@@ -45,6 +45,7 @@ const sidebars: SidebarsConfig = {
         'components/doughnutchart',
         'components/drawer',
         'components/formcontrol',
+        'components/formlabel',
         'components/input',
         'components/modal',
         'components/tokeninput',
