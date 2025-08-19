@@ -46,6 +46,7 @@ const sidebars: SidebarsConfig = {
         'components/drawer',
         'components/formcontrol',
         'components/formlabel',
+        'components/iconbutton',
         'components/input',
         'components/modal',
         'components/tokeninput',
