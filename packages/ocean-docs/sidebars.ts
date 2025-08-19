@@ -44,6 +44,7 @@ const sidebars: SidebarsConfig = {
         'components/dotpagination',
         'components/doughnutchart',
         'components/drawer',
+        'components/formcontrol',
         'components/input',
         'components/modal',
         'components/tokeninput',
