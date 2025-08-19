@@ -1,0 +1,264 @@
+---
+title: FormLabel
+sidebar_label: FormLabel
+sidebar_position: 12
+---
+
+import { FormLabel } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# FormLabel
+
+O componente FormLabel é um elemento de label reutilizável que fornece estrutura consistente e acessibilidade adequada para campos de formulário. Ele suporta diferentes elementos HTML e estados visuais.
+
+## Importação
+
+```tsx
+import { FormLabel } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { FormLabel } from '@useblu/ocean-react/FormLabel';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { FormLabelProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyLabel: React.FC<{ fieldName: string }> = ({ fieldName }) => {
+  return <FormLabel htmlFor={`${fieldName}-input`}>{fieldName}</FormLabel>;
+};
+```
+
+## Playground Interativo
+
+Explore o componente FormLabel no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-forms-formlabel--usage"
+  height={300}
+  title="FormLabel - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do FormLabel](https://ocean-ds.github.io/ocean-web/?path=/docs/components-forms-formlabel--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<FormLabel htmlFor="name-input">Nome completo</FormLabel>
+```
+
+## Estados
+
+O FormLabel suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-forms-formlabel--disabled"
+  height={200}
+  showToolbar={false}
+  title="FormLabel - Estados"
+/>
+
+## Com FormControl
+
+O FormLabel funciona perfeitamente com campos de formulário:
+
+<StorybookEmbed
+  storyId="components-forms-formlabel--with-form-control"
+  height={300}
+  showToolbar={false}
+  title="FormLabel - Com FormControl"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo          | Padrão    | Descrição                                   |
+| ----------- | ------------- | --------- | ------------------------------------------- |
+| `children`  | `ReactNode`   | -         | Conteúdo do label                           |
+| `component` | `ElementType` | `'label'` | Elemento HTML ou componente usado como root |
+| `disabled`  | `boolean`     | `false`   | Exibe o label em estado desabilitado        |
+| `htmlFor`   | `string`      | -         | ID do elemento associado ao label           |
+| `className` | `string`      | -         | Classes CSS adicionais                      |
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                      | Descrição                           |
+| --------------------------- | ----------------------------------- |
+| `.ods-form-label`           | Container principal do FormLabel    |
+| `.ods-form-label--disabled` | Modificador para label desabilitado |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o label principal */
+.ods-form-label {
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Customizar estado desabilitado */
+.ods-form-label--disabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Customizar foco para acessibilidade */
+.ods-form-label:focus-within {
+  color: #007bff;
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Boas práticas
+
+- **Sempre use `htmlFor`** para associar o label ao campo
+- **Use texto descritivo** que explique claramente o campo
+- **Mantenha labels concisos** mas informativos
+- **Use estado `disabled`** quando o campo estiver desabilitado
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para todos os campos de formulário
+- Sempre forneça um `htmlFor` válido
+- Use texto claro e descritivo
+- Use estado `disabled` quando apropriado
+- Use elemento `label` para campos clicáveis
+- Use elemento `span` ou `div` para labels informativos
+
+### ❌ Não faça
+
+- Não use sem `htmlFor` quando o campo for clicável
+- Não use texto muito longo ou vago
+- Não ignore estados de foco e hover
+- Não use labels genéricos como "Campo" ou "Input"
+- Não omita o estado `disabled` quando apropriado
+
+## Casos de uso comuns
+
+### Label básico para input
+
+```tsx
+function BasicForm() {
+  return (
+    <form>
+      <FormLabel htmlFor="email">Email</FormLabel>
+      <div className="ods-input">
+        <input id="email" type="email" placeholder="Digite seu email" />
+      </div>
+    </form>
+  );
+}
+```
+
+### Label com estado desabilitado
+
+```tsx
+function DisabledForm() {
+  return (
+    <form>
+      <FormLabel htmlFor="username" disabled>
+        Nome de usuário (indisponível)
+      </FormLabel>
+      <div className="ods-input ods-input--disabled">
+        <input id="username" type="text" disabled />
+      </div>
+    </form>
+  );
+}
+```
+
+### Label informativo (sem htmlFor)
+
+```tsx
+function InformativeLabel() {
+  return (
+    <div>
+      <FormLabel component="span">Informações do perfil</FormLabel>
+      <p>Estas informações serão exibidas publicamente.</p>
+    </div>
+  );
+}
+```
+
+### Label com componente customizado
+
+```tsx
+function CustomLabel() {
+  const CustomComponent = ({ children, ...props }) => (
+    <div {...props}>{children}</div>
+  );
+
+  return (
+    <FormLabel component={CustomComponent} htmlFor="custom-input">
+      Campo customizado
+    </FormLabel>
+  );
+}
+```
+
+### Label em grupo de campos
+
+```tsx
+function GroupedFields() {
+  return (
+    <div>
+      <FormLabel component="div">Endereço de entrega</FormLabel>
+
+      <div>
+        <div>
+          <FormLabel htmlFor="street">Rua</FormLabel>
+          <div className="ods-input">
+            <input id="street" type="text" />
+          </div>
+        </div>
+
+        <div>
+          <FormLabel htmlFor="number">Número</FormLabel>
+          <div className="ods-input">
+            <input id="number" type="text" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [FormControl](/components/formcontrol) - Wrapper para campos de formulário
+- [Input](/components/input) - Campo de entrada de texto
+- [Select](/components/select) - Campo de seleção
+- [Checkbox](/components/checkbox) - Campo de checkbox
+- [Radio](/components/radio) - Campo de radio button
+- [Storybook - FormLabel](https://ocean-ds.github.io/ocean-web/?path=/docs/components-forms-formlabel--docs) - Documentação técnica

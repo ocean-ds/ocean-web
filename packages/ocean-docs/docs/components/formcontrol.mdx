@@ -1,0 +1,399 @@
+---
+title: FormControl
+sidebar_label: FormControl
+sidebar_position: 11
+---
+
+import { FormControl } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# FormControl
+
+O componente FormControl é um wrapper que fornece estrutura consistente para campos de formulário, incluindo label, texto de ajuda, tooltip e estados de erro. Ele garante acessibilidade adequada e padronização visual em todos os formulários.
+
+## Importação
+
+```tsx
+import { FormControl } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { FormControl } from '@useblu/ocean-react/FormControl';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { FormControlProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyFormField: React.FC<{ fieldName: string }> = ({ fieldName }) => {
+  return (
+    <FormControl
+      label={fieldName}
+      helperText={`Digite seu ${fieldName}`}
+      htmlFor={`${fieldName}-input`}
+    >
+      <input id={`${fieldName}-input`} type="text" />
+    </FormControl>
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente FormControl no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-forms-formcontrol--usage"
+  height={400}
+  title="FormControl - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do FormControl](https://ocean-ds.github.io/ocean-web/?path=/docs/components-forms-formcontrol--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+O FormControl é ideal para elementos HTML nativos ou componentes customizados que não possuem FormControl interno:
+
+```tsx live
+<FormControl
+  label="Nome completo"
+  helperText="Digite seu nome completo"
+  htmlFor="name-input"
+>
+  <div className="ods-input">
+    <input id="name-input" type="text" placeholder="Digite seu nome" />
+  </div>
+</FormControl>
+```
+
+**Nota importante:** Não use FormControl com componentes Ocean que já possuem FormControl interno (como `Input`, `TextArea`, `Select`, etc.). Use apenas com elementos HTML nativos ou componentes customizados.
+
+## Com tooltip
+
+O FormControl pode incluir um tooltip de ajuda para orientar o usuário:
+
+<StorybookEmbed
+  storyId="components-forms-formcontrol--with-tooltip"
+  height={300}
+  showToolbar={false}
+  title="FormControl - Com Tooltip"
+/>
+
+## Com Select HTML nativo
+
+O FormControl funciona perfeitamente com elementos HTML nativos como `<select>`:
+
+<StorybookEmbed
+  storyId="components-forms-formcontrol--with-select"
+  height={300}
+  showToolbar={false}
+  title="FormControl - Com Select HTML"
+/>
+
+## Estados
+
+O FormControl suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-forms-formcontrol--states"
+  height={500}
+  showToolbar={false}
+  title="FormControl - Estados"
+/>
+
+## Sem label
+
+Você pode usar o FormControl apenas com texto de ajuda:
+
+<StorybookEmbed
+  storyId="components-forms-formcontrol--without-label"
+  height={200}
+  showToolbar={false}
+  title="FormControl - Sem Label"
+/>
+
+## API
+
+### Props
+
+| Prop             | Tipo                  | Padrão  | Descrição                                  |
+| ---------------- | --------------------- | ------- | ------------------------------------------ |
+| `children`       | `ReactElement`        | -       | Elemento filho único (input, select, etc.) |
+| `label`          | `string \| ReactNode` | -       | Texto ou elemento do label                 |
+| `tooltipMessage` | `string`              | -       | Mensagem do tooltip de ajuda               |
+| `htmlFor`        | `string`              | -       | ID do elemento associado ao label          |
+| `error`          | `boolean`             | `false` | Exibe estado de erro                       |
+| `helperText`     | `string`              | -       | Texto de ajuda ou erro                     |
+| `disabled`       | `boolean`             | `false` | Desabilita o componente                    |
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                                     | Descrição                             |
+| ------------------------------------------ | ------------------------------------- |
+| `.ods-form-control__root`                  | Container principal do FormControl    |
+| `.ods-form-control__header`                | Container do header (label + tooltip) |
+| `.ods-form-control__label`                 | Container do label                    |
+| `.ods-form-control__icon`                  | Ícone do tooltip                      |
+| `.ods-form-control__element`               | Container do elemento filho           |
+| `.ods-form-control__helper-text`           | Texto de ajuda                        |
+| `.ods-form-control__helper-text--error`    | Modificador para texto de erro        |
+| `.ods-form-control__helper-text--disabled` | Modificador para texto desabilitado   |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o container principal */
+.ods-form-control__root {
+  margin-bottom: 16px;
+}
+
+/* Customizar o header */
+.ods-form-control__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* Customizar o label */
+.ods-form-control__label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Customizar texto de ajuda */
+.ods-form-control__helper-text {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Customizar estado de erro */
+.ods-form-control__helper-text--error {
+  color: #d32f2f;
+}
+
+/* Customizar estado desabilitado */
+.ods-form-control__helper-text--disabled {
+  color: #999;
+}
+
+/* Customizar inputs usando classes do design system */
+.ods-input {
+  /* Estilos customizados para inputs */
+}
+
+.ods-input--error {
+  /* Estilos customizados para inputs com erro */
+}
+
+.ods-input--disabled {
+  /* Estilos customizados para inputs desabilitados */
+}
+
+.ods-select__control {
+  /* Estilos customizados para selects */
+}
+```
+
+## Acessibilidade
+
+- ✅ Label associado corretamente via `htmlFor`
+- ✅ Tooltip com `aria-label` para screen readers
+- ✅ Estados de erro e desabilitado comunicados adequadamente
+- ✅ Estrutura semântica correta
+- ✅ Suporte a navegação por teclado
+
+### Boas práticas
+
+- **Sempre use `htmlFor`** quando fornecer um `label`
+- **Use `helperText`** para instruções claras
+- **Use `tooltipMessage`** para informações adicionais
+- **Mantenha labels concisos** mas descritivos
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para elementos HTML nativos ou componentes customizados
+- Sempre forneça um `label` descritivo
+- Use `htmlFor` para associar label ao campo
+- Use `helperText` para instruções claras
+- Use `tooltipMessage` para informações adicionais
+- Use estados `error` e `disabled` apropriadamente
+- Use com elementos `<input>`, `<textarea>`, `<select>` nativos
+
+### ❌ Não faça
+
+- Não use com componentes Ocean que já possuem FormControl interno (Input, TextArea, Select, etc.)
+- Não use sem um elemento filho válido
+- Não omita `htmlFor` quando usar `label`
+- Não use labels muito longos ou vagos
+- Não use tooltips para informações críticas
+- Não ignore estados de erro e desabilitado
+
+## Casos de uso comuns
+
+### Formulário de cadastro
+
+```tsx
+function RegistrationForm() {
+  return (
+    <form>
+      <FormControl
+        label="Nome completo"
+        helperText="Digite seu nome completo como aparece no documento"
+        htmlFor="full-name"
+      >
+        <div className="ods-input">
+          <input id="full-name" type="text" required />
+        </div>
+      </FormControl>
+
+      <FormControl
+        label="CPF"
+        tooltipMessage="Digite apenas números, sem pontos ou traços"
+        helperText="Ex: 12345678901"
+        htmlFor="cpf"
+      >
+        <div className="ods-input">
+          <input id="cpf" type="text" required />
+        </div>
+      </FormControl>
+
+      <FormControl
+        label="Email"
+        helperText="Usaremos para enviar confirmações"
+        htmlFor="email"
+      >
+        <div className="ods-input">
+          <input id="email" type="email" required />
+        </div>
+      </FormControl>
+    </form>
+  );
+}
+```
+
+### Formulário com validação
+
+```tsx
+function ValidatedForm() {
+  const [errors, setErrors] = React.useState({});
+
+  return (
+    <form>
+      <FormControl
+        label="Senha"
+        helperText="Mínimo 8 caracteres, com letra maiúscula e número"
+        error={!!errors.password}
+        htmlFor="password"
+      >
+        <div
+          className={`ods-input ${errors.password ? 'ods-input--error' : ''}`}
+        >
+          <input
+            id="password"
+            type="password"
+            onChange={(e) => {
+              // Validação aqui
+              if (e.target.value.length < 8) {
+                setErrors((prev) => ({
+                  ...prev,
+                  password: 'Senha muito curta',
+                }));
+              } else {
+                setErrors((prev) => ({ ...prev, password: null }));
+              }
+            }}
+          />
+        </div>
+      </FormControl>
+    </form>
+  );
+}
+```
+
+### Formulário com Select HTML nativo
+
+```tsx
+function AddressForm() {
+  return (
+    <form>
+      <FormControl
+        label="Estado"
+        helperText="Selecione seu estado"
+        htmlFor="state"
+      >
+        <div className="ods-select__root">
+          <button id="state" type="button" className="ods-select__control">
+            <span className="ods-select__value ods-select__value--empty">
+              Escolha um estado
+            </span>
+            <div className="ods-select__arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M5 7.5L10 12.5L15 7.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+      </FormControl>
+
+      <FormControl
+        label="Cidade"
+        helperText="Selecione sua cidade"
+        htmlFor="city"
+      >
+        <div className="ods-select__root">
+          <button id="city" type="button" className="ods-select__control">
+            <span className="ods-select__value ods-select__value--empty">
+              Escolha uma cidade
+            </span>
+            <div className="ods-select__arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M5 7.5L10 12.5L15 7.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+      </FormControl>
+    </form>
+  );
+}
+```
+
+## Links relacionados
+
+- [Input](/components/input) - Campo de entrada de texto (já possui FormControl interno)
+- [Select](/components/select) - Campo de seleção (já possui FormControl interno)
+- [FormLabel](/components/formlabel) - Label de formulário
+- [Checkbox](/components/checkbox) - Campo de checkbox
+- [Radio](/components/radio) - Campo de radio button
+- [TextArea](/components/textarea) - Campo de texto multilinha (já possui FormControl interno)
+- [Storybook - FormControl](https://ocean-ds.github.io/ocean-web/?path=/docs/components-forms-formcontrol--docs) - Documentação técnica

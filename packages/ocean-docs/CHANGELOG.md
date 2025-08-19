@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.107.0](https://github.com/ocean-ds/ocean-web/compare/v1.106.0...v1.107.0) (2025-08-19)
+
+### Features
+
+- drawer modal doc ([#1185](https://github.com/ocean-ds/ocean-web/issues/1185)) ([c340324](https://github.com/ocean-ds/ocean-web/commit/c34032420074fec41ea816c8d3b584a6f96dd6a8))
+
 # [1.106.0](https://github.com/ocean-ds/ocean-web/compare/v1.105.0...v1.106.0) (2025-08-18)
 
 ### Features

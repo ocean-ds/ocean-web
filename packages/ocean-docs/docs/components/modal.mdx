@@ -1,0 +1,372 @@
+---
+title: Modal
+sidebar_label: Modal
+sidebar_position: 10
+---
+
+import { Modal } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Modal
+
+O componente Modal é uma janela sobreposta que aparece sobre o conteúdo principal da aplicação. É ideal para exibir conteúdo importante que requer atenção imediata do usuário, como confirmações, formulários, ou informações detalhadas sem sair do contexto atual.
+
+## Importação
+
+```tsx
+import { Modal } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Modal } from '@useblu/ocean-react/Modal';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ModalProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyModal: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
+  const [open, setOpen] = React.useState(isVisible);
+
+  return (
+    <Modal
+      isOpen={open}
+      onRequestClose={() => setOpen(false)}
+      contentLabel="Meu Modal"
+      maxWidth="md"
+    >
+      <div>Conteúdo do modal</div>
+    </Modal>
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente Modal no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-modal--usage"
+  height={500}
+  title="Modal - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Modal](https://ocean-ds.github.io/ocean-web/?path=/docs/components-modal--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+function BasicModal() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Abrir Modal</button>
+      <Modal
+        isOpen={open}
+        onRequestClose={() => setOpen(false)}
+        contentLabel="Modal básico"
+      >
+        <div>
+          <h2>Título do Modal</h2>
+          <p>Conteúdo do modal aqui.</p>
+          <button onClick={() => setOpen(false)}>Fechar</button>
+        </div>
+      </Modal>
+    </>
+  );
+}
+```
+
+## Tamanhos
+
+O Modal oferece diferentes tamanhos para adequar-se ao conteúdo:
+
+<StorybookEmbed
+  storyId="components-modal--sizes"
+  height={400}
+  showToolbar={false}
+  title="Modal - Tamanhos"
+/>
+
+## Modal em bloco
+
+Modal que se estende até a largura máxima disponível:
+
+<StorybookEmbed
+  storyId="components-modal--blocked"
+  height={400}
+  showToolbar={false}
+  title="Modal - em bloco"
+/>
+
+## Modal sem botão fechar
+
+Para casos onde você quer controlar o fechamento apenas por ações específicas:
+
+<StorybookEmbed
+  storyId="components-modal--without-close-button"
+  height={400}
+  showToolbar={false}
+  title="Modal - Sem Botão Fechar"
+/>
+
+## API
+
+### Props
+
+| Prop             | Tipo                                           | Padrão  | Descrição                                              |
+| ---------------- | ---------------------------------------------- | ------- | ------------------------------------------------------ |
+| `children`       | `ReactNode`                                    | -       | Conteúdo a ser exibido dentro do modal                 |
+| `isOpen`         | `boolean`                                      | -       | Controla se o modal está aberto                        |
+| `onRequestClose` | `(event: MouseEvent \| KeyboardEvent) => void` | -       | Função chamada quando o modal é solicitado para fechar |
+| `blocked`        | `boolean`                                      | `false` | Se true, o modal se estende até a largura máxima       |
+| `maxWidth`       | `'sm' \| 'md' \| 'lg' \| false`                | `false` | Determina a largura máxima do modal                    |
+| `disableClose`   | `boolean`                                      | `false` | Desabilita o botão de fechar                           |
+| `contentLabel`   | `string`                                       | -       | Label para acessibilidade do conteúdo do modal         |
+| `ariaHideApp`    | `boolean`                                      | `true`  | Controla se deve esconder a aplicação do screen reader |
+| `closeTimeoutMS` | `number`                                       | `150`   | Tempo de animação para fechar o modal em milissegundos |
+
+### Eventos
+
+- `onRequestClose`: Disparado quando o usuário tenta fechar o modal (Escape, clique no overlay, botão fechar)
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                              | Descrição                                     |
+| ----------------------------------- | --------------------------------------------- |
+| `.ods-modal`                        | Container portal do modal                     |
+| `.ods-modal__overlay`               | Overlay de fundo do modal                     |
+| `.ods-modal__overlay--after-open`   | Modificador para overlay após abertura        |
+| `.ods-modal__overlay--before-close` | Modificador para overlay antes do fechamento  |
+| `.ods-modal__content`               | Container principal do conteúdo do modal      |
+| `.ods-modal__content--after-open`   | Modificador para conteúdo após abertura       |
+| `.ods-modal__content--before-close` | Modificador para conteúdo antes do fechamento |
+| `.ods-modal__content--sm`           | Modificador para modal de tamanho pequeno     |
+| `.ods-modal__content--md`           | Modificador para modal de tamanho médio       |
+| `.ods-modal__content--lg`           | Modificador para modal de tamanho grande      |
+| `.ods-modal__content--blocked`      | Modificador para modal bloqueado              |
+| `.ods-modal__header`                | Cabeçalho do modal                            |
+| `.ods-modal__header-close`          | Botão de fechar do modal                      |
+| `.ods-modal__body`                  | Corpo do modal onde fica o conteúdo           |
+
+#### Exemplo de customização
+
+```css
+/* Customizar overlay */
+.ods-modal__overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Customizar conteúdo do modal */
+.ods-modal__content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Customizar tamanhos */
+.ods-modal__content--sm {
+  max-width: 400px;
+}
+
+.ods-modal__content--md {
+  max-width: 600px;
+}
+
+.ods-modal__content--lg {
+  max-width: 900px;
+}
+
+/* Animações customizadas */
+.ods-modal__content--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ods-modal__content--before-close {
+  opacity: 0;
+  transform: scale(0.95);
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Foco automático no modal quando aberto
+- ✅ Escape para fechar o modal
+- ✅ Overlay clicável para fechar
+- ✅ Atributos ARIA apropriados
+- ✅ Gestão de foco para screen readers
+- ✅ Suporte ao `contentLabel` para identificação
+
+### Navegação por teclado
+
+| Tecla    | Função                 |
+| -------- | ---------------------- |
+| `Escape` | Fecha o modal          |
+| `Tab`    | Navega pelos elementos |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para conteúdo importante que precisa de atenção imediata
+- Implemente fechamento via Escape e overlay
+- Forneça um `contentLabel` descritivo
+- Use tamanho apropriado para o conteúdo
+- Mantenha o foco dentro do modal quando aberto
+
+### ❌ Não faça
+
+- Não use para navegação principal
+- Não omita formas de fechar o modal
+- Não coloque múltiplos modais abertos simultaneamente
+- Não use modal muito pequeno para conteúdo extenso
+- Não esqueça de gerenciar o foco adequadamente
+
+## Casos de uso comuns
+
+### Modal de confirmação
+
+```tsx
+function ConfirmationModal() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Deletar Item</button>
+      <Modal
+        isOpen={open}
+        onRequestClose={() => setOpen(false)}
+        contentLabel="Confirmar exclusão"
+        maxWidth="sm"
+      >
+        <div style={{ padding: '24px', textAlign: 'center' }}>
+          <h2>Confirmar Exclusão</h2>
+          <p>
+            Tem certeza que deseja deletar este item? Esta ação não pode ser
+            desfeita.
+          </p>
+          <div
+            style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}
+          >
+            <button onClick={() => setOpen(false)}>Cancelar</button>
+            <button
+              onClick={() => setOpen(false)}
+              style={{ background: 'red', color: 'white' }}
+            >
+              Deletar
+            </button>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
+}
+```
+
+### Modal de formulário
+
+```tsx
+function FormModal() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Novo Produto</button>
+      <Modal
+        isOpen={open}
+        onRequestClose={() => setOpen(false)}
+        contentLabel="Criar produto"
+        maxWidth="md"
+      >
+        <div style={{ padding: '24px' }}>
+          <h2>Novo Produto</h2>
+          <form>
+            <div>
+              <label>Nome do produto</label>
+              <input type="text" />
+            </div>
+            <div>
+              <label>Descrição</label>
+            </div>
+            <div>
+              <label>Preço</label>
+              <input type="number" />
+            </div>
+            <div>
+              <button type="button" onClick={() => setOpen(false)}>
+                Cancelar
+              </button>
+              <button type="submit">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+    </>
+  );
+}
+```
+
+### Modal de detalhes
+
+```tsx
+function DetailsModal({ item }) {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Ver Detalhes</button>
+      <Modal
+        isOpen={open}
+        onRequestClose={() => setOpen(false)}
+        contentLabel="Detalhes do item"
+        maxWidth="lg"
+      >
+        <div>
+          <h2>{item.name}</h2>
+          <div>
+            <div>
+              <h3>Informações Básicas</h3>
+              <p>Código: {item.code}</p>
+              <p>Categoria: {item.category}</p>
+              <p>Status: {item.status}</p>
+            </div>
+            <div>
+              <h3>Descrição</h3>
+              <p>{item.description}</p>
+            </div>
+          </div>
+          <button onClick={() => setOpen(false)}>Fechar</button>
+        </div>
+      </Modal>
+    </>
+  );
+}
+```
+
+## Links relacionados
+
+- [Drawer](/components/drawer) - Para conteúdo lateral que não bloqueia a interação
+- [Alert](/components/alert) - Para notificações simples inline
+- [Snackbar](/components/snackbar) - Para feedback temporário
+- [Storybook - Modal](https://ocean-ds.github.io/ocean-web/?path=/docs/components-modal--docs) - Documentação técnica
