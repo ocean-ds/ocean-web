@@ -51,6 +51,7 @@ const sidebars: SidebarsConfig = {
         'components/link',
         'components/modal',
         'components/radio',
+        'components/search',
         'components/tokeninput',
         'components/textarea',
         'components/stepper',

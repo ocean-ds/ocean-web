@@ -1,0 +1,435 @@
+---
+title: Search
+sidebar_label: Search
+sidebar_position: 16
+---
+
+import { Search } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Search
+
+O componente Search é um campo de entrada especializado para buscas que inclui um ícone de lupa e um botão de limpar opcional. É ideal para funcionalidades de busca em listas, catálogos e navegação.
+
+## Importação
+
+```tsx
+import { Search } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Search } from '@useblu/ocean-react/Search';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { SearchInputProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MySearch: React.FC<{ onSearch: (term: string) => void }> = ({
+  onSearch,
+}) => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    onSearch(value);
+  };
+
+  return (
+    <Search
+      placeholder="Buscar..."
+      value={searchTerm}
+      onChange={(e) => handleSearch(e.target.value)}
+    />
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente Search no playground interativo do Storybook. Use os controles para testar o `placeholder` e o estado `disabled`:
+
+<StorybookEmbed
+  storyId="components-search--usage"
+  height={300}
+  title="Search - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Search](https://ocean-ds.github.io/ocean-web/?path=/docs/components-search--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar `placeholder` e `disabled`
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Search placeholder="Buscar..." />
+```
+
+## Com valor controlado
+
+Exemplo de Search com valor controlado:
+
+<StorybookEmbed
+  storyId="components-search--with-value"
+  height={250}
+  showToolbar={false}
+  title="Search - Com Valor Controlado"
+/>
+
+## Estados
+
+O Search suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-search--states"
+  height={300}
+  showToolbar={false}
+  title="Search - Estados"
+/>
+
+## Interativo
+
+Exemplo de Search com funcionalidade de busca:
+
+<StorybookEmbed
+  storyId="components-search--interactive"
+  height={400}
+  showToolbar={false}
+  title="Search - Interativo"
+/>
+
+## API
+
+### Props
+
+| Prop          | Tipo      | Padrão  | Descrição                              |
+| ------------- | --------- | ------- | -------------------------------------- |
+| `placeholder` | `string`  | -       | Texto de placeholder do campo de busca |
+| `disabled`    | `boolean` | `false` | Desabilita o campo de busca            |
+
+**Nota:** O componente Search aceita todas as props nativas de um elemento `<input>` HTML, mas apenas `placeholder` e `disabled` são expostos como controles no Storybook para simplicidade.
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                   | Descrição                            |
+| ------------------------ | ------------------------------------ |
+| `.ods-search`            | Container principal do Search        |
+| `.ods-search--filled`    | Modificador quando há valor no campo |
+| `.ods-search--disabled`  | Modificador para campo desabilitado  |
+| `.ods-search__adornment` | Container do ícone de lupa           |
+| `.ods-search__clean`     | Botão de limpar                      |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o container principal */
+.ods-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+}
+
+/* Customizar quando há valor */
+.ods-search--filled {
+  border-color: #007bff;
+}
+
+/* Customizar estado desabilitado */
+.ods-search--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+}
+
+/* Customizar o ícone de lupa */
+.ods-search__adornment {
+  padding: 8px 12px;
+  color: #666;
+}
+
+/* Customizar o botão de limpar */
+.ods-search__clean {
+  padding: 4px;
+  margin-right: 8px;
+  color: #666;
+  cursor: pointer;
+}
+
+.ods-search__clean:hover {
+  color: #333;
+}
+
+/* Customizar o input */
+.ods-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.ods-search input:disabled {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Boas práticas
+
+- **Use `placeholder` descritivo** para orientar o usuário
+- **Implemente debounce** para buscas em tempo real
+- **Forneça feedback visual** durante a busca
+- **Use `id` único** para acessibilidade
+- **Use `disabled`** quando a busca não estiver disponível
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para funcionalidades de busca
+- Implemente debounce para buscas em tempo real
+- Forneça feedback visual durante a busca
+- Use placeholder descritivo
+- Implemente busca case-insensitive
+- Use `id` único para acessibilidade
+- Use `disabled` quando apropriado
+
+### ❌ Não faça
+
+- Não use para campos de entrada genéricos (use Input)
+- Não implemente busca sem debounce
+- Não ignore estados de loading
+- Não use placeholder muito longo
+- Não ignore feedback de "nenhum resultado"
+- Não use para campos de senha ou dados sensíveis
+- Não ignore o estado `disabled` quando apropriado
+
+## Casos de uso comuns
+
+### Busca simples
+
+```tsx
+function SimpleSearch() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  return (
+    <Search
+      placeholder="Buscar produtos..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      id="search-products"
+    />
+  );
+}
+```
+
+### Busca com debounce
+
+```tsx
+function DebouncedSearch() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [isSearching, setIsSearching] = React.useState(false);
+
+  const debouncedSearch = React.useCallback(
+    React.useMemo(
+      () =>
+        debounce((term: string) => {
+          setIsSearching(true);
+          // Simular busca
+          setTimeout(() => {
+            console.log('Buscando por:', term);
+            setIsSearching(false);
+          }, 500);
+        }, 300),
+      []
+    )
+  );
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    debouncedSearch(value);
+  };
+
+  return (
+    <Search
+      placeholder="Buscar com debounce..."
+      value={searchTerm}
+      onChange={(e) => handleSearch(e.target.value)}
+      id="debounced-search"
+    />
+  );
+  );
+}
+```
+
+### Busca em lista
+
+```tsx
+function ListSearch() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [filteredItems, setFilteredItems] = React.useState(items);
+
+  const items = ['React', 'TypeScript', 'JavaScript', 'Node.js', 'Next.js'];
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+    const filtered = items.filter((item) =>
+      item.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
+
+  return (
+    <div>
+      <Search
+        placeholder="Filtrar lista..."
+        value={searchTerm}
+        onChange={(e) => handleSearch(e.target.value)}
+        id="filter-list"
+      />
+
+      <ul>
+        {filteredItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+
+      {filteredItems.length === 0 && searchTerm && (
+        <p>Nenhum resultado encontrado para "{searchTerm}"</p>
+      )}
+    </div>
+  );
+}
+```
+
+### Busca com validação
+
+```tsx
+function ValidatedSearch() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+
+    if (value.length < 3 && value.length > 0) {
+      setError('Digite pelo menos 3 caracteres');
+    } else {
+      setError('');
+    }
+  };
+
+  return (
+    <Search
+      placeholder="Buscar (mínimo 3 caracteres)..."
+      value={searchTerm}
+      onChange={(e) => handleSearch(e.target.value)}
+      id="validated-search"
+    />
+  );
+}
+```
+
+### Busca desabilitada
+
+```tsx
+function DisabledSearch() {
+  return (
+    <Search placeholder="Busca indisponível" disabled id="disabled-search" />
+  );
+}
+```
+
+### Busca básica
+
+```tsx
+function BasicSearch() {
+  return (
+    <div>
+      <Search placeholder="Buscar no site..." />
+      <Search placeholder="Buscar desabilitado..." disabled />
+    </div>
+  );
+}
+```
+
+### Busca com resultado em tempo real
+
+```tsx
+function RealTimeSearch() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [results, setResults] = React.useState<string[]>([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleSearch = async (value: string) => {
+    setSearchTerm(value);
+
+    if (value.length >= 2) {
+      setIsLoading(true);
+      // Simular busca assíncrona
+      setTimeout(() => {
+        const mockResults = [
+          'Resultado 1',
+          'Resultado 2',
+          'Resultado 3',
+        ].filter((item) => item.toLowerCase().includes(value.toLowerCase()));
+        setResults(mockResults);
+        setIsLoading(false);
+      }, 300);
+    } else {
+      setResults([]);
+    }
+  };
+
+  return (
+    <div>
+      <Search
+        placeholder="Buscar em tempo real..."
+        value={searchTerm}
+        onChange={(e) => handleSearch(e.target.value)}
+        id="realtime-search"
+      />
+
+      {results.length > 0 && (
+        <div>
+          {results.map((result, index) => (
+            <div key={index}>{result}</div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [Input](/components/input) - Campo de entrada genérico
+- [FormControl](/components/formcontrol) - Wrapper para campos de formulário
+- [IconButton](/components/iconbutton) - Botão com ícone
+- [Button](/components/button) - Botão padrão
+- [Storybook - Search](https://ocean-ds.github.io/ocean-web/?path=/docs/components-search--docs) - Documentação técnica
