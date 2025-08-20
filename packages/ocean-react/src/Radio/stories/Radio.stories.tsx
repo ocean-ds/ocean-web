@@ -69,33 +69,37 @@ export const RadioGroup: Story = {
     controls: { disable: true },
   },
   render: () => {
-    const [selectedValue, setSelectedValue] = React.useState('option1');
+    const RadioGroupComponent = () => {
+      const [selectedValue, setSelectedValue] = React.useState('option1');
 
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        <Radio
-          label="Opção 1"
-          name="radio-group"
-          value="option1"
-          checked={selectedValue === 'option1'}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        />
-        <Radio
-          label="Opção 2"
-          name="radio-group"
-          value="option2"
-          checked={selectedValue === 'option2'}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        />
-        <Radio
-          label="Opção 3"
-          name="radio-group"
-          value="option3"
-          checked={selectedValue === 'option3'}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        />
-      </div>
-    );
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <Radio
+            label="Opção 1"
+            name="radio-group"
+            value="option1"
+            checked={selectedValue === 'option1'}
+            onChange={(e) => setSelectedValue(e.target.value)}
+          />
+          <Radio
+            label="Opção 2"
+            name="radio-group"
+            value="option2"
+            checked={selectedValue === 'option2'}
+            onChange={(e) => setSelectedValue(e.target.value)}
+          />
+          <Radio
+            label="Opção 3"
+            name="radio-group"
+            value="option3"
+            checked={selectedValue === 'option3'}
+            onChange={(e) => setSelectedValue(e.target.value)}
+          />
+        </div>
+      );
+    };
+
+    return <RadioGroupComponent />;
   },
 };
 
@@ -142,49 +146,53 @@ export const FormExample: Story = {
     controls: { disable: true },
   },
   render: () => {
-    const [gender, setGender] = React.useState('');
+    const FormExampleComponent = () => {
+      const [gender, setGender] = React.useState('');
 
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '500' }}>
-          Selecione seu gênero:
-        </h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <Radio
-            label="Feminino"
-            name="gender"
-            value="female"
-            checked={gender === 'female'}
-            onChange={(e) => setGender(e.target.value)}
-          />
-          <Radio
-            label="Masculino"
-            name="gender"
-            value="male"
-            checked={gender === 'male'}
-            onChange={(e) => setGender(e.target.value)}
-          />
-          <Radio
-            label="Não binário"
-            name="gender"
-            value="non-binary"
-            checked={gender === 'non-binary'}
-            onChange={(e) => setGender(e.target.value)}
-          />
-          <Radio
-            label="Prefiro não informar"
-            name="gender"
-            value="not-informed"
-            checked={gender === 'not-informed'}
-            onChange={(e) => setGender(e.target.value)}
-          />
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <h3 style={{ margin: 0, fontSize: '16px', fontWeight: '500' }}>
+            Selecione seu gênero:
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <Radio
+              label="Feminino"
+              name="gender"
+              value="female"
+              checked={gender === 'female'}
+              onChange={(e) => setGender(e.target.value)}
+            />
+            <Radio
+              label="Masculino"
+              name="gender"
+              value="male"
+              checked={gender === 'male'}
+              onChange={(e) => setGender(e.target.value)}
+            />
+            <Radio
+              label="Não binário"
+              name="gender"
+              value="non-binary"
+              checked={gender === 'non-binary'}
+              onChange={(e) => setGender(e.target.value)}
+            />
+            <Radio
+              label="Prefiro não informar"
+              name="gender"
+              value="not-informed"
+              checked={gender === 'not-informed'}
+              onChange={(e) => setGender(e.target.value)}
+            />
+          </div>
+          {gender && (
+            <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+              Gênero selecionado: {gender}
+            </p>
+          )}
         </div>
-        {gender && (
-          <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
-            Gênero selecionado: {gender}
-          </p>
-        )}
-      </div>
-    );
+      );
+    };
+
+    return <FormExampleComponent />;
   },
 };
