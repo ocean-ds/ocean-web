@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.108.0](https://github.com/ocean-ds/ocean-web/compare/v1.107.0...v1.108.0) (2025-08-20)
+
+### Features
+
+- ocean docs ([#1186](https://github.com/ocean-ds/ocean-web/issues/1186)) ([35ee544](https://github.com/ocean-ds/ocean-web/commit/35ee544c4801915d393fb270cb57099c2e2f4b57))
+
 # [1.107.0](https://github.com/ocean-ds/ocean-web/compare/v1.106.0...v1.107.0) (2025-08-19)
 
 ### Features
