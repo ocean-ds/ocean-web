@@ -1,0 +1,451 @@
+---
+title: Radio
+---
+
+import { Radio } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Radio
+
+O componente Radio é um elemento de seleção única que permite ao usuário escolher uma opção de um grupo de alternativas mutuamente exclusivas. É ideal para formulários que requerem uma única seleção entre múltiplas opções.
+
+## Importação
+
+```tsx
+import { Radio } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Radio } from '@useblu/ocean-react/Radio';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { RadioProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyRadioGroup: React.FC<{
+  options: string[];
+  value: string;
+  onChange: (value: string) => void;
+}> = ({ options, value, onChange }) => {
+  return (
+    <div>
+      {options.map((option) => (
+        <Radio
+          key={option}
+          label={option}
+          name="custom-group"
+          value={option}
+          checked={value === option}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      ))}
+    </div>
+  );
+};
+```
+
+## Playground Interativo
+
+Explore o componente Radio no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-radio--usage"
+  height={300}
+  title="Radio - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Radio](https://ocean-ds.github.io/ocean-web/?path=/docs/components-radio--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Radio label="Opção selecionada" checked />
+```
+
+## Grupo de Radios
+
+Exemplo de grupo de radios interativo:
+
+<StorybookEmbed
+  storyId="components-radio--radio-group"
+  height={250}
+  showToolbar={false}
+  title="Radio - Grupo Interativo"
+/>
+
+## Estados
+
+O Radio suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-radio--states"
+  height={250}
+  showToolbar={false}
+  title="Radio - Estados"
+/>
+
+## Sem label
+
+Você pode usar o Radio sem label:
+
+<StorybookEmbed
+  storyId="components-radio--without-label"
+  height={200}
+  showToolbar={false}
+  title="Radio - Sem Label"
+/>
+
+## Exemplo de formulário
+
+Exemplo prático de uso em formulário:
+
+<StorybookEmbed
+  storyId="components-radio--form-example"
+  height={350}
+  showToolbar={false}
+  title="Radio - Exemplo de Formulário"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                           | Padrão  | Descrição                          |
+| ----------- | ------------------------------ | ------- | ---------------------------------- |
+| `label`     | `ReactNode`                    | -       | Texto do label do radio            |
+| `checked`   | `boolean`                      | `false` | Define se o radio está selecionado |
+| `disabled`  | `boolean`                      | `false` | Desabilita o radio                 |
+| `name`      | `string`                       | -       | Nome do grupo de radios            |
+| `value`     | `string`                       | -       | Valor do radio                     |
+| `onChange`  | `(event: ChangeEvent) => void` | -       | Função chamada quando o valor muda |
+| `id`        | `string`                       | -       | ID único do radio                  |
+| `className` | `string`                       | -       | Classes CSS adicionais             |
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                  | Descrição                    |
+| ----------------------- | ---------------------------- |
+| `.ods-radio__root`      | Container principal do Radio |
+| `.ods-radio`            | Elemento input do radio      |
+| `.ods-radio__checkmark` | Elemento visual do radio     |
+| `.ods-radio__label`     | Label do radio               |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o container principal */
+.ods-radio__root {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Customizar o input radio */
+.ods-radio {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Customizar o checkmark */
+.ods-radio__checkmark {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Customizar estado checked */
+.ods-radio:checked + .ods-radio__checkmark {
+  border-color: #007bff;
+  background-color: #007bff;
+}
+
+.ods-radio:checked + .ods-radio__checkmark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Customizar estado disabled */
+.ods-radio:disabled + .ods-radio__checkmark {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Customizar label */
+.ods-radio__label {
+  font-size: 14px;
+  color: #333;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Boas práticas
+
+- **Use `name` igual** para todos os radios do mesmo grupo
+- **Use `value` único** para cada radio do grupo
+- **Use `id` único** para cada radio
+- **Use labels descritivos** que expliquem a opção
+- **Use `aria-label`** quando não houver label visível
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para seleção única entre múltiplas opções
+- Sempre agrupe radios relacionados com o mesmo `name`
+- Use labels claros e descritivos
+- Use valores únicos para cada radio
+- Use estado `disabled` quando apropriado
+- Organize radios verticalmente para melhor legibilidade
+
+### ❌ Não faça
+
+- Não use para seleção múltipla (use Checkbox)
+- Não use o mesmo `name` para grupos diferentes
+- Não use valores duplicados no mesmo grupo
+- Não use labels vagos ou genéricos
+- Não ignore estados de foco e hover
+- Não use para ações (use Button)
+
+## Casos de uso comuns
+
+### Seleção de gênero
+
+```tsx
+function GenderSelection() {
+  const [gender, setGender] = React.useState('');
+
+  return (
+    <div>
+      <h3>Selecione seu gênero:</h3>
+      <Radio
+        label="Feminino"
+        name="gender"
+        value="female"
+        checked={gender === 'female'}
+        onChange={(e) => setGender(e.target.value)}
+      />
+      <Radio
+        label="Masculino"
+        name="gender"
+        value="male"
+        checked={gender === 'male'}
+        onChange={(e) => setGender(e.target.value)}
+      />
+      <Radio
+        label="Não binário"
+        name="gender"
+        value="non-binary"
+        checked={gender === 'non-binary'}
+        onChange={(e) => setGender(e.target.value)}
+      />
+    </div>
+  );
+}
+```
+
+### Seleção de plano
+
+```tsx
+function PlanSelection() {
+  const [selectedPlan, setSelectedPlan] = React.useState('basic');
+
+  return (
+    <div>
+      <h3>Escolha seu plano:</h3>
+      <Radio
+        label="Plano Básico - R$ 9,90/mês"
+        name="plan"
+        value="basic"
+        checked={selectedPlan === 'basic'}
+        onChange={(e) => setSelectedPlan(e.target.value)}
+      />
+      <Radio
+        label="Plano Premium - R$ 19,90/mês"
+        name="plan"
+        value="premium"
+        checked={selectedPlan === 'premium'}
+        onChange={(e) => setSelectedPlan(e.target.value)}
+      />
+      <Radio
+        label="Plano Enterprise - R$ 49,90/mês"
+        name="plan"
+        value="enterprise"
+        checked={selectedPlan === 'enterprise'}
+        onChange={(e) => setSelectedPlan(e.target.value)}
+      />
+    </div>
+  );
+}
+```
+
+### Configurações de notificação
+
+```tsx
+function NotificationSettings() {
+  const [notificationType, setNotificationType] = React.useState('email');
+
+  return (
+    <div>
+      <h3>Como você prefere receber notificações?</h3>
+      <Radio
+        label="Email"
+        name="notification"
+        value="email"
+        checked={notificationType === 'email'}
+        onChange={(e) => setNotificationType(e.target.value)}
+      />
+      <Radio
+        label="SMS"
+        name="notification"
+        value="sms"
+        checked={notificationType === 'sms'}
+        onChange={(e) => setNotificationType(e.target.value)}
+      />
+      <Radio
+        label="Push notification"
+        name="notification"
+        value="push"
+        checked={notificationType === 'push'}
+        onChange={(e) => setNotificationType(e.target.value)}
+      />
+      <Radio
+        label="Não receber notificações"
+        name="notification"
+        value="none"
+        checked={notificationType === 'none'}
+        onChange={(e) => setNotificationType(e.target.value)}
+      />
+    </div>
+  );
+}
+```
+
+### Seleção de idioma
+
+```tsx
+function LanguageSelection() {
+  const [language, setLanguage] = React.useState('pt-BR');
+
+  return (
+    <div>
+      <h3>Selecione seu idioma:</h3>
+      <Radio
+        label="Português (Brasil)"
+        name="language"
+        value="pt-BR"
+        checked={language === 'pt-BR'}
+        onChange={(e) => setLanguage(e.target.value)}
+      />
+      <Radio
+        label="English (US)"
+        name="language"
+        value="en-US"
+        checked={language === 'en-US'}
+        onChange={(e) => setLanguage(e.target.value)}
+      />
+      <Radio
+        label="Español"
+        name="language"
+        value="es"
+        checked={language === 'es'}
+        onChange={(e) => setLanguage(e.target.value)}
+      />
+    </div>
+  );
+}
+```
+
+### Radios desabilitados
+
+```tsx
+function DisabledRadios() {
+  return (
+    <div>
+      <h3>Opções disponíveis:</h3>
+      <Radio
+        label="Opção disponível"
+        name="disabled-example"
+        value="available"
+      />
+      <Radio
+        label="Opção indisponível"
+        name="disabled-example"
+        value="unavailable"
+        disabled
+      />
+      <Radio
+        label="Opção selecionada"
+        name="disabled-example"
+        value="selected"
+        checked
+      />
+      <Radio
+        label="Opção selecionada desabilitada"
+        name="disabled-example"
+        value="selected-disabled"
+        checked
+        disabled
+      />
+    </div>
+  );
+}
+```
+
+### Radios sem label
+
+```tsx
+function RadiosWithoutLabel() {
+  return (
+    <div>
+      <h3>Selecione uma opção:</h3>
+      <div>
+        <Radio name="no-label" value="option1" aria-label="Opção 1" />
+        <Radio name="no-label" value="option2" checked aria-label="Opção 2" />
+        <Radio name="no-label" value="option3" disabled aria-label="Opção 3" />
+      </div>
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [Checkbox](/components/checkbox) - Seleção múltipla
+- [FormControl](/components/formcontrol) - Wrapper para campos de formulário
+- [FormLabel](/components/formlabel) - Label de formulário
+- [Button](/components/button) - Botão para ações
+- [Storybook - Radio](https://ocean-ds.github.io/ocean-web/?path=/docs/components-radio--docs) - Documentação técnica

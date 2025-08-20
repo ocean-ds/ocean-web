@@ -1,0 +1,330 @@
+---
+title: IconButton
+---
+
+import { IconButton } from '@useblu/ocean-react';
+import { Plus, Edit, Trash } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# IconButton
+
+O componente IconButton é um botão circular que exibe apenas um ícone. É ideal para ações secundárias, controles de interface e navegação compacta. Suporta diferentes tamanhos, estados e pode ser usado como link.
+
+## Importação
+
+```tsx
+import { IconButton } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { IconButton } from '@useblu/ocean-react/IconButton';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { IconButtonProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyIconButton: React.FC<{ icon: React.ReactNode; action: () => void }> = ({
+  icon,
+  action,
+}) => {
+  return <IconButton onClick={action}>{icon}</IconButton>;
+};
+```
+
+## Playground Interativo
+
+Explore o componente IconButton no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-iconbutton--usage"
+  height={300}
+  title="IconButton - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do IconButton](https://ocean-ds.github.io/ocean-web/?path=/docs/components-iconbutton--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<IconButton>
+  <Plus />
+</IconButton>
+```
+
+## Tamanhos
+
+O IconButton suporta dois tamanhos:
+
+<StorybookEmbed
+  storyId="components-iconbutton--sizes"
+  height={200}
+  showToolbar={false}
+  title="IconButton - Tamanhos"
+/>
+
+## Estados
+
+O IconButton suporta diferentes estados visuais:
+
+<StorybookEmbed
+  storyId="components-iconbutton--states"
+  height={200}
+  showToolbar={false}
+  title="IconButton - Estados"
+/>
+
+## Como link
+
+O IconButton pode ser usado como link:
+
+<StorybookEmbed
+  storyId="components-iconbutton--as-link"
+  height={200}
+  showToolbar={false}
+  title="IconButton - Como Link"
+/>
+
+## Interativo
+
+Exemplo de IconButton com funcionalidade interativa:
+
+<StorybookEmbed
+  storyId="components-iconbutton--interactive"
+  height={250}
+  showToolbar={false}
+  title="IconButton - Interativo"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                          | Padrão     | Descrição                                   |
+| ----------- | ----------------------------- | ---------- | ------------------------------------------- |
+| `children`  | `ReactNode`                   | -          | Ícone a ser exibido no botão                |
+| `component` | `ElementType`                 | `'button'` | Elemento HTML ou componente usado como root |
+| `size`      | `'sm' \| 'md'`                | `'md'`     | Tamanho do botão                            |
+| `disabled`  | `boolean`                     | `false`    | Desabilita o botão                          |
+| `onClick`   | `(event: MouseEvent) => void` | -          | Função chamada ao clicar no botão           |
+| `className` | `string`                      | -          | Classes CSS adicionais                      |
+
+### Classes CSS
+
+O componente utiliza as seguintes classes CSS que podem ser customizadas:
+
+| Classe                    | Descrição                           |
+| ------------------------- | ----------------------------------- |
+| `.ods-icon-btn`           | Container principal do IconButton   |
+| `.ods-icon-btn--sm`       | Modificador para tamanho pequeno    |
+| `.ods-icon-btn--md`       | Modificador para tamanho médio      |
+| `.ods-icon-btn--disabled` | Modificador para botão desabilitado |
+
+#### Exemplo de customização
+
+```css
+/* Customizar o botão principal */
+.ods-icon-btn {
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* Customizar tamanho pequeno */
+.ods-icon-btn--sm {
+  width: 32px;
+  height: 32px;
+}
+
+/* Customizar tamanho médio */
+.ods-icon-btn--md {
+  width: 40px;
+  height: 40px;
+}
+
+/* Customizar estado desabilitado */
+.ods-icon-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Customizar hover */
+.ods-icon-btn:hover:not(.ods-icon-btn--disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: scale(1.05);
+}
+
+/* Customizar foco para acessibilidade */
+.ods-icon-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Boas práticas
+
+- **Use `aria-label`** para descrever a ação do botão
+- **Use ícones semânticos** que representem a ação
+- **Mantenha consistência** no uso de ícones similares
+- **Use estado `disabled`** quando a ação não estiver disponível
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use para ações secundárias e controles de interface
+- Sempre forneça um `aria-label` descritivo
+- Use ícones que representem claramente a ação
+- Use tamanho `sm` para interfaces compactas
+- Use tamanho `md` para interfaces padrão
+- Use estado `disabled` quando apropriado
+
+### ❌ Não faça
+
+- Não use para ações primárias importantes
+- Não use ícones genéricos ou confusos
+- Não omita `aria-label` para acessibilidade
+- Não use tamanhos muito grandes ou pequenos
+- Não ignore estados de foco e hover
+- Não use para navegação principal
+
+## Casos de uso comuns
+
+### Botão de fechar
+
+```tsx
+function CloseButton() {
+  return (
+    <IconButton aria-label="Fechar" onClick={() => console.log('Fechar')}>
+      <XOutline />
+    </IconButton>
+  );
+}
+```
+
+### Botão de editar
+
+```tsx
+function EditButton() {
+  return (
+    <IconButton aria-label="Editar item" onClick={() => console.log('Editar')}>
+      <Edit />
+    </IconButton>
+  );
+}
+```
+
+### Botão de excluir
+
+```tsx
+function DeleteButton() {
+  return (
+    <IconButton
+      aria-label="Excluir item"
+      onClick={() => console.log('Excluir')}
+      disabled={isDeleting}
+    >
+      <Trash />
+    </IconButton>
+  );
+}
+```
+
+### Botão como link
+
+```tsx
+function ExternalLinkButton() {
+  return (
+    <IconButton
+      component="a"
+      href="https://example.com"
+      target="_blank"
+      aria-label="Abrir link externo"
+    >
+      <ExternalLink />
+    </IconButton>
+  );
+}
+```
+
+### Botão de toggle
+
+```tsx
+function ToggleButton() {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  return (
+    <IconButton
+      aria-label={isExpanded ? 'Recolher' : 'Expandir'}
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      {isExpanded ? <ChevronUp /> : <ChevronDown />}
+    </IconButton>
+  );
+}
+```
+
+### Botão de adicionar
+
+```tsx
+function AddButton() {
+  return (
+    <IconButton
+      aria-label="Adicionar novo item"
+      onClick={() => console.log('Adicionar')}
+      size="sm"
+    >
+      <Plus />
+    </IconButton>
+  );
+}
+```
+
+### Grupo de ações
+
+```tsx
+function ActionButtons() {
+  return (
+    <div>
+      <IconButton aria-label="Editar" size="sm">
+        <Edit />
+      </IconButton>
+      <IconButton aria-label="Duplicar" size="sm">
+        <Copy />
+      </IconButton>
+      <IconButton aria-label="Excluir" size="sm">
+        <Trash />
+      </IconButton>
+    </div>
+  );
+}
+```
+
+## Links relacionados
+
+- [Button](/components/button) - Botão padrão com texto
+- [Link](/components/link) - Link de navegação
+- [Modal](/components/modal) - Modal com botões de ação
+- [Drawer](/components/drawer) - Drawer com botões de controle
+- [Storybook - IconButton](https://ocean-ds.github.io/ocean-web/?path=/docs/components-iconbutton--docs) - Documentação técnica
