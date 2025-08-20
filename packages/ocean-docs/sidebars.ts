@@ -55,6 +55,7 @@ const sidebars: SidebarsConfig = {
         'components/textarea',
         'components/stepper',
         'components/steps',
+        'components/subheader',
         'components/select',
         'components/selectautocomplete',
         'components/list',
