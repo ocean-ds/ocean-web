@@ -54,6 +54,7 @@ const sidebars: SidebarsConfig = {
         'components/tokeninput',
         'components/textarea',
         'components/stepper',
+        'components/steps',
         'components/select',
         'components/selectautocomplete',
         'components/list',

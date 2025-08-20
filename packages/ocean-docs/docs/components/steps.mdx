@@ -1,0 +1,327 @@
+---
+title: Steps
+sidebar_label: Steps
+sidebar_position: 2
+---
+
+import { Steps } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Steps
+
+O componente Steps exibe um indicador visual de progresso em processos multi-etapas, mostrando o passo atual e o total de passos.
+
+## Importação
+
+```tsx
+import { Steps } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Steps } from '@useblu/ocean-react/Steps';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { StepsProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<StepsProps> = (props) => {
+  return <Steps {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Steps no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-steps--usage"
+  height={300}
+  title="Steps - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Steps](https://ocean-ds.github.io/ocean-web/?path=/docs/components-steps--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+O Steps é usado para mostrar o progresso em processos multi-etapas:
+
+```tsx live
+<Steps currentStep={2} steps={4} />
+```
+
+## Diferentes quantidades de passos
+
+O Steps suporta de 2 a 10 passos:
+
+### 2 Passos
+
+```tsx live
+<Steps currentStep={1} steps={2} />
+```
+
+### 3 Passos
+
+```tsx live
+<Steps currentStep={2} steps={3} />
+```
+
+### 4 Passos
+
+```tsx live
+<Steps currentStep={3} steps={4} />
+```
+
+### 5 Passos
+
+```tsx live
+<Steps currentStep={4} steps={5} />
+```
+
+Veja diferentes quantidades de passos:
+
+<StorybookEmbed
+  storyId="components-steps--progress-states"
+  height={300}
+  showToolbar={false}
+  title="Steps - Diferentes Quantidades"
+/>
+
+## Estados de progresso
+
+O Steps mostra visualmente o progresso através de diferentes estados:
+
+### Passo atual
+
+```tsx live
+<Steps currentStep={2} steps={4} />
+```
+
+### Passos concluídos
+
+```tsx live
+<Steps currentStep={3} steps={4} />
+```
+
+### Processo concluído
+
+```tsx live
+<Steps currentStep={4} steps={4} />
+```
+
+## Estados visuais
+
+O componente Steps utiliza três estados visuais diferentes:
+
+### 🔵 **Passo atual**
+
+- Círculo preenchido com cor primária
+- Indica o passo em que o usuário está atualmente
+
+### ✅ **Passos concluídos**
+
+- Círculo preenchido com cor primária
+- Ícone de check (✓) em branco
+- Linha de conexão preenchida
+
+### ⚪ **Passos futuros**
+
+- Círculo vazio com borda cinza
+- Linha de conexão cinza
+
+## API
+
+### Props
+
+| Prop          | Tipo                                              | Padrão | Descrição                            |
+| ------------- | ------------------------------------------------- | ------ | ------------------------------------ |
+| `currentStep` | `1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10` | `1`    | O passo atual do processo            |
+| `steps`       | `2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10`      | `4`    | O número total de passos no processo |
+
+### Classes CSS
+
+O componente Steps é baseado em SVG e utiliza elementos SVG nativos. As customizações podem ser feitas através de seletores CSS que afetam os elementos SVG:
+
+#### Elementos SVG principais
+
+| Elemento | Descrição                         |
+| -------- | --------------------------------- |
+| `svg`    | Container principal do SVG        |
+| `circle` | Círculos dos passos               |
+| `path`   | Linhas de conexão entre os passos |
+| `g`      | Grupos de elementos SVG           |
+
+#### Estados dos elementos
+
+| Estado                     | Descrição                               |
+| -------------------------- | --------------------------------------- |
+| `circle[stroke="#13BDBD"]` | Círculo do passo atual (cor primária)   |
+| `circle[stroke="#EBECF5"]` | Círculo de passo futuro (cor cinza)     |
+| `circle[fill="#13BDBD"]`   | Círculo de passo concluído (preenchido) |
+| `path[stroke="#13BDBD"]`   | Linha de conexão preenchida             |
+| `path[stroke="#EBECF5"]`   | Linha de conexão não preenchida         |
+
+#### Exemplo de customização
+
+```css
+/* Customizar cor do passo atual */
+.ods-steps svg circle[stroke='#13BDBD'] {
+  stroke: #0066cc;
+}
+
+/* Customizar cor dos passos futuros */
+.ods-steps svg circle[stroke='#EBECF5'] {
+  stroke: #cccccc;
+}
+
+/* Customizar cor dos passos concluídos */
+.ods-steps svg circle[fill='#13BDBD'] {
+  fill: #28a745;
+}
+
+/* Customizar cor das linhas de conexão preenchidas */
+.ods-steps svg path[stroke='#13BDBD'] {
+  stroke: #28a745;
+}
+
+/* Customizar cor das linhas de conexão não preenchidas */
+.ods-steps svg path[stroke='#EBECF5'] {
+  stroke: #e9ecef;
+}
+
+/* Customizar tamanho do SVG */
+.ods-steps svg {
+  height: 24px;
+  width: auto;
+}
+
+/* Customizar espessura das linhas */
+.ods-steps svg circle,
+.ods-steps svg path {
+  stroke-width: 3px;
+}
+
+/* Customizar animação de transição */
+.ods-steps svg {
+  transition: all 0.3s ease;
+}
+
+/* Customizar hover effects */
+.ods-steps:hover svg circle[stroke='#EBECF5'] {
+  stroke: #0066cc;
+  opacity: 0.7;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte a screen readers com texto descritivo
+- ✅ Contraste adequado em todos os estados
+- ✅ Atributos ARIA apropriados
+- ✅ Navegação por teclado quando necessário
+
+### Informações para screen readers
+
+O componente fornece informações contextuais sobre:
+
+- Passo atual do processo
+- Total de passos
+- Estado de cada passo (concluído, atual, pendente)
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use Steps para processos com 2-10 passos
+- Mantenha o número de passos razoável (máximo 10)
+- Use títulos descritivos para cada passo
+- Atualize o `currentStep` conforme o usuário progride
+- Combine com texto explicativo quando necessário
+
+### ❌ Não faça
+
+- Não use Steps para processos com mais de 10 passos
+- Não use Steps para indicadores de progresso contínuo
+- Não omita a atualização do `currentStep`
+- Não use Steps sem contexto claro do processo
+
+## Casos de uso comuns
+
+### Formulários multi-etapas
+
+```tsx live
+<div style={{ textAlign: 'center' }}>
+  <h3>Cadastro de Usuário</h3>
+  <Steps currentStep={2} steps={3} />
+  <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+    Passo 2 de 3: Informações pessoais
+  </p>
+</div>
+```
+
+### Processos de checkout
+
+```tsx live
+<div style={{ textAlign: 'center' }}>
+  <h3>Finalizar Compra</h3>
+  <Steps currentStep={3} steps={4} />
+  <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+    Passo 3 de 4: Revisar pedido
+  </p>
+</div>
+```
+
+### Configurações de conta
+
+```tsx live
+<div style={{ textAlign: 'center' }}>
+  <h3>Configurar Conta</h3>
+  <Steps currentStep={1} steps={5} />
+  <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+    Passo 1 de 5: Informações básicas
+  </p>
+</div>
+```
+
+### Onboarding de usuários
+
+```tsx live
+<div style={{ textAlign: 'center' }}>
+  <h3>Bem-vindo!</h3>
+  <Steps currentStep={4} steps={4} />
+  <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+    Passo 4 de 4: Configuração concluída
+  </p>
+</div>
+```
+
+## Visão geral completa
+
+Veja todas as variantes do Steps em ação:
+
+<StorybookEmbed
+  storyId="components-steps--progress-states"
+  height={400}
+  showToolbar={false}
+  title="Steps - Visão Geral Completa"
+/>
+
+## Links relacionados
+
+- [Stepper](/components/stepper) - Para navegação entre passos
+- [Progress](/components/progress) - Para indicadores de progresso contínuo
+- [Button](/components/button) - Para navegação entre passos
+- [Storybook - Steps](https://ocean-ds.github.io/ocean-web/?path=/docs/components-steps--docs) - Documentação técnica
