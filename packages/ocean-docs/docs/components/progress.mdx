@@ -1,0 +1,164 @@
+---
+title: Progress
+sidebar_label: Progress
+sidebar_position: 2
+---
+
+import { Progress } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Progress
+
+O componente Progress exibe um indicador de carregamento animado para informar ao usuário que uma operação está em andamento.
+
+## Importação
+
+```tsx
+import { Progress } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Progress } from '@useblu/ocean-react/Progress';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ProgressProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<ProgressProps> = (props) => {
+  return <Progress {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Progress no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-progress--usage"
+  height={400}
+  title="Progress - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Progress](https://ocean-ds.github.io/ocean-web/?path=/docs/components-progress--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+O Progress é usado para indicar que uma operação está em andamento:
+
+```tsx live
+<Progress />
+```
+
+## Tamanhos
+
+O Progress está disponível em três tamanhos diferentes:
+
+### Small
+
+```tsx live
+<Progress size="sm" />
+```
+
+### Medium (padrão)
+
+```tsx live
+<Progress size="md" />
+```
+
+### Large
+
+```tsx live
+<Progress size="lg" />
+```
+
+Veja todos os tamanhos juntos:
+
+<StorybookEmbed
+  storyId="components-progress--sizes"
+  height={200}
+  showToolbar={false}
+  title="Progress - Todos os Tamanhos"
+/>
+
+## Variante On Color
+
+Use a prop `onColor` quando o Progress for exibido sobre um fundo colorido ou escuro:
+
+```tsx live
+<div>
+  <Progress onColor />
+</div>
+```
+
+Comparação entre as variantes:
+
+<StorybookEmbed
+  storyId="components-progress--on-color"
+  height={300}
+  showToolbar={false}
+  title="Progress - Variante On Color"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                   | Padrão  | Descrição                                                   |
+| ----------- | ---------------------- | ------- | ----------------------------------------------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg'` | `'md'`  | Define o tamanho do componente de progresso                 |
+| `onColor`   | `boolean`              | `false` | Define se o progresso deve ser exibido sobre fundo colorido |
+| `className` | `string`               | -       | Classes CSS adicionais                                      |
+
+## Acessibilidade
+
+- ✅ Animação suave e não intrusiva
+- ✅ Suporte a screen readers com texto alternativo
+- ✅ Contraste adequado em todos os estados
+- ✅ Não interfere na navegação por teclado
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use Progress para operações que levam mais de 1 segundo
+- Combine com texto explicativo quando necessário
+- Use o tamanho apropriado para o contexto (sm para inline, lg para tela cheia)
+- Use `onColor` em fundos escuros ou coloridos
+
+### ❌ Não faça
+
+- Não use Progress para operações instantâneas
+- Não use múltiplos Progress simultaneamente na mesma área
+- Não omita o `onColor` em fundos escuros
+- Não use Progress como placeholder de conteúdo
+
+## Visão geral completa
+
+Veja todas as variantes do Progress em ação:
+
+<StorybookEmbed
+  storyId="components-progress--all-variants"
+  height={400}
+  showToolbar={false}
+  title="Progress - Todas as Variantes"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações que podem mostrar Progress
+- [Modal](/components/modal) - Para usar Progress em modais de carregamento
+- [Storybook - Progress](https://ocean-ds.github.io/ocean-web/?path=/docs/components-progress--docs) - Documentação técnica

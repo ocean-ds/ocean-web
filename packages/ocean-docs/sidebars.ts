@@ -50,6 +50,7 @@ const sidebars: SidebarsConfig = {
         'components/input',
         'components/link',
         'components/modal',
+        'components/progress',
         'components/radio',
         'components/search',
         'components/tokeninput',
