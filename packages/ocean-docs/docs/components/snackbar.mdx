@@ -1,0 +1,467 @@
+---
+title: Snackbar
+---
+
+import { Snackbar } from '@useblu/ocean-react';
+import { Button } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Snackbar
+
+O componente Snackbar exibe notificações temporárias na interface do usuário, fornecendo feedback sobre ações ou eventos importantes.
+
+## Importação
+
+```tsx
+import { Snackbar } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Snackbar } from '@useblu/ocean-react/Snackbar';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { SnackbarProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<SnackbarProps> = (props) => {
+  return <Snackbar {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Snackbar no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-snackbar--usage"
+  height={500}
+  title="Snackbar - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Snackbar](https://ocean-ds.github.io/ocean-web/?path=/docs/components-snackbar--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+O Snackbar é usado para exibir notificações temporárias:
+
+```tsx live
+import { useState } from 'react';
+
+function SnackbarExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Abrir Snackbar</Button>
+      <Snackbar
+        type="info"
+        message="Esta é uma mensagem de exemplo."
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<SnackbarExample />;
+```
+
+## Tipos
+
+O Snackbar está disponível em quatro tipos diferentes:
+
+### Info
+
+```tsx live
+import { useState } from 'react';
+
+function InfoExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Info</Button>
+      <Snackbar
+        type="info"
+        message="Esta é uma mensagem informativa."
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<InfoExample />;
+```
+
+### Positive
+
+```tsx live
+import { useState } from 'react';
+
+function PositiveExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Positive</Button>
+      <Snackbar
+        type="positive"
+        message="Operação realizada com sucesso!"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<PositiveExample />;
+```
+
+### Negative
+
+```tsx live
+import { useState } from 'react';
+
+function NegativeExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Negative</Button>
+      <Snackbar
+        type="negative"
+        message="Ocorreu um erro na operação."
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<NegativeExample />;
+```
+
+### Warning
+
+```tsx live
+import { useState } from 'react';
+
+function WarningExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Warning</Button>
+      <Snackbar
+        type="warning"
+        message="Atenção! Esta ação requer confirmação."
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<WarningExample />;
+```
+
+Veja todos os tipos juntos:
+
+<StorybookEmbed
+  storyId="components-snackbar--types"
+  height={400}
+  showToolbar={false}
+  title="Snackbar - Todos os Tipos"
+/>
+
+## Posições
+
+O Snackbar pode ser posicionado em quatro locais diferentes da tela:
+
+### Bottom Right (padrão)
+
+```tsx live
+import { useState } from 'react';
+
+function BottomRightExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Bottom Right</Button>
+      <Snackbar
+        type="info"
+        message="Snackbar no canto inferior direito"
+        position="bottom-right"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<BottomRightExample />;
+```
+
+### Top Right
+
+```tsx live
+import { useState } from 'react';
+
+function TopRightExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Top Right</Button>
+      <Snackbar
+        type="info"
+        message="Snackbar no canto superior direito"
+        position="top-right"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<TopRightExample />;
+```
+
+### Top Left
+
+```tsx live
+import { useState } from 'react';
+
+function TopLeftExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Top Left</Button>
+      <Snackbar
+        type="info"
+        message="Snackbar no canto superior esquerdo"
+        position="top-left"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<TopLeftExample />;
+```
+
+### Bottom Left
+
+```tsx live
+import { useState } from 'react';
+
+function BottomLeftExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Bottom Left</Button>
+      <Snackbar
+        type="info"
+        message="Snackbar no canto inferior esquerdo"
+        position="bottom-left"
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<BottomLeftExample />;
+```
+
+Veja todas as posições:
+
+<StorybookEmbed
+  storyId="components-snackbar--positions"
+  height={400}
+  showToolbar={false}
+  title="Snackbar - Todas as Posições"
+/>
+
+## Com Ação
+
+O Snackbar pode incluir um botão de ação para permitir interação do usuário:
+
+```tsx live
+import { useState } from 'react';
+
+function ActionExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(true)}>Abrir com Ação</Button>
+      <Snackbar
+        type="warning"
+        message="Esta ação não pode ser desfeita."
+        actionLabel="Desfazer"
+        action={() => console.log('Ação de desfazer executada')}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+    </div>
+  );
+}
+
+<ActionExample />;
+```
+
+Exemplo com ação:
+
+<StorybookEmbed
+  storyId="components-snackbar--with-action"
+  height={300}
+  showToolbar={false}
+  title="Snackbar - Com Ação"
+/>
+
+## API
+
+### Props
+
+| Prop          | Tipo                                                           | Padrão           | Descrição                            |
+| ------------- | -------------------------------------------------------------- | ---------------- | ------------------------------------ |
+| `type`        | `'info' \| 'positive' \| 'negative' \| 'warning'`              | `'info'`         | O tipo do snackbar                   |
+| `message`     | `string`                                                       | -                | Mensagem exibida no snackbar         |
+| `isOpen`      | `boolean`                                                      | -                | Define se o snackbar está visível    |
+| `setIsOpen`   | `Dispatch<SetStateAction<boolean>>`                            | -                | Função para controlar a visibilidade |
+| `action`      | `() => void`                                                   | -                | Função executada ao clicar na ação   |
+| `actionLabel` | `string`                                                       | `'action'`       | Texto do botão de ação               |
+| `position`    | `'bottom-left' \| 'top-left' \| 'top-right' \| 'bottom-right'` | `'bottom-right'` | Posição onde o snackbar é exibido    |
+| `className`   | `string`                                                       | -                | Classes CSS adicionais               |
+
+### Classes CSS
+
+O componente Snackbar utiliza as seguintes classes CSS para customização:
+
+#### Classes principais
+
+| Classe                                | Descrição                              |
+| ------------------------------------- | -------------------------------------- |
+| `.ods-snackbar`                       | Classe base do componente              |
+| `.ods-snackbar__bottom-left-default`  | Posição bottom-left sem ação           |
+| `.ods-snackbar__bottom-left-action`   | Posição bottom-left com ação           |
+| `.ods-snackbar__top-left-default`     | Posição top-left sem ação              |
+| `.ods-snackbar__top-left-action`      | Posição top-left com ação              |
+| `.ods-snackbar__top-right-default`    | Posição top-right sem ação             |
+| `.ods-snackbar__top-right-action`     | Posição top-right com ação             |
+| `.ods-snackbar__bottom-right-default` | Posição bottom-right sem ação (padrão) |
+| `.ods-snackbar__bottom-right-action`  | Posição bottom-right com ação          |
+
+#### Classes de elementos internos
+
+| Classe                                | Descrição                        |
+| ------------------------------------- | -------------------------------- |
+| `.ods-snackbar__content`              | Container do conteúdo            |
+| `.ods-snackbar__icon`                 | Container do ícone               |
+| `.ods-snackbar__icon-info`            | Ícone para tipo info             |
+| `.ods-snackbar__icon-positive`        | Ícone para tipo positive         |
+| `.ods-snackbar__icon-negative`        | Ícone para tipo negative         |
+| `.ods-snackbar__icon-warning`         | Ícone para tipo warning          |
+| `.ods-snackbar__label`                | Texto da mensagem                |
+| `.ods-snackbar__action`               | Container do botão de ação       |
+| `.ods-snackbar__action-text-info`     | Texto da ação para tipo info     |
+| `.ods-snackbar__action-text-positive` | Texto da ação para tipo positive |
+| `.ods-snackbar__action-text-negative` | Texto da ação para tipo negative |
+| `.ods-snackbar__action-text-warning`  | Texto da ação para tipo warning  |
+| `.ods-snackbar__progress`             | Barra de progresso               |
+| `.ods-snackbar__progress-default`     | Barra de progresso sem ação      |
+| `.ods-snackbar__progress-action`      | Barra de progresso com ação      |
+
+#### Exemplo de customização
+
+```css
+/* Customizar cor de fundo do snackbar */
+.ods-snackbar {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+/* Customizar cor do ícone */
+.ods-snackbar__icon-info {
+  color: #0066cc;
+}
+
+/* Customizar estilo da mensagem */
+.ods-snackbar__label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Customizar botão de ação */
+.ods-snackbar__action {
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+/* Customizar barra de progresso */
+.ods-snackbar__progress {
+  background-color: #28a745;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+- ✅ Auto-dismiss após 10 segundos (configurável)
+
+### Navegação por teclado
+
+| Tecla             | Função                      |
+| ----------------- | --------------------------- |
+| `Tab`             | Move o foco para o snackbar |
+| `Space` / `Enter` | Ativa o botão de ação       |
+| `Escape`          | Fecha o snackbar            |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use mensagens claras e concisas
+- Escolha o tipo apropriado para o contexto (info, positive, negative, warning)
+- Use ações apenas quando necessário para interação do usuário
+- Posicione o snackbar onde não interfira com o conteúdo principal
+- Mantenha mensagens curtas (máximo 2 linhas)
+
+### ❌ Não faça
+
+- Não use snackbars para informações críticas (use modais)
+- Não use múltiplos snackbars simultaneamente
+- Não use textos muito longos nas mensagens
+- Não use snackbars para confirmações complexas
+- Não omita o tipo apropriado para o contexto
+
+## Links relacionados
+
+- [Alert](/components/alert) - Para notificações persistentes
+- [Modal](/components/modal) - Para confirmações complexas
+- [Button](/components/button) - Para ações principais
+- [Storybook - Snackbar](https://ocean-ds.github.io/ocean-web/?path=/docs/components-snackbar--docs) - Documentação técnica

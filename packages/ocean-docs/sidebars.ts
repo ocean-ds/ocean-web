@@ -59,6 +59,7 @@ const sidebars: SidebarsConfig = {
         'components/list',
         'components/settingslistitem',
         'components/shortcut',
+        'components/snackbar',
         'components/textlistitem',
         'components/transactionlistitem',
         'components/typography',
