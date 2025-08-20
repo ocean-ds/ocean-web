@@ -1,7 +1,5 @@
 ---
 title: Progress
-sidebar_label: Progress
-sidebar_position: 2
 ---
 
 import { Progress } from '@useblu/ocean-react';
@@ -122,6 +120,85 @@ Comparação entre as variantes:
 | `size`      | `'sm' \| 'md' \| 'lg'` | `'md'`  | Define o tamanho do componente de progresso                 |
 | `onColor`   | `boolean`              | `false` | Define se o progresso deve ser exibido sobre fundo colorido |
 | `className` | `string`               | -       | Classes CSS adicionais                                      |
+
+### Classes CSS
+
+O componente Progress utiliza as seguintes classes CSS para customização:
+
+#### Classes principais
+
+| Classe                    | Descrição                                  |
+| ------------------------- | ------------------------------------------ |
+| `.ods-progress`           | Classe base do componente                  |
+| `.ods-progress--sm`       | Tamanho small do progresso (16px)          |
+| `.ods-progress--md`       | Tamanho medium do progresso (24px, padrão) |
+| `.ods-progress--lg`       | Tamanho large do progresso (32px)          |
+| `.ods-progress--on-color` | Variante para fundos coloridos/escuros     |
+
+#### Elementos SVG
+
+O componente Progress utiliza SVG para a animação. As classes afetam os seguintes elementos:
+
+| Elemento     | Descrição                        |
+| ------------ | -------------------------------- |
+| `svg`        | Container do SVG animado         |
+| `svg circle` | Círculo de fundo do progresso    |
+| `svg path`   | Caminho da animação do progresso |
+
+#### Exemplo de customização
+
+```css
+/* Customizar cor do progresso */
+.ods-progress svg circle {
+  stroke: #0066cc;
+}
+
+.ods-progress svg path {
+  stroke: #0099ff;
+}
+
+/* Customizar progresso em fundo colorido */
+.ods-progress--on-color svg circle {
+  stroke: #ffffff;
+}
+
+.ods-progress--on-color svg path {
+  stroke: #f0f0f0;
+}
+
+/* Customizar tamanho personalizado */
+.ods-progress--custom {
+  height: 40px;
+  width: 40px;
+}
+
+.ods-progress--custom svg {
+  height: 40px;
+  width: 40px;
+}
+
+/* Customizar velocidade da animação */
+.ods-progress svg {
+  animation: ods-loading-animation 1.2s linear infinite;
+}
+
+/* Customizar animação personalizada */
+@keyframes custom-loading-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ods-progress svg {
+  animation: custom-loading-animation 1s ease-in-out infinite;
+}
+```
 
 ## Acessibilidade
 
