@@ -1,0 +1,241 @@
+---
+title: Progress
+---
+
+import { Progress } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Progress
+
+O componente Progress exibe um indicador de carregamento animado para informar ao usuário que uma operação está em andamento.
+
+## Importação
+
+```tsx
+import { Progress } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Progress } from '@useblu/ocean-react/Progress';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ProgressProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<ProgressProps> = (props) => {
+  return <Progress {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Progress no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-progress--usage"
+  height={400}
+  title="Progress - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Progress](https://ocean-ds.github.io/ocean-web/?path=/docs/components-progress--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+O Progress é usado para indicar que uma operação está em andamento:
+
+```tsx live
+<Progress />
+```
+
+## Tamanhos
+
+O Progress está disponível em três tamanhos diferentes:
+
+### Small
+
+```tsx live
+<Progress size="sm" />
+```
+
+### Medium (padrão)
+
+```tsx live
+<Progress size="md" />
+```
+
+### Large
+
+```tsx live
+<Progress size="lg" />
+```
+
+Veja todos os tamanhos juntos:
+
+<StorybookEmbed
+  storyId="components-progress--sizes"
+  height={200}
+  showToolbar={false}
+  title="Progress - Todos os Tamanhos"
+/>
+
+## Variante On Color
+
+Use a prop `onColor` quando o Progress for exibido sobre um fundo colorido ou escuro:
+
+```tsx live
+<div>
+  <Progress onColor />
+</div>
+```
+
+Comparação entre as variantes:
+
+<StorybookEmbed
+  storyId="components-progress--on-color"
+  height={300}
+  showToolbar={false}
+  title="Progress - Variante On Color"
+/>
+
+## API
+
+### Props
+
+| Prop        | Tipo                   | Padrão  | Descrição                                                   |
+| ----------- | ---------------------- | ------- | ----------------------------------------------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg'` | `'md'`  | Define o tamanho do componente de progresso                 |
+| `onColor`   | `boolean`              | `false` | Define se o progresso deve ser exibido sobre fundo colorido |
+| `className` | `string`               | -       | Classes CSS adicionais                                      |
+
+### Classes CSS
+
+O componente Progress utiliza as seguintes classes CSS para customização:
+
+#### Classes principais
+
+| Classe                    | Descrição                                  |
+| ------------------------- | ------------------------------------------ |
+| `.ods-progress`           | Classe base do componente                  |
+| `.ods-progress--sm`       | Tamanho small do progresso (16px)          |
+| `.ods-progress--md`       | Tamanho medium do progresso (24px, padrão) |
+| `.ods-progress--lg`       | Tamanho large do progresso (32px)          |
+| `.ods-progress--on-color` | Variante para fundos coloridos/escuros     |
+
+#### Elementos SVG
+
+O componente Progress utiliza SVG para a animação. As classes afetam os seguintes elementos:
+
+| Elemento     | Descrição                        |
+| ------------ | -------------------------------- |
+| `svg`        | Container do SVG animado         |
+| `svg circle` | Círculo de fundo do progresso    |
+| `svg path`   | Caminho da animação do progresso |
+
+#### Exemplo de customização
+
+```css
+/* Customizar cor do progresso */
+.ods-progress svg circle {
+  stroke: #0066cc;
+}
+
+.ods-progress svg path {
+  stroke: #0099ff;
+}
+
+/* Customizar progresso em fundo colorido */
+.ods-progress--on-color svg circle {
+  stroke: #ffffff;
+}
+
+.ods-progress--on-color svg path {
+  stroke: #f0f0f0;
+}
+
+/* Customizar tamanho personalizado */
+.ods-progress--custom {
+  height: 40px;
+  width: 40px;
+}
+
+.ods-progress--custom svg {
+  height: 40px;
+  width: 40px;
+}
+
+/* Customizar velocidade da animação */
+.ods-progress svg {
+  animation: ods-loading-animation 1.2s linear infinite;
+}
+
+/* Customizar animação personalizada */
+@keyframes custom-loading-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.ods-progress svg {
+  animation: custom-loading-animation 1s ease-in-out infinite;
+}
+```
+
+## Acessibilidade
+
+- ✅ Animação suave e não intrusiva
+- ✅ Suporte a screen readers com texto alternativo
+- ✅ Contraste adequado em todos os estados
+- ✅ Não interfere na navegação por teclado
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use Progress para operações que levam mais de 1 segundo
+- Combine com texto explicativo quando necessário
+- Use o tamanho apropriado para o contexto (sm para inline, lg para tela cheia)
+- Use `onColor` em fundos escuros ou coloridos
+
+### ❌ Não faça
+
+- Não use Progress para operações instantâneas
+- Não use múltiplos Progress simultaneamente na mesma área
+- Não omita o `onColor` em fundos escuros
+- Não use Progress como placeholder de conteúdo
+
+## Visão geral completa
+
+Veja todas as variantes do Progress em ação:
+
+<StorybookEmbed
+  storyId="components-progress--all-variants"
+  height={400}
+  showToolbar={false}
+  title="Progress - Todas as Variantes"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações que podem mostrar Progress
+- [Modal](/components/modal) - Para usar Progress em modais de carregamento
+- [Storybook - Progress](https://ocean-ds.github.io/ocean-web/?path=/docs/components-progress--docs) - Documentação técnica
