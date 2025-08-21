@@ -10,6 +10,10 @@ const commonStyles = {
     flexWrap: 'wrap',
     alignItems: 'center',
   },
+  flexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   container: {
     padding: '16px',
     borderRadius: '8px',
@@ -27,6 +31,14 @@ const commonStyles = {
     margin: '0 0 12px 0',
     fontSize: '14px',
     fontWeight: '500',
+  },
+} as const;
+
+// Configurações comuns
+const commonConfig = {
+  gaps: {
+    small: '16px',
+    large: '24px',
   },
 } as const;
 
@@ -69,6 +81,32 @@ const AllSizes: React.FC<{ onColor?: boolean }> = ({ onColor = false }) => (
   </div>
 );
 
+// Componente reutilizável para layout vertical
+const VerticalLayout: React.FC<{
+  children: React.ReactNode;
+  gap?: string;
+  style?: React.CSSProperties;
+}> = ({ children, gap = commonConfig.gaps.small, style }) => (
+  <div style={{ ...commonStyles.flexColumn, gap, ...style }}>{children}</div>
+);
+
+// Componente reutilizável para decorator comum
+const CommonDecorator: React.FC<{
+  children: React.ReactNode;
+  minWidth?: string;
+  justifyContent?: string;
+}> = ({ children, minWidth = '300px', justifyContent = 'center' }) => (
+  <div
+    style={{
+      minWidth,
+      ...commonStyles.flexContainer,
+      justifyContent,
+    }}
+  >
+    {children}
+  </div>
+);
+
 const meta: Meta<typeof Progress> = {
   title: 'Components/Progress',
   component: Progress,
@@ -98,15 +136,9 @@ export const Usage: Story = {
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '300px',
-          ...commonStyles.flexContainer,
-          justifyContent: 'center',
-        }}
-      >
+      <CommonDecorator>
         <StoryComponent />
-      </div>
+      </CommonDecorator>
     ),
   ],
 };
@@ -123,14 +155,14 @@ export const OnColor: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <VerticalLayout>
       <ProgressContainer variant="dark">
         <Progress onColor />
       </ProgressContainer>
       <ProgressContainer variant="light">
         <Progress />
       </ProgressContainer>
-    </div>
+    </VerticalLayout>
   ),
 };
 
@@ -139,7 +171,7 @@ export const AllVariants: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <VerticalLayout gap={commonConfig.gaps.large}>
       <Section title="Tamanhos (fundo claro)">
         <ProgressContainer variant="light">
           <AllSizes />
@@ -151,6 +183,6 @@ export const AllVariants: Story = {
           <AllSizes onColor />
         </ProgressContainer>
       </Section>
-    </div>
+    </VerticalLayout>
   ),
 };
