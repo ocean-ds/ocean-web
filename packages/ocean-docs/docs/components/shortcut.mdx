@@ -1,0 +1,359 @@
+---
+title: Shortcut
+---
+
+import { Shortcut } from '@useblu/ocean-react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Shortcut
+
+O componente Shortcut é usado para criar atalhos de navegação rápida com ícones, labels e descrições opcionais.
+
+## Importação
+
+```tsx
+import { Shortcut } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Shortcut } from '@useblu/ocean-react/Shortcut';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ShortcutProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<ShortcutProps> = (props) => {
+  return <Shortcut {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Shortcut no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-shortcut--usage"
+  height={400}
+  title="Shortcut - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Shortcut](https://ocean-ds.github.io/ocean-web/?path=/docs/components-shortcut--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+O Shortcut é usado para criar atalhos de navegação:
+
+```tsx live
+<Shortcut
+  label="Meu Atalho"
+  description="Descrição do atalho"
+  icon={<PlaceholderOutline />}
+/>
+```
+
+## Tamanhos
+
+O Shortcut está disponível em três tamanhos diferentes:
+
+### Tiny
+
+```tsx live
+<Shortcut label="Tiny" icon={<PlaceholderOutline />} size="tiny" />
+```
+
+### Small
+
+```tsx live
+<Shortcut label="Small" icon={<PlaceholderOutline />} size="small" />
+```
+
+### Medium (padrão)
+
+```tsx live
+<Shortcut
+  label="Medium"
+  description="Com descrição"
+  icon={<PlaceholderOutline />}
+  size="medium"
+/>
+```
+
+Veja todos os tamanhos juntos:
+
+<StorybookEmbed
+  storyId="components-shortcut--sizes"
+  height={200}
+  showToolbar={false}
+  title="Shortcut - Todos os Tamanhos"
+/>
+
+## Orientação
+
+O Shortcut pode ser exibido em orientação horizontal ou vertical:
+
+### Horizontal (padrão)
+
+```tsx live
+<Shortcut
+  label="Horizontal"
+  description="Orientação horizontal"
+  icon={<PlaceholderOutline />}
+  orientation="horizontal"
+/>
+```
+
+### Vertical
+
+```tsx live
+<Shortcut
+  label="Vertical"
+  description="Orientação vertical"
+  icon={<PlaceholderOutline />}
+  orientation="vertical"
+/>
+```
+
+Comparação entre orientações:
+
+<StorybookEmbed
+  storyId="components-shortcut--orientations"
+  height={250}
+  showToolbar={false}
+  title="Shortcut - Orientações"
+/>
+
+## Estados
+
+### Normal
+
+```tsx live
+<Shortcut label="Normal" icon={<PlaceholderOutline />} />
+```
+
+### Bloqueado
+
+```tsx live
+<Shortcut label="Bloqueado" icon={<PlaceholderOutline />} blocked />
+```
+
+### Desabilitado
+
+```tsx live
+<Shortcut label="Desabilitado" icon={<PlaceholderOutline />} disabled />
+```
+
+Veja todos os estados:
+
+<StorybookEmbed
+  storyId="components-shortcut--states"
+  height={200}
+  showToolbar={false}
+  title="Shortcut - Estados"
+/>
+
+## Badge e Tag
+
+O Shortcut pode exibir um badge numérico ou uma tag:
+
+### Com Badge
+
+```tsx live
+<Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
+```
+
+### Com Tag
+
+```tsx live
+<Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
+```
+
+### Com Badge e Tag
+
+```tsx live
+<Shortcut
+  label="Com Badge e Tag"
+  icon={<PlaceholderOutline />}
+  count={12}
+  tag="Importante"
+/>
+```
+
+Exemplos de Badge e Tag:
+
+<StorybookEmbed
+  storyId="components-shortcut--with-badge"
+  height={200}
+  showToolbar={false}
+  title="Shortcut - Badge e Tag"
+/>
+
+## Full Width
+
+Use a prop `fullWidth` para fazer o Shortcut ocupar toda a largura disponível:
+
+```tsx live
+<div style={{ width: '300px' }}>
+  <Shortcut
+    label="Atalho Normal"
+    description="Sem fullWidth"
+    icon={<PlaceholderOutline />}
+  />
+  <Shortcut
+    label="Atalho Full Width"
+    description="Com fullWidth ativado"
+    icon={<PlaceholderOutline />}
+    fullWidth
+  />
+</div>
+```
+
+Comparação Full Width:
+
+<StorybookEmbed
+  storyId="components-shortcut--full-width"
+  height={250}
+  showToolbar={false}
+  title="Shortcut - Full Width"
+/>
+
+## API
+
+### Props
+
+| Prop          | Tipo                            | Padrão         | Descrição                                     |
+| ------------- | ------------------------------- | -------------- | --------------------------------------------- |
+| `label`       | `string`                        | -              | Texto do label do atalho                      |
+| `description` | `string`                        | -              | Descrição adicional (apenas para size medium) |
+| `icon`        | `ReactNode`                     | -              | Ícone do atalho                               |
+| `size`        | `'tiny' \| 'small' \| 'medium'` | `'medium'`     | O tamanho do componente de atalho             |
+| `orientation` | `'horizontal' \| 'vertical'`    | `'horizontal'` | A orientação do layout do atalho              |
+| `blocked`     | `boolean`                       | `false`        | Define se o atalho está bloqueado             |
+| `disabled`    | `boolean`                       | `false`        | Desabilita o atalho                           |
+| `fullWidth`   | `boolean`                       | `false`        | Faz o atalho ocupar toda a largura disponível |
+| `count`       | `number`                        | -              | Número exibido no badge do atalho             |
+| `tag`         | `string`                        | -              | Tag exibida no atalho                         |
+| `className`   | `string`                        | -              | Classes CSS adicionais                        |
+
+### Classes CSS
+
+O componente Shortcut utiliza as seguintes classes CSS para customização:
+
+#### Classes principais
+
+| Classe                      | Descrição                              |
+| --------------------------- | -------------------------------------- |
+| `.ods-shortcut`             | Classe base do componente              |
+| `.ods-shortcut--tiny`       | Tamanho tiny do atalho                 |
+| `.ods-shortcut--small`      | Tamanho small do atalho                |
+| `.ods-shortcut--medium`     | Tamanho medium do atalho (padrão)      |
+| `.ods-shortcut--horizontal` | Orientação horizontal (padrão)         |
+| `.ods-shortcut--vertical`   | Orientação vertical                    |
+| `.ods-shortcut--blocked`    | Estado bloqueado do atalho             |
+| `.ods-shortcut--disabled`   | Estado desabilitado do atalho          |
+| `.ods-shortcut--full-width` | Atalho ocupa toda a largura disponível |
+| `.ods-shortcut--with-badge` | Atalho com badge numérico              |
+
+#### Classes de elementos internos
+
+| Classe                               | Descrição                             |
+| ------------------------------------ | ------------------------------------- |
+| `.ods-shortcut__icon`                | Container do ícone                    |
+| `.ods-shortcut__content`             | Container do conteúdo (ícone + label) |
+| `.ods-shortcut__content--horizontal` | Layout horizontal do conteúdo         |
+| `.ods-shortcut__content--vertical`   | Layout vertical do conteúdo           |
+| `.ods-shortcut__label`               | Texto do label                        |
+| `.ods-shortcut__description`         | Texto da descrição                    |
+| `.ods-shortcut__badge`               | Container do badge numérico           |
+| `.ods-shortcut__blocked`             | Container do ícone de bloqueio        |
+
+#### Exemplo de customização
+
+```css
+/* Customizar cor de fundo do atalho */
+.ods-shortcut {
+  background-color: #f0f8ff;
+}
+
+/* Customizar cor do ícone */
+.ods-shortcut__icon {
+  color: #0066cc;
+}
+
+/* Customizar estilo do label */
+.ods-shortcut__label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Customizar atalho bloqueado */
+.ods-shortcut--blocked {
+  opacity: 0.6;
+  background-color: #f5f5f5;
+}
+```
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                    |
+| ----------------- | ------------------------- |
+| `Tab`             | Move o foco para o atalho |
+| `Space` / `Enter` | Ativa o atalho            |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use labels claros e concisos que descrevam a ação
+- Use ícones que representem visualmente a funcionalidade
+- Use descrições apenas quando necessário para esclarecimento
+- Use badges para notificações numéricas importantes
+- Use tags para destacar status ou categorias
+
+### ❌ Não faça
+
+- Não use textos muito longos nos labels
+- Não use ícones que não representem a funcionalidade
+- Não use múltiplos badges ou tags simultaneamente
+- Não omita o estado `disabled` quando apropriado
+- Não use Shortcut para ações que não são navegação
+
+## Visão geral completa
+
+Veja todas as variantes do Shortcut em ação:
+
+<StorybookEmbed
+  storyId="components-shortcut--all-variants"
+  height={500}
+  showToolbar={false}
+  title="Shortcut - Todas as Variantes"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações principais
+- [Badge](/components/badge) - Para notificações numéricas
+- [Tag](/components/tag) - Para categorização
+- [Storybook - Shortcut](https://ocean-ds.github.io/ocean-web/?path=/docs/components-shortcut--docs) - Documentação técnica
