@@ -3,6 +3,104 @@ import React from 'react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import Shortcut from '../Shortcut';
 
+// Estilos reutilizáveis
+const commonStyles = {
+  flexContainer: {
+    display: 'flex',
+    gap: '16px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+  },
+  flexContainerStart: {
+    display: 'flex',
+    gap: '16px',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  },
+  flexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  sectionTitle: {
+    margin: '0 0 12px 0',
+    fontSize: '14px',
+    fontWeight: '500',
+  },
+} as const;
+
+// Configurações comuns
+const commonConfig = {
+  gaps: {
+    small: '16px',
+    large: '24px',
+  },
+  minWidth: '300px',
+} as const;
+
+// Componente reutilizável para seção com título
+const Section: React.FC<{
+  title: string;
+  children: React.ReactNode;
+}> = ({ title, children }) => (
+  <div>
+    <h4 style={commonStyles.sectionTitle}>{title}</h4>
+    {children}
+  </div>
+);
+
+// Componente reutilizável para layout horizontal
+const HorizontalLayout: React.FC<{
+  children: React.ReactNode;
+  align?: 'center' | 'flex-start';
+  gap?: string;
+  style?: React.CSSProperties;
+}> = ({ children, align = 'center', gap = commonConfig.gaps.small, style }) => (
+  <div
+    style={{
+      ...(align === 'center'
+        ? commonStyles.flexContainer
+        : commonStyles.flexContainerStart),
+      gap,
+      ...style,
+    }}
+  >
+    {children}
+  </div>
+);
+
+// Componente reutilizável para layout vertical
+const VerticalLayout: React.FC<{
+  children: React.ReactNode;
+  gap?: string;
+  style?: React.CSSProperties;
+}> = ({ children, gap = commonConfig.gaps.small, style }) => (
+  <div style={{ ...commonStyles.flexColumn, gap, ...style }}>{children}</div>
+);
+
+// Componente reutilizável para decorator comum
+const CommonDecorator: React.FC<{
+  children: React.ReactNode;
+  minWidth?: string;
+  justifyContent?: string;
+  padding?: string;
+}> = ({
+  children,
+  minWidth = commonConfig.minWidth,
+  justifyContent = 'center',
+  padding = '16px',
+}) => (
+  <div
+    style={{
+      minWidth,
+      ...commonStyles.flexContainer,
+      justifyContent,
+      padding,
+    }}
+  >
+    {children}
+  </div>
+);
+
 const meta: Meta<typeof Shortcut> = {
   title: 'Components/Shortcut',
   component: Shortcut,
@@ -68,19 +166,9 @@ export const Usage: Story = {
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '300px',
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '16px',
-        }}
-      >
+      <CommonDecorator>
         <StoryComponent />
-      </div>
+      </CommonDecorator>
     ),
   ],
 };
@@ -90,14 +178,7 @@ export const Sizes: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-      }}
-    >
+    <HorizontalLayout align="flex-start">
       <Shortcut label="Tiny" icon={<PlaceholderOutline />} size="tiny" />
       <Shortcut label="Small" icon={<PlaceholderOutline />} size="small" />
       <Shortcut
@@ -106,7 +187,7 @@ export const Sizes: Story = {
         icon={<PlaceholderOutline />}
         size="medium"
       />
-    </div>
+    </HorizontalLayout>
   ),
 };
 
@@ -115,14 +196,7 @@ export const Orientations: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '24px',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-      }}
-    >
+    <HorizontalLayout align="flex-start" gap={commonConfig.gaps.large}>
       <Shortcut
         label="Horizontal"
         description="Orientação horizontal (padrão)"
@@ -135,7 +209,7 @@ export const Orientations: Story = {
         icon={<PlaceholderOutline />}
         orientation="vertical"
       />
-    </div>
+    </HorizontalLayout>
   ),
 };
 
@@ -144,18 +218,11 @@ export const States: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-      }}
-    >
+    <HorizontalLayout align="flex-start">
       <Shortcut label="Normal" icon={<PlaceholderOutline />} />
       <Shortcut label="Bloqueado" icon={<PlaceholderOutline />} blocked />
       <Shortcut label="Desabilitado" icon={<PlaceholderOutline />} disabled />
-    </div>
+    </HorizontalLayout>
   ),
 };
 
@@ -164,14 +231,7 @@ export const WithBadge: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-      }}
-    >
+    <HorizontalLayout align="flex-start">
       <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
       <Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
       <Shortcut
@@ -180,7 +240,7 @@ export const WithBadge: Story = {
         count={12}
         tag="Importante"
       />
-    </div>
+    </HorizontalLayout>
   ),
 };
 
@@ -189,14 +249,7 @@ export const FullWidth: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        minWidth: '300px',
-      }}
-    >
+    <VerticalLayout style={{ minWidth: commonConfig.minWidth }}>
       <Shortcut
         label="Atalho Normal"
         description="Sem fullWidth"
@@ -208,7 +261,7 @@ export const FullWidth: Story = {
         icon={<PlaceholderOutline />}
         fullWidth
       />
-    </div>
+    </VerticalLayout>
   ),
 };
 
@@ -217,21 +270,9 @@ export const AllVariants: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <div>
-        <h4
-          style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: '500' }}
-        >
-          Tamanhos:
-        </h4>
-        <div
-          style={{
-            display: 'flex',
-            gap: '16px',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
-          }}
-        >
+    <VerticalLayout gap={commonConfig.gaps.large}>
+      <Section title="Tamanhos:">
+        <HorizontalLayout align="flex-start">
           <Shortcut label="Tiny" icon={<PlaceholderOutline />} size="tiny" />
           <Shortcut label="Small" icon={<PlaceholderOutline />} size="small" />
           <Shortcut
@@ -240,23 +281,11 @@ export const AllVariants: Story = {
             icon={<PlaceholderOutline />}
             size="medium"
           />
-        </div>
-      </div>
+        </HorizontalLayout>
+      </Section>
 
-      <div>
-        <h4
-          style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: '500' }}
-        >
-          Estados:
-        </h4>
-        <div
-          style={{
-            display: 'flex',
-            gap: '16px',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
-          }}
-        >
+      <Section title="Estados:">
+        <HorizontalLayout align="flex-start">
           <Shortcut label="Normal" icon={<PlaceholderOutline />} />
           <Shortcut label="Bloqueado" icon={<PlaceholderOutline />} blocked />
           <Shortcut
@@ -264,23 +293,11 @@ export const AllVariants: Story = {
             icon={<PlaceholderOutline />}
             disabled
           />
-        </div>
-      </div>
+        </HorizontalLayout>
+      </Section>
 
-      <div>
-        <h4
-          style={{ margin: '0 0 12px 0', fontSize: '14px', fontWeight: '500' }}
-        >
-          Com Badge e Tag:
-        </h4>
-        <div
-          style={{
-            display: 'flex',
-            gap: '16px',
-            flexWrap: 'wrap',
-            alignItems: 'flex-start',
-          }}
-        >
+      <Section title="Com Badge e Tag:">
+        <HorizontalLayout align="flex-start">
           <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
           <Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
           <Shortcut
@@ -289,8 +306,8 @@ export const AllVariants: Story = {
             count={12}
             tag="Importante"
           />
-        </div>
-      </div>
-    </div>
+        </HorizontalLayout>
+      </Section>
+    </VerticalLayout>
   ),
 };
