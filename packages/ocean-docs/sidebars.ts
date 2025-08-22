@@ -53,6 +53,7 @@ const sidebars: SidebarsConfig = {
         'components/search',
         'components/tokeninput',
         'components/tooltip',
+        'components/topbar',
         'components/textarea',
         'components/stepper',
         'components/steps',
