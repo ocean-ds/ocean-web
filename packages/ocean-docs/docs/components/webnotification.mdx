@@ -1,0 +1,692 @@
+---
+title: WebNotification
+sidebar_label: WebNotification
+sidebar_position: 2
+---
+
+import { WebNotification } from '@useblu/ocean-react';
+import { Button } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# WebNotification
+
+O WebNotification é um componente de notificação que aparece na parte inferior da tela, ideal para feedback de ações do usuário, alertas importantes e informações temporárias. Oferece diferentes tipos visuais e suporte a ações interativas.
+
+## Importação
+
+```tsx
+import { WebNotification } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { WebNotification } from '@useblu/ocean-react/WebNotification';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { WebNotificationProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyWebNotification: React.FC<WebNotificationProps> = (props) => {
+  return <WebNotification {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente WebNotification no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-webnotification--usage"
+  height={400}
+  title="WebNotification - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do WebNotification](https://ocean-ds.github.io/ocean-web/?path=/docs/components-webnotification--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os tipos e posições
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+function BasicExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Notificação
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        title="Título da Notificação"
+        description="Esta é uma notificação de exemplo com informações importantes."
+        type="info"
+      />
+    </div>
+  );
+}
+
+<BasicExample />;
+```
+
+## Tipos de notificação
+
+O WebNotification oferece três tipos que afetam **apenas a cor do texto da ação** (quando presente). A notificação sempre mantém o mesmo fundo escuro, independente do tipo.
+
+> **Nota**: O `type` só tem efeito visual quando há uma `action` definida. Sem ação, todos os tipos se comportam visualmente da mesma forma.
+
+### Info
+
+Para informações gerais e atualizações (cor azul na ação):
+
+```tsx live
+function InfoExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Info
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="info"
+        title="Informação"
+        description="Esta é uma notificação informativa."
+        actionLabel="Ver detalhes"
+        action={() => console.log('Ver detalhes')}
+      />
+    </div>
+  );
+}
+
+<InfoExample />;
+```
+
+### Positive
+
+Para confirmações e sucessos (cor verde na ação):
+
+```tsx live
+function PositiveExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Success
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="positive"
+        title="Sucesso"
+        description="Operação realizada com sucesso!"
+        actionLabel="Ver resultado"
+        action={() => console.log('Ver resultado')}
+      />
+    </div>
+  );
+}
+
+<PositiveExample />;
+```
+
+### Warning
+
+Para alertas e avisos importantes (cor amarela/laranja na ação):
+
+```tsx live
+function WarningExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Warning
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="warning"
+        title="Atenção"
+        description="Algo precisa da sua atenção."
+        actionLabel="Resolver"
+        action={() => console.log('Resolver problema')}
+      />
+    </div>
+  );
+}
+
+<WarningExample />;
+```
+
+## Ações
+
+O WebNotification pode incluir uma ação clicável:
+
+### Com ação
+
+```tsx live
+function WithActionExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleAction = () => {
+    console.log('Ação executada');
+    setIsOpen(false);
+  };
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Com Ação
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="info"
+        title="Nova mensagem"
+        description="Você recebeu uma nova mensagem."
+        action={handleAction}
+        actionLabel="Ver mensagem"
+      />
+    </div>
+  );
+}
+
+<WithActionExample />;
+```
+
+### Sem ação
+
+```tsx live
+function WithoutActionExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Sem Ação
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="positive"
+        title="Atualização concluída"
+        description="Sua conta foi atualizada com sucesso."
+      />
+    </div>
+  );
+}
+
+<WithoutActionExample />;
+```
+
+## Posições
+
+O WebNotification pode ser posicionado em duas localizações:
+
+### Bottom Right (padrão)
+
+```tsx live
+function BottomRightExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'Fechar' : 'Abrir'} Bottom Right
+      </Button>
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="info"
+        title="Notificação"
+        description="Posicionada no canto inferior direito."
+        position="bottom-right"
+        actionLabel="Ver mais"
+        action={() => console.log('Ver mais')}
+      />
+    </div>
+  );
+}
+
+<BottomRightExample />;
+```
+
+## Múltiplas notificações
+
+O componente suporta múltiplas notificações simultâneas com empilhamento automático. Todas as notificações podem ter ações diferentes:
+
+```tsx live
+function MultipleNotificationsExample() {
+  const [notifications, setNotifications] = React.useState({
+    info: false,
+    positive: false,
+    warning: false,
+  });
+
+  const toggleNotification = (type: keyof typeof notifications) => {
+    setNotifications((prev) => ({ ...prev, [type]: !prev[type] }));
+  };
+
+  return (
+    <div>
+      <div>
+        <Button onClick={() => toggleNotification('info')}>
+          {notifications.info ? 'Fechar' : 'Abrir'} Info
+        </Button>
+        <Button onClick={() => toggleNotification('positive')}>
+          {notifications.positive ? 'Fechar' : 'Abrir'} Success
+        </Button>
+        <Button onClick={() => toggleNotification('warning')}>
+          {notifications.warning ? 'Fechar' : 'Abrir'} Warning
+        </Button>
+      </div>
+
+      <WebNotification
+        type="info"
+        title="Informação"
+        description="Esta é uma notificação informativa."
+        isOpen={notifications.info}
+        setIsOpen={(value) =>
+          setNotifications((prev) => ({
+            ...prev,
+            info: typeof value === 'boolean' ? value : value(prev.info),
+          }))
+        }
+        position="bottom-right"
+      />
+
+      <WebNotification
+        type="positive"
+        title="Sucesso"
+        description="Operação realizada com sucesso!"
+        isOpen={notifications.positive}
+        setIsOpen={(value) =>
+          setNotifications((prev) => ({
+            ...prev,
+            positive: typeof value === 'boolean' ? value : value(prev.positive),
+          }))
+        }
+        position="bottom-right"
+      />
+
+      <WebNotification
+        type="warning"
+        title="Atenção"
+        description="Algo precisa da sua atenção."
+        isOpen={notifications.warning}
+        setIsOpen={(value) =>
+          setNotifications((prev) => ({
+            ...prev,
+            warning: typeof value === 'boolean' ? value : value(prev.warning),
+          }))
+        }
+        position="bottom-right"
+      />
+    </div>
+  );
+}
+
+<MultipleNotificationsExample />;
+```
+
+## Uso em aplicações reais
+
+### Feedback de formulário
+
+```tsx live
+function FormFeedbackExample() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [formData, setFormData] = React.useState({ name: '', email: '' });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.name && formData.email) {
+      setIsOpen(true);
+      setFormData({ name: '', email: '' });
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Nome:</label>
+          <input
+            type="text"
+            value={formData.name}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, name: e.target.value }))
+            }
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, email: e.target.value }))
+            }
+          />
+        </div>
+        <Button type="submit">Enviar</Button>
+      </form>
+
+      <WebNotification
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        type="positive"
+        title="Formulário enviado"
+        description="Seus dados foram enviados com sucesso!"
+        actionLabel="Ver detalhes"
+        action={() => console.log('Ver detalhes')}
+      />
+    </div>
+  );
+}
+
+<FormFeedbackExample />;
+```
+
+### Notificações de sistema
+
+```tsx live
+function SystemNotificationExample() {
+  const [notifications, setNotifications] = React.useState({
+    update: false,
+    backup: false,
+    error: false,
+  });
+
+  const showNotification = (type: keyof typeof notifications) => {
+    setNotifications((prev) => ({ ...prev, [type]: true }));
+    // Auto-close after 5 seconds
+    setTimeout(() => {
+      setNotifications((prev) => ({ ...prev, [type]: false }));
+    }, 5000);
+  };
+
+  return (
+    <div>
+      <div>
+        <Button onClick={() => showNotification('update')}>
+          Atualização Disponível
+        </Button>
+        <Button onClick={() => showNotification('backup')}>
+          Backup Concluído
+        </Button>
+        <Button onClick={() => showNotification('error')}>
+          Erro do Sistema
+        </Button>
+      </div>
+
+      <WebNotification
+        type="info"
+        title="Atualização disponível"
+        description="Uma nova versão do sistema está disponível."
+        isOpen={notifications.update}
+        setIsOpen={(value) =>
+          setNotifications((prev) => ({
+            ...prev,
+            update: typeof value === 'boolean' ? value : value(prev.update),
+          }))
+        }
+        actionLabel="Atualizar agora"
+        action={() => console.log('Iniciar atualização')}
+      />
+
+      <WebNotification
+        type="positive"
+        title="Backup concluído"
+        description="O backup dos seus dados foi concluído com sucesso."
+        isOpen={notifications.backup}
+        setIsOpen={(value) =>
+          setNotifications((prev) => ({
+            ...prev,
+            backup: typeof value === 'boolean' ? value : value(prev.backup),
+          }))
+        }
+      />
+
+      <WebNotification
+        type="warning"
+        title="Erro do sistema"
+        description="Ocorreu um erro inesperado. Tente novamente."
+        isOpen={notifications.error}
+        setIsOpen={(value) =>
+          setNotifications((prev) => ({
+            ...prev,
+            error: typeof value === 'boolean' ? value : value(prev.error),
+          }))
+        }
+        actionLabel="Reportar erro"
+        action={() => console.log('Reportar erro')}
+      />
+    </div>
+  );
+}
+
+<SystemNotificationExample />;
+```
+
+## API
+
+### Props
+
+| Prop          | Tipo                                | Padrão           | Descrição                              |
+| ------------- | ----------------------------------- | ---------------- | -------------------------------------- |
+| `type`        | `'info' \| 'positive' \| 'warning'` | `'info'`         | Tipo que afeta a cor do texto da ação  |
+| `title`       | `string`                            | -                | Título da notificação                  |
+| `description` | `string`                            | -                | Descrição da notificação               |
+| `isOpen`      | `boolean`                           | -                | Controla se a notificação está visível |
+| `setIsOpen`   | `Dispatch<SetStateAction<boolean>>` | -                | Função para controlar o estado         |
+| `action`      | `() => void`                        | -                | Função chamada ao clicar na ação       |
+| `actionLabel` | `string`                            | `'action'`       | Texto do botão de ação                 |
+| `position`    | `'bottom-left' \| 'bottom-right'`   | `'bottom-right'` | Posição da notificação                 |
+| `className`   | `string`                            | -                | Classes CSS adicionais                 |
+
+### Comportamento
+
+- **Empilhamento automático**: Múltiplas notificações são empilhadas automaticamente
+- **Fechamento manual**: Usuário pode fechar clicando no X
+- **Fechamento programático**: Pode ser fechado via `setIsOpen(false)`
+- **Posicionamento responsivo**: Adapta-se a diferentes tamanhos de tela
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                         |
+| ----------------- | ------------------------------ |
+| `Tab`             | Move o foco para a notificação |
+| `Enter` / `Space` | Ativa a ação (se disponível)   |
+| `Escape`          | Fecha a notificação            |
+
+### Boas práticas para acessibilidade
+
+- **Use títulos descritivos**: O título deve indicar claramente o tipo de notificação
+- **Forneça descrições úteis**: Use descrições para contexto adicional
+- **Use ações apropriadas**: Forneça ações quando o usuário pode fazer algo
+- **Mantenha consistência**: Use o mesmo padrão de notificação em toda a aplicação
+
+## CSS
+
+### Classes globais
+
+| Classe CSS                            | Descrição                                 |
+| ------------------------------------- | ----------------------------------------- |
+| `.ods-web-notification`               | Classe base da notificação                |
+| `.ods-web-notification__content`      | Container do conteúdo                     |
+| `.ods-web-notification__wrapper`      | Wrapper interno                           |
+| `.ods-web-notification__body`         | Corpo da notificação (título + descrição) |
+| `.ods-web-notification__action`       | Container da ação                         |
+| `.ods-web-notification__close-button` | Botão de fechar                           |
+
+### Classes de posição
+
+| Classe CSS                                    | Descrição                     |
+| --------------------------------------------- | ----------------------------- |
+| `.ods-web-notification__bottom-right-default` | Posição bottom-right sem ação |
+| `.ods-web-notification__bottom-right-action`  | Posição bottom-right com ação |
+| `.ods-web-notification__bottom-left-default`  | Posição bottom-left sem ação  |
+| `.ods-web-notification__bottom-left-action`   | Posição bottom-left com ação  |
+
+### Classes de tipo
+
+| Classe CSS                                    | Descrição                                     |
+| --------------------------------------------- | --------------------------------------------- |
+| `.ods-web-notification__action-text-info`     | Cor azul para ação do tipo info               |
+| `.ods-web-notification__action-text-positive` | Cor verde para ação do tipo positive          |
+| `.ods-web-notification__action-text-warning`  | Cor amarela/laranja para ação do tipo warning |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use notificações para feedback importante e temporário
+- Escolha o tipo apropriado para a cor da ação (info=azul, positive=verde, warning=amarelo)
+- Forneça ações quando o usuário pode fazer algo
+- Use títulos claros e descrições concisas
+- Feche notificações automaticamente quando apropriado
+
+### ❌ Não faça
+
+- Não use notificações para informações permanentes
+- Não abuse de notificações em uma única página
+- Não use notificações para navegação principal
+- Não ignore a acessibilidade e navegação por teclado
+- Não use notificações para informações críticas (use modais)
+
+## Casos de uso comuns
+
+### Feedback de ações
+
+```tsx live
+function ActionFeedbackExample() {
+  const [notification, setNotification] = React.useState({
+    isOpen: false,
+    type: 'info' as const,
+    title: '',
+    description: '',
+  });
+
+  const showNotification = (
+    type: 'info' | 'positive' | 'warning',
+    title: string,
+    description: string
+  ) => {
+    setNotification({ isOpen: true, type, title, description });
+  };
+
+  return (
+    <div>
+      <div>
+        <Button
+          onClick={() =>
+            showNotification(
+              'positive',
+              'Item salvo',
+              'O item foi salvo com sucesso!'
+            )
+          }
+        >
+          Salvar Item
+        </Button>
+        <Button
+          onClick={() =>
+            showNotification(
+              'warning',
+              'Atenção',
+              'Alguns campos estão incompletos.'
+            )
+          }
+        >
+          Validar Formulário
+        </Button>
+        <Button
+          onClick={() =>
+            showNotification(
+              'info',
+              'Sincronizando',
+              'Seus dados estão sendo sincronizados...'
+            )
+          }
+        >
+          Sincronizar
+        </Button>
+      </div>
+
+      <WebNotification
+        isOpen={notification.isOpen}
+        setIsOpen={(value) =>
+          setNotification((prev) => ({
+            ...prev,
+            isOpen: typeof value === 'boolean' ? value : value(prev.isOpen),
+          }))
+        }
+        type={notification.type}
+        title={notification.title}
+        description={notification.description}
+        actionLabel="Ver detalhes"
+        action={() => console.log('Ver detalhes da ação')}
+      />
+    </div>
+  );
+}
+
+<ActionFeedbackExample />;
+```
+
+## Visão geral dos tipos
+
+Veja todos os tipos de WebNotification em ação:
+
+<StorybookEmbed
+  storyId="components-webnotification--info"
+  height={200}
+  showToolbar={false}
+  title="WebNotification - Tipo Info"
+/>
+
+<StorybookEmbed
+  storyId="components-webnotification--with-action"
+  height={200}
+  showToolbar={false}
+  title="WebNotification - Com Ação"
+/>
+
+<StorybookEmbed
+  storyId="components-webnotification--without-action"
+  height={200}
+  showToolbar={false}
+  title="WebNotification - Sem Ação"
+/>
+
+## Links relacionados
+
+- [Snackbar](/components/snackbar) - Para notificações mais simples
+- [Alert](/components/alert) - Para alertas persistentes
+- [Modal](/components/modal) - Para informações críticas
+- [Storybook - WebNotification](https://ocean-ds.github.io/ocean-web/?path=/docs/components-webnotification--docs) - Documentação técnica

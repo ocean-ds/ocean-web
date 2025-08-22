@@ -69,6 +69,7 @@ const sidebars: SidebarsConfig = {
         'components/transactionlistitem',
         'components/typography',
         'components/unordered-list-item',
+        'components/webnotification',
       ],
     },
     {
