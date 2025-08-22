@@ -1,0 +1,312 @@
+---
+title: Tooltip
+sidebar_label: Tooltip
+sidebar_position: 2
+---
+
+import { Tooltip } from '@useblu/ocean-react';
+import { Button } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Tooltip
+
+O Tooltip é um componente que exibe informações adicionais quando o usuário passa o mouse sobre um elemento ou o foca. É ideal para fornecer contexto, explicações ou informações complementares sem ocupar espaço permanente na interface.
+
+## Importação
+
+```tsx
+import { Tooltip } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Tooltip } from '@useblu/ocean-react/Tooltip';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TooltipProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyTooltip: React.FC<TooltipProps> = (props) => {
+  return <Tooltip {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Tooltip no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-tooltip--usage"
+  height={400}
+  title="Tooltip - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Tooltip](https://ocean-ds.github.io/ocean-web/?path=/docs/components-tooltip--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as posições e tamanhos
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Tooltip text="Informação adicional sobre este botão">
+  <Button>Passe o mouse sobre mim</Button>
+</Tooltip>
+```
+
+## Posições
+
+O Tooltip pode ser posicionado em diferentes direções em relação ao elemento:
+
+### Posições básicas
+
+```tsx live
+<div>
+  <Tooltip text="Tooltip acima" position="up">
+    <Button>Acima</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip abaixo" position="down">
+    <Button>Abaixo</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip à esquerda" position="left">
+    <Button>Esquerda</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip à direita" position="right">
+    <Button>Direita</Button>
+  </Tooltip>
+</div>
+```
+
+### Posições diagonais
+
+```tsx live
+<div>
+  <Tooltip text="Tooltip diagonal superior esquerda" position="up-left">
+    <Button>Sup. Esq.</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip diagonal superior direita" position="up-right">
+    <Button>Sup. Dir.</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip diagonal inferior esquerda" position="down-left">
+    <Button>Inf. Esq.</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip diagonal inferior direita" position="down-right">
+    <Button>Inf. Dir.</Button>
+  </Tooltip>
+</div>
+```
+
+## Tamanhos
+
+O Tooltip oferece diferentes tamanhos para acomodar diferentes quantidades de conteúdo:
+
+```tsx live
+<div>
+  <Tooltip text="Pequeno" length="small">
+    <Button>Small</Button>
+  </Tooltip>
+
+  <Tooltip text="Este é um tooltip de tamanho médio" length="medium">
+    <Button>Medium</Button>
+  </Tooltip>
+
+  <Tooltip
+    text="Este é um tooltip de tamanho grande com mais texto para demonstrar o comportamento"
+    length="large"
+  >
+    <Button>Large</Button>
+  </Tooltip>
+
+  <Tooltip
+    text="Este é um tooltip extra grande com muito texto para demonstrar como ele se comporta quando há uma grande quantidade de conteúdo"
+    length="xlarge"
+  >
+    <Button>XLarge</Button>
+  </Tooltip>
+
+  <Tooltip text="Fit" length="fit">
+    <Button>Fit</Button>
+  </Tooltip>
+</div>
+```
+
+## Quebra de linha
+
+Para textos longos, você pode habilitar a quebra de linha:
+
+```tsx live
+<div>
+  <Tooltip text="Tooltip sem quebra de linha" position="up">
+    <Button>Sem quebra</Button>
+  </Tooltip>
+
+  <Tooltip
+    text="Tooltip com quebra de linha para textos longos"
+    break
+    position="up"
+  >
+    <Button>Com quebra</Button>
+  </Tooltip>
+</div>
+```
+
+## Animações
+
+Por padrão, o Tooltip possui animações suaves. Você pode removê-las usando a prop `blunt`:
+
+```tsx live
+<div>
+  <Tooltip text="Tooltip com animação" position="up">
+    <Button>Com animação</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip sem animação" blunt position="up">
+    <Button>Sem animação</Button>
+  </Tooltip>
+</div>
+```
+
+## API
+
+### Props
+
+| Prop        | Tipo                                                                                            | Padrão  | Descrição                             |
+| ----------- | ----------------------------------------------------------------------------------------------- | ------- | ------------------------------------- |
+| `text`      | `string`                                                                                        | -       | Texto que será exibido no tooltip     |
+| `position`  | `'up' \| 'down' \| 'left' \| 'right' \| 'up-left' \| 'up-right' \| 'down-left' \| 'down-right'` | `'up'`  | Posição do tooltip                    |
+| `length`    | `'small' \| 'medium' \| 'large' \| 'xlarge' \| 'fit'`                                           | -       | Tamanho do tooltip                    |
+| `break`     | `boolean`                                                                                       | `false` | Permite quebra de linha no tooltip    |
+| `blunt`     | `boolean`                                                                                       | `false` | Remove animações do tooltip           |
+| `noFocus`   | `boolean`                                                                                       | `false` | Desabilita o tooltip no foco          |
+| `children`  | `ReactElement`                                                                                  | -       | Elemento filho que receberá o tooltip |
+| `className` | `string`                                                                                        | -       | Classes CSS adicionais                |
+
+### Comportamento
+
+- **Hover**: O tooltip aparece quando o mouse passa sobre o elemento
+- **Focus**: O tooltip aparece quando o elemento recebe foco (a menos que `noFocus` seja `true`)
+- **Posicionamento**: O tooltip se posiciona automaticamente para evitar sair da tela
+- **Acessibilidade**: O texto do tooltip é acessível via `aria-label`
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                         |
+| ----------------- | ------------------------------ |
+| `Tab`             | Move o foco para o elemento    |
+| `Enter` / `Space` | Ativa o elemento (se clicável) |
+
+### Boas práticas para acessibilidade
+
+- **Use texto descritivo**: O texto do tooltip deve ser claro e informativo
+- **Evite informações críticas**: Não coloque informações essenciais apenas no tooltip
+- **Mantenha consistência**: Use tooltips de forma consistente em toda a aplicação
+- **Teste com screen readers**: Verifique se o conteúdo é acessível
+
+## CSS
+
+### Classes globais
+
+| Classe CSS             | Descrição                     |
+| ---------------------- | ----------------------------- |
+| `.ods-tooltip`         | Classe base do tooltip        |
+| `.ods-tooltip::after`  | Container do texto do tooltip |
+| `.ods-tooltip::before` | Seta/indicador do tooltip     |
+
+### Atributos de dados
+
+O componente gera automaticamente os seguintes atributos:
+
+- `data-tooltip-pos`: Posição do tooltip
+- `data-tooltip-length`: Tamanho do tooltip
+- `data-tooltip-break`: Quebra de linha
+- `data-tooltip-blunt`: Remove animações
+- `data-tooltip-nofocus`: Desabilita foco
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use tooltips para informações complementares e contexto
+- Mantenha o texto conciso e claro
+- Use posições apropriadas para o contexto
+- Teste em diferentes tamanhos de tela
+- Use tooltips de forma consistente
+
+### ❌ Não faça
+
+- Não use tooltips para informações críticas ou essenciais
+- Não use textos muito longos
+- Não use tooltips para navegação principal
+- Não abuse de tooltips em uma única página
+- Não ignore a acessibilidade
+
+## Casos de uso comuns
+
+### Explicação de funcionalidades
+
+```tsx live
+<div>
+  <Tooltip text="Salva automaticamente suas alterações">
+    <Button variant="secondary">Auto-save</Button>
+  </Tooltip>
+
+  <Tooltip text="Exporta os dados em formato CSV">
+    <Button variant="secondary">Exportar</Button>
+  </Tooltip>
+
+  <Tooltip text="Filtra os resultados por categoria">
+    <Button variant="secondary">Filtrar</Button>
+  </Tooltip>
+</div>
+```
+
+## Visão geral das posições
+
+Veja todas as posições do Tooltip em ação:
+
+<StorybookEmbed
+  storyId="components-tooltip--positions"
+  height={400}
+  showToolbar={false}
+  title="Tooltip - Todas as Posições"
+/>
+
+## Tamanhos disponíveis
+
+<StorybookEmbed
+  storyId="components-tooltip--lengths"
+  height={300}
+  showToolbar={false}
+  title="Tooltip - Tamanhos"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para elementos clicáveis com tooltip
+- [IconButton](/components/iconbutton) - Para ícones com tooltip
+- [Link](/components/link) - Para links com tooltip
+- [Storybook - Tooltip](https://ocean-ds.github.io/ocean-web/?path=/docs/components-tooltip--docs) - Documentação técnica
