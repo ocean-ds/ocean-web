@@ -172,58 +172,6 @@ O componente Steps é baseado em SVG e utiliza elementos SVG nativos. As customi
 | `path[stroke="#13BDBD"]`   | Linha de conexão preenchida             |
 | `path[stroke="#EBECF5"]`   | Linha de conexão não preenchida         |
 
-#### Exemplo de customização
-
-```css
-/* Customizar cor do passo atual */
-.ods-steps svg circle[stroke='#13BDBD'] {
-  stroke: #0066cc;
-}
-
-/* Customizar cor dos passos futuros */
-.ods-steps svg circle[stroke='#EBECF5'] {
-  stroke: #cccccc;
-}
-
-/* Customizar cor dos passos concluídos */
-.ods-steps svg circle[fill='#13BDBD'] {
-  fill: #28a745;
-}
-
-/* Customizar cor das linhas de conexão preenchidas */
-.ods-steps svg path[stroke='#13BDBD'] {
-  stroke: #28a745;
-}
-
-/* Customizar cor das linhas de conexão não preenchidas */
-.ods-steps svg path[stroke='#EBECF5'] {
-  stroke: #e9ecef;
-}
-
-/* Customizar tamanho do SVG */
-.ods-steps svg {
-  height: 24px;
-  width: auto;
-}
-
-/* Customizar espessura das linhas */
-.ods-steps svg circle,
-.ods-steps svg path {
-  stroke-width: 3px;
-}
-
-/* Customizar animação de transição */
-.ods-steps svg {
-  transition: all 0.3s ease;
-}
-
-/* Customizar hover effects */
-.ods-steps:hover svg circle[stroke='#EBECF5'] {
-  stroke: #0066cc;
-  opacity: 0.7;
-}
-```
-
 ## Acessibilidade
 
 - ✅ Suporte a screen readers com texto descritivo
