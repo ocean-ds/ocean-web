@@ -139,39 +139,6 @@ O componente utiliza as seguintes classes CSS que podem ser customizadas:
 | `.dot-pagination__dot`         | Cada ponto individual             |
 | `.dot-pagination__dot--active` | Modificador para o ponto ativo    |
 
-#### Exemplo de customização
-
-```css
-/* Customizar o container */
-.dot-pagination {
-  gap: 12px; /* Espaçamento entre pontos */
-}
-
-/* Customizar pontos */
-.dot-pagination__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #ccc;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Customizar ponto ativo */
-.dot-pagination__dot--active {
-  background-color: #007bff;
-  transform: scale(1.2);
-}
-
-/* Estados de hover e foco */
-.dot-pagination__dot:hover,
-.dot-pagination__dot:focus {
-  background-color: #999;
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
-}
-```
-
 ## Acessibilidade
 
 - ✅ Suporte completo a navegação por teclado

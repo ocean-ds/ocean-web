@@ -1,0 +1,419 @@
+---
+title: TopBar
+sidebar_label: TopBar
+sidebar_position: 2
+---
+
+import { TopBar } from '@useblu/ocean-react';
+import {
+  ArrowLeftOutline,
+  DotsVertical,
+  SettingsOutline,
+} from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TopBar
+
+O TopBar é um componente de navegação superior que fornece contexto da página atual, ações de navegação e controles adicionais. É ideal para aplicações móveis e web, oferecendo uma experiência de navegação consistente e intuitiva.
+
+## Importação
+
+```tsx
+import { TopBar } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TopBar } from '@useblu/ocean-react/TopBar';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TopBarProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyTopBar: React.FC<TopBarProps> = (props) => {
+  return <TopBar {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente TopBar no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-topbar--usage"
+  height={300}
+  title="TopBar - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TopBar](https://ocean-ds.github.io/ocean-web/?path=/docs/components-topbar--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  leftIcon={<ArrowLeftOutline />}
+  rightIcon={<DotsVertical />}
+  onLeftAction={() => console.log('Voltar')}
+  onRightAction={() => console.log('Menu')}
+/>
+```
+
+## Variantes
+
+O TopBar oferece duas variantes principais para diferentes contextos de uso:
+
+### Default (padrão)
+
+A variante padrão com layout horizontal simples:
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+  leftIcon={<ArrowLeftOutline />}
+  rightIcon={<DotsVertical />}
+  onLeftAction={() => console.log('Voltar')}
+  onRightAction={() => console.log('Menu')}
+/>
+```
+
+### Extended
+
+A variante estendida com layout mais espaçoso e ações agrupadas:
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+  leftIcon={<ArrowLeftOutline />}
+  rightIcon={<SettingsOutline />}
+  onLeftAction={() => console.log('Voltar')}
+  onRightAction={() => console.log('Configurações')}
+  variants="extended"
+/>
+```
+
+## Configurações de ações
+
+### Apenas ação direita
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+  rightIcon={<DotsVertical />}
+  onRightAction={() => console.log('Menu')}
+/>
+```
+
+### Apenas ação esquerda
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+  leftIcon={<ArrowLeftOutline />}
+  onLeftAction={() => console.log('Voltar')}
+/>
+```
+
+### Sem ações
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+/>
+```
+
+## Temas de cor
+
+### Tema padrão (off)
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+  leftIcon={<ArrowLeftOutline />}
+  rightIcon={<DotsVertical />}
+  onLeftAction={() => console.log('Voltar')}
+  onRightAction={() => console.log('Menu')}
+  color="off"
+/>
+```
+
+### Tema claro (on)
+
+```tsx live
+<div>
+  <TopBar
+    title="Título da Página"
+    description="Descrição detalhada da página atual"
+    leftIcon={<ArrowLeftOutline />}
+    rightIcon={<DotsVertical />}
+    onLeftAction={() => console.log('Voltar')}
+    onRightAction={() => console.log('Menu')}
+    color="on"
+  />
+</div>
+```
+
+## Scroll Bar
+
+O TopBar pode exibir uma sombra quando há scroll na página:
+
+```tsx live
+<TopBar
+  title="Título da Página"
+  description="Descrição detalhada da página atual"
+  leftIcon={<ArrowLeftOutline />}
+  rightIcon={<DotsVertical />}
+  onLeftAction={() => console.log('Voltar')}
+  onRightAction={() => console.log('Menu')}
+  scrollBar
+/>
+```
+
+## Uso em aplicações reais
+
+### Navegação de páginas
+
+```tsx live
+function PageNavigation() {
+  const [currentPage, setCurrentPage] = React.useState('home');
+
+  const pages = {
+    home: { title: 'Início', description: 'Página principal' },
+    profile: { title: 'Perfil', description: 'Suas informações pessoais' },
+    settings: {
+      title: 'Configurações',
+      description: 'Preferências do sistema',
+    },
+  };
+
+  const currentPageInfo = pages[currentPage as keyof typeof pages];
+
+  return (
+    <div>
+      <TopBar
+        title={currentPageInfo.title}
+        description={currentPageInfo.description}
+        leftIcon={<ArrowLeftOutline />}
+        rightIcon={<SettingsOutline />}
+        onLeftAction={() => setCurrentPage('home')}
+        onRightAction={() => setCurrentPage('settings')}
+        scrollBar
+      />
+      <div>
+        <p>Página atual: {currentPage}</p>
+        <button onClick={() => setCurrentPage('profile')}>
+          Ir para Perfil
+        </button>
+      </div>
+    </div>
+  );
+}
+
+<PageNavigation />;
+```
+
+### Aplicação móvel
+
+```tsx live
+function MobileApp() {
+  return (
+    <div>
+      <TopBar
+        title="Meus Pedidos"
+        description="Acompanhe suas compras"
+        leftIcon={<ArrowLeftOutline />}
+        rightIcon={<DotsVertical />}
+        onLeftAction={() => console.log('Voltar')}
+        onRightAction={() => console.log('Menu')}
+        scrollBar
+      />
+      <div>
+        <p>Conteúdo da página...</p>
+      </div>
+    </div>
+  );
+}
+
+<MobileApp />;
+```
+
+## API
+
+### Props
+
+| Prop            | Tipo                      | Padrão      | Descrição                                  |
+| --------------- | ------------------------- | ----------- | ------------------------------------------ |
+| `title`         | `string`                  | -           | Título principal da barra superior         |
+| `description`   | `string`                  | -           | Descrição opcional abaixo do título        |
+| `variants`      | `'default' \| 'extended'` | `'default'` | Variante visual do TopBar                  |
+| `color`         | `'off' \| 'on'`           | `'off'`     | Tema de cor do TopBar                      |
+| `scrollBar`     | `boolean`                 | `false`     | Adiciona sombra quando há scroll           |
+| `leftIcon`      | `ReactElement`            | -           | Ícone do lado esquerdo                     |
+| `rightIcon`     | `ReactElement`            | -           | Ícone do lado direito                      |
+| `onLeftAction`  | `() => void`              | -           | Função chamada ao clicar no ícone esquerdo |
+| `onRightAction` | `() => void`              | -           | Função chamada ao clicar no ícone direito  |
+
+### Comportamento
+
+- **Layout responsivo**: Adapta-se a diferentes tamanhos de tela
+- **Navegação por teclado**: Suporte completo a navegação por teclado
+- **Acessibilidade**: Atributos ARIA apropriados
+- **Scroll detection**: Detecta automaticamente o scroll da página
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                         |
+| ----------------- | ------------------------------ |
+| `Tab`             | Move o foco entre os elementos |
+| `Enter` / `Space` | Ativa o elemento em foco       |
+| `Escape`          | Volta para a página anterior   |
+
+### Boas práticas para acessibilidade
+
+- **Use títulos descritivos**: O título deve indicar claramente a página atual
+- **Forneça descrições úteis**: Use descrições para contexto adicional
+- **Use ícones semânticos**: Escolha ícones que representem claramente a ação
+- **Mantenha consistência**: Use o mesmo padrão de navegação em toda a aplicação
+
+## CSS
+
+### Classes globais
+
+| Classe CSS               | Descrição                               |
+| ------------------------ | --------------------------------------- |
+| `.ods-topbar`            | Classe base do TopBar                   |
+| `.ods-topbar-extend`     | Variante estendida do TopBar            |
+| `.ods-topbar-title`      | Container do título e descrição         |
+| `.ods-topbar-left`       | Container da ação esquerda              |
+| `.ods-topbar-right`      | Container da ação direita               |
+| `.ods-topbar-actions`    | Container das ações (variante extended) |
+| `.ods-topbar-scroll-bar` | Sombra quando há scroll                 |
+| `.ods-topbar-light`      | Tema claro                              |
+| `.ods-topbar-default`    | Tema padrão                             |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos claros e concisos que identifiquem a página
+- Forneça descrições úteis para contexto adicional
+- Use ícones que representem claramente as ações
+- Mantenha consistência na navegação entre páginas
+- Use a variante `extended` para páginas com mais contexto
+
+### ❌ Não faça
+
+- Não use títulos muito longos ou vagos
+- Não omita ações de navegação quando apropriado
+- Não use ícones genéricos ou confusos
+- Não ignore a acessibilidade e navegação por teclado
+- Não use TopBar para navegação principal complexa
+
+## Casos de uso comuns
+
+### Aplicações móveis
+
+```tsx live
+function MobileNavigation() {
+  return (
+    <div>
+      <TopBar
+        title="Detalhes do Produto"
+        description="iPhone 15 Pro - 256GB"
+        leftIcon={<ArrowLeftOutline />}
+        rightIcon={<DotsVertical />}
+        onLeftAction={() => console.log('Voltar')}
+        onRightAction={() => console.log('Compartilhar')}
+        scrollBar
+      />
+      <div>
+        <p>Detalhes do produto...</p>
+      </div>
+    </div>
+  );
+}
+
+<MobileNavigation />;
+```
+
+### Dashboards
+
+```tsx live
+function DashboardHeader() {
+  return (
+    <TopBar
+      title="Dashboard"
+      description="Visão geral dos seus dados"
+      rightIcon={<SettingsOutline />}
+      onRightAction={() => console.log('Configurações')}
+      variants="extended"
+      scrollBar
+    />
+  );
+}
+
+<DashboardHeader />;
+```
+
+## Visão geral das variantes
+
+Veja todas as variantes do TopBar em ação:
+
+<StorybookEmbed
+  storyId="components-topbar--default"
+  height={200}
+  showToolbar={false}
+  title="TopBar - Variante Default"
+/>
+
+## Com descrição
+
+<StorybookEmbed
+  storyId="components-topbar--with-description"
+  height={200}
+  showToolbar={false}
+  title="TopBar - Com Descrição"
+/>
+
+## Variante estendida
+
+<StorybookEmbed
+  storyId="components-topbar--extended"
+  height={200}
+  showToolbar={false}
+  title="TopBar - Variante Extended"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para ações dentro do TopBar
+- [IconButton](/components/iconbutton) - Para ícones de ação
+- [Typography](/components/typography) - Para hierarquia de textos
+- [Storybook - TopBar](https://ocean-ds.github.io/ocean-web/?path=/docs/components-topbar--docs) - Documentação técnica
