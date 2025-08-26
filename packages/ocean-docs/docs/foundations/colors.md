@@ -292,3 +292,120 @@ As cores de status comunicam o estado de elementos e ações, organizadas por si
 - **Avisos:** `colorStatusWarningPure`
 - **Fundos de Cartões:** `colorInterfaceLightPure`
 - **Textos Principais:** `colorInterfaceDarkPure`
+
+## Exemplos de Aplicação
+
+### Botões Primários
+
+```css
+background-color: ${colorBrandPrimaryPure};
+color: ${colorInterfaceLightPure};
+border: none;
+padding: 12px 24px;
+border-radius: 6px;
+font-weight: ${fontWeightMedium};
+```
+
+### Botões Secundários
+
+```css
+background-color: ${colorInterfaceLightPure};
+color: ${colorBrandPrimaryPure};
+border: 1px solid ${colorBrandPrimaryPure};
+padding: 12px 24px;
+border-radius: 6px;
+font-weight: ${fontWeightMedium};
+```
+
+### Estados de Sucesso
+
+```css
+background-color: ${colorStatusPositiveUp};
+color: ${colorStatusPositiveDeep};
+border: 1px solid ${colorStatusPositivePure};
+padding: 16px;
+border-radius: 8px;
+```
+
+### Estados de Erro
+
+```css
+background-color: ${colorStatusNegativeUp};
+color: ${colorStatusNegativeDeep};
+border: 1px solid ${colorStatusNegativePure};
+padding: 16px;
+border-radius: 8px;
+```
+
+### Estados de Aviso
+
+```css
+background-color: ${colorStatusWarningUp};
+color: ${colorStatusWarningDeep};
+border: 1px solid ${colorStatusWarningPure};
+padding: 16px;
+border-radius: 8px;
+```
+
+### Cartões de Conteúdo
+
+```css
+background-color: ${colorInterfaceLightPure};
+border: 1px solid ${colorInterfaceLightDown};
+border-radius: 8px;
+padding: 24px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+```
+
+### Textos de Destaque
+
+```css
+color: ${colorBrandPrimaryPure};
+font-weight: ${fontWeightBold};
+font-size: ${fontSizeMd};
+```
+
+### Links Interativos
+
+```css
+color: ${colorBrandPrimaryPure};
+text-decoration: none;
+transition: color 0.2s ease;
+```
+
+### Links Interativos (Hover)
+
+```css
+color: ${colorBrandPrimaryDown};
+text-decoration: underline;
+```
+
+### Fundos de Seção
+
+```css
+background-color: ${colorInterfaceLightUp};
+padding: 32px;
+border-radius: 12px;
+```
+
+### Elementos Desabilitados
+
+```css
+background-color: ${colorInterfaceLightDown};
+color: ${colorInterfaceDarkDown};
+cursor: not-allowed;
+opacity: 0.6;
+```
+
+### Combinações Recomendadas
+
+| Elemento           | Cor Principal             | Cor Secundária            | Cor de Texto              |
+| ------------------ | ------------------------- | ------------------------- | ------------------------- |
+| Botões Primários   | `colorBrandPrimaryPure`   | -                         | `colorInterfaceLightPure` |
+| Botões Secundários | `colorInterfaceLightPure` | `colorBrandPrimaryPure`   | `colorBrandPrimaryPure`   |
+| Estados de Sucesso | `colorStatusPositiveUp`   | `colorStatusPositivePure` | `colorStatusPositiveDeep` |
+| Estados de Erro    | `colorStatusNegativeUp`   | `colorStatusNegativePure` | `colorStatusNegativeDeep` |
+| Estados de Aviso   | `colorStatusWarningUp`    | `colorStatusWarningPure`  | `colorStatusWarningDeep`  |
+| Cartões            | `colorInterfaceLightPure` | `colorInterfaceLightDown` | `colorInterfaceDarkPure`  |
+| Links              | `colorBrandPrimaryPure`   | `colorBrandPrimaryDown`   | -                         |
+| Fundos             | `colorInterfaceLightUp`   | -                         | `colorInterfaceDarkPure`  |
