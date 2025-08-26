@@ -44,7 +44,12 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Usage', 'Welcome', 'First Steps', '*'],
+      order: ['Usage', 'Welcome', 'First Steps', 'Components', 'Examples', '*'],
+      method: 'alphabetical',
+      locales: 'en-US',
+    },
+    sidebar: {
+      showRoots: true,
     },
   },
 };

@@ -1,0 +1,279 @@
+---
+title: Switch
+sidebar_label: Switch
+sidebar_position: 2
+---
+
+import { Switch } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Switch
+
+O Switch é um componente de toggle que permite ao usuário alternar entre dois estados (ligado/desligado). É ideal para configurações, preferências e controles de ativação/desativação.
+
+## Importação
+
+```tsx
+import { Switch } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Switch } from '@useblu/ocean-react/Switch';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { SwitchProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MySwitch: React.FC<SwitchProps> = (props) => {
+  return <Switch {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente Switch no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-switch--usage"
+  height={400}
+  title="Switch - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Switch](https://ocean-ds.github.io/ocean-web/?path=/docs/components-switch--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<Switch id="basic-switch" checked />
+```
+
+## Estados
+
+O Switch possui diferentes estados para diferentes contextos de uso:
+
+### Estados normais
+
+```tsx live
+<div>
+  <Switch id="switch-on" checked />
+  <Switch id="switch-off" checked={false} />
+</div>
+```
+
+### Estados desabilitados
+
+```tsx live
+<div>
+  <Switch id="switch-disabled-on" checked disabled />
+  <Switch id="switch-disabled-off" checked={false} disabled />
+</div>
+```
+
+### Estados somente leitura
+
+```tsx live
+<div>
+  <Switch id="switch-readonly-on" checked readOnly />
+  <Switch id="switch-readonly-off" checked={false} readOnly />
+</div>
+```
+
+## Uso com formulários
+
+### Exemplo básico com estado controlado
+
+```tsx live
+function SwitchExample() {
+  const [isEnabled, setIsEnabled] = React.useState(false);
+
+  return (
+    <div>
+      <label htmlFor="form-switch">Notificações por email:</label>
+      <Switch
+        id="form-switch"
+        checked={isEnabled}
+        onChange={(e) => setIsEnabled(e.target.checked)}
+      />
+      <span>{isEnabled ? 'Ativado' : 'Desativado'}</span>
+    </div>
+  );
+}
+
+<SwitchExample />;
+```
+
+### Múltiplos switches em formulário
+
+```tsx live
+function MultipleSwitchesExample() {
+  const [settings, setSettings] = React.useState({
+    notifications: true,
+    darkMode: false,
+    autoSave: true,
+  });
+
+  const handleChange =
+    (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSettings((prev) => ({
+        ...prev,
+        [key]: e.target.checked,
+      }));
+    };
+
+  return (
+    <div>
+      <div>
+        <label htmlFor="notifications">Notificações</label>
+        <Switch
+          id="notifications"
+          checked={settings.notifications}
+          onChange={handleChange('notifications')}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="darkMode">Modo escuro</label>
+        <Switch
+          id="darkMode"
+          checked={settings.darkMode}
+          onChange={handleChange('darkMode')}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="autoSave">Salvamento automático</label>
+        <Switch
+          id="autoSave"
+          checked={settings.autoSave}
+          onChange={handleChange('autoSave')}
+        />
+      </div>
+    </div>
+  );
+}
+
+<MultipleSwitchesExample />;
+```
+
+## API
+
+### Props
+
+| Prop        | Tipo                                             | Padrão  | Descrição                           |
+| ----------- | ------------------------------------------------ | ------- | ----------------------------------- |
+| `checked`   | `boolean`                                        | `false` | Define se o switch está ativado     |
+| `disabled`  | `boolean`                                        | `false` | Desabilita o switch                 |
+| `readOnly`  | `boolean`                                        | `false` | Torna o switch somente leitura      |
+| `id`        | `string`                                         | -       | ID único para associação com label  |
+| `name`      | `string`                                         | -       | Nome do campo para formulários      |
+| `onChange`  | `(event: ChangeEvent<HTMLInputElement>) => void` | -       | Função chamada quando o estado muda |
+| `className` | `string`                                         | -       | Classes CSS adicionais              |
+
+### Eventos
+
+- `onChange`: Disparado quando o estado do switch muda
+- `onFocus`: Disparado quando o switch recebe foco
+- `onBlur`: Disparado quando o switch perde foco
+- `onClick`: Disparado quando o switch é clicado
+
+## Acessibilidade
+
+- ✅ Suporte completo a navegação por teclado
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Contraste adequado em todos os estados
+
+### Navegação por teclado
+
+| Tecla             | Função                     |
+| ----------------- | -------------------------- |
+| `Tab`             | Move o foco para o switch  |
+| `Space` / `Enter` | Alterna o estado do switch |
+
+### Exemplo com label acessível
+
+```tsx live
+<div>
+  <label htmlFor="accessible-switch">Ativar modo noturno</label>
+  <Switch id="accessible-switch" checked />
+</div>
+```
+
+## CSS
+
+### Classes globais
+
+| Classe CSS            | Descrição                                  |
+| --------------------- | ------------------------------------------ |
+| `.ods-switch__root`   | Estilos aplicados ao elemento raiz (label) |
+| `.ods-switch`         | Estilos aplicados ao input checkbox        |
+| `.ods-switch__slider` | Estilos aplicados ao slider visual         |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use labels descritivos para explicar o que o switch controla
+- Use switches para configurações binárias simples
+- Forneça feedback visual claro sobre o estado atual
+- Use `disabled` para opções não disponíveis
+- Use `readOnly` para exibir estado sem permitir mudança
+
+### ❌ Não faça
+
+- Não use switches para ações destrutivas
+- Não use switches para múltiplas opções (use checkboxes)
+- Não omita labels ou descrições claras
+- Não use switches para navegação entre páginas
+- Não ignore estados de carregamento em operações assíncronas
+
+## Visão geral dos estados
+
+Veja todos os estados do Switch em ação:
+
+<StorybookEmbed
+  storyId="components-switch--states"
+  height={200}
+  showToolbar={false}
+  title="Switch - Estados"
+/>
+
+## Estados desabilitados
+
+<StorybookEmbed
+  storyId="components-switch--disabled"
+  height={200}
+  showToolbar={false}
+  title="Switch - Estados Desabilitados"
+/>
+
+## Estados somente leitura
+
+<StorybookEmbed
+  storyId="components-switch--read-only"
+  height={200}
+  showToolbar={false}
+  title="Switch - Estados Somente Leitura"
+/>
+
+## Links relacionados
+
+- [Checkbox](/components/checkbox) - Para seleções múltiplas
+- [Radio](/components/radio) - Para seleções únicas em grupo
+- [FormControl](/components/form-control) - Para estruturação de formulários
+- [Storybook - Switch](https://ocean-ds.github.io/ocean-web/?path=/docs/components-switch--docs) - Documentação técnica

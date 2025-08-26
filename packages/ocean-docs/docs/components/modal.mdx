@@ -163,49 +163,6 @@ O componente utiliza as seguintes classes CSS que podem ser customizadas:
 | `.ods-modal__header-close`          | Botão de fechar do modal                      |
 | `.ods-modal__body`                  | Corpo do modal onde fica o conteúdo           |
 
-#### Exemplo de customização
-
-```css
-/* Customizar overlay */
-.ods-modal__overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-}
-
-/* Customizar conteúdo do modal */
-.ods-modal__content {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-/* Customizar tamanhos */
-.ods-modal__content--sm {
-  max-width: 400px;
-}
-
-.ods-modal__content--md {
-  max-width: 600px;
-}
-
-.ods-modal__content--lg {
-  max-width: 900px;
-}
-
-/* Animações customizadas */
-.ods-modal__content--after-open {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.ods-modal__content--before-close {
-  opacity: 0;
-  transform: scale(0.95);
-}
-```
-
 ## Acessibilidade
 
 - ✅ Suporte completo a navegação por teclado

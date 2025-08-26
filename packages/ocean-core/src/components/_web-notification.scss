@@ -35,6 +35,7 @@ $max-notifications: 10;
 
   &__action-text-info {
     color: $color-brand-primary-up;
+    min-width: fit-content;
 
     &:hover,
     &:focus,
@@ -45,6 +46,7 @@ $max-notifications: 10;
 
   &__action-text-positive {
     color: $color-status-positive-pure;
+    min-width: fit-content;
 
     &:hover,
     &:focus,
@@ -55,6 +57,7 @@ $max-notifications: 10;
 
   &__action-text-warning {
     color: $color-status-warning-pure;
+    min-width: fit-content;
 
     &:hover,
     &:focus,
