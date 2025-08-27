@@ -87,6 +87,7 @@ const sidebars: SidebarsConfig = {
         'foundations/colors',
         'foundations/typography',
         'foundations/borders',
+        'foundations/spacing',
       ],
     },
     {
