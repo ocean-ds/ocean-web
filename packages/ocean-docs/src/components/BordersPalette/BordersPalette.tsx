@@ -1,28 +1,14 @@
 import React from 'react';
 import styles from './BordersPalette.module.css';
 
-interface BorderRadius {
+interface BorderItem {
   token: string;
   name: string;
   value: string;
   usage: string;
 }
 
-interface BorderWidth {
-  token: string;
-  name: string;
-  value: string;
-  usage: string;
-}
-
-interface OpacityLevel {
-  token: string;
-  name: string;
-  value: string;
-  usage: string;
-}
-
-interface ShadowLevel {
+interface ShadowItem {
   token: string;
   name: string;
   blur: string;
@@ -32,145 +18,122 @@ interface ShadowLevel {
 }
 
 interface BordersData {
-  borderRadius: BorderRadius[];
-  borderWidths: BorderWidth[];
-  opacityLevels: OpacityLevel[];
-  shadowLevels: ShadowLevel[];
+  borderRadius: BorderItem[];
+  borderWidths: BorderItem[];
+  opacityLevels: BorderItem[];
+  shadowLevels: ShadowItem[];
 }
 
-const bordersData: BordersData = {
-  borderRadius: [
-    {
-      token: 'borderRadiusTiny',
-      name: 'Tiny',
-      value: '4px',
-      usage: 'Elementos pequenos, ícones, badges',
-    },
-    {
-      token: 'borderRadiusSm',
-      name: 'SM',
-      value: '8px',
-      usage: 'Botões pequenos, inputs, elementos compactos',
-    },
-    {
-      token: 'borderRadiusMd',
-      name: 'MD',
-      value: '12px',
-      usage: 'Botões padrão, cartões pequenos',
-    },
-    {
-      token: 'borderRadiusLg',
-      name: 'LG',
-      value: '16px',
-      usage: 'Cartões grandes, modais, containers',
-    },
-    {
-      token: 'borderRadiusPill',
-      name: 'Pill',
+// Função auxiliar para criar itens de borda
+const createBorderItems = (
+  baseToken: string,
+  items: { [key: string]: { value: string; usage: string } }
+): BorderItem[] =>
+  Object.entries(items).map(([name, { value, usage }]) => ({
+    token: `${baseToken}${name}`,
+    name,
+    value,
+    usage,
+  }));
+
+// Função auxiliar para criar itens de sombra
+const createShadowItems = (
+  baseToken: string,
+  items: {
+    [key: string]: {
+      blur: string;
+      xOffset: string;
+      yOffset: string;
+      usage: string;
+    };
+  }
+): ShadowItem[] =>
+  Object.entries(items).map(([name, { blur, xOffset, yOffset, usage }]) => ({
+    token: `${baseToken}${name}`,
+    name,
+    blur,
+    xOffset,
+    yOffset,
+    usage,
+  }));
+
+// Definição dos elementos organizados por categoria
+const bordersDefinitions = {
+  radius: {
+    Tiny: { value: '4px', usage: 'Elementos pequenos, ícones, badges' },
+    Sm: { value: '8px', usage: 'Botões pequenos, inputs, elementos compactos' },
+    Md: { value: '12px', usage: 'Botões padrão, cartões pequenos' },
+    Lg: { value: '16px', usage: 'Cartões grandes, modais, containers' },
+    Pill: {
       value: '56px',
       usage: 'Botões de ação, chips, elementos de navegação',
     },
-    {
-      token: 'borderRadiusCircular',
-      name: 'Circular',
+    Circular: {
       value: '50%',
       usage: 'Avatars, botões de ação circular, ícones',
     },
-  ],
-  borderWidths: [
-    {
-      token: 'borderWidthNone',
-      name: 'None',
-      value: '0px',
-      usage: 'Elementos sem borda, estados padrão',
-    },
-    {
-      token: 'borderWidthHairline',
-      name: 'Hairline',
-      value: '1px',
-      usage: 'Bordas sutis, divisores, estados hover',
-    },
-    {
-      token: 'borderWidthThin',
-      name: 'Thin',
-      value: '2px',
-      usage: 'Bordas de destaque, elementos selecionados',
-    },
-  ],
-  opacityLevels: [
-    {
-      token: 'opacityLevelSemiopaque',
-      name: 'Semi Opaque',
-      value: '80%',
-      usage: 'Overlays, elementos de destaque',
-    },
-    {
-      token: 'opacityLevelIntense',
-      name: 'Intense',
+  },
+  widths: {
+    None: { value: '0px', usage: 'Elementos sem borda, estados padrão' },
+    Hairline: { value: '1px', usage: 'Bordas sutis, divisores, estados hover' },
+    Thin: { value: '2px', usage: 'Bordas de destaque, elementos selecionados' },
+  },
+  opacity: {
+    Semiopaque: { value: '80%', usage: 'Overlays, elementos de destaque' },
+    Intense: {
       value: '64%',
       usage: 'Elementos semi-transparentes, backgrounds',
     },
-    {
-      token: 'opacityLevelMedium',
-      name: 'Medium',
+    Medium: {
       value: '40%',
       usage: 'Estados desabilitados, elementos secundários',
     },
-    {
-      token: 'opacityLevelLight',
-      name: 'Light',
-      value: '16%',
-      usage: 'Fundos sutis, elementos de fundo',
-    },
-    {
-      token: 'opacityLevelSemitransparent',
-      name: 'Semi Transparent',
+    Light: { value: '16%', usage: 'Fundos sutis, elementos de fundo' },
+    Semitransparent: {
       value: '8%',
       usage: 'Elementos muito sutis, overlays leves',
     },
-  ],
-  shadowLevels: [
-    {
-      token: 'shadowLevel1',
-      name: 'Level 1',
+  },
+  shadows: {
+    Level1: {
       blur: '8px',
       xOffset: '0px',
       yOffset: '4px',
       usage: 'Elementos elevados levemente, cartões pequenos',
     },
-    {
-      token: 'shadowLevel2Bottom',
-      name: 'Level 2 Bottom',
+    Level2Bottom: {
       blur: '16px',
       xOffset: '0px',
       yOffset: '8px',
       usage: 'Elementos com elevação média, botões, inputs',
     },
-    {
-      token: 'shadowLevel2Top',
-      name: 'Level 2 Top',
+    Level2Top: {
       blur: '16px',
       xOffset: '0px',
       yOffset: '-8px',
       usage: 'Elementos elevados para cima, tooltips, dropdowns',
     },
-    {
-      token: 'shadowLevel3',
-      name: 'Level 3',
+    Level3: {
       blur: '32px',
       xOffset: '0px',
       yOffset: '16px',
       usage: 'Elementos com alta elevação, modais, drawers',
     },
-    {
-      token: 'shadowLevel4',
-      name: 'Level 4',
+    Level4: {
       blur: '48px',
       xOffset: '0px',
       yOffset: '16px',
       usage: 'Elementos com máxima elevação, popups, overlays',
     },
-  ],
+  },
+};
+
+// Geração do objeto de dados de bordas
+const bordersData: BordersData = {
+  borderRadius: createBorderItems('borderRadius', bordersDefinitions.radius),
+  borderWidths: createBorderItems('borderWidth', bordersDefinitions.widths),
+  opacityLevels: createBorderItems('opacityLevel', bordersDefinitions.opacity),
+  shadowLevels: createShadowItems('shadow', bordersDefinitions.shadows),
 };
 
 const BorderRadiusComponent: React.FC = () => {
