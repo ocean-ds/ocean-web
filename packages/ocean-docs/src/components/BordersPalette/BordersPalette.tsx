@@ -151,7 +151,7 @@ const BorderRadiusComponent: React.FC = () => {
                 style={{
                   borderRadius: radius.value,
                   width: radius.value === '50%' ? '40px' : '60px',
-                  height: radius.value === '50%' ? '40px' : '40px',
+                  height: '40px',
                 }}
               />
             </div>
