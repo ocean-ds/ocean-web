@@ -1,21 +1,7 @@
 import React from 'react';
 import styles from './SpacingPalette.module.css';
 
-interface SpacingStack {
-  token: string;
-  name: string;
-  value: string;
-  usage: string;
-}
-
-interface SpacingInset {
-  token: string;
-  name: string;
-  value: string;
-  usage: string;
-}
-
-interface SpacingSquish {
+interface SpacingItem {
   token: string;
   name: string;
   value: string;
@@ -23,138 +9,103 @@ interface SpacingSquish {
 }
 
 interface SpacingData {
-  spacingStack: SpacingStack[];
-  spacingInset: SpacingInset[];
-  spacingSquish: SpacingSquish[];
+  spacingStack: SpacingItem[];
+  spacingInset: SpacingItem[];
+  spacingSquish: SpacingItem[];
 }
 
-const spacingData: SpacingData = {
-  spacingStack: [
-    {
-      token: 'spacingStackXxxs',
-      name: 'XXXS',
+// Função auxiliar para criar itens de espaçamento
+const createSpacingItems = (
+  baseToken: string,
+  items: { [key: string]: { value: string; usage: string } }
+): SpacingItem[] =>
+  Object.entries(items).map(([name, { value, usage }]) => ({
+    token: `${baseToken}${name}`,
+    name,
+    value,
+    usage,
+  }));
+
+// Definição dos espaçamentos organizados por categoria
+const spacingDefinitions = {
+  stack: {
+    Xxxs: {
       value: '4px',
       usage: 'Espaçamento mínimo entre elementos muito próximos',
     },
-    {
-      token: 'spacingStackXxs',
-      name: 'XXS',
+    Xxs: {
       value: '8px',
       usage: 'Espaçamento pequeno entre elementos compactos',
     },
-    {
-      token: 'spacingStackXxsExtra',
-      name: 'XXS Extra',
+    XxsExtra: {
       value: '12px',
       usage: 'Espaçamento intermediário entre elementos pequenos',
     },
-    {
-      token: 'spacingStackXs',
-      name: 'XS',
+    Xs: {
       value: '16px',
       usage: 'Espaçamento padrão entre elementos de conteúdo',
     },
-    {
-      token: 'spacingStackSm',
-      name: 'SM',
-      value: '24px',
-      usage: 'Espaçamento entre seções pequenas',
-    },
-    {
-      token: 'spacingStackMd',
-      name: 'MD',
-      value: '32px',
-      usage: 'Espaçamento padrão entre seções principais',
-    },
-    {
-      token: 'spacingStackLg',
-      name: 'LG',
-      value: '40px',
-      usage: 'Espaçamento entre seções grandes',
-    },
-    {
-      token: 'spacingStackXl',
-      name: 'XL',
-      value: '48px',
-      usage: 'Espaçamento entre componentes principais',
-    },
-    {
-      token: 'spacingStackXxl',
-      name: 'XXL',
-      value: '64px',
-      usage: 'Espaçamento entre seções muito grandes',
-    },
-    {
-      token: 'spacingStackXxxl',
-      name: 'XXXL',
+    Sm: { value: '24px', usage: 'Espaçamento entre seções pequenas' },
+    Md: { value: '32px', usage: 'Espaçamento padrão entre seções principais' },
+    Lg: { value: '40px', usage: 'Espaçamento entre seções grandes' },
+    Xl: { value: '48px', usage: 'Espaçamento entre componentes principais' },
+    Xxl: { value: '64px', usage: 'Espaçamento entre seções muito grandes' },
+    Xxxl: {
       value: '80px',
       usage: 'Espaçamento máximo entre seções principais',
     },
-  ],
-  spacingInset: [
-    {
-      token: 'spacingInsetXxs',
-      name: 'XXS',
+  },
+  inset: {
+    Xxs: {
       value: '4px',
       usage: 'Preenchimento mínimo para elementos muito compactos',
     },
-    {
-      token: 'spacingInsetXs',
-      name: 'XS',
+    Xs: {
       value: '8px',
       usage: 'Preenchimento pequeno para elementos compactos',
     },
-    {
-      token: 'spacingInsetSm',
-      name: 'SM',
+    Sm: {
       value: '16px',
       usage: 'Preenchimento padrão para elementos de conteúdo',
     },
-    {
-      token: 'spacingInsetMd',
-      name: 'MD',
+    Md: {
       value: '24px',
       usage: 'Preenchimento confortável para cartões e containers',
     },
-    {
-      token: 'spacingInsetLg',
-      name: 'LG',
+    Lg: {
       value: '32px',
       usage: 'Preenchimento generoso para seções importantes',
     },
-    {
-      token: 'spacingInsetXl',
-      name: 'XL',
+    Xl: {
       value: '40px',
       usage: 'Preenchimento máximo para containers principais',
     },
-  ],
-  spacingSquish: [
-    {
-      token: 'spacingSquishXs',
-      name: 'XS',
+  },
+  squish: {
+    Xs: {
       value: '4px 8px',
       usage: 'Preenchimento compacto para botões pequenos',
     },
-    {
-      token: 'spacingSquishSm',
-      name: 'SM',
+    Sm: {
       value: '8px 16px',
       usage: 'Preenchimento padrão para botões e inputs',
     },
-    {
-      token: 'spacingSquishMd',
-      name: 'MD',
+    Md: {
       value: '16px 24px',
       usage: 'Preenchimento confortável para elementos interativos',
     },
-    {
-      token: 'spacingSquishLg',
-      name: 'LG',
+    Lg: {
       value: '16px 32px',
       usage: 'Preenchimento generoso para CTAs e botões grandes',
     },
-  ],
+  },
+};
+
+// Geração do objeto de dados de espaçamento
+const spacingData: SpacingData = {
+  spacingStack: createSpacingItems('spacingStack', spacingDefinitions.stack),
+  spacingInset: createSpacingItems('spacingInset', spacingDefinitions.inset),
+  spacingSquish: createSpacingItems('spacingSquish', spacingDefinitions.squish),
 };
 
 const SpacingStackComponent: React.FC = () => {
