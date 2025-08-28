@@ -88,6 +88,7 @@ const sidebars: SidebarsConfig = {
         'foundations/typography',
         'foundations/borders',
         'foundations/spacing',
+        'foundations/breakpoints',
       ],
     },
     {

@@ -1,0 +1,189 @@
+.breakpointsPalette {
+  margin: 2rem 0;
+}
+
+.breakpointsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.breakpointCard {
+  background: #ffffff;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+
+.breakpointCard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.breakpointHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.breakpointName {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.breakpointWidth {
+  background: #007bff;
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.breakpointPreview {
+  margin-bottom: 1rem;
+}
+
+.containerPreview {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.containerLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.containerValue {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.gridPreview {
+  margin-bottom: 1rem;
+}
+
+.gridLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.gridVisual {
+  display: flex;
+  gap: 1px;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  min-height: 50px;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.gridColumn {
+  background: #007bff;
+  height: 24px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  min-width: 6px;
+  max-width: 16px;
+}
+
+.gridInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.gridInfo span:nth-child(2) {
+  color: #dee2e6;
+}
+
+.spacingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.spacingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.spacingLabel {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.spacingValue {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.breakpointDescription {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-style: italic;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .breakpointsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .breakpointCard {
+    padding: 1rem;
+    min-height: 180px;
+  }
+
+  .breakpointHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .gridVisual {
+    overflow-x: auto;
+    padding: 0.5rem;
+    min-height: 40px;
+  }
+
+  .gridColumn {
+    min-width: 4px;
+    height: 20px;
+  }
+}
