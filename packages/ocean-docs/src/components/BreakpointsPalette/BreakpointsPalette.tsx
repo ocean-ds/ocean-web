@@ -75,76 +75,64 @@ const breakpointsData: Breakpoint[] = [
   },
 ];
 
-const BreakpointsPalette: React.FC = () => {
-  return (
-    <div className={styles.breakpointsPalette}>
-      <div className={styles.breakpointsGrid}>
-        {breakpointsData.map((breakpoint) => (
-          <div key={breakpoint.name} className={styles.breakpointCard}>
-            <div className={styles.breakpointHeader}>
-              <h3 className={styles.breakpointName}>{breakpoint.name}</h3>
-              <div className={styles.breakpointWidth}>
-                {breakpoint.minWidth}
+const BreakpointsPalette: React.FC = () => (
+  <div className={styles.breakpointsPalette}>
+    <div className={styles.breakpointsGrid}>
+      {breakpointsData.map((breakpoint) => (
+        <div key={breakpoint.name} className={styles.breakpointCard}>
+          <div className={styles.breakpointHeader}>
+            <h3 className={styles.breakpointName}>{breakpoint.name}</h3>
+            <div className={styles.breakpointWidth}>{breakpoint.minWidth}</div>
+          </div>
+
+          <div className={styles.breakpointPreview}>
+            <div className={styles.containerPreview}>
+              <div className={styles.containerLabel}>Container</div>
+              <div className={styles.containerValue}>
+                {breakpoint.container}
               </div>
             </div>
 
-            <div className={styles.breakpointPreview}>
-              <div className={styles.containerPreview}>
-                <div className={styles.containerLabel}>Container</div>
-                <div className={styles.containerValue}>
-                  {breakpoint.container}
-                </div>
+            <div className={styles.gridPreview}>
+              <div className={styles.gridLabel}>Grid</div>
+              <div className={styles.gridVisual}>
+                {Array.from({ length: breakpoint.columns }, (_, index) => (
+                  <div
+                    key={`${breakpoint.name}-grid-column-${index + 1}`}
+                    className={styles.gridColumn}
+                    style={{
+                      width: breakpoint.colSize === 'Auto' ? 'auto' : '12px',
+                      minWidth: '12px',
+                    }}
+                  />
+                ))}
               </div>
-
-              <div className={styles.gridPreview}>
-                <div className={styles.gridLabel}>Grid</div>
-                <div className={styles.gridVisual}>
-                  {Array.from({ length: breakpoint.columns }).map(
-                    (_, index) => (
-                      <div
-                        key={index}
-                        className={styles.gridColumn}
-                        style={{
-                          width:
-                            breakpoint.colSize === 'Auto' ? 'auto' : '12px',
-                          minWidth:
-                            breakpoint.colSize === 'Auto' ? '12px' : '12px',
-                        }}
-                      />
-                    )
-                  )}
-                </div>
-                <div className={styles.gridInfo}>
-                  <span>{breakpoint.columns} colunas</span>
-                  <span>•</span>
-                  <span>{breakpoint.colSize}</span>
-                </div>
-              </div>
-
-              <div className={styles.spacingInfo}>
-                <div className={styles.spacingItem}>
-                  <span className={styles.spacingLabel}>Margem:</span>
-                  <span className={styles.spacingValue}>
-                    {breakpoint.margin}
-                  </span>
-                </div>
-                <div className={styles.spacingItem}>
-                  <span className={styles.spacingLabel}>Gutter:</span>
-                  <span className={styles.spacingValue}>
-                    {breakpoint.gutter}
-                  </span>
-                </div>
+              <div className={styles.gridInfo}>
+                <span>{breakpoint.columns} colunas</span>
+                <span>•</span>
+                <span>{breakpoint.colSize}</span>
               </div>
             </div>
 
-            <div className={styles.breakpointDescription}>
-              {breakpoint.description}
+            <div className={styles.spacingInfo}>
+              <div className={styles.spacingItem}>
+                <span className={styles.spacingLabel}>Margem:</span>
+                <span className={styles.spacingValue}>{breakpoint.margin}</span>
+              </div>
+              <div className={styles.spacingItem}>
+                <span className={styles.spacingLabel}>Gutter:</span>
+                <span className={styles.spacingValue}>{breakpoint.gutter}</span>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
+
+          <div className={styles.breakpointDescription}>
+            {breakpoint.description}
+          </div>
+        </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default BreakpointsPalette;

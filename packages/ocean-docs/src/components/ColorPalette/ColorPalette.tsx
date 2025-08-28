@@ -204,13 +204,24 @@ const ColorSwatchComponent: React.FC<{ color: ColorSwatch }> = ({ color }) => {
     navigator.clipboard.writeText(color.hex);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      copyToClipboard();
+    }
+  };
+
   return (
     <div className={styles.colorSwatch}>
       <div
         className={styles.colorBox}
         style={{ backgroundColor: color.hex }}
         onClick={copyToClipboard}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
         title={`Clique para copiar ${color.hex}`}
+        aria-label={`Copiar cor ${color.hex} para a área de transferência`}
       />
       <div className={styles.colorInfo}>
         <div className={styles.token}>{color.token}</div>

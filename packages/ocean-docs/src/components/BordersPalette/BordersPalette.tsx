@@ -271,7 +271,7 @@ const BordersPalette: React.FC<BordersPaletteProps> = ({ section = 'all' }) => {
         return (
           <>
             <BorderRadiusComponent />
-            <BorderWidthsComponent />;
+            <BorderWidthsComponent />
           </>
         );
       case 'opacityLevels':
