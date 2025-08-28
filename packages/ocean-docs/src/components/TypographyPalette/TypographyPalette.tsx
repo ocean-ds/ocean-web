@@ -1,25 +1,15 @@
 import React from 'react';
 import styles from './TypographyPalette.module.css';
 
-interface FontSize {
+interface TypographyItem {
   token: string;
   name: string;
+  value: string;
+  usage: string;
+}
+
+interface FontSizeItem extends TypographyItem {
   size: string;
-  usage: string;
-}
-
-interface FontWeight {
-  token: string;
-  name: string;
-  value: string;
-  usage: string;
-}
-
-interface LineHeight {
-  token: string;
-  name: string;
-  value: string;
-  usage: string;
 }
 
 interface TypographyData {
@@ -29,11 +19,70 @@ interface TypographyData {
     font: string;
     usage: string;
   };
-  fontSizes: FontSize[];
-  fontWeights: FontWeight[];
-  lineHeights: LineHeight[];
+  fontSizes: FontSizeItem[];
+  fontWeights: TypographyItem[];
+  lineHeights: TypographyItem[];
 }
 
+// Função auxiliar para criar itens de tipografia
+const createTypographyItems = (
+  baseToken: string,
+  items: { [key: string]: { value: string; usage: string } }
+): TypographyItem[] =>
+  Object.entries(items).map(([name, { value, usage }]) => ({
+    token: `${baseToken}${name}`,
+    name,
+    value,
+    usage,
+  }));
+
+// Função auxiliar para criar itens de tamanho de fonte
+const createFontSizeItems = (
+  baseToken: string,
+  items: { [key: string]: { size: string; usage: string } }
+): FontSizeItem[] =>
+  Object.entries(items).map(([name, { size, usage }]) => ({
+    token: `${baseToken}${name}`,
+    name,
+    size,
+    value: size,
+    usage,
+  }));
+
+// Definição dos elementos organizados por categoria
+const typographyDefinitions = {
+  sizes: {
+    Giant: { size: '96px', usage: 'Títulos principais, hero sections' },
+    Display: { size: '80px', usage: 'Títulos de destaque, landing pages' },
+    Xxxl: { size: '64px', usage: 'Títulos de seção grandes' },
+    Xxl: { size: '48px', usage: 'Títulos de seção' },
+    Xl: { size: '40px', usage: 'Subtítulos grandes' },
+    Lg: { size: '32px', usage: 'Títulos de conteúdo, headings' },
+    Md: { size: '24px', usage: 'Texto de destaque, subtítulos' },
+    Sm: { size: '20px', usage: 'Texto de corpo principal' },
+    Xs: { size: '16px', usage: 'Texto de corpo secundário' },
+    Xxs: { size: '14px', usage: 'Texto pequeno, captions' },
+    Xxxs: { size: '12px', usage: 'Texto muito pequeno, labels' },
+  },
+  weights: {
+    ExtraBold: {
+      value: '800',
+      usage: 'Títulos principais, elementos de destaque máximo',
+    },
+    Bold: { value: '700', usage: 'Títulos, elementos de destaque' },
+    Medium: { value: '600', usage: 'Subtítulos, elementos semi-destacados' },
+    Regular: { value: '400', usage: 'Texto de corpo, conteúdo principal' },
+    Light: { value: '300', usage: 'Textos secundários, elementos sutis' },
+  },
+  lineHeights: {
+    Tight: { value: '100%', usage: 'Títulos, elementos compactos' },
+    Medium: { value: '124%', usage: 'Texto de corpo padrão' },
+    Loose: { value: '132%', usage: 'Texto de leitura confortável' },
+    Comfy: { value: '150%', usage: 'Textos longos, parágrafos' },
+  },
+};
+
+// Geração do objeto de dados de tipografia
 const typographyData: TypographyData = {
   fontFamily: {
     token: 'fontFamilyBase',
@@ -41,132 +90,15 @@ const typographyData: TypographyData = {
     font: 'Nunito Sans',
     usage: 'Fonte principal para todo o conteúdo textual da aplicação',
   },
-  fontSizes: [
-    {
-      token: 'fontSizeGiant',
-      name: 'Giant',
-      size: '96px',
-      usage: 'Títulos principais, hero sections',
-    },
-    {
-      token: 'fontSizeDisplay',
-      name: 'Display',
-      size: '80px',
-      usage: 'Títulos de destaque, landing pages',
-    },
-    {
-      token: 'fontSizeXxxl',
-      name: 'XXXL',
-      size: '64px',
-      usage: 'Títulos de seção grandes',
-    },
-    {
-      token: 'fontSizeXxl',
-      name: 'XXL',
-      size: '48px',
-      usage: 'Títulos de seção',
-    },
-    {
-      token: 'fontSizeXl',
-      name: 'XL',
-      size: '40px',
-      usage: 'Subtítulos grandes',
-    },
-    {
-      token: 'fontSizeLg',
-      name: 'LG',
-      size: '32px',
-      usage: 'Títulos de conteúdo, headings',
-    },
-    {
-      token: 'fontSizeMd',
-      name: 'MD',
-      size: '24px',
-      usage: 'Texto de destaque, subtítulos',
-    },
-    {
-      token: 'fontSizeSm',
-      name: 'SM',
-      size: '20px',
-      usage: 'Texto de corpo principal',
-    },
-    {
-      token: 'fontSizeXs',
-      name: 'XS',
-      size: '16px',
-      usage: 'Texto de corpo secundário',
-    },
-    {
-      token: 'fontSizeXxs',
-      name: 'XXS',
-      size: '14px',
-      usage: 'Texto pequeno, captions',
-    },
-    {
-      token: 'fontSizeXxxs',
-      name: 'XXXS',
-      size: '12px',
-      usage: 'Texto muito pequeno, labels',
-    },
-  ],
-  fontWeights: [
-    {
-      token: 'fontWeightExtraBold',
-      name: 'Extra Bold',
-      value: '800',
-      usage: 'Títulos principais, elementos de destaque máximo',
-    },
-    {
-      token: 'fontWeightBold',
-      name: 'Bold',
-      value: '700',
-      usage: 'Títulos, elementos de destaque',
-    },
-    {
-      token: 'fontWeightMedium',
-      name: 'Medium',
-      value: '600',
-      usage: 'Subtítulos, elementos semi-destacados',
-    },
-    {
-      token: 'fontWeightRegular',
-      name: 'Regular',
-      value: '400',
-      usage: 'Texto de corpo, conteúdo principal',
-    },
-    {
-      token: 'fontWeightLight',
-      name: 'Light',
-      value: '300',
-      usage: 'Textos secundários, elementos sutis',
-    },
-  ],
-  lineHeights: [
-    {
-      token: 'lineHeightTight',
-      name: 'Tight',
-      value: '100%',
-      usage: 'Títulos, elementos compactos',
-    },
-    {
-      token: 'lineHeightMedium',
-      name: 'Medium',
-      value: '124%',
-      usage: 'Texto de corpo padrão',
-    },
-    {
-      token: 'lineHeightLoose',
-      name: 'Loose',
-      value: '132%',
-      usage: 'Texto de leitura confortável',
-    },
-    {
-      token: 'lineHeightComfy',
-      name: 'Comfy',
-      value: '150%',
-      usage: 'Textos longos, parágrafos',
-    },
-  ],
+  fontSizes: createFontSizeItems('fontSize', typographyDefinitions.sizes),
+  fontWeights: createTypographyItems(
+    'fontWeight',
+    typographyDefinitions.weights
+  ),
+  lineHeights: createTypographyItems(
+    'lineHeight',
+    typographyDefinitions.lineHeights
+  ),
 };
 
 const FontFamilyComponent: React.FC = () => {
