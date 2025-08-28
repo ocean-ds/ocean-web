@@ -1,7 +1,5 @@
 ---
 title: Bordas
-sidebar_label: Bordas
-sidebar_position: 4
 ---
 
 import BordersPalette from '@site/src/components/BordersPalette';
@@ -12,7 +10,7 @@ As bordas do Ocean Design System definem os raios de borda, larguras, opacidades
 
 ## Paleta de Bordas Interativa
 
-<BordersPalette />
+<BordersPalette section="border" />
 
 ## Border Radius
 
@@ -84,99 +82,6 @@ As larguras de borda definem a espessura das bordas dos elementos, criando difer
 - **Nome:** Thin
 - **Valor:** 2px
 - **Uso:** Bordas de destaque, elementos selecionados
-
-## Opacity Levels
-
-Os níveis de opacidade definem a transparência dos elementos, criando profundidade e hierarquia visual.
-
-### Semi Opaque
-
-- **Token:** `opacityLevelSemiopaque`
-- **Nome:** Semi Opaque
-- **Valor:** 80%
-- **Uso:** Overlays, elementos de destaque
-
-### Intense
-
-- **Token:** `opacityLevelIntense`
-- **Nome:** Intense
-- **Valor:** 64%
-- **Uso:** Elementos semi-transparentes, backgrounds
-
-### Medium
-
-- **Token:** `opacityLevelMedium`
-- **Nome:** Medium
-- **Valor:** 40%
-- **Uso:** Estados desabilitados, elementos secundários
-
-### Light
-
-- **Token:** `opacityLevelLight`
-- **Nome:** Light
-- **Valor:** 16%
-- **Uso:** Fundos sutis, elementos de fundo
-
-### Semi Transparent
-
-- **Token:** `opacityLevelSemitransparent`
-- **Nome:** Semi Transparent
-- **Valor:** 8%
-- **Uso:** Elementos muito sutis, overlays leves
-
-## Shadow Levels
-
-Os níveis de sombra criam profundidade e elevação visual, definindo a hierarquia dos elementos na interface.
-
-### Level 1
-
-- **Token:** `shadowLevel1`
-- **Nome:** Level 1
-- **Propriedades:**
-  - **Blur (B):** 8px
-  - **X-offset (X):** 0px
-  - **Y-offset (Y):** 4px
-- **Uso:** Elementos elevados levemente, cartões pequenos
-
-### Level 2 Bottom
-
-- **Token:** `shadowLevel2Bottom`
-- **Nome:** Level 2 Bottom
-- **Propriedades:**
-  - **Blur (B):** 16px
-  - **X-offset (X):** 0px
-  - **Y-offset (Y):** 8px
-- **Uso:** Elementos com elevação média, botões, inputs
-
-### Level 2 Top
-
-- **Token:** `shadowLevel2Top`
-- **Nome:** Level 2 Top
-- **Propriedades:**
-  - **Blur (B):** 16px
-  - **X-offset (X):** 0px
-  - **Y-offset (Y):** -8px
-- **Uso:** Elementos elevados para cima, tooltips, dropdowns
-
-### Level 3
-
-- **Token:** `shadowLevel3`
-- **Nome:** Level 3
-- **Propriedades:**
-  - **Blur (B):** 32px
-  - **X-offset (X):** 0px
-  - **Y-offset (Y):** 16px
-- **Uso:** Elementos com alta elevação, modais, drawers
-
-### Level 4
-
-- **Token:** `shadowLevel4`
-- **Nome:** Level 4
-- **Propriedades:**
-  - **Blur (B):** 48px
-  - **X-offset (X):** 0px
-  - **Y-offset (Y):** 16px
-- **Uso:** Elementos com máxima elevação, popups, overlays
 
 ## Uso e Aplicação
 

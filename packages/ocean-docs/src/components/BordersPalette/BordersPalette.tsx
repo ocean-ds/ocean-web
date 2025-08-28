@@ -297,13 +297,38 @@ const ShadowLevelsComponent: React.FC = () => {
   );
 };
 
-const BordersPalette: React.FC = () => (
-  <div className={styles.bordersPalette}>
-    <BorderRadiusComponent />
-    <BorderWidthsComponent />
-    <OpacityLevelsComponent />
-    <ShadowLevelsComponent />
-  </div>
-);
+interface BordersPaletteProps {
+  section?: 'border' | 'opacityLevels' | 'shadowLevels' | 'all';
+}
+
+const BordersPalette: React.FC<BordersPaletteProps> = ({ section = 'all' }) => {
+  const renderSection = () => {
+    switch (section) {
+      case 'border':
+        return (
+          <>
+            <BorderRadiusComponent />
+            <BorderWidthsComponent />;
+          </>
+        );
+      case 'opacityLevels':
+        return <OpacityLevelsComponent />;
+      case 'shadowLevels':
+        return <ShadowLevelsComponent />;
+      case 'all':
+      default:
+        return (
+          <>
+            <BorderRadiusComponent />
+            <BorderWidthsComponent />
+            <OpacityLevelsComponent />
+            <ShadowLevelsComponent />
+          </>
+        );
+    }
+  };
+
+  return <div className={styles.bordersPalette}>{renderSection()}</div>;
+};
 
 export default BordersPalette;

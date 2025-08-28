@@ -1,7 +1,5 @@
 ---
 title: Espaçamentos
-sidebar_label: Espaçamentos
-sidebar_position: 5
 ---
 
 import SpacingPalette from '@site/src/components/SpacingPalette';
