@@ -82,7 +82,16 @@ const sidebars: SidebarsConfig = {
         description:
           'Documentação de todos os fundamentos do Ocean Design System.',
       },
-      items: ['foundations/intro'],
+      items: [
+        'foundations/colors',
+        'foundations/typography',
+        'foundations/borders',
+        'foundations/opacity',
+        'foundations/shadows',
+        'foundations/spacing',
+        'foundations/breakpoints',
+        'foundations/grid',
+      ],
     },
     {
       type: 'category',
