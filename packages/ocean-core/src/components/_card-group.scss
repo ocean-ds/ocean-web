@@ -24,15 +24,18 @@
 
     &--content {
       display: flex;
+      flex: 1;
       flex-direction: column;
       gap: $spacing-stack-xxxs;
-      word-break: break-word;
     }
 
-    &--tag {
-      position: absolute;
-      right: $spacing-inline-xxs;
-      top: $spacing-inline-xs;
+    .container-line {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .container-line > .ods-tag {
+      height: fit-content;
     }
   }
 
