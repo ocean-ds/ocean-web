@@ -20,11 +20,19 @@
     height: 100%;
     justify-content: space-between;
     padding: $spacing-inline-xs;
+    position: relative;
 
     &--content {
       display: flex;
       flex-direction: column;
       gap: $spacing-stack-xxxs;
+      word-break: break-word;
+    }
+
+    &--tag {
+      position: absolute;
+      right: $spacing-inline-xxs;
+      top: $spacing-inline-xs;
     }
   }
 

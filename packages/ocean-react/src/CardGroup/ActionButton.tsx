@@ -4,7 +4,7 @@ import Badge from '../Badge';
 
 interface IActionButtonProps {
   actionLabel?: string;
-  actionCount: number;
+  actionCount?: number;
   actionClick?: () => void;
 }
 
@@ -23,11 +23,13 @@ const ActionButton = ({
     >
       <span className="ods-card-group__action--label">{actionLabel}</span>
       <div className="ods-card-group__action--right">
-        <Badge
-          variation="medium"
-          color={actionCount === 0 ? 'neutral' : 'alert'}
-          count={actionCount}
-        />
+        {actionCount !== undefined && (
+          <Badge
+            variation="medium"
+            color={actionCount === 0 ? 'neutral' : 'alert'}
+            count={actionCount}
+          />
+        )}
         <ChevronRight size={20} />
       </div>
     </button>
