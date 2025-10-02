@@ -6,6 +6,11 @@ import Tag from '../Tag/Tag';
 
 type ShortcutSize = 'tiny' | 'small' | 'medium';
 
+type ExclusiveTagOrCount =
+  | { tag: string; count?: never }
+  | { tag?: never; count: number }
+  | { tag?: never; count?: never };
+
 export type ShortcutProps = {
   icon: React.ReactNode;
   label: string;
@@ -13,11 +18,10 @@ export type ShortcutProps = {
   size?: ShortcutSize;
   blocked?: boolean;
   disabled?: boolean;
-  count?: number;
   fullWidth?: boolean;
   orientation?: 'horizontal' | 'vertical';
-  tag?: string;
-} & React.ComponentPropsWithoutRef<'div'>;
+} & ExclusiveTagOrCount &
+  React.ComponentPropsWithoutRef<'div'>;
 
 const Shortcut = ({
   icon,
@@ -57,6 +61,11 @@ const Shortcut = ({
         count={count}
       />
     ) : null}
+    {tag && (
+      <Tag className="ods-shortcut__tag" variant="highlight" type="important">
+        {tag}
+      </Tag>
+    )}
     <div
       className={classNames(
         'ods-shortcut__content',
@@ -72,11 +81,6 @@ const Shortcut = ({
       >
         {label}
       </h5>
-      {tag && (
-        <Tag variant="highlight" type="important">
-          {tag}
-        </Tag>
-      )}
     </div>
     {size === 'medium' && description && (
       <span
