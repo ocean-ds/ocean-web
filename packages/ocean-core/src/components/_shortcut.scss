@@ -106,22 +106,22 @@
 
   &__badge {
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: $spacing-inline-xxs;
+    top: $spacing-inline-xxs;
   }
 
   &__tag {
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: $spacing-inline-xxs;
+    top: $spacing-inline-xxs;
   }
 
   &__blocked {
     color: $color-interface-dark-up;
     height: $font-size-xs;
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: $spacing-inline-xxs;
+    top: $spacing-inline-xxs;
     width: $font-size-xs;
 
     svg {
