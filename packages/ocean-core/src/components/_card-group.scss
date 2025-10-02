@@ -48,6 +48,12 @@
       line-height: 15.4px;
     }
 
+    &--right {
+      align-items: center;
+      display: flex;
+      gap: $spacing-inline-xxxs;
+    }
+
     &:hover,
     &:focus {
       background-color: $color-interface-light-up;

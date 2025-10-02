@@ -9,6 +9,7 @@ export interface ICardGroupProps {
   variant?: 'minimal' | 'header';
   count?: number;
   actionLabel?: string;
+  actionCount: number;
   actionClick?: () => void;
   children?: React.ReactNode;
 }
@@ -19,6 +20,7 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       title,
       subtitle,
       actionLabel,
+      actionCount,
       actionClick,
       count,
       children,
@@ -45,7 +47,11 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       )}
 
       {actionLabel && variant !== 'header' && (
-        <ActionButton actionLabel={actionLabel} actionClick={actionClick} />
+        <ActionButton
+          actionLabel={actionLabel}
+          actionCount={actionCount}
+          actionClick={actionClick}
+        />
       )}
     </div>
   )
