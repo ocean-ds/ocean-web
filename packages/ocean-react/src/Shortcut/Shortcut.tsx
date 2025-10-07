@@ -61,7 +61,7 @@ const Shortcut = ({
         count={count}
       />
     ) : null}
-    {tag && (
+    {!blocked && tag && (
       <Tag className="ods-shortcut__tag" variant="highlight" type="important">
         {tag}
       </Tag>
