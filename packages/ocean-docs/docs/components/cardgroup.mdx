@@ -7,7 +7,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # CardGroup
 
-O CardGroup é um componente usado para agrupar informações relacionadas em um layout organizado. Ele suporta diferentes variantes (minimal e header) e pode incluir título, subtítulo, contador e uma ação clicável.
+O CardGroup é um componente usado para agrupar informações relacionadas em um layout organizado. Ele suporta diferentes variantes (minimal e header) e pode incluir título, subtítulo, contador, tag de destaque e uma ação clicável com contador opcional.
 
 ## Importação
 
@@ -24,11 +24,30 @@ import { CardGroup } from '@useblu/ocean-react/CardGroup';
 ### Importação de tipos TypeScript
 
 ```tsx
-import type { ICardGroupProps } from '@useblu/ocean-react';
+import type { ICardGroupProps, TagProps } from '@useblu/ocean-react';
 
 // Uso em componente customizado
 const MyComponent: React.FC<ICardGroupProps> = (props) => {
   return <CardGroup {...props} />;
+};
+
+// Exemplo com tag
+const CardWithTag: React.FC = () => {
+  const tag: TagProps = {
+    children: 'Novo',
+    variant: 'highlight',
+    type: 'positive',
+  };
+
+  return (
+    <CardGroup
+      title="Título"
+      subtitle="Subtítulo"
+      tag={tag}
+      actionLabel="Ver mais"
+      actionCount={5}
+    />
+  );
 };
 ```
 
@@ -79,6 +98,42 @@ No Storybook você encontrará:
   count={25}
   variant="header"
 />
+```
+
+### Card com tag de destaque
+
+```tsx live
+<CardGroup
+  title="Boletos"
+  subtitle="Disponíveis para pagamento"
+  tag={{
+    children: 'Novo',
+    variant: 'highlight',
+    type: 'positive',
+  }}
+  actionLabel="Ver boletos"
+  actionCount={3}
+>
+  <div style={{ padding: '16px' }}>
+    <p>Você tem 3 boletos disponíveis para pagamento</p>
+  </div>
+</CardGroup>
+```
+
+### Card com contador na ação
+
+```tsx live
+<CardGroup
+  title="Notificações"
+  subtitle="Mensagens não lidas"
+  count={15}
+  actionLabel="Ver todas"
+  actionCount={5}
+>
+  <div style={{ padding: '16px' }}>
+    <p>5 notificações importantes aguardando sua atenção</p>
+  </div>
+</CardGroup>
 ```
 
 ## Variantes
@@ -133,6 +188,55 @@ Cards podem incluir botões de ação para navegação ou funcionalidades:
   title="CardGroup - Exemplos de Ação"
 />
 
+## Tags de destaque
+
+As tags permitem destacar informações importantes no cabeçalho do card. Útil para indicar status, novidades ou categorias:
+
+<StorybookEmbed
+  storyId="components-cardgroup--with-tag"
+  height={350}
+  showToolbar={false}
+  title="CardGroup - Com Tag"
+/>
+
+### Quando usar tags
+
+- **Status**: Indicar se algo é novo, urgente ou importante
+- **Categorias**: Classificar o tipo de conteúdo do card
+- **Alertas**: Chamar atenção para informações que requerem ação
+
+### Configuração de tags
+
+As tags aceitam as seguintes propriedades principais:
+
+- `children`: Texto exibido na tag
+- `variant`: Estilo visual (`'highlight'`, `'complementary'`, etc.)
+- `type`: Cor semântica (`'positive'`, `'negative'`, `'warning'`, `'neutral'`)
+
+Para mais detalhes sobre configuração de tags, consulte a [documentação do componente Tag](/components/tag).
+
+## Contadores na ação
+
+O botão de ação pode exibir um contador através da prop `actionCount`. Isso é útil para indicar:
+
+- Número de itens não lidos ou pendentes
+- Quantidade de notificações
+- Total de elementos disponíveis para visualização
+
+```tsx live
+<CardGroup
+  title="Tarefas Pendentes"
+  subtitle="Projeto Alpha"
+  count={8}
+  actionLabel="Ver tarefas"
+  actionCount={3}
+>
+  <div style={{ padding: '16px' }}>
+    <p>3 tarefas requerem atenção imediata</p>
+  </div>
+</CardGroup>
+```
+
 ## API
 
 ### Props
@@ -143,14 +247,16 @@ Cards podem incluir botões de ação para navegação ou funcionalidades:
 | `subtitle`    | `string`                | -           | O subtítulo exibido no cabeçalho                                            |
 | `variant`     | `'minimal' \| 'header'` | `'minimal'` | A variante do componente que define o layout                                |
 | `count`       | `number`                | -           | O valor exibido no contador. Se undefined, o contador fica oculto           |
+| `tag`         | `TagProps`              | -           | Configuração da tag de destaque exibida ao lado do título                   |
 | `actionLabel` | `string`                | -           | O texto do botão de ação                                                    |
+| `actionCount` | `number`                | -           | O valor exibido no contador do botão de ação                                |
 | `actionClick` | `() => void`            | -           | Função chamada quando o botão de ação é clicado                             |
 | `children`    | `ReactNode`             | -           | Conteúdo adicional exibido abaixo do cabeçalho (apenas na variante minimal) |
 
 ### Comportamento das variantes
 
-- **Minimal**: Exibe título, subtítulo, contador, conteúdo personalizado e ação
-- **Header**: Exibe apenas título, subtítulo e contador (sem conteúdo ou ação)
+- **Minimal**: Exibe título, subtítulo, tag, contador, conteúdo personalizado e ação (com contador opcional)
+- **Header**: Exibe apenas título, subtítulo, tag e contador (sem conteúdo ou ação)
 
 ## Classes CSS
 
@@ -202,12 +308,50 @@ Cards podem incluir botões de ação para navegação ou funcionalidades:
   subtitle="Últimas 24 horas"
   count={15}
   actionLabel="Marcar como lidas"
+  actionCount={5}
 >
   <div style={{ padding: '16px' }}>
-    <p style={{ margin: 0 }}>
-      Você tem 15 notificações não lidas. Clique em "Marcar como lidas" para
-      visualizá-las.
-    </p>
+    <p style={{ margin: 0 }}>Você tem 5 notificações urgentes não lidas.</p>
+  </div>
+</CardGroup>
+```
+
+### Card com status destacado
+
+```tsx live
+<CardGroup
+  title="Documentos"
+  subtitle="Pendentes de assinatura"
+  count={2}
+  tag={{
+    children: 'Urgente',
+    variant: 'highlight',
+    type: 'warning',
+  }}
+  actionLabel="Assinar documentos"
+  actionCount={2}
+>
+  <div style={{ padding: '16px' }}>
+    <p style={{ margin: 0 }}>2 documentos aguardando sua assinatura digital.</p>
+  </div>
+</CardGroup>
+```
+
+### Card de promoção
+
+```tsx live
+<CardGroup
+  title="Ofertas Especiais"
+  subtitle="Válido até 31/12"
+  tag={{
+    children: 'Novo',
+    variant: 'highlight',
+    type: 'positive',
+  }}
+  actionLabel="Ver ofertas"
+>
+  <div style={{ padding: '16px' }}>
+    <p style={{ margin: 0 }}>Confira nossas ofertas exclusivas desta semana!</p>
   </div>
 </CardGroup>
 ```
@@ -235,6 +379,9 @@ Cards podem incluir botões de ação para navegação ou funcionalidades:
 - Use a variante header para informações resumidas
 - Use a variante minimal para conteúdo mais detalhado
 - Forneça ações relevantes ao contexto
+- Use tags para destacar status importantes (novo, urgente, etc.)
+- Adicione contadores na ação quando houver itens pendentes ou não lidos
+- Use cores semânticas apropriadas nas tags (`positive`, `negative`, `warning`, `neutral`)
 
 ### ❌ Não faça
 
@@ -243,9 +390,12 @@ Cards podem incluir botões de ação para navegação ou funcionalidades:
 - Não use a variante header com conteúdo complexo
 - Não deixe de testar as ações dos botões
 - Não sobrecarregue o card com muito conteúdo
+- Não use tags desnecessárias que poluam visualmente o card
+- Não abuse de contadores - use apenas quando agregar valor ao usuário
 
 ## Links relacionados
 
 - [Button](/components/button) - Para ações isoladas
 - [Badge](/components/badge) - Para indicadores numéricos
+- [Tag](/components/tag) - Para tags de destaque e categorização
 - [Storybook - CardGroup](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardgroup--docs) - Documentação técnica

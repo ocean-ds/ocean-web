@@ -2,13 +2,16 @@ import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import Header from './Header';
 import ActionButton from './ActionButton';
+import { TagProps } from '../Tag/Tag';
 
 export interface ICardGroupProps {
   title?: string;
   subtitle?: string;
   variant?: 'minimal' | 'header';
   count?: number;
+  tag?: TagProps;
   actionLabel?: string;
+  actionCount?: number;
   actionClick?: () => void;
   children?: React.ReactNode;
 }
@@ -19,8 +22,10 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       title,
       subtitle,
       actionLabel,
+      actionCount,
       actionClick,
       count,
+      tag,
       children,
       variant = 'minimal',
       ...rest
@@ -34,7 +39,7 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       className={classNames('ods-card-group', `ods-card-group--${variant}`)}
     >
       {(title || subtitle) && (
-        <Header title={title} subtitle={subtitle} count={count} />
+        <Header title={title} subtitle={subtitle} count={count} tag={tag} />
       )}
 
       {children && variant !== 'header' && (
@@ -45,7 +50,11 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       )}
 
       {actionLabel && variant !== 'header' && (
-        <ActionButton actionLabel={actionLabel} actionClick={actionClick} />
+        <ActionButton
+          actionLabel={actionLabel}
+          actionCount={actionCount}
+          actionClick={actionClick}
+        />
       )}
     </div>
   )

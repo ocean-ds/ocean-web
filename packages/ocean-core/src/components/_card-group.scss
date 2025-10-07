@@ -20,11 +20,22 @@
     height: 100%;
     justify-content: space-between;
     padding: $spacing-inline-xs;
+    position: relative;
 
     &--content {
       display: flex;
+      flex: 1;
       flex-direction: column;
       gap: $spacing-stack-xxxs;
+    }
+
+    .container-line {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .container-line > .ods-tag {
+      height: fit-content;
     }
   }
 
@@ -38,7 +49,9 @@
     display: flex;
     gap: $spacing-inline-xs;
     justify-content: space-between;
-    padding: 14px $spacing-inline-xxs 14px $spacing-inline-xs;
+    max-height: $spacing-inline-xl;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+      $spacing-inline-xxs-extra $spacing-inline-xs;
     width: 100%;
 
     &--label {
@@ -48,8 +61,13 @@
       line-height: 15.4px;
     }
 
-    &:hover,
-    &:focus {
+    &--right {
+      align-items: center;
+      display: flex;
+      gap: $spacing-inline-xxxs;
+    }
+
+    &:hover {
       background-color: $color-interface-light-up;
       cursor: pointer;
     }
