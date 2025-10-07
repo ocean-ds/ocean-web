@@ -50,7 +50,8 @@
     gap: $spacing-inline-xs;
     justify-content: space-between;
     max-height: $spacing-inline-xl;
-    padding: 14px $spacing-inline-xxs 14px $spacing-inline-xs;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+      $spacing-inline-xxs-extra $spacing-inline-xs;
     width: 100%;
 
     &--label {
