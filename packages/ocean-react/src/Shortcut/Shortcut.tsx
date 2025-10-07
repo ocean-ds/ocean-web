@@ -53,7 +53,7 @@ const Shortcut = ({
         <LockClosed />
       </div>
     )}
-    {count ? (
+    {!blocked && count ? (
       <Badge
         className="ods-shortcut__badge"
         variation="small"
@@ -81,6 +81,11 @@ const Shortcut = ({
       >
         {label}
       </h5>
+      {!blocked && tag && (
+        <Tag variant="highlight" type="important">
+          {tag}
+        </Tag>
+      )}
     </div>
     {size === 'medium' && description && (
       <span

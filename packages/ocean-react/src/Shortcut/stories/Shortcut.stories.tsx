@@ -234,12 +234,6 @@ export const WithBadge: Story = {
     <HorizontalLayout align="flex-start">
       <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
       <Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
-      <Shortcut
-        label="Com Badge e Tag"
-        icon={<PlaceholderOutline />}
-        count={12}
-        tag="Importante"
-      />
     </HorizontalLayout>
   ),
 };
@@ -292,19 +286,6 @@ export const AllVariants: Story = {
             label="Desabilitado"
             icon={<PlaceholderOutline />}
             disabled
-          />
-        </HorizontalLayout>
-      </Section>
-
-      <Section title="Com Badge e Tag:">
-        <HorizontalLayout align="flex-start">
-          <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
-          <Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
-          <Shortcut
-            label="Com Badge e Tag"
-            icon={<PlaceholderOutline />}
-            count={12}
-            tag="Importante"
           />
         </HorizontalLayout>
       </Section>
