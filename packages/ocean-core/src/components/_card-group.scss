@@ -67,8 +67,7 @@
       gap: $spacing-inline-xxxs;
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: $color-interface-light-up;
       cursor: pointer;
     }
