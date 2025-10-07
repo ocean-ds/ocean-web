@@ -57,7 +57,7 @@ const Shortcut = ({
       <Badge
         className="ods-shortcut__badge"
         variation="small"
-        color="alert"
+        color={disabled ? 'neutral' : 'alert'}
         count={count}
       />
     ) : null}
