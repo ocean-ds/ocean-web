@@ -168,9 +168,11 @@ Veja todos os estados:
 
 ## Badge e Tag
 
-O Shortcut pode exibir um badge numérico ou uma tag:
+O Shortcut pode exibir um badge numérico **ou** uma tag. As propriedades `count` e `tag` são mutuamente exclusivas - você deve usar apenas uma por vez.
 
 ### Com Badge
+
+O badge exibe um número e aparece no canto superior do atalho:
 
 ```tsx live
 <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
@@ -178,18 +180,31 @@ O Shortcut pode exibir um badge numérico ou uma tag:
 
 ### Com Tag
 
-```tsx live
-<Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
-```
+A tag exibe um texto e sua posição depende da orientação do atalho:
 
-### Com Badge e Tag
+#### Tag em orientação horizontal
+
+Na orientação horizontal (padrão), a tag aparece ao lado do label, dentro do conteúdo:
 
 ```tsx live
 <Shortcut
-  label="Com Badge e Tag"
+  label="Com Tag"
   icon={<PlaceholderOutline />}
-  count={12}
-  tag="Importante"
+  tag="Novo"
+  orientation="horizontal"
+/>
+```
+
+#### Tag em orientação vertical
+
+Na orientação vertical, a tag aparece acima do conteúdo:
+
+```tsx live
+<Shortcut
+  label="Com Tag"
+  icon={<PlaceholderOutline />}
+  tag="Novo"
+  orientation="vertical"
 />
 ```
 
@@ -199,7 +214,14 @@ Exemplos de Badge e Tag:
   storyId="components-shortcut--with-badge"
   height={200}
   showToolbar={false}
-  title="Shortcut - Badge e Tag"
+  title="Shortcut - Badge"
+/>
+
+<StorybookEmbed
+  storyId="components-shortcut--with-tag"
+  height={200}
+  showToolbar={false}
+  title="Shortcut - Tag com diferentes orientações"
 />
 
 ## Full Width
@@ -235,19 +257,19 @@ Comparação Full Width:
 
 ### Props
 
-| Prop          | Tipo                            | Padrão         | Descrição                                     |
-| ------------- | ------------------------------- | -------------- | --------------------------------------------- |
-| `label`       | `string`                        | -              | Texto do label do atalho                      |
-| `description` | `string`                        | -              | Descrição adicional (apenas para size medium) |
-| `icon`        | `ReactNode`                     | -              | Ícone do atalho                               |
-| `size`        | `'tiny' \| 'small' \| 'medium'` | `'medium'`     | O tamanho do componente de atalho             |
-| `orientation` | `'horizontal' \| 'vertical'`    | `'horizontal'` | A orientação do layout do atalho              |
-| `blocked`     | `boolean`                       | `false`        | Define se o atalho está bloqueado             |
-| `disabled`    | `boolean`                       | `false`        | Desabilita o atalho                           |
-| `fullWidth`   | `boolean`                       | `false`        | Faz o atalho ocupar toda a largura disponível |
-| `count`       | `number`                        | -              | Número exibido no badge do atalho             |
-| `tag`         | `string`                        | -              | Tag exibida no atalho                         |
-| `className`   | `string`                        | -              | Classes CSS adicionais                        |
+| Prop          | Tipo                            | Padrão         | Descrição                                                                                 |
+| ------------- | ------------------------------- | -------------- | ----------------------------------------------------------------------------------------- |
+| `label`       | `string`                        | -              | Texto do label do atalho                                                                  |
+| `description` | `string`                        | -              | Descrição adicional (apenas para size medium)                                             |
+| `icon`        | `ReactNode`                     | -              | Ícone do atalho                                                                           |
+| `size`        | `'tiny' \| 'small' \| 'medium'` | `'medium'`     | O tamanho do componente de atalho                                                         |
+| `orientation` | `'horizontal' \| 'vertical'`    | `'horizontal'` | A orientação do layout do atalho                                                          |
+| `blocked`     | `boolean`                       | `false`        | Define se o atalho está bloqueado                                                         |
+| `disabled`    | `boolean`                       | `false`        | Desabilita o atalho                                                                       |
+| `fullWidth`   | `boolean`                       | `false`        | Faz o atalho ocupar toda a largura disponível                                             |
+| `count`       | `number`                        | -              | Número exibido no badge do atalho (mutuamente exclusivo com `tag`)                        |
+| `tag`         | `string`                        | -              | Tag exibida no atalho (mutuamente exclusivo com `count`). Posição varia com `orientation` |
+| `className`   | `string`                        | -              | Classes CSS adicionais                                                                    |
 
 ### Classes CSS
 
@@ -279,6 +301,7 @@ O componente Shortcut utiliza as seguintes classes CSS para customização:
 | `.ods-shortcut__label`               | Texto do label                        |
 | `.ods-shortcut__description`         | Texto da descrição                    |
 | `.ods-shortcut__badge`               | Container do badge numérico           |
+| `.ods-shortcut__tag`                 | Container da tag (posição varia)      |
 | `.ods-shortcut__blocked`             | Container do ícone de bloqueio        |
 
 ## Acessibilidade
@@ -304,13 +327,15 @@ O componente Shortcut utiliza as seguintes classes CSS para customização:
 - Use ícones que representem visualmente a funcionalidade
 - Use descrições apenas quando necessário para esclarecimento
 - Use badges para notificações numéricas importantes
-- Use tags para destacar status ou categorias
+- Use tags para destacar status ou categorias importantes
+- Escolha a orientação adequada ao layout (horizontal ou vertical)
+- Considere a posição da tag ao escolher a orientação
 
 ### ❌ Não faça
 
 - Não use textos muito longos nos labels
 - Não use ícones que não representem a funcionalidade
-- Não use múltiplos badges ou tags simultaneamente
+- Não use badge (`count`) e tag (`tag`) ao mesmo tempo - são mutuamente exclusivos
 - Não omita o estado `disabled` quando apropriado
 - Não use Shortcut para ações que não são navegação
 
