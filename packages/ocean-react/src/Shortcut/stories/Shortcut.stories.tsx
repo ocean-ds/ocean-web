@@ -233,7 +233,29 @@ export const WithBadge: Story = {
   render: () => (
     <HorizontalLayout align="flex-start">
       <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
+      <Shortcut
+        label="Com Badge"
+        icon={<PlaceholderOutline />}
+        count={5}
+        orientation="vertical"
+      />
+    </HorizontalLayout>
+  ),
+};
+
+export const WithTag: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <HorizontalLayout align="flex-start">
       <Shortcut label="Com Tag" icon={<PlaceholderOutline />} tag="Novo" />
+      <Shortcut
+        label="Com Tag"
+        icon={<PlaceholderOutline />}
+        tag="Novo"
+        orientation="vertical"
+      />
     </HorizontalLayout>
   ),
 };

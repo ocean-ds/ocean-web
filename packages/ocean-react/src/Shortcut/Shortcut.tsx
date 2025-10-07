@@ -61,7 +61,7 @@ const Shortcut = ({
         count={count}
       />
     ) : null}
-    {!blocked && tag && (
+    {!blocked && tag && orientation === 'vertical' && (
       <Tag className="ods-shortcut__tag" variant="highlight" type="important">
         {tag}
       </Tag>
@@ -81,6 +81,11 @@ const Shortcut = ({
       >
         {label}
       </h5>
+      {tag && orientation === 'horizontal' && (
+        <Tag variant="highlight" type="important">
+          {tag}
+        </Tag>
+      )}
     </div>
     {size === 'medium' && description && (
       <span

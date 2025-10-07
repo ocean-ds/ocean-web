@@ -104,12 +104,7 @@
     font-size: $font-size-xxxs;
   }
 
-  &__badge {
-    position: absolute;
-    right: $spacing-inline-xxs;
-    top: $spacing-inline-xxs;
-  }
-
+  &__badge,
   &__tag {
     position: absolute;
     right: $spacing-inline-xxs;
