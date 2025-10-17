@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.112.1](https://github.com/ocean-ds/ocean-web/compare/v1.112.0...v1.112.1) (2025-10-07)
+
+### Bug Fixes
+
+- tag position and limit props to accept only tag or count prop ([#1191](https://github.com/ocean-ds/ocean-web/issues/1191)) ([7d0952f](https://github.com/ocean-ds/ocean-web/commit/7d0952fe23e34c5ebb36ab30303e2a0bbf39028f))
+
+# [1.112.0](https://github.com/ocean-ds/ocean-web/compare/v1.111.0...v1.112.0) (2025-10-07)
+
+### Features
+
+- add tag and actionCount ([#1192](https://github.com/ocean-ds/ocean-web/issues/1192)) ([77e9f5f](https://github.com/ocean-ds/ocean-web/commit/77e9f5fb31eadb1f26820f6b105b966450af6b46))
+
+# [1.111.0](https://github.com/ocean-ds/ocean-web/compare/v1.110.0...v1.111.0) (2025-08-29)
+
+### Features
+
+- foundation ([#1189](https://github.com/ocean-ds/ocean-web/issues/1189)) ([4282aeb](https://github.com/ocean-ds/ocean-web/commit/4282aeb9499ac049b59008b70bdea5611f01ab00))
+
 # [1.110.0](https://github.com/ocean-ds/ocean-web/compare/v1.109.0...v1.110.0) (2025-08-25)
 
 ### Features

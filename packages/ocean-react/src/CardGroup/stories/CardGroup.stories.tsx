@@ -29,6 +29,10 @@ const meta: Meta<typeof CardGroup> = {
       description: 'O texto do botão de ação.',
       control: 'text',
     },
+    actionCount: {
+      description: 'O valor exibido no contador do botão de ação.',
+      control: 'number',
+    },
     actionClick: {
       description: 'Função chamada quando o botão de ação é clicado.',
       table: {
@@ -129,6 +133,29 @@ export const WithChildren: Story = {
             <li>Item 3</li>
           </ul>
         </div>
+      </CardGroup>
+    </div>
+  ),
+};
+
+export const WithTag: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ minWidth: '328px', maxWidth: '400px' }}>
+      <CardGroup
+        title="Card com Conteúdo"
+        subtitle="Exemplo com children"
+        actionLabel="Ação"
+        actionCount={12}
+        tag={{
+          children: 'Boletos disponiveis',
+          variant: 'highlight',
+          type: 'neutral',
+        }}
+      >
+        This is a card with a tag
       </CardGroup>
     </div>
   ),

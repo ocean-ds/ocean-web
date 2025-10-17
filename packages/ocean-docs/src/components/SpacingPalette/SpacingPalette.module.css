@@ -1,0 +1,284 @@
+.spacingPalette {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.spacingCategory {
+  border: 1px solid #e0e2ee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+.categoryTitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0c0014;
+  position: relative;
+}
+
+.categoryTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    #5872f5 0,
+    #5872f5 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Spacing Stack Styles */
+.spacingStackGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.spacingStackItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+  min-height: 100px;
+}
+
+.spacingStackItem:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.spacingStackPreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e0e2ee;
+  padding: 0.5rem 1rem;
+}
+
+.spacingStackVisual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  justify-content: center;
+}
+
+.spacingStackTop,
+.spacingStackBottom {
+  width: 50px;
+  height: 12px;
+  background: #5872f5;
+  border-radius: 3px;
+}
+
+.spacingStackGap {
+  width: 50px;
+  background: #f5456c;
+  border-radius: 2px;
+  min-height: 4px;
+}
+
+.spacingStackInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Spacing Inset Styles */
+.spacingInsetGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.spacingInsetItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+  min-height: 100px;
+}
+
+.spacingInsetItem:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.spacingInsetPreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e0e2ee;
+  padding: 0.5rem 1rem;
+}
+
+.spacingInsetVisual {
+  width: 80px;
+  height: 60px;
+  background: #ffffff;
+  border: 2px solid #f5456c;
+  border-radius: 4px;
+  position: relative;
+}
+
+.spacingInsetContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #f5456c;
+  background: rgba(245, 69, 108, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+}
+
+.spacingInsetInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Spacing Squish Styles */
+.spacingSquishGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.spacingSquishItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+  min-height: 100px;
+}
+
+.spacingSquishItem:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.spacingSquishPreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e0e2ee;
+  padding: 0.5rem 1rem;
+}
+
+.spacingSquishVisual {
+  width: 100px;
+  height: 50px;
+  background: #ffffff;
+  border: 2px solid #13bdbd;
+  border-radius: 4px;
+  position: relative;
+}
+
+.spacingSquishContent {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #13bdbd;
+  background: rgba(19, 189, 189, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.spacingSquishInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Common Info Styles */
+.token {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  color: #5872f5;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0c0014;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.value {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  color: #67697a;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.usage {
+  font-size: 0.75rem;
+  color: #aaadc0;
+  line-height: 1.3;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .spacingStackGrid,
+  .spacingInsetGrid,
+  .spacingSquishGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .spacingStackItem,
+  .spacingInsetItem,
+  .spacingSquishItem {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .spacingStackPreview,
+  .spacingInsetPreview,
+  .spacingSquishPreview {
+    min-width: 100px;
+  }
+}

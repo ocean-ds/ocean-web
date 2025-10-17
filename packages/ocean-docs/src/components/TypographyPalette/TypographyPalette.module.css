@@ -1,0 +1,273 @@
+.typographyPalette {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.typographyCategory {
+  border: 1px solid #e0e2ee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+.categoryTitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0c0014;
+  position: relative;
+}
+
+.categoryTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    #5872f5 0,
+    #5872f5 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+/* Font Family Styles */
+.fontFamilyContainer {
+  display: flex;
+  justify-content: stretch;
+}
+
+.fontFamilyPreview {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: #f3f5fe;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.fontFamilySample {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #0c0014;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.fontFamilyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Font Sizes Styles */
+.fontSizesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.fontSizeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+}
+
+.fontSizeItem:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.fontSizePreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e0e2ee;
+  padding: 0.5rem 1rem;
+  min-width: 60px;
+  min-height: 40px;
+}
+
+.fontSizeSample {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  color: #0c0014;
+  line-height: 1;
+}
+
+.fontSizeInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Font Weights Styles */
+.fontWeightsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.fontWeightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+}
+
+.fontWeightItem:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.fontWeightPreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 60px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e0e2ee;
+}
+
+.fontWeightSample {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #0c0014;
+  line-height: 1;
+}
+
+.fontWeightInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Line Heights Styles */
+.lineHeightsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.lineHeightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+}
+
+.lineHeightItem:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.lineHeightPreview {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #e0e2ee;
+  padding: 0.5rem;
+}
+
+.lineHeightSample {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #0c0014;
+  text-align: left;
+}
+
+.lineHeightInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Common Info Styles */
+.token {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  color: #5872f5;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0c0014;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.size,
+.value,
+.fontName {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  color: #67697a;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.usage {
+  font-size: 0.75rem;
+  color: #aaadc0;
+  line-height: 1.3;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fontSizesGrid,
+  .fontWeightsGrid,
+  .lineHeightsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fontSizeItem,
+  .fontWeightItem,
+  .lineHeightItem {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .fontFamilyPreview {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .fontSizePreview,
+  .fontWeightPreview,
+  .lineHeightPreview {
+    min-width: 100px;
+  }
+}

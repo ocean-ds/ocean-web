@@ -1,15 +1,20 @@
 import React from 'react';
 import Badge from '../Badge';
+import Tag, { TagProps } from '../Tag/Tag';
 
 interface IHeaderProps {
   title?: string;
   subtitle?: string;
   count?: number;
+  tag?: TagProps;
 }
-const Header = ({ title, subtitle, count }: IHeaderProps): JSX.Element => (
+const Header = ({ title, subtitle, count, tag }: IHeaderProps): JSX.Element => (
   <div className="ods-card-group__header">
     <div className="ods-card-group__header--content">
-      <p className="ods-typography ods-typography__heading4">{title}</p>
+      <div className="container-line">
+        <p className="ods-typography ods-typography__heading4">{title}</p>
+        {tag && <Tag size="medium" setIconOff {...tag} />}
+      </div>
       {subtitle && (
         <p className="ods-typography ods-typography__description">{subtitle}</p>
       )}

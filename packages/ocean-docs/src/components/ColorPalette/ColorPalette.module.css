@@ -1,0 +1,114 @@
+.colorPalette {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.colorCategory {
+  border: 1px solid #e0e2ee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+.categoryTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0c0014;
+}
+
+.categoryDescription {
+  margin: 0 0 1.5rem 0;
+  color: #67697a;
+  font-size: 0.9rem;
+}
+
+.colorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.colorSwatch {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e0e2ee;
+  border-radius: 6px;
+  background: #f3f5fe;
+  transition: all 0.2s ease;
+}
+
+.colorSwatch:hover {
+  border-color: #5872f5;
+  box-shadow: 0 2px 8px rgba(88, 114, 245, 0.1);
+}
+
+.colorBox {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.colorBox:hover {
+  transform: scale(1.05);
+}
+
+.colorInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.token {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.8rem;
+  color: #5872f5;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0c0014;
+  margin-bottom: 0.25rem;
+}
+
+.hex {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.8rem;
+  color: #67697a;
+  margin-bottom: 0.5rem;
+}
+
+.usage {
+  font-size: 0.8rem;
+  color: #aaadc0;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .colorGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .colorSwatch {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .colorBox {
+    width: 80px;
+    height: 80px;
+  }
+}
