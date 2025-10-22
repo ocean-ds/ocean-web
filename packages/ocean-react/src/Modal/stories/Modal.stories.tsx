@@ -24,7 +24,7 @@ const meta: Meta<typeof Modal> = {
     maxWidth: {
       description: 'Determina a largura máxima do modal (apenas desktop).',
       control: 'select',
-      options: ['sm', 'md', 'lg', false],
+      options: ['sm', 'md', 'lg', 'xl', false],
     },
     disableClose: {
       description: 'Desabilita o botão de fechar.',
@@ -52,7 +52,7 @@ const ModalContent = ({
   title?: string;
   content?: string;
 }) => (
-  <div style={{ padding: '24px' }}>
+  <div>
     <h2 style={{ margin: '0 0 16px 0', fontSize: '24px', fontWeight: 'bold' }}>
       {title}
     </h2>
@@ -135,6 +135,17 @@ export const Sizes: Story = {
         <ModalContent
           title="Modal Grande"
           content="Para conteúdo extenso, formulários complexos e tabelas."
+        />
+      </SimpleModal>
+
+      <SimpleModal
+        maxWidth="xl"
+        contentLabel="Extra Large Modal"
+        ariaHideApp={false}
+      >
+        <ModalContent
+          title="Modal Extra Grande"
+          content="Para conteúdo muito extenso, formulários complexos e tabelas."
         />
       </SimpleModal>
     </div>
