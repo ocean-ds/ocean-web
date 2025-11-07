@@ -5,6 +5,7 @@
 }
 
 .ods-card-list-item {
+  position: relative;
   align-items: center;
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-sm;
@@ -67,8 +68,11 @@
   &__action {
     background-color: transparent;
     color: $color-interface-dark-up;
-    height: $font-size-sm;
-    width: $font-size-sm;
+    height: $spacing-stack-md;
+    width: $spacing-inline-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background-color: transparent;
