@@ -5,7 +5,6 @@
 }
 
 .ods-card-list-item {
-  position: relative;
   align-items: center;
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-sm;
@@ -16,6 +15,7 @@
   gap: $spacing-inline-xxs-extra;
   padding: $spacing-stack-xs $spacing-inline-xxs-extra $spacing-stack-xs
     $spacing-stack-xs;
+  position: relative;
   transition: 200ms;
   width: 320px;
 
@@ -66,13 +66,13 @@
   }
 
   &__action {
+    align-items: center;
     background-color: transparent;
     color: $color-interface-dark-up;
-    height: $spacing-stack-md;
-    width: $spacing-inline-md;
     display: flex;
-    align-items: center;
+    height: $spacing-stack-md;
     justify-content: center;
+    width: $spacing-inline-md;
 
     &:hover {
       background-color: transparent;
