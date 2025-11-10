@@ -56,6 +56,9 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
     const [isClosing, setIsClosing] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const triggerRef = useRef<HTMLButtonElement>(null);
+    const touchStartX = useRef<number>(0);
+    const touchStartY = useRef<number>(0);
 
     // Detect mobile viewport
     useEffect(() => {
@@ -68,6 +71,51 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
 
       return () => window.removeEventListener('resize', checkMobile);
     }, [withMobileMode]);
+
+    // Handle swipe gesture on mobile
+    useEffect(() => {
+      if (!isMobile || !triggerRef.current) return;
+
+      const trigger = triggerRef.current;
+
+      const handleTouchStart = (e: TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        if (!touchStartX.current || !touchStartY.current) return;
+
+        const touchEndX = e.touches[0].clientX;
+        const touchEndY = e.touches[0].clientY;
+
+        const deltaX = touchStartX.current - touchEndX;
+        const deltaY = Math.abs(touchStartY.current - touchEndY);
+
+        // Swipe left (drag from right to left) with minimal vertical movement
+        if (deltaX > 50 && deltaY < 30 && !isOpen) {
+          setIsOpen(true);
+          setIsClosing(false);
+          touchStartX.current = 0;
+          touchStartY.current = 0;
+        }
+      };
+
+      const handleTouchEnd = () => {
+        touchStartX.current = 0;
+        touchStartY.current = 0;
+      };
+
+      trigger.addEventListener('touchstart', handleTouchStart);
+      trigger.addEventListener('touchmove', handleTouchMove);
+      trigger.addEventListener('touchend', handleTouchEnd);
+
+      return () => {
+        trigger.removeEventListener('touchstart', handleTouchStart);
+        trigger.removeEventListener('touchmove', handleTouchMove);
+        trigger.removeEventListener('touchend', handleTouchEnd);
+      };
+    }, [isMobile, isOpen]);
 
     useEffect(() => {
       if (!isOpen) return;
@@ -141,6 +189,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
         {...rest}
       >
         <button
+          ref={triggerRef}
           type="button"
           disabled={disabled}
           className={classNames('ods-internal-list-actions__trigger', {
