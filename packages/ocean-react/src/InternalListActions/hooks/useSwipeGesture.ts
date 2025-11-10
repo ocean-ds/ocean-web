@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { SWIPE_THRESHOLD, VERTICAL_TOLERANCE } from '../constants';
 
-export const useSwipeGesture = (
+const useSwipeGesture = (
   triggerRef: React.RefObject<HTMLButtonElement>,
   isMobile: boolean,
   isOpen: boolean,
@@ -11,7 +11,9 @@ export const useSwipeGesture = (
   const touchStartY = useRef<number>(0);
 
   useEffect(() => {
-    if (!isMobile || !triggerRef.current) return;
+    if (!isMobile || !triggerRef.current) {
+      return undefined;
+    }
 
     const trigger = triggerRef.current;
 
@@ -63,3 +65,5 @@ export const useSwipeGesture = (
     };
   }, [isMobile, isOpen, triggerRef, onSwipeLeft]);
 };
+
+export default useSwipeGesture;

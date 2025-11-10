@@ -1,5 +1,5 @@
-export { MenuBackdrop } from './MenuBackdrop';
-export { DragHandle } from './DragHandle';
-export { MenuItem } from './MenuItem';
-export { MenuList } from './MenuList';
-export { TriggerButton } from './TriggerButton';
+export { default as MenuBackdrop } from './MenuBackdrop';
+export { default as DragHandle } from './DragHandle';
+export { default as MenuItem } from './MenuItem';
+export { default as MenuList } from './MenuList';
+export { default as TriggerButton } from './TriggerButton';

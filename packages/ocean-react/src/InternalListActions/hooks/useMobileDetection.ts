@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MOBILE_BREAKPOINT } from '../constants';
 
-export const useMobileDetection = (withMobileMode: boolean): boolean => {
+const useMobileDetection = (withMobileMode: boolean): boolean => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -17,3 +17,5 @@ export const useMobileDetection = (withMobileMode: boolean): boolean => {
 
   return isMobile;
 };
+
+export default useMobileDetection;

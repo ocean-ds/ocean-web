@@ -7,32 +7,32 @@ interface MenuItemProps {
   onClick: (action: ActionItem) => void;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ action, onClick }) => {
-  return (
-    <li role="none">
-      <button
-        type="button"
-        className={classNames(
-          'ods-internal-list-actions__menu-item',
-          {
-            'ods-internal-list-actions__menu-item--disabled': action.disabled,
-          },
-          action.variant &&
-          `ods-internal-list-actions__menu-item--${action.variant}`
-        )}
-        onClick={() => onClick(action)}
-        disabled={action.disabled}
-        role="menuitem"
-      >
-        {action.icon && (
-          <span className="ods-internal-list-actions__menu-item-icon">
-            {action.icon}
-          </span>
-        )}
-        <span className="ods-internal-list-actions__menu-item-label">
-          {action.label}
+const MenuItem: React.FC<MenuItemProps> = ({ action, onClick }) => (
+  <li role="none">
+    <button
+      type="button"
+      className={classNames(
+        'ods-internal-list-actions__menu-item',
+        {
+          'ods-internal-list-actions__menu-item--disabled': action.disabled,
+        },
+        action.variant &&
+        `ods-internal-list-actions__menu-item--${action.variant}`
+      )}
+      onClick={() => onClick(action)}
+      disabled={action.disabled}
+      role="menuitem"
+    >
+      {action.icon && (
+        <span className="ods-internal-list-actions__menu-item-icon">
+          {action.icon}
         </span>
-      </button>
-    </li>
-  );
-};
+      )}
+      <span className="ods-internal-list-actions__menu-item-label">
+        {action.label}
+      </span>
+    </button>
+  </li>
+);
+
+export default MenuItem;

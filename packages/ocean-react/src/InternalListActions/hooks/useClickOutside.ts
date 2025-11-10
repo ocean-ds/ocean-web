@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 
-export const useClickOutside = (
+const useClickOutside = (
   ref: React.RefObject<HTMLElement>,
   isOpen: boolean,
   onClickOutside: () => void
 ): void => {
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      return undefined;
+    }
 
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -20,3 +22,5 @@ export const useClickOutside = (
     };
   }, [isOpen, ref, onClickOutside]);
 };
+
+export default useClickOutside;

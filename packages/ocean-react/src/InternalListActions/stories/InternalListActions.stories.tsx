@@ -446,18 +446,16 @@ export const WithoutMobileMode: Story = {
     actions: defaultActions,
     withMobileMode: false,
   },
-  render: (args) => {
-    return (
-      <div style={{ padding: '16px' }}>
-        <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
-          Esta versão sempre mostra o menu dropdown tradicional, mesmo em telas pequenas.
-          <br />
-          Útil quando você quer manter o comportamento desktop em todas as resoluções.
-        </p>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <InternalListActions {...args} />
-        </div>
+  render: (args) => (
+    <div style={{ padding: '16px' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        Esta versão sempre mostra o menu dropdown tradicional, mesmo em telas pequenas.
+        <br />
+        Útil quando você quer manter o comportamento desktop em todas as resoluções.
+      </p>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <InternalListActions {...args} />
       </div>
-    );
-  },
+    </div>
+  ),
 };
