@@ -77,6 +77,19 @@ export const Usage: Story = {
 export const WithIcons: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      source: {
+        code: `const actionsWithIcons: ActionItem[] = [
+  {
+    label: 'Editar',
+    onClick: () => alert('Editar clicado!'),
+    icon: <Pencil />,
+  },
+];
+
+<InternalListActions actions={actionsWithIcons} withMobileMode={false} />`,
+      },
+    },
   },
   render: () => {
     const actionsWithIcons: ActionItem[] = [
@@ -106,6 +119,37 @@ export const WithIcons: Story = {
 export const Positions: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      source: {
+        code: `// Bottom Left
+<InternalListActions
+  actions={actions}
+  position="bottom-left"
+  withMobileMode={false}
+/>
+
+// Bottom Right (default)
+<InternalListActions
+  actions={actions}
+  position="bottom-right"
+  withMobileMode={false}
+/>
+
+// Top Left
+<InternalListActions
+  actions={actions}
+  position="top-left"
+  withMobileMode={false}
+/>
+
+// Top Right
+<InternalListActions
+  actions={actions}
+  position="top-right"
+  withMobileMode={false}
+/>`,
+      },
+    },
   },
   render: () => (
     <div
@@ -158,6 +202,35 @@ export const Positions: Story = {
 export const States: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      source: {
+        code: `// Normal
+<InternalListActions actions={actions} withMobileMode={false} />
+
+// Com Ação Desabilitada
+<InternalListActions
+  actions={[
+    {
+      label: 'Editar',
+      onClick: () => alert('Editar clicado!'),
+    },
+    {
+      label: 'Duplicar',
+      onClick: () => alert('Duplicar clicado!'),
+      disabled: true,
+    },
+    {
+      label: 'Excluir',
+      onClick: () => alert('Excluir clicado!'),
+    },
+  ]}
+  withMobileMode={false}
+/>
+
+// Disabled (botão desabilitado)
+<InternalListActions actions={actions} disabled withMobileMode={false} />`,
+      },
+    },
   },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -201,6 +274,44 @@ export const States: Story = {
 export const Variants: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      source: {
+        code: `const variantActions: ActionItem[] = [
+  {
+    label: 'Ação Padrão',
+    onClick: () => alert('Ação padrão clicada!'),
+    icon: <Pencil />,
+    variant: 'default',
+  },
+  {
+    label: 'Ação Positiva',
+    onClick: () => alert('Ação positiva clicada!'),
+    icon: <Archive />,
+    variant: 'positive',
+  },
+  {
+    label: 'Ação de Aviso',
+    onClick: () => alert('Ação de aviso clicada!'),
+    icon: <Share />,
+    variant: 'warning',
+  },
+  {
+    label: 'Ação Negativa',
+    onClick: () => alert('Ação negativa clicada!'),
+    icon: <Trash />,
+    variant: 'negative',
+  },
+  {
+    label: 'Ação Neutra',
+    onClick: () => alert('Ação neutra clicada!'),
+    icon: <Pencil />,
+    variant: 'neutral',
+  },
+];
+
+<InternalListActions actions={variantActions} withMobileMode={false} />`,
+      },
+    },
   },
   render: () => {
     const variantActions: ActionItem[] = [
@@ -255,6 +366,103 @@ export const Variants: Story = {
 export const IntegratedWithCardListItem: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      source: {
+        code: `const actions: ActionItem[] = [
+  {
+    label: 'Default',
+    onClick: () => alert('Editar clicado!'),
+    icon: <Pencil />,
+    variant: 'default',
+  },
+  {
+    label: 'Negative',
+    onClick: () => alert('Compartilhar clicado!'),
+    icon: <Share />,
+    variant: 'negative'
+  },
+  {
+    label: 'Positive',
+    onClick: () => alert('Arquivar clicado!'),
+    icon: <Save />,
+    variant: 'positive',
+  },
+  {
+    label: 'Warning',
+    onClick: () => alert('Excluir clicado!'),
+    icon: <Trash />,
+    variant: 'warning',
+  },
+  {
+    label: 'Neutral',
+    onClick: () => alert('Excluir clicado!'),
+    icon: <Archive />,
+    variant: 'neutral',
+  },
+];
+
+// Medium Size
+<CardListItem
+  title="Conta Corrente"
+  description="Saldo disponível"
+  caption="R$ 1.234,56"
+  leadingIcon={<Star />}
+  actionIcon={
+    <InternalListActions actions={actions} position="bottom-left" />
+  }
+/>
+
+// Small Size
+<CardListItem
+  title="Investimentos"
+  description="Total investido"
+  leadingIcon={<Star />}
+  size="small"
+  actionIcon={
+    <InternalListActions actions={actions} position="bottom-left" />
+  }
+/>
+
+// Com Tag
+<CardListItem
+  title="Poupança"
+  description="Saldo disponível"
+  caption="R$ 3.456,78"
+  leadingIcon={<Star />}
+  tag="Novo"
+  actionIcon={
+    <InternalListActions actions={actions} position="bottom-left" />
+  }
+/>
+
+// Full Width
+<CardListItem
+  title="Cartão de Crédito"
+  description="Fatura atual"
+  caption="R$ 567,89"
+  leadingIcon={<Star />}
+  actionIcon={
+    <InternalListActions actions={actions} position="bottom-left" />
+  }
+  fullWidth
+/>
+
+// Disabled
+<CardListItem
+  title="Conta Desabilitada"
+  description="Esta conta está inativa"
+  leadingIcon={<Star />}
+  actionIcon={
+    <InternalListActions
+      actions={actions}
+      position="bottom-left"
+      disabled
+    />
+  }
+  disabled
+/>`,
+      },
+    },
   },
   render: () => {
     const actions: ActionItem[] = [
@@ -379,6 +587,35 @@ export const MobileView: Story = {
     viewport: {
       defaultViewport: 'mobile1',
     },
+    docs: {
+      source: {
+        code: `const actions: ActionItem[] = [
+  {
+    label: 'Editar',
+    onClick: () => alert('Editar clicado!'),
+    icon: <Pencil />,
+    variant: 'neutral',
+  },
+  {
+    label: 'Excluir',
+    onClick: () => alert('Excluir clicado!'),
+    icon: <Trash />,
+    variant: 'negative',
+  },
+];
+
+// Em telas menores que 768px, o componente ocupa todo o espaço
+// do container pai com backdrop e menu horizontal
+<CardListItem
+  title="Conta Corrente"
+  description="Saldo disponível"
+  caption="R$ 1.234,56"
+  leadingIcon={<Star />}
+  actionIcon={<InternalListActions actions={actions} />}
+  fullWidth
+/>`,
+      },
+    },
   },
   render: () => {
     const actions: ActionItem[] = [
@@ -445,6 +682,17 @@ export const WithoutMobileMode: Story = {
   args: {
     actions: defaultActions,
     withMobileMode: false,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `// Desabilita o modo mobile - sempre mostra dropdown tradicional
+<InternalListActions
+  actions={actions}
+  withMobileMode={false}
+/>`,
+      },
+    },
   },
   render: (args) => (
     <div style={{ padding: '16px' }}>
