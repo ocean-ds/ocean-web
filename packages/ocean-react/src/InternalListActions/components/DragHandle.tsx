@@ -6,11 +6,11 @@ interface DragHandleProps {
 }
 
 const DragHandle: React.FC<DragHandleProps> = ({ onClose, onKeyDown }) => (
-  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
   <li
     className="ods-internal-list-actions__drag-handle"
     onClick={onClose}
     onKeyDown={onKeyDown}
+    /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role */
     role="button"
     tabIndex={0}
     aria-label="Fechar menu"
