@@ -180,6 +180,13 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
       handleClose();
     };
 
+    const handleDragHandleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleClose();
+      }
+    };
+
     return (
       <div
         ref={wrapperRef}
@@ -238,6 +245,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
               <li
                 className="ods-internal-list-actions__drag-handle"
                 onClick={handleClose}
+                onKeyDown={handleDragHandleKeyDown}
                 role="button"
                 tabIndex={0}
                 aria-label="Fechar menu"
