@@ -20,7 +20,11 @@
   }
 
   &__header {
-    padding: $spacing-stack-xs;
+    padding: 18px 18px 10px;
+
+    @include media-breakpoint-down(md) {
+      padding: 14px 14px 10px;
+    }
 
     &-close {
       background: transparent;
@@ -35,7 +39,11 @@
   }
 
   &__body {
-    padding: 0 $spacing-inline-sm $spacing-stack-sm;
+    padding: 0 $spacing-inline-md $spacing-inline-md;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 $spacing-inline-xs $spacing-inline-xs;
+    }
   }
 }
 
@@ -90,9 +98,10 @@
 }
 
 $max-widths: (
-  sm: 540px,
-  md: 680px,
-  lg: 800px,
+  sm: 420px,
+  md: 540px,
+  lg: 660px,
+  xl: 780px,
 ) !default;
 
 @each $breakpoint, $container-max-width in $max-widths {

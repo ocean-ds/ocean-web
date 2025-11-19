@@ -16,7 +16,7 @@ export type ModalProps = {
    * Set to `false` to disable `maxWidth`.
    * @default false
    */
-  maxWidth?: 'sm' | 'md' | 'lg' | false;
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | false;
   /**
    * Function that will be run when the modal is requested to be closed, prior to actually closing.
    * @default false
@@ -64,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
           aria-label="Close modal"
           onClick={onRequestClose}
         >
-          <XOutline />
+          <XOutline size={20} />
         </button>
       )}
     </div>

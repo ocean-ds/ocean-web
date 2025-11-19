@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.113.0](https://github.com/ocean-ds/ocean-web/compare/v1.112.1...v1.113.0) (2025-10-22)
+
+### Features
+
+- updates modals ([#1193](https://github.com/ocean-ds/ocean-web/issues/1193)) ([ea8c934](https://github.com/ocean-ds/ocean-web/commit/ea8c934ec926dddb7f99d350019d977867e28566))
+
 ## [1.112.1](https://github.com/ocean-ds/ocean-web/compare/v1.112.0...v1.112.1) (2025-10-07)
 
 ### Bug Fixes

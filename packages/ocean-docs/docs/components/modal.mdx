@@ -91,7 +91,14 @@ function BasicModal() {
 
 ## Tamanhos
 
-O Modal oferece diferentes tamanhos para adequar-se ao conteúdo:
+O Modal oferece quatro tamanhos predefinidos para adequar-se ao conteúdo:
+
+| Tamanho | Largura | Uso recomendado                          |
+| ------- | ------- | ---------------------------------------- |
+| `sm`    | 420px   | Confirmações simples e alertas           |
+| `md`    | 540px   | Formulários e conteúdo geral (padrão)    |
+| `lg`    | 660px   | Conteúdo extenso e formulários complexos |
+| `xl`    | 780px   | Conteúdo muito extenso e tabelas         |
 
 <StorybookEmbed
   storyId="components-modal--sizes"
@@ -122,6 +129,15 @@ Para casos onde você quer controlar o fechamento apenas por ações específica
   title="Modal - Sem Botão Fechar"
 />
 
+## Responsividade
+
+O Modal é automaticamente responsivo e se adapta a diferentes tamanhos de tela:
+
+- **Desktop**: Aparece centralizado com bordas arredondadas
+- **Mobile**: Aparece como bottom sheet com bordas arredondadas apenas no topo
+- **Altura máxima**: 80% da tela em dispositivos móveis
+- **Transições**: Animações suaves de abertura e fechamento
+
 ## API
 
 ### Props
@@ -132,7 +148,7 @@ Para casos onde você quer controlar o fechamento apenas por ações específica
 | `isOpen`         | `boolean`                                      | -       | Controla se o modal está aberto                        |
 | `onRequestClose` | `(event: MouseEvent \| KeyboardEvent) => void` | -       | Função chamada quando o modal é solicitado para fechar |
 | `blocked`        | `boolean`                                      | `false` | Se true, o modal se estende até a largura máxima       |
-| `maxWidth`       | `'sm' \| 'md' \| 'lg' \| false`                | `false` | Determina a largura máxima do modal                    |
+| `maxWidth`       | `'sm' \| 'md' \| 'lg' \| 'xl' \| false`        | `false` | Determina a largura máxima do modal                    |
 | `disableClose`   | `boolean`                                      | `false` | Desabilita o botão de fechar                           |
 | `contentLabel`   | `string`                                       | -       | Label para acessibilidade do conteúdo do modal         |
 | `ariaHideApp`    | `boolean`                                      | `true`  | Controla se deve esconder a aplicação do screen reader |
@@ -146,22 +162,23 @@ Para casos onde você quer controlar o fechamento apenas por ações específica
 
 O componente utiliza as seguintes classes CSS que podem ser customizadas:
 
-| Classe                              | Descrição                                     |
-| ----------------------------------- | --------------------------------------------- |
-| `.ods-modal`                        | Container portal do modal                     |
-| `.ods-modal__overlay`               | Overlay de fundo do modal                     |
-| `.ods-modal__overlay--after-open`   | Modificador para overlay após abertura        |
-| `.ods-modal__overlay--before-close` | Modificador para overlay antes do fechamento  |
-| `.ods-modal__content`               | Container principal do conteúdo do modal      |
-| `.ods-modal__content--after-open`   | Modificador para conteúdo após abertura       |
-| `.ods-modal__content--before-close` | Modificador para conteúdo antes do fechamento |
-| `.ods-modal__content--sm`           | Modificador para modal de tamanho pequeno     |
-| `.ods-modal__content--md`           | Modificador para modal de tamanho médio       |
-| `.ods-modal__content--lg`           | Modificador para modal de tamanho grande      |
-| `.ods-modal__content--blocked`      | Modificador para modal bloqueado              |
-| `.ods-modal__header`                | Cabeçalho do modal                            |
-| `.ods-modal__header-close`          | Botão de fechar do modal                      |
-| `.ods-modal__body`                  | Corpo do modal onde fica o conteúdo           |
+| Classe                              | Descrição                                      |
+| ----------------------------------- | ---------------------------------------------- |
+| `.ods-modal`                        | Container portal do modal                      |
+| `.ods-modal__overlay`               | Overlay de fundo do modal                      |
+| `.ods-modal__overlay--after-open`   | Modificador para overlay após abertura         |
+| `.ods-modal__overlay--before-close` | Modificador para overlay antes do fechamento   |
+| `.ods-modal__content`               | Container principal do conteúdo do modal       |
+| `.ods-modal__content--after-open`   | Modificador para conteúdo após abertura        |
+| `.ods-modal__content--before-close` | Modificador para conteúdo antes do fechamento  |
+| `.ods-modal__content--sm`           | Modificador para modal de tamanho pequeno      |
+| `.ods-modal__content--md`           | Modificador para modal de tamanho médio        |
+| `.ods-modal__content--lg`           | Modificador para modal de tamanho grande       |
+| `.ods-modal__content--xl`           | Modificador para modal de tamanho extra grande |
+| `.ods-modal__content--blocked`      | Modificador para modal bloqueado               |
+| `.ods-modal__header`                | Cabeçalho do modal                             |
+| `.ods-modal__header-close`          | Botão de fechar do modal                       |
+| `.ods-modal__body`                  | Corpo do modal onde fica o conteúdo            |
 
 ## Acessibilidade
 
