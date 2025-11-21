@@ -3,7 +3,7 @@ import { SWIPE_THRESHOLD, VERTICAL_TOLERANCE } from '../constants';
 
 const useSwipeGesture = (
   triggerRef: React.RefObject<HTMLButtonElement>,
-  isMobile: boolean,
+  isSwipeMode: boolean,
   isOpen: boolean,
   onSwipeLeft: () => void
 ): void => {
@@ -11,7 +11,7 @@ const useSwipeGesture = (
   const touchStartY = useRef<number>(0);
 
   useEffect(() => {
-    if (!isMobile || !triggerRef.current) {
+    if (!isSwipeMode || !triggerRef.current) {
       return undefined;
     }
 
@@ -32,20 +32,22 @@ const useSwipeGesture = (
       const deltaY = Math.abs(touchStartY.current - touchEndY);
 
       // Swipe left (drag from right to left) with minimal vertical movement
-      if (deltaX > SWIPE_THRESHOLD && deltaY < VERTICAL_TOLERANCE && !isOpen) {
+      const swipeToLeftGesture =
+        deltaX > SWIPE_THRESHOLD && deltaY < VERTICAL_TOLERANCE && !isOpen;
+
+      if (swipeToLeftGesture) {
         // Dispatch a synthetic mousedown event to trigger click outside handlers on other menus
         const mouseDownEvent = new MouseEvent('mousedown', {
           bubbles: true,
           cancelable: true,
-          view: window,
+          view: globalThis as unknown as Window,
           clientX: touchEndX,
           clientY: touchEndY,
         });
         document.dispatchEvent(mouseDownEvent);
 
         onSwipeLeft();
-        touchStartX.current = 0;
-        touchStartY.current = 0;
+        handleTouchEnd();
       }
     };
 
@@ -63,7 +65,7 @@ const useSwipeGesture = (
       trigger.removeEventListener('touchmove', handleTouchMove);
       trigger.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isMobile, isOpen, triggerRef, onSwipeLeft]);
+  }, [isSwipeMode, isOpen, triggerRef, onSwipeLeft]);
 };
 
 export default useSwipeGesture;

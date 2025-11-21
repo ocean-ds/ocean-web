@@ -25,9 +25,10 @@ export type InternalListActionsProps = {
    */
   position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
   /**
-   * Enable mobile mode behavior. When true, shows mobile version on small screens.
-   * When false, always shows desktop version.
-   * @default true
+   * Type of action to display.
+   * - 'menu': Shows a dropdown menu with three-dot icon (desktop style)
+   * - 'swipe': Always shows swipe interface with handle (mobile style), regardless of device
+   * @default 'menu'
    */
-  withMobileMode?: boolean;
+  actionType?: 'menu' | 'swipe';
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>;

@@ -6,7 +6,7 @@ interface TriggerButtonProps {
   triggerRef: React.RefObject<HTMLButtonElement>;
   disabled: boolean;
   isOpen: boolean;
-  isMobile: boolean;
+  isSwipeGesture: boolean;
   onClick: () => void;
 }
 
@@ -14,7 +14,7 @@ const TriggerButton: React.FC<TriggerButtonProps> = ({
   triggerRef,
   disabled,
   isOpen,
-  isMobile,
+  isSwipeGesture,
   onClick,
 }) => (
   <button
@@ -23,12 +23,13 @@ const TriggerButton: React.FC<TriggerButtonProps> = ({
     disabled={disabled}
     className={classNames('ods-internal-list-actions__trigger', {
       'ods-internal-list-actions__trigger--active': isOpen,
+      'ods-internal-list-actions__trigger--swipe-gesture': isSwipeGesture,
     })}
     onClick={onClick}
     aria-label="Abrir menu de ações"
     aria-expanded={isOpen}
   >
-    {isMobile ? (
+    {isSwipeGesture ? (
       <svg
         width="5"
         height="24"

@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { Star, Pencil, Share, Archive, Trash, Save } from '@useblu/ocean-icons-react';
+import { Pencil, Share, Archive, Trash } from '@useblu/ocean-icons-react';
 import InternalListActions from '../InternalListActions';
 import type { ActionItem } from '../InternalListActions';
-import CardListItem from '../../CardListItem';
 
 const meta: Meta<typeof InternalListActions> = {
   title: 'Components/InternalListActions',
@@ -24,9 +23,10 @@ const meta: Meta<typeof InternalListActions> = {
       control: 'select',
       options: ['bottom-left', 'bottom-right', 'top-left', 'top-right'],
     },
-    withMobileMode: {
-      description: 'Habilita o comportamento mobile em telas pequenas. Quando false, sempre mostra a versão desktop.',
-      control: 'boolean',
+    actionType: {
+      description: 'Tipo de ação a ser exibida. "menu" mostra um dropdown com ícone de três pontos (estilo desktop). "swipe" sempre mostra interface de swipe com handle (estilo mobile), independente do dispositivo.',
+      control: 'select',
+      options: ['menu', 'swipe'],
     },
   },
 };
@@ -55,7 +55,7 @@ export const Usage: Story = {
     actions: defaultActions,
     disabled: false,
     position: 'bottom-right',
-    withMobileMode: false,
+    actionType: 'menu',
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -66,6 +66,7 @@ export const Usage: Story = {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '200px',
+          position: 'relative',
         }}
       >
         <StoryComponent />
@@ -87,7 +88,7 @@ export const WithIcons: Story = {
   },
 ];
 
-<InternalListActions actions={actionsWithIcons} withMobileMode={false} />`,
+<InternalListActions actions={actionsWithIcons} actionType="menu" />`,
       },
     },
   },
@@ -108,9 +109,10 @@ export const WithIcons: Story = {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '200px',
+          position: 'relative',
         }}
       >
-        <InternalListActions actions={actionsWithIcons} withMobileMode={false} />
+        <InternalListActions actions={actionsWithIcons} actionType="menu" />
       </div>
     );
   },
@@ -125,28 +127,28 @@ export const Positions: Story = {
 <InternalListActions
   actions={actions}
   position="bottom-left"
-  withMobileMode={false}
+  actionType="menu"
 />
 
 // Bottom Right (default)
 <InternalListActions
   actions={actions}
   position="bottom-right"
-  withMobileMode={false}
+  actionType="menu"
 />
 
 // Top Left
 <InternalListActions
   actions={actions}
   position="top-left"
-  withMobileMode={false}
+  actionType="menu"
 />
 
 // Top Right
 <InternalListActions
   actions={actions}
   position="top-right"
-  withMobileMode={false}
+  actionType="menu"
 />`,
       },
     },
@@ -159,19 +161,20 @@ export const Positions: Story = {
         gridTemplateColumns: 'repeat(2, 1fr)',
         gap: '100px',
         minHeight: '400px',
+        position: 'relative',
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
         <div>
           <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Bottom Left</h4>
           <InternalListActions
             actions={defaultActions}
             position="bottom-left"
-            withMobileMode={false}
+            actionType="menu"
           />
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
         <div>
           <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>
             Bottom Right
@@ -179,20 +182,20 @@ export const Positions: Story = {
           <InternalListActions
             actions={defaultActions}
             position="bottom-right"
-            withMobileMode={false}
+            actionType="menu"
           />
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
         <div>
           <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Top Left</h4>
-          <InternalListActions actions={defaultActions} position="top-left" withMobileMode={false} />
+          <InternalListActions actions={defaultActions} position="top-left" actionType="menu" />
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', position: 'relative' }}>
         <div>
           <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Top Right</h4>
-          <InternalListActions actions={defaultActions} position="top-right" withMobileMode={false} />
+          <InternalListActions actions={defaultActions} position="top-right" actionType="menu" />
         </div>
       </div>
     </div>
@@ -205,7 +208,7 @@ export const States: Story = {
     docs: {
       source: {
         code: `// Normal
-<InternalListActions actions={actions} withMobileMode={false} />
+<InternalListActions actions={actions} actionType="menu" />
 
 // Com Ação Desabilitada
 <InternalListActions
@@ -224,19 +227,19 @@ export const States: Story = {
       onClick: () => alert('Excluir clicado!'),
     },
   ]}
-  withMobileMode={false}
+  actionType="menu"
 />
 
 // Disabled (botão desabilitado)
-<InternalListActions actions={actions} disabled withMobileMode={false} />`,
+<InternalListActions actions={actions} disabled actionType="menu" />`,
       },
     },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'relative' }}>
       <div>
         <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Normal</h4>
-        <InternalListActions actions={defaultActions} withMobileMode={false} />
+        <InternalListActions actions={defaultActions} actionType="menu" />
       </div>
 
       <div>
@@ -259,13 +262,13 @@ export const States: Story = {
               onClick: () => alert('Excluir clicado!'),
             },
           ]}
-          withMobileMode={false}
+          actionType="menu"
         />
       </div>
 
       <div>
         <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Disabled</h4>
-        <InternalListActions actions={defaultActions} disabled withMobileMode={false} />
+        <InternalListActions actions={defaultActions} disabled actionType="menu" />
       </div>
     </div>
   ),
@@ -309,7 +312,7 @@ export const Variants: Story = {
   },
 ];
 
-<InternalListActions actions={variantActions} withMobileMode={false} />`,
+<InternalListActions actions={variantActions} actionType="menu" />`,
       },
     },
   },
@@ -355,111 +358,30 @@ export const Variants: Story = {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '200px',
+          position: 'relative',
         }}
       >
-        <InternalListActions actions={variantActions} withMobileMode={false} />
+        <InternalListActions actions={variantActions} actionType="menu" />
       </div>
     );
   },
 };
 
-export const IntegratedWithCardListItem: Story = {
+export const ActionTypes: Story = {
   parameters: {
     controls: { disable: true },
     docs: {
       source: {
-        code: `const actions: ActionItem[] = [
-  {
-    label: 'Default',
-    onClick: () => alert('Editar clicado!'),
-    icon: <Pencil />,
-    variant: 'default',
-  },
-  {
-    label: 'Negative',
-    onClick: () => alert('Compartilhar clicado!'),
-    icon: <Share />,
-    variant: 'negative'
-  },
-  {
-    label: 'Positive',
-    onClick: () => alert('Arquivar clicado!'),
-    icon: <Save />,
-    variant: 'positive',
-  },
-  {
-    label: 'Warning',
-    onClick: () => alert('Excluir clicado!'),
-    icon: <Trash />,
-    variant: 'warning',
-  },
-  {
-    label: 'Neutral',
-    onClick: () => alert('Excluir clicado!'),
-    icon: <Archive />,
-    variant: 'neutral',
-  },
-];
-
-// Medium Size
-<CardListItem
-  title="Conta Corrente"
-  description="Saldo disponível"
-  caption="R$ 1.234,56"
-  leadingIcon={<Star />}
-  actionIcon={
-    <InternalListActions actions={actions} position="bottom-left" />
-  }
+        code: `// Menu Mode (default) - Dropdown com ícone de três pontos
+<InternalListActions
+  actions={actions}
+  actionType="menu"
 />
 
-// Small Size
-<CardListItem
-  title="Investimentos"
-  description="Total investido"
-  leadingIcon={<Star />}
-  size="small"
-  actionIcon={
-    <InternalListActions actions={actions} position="bottom-left" />
-  }
-/>
-
-// Com Tag
-<CardListItem
-  title="Poupança"
-  description="Saldo disponível"
-  caption="R$ 3.456,78"
-  leadingIcon={<Star />}
-  tag="Novo"
-  actionIcon={
-    <InternalListActions actions={actions} position="bottom-left" />
-  }
-/>
-
-// Full Width
-<CardListItem
-  title="Cartão de Crédito"
-  description="Fatura atual"
-  caption="R$ 567,89"
-  leadingIcon={<Star />}
-  actionIcon={
-    <InternalListActions actions={actions} position="bottom-left" />
-  }
-  fullWidth
-/>
-
-// Disabled
-<CardListItem
-  title="Conta Desabilitada"
-  description="Esta conta está inativa"
-  leadingIcon={<Star />}
-  actionIcon={
-    <InternalListActions
-      actions={actions}
-      position="bottom-left"
-      disabled
-    />
-  }
-  disabled
+// Swipe Mode - Interface mobile com handle de swipe
+<InternalListActions
+  actions={actions}
+  actionType="swipe"
 />`,
       },
     },
@@ -467,126 +389,77 @@ export const IntegratedWithCardListItem: Story = {
   render: () => {
     const actions: ActionItem[] = [
       {
-        label: 'Default',
+        label: 'Editar',
         onClick: () => alert('Editar clicado!'),
         icon: <Pencil />,
+        variant: 'neutral',
+      },
+      {
+        label: 'Compartilhar',
+        onClick: () => alert('Compartilhar clicado!'),
+        icon: <Share />,
         variant: 'default',
       },
       {
-        label: 'Negative',
-        onClick: () => alert('Compartilhar clicado!'),
-        icon: <Share />,
-        variant: 'negative'
-      },
-      {
-        label: 'Positive',
-        onClick: () => alert('Arquivar clicado!'),
-        icon: <Save />,
-        variant: 'positive',
-      },
-      {
-        label: 'Warning',
+        label: 'Excluir',
         onClick: () => alert('Excluir clicado!'),
         icon: <Trash />,
-        variant: 'warning',
-      },
-      {
-        label: 'Neutral',
-        onClick: () => alert('Excluir clicado!'),
-        icon: <Archive />,
-        variant: 'neutral',
+        variant: 'negative',
       },
     ];
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <div>
+      <div style={{ padding: '20px', position: 'relative' }}>
+        <div style={{ marginBottom: '40px' }}>
           <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>
-            CardListItem Medium
+            Modo Menu (Desktop)
           </h4>
-          <CardListItem
-            title="Conta Corrente"
-            description="Saldo disponível"
-            caption="R$ 1.234,56"
-            leadingIcon={<Star />}
-            actionIcon={
-              <InternalListActions actions={actions} position="bottom-left" />
-            }
-          />
+          <p style={{ margin: '0 0 16px 0', fontSize: '12px', color: '#666' }}>
+            Mostra um dropdown tradicional com ícone de três pontos verticais.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
+            <InternalListActions actions={actions} actionType="menu" />
+          </div>
         </div>
 
         <div>
           <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>
-            CardListItem Small
+            Modo Swipe (Mobile)
           </h4>
-          <CardListItem
-            title="Investimentos"
-            description="Total investido"
-            leadingIcon={<Star />}
-            size="small"
-            actionIcon={
-              <InternalListActions actions={actions} position="bottom-left" />
-            }
-          />
-        </div>
-
-        <div>
-          <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Com Tag</h4>
-          <CardListItem
-            title="Poupança"
-            description="Saldo disponível"
-            caption="R$ 3.456,78"
-            leadingIcon={<Star />}
-            tag="Novo"
-            actionIcon={
-              <InternalListActions actions={actions} position="bottom-left" />
-            }
-          />
-        </div>
-
-        <div>
-          <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>
-            Full Width
-          </h4>
-          <CardListItem
-            title="Cartão de Crédito"
-            description="Fatura atual"
-            caption="R$ 567,89"
-            leadingIcon={<Star />}
-            actionIcon={
-              <InternalListActions actions={actions} position="bottom-left" />
-            }
-            fullWidth
-          />
-        </div>
-
-        <div>
-          <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Disabled</h4>
-          <CardListItem
-            title="Conta Desabilitada"
-            description="Esta conta está inativa"
-            leadingIcon={<Star />}
-            actionIcon={
-              <InternalListActions
-                actions={actions}
-                position="bottom-left"
-                disabled
-              />
-            }
-            disabled
-          />
+          <p style={{ margin: '0 0 16px 0', fontSize: '12px', color: '#666' }}>
+            Interface mobile com handle de swipe e backdrop. Clique no handle para abrir o menu.
+          </p>
+          <div
+            style={{
+              border: '1px solid #e0e0e0',
+              borderRadius: '8px',
+              padding: '16px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              backgroundColor: '#fff',
+              position: 'relative',
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+                Item de Lista
+              </div>
+              <div style={{ fontSize: '14px', color: '#666' }}>
+                Deslize ou clique no handle
+              </div>
+            </div>
+            <InternalListActions actions={actions} actionType="swipe" />
+          </div>
         </div>
       </div>
     );
   },
 };
 
-export const MobileView: Story = {
+export const SwipeMode: Story = {
   parameters: {
     controls: { disable: true },
-    viewport: {
-      defaultViewport: 'mobile1',
-    },
     docs: {
       source: {
         code: `const actions: ActionItem[] = [
@@ -604,16 +477,8 @@ export const MobileView: Story = {
   },
 ];
 
-// Em telas menores que 768px, o componente ocupa todo o espaço
-// do container pai com backdrop e menu horizontal
-<CardListItem
-  title="Conta Corrente"
-  description="Saldo disponível"
-  caption="R$ 1.234,56"
-  leadingIcon={<Star />}
-  actionIcon={<InternalListActions actions={actions} />}
-  fullWidth
-/>`,
+// Modo swipe mostra interface mobile independente do tamanho da tela
+<InternalListActions actions={actions} actionType="swipe" />`,
       },
     },
   },
@@ -626,6 +491,12 @@ export const MobileView: Story = {
         variant: 'neutral',
       },
       {
+        label: 'Arquivar',
+        onClick: () => alert('Arquivar clicado!'),
+        icon: <Archive />,
+        variant: 'positive',
+      },
+      {
         label: 'Excluir',
         onClick: () => alert('Excluir clicado!'),
         icon: <Trash />,
@@ -634,76 +505,86 @@ export const MobileView: Story = {
     ];
 
     return (
-      <div style={{ padding: '16px' }}>
+      <div style={{ padding: '16px', position: 'relative' }}>
         <h4 style={{ margin: '0 0 16px 0', fontSize: '14px' }}>
-          Visualização Mobile (Overlay no Container)
+          Modo Swipe - Interface Mobile
         </h4>
         <p style={{ margin: '0 0 16px 0', fontSize: '12px', color: '#666' }}>
-          Em telas menores que 768px, o componente ocupa todo o espaço do
-          container pai com backdrop.
+          O modo swipe sempre mostra a interface mobile com backdrop e menu horizontal,
+          independente do tamanho da tela. Clique no handle ou deslize para abrir.
         </p>
 
-        <CardListItem
-          title="Conta Corrente"
-          description="Saldo disponível"
-          caption="R$ 1.234,56"
-          leadingIcon={<Star />}
-          actionIcon={<InternalListActions actions={actions} />}
-          fullWidth
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div
+            style={{
+              border: '1px solid #e0e0e0',
+              borderRadius: '8px',
+              padding: '16px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              backgroundColor: '#fff',
+              position: 'relative',
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+                Conta Corrente
+              </div>
+              <div style={{ fontSize: '14px', color: '#666' }}>
+                R$ 1.234,56
+              </div>
+            </div>
+            <InternalListActions actions={actions} actionType="swipe" />
+          </div>
 
-        <div style={{ marginTop: '16px' }}>
-          <CardListItem
-            title="Investimentos"
-            description="Total investido"
-            caption="R$ 987,65"
-            leadingIcon={<Star />}
-            actionIcon={<InternalListActions actions={actions} />}
-            fullWidth
-          />
-        </div>
+          <div
+            style={{
+              border: '1px solid #e0e0e0',
+              borderRadius: '8px',
+              padding: '16px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              backgroundColor: '#fff',
+              position: 'relative',
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+                Investimentos
+              </div>
+              <div style={{ fontSize: '14px', color: '#666' }}>
+                R$ 987,65
+              </div>
+            </div>
+            <InternalListActions actions={actions} actionType="swipe" />
+          </div>
 
-        <div style={{ marginTop: '16px' }}>
-          <CardListItem
-            title="Poupança"
-            description="Saldo disponível"
-            leadingIcon={<Star />}
-            size="small"
-            actionIcon={<InternalListActions actions={actions} />}
-            fullWidth
-          />
+          <div
+            style={{
+              border: '1px solid #e0e0e0',
+              borderRadius: '8px',
+              padding: '16px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              backgroundColor: '#fff',
+              position: 'relative',
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+                Poupança
+              </div>
+              <div style={{ fontSize: '14px', color: '#666' }}>
+                R$ 3.456,78
+              </div>
+            </div>
+            <InternalListActions actions={actions} actionType="swipe" />
+          </div>
         </div>
       </div>
     );
   },
-};
-
-export const WithoutMobileMode: Story = {
-  args: {
-    actions: defaultActions,
-    withMobileMode: false,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `// Desabilita o modo mobile - sempre mostra dropdown tradicional
-<InternalListActions
-  actions={actions}
-  withMobileMode={false}
-/>`,
-      },
-    },
-  },
-  render: (args) => (
-    <div style={{ padding: '16px' }}>
-      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
-        Esta versão sempre mostra o menu dropdown tradicional, mesmo em telas pequenas.
-        <br />
-        Útil quando você quer manter o comportamento desktop em todas as resoluções.
-      </p>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <InternalListActions {...args} />
-      </div>
-    </div>
-  ),
 };

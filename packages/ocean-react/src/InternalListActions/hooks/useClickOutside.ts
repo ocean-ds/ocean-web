@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 const useClickOutside = (
   ref: React.RefObject<HTMLElement>,
   isOpen: boolean,
-  onClickOutside: () => void
+  onClickOutside: () => void,
+  menuRef?: React.RefObject<HTMLElement>
 ): void => {
   useEffect(() => {
     if (!isOpen) {
@@ -11,7 +12,13 @@ const useClickOutside = (
     }
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      const clickedOutsideElement =
+        ref.current && !ref.current.contains(event.target as Node);
+      
+      const clickedOutsideMenu =
+        !menuRef?.current || !menuRef.current.contains(event.target as Node);
+
+      if (clickedOutsideElement && clickedOutsideMenu) {
         onClickOutside();
       }
     };
@@ -20,7 +27,7 @@ const useClickOutside = (
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, ref, onClickOutside]);
+  }, [isOpen, ref, onClickOutside, menuRef]);
 };
 
 export default useClickOutside;

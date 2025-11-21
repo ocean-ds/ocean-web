@@ -8,7 +8,7 @@ interface MenuItemProps {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ action, onClick }) => (
-  <li role="none">
+  <li>
     <button
       type="button"
       className={classNames(
@@ -21,7 +21,6 @@ const MenuItem: React.FC<MenuItemProps> = ({ action, onClick }) => (
       )}
       onClick={() => onClick(action)}
       disabled={action.disabled}
-      role="menuitem"
     >
       {action.icon && (
         <span className="ods-internal-list-actions__menu-item-icon">
