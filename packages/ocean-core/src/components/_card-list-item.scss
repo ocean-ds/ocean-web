@@ -15,7 +15,6 @@
   gap: $spacing-inline-xxs-extra;
   padding: $spacing-stack-xs $spacing-inline-xxs-extra $spacing-stack-xs
     $spacing-stack-xs;
-  position: relative;
   transition: 200ms;
   width: 320px;
 
@@ -66,13 +65,10 @@
   }
 
   &__action {
-    align-items: center;
     background-color: transparent;
     color: $color-interface-dark-up;
-    display: flex;
-    height: $spacing-stack-md;
-    justify-content: center;
-    width: $spacing-inline-md;
+    height: $font-size-sm;
+    width: $font-size-sm;
 
     &:hover {
       background-color: transparent;
