@@ -30,4 +30,11 @@ export type InternalListActionsProps = {
    * @default true
    */
   withMobileMode?: boolean;
+  /**
+   * Type of action to display.
+   * - 'menu': Shows a dropdown menu with three-dot icon (desktop style)
+   * - 'swipe': Always shows swipe interface with handle (mobile style), regardless of device
+   * @default 'menu'
+   */
+  actionType?: 'menu' | 'swipe';
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>;

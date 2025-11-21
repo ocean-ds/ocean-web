@@ -2,17 +2,18 @@ import React, { forwardRef, useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { InternalListActionsProps, ActionItem } from './types';
 import { CLOSE_ANIMATION_DURATION } from './constants';
-import { useMobileDetection, useSwipeGesture, useClickOutside } from './hooks';
+import { useSwipeGesture, useClickOutside } from './hooks';
 import { MenuBackdrop, MenuList, TriggerButton } from './components';
 
 const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>(
   (
     {
       actions,
+      actionType = 'menu',
       disabled = false,
       position = 'bottom-right',
-      withMobileMode = true,
       className,
+      withMobileMode, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...rest
     },
     forwardedRef
@@ -22,7 +23,8 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
     const wrapperRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
 
-    const isMobile = useMobileDetection(withMobileMode);
+    // When actionType is 'swipe', always use swipe mode (mobile UI) regardless of device
+    const isSwipeMode = actionType === 'swipe';
 
     const handleSwipeLeft = () => {
       setIsOpen(true);
@@ -30,7 +32,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
     };
 
     const handleClose = () => {
-      if (isMobile) {
+      if (isSwipeMode) {
         setIsClosing(true);
         setTimeout(() => {
           setIsOpen(false);
@@ -41,7 +43,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
       }
     };
 
-    useSwipeGesture(triggerRef, isMobile, isOpen, handleSwipeLeft);
+    useSwipeGesture(triggerRef, isSwipeMode, isOpen, handleSwipeLeft);
     useClickOutside(wrapperRef, isOpen, handleClose);
 
     useEffect(() => {
@@ -84,7 +86,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
       <div
         ref={wrapperRef}
         className={classNames('ods-internal-list-actions', className, {
-          'ods-internal-list-actions--disable-mobile': !withMobileMode,
+          'ods-internal-list-actions--force-swipe': isSwipeMode,
         })}
         {...rest}
       >
@@ -92,21 +94,22 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
           triggerRef={triggerRef}
           disabled={disabled}
           isOpen={isOpen}
-          isMobile={isMobile}
+          isSwipeGesture={isSwipeMode}
           onClick={handleToggle}
         />
 
-        {isOpen && isMobile && <MenuBackdrop onClick={handleClose} />}
+        {isOpen && isSwipeMode && <MenuBackdrop onClick={handleClose} />}
 
         {isOpen && (
           <MenuList
             actions={actions}
             position={position}
             isClosing={isClosing}
-            isMobile={isMobile}
+            isSwipeMode={isSwipeMode}
             onActionClick={handleActionClick}
             onClose={handleClose}
             onDragHandleKeyDown={handleDragHandleKeyDown}
+            triggerElement={triggerRef.current}
           />
         )}
       </div>

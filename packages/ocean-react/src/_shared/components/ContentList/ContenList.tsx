@@ -13,13 +13,13 @@ export type ContentListProps = {
   loading?: boolean;
   disabled?: boolean;
   state?:
-    | 'default'
-    | 'inactive'
-    | 'positive'
-    | 'warning'
-    | 'highlight'
-    | 'highlight-lead'
-    | 'strikethrough';
+  | 'default'
+  | 'inactive'
+  | 'positive'
+  | 'warning'
+  | 'highlight'
+  | 'highlight-lead'
+  | 'strikethrough';
   type?: 'default' | 'inverted';
 };
 
@@ -67,7 +67,7 @@ const ContentList = ({
             'ods-typography__description': type === 'default',
             'ods-typography__paragraph': type === 'inverted',
             [`ods-typography__paragraph--${state}`]:
-              state && type === 'inverted',
+              state,
           })}
         >
           {strikethroughDescription &&

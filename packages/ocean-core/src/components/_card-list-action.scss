@@ -1,0 +1,125 @@
+.ods-card-list-action {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  gap: $spacing-inline-xxs-extra;
+  cursor: pointer;
+  padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
+    $spacing-inline-xs;
+  border-radius: $border-radius-sm;
+  transition: background-color 0.2s ease;
+  position: relative;
+
+  &:hover:not(&--disabled):not(&--loading) {
+    background-color: $color-interface-light-up;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-brand-primary-pure;
+    outline-offset: 2px;
+  }
+
+  &:active:not(&--disabled):not(&--loading) {
+    background-color: $color-interface-light-deep;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    svg {
+      color: $color-interface-dark-pure;
+    }
+  }
+
+  &__trailing {
+    display: flex;
+    align-items: center;
+    gap: $spacing-inline-xxs;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  // When in swipe mode, push tag to the left to avoid overlapping with trigger
+  &--swipe-mode {
+    .ods-card-list-action__trailing {
+      .ods-tag {
+        // Offset to accommodate trigger button width + gap
+        margin-right: calc(32px + $spacing-inline-xs);
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    svg {
+      color: $color-interface-dark-up;
+    }
+  }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    width: 100%;
+  }
+
+  .ods-typography__paragraph {
+    color: $color-interface-dark-pure;
+  }
+
+  .ods-typography__captionbold {
+    margin-top: $spacing-inline-xxs;
+  }
+
+  .ods-typography__paragraph--inactive {
+    color: $color-interface-dark-up;
+  }
+
+  .ods-typography__paragraph--positive {
+    color: $color-status-positive-deep;
+  }
+
+  .ods-typography__paragraph--warning {
+    color: $color-status-warning-deep;
+  }
+
+  .ods-typography__paragraph--highlight {
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-bold;
+  }
+
+  .ods-typography__paragraph--highlight-lead {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+
+  .ods-typography__paragraph--strikethrough {
+    color: $color-status-positive-deep;
+  }
+
+  .ods-typography__paragraph--strikethrough-text {
+    color: $color-interface-dark-up;
+    margin-right: $spacing-inline-xxxs;
+    text-decoration: line-through;
+  }
+
+  &--loading {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .ods-typography {
+      color: $color-interface-dark-up;
+    }
+  }
+}
