@@ -37,7 +37,7 @@
   &__menu {
     background: $color-interface-light-pure;
     border-radius: $border-radius-sm;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 $spacing-stack-xxxs $spacing-stack-xs rgba(0, 0, 0, 0.12);
     list-style: none;
     margin: 0;
     min-width: max-content;
