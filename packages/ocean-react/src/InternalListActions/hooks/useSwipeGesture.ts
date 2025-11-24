@@ -40,6 +40,7 @@ const useSwipeGesture = (
         const mouseDownEvent = new MouseEvent('mousedown', {
           bubbles: true,
           cancelable: true,
+          // eslint-disable-next-line no-undef
           view: globalThis as unknown as Window,
           clientX: touchEndX,
           clientY: touchEndY,

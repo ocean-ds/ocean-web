@@ -214,7 +214,7 @@
     .ods-internal-list-actions__drag-handle-button {
       align-items: center;
       background: none;
-      border: none;
+      border: 0;
       cursor: pointer;
       display: flex;
       height: 100%;
@@ -300,9 +300,9 @@
       }
 
       &-label {
-        flex: 1;
-        display: flex;
         align-items: center;
+        display: flex;
+        flex: 1;
       }
 
       // Variant backgrounds on mobile
