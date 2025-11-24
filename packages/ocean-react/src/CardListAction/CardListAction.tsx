@@ -83,7 +83,7 @@ const CardListAction = ({
   }
 
   return (
-    <div
+    <button
       className={classNames('ods-card-list-action', className, {
         'ods-card-list-action--disabled': disabled,
         'ods-card-list-action--swipe-mode': actionType === 'swipe',
@@ -105,7 +105,7 @@ const CardListAction = ({
         {indicator && <div className="ods-card-list-action__indicator">{indicator}</div>}
         {renderActionIcon()}
       </div>
-    </div>
+    </button>
   );
 };
 

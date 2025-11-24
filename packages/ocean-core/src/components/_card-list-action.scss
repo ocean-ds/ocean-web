@@ -5,6 +5,8 @@
   border-radius: $border-radius-sm;
   cursor: pointer;
   display: flex;
+  width: 100%;
+  text-align: left;
   gap: $spacing-inline-xxs-extra;
   padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
     $spacing-inline-xs;
