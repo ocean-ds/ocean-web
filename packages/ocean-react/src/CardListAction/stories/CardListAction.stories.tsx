@@ -13,6 +13,8 @@ import {
 } from '@useblu/ocean-icons-react';
 import CardListAction from '../CardListAction';
 import List from '../../List';
+import Tag from '../../Tag';
+import Badge from '../../Badge';
 import type { ActionItem } from '../../InternalListActions/types';
 
 const meta: Meta<typeof CardListAction> = {
@@ -58,8 +60,8 @@ const meta: Meta<typeof CardListAction> = {
       control: false,
       table: { disable: true },
     },
-    tag: {
-      description: 'Configuração da tag exibida.',
+    indicator: {
+      description: 'Componente indicador exibido (Tag, Badge, Brands, etc.).',
       control: false,
     },
     actionType: {
@@ -251,11 +253,14 @@ export const WithTags: Story = {
     controls: { disable: true },
     docs: {
       source: {
-        code: `<CardListAction
+        code: `import Tag from '../Tag';
+import Badge from '../Badge';
+
+<CardListAction
   title="Conta Premium"
   description="Benefícios exclusivos"
   icon={<Star />}
-  tag={{ label: 'Novo', type: 'highlight' }}
+  indicator={<Tag size="medium" type="positive">Novo</Tag>}
   actionType="chevron"
 />
 
@@ -263,7 +268,7 @@ export const WithTags: Story = {
   title="Promoção Especial"
   description="Até 30% de desconto"
   icon={<Heart />}
-  tag={{ label: 'Promo', type: 'warning' }}
+  indicator={<Badge color="alert">Promo</Badge>}
   actionType="chevron"
 />`,
       },
@@ -276,7 +281,7 @@ export const WithTags: Story = {
         description="Benefícios exclusivos"
         caption="Upgrade disponível"
         icon={<Star />}
-        tag={{ label: 'Novo', type: 'highlight' }}
+        indicator={<Tag size="medium" type="positive">Novo</Tag>}
         actionType="chevron"
         onClick={() => alert('Ver detalhes')}
       />
@@ -286,7 +291,7 @@ export const WithTags: Story = {
         description="Até 30% de desconto"
         caption="Válida até 31/12"
         icon={<Heart />}
-        tag={{ label: 'Promo', type: 'warning' }}
+        indicator={<Badge color="alert">Promo</Badge>}
         actionType="chevron"
         onClick={() => alert('Ver promoção')}
       />
@@ -295,7 +300,7 @@ export const WithTags: Story = {
         title="Configurações"
         description="Personalize sua experiência"
         icon={<Cog />}
-        tag={{ label: 'Beta', type: 'neutral' }}
+        indicator={<Tag size="medium" type="neutral">Beta</Tag>}
         actionType="menu"
         menuActions={defaultMenuActions}
       />
@@ -315,18 +320,18 @@ export const ContentTypes: Story = {
   type="default"
 />
 
-// Primary
+// Positive
 <CardListAction
-  title="Tipo Primary"
-  description="Estilo primário"
-  type="primary"
+  title="Tipo Positive"
+  description="Estilo positivo"
+  type="positive"
 />
 
-// Secondary
+// Warning
 <CardListAction
-  title="Tipo Secondary"
-  description="Estilo secundário"
-  type="secondary"
+  title="Tipo Warning"
+  description="Estilo de aviso"
+  type="warning"
 />`,
       },
     },
@@ -348,28 +353,28 @@ export const ContentTypes: Story = {
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Primary</h4>
+        <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Positive</h4>
         <List>
           <CardListAction
-            title="Tipo Primary"
-            description="Estilo primário do conteúdo"
-            caption="Legenda primária"
+            title="Tipo Positive"
+            description="Estilo positivo do conteúdo"
+            caption="Legenda positiva"
             icon={<Star />}
-            type="primary"
+            type="positive"
             actionType="chevron"
           />
         </List>
       </div>
 
       <div>
-        <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Secondary</h4>
+        <h4 style={{ margin: '0 0 8px 0', fontSize: '14px' }}>Warning</h4>
         <List>
           <CardListAction
-            title="Tipo Secondary"
-            description="Estilo secundário do conteúdo"
-            caption="Legenda secundária"
+            title="Tipo Warning"
+            description="Estilo de aviso do conteúdo"
+            caption="Legenda de aviso"
             icon={<Star />}
-            type="secondary"
+            type="warning"
             actionType="chevron"
           />
         </List>
@@ -425,7 +430,7 @@ export const InvertedContent: Story = {
             description="Saldo disponível"
             caption="Conta Corrente"
             icon={<Star />}
-            inverted={true}
+            inverted
             actionType="chevron"
           />
         </List>
@@ -439,13 +444,15 @@ export const WithStrikethroughDescription: Story = {
     controls: { disable: true },
     docs: {
       source: {
-        code: `<CardListAction
+        code: `import Tag from '../Tag';
+
+<CardListAction
   title="Produto em Oferta"
   description="R$ 99,90"
   strikethroughDescription="R$ 149,90"
   caption="Desconto de 33%"
   icon={<Heart />}
-  tag={{ label: 'Oferta', type: 'warning' }}
+  indicator={<Tag size="medium" type="warning">Oferta</Tag>}
   actionType="chevron"
 />`,
       },
@@ -459,7 +466,7 @@ export const WithStrikethroughDescription: Story = {
         strikethroughDescription="R$ 149,90"
         caption="Desconto de 33%"
         icon={<Heart />}
-        tag={{ label: 'Oferta', type: 'warning' }}
+        indicator={<Tag size="medium" type="warning">Oferta</Tag>}
         actionType="chevron"
         onClick={() => alert('Ver oferta')}
       />
@@ -470,7 +477,7 @@ export const WithStrikethroughDescription: Story = {
         strikethroughDescription="R$ 119,90/mês"
         caption="Economize R$ 360/ano"
         icon={<Star />}
-        tag={{ label: 'Popular', type: 'highlight' }}
+        indicator={<Badge color="brand">Popular</Badge>}
         actionType="chevron"
         onClick={() => alert('Assinar plano')}
       />
@@ -520,7 +527,7 @@ export const States: Story = {
             description="Saldo disponível"
             caption="R$ 1.234,56"
             icon={<PlaceholderOutline />}
-            tag={{ label: 'Ativo', type: 'positive' }}
+            indicator={<Tag size="medium" type="positive">Ativo</Tag>}
             actionType="chevron"
             onClick={() => alert('Clicou!')}
           />
@@ -535,7 +542,7 @@ export const States: Story = {
             description="Acesso temporariamente indisponível"
             caption="Entre em contato"
             icon={<PlaceholderOutline />}
-            tag={{ label: 'Bloqueado', type: 'negative' }}
+            indicator={<Tag size="medium" type="negative">Bloqueado</Tag>}
             actionType="chevron"
             disabled
             onClick={() => alert('Este alert não deveria aparecer')}
@@ -782,13 +789,16 @@ export const RealWorldExamples: Story = {
     controls: { disable: true },
     docs: {
       source: {
-        code: `// Exemplo 1: Lista de Contas Bancárias
+        code: `import Tag from '../Tag';
+import Badge from '../Badge';
+
+// Exemplo 1: Lista de Contas Bancárias
 <CardListAction
   title="Conta Corrente"
   description="Saldo disponível"
   caption="R$ 1.234,56"
   icon={<PlaceholderOutline />}
-  tag={{ label: 'Principal', type: 'highlight' }}
+  indicator={<Badge color="brand">Principal</Badge>}
   actionType="menu"
   menuActions={accountActions}
 />
@@ -800,7 +810,7 @@ export const RealWorldExamples: Story = {
   strikethroughDescription="R$ 8.999,00"
   caption="Em estoque"
   icon={<Heart />}
-  tag={{ label: '22% OFF', type: 'warning' }}
+  indicator={<Tag size="medium" type="warning">22% OFF</Tag>}
   actionType="chevron"
   onClick={() => {}}
 />
@@ -819,7 +829,7 @@ export const RealWorldExamples: Story = {
   title="Recurso Premium"
   description="Disponível apenas no plano Pro"
   icon={<Star />}
-  tag={{ label: 'Pro', type: 'neutral' }}
+  indicator={<Tag size="medium" type="neutral">Pro</Tag>}
   actionType="chevron"
   disabled
 />`,
@@ -857,7 +867,7 @@ export const RealWorldExamples: Story = {
               description="Saldo disponível"
               caption="R$ 1.234,56"
               icon={<PlaceholderOutline />}
-              tag={{ label: 'Principal', type: 'highlight' }}
+              indicator={<Badge color="brand">Principal</Badge>}
               actionType="menu"
               menuActions={accountActions}
             />
@@ -883,7 +893,7 @@ export const RealWorldExamples: Story = {
               strikethroughDescription="R$ 8.999,00"
               caption="Em estoque"
               icon={<Heart />}
-              tag={{ label: '22% OFF', type: 'warning' }}
+              indicator={<Tag size="medium" type="warning">22% OFF</Tag>}
               actionType="chevron"
               onClick={() => alert('Ver produto')}
             />
@@ -892,7 +902,7 @@ export const RealWorldExamples: Story = {
               description="R$ 12.999,00"
               caption="Últimas unidades"
               icon={<Heart />}
-              tag={{ label: 'Popular', type: 'highlight' }}
+              indicator={<Badge color="brand">Popular</Badge>}
               actionType="chevron"
               onClick={() => alert('Ver produto')}
             />
@@ -922,7 +932,7 @@ export const RealWorldExamples: Story = {
               title="Recurso Premium"
               description="Disponível apenas no plano Pro"
               icon={<Star />}
-              tag={{ label: 'Pro', type: 'neutral' }}
+              indicator={<Tag size="medium" type="neutral">Pro</Tag>}
               actionType="chevron"
               disabled
             />
@@ -937,7 +947,7 @@ export const Interactive: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function InteractiveRender() {
     const [clickCount, setClickCount] = React.useState(0);
 
     return (
@@ -995,7 +1005,7 @@ export const MenuWithinListOverflow: Story = {
     docs: {
       description: {
         story:
-          'Demonstração de que o menu funciona corretamente dentro de um List com overflow hidden. O menu usa React Portal para renderizar fora do container, evitando que seja cortado. Também demonstra que tags funcionam corretamente com modo swipe.',
+          'Demonstração de que o menu funciona corretamente dentro de um List com overflow hidden. O menu usa React Portal para renderizar fora do container, evitando que seja cortado. Também demonstra que indicators funcionam corretamente com modo swipe.',
       },
     },
   },
@@ -1018,16 +1028,16 @@ export const MenuWithinListOverflow: Story = {
           description="Menu dropdown com tag"
           icon={<Heart />}
           actionType="menu"
-          tag={{ label: 'Popular', type: 'positive' }}
+          indicator={<Tag size="medium" type="positive">Popular</Tag>}
           menuActions={defaultMenuActions}
         />
         <CardListAction
-          title="Item com Swipe e Tag"
+          title="Item com Swipe e Badge"
           description="Arraste para ver as ações"
-          caption="Tag visível acima do overlay"
+          caption="Indicator visível acima do overlay"
           icon={<Cog />}
           actionType="swipe"
-          tag={{ label: 'Novo', type: 'positive' }}
+          indicator={<Badge color="complementary">Novo</Badge>}
           menuActions={defaultMenuActions}
         />
         <CardListAction
@@ -1035,11 +1045,10 @@ export const MenuWithinListOverflow: Story = {
           description="Mais um exemplo de swipe com tag"
           icon={<Archive />}
           actionType="swipe"
-          tag={{ label: 'Beta', type: 'warning' }}
+          indicator={<Tag size="medium" type="warning">Beta</Tag>}
           menuActions={defaultMenuActions}
         />
       </List>
     </div>
   ),
 };
-

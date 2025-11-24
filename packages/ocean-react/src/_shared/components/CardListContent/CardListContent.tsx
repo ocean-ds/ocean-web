@@ -24,8 +24,7 @@ const CardListContent = ({
   caption,
   inverted = false,
   type = 'default',
-}: CardListContentProps): ReactElement => {
-  return (
+}: CardListContentProps): ReactElement => (
     <div className="ods-card-list-content">
       <p
         className={classNames('ods-typography', {
@@ -70,6 +69,5 @@ const CardListContent = ({
       )}
     </div>
   );
-};
 
 export default CardListContent;

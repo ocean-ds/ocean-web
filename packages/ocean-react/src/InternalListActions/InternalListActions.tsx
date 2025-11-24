@@ -13,7 +13,6 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
       disabled = false,
       position = 'bottom-right',
       className,
-      withMobileMode, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...rest
     },
     forwardedRef

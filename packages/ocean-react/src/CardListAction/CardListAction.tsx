@@ -4,7 +4,6 @@ import { ChevronRight } from '@useblu/ocean-icons-react';
 import CardListContent, {
   CardListContentProps,
 } from '../_shared/components/CardListContent';
-import Tag from '../Tag/Tag';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import InternalListActions, { ActionItem } from '../InternalListActions';
 
@@ -18,10 +17,7 @@ export type CardListActionProps = {
   disabled?: boolean;
   loading?: boolean;
   icon?: ReactNode;
-  tag?: { label: string } & (
-    | { variant?: 'default'; type?: 'positive' | 'warning' | 'negative' | 'neutral' | 'neutral-02' | 'neutral-03' | 'default' }
-    | { variant: 'highlight'; type: 'important' | 'neutral' }
-  );
+  indicator?: ReactNode;
   actionType?: 'chevron' | 'menu' | 'swipe' | 'none';
   menuActions?: ActionItem[];
   menuPosition?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
@@ -39,7 +35,7 @@ const CardListAction = ({
   disabled = false,
   loading = false,
   icon,
-  tag,
+  indicator,
   actionType = 'chevron',
   menuActions,
   menuPosition = 'bottom-right',
@@ -106,7 +102,7 @@ const CardListAction = ({
         type={type}
       />
       <div className="ods-card-list-action__trailing">
-        {tag && <Tag size="medium" {...tag} setIconOff>{tag.label}</Tag>}
+        {indicator && <div className="ods-card-list-action__indicator">{indicator}</div>}
         {renderActionIcon()}
       </div>
     </div>
