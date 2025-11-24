@@ -18,7 +18,7 @@ export type CardListActionProps = {
   loading?: boolean;
   icon?: ReactNode;
   indicator?: ReactNode;
-  actionType?: 'chevron' | 'menu' | 'swipe' | 'none';
+  actionType?: 'chevron' | 'menu' | 'swipe';
   menuActions?: ActionItem[];
   menuPosition?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
   onClick?: () => void;
@@ -43,8 +43,6 @@ const CardListAction = ({
   className,
 }: CardListActionProps): ReactElement => {
   const renderActionIcon = () => {
-    if (actionType === 'none') return null;
-
     if (actionType === 'chevron') {
       return (
         <div className="ods-card-list-action__action">
@@ -64,33 +62,32 @@ const CardListAction = ({
       );
     }
 
-    // Placeholder para swipe (implementar depois)
     return null;
   };
 
   if (loading) {
     return (
-      <div
+      <button
+        type='button'
         className={classNames('ods-card-list-action', 'ods-card-list-action--loading', className)}
       >
-        {icon && <div className="ods-card-list-action__icon">{icon}</div>}
         <div className="ods-card-list-action__skeleton">
           <SkeletonBar width="100%" height="24px" />
           <SkeletonBar width="80%" height="20px" />
         </div>
-      </div>
+      </button>
     );
   }
 
   return (
     <button
+      type="button"
       className={classNames('ods-card-list-action', className, {
         'ods-card-list-action--disabled': disabled,
         'ods-card-list-action--swipe-mode': actionType === 'swipe',
       })}
       onClick={disabled ? undefined : onClick}
-      role={onClick ? 'button' : undefined}
-      tabIndex={onClick && !disabled ? 0 : undefined}
+      disabled={disabled}
     >
       {icon && <div className="ods-card-list-action__icon">{icon}</div>}
       <CardListContent

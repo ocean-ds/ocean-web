@@ -60,6 +60,10 @@ const MenuList: React.FC<MenuListProps> = ({
     }
   }, [isSwipeMode, triggerElement, position, menuRef]);
 
+  const handleMenuClick = (e: React.MouseEvent<HTMLUListElement>) => {
+    e.stopPropagation();
+  };
+
   const menuContent = (
     <ul
       ref={menuRef}
@@ -75,6 +79,7 @@ const MenuList: React.FC<MenuListProps> = ({
       role="menu"
       aria-orientation={isSwipeMode ? "horizontal" : "vertical"}
       tabIndex={-1}
+      onClick={handleMenuClick}
     >
       {isSwipeMode && (
         <DragHandle onClose={onClose} onKeyDown={onDragHandleKeyDown} />

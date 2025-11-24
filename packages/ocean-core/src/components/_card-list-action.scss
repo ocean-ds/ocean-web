@@ -5,13 +5,13 @@
   border-radius: $border-radius-sm;
   cursor: pointer;
   display: flex;
-  width: 100%;
-  text-align: left;
   gap: $spacing-inline-xxs-extra;
   padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
     $spacing-inline-xs;
   position: relative;
+  text-align: left;
   transition: background-color 0.2s ease;
+  width: 100%;
 
   &:hover:not(&--disabled):not(&--loading) {
     background-color: $color-interface-light-up;
@@ -30,10 +30,6 @@
     align-items: center;
     display: flex;
     flex-shrink: 0;
-
-    svg {
-      color: $color-interface-dark-pure;
-    }
   }
 
   &__trailing {
@@ -59,6 +55,10 @@
     flex-direction: column;
     gap: $spacing-inline-xxs;
     width: 100%;
+    
+    .ods-skeleton-bar {
+      max-width: 100%;
+    }
   }
 
   .ods-typography__paragraph {
