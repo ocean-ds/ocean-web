@@ -74,6 +74,7 @@ const MenuList: React.FC<MenuListProps> = ({
       style={isSwipeMode ? undefined : menuStyle}
       role="menu"
       aria-orientation={isSwipeMode ? "horizontal" : "vertical"}
+      tabIndex={-1}
     >
       {isSwipeMode && (
         <DragHandle onClose={onClose} onKeyDown={onDragHandleKeyDown} />
