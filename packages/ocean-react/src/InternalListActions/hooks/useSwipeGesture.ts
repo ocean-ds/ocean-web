@@ -32,20 +32,23 @@ const useSwipeGesture = (
       const deltaY = Math.abs(touchStartY.current - touchEndY);
 
       // Swipe left (drag from right to left) with minimal vertical movement
-      if (deltaX > SWIPE_THRESHOLD && deltaY < VERTICAL_TOLERANCE && !isOpen) {
+      const swipeToLeftGesture =
+        deltaX > SWIPE_THRESHOLD && deltaY < VERTICAL_TOLERANCE && !isOpen;
+
+      if (swipeToLeftGesture) {
         // Dispatch a synthetic mousedown event to trigger click outside handlers on other menus
         const mouseDownEvent = new MouseEvent('mousedown', {
           bubbles: true,
           cancelable: true,
-          view: window,
+          // eslint-disable-next-line no-undef
+          view: globalThis as unknown as Window,
           clientX: touchEndX,
           clientY: touchEndY,
         });
         document.dispatchEvent(mouseDownEvent);
 
         onSwipeLeft();
-        touchStartX.current = 0;
-        touchStartY.current = 0;
+        handleTouchEnd();
       }
     };
 

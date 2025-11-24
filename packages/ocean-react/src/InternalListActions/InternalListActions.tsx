@@ -22,6 +22,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
     const [isClosing, setIsClosing] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
+    const menuRef = useRef<HTMLUListElement>(null);
 
     // When actionType is 'swipe', always use swipe mode (mobile UI) regardless of device
     const isSwipeMode = actionType === 'swipe';
@@ -44,7 +45,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
     };
 
     useSwipeGesture(triggerRef, isSwipeMode, isOpen, handleSwipeLeft);
-    useClickOutside(wrapperRef, isOpen, handleClose);
+    useClickOutside(wrapperRef, isOpen, handleClose, menuRef);
 
     useEffect(() => {
       if (forwardedRef) {
@@ -76,7 +77,8 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
     };
 
     const handleDragHandleKeyDown = (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
+      const isTriggerKey = e.key === 'Enter' || e.key === ' ';
+      if (isTriggerKey) {
         e.preventDefault();
         handleClose();
       }
@@ -102,6 +104,7 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
 
         {isOpen && (
           <MenuList
+            menuRef={menuRef}
             actions={actions}
             position={position}
             isClosing={isClosing}

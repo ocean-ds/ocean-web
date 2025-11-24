@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { ActionItem } from '../types';
@@ -6,6 +6,7 @@ import DragHandle from './DragHandle';
 import MenuItem from './MenuItem';
 
 interface MenuListProps {
+  menuRef: React.RefObject<HTMLUListElement>;
   actions: ActionItem[];
   position: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
   isClosing: boolean;
@@ -17,6 +18,7 @@ interface MenuListProps {
 }
 
 const MenuList: React.FC<MenuListProps> = ({
+  menuRef,
   actions,
   position,
   isClosing,
@@ -26,7 +28,6 @@ const MenuList: React.FC<MenuListProps> = ({
   onDragHandleKeyDown,
   triggerElement,
 }) => {
-  const menuRef = useRef<HTMLUListElement>(null);
   const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
 
   useLayoutEffect(() => {
@@ -57,7 +58,7 @@ const MenuList: React.FC<MenuListProps> = ({
         zIndex: 9999,
       });
     }
-  }, [isSwipeMode, triggerElement, position]);
+  }, [isSwipeMode, triggerElement, position, menuRef]);
 
   const menuContent = (
     <ul
@@ -70,8 +71,10 @@ const MenuList: React.FC<MenuListProps> = ({
           'ods-internal-list-actions__menu--portal': !isSwipeMode,
         }
       )}
-      style={!isSwipeMode ? menuStyle : undefined}
+      style={isSwipeMode ? undefined : menuStyle}
       role="menu"
+      aria-orientation={isSwipeMode ? "horizontal" : "vertical"}
+      tabIndex={-1}
     >
       {isSwipeMode && (
         <DragHandle onClose={onClose} onKeyDown={onDragHandleKeyDown} />
