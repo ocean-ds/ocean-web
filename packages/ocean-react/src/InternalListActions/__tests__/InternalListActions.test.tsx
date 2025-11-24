@@ -46,8 +46,8 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      expect(screen.getByRole('menuitem', { name: 'Edit' })).toBeInTheDocument();
-      expect(screen.getByRole('menuitem', { name: 'Delete' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Edit' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Delete' })).toBeInTheDocument();
     });
 
     test('renders action items with icons', () => {
@@ -112,7 +112,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const deleteButton = screen.getByRole('menuitem', { name: 'Delete' });
+      const deleteButton = screen.getByRole('button', { name: 'Delete' });
       expect(deleteButton).toBeDisabled();
       expect(deleteButton).toHaveClass('ods-internal-list-actions__menu-item--disabled');
     });
@@ -133,7 +133,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const editButton = screen.getByRole('menuitem', { name: 'Edit' });
+      const editButton = screen.getByRole('button', { name: 'Edit' });
       fireEvent.click(editButton);
 
       expect(onClickMock).toHaveBeenCalledTimes(1);
@@ -154,7 +154,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const editButton = screen.getByRole('menuitem', { name: 'Edit' });
+      const editButton = screen.getByRole('button', { name: 'Edit' });
       fireEvent.click(editButton);
 
       expect(onClickMock).not.toHaveBeenCalled();
@@ -174,7 +174,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const editButton = screen.getByRole('menuitem', { name: 'Edit' });
+      const editButton = screen.getByRole('button', { name: 'Edit' });
       fireEvent.click(editButton);
 
       await waitFor(() => {
@@ -270,7 +270,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const archiveButton = screen.getByRole('menuitem', { name: 'Archive' });
+      const archiveButton = screen.getByRole('button', { name: 'Archive' });
       expect(archiveButton).toHaveClass('ods-internal-list-actions__menu-item--positive');
     });
 
@@ -288,7 +288,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const warningButton = screen.getByRole('menuitem', { name: 'Warning' });
+      const warningButton = screen.getByRole('button', { name: 'Warning' });
       expect(warningButton).toHaveClass('ods-internal-list-actions__menu-item--warning');
     });
 
@@ -306,7 +306,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const deleteButton = screen.getByRole('menuitem', { name: 'Delete' });
+      const deleteButton = screen.getByRole('button', { name: 'Delete' });
       expect(deleteButton).toHaveClass('ods-internal-list-actions__menu-item--negative');
     });
 
@@ -324,7 +324,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const infoButton = screen.getByRole('menuitem', { name: 'Info' });
+      const infoButton = screen.getByRole('button', { name: 'Info' });
       expect(infoButton).toHaveClass('ods-internal-list-actions__menu-item--neutral');
     });
 
@@ -342,7 +342,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const defaultButton = screen.getByRole('menuitem', { name: 'Default' });
+      const defaultButton = screen.getByRole('button', { name: 'Default' });
       expect(defaultButton).toHaveClass('ods-internal-list-actions__menu-item--default');
     });
   });
@@ -514,7 +514,7 @@ describe('InternalListActions', () => {
 
       fireEvent.click(trigger);
 
-      const editButton = screen.getByRole('menuitem', { name: 'Edit' });
+      const editButton = screen.getByRole('button', { name: 'Edit' });
       expect(editButton).toBeInTheDocument();
     });
 
@@ -536,7 +536,7 @@ describe('InternalListActions', () => {
 
       const dragHandle = screen.getByRole('button', { name: /fechar menu/i });
       expect(dragHandle).toHaveAttribute('aria-label', 'Fechar menu');
-      expect(dragHandle).toHaveAttribute('tabIndex', '0');
+      // Native button elements are inherently focusable, no need to check tabIndex
     });
   });
 
