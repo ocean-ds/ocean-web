@@ -64,6 +64,13 @@ const MenuList: React.FC<MenuListProps> = ({
     e.stopPropagation();
   };
 
+  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    // Prevent event propagation for keyboard interactions as well
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.stopPropagation();
+    }
+  };
+
   const menuContent = (
     <ul
       ref={menuRef}
@@ -80,6 +87,7 @@ const MenuList: React.FC<MenuListProps> = ({
       aria-orientation={isSwipeMode ? "horizontal" : "vertical"}
       tabIndex={-1}
       onClick={handleMenuClick}
+      onKeyDown={handleMenuKeyDown}
     >
       {isSwipeMode && (
         <DragHandle onClose={onClose} onKeyDown={onDragHandleKeyDown} />
