@@ -14,9 +14,10 @@ const useClickOutside = (
     const handleClickOutside = (event: MouseEvent) => {
       const clickedOutsideElement =
         ref.current && !ref.current.contains(event.target as Node);
-      
-      const clickedOutsideMenu =
-        !menuRef?.current || !menuRef.current.contains(event.target as Node);
+
+      const clickedOutsideMenu = !menuRef?.current?.contains(
+        event.target as Node
+      );
 
       if (clickedOutsideElement && clickedOutsideMenu) {
         onClickOutside();

@@ -71,8 +71,9 @@ const MenuList: React.FC<MenuListProps> = ({
           'ods-internal-list-actions__menu--portal': !isSwipeMode,
         }
       )}
-      style={!isSwipeMode ? menuStyle : undefined}
+      style={isSwipeMode ? undefined : menuStyle}
       role="menu"
+      aria-orientation={isSwipeMode ? "horizontal" : "vertical"}
     >
       {isSwipeMode && (
         <DragHandle onClose={onClose} onKeyDown={onDragHandleKeyDown} />
