@@ -1,9 +1,9 @@
 import React, { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ChevronRight } from '@useblu/ocean-icons-react';
-import CardListContent, {
-  CardListContentProps,
-} from '../_shared/components/CardListContent';
+import ContentList, {
+  ContentListProps,
+} from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import InternalListActions, { ActionItem } from '../InternalListActions';
 
@@ -13,7 +13,7 @@ export type CardListActionProps = {
   strikethroughDescription?: string;
   caption?: string;
   inverted?: boolean;
-  type?: CardListContentProps['type'];
+  type?: ContentListProps['type'];
   disabled?: boolean;
   loading?: boolean;
   icon?: ReactNode;
@@ -90,7 +90,7 @@ const CardListAction = ({
       disabled={disabled}
     >
       {icon && <div className="ods-card-list-action__icon">{icon}</div>}
-      <CardListContent
+      <ContentList
         title={title}
         description={description}
         strikethroughDescription={strikethroughDescription}

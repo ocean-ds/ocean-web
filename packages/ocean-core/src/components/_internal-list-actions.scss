@@ -179,10 +179,13 @@
 
     /* stylelint-disable max-nesting-depth */
     .ods-internal-list-actions__trigger {
+      height: 100%;
+      padding: 0 $spacing-inline-xxs;
       position: absolute;
       right: 0;
       top: 50%;
       transform: translateY(-50%);
+      width: auto;
       z-index: 102;
     }
 
@@ -220,7 +223,7 @@
       height: 100%;
       justify-content: center;
       margin: 0;
-      padding: 0;
+      padding: 0 $spacing-inline-xxs;
       width: 100%;
     }
 
@@ -277,7 +280,6 @@
 
         &:first-of-type {
           margin-left: auto;
-          padding: 0 $spacing-inline-xxxs;
         }
       }
     }

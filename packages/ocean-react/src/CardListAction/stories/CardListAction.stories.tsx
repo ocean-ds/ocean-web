@@ -137,9 +137,9 @@ export const Default: Story = {
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
-      <div>
+      <List>
         <StoryComponent />
-      </div>
+      </List>
     ),
   ],
 };
@@ -744,6 +744,7 @@ export const AllActionTypes: Story = {
         title="Action Type: Swipe"
         description="Exibe menu com swipe lateral"
         icon={<PlaceholderOutline size={24} />}
+        indicator={<Badge variation="tiny" color="brand">Label</Badge>}
         actionType="swipe"
         menuActions={[
           {
