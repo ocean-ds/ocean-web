@@ -6,6 +6,19 @@ import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
 
+const defaultIcon = <PlaceholderOutline size={24} />;
+const listStyle = { minWidth: '300px' };
+
+const typeExamples = [
+  { type: 'default' as const, title: 'Tipo Default', description: 'R$ 1.234,56' },
+  { type: 'inactive' as const, title: 'Tipo Inactive', description: 'Inativo' },
+  { type: 'positive' as const, title: 'Tipo Positive', description: '+ R$ 500,00' },
+  { type: 'warning' as const, title: 'Tipo Warning', description: 'Atenção necessária' },
+  { type: 'highlight' as const, title: 'Tipo Highlight', description: 'Destaque' },
+  { type: 'highlight-lead' as const, title: 'Tipo Highlight Lead', description: 'Destaque principal' },
+  { type: 'strikethrough' as const, title: 'Tipo Strikethrough', description: 'R$ 1.234,56', strikethroughDescription: 'riscado' },
+];
+
 const meta: Meta<typeof CardListReadOnly> = {
   title: 'Components/CardList/CardListReadOnly',
   component: CardListReadOnly,
@@ -76,7 +89,7 @@ export const Usage: Story = {
   args: {
     title: 'Título do Card',
     description: 'Descrição do card com informações importantes',
-    icon: <PlaceholderOutline size={24} />,
+    icon: defaultIcon,
     indicator: <Badge count={3} color="brand" />,
     type: 'default',
   },
@@ -103,50 +116,17 @@ export const AllTypes: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <List style={{ minWidth: '300px' }}>
-      <CardListReadOnly
-        title="Tipo Default"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="default"
-      />
-      <CardListReadOnly
-        title="Tipo Inactive"
-        description="Inativo"
-        icon={<PlaceholderOutline size={24} />}
-        type="inactive"
-      />
-      <CardListReadOnly
-        title="Tipo Positive"
-        description="+ R$ 500,00"
-        icon={<PlaceholderOutline size={24} />}
-        type="positive"
-      />
-      <CardListReadOnly
-        title="Tipo Warning"
-        description="Atenção necessária"
-        icon={<PlaceholderOutline size={24} />}
-        type="warning"
-      />
-      <CardListReadOnly
-        title="Tipo Highlight"
-        description="Destaque"
-        icon={<PlaceholderOutline size={24} />}
-        type="highlight"
-      />
-      <CardListReadOnly
-        title="Tipo Highlight Lead"
-        description="Destaque principal"
-        icon={<PlaceholderOutline size={24} />}
-        type="highlight-lead"
-      />
-      <CardListReadOnly
-        title="Tipo Strikethrough"
-        description="R$ 1.234,56"
-        strikethroughDescription='riscado'
-        icon={<PlaceholderOutline size={24} />}
-        type="strikethrough"
-      />
+    <List style={listStyle}>
+      {typeExamples.map(({ type, title, description, strikethroughDescription }) => (
+        <CardListReadOnly
+          key={type}
+          icon={defaultIcon}
+          type={type}
+          title={title}
+          description={description}
+          strikethroughDescription={strikethroughDescription}
+        />
+      ))}
     </List>
   ),
 };
@@ -157,57 +137,18 @@ export const AllTypesInverted: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <List style={{ minWidth: '300px' }}>
-      <CardListReadOnly
-        title="Tipo Default"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="default"
-        inverted
-      />
-      <CardListReadOnly
-        title="Tipo Inactive"
-        description="Inativo"
-        icon={<PlaceholderOutline size={24} />}
-        type="inactive"
-        inverted
-      />
-      <CardListReadOnly
-        title="Tipo Positive"
-        description="+ R$ 500,00"
-        icon={<PlaceholderOutline size={24} />}
-        type="positive"
-        inverted
-      />
-      <CardListReadOnly
-        title="Tipo Warning"
-        description="Atenção necessária"
-        icon={<PlaceholderOutline size={24} />}
-        type="warning"
-        inverted
-      />
-      <CardListReadOnly
-        title="Tipo Highlight"
-        description="Destaque"
-        icon={<PlaceholderOutline size={24} />}
-        type="highlight"
-        inverted
-      />
-      <CardListReadOnly
-        title="Tipo Highlight Lead"
-        description="Destaque principal"
-        icon={<PlaceholderOutline size={24} />}
-        type="highlight-lead"
-        inverted
-      />
-      <CardListReadOnly
-        title="Tipo Strikethrough"
-        description="R$ 1.234,56"
-        strikethroughDescription='riscado'
-        icon={<PlaceholderOutline size={24} />}
-        type="strikethrough"
-        inverted
-      />
+    <List style={listStyle}>
+      {typeExamples.map(({ type, title, description, strikethroughDescription }) => (
+        <CardListReadOnly
+          key={type}
+          icon={defaultIcon}
+          type={type}
+          title={title}
+          description={description}
+          strikethroughDescription={strikethroughDescription}
+          inverted
+        />
+      ))}
     </List>
   ),
 };
@@ -217,30 +158,22 @@ export const DisabledAndLoading: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <List style={{ minWidth: '300px' }}>
-      <CardListReadOnly
-        title="Card Normal"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="default"
-      />
-      <CardListReadOnly
-        title="Card Disabled"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="default"
-        disabled
-      />
-      <CardListReadOnly
-        title="Card Loading"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="default"
-        loading
-      />
-    </List>
-  ),
+  render: () => {
+    const baseProps = {
+      title: 'Card Normal',
+      description: 'R$ 1.234,56',
+      icon: defaultIcon,
+      type: 'default' as const,
+    };
+
+    return (
+      <List style={listStyle}>
+        <CardListReadOnly {...baseProps} />
+        <CardListReadOnly {...baseProps} title="Card Disabled" disabled />
+        <CardListReadOnly {...baseProps} title="Card Loading" loading />
+      </List>
+    );
+  },
 };
 
 // Story: Todos os indicadores
@@ -248,87 +181,93 @@ export const AllIndicators: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <List style={{ minWidth: '300px' }}>
-      <CardListReadOnly
-        title="Badge Tiny - Brand"
-        description="Indicator com badge tiny"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge variation="tiny" color="brand" />}
-      />
-      <CardListReadOnly
-        title="Badge Small - Brand"
-        description="Indicator com badge small e count"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge variation="small" count={5} color="brand" />}
-      />
-      <CardListReadOnly
-        title="Badge Medium - Brand"
-        description="Indicator com badge medium"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge variation="medium" count={99} color="brand" />}
-      />
-      <CardListReadOnly
-        title="Badge Complementary"
-        description="Indicator com cor complementary"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge count={3} color="complementary" />}
-      />
-      <CardListReadOnly
-        title="Badge Alert"
-        description="Indicator com cor alert"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge count={12} color="alert" />}
-      />
-      <CardListReadOnly
-        title="Badge Neutral"
-        description="Indicator com cor neutral"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge count={7} color="neutral" />}
-      />
-      <CardListReadOnly
-        title="Badge com Texto"
-        description="Indicator com texto ao invés de número"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge color="brand">Novo</Badge>}
-      />
-      <CardListReadOnly
-        title="Tag Positive"
-        description="Indicator com tag positive"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="positive" size="small">Aprovado</Tag>}
-      />
-      <CardListReadOnly
-        title="Tag Warning"
-        description="Indicator com tag warning"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="warning" size="small">Pendente</Tag>}
-      />
-      <CardListReadOnly
-        title="Tag Negative"
-        description="Indicator com tag negative"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="negative" setIconOff size="medium">Recusado</Tag>}
-      />
-      <CardListReadOnly
-        title="Tag Neutral"
-        description="Indicator com tag neutral"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="neutral" size="small">Info</Tag>}
-      />
-      <CardListReadOnly
-        title="Tag Highlight"
-        description="Indicator com tag highlight important"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag variant="highlight" type="important" size="small">Urgente</Tag>}
-      />
-      <CardListReadOnly
-        title="Sem Indicator"
-        description="Card sem indicator"
-        icon={<PlaceholderOutline size={24} />}
-      />
-    </List>
-  ),
+  render: () => {
+    const baseProps = {
+      icon: defaultIcon,
+    };
+
+    return (
+      <List style={listStyle}>
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge Tiny - Brand"
+          description="Indicator com badge tiny"
+          indicator={<Badge variation="tiny" color="brand" />}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge Small - Brand"
+          description="Indicator com badge small e count"
+          indicator={<Badge variation="small" count={5} color="brand" />}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge Medium - Brand"
+          description="Indicator com badge medium"
+          indicator={<Badge variation="medium" count={99} color="brand" />}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge Complementary"
+          description="Indicator com cor complementary"
+          indicator={<Badge count={3} color="complementary" />}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge Alert"
+          description="Indicator com cor alert"
+          indicator={<Badge count={12} color="alert" />}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge Neutral"
+          description="Indicator com cor neutral"
+          indicator={<Badge count={7} color="neutral" />}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Badge com Texto"
+          description="Indicator com texto ao invés de número"
+          indicator={<Badge color="brand">Novo</Badge>}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Tag Positive"
+          description="Indicator com tag positive"
+          indicator={<Tag type="positive" size="small">Aprovado</Tag>}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Tag Warning"
+          description="Indicator com tag warning"
+          indicator={<Tag type="warning" size="small">Pendente</Tag>}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Tag Negative"
+          description="Indicator com tag negative"
+          indicator={<Tag type="negative" setIconOff size="medium">Recusado</Tag>}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Tag Neutral"
+          description="Indicator com tag neutral"
+          indicator={<Tag type="neutral" size="small">Info</Tag>}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Tag Highlight"
+          description="Indicator com tag highlight important"
+          indicator={<Tag variant="highlight" type="important" size="small">Urgente</Tag>}
+        />
+        <CardListReadOnly
+          {...baseProps}
+          title="Sem Indicator"
+          description="Card sem indicator"
+        />
+      </List>
+    );
+  },
 };
 
 // Story: Com e sem ícone
@@ -336,21 +275,25 @@ export const WithAndWithoutIcon: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <List style={{ minWidth: '300px' }}>
-      <CardListReadOnly
-        title="Com Ícone"
-        description="Card com ícone à esquerda"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge count={3} color="brand" />}
-      />
-      <CardListReadOnly
-        title="Sem Ícone"
-        description="Card sem ícone"
-        indicator={<Badge count={3} color="brand" />}
-      />
-    </List>
-  ),
+  render: () => {
+    const commonIndicator = <Badge count={3} color="brand" />;
+
+    return (
+      <List style={listStyle}>
+        <CardListReadOnly
+          title="Com Ícone"
+          description="Card com ícone à esquerda"
+          icon={defaultIcon}
+          indicator={commonIndicator}
+        />
+        <CardListReadOnly
+          title="Sem Ícone"
+          description="Card sem ícone"
+          indicator={commonIndicator}
+        />
+      </List>
+    );
+  },
 };
 
 // Story: Com caption
@@ -358,24 +301,21 @@ export const WithCaption: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <List style={{ minWidth: '300px' }}>
-      <CardListReadOnly
-        title="Título do Card"
-        description="Descrição do card"
-        caption="Legenda adicional"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge count={3} color="brand" />}
-      />
-      <CardListReadOnly
-        title="Título do Card"
-        description="Descrição do card"
-        caption="Legenda adicional"
-        icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge count={3} color="brand" />}
-        inverted
-      />
-    </List>
-  ),
+  render: () => {
+    const baseProps = {
+      title: 'Título do Card',
+      description: 'Descrição do card',
+      caption: 'Legenda adicional',
+      icon: defaultIcon,
+      indicator: <Badge count={3} color="brand" />,
+    };
+
+    return (
+      <List style={listStyle}>
+        <CardListReadOnly {...baseProps} />
+        <CardListReadOnly {...baseProps} inverted />
+      </List>
+    );
+  },
 };
 
