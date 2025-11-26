@@ -1,4 +1,12 @@
 .ods-text-list-selectable {
+  &__indicator {
+    margin-left: $spacing-inline-xxs-extra;
+
+    &--app {
+      margin-right: $spacing-inline-xxs;
+    }
+  }
+
   .ods-checkbox__root,
   .ods-radio__root {
     align-items: center;
@@ -17,6 +25,16 @@
   .ods-radio__label {
     padding-left: 16px;
     width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &--loading {
+    cursor: default;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
   }
 
   &__divider {
@@ -24,6 +42,14 @@
     height: 1px;
     margin: 0 $spacing-inline-xs;
     width: 100%;
+  }
+
+  &--app {
+    .ods-checkbox__root,
+    .ods-radio__root {
+      display: flex;
+      flex-direction: row-reverse;
+    }
   }
 }
 

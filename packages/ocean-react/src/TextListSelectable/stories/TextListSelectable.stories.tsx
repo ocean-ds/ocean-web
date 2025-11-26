@@ -3,23 +3,21 @@ import React from 'react';
 import TextListSelectable from '../TextListSelectable';
 
 const storyStyles = {
-  singleItem: { width: '360px' },
-  columnContainer: {
+  container: {
     display: 'flex' as const,
     flexDirection: 'column' as const,
-    gap: '16px',
+    gap: '0px',
     width: '360px',
   },
-  columnContainerWide: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
+  gridContainer: {
+    display: 'grid' as const,
+    gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '16px',
-    width: '400px',
+    width: '100%',
+    maxWidth: '800px',
   },
-  columnContainerSimple: {
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
-    gap: '16px',
+  singleItem: {
+    width: '360px',
   },
 };
 
@@ -78,6 +76,18 @@ const meta: Meta<typeof TextListSelectable> = {
         defaultValue: { summary: 'false' },
       },
     },
+    checkbox: {
+      table: { disable: true },
+    },
+    radio: {
+      table: { disable: true },
+    },
+    showDivider: {
+      table: { disable: true },
+    },
+    indicator: {
+      table: { disable: true },
+    },
   },
 };
 
@@ -87,9 +97,10 @@ type Story = StoryObj<typeof TextListSelectable>;
 
 export const Usage: Story = {
   args: {
-    title: 'Título do item selecionável',
-    description: 'Descrição do item para demonstração',
-    caption: 'Legenda adicional',
+    title: 'Title',
+    description: 'Description',
+    tagLabel: 'Label',
+    checkbox: { id: 'checkbox-usage' },
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -100,101 +111,487 @@ export const Usage: Story = {
   ],
 };
 
-export const Basic: Story = {
+// Checkbox States
+export const CheckboxStates: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <div style={storyStyles.columnContainer}>
+    <div style={storyStyles.container}>
       <TextListSelectable
-        title="Item básico"
-        description="Item com título e descrição simples"
-        loading={false}
-        disabled={false}
-        tagLabel="Nova"
-        checkbox={{ id: 'checkbox-1' }}
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-default' }}
         showDivider
       />
       <TextListSelectable
-        title="Item com legenda"
-        description="Item que inclui uma legenda adicional"
-        loading={false}
-        disabled={false}
-        tagLabel="Nova"
-        checkbox={{ id: 'checkbox-2' }}
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-checked', checked: true }}
         showDivider
       />
       <TextListSelectable
-        title="Item com tag"
-        description="Item que possui uma tag ao lado do título"
-        loading={false}
-        disabled={false}
-        tagLabel="Nova"
-        radio={{ id: 'radio-2' }}
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-indeterminate', indeterminate: true }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-disabled' }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-disabled-checked', checked: true }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-error', error: true }}
         showDivider
       />
     </div>
   ),
 };
 
+// Radio States
+export const RadioStates: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={storyStyles.container}>
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        radio={{ id: 'radio-default', name: 'radio-group' }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        radio={{ id: 'radio-selected', name: 'radio-group', checked: true }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        radio={{ id: 'radio-disabled', name: 'radio-group-2' }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        tagLabel="Label"
+        radio={{
+          id: 'radio-disabled-selected',
+          name: 'radio-group-2',
+          checked: true,
+        }}
+        disabled
+        showDivider
+      />
+    </div>
+  ),
+};
+
+// Without Tag Label
+export const WithoutTagLabel: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={storyStyles.container}>
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-no-tag-default' }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-no-tag-indeterminate', indeterminate: true }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-no-tag-checked', checked: true }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-no-tag-disabled' }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-no-tag-disabled-checked', checked: true }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-no-tag-error', error: true }}
+        showDivider
+      />
+    </div>
+  ),
+};
+
+// Radio Without Tag Label
+export const RadioWithoutTagLabel: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={storyStyles.container}>
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        radio={{ id: 'radio-no-tag-default', name: 'radio-no-tag' }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        radio={{
+          id: 'radio-no-tag-selected',
+          name: 'radio-no-tag',
+          checked: true,
+        }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        radio={{ id: 'radio-no-tag-disabled', name: 'radio-no-tag-2' }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        radio={{
+          id: 'radio-no-tag-disabled-selected',
+          name: 'radio-no-tag-2',
+          checked: true,
+        }}
+        disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        radio={{ id: 'radio-no-tag-error', name: 'radio-no-tag-3' }}
+        showDivider
+      />
+    </div>
+  ),
+};
+
+// All States Grid
+export const AllStates: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={storyStyles.gridContainer}>
+      {/* Checkbox with Label */}
+      <div style={storyStyles.container}>
+        <h3 style={{ marginBottom: '16px' }}>Checkbox com Label</h3>
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          checkbox={{ id: 'cb-label-1' }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          checkbox={{ id: 'cb-label-2', checked: true }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          checkbox={{ id: 'cb-label-3', indeterminate: true }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          checkbox={{ id: 'cb-label-4' }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          checkbox={{ id: 'cb-label-5', checked: true }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          checkbox={{ id: 'cb-label-6', error: true }}
+          showDivider
+        />
+      </div>
+
+      {/* Radio with Label */}
+      <div style={storyStyles.container}>
+        <h3 style={{ marginBottom: '16px' }}>Radio com Label</h3>
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          radio={{ id: 'radio-label-1', name: 'radio-label' }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          radio={{ id: 'radio-label-2', name: 'radio-label', checked: true }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          radio={{ id: 'radio-label-3', name: 'radio-label-2' }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          radio={{ id: 'radio-label-4', name: 'radio-label-2', checked: true }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          tagLabel="Label"
+          radio={{ id: 'radio-label-5', name: 'radio-label-3' }}
+          showDivider
+        />
+      </div>
+
+      {/* Checkbox without Label */}
+      <div style={storyStyles.container}>
+        <h3 style={{ marginBottom: '16px' }}>Checkbox sem Label</h3>
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          checkbox={{ id: 'cb-no-label-1' }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          checkbox={{ id: 'cb-no-label-2', indeterminate: true }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          checkbox={{ id: 'cb-no-label-3', checked: true }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          checkbox={{ id: 'cb-no-label-4' }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          checkbox={{ id: 'cb-no-label-5', checked: true }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          checkbox={{ id: 'cb-no-label-6', error: true }}
+          showDivider
+        />
+      </div>
+
+      {/* Radio without Label */}
+      <div style={storyStyles.container}>
+        <h3 style={{ marginBottom: '16px' }}>Radio sem Label</h3>
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          radio={{ id: 'radio-no-label-1', name: 'radio-no-label' }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          radio={{
+            id: 'radio-no-label-2',
+            name: 'radio-no-label',
+            checked: true,
+          }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          radio={{ id: 'radio-no-label-3', name: 'radio-no-label-2' }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          radio={{
+            id: 'radio-no-label-4',
+            name: 'radio-no-label-2',
+            checked: true,
+          }}
+          disabled
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          radio={{ id: 'radio-no-label-5', name: 'radio-no-label-3' }}
+          showDivider
+        />
+        <TextListSelectable
+          title="Title"
+          description="Description"
+          radio={{
+            id: 'radio-no-label-6',
+            name: 'radio-no-label-3',
+            checked: true,
+          }}
+          showDivider
+        />
+      </div>
+    </div>
+  ),
+};
+
+// With Caption
 export const WithCaption: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <div style={storyStyles.columnContainer}>
+    <div style={storyStyles.container}>
       <TextListSelectable
-        title="Item com legenda"
-        description="Este item possui uma legenda adicional"
-        caption="Legenda do item"
+        title="Title"
+        description="Description"
+        caption="Caption"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-caption-1' }}
+        showDivider
       />
       <TextListSelectable
-        title="Item com legenda destacada"
-        description="Legenda pode ser usada para informações importantes"
-        caption="Informação importante"
+        title="Title"
+        description="Description"
+        caption="Caption"
+        tagLabel="Label"
+        checkbox={{ id: 'checkbox-caption-2', checked: true }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        caption="Caption"
+        checkbox={{ id: 'checkbox-caption-3' }}
+        showDivider
       />
     </div>
   ),
 };
 
+// Loading State
 export const Loading: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <div style={storyStyles.columnContainer}>
+    <div style={storyStyles.container}>
       <TextListSelectable
-        title="Item carregando"
-        description="Este item está em estado de carregamento"
+        title="Title"
+        description="Description"
+        tagLabel="Label"
         loading
+        checkbox={{ id: 'checkbox-loading' }}
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        loading
+        radio={{ id: 'radio-loading', name: 'radio-loading' }}
+        showDivider
       />
     </div>
   ),
 };
 
-export const Disabled: Story = {
+// Complete Example
+export const Complete: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <div style={storyStyles.columnContainer}>
+    <div style={storyStyles.container}>
       <TextListSelectable
-        title="Item desabilitado"
-        description="Este item está desabilitado"
-        disabled
+        title="Item completo"
+        description="Este item possui todas as funcionalidades disponíveis"
+        caption="Legenda adicional"
+        tagLabel="Premium"
+        checkbox={{ id: 'checkbox-complete', checked: true }}
+        showDivider
       />
       <TextListSelectable
-        title="Item com tag desabilitado"
-        description="Item com tag também pode ser desabilitado"
-        tagLabel="Tag"
-        disabled
-      />
-      <TextListSelectable
-        title="Item completo desabilitado"
-        description="Item com todas as propriedades desabilitado"
-        caption="Legenda"
+        title="Item completo com radio"
+        description="Item completo usando radio button"
+        caption="Legenda adicional"
         tagLabel="Nova"
-        disabled
+        radio={{ id: 'radio-complete', name: 'complete-group', checked: true }}
+        showDivider
       />
     </div>
   ),
