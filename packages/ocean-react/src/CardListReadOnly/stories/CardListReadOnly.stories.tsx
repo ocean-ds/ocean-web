@@ -34,7 +34,8 @@ const renderCardList = (items: Array<Partial<CardListReadOnlyProps> & { title?: 
       if (!mergedProps.title) {
         mergedProps.title = '';
       }
-      return <CardListReadOnly key={index} {...mergedProps as CardListReadOnlyProps} />;
+      const key = mergedProps.title || `item-${index}`;
+      return <CardListReadOnly key={key} {...mergedProps as CardListReadOnlyProps} />;
     })}
   </List>
 );
