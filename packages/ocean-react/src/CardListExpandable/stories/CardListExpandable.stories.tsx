@@ -136,7 +136,7 @@ export const ExpandedStates: Story = {
         title="Card Expandido"
         description="Clique para colapsar"
         icon={<PlaceholderOutline size={24} />}
-        defaultExpanded={true}
+        defaultExpanded
       >
         <div style={{ padding: '16px', background: '#f3f5fe' }}>
           <Typography variant="paragraph">
@@ -335,7 +335,7 @@ export const ComplexContent: Story = {
             Concluído
           </Tag>
         }
-        defaultExpanded={true}
+        defaultExpanded
       >
         <div
           style={{
@@ -395,6 +395,7 @@ export const ControlledExample: Story = {
       <List style={{ width: '300px' }}>
         <div style={{ padding: '16px', marginBottom: '16px' }}>
           <button
+            type="button"
             onClick={() => setExpanded(!expanded)}
             style={{
               padding: '8px 16px',

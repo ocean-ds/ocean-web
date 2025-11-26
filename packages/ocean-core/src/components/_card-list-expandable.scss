@@ -4,24 +4,24 @@
   border-radius: $border-radius-sm;
   display: flex;
   flex-direction: column;
+  min-width: 0; // Prevent flex items from overflowing
   overflow: hidden;
   position: relative;
   width: 100%;
-  min-width: 0; // Prevent flex items from overflowing
 
   &__main {
     align-items: center;
     background-color: transparent;
-    border: none;
+    border: 0;
     cursor: pointer;
     display: flex;
     gap: $spacing-inline-xxs-extra;
+    min-width: 0; // Prevent button from overflowing
     padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
       $spacing-inline-xs;
     text-align: left;
     transition: background-color 0.2s ease;
     width: 100%;
-    min-width: 0; // Prevent button from overflowing
 
     &:hover:not(.ods-card-list-expandable--loading &) {
       background-color: $color-interface-light-up;
@@ -65,19 +65,19 @@
   }
 
   &__content {
-    width: 100%;
-    overflow: hidden; // Prevent content from overflowing
-    word-wrap: break-word; // Break long words
     box-sizing: border-box; // Include padding in width calculation
+    overflow: hidden; // Prevent content from overflowing
+    width: 100%;
+    word-wrap: break-word; // Break long words
   }
 
   &__skeleton {
+    box-sizing: border-box; // Include padding in width calculation
     display: flex;
     flex-direction: column;
     gap: $spacing-inline-xxs;
-    width: 100%;
     padding: 0; // Remove any extra padding
-    box-sizing: border-box; // Include padding in width calculation
+    width: 100%;
 
     .ods-skeleton-bar {
       max-width: 100%;
@@ -88,19 +88,17 @@
   // Loading state
   &--loading {
     .ods-card-list-expandable__main {
-      cursor: default;
-      pointer-events: none;
-      overflow: hidden; // Prevent skeleton from overflowing
       box-sizing: border-box;
+      cursor: default;
+      overflow: hidden; // Prevent skeleton from overflowing
+      pointer-events: none;
     }
   }
 
   // Expanded state
   &--expanded {
-    .ods-card-list-expandable__main {
-      &:hover {
-        background-color: $color-interface-light-up;
-      }
+    .ods-card-list-expandable__main:hover {
+      background-color: $color-interface-light-up;
     }
   }
 }
