@@ -19,6 +19,7 @@ export type ShortcutProps = {
   blocked?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
+  badge?: string;
   orientation?: 'horizontal' | 'vertical';
 } & ExclusiveTagOrCount &
   React.ComponentPropsWithoutRef<'div'>;
@@ -33,6 +34,7 @@ const Shortcut = ({
   fullWidth = false,
   orientation = 'horizontal',
   count,
+  badge,
   tag,
   ...rest
 }: ShortcutProps): React.ReactElement => (
@@ -53,13 +55,15 @@ const Shortcut = ({
         <LockClosed />
       </div>
     )}
-    {!blocked && count ? (
+    {!blocked && (count || badge) ? (
       <Badge
         className="ods-shortcut__badge"
         variation="small"
         color={disabled ? 'neutral' : 'alert'}
         count={count}
-      />
+      >
+        {badge}
+      </Badge>
     ) : null}
     {!blocked && tag && orientation === 'vertical' && (
       <Tag className="ods-shortcut__tag" variant="highlight" type="important">
