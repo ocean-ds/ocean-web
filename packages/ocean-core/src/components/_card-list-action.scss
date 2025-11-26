@@ -55,51 +55,10 @@
     flex-direction: column;
     gap: $spacing-inline-xxs;
     width: 100%;
-    
+
     .ods-skeleton-bar {
       max-width: 100%;
     }
-  }
-
-  .ods-typography__paragraph {
-    color: $color-interface-dark-pure;
-  }
-
-  .ods-typography__captionbold {
-    margin-top: $spacing-inline-xxs;
-  }
-
-  .ods-typography__paragraph--inactive {
-    color: $color-interface-dark-up;
-  }
-
-  .ods-typography__paragraph--positive {
-    color: $color-status-positive-deep;
-  }
-
-  .ods-typography__paragraph--warning {
-    color: $color-status-warning-deep;
-  }
-
-  .ods-typography__paragraph--highlight {
-    color: $color-interface-dark-deep;
-    font-weight: $font-weight-bold;
-  }
-
-  .ods-typography__paragraph--highlight-lead {
-    color: $color-interface-dark-deep;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-bold;
-  }
-
-  .ods-typography__paragraph--strikethrough {
-    color: $color-status-positive-deep;
-  }
-
-  .ods-typography__paragraph--strikethrough-text {
-    color: $color-interface-dark-up;
-    margin-right: $spacing-inline-xxxs;
-    text-decoration: line-through;
   }
 
   &--loading {

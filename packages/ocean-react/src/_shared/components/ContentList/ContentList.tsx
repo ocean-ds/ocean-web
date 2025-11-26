@@ -25,7 +25,7 @@ const ContentList = ({
   inverted = false,
   type = 'default',
 }: ContentListProps): ReactElement => (
-  <div className="ods-card-list-content">
+  <div className="ods-content-list">
     <p
       className={classNames('ods-typography', {
         'ods-typography__paragraph': !inverted,
