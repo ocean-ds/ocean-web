@@ -22,17 +22,7 @@ const typeExamples = [
 ];
 
 const indicatorExamples = [
-  { title: 'Badge Tiny - Brand', description: 'Indicator com badge tiny', indicator: <Badge variation="tiny" color="brand" /> },
-  { title: 'Badge Small - Brand', description: 'Indicator com badge small e count', indicator: <Badge variation="small" count={5} color="brand" /> },
-  { title: 'Badge Medium - Brand', description: 'Indicator com badge medium', indicator: <Badge variation="medium" count={99} color="brand" /> },
-  { title: 'Badge Complementary', description: 'Indicator com cor complementary', indicator: <Badge count={3} color="complementary" /> },
-  { title: 'Badge Alert', description: 'Indicator com cor alert', indicator: <Badge count={12} color="alert" /> },
-  { title: 'Badge Neutral', description: 'Indicator com cor neutral', indicator: <Badge count={7} color="neutral" /> },
   { title: 'Badge com Texto', description: 'Indicator com texto ao invés de número', indicator: <Badge color="brand">Novo</Badge> },
-  { title: 'Tag Positive', description: 'Indicator com tag positive', indicator: <Tag type="positive" size="small">Aprovado</Tag> },
-  { title: 'Tag Warning', description: 'Indicator com tag warning', indicator: <Tag type="warning" size="small">Pendente</Tag> },
-  { title: 'Tag Negative', description: 'Indicator com tag negative', indicator: <Tag type="negative" setIconOff size="medium">Recusado</Tag> },
-  { title: 'Tag Neutral', description: 'Indicator com tag neutral', indicator: <Tag type="neutral" size="small">Info</Tag> },
   { title: 'Tag Highlight', description: 'Indicator com tag highlight important', indicator: <Tag variant="highlight" type="important" size="small">Urgente</Tag> },
   { title: 'Sem Indicator', description: 'Card sem indicator', indicator: undefined },
 ];
