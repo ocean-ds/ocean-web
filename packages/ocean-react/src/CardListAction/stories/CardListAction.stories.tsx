@@ -14,7 +14,7 @@ import Tag from '../../Tag';
 import List from '../../List';
 
 const meta: Meta<typeof CardListAction> = {
-  title: 'Components/CardListAction',
+  title: 'Components/CardList/CardListAction',
   component: CardListAction,
   tags: ['autodocs'],
   argTypes: {

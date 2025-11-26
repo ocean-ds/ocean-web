@@ -1,0 +1,160 @@
+.ods-card-list-expandable {
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-sm;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-width: 0; // Prevent flex items from overflowing
+
+  &__main {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    gap: $spacing-inline-xxs-extra;
+    padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
+      $spacing-inline-xs;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    min-width: 0; // Prevent button from overflowing
+
+    &:hover:not(.ods-card-list-expandable--loading &) {
+      background-color: $color-interface-light-up;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-brand-primary-pure;
+      outline-offset: -2px;
+    }
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__trailing {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    margin-left: auto;
+  }
+
+  &__indicator {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__action {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+
+    svg {
+      color: $color-interface-dark-up;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    overflow: hidden; // Prevent content from overflowing
+    word-wrap: break-word; // Break long words
+    box-sizing: border-box; // Include padding in width calculation
+  }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    width: 100%;
+    padding: 0; // Remove any extra padding
+    box-sizing: border-box; // Include padding in width calculation
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+      width: 100%; // Ensure skeleton respects parent width
+    }
+  }
+
+  // Ensure ContentList doesn't overflow
+  .ods-card-list-content {
+    flex: 1;
+    min-width: 0; // Allow text truncation if needed
+    overflow: hidden;
+  }
+
+  // Typography styles
+  .ods-typography__paragraph {
+    color: $color-interface-dark-deep;
+  }
+
+  .ods-typography__description {
+    color: $color-interface-dark-down;
+  }
+
+  .ods-typography__captionbold {
+    color: $color-interface-dark-down;
+    margin-top: $spacing-inline-xxxs;
+  }
+
+  .ods-typography__paragraph--inactive {
+    color: $color-interface-dark-up;
+  }
+
+  .ods-typography__paragraph--positive {
+    color: $color-status-positive-deep;
+  }
+
+  .ods-typography__paragraph--warning {
+    color: $color-status-warning-deep;
+  }
+
+  .ods-typography__paragraph--highlight {
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-bold;
+  }
+
+  .ods-typography__paragraph--highlight-lead {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+  }
+
+  .ods-typography__paragraph--strikethrough {
+    color: $color-status-positive-deep;
+  }
+
+  .ods-typography__paragraph--strikethrough-text {
+    color: $color-interface-dark-up;
+    margin-right: $spacing-inline-xxxs;
+    text-decoration: line-through;
+  }
+
+  // Loading state
+  &--loading {
+    .ods-card-list-expandable__main {
+      cursor: default;
+      pointer-events: none;
+      overflow: hidden; // Prevent skeleton from overflowing
+      box-sizing: border-box;
+    }
+  }
+
+  // Expanded state
+  &--expanded {
+    .ods-card-list-expandable__main {
+      &:hover {
+        background-color: $color-interface-light-up;
+      }
+    }
+  }
+}
