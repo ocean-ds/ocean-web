@@ -231,15 +231,30 @@ export const WithBadge: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <HorizontalLayout align="flex-start">
-      <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
-      <Shortcut
-        label="Com Badge"
-        icon={<PlaceholderOutline />}
-        count={5}
-        orientation="vertical"
-      />
-    </HorizontalLayout>
+    <VerticalLayout gap={commonConfig.gaps.large}>
+      <HorizontalLayout align="flex-start">
+        <Shortcut label="Com Badge" icon={<PlaceholderOutline />} count={5} />
+        <Shortcut
+          label="Com Badge"
+          icon={<PlaceholderOutline />}
+          count={5}
+          orientation="vertical"
+        />
+      </HorizontalLayout>
+      <HorizontalLayout align="flex-start">
+        <Shortcut
+          label="Com Badge"
+          icon={<PlaceholderOutline />}
+          badge="Novo"
+        />
+        <Shortcut
+          label="Com Badge"
+          icon={<PlaceholderOutline />}
+          badge="Novo"
+          orientation="vertical"
+        />
+      </HorizontalLayout>
+    </VerticalLayout>
   ),
 };
 
