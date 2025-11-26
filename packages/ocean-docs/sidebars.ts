@@ -33,6 +33,8 @@ const sidebars: SidebarsConfig = {
         'components/breadcrumb',
         'components/button',
         'components/cardgroup',
+        'components/cardlistaction',
+        'components/cardlistexpandable',
         'components/cardlistitem',
         'components/carousel',
         'components/checkbox',
