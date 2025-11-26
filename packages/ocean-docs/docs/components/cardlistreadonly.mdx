@@ -143,11 +143,8 @@ O prop `inverted` inverte a posição do título e da descrição, útil para pr
 
 ```tsx live
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-  <CardListReadOnly
-    title="Saldo disponível"
-    description="R$ 1.250,00"
-  />
-  
+  <CardListReadOnly title="Saldo disponível" description="R$ 1.250,00" />
+
   <CardListReadOnly
     inverted
     title="R$ 1.250,00"
@@ -203,11 +200,15 @@ Use indicadores (badges, tags) à direita do conteúdo:
     description="Você tem novas mensagens"
     indicator={<Badge count={5} color="brand" />}
   />
-  
+
   <CardListReadOnly
     title="Status do pedido"
     description="Pedido #12345"
-    indicator={<Tag type="positive" size="small">Aprovado</Tag>}
+    indicator={
+      <Tag type="positive" size="small">
+        Aprovado
+      </Tag>
+    }
   />
 </div>
 ```
@@ -229,11 +230,7 @@ Use indicadores (badges, tags) à direita do conteúdo:
 Mostra um skeleton placeholder durante carregamento:
 
 ```tsx live
-<CardListReadOnly
-  title="Carregando..."
-  description="Aguarde"
-  loading
-/>
+<CardListReadOnly title="Carregando..." description="Aguarde" loading />
 ```
 
 ## Exemplos práticos
@@ -297,26 +294,18 @@ Mostra um skeleton placeholder durante carregamento:
 
 ```tsx live
 <List>
-  <CardListReadOnly
-    title="Marca"
-    description="Apple"
-  />
-  <CardListReadOnly
-    title="Modelo"
-    description="iPhone 14 Pro"
-  />
-  <CardListReadOnly
-    title="Cor"
-    description="Azul Pacífico"
-  />
-  <CardListReadOnly
-    title="Armazenamento"
-    description="256GB"
-  />
+  <CardListReadOnly title="Marca" description="Apple" />
+  <CardListReadOnly title="Modelo" description="iPhone 14 Pro" />
+  <CardListReadOnly title="Cor" description="Azul Pacífico" />
+  <CardListReadOnly title="Armazenamento" description="256GB" />
   <CardListReadOnly
     title="Status"
     description="Em estoque"
-    indicator={<Tag type="positive" size="small">Disponível</Tag>}
+    indicator={
+      <Tag type="positive" size="small">
+        Disponível
+      </Tag>
+    }
   />
 </List>
 ```
@@ -325,19 +314,19 @@ Mostra um skeleton placeholder durante carregamento:
 
 ### Props
 
-| Prop                      | Tipo                                                                                           | Padrão           | Descrição                                           |
-| ------------------------- | ---------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------- |
-| `title`                   | `string`                                                                                       | -                | Título principal do card (obrigatório)              |
-| `description`             | `string`                                                                                       | -                | Descrição ou texto secundário                       |
-| `strikethroughDescription`| `string`                                                                                       | -                | Descrição com texto riscado (valor antigo)          |
-| `caption`                 | `string`                                                                                       | -                | Legenda ou texto terciário                          |
-| `inverted`                | `boolean`                                                                                      | `false`          | Inverte posição do título com descrição             |
-| `type`                    | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Tipo de estilo visual do conteúdo                   |
-| `disabled`                | `boolean`                                                                                      | `false`          | Desabilita o card (visual apenas)                   |
-| `loading`                 | `boolean`                                                                                      | `false`          | Exibe skeleton de carregamento                      |
-| `icon`                    | `ReactNode`                                                                                    | -                | Ícone exibido no início do card                     |
-| `indicator`               | `ReactNode`                                                                                    | -                | Indicador (badge/tag) à direita                     |
-| `className`               | `string`                                                                                       | -                | Classes CSS adicionais                              |
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------ |
+| `title`                    | `string`                                                                                                   | -           | Título principal do card (obrigatório)     |
+| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário              |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Descrição com texto riscado (valor antigo) |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                 |
+| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição    |
+| `type`                     | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Tipo de estilo visual do conteúdo          |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o card (visual apenas)          |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento             |
+| `icon`                     | `ReactNode`                                                                                                | -           | Ícone exibido no início do card            |
+| `indicator`                | `ReactNode`                                                                                                | -           | Indicador (badge/tag) à direita            |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                     |
 
 ## Acessibilidade
 
@@ -371,21 +360,23 @@ Mostra um skeleton placeholder durante carregamento:
 
 ## Diferenças entre CardListReadOnly e CardListAction
 
-| Característica | CardListReadOnly | CardListAction |
-| -------------- | ---------------- | -------------- |
-| Elemento HTML | `<div>` | `<button>` |
-| Interatividade | Não clicável | Clicável |
-| Ações | Nenhuma | Chevron, Menu, Swipe |
-| Estados hover | Não possui | Possui feedback visual |
-| Uso principal | Exibir informações | Navegar/executar ações |
-| onClick | Não disponível | Disponível |
+| Característica | CardListReadOnly   | CardListAction         |
+| -------------- | ------------------ | ---------------------- |
+| Elemento HTML  | `<div>`            | `<button>`             |
+| Interatividade | Não clicável       | Clicável               |
+| Ações          | Nenhuma            | Chevron, Menu, Swipe   |
+| Estados hover  | Não possui         | Possui feedback visual |
+| Uso principal  | Exibir informações | Navegar/executar ações |
+| onClick        | Não disponível     | Disponível             |
 
 **Use CardListReadOnly quando:**
+
 - As informações são apenas para leitura
 - Não há necessidade de navegação ou ação do usuário
 - O objetivo é apenas exibir dados estruturados
 
 **Use CardListAction quando:**
+
 - O item precisa ser clicável
 - Há navegação para outra tela
 - Existem ações disponíveis (menu, swipe)
@@ -432,4 +423,3 @@ No Storybook você encontrará:
 - [Tag](/components/tag) - Para indicadores de categoria/status
 - [Typography](/components/typography) - Para formatação de texto
 - [Storybook - CardListReadOnly](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardlistreadonly--docs)
-
