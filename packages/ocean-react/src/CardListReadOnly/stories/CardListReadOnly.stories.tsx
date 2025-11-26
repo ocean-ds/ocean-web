@@ -43,61 +43,6 @@ const meta: Meta<typeof CardListReadOnly> = {
   title: 'Components/CardList/CardListReadOnly',
   component: CardListReadOnly,
   tags: ['autodocs'],
-  argTypes: {
-    title: {
-      description: 'Título principal do card.',
-      control: 'text',
-    },
-    description: {
-      description: 'Descrição ou texto secundário do card.',
-      control: 'text',
-    },
-    strikethroughDescription: {
-      description: 'Descrição com texto riscado.',
-      control: 'text',
-    },
-    caption: {
-      description: 'Legenda ou texto terciário do card.',
-      control: 'text',
-    },
-    inverted: {
-      description: 'Inverte a posição do título com a descrição.',
-      control: 'boolean',
-    },
-    type: {
-      description: 'Tipo de estilo do conteúdo do card.',
-      control: 'select',
-      options: [
-        'default',
-        'inactive',
-        'positive',
-        'warning',
-        'highlight',
-        'highlight-lead',
-        'strikethrough'
-      ],
-    },
-    disabled: {
-      description: 'Desabilita o card.',
-      control: 'boolean',
-    },
-    loading: {
-      description: 'Mostra o estado de carregamento com skeleton.',
-      control: 'boolean',
-    },
-    icon: {
-      description: 'Ícone exibido no início do card.',
-      control: false,
-    },
-    indicator: {
-      description: 'Indicador/badge exibido à direita.',
-      control: false,
-    },
-    className: {
-      description: 'Classe CSS adicional para o card.',
-      control: 'text',
-    },
-  },
 };
 
 export default meta;
