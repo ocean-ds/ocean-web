@@ -23,6 +23,13 @@ const storyStyles = {
   },
 };
 
+const category = {
+  content: '📝 Conteúdo',
+  appearance: '🎨 Aparência',
+  state: '⚙️ Estado',
+  config: '⚙️ Configuração',
+};
+
 const meta: Meta<typeof TextListSelectable> = {
   title: 'Components/List/TextListSelectable',
   component: TextListSelectable,
@@ -32,7 +39,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Título principal do item (obrigatório).',
       control: 'text',
       table: {
-        category: '📝 Conteúdo',
+        category: category.content,
         type: { summary: 'string' },
       },
     },
@@ -40,7 +47,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Descrição detalhada do item (opcional).',
       control: 'text',
       table: {
-        category: '📝 Conteúdo',
+        category: category.content,
         type: { summary: 'string' },
       },
     },
@@ -49,7 +56,7 @@ const meta: Meta<typeof TextListSelectable> = {
         'Texto a ser exibido com linha cortada quando state="strikethrough" e type="inverted" (opcional).',
       control: 'text',
       table: {
-        category: '📝 Conteúdo',
+        category: category.content,
         type: { summary: 'string' },
       },
     },
@@ -57,7 +64,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Legenda ou informação adicional em destaque (opcional).',
       control: 'text',
       table: {
-        category: '📝 Conteúdo',
+        category: category.content,
         type: { summary: 'string' },
       },
     },
@@ -65,7 +72,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Inverte a hierarquia do título e descrição.',
       control: 'boolean',
       table: {
-        category: '🎨 Aparência',
+        category: category.appearance,
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
@@ -76,7 +83,7 @@ const meta: Meta<typeof TextListSelectable> = {
       control: 'select',
       options: ['default', 'inverted'],
       table: {
-        category: '🎨 Aparência',
+        category: category.appearance,
         type: { summary: "'default' | 'inverted'" },
         defaultValue: { summary: "'default'" },
       },
@@ -85,7 +92,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Controla se deve exibir o divisor visual do item.',
       control: 'boolean',
       table: {
-        category: '🎨 Aparência',
+        category: category.appearance,
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
       },
@@ -94,7 +101,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Exibe estado de carregamento com skeleton.',
       control: 'boolean',
       table: {
-        category: '⚙️ Estado',
+        category: category.state,
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
@@ -103,7 +110,7 @@ const meta: Meta<typeof TextListSelectable> = {
       description: 'Desabilita o item, tornando-o não interativo.',
       control: 'boolean',
       table: {
-        category: '⚙️ Estado',
+        category: category.state,
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
@@ -113,7 +120,7 @@ const meta: Meta<typeof TextListSelectable> = {
       control: 'inline-radio',
       options: ['web', 'app'],
       table: {
-        category: '⚙️ Configuração',
+        category: category.config,
         type: { summary: "'web' | 'app'" },
         defaultValue: { summary: "'web'" },
       },

@@ -554,7 +554,7 @@ packages/ocean-docs/docs/components/
 - [ ] Adicionar entrada no arquivo `packages/ocean-docs/sidebars.ts`
 - [ ] Manter ordem alfabética na lista de componentes
 - [ ] Verificar necessidade de links em outras seções (ex: cross-links)
-- [ ] Adicionar referência em packages/ocean-docs/docs/intro.md
+- [ ] Adicionar referência em `packages/ocean-docs/docs/intro.md`
 
 ---
 
