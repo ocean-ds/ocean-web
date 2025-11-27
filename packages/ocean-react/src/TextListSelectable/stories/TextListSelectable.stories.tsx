@@ -78,13 +78,23 @@ const meta: Meta<typeof TextListSelectable> = {
       },
     },
     type: {
-      description:
-        'Tipo visual que inverte a hierarquia do título e descrição.',
+      description: 'Tipo visual que define o estilo do conteúdo.',
       control: 'select',
-      options: ['default', 'inverted'],
+      options: [
+        'default',
+        'inactive',
+        'positive',
+        'warning',
+        'highlight',
+        'highlight-lead',
+        'strikethrough',
+      ],
       table: {
         category: category.appearance,
-        type: { summary: "'default' | 'inverted'" },
+        type: {
+          summary:
+            "'default' | 'inactive' | 'positive' | 'warning' | 'highlight' | 'highlight-lead' | 'strikethrough'",
+        },
         defaultValue: { summary: "'default'" },
       },
     },
