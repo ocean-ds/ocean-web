@@ -1,0 +1,134 @@
+---
+title: TextListSelectable
+sidebar_label: TextListSelectable
+---
+
+import { TextListSelectable } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TextListSelectable
+
+Componente de lista avançado que suporta seleção (checkbox/radio), indicadores visuais (badges, tags) e diferentes estados de exibição.
+
+## Importação
+
+```tsx
+import { TextListSelectable } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TextListSelectable } from '@useblu/ocean-react/TextListSelectable';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TextListSelectableProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<TextListSelectableProps> = (props) => {
+  return <TextListSelectable {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente TextListSelectable no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-textlistselectable--usage"
+  height={500}
+  title="TextListSelectable - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TextListSelectable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-textlistselectable--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Exemplos de Uso
+
+### Com Checkbox
+
+Lista selecionável com checkbox:
+
+<StorybookEmbed
+  storyId="components-list-textlistselectable--checkbox-states"
+  height={400}
+  showToolbar={false}
+  title="TextListSelectable - Checkbox States"
+/>
+
+### Com Radio
+
+Lista selecionável com radio button:
+
+<StorybookEmbed
+  storyId="components-list-textlistselectable--radio-states"
+  height={400}
+  showToolbar={false}
+  title="TextListSelectable - Radio States"
+/>
+
+### Indicadores Visuais
+
+O componente suporta diversos indicadores visuais como Badges e Tags:
+
+<StorybookEmbed
+  storyId="components-list-textlistselectable--all-indicators"
+  height={600}
+  showToolbar={false}
+  title="TextListSelectable - Indicadores"
+/>
+
+### Estado de Carregamento
+
+<StorybookEmbed
+  storyId="components-list-textlistselectable--loading"
+  height={200}
+  showToolbar={false}
+  title="TextListSelectable - Loading"
+/>
+
+## API
+
+### Props
+
+| Prop                       | Tipo                      | Padrão      | Descrição                                            |
+| -------------------------- | ------------------------- | ----------- | ---------------------------------------------------- |
+| `title`                    | `string`                  | -           | Título principal do item (obrigatório)               |
+| `description`              | `string`                  | -           | Descrição detalhada do item                          |
+| `caption`                  | `string`                  | -           | Legenda ou informação adicional em destaque          |
+| `strikethroughDescription` | `string`                  | -           | Texto com linha cortada (riscado)                    |
+| `inverted`                 | `boolean`                 | `false`     | Inverte a hierarquia visual do título e descrição    |
+| `type`                     | `'default' \| 'inverted'` | `'default'` | Tipo visual que afeta a hierarquia                   |
+| `loading`                  | `boolean`                 | `false`     | Exibe estado de carregamento com skeleton            |
+| `disabled`                 | `boolean`                 | `false`     | Desabilita o item, tornando-o não interativo         |
+| `showDivider`              | `boolean`                 | `true`      | Controla se deve exibir o divisor visual do item     |
+| `platform`                 | `'web' \| 'app'`          | `'web'`     | Define a plataforma para ajustes visuais específicos |
+| `checkbox`                 | `CheckboxProps`           | -           | Props do componente Checkbox para seleção múltipla   |
+| `radio`                    | `RadioProps`              | -           | Props do componente Radio para seleção única         |
+| `indicator`                | `ReactNode`               | -           | Elemento visual indicador (Badge, Tag, etc.)         |
+| `className`                | `string`                  | -           | Classes CSS adicionais                               |
+
+## Acessibilidade
+
+- ✅ Suporte a navegação por teclado
+- ✅ Integração correta com labels de inputs (Checkbox/Radio)
+- ✅ Estados visuais de foco e desabilitado
+- ✅ Contraste adequado para leitura
+
+## Links relacionados
+
+- [Checkbox](/components/checkbox)
+- [Radio](/components/radio)
+- [Badge](/components/badge)
+- [Tag](/components/tag)

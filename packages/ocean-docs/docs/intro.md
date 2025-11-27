@@ -53,6 +53,7 @@ Componentes para exibição de dados:
 - [List](/components/list) - Listas estruturadas
 - [CardGroup](/components/card-group) - Agrupamento de cards
 - [CardListItem](/components/card-list-item) - Item de lista em card
+- [TextListSelectable](/components/textlistselectable) - Item de lista selecionável
 - [Carousel](/components/carousel) - Carrossel de conteúdo
 - [Chart](/components/chart) - Gráficos e visualizações
 - [Progress](/components/progress) - Barras de progresso
