@@ -23,18 +23,18 @@
 
   .ods-checkbox__label,
   .ods-radio__label {
+    align-items: center;
+    display: flex;
     padding-left: 16px;
     width: 100%;
-    display: flex;
-    align-items: center;
   }
 
   &--loading {
     cursor: default;
-    pointer-events: none;
     display: flex;
     flex-direction: column;
     gap: $spacing-inline-xxs;
+    pointer-events: none;
   }
 
   &__divider {
