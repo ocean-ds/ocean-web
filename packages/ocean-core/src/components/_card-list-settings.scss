@@ -1,0 +1,54 @@
+.ods-card-list-settings {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-sm;
+  box-sizing: border-box;
+  display: flex;
+  gap: $spacing-inline-xxs-extra;
+  padding: $spacing-inline-xs;
+  position: relative;
+  width: 100%;
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__action {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    width: 100%;
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+    }
+  }
+
+  &--loading {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .ods-typography {
+      color: $color-interface-dark-up;
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,399 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import CardListSettings from '../CardListSettings';
+import List from '../../List';
+
+const meta: Meta<typeof CardListSettings> = {
+  title: 'Components/CardList/CardListSettings',
+  component: CardListSettings,
+  tags: ['autodocs'],
+  argTypes: {
+    title: {
+      description: 'Título principal do card.',
+      control: 'text',
+    },
+    description: {
+      description: 'Descrição ou texto secundário do card.',
+      control: 'text',
+    },
+    caption: {
+      description: 'Legenda ou texto terciário do card.',
+      control: 'text',
+    },
+    inverted: {
+      description: 'Inverte a posição do título com a descrição.',
+      control: 'boolean',
+    },
+    type: {
+      description: 'Tipo de estilo do conteúdo do card.',
+      control: 'select',
+      options: [
+        'default',
+        'inactive',
+        'positive',
+        'warning',
+        'highlight',
+        'highlight-lead',
+        'strikethrough'
+      ],
+    },
+    disabled: {
+      description: 'Desabilita o card.',
+      control: 'boolean',
+    },
+    loading: {
+      description: 'Mostra o estado de carregamento com skeleton.',
+      control: 'boolean',
+    },
+    icon: {
+      description: 'Ícone exibido no início do card.',
+      control: false,
+    },
+    showIcon: {
+      description: 'Controla a visibilidade da área do ícone.',
+      control: 'boolean',
+    },
+    actionType: {
+      description: 'Tipo de ação exibida no card.',
+      control: 'select',
+      options: ['button', 'toggle'],
+    },
+    buttonLabel: {
+      description: 'Label do botão quando actionType é "button".',
+      control: 'text',
+    },
+    buttonSize: {
+      description: 'Tamanho do botão.',
+      control: 'select',
+      options: ['sm', 'md'],
+    },
+    toggleChecked: {
+      description: 'Estado do toggle quando actionType é "toggle".',
+      control: 'boolean',
+    },
+    onButtonClick: {
+      description: 'Função chamada ao clicar no botão.',
+      action: 'button clicked',
+    },
+    onToggleChange: {
+      description: 'Função chamada ao mudar o estado do toggle.',
+      action: 'toggle changed',
+    },
+    className: {
+      description: 'Classe CSS adicional para o card.',
+      control: 'text',
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof CardListSettings>;
+
+// Story Usage (Principal com Controles)
+export const Usage: Story = {
+  args: {
+    title: 'Title',
+    description: 'Description',
+    icon: <PlaceholderOutline size={24} />,
+    actionType: 'button',
+    buttonLabel: 'Label',
+    buttonSize: 'sm',
+    type: 'default',
+    onButtonClick: () => alert('Button clicked!'),
+  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <div
+        style={{
+          minWidth: '300px',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <List>
+          <StoryComponent />
+        </List>
+      </div>
+    ),
+  ],
+};
+
+// Story: Action Type Button
+export const ActionTypeButton: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="Default State"
+        description="Button action enabled"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Button clicked!')}
+      />
+      <CardListSettings
+        title="Disabled State"
+        description="Button action disabled"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        disabled
+        onButtonClick={() => alert('Button clicked!')}
+      />
+      <CardListSettings
+        title="Loading State"
+        description="Loading state"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        loading
+        onButtonClick={() => alert('Button clicked!')}
+      />
+    </List>
+  ),
+};
+
+// Story: Action Type Toggle
+export const ActionTypeToggle: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: function RenderToggle() {
+    const [toggle1, setToggle1] = React.useState(false);
+    const [toggle2, setToggle2] = React.useState(true);
+
+    return (
+      <List style={{ minWidth: '300px' }}>
+        <CardListSettings
+          title="Toggle Off"
+          description="Toggle action disabled"
+          icon={<PlaceholderOutline size={24} />}
+          actionType="toggle"
+          toggleChecked={toggle1}
+          onToggleChange={setToggle1}
+        />
+        <CardListSettings
+          title="Toggle On"
+          description="Toggle action enabled"
+          icon={<PlaceholderOutline size={24} />}
+          actionType="toggle"
+          toggleChecked={toggle2}
+          onToggleChange={setToggle2}
+        />
+        <CardListSettings
+          title="Disabled State"
+          description="Toggle disabled"
+          icon={<PlaceholderOutline size={24} />}
+          actionType="toggle"
+          toggleChecked={false}
+          disabled
+          onToggleChange={() => undefined}
+        />
+        <CardListSettings
+          title="Loading State"
+          description="Loading state"
+          icon={<PlaceholderOutline size={24} />}
+          actionType="toggle"
+          loading
+          onToggleChange={() => undefined}
+        />
+      </List>
+    );
+  },
+};
+
+// Story: With and Without Icon
+export const WithAndWithoutIcon: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="With Icon"
+        description="Card with icon"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Button clicked!')}
+      />
+      <CardListSettings
+        title="Without Icon"
+        description="Card without icon"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Button clicked!')}
+      />
+      <CardListSettings
+        title="With Icon Toggle"
+        description="Card with icon and toggle"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={false}
+        onToggleChange={() => undefined}
+      />
+      <CardListSettings
+        title="Without Icon Toggle"
+        description="Card without icon with toggle"
+        actionType="toggle"
+        toggleChecked
+        onToggleChange={() => undefined}
+      />
+    </List>
+  ),
+};
+
+// Story: Without Description
+export const WithoutDescription: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="Only Title - Button"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Button clicked!')}
+      />
+      <CardListSettings
+        title="Only Title - Toggle"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={false}
+        onToggleChange={() => undefined}
+      />
+    </List>
+  ),
+};
+
+// Story: All Content Types
+export const AllContentTypes: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="Type Default"
+        description="Default content type"
+        icon={<PlaceholderOutline size={24} />}
+        type="default"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicked!')}
+      />
+      <CardListSettings
+        title="Type Inactive"
+        description="Inactive content"
+        icon={<PlaceholderOutline size={24} />}
+        type="inactive"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicked!')}
+      />
+      <CardListSettings
+        title="Type Positive"
+        description="Positive content"
+        icon={<PlaceholderOutline size={24} />}
+        type="positive"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicked!')}
+      />
+      <CardListSettings
+        title="Type Warning"
+        description="Warning content"
+        icon={<PlaceholderOutline size={24} />}
+        type="warning"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicked!')}
+      />
+      <CardListSettings
+        title="Type Highlight"
+        description="Highlighted content"
+        icon={<PlaceholderOutline size={24} />}
+        type="highlight"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicked!')}
+      />
+      <CardListSettings
+        title="Type Highlight Lead"
+        description="Highlight lead content"
+        icon={<PlaceholderOutline size={24} />}
+        type="highlight-lead"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicked!')}
+      />
+    </List>
+  ),
+};
+
+// Story: Button Sizes
+export const ButtonSizes: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="Button Size Small"
+        description="Small button size"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        buttonSize="sm"
+        onButtonClick={() => alert('Button clicked!')}
+      />
+      <CardListSettings
+        title="Button Size Medium"
+        description="Medium button size"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Label"
+        buttonSize="md"
+        onButtonClick={() => alert('Button clicked!')}
+      />
+    </List>
+  ),
+};
+
+// Story: Interactive Toggle with Alert
+export const InteractiveToggleWithAlert: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: function RenderInteractive() {
+    const [isEnabled, setIsEnabled] = React.useState(false);
+
+    const handleToggleChange = (checked: boolean) => {
+      setIsEnabled(checked);
+      alert(`Toggle ${checked ? 'ativado' : 'desativado'}!`);
+    };
+
+    return (
+      <List style={{ minWidth: '300px' }}>
+        <CardListSettings
+          title="Notificações Push"
+          description="Receba alertas em tempo real"
+          icon={<PlaceholderOutline size={24} />}
+          actionType="toggle"
+          toggleChecked={isEnabled}
+          onToggleChange={handleToggleChange}
+        />
+      </List>
+    );
+  },
+};
+
+
+
+
