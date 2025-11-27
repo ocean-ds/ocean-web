@@ -205,10 +205,7 @@ Quando usando `actionType="button"`, você pode definir o tamanho:
 
 ## Com e sem ícone
 
-O ícone pode ser controlado de duas formas:
-
-- Não passando a prop `icon` (sem ícone)
-- Passando `showIcon={false}` para ocultar a área do ícone mesmo quando fornecido
+O ícone é exibido quando fornecido através da prop `icon`:
 
 ```tsx live
 <List>
@@ -225,15 +222,6 @@ O ícone pode ser controlado de duas formas:
     description="Card sem ícone"
     actionType="toggle"
     toggleChecked={true}
-    onToggleChange={() => {}}
-  />
-  <CardListSettings
-    title="Ícone oculto"
-    description="Usando showIcon=false"
-    icon={<PlaceholderOutline size={24} />}
-    showIcon={false}
-    actionType="toggle"
-    toggleChecked={false}
     onToggleChange={() => {}}
   />
 </List>
@@ -414,7 +402,6 @@ function PrivacySettings() {
 | `disabled`       | `boolean`                                                                                                  | `false`     | Desabilita o card e suas ações                |
 | `loading`        | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                |
 | `icon`           | `ReactNode`                                                                                                | -           | Ícone exibido no início do card               |
-| `showIcon`       | `boolean`                                                                                                  | `true`      | Controla a visibilidade da área do ícone      |
 | `actionType`     | `'button' \| 'toggle'`                                                                                     | `'button'`  | Tipo de ação exibida no card                  |
 | `buttonLabel`    | `string`                                                                                                   | `'Label'`   | Label do botão (quando actionType="button")   |
 | `buttonSize`     | `'sm' \| 'md'`                                                                                             | `'sm'`      | Tamanho do botão                              |

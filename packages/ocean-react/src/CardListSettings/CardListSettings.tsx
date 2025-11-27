@@ -16,7 +16,6 @@ export type CardListSettingsProps = {
   disabled?: boolean;
   loading?: boolean;
   icon?: ReactNode;
-  showIcon?: boolean;
   actionType?: 'button' | 'toggle';
   buttonLabel?: string;
   buttonSize?: 'sm' | 'md';
@@ -35,7 +34,6 @@ const CardListSettings = ({
   disabled = false,
   loading = false,
   icon,
-  showIcon = true,
   actionType = 'button',
   buttonLabel = 'Label',
   buttonSize = 'sm',
@@ -90,7 +88,7 @@ const CardListSettings = ({
         'ods-card-list-settings--disabled': disabled,
       })}
     >
-      {showIcon && icon && <div className="ods-card-list-settings__icon">{icon}</div>}
+      {icon && <div className="ods-card-list-settings__icon">{icon}</div>}
       <ContentList
         title={title}
         description={description}

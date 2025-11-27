@@ -53,28 +53,6 @@ describe('CardListSettings', () => {
       render(<CardListSettings title="Test Title" />);
       expect(screen.queryByTestId('test-icon')).not.toBeInTheDocument();
     });
-
-    test('hides icon when showIcon is false', () => {
-      render(
-        <CardListSettings
-          title="Test Title"
-          icon={<TestIcon />}
-          showIcon={false}
-        />
-      );
-      expect(screen.queryByTestId('test-icon')).not.toBeInTheDocument();
-    });
-
-    test('shows icon when showIcon is true', () => {
-      render(
-        <CardListSettings
-          title="Test Title"
-          icon={<TestIcon />}
-          showIcon
-        />
-      );
-      expect(screen.getByTestId('test-icon')).toBeInTheDocument();
-    });
   });
 
   describe('Action Type - Button', () => {

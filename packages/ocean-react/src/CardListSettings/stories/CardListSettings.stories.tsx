@@ -50,10 +50,6 @@ const meta: Meta<typeof CardListSettings> = {
       description: 'Ícone exibido no início do card.',
       control: false,
     },
-    showIcon: {
-      description: 'Controla a visibilidade da área do ícone.',
-      control: 'boolean',
-    },
     actionType: {
       description: 'Tipo de ação exibida no card.',
       control: 'select',
