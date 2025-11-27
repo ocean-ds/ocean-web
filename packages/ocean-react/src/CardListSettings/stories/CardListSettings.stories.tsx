@@ -9,77 +9,37 @@ const meta: Meta<typeof CardListSettings> = {
   component: CardListSettings,
   tags: ['autodocs'],
   argTypes: {
-    title: {
-      description: 'Título principal do card.',
-      control: 'text',
-    },
-    description: {
-      description: 'Descrição ou texto secundário do card.',
-      control: 'text',
-    },
-    caption: {
-      description: 'Legenda ou texto terciário do card.',
-      control: 'text',
-    },
-    inverted: {
-      description: 'Inverte a posição do título com a descrição.',
-      control: 'boolean',
-    },
+    title: { control: 'text' },
+    description: { control: 'text' },
+    caption: { control: 'text' },
+    inverted: { control: 'boolean' },
     type: {
-      description: 'Tipo de estilo do conteúdo do card.',
       control: 'select',
-      options: [
-        'default',
-        'inactive',
-        'positive',
-        'warning',
-        'highlight',
-        'highlight-lead',
-        'strikethrough'
-      ],
+      options: ['default', 'inactive', 'positive', 'warning', 'highlight', 'highlight-lead', 'strikethrough'],
     },
-    disabled: {
-      description: 'Desabilita o card.',
-      control: 'boolean',
-    },
-    loading: {
-      description: 'Mostra o estado de carregamento com skeleton.',
-      control: 'boolean',
-    },
-    icon: {
-      description: 'Ícone exibido no início do card.',
-      control: false,
-    },
+    disabled: { control: 'boolean' },
+    loading: { control: 'boolean' },
+    icon: { control: false },
     actionType: {
-      description: 'Tipo de ação exibida no card.',
+      description: 'Tipo de ação: botão (requer confirmação) ou toggle (ação imediata)',
       control: 'select',
       options: ['button', 'toggle'],
     },
     buttonLabel: {
-      description: 'Label do botão quando actionType é "button".',
+      description: 'Label do botão (apenas quando actionType="button")',
       control: 'text',
     },
     buttonSize: {
-      description: 'Tamanho do botão.',
       control: 'select',
       options: ['sm', 'md'],
     },
     toggleChecked: {
-      description: 'Estado do toggle quando actionType é "toggle".',
+      description: 'Estado do toggle (apenas quando actionType="toggle")',
       control: 'boolean',
     },
-    onButtonClick: {
-      description: 'Função chamada ao clicar no botão.',
-      action: 'button clicked',
-    },
-    onToggleChange: {
-      description: 'Função chamada ao mudar o estado do toggle.',
-      action: 'toggle changed',
-    },
-    className: {
-      description: 'Classe CSS adicional para o card.',
-      control: 'text',
-    },
+    onButtonClick: { action: 'button clicked' },
+    onToggleChange: { action: 'toggle changed' },
+    className: { control: 'text' },
   },
 };
 
