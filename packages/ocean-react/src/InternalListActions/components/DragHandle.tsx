@@ -39,12 +39,17 @@ const DragHandle: React.FC<DragHandleProps> = ({ onClose, onKeyDown }) => {
     touchStartY.current = 0;
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    onClose();
+  };
+
   return (
     <li className="ods-internal-list-actions__drag-handle">
       <button
         type="button"
         className="ods-internal-list-actions__drag-handle-button"
-        onClick={onClose}
+        onClick={handleClick}
         onKeyDown={onKeyDown}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
