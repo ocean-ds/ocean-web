@@ -269,7 +269,9 @@ describe('CardListSelectable', () => {
 
       const input = screen.getByRole('checkbox');
       expect(input).toHaveAttribute('name', 'test-name');
-      expect(input).toHaveValue('test-value');
+      // For checkbox/radio inputs, we must use toHaveAttribute for value
+      // eslint-disable-next-line jest-dom/prefer-to-have-value
+      expect(input).toHaveAttribute('value', 'test-value');
       expect(input).toHaveAttribute('aria-label', 'Custom aria label');
       expect(input).toHaveAttribute('data-custom', 'custom-value');
     });
