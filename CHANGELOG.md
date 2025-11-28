@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.113.1](https://github.com/ocean-ds/ocean-web/compare/v1.113.0...v1.113.1) (2025-11-26)
+
+### Bug Fixes
+
+- adjust shortcut badge ([#1196](https://github.com/ocean-ds/ocean-web/issues/1196)) ([5005da6](https://github.com/ocean-ds/ocean-web/commit/5005da6d1dca4c4a64e53b13fd763224037b3d1f))
+
 # [1.113.0](https://github.com/ocean-ds/ocean-web/compare/v1.112.1...v1.113.0) (2025-10-22)
 
 ### Features
