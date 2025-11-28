@@ -41,6 +41,35 @@ describe('CardListSettings', () => {
       );
       expect(container.firstChild).toHaveClass('custom-class');
     });
+
+    test('renders with strikethroughDescription', () => {
+      render(
+        <CardListSettings
+          title="Test Title"
+          strikethroughDescription="Old Price"
+          type="strikethrough"
+        />
+      );
+      expect(screen.getByText('Test Title')).toBeInTheDocument();
+    });
+
+    test('renders with data-testid', () => {
+      render(<CardListSettings title="Test Title" />);
+      expect(screen.getByTestId('card-list-settings')).toBeInTheDocument();
+    });
+
+    test('accepts additional HTML attributes via rest props', () => {
+      render(
+        <CardListSettings
+          title="Test Title"
+          data-custom="custom-value"
+          aria-label="Settings card"
+        />
+      );
+      const element = screen.getByTestId('card-list-settings');
+      expect(element).toHaveAttribute('data-custom', 'custom-value');
+      expect(element).toHaveAttribute('aria-label', 'Settings card');
+    });
   });
 
   describe('Icon', () => {
@@ -130,6 +159,42 @@ describe('CardListSettings', () => {
       const button = screen.getByText('Label');
       expect(button.closest('button')).toHaveClass('ods-btn--md');
     });
+
+    test('renders button with primary variant', () => {
+      render(
+        <CardListSettings
+          title="Test Title"
+          actionType="button"
+          buttonVariant="primary"
+        />
+      );
+      const button = screen.getByText('Label');
+      expect(button.closest('button')).toHaveClass('ods-btn--primary');
+    });
+
+    test('renders button with secondary variant', () => {
+      render(
+        <CardListSettings
+          title="Test Title"
+          actionType="button"
+          buttonVariant="secondary"
+        />
+      );
+      const button = screen.getByText('Label');
+      expect(button.closest('button')).toHaveClass('ods-btn--secondary');
+    });
+
+    test('renders button with tertiary variant', () => {
+      render(
+        <CardListSettings
+          title="Test Title"
+          actionType="button"
+          buttonVariant="tertiary"
+        />
+      );
+      const button = screen.getByText('Label');
+      expect(button.closest('button')).toHaveClass('ods-btn--tertiary');
+    });
   });
 
   describe('Action Type - Toggle', () => {
@@ -195,10 +260,10 @@ describe('CardListSettings', () => {
       );
 
       const switchElement = screen.getByRole('checkbox') as HTMLInputElement;
-      
+
       // Verify the switch is disabled
       expect(switchElement.disabled).toBe(true);
-      
+
       // Try to click the disabled switch
       fireEvent.click(switchElement);
 
@@ -227,11 +292,11 @@ describe('CardListSettings', () => {
       render(
         <CardListSettings title="Test Title" loading />
       );
-      
+
       // Check that the loading class is present
       const loadingElement = document.querySelector('.ods-card-list-settings--loading');
       expect(loadingElement).toBeInTheDocument();
-      
+
       // Check that skeleton is rendered
       const skeletonElement = document.querySelector('.ods-card-list-settings__skeleton');
       expect(skeletonElement).toBeInTheDocument();
@@ -376,6 +441,30 @@ describe('CardListSettings', () => {
       const button = screen.getByText('Action');
       fireEvent.click(button);
       expect(handleClick).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('ForwardRef', () => {
+    test('forwards ref to the root element', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(<CardListSettings title="Test Title" ref={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
+      expect(ref.current).toHaveClass('ods-card-list-settings');
+    });
+
+    test('forwards ref in loading state', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(<CardListSettings title="Test Title" loading ref={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
+      expect(ref.current).toHaveClass('ods-card-list-settings--loading');
+    });
+  });
+
+  describe('DisplayName', () => {
+    test('has correct displayName', () => {
+      expect(CardListSettings.displayName).toBe('CardListSettings');
     });
   });
 });

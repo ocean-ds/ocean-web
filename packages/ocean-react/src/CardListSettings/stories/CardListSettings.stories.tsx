@@ -11,6 +11,7 @@ const meta: Meta<typeof CardListSettings> = {
   argTypes: {
     title: { control: 'text' },
     description: { control: 'text' },
+    strikethroughDescription: { control: 'text' },
     caption: { control: 'text' },
     inverted: { control: 'boolean' },
     type: {
@@ -32,6 +33,11 @@ const meta: Meta<typeof CardListSettings> = {
     buttonSize: {
       control: 'select',
       options: ['sm', 'md'],
+    },
+    buttonVariant: {
+      description: 'Variant do botão (apenas quando actionType="button")',
+      control: 'select',
+      options: ['primary', 'primaryCritical', 'secondary', 'secondaryCritical', 'tertiary', 'tertiaryCritical'],
     },
     toggleChecked: {
       description: 'Estado do toggle (apenas quando actionType="toggle")',
@@ -350,6 +356,135 @@ export const InteractiveToggleWithAlert: Story = {
   },
 };
 
+// Story: Button Variants
+export const ButtonVariants: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="Primary Button"
+        description="Primary variant"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Primary"
+        buttonVariant="primary"
+        onButtonClick={() => alert('Primary clicked!')}
+      />
+      <CardListSettings
+        title="Secondary Button"
+        description="Secondary variant"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Secondary"
+        buttonVariant="secondary"
+        onButtonClick={() => alert('Secondary clicked!')}
+      />
+      <CardListSettings
+        title="Tertiary Button"
+        description="Tertiary variant"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Tertiary"
+        buttonVariant="tertiary"
+        onButtonClick={() => alert('Tertiary clicked!')}
+      />
+      <CardListSettings
+        title="Primary Critical Button"
+        description="Primary critical variant"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Critical"
+        buttonVariant="primaryCritical"
+        onButtonClick={() => alert('Critical clicked!')}
+      />
+    </List>
+  ),
+};
 
+// Story: With Strikethrough Description
+export const WithStrikethroughDescription: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <CardListSettings
+        title="R$ 99,90"
+        description="Preço promocional"
+        strikethroughDescription="R$ 149,90"
+        icon={<PlaceholderOutline size={24} />}
+        type="strikethrough"
+        actionType="button"
+        buttonLabel="Comprar"
+        onButtonClick={() => alert('Comprar!')}
+      />
+    </List>
+  ),
+};
 
+// Story: With Ref
+export const WithRef: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: function RenderWithRef() {
+    const ref = React.useRef<HTMLDivElement>(null);
 
+    const scrollToElement = () => {
+      if (ref.current) {
+        ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        ref.current.style.border = '2px solid blue';
+        setTimeout(() => {
+          if (ref.current) {
+            ref.current.style.border = '';
+          }
+        }, 2000);
+      }
+    };
+
+    return (
+      <div style={{ minWidth: '300px' }}>
+        <button type="button" onClick={scrollToElement} style={{ marginBottom: '20px' }}>
+          Scroll to Card with Ref
+        </button>
+        <List>
+          <CardListSettings
+            title="Card 1"
+            description="Without ref"
+            icon={<PlaceholderOutline size={24} />}
+            actionType="button"
+            buttonLabel="Action"
+            onButtonClick={() => alert('Card 1')}
+          />
+          <CardListSettings
+            title="Card 2"
+            description="Without ref"
+            icon={<PlaceholderOutline size={24} />}
+            actionType="button"
+            buttonLabel="Action"
+            onButtonClick={() => alert('Card 2')}
+          />
+          <CardListSettings
+            ref={ref}
+            title="Card with Ref"
+            description="This card has a ref attached"
+            icon={<PlaceholderOutline size={24} />}
+            actionType="button"
+            buttonLabel="Action"
+            onButtonClick={() => alert('Card with Ref')}
+          />
+          <CardListSettings
+            title="Card 3"
+            description="Without ref"
+            icon={<PlaceholderOutline size={24} />}
+            actionType="button"
+            buttonLabel="Action"
+            onButtonClick={() => alert('Card 3')}
+          />
+        </List>
+      </div>
+    );
+  },
+};
