@@ -17,9 +17,30 @@ const meta: Meta<typeof CardListSelectable> = {
       description: 'Descrição ou texto secundário do card.',
       control: 'text',
     },
+    strikethroughDescription: {
+      description: 'Descrição com texto riscado.',
+      control: 'text',
+    },
     caption: {
       description: 'Legenda ou texto terciário do card.',
       control: 'text',
+    },
+    inverted: {
+      description: 'Inverte a posição de título e descrição.',
+      control: 'boolean',
+    },
+    type: {
+      description: 'Tipo de estilo do conteúdo do card.',
+      control: 'select',
+      options: [
+        'default',
+        'inactive',
+        'positive',
+        'warning',
+        'highlight',
+        'highlight-lead',
+        'strikethrough',
+      ],
     },
     controlType: {
       description: 'Tipo de controle de seleção.',
@@ -467,6 +488,137 @@ export const WithCaption: Story = {
           controlType="radio"
           checked={checked2}
           onChange={(e) => setChecked2(e.target.value === 'option1')}
+        />
+      </List>
+    );
+  },
+};
+
+// Story: Com diferentes tipos visuais
+export const WithDifferentTypes: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: function WithDifferentTypesRender() {
+    const [selected, setSelected] = useState<string[]>(['default']);
+
+    const handleChange = (value: string, checked: boolean) => {
+      if (checked) {
+        setSelected([...selected, value]);
+      } else {
+        setSelected(selected.filter((v) => v !== value));
+      }
+    };
+
+    return (
+      <List style={{ minWidth: '300px' }}>
+        <CardListSelectable
+          id="type-default"
+          title="Default"
+          description="Estilo padrão do card"
+          type="default"
+          checked={selected.includes('default')}
+          onChange={(e) => handleChange('default', e.target.checked)}
+        />
+        <CardListSelectable
+          id="type-positive"
+          title="Positive"
+          description="Estilo positivo (verde)"
+          type="positive"
+          checked={selected.includes('positive')}
+          onChange={(e) => handleChange('positive', e.target.checked)}
+        />
+        <CardListSelectable
+          id="type-warning"
+          title="Warning"
+          description="Estilo de aviso (laranja)"
+          type="warning"
+          checked={selected.includes('warning')}
+          onChange={(e) => handleChange('warning', e.target.checked)}
+        />
+        <CardListSelectable
+          id="type-highlight"
+          title="Highlight"
+          description="Estilo destacado"
+          type="highlight"
+          checked={selected.includes('highlight')}
+          onChange={(e) => handleChange('highlight', e.target.checked)}
+        />
+        <CardListSelectable
+          id="type-highlight-lead"
+          title="Highlight Lead"
+          description="Estilo destacado com ênfase"
+          type="highlight-lead"
+          checked={selected.includes('highlight-lead')}
+          onChange={(e) => handleChange('highlight-lead', e.target.checked)}
+        />
+      </List>
+    );
+  },
+};
+
+// Story: Com layout invertido
+export const WithInvertedLayout: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: function WithInvertedLayoutRender() {
+    const [checked1, setChecked1] = useState(false);
+    const [checked2, setChecked2] = useState(false);
+
+    return (
+      <List style={{ minWidth: '300px' }}>
+        <CardListSelectable
+          id="normal-layout"
+          title="Layout Normal"
+          description="Título em negrito, descrição em texto normal"
+          caption="Caption opcional"
+          checked={checked1}
+          onChange={(e) => setChecked1(e.target.checked)}
+        />
+        <CardListSelectable
+          id="inverted-layout"
+          title="Layout Invertido"
+          description="Descrição em negrito, título em texto normal"
+          caption="Caption opcional"
+          inverted
+          checked={checked2}
+          onChange={(e) => setChecked2(e.target.checked)}
+        />
+      </List>
+    );
+  },
+};
+
+// Story: Com texto riscado
+export const WithStrikethrough: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: function WithStrikethroughRender() {
+    const [checked1, setChecked1] = useState(false);
+    const [checked2, setChecked2] = useState(false);
+
+    return (
+      <List style={{ minWidth: '300px' }}>
+        <CardListSelectable
+          id="strikethrough-1"
+          title="R$ 99,90"
+          description="Preço atual"
+          strikethroughDescription="R$ 149,90"
+          type="strikethrough"
+          checked={checked1}
+          onChange={(e) => setChecked1(e.target.checked)}
+        />
+        <CardListSelectable
+          id="strikethrough-2"
+          title="Plano Premium"
+          description="R$ 49,90/mês"
+          strikethroughDescription="R$ 99,90/mês"
+          type="strikethrough"
+          inverted
+          checked={checked2}
+          onChange={(e) => setChecked2(e.target.checked)}
         />
       </List>
     );

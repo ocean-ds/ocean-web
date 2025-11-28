@@ -2,7 +2,9 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
-import ContentList from '../_shared/components/ContentList';
+import ContentList, {
+  ContentListProps,
+} from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
 export type CardListSelectableProps = {
@@ -15,11 +17,26 @@ export type CardListSelectableProps = {
    */
   description?: string;
   /**
+   * Description with strikethrough text.
+   */
+  strikethroughDescription?: string;
+  /**
    * Caption or tertiary text of the card.
    */
   caption?: string;
   /**
+   * Inverts the position of title and description.
+   * @default false
+   */
+  inverted?: boolean;
+  /**
+   * The style type of the card content.
+   * @default 'default'
+   */
+  type?: ContentListProps['type'];
+  /**
    * Type of selection control (checkbox or radio).
+   * @default 'checkbox'
    */
   controlType?: 'checkbox' | 'radio';
   /**
@@ -46,9 +63,17 @@ export type CardListSelectableProps = {
    * Whether the checkbox is in indeterminate state (only for checkbox).
    */
   indeterminate?: boolean;
+  /**
+   * Name attribute for the input (required for radio groups).
+   */
+  name?: string;
+  /**
+   * Value attribute for the input (required for radio buttons).
+   */
+  value?: string;
 } & Omit<
   React.ComponentPropsWithoutRef<'input'>,
-  'type' | 'title' | 'className'
+  'type' | 'title' | 'className' | 'name' | 'value'
 >;
 
 const CardListSelectable = React.forwardRef<
@@ -59,7 +84,10 @@ const CardListSelectable = React.forwardRef<
     {
       title,
       description,
+      strikethroughDescription,
       caption,
+      inverted = false,
+      type = 'default',
       controlType = 'checkbox',
       indicator,
       disabled = false,
@@ -134,8 +162,10 @@ const CardListSelectable = React.forwardRef<
           <ContentList
             title={title}
             description={description}
+            strikethroughDescription={strikethroughDescription}
             caption={caption}
-            type={disabled ? 'inactive' : 'default'}
+            inverted={inverted}
+            type={disabled ? 'inactive' : type}
           />
           {indicator && (
             <div className="ods-card-list-selectable__indicator">
