@@ -1,0 +1,97 @@
+.ods-card-list-selectable {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-sm;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  gap: $spacing-inline-xs;
+  padding: $spacing-inline-xs;
+  position: relative;
+  transition: background-color 0.2s ease;
+  width: 100%;
+
+  &:hover:not(&--disabled):not(&--loading) {
+    background-color: $color-interface-light-up;
+  }
+
+  &:focus-within {
+    outline: 2px solid $color-brand-primary-pure;
+    outline-offset: 2px;
+  }
+
+  &__control {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+
+    .ods-checkbox,
+    .ods-radio {
+      cursor: pointer;
+    }
+
+    .ods-checkbox__root,
+    .ods-radio__root {
+      margin: 0;
+    }
+
+    .ods-checkbox__label,
+    .ods-radio__label {
+      display: none;
+    }
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: $spacing-inline-xxxs;
+    min-width: 0;
+  }
+
+  &__indicator {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    width: 100%;
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+    }
+  }
+
+  &--checked {
+    .ods-content-list {
+      .ods-typography {
+        color: $color-interface-dark-deep;
+      }
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .ods-content-list {
+      .ods-typography {
+        color: $color-interface-dark-up;
+      }
+    }
+  }
+
+  &--error {
+    border-color: $color-status-negative-pure;
+  }
+
+  &--loading {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+

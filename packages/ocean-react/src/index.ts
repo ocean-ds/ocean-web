@@ -125,3 +125,6 @@ export * from './SettingsListItem';
 
 export { default as CardListAction } from './CardListAction';
 export * from './CardListAction';
+
+export { default as CardListSelectable } from './CardListSelectable';
+export * from './CardListSelectable';
