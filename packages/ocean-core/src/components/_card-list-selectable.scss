@@ -9,14 +9,14 @@
   gap: $spacing-inline-xs;
   padding: $spacing-inline-xs;
   position: relative;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   width: 100%;
 
   &:hover:not(&--disabled):not(&--loading) {
     background-color: $color-interface-light-up;
   }
 
-  &:focus-within {
+  &:has(:focus-visible) {
     outline: 2px solid $color-brand-primary-pure;
     outline-offset: 2px;
   }
@@ -67,10 +67,8 @@
   }
 
   &--checked {
-    .ods-content-list {
-      .ods-typography {
-        color: $color-interface-dark-deep;
-      }
+    .ods-content-list .ods-typography {
+      color: $color-interface-dark-deep;
     }
   }
 
@@ -78,15 +76,9 @@
     cursor: not-allowed;
     pointer-events: none;
 
-    .ods-content-list {
-      .ods-typography {
-        color: $color-interface-dark-up;
-      }
+    .ods-content-list .ods-typography {
+      color: $color-interface-dark-up;
     }
-  }
-
-  &--error {
-    border-color: $color-status-negative-pure;
   }
 
   &--loading {
@@ -95,3 +87,7 @@
   }
 }
 
+// Error state with higher specificity
+.ods-card-list-selectable.ods-card-list-selectable--error {
+  border-color: $color-status-negative-pure;
+}

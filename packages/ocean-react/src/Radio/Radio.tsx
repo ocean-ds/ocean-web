@@ -6,10 +6,15 @@ export type RadioProps = {
    * The label content.
    */
   label?: React.ReactNode;
+  /**
+   * If `true`, the input will be displayed in an error state.
+   * @default false
+   */
+  error?: boolean;
 } & React.ComponentPropsWithoutRef<'input'>;
 
 const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
-  ({ className, label, id, ...rest }, ref) => (
+  ({ className, label, id, error, ...rest }, ref) => (
     <label className="ods-radio__root" htmlFor={id}>
       <input
         ref={ref}
@@ -18,7 +23,12 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         {...rest}
         type="radio"
       />
-      <span className="ods-radio__checkmark" />
+      <span
+        className={classNames(
+          'ods-radio__checkmark',
+          error && 'ods-radio__checkmark--error'
+        )}
+      />
       {label && (
         <span className="ods-typography ods-typography__description ods-radio__label">
           {label}

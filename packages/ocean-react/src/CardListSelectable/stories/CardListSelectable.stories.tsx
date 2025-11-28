@@ -81,9 +81,9 @@ export const Usage: Story = {
           flexDirection: 'column',
         }}
       >
-        <List>
+        <div style={{ minWidth: '300px' }}>
           <StoryComponent />
-        </List>
+        </div>
       </div>
     ),
   ],
@@ -94,7 +94,7 @@ export const CheckboxStates: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function CheckboxStatesRender() {
     const [checked1, setChecked1] = useState(false);
     const [checked2, setChecked2] = useState(false);
     const [checked3, setChecked3] = useState(true);
@@ -169,7 +169,7 @@ export const RadioStates: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function RadioStatesRender() {
     const [selected, setSelected] = useState('option1');
 
     return (
@@ -181,6 +181,7 @@ export const RadioStates: Story = {
           title="Default (Selected)"
           description="Estado padrão selecionado"
           controlType="radio"
+          error
           checked={selected === 'option1'}
           onChange={(e) => setSelected(e.target.value)}
         />
@@ -240,7 +241,7 @@ export const WithIndicators: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function WithIndicatorsRender() {
     const [checked1, setChecked1] = useState(false);
     const [checked2, setChecked2] = useState(false);
     const [checked3, setChecked3] = useState(false);
@@ -323,7 +324,7 @@ export const CheckboxGroup: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function CheckboxGroupRender() {
     const [selected, setSelected] = useState<string[]>(['option1']);
 
     const handleChange = (value: string, checked: boolean) => {
@@ -386,7 +387,7 @@ export const RadioGroup: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function RadioGroupRender() {
     const [selected, setSelected] = useState('option1');
 
     return (
@@ -441,7 +442,7 @@ export const WithCaption: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => {
+  render: function WithCaptionRender() {
     const [checked1, setChecked1] = useState(false);
     const [checked2, setChecked2] = useState(false);
 

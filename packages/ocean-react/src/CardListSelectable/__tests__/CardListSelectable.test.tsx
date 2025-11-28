@@ -4,14 +4,14 @@ import userEvent from '@testing-library/user-event';
 import CardListSelectable from '../CardListSelectable';
 
 describe('CardListSelectable', () => {
-  it('should render the component with title', () => {
+  test('should render the component with title', () => {
     render(
       <CardListSelectable id="test" title="Test Title" controlType="checkbox" />
     );
     expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
-  it('should render with description', () => {
+  test('should render with description', () => {
     render(
       <CardListSelectable
         id="test"
@@ -23,7 +23,7 @@ describe('CardListSelectable', () => {
     expect(screen.getByText('Test Description')).toBeInTheDocument();
   });
 
-  it('should render with caption', () => {
+  test('should render with caption', () => {
     render(
       <CardListSelectable
         id="test"
@@ -35,7 +35,7 @@ describe('CardListSelectable', () => {
     expect(screen.getByText('Test Caption')).toBeInTheDocument();
   });
 
-  it('should render checkbox by default', () => {
+  test('should render checkbox by default', () => {
     render(
       <CardListSelectable id="test" title="Test Title" controlType="checkbox" />
     );
@@ -43,7 +43,7 @@ describe('CardListSelectable', () => {
     expect(checkbox).toBeInTheDocument();
   });
 
-  it('should render radio when controlType is radio', () => {
+  test('should render radio when controlType is radio', () => {
     render(
       <CardListSelectable id="test" title="Test Title" controlType="radio" />
     );
@@ -51,7 +51,7 @@ describe('CardListSelectable', () => {
     expect(radio).toBeInTheDocument();
   });
 
-  it('should call onChange when checkbox is clicked', async () => {
+  test('should call onChange when checkbox is clicked', async () => {
     const handleChange = jest.fn();
     render(
       <CardListSelectable
@@ -67,7 +67,7 @@ describe('CardListSelectable', () => {
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  it('should call onChange when radio is clicked', async () => {
+  test('should call onChange when radio is clicked', async () => {
     const handleChange = jest.fn();
     render(
       <CardListSelectable
@@ -83,7 +83,7 @@ describe('CardListSelectable', () => {
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
 
-  it('should be disabled when disabled prop is true', () => {
+  test('should be disabled when disabled prop is true', () => {
     render(
       <CardListSelectable
         id="test"
@@ -96,34 +96,28 @@ describe('CardListSelectable', () => {
     expect(checkbox).toBeDisabled();
   });
 
-  it('should render skeleton when loading', () => {
-    const { container } = render(
-      <CardListSelectable id="test" title="Test Title" loading />
+  test('should render skeleton when loading', () => {
+    render(<CardListSelectable id="test" title="Test Title" loading />);
+    expect(screen.getByTestId('card-list-selectable')).toHaveClass(
+      'ods-card-list-selectable--loading'
     );
-    expect(
-      container.querySelector('.ods-card-list-selectable--loading')
-    ).toBeInTheDocument();
   });
 
-  it('should apply error class when error prop is true', () => {
-    const { container } = render(
-      <CardListSelectable id="test" title="Test Title" error />
+  test('should apply error class when error prop is true', () => {
+    render(<CardListSelectable id="test" title="Test Title" error />);
+    expect(screen.getByTestId('card-list-selectable')).toHaveClass(
+      'ods-card-list-selectable--error'
     );
-    expect(
-      container.querySelector('.ods-card-list-selectable--error')
-    ).toBeInTheDocument();
   });
 
-  it('should apply checked class when checked prop is true', () => {
-    const { container } = render(
-      <CardListSelectable id="test" title="Test Title" checked />
+  test('should apply checked class when checked prop is true', () => {
+    render(<CardListSelectable id="test" title="Test Title" checked />);
+    expect(screen.getByTestId('card-list-selectable')).toHaveClass(
+      'ods-card-list-selectable--checked'
     );
-    expect(
-      container.querySelector('.ods-card-list-selectable--checked')
-    ).toBeInTheDocument();
   });
 
-  it('should render indicator when provided', () => {
+  test('should render indicator when provided', () => {
     render(
       <CardListSelectable
         id="test"
@@ -134,7 +128,7 @@ describe('CardListSelectable', () => {
     expect(screen.getByText('Indicator')).toBeInTheDocument();
   });
 
-  it('should pass indeterminate prop to checkbox', () => {
+  test('should pass indeterminate prop to checkbox', () => {
     render(
       <CardListSelectable
         id="test"
@@ -147,20 +141,20 @@ describe('CardListSelectable', () => {
     expect(checkbox).toHaveAttribute('data-indeterminate', 'true');
   });
 
-  it('should apply custom className', () => {
-    const { container } = render(
+  test('should apply custom className', () => {
+    render(
       <CardListSelectable
         id="test"
         title="Test Title"
         className="custom-class"
       />
     );
-    expect(
-      container.querySelector('.custom-class')
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('card-list-selectable')).toHaveClass(
+      'custom-class'
+    );
   });
 
-  it('should not trigger onChange when disabled', async () => {
+  test('should not trigger onChange when disabled', async () => {
     const handleChange = jest.fn();
     render(
       <CardListSelectable

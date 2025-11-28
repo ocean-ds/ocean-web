@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Checkbox from '../Checkbox';
 import Radio from '../Radio';
@@ -51,99 +51,102 @@ export type CardListSelectableProps = {
   'type' | 'title' | 'className'
 >;
 
-const CardListSelectable = ({
-  title,
-  description,
-  caption,
-  controlType = 'checkbox',
-  indicator,
-  disabled = false,
-  loading = false,
-  error = false,
-  className,
-  indeterminate = false,
-  checked,
-  onChange,
-  name,
-  value,
-  id,
-  ...rest
-}: CardListSelectableProps): ReactElement => {
-  if (loading) {
-    return (
+const CardListSelectable = React.forwardRef<
+  HTMLInputElement,
+  CardListSelectableProps
+>(
+  (
+    {
+      title,
+      description,
+      caption,
+      controlType = 'checkbox',
+      indicator,
+      disabled = false,
+      loading = false,
+      error = false,
+      className,
+      indeterminate = false,
+      checked,
+      onChange,
+      name,
+      value,
+      id,
+      ...rest
+    },
+    ref
+  ): JSX.Element =>
+    loading ? (
       <label
         className={classNames(
           'ods-card-list-selectable',
           'ods-card-list-selectable--loading',
           className
         )}
+        data-testid="card-list-selectable"
+        aria-hidden="true"
       >
         <div className="ods-card-list-selectable__skeleton">
           <SkeletonBar width="100%" height="24px" />
           <SkeletonBar width="80%" height="20px" />
         </div>
       </label>
-    );
-  }
+    ) : (
+      <label
+        htmlFor={id}
+        className={classNames('ods-card-list-selectable', className, {
+          'ods-card-list-selectable--disabled': disabled,
+          'ods-card-list-selectable--error': error,
+          'ods-card-list-selectable--checked': checked,
+        })}
+        data-testid="card-list-selectable"
+      >
+        <div className="ods-card-list-selectable__control">
+          {controlType === 'radio' ? (
+            <Radio
+              ref={ref}
+              id={id}
+              name={name}
+              value={value}
+              checked={checked}
+              onChange={onChange}
+              disabled={disabled}
+              error={error}
+              {...rest}
+            />
+          ) : (
+            <Checkbox
+              ref={ref}
+              id={id}
+              name={name}
+              value={value}
+              checked={checked}
+              onChange={onChange}
+              disabled={disabled}
+              indeterminate={indeterminate}
+              error={error}
+              {...rest}
+            />
+          )}
+        </div>
+        <div className="ods-card-list-selectable__content">
+          <ContentList
+            title={title}
+            description={description}
+            caption={caption}
+            type={disabled ? 'inactive' : 'default'}
+          />
+          {indicator && (
+            <div className="ods-card-list-selectable__indicator">
+              {indicator}
+            </div>
+          )}
+        </div>
+      </label>
+    )
+);
 
-  const renderControl = () => {
-    if (controlType === 'radio') {
-      return (
-        <Radio
-          id={id}
-          name={name}
-          value={value}
-          checked={checked}
-          onChange={onChange}
-          disabled={disabled}
-          {...rest}
-        />
-      );
-    }
-
-    return (
-      <Checkbox
-        id={id}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        indeterminate={indeterminate}
-        error={error}
-        {...rest}
-      />
-    );
-  };
-
-  return (
-    <label
-      htmlFor={id}
-      className={classNames('ods-card-list-selectable', className, {
-        'ods-card-list-selectable--disabled': disabled,
-        'ods-card-list-selectable--error': error,
-        'ods-card-list-selectable--checked': checked,
-      })}
-    >
-      <div className="ods-card-list-selectable__control">
-        {renderControl()}
-      </div>
-      <div className="ods-card-list-selectable__content">
-        <ContentList
-          title={title}
-          description={description}
-          caption={caption}
-          type={disabled ? 'inactive' : 'default'}
-        />
-        {indicator && (
-          <div className="ods-card-list-selectable__indicator">
-            {indicator}
-          </div>
-        )}
-      </div>
-    </label>
-  );
-};
+CardListSelectable.displayName = 'CardListSelectable';
 
 export default CardListSelectable;
 
