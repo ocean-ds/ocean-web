@@ -77,6 +77,7 @@ const CardListSelectable = React.forwardRef<
     ref
   ): JSX.Element =>
     loading ? (
+      // eslint-disable-next-line jsx-a11y/label-has-associated-control
       <label
         className={classNames(
           'ods-card-list-selectable',
