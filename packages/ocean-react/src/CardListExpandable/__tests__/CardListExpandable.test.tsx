@@ -335,6 +335,10 @@ describe('CardListExpandable', () => {
 
     test('allows calling div methods through ref', () => {
       const ref = React.createRef<HTMLDivElement>();
+
+      // Mock scrollIntoView as it's not implemented in JSDOM
+      HTMLElement.prototype.scrollIntoView = jest.fn();
+
       render(<CardListExpandable title="Test Title" ref={ref} />);
 
       expect(ref.current?.focus).toBeDefined();
