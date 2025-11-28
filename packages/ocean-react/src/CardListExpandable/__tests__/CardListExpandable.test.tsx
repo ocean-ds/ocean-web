@@ -234,5 +234,119 @@ describe('CardListExpandable', () => {
     );
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
+
+  describe('Accessibility', () => {
+    test('has correct aria-expanded attribute when collapsed', () => {
+      render(<CardListExpandable title="Test Title" />);
+      const button = screen.getByRole('button');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    test('has correct aria-expanded attribute when expanded', () => {
+      render(<CardListExpandable title="Test Title" defaultExpanded />);
+      const button = screen.getByRole('button');
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    test('updates aria-expanded when toggled', () => {
+      render(<CardListExpandable title="Test Title" />);
+      const button = screen.getByRole('button');
+
+      // Initially collapsed
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+
+      // Click to expand
+      fireEvent.click(button);
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+
+      // Click to collapse
+      fireEvent.click(button);
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    test('has descriptive aria-label when collapsed', () => {
+      render(<CardListExpandable title="Test Title" />);
+      const button = screen.getByRole('button');
+      expect(button).toHaveAttribute('aria-label', 'Expandir Test Title');
+    });
+
+    test('has descriptive aria-label when expanded', () => {
+      render(<CardListExpandable title="Test Title" defaultExpanded />);
+      const button = screen.getByRole('button');
+      expect(button).toHaveAttribute('aria-label', 'Recolher Test Title');
+    });
+
+    test('has data-testid on root element', () => {
+      render(<CardListExpandable title="Test Title" />);
+      expect(screen.getByTestId('card-list-expandable')).toBeInTheDocument();
+    });
+
+    test('has data-testid on button element', () => {
+      render(<CardListExpandable title="Test Title" />);
+      expect(screen.getByTestId('card-list-expandable-button')).toBeInTheDocument();
+    });
+
+    test('has data-testid on loading state', () => {
+      render(<CardListExpandable title="Test Title" loading />);
+      expect(screen.getByTestId('card-list-expandable')).toBeInTheDocument();
+    });
+  });
+
+  describe('HTML Attributes', () => {
+    test('forwards native div props', () => {
+      render(
+        <CardListExpandable
+          title="Test Title"
+          data-custom="custom-value"
+          id="custom-id"
+          role="region"
+        />
+      );
+
+      const element = screen.getByTestId('card-list-expandable');
+      expect(element).toHaveAttribute('data-custom', 'custom-value');
+      expect(element).toHaveAttribute('id', 'custom-id');
+      expect(element).toHaveAttribute('role', 'region');
+    });
+
+    test('accepts aria attributes', () => {
+      render(
+        <CardListExpandable
+          title="Test Title"
+          aria-describedby="description-id"
+          aria-labelledby="label-id"
+        />
+      );
+
+      const element = screen.getByTestId('card-list-expandable');
+      expect(element).toHaveAttribute('aria-describedby', 'description-id');
+      expect(element).toHaveAttribute('aria-labelledby', 'label-id');
+    });
+  });
+
+  describe('ForwardRef', () => {
+    test('forwards ref to div element', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(<CardListExpandable title="Test Title" ref={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
+      expect(ref.current?.tagName).toBe('DIV');
+    });
+
+    test('allows calling div methods through ref', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(<CardListExpandable title="Test Title" ref={ref} />);
+
+      expect(ref.current?.focus).toBeDefined();
+      expect(ref.current?.scrollIntoView).toBeDefined();
+    });
+
+    test('ref works with loading state', () => {
+      const ref = React.createRef<HTMLDivElement>();
+      render(<CardListExpandable title="Test Title" loading ref={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    });
+  });
 });
 
