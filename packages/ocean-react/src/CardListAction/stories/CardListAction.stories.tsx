@@ -59,10 +59,6 @@ const meta: Meta<typeof CardListAction> = {
       description: 'Mostra o estado de carregamento com skeleton.',
       control: 'boolean',
     },
-    icon: {
-      description: 'Ícone exibido no início do card.',
-      control: false,
-    },
     indicator: {
       description: 'Indicador/badge exibido antes da ação.',
       control: false,
@@ -125,17 +121,27 @@ const defaultMenuActions: ActionItem[] = [
 
 // Story Usage (Principal com Controles)
 export const Usage: Story = {
+  argTypes: {
+    icon: {
+      description: 'Configuração de exibição do ícone.',
+      control: 'select',
+      options: ['withIcon', 'withoutIcon'],
+    },
+  },
   args: {
     title: 'Título do Card',
     description: 'Descrição do card com informações importantes',
-    icon: <PlaceholderOutline size={24} />,
     indicator: <Badge count={3} color="brand" />,
     actionType: 'chevron',
     type: 'default',
     onClick: () => alert('Card clicado!'),
+    icon: 'withIcon',
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
+  render: (args) => {
+    const { icon: iconOption, ...restArgs } = args;
+    const icon = iconOption === 'withIcon' ? <PlaceholderOutline size={24} /> : undefined;
+
+    return (
       <div
         style={{
           minWidth: '300px',
@@ -144,11 +150,11 @@ export const Usage: Story = {
         }}
       >
         <List>
-          <StoryComponent />
+          <CardListAction {...restArgs} icon={icon} />
         </List>
       </div>
-    ),
-  ],
+    );
+  },
 };
 
 // Story: Todos os tipos
