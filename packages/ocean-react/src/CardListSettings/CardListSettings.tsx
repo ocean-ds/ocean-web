@@ -147,8 +147,8 @@ const CardListSettings = React.forwardRef<HTMLDivElement, CardListSettingsProps>
           {...rest}
         >
           <div className="ods-card-list-settings__skeleton">
-            <SkeletonBar width="100%" height="24px" />
-            <SkeletonBar width="80%" height="20px" />
+            <SkeletonBar width="40%" height="16px" />
+            <SkeletonBar width="100%" height="16px" />
           </div>
         </div>
       );
@@ -163,7 +163,9 @@ const CardListSettings = React.forwardRef<HTMLDivElement, CardListSettingsProps>
         })}
         {...rest}
       >
-        {icon && <div className="ods-card-list-settings__icon">{icon}</div>}
+        {icon && <div className={classNames("ods-card-list-settings__icon", {
+          'ods-card-list-settings__icon--inactive': type === 'inactive',
+        })}>{icon}</div>}
         <ContentList
           title={title}
           description={description}

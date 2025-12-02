@@ -20,7 +20,10 @@ const meta: Meta<typeof CardListSettings> = {
     },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
-    icon: { control: false },
+    icon: {
+      control: 'select',
+      options: ['withoutIcon', 'PlaceholderOutline'],
+    },
     actionType: {
       description: 'Tipo de ação: botão (requer confirmação) ou toggle (ação imediata)',
       control: 'select',
@@ -58,15 +61,20 @@ export const Usage: Story = {
   args: {
     title: 'Title',
     description: 'Description',
-    icon: <PlaceholderOutline size={24} />,
+    icon: 'withIcon',
     actionType: 'button',
     buttonLabel: 'Label',
     buttonSize: 'sm',
     type: 'default',
     onButtonClick: () => alert('Button clicked!'),
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
+  render: (args) => {
+    const iconMap = {
+      withoutIcon: undefined,
+      withIcon: <PlaceholderOutline size={24} />,
+    };
+
+    return (
       <div
         style={{
           minWidth: '300px',
@@ -75,11 +83,14 @@ export const Usage: Story = {
         }}
       >
         <List>
-          <StoryComponent />
+          <CardListSettings
+            {...args}
+            icon={iconMap[args.icon as keyof typeof iconMap]}
+          />
         </List>
       </div>
-    ),
-  ],
+    );
+  },
 };
 
 // Story: Action Type Button

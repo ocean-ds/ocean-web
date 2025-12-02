@@ -12,8 +12,13 @@
 
   &__icon {
     align-items: center;
+    color: $color-brand-primary-down;
     display: flex;
     flex-shrink: 0;
+  }
+
+  &__icon--inactive svg {
+    color: $color-interface-light-deep;
   }
 
   &__action {
@@ -21,6 +26,10 @@
     display: flex;
     flex-shrink: 0;
     margin-left: auto;
+
+    > .ods-btn {
+      min-width: min-content;
+    }
   }
 
   &__skeleton {
@@ -42,13 +51,5 @@
   &--disabled {
     cursor: not-allowed;
     opacity: 0.6;
-
-    .ods-typography {
-      color: $color-interface-dark-up;
-    }
   }
 }
-
-
-
-
