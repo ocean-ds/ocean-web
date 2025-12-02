@@ -1,11 +1,63 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import {
+  PlaceholderOutline,
+  HomeOutline,
+  Refresh,
+} from '@useblu/ocean-icons-react';
 import CardListExpandable from '../CardListExpandable';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
 import Typography from '../../Typography';
+
+// Mapeia os nomes dos ícones para seus componentes
+const iconMap = {
+  withoutIcon: null,
+  placeholder: <PlaceholderOutline size={24} />,
+  home: <HomeOutline size={24} />,
+};
+
+// Mapeia os nomes dos indicadores para seus componentes
+const indicatorMap = {
+  withoutIndicator: null,
+  badgeTiny: <Badge variation="tiny" color="brand" />,
+  badgeCount: <Badge count={3} color="brand" />,
+  badgeLabel: <Badge>Label</Badge>,
+  tagPositive: (
+    <Tag type="positive" size="small">
+      Aprovado
+    </Tag>
+  ),
+  tagWarning: (
+    <Tag type="warning" size="small">
+      Pendente
+    </Tag>
+  ),
+  tagNegative: (
+    <Tag type="negative" size="small">
+      Recusado
+    </Tag>
+  ),
+};
+
+const content = (
+  <div
+    style={{
+      padding: '40px 0',
+      backgroundColor: '#EDEAFF',
+      borderTop: '1px dashed #7B61FF',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      flexDirection: 'column',
+      color: '#7B61FF',
+    }}
+  >
+    <Refresh size={16} />
+    <Typography variant="description">Replace me</Typography>
+  </div>
+);
 
 const meta: Meta<typeof CardListExpandable> = {
   title: 'Components/CardList/CardListExpandable',
@@ -28,6 +80,10 @@ const meta: Meta<typeof CardListExpandable> = {
       description: 'Inverte a posição do título com a descrição.',
       control: 'boolean',
     },
+    disabled: {
+      description: 'Se o card está desabilitado.',
+      control: 'boolean',
+    },
     type: {
       description: 'Tipo de estilo do conteúdo do card.',
       control: 'select',
@@ -46,16 +102,26 @@ const meta: Meta<typeof CardListExpandable> = {
       control: 'boolean',
     },
     icon: {
-      description: 'Ícone exibido no início do card. Se não fornecido, não será exibido.',
-      control: false,
+      description:
+        'Ícone exibido no início do card. Se não fornecido, não será exibido.',
+      control: 'select',
+      options: Object.keys(iconMap),
+      mapping: iconMap,
     },
     indicator: {
-      description: 'Indicador/badge exibido antes da ação de expansão. Se não fornecido, não será exibido.',
-      control: false,
+      description:
+        'Indicador/badge exibido antes da ação de expansão. Se não fornecido, não será exibido.',
+      control: 'select',
+      options: Object.keys(indicatorMap),
+      mapping: indicatorMap,
     },
     expanded: {
       description: 'Controla o estado expandido/colapsado (controlled).',
       control: 'boolean',
+    },
+    strikethroughDescription: {
+      description: 'Texto riscado exibido quando o card está expandido.',
+      control: 'text',
     },
     defaultExpanded: {
       description: 'Estado inicial expandido/colapsado (uncontrolled).',
@@ -85,17 +151,13 @@ export const Usage: Story = {
   args: {
     title: 'Título do Card',
     description: 'Descrição do card com informações importantes',
-    icon: <PlaceholderOutline size={24} />,
-    indicator: <Badge count={3} color="brand" />,
+    icon: 'placeholder' as any,
+    indicator: 'badgeCount' as any,
     type: 'default',
+    strikethroughDescription: 'strikethrough',
     defaultExpanded: false,
     children: (
-      <div style={{ padding: '16px', background: '#f3f5fe' }}>
-        <Typography variant="paragraph">
-          Conteúdo expandido do card. Aqui você pode adicionar qualquer
-          informação adicional que deseja mostrar quando o card está expandido.
-        </Typography>
-      </div>
+      content
     ),
   },
   decorators: [
@@ -128,9 +190,7 @@ export const ExpandedStates: Story = {
         icon={<PlaceholderOutline size={24} />}
         defaultExpanded={false}
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="paragraph">Conteúdo expandido</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Card Expandido"
@@ -138,11 +198,7 @@ export const ExpandedStates: Story = {
         icon={<PlaceholderOutline size={24} />}
         defaultExpanded
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="paragraph">
-            Este card já inicia expandido por padrão
-          </Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -161,9 +217,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="default"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Detalhes da transação</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tipo Inactive"
@@ -171,9 +225,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="inactive"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Item inativo</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tipo Positive"
@@ -181,9 +233,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="positive"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Crédito recebido</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tipo Warning"
@@ -191,9 +241,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="warning"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Requer ação</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tipo Highlight"
@@ -201,9 +249,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="highlight"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Informação importante</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tipo Highlight Lead"
@@ -211,9 +257,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="highlight-lead"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Destaque com ênfase</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tipo Strikethrough"
@@ -222,9 +266,7 @@ export const AllTypes: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="strikethrough"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Valor com desconto</Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -241,11 +283,16 @@ export const WithIndicators: Story = {
         title="Badge Tiny - Brand"
         description="Indicator com badge tiny"
         icon={<PlaceholderOutline size={24} />}
+      >
+        {content}
+      </CardListExpandable>
+      <CardListExpandable
+        title="Badge Tiny - Brand"
+        description="Indicator com badge tiny"
+        icon={<PlaceholderOutline size={24} />}
         indicator={<Badge variation="tiny" color="brand" />}
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Conteúdo expandido</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Badge com Count"
@@ -253,9 +300,7 @@ export const WithIndicators: Story = {
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge count={5} color="brand" />}
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">5 novos itens</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tag Positive"
@@ -267,9 +312,15 @@ export const WithIndicators: Story = {
           </Tag>
         }
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Status aprovado</Typography>
-        </div>
+        {content}
+      </CardListExpandable>
+      <CardListExpandable
+        title="Tag Positive"
+        description="Indicator com tag positive"
+        icon={<PlaceholderOutline size={24} />}
+        indicator={<Badge>Label</Badge>}
+      >
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Tag Warning"
@@ -281,9 +332,7 @@ export const WithIndicators: Story = {
           </Tag>
         }
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Aguardando aprovação</Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -301,9 +350,7 @@ export const LoadingState: Story = {
         description="Estado normal"
         icon={<PlaceholderOutline size={24} />}
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Conteúdo</Typography>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Card Loading"
@@ -311,9 +358,7 @@ export const LoadingState: Story = {
         icon={<PlaceholderOutline size={24} />}
         loading
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Conteúdo</Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -337,47 +382,14 @@ export const ComplexContent: Story = {
         }
         defaultExpanded
       >
-        <div
-          style={{
-            padding: '16px',
-            background: '#f3f5fe',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="description">Destinatário:</Typography>
-            <Typography variant="paragraph">João Silva</Typography>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="description">Data:</Typography>
-            <Typography variant="paragraph">25/11/2025</Typography>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="description">Hora:</Typography>
-            <Typography variant="paragraph">14:35</Typography>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="description">ID:</Typography>
-            <Typography variant="paragraph">ABC123456</Typography>
-          </div>
-        </div>
+        {content}
       </CardListExpandable>
       <CardListExpandable
         title="Informações Adicionais"
         description="Ver mais detalhes"
         icon={<PlaceholderOutline size={24} />}
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="paragraph" style={{ marginBottom: '8px' }}>
-            <strong>Observações:</strong>
-          </Typography>
-          <Typography variant="description">
-            Esta é uma transação de exemplo que demonstra como o conteúdo
-            expandido pode conter informações mais detalhadas e complexas.
-          </Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -416,12 +428,7 @@ export const ControlledExample: Story = {
           expanded={expanded}
           onToggle={(newExpanded) => setExpanded(newExpanded)}
         >
-          <div style={{ padding: '16px', background: '#f3f5fe' }}>
-            <Typography variant="paragraph">
-              Este card é controlado por um estado externo. O botão acima
-              também controla o estado de expansão.
-            </Typography>
-          </div>
+          {content}
         </CardListExpandable>
       </List>
     );
@@ -439,11 +446,7 @@ export const WithoutIcon: Story = {
         title="Card Sem Ícone"
         description="Exemplo sem ícone à esquerda"
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">
-            O card também funciona sem ícone
-          </Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -462,9 +465,7 @@ export const WithCaption: Story = {
         caption="Legenda adicional"
         icon={<PlaceholderOutline size={24} />}
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">Conteúdo expandido</Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
@@ -483,13 +484,8 @@ export const Inverted: Story = {
         icon={<PlaceholderOutline size={24} />}
         inverted
       >
-        <div style={{ padding: '16px', background: '#f3f5fe' }}>
-          <Typography variant="description">
-            Com o modo invertido, o título fica maior e a descrição menor
-          </Typography>
-        </div>
+        {content}
       </CardListExpandable>
     </List>
   ),
 };
-

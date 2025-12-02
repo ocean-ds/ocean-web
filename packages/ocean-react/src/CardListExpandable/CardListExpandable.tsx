@@ -63,6 +63,11 @@ export type CardListExpandableProps = {
    * Content to display when expanded.
    */
   children?: ReactNode;
+  /**
+   * If true, the card list expandable will be disabled.
+   * @default false
+   */
+  disabled?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 const CardListExpandable = React.forwardRef<
@@ -85,6 +90,7 @@ const CardListExpandable = React.forwardRef<
       onToggle,
       children,
       className,
+      disabled = false,
       ...rest
     },
     ref
@@ -118,8 +124,8 @@ const CardListExpandable = React.forwardRef<
         >
           <div className="ods-card-list-expandable__main">
             <div className="ods-card-list-expandable__skeleton">
-              <SkeletonBar width="100%" height="24px" />
-              <SkeletonBar width="80%" height="20px" />
+              <SkeletonBar width="40%" height="16px" />
+              <SkeletonBar width="100%" height="16px" />
             </div>
           </div>
         </div>
@@ -132,6 +138,7 @@ const CardListExpandable = React.forwardRef<
         data-testid="card-list-expandable"
         className={classNames('ods-card-list-expandable', className, {
           'ods-card-list-expandable--expanded': isExpanded,
+          'ods-card-list-expandable--disabled': disabled,
         })}
         {...rest}
       >
@@ -139,12 +146,15 @@ const CardListExpandable = React.forwardRef<
           type="button"
           className="ods-card-list-expandable__main"
           onClick={handleToggle}
+          disabled={disabled || type === 'inactive'}
           aria-expanded={isExpanded}
           aria-label={`${isExpanded ? 'Recolher' : 'Expandir'} ${title}`}
           data-testid="card-list-expandable-button"
         >
           {icon && (
-            <div className="ods-card-list-expandable__icon">{icon}</div>
+            <div className={classNames("ods-card-list-expandable__icon", {
+              'ods-card-list-expandable__icon--inactive': type === 'inactive',
+            })}>{icon}</div>
           )}
           <ContentList
             title={title}
