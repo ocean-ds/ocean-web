@@ -86,7 +86,7 @@ const TextListSelectable = React.forwardRef<
     if (loading) {
       return (
         <div className="ods-text-list-selectable--loading">
-          <SkeletonBar width="30%" height="16px" />
+          <SkeletonBar width="33%" height="16px" />
           <SkeletonBar width="100%" height="16px" />
         </div>
       );
@@ -102,12 +102,8 @@ const TextListSelectable = React.forwardRef<
           ref={ref}
           {...rest}
         >
-          {checkbox && (
-            <Checkbox disabled={disabled} {...checkbox} label={internalList} />
-          )}
-          {radio && (
-            <Radio disabled={disabled} {...radio} label={internalList} />
-          )}
+          {checkbox && <Checkbox {...checkbox} label={internalList} />}
+          {radio && <Radio {...radio} label={internalList} />}
         </div>
         {showDivider && <div className="ods-text-list-selectable__divider" />}
       </div>

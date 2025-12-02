@@ -197,14 +197,13 @@ export const CheckboxStates: Story = {
       <TextListSelectable
         title="Title"
         description="Description"
-        checkbox={{ id: 'checkbox-disabled' }}
-        disabled
+        checkbox={{ id: 'checkbox-disabled', disabled: true, checked: true }}
         showDivider
       />
       <TextListSelectable
         title="Title"
         description="Description"
-        checkbox={{ id: 'checkbox-disabled-checked', checked: true }}
+        checkbox={{ id: 'checkbox-disabled-checked' }}
         disabled
         showDivider
       />
@@ -253,6 +252,12 @@ export const RadioStates: Story = {
           checked: true,
         }}
         disabled
+        showDivider
+      />
+      <TextListSelectable
+        title="Title"
+        description="Description"
+        radio={{ id: 'radio-error', error: true }}
         showDivider
       />
     </div>
@@ -306,6 +311,13 @@ export const AllIndicators: Story = {
         showDivider
       />
       <TextListSelectable
+        title="Badge Medium - Brand"
+        description="Indicator com badge medium"
+        indicator={<Badge variation="medium" count={100} color="alert" />}
+        checkbox={{ id: 'indicator-3' }}
+        showDivider
+      />
+      <TextListSelectable
         title="Badge Complementary"
         description="Indicator com cor complementary"
         indicator={<Badge count={3} color="complementary" />}
@@ -337,7 +349,7 @@ export const AllIndicators: Story = {
         title="Tag Positive"
         description="Indicator com tag positive"
         indicator={
-          <Tag type="positive" size="small">
+          <Tag type="positive" size="small" setIconOff>
             Aprovado
           </Tag>
         }
@@ -348,7 +360,7 @@ export const AllIndicators: Story = {
         title="Tag Warning"
         description="Indicator com tag warning"
         indicator={
-          <Tag type="warning" size="small">
+          <Tag type="warning" size="small" setIconOff>
             Pendente
           </Tag>
         }
@@ -370,7 +382,7 @@ export const AllIndicators: Story = {
         title="Tag Neutral"
         description="Indicator com tag neutral"
         indicator={
-          <Tag type="neutral" size="small">
+          <Tag type="neutral" size="small" setIconOff>
             Info
           </Tag>
         }
@@ -381,7 +393,7 @@ export const AllIndicators: Story = {
         title="Tag Highlight"
         description="Indicator com tag highlight important"
         indicator={
-          <Tag variant="highlight" type="important" size="small">
+          <Tag variant="highlight" type="important" size="small" setIconOff>
             Urgente
           </Tag>
         }
@@ -389,9 +401,20 @@ export const AllIndicators: Story = {
         showDivider
       />
       <TextListSelectable
+        title="Tag Highlight"
+        description="Indicator com tag highlight important"
+        indicator={
+          <Tag variant="highlight" type="neutral" size="small" setIconOff>
+            Neutro
+          </Tag>
+        }
+        checkbox={{ id: 'indicator-13' }}
+        showDivider
+      />
+      <TextListSelectable
         title="Sem Indicator"
         description="Item sem indicator"
-        checkbox={{ id: 'indicator-13' }}
+        checkbox={{ id: 'indicator-14' }}
         showDivider
       />
     </div>
@@ -424,7 +447,7 @@ export const AllIndicatorsAppPlatform: Story = {
       <TextListSelectable
         title="Badge Medium - Brand"
         description="Indicator com badge medium"
-        indicator={<Badge variation="medium" count={99} color="brand" />}
+        indicator={<Badge variation="medium" count={100} color="brand" />}
         platform="app"
         checkbox={{ id: 'app-indicator-3' }}
         showDivider
@@ -465,7 +488,7 @@ export const AllIndicatorsAppPlatform: Story = {
         title="Tag Warning"
         description="Indicator com tag warning"
         indicator={
-          <Tag type="warning" size="small">
+          <Tag type="warning" size="small" setIconOff>
             Pendente
           </Tag>
         }
