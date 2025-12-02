@@ -88,7 +88,7 @@ const meta: Meta<typeof Input> = {
     type: {
       description: 'O tipo do elemento input que define seu comportamento.',
       control: 'select',
-      options: ['text', 'email', 'password', 'number'],
+      options: ['text', 'email', 'password', 'number', 'search'],
     },
     label: {
       description: 'O rótulo do campo que identifica seu propósito.',
