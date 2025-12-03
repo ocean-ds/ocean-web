@@ -8,7 +8,7 @@ import {
   PlaceholderOutline
 } from '@useblu/ocean-icons-react';
 import CardListAction from '../CardListAction';
-import type { ActionItem } from '../../InternalListActions';
+import type { ActionItem } from '../../_shared/components/InternalListActions';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
