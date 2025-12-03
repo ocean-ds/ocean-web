@@ -44,6 +44,57 @@ const meta: Meta<typeof CardListReadOnly> = {
   title: 'Components/CardList/CardListReadOnly',
   component: CardListReadOnly,
   tags: ['autodocs'],
+  argTypes: {
+    title: {
+      description: 'Título principal do card.',
+      control: 'text',
+    },
+    description: {
+      description: 'Descrição ou texto secundário do card.',
+      control: 'text',
+    },
+    strikethroughDescription: {
+      description: 'Descrição com texto riscado.',
+      control: 'text',
+    },
+    caption: {
+      description: 'Legenda ou texto terciário do card.',
+      control: 'text',
+    },
+    inverted: {
+      description: 'Inverte a posição do título com a descrição.',
+      control: 'boolean',
+    },
+    type: {
+      description: 'Tipo de estilo do conteúdo do card.',
+      control: 'select',
+      options: [
+        'default',
+        'inactive',
+        'positive',
+        'warning',
+        'highlight',
+        'highlight-lead',
+        'strikethrough'
+      ],
+    },
+    disabled: {
+      description: 'Desabilita o card.',
+      control: 'boolean',
+    },
+    loading: {
+      description: 'Mostra o estado de carregamento com skeleton.',
+      control: 'boolean',
+    },
+    indicator: {
+      description: 'Indicador/badge exibido no card.',
+      control: false,
+    },
+    className: {
+      description: 'Classe CSS adicional para o card.',
+      control: 'text',
+    },
+  },
 };
 
 export default meta;
@@ -51,13 +102,45 @@ export default meta;
 type Story = StoryObj<typeof CardListReadOnly>;
 
 // Story Usage (Principal com Controles)
+const iconOptions = {
+  withIcon: defaultIcon,
+  withoutIcon: undefined,
+};
+
+const indicatorOptions = {
+  badgeCount: <Badge count={3} color="brand" />,
+  badgeText: <Badge color="brand">Novo</Badge>,
+  tagHighlight: <Tag variant="highlight" type="important" size="small">Urgente</Tag>,
+  tagNeutral: <Tag variant="default" size="small">Info</Tag>,
+  withoutIndicator: undefined,
+};
+
 export const Usage: Story = {
   args: {
     title: 'Título do Card',
     description: 'Descrição do card com informações importantes',
+    strikethroughDescription: '',
+    caption: '',
     icon: defaultIcon,
-    indicator: <Badge count={3} color="brand" />,
+    indicator: indicatorOptions.badgeCount,
     type: 'default',
+    inverted: false,
+  },
+  argTypes: {
+    icon: {
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+      },
+    },
+    indicator: {
+      options: Object.keys(indicatorOptions),
+      mapping: indicatorOptions,
+      control: {
+        type: 'select',
+      },
+    },
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (

@@ -102,7 +102,9 @@ const CardListReadOnly = React.forwardRef<
         })}
         {...rest}
       >
-        {icon && <div className='ods-card-list-readonly__icon'>{icon}</div>}
+        {icon && <div className={classNames('ods-card-list-readonly__icon', {
+          'ods-card-list-readonly__icon--inactive': type === 'inactive',
+        })}>{icon}</div>}
         <ContentList
           title={title}
           description={description}
