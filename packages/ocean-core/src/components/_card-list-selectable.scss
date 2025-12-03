@@ -75,10 +75,6 @@
   &--disabled {
     cursor: not-allowed;
     pointer-events: none;
-
-    .ods-content-list .ods-typography {
-      color: $color-interface-dark-up;
-    }
   }
 
   &--loading {

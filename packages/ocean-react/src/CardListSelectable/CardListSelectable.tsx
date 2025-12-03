@@ -116,8 +116,8 @@ const CardListSelectable = React.forwardRef<
         aria-hidden="true"
       >
         <div className="ods-card-list-selectable__skeleton">
-          <SkeletonBar width="100%" height="24px" />
-          <SkeletonBar width="80%" height="20px" />
+          <SkeletonBar width="40%" height="16px" />
+          <SkeletonBar width="100%" height="16px" />
         </div>
       </label>
     ) : (
@@ -165,7 +165,7 @@ const CardListSelectable = React.forwardRef<
             strikethroughDescription={strikethroughDescription}
             caption={caption}
             inverted={inverted}
-            type={disabled ? 'inactive' : type}
+            type={type}
           />
           {indicator && (
             <div className="ods-card-list-selectable__indicator">
