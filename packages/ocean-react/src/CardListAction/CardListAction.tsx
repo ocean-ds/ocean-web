@@ -151,7 +151,9 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
         disabled={disabled}
         {...rest}
       >
-        {icon && <div className='ods-card-list-action__icon'>{icon}</div>}
+        {icon && <div className={classNames('ods-card-list-action__icon', {
+          'ods-card-list-action__icon--inactive': type === 'inactive',
+        })}>{icon}</div>}
         <ContentList
           title={title}
           description={description}
