@@ -29,6 +29,10 @@
     min-height: 20px;
     min-width: 20px;
     width: 20px;
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
   }
 
   &:checked ~ &__checkmark {

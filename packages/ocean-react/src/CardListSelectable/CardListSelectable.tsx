@@ -1,0 +1,183 @@
+import React, { ReactNode } from 'react';
+import classNames from 'classnames';
+import Checkbox from '../Checkbox';
+import Radio from '../Radio';
+import ContentList, {
+  ContentListProps,
+} from '../_shared/components/ContentList';
+import SkeletonBar from '../_shared/components/SkeletonBar';
+
+export type CardListSelectableProps = {
+  /**
+   * Title of the card.
+   */
+  title: string;
+  /**
+   * Description or secondary text of the card.
+   */
+  description?: string;
+  /**
+   * Description with strikethrough text.
+   */
+  strikethroughDescription?: string;
+  /**
+   * Caption or tertiary text of the card.
+   */
+  caption?: string;
+  /**
+   * Inverts the position of title and description.
+   * @default false
+   */
+  inverted?: boolean;
+  /**
+   * The style type of the card content.
+   * @default 'default'
+   */
+  type?: ContentListProps['type'];
+  /**
+   * Type of selection control (checkbox or radio).
+   * @default 'checkbox'
+   */
+  controlType?: 'checkbox' | 'radio';
+  /**
+   * Indicator/badge displayed next to the content.
+   */
+  indicator?: ReactNode;
+  /**
+   * Whether the card is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Whether the card is in loading state with skeleton.
+   */
+  loading?: boolean;
+  /**
+   * Whether the card has an error state.
+   */
+  error?: boolean;
+  /**
+   * Class name for the card container.
+   */
+  className?: string;
+  /**
+   * Whether the checkbox is in indeterminate state (only for checkbox).
+   */
+  indeterminate?: boolean;
+  /**
+   * Name attribute for the input (required for radio groups).
+   */
+  name?: string;
+  /**
+   * Value attribute for the input (required for radio buttons).
+   */
+  value?: string;
+} & Omit<
+  React.ComponentPropsWithoutRef<'input'>,
+  'type' | 'title' | 'className' | 'name' | 'value'
+>;
+
+const CardListSelectable = React.forwardRef<
+  HTMLInputElement,
+  CardListSelectableProps
+>(
+  (
+    {
+      title,
+      description,
+      strikethroughDescription,
+      caption,
+      inverted = false,
+      type = 'default',
+      controlType = 'checkbox',
+      indicator,
+      disabled = false,
+      loading = false,
+      error = false,
+      className,
+      indeterminate = false,
+      checked,
+      onChange,
+      name,
+      value,
+      id,
+      ...rest
+    },
+    ref
+  ): JSX.Element =>
+    loading ? (
+      // eslint-disable-next-line jsx-a11y/label-has-associated-control
+      <label
+        className={classNames(
+          'ods-card-list-selectable',
+          'ods-card-list-selectable--loading',
+          className
+        )}
+        data-testid="card-list-selectable"
+        aria-hidden="true"
+      >
+        <div className="ods-card-list-selectable__skeleton">
+          <SkeletonBar width="40%" height="16px" />
+          <SkeletonBar width="100%" height="16px" />
+        </div>
+      </label>
+    ) : (
+      <label
+        htmlFor={id}
+        className={classNames('ods-card-list-selectable', className, {
+          'ods-card-list-selectable--disabled': disabled,
+          'ods-card-list-selectable--error': error,
+          'ods-card-list-selectable--checked': checked,
+        })}
+        data-testid="card-list-selectable"
+      >
+        <div className="ods-card-list-selectable__control">
+          {controlType === 'radio' ? (
+            <Radio
+              ref={ref}
+              id={id}
+              name={name}
+              value={value}
+              checked={checked}
+              onChange={onChange}
+              disabled={disabled}
+              error={error}
+              {...rest}
+            />
+          ) : (
+            <Checkbox
+              ref={ref}
+              id={id}
+              name={name}
+              value={value}
+              checked={checked}
+              onChange={onChange}
+              disabled={disabled}
+              indeterminate={indeterminate}
+              error={error}
+              {...rest}
+            />
+          )}
+        </div>
+        <div className="ods-card-list-selectable__content">
+          <ContentList
+            title={title}
+            description={description}
+            strikethroughDescription={strikethroughDescription}
+            caption={caption}
+            inverted={inverted}
+            type={type}
+          />
+          {indicator && (
+            <div className="ods-card-list-selectable__indicator">
+              {indicator}
+            </div>
+          )}
+        </div>
+      </label>
+    )
+);
+
+CardListSelectable.displayName = 'CardListSelectable';
+
+export default CardListSelectable;
+
