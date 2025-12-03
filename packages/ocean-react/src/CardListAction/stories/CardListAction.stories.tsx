@@ -8,7 +8,7 @@ import {
   PlaceholderOutline,
 } from '@useblu/ocean-icons-react';
 import CardListAction from '../CardListAction';
-import type { ActionItem } from '../../InternalListActions';
+import type { ActionItem } from '../../_shared/components/InternalListActions';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
@@ -59,13 +59,8 @@ const meta: Meta<typeof CardListAction> = {
       description: 'Mostra o estado de carregamento com skeleton.',
       control: 'boolean',
     },
-    icon: {
-      description: 'Ícone exibido no início do card.',
-      control: false,
-    },
     indicator: {
       description: 'Indicador/badge exibido antes da ação.',
-      control: false,
     },
     actionType: {
       description: 'Tipo de ação exibida no card.',
@@ -123,19 +118,89 @@ const defaultMenuActions: ActionItem[] = [
   },
 ];
 
+// Opções de indicadores disponíveis
+const indicatorOptions = {
+  none: undefined,
+  'badge-tiny-brand': <Badge variation="tiny" color="brand" />,
+  'badge-small-brand': <Badge variation="small" count={5} color="brand" />,
+  'badge-medium-brand': <Badge variation="medium" count={99} color="brand" />,
+  'badge-complementary': <Badge count={3} color="complementary" />,
+  'badge-alert': <Badge count={12} color="alert" />,
+  'badge-neutral': <Badge count={7} color="neutral" />,
+  'badge-text': <Badge color="brand">Novo</Badge>,
+  'tag-positive': (
+    <Tag type="positive" size="small">
+      Aprovado
+    </Tag>
+  ),
+  'tag-warning': (
+    <Tag type="warning" size="small">
+      Pendente
+    </Tag>
+  ),
+  'tag-negative': (
+    <Tag type="negative" setIconOff size="medium">
+      Recusado
+    </Tag>
+  ),
+  'tag-neutral': (
+    <Tag type="neutral" size="small">
+      Info
+    </Tag>
+  ),
+  'tag-highlight': (
+    <Tag variant="highlight" type="important" size="small">
+      Urgente
+    </Tag>
+  ),
+};
+
+type IndicatorOptionKey = keyof typeof indicatorOptions;
+
 // Story Usage (Principal com Controles)
 export const Usage: Story = {
+  argTypes: {
+    icon: {
+      description: 'Configuração de exibição do ícone.',
+      control: 'select',
+      options: ['withIcon', 'withoutIcon'],
+    },
+    indicator: {
+      description: 'Indicador/badge exibido antes da ação.',
+      control: 'select',
+      options: [
+        'none',
+        'badge-tiny-brand',
+        'badge-small-brand',
+        'badge-medium-brand',
+        'badge-complementary',
+        'badge-alert',
+        'badge-neutral',
+        'badge-text',
+        'tag-positive',
+        'tag-warning',
+        'tag-negative',
+        'tag-neutral',
+        'tag-highlight',
+      ],
+    },
+  },
   args: {
     title: 'Título do Card',
     description: 'Descrição do card com informações importantes',
-    icon: <PlaceholderOutline size={24} />,
-    indicator: <Badge count={3} color="brand" />,
+    indicator: 'badge-small-brand' as unknown as React.ReactNode,
     actionType: 'chevron',
     type: 'default',
     onClick: () => alert('Card clicado!'),
+    icon: 'withIcon',
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
+  render: (args) => {
+    const { icon: iconOption, indicator: indicatorOption, ...restArgs } = args;
+    const icon =
+      iconOption === 'withIcon' ? <PlaceholderOutline size={24} /> : undefined;
+    const indicator = indicatorOptions[indicatorOption as IndicatorOptionKey];
+
+    return (
       <div
         style={{
           minWidth: '300px',
@@ -144,11 +209,11 @@ export const Usage: Story = {
         }}
       >
         <List>
-          <StoryComponent />
+          <CardListAction {...restArgs} icon={icon} indicator={indicator} />
         </List>
       </div>
-    ),
-  ],
+    );
+  },
 };
 
 // Story: Todos os tipos
