@@ -146,7 +146,7 @@ const CardListExpandable = React.forwardRef<
           type="button"
           className="ods-card-list-expandable__main"
           onClick={handleToggle}
-          disabled={disabled || type === 'inactive'}
+          disabled={disabled}
           aria-expanded={isExpanded}
           aria-label={`${isExpanded ? 'Recolher' : 'Expandir'} ${title}`}
           data-testid="card-list-expandable-button"
