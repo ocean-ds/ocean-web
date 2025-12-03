@@ -184,32 +184,32 @@ export const CheckboxStates: Story = {
       />
       <TextListSelectable
         title="Title"
-        description="Description"
+        description="Com check"
         checkbox={{ id: 'checkbox-checked', checked: true }}
         showDivider
       />
       <TextListSelectable
         title="Title"
-        description="Description"
+        description="Indeterminado"
         checkbox={{ id: 'checkbox-indeterminate', indeterminate: true }}
         showDivider
       />
       <TextListSelectable
         title="Title"
-        description="Description"
+        description="Desabilitado e selecionado"
         checkbox={{ id: 'checkbox-disabled', disabled: true, checked: true }}
         showDivider
       />
       <TextListSelectable
         title="Title"
-        description="Description"
-        checkbox={{ id: 'checkbox-disabled-checked' }}
+        description="Desabilitado"
+        checkbox={{ id: 'checkbox-disabled-checked', disabled: true }}
         disabled
         showDivider
       />
       <TextListSelectable
         title="Title"
-        description="Description"
+        description="Erro"
         checkbox={{ id: 'checkbox-error', error: true }}
         showDivider
       />
@@ -238,25 +238,29 @@ export const RadioStates: Story = {
       />
       <TextListSelectable
         title="Title"
-        description="Description"
-        radio={{ id: 'radio-disabled', name: 'radio-group-2' }}
-        disabled
+        description="Desabilitado e selecionado"
+        radio={{
+          id: 'radio-disabled',
+          name: 'radio-group-2',
+          checked: true,
+          disabled: true,
+        }}
         showDivider
       />
       <TextListSelectable
         title="Title"
-        description="Description"
+        description="Desabilitado"
         radio={{
           id: 'radio-disabled-selected',
-          name: 'radio-group-2',
-          checked: true,
+          name: 'radio-group-3',
+          disabled: true,
         }}
         disabled
         showDivider
       />
       <TextListSelectable
         title="Title"
-        description="Description"
+        description="Erro"
         radio={{ id: 'radio-error', error: true }}
         showDivider
       />
@@ -386,7 +390,7 @@ export const AllIndicators: Story = {
             Info
           </Tag>
         }
-        checkbox={{ id: 'indicator-11' }}
+        radio={{ id: 'indicator-11' }}
         showDivider
       />
       <TextListSelectable
@@ -397,7 +401,7 @@ export const AllIndicators: Story = {
             Urgente
           </Tag>
         }
-        checkbox={{ id: 'indicator-12' }}
+        radio={{ id: 'indicator-12' }}
         showDivider
       />
       <TextListSelectable
@@ -408,13 +412,13 @@ export const AllIndicators: Story = {
             Neutro
           </Tag>
         }
-        checkbox={{ id: 'indicator-13' }}
+        radio={{ id: 'indicator-13' }}
         showDivider
       />
       <TextListSelectable
         title="Sem Indicator"
         description="Item sem indicator"
-        checkbox={{ id: 'indicator-14' }}
+        radio={{ id: 'indicator-14' }}
         showDivider
       />
     </div>
@@ -465,7 +469,7 @@ export const AllIndicatorsAppPlatform: Story = {
         description="Indicator com cor alert"
         indicator={<Badge count={12} color="alert" />}
         platform="app"
-        checkbox={{ id: 'app-indicator-5' }}
+        radio={{ id: 'app-indicator-5' }}
         showDivider
       />
       <TextListSelectable
@@ -473,7 +477,7 @@ export const AllIndicatorsAppPlatform: Story = {
         description="Indicator com cor neutral"
         indicator={<Badge count={7} color="neutral" />}
         platform="app"
-        checkbox={{ id: 'app-indicator-6' }}
+        radio={{ id: 'app-indicator-6' }}
         showDivider
       />
       <TextListSelectable
@@ -481,7 +485,7 @@ export const AllIndicatorsAppPlatform: Story = {
         description="Indicator com texto ao invés de número"
         indicator={<Badge color="brand">Novo</Badge>}
         platform="app"
-        checkbox={{ id: 'app-indicator-7' }}
+        radio={{ id: 'app-indicator-7' }}
         showDivider
       />
       <TextListSelectable
@@ -493,7 +497,7 @@ export const AllIndicatorsAppPlatform: Story = {
           </Tag>
         }
         platform="app"
-        checkbox={{ id: 'app-indicator-9' }}
+        radio={{ id: 'app-indicator-9' }}
         showDivider
       />
     </div>

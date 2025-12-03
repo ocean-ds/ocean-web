@@ -54,6 +54,7 @@
   }
 
   &:disabled:not(:checked) ~ &__checkmark {
+    background-color: $color-interface-light-pure;
     border-color: $color-interface-light-deep;
   }
 }
