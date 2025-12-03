@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.113.2](https://github.com/ocean-ds/ocean-web/compare/v1.113.1...v1.113.2) (2025-12-03)
+
+### Bug Fixes
+
+- chip multi select ([#1203](https://github.com/ocean-ds/ocean-web/issues/1203)) ([9943a81](https://github.com/ocean-ds/ocean-web/commit/9943a8160f8ab40eb8d325475c080d3ad7e32ffb))
+
 ## [1.113.1](https://github.com/ocean-ds/ocean-web/compare/v1.113.0...v1.113.1) (2025-11-26)
 
 ### Bug Fixes
