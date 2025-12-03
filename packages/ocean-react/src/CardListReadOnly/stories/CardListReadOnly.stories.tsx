@@ -6,6 +6,7 @@ import type { CardListReadOnlyProps } from '../CardListReadOnly';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
+import { cardListBaseArgTypes } from '../../_shared/cardListArgTypes';
 
 const defaultIcon = <PlaceholderOutline size={24} />;
 const listStyle = { minWidth: '300px' };
@@ -44,57 +45,7 @@ const meta: Meta<typeof CardListReadOnly> = {
   title: 'Components/CardList/CardListReadOnly',
   component: CardListReadOnly,
   tags: ['autodocs'],
-  argTypes: {
-    title: {
-      description: 'Título principal do card.',
-      control: 'text',
-    },
-    description: {
-      description: 'Descrição ou texto secundário do card.',
-      control: 'text',
-    },
-    strikethroughDescription: {
-      description: 'Descrição com texto riscado.',
-      control: 'text',
-    },
-    caption: {
-      description: 'Legenda ou texto terciário do card.',
-      control: 'text',
-    },
-    inverted: {
-      description: 'Inverte a posição do título com a descrição.',
-      control: 'boolean',
-    },
-    type: {
-      description: 'Tipo de estilo do conteúdo do card.',
-      control: 'select',
-      options: [
-        'default',
-        'inactive',
-        'positive',
-        'warning',
-        'highlight',
-        'highlight-lead',
-        'strikethrough'
-      ],
-    },
-    disabled: {
-      description: 'Desabilita o card.',
-      control: 'boolean',
-    },
-    loading: {
-      description: 'Mostra o estado de carregamento com skeleton.',
-      control: 'boolean',
-    },
-    indicator: {
-      description: 'Indicador/badge exibido no card.',
-      control: false,
-    },
-    className: {
-      description: 'Classe CSS adicional para o card.',
-      control: 'text',
-    },
-  },
+  argTypes: cardListBaseArgTypes,
 };
 
 export default meta;
