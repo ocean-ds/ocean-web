@@ -131,8 +131,8 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
           {...rest}
         >
           <div className='ods-card-list-action__skeleton'>
-            <SkeletonBar width='100%' height='24px' />
-            <SkeletonBar width='80%' height='20px' />
+            <SkeletonBar width='40%' height='16px' />
+            <SkeletonBar width='100%' height='16px' />
           </div>
         </button>
       );
