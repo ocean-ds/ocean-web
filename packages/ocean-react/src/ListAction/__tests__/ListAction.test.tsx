@@ -11,7 +11,7 @@ describe('ListAction', () => {
     test('renders with required props', () => {
       render(<ListAction title='Test Title' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
@@ -53,7 +53,7 @@ describe('ListAction', () => {
       );
 
       expect(screen.getByTestId('test-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders with indicator', () => {
@@ -65,7 +65,7 @@ describe('ListAction', () => {
       );
 
       expect(screen.getByTestId('test-badge')).toBeInTheDocument();
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('applies custom className', () => {
@@ -73,7 +73,7 @@ describe('ListAction', () => {
         <ListAction title='Test Title' className='custom-test-class' />
       );
 
-      expect(screen.getByTestId('card-list-action')).toHaveClass(
+      expect(screen.getByTestId('list-action')).toHaveClass(
         'custom-test-class'
       );
     });
@@ -83,18 +83,18 @@ describe('ListAction', () => {
     test('renders loading state with skeleton', () => {
       render(<ListAction title='Test Title' loading />);
 
-      expect(screen.getByTestId('card-list-action')).toHaveClass(
-        'ods-card-list-action--loading'
+      expect(screen.getByTestId('list-action')).toHaveClass(
+        'ods-list-action--loading'
       );
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders disabled state', () => {
       render(<ListAction title='Test Title' disabled />);
 
-      const button = screen.getByTestId('card-list-action');
+      const button = screen.getByTestId('list-action');
       expect(button).toBeDisabled();
-      expect(button).toHaveClass('ods-card-list-action--disabled');
+      expect(button).toHaveClass('ods-list-action--disabled');
     });
 
     test('does not call onClick when disabled', () => {
@@ -103,7 +103,7 @@ describe('ListAction', () => {
         <ListAction title='Test Title' disabled onClick={handleClick} />
       );
 
-      fireEvent.click(screen.getByTestId('card-list-action'));
+      fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).not.toHaveBeenCalled();
     });
   });
@@ -114,7 +114,7 @@ describe('ListAction', () => {
       'text',
     ] as const)('renders with type %s', (type) => {
       render(<ListAction title='Test Title' type={type} />);
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders inverted layout', () => {
@@ -135,13 +135,13 @@ describe('ListAction', () => {
     test('renders chevron action by default', () => {
       render(<ListAction title='Test Title' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders chevron action explicitly', () => {
       render(<ListAction title='Test Title' actionType='chevron' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders menu action type', () => {
@@ -168,7 +168,7 @@ describe('ListAction', () => {
         />
       );
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders swipe action type with swipe mode class', () => {
@@ -189,8 +189,8 @@ describe('ListAction', () => {
         />
       );
 
-      expect(screen.getByTestId('card-list-action')).toHaveClass(
-        'ods-card-list-action--swipe-mode'
+      expect(screen.getByTestId('list-action')).toHaveClass(
+        'ods-list-action--swipe-mode'
       );
     });
   });
@@ -220,7 +220,7 @@ describe('ListAction', () => {
         />
       );
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
   });
 
@@ -229,7 +229,7 @@ describe('ListAction', () => {
       const handleClick = jest.fn();
       render(<ListAction title='Test Title' onClick={handleClick} />);
 
-      fireEvent.click(screen.getByTestId('card-list-action'));
+      fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
@@ -237,7 +237,7 @@ describe('ListAction', () => {
       const handleClick = jest.fn();
       render(<ListAction title='Test Title' onClick={handleClick} />);
 
-      fireEvent.click(screen.getByTestId('card-list-action'));
+      fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).toHaveBeenCalledWith(expect.any(Object));
       expect(handleClick.mock.calls[0][0]).toHaveProperty('target');
     });
@@ -245,7 +245,7 @@ describe('ListAction', () => {
     test('does not throw error when onClick is not provided', () => {
       expect(() => {
         render(<ListAction title='Test Title' />);
-        fireEvent.click(screen.getByTestId('card-list-action'));
+        fireEvent.click(screen.getByTestId('list-action'));
       }).not.toThrow();
     });
   });
@@ -261,7 +261,7 @@ describe('ListAction', () => {
         />
       );
 
-      const button = screen.getByTestId('card-list-action');
+      const button = screen.getByTestId('list-action');
       expect(button).toHaveAttribute('aria-label', 'Custom aria label');
       expect(button).toHaveAttribute('id', 'custom-id');
       expect(button).toHaveAttribute('data-custom', 'custom-value');
@@ -270,7 +270,7 @@ describe('ListAction', () => {
     test('is a button element', () => {
       render(<ListAction title='Test Title' />);
 
-      const element = screen.getByTestId('card-list-action');
+      const element = screen.getByTestId('list-action');
       expect(element.tagName).toBe('BUTTON');
       expect(element).toHaveAttribute('type', 'button');
     });
@@ -278,7 +278,7 @@ describe('ListAction', () => {
     test('has correct data-testid', () => {
       render(<ListAction title='Test Title' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
   });
 

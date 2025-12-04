@@ -187,7 +187,7 @@ export const Usage: Story = {
         }}
       >
         <div style={{ width: '400px' }}>
-          <ListAction {...restArgs} icon={icon} indicator={indicator} />
+          <ListAction {...restArgs} icon={icon} indicator={indicator} menuActions={defaultMenuActions} />
         </div>
       </div>
     );
