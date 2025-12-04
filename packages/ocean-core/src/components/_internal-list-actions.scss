@@ -8,7 +8,7 @@
     align-items: center;
     background: transparent;
     border: 0;
-    border-radius: 999px;
+    border-radius: $border-radius-circular;
     color: $color-interface-dark-up;
     cursor: pointer;
     display: flex;
@@ -68,10 +68,7 @@
 
     // Portal mode - positions are calculated in JS
     &--portal {
-      bottom: auto;
-      left: auto;
-      right: auto;
-      top: auto;
+      inset: auto;
     }
   }
 
@@ -170,11 +167,8 @@
 
   // Mobile: Overlay within container
   &--force-swipe {
-    bottom: 0;
-    left: 0;
+    inset: 0;
     position: absolute;
-    right: 0;
-    top: 0;
     z-index: 100;
 
     /* stylelint-disable max-nesting-depth */
@@ -186,17 +180,12 @@
       top: 50%;
       transform: translateY(-50%);
       width: auto;
-      z-index: 102;
     }
 
     .ods-internal-list-actions__backdrop {
       background: transparent;
-      bottom: 0;
-      left: 0;
+      inset: 0;
       position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 101;
     }
 
     .ods-internal-list-actions__drag-handle {
