@@ -31,10 +31,15 @@ export type CardListReadOnlyProps = {
    */
   indicator?: ReactNode;
   /**
-   * The style type of the card content.
+   * The style type of the list item.
+   * @default 'card'
+   */
+  type?: 'card' | 'text';
+  /**
+   * The status type of the card content.
    * @default 'default'
    */
-  type?: ContentListProps['type'];
+  status?: ContentListProps['type'];
   /**
    * Inverts the position of title and description.
    * @default false
@@ -50,6 +55,11 @@ export type CardListReadOnlyProps = {
    * @default false
    */
   loading?: boolean;
+  /**
+   * If true, shows a divider between the items when type is 'text'.
+   * @default false
+   */
+  showDivider?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const CardListReadOnly = React.forwardRef<
@@ -64,59 +74,69 @@ const CardListReadOnly = React.forwardRef<
       caption,
       icon,
       indicator,
-      type = 'default',
+      type = 'card',
+      status = 'default',
       inverted = false,
       disabled = false,
       loading = false,
       className,
+      showDivider = false,
       ...rest
     },
     ref
   ) => {
-    if (loading) {
-      return (
-        <div
-          ref={ref}
-          data-testid='card-list-readonly'
-          className={classNames(
-            'ods-card-list-readonly',
-            'ods-card-list-readonly--loading',
-            className
-          )}
-          {...rest}
-        >
-          <div className='ods-card-list-readonly__skeleton'>
-            <SkeletonBar width='40%' height='16px' />
-            <SkeletonBar width='100%' height='16px' />
-          </div>
-        </div>
-      );
-    }
+    const renderLoadingContent = () => (
+      <div className='ods-card-list-readonly__skeleton'>
+        <SkeletonBar width='40%' height='16px' />
+        <SkeletonBar width='100%' height='16px' />
+      </div>
+    );
 
-    return (
-      <div
-        ref={ref}
-        data-testid='card-list-readonly'
-        className={classNames('ods-card-list-readonly', className, {
-          'ods-card-list-readonly--disabled': disabled,
-        })}
-        {...rest}
-      >
-        {icon && <div className={classNames('ods-card-list-readonly__icon', {
-          'ods-card-list-readonly__icon--inactive': type === 'inactive',
-        })}>{icon}</div>}
+    const renderContent = () => (
+      <>
+        {icon && (
+          <div
+            className={classNames('ods-card-list-readonly__icon', {
+              'ods-card-list-readonly__icon--inactive': status === 'inactive',
+            })}
+          >
+            {icon}
+          </div>
+        )}
         <ContentList
           title={title}
           description={description}
           strikethroughDescription={strikethroughDescription}
           caption={caption}
           inverted={inverted}
-          type={type}
+          type={status}
         />
         {indicator && (
           <div className='ods-card-list-readonly__trailing'>
             <div className='ods-card-list-readonly__indicator'>{indicator}</div>
           </div>
+        )}
+      </>
+    );
+
+    const cardClassName = classNames('ods-card-list-readonly', className, {
+      'ods-card-list-readonly--loading': loading,
+      'ods-card-list-readonly--disabled': disabled,
+      [`ods-card-list-readonly--${type}`]: type,
+    });
+
+    return (
+      <div className='ods-card-list-readonly__container'>
+        <div
+          ref={ref}
+          data-testid='card-list-readonly'
+          className={cardClassName}
+          {...rest}
+        >
+          {loading ? renderLoadingContent() : renderContent()}
+        </div>
+        {showDivider && type === 'text' && (
+          <div className='ods-card-list-readonly__divider' />
         )}
       </div>
     );

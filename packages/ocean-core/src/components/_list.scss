@@ -16,16 +16,20 @@
   }
 
   .ods-card-list-item,
-  .ods-card-list-action,
-  .ods-card-list-readonly,
-  .ods-list-action__container,
-  .ods-list-action,
-  .ods-list-action__divider {
+  .ods-card-list-readonly__container,
+  .ods-list-action__container {
     border: 0;
     border-radius: 0;
 
     &:not(:last-of-type) {
       border-bottom: 1px solid $color-interface-light-down;
     }
+  }
+
+  .ods-list-action,
+  .ods-card-list-readonly,
+  .ods-list-action__divider,
+  .ods-card-list-readonly__divider {
+    border: 0;
   }
 }
