@@ -1,17 +1,35 @@
-.ods-card-list-action {
+.ods-list-action {
   align-items: center;
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: $border-radius-sm;
   cursor: pointer;
   display: flex;
-  gap: $spacing-inline-xxs-extra;
   padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
     $spacing-inline-xs;
   position: relative;
+  gap: $spacing-inline-xxs-extra;
   text-align: left;
   transition: background-color 0.2s ease;
   width: 100%;
+
+  &__container {
+    width: 100%;
+  }
+
+  &--card {
+    border-color: $color-interface-light-deep;
+  }
+
+  &--text {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
 
   &:hover:not(&--disabled):not(&--loading) {
     background-color: $color-interface-light-up;
@@ -69,6 +87,7 @@
   &--loading {
     cursor: default;
     pointer-events: none;
+    padding-right: $spacing-inline-xs;
   }
 
   &--disabled {
@@ -78,8 +97,8 @@
 }
 
 // When in swipe mode, push indicator to the left to avoid overlapping with trigger
-.ods-card-list-action--swipe-mode {
-  .ods-card-list-action__indicator {
+.ods-list-action--swipe-mode {
+  .ods-list-action__indicator {
     // Offset to accommodate trigger button width + gap
     margin-right: $spacing-inline-sm;
   }

@@ -15,9 +15,10 @@
     }
   }
 
-  // CardListItem and CardListAction inside List
   .ods-card-list-item,
-  .ods-card-list-action {
+  .ods-list-action__container,
+  .ods-list-action,
+  .ods-list-action__divider {
     border: 0;
     border-radius: 0;
 
