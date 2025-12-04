@@ -34,25 +34,25 @@ interface StoryControls extends SettingListItemProps {
   hasButton: boolean;
   buttonText: string;
   buttonVariant:
-    | 'primary'
-    | 'primaryCritical'
-    | 'secondary'
-    | 'secondaryCritical'
-    | 'tertiary'
-    | 'tertiaryCritical'
-    | 'textTertiary'
-    | 'textTertiaryCritical'
-    | 'inverse';
+  | 'primary'
+  | 'primaryCritical'
+  | 'secondary'
+  | 'secondaryCritical'
+  | 'tertiary'
+  | 'tertiaryCritical'
+  | 'textTertiary'
+  | 'textTertiaryCritical'
+  | 'inverse';
   hasTag: boolean;
   tagText: string;
   tagType:
-    | 'positive'
-    | 'warning'
-    | 'negative'
-    | 'neutral'
-    | 'neutral-02'
-    | 'neutral-03'
-    | 'default';
+  | 'positive'
+  | 'warning'
+  | 'negative'
+  | 'neutral'
+  | 'neutral-02'
+  | 'neutral-03'
+  | 'default';
 }
 
 const meta: Meta<StoryControls> = {
@@ -310,18 +310,18 @@ export const Usage: Story = {
       button={
         hasButton
           ? {
-              children: buttonText,
-              variant: buttonVariant,
-            }
+            children: buttonText,
+            variant: buttonVariant,
+          }
           : undefined
       }
       tag={
         hasTag
           ? {
-              children: tagText,
-              variant: 'default',
-              type: tagType,
-            }
+            children: tagText,
+            variant: 'default',
+            type: tagType,
+          }
           : undefined
       }
     />
@@ -503,7 +503,6 @@ export const States: Story = {
         description="Item temporariamente desativado"
         caption="Funcionalidade pausada"
         state="inactive"
-        type="inverted"
         tag={{ children: 'Inativo', variant: 'default', type: 'neutral-02' }}
       />
 
@@ -512,7 +511,6 @@ export const States: Story = {
         description="Item funcionando perfeitamente"
         caption="Tudo funcionando bem"
         state="positive"
-        type="inverted"
         tag={{ children: 'Sucesso', variant: 'default', type: 'positive' }}
       />
 
@@ -521,7 +519,6 @@ export const States: Story = {
         description="Item que precisa de atenção"
         caption="Verificação recomendada"
         state="warning"
-        type="inverted"
         tag={{ children: 'Atenção', variant: 'default', type: 'warning' }}
       />
 
@@ -530,7 +527,6 @@ export const States: Story = {
         description="Item destacado para chamar atenção"
         caption="Configuração importante"
         state="highlight"
-        type="inverted"
         button={{ children: 'Configurar', variant: 'primary', size: 'sm' }}
       />
 
