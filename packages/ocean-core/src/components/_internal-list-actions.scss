@@ -1,0 +1,378 @@
+.ods-internal-list-actions {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+
+  &__trigger {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: $border-radius-circular;
+    color: $color-interface-dark-up;
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    height: $spacing-stack-md;
+    justify-content: center;
+    width: $spacing-inline-md;
+
+    &:hover:not(:disabled, &--swipe-gesture),
+    &:active:not(:disabled, &--swipe-gesture),
+    &--active:not(:disabled, &--swipe-gesture) {
+      background: $color-interface-light-up;
+      color: $color-brand-primary-pure;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  &__menu {
+    background: $color-interface-light-pure;
+    border-radius: $border-radius-sm;
+    box-shadow: 0 $spacing-stack-xxxs $spacing-stack-xs rgba(0, 0, 0, 0.12);
+    list-style: none;
+    margin: 0;
+    min-width: max-content;
+    padding: $spacing-stack-xxxs 0;
+    position: absolute;
+    width: max-content;
+    z-index: 1000;
+
+    &--bottom-left {
+      right: 0;
+      top: calc(100% + $spacing-stack-xxxs);
+    }
+
+    &--bottom-right {
+      left: 0;
+      top: calc(100% + $spacing-stack-xxxs);
+    }
+
+    &--top-left {
+      bottom: calc(100% + $spacing-stack-xxxs);
+      right: 0;
+    }
+
+    &--top-right {
+      bottom: calc(100% + $spacing-stack-xxxs);
+      left: 0;
+    }
+
+    // Portal mode - positions are calculated in JS
+    &--portal {
+      inset: auto;
+    }
+  }
+
+  &__menu-item {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: $color-interface-dark-deep;
+    cursor: pointer;
+    display: flex;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    gap: $spacing-inline-xs;
+    line-height: $line-height-comfy;
+    padding: $spacing-stack-xxs $spacing-inline-xxs-extra;
+    text-align: left;
+    transition: background-color 200ms;
+    width: 100%;
+
+    &:hover:not(&--disabled) {
+      background: $color-interface-light-up;
+    }
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    // Variant colors based on Tag component
+    &--positive {
+      color: $color-status-positive-deep;
+
+      /* stylelint-disable-next-line max-nesting-depth */
+      &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+        background: $color-status-positive-up;
+      }
+    }
+
+    &--positive .ods-internal-list-actions__menu-item-icon {
+      color: $color-status-positive-deep;
+    }
+
+    &--warning {
+      color: $color-status-warning-deep;
+
+      /* stylelint-disable-next-line max-nesting-depth */
+      &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+        background: $color-status-warning-up;
+      }
+    }
+
+    &--warning .ods-internal-list-actions__menu-item-icon {
+      color: $color-status-warning-deep;
+    }
+
+    &--negative {
+      color: $color-status-negative-pure;
+
+      /* stylelint-disable-next-line max-nesting-depth */
+      &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+        background: $color-status-negative-up;
+      }
+    }
+
+    &--negative .ods-internal-list-actions__menu-item-icon {
+      color: $color-status-negative-pure;
+    }
+
+    &--neutral {
+      color: $color-interface-dark-up;
+
+      /* stylelint-disable-next-line max-nesting-depth */
+      &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+        background: $color-interface-light-up;
+      }
+    }
+
+    &--neutral .ods-internal-list-actions__menu-item-icon {
+      color: $color-interface-dark-up;
+    }
+
+    &-icon {
+      align-items: center;
+      display: flex;
+      flex-shrink: 0;
+      height: $spacing-stack-xs;
+      justify-content: center;
+      width: $spacing-inline-xs;
+    }
+
+    &-label {
+      flex: 1;
+      white-space: nowrap;
+    }
+  }
+
+  // Mobile: Overlay within container
+  &--force-swipe {
+    inset: 0;
+    position: absolute;
+    z-index: 100;
+
+    /* stylelint-disable max-nesting-depth */
+    .ods-internal-list-actions__trigger {
+      height: 100%;
+      padding: 0 $spacing-inline-xxs;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: auto;
+    }
+
+    .ods-internal-list-actions__backdrop {
+      background: transparent;
+      inset: 0;
+      position: absolute;
+    }
+
+    .ods-internal-list-actions__drag-handle {
+      align-items: center;
+      background: $color-interface-light-pure;
+      cursor: pointer;
+      display: flex;
+      flex-shrink: 0;
+      height: 100%;
+      justify-content: center;
+      left: 0;
+      margin: 0;
+      padding: 0 $spacing-inline-xs;
+      position: sticky;
+      z-index: 1;
+    }
+
+    .ods-internal-list-actions__drag-handle-button {
+      align-items: center;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      margin: 0;
+      padding: 0 $spacing-inline-xxs;
+      width: 100%;
+    }
+
+    .ods-internal-list-actions__drag-handle-icon {
+      display: block;
+      height: $spacing-stack-sm;
+      width: 5px;
+    }
+
+    .ods-internal-list-actions__menu {
+      align-items: stretch;
+      animation: slideInFromRight 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      bottom: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: row;
+      left: 0;
+      margin: 0;
+      max-height: none;
+      min-width: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 102;
+      /* stylelint-disable-next-line order/properties-alphabetical-order */
+      -webkit-overflow-scrolling: touch;
+
+      &--closing {
+        animation: slideOutToRight 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      // All positions behave the same on mobile - fills entire container
+      &--bottom-left,
+      &--bottom-right,
+      &--top-left,
+      &--top-right {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+
+      // Remove default list item styles
+      li {
+        display: flex;
+        flex-shrink: 0;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        &:first-of-type {
+          margin-left: auto;
+        }
+      }
+    }
+
+    .ods-internal-list-actions__menu-item {
+      align-items: center;
+      border-radius: 0;
+      flex-direction: column;
+      gap: $spacing-inline-xxxs;
+      height: 100%;
+      justify-content: center;
+      padding: $spacing-stack-xs $spacing-inline-xs;
+      white-space: nowrap;
+      width: auto;
+
+      &-icon {
+        flex: 1;
+        height: 20px;
+        width: 20px;
+      }
+
+      &-label {
+        align-items: center;
+        display: flex;
+        flex: 1;
+      }
+
+      // Variant backgrounds on mobile
+      &--positive {
+        background: $color-status-positive-deep;
+        color: $color-interface-light-pure;
+      }
+
+      &--positive .ods-internal-list-actions__menu-item-icon {
+        color: $color-interface-light-pure;
+      }
+
+      &--warning {
+        background: $color-status-warning-deep;
+        color: $color-interface-light-pure;
+      }
+
+      &--warning .ods-internal-list-actions__menu-item-icon {
+        color: $color-interface-light-pure;
+      }
+
+      &--negative {
+        background: $color-status-negative-pure;
+        color: $color-interface-light-pure;
+      }
+
+      &--negative .ods-internal-list-actions__menu-item-icon {
+        color: $color-interface-light-pure;
+      }
+
+      &--neutral {
+        background: $color-interface-dark-up;
+        color: $color-interface-light-pure;
+      }
+
+      &--neutral .ods-internal-list-actions__menu-item-icon {
+        color: $color-interface-light-pure;
+      }
+
+      // Default variant (also applies when no variant is specified)
+      &--default,
+      &:not(&--positive):not(&--warning):not(&--negative):not(&--neutral) {
+        background: $color-interface-light-up;
+        color: $color-interface-dark-deep;
+      }
+
+      &--default .ods-internal-list-actions__menu-item-icon,
+      &:not(&--positive):not(&--warning):not(&--negative):not(&--neutral).ods-internal-list-actions__menu-item-icon {
+        color: $color-interface-dark-deep;
+      }
+    }
+    /* stylelint-enable max-nesting-depth */
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+
+  to {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+}
