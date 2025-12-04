@@ -5,7 +5,7 @@ import ContentList, {
   ContentListProps,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
-import InternalListActions, { ActionItem } from '../InternalListActions';
+import InternalListActions, { ActionItem } from '../_shared/components/InternalListActions';
 
 export type CardListActionProps = {
   /**
@@ -131,10 +131,10 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
           {...rest}
         >
           <div className='ods-card-list-action__skeleton'>
-            <SkeletonBar width='100%' height='24px' />
-            <SkeletonBar width='80%' height='20px' />
-          </div>
-        </button>
+            <SkeletonBar width='40%' height='16px' />
+            <SkeletonBar width='100%' height='16px' />
+          </div >
+        </button >
       );
     }
 

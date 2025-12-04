@@ -42,6 +42,10 @@ const meta: Meta<typeof CardListAction> = {
       description: 'Função chamada ao clicar no card.',
       action: 'clicked',
     },
+    className: {
+      description: 'Classe CSS adicional para o card.',
+      control: 'text',
+    },
   },
 };
 
@@ -76,6 +80,25 @@ const defaultMenuActions: ActionItem[] = [
   },
 ];
 
+// Opções de indicadores disponíveis
+const indicatorOptions = {
+  none: undefined,
+  'badge-tiny-brand': <Badge variation="tiny" color="brand" />,
+  'badge-small-brand': <Badge variation="small" count={5} color="brand" />,
+  'badge-medium-brand': <Badge variation="medium" count={99} color="brand" />,
+  'badge-complementary': <Badge count={3} color="complementary" />,
+  'badge-alert': <Badge count={12} color="alert" />,
+  'badge-neutral': <Badge count={7} color="neutral" />,
+  'badge-text': <Badge color="brand">Novo</Badge>,
+  'tag-positive': <Tag type="positive" size="small">Aprovado</Tag>,
+  'tag-warning': <Tag type="warning" size="small">Pendente</Tag>,
+  'tag-negative': <Tag type="negative" setIconOff size="medium">Recusado</Tag>,
+  'tag-neutral': <Tag type="neutral" size="small">Info</Tag>,
+  'tag-highlight': <Tag variant="highlight" type="important" size="small">Urgente</Tag>,
+};
+
+type IndicatorOptionKey = keyof typeof indicatorOptions;
+
 // Story Usage (Principal com Controles)
 export const Usage: Story = {
   argTypes: {
@@ -84,19 +107,39 @@ export const Usage: Story = {
       control: 'select',
       options: ['withIcon', 'withoutIcon'],
     },
+    indicator: {
+      description: 'Indicador/badge exibido antes da ação.',
+      control: 'select',
+      options: [
+        'none',
+        'badge-tiny-brand',
+        'badge-small-brand',
+        'badge-medium-brand',
+        'badge-complementary',
+        'badge-alert',
+        'badge-neutral',
+        'badge-text',
+        'tag-positive',
+        'tag-warning',
+        'tag-negative',
+        'tag-neutral',
+        'tag-highlight',
+      ],
+    },
   },
   args: {
     title: 'Título do Card',
     description: 'Descrição do card com informações importantes',
-    indicator: <Badge count={3} color="brand" />,
+    indicator: 'badge-small-brand' as unknown as React.ReactNode,
     actionType: 'chevron',
     type: 'default',
     onClick: () => alert('Card clicado!'),
     icon: 'withIcon',
   },
   render: (args) => {
-    const { icon: iconOption, ...restArgs } = args;
+    const { icon: iconOption, indicator: indicatorOption, ...restArgs } = args;
     const icon = iconOption === 'withIcon' ? <PlaceholderOutline size={24} /> : undefined;
+    const indicator = indicatorOptions[indicatorOption as IndicatorOptionKey];
 
     return (
       <div
@@ -107,9 +150,9 @@ export const Usage: Story = {
         }}
       >
         <List>
-          <CardListAction {...restArgs} icon={icon} />
-        </List>
-      </div>
+          <CardListAction {...restArgs} icon={icon} indicator={indicator} />
+        </List >
+      </div >
     );
   },
 };
