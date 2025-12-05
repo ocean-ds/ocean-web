@@ -8,7 +8,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # ListSelectable
 
-Componente de lista avançado que suporta seleção (checkbox/radio), indicadores visuais (badges, tags) e diferentes estados de exibição.
+Componente de lista avançado que suporta seleção (checkbox/radio), indicadores visuais (badges, tags) e diferentes estados de exibição. Oferece dois tipos de layout: texto com divisor (`text`) ou card com borda (`card`).
 
 ## Importação
 
@@ -78,6 +78,39 @@ Lista selecionável com radio button:
   title="ListSelectable - Radio States"
 />
 
+### Tipo Text (com divisor)
+
+Estilo padrão com divisor horizontal entre itens:
+
+<StorybookEmbed
+  storyId="components-list-listselectable--text-type"
+  height={350}
+  showToolbar={false}
+  title="ListSelectable - Text Type"
+/>
+
+### Tipo Card (com borda)
+
+Estilo alternativo com borda ao redor do item:
+
+<StorybookEmbed
+  storyId="components-list-listselectable--card-type"
+  height={350}
+  showToolbar={false}
+  title="ListSelectable - Card Type"
+/>
+
+### Uso dentro de List
+
+O componente pode ser usado dentro do componente `List` para criar listas organizadas:
+
+<StorybookEmbed
+  storyId="components-list-listselectable--usage-inside-list"
+  height={400}
+  showToolbar={false}
+  title="ListSelectable - Usage Inside List"
+/>
+
 ### Indicadores Visuais
 
 O componente suporta diversos indicadores visuais como Badges e Tags:
@@ -102,22 +135,38 @@ O componente suporta diversos indicadores visuais como Badges e Tags:
 
 ### Props
 
-| Prop                       | Tipo                      | Padrão      | Descrição                                            |
-| -------------------------- | ------------------------- | ----------- | ---------------------------------------------------- |
-| `title`                    | `string`                  | -           | Título principal do item (obrigatório)               |
-| `description`              | `string`                  | -           | Descrição detalhada do item                          |
-| `caption`                  | `string`                  | -           | Legenda ou informação adicional em destaque          |
-| `strikethroughDescription` | `string`                  | -           | Texto com linha cortada (riscado)                    |
-| `inverted`                 | `boolean`                 | `false`     | Inverte a hierarquia visual do título e descrição    |
-| `type`                     | `'default' \| 'inverted'` | `'default'` | Tipo visual que afeta a hierarquia                   |
-| `loading`                  | `boolean`                 | `false`     | Exibe estado de carregamento com skeleton            |
-| `disabled`                 | `boolean`                 | `false`     | Desabilita o item, tornando-o não interativo         |
-| `showDivider`              | `boolean`                 | `true`      | Controla se deve exibir o divisor visual do item     |
-| `platform`                 | `'web' \| 'app'`          | `'web'`     | Define a plataforma para ajustes visuais específicos |
-| `checkbox`                 | `CheckboxProps`           | -           | Props do componente Checkbox para seleção múltipla   |
-| `radio`                    | `RadioProps`              | -           | Props do componente Radio para seleção única         |
-| `indicator`                | `ReactNode`               | -           | Elemento visual indicador (Badge, Tag, etc.)         |
-| `className`                | `string`                  | -           | Classes CSS adicionais                               |
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------- |
+| `title`                    | `string`                                                                                                   | -           | Título principal do item (obrigatório)                   |
+| `description`              | `string`                                                                                                   | -           | Descrição detalhada do item                              |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou informação adicional em destaque              |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Texto com linha cortada (riscado)                        |
+| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte a hierarquia visual do título e descrição        |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Estado visual aplicado ao conteúdo                       |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Estilo do wrapper (`card` com borda, `text` com divisor) |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o item, tornando-o não interativo             |
+| `showDivider`              | `boolean`                                                                                                  | `true`      | Exibe divisor visual (aplicado apenas em `type="text"`)  |
+| `platform`                 | `'web' \| 'app'`                                                                                           | `'web'`     | Define a plataforma para ajustes visuais específicos     |
+| `checkbox`                 | `CheckboxProps`                                                                                            | -           | Props do componente Checkbox para seleção múltipla       |
+| `radio`                    | `RadioProps`                                                                                               | -           | Props do componente Radio para seleção única             |
+| `indicator`                | `ReactNode`                                                                                                | -           | Elemento visual indicador (Badge, Tag, etc.)             |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                   |
+
+## Tipos de Layout
+
+### Text (Texto)
+
+- Estilo inline com divisor horizontal
+- Ideal para listas simples e densas
+- Divisor renderizado apenas quando `showDivider={true}`
+
+### Card (Cartão)
+
+- Estilo com borda ao redor
+- Maior destaque visual para cada item
+- Ideal para formulários e seleções importantes
+- Suporta estado de erro com borda vermelha
 
 ## Acessibilidade
 
@@ -125,9 +174,11 @@ O componente suporta diversos indicadores visuais como Badges e Tags:
 - ✅ Integração correta com labels de inputs (Checkbox/Radio)
 - ✅ Estados visuais de foco e desabilitado
 - ✅ Contraste adequado para leitura
+- ✅ Estado de erro visualmente diferenciado
 
 ## Links relacionados
 
+- [List](/components/list)
 - [Checkbox](/components/checkbox)
 - [Radio](/components/radio)
 - [Badge](/components/badge)

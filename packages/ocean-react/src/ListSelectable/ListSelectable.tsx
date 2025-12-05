@@ -8,20 +8,35 @@ import Radio, { RadioProps } from '../Radio/Radio';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
 interface ListSelectableProps {
+  /** Required main title displayed on the list item. */
   title: string;
+  /** Optional secondary text rendered below the title. */
   description?: string;
+  /** Optional caption shown in a smaller, auxiliary style. */
   caption?: string;
+  /** Optional strikethrough text shown when `status="strikethrough"` */
   strikethroughDescription?: string;
+  /** Swap the order of title/description to emphasize the description. */
   inverted?: boolean;
+  /** Show a loading skeleton instead of the content. */
   loading?: boolean;
+  /** Disable interaction and apply the inactive visual state. */
   disabled?: boolean;
+  /** Props forwarded to the inner Checkbox component. */
   checkbox?: CheckboxProps;
+  /** Props forwarded to the inner Radio component. */
   radio?: RadioProps;
+  /** Additional classes applied to the root . */
   className?: string;
+  /** Controls whether the horizontal divider is rendered. */
   showDivider?: boolean;
+  /** Optional visual indicator element (Badge, Tag, etc.). */
   indicator?: ReactNode;
+  /** Visual state applied to the text content (`default`, `warning`, etc.). */
   status?: ContentListProps['type'];
+  /** Layout style of the wrapper: `text` keeps inline divider, `card` shows borders. */
   type?: 'card' | 'text';
+  /** Platform context used to adjust spacing (web or app). */
   platform?: 'web' | 'app';
 }
 
@@ -98,9 +113,9 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
 
     return (
       <div
-        className={classNames('ods-list-selectable__container', {
-          [`ods-list-selectable__container--${type}`]: type,
-          [`ods-list-selectable__container--${type}--error`]: hasError,
+        className={classNames('ods-list-selectable__root', {
+          [`ods-list-selectable__root--${type}`]: type,
+          [`ods-list-selectable__root--${type}--error`]: hasError,
         })}
       >
         <div
@@ -115,7 +130,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           {radio && <Radio {...radio} label={internalList} />}
         </div>
         {showDivider && type === 'text' && (
-          <div className="ods-list-selectable__container--text--divider" />
+          <div className="ods-list-selectable__root--text--divider" />
         )}
       </div>
     );
