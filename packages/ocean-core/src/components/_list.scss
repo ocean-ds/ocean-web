@@ -15,8 +15,7 @@
     }
   }
 
-  .ods-card-list-item,
-  .ods-list-action__container {
+  .ods-card-list-item {
     border: 0;
     border-radius: 0;
 
@@ -25,8 +24,18 @@
     }
   }
 
-  .ods-list-action,
-  .ods-list-action__divider {
-    border: 0;
+  .ods-list-action__container {
+    .ods-list-action {
+      border: 0;
+      border-radius: 0;
+    }
+
+    &:last-of-type > .ods-list-action__divider {
+      border: 0;
+    }
+
+    &:not(:last-of-type) > .ods-list-action--card {
+      border-bottom: 1px solid $color-interface-light-down;
+    }
   }
 }
