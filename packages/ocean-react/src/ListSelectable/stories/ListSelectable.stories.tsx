@@ -4,6 +4,8 @@ import Badge from '../../Badge';
 import Tag from '../../Tag';
 import ListSelectable from '../ListSelectable';
 
+import List from '../../List';
+
 const storyStyles = {
   container: {
     display: 'flex' as const,
@@ -278,6 +280,39 @@ export const RadioStates: Story = {
   ),
 };
 
+// Text Type
+export const TextType: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={storyStyles.container}>
+      <ListSelectable
+        type="text"
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-text' }}
+        showDivider
+      />
+      <ListSelectable
+        type="text"
+        title="Title"
+        description="Selected"
+        checkbox={{ id: 'checkbox-text-selected', checked: true }}
+        showDivider
+      />
+      <ListSelectable
+        type="text"
+        title="Title"
+        description="Disabled"
+        disabled
+        checkbox={{ id: 'checkbox-text-disabled', disabled: true }}
+        showDivider
+      />
+    </div>
+  ),
+};
+
 // Card Type
 export const CardType: Story = {
   parameters: {
@@ -304,6 +339,40 @@ export const CardType: Story = {
         disabled
         checkbox={{ id: 'checkbox-card-disabled', disabled: true }}
       />
+    </div>
+  ),
+};
+
+// Usage Inside List
+export const UsageInsideList: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '360px' }}>
+      <List>
+        <ListSelectable
+          title="Notificações"
+          description="Receber alertas por email"
+          checkbox={{ id: 'settings-1', checked: true }}
+          showDivider
+          type="text"
+        />
+        <ListSelectable
+          title="Tema Escuro"
+          description="Ativar modo noturno"
+          checkbox={{ id: 'settings-2' }}
+          showDivider
+          type="text"
+        />
+        <ListSelectable
+          title="Sons"
+          description="Reproduzir sons no aplicativo"
+          checkbox={{ id: 'settings-3', checked: true }}
+          showDivider
+          type="text"
+        />
+      </List>
     </div>
   ),
 };
@@ -465,51 +534,18 @@ export const AllIndicators: Story = {
   ),
 };
 
-export const AllIndicatorsAppPlatform: Story = {
+export const IndicatorsAppPlatform: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
     <div style={storyStyles.container}>
       <ListSelectable
-        title="Badge Tiny - Brand"
-        description="Indicator com badge tiny"
-        indicator={<Badge variation="tiny" color="brand" />}
-        platform="app"
-        checkbox={{ id: 'app-indicator-1' }}
-        showDivider
-      />
-      <ListSelectable
-        title="Badge Small - Brand"
-        description="Indicator com badge small e count"
-        indicator={<Badge variation="small" count={5} color="brand" />}
-        platform="app"
-        checkbox={{ id: 'app-indicator-2' }}
-        showDivider
-      />
-
-      <ListSelectable
-        title="Badge Medium - Brand"
-        description="Indicator com badge medium"
-        indicator={<Badge variation="medium" count={100} color="brand" />}
-        platform="app"
-        checkbox={{ id: 'app-indicator-3' }}
-        showDivider
-      />
-      <ListSelectable
-        title="Badge Complementary"
-        description="Indicator com cor complementary"
-        indicator={<Badge count={3} color="complementary" />}
-        platform="app"
-        checkbox={{ id: 'app-indicator-4' }}
-        showDivider
-      />
-      <ListSelectable
         title="Badge Alert"
         description="Indicator com cor alert"
         indicator={<Badge count={12} color="alert" />}
         platform="app"
-        radio={{ id: 'app-indicator-5' }}
+        checkbox={{ id: 'app-indicator-5' }}
         showDivider
       />
       <ListSelectable
@@ -517,7 +553,7 @@ export const AllIndicatorsAppPlatform: Story = {
         description="Indicator com cor neutral"
         indicator={<Badge count={7} color="neutral" />}
         platform="app"
-        radio={{ id: 'app-indicator-6' }}
+        checkbox={{ id: 'app-indicator-6' }}
         showDivider
       />
       <ListSelectable

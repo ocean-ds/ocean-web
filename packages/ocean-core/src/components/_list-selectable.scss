@@ -60,10 +60,15 @@
 }
 
 .ods-list-selectable__container {
+  overflow: hidden;
+
   &--card {
     border: $border-width-hairline solid $color-interface-light-down;
     border-radius: $border-radius-sm;
-    overflow: hidden;
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
   }
 
   &--text {

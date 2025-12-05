@@ -8,6 +8,7 @@ import {
 } from '@useblu/ocean-icons-react';
 import List from '../List';
 import TransactionListItem from '../../TransactionListItem';
+import ListSelectable from '../../ListSelectable';
 
 const meta: Meta<typeof List> = {
   title: 'Components/List',
@@ -176,6 +177,37 @@ export const SubItemsList: Story = {
       >
         Outro item com subitens
       </TransactionListItem>
+    </List>
+  ),
+};
+
+export const WithListSelectable: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List>
+      <ListSelectable
+        title="Opção 1"
+        description="Descrição da opção 1"
+        checkbox={{ id: 'list-selectable-1' }}
+        type="text"
+        showDivider
+      />
+      <ListSelectable
+        title="Opção 2"
+        description="Descrição da opção 2"
+        checkbox={{ id: 'list-selectable-2' }}
+        type="text"
+        showDivider
+      />
+      <ListSelectable
+        title="Opção 3"
+        description="Descrição da opção 3"
+        checkbox={{ id: 'list-selectable-3' }}
+        type="text"
+        showDivider
+      />
     </List>
   ),
 };

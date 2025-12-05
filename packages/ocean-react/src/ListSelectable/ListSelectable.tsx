@@ -41,12 +41,17 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       showDivider,
       indicator,
       status = 'default',
-      type = 'text',
+      type = 'card',
       platform = 'web',
       ...rest
     },
     ref
   ) => {
+    const hasError = useMemo(
+      () => radio?.error || checkbox?.error,
+      [radio?.error, checkbox?.error]
+    );
+
     const internalList = useMemo(
       () => (
         <>
@@ -85,7 +90,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
     if (loading) {
       return (
         <div className="ods-list-selectable--loading">
-          <SkeletonBar width="33%" height="16px" />
+          <SkeletonBar width="40%" height="16px" />
           <SkeletonBar width="100%" height="16px" />
         </div>
       );
@@ -95,6 +100,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       <div
         className={classNames('ods-list-selectable__container', {
           [`ods-list-selectable__container--${type}`]: type,
+          [`ods-list-selectable__container--${type}--error`]: hasError,
         })}
       >
         <div
@@ -108,7 +114,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           {checkbox && <Checkbox {...checkbox} label={internalList} />}
           {radio && <Radio {...radio} label={internalList} />}
         </div>
-        {showDivider && (
+        {showDivider && type === 'text' && (
           <div className="ods-list-selectable__container--text--divider" />
         )}
       </div>
