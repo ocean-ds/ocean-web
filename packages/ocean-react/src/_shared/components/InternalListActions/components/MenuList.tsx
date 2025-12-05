@@ -31,7 +31,10 @@ const MenuList: React.FC<MenuListProps> = ({
   const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
 
   useLayoutEffect(() => {
-    if (!isSwipeMode && triggerElement && menuRef.current) {
+    const shouldCalculatePosition =
+      !isSwipeMode && triggerElement && menuRef.current;
+
+    if (shouldCalculatePosition) {
       const triggerRect = triggerElement.getBoundingClientRect();
       const menuRect = menuRef.current.getBoundingClientRect();
 
