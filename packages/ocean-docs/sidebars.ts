@@ -49,6 +49,7 @@ const sidebars: SidebarsConfig = {
         'components/link',
         'components/list',
         'components/listaction',
+        'components/listexpandable',
         'components/modal',
         'components/progress',
         'components/radio',

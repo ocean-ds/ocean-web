@@ -1,0 +1,127 @@
+.ods-list-expandable {
+  background-color: $color-interface-light-pure;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // Prevent flex items from overflowing
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
+
+  &--card {
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-sm;
+  }
+
+  &--text {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &__main {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 0; // Prevent button from overflowing
+    padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
+      $spacing-inline-xs;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    width: 100%;
+
+    &:hover:not(.ods-card-list-expandable--loading &) {
+      background-color: $color-interface-light-up;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-brand-primary-pure;
+      outline-offset: -2px;
+    }
+  }
+
+  &__icon {
+    align-items: center;
+    color: $color-brand-primary-down;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__icon--inactive svg {
+    color: $color-interface-light-deep;
+  }
+
+  &__trailing {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    margin-left: auto;
+  }
+
+  &__indicator {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__action {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+
+    svg {
+      color: $color-interface-dark-up;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  &__content {
+    box-sizing: border-box; // Include padding in width calculation
+    overflow: hidden; // Prevent content from overflowing
+    width: 100%;
+    word-wrap: break-word; // Break long words
+  }
+
+  &__skeleton {
+    box-sizing: border-box; // Include padding in width calculation
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    padding: 0; // Remove any extra padding
+    width: 100%;
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+      width: 100%; // Ensure skeleton respects parent width
+    }
+  }
+
+  // Loading state
+  &--loading {
+    .ods-list-expandable__main {
+      box-sizing: border-box;
+      cursor: default;
+      overflow: hidden; // Prevent skeleton from overflowing
+      pointer-events: none;
+    }
+  }
+
+  // Expanded state
+  &--expanded {
+    .ods-list-expandable__main:hover {
+      background-color: $color-interface-light-up;
+    }
+  }
+}

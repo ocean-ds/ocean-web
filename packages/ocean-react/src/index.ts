@@ -125,3 +125,6 @@ export * from './SettingsListItem';
 
 export { default as ListAction } from './ListAction';
 export * from './ListAction';
+
+export { default as CardListExpandable } from './ListExpandable';
+export * from './ListExpandable';
