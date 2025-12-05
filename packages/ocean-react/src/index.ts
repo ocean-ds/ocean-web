@@ -123,8 +123,8 @@ export * from './WebNotification';
 export { default as SettingsListItem } from './SettingsListItem';
 export * from './SettingsListItem';
 
-export { default as CardListAction } from './CardListAction';
-export * from './CardListAction';
+export { default as ListAction } from './ListAction';
+export * from './ListAction';
 
 export { default as CardListExpandable } from './CardListExpandable';
 export * from './CardListExpandable';
