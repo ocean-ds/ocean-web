@@ -123,5 +123,5 @@ export * from './WebNotification';
 export { default as SettingsListItem } from './SettingsListItem';
 export * from './SettingsListItem';
 
-export { default as CardListAction } from './ListAction';
+export { default as ListAction } from './ListAction';
 export * from './ListAction';
