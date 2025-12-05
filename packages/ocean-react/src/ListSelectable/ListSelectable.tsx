@@ -13,7 +13,6 @@ interface ListSelectableProps {
   caption?: string;
   strikethroughDescription?: string;
   inverted?: boolean;
-  type?: ContentListProps['type'];
   loading?: boolean;
   disabled?: boolean;
   checkbox?: CheckboxProps;
@@ -21,6 +20,8 @@ interface ListSelectableProps {
   className?: string;
   showDivider?: boolean;
   indicator?: ReactNode;
+  status?: ContentListProps['type'];
+  type?: 'card' | 'text';
   platform?: 'web' | 'app';
 }
 
@@ -32,7 +33,6 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       caption,
       strikethroughDescription,
       inverted,
-      type,
       loading,
       disabled,
       checkbox,
@@ -40,6 +40,8 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       className,
       showDivider,
       indicator,
+      status = 'default',
+      type = 'text',
       platform = 'web',
       ...rest
     },
@@ -54,7 +56,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
             strikethroughDescription={strikethroughDescription}
             caption={caption}
             inverted={inverted}
-            type={disabled ? 'inactive' : type}
+            type={disabled ? 'inactive' : status}
           />
           {indicator && (
             <div
@@ -73,7 +75,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
         caption,
         strikethroughDescription,
         inverted,
-        type,
+        status,
         indicator,
         disabled,
         platform,
@@ -90,7 +92,11 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
     }
 
     return (
-      <div>
+      <div
+        className={classNames('ods-list-selectable__container', {
+          [`ods-list-selectable__container--${type}`]: type,
+        })}
+      >
         <div
           className={classNames('ods-list-selectable', className, {
             'ods-list-selectable--disabled': disabled,
@@ -102,7 +108,9 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           {checkbox && <Checkbox {...checkbox} label={internalList} />}
           {radio && <Radio {...radio} label={internalList} />}
         </div>
-        {showDivider && <div className="ods-list-selectable__divider" />}
+        {showDivider && (
+          <div className="ods-list-selectable__container--text--divider" />
+        )}
       </div>
     );
   }

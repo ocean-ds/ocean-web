@@ -77,7 +77,7 @@ const meta: Meta<typeof ListSelectable> = {
         defaultValue: { summary: 'false' },
       },
     },
-    type: {
+    status: {
       description: 'Tipo visual que define o estilo do conteúdo.',
       control: 'select',
       options: [
@@ -96,6 +96,16 @@ const meta: Meta<typeof ListSelectable> = {
             "'default' | 'inactive' | 'positive' | 'warning' | 'highlight' | 'highlight-lead' | 'strikethrough'",
         },
         defaultValue: { summary: "'default'" },
+      },
+    },
+    type: {
+      description: 'Define o estilo do container (texto ou card).',
+      control: 'inline-radio',
+      options: ['text', 'card'],
+      table: {
+        category: category.appearance,
+        type: { summary: "'text' | 'card'" },
+        defaultValue: { summary: "'text'" },
       },
     },
     showDivider: {
@@ -263,6 +273,36 @@ export const RadioStates: Story = {
         description="Erro"
         radio={{ id: 'radio-error', error: true }}
         showDivider
+      />
+    </div>
+  ),
+};
+
+// Card Type
+export const CardType: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={storyStyles.container}>
+      <ListSelectable
+        type="card"
+        title="Title"
+        description="Description"
+        checkbox={{ id: 'checkbox-card' }}
+      />
+      <ListSelectable
+        type="card"
+        title="Title"
+        description="Selected"
+        checkbox={{ id: 'checkbox-card-selected', checked: true }}
+      />
+      <ListSelectable
+        type="card"
+        title="Title"
+        description="Disabled"
+        disabled
+        checkbox={{ id: 'checkbox-card-disabled', disabled: true }}
       />
     </div>
   ),

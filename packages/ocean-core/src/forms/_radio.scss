@@ -5,7 +5,7 @@
   width: 0;
 
   &__root {
-    display: inline-flex;
+    display: flex;
     user-select: none;
 
     &:hover .ods-radio__checkmark {
