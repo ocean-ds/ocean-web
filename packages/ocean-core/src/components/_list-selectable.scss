@@ -1,4 +1,4 @@
-.ods-text-list-selectable {
+.ods-list-selectable {
   &__indicator {
     margin-left: $spacing-inline-xxs-extra;
 
@@ -53,7 +53,7 @@
   }
 }
 
-.ods-text-list-selectable--disabled {
+.ods-list-selectable--disabled {
   background-color: transparent;
   cursor: not-allowed;
 

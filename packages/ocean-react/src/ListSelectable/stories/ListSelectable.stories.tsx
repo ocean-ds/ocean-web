@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
-import TextListSelectable from '../TextListSelectable';
+import ListSelectable from '../ListSelectable';
 
 const storyStyles = {
   container: {
@@ -30,9 +30,9 @@ const category = {
   config: '⚙️ Configuração',
 };
 
-const meta: Meta<typeof TextListSelectable> = {
-  title: 'Components/List/TextListSelectable',
-  component: TextListSelectable,
+const meta: Meta<typeof ListSelectable> = {
+  title: 'Components/List/ListSelectable',
+  component: ListSelectable,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -152,7 +152,7 @@ const meta: Meta<typeof TextListSelectable> = {
 
 export default meta;
 
-type Story = StoryObj<typeof TextListSelectable>;
+type Story = StoryObj<typeof ListSelectable>;
 
 export const Usage: Story = {
   args: {
@@ -176,38 +176,38 @@ export const CheckboxStates: Story = {
   },
   render: () => (
     <div style={storyStyles.container}>
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Description"
         checkbox={{ id: 'checkbox-default' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Com check"
         checkbox={{ id: 'checkbox-checked', checked: true }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Indeterminado"
         checkbox={{ id: 'checkbox-indeterminate', indeterminate: true }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Desabilitado e selecionado"
         checkbox={{ id: 'checkbox-disabled', disabled: true, checked: true }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Desabilitado"
         checkbox={{ id: 'checkbox-disabled-checked', disabled: true }}
         disabled
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Erro"
         checkbox={{ id: 'checkbox-error', error: true }}
@@ -224,19 +224,19 @@ export const RadioStates: Story = {
   },
   render: () => (
     <div style={storyStyles.container}>
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Description"
         radio={{ id: 'radio-default', name: 'radio-group' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Description"
         radio={{ id: 'radio-selected', name: 'radio-group', checked: true }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Desabilitado e selecionado"
         radio={{
@@ -247,7 +247,7 @@ export const RadioStates: Story = {
         }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Desabilitado"
         radio={{
@@ -258,7 +258,7 @@ export const RadioStates: Story = {
         disabled
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Erro"
         radio={{ id: 'radio-error', error: true }}
@@ -275,7 +275,7 @@ export const Loading: Story = {
   },
   render: () => (
     <div style={storyStyles.container}>
-      <TextListSelectable
+      <ListSelectable
         title="Title"
         description="Description"
         loading
@@ -293,63 +293,63 @@ export const AllIndicators: Story = {
   },
   render: () => (
     <div style={storyStyles.container}>
-      <TextListSelectable
+      <ListSelectable
         title="Badge Tiny - Brand"
         description="Indicator com badge tiny"
         indicator={<Badge variation="tiny" color="brand" />}
         checkbox={{ id: 'indicator-1' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Small - Brand"
         description="Indicator com badge small e count"
         indicator={<Badge variation="small" count={5} color="brand" />}
         checkbox={{ id: 'indicator-2' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Medium - Brand"
         description="Indicator com badge medium"
         indicator={<Badge variation="medium" count={99} color="brand" />}
         checkbox={{ id: 'indicator-3' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Medium - Brand"
         description="Indicator com badge medium"
         indicator={<Badge variation="medium" count={100} color="alert" />}
         checkbox={{ id: 'indicator-3' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Complementary"
         description="Indicator com cor complementary"
         indicator={<Badge count={3} color="complementary" />}
         checkbox={{ id: 'indicator-4' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Alert"
         description="Indicator com cor alert"
         indicator={<Badge count={12} color="alert" />}
         checkbox={{ id: 'indicator-5' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Neutral"
         description="Indicator com cor neutral"
         indicator={<Badge count={7} color="neutral" />}
         checkbox={{ id: 'indicator-6' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge com Texto"
         description="Indicator com texto ao invés de número"
         indicator={<Badge color="brand">Novo</Badge>}
         checkbox={{ id: 'indicator-7' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Positive"
         description="Indicator com tag positive"
         indicator={
@@ -360,7 +360,7 @@ export const AllIndicators: Story = {
         checkbox={{ id: 'indicator-8' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Warning"
         description="Indicator com tag warning"
         indicator={
@@ -371,7 +371,7 @@ export const AllIndicators: Story = {
         checkbox={{ id: 'indicator-9' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Negative"
         description="Indicator com tag negative"
         indicator={
@@ -382,7 +382,7 @@ export const AllIndicators: Story = {
         checkbox={{ id: 'indicator-10' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Neutral"
         description="Indicator com tag neutral"
         indicator={
@@ -393,7 +393,7 @@ export const AllIndicators: Story = {
         radio={{ id: 'indicator-11' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Highlight"
         description="Indicator com tag highlight important"
         indicator={
@@ -404,7 +404,7 @@ export const AllIndicators: Story = {
         radio={{ id: 'indicator-12' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Highlight"
         description="Indicator com tag highlight important"
         indicator={
@@ -415,7 +415,7 @@ export const AllIndicators: Story = {
         radio={{ id: 'indicator-13' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Sem Indicator"
         description="Item sem indicator"
         radio={{ id: 'indicator-14' }}
@@ -431,7 +431,7 @@ export const AllIndicatorsAppPlatform: Story = {
   },
   render: () => (
     <div style={storyStyles.container}>
-      <TextListSelectable
+      <ListSelectable
         title="Badge Tiny - Brand"
         description="Indicator com badge tiny"
         indicator={<Badge variation="tiny" color="brand" />}
@@ -439,7 +439,7 @@ export const AllIndicatorsAppPlatform: Story = {
         checkbox={{ id: 'app-indicator-1' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Small - Brand"
         description="Indicator com badge small e count"
         indicator={<Badge variation="small" count={5} color="brand" />}
@@ -448,7 +448,7 @@ export const AllIndicatorsAppPlatform: Story = {
         showDivider
       />
 
-      <TextListSelectable
+      <ListSelectable
         title="Badge Medium - Brand"
         description="Indicator com badge medium"
         indicator={<Badge variation="medium" count={100} color="brand" />}
@@ -456,7 +456,7 @@ export const AllIndicatorsAppPlatform: Story = {
         checkbox={{ id: 'app-indicator-3' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Complementary"
         description="Indicator com cor complementary"
         indicator={<Badge count={3} color="complementary" />}
@@ -464,7 +464,7 @@ export const AllIndicatorsAppPlatform: Story = {
         checkbox={{ id: 'app-indicator-4' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Alert"
         description="Indicator com cor alert"
         indicator={<Badge count={12} color="alert" />}
@@ -472,7 +472,7 @@ export const AllIndicatorsAppPlatform: Story = {
         radio={{ id: 'app-indicator-5' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge Neutral"
         description="Indicator com cor neutral"
         indicator={<Badge count={7} color="neutral" />}
@@ -480,7 +480,7 @@ export const AllIndicatorsAppPlatform: Story = {
         radio={{ id: 'app-indicator-6' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Badge com Texto"
         description="Indicator com texto ao invés de número"
         indicator={<Badge color="brand">Novo</Badge>}
@@ -488,7 +488,7 @@ export const AllIndicatorsAppPlatform: Story = {
         radio={{ id: 'app-indicator-7' }}
         showDivider
       />
-      <TextListSelectable
+      <ListSelectable
         title="Tag Warning"
         description="Indicator com tag warning"
         indicator={

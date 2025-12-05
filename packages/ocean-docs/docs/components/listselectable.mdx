@@ -1,51 +1,51 @@
 ---
-title: TextListSelectable
-sidebar_label: TextListSelectable
+title: ListSelectable
+sidebar_label: ListSelectable
 ---
 
-import { TextListSelectable } from '@useblu/ocean-react';
+import { ListSelectable } from '@useblu/ocean-react';
 import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
-# TextListSelectable
+# ListSelectable
 
 Componente de lista avançado que suporta seleção (checkbox/radio), indicadores visuais (badges, tags) e diferentes estados de exibição.
 
 ## Importação
 
 ```tsx
-import { TextListSelectable } from '@useblu/ocean-react';
+import { ListSelectable } from '@useblu/ocean-react';
 ```
 
 ### Importação específica (recomendado para tree-shaking)
 
 ```tsx
-import { TextListSelectable } from '@useblu/ocean-react/TextListSelectable';
+import { ListSelectable } from '@useblu/ocean-react/ListSelectable';
 ```
 
 ### Importação de tipos TypeScript
 
 ```tsx
-import type { TextListSelectableProps } from '@useblu/ocean-react';
+import type { ListSelectableProps } from '@useblu/ocean-react';
 
 // Uso em componente customizado
-const MyComponent: React.FC<TextListSelectableProps> = (props) => {
-  return <TextListSelectable {...props} />;
+const MyComponent: React.FC<ListSelectableProps> = (props) => {
+  return <ListSelectable {...props} />;
 };
 ```
 
 ## Playground Interativo
 
-Explore o componente TextListSelectable no playground interativo do Storybook:
+Explore o componente ListSelectable no playground interativo do Storybook:
 
 <StorybookEmbed
-  storyId="components-list-textlistselectable--usage"
+  storyId="components-list-listselectable--usage"
   height={500}
-  title="TextListSelectable - Playground Interativo"
+  title="ListSelectable - Playground Interativo"
 />
 
 ## Documentação Completa
 
-Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TextListSelectable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-textlistselectable--docs)**.
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do ListSelectable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listselectable--docs)**.
 
 No Storybook você encontrará:
 
@@ -61,10 +61,10 @@ No Storybook você encontrará:
 Lista selecionável com checkbox:
 
 <StorybookEmbed
-  storyId="components-list-textlistselectable--checkbox-states"
+  storyId="components-list-listselectable--checkbox-states"
   height={400}
   showToolbar={false}
-  title="TextListSelectable - Checkbox States"
+  title="ListSelectable - Checkbox States"
 />
 
 ### Com Radio
@@ -72,10 +72,10 @@ Lista selecionável com checkbox:
 Lista selecionável com radio button:
 
 <StorybookEmbed
-  storyId="components-list-textlistselectable--radio-states"
+  storyId="components-list-listselectable--radio-states"
   height={400}
   showToolbar={false}
-  title="TextListSelectable - Radio States"
+  title="ListSelectable - Radio States"
 />
 
 ### Indicadores Visuais
@@ -83,19 +83,19 @@ Lista selecionável com radio button:
 O componente suporta diversos indicadores visuais como Badges e Tags:
 
 <StorybookEmbed
-  storyId="components-list-textlistselectable--all-indicators"
+  storyId="components-list-listselectable--all-indicators"
   height={600}
   showToolbar={false}
-  title="TextListSelectable - Indicadores"
+  title="ListSelectable - Indicadores"
 />
 
 ### Estado de Carregamento
 
 <StorybookEmbed
-  storyId="components-list-textlistselectable--loading"
+  storyId="components-list-listselectable--loading"
   height={200}
   showToolbar={false}
-  title="TextListSelectable - Loading"
+  title="ListSelectable - Loading"
 />
 
 ## API

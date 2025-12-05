@@ -7,7 +7,7 @@ import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import Radio, { RadioProps } from '../Radio/Radio';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
-interface TextListSelectableProps {
+interface ListSelectableProps {
   title: string;
   description?: string;
   caption?: string;
@@ -24,10 +24,7 @@ interface TextListSelectableProps {
   platform?: 'web' | 'app';
 }
 
-const TextListSelectable = React.forwardRef<
-  HTMLDivElement,
-  TextListSelectableProps
->(
+const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
   (
     {
       title,
@@ -61,8 +58,8 @@ const TextListSelectable = React.forwardRef<
           />
           {indicator && (
             <div
-              className={classNames('ods-text-list-selectable__indicator', {
-                [`ods-text-list-selectable__indicator--${platform}`]: platform,
+              className={classNames('ods-list-selectable__indicator', {
+                [`ods-list-selectable__indicator--${platform}`]: platform,
               })}
             >
               {indicator}
@@ -85,7 +82,7 @@ const TextListSelectable = React.forwardRef<
 
     if (loading) {
       return (
-        <div className="ods-text-list-selectable--loading">
+        <div className="ods-list-selectable--loading">
           <SkeletonBar width="33%" height="16px" />
           <SkeletonBar width="100%" height="16px" />
         </div>
@@ -95,9 +92,9 @@ const TextListSelectable = React.forwardRef<
     return (
       <div>
         <div
-          className={classNames('ods-text-list-selectable', className, {
-            'ods-text-list-selectable--disabled': disabled,
-            [`ods-text-list-selectable--${platform}`]: platform,
+          className={classNames('ods-list-selectable', className, {
+            'ods-list-selectable--disabled': disabled,
+            [`ods-list-selectable--${platform}`]: platform,
           })}
           ref={ref}
           {...rest}
@@ -105,11 +102,11 @@ const TextListSelectable = React.forwardRef<
           {checkbox && <Checkbox {...checkbox} label={internalList} />}
           {radio && <Radio {...radio} label={internalList} />}
         </div>
-        {showDivider && <div className="ods-text-list-selectable__divider" />}
+        {showDivider && <div className="ods-list-selectable__divider" />}
       </div>
     );
   }
 );
 
-TextListSelectable.displayName = 'TextListSelectable';
-export default TextListSelectable;
+ListSelectable.displayName = 'ListSelectable';
+export default ListSelectable;
