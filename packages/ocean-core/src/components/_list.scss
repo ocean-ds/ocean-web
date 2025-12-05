@@ -26,7 +26,8 @@
 
   .ods-list-action__container,
   .ods-list-readonly__container {
-    .ods-list-action {
+    .ods-list-action,
+    .ods-list-readonly {
       border: 0;
       border-radius: 0;
     }
