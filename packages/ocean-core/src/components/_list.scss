@@ -25,4 +25,10 @@
       border-bottom: 1px solid $color-interface-light-down;
     }
   }
+
+  .ods-list-selectable__root:last-of-type {
+    .ods-list-selectable__root--text--divider {
+      display: none;
+    }
+  }
 }

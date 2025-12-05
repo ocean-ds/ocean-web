@@ -5,7 +5,7 @@
   width: 0;
 
   &__root {
-    display: inline-flex;
+    display: flex;
     user-select: none;
 
     &:hover .ods-radio__checkmark {
@@ -29,6 +29,10 @@
     min-height: 20px;
     min-width: 20px;
     width: 20px;
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
   }
 
   &:checked ~ &__checkmark {
@@ -50,6 +54,7 @@
   }
 
   &:disabled:not(:checked) ~ &__checkmark {
+    background-color: $color-interface-light-pure;
     border-color: $color-interface-light-deep;
   }
 }

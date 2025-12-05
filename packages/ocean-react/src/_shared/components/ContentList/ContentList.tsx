@@ -8,13 +8,13 @@ export type ContentListProps = {
   caption?: string;
   inverted?: boolean;
   type?:
-  | 'default'
-  | 'inactive'
-  | 'positive'
-  | 'warning'
-  | 'highlight'
-  | 'highlight-lead'
-  | 'strikethrough';
+    | 'default'
+    | 'inactive'
+    | 'positive'
+    | 'warning'
+    | 'highlight'
+    | 'highlight-lead'
+    | 'strikethrough';
 };
 
 const ContentList = ({

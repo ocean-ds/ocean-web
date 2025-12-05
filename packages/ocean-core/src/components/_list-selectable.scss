@@ -1,0 +1,81 @@
+.ods-list-selectable {
+  &__indicator {
+    margin-left: $spacing-inline-xxs-extra;
+
+    &--app {
+      margin-right: $spacing-inline-xxs;
+    }
+  }
+
+  .ods-checkbox__root,
+  .ods-radio__root {
+    align-items: center;
+    background-color: $color-interface-light-pure;
+    padding: $spacing-inline-xs;
+
+    &:hover,
+    &:focus {
+      background-color: $color-interface-light-up;
+      cursor: pointer;
+    }
+  }
+
+  .ods-checkbox__label,
+  .ods-radio__label {
+    align-items: center;
+    display: flex;
+    padding-left: 16px;
+    width: 100%;
+  }
+
+  &--loading {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    pointer-events: none;
+  }
+
+  &--app {
+    .ods-checkbox__root,
+    .ods-radio__root {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
+}
+
+.ods-list-selectable--disabled {
+  background-color: transparent;
+  cursor: not-allowed;
+
+  .ods-checkbox__root,
+  .ods-radio__root {
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.ods-list-selectable__root {
+  overflow: hidden;
+
+  &--card {
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-sm;
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
+  }
+
+  &--text {
+    &--divider {
+      background-color: $color-interface-light-down;
+      height: 1px;
+      margin: 0 $spacing-inline-xs;
+    }
+  }
+}

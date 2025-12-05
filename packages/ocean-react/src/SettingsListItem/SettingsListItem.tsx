@@ -19,13 +19,13 @@ export type SettingListItemProps = {
   disabled?: boolean;
   loading?: boolean;
   state?:
-  | 'default'
-  | 'inactive'
-  | 'positive'
-  | 'warning'
-  | 'highlight'
-  | 'highlight-lead'
-  | 'strikethrough';
+    | 'default'
+    | 'inactive'
+    | 'positive'
+    | 'warning'
+    | 'highlight'
+    | 'highlight-lead'
+    | 'strikethrough';
   type?: 'default' | 'inverted';
 };
 
