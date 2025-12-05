@@ -275,18 +275,14 @@ describe('ListExpandable', () => {
 
   describe('Divider', () => {
     test('renders divider when showDivider is true', () => {
-      const { container } = render(
-        <ListExpandable title="Test Title" showDivider />
-      );
-      expect(
-        container.querySelector('.ods-list-expandable__divider')
-      ).toBeInTheDocument();
+      render(<ListExpandable title="Test Title" showDivider />);
+      expect(screen.getByTestId('list-expandable-divider')).toBeInTheDocument();
     });
 
     test('does not render divider by default', () => {
-      const { container } = render(<ListExpandable title="Test Title" />);
+      render(<ListExpandable title="Test Title" />);
       expect(
-        container.querySelector('.ods-list-expandable__divider')
+        screen.queryByTestId('list-expandable-divider')
       ).not.toBeInTheDocument();
     });
   });

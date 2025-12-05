@@ -186,7 +186,7 @@ const ListExpandable = React.forwardRef<
         >
           {loading ? renderLoadingContent() : renderContent()}
         </button>
-        {showDivider && <div className="ods-list-expandable__divider" />}
+        {showDivider && <div className="ods-list-expandable__divider" data-testid="list-expandable-divider" />}
         {isExpanded && children && (
           <div className="ods-list-expandable__content">{children}</div>
         )}
