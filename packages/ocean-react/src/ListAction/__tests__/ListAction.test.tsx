@@ -1,23 +1,23 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PlaceholderOutline, Trash, Pencil } from '@useblu/ocean-icons-react';
-import CardListAction from '../CardListAction';
+import ListAction from '../ListAction';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import type { ActionItem } from '../../_shared/components/InternalListActions';
 
-describe('CardListAction', () => {
+describe('ListAction', () => {
   describe('Basic Rendering', () => {
     test('renders with required props', () => {
-      render(<CardListAction title='Test Title' />);
+      render(<ListAction title='Test Title' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
     test('renders with all text props', () => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           description='Test Description'
           caption='Test Caption'
@@ -31,11 +31,12 @@ describe('CardListAction', () => {
 
     test('renders with strikethrough description', () => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           description='Normal text'
           strikethroughDescription='Strikethrough text'
-          type='strikethrough'
+          type='card'
+          status='strikethrough'
         />
       );
 
@@ -45,34 +46,34 @@ describe('CardListAction', () => {
 
     test('renders with icon', () => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           icon={<PlaceholderOutline data-testid='test-icon' />}
         />
       );
 
       expect(screen.getByTestId('test-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders with indicator', () => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           indicator={<Badge count={3} color='brand' data-testid='test-badge' />}
         />
       );
 
       expect(screen.getByTestId('test-badge')).toBeInTheDocument();
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('applies custom className', () => {
       render(
-        <CardListAction title='Test Title' className='custom-test-class' />
+        <ListAction title='Test Title' className='custom-test-class' />
       );
 
-      expect(screen.getByTestId('card-list-action')).toHaveClass(
+      expect(screen.getByTestId('list-action')).toHaveClass(
         'custom-test-class'
       );
     });
@@ -80,50 +81,45 @@ describe('CardListAction', () => {
 
   describe('States', () => {
     test('renders loading state with skeleton', () => {
-      render(<CardListAction title='Test Title' loading />);
+      render(<ListAction title='Test Title' loading />);
 
-      expect(screen.getByTestId('card-list-action')).toHaveClass(
-        'ods-card-list-action--loading'
+      expect(screen.getByTestId('list-action')).toHaveClass(
+        'ods-list-action--loading'
       );
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders disabled state', () => {
-      render(<CardListAction title='Test Title' disabled />);
+      render(<ListAction title='Test Title' disabled />);
 
-      const button = screen.getByTestId('card-list-action');
+      const button = screen.getByTestId('list-action');
       expect(button).toBeDisabled();
-      expect(button).toHaveClass('ods-card-list-action--disabled');
+      expect(button).toHaveClass('ods-list-action--disabled');
     });
 
     test('does not call onClick when disabled', () => {
       const handleClick = jest.fn();
       render(
-        <CardListAction title='Test Title' disabled onClick={handleClick} />
+        <ListAction title='Test Title' disabled onClick={handleClick} />
       );
 
-      fireEvent.click(screen.getByTestId('card-list-action'));
+      fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).not.toHaveBeenCalled();
     });
   });
 
   describe('Types', () => {
     test.each([
-      'default',
-      'inactive',
-      'positive',
-      'warning',
-      'highlight',
-      'highlight-lead',
-      'strikethrough',
+      'card',
+      'text',
     ] as const)('renders with type %s', (type) => {
-      render(<CardListAction title='Test Title' type={type} />);
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      render(<ListAction title='Test Title' type={type} />);
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders inverted layout', () => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           description='Test Description'
           inverted
@@ -137,15 +133,15 @@ describe('CardListAction', () => {
 
   describe('Action Types', () => {
     test('renders chevron action by default', () => {
-      render(<CardListAction title='Test Title' />);
+      render(<ListAction title='Test Title' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders chevron action explicitly', () => {
-      render(<CardListAction title='Test Title' actionType='chevron' />);
+      render(<ListAction title='Test Title' actionType='chevron' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders menu action type', () => {
@@ -165,14 +161,14 @@ describe('CardListAction', () => {
       ];
 
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           actionType='menu'
           menuActions={menuActions}
         />
       );
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders swipe action type with swipe mode class', () => {
@@ -186,15 +182,15 @@ describe('CardListAction', () => {
       ];
 
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           actionType='swipe'
           menuActions={swipeActions}
         />
       );
 
-      expect(screen.getByTestId('card-list-action')).toHaveClass(
-        'ods-card-list-action--swipe-mode'
+      expect(screen.getByTestId('list-action')).toHaveClass(
+        'ods-list-action--swipe-mode'
       );
     });
   });
@@ -216,7 +212,7 @@ describe('CardListAction', () => {
       'top-right',
     ] as const)('renders with menu position %s', (position) => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           actionType='menu'
           menuActions={menuActions}
@@ -224,32 +220,32 @@ describe('CardListAction', () => {
         />
       );
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
   });
 
   describe('Interactions', () => {
     test('calls onClick when clicked', () => {
       const handleClick = jest.fn();
-      render(<CardListAction title='Test Title' onClick={handleClick} />);
+      render(<ListAction title='Test Title' onClick={handleClick} />);
 
-      fireEvent.click(screen.getByTestId('card-list-action'));
+      fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
     test('passes event to onClick handler', () => {
       const handleClick = jest.fn();
-      render(<CardListAction title='Test Title' onClick={handleClick} />);
+      render(<ListAction title='Test Title' onClick={handleClick} />);
 
-      fireEvent.click(screen.getByTestId('card-list-action'));
+      fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).toHaveBeenCalledWith(expect.any(Object));
       expect(handleClick.mock.calls[0][0]).toHaveProperty('target');
     });
 
     test('does not throw error when onClick is not provided', () => {
       expect(() => {
-        render(<CardListAction title='Test Title' />);
-        fireEvent.click(screen.getByTestId('card-list-action'));
+        render(<ListAction title='Test Title' />);
+        fireEvent.click(screen.getByTestId('list-action'));
       }).not.toThrow();
     });
   });
@@ -257,7 +253,7 @@ describe('CardListAction', () => {
   describe('HTML Attributes', () => {
     test('forwards native button props', () => {
       render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           aria-label='Custom aria label'
           id='custom-id'
@@ -265,31 +261,31 @@ describe('CardListAction', () => {
         />
       );
 
-      const button = screen.getByTestId('card-list-action');
+      const button = screen.getByTestId('list-action');
       expect(button).toHaveAttribute('aria-label', 'Custom aria label');
       expect(button).toHaveAttribute('id', 'custom-id');
       expect(button).toHaveAttribute('data-custom', 'custom-value');
     });
 
     test('is a button element', () => {
-      render(<CardListAction title='Test Title' />);
+      render(<ListAction title='Test Title' />);
 
-      const element = screen.getByTestId('card-list-action');
+      const element = screen.getByTestId('list-action');
       expect(element.tagName).toBe('BUTTON');
       expect(element).toHaveAttribute('type', 'button');
     });
 
     test('has correct data-testid', () => {
-      render(<CardListAction title='Test Title' />);
+      render(<ListAction title='Test Title' />);
 
-      expect(screen.getByTestId('card-list-action')).toBeInTheDocument();
+      expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
   });
 
   describe('ForwardRef', () => {
     test('forwards ref to button element', () => {
       const ref = React.createRef<HTMLButtonElement>();
-      render(<CardListAction title='Test Title' ref={ref} />);
+      render(<ListAction title='Test Title' ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLButtonElement);
       expect(ref.current?.tagName).toBe('BUTTON');
@@ -297,7 +293,7 @@ describe('CardListAction', () => {
 
     test('allows calling button methods through ref', () => {
       const ref = React.createRef<HTMLButtonElement>();
-      render(<CardListAction title='Test Title' ref={ref} />);
+      render(<ListAction title='Test Title' ref={ref} />);
 
       expect(ref.current?.focus).toBeDefined();
       expect(ref.current?.click).toBeDefined();
@@ -306,19 +302,20 @@ describe('CardListAction', () => {
 
   describe('Snapshot', () => {
     test('matches snapshot with default props', () => {
-      const { container } = render(<CardListAction title='Test Title' />);
+      const { container } = render(<ListAction title='Test Title' />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot with all props', () => {
       const { container } = render(
-        <CardListAction
+        <ListAction
           title='Test Title'
           description='Test Description'
           caption='Test Caption'
           icon={<PlaceholderOutline />}
           indicator={<Tag type='positive'>New</Tag>}
-          type='highlight'
+          type='card'
+          status='default'
           actionType='chevron'
           onClick={jest.fn()}
           className='test-class'
@@ -328,13 +325,13 @@ describe('CardListAction', () => {
     });
 
     test('matches snapshot in loading state', () => {
-      const { container } = render(<CardListAction title='Test Title' loading />);
+      const { container } = render(<ListAction title='Test Title' loading />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot in disabled state', () => {
       const { container } = render(
-        <CardListAction title='Test Title' disabled />
+        <ListAction title='Test Title' disabled />
       );
       expect(container.firstChild).toMatchSnapshot();
     });
