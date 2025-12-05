@@ -1,7 +1,5 @@
-.ods-card-list-expandable {
+.ods-list-expandable {
   background-color: $color-interface-light-pure;
-  border: $border-width-hairline solid $color-interface-light-down;
-  border-radius: $border-radius-sm;
   display: flex;
   flex-direction: column;
   min-width: 0; // Prevent flex items from overflowing
@@ -12,6 +10,21 @@
   &--disabled {
     cursor: not-allowed;
     opacity: 0.6;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
+
+  &--card {
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-sm;
+  }
+
+  &--text {
+    border: 0;
+    border-radius: 0;
   }
 
   &__main {
@@ -97,7 +110,7 @@
 
   // Loading state
   &--loading {
-    .ods-card-list-expandable__main {
+    .ods-list-expandable__main {
       box-sizing: border-box;
       cursor: default;
       overflow: hidden; // Prevent skeleton from overflowing
@@ -107,7 +120,7 @@
 
   // Expanded state
   &--expanded {
-    .ods-card-list-expandable__main:hover {
+    .ods-list-expandable__main:hover {
       background-color: $color-interface-light-up;
     }
   }

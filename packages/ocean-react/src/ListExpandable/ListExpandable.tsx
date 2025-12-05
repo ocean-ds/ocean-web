@@ -6,13 +6,13 @@ import ContentList, {
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
-export type CardListExpandableProps = {
+export type ListExpandableProps = {
   /**
-   * The title of the card list expandable.
+   * The title of the list expandable.
    */
   title: string;
   /**
-   * The description or secondary text of the card list expandable.
+   * The description or secondary text of the list expandable.
    */
   description?: string;
   /**
@@ -20,7 +20,7 @@ export type CardListExpandableProps = {
    */
   strikethroughDescription?: string;
   /**
-   * Caption or tertiary text of the card list expandable.
+   * Caption or tertiary text of the list expandable.
    */
   caption?: string;
   /**
@@ -29,10 +29,15 @@ export type CardListExpandableProps = {
    */
   inverted?: boolean;
   /**
-   * The style type of the card content.
+   * The style type of the list expandable.
+   * @default 'card'
+   */
+  type?: 'card' | 'text';
+  /**
+   * The status type of the content.
    * @default 'default'
    */
-  type?: ContentListProps['type'];
+  status?: ContentListProps['type'];
   /**
    * If true, shows a loading state with skeleton.
    * @default false
@@ -64,15 +69,20 @@ export type CardListExpandableProps = {
    */
   children?: ReactNode;
   /**
-   * If true, the card list expandable will be disabled.
+   * If true, the list expandable will be disabled.
    * @default false
    */
   disabled?: boolean;
+  /**
+   * If true, the list expandable will show a divider.
+   * @default false
+   */
+  showDivider?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
-const CardListExpandable = React.forwardRef<
+const ListExpandable = React.forwardRef<
   HTMLDivElement,
-  CardListExpandableProps
+  ListExpandableProps
 >(
   (
     {
@@ -81,7 +91,8 @@ const CardListExpandable = React.forwardRef<
       strikethroughDescription,
       caption,
       inverted = false,
-      type = 'default',
+      type = 'card',
+      status = 'default',
       loading = false,
       icon,
       indicator,
@@ -91,6 +102,7 @@ const CardListExpandable = React.forwardRef<
       children,
       className,
       disabled = false,
+      showDivider = false,
       ...rest
     },
     ref
@@ -110,84 +122,79 @@ const CardListExpandable = React.forwardRef<
       onToggle?.(newExpandedState);
     };
 
-    if (loading) {
-      return (
-        <div
-          ref={ref}
-          data-testid="card-list-expandable"
-          className={classNames(
-            'ods-card-list-expandable',
-            'ods-card-list-expandable--loading',
-            className
-          )}
-          {...rest}
-        >
-          <div className="ods-card-list-expandable__main">
-            <div className="ods-card-list-expandable__skeleton">
-              <SkeletonBar width="40%" height="16px" />
-              <SkeletonBar width="100%" height="16px" />
+    const renderLoadingContent = () => (
+      <div className="ods-list-expandable__skeleton">
+        <SkeletonBar width="40%" height="16px" />
+        <SkeletonBar width="100%" height="16px" />
+      </div>
+    );
+
+    const renderContent = () => (
+      <>
+        {icon && (
+          <div
+            className={classNames('ods-list-expandable__icon', {
+              'ods-list-expandable__icon--inactive': status === 'inactive',
+            })}
+          >
+            {icon}
+          </div>
+        )}
+        <ContentList
+          title={title}
+          description={description}
+          strikethroughDescription={strikethroughDescription}
+          caption={caption}
+          inverted={inverted}
+          type={status}
+        />
+        <div className="ods-list-expandable__trailing">
+          {indicator && (
+            <div className="ods-list-expandable__indicator">
+              {indicator}
             </div>
+          )}
+          <div className="ods-list-expandable__action">
+            {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
           </div>
         </div>
-      );
-    }
+      </>
+    );
+
+    const containerClassName = classNames('ods-list-expandable', className, {
+      'ods-list-expandable--expanded': isExpanded,
+      'ods-list-expandable--disabled': disabled,
+      'ods-list-expandable--loading': loading,
+      [`ods-list-expandable--${type}`]: type,
+    });
 
     return (
       <div
         ref={ref}
-        data-testid="card-list-expandable"
-        className={classNames('ods-card-list-expandable', className, {
-          'ods-card-list-expandable--expanded': isExpanded,
-          'ods-card-list-expandable--disabled': disabled,
-        })}
+        data-testid="list-expandable"
+        className={containerClassName}
         {...rest}
       >
         <button
           type="button"
-          className="ods-card-list-expandable__main"
-          onClick={handleToggle}
-          disabled={disabled}
+          className="ods-list-expandable__main"
+          onClick={loading ? undefined : handleToggle}
+          disabled={disabled || loading}
           aria-expanded={isExpanded}
           aria-label={`${isExpanded ? 'Recolher' : 'Expandir'} ${title}`}
-          data-testid="card-list-expandable-button"
+          data-testid="list-expandable-button"
         >
-          {icon && (
-            <div className={classNames("ods-card-list-expandable__icon", {
-              'ods-card-list-expandable__icon--inactive': type === 'inactive',
-            })}>{icon}</div>
-          )}
-          <ContentList
-            title={title}
-            description={description}
-            strikethroughDescription={strikethroughDescription}
-            caption={caption}
-            inverted={inverted}
-            type={type}
-          />
-          <div className="ods-card-list-expandable__trailing">
-            {indicator && (
-              <div className="ods-card-list-expandable__indicator">
-                {indicator}
-              </div>
-            )}
-            <div className="ods-card-list-expandable__action">
-              {isExpanded ? (
-                <ChevronUp size={20} />
-              ) : (
-                <ChevronDown size={20} />
-              )}
-            </div>
-          </div>
+          {loading ? renderLoadingContent() : renderContent()}
         </button>
+        {showDivider && <div className="ods-list-expandable__divider" />}
         {isExpanded && children && (
-          <div className="ods-card-list-expandable__content">{children}</div>
+          <div className="ods-list-expandable__content">{children}</div>
         )}
       </div>
     );
   }
 );
 
-CardListExpandable.displayName = 'CardListExpandable';
+ListExpandable.displayName = 'ListExpandable';
 
-export default CardListExpandable;
-
+export default ListExpandable;

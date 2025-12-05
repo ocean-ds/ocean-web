@@ -1,46 +1,46 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import CardListExpandable from '../CardListExpandable';
+import ListExpandable from '../ListExpandable';
 
-describe('CardListExpandable', () => {
+describe('ListExpandable', () => {
   test('renders the title', () => {
-    render(<CardListExpandable title="Test Title" />);
+    render(<ListExpandable title="Test Title" />);
     expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   test('renders the description', () => {
     render(
-      <CardListExpandable title="Test Title" description="Test Description" />
+      <ListExpandable title="Test Title" description="Test Description" />
     );
     expect(screen.getByText('Test Description')).toBeInTheDocument();
   });
 
   test('renders the strikethrough description', () => {
     render(
-      <CardListExpandable
+      <ListExpandable
         title="Test Title"
         strikethroughDescription="Strikethrough Text"
-        type="strikethrough"
+        status="strikethrough"
       />
     );
     expect(screen.getByText('Strikethrough Text')).toBeInTheDocument();
   });
 
   test('renders the caption', () => {
-    render(<CardListExpandable title="Test Title" caption="Test Caption" />);
+    render(<ListExpandable title="Test Title" caption="Test Caption" />);
     expect(screen.getByText('Test Caption')).toBeInTheDocument();
   });
 
   test('renders the icon', () => {
     render(
-      <CardListExpandable title="Test Title" icon={<div>Test Icon</div>} />
+      <ListExpandable title="Test Title" icon={<div>Test Icon</div>} />
     );
     expect(screen.getByText('Test Icon')).toBeInTheDocument();
   });
 
   test('renders the indicator', () => {
     render(
-      <CardListExpandable
+      <ListExpandable
         title="Test Title"
         indicator={<div>Test Indicator</div>}
       />
@@ -49,40 +49,40 @@ describe('CardListExpandable', () => {
   });
 
   test('renders chevron down icon when collapsed', () => {
-    render(<CardListExpandable title="Test Title" />);
+    render(<ListExpandable title="Test Title" />);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
 
   test('renders chevron up icon when expanded', () => {
-    render(<CardListExpandable title="Test Title" defaultExpanded />);
+    render(<ListExpandable title="Test Title" defaultExpanded />);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
   });
 
   test('does not render children when collapsed', () => {
     render(
-      <CardListExpandable title="Test Title">
+      <ListExpandable title="Test Title">
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
     expect(screen.queryByText('Children Content')).not.toBeInTheDocument();
   });
 
   test('renders children when expanded by default', () => {
     render(
-      <CardListExpandable title="Test Title" defaultExpanded>
+      <ListExpandable title="Test Title" defaultExpanded>
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
     expect(screen.getByText('Children Content')).toBeInTheDocument();
   });
 
   test('toggles expansion when clicked', () => {
     render(
-      <CardListExpandable title="Test Title">
+      <ListExpandable title="Test Title">
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
 
     const button = screen.getByRole('button');
@@ -102,9 +102,9 @@ describe('CardListExpandable', () => {
   test('calls onToggle when expanded state changes', () => {
     const onToggle = jest.fn();
     render(
-      <CardListExpandable title="Test Title" onToggle={onToggle}>
+      <ListExpandable title="Test Title" onToggle={onToggle}>
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
 
     const button = screen.getByRole('button');
@@ -120,9 +120,9 @@ describe('CardListExpandable', () => {
 
   test('works as controlled component with expanded prop', () => {
     const { rerender } = render(
-      <CardListExpandable title="Test Title" expanded={false}>
+      <ListExpandable title="Test Title" expanded={false}>
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
 
     // Initially collapsed
@@ -130,9 +130,9 @@ describe('CardListExpandable', () => {
 
     // Change expanded prop
     rerender(
-      <CardListExpandable title="Test Title" expanded>
+      <ListExpandable title="Test Title" expanded>
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
 
     // Should be expanded
@@ -142,9 +142,9 @@ describe('CardListExpandable', () => {
   test('does not change internal state when controlled and clicked', () => {
     const onToggle = jest.fn();
     render(
-      <CardListExpandable title="Test Title" expanded={false} onToggle={onToggle}>
+      <ListExpandable title="Test Title" expanded={false} onToggle={onToggle}>
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
 
     const button = screen.getByRole('button');
@@ -160,48 +160,63 @@ describe('CardListExpandable', () => {
   });
 
   test('renders loading state', () => {
-    render(<CardListExpandable title="Test Title" loading />);
+    render(<ListExpandable title="Test Title" loading />);
 
-    // Should not render the button in loading state
-    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    // Button should be rendered but disabled in loading state
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
 
-    // Should not render the title in loading state
+    // Should not render the title in loading state (shows skeleton instead)
     expect(screen.queryByText('Test Title')).not.toBeInTheDocument();
   });
 
   test('renders with custom className', () => {
-    render(<CardListExpandable title="Test Title" className="custom-class" />);
+    render(<ListExpandable title="Test Title" className="custom-class" />);
     expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   test('renders with inverted prop', () => {
-    render(<CardListExpandable title="Test Title" inverted />);
+    render(<ListExpandable title="Test Title" inverted />);
     expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   test('renders with different type variations', () => {
     const { rerender } = render(
-      <CardListExpandable title="Test Title" type="default" />
+      <ListExpandable title="Test Title" type="card" />
     );
     expect(screen.getByText('Test Title')).toBeInTheDocument();
 
-    rerender(<CardListExpandable title="Test Title" type="positive" />);
+    rerender(<ListExpandable title="Test Title" type="text" />);
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+  });
+
+  test('renders with different status variations', () => {
+    const { rerender } = render(
+      <ListExpandable title="Test Title" status="default" />
+    );
     expect(screen.getByText('Test Title')).toBeInTheDocument();
 
-    rerender(<CardListExpandable title="Test Title" type="warning" />);
+    rerender(<ListExpandable title="Test Title" status="positive" />);
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+
+    rerender(<ListExpandable title="Test Title" status="warning" />);
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+
+    rerender(<ListExpandable title="Test Title" status="inactive" />);
     expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   test('renders with all props combined', () => {
     const onToggle = jest.fn();
     render(
-      <CardListExpandable
+      <ListExpandable
         title="Test Title"
         description="Test Description"
         strikethroughDescription="Strikethrough"
         caption="Test Caption"
         inverted
-        type="strikethrough"
+        type="card"
+        status="strikethrough"
         icon={<div>Icon</div>}
         indicator={<div>Indicator</div>}
         defaultExpanded
@@ -209,7 +224,7 @@ describe('CardListExpandable', () => {
         className="custom-class"
       >
         <div>Children Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
 
     expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -222,34 +237,75 @@ describe('CardListExpandable', () => {
   });
 
   test('does not render children when there are none', () => {
-    render(<CardListExpandable title="Test Title" defaultExpanded />);
+    render(<ListExpandable title="Test Title" defaultExpanded />);
     expect(screen.getByText('Test Title')).toBeInTheDocument();
   });
 
   test('applies expanded class when expanded', () => {
     render(
-      <CardListExpandable title="Test Title" defaultExpanded>
+      <ListExpandable title="Test Title" defaultExpanded>
         <div>Content</div>
-      </CardListExpandable>
+      </ListExpandable>
     );
     expect(screen.getByText('Content')).toBeInTheDocument();
   });
 
+  describe('Disabled state', () => {
+    test('renders disabled state', () => {
+      render(<ListExpandable title="Test Title" disabled />);
+      const button = screen.getByRole('button');
+      expect(button).toBeDisabled();
+    });
+
+    test('does not toggle when disabled', () => {
+      const onToggle = jest.fn();
+      render(
+        <ListExpandable title="Test Title" disabled onToggle={onToggle}>
+          <div>Children Content</div>
+        </ListExpandable>
+      );
+
+      const button = screen.getByRole('button');
+      fireEvent.click(button);
+
+      expect(onToggle).not.toHaveBeenCalled();
+      expect(screen.queryByText('Children Content')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('Divider', () => {
+    test('renders divider when showDivider is true', () => {
+      const { container } = render(
+        <ListExpandable title="Test Title" showDivider />
+      );
+      expect(
+        container.querySelector('.ods-list-expandable__divider')
+      ).toBeInTheDocument();
+    });
+
+    test('does not render divider by default', () => {
+      const { container } = render(<ListExpandable title="Test Title" />);
+      expect(
+        container.querySelector('.ods-list-expandable__divider')
+      ).not.toBeInTheDocument();
+    });
+  });
+
   describe('Accessibility', () => {
     test('has correct aria-expanded attribute when collapsed', () => {
-      render(<CardListExpandable title="Test Title" />);
+      render(<ListExpandable title="Test Title" />);
       const button = screen.getByRole('button');
       expect(button).toHaveAttribute('aria-expanded', 'false');
     });
 
     test('has correct aria-expanded attribute when expanded', () => {
-      render(<CardListExpandable title="Test Title" defaultExpanded />);
+      render(<ListExpandable title="Test Title" defaultExpanded />);
       const button = screen.getByRole('button');
       expect(button).toHaveAttribute('aria-expanded', 'true');
     });
 
     test('updates aria-expanded when toggled', () => {
-      render(<CardListExpandable title="Test Title" />);
+      render(<ListExpandable title="Test Title" />);
       const button = screen.getByRole('button');
 
       // Initially collapsed
@@ -265,37 +321,37 @@ describe('CardListExpandable', () => {
     });
 
     test('has descriptive aria-label when collapsed', () => {
-      render(<CardListExpandable title="Test Title" />);
+      render(<ListExpandable title="Test Title" />);
       const button = screen.getByRole('button');
       expect(button).toHaveAttribute('aria-label', 'Expandir Test Title');
     });
 
     test('has descriptive aria-label when expanded', () => {
-      render(<CardListExpandable title="Test Title" defaultExpanded />);
+      render(<ListExpandable title="Test Title" defaultExpanded />);
       const button = screen.getByRole('button');
       expect(button).toHaveAttribute('aria-label', 'Recolher Test Title');
     });
 
     test('has data-testid on root element', () => {
-      render(<CardListExpandable title="Test Title" />);
-      expect(screen.getByTestId('card-list-expandable')).toBeInTheDocument();
+      render(<ListExpandable title="Test Title" />);
+      expect(screen.getByTestId('list-expandable')).toBeInTheDocument();
     });
 
     test('has data-testid on button element', () => {
-      render(<CardListExpandable title="Test Title" />);
-      expect(screen.getByTestId('card-list-expandable-button')).toBeInTheDocument();
+      render(<ListExpandable title="Test Title" />);
+      expect(screen.getByTestId('list-expandable-button')).toBeInTheDocument();
     });
 
     test('has data-testid on loading state', () => {
-      render(<CardListExpandable title="Test Title" loading />);
-      expect(screen.getByTestId('card-list-expandable')).toBeInTheDocument();
+      render(<ListExpandable title="Test Title" loading />);
+      expect(screen.getByTestId('list-expandable')).toBeInTheDocument();
     });
   });
 
   describe('HTML Attributes', () => {
     test('forwards native div props', () => {
       render(
-        <CardListExpandable
+        <ListExpandable
           title="Test Title"
           data-custom="custom-value"
           id="custom-id"
@@ -303,7 +359,7 @@ describe('CardListExpandable', () => {
         />
       );
 
-      const element = screen.getByTestId('card-list-expandable');
+      const element = screen.getByTestId('list-expandable');
       expect(element).toHaveAttribute('data-custom', 'custom-value');
       expect(element).toHaveAttribute('id', 'custom-id');
       expect(element).toHaveAttribute('role', 'region');
@@ -311,14 +367,14 @@ describe('CardListExpandable', () => {
 
     test('accepts aria attributes', () => {
       render(
-        <CardListExpandable
+        <ListExpandable
           title="Test Title"
           aria-describedby="description-id"
           aria-labelledby="label-id"
         />
       );
 
-      const element = screen.getByTestId('card-list-expandable');
+      const element = screen.getByTestId('list-expandable');
       expect(element).toHaveAttribute('aria-describedby', 'description-id');
       expect(element).toHaveAttribute('aria-labelledby', 'label-id');
     });
@@ -327,7 +383,7 @@ describe('CardListExpandable', () => {
   describe('ForwardRef', () => {
     test('forwards ref to div element', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<CardListExpandable title="Test Title" ref={ref} />);
+      render(<ListExpandable title="Test Title" ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current?.tagName).toBe('DIV');
@@ -339,7 +395,7 @@ describe('CardListExpandable', () => {
       // Mock scrollIntoView as it's not implemented in JSDOM
       HTMLElement.prototype.scrollIntoView = jest.fn();
 
-      render(<CardListExpandable title="Test Title" ref={ref} />);
+      render(<ListExpandable title="Test Title" ref={ref} />);
 
       expect(ref.current?.focus).toBeDefined();
       expect(ref.current?.scrollIntoView).toBeDefined();
@@ -347,10 +403,9 @@ describe('CardListExpandable', () => {
 
     test('ref works with loading state', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<CardListExpandable title="Test Title" loading ref={ref} />);
+      render(<ListExpandable title="Test Title" loading ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
   });
 });
-
