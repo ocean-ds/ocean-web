@@ -60,7 +60,6 @@ const meta: Meta<typeof ListAction> = {
     },
     indicator: {
       description: 'Indicador/badge exibido antes da ação.',
-      control: false,
     },
     actionType: {
       description: 'Tipo de ação exibida no card.',
