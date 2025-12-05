@@ -1,4 +1,4 @@
-.ods-card-list-settings {
+.ods-list-settings {
   align-items: center;
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-down;
@@ -9,6 +9,24 @@
   padding: $spacing-inline-xs;
   position: relative;
   width: 100%;
+
+  &__container {
+    width: 100%;
+  }
+
+  &--card {
+    border-color: $color-interface-light-deep;
+  }
+
+  &--text {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
 
   &__icon {
     align-items: center;

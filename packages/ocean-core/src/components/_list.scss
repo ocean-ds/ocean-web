@@ -16,7 +16,7 @@
   }
 
   .ods-card-list-item,
-  .ods-card-list-settings,
+  .ods-list-settings__container,
   .ods-list-action__container {
     border: 0;
     border-radius: 0;
@@ -27,7 +27,9 @@
   }
 
   .ods-list-action,
-  .ods-list-action__divider {
+  .ods-list-settings,
+  .ods-list-action__divider,
+  .ods-list-settings__divider {
     border: 0;
   }
 }

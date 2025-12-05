@@ -1,47 +1,47 @@
 ---
-title: CardListSettings
-sidebar_label: CardListSettings
+title: ListSettings
+sidebar_label: ListSettings
 sidebar_position: 17
 ---
 
-import { CardListSettings } from '@useblu/ocean-react';
+import { ListSettings } from '@useblu/ocean-react';
 import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
-# CardListSettings
+# ListSettings
 
-O componente CardListSettings é um item de lista interativo que combina exibição de informações com ações de configuração. Ideal para telas de configurações, ajustes de preferências e gerenciamento de opções que requerem ações como botões ou toggles.
+O componente ListSettings é um item de lista interativo que combina exibição de informações com ações de configuração. Ideal para telas de configurações, ajustes de preferências e gerenciamento de opções que requerem ações como botões ou toggles.
 
 ## Importação
 
 ```tsx
-import { CardListSettings } from '@useblu/ocean-react';
+import { ListSettings } from '@useblu/ocean-react';
 ```
 
 ### Importação específica (recomendado para tree-shaking)
 
 ```tsx
-import { CardListSettings } from '@useblu/ocean-react/CardListSettings';
+import { ListSettings } from '@useblu/ocean-react/ListSettings';
 ```
 
 ### Importação de tipos TypeScript
 
 ```tsx
-import type { CardListSettingsProps } from '@useblu/ocean-react';
+import type { ListSettingsProps } from '@useblu/ocean-react';
 
 // Uso em componente customizado
-const MyCardListSettings: React.FC<CardListSettingsProps> = (props) => {
-  return <CardListSettings {...props} />;
+const MyListSettings: React.FC<ListSettingsProps> = (props) => {
+  return <ListSettings {...props} />;
 };
 ```
 
 ## Playground Interativo
 
-Explore o componente CardListSettings no playground interativo do Storybook:
+Explore o componente ListSettings no playground interativo do Storybook:
 
 <StorybookEmbed
-  storyId="components-cardlist-cardlistsettings--usage"
+  storyId="components-list-listsettings--usage"
   height={500}
-  title="CardListSettings - Playground Interativo"
+  title="ListSettings - Playground Interativo"
 />
 
 ## Uso básico
@@ -49,7 +49,7 @@ Explore o componente CardListSettings no playground interativo do Storybook:
 ### Com botão
 
 ```tsx live
-<CardListSettings
+<ListSettings
   title="Title"
   description="Description"
   actionType="button"
@@ -65,7 +65,7 @@ function Example() {
   const [checked, setChecked] = React.useState(false);
 
   return (
-    <CardListSettings
+    <ListSettings
       title="Title"
       description="Description"
       actionType="toggle"
@@ -78,7 +78,7 @@ function Example() {
 
 ## Tipos de ação
 
-O CardListSettings oferece dois tipos de ação:
+O ListSettings oferece dois tipos de ação:
 
 ### Botão
 
@@ -86,7 +86,7 @@ Use quando a ação requer confirmação ou navegação para outra tela:
 
 ```tsx live
 <List>
-  <CardListSettings
+  <ListSettings
     title="Backup de dados"
     description="Fazer backup dos seus dados"
     icon={<PlaceholderOutline size={24} />}
@@ -118,7 +118,7 @@ function Example() {
 
   return (
     <List>
-      <CardListSettings
+      <ListSettings
         title="Notificações"
         description="Receba notificações push"
         icon={<PlaceholderOutline size={24} />}
@@ -126,7 +126,7 @@ function Example() {
         toggleChecked={notifications}
         onToggleChange={handleNotificationsChange}
       />
-      <CardListSettings
+      <ListSettings
         title="Modo escuro"
         description="Ativa o tema escuro"
         icon={<PlaceholderOutline size={24} />}
@@ -145,29 +145,29 @@ O callback `onToggleChange` recebe o novo estado (`boolean`) como parâmetro, pe
 
 ## Tipos de conteúdo
 
-O CardListSettings suporta os mesmos tipos visuais do CardListReadOnly:
+O ListSettings suporta os mesmos tipos visuais do CardListReadOnly:
 
 ```tsx live
 <List>
-  <CardListSettings
-    type="default"
-    title="Tipo Default"
+  <ListSettings
+    status="default"
+    title="Status Default"
     description="Configuração padrão"
     icon={<PlaceholderOutline size={24} />}
     actionType="button"
     buttonLabel="Ação"
   />
-  <CardListSettings
-    type="positive"
-    title="Tipo Positive"
+  <ListSettings
+    status="positive"
+    title="Status Positive"
     description="Ação positiva"
     icon={<PlaceholderOutline size={24} />}
     actionType="button"
     buttonLabel="Ação"
   />
-  <CardListSettings
-    type="warning"
-    title="Tipo Warning"
+  <ListSettings
+    status="warning"
+    title="Status Warning"
     description="Requer atenção"
     icon={<PlaceholderOutline size={24} />}
     actionType="button"
@@ -176,13 +176,49 @@ O CardListSettings suporta os mesmos tipos visuais do CardListReadOnly:
 </List>
 ```
 
+## Tipos de borda
+
+O ListSettings suporta dois tipos de borda:
+
+```tsx live
+<div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>type="card" (padrão)</h4>
+    <List style={{ minWidth: '300px' }}>
+      <ListSettings
+        title="Card Type"
+        description="Com borda de card"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        actionType="button"
+        buttonLabel="Label"
+      />
+    </List>
+  </div>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>type="text"</h4>
+    <div style={{ minWidth: '300px' }}>
+      <ListSettings
+        title="Text Type"
+        description="Sem borda de card"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
+        actionType="button"
+        buttonLabel="Label"
+      />
+    </div>
+  </div>
+</div>
+```
+
 ## Tamanhos de botão
 
 Quando usando `actionType="button"`, você pode definir o tamanho:
 
 ```tsx live
 <List>
-  <CardListSettings
+  <ListSettings
     title="Botão Small"
     description="Botão de tamanho pequeno"
     icon={<PlaceholderOutline size={24} />}
@@ -191,7 +227,7 @@ Quando usando `actionType="button"`, você pode definir o tamanho:
     buttonSize="sm"
     onButtonClick={() => alert('Clicked!')}
   />
-  <CardListSettings
+  <ListSettings
     title="Botão Medium"
     description="Botão de tamanho médio"
     icon={<PlaceholderOutline size={24} />}
@@ -209,7 +245,7 @@ O ícone é exibido quando fornecido através da prop `icon`:
 
 ```tsx live
 <List>
-  <CardListSettings
+  <ListSettings
     title="Com ícone"
     description="Card com ícone à esquerda"
     icon={<PlaceholderOutline size={24} />}
@@ -217,7 +253,7 @@ O ícone é exibido quando fornecido através da prop `icon`:
     toggleChecked={false}
     onToggleChange={() => {}}
   />
-  <CardListSettings
+  <ListSettings
     title="Sem ícone"
     description="Card sem ícone"
     actionType="toggle"
@@ -233,7 +269,7 @@ O ícone é exibido quando fornecido através da prop `icon`:
 
 ```tsx live
 <List>
-  <CardListSettings
+  <ListSettings
     title="Botão Desabilitado"
     description="Esta opção está indisponível"
     icon={<PlaceholderOutline size={24} />}
@@ -241,7 +277,7 @@ O ícone é exibido quando fornecido através da prop `icon`:
     buttonLabel="Label"
     disabled
   />
-  <CardListSettings
+  <ListSettings
     title="Toggle Desabilitado"
     description="Esta opção está indisponível"
     icon={<PlaceholderOutline size={24} />}
@@ -259,7 +295,7 @@ Mostra um skeleton placeholder durante carregamento:
 
 ```tsx live
 <List>
-  <CardListSettings
+  <ListSettings
     title="Carregando..."
     description="Aguarde"
     icon={<PlaceholderOutline size={24} />}
@@ -267,7 +303,7 @@ Mostra um skeleton placeholder durante carregamento:
     buttonLabel="Label"
     loading
   />
-  <CardListSettings
+  <ListSettings
     title="Carregando..."
     description="Aguarde"
     icon={<PlaceholderOutline size={24} />}
@@ -289,7 +325,7 @@ function NotificationSettings() {
 
   return (
     <List>
-      <CardListSettings
+      <ListSettings
         title="Notificações por e-mail"
         description="Receba atualizações por e-mail"
         icon={<PlaceholderOutline size={24} />}
@@ -297,7 +333,7 @@ function NotificationSettings() {
         toggleChecked={email}
         onToggleChange={setEmail}
       />
-      <CardListSettings
+      <ListSettings
         title="Notificações push"
         description="Receba notificações no seu dispositivo"
         icon={<PlaceholderOutline size={24} />}
@@ -305,7 +341,7 @@ function NotificationSettings() {
         toggleChecked={push}
         onToggleChange={setPush}
       />
-      <CardListSettings
+      <ListSettings
         title="Notificações por SMS"
         description="Receba mensagens de texto"
         icon={<PlaceholderOutline size={24} />}
@@ -327,7 +363,7 @@ function PrivacySettings() {
 
   return (
     <List>
-      <CardListSettings
+      <ListSettings
         title="Perfil público"
         description="Torne seu perfil visível para todos"
         icon={<PlaceholderOutline size={24} />}
@@ -335,7 +371,7 @@ function PrivacySettings() {
         toggleChecked={profileVisible}
         onToggleChange={setProfileVisible}
       />
-      <CardListSettings
+      <ListSettings
         title="Autenticação de dois fatores"
         description="Adicione uma camada extra de segurança"
         icon={<PlaceholderOutline size={24} />}
@@ -343,7 +379,7 @@ function PrivacySettings() {
         toggleChecked={twoFactor}
         onToggleChange={setTwoFactor}
       />
-      <CardListSettings
+      <ListSettings
         title="Alterar senha"
         description="Atualize sua senha de acesso"
         icon={<PlaceholderOutline size={24} />}
@@ -360,7 +396,7 @@ function PrivacySettings() {
 
 ```tsx live
 <List>
-  <CardListSettings
+  <ListSettings
     title="Dados pessoais"
     description="Gerencie suas informações"
     icon={<PlaceholderOutline size={24} />}
@@ -368,7 +404,7 @@ function PrivacySettings() {
     buttonLabel="Editar"
     onButtonClick={() => alert('Editar dados pessoais')}
   />
-  <CardListSettings
+  <ListSettings
     title="Fazer backup"
     description="Salve uma cópia dos seus dados"
     icon={<PlaceholderOutline size={24} />}
@@ -376,9 +412,9 @@ function PrivacySettings() {
     buttonLabel="Backup"
     onButtonClick={() => alert('Iniciar backup')}
   />
-  <CardListSettings
+  <ListSettings
     title="Excluir conta"
-    type="warning"
+    status="warning"
     description="Remova permanentemente sua conta"
     icon={<PlaceholderOutline size={24} />}
     actionType="button"
@@ -398,13 +434,16 @@ function PrivacySettings() {
 | `description`    | `string`                                                                                                   | -           | Descrição ou texto secundário                 |
 | `caption`        | `string`                                                                                                   | -           | Legenda ou texto terciário                    |
 | `inverted`       | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição       |
-| `type`           | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Tipo de estilo visual do conteúdo             |
+| `type`           | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de borda/estilo do card                  |
+| `status`         | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                     |
+| `showDivider`    | `boolean`                                                                                                  | `false`     | Mostra divisor quando type="text"             |
 | `disabled`       | `boolean`                                                                                                  | `false`     | Desabilita o card e suas ações                |
 | `loading`        | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                |
 | `icon`           | `ReactNode`                                                                                                | -           | Ícone exibido no início do card               |
 | `actionType`     | `'button' \| 'toggle'`                                                                                     | `'button'`  | Tipo de ação exibida no card                  |
 | `buttonLabel`    | `string`                                                                                                   | `'Label'`   | Label do botão (quando actionType="button")   |
 | `buttonSize`     | `'sm' \| 'md'`                                                                                             | `'sm'`      | Tamanho do botão                              |
+| `buttonVariant`  | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical'` | `'primary'` | Variante do botão                             |
 | `toggleChecked`  | `boolean`                                                                                                  | `false`     | Estado do toggle (quando actionType="toggle") |
 | `onButtonClick`  | `() => void`                                                                                               | -           | Callback ao clicar no botão                   |
 | `onToggleChange` | `(checked: boolean) => void`                                                                               | -           | Callback ao mudar estado do toggle            |
@@ -429,7 +468,7 @@ function PrivacySettings() {
 - Use `actionType="toggle"` para ações imediatas (on/off)
 - Use `actionType="button"` para ações que requerem confirmação ou navegação
 - Forneça descrições explicativas para cada opção
-- Use o tipo apropriado para comunicar importância (warning para ações destrutivas)
+- Use o status apropriado para comunicar importância (warning para ações destrutivas)
 - Forneça feedback visual durante operações com `loading`
 - Agrupe configurações relacionadas em seções
 
@@ -441,11 +480,11 @@ function PrivacySettings() {
 - Não use `disabled` sem indicar o motivo ao usuário
 - Não ignore estados de loading em operações assíncronas
 - Não misture diferentes níveis de importância sem hierarquia visual
-- Não use tipo `warning` sem uma boa razão (ações destrutivas, alertas)
+- Não use status `warning` sem uma boa razão (ações destrutivas, alertas)
 
-## Quando usar CardListSettings
+## Quando usar ListSettings
 
-**Use CardListSettings quando:**
+**Use ListSettings quando:**
 
 - Você precisa de um item de configuração com ação (botão ou toggle)
 - O item combina informações com controles interativos
@@ -453,7 +492,7 @@ function PrivacySettings() {
 - Precisa de toggles para ativar/desativar funcionalidades
 - Precisa de botões para navegar para detalhes de configuração
 
-**Use CardListAction quando:**
+**Use ListAction quando:**
 
 - Precisa de navegação com chevron
 - Precisa de menu de ações contextuais
@@ -468,18 +507,18 @@ function PrivacySettings() {
 
 ## Visão geral dos tipos de ação
 
-Veja todos os tipos de ação do CardListSettings:
+Veja todos os tipos de ação do ListSettings:
 
 <StorybookEmbed
-  storyId="components-cardlist-cardlistsettings--action-type-button"
+  storyId="components-list-listsettings--action-type-button"
   height={500}
   showToolbar={false}
-  title="CardListSettings - Tipos de Ação"
+  title="ListSettings - Tipos de Ação"
 />
 
 ## Documentação Completa
 
-Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do CardListSettings](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardlist-cardlistsettings--docs)**.
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do ListSettings](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listsettings--docs)**.
 
 No Storybook você encontrará:
 
@@ -490,10 +529,10 @@ No Storybook você encontrará:
 
 ## Links relacionados
 
-- [CardListAction](/components/cardlistaction) - Item de card com ações interativas
+- [ListAction](/components/listaction) - Item de lista com ações interativas
 - [CardListReadOnly](/components/cardlistreadonly) - Item de card somente leitura
 - [CardListItem](/components/cardlistitem) - Item de card básico
 - [List](/components/list) - Container para agrupar cards
 - [Button](/components/button) - Componente de botão usado internamente
 - [Switch](/components/switch) - Componente de switch usado internamente
-- [Storybook - CardListSettings](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardlist-cardlistsettings--docs)
+- [Storybook - ListSettings](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listsettings--docs)

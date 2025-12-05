@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
-import CardListSettings from '../CardListSettings';
+import ListSettings from '../ListSettings';
 import List from '../../List';
 
-const meta: Meta<typeof CardListSettings> = {
-  title: 'Components/CardList/CardListSettings',
-  component: CardListSettings,
+const meta: Meta<typeof ListSettings> = {
+  title: 'Components/List/ListSettings',
+  component: ListSettings,
   tags: ['autodocs'],
   argTypes: {
     title: { control: 'text' },
@@ -15,14 +15,24 @@ const meta: Meta<typeof CardListSettings> = {
     caption: { control: 'text' },
     inverted: { control: 'boolean' },
     type: {
+      description: 'Tipo de estilo do card.',
+      control: 'select',
+      options: ['card', 'text'],
+    },
+    status: {
+      description: 'Status do conteúdo do card.',
       control: 'select',
       options: ['default', 'inactive', 'positive', 'warning', 'highlight', 'highlight-lead', 'strikethrough'],
+    },
+    showDivider: {
+      description: 'Mostra um divisor entre os cards quando type é "text".',
+      control: 'boolean',
     },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
     icon: {
       control: 'select',
-      options: ['withoutIcon', 'PlaceholderOutline'],
+      options: ['withoutIcon', 'withIcon'],
     },
     actionType: {
       description: 'Tipo de ação: botão (requer confirmação) ou toggle (ação imediata)',
@@ -54,7 +64,7 @@ const meta: Meta<typeof CardListSettings> = {
 
 export default meta;
 
-type Story = StoryObj<typeof CardListSettings>;
+type Story = StoryObj<typeof ListSettings>;
 
 // Story Usage (Principal com Controles)
 export const Usage: Story = {
@@ -65,7 +75,9 @@ export const Usage: Story = {
     actionType: 'button',
     buttonLabel: 'Label',
     buttonSize: 'sm',
-    type: 'default',
+    type: 'card',
+    status: 'default',
+    showDivider: false,
     onButtonClick: () => alert('Button clicked!'),
   },
   render: (args) => {
@@ -82,12 +94,12 @@ export const Usage: Story = {
           flexDirection: 'column',
         }}
       >
-        <List>
-          <CardListSettings
+        <div style={{ minWidth: '400px' }}>
+          <ListSettings
             {...args}
             icon={iconMap[args.icon as keyof typeof iconMap]}
           />
-        </List>
+        </div>
       </div>
     );
   },
@@ -100,7 +112,7 @@ export const ActionTypeButton: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
+      <ListSettings
         title="Default State"
         description="Button action enabled"
         icon={<PlaceholderOutline size={24} />}
@@ -108,7 +120,7 @@ export const ActionTypeButton: Story = {
         buttonLabel="Label"
         onButtonClick={() => alert('Button clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Disabled State"
         description="Button action disabled"
         icon={<PlaceholderOutline size={24} />}
@@ -117,7 +129,7 @@ export const ActionTypeButton: Story = {
         disabled
         onButtonClick={() => alert('Button clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Loading State"
         description="Loading state"
         icon={<PlaceholderOutline size={24} />}
@@ -141,7 +153,7 @@ export const ActionTypeToggle: Story = {
 
     return (
       <List style={{ minWidth: '300px' }}>
-        <CardListSettings
+        <ListSettings
           title="Toggle Off"
           description="Toggle action disabled"
           icon={<PlaceholderOutline size={24} />}
@@ -149,7 +161,7 @@ export const ActionTypeToggle: Story = {
           toggleChecked={toggle1}
           onToggleChange={setToggle1}
         />
-        <CardListSettings
+        <ListSettings
           title="Toggle On"
           description="Toggle action enabled"
           icon={<PlaceholderOutline size={24} />}
@@ -157,7 +169,7 @@ export const ActionTypeToggle: Story = {
           toggleChecked={toggle2}
           onToggleChange={setToggle2}
         />
-        <CardListSettings
+        <ListSettings
           title="Disabled State"
           description="Toggle disabled"
           icon={<PlaceholderOutline size={24} />}
@@ -166,7 +178,7 @@ export const ActionTypeToggle: Story = {
           disabled
           onToggleChange={() => undefined}
         />
-        <CardListSettings
+        <ListSettings
           title="Loading State"
           description="Loading state"
           icon={<PlaceholderOutline size={24} />}
@@ -186,7 +198,7 @@ export const WithAndWithoutIcon: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
+      <ListSettings
         title="With Icon"
         description="Card with icon"
         icon={<PlaceholderOutline size={24} />}
@@ -194,14 +206,14 @@ export const WithAndWithoutIcon: Story = {
         buttonLabel="Label"
         onButtonClick={() => alert('Button clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Without Icon"
         description="Card without icon"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Button clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="With Icon Toggle"
         description="Card with icon and toggle"
         icon={<PlaceholderOutline size={24} />}
@@ -209,7 +221,7 @@ export const WithAndWithoutIcon: Story = {
         toggleChecked={false}
         onToggleChange={() => undefined}
       />
-      <CardListSettings
+      <ListSettings
         title="Without Icon Toggle"
         description="Card without icon with toggle"
         actionType="toggle"
@@ -227,14 +239,14 @@ export const WithoutDescription: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
+      <ListSettings
         title="Only Title - Button"
         icon={<PlaceholderOutline size={24} />}
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Button clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Only Title - Toggle"
         icon={<PlaceholderOutline size={24} />}
         actionType="toggle"
@@ -252,56 +264,56 @@ export const AllContentTypes: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
-        title="Type Default"
-        description="Default content type"
+      <ListSettings
+        title="Status Default"
+        description="Default content status"
         icon={<PlaceholderOutline size={24} />}
-        type="default"
+        status="default"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Clicked!')}
       />
-      <CardListSettings
-        title="Type Inactive"
+      <ListSettings
+        title="Status Inactive"
         description="Inactive content"
         icon={<PlaceholderOutline size={24} />}
-        type="inactive"
+        status="inactive"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Clicked!')}
       />
-      <CardListSettings
-        title="Type Positive"
+      <ListSettings
+        title="Status Positive"
         description="Positive content"
         icon={<PlaceholderOutline size={24} />}
-        type="positive"
+        status="positive"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Clicked!')}
       />
-      <CardListSettings
-        title="Type Warning"
+      <ListSettings
+        title="Status Warning"
         description="Warning content"
         icon={<PlaceholderOutline size={24} />}
-        type="warning"
+        status="warning"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Clicked!')}
       />
-      <CardListSettings
-        title="Type Highlight"
+      <ListSettings
+        title="Status Highlight"
         description="Highlighted content"
         icon={<PlaceholderOutline size={24} />}
-        type="highlight"
+        status="highlight"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Clicked!')}
       />
-      <CardListSettings
-        title="Type Highlight Lead"
+      <ListSettings
+        title="Status Highlight Lead"
         description="Highlight lead content"
         icon={<PlaceholderOutline size={24} />}
-        type="highlight-lead"
+        status="highlight-lead"
         actionType="button"
         buttonLabel="Label"
         onButtonClick={() => alert('Clicked!')}
@@ -317,7 +329,7 @@ export const ButtonSizes: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
+      <ListSettings
         title="Button Size Small"
         description="Small button size"
         icon={<PlaceholderOutline size={24} />}
@@ -326,7 +338,7 @@ export const ButtonSizes: Story = {
         buttonSize="sm"
         onButtonClick={() => alert('Button clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Button Size Medium"
         description="Medium button size"
         icon={<PlaceholderOutline size={24} />}
@@ -354,7 +366,7 @@ export const InteractiveToggleWithAlert: Story = {
 
     return (
       <List style={{ minWidth: '300px' }}>
-        <CardListSettings
+        <ListSettings
           title="Notificações Push"
           description="Receba alertas em tempo real"
           icon={<PlaceholderOutline size={24} />}
@@ -374,7 +386,7 @@ export const ButtonVariants: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
+      <ListSettings
         title="Primary Button"
         description="Primary variant"
         icon={<PlaceholderOutline size={24} />}
@@ -383,7 +395,7 @@ export const ButtonVariants: Story = {
         buttonVariant="primary"
         onButtonClick={() => alert('Primary clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Secondary Button"
         description="Secondary variant"
         icon={<PlaceholderOutline size={24} />}
@@ -392,7 +404,7 @@ export const ButtonVariants: Story = {
         buttonVariant="secondary"
         onButtonClick={() => alert('Secondary clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Tertiary Button"
         description="Tertiary variant"
         icon={<PlaceholderOutline size={24} />}
@@ -401,7 +413,7 @@ export const ButtonVariants: Story = {
         buttonVariant="tertiary"
         onButtonClick={() => alert('Tertiary clicked!')}
       />
-      <CardListSettings
+      <ListSettings
         title="Primary Critical Button"
         description="Primary critical variant"
         icon={<PlaceholderOutline size={24} />}
@@ -421,12 +433,12 @@ export const WithStrikethroughDescription: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListSettings
+      <ListSettings
         title="R$ 99,90"
         description="Preço promocional"
         strikethroughDescription="R$ 149,90"
         icon={<PlaceholderOutline size={24} />}
-        type="strikethrough"
+        status="strikethrough"
         actionType="button"
         buttonLabel="Comprar"
         onButtonClick={() => alert('Comprar!')}
@@ -461,7 +473,7 @@ export const WithRef: Story = {
           Scroll to Card with Ref
         </button>
         <List>
-          <CardListSettings
+          <ListSettings
             title="Card 1"
             description="Without ref"
             icon={<PlaceholderOutline size={24} />}
@@ -469,7 +481,7 @@ export const WithRef: Story = {
             buttonLabel="Action"
             onButtonClick={() => alert('Card 1')}
           />
-          <CardListSettings
+          <ListSettings
             title="Card 2"
             description="Without ref"
             icon={<PlaceholderOutline size={24} />}
@@ -477,7 +489,7 @@ export const WithRef: Story = {
             buttonLabel="Action"
             onButtonClick={() => alert('Card 2')}
           />
-          <CardListSettings
+          <ListSettings
             ref={ref}
             title="Card with Ref"
             description="This card has a ref attached"
@@ -486,7 +498,7 @@ export const WithRef: Story = {
             buttonLabel="Action"
             onButtonClick={() => alert('Card with Ref')}
           />
-          <CardListSettings
+          <ListSettings
             title="Card 3"
             description="Without ref"
             icon={<PlaceholderOutline size={24} />}
@@ -498,4 +510,110 @@ export const WithRef: Story = {
       </div>
     );
   },
+};
+
+// Story: Tipo Text com Divisor
+export const TextTypeWithDivider: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ minWidth: '300px' }}>
+      <ListSettings
+        title="Card com tipo Text"
+        description="R$ 1.234,56"
+        caption="Legenda terciária"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicado!')}
+      />
+      <ListSettings
+        title="Card com Caption"
+        description="Descrição secundária"
+        caption="12/12/2024 às 14:30"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
+        actionType="toggle"
+        toggleChecked={false}
+        onToggleChange={() => undefined}
+      />
+      <ListSettings
+        title="Último Card sem Divisor"
+        description="Sem showDivider"
+        caption="Este é o último item"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        actionType="button"
+        buttonLabel="Label"
+        onButtonClick={() => alert('Clicado!')}
+      />
+    </div>
+  ),
+};
+
+// Story: Comparação entre tipos Card e Text
+export const CardVsTextType: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+      <div>
+        <h4 style={{ marginBottom: '16px' }}>type=&quot;card&quot; (padrão)</h4>
+        <List style={{ minWidth: '300px' }}>
+          <ListSettings
+            title="Card Type"
+            description="Com borda de card"
+            caption="Caption de exemplo"
+            icon={<PlaceholderOutline size={24} />}
+            type="card"
+            actionType="button"
+            buttonLabel="Label"
+            onButtonClick={() => alert('Clicado!')}
+          />
+          <ListSettings
+            title="Outro Card"
+            description="Segunda linha"
+            caption="Mais informações"
+            icon={<PlaceholderOutline size={24} />}
+            type="card"
+            actionType="toggle"
+            toggleChecked
+            onToggleChange={() => undefined}
+          />
+        </List>
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '16px' }}>type=&quot;text&quot;</h4>
+        <List style={{ minWidth: '300px' }}>
+          <ListSettings
+            title="Text Type"
+            description="Sem borda de card"
+            caption="Caption de exemplo"
+            icon={<PlaceholderOutline size={24} />}
+            type="text"
+            showDivider
+            actionType="button"
+            buttonLabel="Label"
+            onButtonClick={() => alert('Clicado!')}
+          />
+          <ListSettings
+            title="Outro Text"
+            description="Segunda linha"
+            caption="Mais informações"
+            icon={<PlaceholderOutline size={24} />}
+            type="text"
+            showDivider
+            actionType="toggle"
+            toggleChecked
+            onToggleChange={() => undefined}
+          />
+        </List>
+      </div>
+    </div>
+  ),
 };

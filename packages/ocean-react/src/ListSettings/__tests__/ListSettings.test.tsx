@@ -1,26 +1,26 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-import CardListSettings from '../CardListSettings';
+import ListSettings from '../ListSettings';
 
 const TestIcon = () => <div data-testid="test-icon">Icon</div>;
 
-describe('CardListSettings', () => {
+describe('ListSettings', () => {
   describe('Rendering', () => {
     test('renders the title', () => {
-      render(<CardListSettings title="Test Title" />);
+      render(<ListSettings title="Test Title" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
     test('renders the description', () => {
       render(
-        <CardListSettings title="Test Title" description="Test Description" />
+        <ListSettings title="Test Title" description="Test Description" />
       );
       expect(screen.getByText('Test Description')).toBeInTheDocument();
     });
 
     test('renders the caption', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           description="Test Description"
           caption="Test Caption"
@@ -30,43 +30,43 @@ describe('CardListSettings', () => {
     });
 
     test('renders without description', () => {
-      render(<CardListSettings title="Test Title" />);
+      render(<ListSettings title="Test Title" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
       expect(screen.queryByText('Description')).not.toBeInTheDocument();
     });
 
     test('renders with custom className', () => {
       const { container } = render(
-        <CardListSettings title="Test Title" className="custom-class" />
+        <ListSettings title="Test Title" className="custom-class" />
       );
-      expect(container.firstChild).toHaveClass('custom-class');
+      expect(container.firstChild?.firstChild).toHaveClass('custom-class');
     });
 
     test('renders with strikethroughDescription', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           strikethroughDescription="Old Price"
-          type="strikethrough"
+          status="strikethrough"
         />
       );
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
     test('renders with data-testid', () => {
-      render(<CardListSettings title="Test Title" />);
-      expect(screen.getByTestId('card-list-settings')).toBeInTheDocument();
+      render(<ListSettings title="Test Title" />);
+      expect(screen.getByTestId('list-settings')).toBeInTheDocument();
     });
 
     test('accepts additional HTML attributes via rest props', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           data-custom="custom-value"
           aria-label="Settings card"
         />
       );
-      const element = screen.getByTestId('card-list-settings');
+      const element = screen.getByTestId('list-settings');
       expect(element).toHaveAttribute('data-custom', 'custom-value');
       expect(element).toHaveAttribute('aria-label', 'Settings card');
     });
@@ -74,25 +74,25 @@ describe('CardListSettings', () => {
 
   describe('Icon', () => {
     test('renders the icon when provided', () => {
-      render(<CardListSettings title="Test Title" icon={<TestIcon />} />);
+      render(<ListSettings title="Test Title" icon={<TestIcon />} />);
       expect(screen.getByTestId('test-icon')).toBeInTheDocument();
     });
 
     test('does not render icon when not provided', () => {
-      render(<CardListSettings title="Test Title" />);
+      render(<ListSettings title="Test Title" />);
       expect(screen.queryByTestId('test-icon')).not.toBeInTheDocument();
     });
   });
 
   describe('Action Type - Button', () => {
     test('renders button with default label', () => {
-      render(<CardListSettings title="Test Title" actionType="button" />);
+      render(<ListSettings title="Test Title" actionType="button" />);
       expect(screen.getByText('Label')).toBeInTheDocument();
     });
 
     test('renders button with custom label', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonLabel="Custom Label"
@@ -104,7 +104,7 @@ describe('CardListSettings', () => {
     test('calls onButtonClick when button is clicked', () => {
       const handleClick = jest.fn();
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonLabel="Click Me"
@@ -121,7 +121,7 @@ describe('CardListSettings', () => {
     test('does not call onButtonClick when disabled', () => {
       const handleClick = jest.fn();
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonLabel="Click Me"
@@ -138,7 +138,7 @@ describe('CardListSettings', () => {
 
     test('renders small button size', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonSize="sm"
@@ -150,7 +150,7 @@ describe('CardListSettings', () => {
 
     test('renders medium button size', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonSize="md"
@@ -162,7 +162,7 @@ describe('CardListSettings', () => {
 
     test('renders button with primary variant', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonVariant="primary"
@@ -174,7 +174,7 @@ describe('CardListSettings', () => {
 
     test('renders button with secondary variant', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonVariant="secondary"
@@ -186,7 +186,7 @@ describe('CardListSettings', () => {
 
     test('renders button with tertiary variant', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="button"
           buttonVariant="tertiary"
@@ -200,7 +200,7 @@ describe('CardListSettings', () => {
   describe('Action Type - Toggle', () => {
     test('renders toggle switch', () => {
       render(
-        <CardListSettings title="Test Title" actionType="toggle" />
+        <ListSettings title="Test Title" actionType="toggle" />
       );
       const switchElement = screen.getByRole('checkbox');
       expect(switchElement).toBeInTheDocument();
@@ -208,7 +208,7 @@ describe('CardListSettings', () => {
 
     test('renders toggle with checked state', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="toggle"
           toggleChecked
@@ -220,7 +220,7 @@ describe('CardListSettings', () => {
 
     test('renders toggle with unchecked state', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="toggle"
           toggleChecked={false}
@@ -233,7 +233,7 @@ describe('CardListSettings', () => {
     test('calls onToggleChange when toggle is clicked', () => {
       const handleToggleChange = jest.fn();
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="toggle"
           toggleChecked={false}
@@ -250,7 +250,7 @@ describe('CardListSettings', () => {
 
     test('does not call onToggleChange when disabled', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           actionType="toggle"
           toggleChecked={false}
@@ -275,84 +275,108 @@ describe('CardListSettings', () => {
 
   describe('States', () => {
     test('renders disabled state', () => {
-      const { container } = render(
-        <CardListSettings title="Test Title" disabled />
+      render(
+        <ListSettings title="Test Title" disabled />
       );
-      expect(container.firstChild).toHaveClass('ods-card-list-settings--disabled');
+      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--disabled');
     });
 
     test('renders loading state', () => {
-      const { container } = render(
-        <CardListSettings title="Test Title" loading />
+      render(
+        <ListSettings title="Test Title" loading />
       );
-      expect(container.firstChild).toHaveClass('ods-card-list-settings--loading');
+      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--loading');
     });
 
     test('renders skeleton when loading', () => {
       render(
-        <CardListSettings title="Test Title" loading />
+        <ListSettings title="Test Title" loading />
       );
 
       // Check that the loading class is present
-      const loadingElement = document.querySelector('.ods-card-list-settings--loading');
+      const loadingElement = document.querySelector('.ods-list-settings--loading');
       expect(loadingElement).toBeInTheDocument();
 
       // Check that skeleton is rendered
-      const skeletonElement = document.querySelector('.ods-card-list-settings__skeleton');
+      const skeletonElement = document.querySelector('.ods-list-settings__skeleton');
       expect(skeletonElement).toBeInTheDocument();
     });
 
     test('does not render content when loading', () => {
-      render(<CardListSettings title="Test Title" loading />);
+      render(<ListSettings title="Test Title" loading />);
       // The title should not be visible in loading state
       const skeletonContainer = document.querySelector(
-        '.ods-card-list-settings--loading'
+        '.ods-list-settings--loading'
       );
       expect(skeletonContainer).toBeInTheDocument();
     });
   });
 
   describe('Content Types', () => {
-    test('renders default type', () => {
-      render(<CardListSettings title="Test Title" type="default" />);
+    test('renders default status', () => {
+      render(<ListSettings title="Test Title" status="default" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    test('renders inactive type', () => {
-      render(<CardListSettings title="Test Title" type="inactive" />);
+    test('renders inactive status', () => {
+      render(<ListSettings title="Test Title" status="inactive" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    test('renders positive type', () => {
-      render(<CardListSettings title="Test Title" type="positive" />);
+    test('renders positive status', () => {
+      render(<ListSettings title="Test Title" status="positive" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    test('renders warning type', () => {
-      render(<CardListSettings title="Test Title" type="warning" />);
+    test('renders warning status', () => {
+      render(<ListSettings title="Test Title" status="warning" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    test('renders highlight type', () => {
-      render(<CardListSettings title="Test Title" type="highlight" />);
+    test('renders highlight status', () => {
+      render(<ListSettings title="Test Title" status="highlight" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    test('renders highlight-lead type', () => {
-      render(<CardListSettings title="Test Title" type="highlight-lead" />);
+    test('renders highlight-lead status', () => {
+      render(<ListSettings title="Test Title" status="highlight-lead" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
     });
 
-    test('renders strikethrough type', () => {
-      render(<CardListSettings title="Test Title" type="strikethrough" />);
+    test('renders strikethrough status', () => {
+      render(<ListSettings title="Test Title" status="strikethrough" />);
       expect(screen.getByText('Test Title')).toBeInTheDocument();
+    });
+  });
+
+  describe('Type', () => {
+    test('renders card type by default', () => {
+      render(<ListSettings title="Test Title" />);
+      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--card');
+    });
+
+    test('renders text type', () => {
+      render(<ListSettings title="Test Title" type="text" />);
+      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--text');
+    });
+
+    test('renders divider when showDivider is true and type is text', () => {
+      render(<ListSettings title="Test Title" type="text" showDivider />);
+      const divider = document.querySelector('.ods-list-settings__divider');
+      expect(divider).toBeInTheDocument();
+    });
+
+    test('does not render divider when type is card', () => {
+      render(<ListSettings title="Test Title" type="card" showDivider />);
+      const divider = document.querySelector('.ods-list-settings__divider');
+      expect(divider).not.toBeInTheDocument();
     });
   });
 
   describe('Inverted', () => {
     test('renders with inverted prop', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           description="Test Description"
           inverted
@@ -364,7 +388,7 @@ describe('CardListSettings', () => {
 
     test('renders without inverted prop', () => {
       render(
-        <CardListSettings
+        <ListSettings
           title="Test Title"
           description="Test Description"
           inverted={false}
@@ -379,7 +403,7 @@ describe('CardListSettings', () => {
     test('renders complete card with button action', () => {
       const handleClick = jest.fn();
       render(
-        <CardListSettings
+        <ListSettings
           title="Settings Option"
           description="Enable this feature"
           icon={<TestIcon />}
@@ -402,7 +426,7 @@ describe('CardListSettings', () => {
     test('renders complete card with toggle action', () => {
       const handleToggle = jest.fn();
       render(
-        <CardListSettings
+        <ListSettings
           title="Notifications"
           description="Enable push notifications"
           icon={<TestIcon />}
@@ -424,7 +448,7 @@ describe('CardListSettings', () => {
     test('renders disabled card with all features', () => {
       const handleClick = jest.fn();
       render(
-        <CardListSettings
+        <ListSettings
           title="Disabled Option"
           description="This option is disabled"
           icon={<TestIcon />}
@@ -447,25 +471,24 @@ describe('CardListSettings', () => {
   describe('ForwardRef', () => {
     test('forwards ref to the root element', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<CardListSettings title="Test Title" ref={ref} />);
+      render(<ListSettings title="Test Title" ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
-      expect(ref.current).toHaveClass('ods-card-list-settings');
+      expect(ref.current).toHaveClass('ods-list-settings');
     });
 
     test('forwards ref in loading state', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<CardListSettings title="Test Title" loading ref={ref} />);
+      render(<ListSettings title="Test Title" loading ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
-      expect(ref.current).toHaveClass('ods-card-list-settings--loading');
+      expect(ref.current).toHaveClass('ods-list-settings--loading');
     });
   });
 
   describe('DisplayName', () => {
     test('has correct displayName', () => {
-      expect(CardListSettings.displayName).toBe('CardListSettings');
+      expect(ListSettings.displayName).toBe('ListSettings');
     });
   });
 });
-
