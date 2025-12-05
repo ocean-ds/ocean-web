@@ -5,7 +5,7 @@ import ContentList, {
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
-export type CardListReadOnlyProps = {
+export type ListReadOnlyProps = {
   /**
    * The title of the card list read only.
    */
@@ -62,9 +62,9 @@ export type CardListReadOnlyProps = {
   showDivider?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const CardListReadOnly = React.forwardRef<
+const ListReadOnly = React.forwardRef<
   HTMLDivElement,
-  CardListReadOnlyProps
+  ListReadOnlyProps
 >(
   (
     {
@@ -143,7 +143,7 @@ const CardListReadOnly = React.forwardRef<
   }
 );
 
-CardListReadOnly.displayName = 'CardListReadOnly';
+ListReadOnly.displayName = 'ListReadOnly';
 
-export default CardListReadOnly;
+export default ListReadOnly;
 

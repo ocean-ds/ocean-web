@@ -126,5 +126,5 @@ export * from './SettingsListItem';
 export { default as ListAction } from './ListAction';
 export * from './ListAction';
 
-export { default as CardListReadOnly } from './CardListReadOnly';
-export * from './CardListReadOnly';
+export { default as ListReadOnly } from './ListReadOnly';
+export * from './ListReadOnly';

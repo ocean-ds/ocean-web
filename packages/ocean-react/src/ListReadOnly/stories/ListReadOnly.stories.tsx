@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
-import CardListReadOnly from '../CardListReadOnly';
-import type { CardListReadOnlyProps } from '../CardListReadOnly';
+import ListReadOnly from '../ListReadOnly';
+import type { ListReadOnlyProps } from '../ListReadOnly';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
@@ -33,8 +33,8 @@ const indicatorOptions = {
 };
 
 const renderCardList = (
-  items: Array<Partial<CardListReadOnlyProps> & { title?: string }>,
-  commonProps?: Partial<CardListReadOnlyProps>
+  items: Array<Partial<ListReadOnlyProps> & { title?: string }>,
+  commonProps?: Partial<ListReadOnlyProps>
 ) => (
   <List style={listStyle}>
     {items.map((item, index) => {
@@ -44,18 +44,18 @@ const renderCardList = (
       }
       const key = mergedProps.title || `item-${index}`;
       return (
-        <CardListReadOnly
+        <ListReadOnly
           key={key}
-          {...(mergedProps as CardListReadOnlyProps)}
+          {...(mergedProps as ListReadOnlyProps)}
         />
       );
     })}
   </List>
 );
 
-const meta: Meta<typeof CardListReadOnly> = {
-  title: 'Components/CardList/CardListReadOnly',
-  component: CardListReadOnly,
+const meta: Meta<typeof ListReadOnly> = {
+  title: 'Components/List/ListReadOnly',
+  component: ListReadOnly,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -126,7 +126,7 @@ const meta: Meta<typeof CardListReadOnly> = {
 
 export default meta;
 
-type Story = StoryObj<typeof CardListReadOnly>;
+type Story = StoryObj<typeof ListReadOnly>;
 
 // Story Usage (Principal com Controles)
 export const Usage: Story = {
@@ -166,7 +166,7 @@ export const TextTypeWithDividerAndCaption: Story = {
   parameters: disabledControls,
   render: () => (
     <div style={listStyle}>
-      <CardListReadOnly
+      <ListReadOnly
         title="Card com tipo Text"
         description="R$ 1.234,56"
         caption="Legenda terciária"
@@ -174,7 +174,7 @@ export const TextTypeWithDividerAndCaption: Story = {
         type="text"
         showDivider
       />
-      <CardListReadOnly
+      <ListReadOnly
         title="Card com Caption"
         description="Descrição secundária"
         caption="12/12/2024 às 14:30"
@@ -182,7 +182,7 @@ export const TextTypeWithDividerAndCaption: Story = {
         type="text"
         showDivider
       />
-      <CardListReadOnly
+      <ListReadOnly
         title="Card Invertido com Caption"
         description="R$ 500,00"
         caption="Crédito aprovado"
@@ -191,7 +191,7 @@ export const TextTypeWithDividerAndCaption: Story = {
         inverted
         showDivider
       />
-      <CardListReadOnly
+      <ListReadOnly
         title="Último Card sem Divisor"
         description="Sem showDivider"
         caption="Este é o último item"
