@@ -63,7 +63,7 @@ const sidebars: SidebarsConfig = {
         'components/switch',
         'components/textarea',
         'components/textlistitem',
-        'components/textlistselectable',
+        'components/listselectable',
         'components/tokeninput',
         'components/tooltip',
         'components/topbar',
