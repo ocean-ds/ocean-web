@@ -1,0 +1,585 @@
+---
+title: ListReadOnly
+sidebar_label: ListReadOnly
+sidebar_position: 16
+---
+
+import { ListReadOnly, List, Badge, Tag } from '@useblu/ocean-react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# ListReadOnly
+
+O componente ListReadOnly é um item de lista não interativo que exibe conteúdo textual de forma organizada. Ideal para exibição de informações estáticas, resumos de dados, listas de detalhes e visualização de informações não acionáveis.
+
+## Importação
+
+```tsx
+import { ListReadOnly } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { ListReadOnly } from '@useblu/ocean-react/ListReadOnly';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ListReadOnlyProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyListReadOnly: React.FC<ListReadOnlyProps> = (props) => {
+  return <ListReadOnly {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente ListReadOnly no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-listreadonly--usage"
+  height={500}
+  title="ListReadOnly - Playground Interativo"
+/>
+
+## Uso básico
+
+```tsx live
+<ListReadOnly
+  title="Título do Card"
+  description="Descrição ou informação adicional"
+/>
+```
+
+## Tipos de exibição (type)
+
+O ListReadOnly oferece dois tipos de exibição visual:
+
+### Card (padrão)
+
+Exibe o item com estilo de card com bordas e espaçamento:
+
+```tsx live
+<ListReadOnly
+  type="card"
+  title="Tipo Card"
+  description="Exibido com estilo de card"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Text
+
+Exibe o item sem bordas, ideal para listas mais simples:
+
+```tsx live
+<ListReadOnly
+  type="text"
+  title="Tipo Text"
+  description="Exibido sem borda de card"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Comparação Card vs Text
+
+```tsx live
+<div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>type="card"</h4>
+    <List style={{ minWidth: '280px' }}>
+      <ListReadOnly
+        type="card"
+        title="Card Type"
+        description="Com borda"
+        icon={<PlaceholderOutline size={24} />}
+      />
+      <ListReadOnly
+        type="card"
+        title="Outro Card"
+        description="Segunda linha"
+        icon={<PlaceholderOutline size={24} />}
+      />
+    </List>
+  </div>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>type="text"</h4>
+    <List style={{ minWidth: '280px' }}>
+      <ListReadOnly
+        type="text"
+        title="Text Type"
+        description="Sem borda"
+        icon={<PlaceholderOutline size={24} />}
+      />
+      <ListReadOnly
+        type="text"
+        title="Outro Text"
+        description="Segunda linha"
+        icon={<PlaceholderOutline size={24} />}
+      />
+    </List>
+  </div>
+</div>
+```
+
+## Status do conteúdo
+
+O prop `status` define o estilo visual do conteúdo para destacar estados ou categorias de informação:
+
+### Default
+
+```tsx live
+<ListReadOnly
+  status="default"
+  title="Informação padrão"
+  description="Dados em formato padrão"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Inactive
+
+```tsx live
+<ListReadOnly
+  status="inactive"
+  title="Status inativo"
+  description="Serviço temporariamente indisponível"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Positive
+
+```tsx live
+<ListReadOnly
+  status="positive"
+  title="Saldo positivo"
+  description="R$ 1.500,00"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Warning
+
+```tsx live
+<ListReadOnly
+  status="warning"
+  title="Atenção"
+  description="Verifique suas informações"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Highlight
+
+```tsx live
+<ListReadOnly
+  status="highlight"
+  title="Destaque"
+  description="Informação importante"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Highlight Lead
+
+```tsx live
+<ListReadOnly
+  status="highlight-lead"
+  title="R$ 5.250,00"
+  description="Valor em destaque"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Strikethrough
+
+```tsx live
+<ListReadOnly
+  status="strikethrough"
+  title="Promoção encerrada"
+  description="Esta oferta já expirou"
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+### Guia de uso dos status
+
+- **default**: Tipo padrão para itens comuns de lista
+- **inactive**: Para itens desabilitados ou indisponíveis
+- **positive**: Para destacar informações positivas (sucesso, confirmação)
+- **warning**: Para alertas ou itens que necessitam atenção
+- **highlight**: Para destacar novidades ou itens importantes
+- **highlight-lead**: Para destacar valores monetários ou métricas principais
+- **strikethrough**: Para itens obsoletos ou descontinuados
+
+## Conteúdo invertido
+
+O prop `inverted` inverte a posição do título e da descrição, útil para priorizar valores ou descrições:
+
+```tsx live
+<div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+  <ListReadOnly title="Saldo disponível" description="R$ 1.250,00" />
+
+  <ListReadOnly inverted title="R$ 1.250,00" description="Saldo disponível" />
+</div>
+```
+
+## Descrição com tachado
+
+Use `strikethroughDescription` junto com `status="strikethrough"` para mostrar valores antigos ou informações obsoletas:
+
+```tsx live
+<ListReadOnly
+  title="Produto em promoção"
+  strikethroughDescription="De R$ 299,00"
+  description="Por R$ 199,00"
+  status="strikethrough"
+/>
+```
+
+## Caption (legenda)
+
+Adicione uma terceira linha de texto com o prop `caption`:
+
+```tsx live
+<ListReadOnly
+  title="Transferência realizada"
+  description="R$ 500,00"
+  caption="Hoje às 14:32"
+/>
+```
+
+## Ícones
+
+Adicione ícones à esquerda para melhor identificação visual:
+
+```tsx live
+<ListReadOnly
+  icon={<PlaceholderOutline size={24} />}
+  title="Meus documentos"
+  description="Total de arquivos salvos"
+/>
+```
+
+## Indicadores
+
+Use indicadores (badges, tags) à direita do conteúdo:
+
+```tsx live
+<div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+  <ListReadOnly
+    title="Mensagens"
+    description="Você tem novas mensagens"
+    indicator={<Badge count={5} color="brand" />}
+  />
+
+  <ListReadOnly
+    title="Status do pedido"
+    description="Pedido #12345"
+    indicator={
+      <Tag type="positive" size="small">
+        Aprovado
+      </Tag>
+    }
+  />
+</div>
+```
+
+## Divisor (showDivider)
+
+Use `showDivider` para adicionar uma linha divisória entre os itens quando o tipo for `text`:
+
+```tsx live
+<div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>Sem Divider</h4>
+    <div style={{ minWidth: '280px' }}>
+      <ListReadOnly
+        type="text"
+        title="Item 1"
+        description="Descrição 1"
+        icon={<PlaceholderOutline size={24} />}
+      />
+      <ListReadOnly
+        type="text"
+        title="Item 2"
+        description="Descrição 2"
+        icon={<PlaceholderOutline size={24} />}
+      />
+    </div>
+  </div>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>Com Divider</h4>
+    <div style={{ minWidth: '280px' }}>
+      <ListReadOnly
+        type="text"
+        title="Item 1"
+        description="Descrição 1"
+        icon={<PlaceholderOutline size={24} />}
+        showDivider
+      />
+      <ListReadOnly
+        type="text"
+        title="Item 2"
+        description="Descrição 2"
+        icon={<PlaceholderOutline size={24} />}
+        showDivider
+      />
+      <ListReadOnly
+        type="text"
+        title="Item 3"
+        description="Descrição 3"
+        icon={<PlaceholderOutline size={24} />}
+      />
+    </div>
+  </div>
+</div>
+```
+
+## Estados
+
+### Disabled
+
+```tsx live
+<ListReadOnly
+  title="Informação desabilitada"
+  description="Esta informação não está disponível"
+  disabled
+/>
+```
+
+### Loading
+
+Mostra um skeleton placeholder durante carregamento:
+
+```tsx live
+<ListReadOnly title="Carregando..." description="Aguarde" loading />
+```
+
+## Exemplos práticos
+
+### Lista de informações pessoais
+
+```tsx live
+<List>
+  <ListReadOnly
+    icon={<PlaceholderOutline size={24} />}
+    title="Nome completo"
+    description="João da Silva Santos"
+  />
+  <ListReadOnly
+    icon={<PlaceholderOutline size={24} />}
+    title="CPF"
+    description="123.456.789-00"
+  />
+  <ListReadOnly
+    icon={<PlaceholderOutline size={24} />}
+    title="E-mail"
+    description="joao.silva@email.com"
+  />
+  <ListReadOnly
+    icon={<PlaceholderOutline size={24} />}
+    title="Telefone"
+    description="(11) 98765-4321"
+  />
+</List>
+```
+
+### Resumo financeiro
+
+```tsx live
+<List>
+  <ListReadOnly
+    status="positive"
+    inverted
+    title="+ R$ 3.500,00"
+    description="Total de receitas"
+    caption="Últimos 30 dias"
+  />
+  <ListReadOnly
+    status="default"
+    inverted
+    title="- R$ 2.150,00"
+    description="Total de despesas"
+    caption="Últimos 30 dias"
+  />
+  <ListReadOnly
+    status="highlight-lead"
+    inverted
+    title="R$ 1.350,00"
+    description="Saldo do período"
+    caption="Últimos 30 dias"
+  />
+</List>
+```
+
+### Detalhes de produto
+
+```tsx live
+<List>
+  <ListReadOnly title="Marca" description="Apple" />
+  <ListReadOnly title="Modelo" description="iPhone 14 Pro" />
+  <ListReadOnly title="Cor" description="Azul Pacífico" />
+  <ListReadOnly title="Armazenamento" description="256GB" />
+  <ListReadOnly
+    title="Status"
+    description="Em estoque"
+    indicator={
+      <Tag type="positive" size="small">
+        Disponível
+      </Tag>
+    }
+  />
+</List>
+```
+
+### Lista com tipo text e divisor
+
+```tsx live
+<div style={{ minWidth: '300px' }}>
+  <ListReadOnly
+    type="text"
+    title="Card com tipo Text"
+    description="R$ 1.234,56"
+    caption="Legenda terciária"
+    icon={<PlaceholderOutline size={24} />}
+    showDivider
+  />
+  <ListReadOnly
+    type="text"
+    title="Card com Caption"
+    description="Descrição secundária"
+    caption="12/12/2024 às 14:30"
+    icon={<PlaceholderOutline size={24} />}
+    showDivider
+  />
+  <ListReadOnly
+    type="text"
+    title="Card Invertido com Caption"
+    description="R$ 500,00"
+    caption="Crédito aprovado"
+    icon={<PlaceholderOutline size={24} />}
+    inverted
+  />
+</div>
+```
+
+## API
+
+### Props
+
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------- |
+| `title`                    | `string`                                                                                                   | -           | Título principal do card (obrigatório)             |
+| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário                      |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Descrição com texto riscado (valor antigo)         |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                         |
+| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição            |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de exibição visual do item                    |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                          |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o card (visual apenas)                  |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                     |
+| `icon`                     | `ReactNode`                                                                                                | -           | Ícone exibido no início do card                    |
+| `indicator`                | `ReactNode`                                                                                                | -           | Indicador (badge/tag) à direita                    |
+| `showDivider`              | `boolean`                                                                                                  | `false`     | Mostra divisor entre itens (apenas para type=text) |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                             |
+
+## Acessibilidade
+
+- ✅ Elemento `<div>` semântico para conteúdo estático
+- ✅ Estrutura semântica clara para leitores de tela
+- ✅ Estados disabled adequadamente sinalizados
+- ✅ Skeleton acessível durante loading
+- ✅ Suporte a cores com contraste adequado
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos claros e descritivos
+- Combine com List para agrupar múltiplos cards relacionados
+- Use o status apropriado para comunicar estados (positive, warning, etc.)
+- Utilize indicadores (badges/tags) para informações de status
+- Forneça feedback visual durante operações com `loading`
+- Use `inverted` quando o valor/descrição for mais importante que o título
+- Use para exibir informações que não necessitam interação do usuário
+- Use `type="text"` com `showDivider` para listas mais simples com separação visual
+
+### ❌ Não faça
+
+- Não use textos muito longos que truncam em dispositivos pequenos
+- Não adicione interatividade (use ListAction para isso)
+- Não use múltiplos indicadores no mesmo card
+- Não use status `strikethrough` sem contexto claro
+- Não use `disabled` sem indicar o motivo ao usuário
+- Não ignore estados de loading em operações assíncronas
+- Não misture cards read-only e acionáveis na mesma lista sem distinção clara
+
+## Diferenças entre ListReadOnly e ListAction
+
+| Característica | ListReadOnly       | ListAction             |
+| -------------- | ------------------ | ---------------------- |
+| Elemento HTML  | `<div>`            | `<button>`             |
+| Interatividade | Não clicável       | Clicável               |
+| Ações          | Nenhuma            | Chevron, Menu, Swipe   |
+| Estados hover  | Não possui         | Possui feedback visual |
+| Uso principal  | Exibir informações | Navegar/executar ações |
+| onClick        | Não disponível     | Disponível             |
+
+**Use ListReadOnly quando:**
+
+- As informações são apenas para leitura
+- Não há necessidade de navegação ou ação do usuário
+- O objetivo é apenas exibir dados estruturados
+
+**Use ListAction quando:**
+
+- O item precisa ser clicável
+- Há navegação para outra tela
+- Existem ações disponíveis (menu, swipe)
+
+## Visão geral dos status
+
+Veja todos os status de conteúdo do ListReadOnly:
+
+<StorybookEmbed
+  storyId="components-list-listreadonly--all-status"
+  height={600}
+  showToolbar={false}
+  title="ListReadOnly - Todos os Status"
+/>
+
+## Visão geral dos indicadores
+
+Veja exemplos de indicadores disponíveis:
+
+<StorybookEmbed
+  storyId="components-list-listreadonly--all-indicators"
+  height={700}
+  showToolbar={false}
+  title="ListReadOnly - Indicadores"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do ListReadOnly](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listreadonly--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os tipos e estados
+- ✅ **Playground** para experimentação rápida
+
+## Links relacionados
+
+- [ListAction](/components/listaction) - Item de lista com ações interativas
+- [List](/components/list) - Container para agrupar items de lista
+- [Badge](/components/badge) - Para indicadores numéricos
+- [Tag](/components/tag) - Para indicadores de categoria/status
+- [Typography](/components/typography) - Para formatação de texto
+- [Storybook - ListReadOnly](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listreadonly--docs)
