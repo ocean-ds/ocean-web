@@ -1,4 +1,0 @@
-export const MOBILE_BREAKPOINT = 768;
-export const CLOSE_ANIMATION_DURATION = 300;
-export const SWIPE_THRESHOLD = 50;
-export const VERTICAL_TOLERANCE = 30;
