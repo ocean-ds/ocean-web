@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.115.0](https://github.com/ocean-ds/ocean-web/compare/v1.114.0...v1.115.0) (2025-12-04)
+
+### Features
+
+- create card list actions ([#1195](https://github.com/ocean-ds/ocean-web/issues/1195)) ([0afb053](https://github.com/ocean-ds/ocean-web/commit/0afb053fb607314e9a95537bf72eeb26c47d0893))
+
+# [1.114.0](https://github.com/ocean-ds/ocean-web/compare/v1.113.2...v1.114.0) (2025-12-04)
+
+### Features
+
+- create internal list actions ([#1194](https://github.com/ocean-ds/ocean-web/issues/1194)) ([dafce53](https://github.com/ocean-ds/ocean-web/commit/dafce530677eacd471f91af2d2a936042b14f2f5))
+
+## [1.113.2](https://github.com/ocean-ds/ocean-web/compare/v1.113.1...v1.113.2) (2025-12-03)
+
+### Bug Fixes
+
+- chip multi select ([#1203](https://github.com/ocean-ds/ocean-web/issues/1203)) ([9943a81](https://github.com/ocean-ds/ocean-web/commit/9943a8160f8ab40eb8d325475c080d3ad7e32ffb))
+
 # [1.113.0](https://github.com/ocean-ds/ocean-web/compare/v1.112.1...v1.113.0) (2025-10-22)
 
 ### Features

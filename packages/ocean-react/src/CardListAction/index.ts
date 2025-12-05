@@ -1,3 +1,3 @@
 export { default } from './CardListAction';
 export type { CardListActionProps } from './CardListAction';
-export type { ActionItem } from '../InternalListActions';
+export type { ActionItem } from '../_shared/components/InternalListActions';
