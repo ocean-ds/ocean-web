@@ -66,6 +66,10 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       () => radio?.error || checkbox?.error,
       [radio?.error, checkbox?.error]
     );
+    const isInputDisabled = useMemo(
+      () => radio?.disabled || checkbox?.disabled || disabled,
+      [radio?.disabled, checkbox?.disabled, disabled]
+    );
 
     const internalList = useMemo(
       () => (
@@ -120,7 +124,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       >
         <div
           className={classNames('ods-list-selectable', className, {
-            'ods-list-selectable--disabled': disabled,
+            'ods-list-selectable--disabled': isInputDisabled,
             [`ods-list-selectable--${platform}`]: platform,
           })}
           ref={ref}
