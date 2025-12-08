@@ -50,6 +50,7 @@ const sidebars: SidebarsConfig = {
         'components/list',
         'components/listaction',
         'components/listreadonly',
+        'components/listexpandable',
         'components/modal',
         'components/progress',
         'components/radio',

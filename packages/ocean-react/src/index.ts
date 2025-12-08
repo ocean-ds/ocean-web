@@ -131,3 +131,6 @@ export * from './ListAction';
 
 export { default as ListReadOnly } from './ListReadOnly';
 export * from './ListReadOnly';
+
+export { default as ListExpandable } from './ListExpandable';
+export * from './ListExpandable';
