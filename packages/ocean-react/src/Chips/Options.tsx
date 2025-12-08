@@ -26,6 +26,7 @@ const Options: React.FunctionComponent<IOptions> = ({
   clearOptions,
 }) => {
   const columns = multiChoice ? Math.ceil(options.length / 5) : 1;
+  const isMultiArray = Array.isArray(selectedOptions);
 
   return (
     <div className="ods-chips__options" data-testid="ods-chips-option">
@@ -35,31 +36,53 @@ const Options: React.FunctionComponent<IOptions> = ({
           `ods-chips__options--content--columns-${columns}`
         )}
       >
-        {options.map(({ label, value }) => (
-          <button
-            key={label}
-            type="button"
-            value={value}
-            onClick={() => onSelect(label, value)}
-            className={classNames('ods-chips__options--option', {
-              'ods-chips__options--option--selected':
-                !multiChoice &&
-                !Array.isArray(selectedOptions) &&
-                selectedOptions.value === value,
-            })}
-          >
-            {multiChoice && Array.isArray(selectedOptions) && (
-              <Checkbox
-                checked={
-                  !!selectedOptions.find((option) => option.value === value)
-                }
-                readOnly
-              />
-            )}
-            {label}
-          </button>
-        ))}
+        {options.map(({ label, value }) => {
+          if (multiChoice && isMultiArray) {
+            const isSelected = selectedOptions.some(
+              (option) => option.value === value
+            );
+
+            return (
+              <div
+                key={value}
+                className={classNames(
+                  'ods-chips__options--option',
+                  'ods-chips__options--option-container',
+                  {
+                    'ods-chips__options--option--selected': isSelected,
+                  }
+                )}
+              >
+                <Checkbox
+                  checked={isSelected}
+                  id={`chips-option-${value}`}
+                  onClick={() => onSelect(label, value)}
+                  readOnly
+                  label={label}
+                />
+              </div>
+            );
+          }
+
+          const isSelected =
+            !multiChoice && !isMultiArray && selectedOptions.value === value;
+
+          return (
+            <button
+              key={value}
+              type="button"
+              value={value}
+              onClick={() => onSelect(label, value)}
+              className={classNames('ods-chips__options--option', {
+                'ods-chips__options--option--selected': isSelected,
+              })}
+            >
+              {label}
+            </button>
+          );
+        })}
       </div>
+
       {multiChoice && (
         <div className="ods-chips__options--footer">
           <button

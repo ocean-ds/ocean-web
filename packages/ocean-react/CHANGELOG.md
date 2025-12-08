@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.118.0](https://github.com/ocean-ds/ocean-web/compare/v1.117.0...v1.118.0) (2025-12-08)
+
+### Features
+
+- card list expandable ([#1197](https://github.com/ocean-ds/ocean-web/issues/1197)) ([3016461](https://github.com/ocean-ds/ocean-web/commit/3016461f3a408dafb3645e53a00d2ce769e60691))
+
+# [1.117.0](https://github.com/ocean-ds/ocean-web/compare/v1.116.0...v1.117.0) (2025-12-08)
+
+### Features
+
+- create list action ([#1204](https://github.com/ocean-ds/ocean-web/issues/1204)) ([e1ccd7e](https://github.com/ocean-ds/ocean-web/commit/e1ccd7ed29bf4da881081db93123d19ec1cc5511))
+
+# [1.116.0](https://github.com/ocean-ds/ocean-web/compare/v1.115.0...v1.116.0) (2025-12-08)
+
+### Features
+
+- create text list selectable component ([#1199](https://github.com/ocean-ds/ocean-web/issues/1199)) ([b92601d](https://github.com/ocean-ds/ocean-web/commit/b92601d0702cc23c58b9ad749ab5f097c4d4051f))
+
+# [1.115.0](https://github.com/ocean-ds/ocean-web/compare/v1.114.0...v1.115.0) (2025-12-04)
+
+### Features
+
+- create card list actions ([#1195](https://github.com/ocean-ds/ocean-web/issues/1195)) ([0afb053](https://github.com/ocean-ds/ocean-web/commit/0afb053fb607314e9a95537bf72eeb26c47d0893))
+
+# [1.114.0](https://github.com/ocean-ds/ocean-web/compare/v1.113.2...v1.114.0) (2025-12-04)
+
+### Features
+
+- create internal list actions ([#1194](https://github.com/ocean-ds/ocean-web/issues/1194)) ([dafce53](https://github.com/ocean-ds/ocean-web/commit/dafce530677eacd471f91af2d2a936042b14f2f5))
+
+## [1.113.2](https://github.com/ocean-ds/ocean-web/compare/v1.113.1...v1.113.2) (2025-12-03)
+
+### Bug Fixes
+
+- chip multi select ([#1203](https://github.com/ocean-ds/ocean-web/issues/1203)) ([9943a81](https://github.com/ocean-ds/ocean-web/commit/9943a8160f8ab40eb8d325475c080d3ad7e32ffb))
+
 ## [1.113.1](https://github.com/ocean-ds/ocean-web/compare/v1.113.0...v1.113.1) (2025-11-26)
 
 ### Bug Fixes

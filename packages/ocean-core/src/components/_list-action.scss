@@ -1,0 +1,124 @@
+.ods-list-action {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-deep;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  display: flex;
+  gap: $spacing-inline-xxs-extra;
+  overflow: hidden;
+  padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
+    $spacing-inline-xs;
+  position: relative;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  width: 100%;
+
+  &__container {
+    width: 100%;
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 0;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &--card {
+    border-color: $color-interface-light-deep;
+  }
+
+  &--text {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
+
+  &:hover:not(&--disabled):not(&--loading):not(&--swipe-open) {
+    background-color: $color-interface-light-up;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-brand-primary-pure;
+    outline-offset: 2px;
+  }
+
+  &:active:not(&--disabled):not(&--loading):not(&--swipe-open) {
+    background-color: $color-interface-light-deep;
+  }
+
+  &__icon {
+    align-items: center;
+    color: $color-brand-primary-down;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__icon--inactive svg {
+    color: $color-interface-light-deep;
+  }
+
+  &__trailing {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    margin-left: auto;
+  }
+
+  &__action {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+
+    svg {
+      color: $color-interface-dark-up;
+    }
+  }
+
+  &__indicator {
+    flex-shrink: 0;
+  }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    width: 100%;
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+    }
+  }
+
+  &--loading {
+    cursor: default;
+    padding-right: $spacing-inline-xs;
+    pointer-events: none;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Swipe mode styles
+.ods-list-action--swipe-mode {
+  // Spacing between content and trigger button only when there's no indicator
+  .ods-list-action__content:not(:has(.ods-list-action__indicator)) {
+    margin-right: $spacing-inline-sm;
+  }
+
+  .ods-list-action__indicator {
+    // Offset to accommodate trigger button width + gap
+    margin-right: $spacing-inline-sm;
+  }
+}
