@@ -318,7 +318,7 @@ describe('ListAction', () => {
           status='default'
           actionType='chevron'
           onClick={jest.fn()}
-          className='test-class'
+          className="test-class"
         />
       );
       expect(container.firstChild).toMatchSnapshot();

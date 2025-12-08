@@ -52,6 +52,9 @@ export * from './Link';
 export { default as TextArea } from './TextArea';
 export * from './TextArea';
 
+export { default as ListSelectable } from './ListSelectable';
+export * from './ListSelectable';
+
 export { default as TextListItem } from './TextListItem';
 export * from './TextListItem';
 

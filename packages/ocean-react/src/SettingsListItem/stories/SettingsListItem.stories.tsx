@@ -34,25 +34,25 @@ interface StoryControls extends SettingListItemProps {
   hasButton: boolean;
   buttonText: string;
   buttonVariant:
-  | 'primary'
-  | 'primaryCritical'
-  | 'secondary'
-  | 'secondaryCritical'
-  | 'tertiary'
-  | 'tertiaryCritical'
-  | 'textTertiary'
-  | 'textTertiaryCritical'
-  | 'inverse';
+    | 'primary'
+    | 'primaryCritical'
+    | 'secondary'
+    | 'secondaryCritical'
+    | 'tertiary'
+    | 'tertiaryCritical'
+    | 'textTertiary'
+    | 'textTertiaryCritical'
+    | 'inverse';
   hasTag: boolean;
   tagText: string;
   tagType:
-  | 'positive'
-  | 'warning'
-  | 'negative'
-  | 'neutral'
-  | 'neutral-02'
-  | 'neutral-03'
-  | 'default';
+    | 'positive'
+    | 'warning'
+    | 'negative'
+    | 'neutral'
+    | 'neutral-02'
+    | 'neutral-03'
+    | 'default';
 }
 
 const meta: Meta<StoryControls> = {
@@ -310,18 +310,18 @@ export const Usage: Story = {
       button={
         hasButton
           ? {
-            children: buttonText,
-            variant: buttonVariant,
-          }
+              children: buttonText,
+              variant: buttonVariant,
+            }
           : undefined
       }
       tag={
         hasTag
           ? {
-            children: tagText,
-            variant: 'default',
-            type: tagType,
-          }
+              children: tagText,
+              variant: 'default',
+              type: tagType,
+            }
           : undefined
       }
     />

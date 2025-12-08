@@ -5,7 +5,7 @@ import {
   Share,
   Archive,
   Trash,
-  PlaceholderOutline
+  PlaceholderOutline,
 } from '@useblu/ocean-icons-react';
 import ListAction from '../ListAction';
 import type { ActionItem } from '../../_shared/components/InternalListActions';
@@ -127,11 +127,31 @@ const indicatorOptions = {
   'badge-alert': <Badge count={12} color="alert" />,
   'badge-neutral': <Badge count={7} color="neutral" />,
   'badge-text': <Badge color="brand">Novo</Badge>,
-  'tag-positive': <Tag type="positive" size="small">Aprovado</Tag>,
-  'tag-warning': <Tag type="warning" size="small">Pendente</Tag>,
-  'tag-negative': <Tag type="negative" setIconOff size="medium">Recusado</Tag>,
-  'tag-neutral': <Tag type="neutral" size="small">Info</Tag>,
-  'tag-highlight': <Tag variant="highlight" type="important" size="small">Urgente</Tag>,
+  'tag-positive': (
+    <Tag type="positive" size="small">
+      Aprovado
+    </Tag>
+  ),
+  'tag-warning': (
+    <Tag type="warning" size="small">
+      Pendente
+    </Tag>
+  ),
+  'tag-negative': (
+    <Tag type="negative" setIconOff size="medium">
+      Recusado
+    </Tag>
+  ),
+  'tag-neutral': (
+    <Tag type="neutral" size="small">
+      Info
+    </Tag>
+  ),
+  'tag-highlight': (
+    <Tag variant="highlight" type="important" size="small">
+      Urgente
+    </Tag>
+  ),
 };
 
 type IndicatorOptionKey = keyof typeof indicatorOptions;
@@ -175,7 +195,8 @@ export const Usage: Story = {
   },
   render: (args) => {
     const { icon: iconOption, indicator: indicatorOption, ...restArgs } = args;
-    const icon = iconOption === 'withIcon' ? <PlaceholderOutline size={24} /> : undefined;
+    const icon =
+      iconOption === 'withIcon' ? <PlaceholderOutline size={24} /> : undefined;
     const indicator = indicatorOptions[indicatorOption as IndicatorOptionKey];
 
     return (
@@ -252,7 +273,7 @@ export const AllTypes: Story = {
       <ListAction
         title="Tipo Strikethrough"
         description="R$ 1.234,56"
-        strikethroughDescription='riscado'
+        strikethroughDescription="riscado"
         icon={<PlaceholderOutline size={24} />}
         type="card"
         status="strikethrough"
@@ -326,7 +347,7 @@ export const AllTypesInverted: Story = {
       <ListAction
         title="Tipo Strikethrough"
         description="R$ 1.234,56"
-        strikethroughDescription='riscado'
+        strikethroughDescription="riscado"
         icon={<PlaceholderOutline size={24} />}
         type="card"
         status="strikethrough"
@@ -434,35 +455,55 @@ export const AllIndicators: Story = {
         title="Tag Positive"
         description="Indicator com tag positive"
         icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="positive" size="small">Aprovado</Tag>}
+        indicator={
+          <Tag type="positive" size="small">
+            Aprovado
+          </Tag>
+        }
         onClick={() => alert('Clicado!')}
       />
       <ListAction
         title="Tag Warning"
         description="Indicator com tag warning"
         icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="warning" size="small">Pendente</Tag>}
+        indicator={
+          <Tag type="warning" size="small">
+            Pendente
+          </Tag>
+        }
         onClick={() => alert('Clicado!')}
       />
       <ListAction
         title="Tag Negative"
         description="Indicator com tag negative"
         icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="negative" setIconOff size="medium">Recusado</Tag>}
+        indicator={
+          <Tag type="negative" setIconOff size="medium">
+            Recusado
+          </Tag>
+        }
         onClick={() => alert('Clicado!')}
       />
       <ListAction
         title="Tag Neutral"
         description="Indicator com tag neutral"
         icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag type="neutral" size="small">Info</Tag>}
+        indicator={
+          <Tag type="neutral" size="small">
+            Info
+          </Tag>
+        }
         onClick={() => alert('Clicado!')}
       />
       <ListAction
         title="Tag Highlight"
         description="Indicator com tag highlight important"
         icon={<PlaceholderOutline size={24} />}
-        indicator={<Tag variant="highlight" type="important" size="small">Urgente</Tag>}
+        indicator={
+          <Tag variant="highlight" type="important" size="small">
+            Urgente
+          </Tag>
+        }
         onClick={() => alert('Clicado!')}
       />
       <ListAction
@@ -501,7 +542,11 @@ export const AllActionTypes: Story = {
         title="Action Type: Swipe"
         description="Exibe menu com swipe lateral"
         icon={<PlaceholderOutline size={24} />}
-        indicator={<Badge variation="tiny" color="brand">Label</Badge>}
+        indicator={
+          <Badge variation="tiny" color="brand">
+            Label
+          </Badge>
+        }
         actionType="swipe"
         menuActions={[
           {

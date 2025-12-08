@@ -23,7 +23,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ action, onClick }) => {
             'ods-internal-list-actions__menu-item--disabled': action.disabled,
           },
           action.variant &&
-          `ods-internal-list-actions__menu-item--${action.variant}`
+            `ods-internal-list-actions__menu-item--${action.variant}`
         )}
         onClick={handleClick}
         disabled={action.disabled}
