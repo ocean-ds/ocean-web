@@ -15,9 +15,7 @@
     }
   }
 
-  .ods-card-list-item,
-  .ods-list-expandable,
-  .ods-list-action__container {
+  .ods-card-list-item {
     border: 0;
     border-radius: 0;
 
@@ -26,8 +24,22 @@
     }
   }
 
-  .ods-list-action,
-  .ods-list-action__divider {
-    border: 0;
+  .ods-list-action__container,
+  .ods-list-expandable__container {
+    .ods-list-action,
+    .ods-list-expandable {
+      border: 0;
+      border-radius: 0;
+    }
+
+    &:last-of-type > .ods-list-action__divider,
+    &:last-of-type > .ods-list-expandable__divider {
+      border: 0;
+    }
+
+    &:not(:last-of-type) > .ods-list-action--card,
+    &:not(:last-of-type) > .ods-list-expandable--card {
+      border-bottom: 1px solid $color-interface-light-down;
+    }
   }
 }
