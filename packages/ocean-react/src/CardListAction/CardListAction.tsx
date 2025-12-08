@@ -5,7 +5,9 @@ import ContentList, {
   ContentListProps,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
-import InternalListActions, { ActionItem } from '../_shared/components/InternalListActions';
+import InternalListActions, {
+  ActionItem,
+} from '../_shared/components/InternalListActions';
 
 export type CardListActionProps = {
   /**
@@ -97,7 +99,7 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
     const renderActionIcon = () => {
       if (actionType === 'chevron') {
         return (
-          <div className='ods-card-list-action__action'>
+          <div className="ods-card-list-action__action">
             <ChevronRight size={20} />
           </div>
         );
@@ -121,8 +123,8 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
       return (
         <button
           ref={ref}
-          type='button'
-          data-testid='card-list-action'
+          type="button"
+          data-testid="card-list-action"
           className={classNames(
             'ods-card-list-action',
             'ods-card-list-action--loading',
@@ -130,9 +132,9 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
           )}
           {...rest}
         >
-          <div className='ods-card-list-action__skeleton'>
-            <SkeletonBar width='40%' height='16px' />
-            <SkeletonBar width='100%' height='16px' />
+          <div className="ods-card-list-action__skeleton">
+            <SkeletonBar width="40%" height="16px" />
+            <SkeletonBar width="100%" height="16px" />
           </div>
         </button>
       );
@@ -141,8 +143,8 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
     return (
       <button
         ref={ref}
-        type='button'
-        data-testid='card-list-action'
+        type="button"
+        data-testid="card-list-action"
         className={classNames('ods-card-list-action', className, {
           'ods-card-list-action--disabled': disabled,
           'ods-card-list-action--swipe-mode': actionType === 'swipe',
@@ -151,9 +153,15 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
         disabled={disabled}
         {...rest}
       >
-        {icon && <div className={classNames('ods-card-list-action__icon', {
-          'ods-card-list-action__icon--inactive': type === 'inactive',
-        })}>{icon}</div>}
+        {icon && (
+          <div
+            className={classNames('ods-card-list-action__icon', {
+              'ods-card-list-action__icon--inactive': type === 'inactive',
+            })}
+          >
+            {icon}
+          </div>
+        )}
         <ContentList
           title={title}
           description={description}
@@ -162,9 +170,9 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
           inverted={inverted}
           type={type}
         />
-        <div className='ods-card-list-action__trailing'>
+        <div className="ods-card-list-action__trailing">
           {indicator && (
-            <div className='ods-card-list-action__indicator'>{indicator}</div>
+            <div className="ods-card-list-action__indicator">{indicator}</div>
           )}
           {renderActionIcon()}
         </div>
@@ -176,4 +184,3 @@ const CardListAction = React.forwardRef<HTMLButtonElement, CardListActionProps>(
 CardListAction.displayName = 'CardListAction';
 
 export default CardListAction;
-

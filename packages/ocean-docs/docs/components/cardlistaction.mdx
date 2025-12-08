@@ -144,16 +144,9 @@ O prop `inverted` inverte a posição do título e da descrição, útil para pr
 
 ```tsx live
 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-  <CardListAction
-    title="Saldo disponível"
-    description="R$ 1.250,00"
-  />
-  
-  <CardListAction
-    inverted
-    title="R$ 1.250,00"
-    description="Saldo disponível"
-  />
+  <CardListAction title="Saldo disponível" description="R$ 1.250,00" />
+
+  <CardListAction inverted title="R$ 1.250,00" description="Saldo disponível" />
 </div>
 ```
 
@@ -204,7 +197,7 @@ Use indicadores (badges, tags) à direita do conteúdo antes da ação:
     description="Você tem novas mensagens"
     indicator={<Badge count={5} color="brand" />}
   />
-  
+
   <CardListAction
     title="Novo recurso"
     description="Experimente agora"
@@ -313,7 +306,7 @@ Para o tipo `menu`, você pode controlar a posição do dropdown:
       },
     ]}
   />
-  
+
   <CardListAction
     actionType="menu"
     menuPosition="bottom-left"
@@ -346,11 +339,7 @@ Para o tipo `menu`, você pode controlar a posição do dropdown:
 Mostra um skeleton placeholder durante carregamento:
 
 ```tsx live
-<CardListAction
-  title="Carregando..."
-  description="Aguarde"
-  loading
-/>
+<CardListAction title="Carregando..." description="Aguarde" loading />
 ```
 
 ## Exemplos práticos
@@ -431,31 +420,31 @@ Mostra um skeleton placeholder durante carregamento:
 
 ### Props
 
-| Prop                      | Tipo                                                                                           | Padrão           | Descrição                                           |
-| ------------------------- | ---------------------------------------------------------------------------------------------- | ---------------- | --------------------------------------------------- |
-| `title`                   | `string`                                                                                       | -                | Título principal do card (obrigatório)              |
-| `description`             | `string`                                                                                       | -                | Descrição ou texto secundário                       |
-| `strikethroughDescription`| `string`                                                                                       | -                | Descrição com texto riscado (valor antigo)          |
-| `caption`                 | `string`                                                                                       | -                | Legenda ou texto terciário                          |
-| `inverted`                | `boolean`                                                                                      | `false`          | Inverte posição do título com descrição             |
-| `type`                    | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Tipo de estilo visual do conteúdo                   |
-| `disabled`                | `boolean`                                                                                      | `false`          | Desabilita o card                                   |
-| `loading`                 | `boolean`                                                                                      | `false`          | Exibe skeleton de carregamento                      |
-| `icon`                    | `ReactNode`                                                                                    | -                | Ícone exibido no início do card                     |
-| `indicator`               | `ReactNode`                                                                                    | -                | Indicador (badge/tag) antes da ação                 |
-| `actionType`              | `'chevron' \| 'menu' \| 'swipe'`                                                               | `'chevron'`      | Tipo de ação do card                                |
-| `menuActions`             | `ActionItem[]`                                                                                 | -                | Lista de ações para tipos menu/swipe                |
-| `menuPosition`            | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                | `'bottom-right'` | Posição do menu dropdown                            |
-| `onClick`                 | `() => void`                                                                                   | -                | Função chamada ao clicar no card                    |
-| `className`               | `string`                                                                                       | -                | Classes CSS adicionais                              |
+| Prop                       | Tipo                                                                                                       | Padrão           | Descrição                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------ |
+| `title`                    | `string`                                                                                                   | -                | Título principal do card (obrigatório)     |
+| `description`              | `string`                                                                                                   | -                | Descrição ou texto secundário              |
+| `strikethroughDescription` | `string`                                                                                                   | -                | Descrição com texto riscado (valor antigo) |
+| `caption`                  | `string`                                                                                                   | -                | Legenda ou texto terciário                 |
+| `inverted`                 | `boolean`                                                                                                  | `false`          | Inverte posição do título com descrição    |
+| `type`                     | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Tipo de estilo visual do conteúdo          |
+| `disabled`                 | `boolean`                                                                                                  | `false`          | Desabilita o card                          |
+| `loading`                  | `boolean`                                                                                                  | `false`          | Exibe skeleton de carregamento             |
+| `icon`                     | `ReactNode`                                                                                                | -                | Ícone exibido no início do card            |
+| `indicator`                | `ReactNode`                                                                                                | -                | Indicador (badge/tag) antes da ação        |
+| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Tipo de ação do card                       |
+| `menuActions`              | `ActionItem[]`                                                                                             | -                | Lista de ações para tipos menu/swipe       |
+| `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu dropdown                   |
+| `onClick`                  | `() => void`                                                                                               | -                | Função chamada ao clicar no card           |
+| `className`                | `string`                                                                                                   | -                | Classes CSS adicionais                     |
 
 ### ActionItem (menuActions)
 
-| Prop      | Tipo                  | Descrição                               |
-| --------- | --------------------- | --------------------------------------- |
-| `label`   | `string`              | Texto da ação                           |
-| `icon`    | `ReactNode`           | Ícone da ação                           |
-| `onClick` | `() => void`          | Função executada ao clicar na ação      |
+| Prop      | Tipo                      | Descrição                              |
+| --------- | ------------------------- | -------------------------------------- |
+| `label`   | `string`                  | Texto da ação                          |
+| `icon`    | `ReactNode`               | Ícone da ação                          |
+| `onClick` | `() => void`              | Função executada ao clicar na ação     |
 | `variant` | `'default' \| 'critical'` | Variante visual (crítica para deletar) |
 
 ### Eventos
@@ -475,12 +464,12 @@ Mostra um skeleton placeholder durante carregamento:
 
 ### Navegação por teclado
 
-| Tecla             | Função                                    |
-| ----------------- | ----------------------------------------- |
-| `Tab`             | Move o foco para o card ou menu           |
-| `Space` / `Enter` | Ativa o card ou abre o menu               |
-| `Escape`          | Fecha o menu dropdown (tipo menu)         |
-| `↑` / `↓`         | Navega entre opções do menu (tipo menu)   |
+| Tecla             | Função                                  |
+| ----------------- | --------------------------------------- |
+| `Tab`             | Move o foco para o card ou menu         |
+| `Space` / `Enter` | Ativa o card ou abre o menu             |
+| `Escape`          | Fecha o menu dropdown (tipo menu)       |
+| `↑` / `↓`         | Navega entre opções do menu (tipo menu) |
 
 ## Melhores práticas
 
@@ -551,4 +540,3 @@ No Storybook você encontrará:
 - [TransactionListItem](/components/transactionlistitem) - Para transações financeiras
 - [SettingsListItem](/components/settingslistitem) - Para itens de configuração
 - [Storybook - CardListAction](https://ocean-ds.github.io/ocean-web/?path=/docs/components-cardlistaction--docs)
-

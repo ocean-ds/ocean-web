@@ -549,6 +549,13 @@ packages/ocean-docs/docs/components/
 - [ ] Navegação fluida entre Docusaurus e Storybook
 - [ ] Configuração do StorybookEmbed adequada (height, toolbar)
 
+### ✅ **Registro e Navegação**
+
+- [ ] Adicionar entrada no arquivo `packages/ocean-docs/sidebars.ts`
+- [ ] Manter ordem alfabética na lista de componentes
+- [ ] Verificar necessidade de links em outras seções (ex: cross-links)
+- [ ] Adicionar referência em `packages/ocean-docs/docs/intro.md`
+
 ---
 
 ## Padrões de Story ID

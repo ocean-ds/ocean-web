@@ -64,8 +64,22 @@ const DragHandle: React.FC<DragHandleProps> = ({ onClose, onKeyDown }) => {
           xmlns="http://www.w3.org/2000/svg"
           className="ods-internal-list-actions__drag-handle-icon"
         >
-          <line x1="0.5" y1="0.5" x2="0.499999" y2="23.5" stroke="#CED1E1" strokeLinecap="round" />
-          <line x1="4.5" y1="0.5" x2="4.5" y2="23.5" stroke="#CED1E1" strokeLinecap="round" />
+          <line
+            x1="0.5"
+            y1="0.5"
+            x2="0.499999"
+            y2="23.5"
+            stroke="#CED1E1"
+            strokeLinecap="round"
+          />
+          <line
+            x1="4.5"
+            y1="0.5"
+            x2="4.5"
+            y2="23.5"
+            stroke="#CED1E1"
+            strokeLinecap="round"
+          />
         </svg>
       </button>
     </li>
