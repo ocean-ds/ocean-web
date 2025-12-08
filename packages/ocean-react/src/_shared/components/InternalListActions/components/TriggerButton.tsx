@@ -43,8 +43,22 @@ const TriggerButton: React.FC<TriggerButtonProps> = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <line x1="0.5" y1="0.5" x2="0.499999" y2="23.5" stroke="currentColor" strokeLinecap="round" />
-          <line x1="4.5" y1="0.5" x2="4.5" y2="23.5" stroke="currentColor" strokeLinecap="round" />
+          <line
+            x1="0.5"
+            y1="0.5"
+            x2="0.499999"
+            y2="23.5"
+            stroke="currentColor"
+            strokeLinecap="round"
+          />
+          <line
+            x1="4.5"
+            y1="0.5"
+            x2="4.5"
+            y2="23.5"
+            stroke="currentColor"
+            strokeLinecap="round"
+          />
         </svg>
       ) : (
         <DotsVertical />

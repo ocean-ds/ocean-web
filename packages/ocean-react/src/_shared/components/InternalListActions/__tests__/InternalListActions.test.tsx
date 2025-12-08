@@ -22,7 +22,9 @@ describe('InternalListActions', () => {
   describe('Rendering', () => {
     test('renders the trigger button', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
       expect(trigger).toBeInTheDocument();
     });
 
@@ -33,7 +35,9 @@ describe('InternalListActions', () => {
 
     test('renders menu when trigger is clicked', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -42,12 +46,16 @@ describe('InternalListActions', () => {
 
     test('renders all action items', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       expect(screen.getByRole('button', { name: 'Edit' })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: 'Delete' })).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: 'Delete' })
+      ).toBeInTheDocument();
     });
 
     test('renders action items with icons', () => {
@@ -60,7 +68,9 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actionsWithIcons} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -71,14 +81,18 @@ describe('InternalListActions', () => {
   describe('States', () => {
     test('applies disabled state to trigger button', () => {
       render(<InternalListActions actions={mockActions} disabled />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       expect(trigger).toBeDisabled();
     });
 
     test('does not open menu when trigger is disabled', () => {
       render(<InternalListActions actions={mockActions} disabled />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -87,7 +101,9 @@ describe('InternalListActions', () => {
 
     test('applies active class to trigger when menu is open', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -108,13 +124,17 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actionsWithDisabled} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       const deleteButton = screen.getByRole('button', { name: 'Delete' });
       expect(deleteButton).toBeDisabled();
-      expect(deleteButton).toHaveClass('ods-internal-list-actions__menu-item--disabled');
+      expect(deleteButton).toHaveClass(
+        'ods-internal-list-actions__menu-item--disabled'
+      );
     });
   });
 
@@ -129,7 +149,9 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -150,7 +172,9 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -170,7 +194,9 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -184,7 +210,9 @@ describe('InternalListActions', () => {
 
     test('toggles menu open and closed', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       // Open
       fireEvent.click(trigger);
@@ -202,7 +230,9 @@ describe('InternalListActions', () => {
           <InternalListActions actions={mockActions} />
         </div>
       );
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
       expect(screen.getByRole('menu')).toBeInTheDocument();
@@ -216,7 +246,9 @@ describe('InternalListActions', () => {
   describe('Positions', () => {
     test('applies bottom-right position class by default', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -225,8 +257,12 @@ describe('InternalListActions', () => {
     });
 
     test('applies bottom-left position class', () => {
-      render(<InternalListActions actions={mockActions} position="bottom-left" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      render(
+        <InternalListActions actions={mockActions} position="bottom-left" />
+      );
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -236,7 +272,9 @@ describe('InternalListActions', () => {
 
     test('applies top-left position class', () => {
       render(<InternalListActions actions={mockActions} position="top-left" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -245,8 +283,12 @@ describe('InternalListActions', () => {
     });
 
     test('applies top-right position class', () => {
-      render(<InternalListActions actions={mockActions} position="top-right" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      render(
+        <InternalListActions actions={mockActions} position="top-right" />
+      );
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -266,12 +308,16 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       const archiveButton = screen.getByRole('button', { name: 'Archive' });
-      expect(archiveButton).toHaveClass('ods-internal-list-actions__menu-item--positive');
+      expect(archiveButton).toHaveClass(
+        'ods-internal-list-actions__menu-item--positive'
+      );
     });
 
     test('applies warning variant class', () => {
@@ -284,12 +330,16 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       const warningButton = screen.getByRole('button', { name: 'Warning' });
-      expect(warningButton).toHaveClass('ods-internal-list-actions__menu-item--warning');
+      expect(warningButton).toHaveClass(
+        'ods-internal-list-actions__menu-item--warning'
+      );
     });
 
     test('applies negative variant class', () => {
@@ -302,12 +352,16 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       const deleteButton = screen.getByRole('button', { name: 'Delete' });
-      expect(deleteButton).toHaveClass('ods-internal-list-actions__menu-item--negative');
+      expect(deleteButton).toHaveClass(
+        'ods-internal-list-actions__menu-item--negative'
+      );
     });
 
     test('applies neutral variant class', () => {
@@ -320,12 +374,16 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       const infoButton = screen.getByRole('button', { name: 'Info' });
-      expect(infoButton).toHaveClass('ods-internal-list-actions__menu-item--neutral');
+      expect(infoButton).toHaveClass(
+        'ods-internal-list-actions__menu-item--neutral'
+      );
     });
 
     test('applies default variant class', () => {
@@ -338,46 +396,64 @@ describe('InternalListActions', () => {
       ];
 
       render(<InternalListActions actions={actions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
       const defaultButton = screen.getByRole('button', { name: 'Default' });
-      expect(defaultButton).toHaveClass('ods-internal-list-actions__menu-item--default');
+      expect(defaultButton).toHaveClass(
+        'ods-internal-list-actions__menu-item--default'
+      );
     });
   });
 
   describe('ActionType - Menu (Default)', () => {
     test('uses menu mode by default', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
-      expect(trigger).not.toHaveClass('ods-internal-list-actions__trigger--swipe-gesture');
+      expect(trigger).not.toHaveClass(
+        'ods-internal-list-actions__trigger--swipe-gesture'
+      );
       expect(trigger.querySelector('svg')).toBeInTheDocument(); // DotsVertical icon
     });
 
     test('does not show backdrop in menu mode', () => {
       render(<InternalListActions actions={mockActions} actionType="menu" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
-      const backdrop = document.querySelector('.ods-internal-list-actions__backdrop');
+      const backdrop = document.querySelector(
+        '.ods-internal-list-actions__backdrop'
+      );
       expect(backdrop).not.toBeInTheDocument();
     });
 
     test('does not show drag handle in menu mode', () => {
       render(<InternalListActions actions={mockActions} actionType="menu" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
-      expect(screen.queryByRole('button', { name: /fechar menu/i })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('button', { name: /fechar menu/i })
+      ).not.toBeInTheDocument();
     });
 
     test('closes menu immediately in menu mode', () => {
       render(<InternalListActions actions={mockActions} actionType="menu" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
       expect(screen.getByRole('menu')).toBeInTheDocument();
@@ -390,16 +466,22 @@ describe('InternalListActions', () => {
   describe('ActionType - Swipe', () => {
     test('applies swipe mode classes when actionType is swipe', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
       const container = document.querySelector('.ods-internal-list-actions');
 
       expect(container).toHaveClass('ods-internal-list-actions--force-swipe');
-      expect(trigger).toHaveClass('ods-internal-list-actions__trigger--swipe-gesture');
+      expect(trigger).toHaveClass(
+        'ods-internal-list-actions__trigger--swipe-gesture'
+      );
     });
 
     test('shows swipe handle icon in swipe mode', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
       const svg = trigger.querySelector('svg');
 
       expect(svg).toBeInTheDocument();
@@ -408,17 +490,23 @@ describe('InternalListActions', () => {
 
     test('shows backdrop in swipe mode', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
-      const backdrop = document.querySelector('.ods-internal-list-actions__backdrop');
+      const backdrop = document.querySelector(
+        '.ods-internal-list-actions__backdrop'
+      );
       expect(backdrop).toBeInTheDocument();
     });
 
     test('shows drag handle in swipe mode', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -428,24 +516,33 @@ describe('InternalListActions', () => {
 
     test('closes menu when clicking backdrop in swipe mode', async () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
-      const backdrop = document.querySelector('.ods-internal-list-actions__backdrop');
+      const backdrop = document.querySelector(
+        '.ods-internal-list-actions__backdrop'
+      );
       if (backdrop) {
         fireEvent.click(backdrop);
       }
 
       // Swipe mode has animation delay
-      await waitFor(() => {
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-      }, { timeout: 400 });
+      await waitFor(
+        () => {
+          expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+        },
+        { timeout: 400 }
+      );
     });
 
     test('closes menu when clicking drag handle in swipe mode', async () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -453,14 +550,19 @@ describe('InternalListActions', () => {
       fireEvent.click(dragHandle);
 
       // Swipe mode has animation delay
-      await waitFor(() => {
-        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
-      }, { timeout: 400 });
+      await waitFor(
+        () => {
+          expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+        },
+        { timeout: 400 }
+      );
     });
 
     test('applies closing animation class in swipe mode', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -473,18 +575,24 @@ describe('InternalListActions', () => {
     test('uses swipe mode regardless of viewport size', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
       const container = document.querySelector('.ods-internal-list-actions');
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       // Should be in swipe mode regardless of window size
       expect(container).toHaveClass('ods-internal-list-actions--force-swipe');
-      expect(trigger).toHaveClass('ods-internal-list-actions__trigger--swipe-gesture');
+      expect(trigger).toHaveClass(
+        'ods-internal-list-actions__trigger--swipe-gesture'
+      );
     });
   });
 
   describe('Accessibility', () => {
     test('has correct ARIA attributes on trigger', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       expect(trigger).toHaveAttribute('aria-label', 'Abrir menu de ações');
       expect(trigger).toHaveAttribute('aria-expanded', 'false');
@@ -492,7 +600,9 @@ describe('InternalListActions', () => {
 
     test('updates aria-expanded when menu is opened', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -501,7 +611,9 @@ describe('InternalListActions', () => {
 
     test('menu has correct role', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -510,7 +622,9 @@ describe('InternalListActions', () => {
 
     test('action items have correct role', () => {
       render(<InternalListActions actions={mockActions} />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -520,17 +634,23 @@ describe('InternalListActions', () => {
 
     test('backdrop is hidden from screen readers in swipe mode', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
-      const backdrop = document.querySelector('.ods-internal-list-actions__backdrop');
+      const backdrop = document.querySelector(
+        '.ods-internal-list-actions__backdrop'
+      );
       expect(backdrop).toHaveAttribute('aria-hidden', 'true');
     });
 
     test('drag handle has correct accessibility attributes in swipe mode', () => {
       render(<InternalListActions actions={mockActions} actionType="swipe" />);
-      const trigger = screen.getByRole('button', { name: /abrir menu de ações/i });
+      const trigger = screen.getByRole('button', {
+        name: /abrir menu de ações/i,
+      });
 
       fireEvent.click(trigger);
 
@@ -542,7 +662,9 @@ describe('InternalListActions', () => {
 
   describe('Custom Props', () => {
     test('applies custom className', () => {
-      render(<InternalListActions actions={mockActions} className="custom-class" />);
+      render(
+        <InternalListActions actions={mockActions} className="custom-class" />
+      );
 
       const container = document.querySelector('.ods-internal-list-actions');
       expect(container).toHaveClass('custom-class');
@@ -557,10 +679,14 @@ describe('InternalListActions', () => {
     });
 
     test('passes additional props to wrapper', () => {
-      render(<InternalListActions actions={mockActions} data-testid="custom-wrapper" />);
+      render(
+        <InternalListActions
+          actions={mockActions}
+          data-testid="custom-wrapper"
+        />
+      );
 
       expect(screen.getByTestId('custom-wrapper')).toBeInTheDocument();
     });
   });
 });
-

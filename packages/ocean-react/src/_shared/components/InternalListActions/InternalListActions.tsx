@@ -5,7 +5,10 @@ import { CLOSE_ANIMATION_DURATION } from './constants';
 import { useSwipeGesture, useClickOutside } from './hooks';
 import { MenuBackdrop, MenuList, TriggerButton } from './components';
 
-const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>(
+const InternalListActions = forwardRef<
+  HTMLDivElement,
+  InternalListActionsProps
+>(
   (
     {
       actions,
@@ -51,8 +54,9 @@ const InternalListActions = forwardRef<HTMLDivElement, InternalListActionsProps>
         if (typeof forwardedRef === 'function') {
           forwardedRef(wrapperRef.current);
         } else {
-          (forwardedRef as React.MutableRefObject<HTMLDivElement | null>).current =
-            wrapperRef.current;
+          (
+            forwardedRef as React.MutableRefObject<HTMLDivElement | null>
+          ).current = wrapperRef.current;
         }
       }
     }, [forwardedRef]);

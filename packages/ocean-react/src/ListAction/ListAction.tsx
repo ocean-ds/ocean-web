@@ -5,7 +5,9 @@ import ContentList, {
   ContentListProps,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
-import InternalListActions, { ActionItem } from '../_shared/components/InternalListActions';
+import InternalListActions, {
+  ActionItem,
+} from '../_shared/components/InternalListActions';
 
 export type ListActionProps = {
   /**

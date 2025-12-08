@@ -31,7 +31,8 @@ const MenuList: React.FC<MenuListProps> = ({
   const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
 
   useLayoutEffect(() => {
-    const shouldCalculatePosition = !isSwipeMode && triggerElement && menuRef.current
+    const shouldCalculatePosition =
+      !isSwipeMode && triggerElement && menuRef.current;
 
     if (shouldCalculatePosition) {
       const triggerRect = triggerElement.getBoundingClientRect();
@@ -86,7 +87,7 @@ const MenuList: React.FC<MenuListProps> = ({
       )}
       style={isSwipeMode ? undefined : menuStyle}
       role="menu"
-      aria-orientation={isSwipeMode ? "horizontal" : "vertical"}
+      aria-orientation={isSwipeMode ? 'horizontal' : 'vertical'}
       tabIndex={-1}
       onClick={handleMenuClick}
       onKeyDown={handleMenuKeyDown}
