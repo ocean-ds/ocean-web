@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.117.0](https://github.com/ocean-ds/ocean-web/compare/v1.116.0...v1.117.0) (2025-12-08)
+
+### Features
+
+- create list action ([#1204](https://github.com/ocean-ds/ocean-web/issues/1204)) ([e1ccd7e](https://github.com/ocean-ds/ocean-web/commit/e1ccd7ed29bf4da881081db93123d19ec1cc5511))
+
+# [1.116.0](https://github.com/ocean-ds/ocean-web/compare/v1.115.0...v1.116.0) (2025-12-08)
+
+### Features
+
+- create text list selectable component ([#1199](https://github.com/ocean-ds/ocean-web/issues/1199)) ([b92601d](https://github.com/ocean-ds/ocean-web/commit/b92601d0702cc23c58b9ad749ab5f097c4d4051f))
+
 # [1.115.0](https://github.com/ocean-ds/ocean-web/compare/v1.114.0...v1.115.0) (2025-12-04)
 
 ### Features
