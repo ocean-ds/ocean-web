@@ -1,2 +1,2 @@
-export { default } from './ContenList';
-export type { ContentListProps } from './ContenList';
+export { default } from './ContentList';
+export type { ContentListProps } from './ContentList';

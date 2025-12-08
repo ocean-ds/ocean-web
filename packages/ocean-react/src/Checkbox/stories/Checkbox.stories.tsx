@@ -46,7 +46,6 @@ export const Usage: Story = {
   args: {
     id: 'checkbox-usage',
     label: 'Aceito os termos e condições',
-    checked: false,
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (

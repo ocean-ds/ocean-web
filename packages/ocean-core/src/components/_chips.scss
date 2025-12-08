@@ -152,3 +152,18 @@
     }
   }
 }
+
+.ods-chips__options--option-container {
+  min-height: 0;
+  padding: 0;
+  width: 100%;
+
+  .ods-checkbox__root-container {
+    width: 100%;
+  }
+
+  .ods-checkbox__root {
+    padding: $spacing-inline-xs;
+    width: 100%;
+  }
+}

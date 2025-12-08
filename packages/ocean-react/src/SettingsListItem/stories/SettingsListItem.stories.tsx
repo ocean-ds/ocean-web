@@ -503,7 +503,6 @@ export const States: Story = {
         description="Item temporariamente desativado"
         caption="Funcionalidade pausada"
         state="inactive"
-        type="inverted"
         tag={{ children: 'Inativo', variant: 'default', type: 'neutral-02' }}
       />
 
@@ -512,7 +511,6 @@ export const States: Story = {
         description="Item funcionando perfeitamente"
         caption="Tudo funcionando bem"
         state="positive"
-        type="inverted"
         tag={{ children: 'Sucesso', variant: 'default', type: 'positive' }}
       />
 
@@ -521,7 +519,6 @@ export const States: Story = {
         description="Item que precisa de atenção"
         caption="Verificação recomendada"
         state="warning"
-        type="inverted"
         tag={{ children: 'Atenção', variant: 'default', type: 'warning' }}
       />
 
@@ -530,7 +527,6 @@ export const States: Story = {
         description="Item destacado para chamar atenção"
         caption="Configuração importante"
         state="highlight"
-        type="inverted"
         button={{ children: 'Configurar', variant: 'primary', size: 'sm' }}
       />
 
