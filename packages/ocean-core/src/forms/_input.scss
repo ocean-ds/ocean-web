@@ -29,11 +29,11 @@ $x-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdC
     }
   }
 
-  input[type='search' i] {
+  [type='search' i] {
     padding: 0 $spacing-inline-xxxs 0 $spacing-inline-xs;
   }
 
-  input[type='search' i]::-webkit-search-cancel-button {
+  [type='search' i]::-webkit-search-cancel-button {
     appearance: none;
     background-image: url($x-icon);
     background-position: center;
@@ -47,7 +47,7 @@ $x-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdC
     width: 20px;
   }
 
-  input[type='search' i]::-webkit-search-cancel-button:hover {
+  [type='search' i]::-webkit-search-cancel-button:hover {
     background-color: $color-interface-light-down;
   }
 
