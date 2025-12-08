@@ -91,17 +91,18 @@ export default meta;
 type Story = StoryObj<typeof ListAction>;
 
 const defaultMenuActions: ActionItem[] = [
+
   {
     label: 'Editar',
     onClick: () => alert('Editar clicado!'),
     icon: <Pencil />,
-    variant: 'default',
+    variant: 'neutral',
   },
   {
     label: 'Compartilhar',
     onClick: () => alert('Compartilhar clicado!'),
     icon: <Share />,
-    variant: 'default',
+    variant: 'warning',
   },
   {
     label: 'Arquivar',
@@ -114,7 +115,7 @@ const defaultMenuActions: ActionItem[] = [
     onClick: () => alert('Excluir clicado!'),
     icon: <Trash />,
     variant: 'negative',
-  },
+  }
 ];
 
 // Opções de indicadores disponíveis

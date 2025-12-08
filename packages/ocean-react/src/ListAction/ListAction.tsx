@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
 import { ChevronRight } from '@useblu/ocean-icons-react';
 import ContentList, {
@@ -108,6 +108,16 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
     },
     ref
   ) => {
+    const [isSwipeOpen, setIsSwipeOpen] = useState(false);
+    const [menuWidth, setMenuWidth] = useState(0);
+
+    const handleSwipeOpenChange = (isOpen: boolean, width?: number) => {
+      setIsSwipeOpen(isOpen);
+      if (width !== undefined) {
+        setMenuWidth(width);
+      }
+    };
+
     const renderActionIcon = () => {
       if (actionType === 'chevron') {
         return (
@@ -124,6 +134,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
             disabled={disabled}
             position={menuPosition}
             actionType={actionType}
+            onOpenChange={actionType === 'swipe' ? handleSwipeOpenChange : undefined}
           />
         );
       }
@@ -138,31 +149,35 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       </div>
     );
 
+    const contentStyle: React.CSSProperties = isSwipeOpen && menuWidth > 0
+      ? { transform: `translateX(-${menuWidth}px)` }
+      : {};
+
     const renderContent = () => (
       <>
-        {icon && (
-          <div
-            className={classNames('ods-list-action__icon', {
-              'ods-list-action__icon--inactive': status === 'inactive',
-            })}
-          >
-            {icon}
-          </div>
-        )}
-        <ContentList
-          title={title}
-          description={description}
-          strikethroughDescription={strikethroughDescription}
-          caption={caption}
-          inverted={inverted}
-          type={status}
-        />
-        <div className='ods-list-action__trailing'>
+        <div className='ods-list-action__content' style={contentStyle}>
+          {icon && (
+            <div
+              className={classNames('ods-list-action__icon', {
+                'ods-list-action__icon--inactive': status === 'inactive',
+              })}
+            >
+              {icon}
+            </div>
+          )}
+          <ContentList
+            title={title}
+            description={description}
+            strikethroughDescription={strikethroughDescription}
+            caption={caption}
+            inverted={inverted}
+            type={status}
+          />
           {indicator && (
             <div className='ods-list-action__indicator'>{indicator}</div>
           )}
-          {renderActionIcon()}
         </div>
+        {renderActionIcon()}
       </>
     );
 
@@ -170,6 +185,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       'ods-list-action--loading': loading,
       'ods-list-action--disabled': disabled,
       'ods-list-action--swipe-mode': actionType === 'swipe',
+      'ods-list-action--swipe-open': isSwipeOpen,
       [`ods-list-action--${type}`]: type,
     });
 
