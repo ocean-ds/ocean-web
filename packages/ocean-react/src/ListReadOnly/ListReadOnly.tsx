@@ -86,7 +86,7 @@ const ListReadOnly = React.forwardRef<
     ref
   ) => {
     const renderLoadingContent = () => (
-      <div className='ods-card-list-readonly__skeleton'>
+      <div className='ods-list-readonly__skeleton'>
         <SkeletonBar width='40%' height='16px' />
         <SkeletonBar width='100%' height='16px' />
       </div>
@@ -96,8 +96,8 @@ const ListReadOnly = React.forwardRef<
       <>
         {icon && (
           <div
-            className={classNames('ods-card-list-readonly__icon', {
-              'ods-card-list-readonly__icon--inactive': status === 'inactive',
+            className={classNames('ods-list-readonly__icon', {
+              'ods-list-readonly__icon--inactive': status === 'inactive',
             })}
           >
             {icon}
@@ -112,21 +112,21 @@ const ListReadOnly = React.forwardRef<
           type={status}
         />
         {indicator && (
-          <div className='ods-card-list-readonly__trailing'>
-            <div className='ods-card-list-readonly__indicator'>{indicator}</div>
+          <div className='ods-list-readonly__trailing'>
+            <div className='ods-list-readonly__indicator'>{indicator}</div>
           </div>
         )}
       </>
     );
 
-    const cardClassName = classNames('ods-card-list-readonly', className, {
-      'ods-card-list-readonly--loading': loading,
-      'ods-card-list-readonly--disabled': disabled,
-      [`ods-card-list-readonly--${type}`]: type,
+    const cardClassName = classNames('ods-list-readonly', className, {
+      'ods-list-readonly--loading': loading,
+      'ods-list-readonly--disabled': disabled,
+      [`ods-list-readonly--${type}`]: type,
     });
 
     return (
-      <div className='ods-card-list-readonly__container'>
+      <div className='ods-list-readonly__container'>
         <div
           ref={ref}
           data-testid='card-list-readonly'
@@ -136,7 +136,7 @@ const ListReadOnly = React.forwardRef<
           {loading ? renderLoadingContent() : renderContent()}
         </div>
         {showDivider && type === 'text' && (
-          <div className='ods-card-list-readonly__divider' />
+          <div className='ods-list-readonly__divider' />
         )}
       </div>
     );
