@@ -1,10 +1,16 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
 import Badge from '../Badge';
 import Options from './Options';
 
-export type ChipValue = { label: string; value: string };
+export type ChipValue = {
+  label: string;
+  value: string;
+  indicator?: ReactNode;
+  disabled?: boolean;
+  indeterminate?: boolean;
+};
 
 interface IChips {
   label: string;
@@ -23,6 +29,8 @@ interface IChips {
   onClose?: () => void;
   onConfirm?: (value: ChipValue[] | ChipValue) => void;
   onClean?: () => void;
+  isClearDisabled?: boolean;
+  headerOptions?: ReactNode;
 }
 
 const Chips: React.FunctionComponent<IChips> = ({
@@ -42,6 +50,8 @@ const Chips: React.FunctionComponent<IChips> = ({
   onClose,
   onConfirm,
   onClean,
+  headerOptions,
+  isClearDisabled = false,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = React.useState<number>(0);
@@ -181,6 +191,8 @@ const Chips: React.FunctionComponent<IChips> = ({
           multiChoice={multiChoice}
           clearOptions={clearOptions}
           filterOptions={filterOptions}
+          isClearDisabled={isClearDisabled}
+          headerOptions={headerOptions}
         />
       )}
     </div>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
-import Checkbox from '../Checkbox';
+import ListSelectable from '../ListSelectable';
+
 import { ChipValue } from './Chips';
 
 interface IOptions {
@@ -10,9 +11,11 @@ interface IOptions {
   clearLabel: string;
   filterLabel: string;
   multiChoice: boolean;
+  isClearDisabled: boolean;
   onSelect: (label: string, value: string) => void;
   filterOptions: () => void;
   clearOptions: () => void;
+  headerOptions?: ReactNode;
 }
 
 const Options: React.FunctionComponent<IOptions> = ({
@@ -21,9 +24,11 @@ const Options: React.FunctionComponent<IOptions> = ({
   clearLabel,
   filterLabel,
   multiChoice,
+  isClearDisabled,
   onSelect,
   filterOptions,
   clearOptions,
+  headerOptions,
 }) => {
   const columns = multiChoice ? Math.ceil(options.length / 5) : 1;
   const isMultiArray = Array.isArray(selectedOptions);
@@ -32,11 +37,14 @@ const Options: React.FunctionComponent<IOptions> = ({
     <div className="ods-chips__options" data-testid="ods-chips-option">
       <div
         className={classNames(
-          'ods-chips__options--content',
-          `ods-chips__options--content--columns-${columns}`
+          `ods-chips__options--content--columns-${columns}`,
+          {
+            'ods-chips__options--content': !multiChoice,
+          }
         )}
       >
-        {options.map(({ label, value }) => {
+        {multiChoice && headerOptions && { headerOptions }}
+        {options.map(({ label, value, indicator, disabled, indeterminate }) => {
           if (multiChoice && isMultiArray) {
             const isSelected = selectedOptions.some(
               (option) => option.value === value
@@ -45,20 +53,24 @@ const Options: React.FunctionComponent<IOptions> = ({
             return (
               <div
                 key={value}
-                className={classNames(
-                  'ods-chips__options--option',
-                  'ods-chips__options--option-container',
-                  {
-                    'ods-chips__options--option--selected': isSelected,
-                  }
-                )}
+                className={classNames({
+                  'ods-chips__options--option--selected': isSelected,
+                })}
               >
-                <Checkbox
-                  checked={isSelected}
-                  id={`chips-option-${value}`}
-                  onClick={() => onSelect(label, value)}
-                  readOnly
-                  label={label}
+                <ListSelectable
+                  inverted
+                  indicator={indicator}
+                  type="text"
+                  title={label}
+                  showDivider
+                  checkbox={{
+                    id: `chips-option-${value}`,
+                    checked: isSelected,
+                    onClick: () => onSelect(label, value),
+                    readOnly: true,
+                    disabled,
+                    indeterminate: indeterminate || false,
+                  }}
                 />
               </div>
             );
@@ -89,6 +101,7 @@ const Options: React.FunctionComponent<IOptions> = ({
             type="button"
             onClick={clearOptions}
             className="ods-btn ods-btn--sm ods-btn--text"
+            disabled={isClearDisabled}
           >
             {clearLabel}
           </button>

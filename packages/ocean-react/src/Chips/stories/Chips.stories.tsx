@@ -260,3 +260,150 @@ export const WithoutOptions: Story = {
     </div>
   ),
 };
+
+export const MultiChoiceTwoColumns: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        height: '400px',
+      }}
+    >
+      <Chips
+        label="Filtros (6-10 opções = 2 colunas)"
+        multiChoice
+        options={[
+          { label: 'Opção 1', value: '1' },
+          { label: 'Opção 2', value: '2' },
+          { label: 'Opção 3', value: '3' },
+          { label: 'Opção 4', value: '4' },
+          { label: 'Opção 5', value: '5' },
+          { label: 'Opção 6', value: '6' },
+          { label: 'Opção 7', value: '7' },
+          { label: 'Opção 8', value: '8' },
+        ]}
+        clearLabel="Limpar"
+        filterLabel="Aplicar"
+      />
+    </div>
+  ),
+};
+
+export const MultiChoiceThreeColumns: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        height: '450px',
+      }}
+    >
+      <Chips
+        label="Filtros (11-15 opções = 3 colunas)"
+        multiChoice
+        options={[
+          { label: 'Opção 1', value: '1' },
+          { label: 'Opção 2', value: '2' },
+          { label: 'Opção 3', value: '3' },
+          { label: 'Opção 4', value: '4' },
+          { label: 'Opção 5', value: '5' },
+          { label: 'Opção 6', value: '6' },
+          { label: 'Opção 7', value: '7' },
+          { label: 'Opção 8', value: '8' },
+          { label: 'Opção 9', value: '9' },
+          { label: 'Opção 10', value: '10' },
+          { label: 'Opção 11', value: '11' },
+          { label: 'Opção 12', value: '12' },
+        ]}
+        clearLabel="Limpar"
+        filterLabel="Aplicar"
+      />
+    </div>
+  ),
+};
+
+export const MultiChoiceColumnsComparison: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        height: '900px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>1 coluna (1-5 opções)</h4>
+        <Chips
+          label="Até 5 opções"
+          multiChoice
+          options={[
+            { label: 'Opção 1', value: '1' },
+            { label: 'Opção 2', value: '2' },
+            { label: 'Opção 3', value: '3' },
+            { label: 'Opção 4', value: '4' },
+          ]}
+          clearLabel="Limpar"
+          filterLabel="Aplicar"
+        />
+      </div>
+
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>2 colunas (6-10 opções)</h4>
+        <Chips
+          label="6 a 10 opções"
+          multiChoice
+          options={[
+            { label: 'Opção 1', value: '1' },
+            { label: 'Opção 2', value: '2' },
+            { label: 'Opção 3', value: '3' },
+            { label: 'Opção 4', value: '4' },
+            { label: 'Opção 5', value: '5' },
+            { label: 'Opção 6', value: '6' },
+            { label: 'Opção 7', value: '7' },
+            { label: 'Opção 8', value: '8' },
+          ]}
+          clearLabel="Limpar"
+          filterLabel="Aplicar"
+        />
+      </div>
+
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>3 colunas (11-15 opções)</h4>
+        <Chips
+          label="11 a 15 opções"
+          multiChoice
+          options={[
+            { label: 'Opção 1', value: '1' },
+            { label: 'Opção 2', value: '2' },
+            { label: 'Opção 3', value: '3' },
+            { label: 'Opção 4', value: '4' },
+            { label: 'Opção 5', value: '5' },
+            { label: 'Opção 6', value: '6' },
+            { label: 'Opção 7', value: '7' },
+            { label: 'Opção 8', value: '8' },
+            { label: 'Opção 9', value: '9' },
+            { label: 'Opção 10', value: '10' },
+            { label: 'Opção 11', value: '11' },
+            { label: 'Opção 12', value: '12' },
+            { label: 'Opção 13', value: '13' },
+          ]}
+          clearLabel="Limpar"
+          filterLabel="Aplicar"
+        />
+      </div>
+    </div>
+  ),
+};

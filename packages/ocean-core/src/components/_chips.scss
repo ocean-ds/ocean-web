@@ -78,10 +78,10 @@
     box-shadow: $shadow-level-2;
     display: flex;
     flex-direction: column;
-    padding: $spacing-inset-xxs 0;
     position: absolute;
     top: 38px;
-    width: auto;
+    width: max-content;
+    z-index: 2;
 
     &--content {
       align-items: flex-start;
@@ -123,7 +123,6 @@
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
       gap: $spacing-inline-xxs;
-      min-height: 40px;
       padding: $spacing-stack-xxs 12px;
       text-wrap: nowrap;
       width: 100%;
@@ -150,20 +149,5 @@
       padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xs
         $spacing-stack-xxs;
     }
-  }
-}
-
-.ods-chips__options--option-container {
-  min-height: 0;
-  padding: 0;
-  width: 100%;
-
-  .ods-checkbox__root-container {
-    width: 100%;
-  }
-
-  .ods-checkbox__root {
-    padding: $spacing-inline-xs;
-    width: 100%;
   }
 }
