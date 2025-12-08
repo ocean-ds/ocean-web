@@ -294,6 +294,8 @@ export const WithIndicators: Story = {
         title="Badge Tiny - Brand"
         description="Indicator com badge tiny"
         icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
       >
         {content}
       </ListExpandable>
@@ -302,6 +304,8 @@ export const WithIndicators: Story = {
         description="Indicator com badge tiny"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge variation="tiny" color="brand" />}
+        type="text"
+        showDivider
       >
         {content}
       </ListExpandable>
@@ -310,6 +314,8 @@ export const WithIndicators: Story = {
         description="Indicator com badge e contador"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge count={5} color="brand" />}
+        type="text"
+        showDivider
       >
         {content}
       </ListExpandable>
@@ -322,6 +328,8 @@ export const WithIndicators: Story = {
             Aprovado
           </Tag>
         }
+        type="text"
+        showDivider
       >
         {content}
       </ListExpandable>
@@ -330,6 +338,8 @@ export const WithIndicators: Story = {
         description="Indicator com tag positive"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge>Label</Badge>}
+        type="text"
+        showDivider
       >
         {content}
       </ListExpandable>
@@ -342,6 +352,7 @@ export const WithIndicators: Story = {
             Pendente
           </Tag>
         }
+        type="text"
       >
         {content}
       </ListExpandable>
@@ -509,19 +520,21 @@ export const WithDivider: Story = {
   render: () => (
     <List style={{ width: '400px' }}>
       <ListExpandable
-        title="Sem Divisor"
+        title="Com Divisor"
         description="Card sem divisor entre header e conteúdo"
         icon={<PlaceholderOutline size={24} />}
+        showDivider
         defaultExpanded
+        type='text'
       >
         {content}
       </ListExpandable>
       <ListExpandable
-        title="Com Divisor"
+        title="Sem Divisor"
         description="Card com divisor entre header e conteúdo"
         icon={<PlaceholderOutline size={24} />}
-        showDivider
         defaultExpanded
+        type='text'
       >
         {content}
       </ListExpandable>
