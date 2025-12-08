@@ -83,7 +83,7 @@ describe('CardListReadOnly', () => {
       render(<ListReadOnly title='Test Title' loading />);
 
       expect(screen.getByTestId('card-list-readonly')).toHaveClass(
-        'ods-card-list-readonly--loading'
+        'ods-list-readonly--loading'
       );
       expect(screen.getByTestId('card-list-readonly')).toBeInTheDocument();
     });
@@ -92,7 +92,7 @@ describe('CardListReadOnly', () => {
       render(<ListReadOnly title='Test Title' disabled />);
 
       const element = screen.getByTestId('card-list-readonly');
-      expect(element).toHaveClass('ods-card-list-readonly--disabled');
+      expect(element).toHaveClass('ods-list-readonly--disabled');
     });
 
     test('loading state hides content and shows skeleton', () => {
@@ -105,7 +105,7 @@ describe('CardListReadOnly', () => {
       );
 
       const element = screen.getByTestId('card-list-readonly');
-      expect(element).toHaveClass('ods-card-list-readonly--loading');
+      expect(element).toHaveClass('ods-list-readonly--loading');
       expect(screen.queryByText('Test Title')).not.toBeInTheDocument();
     });
   });
@@ -241,7 +241,7 @@ describe('CardListReadOnly', () => {
       render(<ListReadOnly title='Test Title' loading ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
-      expect(ref.current).toHaveClass('ods-card-list-readonly--loading');
+      expect(ref.current).toHaveClass('ods-list-readonly--loading');
     });
   });
 
@@ -272,7 +272,7 @@ describe('CardListReadOnly', () => {
       const element = screen.getByTestId('card-list-readonly');
       expect(element).toBeInTheDocument();
       expect(element).toHaveClass('custom-class');
-      expect(element).toHaveClass('ods-card-list-readonly--disabled');
+      expect(element).toHaveClass('ods-list-readonly--disabled');
       expect(element).toHaveAttribute('aria-label', 'Complex card');
       expect(screen.getByTestId('test-icon')).toBeInTheDocument();
       expect(screen.getByTestId('test-badge')).toBeInTheDocument();
