@@ -27,28 +27,28 @@ $x-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdC
       color: $color-interface-light-deep;
       font-weight: $font-weight-regular;
     }
+  }
 
-    &[type='search' i] {
-      padding: 0 $spacing-inline-xxxs 0 $spacing-inline-xs;
+  input[type='search' i] {
+    padding: 0 $spacing-inline-xxxs 0 $spacing-inline-xs;
+  }
 
-      &::-webkit-search-cancel-button {
-        -webkit-appearance: none;
-        background-image: url($x-icon);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 20px 20px;
-        border-radius: $border-radius-circular;
-        cursor: pointer;
-        height: 20px;
-        padding: 6px;
-        transition: background-color 250ms ease-out;
-        width: 20px;
+  input[type='search' i]::-webkit-search-cancel-button {
+    appearance: none;
+    background-image: url($x-icon);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border-radius: $border-radius-circular;
+    cursor: pointer;
+    height: 20px;
+    padding: 6px;
+    transition: background-color 250ms ease-out;
+    width: 20px;
+  }
 
-        &:hover {
-          background-color: $color-interface-light-down;
-        }
-      }
-    }
+  input[type='search' i]::-webkit-search-cancel-button:hover {
+    background-color: $color-interface-light-down;
   }
 
   &__number-controls {
