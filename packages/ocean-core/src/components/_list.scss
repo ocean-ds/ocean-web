@@ -42,4 +42,19 @@
       border-bottom: 1px solid $color-interface-light-down;
     }
   }
+
+  .ods-list-expandable--card {
+    border: 0;
+    border-radius: 0;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $color-interface-light-down;
+    }
+  }
+
+  .ods-list-selectable__root:last-of-type {
+    .ods-list-selectable__root--text--divider {
+      display: none;
+    }
+  }
 }

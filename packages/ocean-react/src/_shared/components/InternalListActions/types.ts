@@ -31,4 +31,10 @@ export type InternalListActionsProps = {
    * @default 'menu'
    */
   actionType?: 'menu' | 'swipe';
+  /**
+   * Callback fired when the menu opens or closes.
+   * @param isOpen - Whether the menu is open
+   * @param menuWidth - The width of the menu in pixels (only provided when opening)
+   */
+  onOpenChange?: (isOpen: boolean, menuWidth?: number) => void;
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>;

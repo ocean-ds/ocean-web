@@ -229,9 +229,10 @@
       box-shadow: none;
       display: flex;
       flex-direction: row;
-      left: 0;
+      left: auto;
       margin: 0;
       max-height: none;
+      max-width: 100%;
       min-width: auto;
       overflow-x: auto;
       overflow-y: hidden;
@@ -239,7 +240,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      width: 100%;
+      width: auto;
       z-index: 102;
       /* stylelint-disable-next-line order/properties-alphabetical-order */
       -webkit-overflow-scrolling: touch;
@@ -248,13 +249,13 @@
         animation: slideOutToRight 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
       }
 
-      // All positions behave the same on mobile - fills entire container
+      // All positions behave the same on mobile - anchored to right
       &--bottom-left,
       &--bottom-right,
       &--top-left,
       &--top-right {
         bottom: 0;
-        left: 0;
+        left: auto;
         right: 0;
         top: 0;
       }
@@ -266,10 +267,6 @@
         height: 100%;
         margin: 0;
         padding: 0;
-
-        &:first-of-type {
-          margin-left: auto;
-        }
       }
     }
 
@@ -300,6 +297,10 @@
       &--positive {
         background: $color-status-positive-deep;
         color: $color-interface-light-pure;
+
+        &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+          background: $color-status-positive-down;
+        }
       }
 
       &--positive .ods-internal-list-actions__menu-item-icon {
@@ -309,6 +310,10 @@
       &--warning {
         background: $color-status-warning-deep;
         color: $color-interface-light-pure;
+
+        &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+          background: $color-status-warning-down;
+        }
       }
 
       &--warning .ods-internal-list-actions__menu-item-icon {
@@ -318,6 +323,10 @@
       &--negative {
         background: $color-status-negative-pure;
         color: $color-interface-light-pure;
+
+        &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+          background: $color-status-negative-deep;
+        }
       }
 
       &--negative .ods-internal-list-actions__menu-item-icon {
@@ -327,6 +336,10 @@
       &--neutral {
         background: $color-interface-dark-up;
         color: $color-interface-light-pure;
+
+        &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+          background: $color-interface-dark-down;
+        }
       }
 
       &--neutral .ods-internal-list-actions__menu-item-icon {
@@ -338,6 +351,10 @@
       &:not(&--positive):not(&--warning):not(&--negative):not(&--neutral) {
         background: $color-interface-light-up;
         color: $color-interface-dark-deep;
+
+        &:hover:not(.ods-internal-list-actions__menu-item--disabled) {
+          background: $color-interface-light-down;
+        }
       }
 
       &--default .ods-internal-list-actions__menu-item-icon,
@@ -351,28 +368,20 @@
 
 @keyframes slideInFromRight {
   from {
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: right center;
+    transform: translateX(100%);
   }
 
   to {
-    opacity: 1;
-    transform: scaleX(1);
-    transform-origin: right center;
+    transform: translateX(0);
   }
 }
 
 @keyframes slideOutToRight {
   from {
-    opacity: 1;
-    transform: scaleX(1);
-    transform-origin: right center;
+    transform: translateX(0);
   }
 
   to {
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: right center;
+    transform: translateX(100%);
   }
 }

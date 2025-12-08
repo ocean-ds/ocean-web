@@ -6,6 +6,7 @@
   cursor: pointer;
   display: flex;
   gap: $spacing-inline-xxs-extra;
+  overflow: hidden;
   padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
     $spacing-inline-xs;
   position: relative;
@@ -15,6 +16,15 @@
 
   &__container {
     width: 100%;
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 0;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &--card {
@@ -31,7 +41,7 @@
     margin: 0 $spacing-inline-xs;
   }
 
-  &:hover:not(&--disabled):not(&--loading) {
+  &:hover:not(&--disabled):not(&--loading):not(&--swipe-open) {
     background-color: $color-interface-light-up;
   }
 
@@ -40,7 +50,7 @@
     outline-offset: 2px;
   }
 
-  &:active:not(&--disabled):not(&--loading) {
+  &:active:not(&--disabled):not(&--loading):not(&--swipe-open) {
     background-color: $color-interface-light-deep;
   }
 
@@ -73,6 +83,10 @@
     }
   }
 
+  &__indicator {
+    flex-shrink: 0;
+  }
+
   &__skeleton {
     display: flex;
     flex-direction: column;
@@ -96,8 +110,13 @@
   }
 }
 
-// When in swipe mode, push indicator to the left to avoid overlapping with trigger
+// Swipe mode styles
 .ods-list-action--swipe-mode {
+  // Spacing between content and trigger button only when there's no indicator
+  .ods-list-action__content:not(:has(.ods-list-action__indicator)) {
+    margin-right: $spacing-inline-sm;
+  }
+
   .ods-list-action__indicator {
     // Offset to accommodate trigger button width + gap
     margin-right: $spacing-inline-sm;
