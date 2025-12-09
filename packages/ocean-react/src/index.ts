@@ -131,3 +131,6 @@ export * from './ListAction';
 
 export { default as CardListExpandable } from './ListExpandable';
 export * from './ListExpandable';
+
+export { default as ContextualHero } from './ContextualHero';
+export * from './ContextualHero';

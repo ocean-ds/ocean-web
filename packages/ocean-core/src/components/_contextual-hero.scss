@@ -1,0 +1,70 @@
+.ods-contextual-hero {
+  background-color: $color-interface-light-up;
+  border-radius: $border-radius-sm;
+  display: flex;
+  width: 100%;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxs-extra;
+    padding: $spacing-stack-sm $spacing-inline-sm $spacing-stack-xxs-extra
+      $spacing-inline-sm;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxxs;
+  }
+
+  &__body {
+    flex: 1;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-inline-xs;
+
+    > button {
+      min-width: auto;
+    }
+  }
+
+  &__image {
+    width: 220px;
+
+    > img {
+      border-bottom-right-radius: $border-radius-sm;
+      border-top-right-radius: $border-radius-sm;
+      height: 100%;
+      object-fit: fill;
+      width: 100%;
+    }
+
+    > *:not(img) {
+      border-bottom-right-radius: $border-radius-sm;
+      border-top-right-radius: $border-radius-sm;
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-stack-xxs;
+
+    > div > button,
+    > div > div {
+      background-color: transparent;
+    }
+
+    &-item {
+      display: flex;
+      gap: $spacing-inline-xxs;
+      padding: $spacing-stack-xxxs $spacing-inline-xs;
+    }
+  }
+}
