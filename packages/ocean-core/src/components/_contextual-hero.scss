@@ -6,8 +6,18 @@
   grid-template-rows: auto auto;
   width: 100%;
 
+  @include media-breakpoint-up(md) {
+    display: flex;
+  }
+
   &__body {
     display: contents;
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
   }
 
   &__content {
@@ -44,12 +54,16 @@
     justify-content: flex-end;
     width: 82px;
 
+    @include media-breakpoint-up(md) {
+      width: 220px;
+    }
+
     > img {
+      aspect-ratio: 1/1;
       border-radius: 0 $border-radius-sm 0 0;
       height: 100%;
       object-fit: cover;
       width: 100%;
-      aspect-ratio: 1/1;
     }
 
     > *:not(img) {
@@ -57,6 +71,20 @@
       box-sizing: border-box;
       height: 100%;
       width: 100%;
+    }
+  }
+
+  &__image > img,
+  &__image > *:not(img) {
+    @include media-breakpoint-up(md) {
+      border-bottom-right-radius: $border-radius-sm;
+      border-top-right-radius: $border-radius-sm;
+    }
+  }
+
+  &__image > img {
+    @include media-breakpoint-up(md) {
+      width: auto;
     }
   }
 
@@ -76,30 +104,6 @@
       display: flex;
       gap: $spacing-inline-xxs;
       padding: $spacing-stack-xxxs $spacing-inline-xs;
-    }
-  }
-
-  @include media-breakpoint-up(md) {
-    display: flex;
-
-    &__body {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-    }
-
-    &__image {
-      width: 220px;
-
-      > img {
-        width: auto;
-      }
-
-      > img,
-      > *:not(img) {
-        border-bottom-right-radius: $border-radius-sm;
-        border-top-right-radius: $border-radius-sm;
-      }
     }
   }
 }

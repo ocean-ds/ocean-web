@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useMedia } from 'react-use';
 import { PhotographOutline, CheckCircleOutline, PlaceholderOutline } from '@useblu/ocean-icons-react';
 import ContextualHero, {
   ContextualHeroProps,
@@ -8,7 +9,6 @@ import ContextualHero, {
 import ListAction from '../../ListAction';
 import ilustra from './ilustraCreditLg.png';
 import ilustraMobile from './Main.png';
-import { useMedia } from 'react-use';
 
 const ImagePlaceholder = (): ReactElement => (
   <div
