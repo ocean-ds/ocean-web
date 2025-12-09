@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Adjustments, Filter } from '@useblu/ocean-icons-react';
 import Chips from '../Chips';
+import Badge from '../../Badge';
 
 const meta: Meta<typeof Chips> = {
   title: 'Components/Chips',
@@ -157,11 +158,31 @@ export const MultiChoice: Story = {
         label="Selecione filtros"
         multiChoice
         options={[
-          { label: 'Preço baixo', value: 'preco-baixo' },
-          { label: 'Frete grátis', value: 'frete-gratis' },
-          { label: 'Avaliação 5★', value: 'avaliacao-5' },
-          { label: 'Promoção', value: 'promocao' },
-          { label: 'Vendido pela loja', value: 'vendido-loja' },
+          {
+            label: 'Preço baixo',
+            value: 'preco-baixo',
+            indicator: <Badge color="alert" count={10} />,
+          },
+          {
+            label: 'Frete grátis',
+            value: 'frete-gratis',
+            indicator: <Badge color="brand" count={100} />,
+          },
+          {
+            label: 'Avaliação 5★',
+            value: 'avaliacao-5',
+            indicator: <Badge color="complementary" count={5} />,
+          },
+          {
+            label: 'Promoção',
+            value: 'promocao',
+            indicator: <Badge color="neutral" count={10} />,
+          },
+          {
+            label: 'Vendido pela loja',
+            value: 'vendido-loja',
+            indicator: <Badge color="alert" count={100} />,
+          },
         ]}
         clearLabel="Limpar"
         filterLabel="Aplicar filtros"

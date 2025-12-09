@@ -2,7 +2,8 @@ import React, { useRef, useEffect, ReactNode } from 'react';
 import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
 import Badge from '../Badge';
-import Options from './Options';
+import SingleChoiceOptions from './SingleChoiceOptions';
+import MultipleChoiceOptions from './MultipleChoiceOptions';
 
 export type ChipValue = {
   label: string;
@@ -29,7 +30,6 @@ interface IChips {
   onClose?: () => void;
   onConfirm?: (value: ChipValue[] | ChipValue) => void;
   onClean?: () => void;
-  isClearDisabled?: boolean;
   headerOptions?: ReactNode;
 }
 
@@ -51,7 +51,6 @@ const Chips: React.FunctionComponent<IChips> = ({
   onConfirm,
   onClean,
   headerOptions,
-  isClearDisabled = false,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [counter, setCounter] = React.useState<number>(0);
@@ -181,20 +180,27 @@ const Chips: React.FunctionComponent<IChips> = ({
         {options && options?.length > 0 && !selectionIsOpen && <ChevronDown />}
         {options && options?.length > 0 && selectionIsOpen && <ChevronUp />}
       </button>
-      {selectionIsOpen && options && (
-        <Options
-          options={options}
-          onSelect={handleSelectOption}
-          selectedOptions={selectedOptions}
-          clearLabel={clearLabel}
-          filterLabel={filterLabel}
-          multiChoice={multiChoice}
-          clearOptions={clearOptions}
-          filterOptions={filterOptions}
-          isClearDisabled={isClearDisabled}
-          headerOptions={headerOptions}
-        />
-      )}
+      {selectionIsOpen &&
+        options &&
+        (multiChoice ? (
+          <MultipleChoiceOptions
+            options={options}
+            onSelect={handleSelectOption}
+            selectedOptions={selectedOptions}
+            clearLabel={clearLabel}
+            filterLabel={filterLabel}
+            multiChoice={multiChoice}
+            clearOptions={clearOptions}
+            filterOptions={filterOptions}
+            headerOptions={headerOptions}
+          />
+        ) : (
+          <SingleChoiceOptions
+            options={options}
+            onSelect={handleSelectOption}
+            selectedOptions={selectedOptions}
+          />
+        ))}
     </div>
   );
 };

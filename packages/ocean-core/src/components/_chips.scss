@@ -145,6 +145,7 @@
       border-top: $border-width-hairline solid $color-interface-light-down;
       display: flex;
       flex-direction: row;
+      gap: $spacing-inline-xxs;
       justify-content: space-between;
       padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xs
         $spacing-stack-xxs;
