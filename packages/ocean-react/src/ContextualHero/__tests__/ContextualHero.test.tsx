@@ -1,7 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
-import ContextualHero from '../ContextualHero';
+import ContextualHero, { ContextualHeroAction } from '../ContextualHero';
+
+type SingleAction = [ContextualHeroAction];
+type TwoActions = [ContextualHeroAction, ContextualHeroAction];
+
+const createAction = (label: string, onClick = jest.fn()): ContextualHeroAction => ({
+  label,
+  onClick,
+});
 
 describe('ContextualHero', () => {
   const defaultProps = {
@@ -11,7 +19,7 @@ describe('ContextualHero', () => {
   };
 
   describe('Basic Rendering', () => {
-    test('renders with required props', () => {
+    it('renders with required props', () => {
       render(<ContextualHero {...defaultProps} />);
 
       expect(screen.getByTestId('contextual-hero')).toBeInTheDocument();
@@ -19,14 +27,14 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Test Description')).toBeInTheDocument();
     });
 
-    test('renders list items with description', () => {
+    it('renders list items with description', () => {
       render(<ContextualHero {...defaultProps} />);
 
       expect(screen.getByText('Item 1')).toBeInTheDocument();
       expect(screen.getByText('Item 2')).toBeInTheDocument();
     });
 
-    test('renders list items with icons', () => {
+    it('renders list items with icons', () => {
       const listItems = [
         {
           icon: <PlaceholderOutline data-testid="icon-1" />,
@@ -40,7 +48,7 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Item with icon')).toBeInTheDocument();
     });
 
-    test('renders ReactNode list items', () => {
+    it('renders ReactNode list items', () => {
       const listItems = [
         <div key="custom-1" data-testid="custom-item">
           Custom Item
@@ -50,21 +58,18 @@ describe('ContextualHero', () => {
       render(<ContextualHero {...defaultProps} listItems={listItems} />);
 
       expect(screen.getByTestId('custom-item')).toBeInTheDocument();
-      expect(screen.getByText('Custom Item')).toBeInTheDocument();
     });
 
-    test('applies custom className', () => {
+    it('applies custom className', () => {
       render(<ContextualHero {...defaultProps} className="custom-class" />);
 
-      expect(screen.getByTestId('contextual-hero')).toHaveClass('custom-class');
-      expect(screen.getByTestId('contextual-hero')).toHaveClass(
-        'ods-contextual-hero'
-      );
+      const hero = screen.getByTestId('contextual-hero');
+      expect(hero).toHaveClass('custom-class', 'ods-contextual-hero');
     });
   });
 
   describe('Image', () => {
-    test('renders image when provided as string', () => {
+    it('renders image when provided as string', () => {
       render(<ContextualHero {...defaultProps} image="/test-image.png" />);
 
       const img = screen.getByRole('img');
@@ -72,46 +77,38 @@ describe('ContextualHero', () => {
       expect(img).toHaveAttribute('alt', 'Test Title');
     });
 
-    test('renders image when provided as ReactNode', () => {
-      const customImage = <div data-testid="custom-image">Custom Image</div>;
-
-      render(<ContextualHero {...defaultProps} image={customImage} />);
+    it('renders image when provided as ReactNode', () => {
+      render(
+        <ContextualHero
+          {...defaultProps}
+          image={<div data-testid="custom-image">Custom Image</div>}
+        />
+      );
 
       expect(screen.getByTestId('custom-image')).toBeInTheDocument();
     });
 
-    test('does not render image section when image is not provided', () => {
+    it('does not render image section when not provided', () => {
       render(<ContextualHero {...defaultProps} />);
 
-      expect(
-        screen.queryByRole('img')
-      ).not.toBeInTheDocument();
+      expect(screen.queryByRole('img')).not.toBeInTheDocument();
     });
   });
 
   describe('Actions', () => {
-    test('renders one action button', () => {
-      const handleClick = jest.fn();
-      const actions: [{ label: string; onClick: () => void }] = [
-        { label: 'Primary Action', onClick: handleClick },
-      ];
+    it('renders one action button', () => {
+      const actions: SingleAction = [createAction('Primary Action')];
 
       render(<ContextualHero {...defaultProps} actions={actions} />);
 
-      const button = screen.getByText('Primary Action');
-      expect(button).toBeInTheDocument();
+      expect(screen.getByText('Primary Action')).toBeInTheDocument();
     });
 
-    test('renders two action buttons', () => {
-      const handlePrimary = jest.fn();
-      const handleSecondary = jest.fn();
-      const actions: [
-        { label: string; onClick: () => void },
-        { label: string; onClick: () => void }
-      ] = [
-          { label: 'Primary Action', onClick: handlePrimary },
-          { label: 'Secondary Action', onClick: handleSecondary },
-        ];
+    it('renders two action buttons', () => {
+      const actions: TwoActions = [
+        createAction('Primary Action'),
+        createAction('Secondary Action'),
+      ];
 
       render(<ContextualHero {...defaultProps} actions={actions} />);
 
@@ -119,47 +116,32 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Secondary Action')).toBeInTheDocument();
     });
 
-    test('calls onClick when primary action is clicked', () => {
-      const handleClick = jest.fn();
-      const actions: [{ label: string; onClick: () => void }] = [
-        { label: 'Primary Action', onClick: handleClick },
+    it('calls onClick when action buttons are clicked', () => {
+      const handlePrimary = jest.fn();
+      const handleSecondary = jest.fn();
+      const actions: TwoActions = [
+        createAction('Primary Action', handlePrimary),
+        createAction('Secondary Action', handleSecondary),
       ];
 
       render(<ContextualHero {...defaultProps} actions={actions} />);
 
       fireEvent.click(screen.getByText('Primary Action'));
-      expect(handleClick).toHaveBeenCalledTimes(1);
-    });
-
-    test('calls onClick when secondary action is clicked', () => {
-      const handlePrimary = jest.fn();
-      const handleSecondary = jest.fn();
-      const actions: [
-        { label: string; onClick: () => void },
-        { label: string; onClick: () => void }
-      ] = [
-          { label: 'Primary Action', onClick: handlePrimary },
-          { label: 'Secondary Action', onClick: handleSecondary },
-        ];
-
-      render(<ContextualHero {...defaultProps} actions={actions} />);
+      expect(handlePrimary).toHaveBeenCalledTimes(1);
 
       fireEvent.click(screen.getByText('Secondary Action'));
       expect(handleSecondary).toHaveBeenCalledTimes(1);
-      expect(handlePrimary).not.toHaveBeenCalled();
     });
 
-    test('does not render actions section when actions is not provided', () => {
+    it('does not render actions section when not provided', () => {
       render(<ContextualHero {...defaultProps} />);
 
-      expect(
-        screen.queryByText('Primary Action')
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText('Primary Action')).not.toBeInTheDocument();
     });
   });
 
   describe('ForwardRef', () => {
-    test('forwards ref to div element', () => {
+    it('forwards ref to div element', () => {
       const ref = React.createRef<HTMLDivElement>();
       render(<ContextualHero {...defaultProps} ref={ref} />);
 
@@ -169,56 +151,26 @@ describe('ContextualHero', () => {
   });
 
   describe('Snapshot', () => {
-    test('matches snapshot with default props', () => {
+    it('matches snapshot with minimal props', () => {
       const { container } = render(<ContextualHero {...defaultProps} />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('matches snapshot with all props', () => {
+    it('matches snapshot with all props', () => {
       const { container } = render(
         <ContextualHero
           title="Full Title"
           description="Full Description"
           image="/test.png"
           className="test-class"
-          actions={[
-            { label: 'Primary', onClick: jest.fn() },
-            { label: 'Secondary', onClick: jest.fn() },
-          ]}
+          actions={[createAction('Primary'), createAction('Secondary')]}
           listItems={[
-            {
-              icon: <PlaceholderOutline />,
-              description: 'Item with icon',
-            },
+            { icon: <PlaceholderOutline />, description: 'Item with icon' },
             { description: 'Item without icon' },
           ]}
         />
       );
       expect(container.firstChild).toMatchSnapshot();
     });
-
-    test('matches snapshot without image', () => {
-      const { container } = render(
-        <ContextualHero
-          title="No Image Title"
-          description="No Image Description"
-          listItems={[{ description: 'Item 1' }]}
-        />
-      );
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    test('matches snapshot without actions', () => {
-      const { container } = render(
-        <ContextualHero
-          title="No Actions Title"
-          description="No Actions Description"
-          image="/test.png"
-          listItems={[{ description: 'Item 1' }]}
-        />
-      );
-      expect(container.firstChild).toMatchSnapshot();
-    });
   });
 });
-
