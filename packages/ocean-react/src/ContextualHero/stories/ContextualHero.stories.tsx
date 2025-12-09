@@ -27,6 +27,7 @@ const ImagePlaceholder = (): ReactElement => (
 );
 
 const listItemsOptions: Record<string, (ReactElement | ContextualHeroListItemString)[]> = {
+  'Without list items': [],
   'Text with icons': [
     { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'This is item number one' },
     { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'And this one is item number two' },
@@ -64,7 +65,7 @@ type UsageArgs = {
   actionsCount: 'None' | 'One' | 'Two';
   primaryActionLabel: string;
   secondaryActionLabel: string;
-  listItemsVariant: string;
+  listItems: string;
 };
 
 export const Usage = {
@@ -96,7 +97,7 @@ export const Usage = {
       control: 'text',
       if: { arg: 'actionsCount', eq: 'Two' },
     },
-    listItemsVariant: {
+    listItems: {
       description: 'Tipo dos itens da lista.',
       control: 'select',
       options: Object.keys(listItemsOptions),
@@ -109,7 +110,7 @@ export const Usage = {
     actionsCount: 'Two',
     primaryActionLabel: 'Primary Action',
     secondaryActionLabel: 'Secondary Action',
-    listItemsVariant: 'Text with icons',
+    listItems: 'Text with icons',
   },
   render: (args: UsageArgs): ReactElement => {
     const getActions = (): ContextualHeroProps['actions'] => {
@@ -129,7 +130,7 @@ export const Usage = {
         description={args.description}
         image={args.showImage ? <ImagePlaceholder /> : undefined}
         actions={getActions()}
-        listItems={listItemsOptions[args.listItemsVariant]}
+        listItems={listItemsOptions[args.listItems as keyof typeof listItemsOptions]}
       />
     );
   },
