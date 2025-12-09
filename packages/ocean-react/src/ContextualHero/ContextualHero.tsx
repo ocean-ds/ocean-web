@@ -74,9 +74,11 @@ const ContextualHero = React.forwardRef<HTMLDivElement, ContextualHeroProps>(
             )}
           </div>
         </div>
-        {image && <div className='ods-contextual-hero__image'>
-          {renderImage()}
-        </div>}
+        {image && (
+          <div className='ods-contextual-hero__image'>
+            {renderImage()}
+          </div>
+        )}
       </div>
     );
   }
