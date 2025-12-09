@@ -7,15 +7,15 @@ import {
   Trash,
   PlaceholderOutline,
 } from '@useblu/ocean-icons-react';
-import CardListAction from '../CardListAction';
+import ListAction from '../ListAction';
 import type { ActionItem } from '../../_shared/components/InternalListActions';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
 
-const meta: Meta<typeof CardListAction> = {
-  title: 'Components/CardList/CardListAction',
-  component: CardListAction,
+const meta: Meta<typeof ListAction> = {
+  title: 'Components/List/ListAction',
+  component: ListAction,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -42,14 +42,13 @@ const meta: Meta<typeof CardListAction> = {
       description: 'Tipo de estilo do conteúdo do card.',
       control: 'select',
       options: [
-        'default',
-        'inactive',
-        'positive',
-        'warning',
-        'highlight',
-        'highlight-lead',
-        'strikethrough',
+        'card',
+        'text',
       ],
+    },
+    showDivider: {
+      description: 'Mostra um divisor entre os cards quando type é "text".',
+      control: 'boolean',
     },
     disabled: {
       description: 'Desabilita o card.',
@@ -89,20 +88,21 @@ const meta: Meta<typeof CardListAction> = {
 
 export default meta;
 
-type Story = StoryObj<typeof CardListAction>;
+type Story = StoryObj<typeof ListAction>;
 
 const defaultMenuActions: ActionItem[] = [
+
   {
     label: 'Editar',
     onClick: () => alert('Editar clicado!'),
     icon: <Pencil />,
-    variant: 'default',
+    variant: 'neutral',
   },
   {
     label: 'Compartilhar',
     onClick: () => alert('Compartilhar clicado!'),
     icon: <Share />,
-    variant: 'default',
+    variant: 'warning',
   },
   {
     label: 'Arquivar',
@@ -115,7 +115,7 @@ const defaultMenuActions: ActionItem[] = [
     onClick: () => alert('Excluir clicado!'),
     icon: <Trash />,
     variant: 'negative',
-  },
+  }
 ];
 
 // Opções de indicadores disponíveis
@@ -190,7 +190,7 @@ export const Usage: Story = {
     description: 'Descrição do card com informações importantes',
     indicator: 'badge-small-brand' as unknown as React.ReactNode,
     actionType: 'chevron',
-    type: 'default',
+    type: 'card',
     onClick: () => alert('Card clicado!'),
     icon: 'withIcon',
   },
@@ -208,9 +208,9 @@ export const Usage: Story = {
           flexDirection: 'column',
         }}
       >
-        <List>
-          <CardListAction {...restArgs} icon={icon} indicator={indicator} />
-        </List>
+        <div style={{ width: '400px' }}>
+          <ListAction {...restArgs} icon={icon} indicator={indicator} menuActions={defaultMenuActions} />
+        </div>
       </div>
     );
   },
@@ -223,54 +223,61 @@ export const AllTypes: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListAction
+      <ListAction
         title="Tipo Default"
         description="R$ 1.234,56"
         icon={<PlaceholderOutline size={24} />}
-        type="default"
+        type="card"
+        status="default"
         onClick={() => alert('Default clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Inactive"
         description="Inativo"
         icon={<PlaceholderOutline size={24} />}
-        type="inactive"
+        type="card"
+        status="inactive"
         onClick={() => alert('Inactive clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Positive"
         description="+ R$ 500,00"
         icon={<PlaceholderOutline size={24} />}
-        type="positive"
+        type="card"
+        status="positive"
         onClick={() => alert('Positive clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Warning"
         description="Atenção necessária"
         icon={<PlaceholderOutline size={24} />}
-        type="warning"
+        type="card"
+        status="warning"
         onClick={() => alert('Warning clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Highlight"
         description="Destaque"
         icon={<PlaceholderOutline size={24} />}
-        type="highlight"
+        type="card"
+        status="highlight"
         onClick={() => alert('Highlight clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Highlight Lead"
         description="Destaque principal"
         icon={<PlaceholderOutline size={24} />}
-        type="highlight-lead"
+        type="card"
+        status="highlight-lead"
         onClick={() => alert('Highlight Lead clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Strikethrough"
         description="R$ 1.234,56"
         strikethroughDescription="riscado"
         icon={<PlaceholderOutline size={24} />}
-        type="strikethrough"
+        type="card"
+        status="strikethrough"
         onClick={() => alert('Strikethrough clicado!')}
       />
     </List>
@@ -284,60 +291,67 @@ export const AllTypesInverted: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListAction
+      <ListAction
         title="Tipo Default"
         description="R$ 1.234,56"
         icon={<PlaceholderOutline size={24} />}
-        type="default"
+        type="card"
+        status="default"
         inverted
         onClick={() => alert('Default clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Inactive"
         description="Inativo"
         icon={<PlaceholderOutline size={24} />}
-        type="inactive"
+        type="card"
+        status="inactive"
         inverted
         onClick={() => alert('Inactive clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Positive"
         description="+ R$ 500,00"
         icon={<PlaceholderOutline size={24} />}
-        type="positive"
+        type="card"
+        status="positive"
         inverted
         onClick={() => alert('Positive clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Warning"
         description="Atenção necessária"
         icon={<PlaceholderOutline size={24} />}
-        type="warning"
+        type="card"
+        status="warning"
         inverted
         onClick={() => alert('Warning clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Highlight"
         description="Destaque"
         icon={<PlaceholderOutline size={24} />}
-        type="highlight"
+        type="card"
+        status="highlight"
         inverted
         onClick={() => alert('Highlight clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Highlight Lead"
         description="Destaque principal"
         icon={<PlaceholderOutline size={24} />}
-        type="highlight-lead"
+        type="card"
+        status="highlight-lead"
         inverted
         onClick={() => alert('Highlight Lead clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tipo Strikethrough"
         description="R$ 1.234,56"
         strikethroughDescription="riscado"
         icon={<PlaceholderOutline size={24} />}
-        type="strikethrough"
+        type="card"
+        status="strikethrough"
         inverted
         onClick={() => alert('Strikethrough clicado!')}
       />
@@ -352,26 +366,29 @@ export const DisabledAndLoading: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListAction
+      <ListAction
         title="Card Normal"
         description="R$ 1.234,56"
         icon={<PlaceholderOutline size={24} />}
-        type="default"
+        type="card"
+        status="default"
         onClick={() => alert('Normal clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Card Disabled"
         description="R$ 1.234,56"
         icon={<PlaceholderOutline size={24} />}
-        type="default"
+        type="card"
+        status="default"
         disabled
         onClick={() => alert('Disabled clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Card Loading"
         description="R$ 1.234,56"
         icon={<PlaceholderOutline size={24} />}
-        type="default"
+        type="card"
+        status="default"
         loading
         onClick={() => alert('Loading clicado!')}
       />
@@ -386,56 +403,56 @@ export const AllIndicators: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListAction
+      <ListAction
         title="Badge Tiny - Brand"
         description="Indicator com badge tiny"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge variation="tiny" color="brand" />}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Badge Small - Brand"
         description="Indicator com badge small e count"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge variation="small" count={5} color="brand" />}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Badge Medium - Brand"
         description="Indicator com badge medium"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge variation="medium" count={99} color="brand" />}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Badge Complementary"
         description="Indicator com cor complementary"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge count={3} color="complementary" />}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Badge Alert"
         description="Indicator com cor alert"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge count={12} color="alert" />}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Badge Neutral"
         description="Indicator com cor neutral"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge count={7} color="neutral" />}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Badge com Texto"
         description="Indicator com texto ao invés de número"
         icon={<PlaceholderOutline size={24} />}
         indicator={<Badge color="brand">Novo</Badge>}
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tag Positive"
         description="Indicator com tag positive"
         icon={<PlaceholderOutline size={24} />}
@@ -446,7 +463,7 @@ export const AllIndicators: Story = {
         }
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tag Warning"
         description="Indicator com tag warning"
         icon={<PlaceholderOutline size={24} />}
@@ -457,7 +474,7 @@ export const AllIndicators: Story = {
         }
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tag Negative"
         description="Indicator com tag negative"
         icon={<PlaceholderOutline size={24} />}
@@ -468,7 +485,7 @@ export const AllIndicators: Story = {
         }
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tag Neutral"
         description="Indicator com tag neutral"
         icon={<PlaceholderOutline size={24} />}
@@ -479,7 +496,7 @@ export const AllIndicators: Story = {
         }
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Tag Highlight"
         description="Indicator com tag highlight important"
         icon={<PlaceholderOutline size={24} />}
@@ -490,7 +507,7 @@ export const AllIndicators: Story = {
         }
         onClick={() => alert('Clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Sem Indicator"
         description="Card sem indicator"
         icon={<PlaceholderOutline size={24} />}
@@ -507,14 +524,14 @@ export const AllActionTypes: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListAction
+      <ListAction
         title="Action Type: Chevron"
         description="Exibe um chevron à direita (padrão)"
         icon={<PlaceholderOutline size={24} />}
         actionType="chevron"
         onClick={() => alert('Chevron clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Action Type: Menu"
         description="Exibe menu de ações com dropdown"
         icon={<PlaceholderOutline size={24} />}
@@ -522,7 +539,7 @@ export const AllActionTypes: Story = {
         menuActions={defaultMenuActions}
         onClick={() => alert('Card clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Action Type: Swipe"
         description="Exibe menu com swipe lateral"
         icon={<PlaceholderOutline size={24} />}
@@ -559,7 +576,7 @@ export const AllMenuPositions: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <CardListAction
+      <ListAction
         title="Menu Position: Bottom Right"
         description="Menu abre embaixo à direita (padrão)"
         icon={<PlaceholderOutline size={24} />}
@@ -568,7 +585,7 @@ export const AllMenuPositions: Story = {
         menuActions={defaultMenuActions}
         onClick={() => alert('Card clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Menu Position: Bottom Left"
         description="Menu abre embaixo à esquerda"
         icon={<PlaceholderOutline size={24} />}
@@ -577,7 +594,7 @@ export const AllMenuPositions: Story = {
         menuActions={defaultMenuActions}
         onClick={() => alert('Card clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Menu Position: Top Right"
         description="Menu abre em cima à direita"
         icon={<PlaceholderOutline size={24} />}
@@ -586,7 +603,7 @@ export const AllMenuPositions: Story = {
         menuActions={defaultMenuActions}
         onClick={() => alert('Card clicado!')}
       />
-      <CardListAction
+      <ListAction
         title="Menu Position: Top Left"
         description="Menu abre em cima à esquerda"
         icon={<PlaceholderOutline size={24} />}
@@ -598,3 +615,106 @@ export const AllMenuPositions: Story = {
     </List>
   ),
 };
+
+// Story: Tipo Text com Divisor e Caption
+export const TextTypeWithDividerAndCaption: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ minWidth: '300px' }}>
+      <ListAction
+        title="Card com tipo Text"
+        description="R$ 1.234,56"
+        caption="Legenda terciária"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Card com Caption"
+        description="Descrição secundária"
+        caption="12/12/2024 às 14:30"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Card Invertido com Caption"
+        description="R$ 500,00"
+        caption="Crédito aprovado"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        inverted
+        showDivider
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Último Card sem Divisor"
+        description="Sem showDivider"
+        caption="Este é o último item"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        onClick={() => alert('Clicado!')}
+      />
+    </div>
+  ),
+};
+
+// Story: Comparação entre tipos Card e Text
+export const CardVsTextInsideList: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+      <div>
+        <h4 style={{ marginBottom: '16px' }}>type=&quot;card&quot; (padrão)</h4>
+        <List style={{ minWidth: '300px' }}>
+          <ListAction
+            title="Card Type"
+            description="Com borda de card"
+            caption="Caption de exemplo"
+            icon={<PlaceholderOutline size={24} />}
+            type="card"
+            onClick={() => alert('Clicado!')}
+          />
+          <ListAction
+            title="Outro Card"
+            description="Segunda linha"
+            caption="Mais informações"
+            icon={<PlaceholderOutline size={24} />}
+            type="card"
+            onClick={() => alert('Clicado!')}
+          />
+        </List>
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '16px' }}>type=&quot;text&quot;</h4>
+        <List style={{ minWidth: '300px' }}>
+          <ListAction
+            title="Text Type"
+            description="Sem borda de card"
+            caption="Caption de exemplo"
+            icon={<PlaceholderOutline size={24} />}
+            type="text"
+            showDivider
+            onClick={() => alert('Clicado!')}
+          />
+          <ListAction
+            title="Outro Text"
+            description="Segunda linha"
+            caption="Mais informações"
+            icon={<PlaceholderOutline size={24} />}
+            type="text"
+            showDivider
+            onClick={() => alert('Clicado!')}
+          />
+        </List>
+      </div>
+    </div>
+  ),
+};
+
