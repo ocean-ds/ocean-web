@@ -1,3 +1,5 @@
+$x-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1LjAwNzggNC40ODc2N0MxNS4wNzQxIDQuNDg3MTEgMTUuMTM5OCA0LjQ5OTcyIDE1LjIwMTIgNC41MjQ3OEMxNS4yNjI1IDQuNTQ5ODkgMTUuMzE4MyA0LjU4NzI5IDE1LjM2NTIgNC42MzQxNkMxNS40MTIxIDQuNjgxMDUgMTUuNDQ5NSA0LjczNjg0IDE1LjQ3NDYgNC43OTgyMkMxNS40OTk3IDQuODU5NTMgMTUuNTEyMiA0LjkyNTM0IDE1LjUxMTcgNC45OTE1OEMxNS41MTExIDUuMDU3OTIgMTUuNDk3OCA1LjEyMzk3IDE1LjQ3MTcgNS4xODQ5NEMxNS40NTg2IDUuMjE1NDEgMTUuNDQyNiA1LjI0NDY5IDE1LjQyMzggNS4yNzE4NUwxNS4zNTM1IDUuMzUzODhMMTAuNzA3IDEwLjAwMDRMMTUuMzQ2NyAxNC42NEMxNS40Mzc3IDE0LjczNDIgMTUuNDg4MyAxNC44NjA2IDE1LjQ4NzMgMTQuOTkxNkMxNS40ODYyIDE1LjEyMjcgMTUuNDMzNSAxNS4yNDg1IDE1LjM0MDggMTUuMzQxMkMxNS4yNDgyIDE1LjQzMzcgMTUuMTIzMSAxNS40ODY0IDE0Ljk5MjIgMTUuNDg3N0MxNC44NjExIDE1LjQ4ODggMTQuNzMzOSAxNS40MzgxIDE0LjYzOTYgMTUuMzQ3TDEwLjM1MzUgMTEuMDU5OUwxMCAxMC43MDY0TDUuMzU5MzggMTUuMzQ3QzUuMjY1MDkgMTUuNDM4MSA1LjEzODg4IDE1LjQ4ODggNS4wMDc4MSAxNS40ODc3QzQuODc2NzEgMTUuNDg2NSA0Ljc1MDkxIDE1LjQzMzkgNC42NTgyIDE1LjM0MTJDNC41NjU2MSAxNS4yNDg1IDQuNTEyODYgMTUuMTIyNiA0LjUxMTcyIDE0Ljk5MTZDNC41MTA3MiAxNC44NjM2IDQuNTU5MzUgMTQuNzQwMyA0LjY0NjQ4IDE0LjY0NjlMOS4yOTI5NyAxMC4wMDA0TDQuNjQ2NDggNS4zNTM4OEM0LjU1Mjg0IDUuMjYwMjEgNC41MDAxMSA1LjEzMjggNC41IDUuMDAwMzdDNC41IDQuODY3ODYgNC41NTI4NCA0Ljc0MDYgNC42NDY0OCA0LjY0Njg1QzQuNzQwMjUgNC41NTMxMSA0Ljg2NzQyIDQuNTAwMzcgNSA0LjUwMDM3QzUuMTMyNSA0LjUwMDQyIDUuMjU5OCA0LjU1MzE3IDUuMzUzNTIgNC42NDY4NUwxMCA5LjI5MzMzTDE0LjY0NjUgNC42NDY4NUwxNC42NTIzIDQuNjQwMDFDMTQuNjk4MyA0LjU5MjQxIDE0Ljc1MzcgNC41NTQ4NyAxNC44MTQ1IDQuNTI4NjlDMTQuODc1NSA0LjUwMjQ4IDE0Ljk0MTQgNC40ODgyNSAxNS4wMDc4IDQuNDg3NjdaIiBmaWxsPSIjMzkzQjQ3IiBzdHJva2U9IiNBQUFEQzAiLz4KPC9zdmc+Cgo=';
+
 .ods-input {
   align-items: center;
   background-color: $color-interface-light-pure;
@@ -25,6 +27,28 @@
       color: $color-interface-light-deep;
       font-weight: $font-weight-regular;
     }
+  }
+
+  [type='search' i] {
+    padding: 0 $spacing-inline-xxxs 0 $spacing-inline-xs;
+  }
+
+  [type='search' i]::-webkit-search-cancel-button {
+    appearance: none;
+    background-image: url($x-icon);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border-radius: $border-radius-circular;
+    cursor: pointer;
+    height: 20px;
+    padding: 6px;
+    transition: background-color 250ms ease-out;
+    width: 20px;
+  }
+
+  [type='search' i]::-webkit-search-cancel-button:hover {
+    background-color: $color-interface-light-down;
   }
 
   &__number-controls {
