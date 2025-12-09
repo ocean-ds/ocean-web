@@ -19,7 +19,7 @@ describe('ContextualHero', () => {
   };
 
   describe('Basic Rendering', () => {
-    it('renders with required props', () => {
+    test('renders with required props', () => {
       render(<ContextualHero {...defaultProps} />);
 
       expect(screen.getByTestId('contextual-hero')).toBeInTheDocument();
@@ -27,14 +27,14 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Test Description')).toBeInTheDocument();
     });
 
-    it('renders list items with description', () => {
+    test('renders list items with description', () => {
       render(<ContextualHero {...defaultProps} />);
 
       expect(screen.getByText('Item 1')).toBeInTheDocument();
       expect(screen.getByText('Item 2')).toBeInTheDocument();
     });
 
-    it('renders list items with icons', () => {
+    test('renders list items with icons', () => {
       const listItems = [
         {
           icon: <PlaceholderOutline data-testid="icon-1" />,
@@ -48,7 +48,7 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Item with icon')).toBeInTheDocument();
     });
 
-    it('renders ReactNode list items', () => {
+    test('renders ReactNode list items', () => {
       const listItems = [
         <div key="custom-1" data-testid="custom-item">
           Custom Item
@@ -60,7 +60,7 @@ describe('ContextualHero', () => {
       expect(screen.getByTestId('custom-item')).toBeInTheDocument();
     });
 
-    it('applies custom className', () => {
+    test('applies custom className', () => {
       render(<ContextualHero {...defaultProps} className="custom-class" />);
 
       const hero = screen.getByTestId('contextual-hero');
@@ -69,7 +69,7 @@ describe('ContextualHero', () => {
   });
 
   describe('Image', () => {
-    it('renders image when provided as string', () => {
+    test('renders image when provided as string', () => {
       render(<ContextualHero {...defaultProps} image="/test-image.png" />);
 
       const img = screen.getByRole('img');
@@ -77,7 +77,7 @@ describe('ContextualHero', () => {
       expect(img).toHaveAttribute('alt', 'Test Title');
     });
 
-    it('renders image when provided as ReactNode', () => {
+    test('renders image when provided as ReactNode', () => {
       render(
         <ContextualHero
           {...defaultProps}
@@ -88,7 +88,7 @@ describe('ContextualHero', () => {
       expect(screen.getByTestId('custom-image')).toBeInTheDocument();
     });
 
-    it('does not render image section when not provided', () => {
+    test('does not render image section when not provided', () => {
       render(<ContextualHero {...defaultProps} />);
 
       expect(screen.queryByRole('img')).not.toBeInTheDocument();
@@ -96,7 +96,7 @@ describe('ContextualHero', () => {
   });
 
   describe('Actions', () => {
-    it('renders one action button', () => {
+    test('renders one action button', () => {
       const actions: SingleAction = [createAction('Primary Action')];
 
       render(<ContextualHero {...defaultProps} actions={actions} />);
@@ -104,7 +104,7 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Primary Action')).toBeInTheDocument();
     });
 
-    it('renders two action buttons', () => {
+    test('renders two action buttons', () => {
       const actions: TwoActions = [
         createAction('Primary Action'),
         createAction('Secondary Action'),
@@ -116,7 +116,7 @@ describe('ContextualHero', () => {
       expect(screen.getByText('Secondary Action')).toBeInTheDocument();
     });
 
-    it('calls onClick when action buttons are clicked', () => {
+    test('calls onClick when action buttons are clicked', () => {
       const handlePrimary = jest.fn();
       const handleSecondary = jest.fn();
       const actions: TwoActions = [
@@ -133,7 +133,7 @@ describe('ContextualHero', () => {
       expect(handleSecondary).toHaveBeenCalledTimes(1);
     });
 
-    it('does not render actions section when not provided', () => {
+    test('does not render actions section when not provided', () => {
       render(<ContextualHero {...defaultProps} />);
 
       expect(screen.queryByText('Primary Action')).not.toBeInTheDocument();
@@ -141,7 +141,7 @@ describe('ContextualHero', () => {
   });
 
   describe('ForwardRef', () => {
-    it('forwards ref to div element', () => {
+    test('forwards ref to div element', () => {
       const ref = React.createRef<HTMLDivElement>();
       render(<ContextualHero {...defaultProps} ref={ref} />);
 
@@ -151,12 +151,12 @@ describe('ContextualHero', () => {
   });
 
   describe('Snapshot', () => {
-    it('matches snapshot with minimal props', () => {
+    test('matches snapshot with minimal props', () => {
       const { container } = render(<ContextualHero {...defaultProps} />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    it('matches snapshot with all props', () => {
+    test('matches snapshot with all props', () => {
       const { container } = render(
         <ContextualHero
           title="Full Title"
