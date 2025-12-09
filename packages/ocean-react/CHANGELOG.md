@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.119.0](https://github.com/ocean-ds/ocean-web/compare/v1.118.0...v1.119.0) (2025-12-08)
+
+### Features
+
+- style cancel button on input search ([#1202](https://github.com/ocean-ds/ocean-web/issues/1202)) ([221d12c](https://github.com/ocean-ds/ocean-web/commit/221d12c519dcaf24af4f1be573c0559403719f0b))
+
 # [1.118.0](https://github.com/ocean-ds/ocean-web/compare/v1.117.0...v1.118.0) (2025-12-08)
 
 ### Features
