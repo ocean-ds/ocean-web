@@ -16,6 +16,7 @@ const InternalListActions = forwardRef<
       disabled = false,
       position = 'bottom-right',
       className,
+      onOpenChange,
       ...rest
     },
     forwardedRef
@@ -29,6 +30,20 @@ const InternalListActions = forwardRef<
     // When actionType is 'swipe', always use swipe mode (mobile UI) regardless of device
     const isSwipeMode = actionType === 'swipe';
 
+    const notifyOpenChange = (open: boolean) => {
+      if (open && isSwipeMode && menuRef.current) {
+        // Wait for menu to render and measure its width
+        requestAnimationFrame(() => {
+          const menuWidth = menuRef.current?.offsetWidth || 0;
+          onOpenChange?.(true, menuWidth);
+        });
+      } else if (open) {
+        onOpenChange?.(true);
+      } else {
+        onOpenChange?.(false);
+      }
+    };
+
     const handleSwipeLeft = () => {
       setIsOpen(true);
       setIsClosing(false);
@@ -37,12 +52,14 @@ const InternalListActions = forwardRef<
     const handleClose = () => {
       if (isSwipeMode) {
         setIsClosing(true);
+        notifyOpenChange(false);
         setTimeout(() => {
           setIsOpen(false);
           setIsClosing(false);
         }, CLOSE_ANIMATION_DURATION);
       } else {
         setIsOpen(false);
+        notifyOpenChange(false);
       }
     };
 
@@ -60,6 +77,13 @@ const InternalListActions = forwardRef<
         }
       }
     }, [forwardedRef]);
+
+    // Notify when menu opens in swipe mode (after menu is rendered)
+    useEffect(() => {
+      if (isOpen && isSwipeMode && !isClosing) {
+        notifyOpenChange(true);
+      }
+    }, [isOpen, isSwipeMode, isClosing]);
 
     const handleToggle = () => {
       if (!disabled) {

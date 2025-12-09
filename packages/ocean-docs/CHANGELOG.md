@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.119.0](https://github.com/ocean-ds/ocean-web/compare/v1.118.0...v1.119.0) (2025-12-08)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.118.0](https://github.com/ocean-ds/ocean-web/compare/v1.117.0...v1.118.0) (2025-12-08)
+
+### Features
+
+- card list expandable ([#1197](https://github.com/ocean-ds/ocean-web/issues/1197)) ([3016461](https://github.com/ocean-ds/ocean-web/commit/3016461f3a408dafb3645e53a00d2ce769e60691))
+
+# [1.117.0](https://github.com/ocean-ds/ocean-web/compare/v1.116.0...v1.117.0) (2025-12-08)
+
+### Features
+
+- create list action ([#1204](https://github.com/ocean-ds/ocean-web/issues/1204)) ([e1ccd7e](https://github.com/ocean-ds/ocean-web/commit/e1ccd7ed29bf4da881081db93123d19ec1cc5511))
+
 # [1.116.0](https://github.com/ocean-ds/ocean-web/compare/v1.115.0...v1.116.0) (2025-12-08)
 
 ### Features
