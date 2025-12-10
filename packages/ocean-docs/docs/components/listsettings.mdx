@@ -1,0 +1,538 @@
+---
+title: ListSettings
+sidebar_label: ListSettings
+sidebar_position: 17
+---
+
+import { ListSettings } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# ListSettings
+
+O componente ListSettings é um item de lista interativo que combina exibição de informações com ações de configuração. Ideal para telas de configurações, ajustes de preferências e gerenciamento de opções que requerem ações como botões ou toggles.
+
+## Importação
+
+```tsx
+import { ListSettings } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { ListSettings } from '@useblu/ocean-react/ListSettings';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { ListSettingsProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyListSettings: React.FC<ListSettingsProps> = (props) => {
+  return <ListSettings {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente ListSettings no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-listsettings--usage"
+  height={500}
+  title="ListSettings - Playground Interativo"
+/>
+
+## Uso básico
+
+### Com botão
+
+```tsx live
+<ListSettings
+  title="Title"
+  description="Description"
+  actionType="button"
+  buttonLabel="Label"
+  onButtonClick={() => alert('Button clicked!')}
+/>
+```
+
+### Com toggle
+
+```tsx live
+function Example() {
+  const [checked, setChecked] = React.useState(false);
+
+  return (
+    <ListSettings
+      title="Title"
+      description="Description"
+      actionType="toggle"
+      toggleChecked={checked}
+      onToggleChange={setChecked}
+    />
+  );
+}
+```
+
+## Tipos de ação
+
+O ListSettings oferece dois tipos de ação:
+
+### Botão
+
+Use quando a ação requer confirmação ou navegação para outra tela:
+
+```tsx live
+<List>
+  <ListSettings
+    title="Backup de dados"
+    description="Fazer backup dos seus dados"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Backup"
+    onButtonClick={() => alert('Iniciando backup...')}
+  />
+</List>
+```
+
+### Toggle (Switch)
+
+Use para configurações que podem ser ativadas/desativadas imediatamente:
+
+```tsx live
+function Example() {
+  const [notifications, setNotifications] = React.useState(true);
+  const [darkMode, setDarkMode] = React.useState(false);
+
+  const handleNotificationsChange = (checked) => {
+    setNotifications(checked);
+    console.log('Notificações:', checked ? 'ativadas' : 'desativadas');
+  };
+
+  const handleDarkModeChange = (checked) => {
+    setDarkMode(checked);
+    console.log('Modo escuro:', checked ? 'ativado' : 'desativado');
+  };
+
+  return (
+    <List>
+      <ListSettings
+        title="Notificações"
+        description="Receba notificações push"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={notifications}
+        onToggleChange={handleNotificationsChange}
+      />
+      <ListSettings
+        title="Modo escuro"
+        description="Ativa o tema escuro"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={darkMode}
+        onToggleChange={handleDarkModeChange}
+      />
+    </List>
+  );
+}
+```
+
+:::tip Dica
+O callback `onToggleChange` recebe o novo estado (`boolean`) como parâmetro, permitindo que você responda imediatamente à mudança e execute lógica adicional como salvar preferências, mostrar feedback ao usuário, etc.
+:::
+
+## Tipos de conteúdo
+
+O ListSettings suporta os mesmos tipos visuais do CardListReadOnly:
+
+```tsx live
+<List>
+  <ListSettings
+    status="default"
+    title="Status Default"
+    description="Configuração padrão"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Ação"
+  />
+  <ListSettings
+    status="positive"
+    title="Status Positive"
+    description="Ação positiva"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Ação"
+  />
+  <ListSettings
+    status="warning"
+    title="Status Warning"
+    description="Requer atenção"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Ação"
+  />
+</List>
+```
+
+## Tipos de borda
+
+O ListSettings suporta dois tipos de borda:
+
+```tsx live
+<div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>type="card" (padrão)</h4>
+    <List style={{ minWidth: '300px' }}>
+      <ListSettings
+        title="Card Type"
+        description="Com borda de card"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        actionType="button"
+        buttonLabel="Label"
+      />
+    </List>
+  </div>
+  <div>
+    <h4 style={{ marginBottom: '16px' }}>type="text"</h4>
+    <div style={{ minWidth: '300px' }}>
+      <ListSettings
+        title="Text Type"
+        description="Sem borda de card"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        showDivider
+        actionType="button"
+        buttonLabel="Label"
+      />
+    </div>
+  </div>
+</div>
+```
+
+## Tamanhos de botão
+
+Quando usando `actionType="button"`, você pode definir o tamanho:
+
+```tsx live
+<List>
+  <ListSettings
+    title="Botão Small"
+    description="Botão de tamanho pequeno"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Label"
+    buttonSize="sm"
+    onButtonClick={() => alert('Clicked!')}
+  />
+  <ListSettings
+    title="Botão Medium"
+    description="Botão de tamanho médio"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Label"
+    buttonSize="md"
+    onButtonClick={() => alert('Clicked!')}
+  />
+</List>
+```
+
+## Com e sem ícone
+
+O ícone é exibido quando fornecido através da prop `icon`:
+
+```tsx live
+<List>
+  <ListSettings
+    title="Com ícone"
+    description="Card com ícone à esquerda"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="toggle"
+    toggleChecked={false}
+    onToggleChange={() => {}}
+  />
+  <ListSettings
+    title="Sem ícone"
+    description="Card sem ícone"
+    actionType="toggle"
+    toggleChecked={true}
+    onToggleChange={() => {}}
+  />
+</List>
+```
+
+## Estados
+
+### Disabled
+
+```tsx live
+<List>
+  <ListSettings
+    title="Botão Desabilitado"
+    description="Esta opção está indisponível"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Label"
+    disabled
+  />
+  <ListSettings
+    title="Toggle Desabilitado"
+    description="Esta opção está indisponível"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="toggle"
+    toggleChecked={false}
+    disabled
+    onToggleChange={() => {}}
+  />
+</List>
+```
+
+### Loading
+
+Mostra um skeleton placeholder durante carregamento:
+
+```tsx live
+<List>
+  <ListSettings
+    title="Carregando..."
+    description="Aguarde"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Label"
+    loading
+  />
+  <ListSettings
+    title="Carregando..."
+    description="Aguarde"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="toggle"
+    loading
+  />
+</List>
+```
+
+## Exemplos práticos
+
+### Configurações de notificação
+
+```tsx live
+function NotificationSettings() {
+  const [email, setEmail] = React.useState(true);
+  const [push, setPush] = React.useState(true);
+  const [sms, setSms] = React.useState(false);
+
+  return (
+    <List>
+      <ListSettings
+        title="Notificações por e-mail"
+        description="Receba atualizações por e-mail"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={email}
+        onToggleChange={setEmail}
+      />
+      <ListSettings
+        title="Notificações push"
+        description="Receba notificações no seu dispositivo"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={push}
+        onToggleChange={setPush}
+      />
+      <ListSettings
+        title="Notificações por SMS"
+        description="Receba mensagens de texto"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={sms}
+        onToggleChange={setSms}
+      />
+    </List>
+  );
+}
+```
+
+### Configurações de privacidade
+
+```tsx live
+function PrivacySettings() {
+  const [profileVisible, setProfileVisible] = React.useState(true);
+  const [twoFactor, setTwoFactor] = React.useState(false);
+
+  return (
+    <List>
+      <ListSettings
+        title="Perfil público"
+        description="Torne seu perfil visível para todos"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={profileVisible}
+        onToggleChange={setProfileVisible}
+      />
+      <ListSettings
+        title="Autenticação de dois fatores"
+        description="Adicione uma camada extra de segurança"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="toggle"
+        toggleChecked={twoFactor}
+        onToggleChange={setTwoFactor}
+      />
+      <ListSettings
+        title="Alterar senha"
+        description="Atualize sua senha de acesso"
+        icon={<PlaceholderOutline size={24} />}
+        actionType="button"
+        buttonLabel="Alterar"
+        onButtonClick={() => alert('Navegar para tela de alteração de senha')}
+      />
+    </List>
+  );
+}
+```
+
+### Configurações de conta
+
+```tsx live
+<List>
+  <ListSettings
+    title="Dados pessoais"
+    description="Gerencie suas informações"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Editar"
+    onButtonClick={() => alert('Editar dados pessoais')}
+  />
+  <ListSettings
+    title="Fazer backup"
+    description="Salve uma cópia dos seus dados"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Backup"
+    onButtonClick={() => alert('Iniciar backup')}
+  />
+  <ListSettings
+    title="Excluir conta"
+    status="warning"
+    description="Remova permanentemente sua conta"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="button"
+    buttonLabel="Excluir"
+    onButtonClick={() => alert('Confirmar exclusão de conta')}
+  />
+</List>
+```
+
+## API
+
+### Props
+
+| Prop             | Tipo                                                                                                       | Padrão      | Descrição                                     |
+| ---------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------- |
+| `title`          | `string`                                                                                                   | -           | Título principal do card (obrigatório)        |
+| `description`    | `string`                                                                                                   | -           | Descrição ou texto secundário                 |
+| `caption`        | `string`                                                                                                   | -           | Legenda ou texto terciário                    |
+| `inverted`       | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição       |
+| `type`           | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de borda/estilo do card                  |
+| `status`         | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                     |
+| `showDivider`    | `boolean`                                                                                                  | `false`     | Mostra divisor quando type="text"             |
+| `disabled`       | `boolean`                                                                                                  | `false`     | Desabilita o card e suas ações                |
+| `loading`        | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                |
+| `icon`           | `ReactNode`                                                                                                | -           | Ícone exibido no início do card               |
+| `actionType`     | `'button' \| 'toggle'`                                                                                     | `'button'`  | Tipo de ação exibida no card                  |
+| `buttonLabel`    | `string`                                                                                                   | `'Label'`   | Label do botão (quando actionType="button")   |
+| `buttonSize`     | `'sm' \| 'md'`                                                                                             | `'sm'`      | Tamanho do botão                              |
+| `buttonVariant`  | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical'` | `'primary'` | Variante do botão                             |
+| `toggleChecked`  | `boolean`                                                                                                  | `false`     | Estado do toggle (quando actionType="toggle") |
+| `onButtonClick`  | `() => void`                                                                                               | -           | Callback ao clicar no botão                   |
+| `onToggleChange` | `(checked: boolean) => void`                                                                               | -           | Callback ao mudar estado do toggle            |
+| `className`      | `string`                                                                                                   | -           | Classes CSS adicionais                        |
+
+## Acessibilidade
+
+- ✅ Elemento `<div>` semântico para container
+- ✅ Botões acessíveis com labels claros
+- ✅ Switches acessíveis com estado adequado
+- ✅ Estados disabled adequadamente sinalizados
+- ✅ Skeleton acessível durante loading
+- ✅ Suporte a navegação por teclado (Tab, Enter, Espaço)
+- ✅ Feedback visual claro para interações
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use títulos claros e descritivos para cada configuração
+- Combine com List para agrupar configurações relacionadas
+- Use `actionType="toggle"` para ações imediatas (on/off)
+- Use `actionType="button"` para ações que requerem confirmação ou navegação
+- Forneça descrições explicativas para cada opção
+- Use o status apropriado para comunicar importância (warning para ações destrutivas)
+- Forneça feedback visual durante operações com `loading`
+- Agrupe configurações relacionadas em seções
+
+### ❌ Não faça
+
+- Não use textos muito longos que truncam em dispositivos pequenos
+- Não use botões para ações que poderiam ser toggles imediatos
+- Não use toggles para ações que requerem confirmação
+- Não use `disabled` sem indicar o motivo ao usuário
+- Não ignore estados de loading em operações assíncronas
+- Não misture diferentes níveis de importância sem hierarquia visual
+- Não use status `warning` sem uma boa razão (ações destrutivas, alertas)
+
+## Quando usar ListSettings
+
+**Use ListSettings quando:**
+
+- Você precisa de um item de configuração com ação (botão ou toggle)
+- O item combina informações com controles interativos
+- Está construindo telas de configurações ou preferências
+- Precisa de toggles para ativar/desativar funcionalidades
+- Precisa de botões para navegar para detalhes de configuração
+
+**Use ListAction quando:**
+
+- Precisa de navegação com chevron
+- Precisa de menu de ações contextuais
+- Precisa de swipe actions
+- O foco é navegação, não configuração
+
+**Use CardListReadOnly quando:**
+
+- As informações são apenas para leitura
+- Não há necessidade de ação ou configuração
+- O objetivo é apenas exibir dados estruturados
+
+## Visão geral dos tipos de ação
+
+Veja todos os tipos de ação do ListSettings:
+
+<StorybookEmbed
+  storyId="components-list-listsettings--action-type-button"
+  height={500}
+  showToolbar={false}
+  title="ListSettings - Tipos de Ação"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do ListSettings](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listsettings--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todos os tipos e estados
+- ✅ **Playground** para experimentação rápida
+
+## Links relacionados
+
+- [ListAction](/components/listaction) - Item de lista com ações interativas
+- [CardListReadOnly](/components/cardlistreadonly) - Item de card somente leitura
+- [CardListItem](/components/cardlistitem) - Item de card básico
+- [List](/components/list) - Container para agrupar cards
+- [Button](/components/button) - Componente de botão usado internamente
+- [Switch](/components/switch) - Componente de switch usado internamente
+- [Storybook - ListSettings](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listsettings--docs)
