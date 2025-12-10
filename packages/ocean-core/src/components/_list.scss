@@ -24,17 +24,21 @@
     }
   }
 
-  .ods-list-action__container {
-    .ods-list-action {
+  .ods-list-action__container,
+  .ods-list-settings__container {
+    .ods-list-action,
+    .ods-list-settings {
       border: 0;
       border-radius: 0;
     }
 
-    &:last-of-type > .ods-list-action__divider {
+    &:last-of-type > .ods-list-action__divider,
+    &:last-of-type > .ods-list-settings__divider {
       border: 0;
     }
 
-    &:not(:last-of-type) > .ods-list-action--card {
+    &:not(:last-of-type) > .ods-list-action--card,
+    &:not(:last-of-type) > .ods-list-settings--card {
       border-bottom: 1px solid $color-interface-light-down;
     }
   }
