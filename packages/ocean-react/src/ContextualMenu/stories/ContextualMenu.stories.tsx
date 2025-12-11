@@ -69,7 +69,6 @@ export const Usage: Story = {
     (StoryComponent: React.ComponentType): JSX.Element => (
       <div
         style={{
-          width: '500px',
           height: '320px',
         }}
       >
@@ -158,7 +157,7 @@ export const PrimaryVariants: Story = {
     (StoryComponent: React.ComponentType): JSX.Element => (
       <div
         style={{
-          width: '500px',
+          width: '350px',
           height: '300px',
         }}
       >
@@ -301,7 +300,7 @@ export const NeutralVariants: Story = {
     (StoryComponent: React.ComponentType): JSX.Element => (
       <div
         style={{
-          width: '500px',
+          width: '350px',
           height: '300px',
         }}
       >
@@ -437,7 +436,7 @@ export const CriticalVariants: Story = {
     (StoryComponent: React.ComponentType): JSX.Element => (
       <div
         style={{
-          width: '500px',
+          width: '350px',
           height: '300px',
         }}
       >
