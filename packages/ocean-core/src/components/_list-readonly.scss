@@ -1,0 +1,71 @@
+.ods-list-readonly {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-deep;
+  border-radius: $border-radius-sm;
+  box-sizing: border-box;
+  display: flex;
+  gap: $spacing-inline-xxs-extra;
+  padding: $spacing-inline-xs;
+  position: relative;
+  text-align: left;
+  width: 100%;
+
+  &__container {
+    width: 100%;
+  }
+
+  &--card {
+    border-color: $color-interface-light-deep;
+  }
+
+  &--text {
+    border: 0;
+    border-radius: 0;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
+
+  &__icon {
+    align-items: center;
+    color: $color-brand-primary-down;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__icon--inactive {
+    color: $color-interface-light-deep;
+  }
+
+  &__trailing {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    margin-left: auto;
+  }
+
+  &__skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    width: 100%;
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+    }
+  }
+
+  &--loading {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
