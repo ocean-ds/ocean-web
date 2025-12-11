@@ -56,6 +56,7 @@ export const ContextualMenu = ({
         })}
         onClick={handleClose}
         aria-hidden="true"
+        data-testid="contextual-menu-overlay"
       />
 
       <ul

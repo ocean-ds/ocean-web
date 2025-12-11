@@ -16,23 +16,38 @@ const meta: Meta<typeof ContextualMenu> = {
     open: {
       description:
         'Define se o menu está aberto ou fechado (componente controlado).',
-      control: 'boolean',
+      control: false,
+      table: {
+        type: { summary: 'boolean' },
+      },
     },
     onOpenChange: {
       description: 'Callback chamado quando o estado open muda.',
       control: false,
+      table: {
+        type: { summary: '(open: boolean) => void' },
+      },
     },
     onSelect: {
       description: 'Callback chamado ao selecionar um item do menu.',
       control: false,
+      table: {
+        type: { summary: '(value: string) => void' },
+      },
     },
     selectedValue: {
       description: 'Valor do item atualmente selecionado.',
-      control: 'text',
+      control: false,
+      table: {
+        type: { summary: 'string | undefined' },
+      },
     },
     className: {
       description: 'Classes CSS adicionais para customização.',
-      control: 'text',
+      control: false,
+      table: {
+        type: { summary: 'string' },
+      },
     },
   },
 };
@@ -42,6 +57,14 @@ export default meta;
 type Story = StoryObj<typeof ContextualMenu>;
 
 export const Usage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Exemplo completo com botão trigger mostrando diferentes tipos de items: primary, neutral, critical, com estados disabled, blocked, ícones e tags.',
+      },
+    },
+  },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
       <div
@@ -54,9 +77,6 @@ export const Usage: Story = {
       </div>
     ),
   ],
-  args: {
-    open: true,
-  },
   render: () => (
     <ContextualMenuTrigger
       items={[
@@ -115,8 +135,8 @@ export const Usage: Story = {
         },
         {
           type: 'critical',
-          label: 'Option Text Critical Blocked',
-          value: 'Option Text Critical Blocked',
+          label: 'Option Text Critical With Icon',
+          value: 'Option Text Critical With Icon',
           icon: <Trash />,
         },
       ]}
@@ -127,6 +147,12 @@ export const Usage: Story = {
 export const PrimaryVariants: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Todas as variantes e estados do tipo Primary: padrão, com ícone, com tag, selecionado, desabilitado e bloqueado.',
+      },
+    },
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -264,6 +290,12 @@ export const PrimaryVariants: Story = {
 export const NeutralVariants: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Todas as variantes e estados do tipo Neutral: padrão, com ícone, com tag, selecionado, desabilitado e bloqueado.',
+      },
+    },
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -394,6 +426,12 @@ export const NeutralVariants: Story = {
 export const CriticalVariants: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Todas as variantes e estados do tipo Critical: padrão, com ícone, com tag, selecionado, desabilitado e bloqueado. Use para ações destrutivas.',
+      },
+    },
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
