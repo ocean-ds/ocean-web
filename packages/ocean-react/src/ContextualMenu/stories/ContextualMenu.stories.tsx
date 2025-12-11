@@ -1,8 +1,88 @@
 import React from 'react';
 import { Trash } from '@useblu/ocean-icons-react';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { TagProps } from '../../Tag/Tag';
 import ContextualMenu from '../ContextualMenu';
 import { ContextualMenuTrigger } from './ContextualMenuTrigger';
+import type { ContextualMenuItemProps } from '../ContextualMenuItem';
+
+type ItemType = 'primary' | 'neutral' | 'critical';
+
+const getTagForType = (type: ItemType, label: string): TagProps | undefined => {
+  const tagMap: Record<ItemType, 'neutral' | 'important'> = {
+    primary: 'important',
+    neutral: 'neutral',
+    critical: 'important',
+  };
+
+  const labelMap: Record<string, string> = {
+    'With Tag': type === 'neutral' ? 'Warning' : 'Info',
+    'Selected With Tag': 'Tag',
+    'Disabled With Tag': 'Label',
+  };
+
+  const tagLabel = Object.keys(labelMap).find((key) => label.includes(key));
+
+  return tagLabel
+    ? {
+        variant: 'highlight' as const,
+        type: tagMap[type],
+        children: labelMap[tagLabel],
+      }
+    : undefined;
+};
+
+const createVariantItems = (
+  type: ItemType
+): Omit<ContextualMenuItemProps, 'onClick'>[] => {
+  const capitalize = (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
+  const typeLabel = capitalize(type);
+
+  const variants = [
+    { suffix: '', hasIcon: false, hasTag: false },
+    { suffix: ' With Icon', hasIcon: true, hasTag: false },
+    { suffix: ' With Tag', hasIcon: false, hasTag: true },
+    { suffix: ' With Icon and Tag', hasIcon: true, hasTag: true },
+  ];
+
+  const states = ['', 'Selected ', 'Disabled ', 'Blocked '];
+
+  const items: Omit<ContextualMenuItemProps, 'onClick'>[] = [];
+
+  states.forEach((state) => {
+    const isBlocked = state === 'Blocked ';
+    const maxVariants = isBlocked ? 2 : variants.length;
+
+    variants.slice(0, maxVariants).forEach((variant) => {
+      const label = `${typeLabel} ${state}${variant.suffix}`.trim();
+      const value = label;
+
+      items.push({
+        type,
+        label,
+        value,
+        ...(variant.hasIcon && { icon: <Trash /> }),
+        ...(variant.hasTag && { tag: getTagForType(type, label) }),
+        ...(state === 'Disabled ' && { disabled: true }),
+        ...(state === 'Blocked ' && { blocked: true }),
+      });
+    });
+  });
+
+  return items;
+};
+
+const variantDecorator = (StoryComponent: React.ComponentType): JSX.Element => (
+  <div
+    style={{
+      width: '350px',
+      height: '300px',
+    }}
+  >
+    <StoryComponent />
+  </div>
+);
 
 const meta: Meta<typeof ContextualMenu> = {
   title: 'Components/ContextualMenu',
@@ -153,136 +233,11 @@ export const PrimaryVariants: Story = {
       },
     },
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          width: '350px',
-          height: '300px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: [variantDecorator],
   args: {
     open: true,
     selectedValue: 'Primary Selected',
-    items: [
-      {
-        type: 'primary',
-        label: 'Primary',
-        value: 'Primary',
-      },
-      {
-        type: 'primary',
-        label: 'Primary With Icon',
-        value: 'Primary With Icon',
-        icon: <Trash />,
-      },
-      {
-        type: 'primary',
-        label: 'Primary With Tag',
-        value: 'Primary With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Info',
-        },
-      },
-      {
-        type: 'primary',
-        label: 'Primary With Icon and Tag',
-        value: 'Primary With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-      },
-      {
-        type: 'primary',
-        label: 'Primary Selected',
-        value: 'Primary Selected',
-      },
-      {
-        type: 'primary',
-        label: 'Primary Selected With Icon',
-        value: 'Primary Selected With Icon',
-        icon: <Trash />,
-      },
-      {
-        type: 'primary',
-        label: 'Primary Selected With Tag',
-        value: 'Primary Selected With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Tag',
-        },
-      },
-      {
-        type: 'primary',
-        label: 'Primary Selected With Icon and Tag',
-        value: 'Primary Selected With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-      },
-      {
-        type: 'primary',
-        label: 'Primary Disabled',
-        value: 'Primary Disabled',
-        disabled: true,
-      },
-      {
-        type: 'primary',
-        label: 'Primary Disabled With Icon',
-        value: 'Primary Disabled With Icon',
-        icon: <Trash />,
-        disabled: true,
-      },
-      {
-        type: 'primary',
-        label: 'Primary Disabled With Tag',
-        value: 'Primary Disabled With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-        disabled: true,
-      },
-      {
-        type: 'primary',
-        label: 'Primary Disabled With Icon and Tag',
-        value: 'Primary Disabled With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-        disabled: true,
-      },
-      {
-        type: 'primary',
-        label: 'Primary Blocked',
-        value: 'Primary Blocked',
-        blocked: true,
-      },
-      {
-        type: 'primary',
-        label: 'Primary Blocked With Icon',
-        value: 'Primary Blocked With Icon',
-        icon: <Trash />,
-        blocked: true,
-      },
-    ],
+    items: createVariantItems('primary'),
   },
 };
 
@@ -296,129 +251,11 @@ export const NeutralVariants: Story = {
       },
     },
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          width: '350px',
-          height: '300px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: [variantDecorator],
   args: {
     open: true,
     selectedValue: 'Neutral Selected',
-    items: [
-      {
-        type: 'neutral',
-        label: 'Neutral',
-        value: 'Neutral',
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral With Icon',
-        value: 'Neutral With Icon',
-        icon: <Trash />,
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral With Tag',
-        value: 'Neutral With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'neutral',
-          children: 'Warning',
-        },
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral With Icon and Tag',
-        value: 'Neutral With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'neutral',
-          children: 'Label',
-        },
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Selected',
-        value: 'Neutral Selected',
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Selected With Icon',
-        value: 'Neutral Selected With Icon',
-        icon: <Trash />,
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Selected With Tag',
-        value: 'Neutral Selected With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'neutral',
-          children: 'Tag',
-        },
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Selected With Icon and Tag',
-        value: 'Neutral Selected With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'neutral',
-          children: 'Label',
-        },
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Disabled',
-        value: 'Neutral Disabled',
-        disabled: true,
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Disabled With Icon',
-        value: 'Neutral Disabled With Icon',
-        icon: <Trash />,
-        disabled: true,
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Disabled With Tag',
-        value: 'Neutral Disabled With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'neutral',
-          children: 'Label',
-        },
-        disabled: true,
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Disabled With Icon and Tag',
-        value: 'Neutral Disabled With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'neutral',
-          children: 'Label',
-        },
-        disabled: true,
-      },
-      {
-        type: 'neutral',
-        label: 'Neutral Blocked',
-        value: 'Neutral Blocked',
-        blocked: true,
-      },
-    ],
+    items: createVariantItems('neutral'),
   },
 };
 
@@ -432,128 +269,10 @@ export const CriticalVariants: Story = {
       },
     },
   },
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          width: '350px',
-          height: '300px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
+  decorators: [variantDecorator],
   args: {
     open: true,
     selectedValue: 'Critical Selected',
-    items: [
-      {
-        type: 'critical',
-        label: 'Critical',
-        value: 'Critical',
-      },
-      {
-        type: 'critical',
-        label: 'Critical With Icon',
-        value: 'Critical With Icon',
-        icon: <Trash />,
-      },
-      {
-        type: 'critical',
-        label: 'Critical With Tag',
-        value: 'Critical With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Important',
-        },
-      },
-      {
-        type: 'critical',
-        label: 'Critical With Icon and Tag',
-        value: 'Critical With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-      },
-      {
-        type: 'critical',
-        label: 'Critical Selected',
-        value: 'Critical Selected',
-      },
-      {
-        type: 'critical',
-        label: 'Critical Selected With Icon',
-        value: 'Critical Selected With Icon',
-        icon: <Trash />,
-      },
-      {
-        type: 'critical',
-        label: 'Critical Selected With Tag',
-        value: 'Critical Selected With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Tag',
-        },
-      },
-      {
-        type: 'critical',
-        label: 'Critical Selected With Icon and Tag',
-        value: 'Critical Selected With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-      },
-      {
-        type: 'critical',
-        label: 'Critical Disabled',
-        value: 'Critical Disabled',
-        disabled: true,
-      },
-      {
-        type: 'critical',
-        label: 'Critical Disabled With Icon',
-        value: 'Critical Disabled With Icon',
-        icon: <Trash />,
-        disabled: true,
-      },
-      {
-        type: 'critical',
-        label: 'Critical Disabled With Tag',
-        value: 'Critical Disabled With Tag',
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-        disabled: true,
-      },
-      {
-        type: 'critical',
-        label: 'Critical Disabled With Icon and Tag',
-        value: 'Critical Disabled With Icon and Tag',
-        icon: <Trash />,
-        tag: {
-          variant: 'highlight',
-          type: 'important',
-          children: 'Label',
-        },
-        disabled: true,
-      },
-      {
-        type: 'critical',
-        label: 'Critical Blocked',
-        value: 'Critical Blocked',
-        blocked: true,
-      },
-    ],
+    items: createVariantItems('critical'),
   },
 };

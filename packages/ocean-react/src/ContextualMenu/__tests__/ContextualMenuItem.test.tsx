@@ -41,7 +41,12 @@ describe('ContextualMenuItem', () => {
     const parentClick = jest.fn();
 
     render(
-      <div onClick={parentClick}>
+      <div
+        onClick={parentClick}
+        onKeyDown={parentClick}
+        role="button"
+        tabIndex={0}
+      >
         <ContextualMenuItem
           label="Test Item"
           value="test"
@@ -51,8 +56,9 @@ describe('ContextualMenuItem', () => {
       </div>
     );
 
-    const button = screen.getByRole('button');
-    fireEvent.click(button);
+    const button = screen.getByText('Test Item').closest('button');
+    expect(button).not.toBeNull();
+    fireEvent.click(button as HTMLButtonElement);
 
     expect(onClick).toHaveBeenCalledTimes(1);
     // O evento não deve propagar para o pai
