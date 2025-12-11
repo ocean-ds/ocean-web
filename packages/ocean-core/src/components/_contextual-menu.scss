@@ -48,7 +48,10 @@
   }
 
   &--before-close {
-    display: none;
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+
     @include media-breakpoint-down(md) {
       max-height: 0;
       transition: max-height 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -64,6 +67,7 @@
   background-color: $color-interface-light-pure;
   display: none;
   justify-content: flex-end;
+  list-style: none;
   padding: $spacing-inline-xxs $spacing-inline-xxxs 0 0;
   position: sticky;
   top: 0;

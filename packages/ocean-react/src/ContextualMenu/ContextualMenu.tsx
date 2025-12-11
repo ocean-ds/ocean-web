@@ -65,11 +65,11 @@ export const ContextualMenu = ({
           'ods-contextual-menu--before-close': !open,
         })}
       >
-        <div className="ods-contextual-menu__header">
+        <li className="ods-contextual-menu__header">
           <IconButton size="sm" onClick={handleClose}>
             <X />
           </IconButton>
-        </div>
+        </li>
         {items.map((item, index) => (
           <li
             key={item.id || item.value || index}
