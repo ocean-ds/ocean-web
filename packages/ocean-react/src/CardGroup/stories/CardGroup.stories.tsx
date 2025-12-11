@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import CardGroup from '../CardGroup';
 import Typography from '../../Typography';
-import KeepUsing from '../assets/keep-using';
-import FirstUses from '../assets/first-uses';
-import Pending from '../assets/pending';
-import Rede from '../assets/rede';
-import Empty from '../assets/empty';
-import InUse from '../assets/in-use';
+import keepUsingSvg from '../assets/keep-using.svg';
+import pendingSvg from '../assets/pending.svg';
+import redeSvg from '../assets/rede.svg';
+import emptySvg from '../assets/empty.svg';
+import inUseSvg from '../assets/in-use.svg';
+import firstUsesSvg from '../assets/first-uses.svg';
 
 const meta: Meta<typeof CardGroup> = {
   title: 'Components/CardGroup',
@@ -164,7 +164,7 @@ export const WithAlert: Story = {
             gap: '8px',
           }}
         >
-          <Rede />
+          <img src={redeSvg as unknown as string} alt="Rede" />
           <Typography variant="caption">
             Use o saldo disponível na Rede e pague hoje
           </Typography>
@@ -200,7 +200,7 @@ export const WithTag: Story = {
               gap: '12px',
             }}
           >
-            <KeepUsing />
+            <img src={keepUsingSvg as unknown as string} alt="Keep using" />
             <div>
               <Typography variant="description">
                 Limite para pagar boletos
@@ -258,7 +258,7 @@ export const WithBackgroundAndTag: Story = {
               backgroundColor: '#F3F5FE',
             }}
           >
-            <FirstUses />
+            <img src={firstUsesSvg as unknown as string} alt="First uses" />
             <div>
               <Typography variant="description">
                 Limite para pagar boletos
@@ -309,7 +309,7 @@ export const WithoutTag: Story = {
               gap: '12px',
             }}
           >
-            <Pending />
+            <img src={pendingSvg as unknown as string} alt="Pending" />
             <div>
               <Typography variant="description">
                 Seu parcelamento está atrasado
@@ -361,7 +361,12 @@ export const WithBackgroundWithoutAlert: Story = {
               backgroundColor: '#F3F5FE',
             }}
           >
-            <Empty />
+            <img
+              src={emptySvg as unknown as string}
+              alt="Empty"
+              width={47}
+              height={47}
+            />
             <div>
               <Typography variant="description">
                 Limite para pagar boletos
@@ -400,7 +405,7 @@ export const WithoutBackground: Story = {
               gap: '12px',
             }}
           >
-            <InUse />
+            <img src={inUseSvg as unknown as string} alt="In use" />
             <div>
               <Typography variant="description">
                 Limite para pagar boletos
