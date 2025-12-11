@@ -40,6 +40,7 @@ Componentes para navegação:
 - [Button](/components/button) - Botões de ação
 - [Link](/components/link) - Links e navegação
 - [Breadcrumb](/components/breadcrumb) - Navegação hierárquica
+- [ContextualMenu](/components/contextualmenu) - Menu contextual overlay
 - [Pagination](/components/pagination) - Paginação de conteúdo
 - [Steps](/components/steps) - Passos de processo
 - [TopBar](/components/top-bar) - Barra superior
