@@ -1,14 +1,11 @@
 import React, { ReactElement } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useMedia } from 'react-use';
 import { PhotographOutline, CheckCircleOutline, PlaceholderOutline } from '@useblu/ocean-icons-react';
 import ContextualHero, {
   ContextualHeroProps,
   ContextualHeroListItemString,
 } from '../ContextualHero';
 import ListAction from '../../ListAction';
-import ilustra from './ilustraCreditLg.png';
-import ilustraMobile from './Main.png';
 
 const ImagePlaceholder = (): ReactElement => (
   <div
@@ -316,25 +313,4 @@ export const AllVariants: Story = {
       </div>
     </div>
   ),
-};
-
-const RealUsageComponent = (): ReactElement => {
-  const isMobile = useMedia('(max-width: 768px)');
-
-  return (
-    <ContextualHero
-      title="R$ 9.000,00 para pagar boletos na Blu"
-      description="Aproveite: use crédito já aprovado!"
-      image={isMobile ? ilustraMobile : ilustra}
-      listItems={[
-        { description: 'Parcele em até 12 vezes', icon: <CheckCircleOutline size={20} color="#5872F5" /> },
-        { description: 'Primeira parcela em 30 dias', icon: <CheckCircleOutline size={20} color="#5872F5" /> },
-        { description: 'Boleto pago na hora', icon: <CheckCircleOutline size={20} color="#5872F5" /> },
-      ]}
-    />
-  );
-};
-
-export const RealUsage: Story = {
-  render: (): ReactElement => <RealUsageComponent />,
 };

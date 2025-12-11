@@ -27,8 +27,12 @@
     gap: $spacing-stack-xxs-extra;
     grid-column: 1;
     grid-row: 1;
-    padding: $spacing-stack-sm $spacing-inline-sm $spacing-stack-xxs-extra
-      $spacing-inline-sm;
+    padding: $spacing-stack-xs;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacing-stack-sm $spacing-inline-sm $spacing-stack-xxs-extra
+        $spacing-inline-sm;
+    }
   }
 
   &__header {
@@ -93,7 +97,10 @@
     flex-direction: column;
     grid-column: 1 / -1;
     grid-row: 2;
-    padding: $spacing-stack-xxs;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacing-stack-xxs;
+    }
 
     > div > button,
     > div > div {
