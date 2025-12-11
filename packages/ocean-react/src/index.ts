@@ -129,11 +129,14 @@ export * from './SettingsListItem';
 export { default as ListAction } from './ListAction';
 export * from './ListAction';
 
-export { default as ListSettings } from './ListSettings';
-export * from './ListSettings';
+export { default as ListReadOnly } from './ListReadOnly';
+export * from './ListReadOnly';
 
-export { default as CardListExpandable } from './ListExpandable';
+export { default as ListExpandable } from './ListExpandable';
 export * from './ListExpandable';
 
 export { default as ContextualHero } from './ContextualHero';
 export * from './ContextualHero';
+
+export { default as ListSettings } from './ListSettings';
+export * from './ListSettings';
