@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import CardGroup from '../CardGroup';
+import Typography from '../../Typography';
+import keepUsingSvg from '../assets/keep-using.svg';
+import pendingSvg from '../assets/pending.svg';
+import redeSvg from '../assets/rede.svg';
+import emptySvg from '../assets/empty.svg';
+import inUseSvg from '../assets/in-use.svg';
+import firstUsesSvg from '../assets/first-uses.svg';
 
 const meta: Meta<typeof CardGroup> = {
   title: 'Components/CardGroup',
@@ -57,7 +64,6 @@ export const Usage: Story = {
     subtitle: 'Subtítulo descritivo',
     count: 5,
     actionLabel: 'Ação',
-    children: 'Conteúdo opcional do card',
     variant: 'minimal',
   },
   decorators: [
@@ -75,111 +81,6 @@ export const Usage: Story = {
       </div>
     ),
   ],
-};
-
-export const Variants: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-      <div style={{ minWidth: '328px' }}>
-        <h4 style={{ margin: '0 0 16px 0', fontSize: '14px' }}>Minimal</h4>
-        <CardGroup
-          title="Card Minimal"
-          subtitle="Com conteúdo e ação"
-          count={3}
-          actionLabel="Ver mais"
-          variant="minimal"
-        >
-          <div style={{ padding: '16px' }}>
-            <p>Conteúdo do card na variante minimal.</p>
-          </div>
-        </CardGroup>
-      </div>
-
-      <div style={{ minWidth: '328px' }}>
-        <h4 style={{ margin: '0 0 16px 0', fontSize: '14px' }}>Header</h4>
-        <CardGroup
-          title="Card Header"
-          subtitle="Apenas cabeçalho"
-          count={7}
-          variant="header"
-        />
-      </div>
-    </div>
-  ),
-};
-
-export const WithChildren: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div style={{ minWidth: '328px', maxWidth: '400px' }}>
-      <CardGroup
-        title="Card com Conteúdo"
-        subtitle="Exemplo com children"
-        count={12}
-        actionLabel="Ação"
-      >
-        <div style={{ padding: '16px' }}>
-          <p style={{ margin: '0 0 12px 0' }}>
-            Este é um exemplo de card com conteúdo personalizado.
-          </p>
-          <ul style={{ margin: '0', paddingLeft: '20px' }}>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-          </ul>
-        </div>
-      </CardGroup>
-    </div>
-  ),
-};
-
-export const WithTag: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div style={{ minWidth: '328px', maxWidth: '400px' }}>
-      <CardGroup
-        title="Card com Conteúdo"
-        subtitle="Exemplo com children"
-        actionLabel="Ação"
-        actionCount={12}
-        tag={{
-          children: 'Boletos disponiveis',
-          variant: 'highlight',
-          type: 'neutral',
-        }}
-      >
-        This is a card with a tag
-      </CardGroup>
-    </div>
-  ),
-};
-
-export const WithoutCount: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div style={{ minWidth: '328px', maxWidth: '400px' }}>
-      <CardGroup
-        title="Card sem Contador"
-        subtitle="Apenas título e subtítulo"
-        actionLabel="Ação"
-      >
-        <div style={{ padding: '16px' }}>
-          <p style={{ margin: '0' }}>
-            Card sem contador, mostrando apenas título e subtítulo.
-          </p>
-        </div>
-      </CardGroup>
-    </div>
-  ),
 };
 
 export const HeaderOnly: Story = {
@@ -208,33 +109,317 @@ export const HeaderOnly: Story = {
   ),
 };
 
-export const ActionExamples: Story = {
+export const Default: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-      <div style={{ minWidth: '328px' }}>
-        <CardGroup
-          title="Com Ação"
-          subtitle="Card com botão"
-          count={8}
-          actionLabel="Ver detalhes"
-          actionClick={() => alert('Ação clicada!')}
-        >
-          <div style={{ padding: '16px' }}>
-            <p style={{ margin: '0' }}>Card com ação funcional.</p>
-          </div>
-        </CardGroup>
-      </div>
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="PagBlu"
+        subtitle="Garanta até 16% de economia ao antecipar com taxa zero."
+        actionLabel="Conheça o PagBlu"
+        actionClick={() => alert('Ação clicada!')}
+      />
+    </div>
+  ),
+};
 
-      <div style={{ minWidth: '328px' }}>
-        <CardGroup title="Sem Ação" subtitle="Card simples" count={5}>
-          <div style={{ padding: '16px' }}>
-            <p style={{ margin: '0' }}>Card sem botão de ação.</p>
+export const WithActionCount: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="PagBlu"
+        subtitle="Garanta até 16% de economia ao antecipar com taxa zero."
+        actionLabel="Pagar fornecedores"
+        actionCount={9}
+        actionClick={() => alert('Ação clicada!')}
+      />
+    </div>
+  ),
+};
+
+export const WithAlert: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="PagBlu"
+        subtitle="Garanta até 16% de economia ao antecipar com taxa zero."
+        actionLabel="Pagar fornecedores"
+        actionCount={9}
+        actionClick={() => alert('Ação clicada!')}
+      >
+        <div
+          style={{
+            padding: '12px 16px',
+            backgroundColor: '#F2FDF5',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
+          <img src={redeSvg as unknown as string} alt="Rede" />
+          <Typography variant="caption">
+            Use o saldo disponível na Rede e pague hoje
+          </Typography>
+        </div>
+      </CardGroup>
+    </div>
+  ),
+};
+
+export const WithTag: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="Crédito"
+        actionLabel="Ir para boletos"
+        actionCount={9}
+        actionClick={() => alert('Ação clicada!')}
+        tag={{
+          children: 'Boletos disponiveis',
+          variant: 'highlight',
+          type: 'neutral',
+        }}
+      >
+        <div>
+          <div
+            style={{
+              padding: '8px 16px 8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }}
+          >
+            <img src={keepUsingSvg as unknown as string} alt="Keep using" />
+            <div>
+              <Typography variant="description">
+                Limite para pagar boletos
+              </Typography>
+              <Typography
+                style={{ fontWeight: 700, fontSize: '14px' }}
+                variant="captionbold"
+              >
+                R$ 6.008,48
+              </Typography>
+            </div>
           </div>
-        </CardGroup>
-      </div>
+          <div
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#F3F5FE',
+            }}
+          >
+            <Typography variant="caption">
+              Pague seu boleto da Ortobom Colchões hoje usando seu limite de
+              crédito.
+            </Typography>
+          </div>
+        </div>
+      </CardGroup>
+    </div>
+  ),
+};
+
+export const WithBackgroundAndTag: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="Crédito"
+        actionLabel="Ir para boletos"
+        actionCount={9}
+        actionClick={() => alert('Ação clicada!')}
+        tag={{
+          children: 'Boletos disponiveis',
+          variant: 'highlight',
+          type: 'neutral',
+        }}
+        style={{ backgroundColor: '#F3F5FE' }}
+      >
+        <div>
+          <div
+            style={{
+              padding: '8px 16px 8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              backgroundColor: '#F3F5FE',
+            }}
+          >
+            <img src={firstUsesSvg as unknown as string} alt="First uses" />
+            <div>
+              <Typography variant="description">
+                Limite para pagar boletos
+              </Typography>
+              <Typography
+                style={{ fontWeight: 700, fontSize: '14px' }}
+                variant="captionbold"
+              >
+                R$ 6.008,48
+              </Typography>
+            </div>
+          </div>
+          <div
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#F3F5FE',
+            }}
+          >
+            <Typography variant="caption">
+              Pague seu boleto da Ortobom Colchões hoje usando seu limite de
+              crédito.
+            </Typography>
+          </div>
+        </div>
+      </CardGroup>
+    </div>
+  ),
+};
+
+export const WithoutTag: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="Crédito"
+        actionLabel="Ir para parcelas atrasadas"
+        actionCount={9}
+        actionClick={() => alert('Ação clicada!')}
+      >
+        <div>
+          <div
+            style={{
+              padding: '8px 16px 8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }}
+          >
+            <img src={pendingSvg as unknown as string} alt="Pending" />
+            <div>
+              <Typography variant="description">
+                Seu parcelamento está atrasado
+              </Typography>
+              <Typography
+                style={{ fontWeight: 700, fontSize: '14px' }}
+                variant="captionbold"
+              >
+                R$ 4.328,04
+              </Typography>
+            </div>
+          </div>
+          <div
+            style={{
+              padding: '8px 16px',
+              backgroundColor: '#FFF7F0',
+            }}
+          >
+            <Typography variant="caption">
+              Pague seu boleto da Ortobom Colchões hoje usando seu limite de
+              crédito.
+            </Typography>
+          </div>
+        </div>
+      </CardGroup>
+    </div>
+  ),
+};
+
+export const WithBackgroundWithoutAlert: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="Crédito"
+        actionLabel="Como o usar crédito"
+        actionClick={() => alert('Ação clicada!')}
+        style={{ backgroundColor: '#F3F5FE' }}
+      >
+        <div>
+          <div
+            style={{
+              padding: '8px 16px 8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              backgroundColor: '#F3F5FE',
+            }}
+          >
+            <img
+              src={emptySvg as unknown as string}
+              alt="Empty"
+              width={47}
+              height={47}
+            />
+            <div>
+              <Typography variant="description">
+                Limite para pagar boletos
+              </Typography>
+              <Typography
+                style={{ fontWeight: 700, fontSize: '14px' }}
+                variant="captionbold"
+              >
+                R$ ••••••
+              </Typography>
+            </div>
+          </div>
+        </div>
+      </CardGroup>
+    </div>
+  ),
+};
+
+export const WithoutBackground: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="Crédito"
+        actionLabel="Ir para boletos"
+        actionClick={() => alert('Ação clicada!')}
+      >
+        <div>
+          <div
+            style={{
+              padding: '8px 16px 8px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }}
+          >
+            <img src={inUseSvg as unknown as string} alt="In use" />
+            <div>
+              <Typography variant="description">
+                Limite para pagar boletos
+              </Typography>
+              <Typography
+                style={{ fontWeight: 700, fontSize: '14px' }}
+                variant="captionbold"
+              >
+                R$ ••••••
+              </Typography>
+            </div>
+          </div>
+        </div>
+      </CardGroup>
     </div>
   ),
 };
