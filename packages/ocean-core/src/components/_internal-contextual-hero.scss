@@ -1,0 +1,117 @@
+.ods-internal-contextual-hero {
+  background-color: $color-interface-light-up;
+  border-radius: $border-radius-sm;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+  }
+
+  &__body {
+    display: contents;
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-stack-xxs-extra;
+    grid-column: 1;
+    grid-row: 1;
+    padding: $spacing-stack-xs;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacing-stack-sm $spacing-inline-sm $spacing-stack-xxs-extra
+        $spacing-inline-sm;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxxs;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-inline-xs;
+
+    > button {
+      min-width: auto;
+    }
+  }
+
+  &__image {
+    border-radius: 0 $border-radius-sm 0 0;
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+    width: 82px;
+
+    @include media-breakpoint-up(md) {
+      width: 220px;
+    }
+
+    > img {
+      aspect-ratio: 1/1;
+      border-radius: 0 $border-radius-sm 0 0;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    > *:not(img) {
+      border-radius: 0 $border-radius-sm 0 0;
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &__image > img,
+  &__image > *:not(img) {
+    @include media-breakpoint-up(md) {
+      border-bottom-right-radius: $border-radius-sm;
+      border-top-right-radius: $border-radius-sm;
+    }
+  }
+
+  &__image > img {
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1 / -1;
+    grid-row: 2;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacing-stack-xxs;
+    }
+
+    > div > button,
+    > div > div {
+      background-color: transparent;
+    }
+
+    &-item {
+      display: flex;
+      gap: $spacing-inline-xxs;
+      padding: $spacing-stack-xxxs $spacing-inline-xs;
+    }
+  }
+}
+

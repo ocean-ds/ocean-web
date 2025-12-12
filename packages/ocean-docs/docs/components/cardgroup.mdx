@@ -1,5 +1,7 @@
 ---
 title: CardGroup
+sidebar_label: CardGroup
+sidebar_position: 6
 ---
 
 import { CardGroup } from '@useblu/ocean-react';
@@ -135,6 +137,52 @@ No Storybook você encontrará:
   </div>
 </CardGroup>
 ```
+
+## Cartões com fundo e estados
+
+### Card com fundo azul e tag
+
+Quando o card precisa chamar atenção com uma cor de fundo suave e uma tag, use esta variante. Ela combina a `tag` com o fundo azul e o ícone de destaque para reforçar o status.
+
+<StorybookEmbed
+  storyId="components-cardgroup--with-background-and-tag"
+  height={400}
+  showToolbar={false}
+  title="CardGroup - Fundo e Tag"
+/>
+
+### Card sem tag
+
+Use quando o conteúdo deve ser acompanhado apenas por um alerta e ação, sem destacar o status via tag.
+
+<StorybookEmbed
+  storyId="components-cardgroup--without-tag"
+  height={370}
+  showToolbar={false}
+  title="CardGroup - Sem Tag"
+/>
+
+### Card com fundo, sem alerta adicional
+
+Para mostrar contexto com fundo azul claro, mas sem o bloco de alerta inferior, essa versão mantém o visual limpo.
+
+<StorybookEmbed
+  storyId="components-cardgroup--with-background-without-alert"
+  height={350}
+  showToolbar={false}
+  title="CardGroup - Fundo sem alerta"
+/>
+
+### Card sem background extra
+
+Use este estado quando o conteúdo precisa do visual padrão, sem cor de fundo nem alertas visuais.
+
+<StorybookEmbed
+  storyId="components-cardgroup--without-background"
+  height={350}
+  showToolbar={false}
+  title="CardGroup - Sem Background"
+/>
 
 ## Variantes
 
