@@ -34,6 +34,9 @@ export * from './CardGroup';
 export { default as Carousel } from './Carousel';
 export * from './Carousel';
 
+export { default as ContextualMenu } from './ContextualMenu';
+export * from './ContextualMenu';
+
 export { default as Input } from './Input';
 export * from './Input';
 

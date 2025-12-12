@@ -37,6 +37,10 @@
     .container-line > .ods-tag {
       height: fit-content;
     }
+
+    &--without-subtitle {
+      padding-bottom: 0;
+    }
   }
 
   &__action {

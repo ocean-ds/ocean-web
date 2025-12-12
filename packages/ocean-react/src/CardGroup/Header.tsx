@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Badge from '../Badge';
 import Tag, { TagProps } from '../Tag/Tag';
 
@@ -9,7 +10,11 @@ interface IHeaderProps {
   tag?: TagProps;
 }
 const Header = ({ title, subtitle, count, tag }: IHeaderProps): JSX.Element => (
-  <div className="ods-card-group__header">
+  <div
+    className={classNames('ods-card-group__header', {
+      'ods-card-group__header--without-subtitle': !subtitle,
+    })}
+  >
     <div className="ods-card-group__header--content">
       <div className="container-line">
         <p className="ods-typography ods-typography__heading4">{title}</p>

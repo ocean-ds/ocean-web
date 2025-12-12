@@ -39,6 +39,7 @@ const sidebars: SidebarsConfig = {
         'components/chips',
         'components/internalcontextualhero',
         'components/crosssellcard',
+        'components/contextualmenu',
         'components/daterange',
         'components/datepicker',
         'components/divider',
