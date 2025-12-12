@@ -37,6 +37,7 @@ const sidebars: SidebarsConfig = {
         'components/carousel',
         'components/checkbox',
         'components/chips',
+        'components/internalcontextualhero',
         'components/crosssellcard',
         'components/contextualmenu',
         'components/daterange',
