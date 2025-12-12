@@ -4,7 +4,7 @@ import Header from './Header';
 import ActionButton from './ActionButton';
 import { TagProps } from '../Tag/Tag';
 
-export interface ICardGroupProps {
+export interface ICardGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   subtitle?: string;
   variant?: 'minimal' | 'header';
@@ -42,12 +42,7 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
         <Header title={title} subtitle={subtitle} count={count} tag={tag} />
       )}
 
-      {children && variant !== 'header' && (
-        <>
-          {(title || subtitle) && <hr className="ods-divider" />}
-          <div>{children}</div>
-        </>
-      )}
+      {children && variant !== 'header' && <div>{children}</div>}
 
       {actionLabel && variant !== 'header' && (
         <ActionButton
