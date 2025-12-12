@@ -1,0 +1,447 @@
+---
+title: ContextualMenu
+sidebar_label: ContextualMenu
+sidebar_position: 13
+---
+
+import { ContextualMenu } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# ContextualMenu
+
+O componente ContextualMenu é um menu overlay que aparece em resposta a uma ação do usuário, fornecendo uma lista de opções contextuais. Ideal para ações secundárias, filtros ou menus de navegação em dispositivos móveis.
+
+## Importação
+
+```tsx
+import { ContextualMenu } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { ContextualMenu } from '@useblu/ocean-react/ContextualMenu';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type {
+  ContextualMenuProps,
+  ContextualMenuItemProps,
+} from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyMenu: React.FC<ContextualMenuProps> = (props) => {
+  return <ContextualMenu {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente ContextualMenu no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-contextualmenu--usage"
+  height={500}
+  title="ContextualMenu - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do ContextualMenu](https://ocean-ds.github.io/ocean-web/?path=/docs/components-contextualmenu--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+function ContextualMenuExample() {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState('');
+
+  return (
+    <div style={{ position: 'relative', minHeight: '400px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu</button>
+      <ContextualMenu
+        items={[
+          { type: 'primary', label: 'Opção 1', value: 'option1' },
+          { type: 'neutral', label: 'Opção 2', value: 'option2' },
+          { type: 'critical', label: 'Excluir', value: 'delete' },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+        onSelect={(value) => {
+          setSelectedValue(value);
+          alert(`Selecionado: ${value}`);
+        }}
+        selectedValue={selectedValue}
+      />
+    </div>
+  );
+}
+```
+
+## Tipos de itens
+
+O ContextualMenu oferece três tipos diferentes de itens para diferentes contextos:
+
+### Primary
+
+Usado para ações principais e opções recomendadas.
+
+```tsx live
+function PrimaryExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu Primary</button>
+      <ContextualMenu
+        items={[
+          { type: 'primary', label: 'Criar novo', value: 'create' },
+          { type: 'primary', label: 'Editar', value: 'edit' },
+          { type: 'primary', label: 'Duplicar', value: 'duplicate' },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+### Neutral
+
+Usado para ações padrão e opções informativas.
+
+```tsx live
+function NeutralExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu Neutral</button>
+      <ContextualMenu
+        items={[
+          { type: 'neutral', label: 'Visualizar', value: 'view' },
+          { type: 'neutral', label: 'Compartilhar', value: 'share' },
+          { type: 'neutral', label: 'Copiar link', value: 'copy' },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+### Critical
+
+Usado para ações destrutivas e de remoção.
+
+```tsx live
+function CriticalExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu Critical</button>
+      <ContextualMenu
+        items={[
+          { type: 'neutral', label: 'Editar', value: 'edit' },
+          { type: 'critical', label: 'Arquivar', value: 'archive' },
+          { type: 'critical', label: 'Excluir', value: 'delete' },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+### Guia de uso dos tipos
+
+- **primary**: Para ações principais, recomendadas ou de criação
+- **neutral**: Para ações padrão, informativas ou de navegação
+- **critical**: Para ações destrutivas, arquivamento ou exclusão
+
+## Estados
+
+### Disabled
+
+Desabilita a interação com um item específico do menu.
+
+```tsx live
+function DisabledExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu</button>
+      <ContextualMenu
+        items={[
+          { type: 'primary', label: 'Opção ativa', value: 'active' },
+          {
+            type: 'neutral',
+            label: 'Opção desabilitada',
+            value: 'disabled',
+            disabled: true,
+          },
+          { type: 'neutral', label: 'Outra opção ativa', value: 'active2' },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+### Blocked
+
+Indica que um item requer uma ação ou permissão adicional.
+
+```tsx live
+function BlockedExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu</button>
+      <ContextualMenu
+        items={[
+          { type: 'primary', label: 'Recurso disponível', value: 'available' },
+          {
+            type: 'primary',
+            label: 'Recurso premium',
+            value: 'premium',
+            blocked: true,
+          },
+          {
+            type: 'neutral',
+            label: 'Recurso bloqueado',
+            value: 'blocked',
+            blocked: true,
+          },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+### Selected
+
+Indica o item atualmente selecionado no menu.
+
+```tsx live
+function SelectedExample() {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState('option2');
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu</button>
+      <ContextualMenu
+        items={[
+          { type: 'neutral', label: 'Opção 1', value: 'option1' },
+          { type: 'neutral', label: 'Opção 2', value: 'option2' },
+          { type: 'neutral', label: 'Opção 3', value: 'option3' },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+        onSelect={setSelectedValue}
+        selectedValue={selectedValue}
+      />
+    </div>
+  );
+}
+```
+
+## Recursos adicionais
+
+### Com ícones
+
+Adicione ícones para melhorar a identificação visual das opções.
+
+```tsx live
+function IconExample() {
+  const [open, setOpen] = React.useState(false);
+  const Trash = () => (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M2 4h12v10a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm3-3h6v2H5V1z" />
+    </svg>
+  );
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu com Ícones</button>
+      <ContextualMenu
+        items={[
+          { type: 'neutral', label: 'Editar', value: 'edit' },
+          {
+            type: 'critical',
+            label: 'Excluir',
+            value: 'delete',
+            icon: <Trash />,
+          },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+### Com tags
+
+Use tags para adicionar informações complementares aos itens.
+
+```tsx live
+function TagExample() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div style={{ position: 'relative', minHeight: '300px' }}>
+      <button onClick={() => setOpen(true)}>Abrir Menu com Tags</button>
+      <ContextualMenu
+        items={[
+          {
+            type: 'primary',
+            label: 'Recurso novo',
+            value: 'new',
+            tag: { variant: 'highlight', type: 'important', children: 'Novo' },
+          },
+          {
+            type: 'neutral',
+            label: 'Recurso beta',
+            value: 'beta',
+            tag: { variant: 'highlight', type: 'neutral', children: 'Beta' },
+          },
+        ]}
+        open={open}
+        onOpenChange={setOpen}
+      />
+    </div>
+  );
+}
+```
+
+## API
+
+### ContextualMenuProps
+
+| Prop            | Tipo                        | Padrão | Obrigatório | Descrição                                            |
+| --------------- | --------------------------- | ------ | ----------- | ---------------------------------------------------- |
+| `items`         | `ContextualMenuItemProps[]` | -      | ✅          | Array de itens do menu                               |
+| `open`          | `boolean`                   | -      | ✅          | Define se o menu está aberto ou fechado (controlado) |
+| `onOpenChange`  | `(open: boolean) => void`   | -      | ✅          | Callback chamado quando o estado open muda           |
+| `onSelect`      | `(value: string) => void`   | -      | -           | Callback chamado ao selecionar um item (opcional)    |
+| `selectedValue` | `string`                    | -      | -           | Valor do item atualmente selecionado (opcional)      |
+| `className`     | `string`                    | -      | -           | Classes CSS adicionais (opcional)                    |
+
+### ContextualMenuItemProps
+
+| Prop       | Tipo                                   | Padrão  | Descrição                         |
+| ---------- | -------------------------------------- | ------- | --------------------------------- |
+| `label`    | `string`                               | -       | Texto do item do menu             |
+| `value`    | `string`                               | -       | Valor único identificador do item |
+| `type`     | `'primary' \| 'neutral' \| 'critical'` | -       | Tipo visual do item               |
+| `icon`     | `ReactNode`                            | -       | Ícone exibido à esquerda do texto |
+| `disabled` | `boolean`                              | `false` | Desabilita o item                 |
+| `blocked`  | `boolean`                              | `false` | Indica que o item está bloqueado  |
+| `tag`      | `TagProps`                             | -       | Tag exibida à direita do texto    |
+| `id`       | `string`                               | -       | ID HTML do elemento               |
+
+### Eventos
+
+- `onOpenChange`: Disparado quando o estado de abertura do menu muda (ao abrir/fechar)
+- `onSelect`: Disparado quando um item do menu é selecionado
+
+## Acessibilidade
+
+- ✅ Navegação por teclado completa
+- ✅ Estados de foco visíveis
+- ✅ Atributos ARIA apropriados
+- ✅ Suporte a screen readers
+- ✅ Estados disabled adequadamente sinalizados
+- ✅ Fechamento com tecla ESC
+- ✅ Fechamento ao clicar fora do menu (overlay)
+
+### Navegação por teclado
+
+| Tecla   | Função                          |
+| ------- | ------------------------------- |
+| `Tab`   | Move o foco entre itens do menu |
+| `Enter` | Seleciona o item focado         |
+| `Space` | Seleciona o item focado         |
+| `Esc`   | Fecha o menu                    |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use tipos de item apropriados para o contexto (`critical` para ações destrutivas)
+- Agrupe itens relacionados visualmente (use tipos similares consecutivamente)
+- Forneça feedback visual ao selecionar um item (use `selectedValue`)
+- Use ícones para melhorar a identificação rápida de ações
+- Limite o número de itens para evitar scroll excessivo
+- Use estado `blocked` para indicar recursos premium ou restritos
+
+### ❌ Não faça
+
+- Não use textos muito longos nos itens (mantenha conciso)
+- Não misture muitos tipos diferentes consecutivamente
+- Não use múltiplas ações críticas sem agrupamento claro
+- Não omita feedback ao selecionar itens
+- Não deixe o menu aberto após selecionar um item (o menu fecha automaticamente ao selecionar)
+- Não abuse de tags (use apenas quando adicionar valor informativo)
+
+## Variantes no Storybook
+
+Veja todas as variantes do ContextualMenu:
+
+### Variantes Primary
+
+<StorybookEmbed
+  storyId="components-contextualmenu--primary-variants"
+  height={400}
+  showToolbar={false}
+  title="ContextualMenu - Variantes Primary"
+/>
+
+### Variantes Neutral
+
+<StorybookEmbed
+  storyId="components-contextualmenu--neutral-variants"
+  height={400}
+  showToolbar={false}
+  title="ContextualMenu - Variantes Neutral"
+/>
+
+### Variantes Critical
+
+<StorybookEmbed
+  storyId="components-contextualmenu--critical-variants"
+  height={400}
+  showToolbar={false}
+  title="ContextualMenu - Variantes Critical"
+/>
+
+## Links relacionados
+
+- [Button](/components/button) - Para acionar ações e abrir menus
+- [IconButton](/components/iconbutton) - Para botões de menu compactos
+- [Modal](/components/modal) - Para diálogos com conteúdo mais complexo
+- [Drawer](/components/drawer) - Para painéis laterais com mais conteúdo
+- [Storybook - ContextualMenu](https://ocean-ds.github.io/ocean-web/?path=/docs/components-contextualmenu--docs) - Documentação técnica
