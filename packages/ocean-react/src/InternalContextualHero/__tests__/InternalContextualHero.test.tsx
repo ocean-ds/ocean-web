@@ -1,17 +1,17 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
-import ContextualHero, { ContextualHeroAction } from '../ContextualHero';
+import InternalContextualHero, { InternalContextualHeroAction } from '../InternalContextualHero';
 
-type SingleAction = [ContextualHeroAction];
-type TwoActions = [ContextualHeroAction, ContextualHeroAction];
+type SingleAction = [InternalContextualHeroAction];
+type TwoActions = [InternalContextualHeroAction, InternalContextualHeroAction];
 
-const createAction = (label: string, onClick = jest.fn()): ContextualHeroAction => ({
+const createAction = (label: string, onClick = jest.fn()): InternalContextualHeroAction => ({
   label,
   onClick,
 });
 
-describe('ContextualHero', () => {
+describe('InternalContextualHero', () => {
   const defaultProps = {
     title: 'Test Title',
     description: 'Test Description',
@@ -20,15 +20,15 @@ describe('ContextualHero', () => {
 
   describe('Basic Rendering', () => {
     test('renders with required props', () => {
-      render(<ContextualHero {...defaultProps} />);
+      render(<InternalContextualHero {...defaultProps} />);
 
-      expect(screen.getByTestId('contextual-hero')).toBeInTheDocument();
+      expect(screen.getByTestId('internal-contextual-hero')).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
       expect(screen.getByText('Test Description')).toBeInTheDocument();
     });
 
     test('renders list items with description', () => {
-      render(<ContextualHero {...defaultProps} />);
+      render(<InternalContextualHero {...defaultProps} />);
 
       expect(screen.getByText('Item 1')).toBeInTheDocument();
       expect(screen.getByText('Item 2')).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('ContextualHero', () => {
         },
       ];
 
-      render(<ContextualHero {...defaultProps} listItems={listItems} />);
+      render(<InternalContextualHero {...defaultProps} listItems={listItems} />);
 
       expect(screen.getByTestId('icon-1')).toBeInTheDocument();
       expect(screen.getByText('Item with icon')).toBeInTheDocument();
@@ -55,22 +55,22 @@ describe('ContextualHero', () => {
         </div>,
       ];
 
-      render(<ContextualHero {...defaultProps} listItems={listItems} />);
+      render(<InternalContextualHero {...defaultProps} listItems={listItems} />);
 
       expect(screen.getByTestId('custom-item')).toBeInTheDocument();
     });
 
     test('applies custom className', () => {
-      render(<ContextualHero {...defaultProps} className="custom-class" />);
+      render(<InternalContextualHero {...defaultProps} className="custom-class" />);
 
-      const hero = screen.getByTestId('contextual-hero');
-      expect(hero).toHaveClass('custom-class', 'ods-contextual-hero');
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('custom-class', 'ods-internal-contextual-hero');
     });
   });
 
   describe('Image', () => {
     test('renders image when provided as string', () => {
-      render(<ContextualHero {...defaultProps} image="/test-image.png" />);
+      render(<InternalContextualHero {...defaultProps} image="/test-image.png" />);
 
       const img = screen.getByRole('img');
       expect(img).toHaveAttribute('src', '/test-image.png');
@@ -79,7 +79,7 @@ describe('ContextualHero', () => {
 
     test('renders image when provided as ReactNode', () => {
       render(
-        <ContextualHero
+        <InternalContextualHero
           {...defaultProps}
           image={<div data-testid="custom-image">Custom Image</div>}
         />
@@ -89,7 +89,7 @@ describe('ContextualHero', () => {
     });
 
     test('does not render image section when not provided', () => {
-      render(<ContextualHero {...defaultProps} />);
+      render(<InternalContextualHero {...defaultProps} />);
 
       expect(screen.queryByRole('img')).not.toBeInTheDocument();
     });
@@ -99,7 +99,7 @@ describe('ContextualHero', () => {
     test('renders one action button', () => {
       const actions: SingleAction = [createAction('Primary Action')];
 
-      render(<ContextualHero {...defaultProps} actions={actions} />);
+      render(<InternalContextualHero {...defaultProps} actions={actions} />);
 
       expect(screen.getByText('Primary Action')).toBeInTheDocument();
     });
@@ -110,7 +110,7 @@ describe('ContextualHero', () => {
         createAction('Secondary Action'),
       ];
 
-      render(<ContextualHero {...defaultProps} actions={actions} />);
+      render(<InternalContextualHero {...defaultProps} actions={actions} />);
 
       expect(screen.getByText('Primary Action')).toBeInTheDocument();
       expect(screen.getByText('Secondary Action')).toBeInTheDocument();
@@ -124,7 +124,7 @@ describe('ContextualHero', () => {
         createAction('Secondary Action', handleSecondary),
       ];
 
-      render(<ContextualHero {...defaultProps} actions={actions} />);
+      render(<InternalContextualHero {...defaultProps} actions={actions} />);
 
       fireEvent.click(screen.getByText('Primary Action'));
       expect(handlePrimary).toHaveBeenCalledTimes(1);
@@ -134,7 +134,7 @@ describe('ContextualHero', () => {
     });
 
     test('does not render actions section when not provided', () => {
-      render(<ContextualHero {...defaultProps} />);
+      render(<InternalContextualHero {...defaultProps} />);
 
       expect(screen.queryByText('Primary Action')).not.toBeInTheDocument();
     });
@@ -143,22 +143,22 @@ describe('ContextualHero', () => {
   describe('ForwardRef', () => {
     test('forwards ref to div element', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<ContextualHero {...defaultProps} ref={ref} />);
+      render(<InternalContextualHero {...defaultProps} ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
-      expect(ref.current).toHaveClass('ods-contextual-hero');
+      expect(ref.current).toHaveClass('ods-internal-contextual-hero');
     });
   });
 
   describe('Snapshot', () => {
     test('matches snapshot with minimal props', () => {
-      const { container } = render(<ContextualHero {...defaultProps} />);
+      const { container } = render(<InternalContextualHero {...defaultProps} />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot with all props', () => {
       const { container } = render(
-        <ContextualHero
+        <InternalContextualHero
           title="Full Title"
           description="Full Description"
           image="/test.png"
@@ -174,3 +174,4 @@ describe('ContextualHero', () => {
     });
   });
 });
+

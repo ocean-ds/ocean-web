@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PhotographOutline, CheckCircleOutline, PlaceholderOutline } from '@useblu/ocean-icons-react';
-import ContextualHero, {
-  ContextualHeroProps,
-  ContextualHeroListItemString,
-} from '../ContextualHero';
+import InternalContextualHero, {
+  InternalContextualHeroProps,
+  InternalContextualHeroListItemString,
+} from '../InternalContextualHero';
 import ListAction from '../../ListAction';
 
 const ImagePlaceholder = (): ReactElement => (
@@ -23,7 +23,7 @@ const ImagePlaceholder = (): ReactElement => (
   </div>
 );
 
-const listItemsOptions: Record<string, (ReactElement | ContextualHeroListItemString)[]> = {
+const listItemsOptions: Record<string, (ReactElement | InternalContextualHeroListItemString)[]> = {
   'Without list items': [],
   'Text with icons': [
     { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'This is item number one' },
@@ -45,15 +45,15 @@ const listItemsOptions: Record<string, (ReactElement | ContextualHeroListItemStr
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = (): void => { };
 
-const meta: Meta<typeof ContextualHero> = {
-  title: 'Components/ContextualHero',
-  component: ContextualHero,
+const meta: Meta<typeof InternalContextualHero> = {
+  title: 'Components/InternalContextualHero',
+  component: InternalContextualHero,
   tags: ['autodocs'],
 };
 
 export default meta;
 
-type Story = StoryObj<typeof ContextualHero>;
+type Story = StoryObj<typeof InternalContextualHero>;
 
 type UsageArgs = {
   title: string;
@@ -110,7 +110,7 @@ export const Usage = {
     listItems: 'Text with icons',
   },
   render: (args: UsageArgs): ReactElement => {
-    const getActions = (): ContextualHeroProps['actions'] => {
+    const getActions = (): InternalContextualHeroProps['actions'] => {
       if (args.actionsCount === 'None') return undefined;
       if (args.actionsCount === 'One') {
         return [{ label: args.primaryActionLabel, onClick: noop }];
@@ -122,7 +122,7 @@ export const Usage = {
     };
 
     return (
-      <ContextualHero
+      <InternalContextualHero
         title={args.title}
         description={args.description}
         image={args.showImage ? <ImagePlaceholder /> : undefined}
@@ -259,7 +259,7 @@ export const AllVariants: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       <div>
         <h3 style={{ marginBottom: '16px' }}>Complete (with image, actions and list)</h3>
-        <ContextualHero
+        <InternalContextualHero
           title="Complete variant"
           description="All elements visible."
           image={<ImagePlaceholder />}
@@ -276,7 +276,7 @@ export const AllVariants: Story = {
 
       <div>
         <h3 style={{ marginBottom: '16px' }}>Without image</h3>
-        <ContextualHero
+        <InternalContextualHero
           title="No image variant"
           description="Without the image section."
           actions={[{ label: 'Action', onClick: noop }]}
@@ -289,7 +289,7 @@ export const AllVariants: Story = {
 
       <div>
         <h3 style={{ marginBottom: '16px' }}>Without actions</h3>
-        <ContextualHero
+        <InternalContextualHero
           title="No actions variant"
           description="Without action buttons."
           image={<ImagePlaceholder />}
@@ -302,7 +302,7 @@ export const AllVariants: Story = {
 
       <div>
         <h3 style={{ marginBottom: '16px' }}>Minimal</h3>
-        <ContextualHero
+        <InternalContextualHero
           title="Minimal variant"
           description="Only required elements."
           listItems={[
@@ -314,3 +314,4 @@ export const AllVariants: Story = {
     </div>
   ),
 };
+

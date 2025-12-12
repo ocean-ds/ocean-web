@@ -135,8 +135,8 @@ export * from './ListReadOnly';
 export { default as ListExpandable } from './ListExpandable';
 export * from './ListExpandable';
 
-export { default as ContextualHero } from './ContextualHero';
-export * from './ContextualHero';
+export { default as InternalContextualHero } from './InternalContextualHero';
+export * from './InternalContextualHero';
 
 export { default as ListSettings } from './ListSettings';
 export * from './ListSettings';

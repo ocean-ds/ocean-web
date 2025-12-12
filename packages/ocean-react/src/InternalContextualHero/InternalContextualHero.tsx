@@ -3,31 +3,31 @@ import classNames from 'classnames';
 import Typography from '../Typography';
 import Button from '../Button';
 
-export type ContextualHeroListItemString = {
+export type InternalContextualHeroListItemString = {
   icon?: ReactNode;
   description: string;
 };
 
-export type ContextualHeroAction = {
+export type InternalContextualHeroAction = {
   label: string;
   onClick: () => void;
 };
 
 const isListItemString = (
-  item: ReactNode | ContextualHeroListItemString
-): item is ContextualHeroListItemString =>
+  item: ReactNode | InternalContextualHeroListItemString
+): item is InternalContextualHeroListItemString =>
   typeof item === 'object' && item !== null && 'description' in item;
 
-export type ContextualHeroProps = {
+export type InternalContextualHeroProps = {
   title: string;
   description: string;
   image?: string | ReactNode;
-  listItems: (ReactNode | ContextualHeroListItemString)[];
-  actions?: [ContextualHeroAction] | [ContextualHeroAction, ContextualHeroAction];
+  listItems: (ReactNode | InternalContextualHeroListItemString)[];
+  actions?: [InternalContextualHeroAction] | [InternalContextualHeroAction, InternalContextualHeroAction];
   className?: string;
 };
 
-const ContextualHero = React.forwardRef<HTMLDivElement, ContextualHeroProps>(
+const InternalContextualHero = React.forwardRef<HTMLDivElement, InternalContextualHeroProps>(
   ({ title, description, image, listItems, actions, className }, ref) => {
     const renderImage = () => {
       if (typeof image === 'string') {
@@ -38,18 +38,18 @@ const ContextualHero = React.forwardRef<HTMLDivElement, ContextualHeroProps>(
 
     return (
       <div
-        data-testid="contextual-hero"
-        className={classNames('ods-contextual-hero', className)}
+        data-testid="internal-contextual-hero"
+        className={classNames('ods-internal-contextual-hero', className)}
         ref={ref}
       >
-        <div className='ods-contextual-hero__body'>
-          <div className='ods-contextual-hero__content'>
-            <div className='ods-contextual-hero__header'>
+        <div className='ods-internal-contextual-hero__body'>
+          <div className='ods-internal-contextual-hero__content'>
+            <div className='ods-internal-contextual-hero__header'>
               <Typography variant="heading3">{title}</Typography>
               <Typography variant="description">{description}</Typography>
             </div>
             {actions && actions.length > 0 && (
-              <div className='ods-contextual-hero__actions'>
+              <div className='ods-internal-contextual-hero__actions'>
                 <Button variant='primary' size='sm' onClick={actions[0].onClick}>
                   {actions[0].label}
                 </Button>
@@ -61,10 +61,10 @@ const ContextualHero = React.forwardRef<HTMLDivElement, ContextualHeroProps>(
               </div>
             )}
           </div>
-          <div className='ods-contextual-hero__list'>
+          <div className='ods-internal-contextual-hero__list'>
             {listItems?.map((item) =>
               isListItemString(item) ? (
-                <div key={item.description} className='ods-contextual-hero__list-item'>
+                <div key={item.description} className='ods-internal-contextual-hero__list-item'>
                   {item.icon && <div>{item.icon}</div>}
                   <Typography variant="description">{item.description}</Typography>
                 </div>
@@ -75,7 +75,7 @@ const ContextualHero = React.forwardRef<HTMLDivElement, ContextualHeroProps>(
           </div>
         </div>
         {image && (
-          <div className='ods-contextual-hero__image'>
+          <div className='ods-internal-contextual-hero__image'>
             {renderImage()}
           </div>
         )}
@@ -84,6 +84,7 @@ const ContextualHero = React.forwardRef<HTMLDivElement, ContextualHeroProps>(
   }
 );
 
-ContextualHero.displayName = 'ContextualHero';
+InternalContextualHero.displayName = 'InternalContextualHero';
 
-export default ContextualHero;
+export default InternalContextualHero;
+
