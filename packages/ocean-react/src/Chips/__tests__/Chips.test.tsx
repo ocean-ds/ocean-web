@@ -267,6 +267,67 @@ describe('Chips', () => {
     expect(screen.getByRole('tag')).toHaveTextContent('1');
   });
 
+  test('select all toggles all options', async () => {
+    render(
+      <Chips
+        label="Test Label"
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+          { label: 'Option 3', value: '3' },
+        ]}
+        multiChoice
+        selectAllOptions
+        clearLabel="Limpar"
+        filterLabel="Filtrar"
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    const selectAllCheckbox = screen.getByLabelText('Selecionar todos');
+    const option1Checkbox = screen.getByLabelText('Option 1');
+    const option2Checkbox = screen.getByLabelText('Option 2');
+    const option3Checkbox = screen.getByLabelText('Option 3');
+
+    fireEvent.click(selectAllCheckbox);
+
+    expect(option1Checkbox).toBeChecked();
+    expect(option2Checkbox).toBeChecked();
+    expect(option3Checkbox).toBeChecked();
+
+    fireEvent.click(selectAllCheckbox);
+
+    expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
+    expect(option1Checkbox).not.toBeChecked();
+    expect(option2Checkbox).not.toBeChecked();
+    expect(option3Checkbox).not.toBeChecked();
+  });
+
+  test('select all becomes indeterminate when partially selected', async () => {
+    render(
+      <Chips
+        label="Test Label"
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+        ]}
+        multiChoice
+        selectAllOptions
+        clearLabel="Limpar"
+        filterLabel="Filtrar"
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    const selectAllCheckbox = screen.getByLabelText('Selecionar todos');
+
+    await clickInOption('Option 1');
+
+    expect(selectAllCheckbox).toHaveAttribute('data-indeterminate', 'true');
+  });
+
   test('renders option indicators with count', async () => {
     const options = [
       {

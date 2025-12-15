@@ -16,6 +16,7 @@ interface IMultipleChoiceOptions {
   headerOptions?: ReactNode;
   selectionIsOpen: boolean;
   handleContextMenuOpenChange: (open: boolean) => void;
+  selectAllOptions: boolean;
 }
 
 const MultipleChoiceOptions: React.FunctionComponent<
@@ -32,8 +33,36 @@ const MultipleChoiceOptions: React.FunctionComponent<
   headerOptions,
   selectionIsOpen,
   handleContextMenuOpenChange,
+  selectAllOptions,
 }) => {
   const isMobile = useMedia('(max-width: 768px)');
+
+  const selectedArray = Array.isArray(selectedOptions) ? selectedOptions : [];
+
+  const selectedValues = selectedArray.map((option) => option.value);
+  const allOptionsSelected =
+    selectedValues.length === options.length && options.length > 0;
+  const someOptionsSelected =
+    selectedValues.length > 0 && selectedValues.length < options.length;
+
+  const handleSelectAllOptions = () => {
+    if (!Array.isArray(selectedOptions)) {
+      return;
+    }
+
+    if (allOptionsSelected) {
+      selectedArray.forEach(({ label, value }) => {
+        onSelect(label, value);
+      });
+      return;
+    }
+
+    options.forEach((option) => {
+      if (!selectedValues.includes(option.value)) {
+        onSelect(option.label, option.value);
+      }
+    });
+  };
 
   if (!multiChoice) {
     return null;
@@ -62,39 +91,55 @@ const MultipleChoiceOptions: React.FunctionComponent<
         data-testid="ods-chips-multiselect-overlay"
       />
       <div className="ods-chips__options" data-testid="ods-chips-option">
-        <div className={classNames('ods-chips__options--container')}>
-          {headerOptions && headerOptions}
-          {options.map(
-            ({ label, value, indicator, disabled, indeterminate }, index) => {
-              const isSelected = Array.isArray(selectedOptions)
-                ? selectedOptions.some(
-                    (option: ChipValue) => option.value === value
-                  )
-                : selectedOptions.value === value;
+        {selectAllOptions && (
+          <div className="ods-chips__options__select-all">
+            <ListSelectable
+              status="highlight"
+              type="text"
+              title="Selecionar todos"
+              checkbox={{
+                id: 'select-all',
+                checked: allOptionsSelected || someOptionsSelected,
+                indeterminate: someOptionsSelected,
+                onChange: () => handleSelectAllOptions(),
+              }}
+              platform={isMobile ? 'app' : 'web'}
+            />
+          </div>
+        )}
+        {headerOptions && (
+          <div className="ods-chips__options__header">{headerOptions}</div>
+        )}
+        {options.map(
+          ({ label, value, indicator, disabled, indeterminate }, index) => {
+            const isSelected = Array.isArray(selectedOptions)
+              ? selectedOptions.some(
+                  (option: ChipValue) => option.value === value
+                )
+              : selectedOptions.value === value;
 
-              return (
-                <div key={value}>
-                  <ListSelectable
-                    inverted
-                    indicator={indicator}
-                    type="text"
-                    title={label}
-                    showDivider={index !== options.length - 1}
-                    platform={isMobile ? 'app' : 'web'}
-                    checkbox={{
-                      id: `chips-option-${value}`,
-                      checked: isSelected,
-                      onClick: () => onSelect(label, value),
-                      readOnly: true,
-                      disabled,
-                      indeterminate: indeterminate || false,
-                    }}
-                  />
-                </div>
-              );
-            }
-          )}
-        </div>
+            return (
+              <div key={value}>
+                <ListSelectable
+                  inverted
+                  indicator={indicator}
+                  type="text"
+                  title={label}
+                  showDivider={index !== options.length - 1}
+                  platform={isMobile ? 'app' : 'web'}
+                  checkbox={{
+                    id: `chips-option-${value}`,
+                    checked: isSelected,
+                    onClick: () => onSelect(label, value),
+                    readOnly: true,
+                    disabled,
+                    indeterminate: indeterminate || false,
+                  }}
+                />
+              </div>
+            );
+          }
+        )}
 
         <div className="ods-chips__options--footer">
           <button

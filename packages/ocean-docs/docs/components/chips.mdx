@@ -104,23 +104,25 @@ Para permitir múltiplas opções selecionadas:
 />
 ```
 
-### Colunas automáticas
+### Seleção com “Selecionar todos”
 
-O painel multiChoice se adapta ao número de opções: entre 6 e 10 itens ele cria duas colunas, a partir de 11 opções ele passa para três colunas para manter a lista compacta.
+Quando `multiChoice` estiver habilitado, é possível permitir que o usuário marque todas as opções de uma vez trocando o estado do `Checkbox` do cabeçalho. O botão fica `indeterminate` quando há seleção parcial, e limpa/remarca conforme a interação:
 
-<StorybookEmbed
-  storyId="components-chips--multi-choice-two-columns"
-  height={400}
-  showToolbar={false}
-  title="Chips - Seleção múltipla em 2 colunas"
+```tsx live
+<Chips
+  label="Filtros com seleção rápida"
+  options={[
+    { label: 'Frete grátis', value: 'frete-gratis' },
+    { label: 'Promoção', value: 'promocao' },
+    { label: 'Mais vendidos', value: 'mais-vendidos' },
+    { label: 'Entrega rápida', value: 'entrega-rapida' },
+  ]}
+  multiChoice
+  selectAllOptions
+  clearLabel="Limpar"
+  filterLabel="Aplicar filtros"
 />
-
-<StorybookEmbed
-  storyId="components-chips--multi-choice-three-columns"
-  height={400}
-  showToolbar={false}
-  title="Chips - Seleção múltipla em 3 colunas"
-/>
+```
 
 ### Guia de uso dos tipos
 

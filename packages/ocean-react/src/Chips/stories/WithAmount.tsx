@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import Chips, { ChipValue } from '../Chips';
 import Badge from '../../Badge';
 
-export const WithAmount = (): JSX.Element => {
+export const WithAmount = ({
+  headerOptions,
+}: {
+  headerOptions?: React.ReactNode;
+}): JSX.Element => {
   const [amount, setAmount] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -61,7 +65,7 @@ export const WithAmount = (): JSX.Element => {
         display: 'flex',
         gap: '16px',
         flexWrap: 'wrap',
-        height: '340px',
+        height: '380px',
       }}
     >
       <Chips
@@ -77,6 +81,7 @@ export const WithAmount = (): JSX.Element => {
         }))}
         onConfirm={onHandleSelectOption}
         onClean={onClearFilter}
+        headerOptions={headerOptions}
       />
     </div>
   );

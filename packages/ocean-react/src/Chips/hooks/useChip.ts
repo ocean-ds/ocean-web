@@ -83,24 +83,32 @@ const useChip = ({
         return;
       }
 
-      if (Array.isArray(selectedOptions)) {
-        let copyOptions = [...selectedOptions];
+      setSelectedOptions((prev) => {
+        if (!Array.isArray(prev)) {
+          return prev;
+        }
 
-        if (selectedOptions.find((option) => option.value === value)) {
+        let copyOptions = [...prev];
+
+        if (copyOptions.find((option) => option.value === value)) {
           copyOptions = copyOptions.filter((option) => option.value !== value);
         } else {
-          copyOptions.push({ label: labelProp, value });
+          const matchedOption = options.find(
+            (option) => option.value === value
+          );
+          copyOptions.push(matchedOption ?? { label: labelProp, value });
         }
 
         setCounter(copyOptions.length);
-        setSelectedOptions(copyOptions);
 
         if (onChange) {
           onChange(copyOptions);
         }
-      }
+
+        return copyOptions;
+      });
     },
-    [multiChoice, onChange, selectedOptions]
+    [multiChoice, onChange, options]
   );
 
   const clearOptions = useCallback(() => {

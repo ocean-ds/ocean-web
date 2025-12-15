@@ -93,6 +93,14 @@
       z-index: 1000;
     }
 
+    &__select-all {
+      border-bottom: $border-width-hairline solid $color-interface-light-down;
+    }
+
+    &__header {
+      padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xxs;
+    }
+
     &--content {
       align-items: flex-start;
       display: flex;

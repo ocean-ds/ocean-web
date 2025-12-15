@@ -25,6 +25,7 @@ interface IChips {
   onConfirm?: (value: ChipValue[] | ChipValue) => void;
   onClean?: () => void;
   headerOptions?: ReactNode;
+  selectAllOptions?: boolean;
 }
 
 const Chips: React.FunctionComponent<IChips> = ({
@@ -45,6 +46,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   onConfirm,
   onClean,
   headerOptions,
+  selectAllOptions = false,
 }) => {
   const {
     clearOptions,
@@ -130,6 +132,7 @@ const Chips: React.FunctionComponent<IChips> = ({
           headerOptions={headerOptions}
           selectionIsOpen={selectionIsOpen}
           handleContextMenuOpenChange={handleContextMenuOpenChange}
+          selectAllOptions={selectAllOptions}
         />
       );
     }

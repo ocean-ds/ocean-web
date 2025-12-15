@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Adjustments, Filter } from '@useblu/ocean-icons-react';
 import Chips from '../Chips';
-import Badge from '../../Badge';
 import WithAmount from './WithAmount';
 import WithoutOptions from './WithoutOptions';
+import SelectAll from './SelectAll';
+import Typography from '../../Typography';
 
 const meta: Meta<typeof Chips> = {
   title: 'Components/Chips',
@@ -76,6 +77,16 @@ const meta: Meta<typeof Chips> = {
       description: 'Função chamada ao limpar seleção.',
       control: false,
     },
+    selectAllOptions: {
+      description:
+        'Adiciona o checkbox "Selecionar todos" ao topo do dropdown em modo multiChoice',
+      control: 'boolean',
+    },
+    headerOptions: {
+      description:
+        'Conteúdo extra exibido no topo do dropdown de múltipla escolha.',
+      control: false,
+    },
   },
 };
 
@@ -108,7 +119,7 @@ export const Usage: Story = {
           flexWrap: 'wrap',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          height: '210px',
+          height: '400px',
         }}
       >
         <StoryComponent />
@@ -179,50 +190,21 @@ export const WithHeaderOptions: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        height: '350px',
-      }}
-    >
-      <Chips
-        multiChoice
-        options={[
-          {
-            label: 'Preço baixo',
-            value: 'preco-baixo',
-            indicator: <Badge color="alert" count={10} />,
-          },
-          {
-            label: 'Frete grátis',
-            value: 'frete-gratis',
-            indicator: <Badge color="brand" count={100} />,
-          },
-          {
-            label: 'Avaliação 5★',
-            value: 'avaliacao-5',
-            indicator: <Badge color="complementary" count={5} />,
-          },
-          {
-            label: 'Promoção',
-            value: 'promocao',
-            indicator: <Badge color="neutral" count={10} />,
-          },
-          {
-            label: 'Vendido pela loja',
-            value: 'vendido-loja',
-            indicator: <Badge color="alert" count={100} />,
-          },
-        ]}
-        clearLabel="Limpar"
-        filterLabel="Aplicar filtros"
-        label="Filtros"
-        headerOptions={<div>Header</div>}
-      />
-    </div>
+    <WithAmount
+      headerOptions={
+        <Typography variant="heading5" style={{ color: '#AAADC0' }}>
+          Title
+        </Typography>
+      }
+    />
   ),
+};
+
+export const SelectAllStory: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => <SelectAll />,
 };
 
 export const WithIcon: Story = {
