@@ -15,13 +15,9 @@
     padding: $spacing-stack-xxs $spacing-stack-xs;
 
     &:hover,
-    &:focus {
-      background: $color-interface-light-down;
-    }
-
+    &:focus,
     &:active {
-      background: $color-brand-primary-pure;
-      color: $color-interface-light-pure;
+      background: $color-interface-light-down;
     }
 
     &:active .ods-chips__badge > .ods-badge__content {
@@ -82,6 +78,20 @@
     top: 38px;
     width: max-content;
     z-index: 2;
+
+    @include media-breakpoint-down(md) {
+      border-radius: $border-radius-lg $border-radius-lg 0 0;
+      bottom: 0;
+      left: 0;
+      max-height: 73.5%;
+      overflow: hidden;
+      padding: $spacing-inline-xxs 0;
+      position: fixed;
+      right: 0;
+      top: initial;
+      width: 100%;
+      z-index: 1000;
+    }
 
     &--content {
       align-items: flex-start;
@@ -144,11 +154,18 @@
     &--footer {
       border-top: $border-width-hairline solid $color-interface-light-down;
       display: flex;
-      flex-direction: row;
       gap: $spacing-inline-xxs;
       justify-content: space-between;
       padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xs
         $spacing-stack-xxs;
+    }
+  }
+}
+
+.ods-chips__options--footer {
+  @include media-breakpoint-down(md) {
+    button {
+      width: 100%;
     }
   }
 }

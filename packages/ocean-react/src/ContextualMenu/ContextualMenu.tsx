@@ -66,7 +66,7 @@ export const ContextualMenu = ({
         })}
       >
         <li className="ods-contextual-menu__header">
-          <IconButton size="sm" onClick={handleClose}>
+          <IconButton size="sm" onClick={handleClose} aria-label="Fechar menu">
             <X />
           </IconButton>
         </li>

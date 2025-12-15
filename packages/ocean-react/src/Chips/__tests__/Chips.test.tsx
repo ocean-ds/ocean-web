@@ -124,6 +124,8 @@ describe('Chips', () => {
 
     fireEvent.click(screen.getByRole('button'));
 
+    fireEvent.click(screen.getByText('Option 1'));
+
     await waitFor(() => {
       expect(screen.getByText('Limpar')).toBeInTheDocument();
     });
@@ -191,13 +193,11 @@ describe('Chips', () => {
 
     fireEvent.click(screen.getByText('Test Label'));
 
-    expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
+    expect(screen.getByRole('list')).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('Test Label'));
 
-    expect(() => screen.getByTestId('ods-chips-option')).toThrow(
-      'Unable to find an element'
-    );
+    expect(screen.queryByRole('list')).not.toBeInTheDocument();
   });
 
   test('checks multiChoice', async () => {

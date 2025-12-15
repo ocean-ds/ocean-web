@@ -1,17 +1,11 @@
-import React, { useRef, useEffect, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
 import Badge from '../Badge';
-import SingleChoiceOptions from './SingleChoiceOptions';
+import ContextualMenu from '../ContextualMenu';
 import MultipleChoiceOptions from './MultipleChoiceOptions';
-
-export type ChipValue = {
-  label: string;
-  value: string;
-  indicator?: ReactNode;
-  disabled?: boolean;
-  indeterminate?: boolean;
-};
+import useChip from './hooks/useChip';
+import type { ChipValue } from './types';
 
 interface IChips {
   label: string;
@@ -52,83 +46,27 @@ const Chips: React.FunctionComponent<IChips> = ({
   onClean,
   headerOptions,
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [counter, setCounter] = React.useState<number>(0);
-  const [selectionIsOpen, setSelectionIsOpen] = React.useState(false);
-  const [selectedOptions, setSelectedOptions] = React.useState<
-    ChipValue[] | ChipValue
-  >(defaultValue || multiChoice ? [] : { label: '', value: '' });
-
-  function handleClickOutside(event: TouchEvent | MouseEvent) {
-    const target = event.target as Node;
-
-    if (wrapperRef.current && !wrapperRef.current.contains(target)) {
-      setSelectionIsOpen(false);
-
-      if (onClose && selectionIsOpen) onClose();
-    }
-  }
-
-  useEffect(() => {
-    if (selectedValue && selectedValue !== selectedOptions) {
-      setSelectedOptions(selectedValue);
-
-      if (multiChoice && Array.isArray(selectedValue)) {
-        setCounter(selectedValue.length);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedValue]);
-
-  useEffect(() => {
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [wrapperRef, selectionIsOpen]);
-
-  const handleClickChips = () => {
-    if (options && options?.length > 0) {
-      setSelectionIsOpen(!selectionIsOpen);
-    }
-
-    if (onClick) {
-      onClick();
-    }
-  };
-
-  const handleSelectOption = (labelProp: string, value: string) => {
-    if (!multiChoice) {
-      setSelectedOptions({ label: labelProp, value });
-      setSelectionIsOpen(false);
-      if (onClose) onClose();
-
-      if (onChange) {
-        onChange({ label: labelProp, value });
-      }
-
-      return;
-    }
-
-    if (Array.isArray(selectedOptions)) {
-      let copyOptions = [...selectedOptions];
-
-      if (selectedOptions.find((option) => option.value === value)) {
-        copyOptions = copyOptions.filter((option) => option.value !== value);
-      } else {
-        copyOptions.push({ label: labelProp, value });
-      }
-
-      setCounter(copyOptions.length);
-      setSelectedOptions(copyOptions);
-
-      if (onChange) {
-        onChange(copyOptions);
-      }
-    }
-  };
+  const {
+    clearOptions,
+    counter,
+    filterOptions,
+    handleClickChips,
+    handleContextMenuOpenChange,
+    handleSelectOption,
+    selectedOptions,
+    selectionIsOpen,
+    wrapperRef,
+  } = useChip({
+    defaultValue,
+    multiChoice,
+    onChange,
+    onClean,
+    onConfirm,
+    onClose,
+    onClick,
+    options,
+    selectedValue,
+  });
 
   const displayValue = (): string => {
     if (!Array.isArray(selectedOptions)) {
@@ -138,21 +76,77 @@ const Chips: React.FunctionComponent<IChips> = ({
     return label;
   };
 
-  const clearOptions = () => {
-    setSelectedOptions([]);
-    setCounter(0);
-    setSelectionIsOpen(false);
-    if (onChange) onChange([]);
-    if (onClean) onClean();
-    if (onClose) onClose();
+  const contextualMenuItems = React.useMemo(
+    () =>
+      multiChoice
+        ? []
+        : options.map(
+            ({
+              label: optionLabel,
+              value,
+              indicator,
+              disabled: optionDisabled,
+              tag,
+            }) => ({
+              label: optionLabel,
+              value,
+              icon: indicator,
+              disabled: optionDisabled,
+              tag,
+              id: `chips-option-${value}`,
+              type: 'neutral' as const,
+            })
+          ),
+    [multiChoice, options]
+  );
+
+  const handleContextualMenuSelect = (value: string) => {
+    const option = options.find((item) => item.value === value);
+
+    if (option) {
+      handleSelectOption(option.label, option.value);
+    }
   };
 
-  const filterOptions = () => {
-    setSelectionIsOpen(false);
+  const contextualMenuSelectedValue =
+    !Array.isArray(selectedOptions) && selectedOptions?.value
+      ? selectedOptions.value
+      : undefined;
 
-    if (onConfirm) onConfirm(selectedOptions);
-    if (onClose) onClose();
+  const shouldRenderOptions = selectionIsOpen && options && options?.length > 0;
+
+  const renderOptions = () => {
+    if (multiChoice) {
+      return (
+        <MultipleChoiceOptions
+          options={options}
+          onSelect={handleSelectOption}
+          selectedOptions={selectedOptions}
+          clearLabel={clearLabel}
+          filterLabel={filterLabel}
+          multiChoice={multiChoice}
+          clearOptions={clearOptions}
+          filterOptions={filterOptions}
+          headerOptions={headerOptions}
+          selectionIsOpen={selectionIsOpen}
+          handleContextMenuOpenChange={handleContextMenuOpenChange}
+        />
+      );
+    }
+
+    return (
+      <ContextualMenu
+        items={contextualMenuItems}
+        open={selectionIsOpen}
+        onOpenChange={handleContextMenuOpenChange}
+        onSelect={handleContextualMenuSelect}
+        selectedValue={contextualMenuSelectedValue}
+        className="ods-chips__contextual-menu"
+      />
+    );
   };
+
+  const badgeCount = initialCounter ?? counter;
 
   return (
     <div className="ods-chips" ref={wrapperRef}>
@@ -163,48 +157,31 @@ const Chips: React.FunctionComponent<IChips> = ({
         className={classNames('ods-chips__button', {
           'ods-chips__button--disabled': disabled,
           'ods-chips__button--active':
-            selectionIsOpen ||
             (Array.isArray(selectedOptions)
               ? selectedOptions.length > 0
-              : selectedOptions?.value) ||
-            actived,
+              : selectedOptions?.value) || actived,
         })}
       >
         {icon || undefined}
         <p className="ods-chips__label">{displayValue()}</p>
-        {(counter > 0 || initialCounter) && (
-          <Badge color="brand" className="ods-chips__badge">
-            {initialCounter ?? counter}
-          </Badge>
+        {badgeCount > 0 && (
+          <Badge
+            color="brand"
+            className="ods-chips__badge"
+            count={initialCounter ?? counter}
+          />
         )}
+
         {options && options?.length > 0 && !selectionIsOpen && <ChevronDown />}
         {options && options?.length > 0 && selectionIsOpen && <ChevronUp />}
       </button>
-      {selectionIsOpen &&
-        options &&
-        (multiChoice ? (
-          <MultipleChoiceOptions
-            options={options}
-            onSelect={handleSelectOption}
-            selectedOptions={selectedOptions}
-            clearLabel={clearLabel}
-            filterLabel={filterLabel}
-            multiChoice={multiChoice}
-            clearOptions={clearOptions}
-            filterOptions={filterOptions}
-            headerOptions={headerOptions}
-          />
-        ) : (
-          <SingleChoiceOptions
-            options={options}
-            onSelect={handleSelectOption}
-            selectedOptions={selectedOptions}
-          />
-        ))}
+      {shouldRenderOptions && renderOptions()}
     </div>
   );
 };
 
 Chips.displayName = 'Chips';
+
+export type { ChipValue } from './types';
 
 export default Chips;
