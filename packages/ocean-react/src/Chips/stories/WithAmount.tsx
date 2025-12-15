@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Chips, { ChipValue } from '../Chips';
 import Badge from '../../Badge';
 
-export const ChipWithAmount = (): JSX.Element => {
+export const WithAmount = (): JSX.Element => {
   const [amount, setAmount] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -56,7 +56,14 @@ export const ChipWithAmount = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        height: '340px',
+      }}
+    >
       <Chips
         label="Filtros"
         options={defaultOptions}
@@ -75,4 +82,4 @@ export const ChipWithAmount = (): JSX.Element => {
   );
 };
 
-export default ChipWithAmount;
+export default WithAmount;

@@ -3,7 +3,8 @@ import React from 'react';
 import { Adjustments, Filter } from '@useblu/ocean-icons-react';
 import Chips from '../Chips';
 import Badge from '../../Badge';
-import ChipWithAmount from './ChipWithAmount';
+import WithAmount from './WithAmount';
+import WithoutOptions from './WithoutOptions';
 
 const meta: Meta<typeof Chips> = {
   title: 'Components/Chips',
@@ -147,7 +148,14 @@ export const MultiChoice: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        height: '340px',
+      }}
+    >
       <Chips
         label="Filtros"
         options={defaultOptions}
@@ -163,18 +171,7 @@ export const MultiChoiceWithAmount: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        height: '280px',
-      }}
-    >
-      <ChipWithAmount />
-    </div>
-  ),
+  render: () => <WithAmount />,
 };
 
 export const WithHeaderOptions: Story = {
@@ -182,7 +179,14 @@ export const WithHeaderOptions: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        height: '350px',
+      }}
+    >
       <Chips
         multiChoice
         options={[
@@ -231,7 +235,7 @@ export const WithIcon: Story = {
         display: 'flex',
         gap: '16px',
         flexWrap: 'wrap',
-        height: '280px',
+        height: '350px',
       }}
     >
       <Chips
@@ -273,96 +277,9 @@ export const States: Story = {
   ),
 };
 
-export const WithoutOptions: Story = {
+export const WithoutOptionsBehaviour: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-      <Chips label="Chip simples" />
-      <Chips label="Com contador" initialCounter={5} />
-    </div>
-  ),
-};
-
-export const MultiChoiceTwoColumns: Story = {
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      description: {
-        story:
-          'Quando há entre 6 e 10 opções a lista se organiza automaticamente em duas colunas para aproveitar melhor o espaço.',
-      },
-    },
-  },
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        height: '400px',
-      }}
-    >
-      <Chips
-        label="Filtros (6-10 opções = 2 colunas)"
-        multiChoice
-        options={[
-          { label: 'Opção 1', value: '1' },
-          { label: 'Opção 2', value: '2' },
-          { label: 'Opção 3', value: '3' },
-          { label: 'Opção 4', value: '4' },
-          { label: 'Opção 5', value: '5' },
-          { label: 'Opção 6', value: '6' },
-          { label: 'Opção 7', value: '7' },
-          { label: 'Opção 8', value: '8' },
-        ]}
-        clearLabel="Limpar"
-        filterLabel="Aplicar"
-      />
-    </div>
-  ),
-};
-
-export const MultiChoiceThreeColumns: Story = {
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      description: {
-        story:
-          'Para 11 a 15 opções o componente distribui o conteúdo em três colunas, mantendo o painel compacto e legível.',
-      },
-    },
-  },
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        height: '450px',
-      }}
-    >
-      <Chips
-        label="Filtros (11-15 opções = 3 colunas)"
-        multiChoice
-        options={[
-          { label: 'Opção 1', value: '1' },
-          { label: 'Opção 2', value: '2' },
-          { label: 'Opção 3', value: '3' },
-          { label: 'Opção 4', value: '4' },
-          { label: 'Opção 5', value: '5' },
-          { label: 'Opção 6', value: '6' },
-          { label: 'Opção 7', value: '7' },
-          { label: 'Opção 8', value: '8' },
-          { label: 'Opção 9', value: '9' },
-          { label: 'Opção 10', value: '10' },
-          { label: 'Opção 11', value: '11' },
-          { label: 'Opção 12', value: '12' },
-        ]}
-        clearLabel="Limpar"
-        filterLabel="Aplicar"
-      />
-    </div>
-  ),
+  render: () => <WithoutOptions />,
 };

@@ -39,7 +39,6 @@ const MultipleChoiceOptions: React.FunctionComponent<
     return null;
   }
 
-  const columns = multiChoice ? Math.ceil(options.length / 5) : 1;
   const isMultiArray = Array.isArray(selectedOptions);
 
   const contextualOverlayClasses = classNames('ods-contextual-menu__overlay', {
@@ -63,12 +62,7 @@ const MultipleChoiceOptions: React.FunctionComponent<
         data-testid="ods-chips-multiselect-overlay"
       />
       <div className="ods-chips__options" data-testid="ods-chips-option">
-        <div
-          className={classNames(
-            'ods-chips__options--container',
-            `ods-chips__options--content--columns-${columns}`
-          )}
-        >
+        <div className={classNames('ods-chips__options--container')}>
           {headerOptions && headerOptions}
           {options.map(
             ({ label, value, indicator, disabled, indeterminate }, index) => {

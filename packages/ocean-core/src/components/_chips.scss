@@ -104,22 +104,6 @@
       width: 220px;
     }
 
-    &--content--columns-2 {
-      display: grid;
-      grid-column-gap: 20px;
-      grid-template-columns: repeat(2, 1fr);
-      min-width: 296px;
-      width: auto;
-    }
-
-    &--content--columns-3 {
-      display: grid;
-      grid-column-gap: 20px;
-      grid-template-columns: repeat(3, 1fr);
-      min-width: 436px;
-      width: auto;
-    }
-
     &::-webkit-scrollbar {
       display: none;
     }
