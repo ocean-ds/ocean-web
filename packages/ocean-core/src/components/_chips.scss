@@ -85,7 +85,7 @@
       left: 0;
       max-height: 73.5%;
       overflow: hidden;
-      padding: $spacing-inline-xxs 0;
+      padding: 0;
       position: fixed;
       right: 0;
       top: initial;
@@ -95,10 +95,6 @@
 
     &__select-all {
       border-bottom: $border-width-hairline solid $color-interface-light-down;
-    }
-
-    &__header {
-      padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xxs;
     }
 
     &--content {
@@ -150,6 +146,37 @@
       justify-content: space-between;
       padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xs
         $spacing-stack-xxs;
+    }
+  }
+
+  &__options__header {
+    padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xxs;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 $spacing-stack-xs $spacing-stack-xxs;
+    }
+  }
+}
+
+.ods-chips__options__responsive-header {
+  display: none;
+
+  @include media-breakpoint-down(md) {
+    display: flex;
+    justify-content: flex-end;
+    padding: $spacing-inline-xxs $spacing-inline-xxs $spacing-inline-xxxs;
+
+    button {
+      color: $color-interface-dark-up;
+      height: 32px;
+      max-height: 32px;
+      max-width: 32px;
+      width: 32px;
+    }
+
+    &:hover button {
+      background: transparent;
+      color: $color-interface-dark-up;
     }
   }
 }

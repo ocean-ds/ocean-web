@@ -4,7 +4,6 @@ import { Adjustments, Filter } from '@useblu/ocean-icons-react';
 import Chips from '../Chips';
 import WithAmount from './WithAmount';
 import WithoutOptions from './WithoutOptions';
-import SelectAll from './SelectAll';
 import Typography from '../../Typography';
 
 const meta: Meta<typeof Chips> = {
@@ -154,6 +153,13 @@ export const SingleChoice: Story = {
   ),
 };
 
+export const MultiChoiceWithAmount: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => <WithAmount />,
+};
+
 export const MultiChoice: Story = {
   parameters: {
     controls: { disable: true },
@@ -178,13 +184,6 @@ export const MultiChoice: Story = {
   ),
 };
 
-export const MultiChoiceWithAmount: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => <WithAmount />,
-};
-
 export const WithHeaderOptions: Story = {
   parameters: {
     controls: { disable: true },
@@ -204,7 +203,7 @@ export const SelectAllStory: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => <SelectAll />,
+  render: () => <WithAmount selectAllOptions />,
 };
 
 export const WithIcon: Story = {
@@ -217,7 +216,6 @@ export const WithIcon: Story = {
         display: 'flex',
         gap: '16px',
         flexWrap: 'wrap',
-        height: '350px',
       }}
     >
       <Chips
@@ -225,14 +223,7 @@ export const WithIcon: Story = {
         icon={<Adjustments />}
         options={defaultOptions}
       />
-      <Chips
-        label="Filtrar resultados"
-        icon={<Filter />}
-        multiChoice
-        options={defaultOptions}
-        clearLabel="Limpar"
-        filterLabel="Filtrar"
-      />
+      <WithAmount icon={<Filter />} />
     </div>
   ),
 };

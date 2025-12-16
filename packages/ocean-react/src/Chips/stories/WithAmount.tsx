@@ -4,8 +4,12 @@ import Badge from '../../Badge';
 
 export const WithAmount = ({
   headerOptions,
+  selectAllOptions = false,
+  icon,
 }: {
   headerOptions?: React.ReactNode;
+  selectAllOptions?: boolean;
+  icon?: React.ReactNode;
 }): JSX.Element => {
   const [amount, setAmount] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
@@ -82,6 +86,8 @@ export const WithAmount = ({
         onConfirm={onHandleSelectOption}
         onClean={onClearFilter}
         headerOptions={headerOptions}
+        selectAllOptions={selectAllOptions}
+        icon={icon}
       />
     </div>
   );

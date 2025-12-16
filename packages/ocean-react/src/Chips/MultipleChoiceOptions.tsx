@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { useMedia } from 'react-use';
+import { X } from '@useblu/ocean-icons-react';
 import ListSelectable from '../ListSelectable';
 import { ChipValue } from './Chips';
+import IconButton from '../IconButton';
 
 interface IMultipleChoiceOptions {
   options: Array<ChipValue>;
@@ -91,6 +93,15 @@ const MultipleChoiceOptions: React.FunctionComponent<
         data-testid="ods-chips-multiselect-overlay"
       />
       <div className="ods-chips__options" data-testid="ods-chips-option">
+        <div className="ods-chips__options__responsive-header">
+          <IconButton
+            size="sm"
+            onClick={() => handleContextMenuOpenChange(false)}
+            aria-label="Fechar menu"
+          >
+            <X />
+          </IconButton>
+        </div>
         {selectAllOptions && (
           <div className="ods-chips__options__select-all">
             <ListSelectable
