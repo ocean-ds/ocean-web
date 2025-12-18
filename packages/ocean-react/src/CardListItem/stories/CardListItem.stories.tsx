@@ -202,6 +202,8 @@ export const TagVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag highlight importante"
         description="Exemplo de destaque crítico"
         tag={{
@@ -211,36 +213,50 @@ export const TagVariants: Story = {
         }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag highlight neutra"
         description="Exemplo com variante highlight neutra"
         tag={{ variant: 'highlight', type: 'neutral', children: 'Neutra' }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag default positiva"
         description="Tag padrão com tipo positivo"
         tag={{ type: 'positive', children: 'Sucesso', setIconOff: true }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag default neutra"
         description="Tag padrão com tipo neutro"
         tag={{ type: 'neutral', children: 'Neutro', setIconOff: true }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag default default"
         description="Tag padrão com tipo default"
         tag={{ type: 'default', children: 'Default', setIconOff: true }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag default negativa"
         description="Tag padrão com tipo negativo"
         tag={{ type: 'negative', children: 'Erro', setIconOff: true }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag default neutral-02"
         description="Tag padrão com tipo neutral-02"
         tag={{ type: 'neutral-02', children: 'Neutral 02', setIconOff: true }}
       />
       <CardListItem
+        leadingIcon={<PlaceholderOutline />}
+        actionIcon={<ChevronRight />}
         title="Tag default neutral-03"
         description="Tag padrão com tipo neutral-03"
         tag={{ type: 'neutral-03', children: 'Neutral 03', setIconOff: true }}
