@@ -115,7 +115,8 @@ const Chips: React.FunctionComponent<IChips> = ({
       ? selectedOptions.value
       : undefined;
 
-  const shouldRenderOptions = selectionIsOpen && options && options?.length > 0;
+  const hasOptions = options && options?.length > 0;
+  const shouldRenderOptions = selectionIsOpen && hasOptions;
 
   const renderOptions = () => {
     if (multiChoice) {
@@ -159,6 +160,7 @@ const Chips: React.FunctionComponent<IChips> = ({
         disabled={disabled}
         className={classNames('ods-chips__button', {
           'ods-chips__button--disabled': disabled,
+          'ods-chips__button--no-options': !hasOptions,
           'ods-chips__button--active':
             (Array.isArray(selectedOptions)
               ? selectedOptions.length > 0
@@ -175,8 +177,8 @@ const Chips: React.FunctionComponent<IChips> = ({
           />
         )}
 
-        {options && options?.length > 0 && !selectionIsOpen && <ChevronDown />}
-        {options && options?.length > 0 && selectionIsOpen && <ChevronUp />}
+        {hasOptions && !selectionIsOpen && <ChevronDown />}
+        {hasOptions && selectionIsOpen && <ChevronUp />}
       </button>
       {shouldRenderOptions && renderOptions()}
     </div>

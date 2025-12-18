@@ -3,16 +3,16 @@
   position: relative;
 
   &__button {
+    align-items: center;
     background: $color-interface-light-up;
     border: 0;
     border-radius: $spacing-inline-sm;
     color: $color-brand-primary-pure;
     display: flex;
-    font-size: $font-size-xxs;
-    font-weight: $font-weight-bold;
     gap: $spacing-inline-xxxs;
     height: 32px;
-    padding: $spacing-stack-xxs $spacing-stack-xs;
+    padding: $spacing-inline-xxxs $spacing-inline-xxs $spacing-inline-xxxs
+      $spacing-inline-xxs-extra;
 
     &:hover,
     &:focus,
@@ -28,6 +28,10 @@
     > svg {
       height: 16px;
       width: 16px;
+    }
+
+    &--no-options {
+      padding: $spacing-inline-xxxs $spacing-inline-xxs-extra;
     }
 
     &--disabled {
@@ -64,6 +68,9 @@
   }
 
   &__label {
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-comfy;
     margin: 0;
   }
 
