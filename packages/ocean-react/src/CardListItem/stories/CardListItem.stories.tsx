@@ -195,6 +195,60 @@ export const WithTags: Story = {
   ),
 };
 
+export const TagVariants: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <CardListItem
+        title="Tag highlight importante"
+        description="Exemplo de destaque crítico"
+        tag={{
+          variant: 'highlight',
+          type: 'important',
+          children: 'Importante',
+        }}
+      />
+      <CardListItem
+        title="Tag highlight neutra"
+        description="Exemplo com variante highlight neutra"
+        tag={{ variant: 'highlight', type: 'neutral', children: 'Neutra' }}
+      />
+      <CardListItem
+        title="Tag default positiva"
+        description="Tag padrão com tipo positivo"
+        tag={{ type: 'positive', children: 'Sucesso', setIconOff: true }}
+      />
+      <CardListItem
+        title="Tag default neutra"
+        description="Tag padrão com tipo neutro"
+        tag={{ type: 'neutral', children: 'Neutro', setIconOff: true }}
+      />
+      <CardListItem
+        title="Tag default default"
+        description="Tag padrão com tipo default"
+        tag={{ type: 'default', children: 'Default', setIconOff: true }}
+      />
+      <CardListItem
+        title="Tag default negativa"
+        description="Tag padrão com tipo negativo"
+        tag={{ type: 'negative', children: 'Erro', setIconOff: true }}
+      />
+      <CardListItem
+        title="Tag default neutral-02"
+        description="Tag padrão com tipo neutral-02"
+        tag={{ type: 'neutral-02', children: 'Neutral 02', setIconOff: true }}
+      />
+      <CardListItem
+        title="Tag default neutral-03"
+        description="Tag padrão com tipo neutral-03"
+        tag={{ type: 'neutral-03', children: 'Neutral 03', setIconOff: true }}
+      />
+    </div>
+  ),
+};
+
 export const States: Story = {
   parameters: {
     controls: { disable: true },

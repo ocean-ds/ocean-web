@@ -1,6 +1,7 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react';
 import classNames from 'classnames';
 import Tag from '../Tag';
+import { TagProps } from '../Tag/Tag';
 
 type CardListItemProps = {
   /*
@@ -38,7 +39,7 @@ type CardListItemProps = {
   /*
    * The tag name to be displayed in the tag area.
    */
-  tag?: string;
+  tag?: string | TagProps;
   /*
    * The function to call when the card list item is clicked.
    */
@@ -66,31 +67,44 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
       ...rest
     },
     ref
-  ): JSX.Element =>
-    loading ? (
-      <div
-        ref={ref}
-        {...rest}
-        data-testid="card-list-item"
-        className={classNames(
-          'ods-card-list-item',
-          `ods-card-list-item--size-${size}`,
-          { 'ods-card-list-item--full-width': fullWidth },
-          {
-            'ods-card-list-item--loading': loading,
-          }
-        )}
-      >
-        <div className="ods-card-list-item__circle" />
-        <div className="ods-card-list-item__lines">
-          <div className="ods-card-list-item__lines__line1" />
-          <div className="ods-card-list-item__lines__line2" />
-          {size === 'medium' && (
-            <div className="ods-card-list-item__lines__line3" />
+  ): JSX.Element => {
+    const tagElement =
+      typeof tag === 'string' ? (
+        <Tag variant="highlight" type="important">
+          {tag}
+        </Tag>
+      ) : (
+        <Tag {...tag} />
+      );
+
+    if (loading) {
+      return (
+        <div
+          ref={ref}
+          {...rest}
+          data-testid="card-list-item"
+          className={classNames(
+            'ods-card-list-item',
+            `ods-card-list-item--size-${size}`,
+            { 'ods-card-list-item--full-width': fullWidth },
+            {
+              'ods-card-list-item--loading': loading,
+            }
           )}
+        >
+          <div className="ods-card-list-item__circle" />
+          <div className="ods-card-list-item__lines">
+            <div className="ods-card-list-item__lines__line1" />
+            <div className="ods-card-list-item__lines__line2" />
+            {size === 'medium' && (
+              <div className="ods-card-list-item__lines__line3" />
+            )}
+          </div>
         </div>
-      </div>
-    ) : (
+      );
+    }
+
+    return (
       <div
         ref={ref}
         {...rest}
@@ -122,17 +136,14 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
           )}
         </div>
         <div className="ods-card-list-item__wrapper">
-          {tag && (
-            <Tag variant="highlight" type="important">
-              {tag}
-            </Tag>
-          )}
+          {tag && tagElement}
           {actionIcon && (
             <div className="ods-card-list-item__action">{actionIcon}</div>
           )}
         </div>
       </div>
-    )
+    );
+  }
 );
 
 CardListItem.displayName = 'CardListItem';

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import CardListItem from '../CardListItem';
+import type { TagProps } from '../../Tag/Tag';
 
 describe('CardListItem', () => {
   test('renders the title', () => {
@@ -89,5 +90,17 @@ describe('CardListItem', () => {
 
     const tagElement = screen.getByText('Novo Relatório').closest('div');
     expect(tagElement).toHaveClass('ods-tag__content');
+  });
+
+  test('passes TagProps through when tag prop is object', () => {
+    const tag: TagProps = {
+      variant: 'highlight',
+      type: 'important',
+      children: 'Badge',
+    };
+    render(<CardListItem title="Test Title" tag={tag} />);
+
+    expect(screen.getByText('Badge')).toBeInTheDocument();
+    expect(screen.getByText('Badge')).toHaveClass('ods-tag__content');
   });
 });
