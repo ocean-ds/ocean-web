@@ -24,8 +24,12 @@
   .ods-radio__label {
     align-items: center;
     display: flex;
-    padding-left: 16px;
+    padding-left: $spacing-inline-xs;
     width: 100%;
+
+    @include media-breakpoint-down(md) {
+      padding-left: 0;
+    }
   }
 
   &--loading {

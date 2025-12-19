@@ -1,8 +1,28 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import Badge from '../../Badge';
 import Chips, { ChipValue } from '../Chips';
+
+const originalMatchMedia = window.matchMedia;
+
+const createMatchMedia = (matches: boolean) => () => ({
+  matches,
+  media: '',
+  onchange: null,
+  addListener: jest.fn(), // deprecated but still used by react-use
+  removeListener: jest.fn(),
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  dispatchEvent: jest.fn(),
+});
 
 interface ISetup {
   handleClick?: () => void;
@@ -49,6 +69,13 @@ const clickInOption = async (label: string) => {
 };
 
 describe('Chips', () => {
+  beforeAll(() => {
+    window.matchMedia = createMatchMedia(false);
+  });
+
+  afterAll(() => {
+    window.matchMedia = originalMatchMedia;
+  });
   test('renders the label', () => {
     render(<Chips label="Test Label" />);
     expect(screen.getByText('Test Label')).toBeInTheDocument();
@@ -124,6 +151,8 @@ describe('Chips', () => {
 
     fireEvent.click(screen.getByRole('button'));
 
+    fireEvent.click(screen.getByText('Option 1'));
+
     await waitFor(() => {
       expect(screen.getByText('Limpar')).toBeInTheDocument();
     });
@@ -191,13 +220,11 @@ describe('Chips', () => {
 
     fireEvent.click(screen.getByText('Test Label'));
 
-    expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
+    expect(screen.getByRole('list')).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('Test Label'));
 
-    expect(() => screen.getByTestId('ods-chips-option')).toThrow(
-      'Unable to find an element'
-    );
+    expect(screen.queryByRole('list')).not.toBeInTheDocument();
   });
 
   test('checks multiChoice', async () => {
@@ -238,6 +265,111 @@ describe('Chips', () => {
     ]);
 
     expect(screen.getByRole('tag')).toHaveTextContent('1');
+  });
+
+  test('select all toggles all options', async () => {
+    render(
+      <Chips
+        label="Test Label"
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+          { label: 'Option 3', value: '3' },
+        ]}
+        multiChoice
+        selectAllOptions
+        clearLabel="Limpar"
+        filterLabel="Filtrar"
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    const selectAllCheckbox = screen.getByLabelText('Selecionar todos');
+    const option1Checkbox = screen.getByLabelText('Option 1');
+    const option2Checkbox = screen.getByLabelText('Option 2');
+    const option3Checkbox = screen.getByLabelText('Option 3');
+
+    fireEvent.click(selectAllCheckbox);
+
+    expect(option1Checkbox).toBeChecked();
+    expect(option2Checkbox).toBeChecked();
+    expect(option3Checkbox).toBeChecked();
+
+    fireEvent.click(selectAllCheckbox);
+
+    expect(screen.getByTestId('ods-chips-option')).toBeInTheDocument();
+    expect(option1Checkbox).not.toBeChecked();
+    expect(option2Checkbox).not.toBeChecked();
+    expect(option3Checkbox).not.toBeChecked();
+  });
+
+  test('select all becomes indeterminate when partially selected', async () => {
+    render(
+      <Chips
+        label="Test Label"
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+        ]}
+        multiChoice
+        selectAllOptions
+        clearLabel="Limpar"
+        filterLabel="Filtrar"
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    const selectAllCheckbox = screen.getByLabelText('Selecionar todos');
+
+    await clickInOption('Option 1');
+
+    expect(selectAllCheckbox).toHaveAttribute('data-indeterminate', 'true');
+  });
+
+  test('renders option indicators with count', async () => {
+    const options = [
+      {
+        label: 'Low price',
+        value: '1',
+        indicator: <Badge color="alert" count={10} />,
+      },
+      {
+        label: 'Fast delivery',
+        value: '2',
+        indicator: <Badge color="brand" count={15} />,
+      },
+    ];
+
+    render(
+      <Chips
+        label="Test Label"
+        options={options}
+        multiChoice
+        clearLabel="Limpar"
+        filterLabel="Filtrar"
+      />
+    );
+
+    fireEvent.click(screen.getByRole('button'));
+
+    const getIndicatorByLabel = (labelText: string) => {
+      const label = screen.getByText(labelText);
+      const checkboxLabel = label.closest('.ods-checkbox__label');
+      const indicatorElement = checkboxLabel?.querySelector(
+        '.ods-list-selectable__indicator'
+      );
+
+      if (!indicatorElement || !(indicatorElement instanceof HTMLElement)) {
+        throw new Error('Indicator not found');
+      }
+
+      return within(indicatorElement).getByRole('tag');
+    };
+
+    expect(getIndicatorByLabel('Low price')).toHaveTextContent('10');
+    expect(getIndicatorByLabel('Fast delivery')).toHaveTextContent('15');
   });
 
   test('checks clear options button', async () => {

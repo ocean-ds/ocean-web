@@ -3,25 +3,21 @@
   position: relative;
 
   &__button {
+    align-items: center;
     background: $color-interface-light-up;
     border: 0;
     border-radius: $spacing-inline-sm;
     color: $color-brand-primary-pure;
     display: flex;
-    font-size: $font-size-xxs;
-    font-weight: $font-weight-bold;
     gap: $spacing-inline-xxxs;
     height: 32px;
-    padding: $spacing-stack-xxs $spacing-stack-xs;
+    padding: $spacing-inline-xxxs $spacing-inline-xxs $spacing-inline-xxxs
+      $spacing-inline-xxs-extra;
 
     &:hover,
-    &:focus {
-      background: $color-interface-light-down;
-    }
-
+    &:focus,
     &:active {
-      background: $color-brand-primary-pure;
-      color: $color-interface-light-pure;
+      background: $color-interface-light-down;
     }
 
     &:active .ods-chips__badge > .ods-badge__content {
@@ -32,6 +28,10 @@
     > svg {
       height: 16px;
       width: 16px;
+    }
+
+    &--no-options {
+      padding: $spacing-inline-xxxs $spacing-inline-xxs-extra;
     }
 
     &--disabled {
@@ -68,6 +68,9 @@
   }
 
   &__label {
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-comfy;
     margin: 0;
   }
 
@@ -78,10 +81,28 @@
     box-shadow: $shadow-level-2;
     display: flex;
     flex-direction: column;
-    padding: $spacing-inset-xxs 0;
     position: absolute;
     top: 38px;
-    width: auto;
+    width: max-content;
+    z-index: 2;
+
+    @include media-breakpoint-down(md) {
+      border-radius: $border-radius-lg $border-radius-lg 0 0;
+      bottom: 0;
+      left: 0;
+      max-height: 73.5%;
+      overflow: hidden;
+      padding: 0;
+      position: fixed;
+      right: 0;
+      top: initial;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    &__select-all {
+      border-bottom: $border-width-hairline solid $color-interface-light-down;
+    }
 
     &--content {
       align-items: flex-start;
@@ -92,22 +113,6 @@
       overflow-y: auto;
       scrollbar-width: none;
       width: 220px;
-    }
-
-    &--content--columns-2 {
-      display: grid;
-      grid-column-gap: 20px;
-      grid-template-columns: repeat(2, 1fr);
-      min-width: 296px;
-      width: auto;
-    }
-
-    &--content--columns-3 {
-      display: grid;
-      grid-column-gap: 20px;
-      grid-template-columns: repeat(3, 1fr);
-      min-width: 436px;
-      width: auto;
     }
 
     &::-webkit-scrollbar {
@@ -123,7 +128,6 @@
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
       gap: $spacing-inline-xxs;
-      min-height: 40px;
       padding: $spacing-stack-xxs 12px;
       text-wrap: nowrap;
       width: 100%;
@@ -145,25 +149,49 @@
     &--footer {
       border-top: $border-width-hairline solid $color-interface-light-down;
       display: flex;
-      flex-direction: row;
+      gap: $spacing-inline-xxs;
       justify-content: space-between;
       padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xs
         $spacing-stack-xxs;
     }
   }
+
+  &__options__header {
+    padding: $spacing-stack-xs $spacing-stack-xs $spacing-stack-xxs;
+
+    @include media-breakpoint-down(md) {
+      padding: 0 $spacing-stack-xs $spacing-stack-xxs;
+    }
+  }
 }
 
-.ods-chips__options--option-container {
-  min-height: 0;
-  padding: 0;
-  width: 100%;
+.ods-chips__options__responsive-header {
+  display: none;
 
-  .ods-checkbox__root-container {
-    width: 100%;
+  @include media-breakpoint-down(md) {
+    display: flex;
+    justify-content: flex-end;
+    padding: $spacing-inline-xxs $spacing-inline-xxs $spacing-inline-xxxs;
+
+    button {
+      color: $color-interface-dark-up;
+      height: 32px;
+      max-height: 32px;
+      max-width: 32px;
+      width: 32px;
+    }
+
+    &:hover button {
+      background: transparent;
+      color: $color-interface-dark-up;
+    }
   }
+}
 
-  .ods-checkbox__root {
-    padding: $spacing-inline-xs;
-    width: 100%;
+.ods-chips__options--footer {
+  @include media-breakpoint-down(md) {
+    button {
+      width: 100%;
+    }
   }
 }

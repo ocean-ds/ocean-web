@@ -60,10 +60,16 @@ describe('ContextualMenu', () => {
       <ContextualMenu items={mockItems} open onOpenChange={onOpenChange} />
     );
 
-    const closeButton = screen.getByRole('button', { name: '' });
+    const closeButton = screen.getByLabelText('Fechar menu');
     fireEvent.click(closeButton);
 
     expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  test('overlay has aria-hidden attribute', () => {
+    render(<ContextualMenu items={mockItems} open onOpenChange={jest.fn()} />);
+    const overlay = screen.getByTestId('contextual-menu-overlay');
+    expect(overlay).toHaveAttribute('aria-hidden', 'true');
   });
 
   test('calls onSelect and onOpenChange when clicking an item', () => {
@@ -98,7 +104,7 @@ describe('ContextualMenu', () => {
 
     const selectedItem = screen.getByText('Option 1').closest('button');
     expect(selectedItem).toHaveClass(
-      'ods-contextual-menu__item__button--selected'
+      'ods-contextual-menu__item__button--primary-selected'
     );
   });
 

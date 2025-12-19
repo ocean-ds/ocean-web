@@ -104,6 +104,26 @@ Para permitir múltiplas opções selecionadas:
 />
 ```
 
+### Seleção com “Selecionar todos”
+
+Quando `multiChoice` estiver habilitado, é possível permitir que o usuário marque todas as opções de uma vez trocando o estado do `Checkbox` do cabeçalho. O botão fica `indeterminate` quando há seleção parcial, e limpa/remarca conforme a interação:
+
+```tsx live
+<Chips
+  label="Filtros com seleção rápida"
+  options={[
+    { label: 'Frete grátis', value: 'frete-gratis' },
+    { label: 'Promoção', value: 'promocao' },
+    { label: 'Mais vendidos', value: 'mais-vendidos' },
+    { label: 'Entrega rápida', value: 'entrega-rapida' },
+  ]}
+  multiChoice
+  selectAllOptions
+  clearLabel="Limpar"
+  filterLabel="Aplicar filtros"
+/>
+```
+
 ### Guia de uso dos tipos
 
 - **Seleção única**: Para filtros mutuamente exclusivos (ex: ordenação)
