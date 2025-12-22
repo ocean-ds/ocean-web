@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Adjustments, Filter } from '@useblu/ocean-icons-react';
 import Chips from '../Chips';
+import WithAmount from './WithAmount';
+import WithoutOptions from './WithoutOptions';
+import Typography from '../../Typography';
 
 const meta: Meta<typeof Chips> = {
   title: 'Components/Chips',
@@ -73,6 +76,16 @@ const meta: Meta<typeof Chips> = {
       description: 'Função chamada ao limpar seleção.',
       control: false,
     },
+    selectAllOptions: {
+      description:
+        'Adiciona o checkbox "Selecionar todos" ao topo do dropdown em modo multiChoice',
+      control: 'boolean',
+    },
+    headerOptions: {
+      description:
+        'Conteúdo extra exibido no topo do dropdown de múltipla escolha.',
+      control: false,
+    },
   },
 };
 
@@ -105,7 +118,7 @@ export const Usage: Story = {
           flexWrap: 'wrap',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          height: '210px',
+          height: '400px',
         }}
       >
         <StoryComponent />
@@ -140,6 +153,13 @@ export const SingleChoice: Story = {
   ),
 };
 
+export const MultiChoiceWithAmount: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => <WithAmount />,
+};
+
 export const MultiChoice: Story = {
   parameters: {
     controls: { disable: true },
@@ -150,24 +170,40 @@ export const MultiChoice: Story = {
         display: 'flex',
         gap: '16px',
         flexWrap: 'wrap',
-        height: '280px',
+        height: '340px',
       }}
     >
       <Chips
-        label="Selecione filtros"
-        multiChoice
-        options={[
-          { label: 'Preço baixo', value: 'preco-baixo' },
-          { label: 'Frete grátis', value: 'frete-gratis' },
-          { label: 'Avaliação 5★', value: 'avaliacao-5' },
-          { label: 'Promoção', value: 'promocao' },
-          { label: 'Vendido pela loja', value: 'vendido-loja' },
-        ]}
+        label="Filtros"
+        options={defaultOptions}
         clearLabel="Limpar"
-        filterLabel="Aplicar filtros"
+        filterLabel="Aplicar"
+        multiChoice
       />
     </div>
   ),
+};
+
+export const WithHeaderOptions: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <WithAmount
+      headerOptions={
+        <Typography variant="heading5" style={{ color: '#AAADC0' }}>
+          Title
+        </Typography>
+      }
+    />
+  ),
+};
+
+export const SelectAllStory: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => <WithAmount selectAllOptions />,
 };
 
 export const WithIcon: Story = {
@@ -180,7 +216,6 @@ export const WithIcon: Story = {
         display: 'flex',
         gap: '16px',
         flexWrap: 'wrap',
-        height: '280px',
       }}
     >
       <Chips
@@ -188,41 +223,7 @@ export const WithIcon: Story = {
         icon={<Adjustments />}
         options={defaultOptions}
       />
-      <Chips
-        label="Filtrar resultados"
-        icon={<Filter />}
-        multiChoice
-        options={defaultOptions}
-        clearLabel="Limpar"
-        filterLabel="Filtrar"
-      />
-    </div>
-  ),
-};
-
-export const WithCounter: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-        flexWrap: 'wrap',
-        height: '230px',
-      }}
-    >
-      <Chips
-        label="Itens selecionados"
-        initialCounter={3}
-        options={defaultOptions}
-      />
-      <Chips
-        label="Notificações"
-        initialCounter={12}
-        options={defaultOptions}
-      />
+      <WithAmount icon={<Filter />} />
     </div>
   ),
 };
@@ -249,14 +250,9 @@ export const States: Story = {
   ),
 };
 
-export const WithoutOptions: Story = {
+export const WithoutOptionsBehaviour: Story = {
   parameters: {
     controls: { disable: true },
   },
-  render: () => (
-    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-      <Chips label="Chip simples" />
-      <Chips label="Com contador" initialCounter={5} />
-    </div>
-  ),
+  render: () => <WithoutOptions />,
 };

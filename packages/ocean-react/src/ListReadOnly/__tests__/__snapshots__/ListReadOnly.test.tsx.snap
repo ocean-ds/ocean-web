@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardListReadOnly Snapshot matches snapshot in disabled state 1`] = `
+<div
+  class="ods-list-readonly__container"
+>
+  <div
+    class="ods-list-readonly ods-list-readonly--disabled ods-list-readonly--card"
+    data-testid="card-list-readonly"
+  >
+    <div
+      class="ods-content-list"
+    >
+      <p
+        class="ods-typography ods-typography__paragraph ods-typography__paragraph--default"
+      >
+        Test Title
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardListReadOnly Snapshot matches snapshot in loading state 1`] = `
+<div
+  class="ods-list-readonly__container"
+>
+  <div
+    class="ods-list-readonly ods-list-readonly--loading ods-list-readonly--card"
+    data-testid="card-list-readonly"
+  >
+    <div
+      class="ods-list-readonly__skeleton"
+    >
+      <div
+        class="ods-skeleton-bar"
+        style="width: 40%; height: 16px;"
+      />
+      <div
+        class="ods-skeleton-bar"
+        style="width: 100%; height: 16px;"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardListReadOnly Snapshot matches snapshot with all props 1`] = `
+<div
+  class="ods-list-readonly__container"
+>
+  <div
+    class="ods-list-readonly test-class ods-list-readonly--card"
+    data-testid="card-list-readonly"
+  >
+    <div
+      class="ods-list-readonly__icon"
+    >
+      <svg
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20 4H4v16h16V4zm0 16L4 4l16 16zm0-16L4 20 20 4z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+    <div
+      class="ods-content-list"
+    >
+      <p
+        class="ods-typography ods-typography__description"
+      >
+        Test Title
+      </p>
+      <p
+        class="ods-typography ods-typography__paragraph ods-typography__paragraph--default"
+      >
+        Test Description
+      </p>
+      <p
+        class="ods-typography ods-typography__captionbold"
+      >
+        Test Caption
+      </p>
+    </div>
+    <div
+      class="ods-list-readonly__trailing"
+    >
+      <div
+        class="ods-list-readonly__indicator"
+      >
+        <div
+          class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--positive"
+          role="Tag"
+        >
+          <svg
+            aria-hidden="true"
+            class="ods-tag__icon"
+            fill="currentColor"
+            focusable="false"
+            height="16"
+            viewBox="0 0 20 20"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm3.707-9.293a1 1 0 0 0-1.414-1.414L9 10.586 7.707 9.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <div
+            class="ods-tag__content"
+          >
+            New
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardListReadOnly Snapshot matches snapshot with default props 1`] = `
+<div
+  class="ods-list-readonly__container"
+>
+  <div
+    class="ods-list-readonly ods-list-readonly--card"
+    data-testid="card-list-readonly"
+  >
+    <div
+      class="ods-content-list"
+    >
+      <p
+        class="ods-typography ods-typography__paragraph ods-typography__paragraph--default"
+      >
+        Test Title
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CardListReadOnly Snapshot matches snapshot with icon and indicator 1`] = `
+<div
+  class="ods-list-readonly__container"
+>
+  <div
+    class="ods-list-readonly ods-list-readonly--card"
+    data-testid="card-list-readonly"
+  >
+    <div
+      class="ods-list-readonly__icon"
+    >
+      <svg
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20 4H4v16h16V4zm0 16L4 4l16 16zm0-16L4 20 20 4z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+    <div
+      class="ods-content-list"
+    >
+      <p
+        class="ods-typography ods-typography__paragraph ods-typography__paragraph--default"
+      >
+        Test Title
+      </p>
+    </div>
+    <div
+      class="ods-list-readonly__trailing"
+    >
+      <div
+        class="ods-list-readonly__indicator"
+      >
+        <div
+          class="ods-badge ods-badge--small ods-badge--brand"
+          role="tag"
+        >
+          <div
+            class="ods-badge__content ods-badge__count"
+          >
+            3
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

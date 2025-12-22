@@ -111,7 +111,9 @@ describe('ContextualMenuItem', () => {
     );
 
     const button = screen.getByRole('button');
-    expect(button).toHaveClass('ods-contextual-menu__item__button--selected');
+    expect(button).toHaveClass(
+      'ods-contextual-menu__item__button--primary-selected'
+    );
   });
 
   test('does not show selected class when value does not match', () => {
@@ -127,7 +129,7 @@ describe('ContextualMenuItem', () => {
 
     const button = screen.getByRole('button');
     expect(button).not.toHaveClass(
-      'ods-contextual-menu__item__button--selected'
+      'ods-contextual-menu__item__button--primary-selected'
     );
   });
 

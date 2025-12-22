@@ -79,7 +79,7 @@ export const ContextualMenuItem = ({
         'ods-contextual-menu__item__button',
         `ods-contextual-menu__item__button--${type}`,
         {
-          'ods-contextual-menu__item__button--selected': isSelected,
+          [`ods-contextual-menu__item__button--${type}-selected`]: isSelected,
           'ods-contextual-menu__item__button--blocked': blocked,
           'ods-contextual-menu__item__button--with-icon': icon,
         }
