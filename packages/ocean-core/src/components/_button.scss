@@ -11,7 +11,7 @@
 
   &--sm {
     font-size: $font-size-xxs;
-    height: 32px;
+    height: $spacing-inline-md;
     min-width: 96px;
     padding-left: $spacing-inline-xs;
     padding-right: $spacing-inline-xs;

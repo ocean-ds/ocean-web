@@ -8,23 +8,78 @@ import useChip from './hooks/useChip';
 import type { ChipValue } from './types';
 
 interface IChips {
+  /*
+   * The label of the chip button.
+   */
   label: string;
+  /*
+   * The icon of the chip button.
+   */
   icon?: React.ReactNode;
+  /*
+   * Whether the chip button is disabled.
+   */
   disabled?: boolean;
+  /*
+   * Whether the chip button is a multi-choice.
+   */
   multiChoice?: boolean;
+  /*
+   * The options of the chip button.
+   */
   options?: ChipValue[];
+  /*
+   * The default value of the chip button.
+   */
   defaultValue?: ChipValue;
+
+  /*
+   * The label of the clear button.
+   */
   clearLabel?: string;
+  /*
+   * The label of the filter button.
+   */
   filterLabel?: string;
+  /*
+   * The initial counter of the chip button.
+   */
   initialCounter?: number;
+  /*
+   * Whether the chip button is active.
+   */
   actived?: boolean;
+  /*
+   * The selected value of the chip button.
+   */
   selectedValue?: ChipValue | ChipValue[];
+  /*
+   * The function to call when the chip button is clicked.
+   */
   onClick?: () => void;
+  /*
+   * The function to call when the value of the chip button changes.
+   */
   onChange?: (value: ChipValue[] | ChipValue) => void;
+  /*
+   * The function to call when the chip button is closed.
+   */
   onClose?: () => void;
+  /*
+   * The function to call when the chip button is confirmed.
+   */
   onConfirm?: (value: ChipValue[] | ChipValue) => void;
+  /*
+   * The function to call when the chip button is cleaned.
+   */
   onClean?: () => void;
+  /*
+   * The header options of the chip button.
+   */
   headerOptions?: ReactNode;
+  /*
+   * Whether to select all options.
+   */
   selectAllOptions?: boolean;
 }
 
