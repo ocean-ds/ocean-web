@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.121.0](https://github.com/ocean-ds/ocean-web/compare/v1.120.0...v1.121.0) (2025-12-22)
+
+### Features
+
+- card list item update ([#1209](https://github.com/ocean-ds/ocean-web/issues/1209)) ([add331c](https://github.com/ocean-ds/ocean-web/commit/add331c283be824a1ac150489a1c57e62a4d9c72))
+
+# [1.120.0](https://github.com/ocean-ds/ocean-web/compare/v1.119.0...v1.120.0) (2025-12-22)
+
+### Features
+
+- card group ([#1207](https://github.com/ocean-ds/ocean-web/issues/1207)) ([b60335d](https://github.com/ocean-ds/ocean-web/commit/b60335da9c7b798dea5ae98c2ae0c94a10d799ef))
+- contextual menu component ([#1206](https://github.com/ocean-ds/ocean-web/issues/1206)) ([bff5b47](https://github.com/ocean-ds/ocean-web/commit/bff5b47246160d59615496e5c47ac94640c63a7d))
+- list readonly ([#1198](https://github.com/ocean-ds/ocean-web/issues/1198)) ([2cc7c29](https://github.com/ocean-ds/ocean-web/commit/2cc7c29f24b06c59f9a0258289204d15d1d109a1))
+- list settings ([#1200](https://github.com/ocean-ds/ocean-web/issues/1200)) ([eda2f62](https://github.com/ocean-ds/ocean-web/commit/eda2f6270d2bcb4b832c65e85c06b23fb97a336c))
+- new component contextual hero ([#1205](https://github.com/ocean-ds/ocean-web/issues/1205)) ([1dd0824](https://github.com/ocean-ds/ocean-web/commit/1dd08245f1cd619d2958657898bbc9bb829abeec))
+- update chip component ([#1208](https://github.com/ocean-ds/ocean-web/issues/1208)) ([f4245ed](https://github.com/ocean-ds/ocean-web/commit/f4245ed64188be70bfac95a2df0e7024b5aefc21))
+
 # [1.119.0](https://github.com/ocean-ds/ocean-web/compare/v1.118.0...v1.119.0) (2025-12-08)
 
 ### Features

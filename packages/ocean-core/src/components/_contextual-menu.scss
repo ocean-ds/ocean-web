@@ -152,14 +152,6 @@
     background: $color-interface-light-up;
   }
 
-  &--selected {
-    background-color: $color-interface-light-up;
-
-    .ods-typography__description {
-      font-weight: $font-weight-bold;
-    }
-  }
-
   &--primary {
     .ods-typography__description {
       color: $color-brand-primary-pure;
@@ -175,6 +167,24 @@
   &--critical {
     .ods-typography__description {
       color: $color-status-negative-pure;
+    }
+  }
+
+  &--primary-selected,
+  &--neutral-selected {
+    background-color: $color-interface-light-up;
+
+    .ods-typography__description {
+      color: $color-brand-primary-pure;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &--critical-selected {
+    background-color: $color-interface-light-up;
+
+    .ods-typography__description {
+      font-weight: $font-weight-medium;
     }
   }
 
