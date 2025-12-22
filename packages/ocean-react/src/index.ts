@@ -7,11 +7,11 @@ export * from './Grid';
 export { default as Tag } from './Tag';
 export * from './Tag';
 
-export { default as List } from './List';
-export * from './List';
-
 export { default as SubHeader } from './SubHeader';
 export * from './SubHeader';
+
+export { default as List } from './List';
+export * from './List';
 
 export { default as TransactionListItem } from './TransactionListItem';
 export * from './TransactionListItem';
