@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.121.0](https://github.com/ocean-ds/ocean-web/compare/v1.120.0...v1.121.0) (2025-12-22)
+
+### Features
+
+- card list item update ([#1209](https://github.com/ocean-ds/ocean-web/issues/1209)) ([add331c](https://github.com/ocean-ds/ocean-web/commit/add331c283be824a1ac150489a1c57e62a4d9c72))
+
 # [1.120.0](https://github.com/ocean-ds/ocean-web/compare/v1.119.0...v1.120.0) (2025-12-22)
 
 ### Features
