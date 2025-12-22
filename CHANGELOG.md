@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.122.0](https://github.com/ocean-ds/ocean-web/compare/v1.121.0...v1.122.0) (2025-12-22)
+
+### Features
+
+- trigger branch ([#1211](https://github.com/ocean-ds/ocean-web/issues/1211)) ([d01bca0](https://github.com/ocean-ds/ocean-web/commit/d01bca013c0ccab95722c620167f56086e0f445c))
+
 # [1.121.0](https://github.com/ocean-ds/ocean-web/compare/v1.120.0...v1.121.0) (2025-12-22)
 
 ### Features
