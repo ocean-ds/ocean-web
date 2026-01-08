@@ -124,7 +124,7 @@ const meta: Meta<typeof Progress> = {
     },
     percentage: {
       description:
-        'A porcentagem do progresso (0-100). Quando false ou undefined, o progresso é indeterminado.',
+        'A porcentagem do progresso (0-100). Quando undefined, o progresso é indeterminado.',
       control: { type: 'range', min: 0, max: 100, step: 1 },
     },
   },
