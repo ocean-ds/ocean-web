@@ -31,7 +31,8 @@ test('renders a loading button', () => {
   data-testid="btn-test"
 >
   <div
-    class="ods-progress ods-progress--md ods-progress--on-color"
+    class="ods-progress ods-progress--md ods-progress--on-color ods-progress--indeterminate"
+    role="progressbar"
   >
     <svg
       fill="none"
