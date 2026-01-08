@@ -200,7 +200,13 @@ export const TagVariants: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+      }}
+    >
       <CardListItem
         leadingIcon={<PlaceholderOutline />}
         actionIcon={<ChevronRight />}
@@ -236,9 +242,9 @@ export const TagVariants: Story = {
       <CardListItem
         leadingIcon={<PlaceholderOutline />}
         actionIcon={<ChevronRight />}
-        title="Tag default default"
-        description="Tag padrão com tipo default"
-        tag={{ type: 'default', children: 'Default', setIconOff: true }}
+        title="Tag warning"
+        description="Tag padrão com tipo warning"
+        tag={{ type: 'warning', children: 'Warning', setIconOff: true }}
       />
       <CardListItem
         leadingIcon={<PlaceholderOutline />}
