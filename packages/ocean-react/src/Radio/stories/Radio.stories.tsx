@@ -31,6 +31,14 @@ const meta: Meta<typeof Radio> = {
       description: 'Função chamada quando o valor muda.',
       control: false,
     },
+    error: {
+      description: 'Se verdadeiro, o radio será exibido em estado de erro.',
+      control: 'boolean',
+    },
+    errorMessage: {
+      description: 'A mensagem de erro a ser exibida.',
+      control: 'text',
+    },
   },
 };
 
