@@ -66,6 +66,14 @@
     }
   }
 
+  &__adornment--focused > svg {
+    color: $color-brand-primary-pure;
+  }
+
+  &__adornment--filled > svg {
+    color: $color-brand-primary-down;
+  }
+
   &__clean {
     color: $color-interface-dark-up;
     margin-right: 4px;
