@@ -70,7 +70,11 @@ const CardListItem = forwardRef<HTMLDivElement, CardListItemProps>(
   ): JSX.Element => {
     const tagElement =
       typeof tag === 'string' ? (
-        <Tag variant="highlight" type="important">
+        <Tag
+          {...(disabled
+            ? { variant: 'default', type: 'neutral' }
+            : { variant: 'highlight', type: 'important' })}
+        >
           {tag}
         </Tag>
       ) : (
