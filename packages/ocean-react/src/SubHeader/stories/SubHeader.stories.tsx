@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+import {
+  CalendarOutline,
+  Star,
+  HomeOutline,
+  ShoppingCart,
+} from '@useblu/ocean-icons-react';
 import SubHeader from '../SubHeader';
 
 const meta: Meta<typeof SubHeader> = {
@@ -14,6 +20,10 @@ const meta: Meta<typeof SubHeader> = {
     subtitle: {
       description: 'Subtítulo opcional posicionado no lado direito.',
       control: 'text',
+    },
+    icon: {
+      description: 'Ícone opcional posicionado no lado esquerdo.',
+      control: false,
     },
   },
 };
@@ -100,6 +110,43 @@ export const TextVariants: Story = {
         }
       >
         Status do projeto
+      </SubHeader>
+    </div>
+  ),
+};
+
+export const WithIcon: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '300px',
+      }}
+    >
+      <SubHeader icon={<CalendarOutline size={16} />}>Hoje</SubHeader>
+
+      <SubHeader icon={<HomeOutline size={16} />} subtitle="Bem-vindo de volta">
+        Início
+      </SubHeader>
+
+      <SubHeader icon={<Star size={16} />} subtitle="12 favoritos">
+        Favoritos
+      </SubHeader>
+
+      <SubHeader
+        icon={<ShoppingCart size={16} />}
+        subtitle={
+          <>
+            Total: <strong>R$ 250,00</strong>
+          </>
+        }
+      >
+        Carrinho
       </SubHeader>
     </div>
   ),

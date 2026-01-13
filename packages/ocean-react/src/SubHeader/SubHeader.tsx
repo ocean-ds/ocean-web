@@ -8,16 +8,25 @@ export type SubHeaderProps = {
    * @default undefined
    */
   subtitle?: string | React.ReactElement;
+  /**
+   * Determines an icon for the header positioned
+   * in left side of the element.
+   * @default undefined
+   */
+  icon?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const SubHeader = React.forwardRef<HTMLDivElement, SubHeaderProps>(
-  ({ children, subtitle, className, ...rest }, ref) => (
+  ({ children, subtitle, icon, className, ...rest }, ref) => (
     <div
       ref={ref}
       className={classNames('ods-sub-header', className)}
       {...rest}
     >
-      <div className="ods-sub-header__title">{children}</div>
+      <div className="ods-sub-header__title">
+        {icon && <div className="ods-sub-header__icon">{icon}</div>}
+        {children}
+      </div>
       {subtitle && <div className="ods-sub-header__subtitle">{subtitle}</div>}
     </div>
   )

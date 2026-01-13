@@ -9,6 +9,11 @@
   width: 100%;
 }
 
+.ods-sub-header__icon {
+  align-items: center;
+  display: flex;
+}
+
 .ods-sub-header__subtitle,
 .ods-sub-header__title {
   color: $color-interface-dark-down;
@@ -20,4 +25,10 @@
   strong {
     font-weight: 900;
   }
+}
+
+.ods-sub-header__title {
+  align-items: center;
+  display: flex;
+  gap: $spacing-inline-xxs;
 }

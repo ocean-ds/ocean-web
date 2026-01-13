@@ -45,3 +45,70 @@ test('renders element with subtitle', () => {
     </div>
   `);
 });
+
+test('renders element with icon', () => {
+  const { container } = render(
+    <SubHeader className="custom-class" icon={<span data-testid="icon">🔔</span>}>
+      Title
+    </SubHeader>
+  );
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      class="ods-sub-header custom-class"
+    >
+      <div
+        class="ods-sub-header__title"
+      >
+        <div
+          class="ods-sub-header__icon"
+        >
+          <span
+            data-testid="icon"
+          >
+            🔔
+          </span>
+        </div>
+        Title
+      </div>
+    </div>
+  `);
+});
+
+test('renders element with icon and subtitle', () => {
+  const { container } = render(
+    <SubHeader
+      className="custom-class"
+      icon={<span data-testid="icon">📅</span>}
+      subtitle="Subtitle"
+    >
+      Title
+    </SubHeader>
+  );
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      class="ods-sub-header custom-class"
+    >
+      <div
+        class="ods-sub-header__title"
+      >
+        <div
+          class="ods-sub-header__icon"
+        >
+          <span
+            data-testid="icon"
+          >
+            📅
+          </span>
+        </div>
+        Title
+      </div>
+      <div
+        class="ods-sub-header__subtitle"
+      >
+        Subtitle
+      </div>
+    </div>
+  `);
+});
