@@ -4,6 +4,7 @@
   border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: $border-radius-sm;
   display: flex;
+  box-sizing: border-box;
   height: 46px;
   width: 100%;
 
