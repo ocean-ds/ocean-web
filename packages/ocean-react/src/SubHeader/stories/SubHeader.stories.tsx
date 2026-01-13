@@ -8,6 +8,14 @@ import {
 } from '@useblu/ocean-icons-react';
 import SubHeader from '../SubHeader';
 
+const iconOptions = {
+  none: undefined,
+  CalendarOutline: <CalendarOutline size={16} />,
+  Star: <Star size={16} />,
+  HomeOutline: <HomeOutline size={16} />,
+  ShoppingCart: <ShoppingCart size={16} />,
+};
+
 const meta: Meta<typeof SubHeader> = {
   title: 'Components/SubHeader',
   component: SubHeader,
@@ -23,7 +31,11 @@ const meta: Meta<typeof SubHeader> = {
     },
     icon: {
       description: 'Ícone opcional posicionado no lado esquerdo.',
-      control: false,
+      options: Object.keys(iconOptions),
+      mapping: iconOptions,
+      control: {
+        type: 'select',
+      },
     },
   },
 };
