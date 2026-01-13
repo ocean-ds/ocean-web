@@ -111,16 +111,12 @@ Exemplo de Search com funcionalidade de busca:
 
 ### Props
 
-| Prop           | Tipo                                         | Padrão  | Descrição                                    |
-| -------------- | -------------------------------------------- | ------- | -------------------------------------------- |
-| `placeholder`  | `string`                                     | -       | Texto de placeholder do campo de busca       |
-| `disabled`     | `boolean`                                    | `false` | Desabilita o campo de busca                  |
-| `value`        | `string`                                     | -       | Valor controlado do campo (modo controlado)  |
-| `defaultValue` | `string`                                     | -       | Valor inicial do campo (modo não controlado) |
-| `onChange`     | `(e: ChangeEvent<HTMLInputElement>) => void` | -       | Callback chamado quando o valor muda         |
-| `id`           | `string`                                     | -       | Identificador único para acessibilidade      |
+| Prop          | Tipo      | Padrão  | Descrição                              |
+| ------------- | --------- | ------- | -------------------------------------- |
+| `placeholder` | `string`  | -       | Texto de placeholder do campo de busca |
+| `disabled`    | `boolean` | `false` | Desabilita o campo de busca            |
 
-**Nota:** O componente Search aceita todas as props nativas de um elemento `<input>` HTML. O botão X para limpar o campo aparece automaticamente quando há texto digitado.
+**Nota:** O componente Search aceita todas as props nativas de um elemento `<input>` HTML, mas apenas `placeholder` e `disabled` são expostos como controles no Storybook para simplicidade.
 
 ### Classes CSS
 
@@ -174,7 +170,7 @@ O componente utiliza as seguintes classes CSS que podem ser customizadas:
 
 ## Casos de uso comuns
 
-### Busca simples (modo controlado)
+### Busca simples
 
 ```tsx
 function SimpleSearch() {
@@ -186,20 +182,6 @@ function SimpleSearch() {
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
       id="search-products"
-    />
-  );
-}
-```
-
-### Busca com valor inicial (modo não controlado)
-
-```tsx
-function UncontrolledSearch() {
-  return (
-    <Search
-      placeholder="Buscar..."
-      defaultValue="Valor inicial"
-      id="uncontrolled-search"
     />
   );
 }
@@ -239,6 +221,7 @@ function DebouncedSearch() {
       onChange={(e) => handleSearch(e.target.value)}
       id="debounced-search"
     />
+  );
   );
 }
 ```

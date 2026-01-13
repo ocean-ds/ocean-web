@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
 import { Search as SearchIcon, X } from '@useblu/ocean-icons-react';
@@ -23,21 +23,11 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
     },
     ref
   ) => {
-    const { filled, inputValue, handleChange } = useInputFilled({
+    const { filled, handleChange } = useInputFilled({
       defaultValue,
       value,
       onChange,
     });
-
-    const [isFocused, setIsFocused] = useState(false);
-
-    const onFocus = () => {
-      setIsFocused(true);
-    };
-
-    const onBlur = () => {
-      setIsFocused(false);
-    };
 
     return (
       <FormControl htmlFor={id} disabled={disabled}>
@@ -49,10 +39,7 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
             className
           )}
         >
-          <div className={classNames("ods-search__adornment", {
-            "ods-search__adornment--focused": isFocused,
-            "ods-search__adornment--filled": filled,
-          })}>
+          <div className="ods-search__adornment">
             <SearchIcon />
           </div>
 
@@ -63,9 +50,8 @@ const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
             disabled={disabled}
             onChange={handleChange}
             placeholder={placeholder}
-            value={value ?? inputValue ?? ''}
-            onFocus={onFocus}
-            onBlur={onBlur}
+            defaultValue={defaultValue}
+            value={value}
             {...rest}
           />
 
