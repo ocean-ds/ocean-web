@@ -96,6 +96,10 @@
     .ods-card-list-item__leading-icon,
     .ods-card-list-item__action {
       color: $color-interface-light-deep;
+
+      svg {
+        color: $color-interface-light-deep;
+      }
     }
   }
 
