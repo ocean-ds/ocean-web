@@ -4,9 +4,16 @@
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  min-height: 40px;
   padding: $spacing-stack-xxs $spacing-stack-xs;
   width: 100%;
+}
+
+.ods-sub-header--small {
+  height: $spacing-stack-md;
+}
+
+.ods-sub-header--medium {
+  height: $spacing-stack-lg;
 }
 
 .ods-sub-header__icon {

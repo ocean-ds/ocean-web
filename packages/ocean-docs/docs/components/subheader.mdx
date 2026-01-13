@@ -143,6 +143,56 @@ Veja exemplos com ícones:
   title="SubHeader - Com Ícones"
 />
 
+## Tamanhos
+
+O SubHeader suporta dois tamanhos: `medium` (padrão) e `small`.
+
+### Tamanho medium (padrão)
+
+```tsx live
+<SubHeader size="medium">Tamanho medium</SubHeader>
+```
+
+### Tamanho small
+
+```tsx live
+<SubHeader size="small">Tamanho small</SubHeader>
+```
+
+### Comparação de tamanhos
+
+```tsx live
+<div>
+  <SubHeader size="medium" subtitle="Tamanho padrão">
+    Medium
+  </SubHeader>
+  <SubHeader size="small" subtitle="Tamanho reduzido">
+    Small
+  </SubHeader>
+</div>
+```
+
+### Com ícone e subtítulo
+
+```tsx live
+<div>
+  <SubHeader
+    size="medium"
+    icon={<CalendarOutline size={16} />}
+    subtitle="Saldo: R$ 5.000,00"
+  >
+    Hoje (medium)
+  </SubHeader>
+  <SubHeader
+    size="small"
+    icon={<CalendarOutline size={16} />}
+    subtitle="Saldo: R$ 5.000,00"
+  >
+    Hoje (small)
+  </SubHeader>
+</div>
+```
+
 ## Variantes de texto
 
 O SubHeader suporta diferentes tipos de conteúdo no subtítulo:
@@ -186,12 +236,13 @@ Veja diferentes variantes:
 
 ### Props
 
-| Prop        | Tipo                     | Padrão | Descrição                                      |
-| ----------- | ------------------------ | ------ | ---------------------------------------------- |
-| `children`  | `ReactNode`              | -      | O título principal do sub-header               |
-| `subtitle`  | `string \| ReactElement` | -      | Subtítulo opcional posicionado no lado direito |
-| `icon`      | `ReactNode`              | -      | Ícone opcional posicionado no lado esquerdo    |
-| `className` | `string`                 | -      | Classes CSS adicionais                         |
+| Prop        | Tipo                     | Padrão     | Descrição                                      |
+| ----------- | ------------------------ | ---------- | ---------------------------------------------- |
+| `children`  | `ReactNode`              | -          | O título principal do sub-header               |
+| `subtitle`  | `string \| ReactElement` | -          | Subtítulo opcional posicionado no lado direito |
+| `icon`      | `ReactNode`              | -          | Ícone opcional posicionado no lado esquerdo    |
+| `size`      | `'small' \| 'medium'`    | `'medium'` | Define o tamanho do sub-header                 |
+| `className` | `string`                 | -          | Classes CSS adicionais                         |
 
 ### Classes CSS
 
@@ -205,6 +256,13 @@ O componente SubHeader utiliza as seguintes classes CSS para customização:
 | `.ods-sub-header__title`    | Container do título principal            |
 | `.ods-sub-header__icon`     | Container do ícone (quando presente)     |
 | `.ods-sub-header__subtitle` | Container do subtítulo (quando presente) |
+
+#### Modificadores de tamanho
+
+| Classe                    | Descrição              |
+| ------------------------- | ---------------------- |
+| `.ods-sub-header--medium` | Tamanho médio (padrão) |
+| `.ods-sub-header--small`  | Tamanho pequeno        |
 
 ## Acessibilidade
 
