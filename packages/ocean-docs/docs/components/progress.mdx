@@ -7,7 +7,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # Progress
 
-O componente Progress exibe um indicador de carregamento animado para informar ao usuário que uma operação está em andamento.
+O componente Progress exibe um indicador de carregamento animado para informar ao usuário que uma operação está em andamento. Suporta dois modos: **indeterminado** (animação contínua) e **determinado** (exibe porcentagem).
 
 ## Importação
 
@@ -111,15 +111,55 @@ Comparação entre as variantes:
   title="Progress - Variante On Color"
 />
 
+## Progress Determinado
+
+Use a prop `percentage` para exibir um progresso determinado com porcentagem específica (0-100):
+
+```tsx live
+<Progress percentage={50} />
+```
+
+### Diferentes porcentagens
+
+```tsx live
+<div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+  <Progress percentage={0} />
+  <Progress percentage={25} />
+  <Progress percentage={50} />
+  <Progress percentage={75} />
+  <Progress percentage={100} />
+</div>
+```
+
+### Tamanhos com porcentagem
+
+```tsx live
+<div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+  <Progress size="sm" percentage={75} />
+  <Progress size="md" percentage={75} />
+  <Progress size="lg" percentage={75} />
+</div>
+```
+
+Veja todas as variantes de porcentagem:
+
+<StorybookEmbed
+  storyId="components-progress--percentage-variants"
+  height={500}
+  showToolbar={false}
+  title="Progress - Variantes de Porcentagem"
+/>
+
 ## API
 
 ### Props
 
-| Prop        | Tipo                   | Padrão  | Descrição                                                   |
-| ----------- | ---------------------- | ------- | ----------------------------------------------------------- |
-| `size`      | `'sm' \| 'md' \| 'lg'` | `'md'`  | Define o tamanho do componente de progresso                 |
-| `onColor`   | `boolean`              | `false` | Define se o progresso deve ser exibido sobre fundo colorido |
-| `className` | `string`               | -       | Classes CSS adicionais                                      |
+| Prop         | Tipo                   | Padrão      | Descrição                                                                                          |
+| ------------ | ---------------------- | ----------- | -------------------------------------------------------------------------------------------------- |
+| `size`       | `'sm' \| 'md' \| 'lg'` | `'md'`      | Define o tamanho do componente de progresso                                                        |
+| `onColor`    | `boolean`              | `false`     | Define se o progresso deve ser exibido sobre fundo colorido                                        |
+| `percentage` | `number \| undefined`  | `undefined` | A porcentagem do progresso (0-100). Quando `undefined`, o progresso é indeterminado (modo animado) |
+| `className`  | `string`               | -           | Classes CSS adicionais                                                                             |
 
 ### Classes CSS
 
@@ -127,17 +167,21 @@ O componente Progress utiliza as seguintes classes CSS para customização:
 
 #### Classes principais
 
-| Classe                    | Descrição                                  |
-| ------------------------- | ------------------------------------------ |
-| `.ods-progress`           | Classe base do componente                  |
-| `.ods-progress--sm`       | Tamanho small do progresso (16px)          |
-| `.ods-progress--md`       | Tamanho medium do progresso (24px, padrão) |
-| `.ods-progress--lg`       | Tamanho large do progresso (32px)          |
-| `.ods-progress--on-color` | Variante para fundos coloridos/escuros     |
+| Classe                         | Descrição                                  |
+| ------------------------------ | ------------------------------------------ |
+| `.ods-progress`                | Classe base do componente                  |
+| `.ods-progress--sm`            | Tamanho small do progresso (16px)          |
+| `.ods-progress--md`            | Tamanho medium do progresso (24px, padrão) |
+| `.ods-progress--lg`            | Tamanho large do progresso (32px)          |
+| `.ods-progress--on-color`      | Variante para fundos coloridos/escuros     |
+| `.ods-progress--indeterminate` | Modo indeterminado (animação contínua)     |
+| `.ods-progress--determinate`   | Modo determinado (com porcentagem)         |
 
 #### Elementos SVG
 
 O componente Progress utiliza SVG para a animação. As classes afetam os seguintes elementos:
+
+##### Modo Indeterminado
 
 | Elemento     | Descrição                        |
 | ------------ | -------------------------------- |
@@ -145,10 +189,19 @@ O componente Progress utiliza SVG para a animação. As classes afetam os seguin
 | `svg circle` | Círculo de fundo do progresso    |
 | `svg path`   | Caminho da animação do progresso |
 
+##### Modo Determinado
+
+| Classe                       | Descrição                            |
+| ---------------------------- | ------------------------------------ |
+| `.ods-progress__determinate` | Container SVG do modo determinado    |
+| `.ods-progress__track`       | Círculo de fundo (track)             |
+| `.ods-progress__fill`        | Círculo de preenchimento (progresso) |
+
 ## Acessibilidade
 
 - ✅ Animação suave e não intrusiva
-- ✅ Suporte a screen readers com texto alternativo
+- ✅ Usa `role="progressbar"` para screen readers
+- ✅ Atributos ARIA (`aria-valuenow`, `aria-valuemin`, `aria-valuemax`) no modo determinado
 - ✅ Contraste adequado em todos os estados
 - ✅ Não interfere na navegação por teclado
 
@@ -156,7 +209,8 @@ O componente Progress utiliza SVG para a animação. As classes afetam os seguin
 
 ### ✅ Faça
 
-- Use Progress para operações que levam mais de 1 segundo
+- Use Progress indeterminado para operações de duração desconhecida
+- Use Progress determinado quando souber a porcentagem de conclusão
 - Combine com texto explicativo quando necessário
 - Use o tamanho apropriado para o contexto (sm para inline, lg para tela cheia)
 - Use `onColor` em fundos escuros ou coloridos
@@ -167,6 +221,7 @@ O componente Progress utiliza SVG para a animação. As classes afetam os seguin
 - Não use múltiplos Progress simultaneamente na mesma área
 - Não omita o `onColor` em fundos escuros
 - Não use Progress como placeholder de conteúdo
+- Não use valores de `percentage` fora do intervalo 0-100
 
 ## Visão geral completa
 

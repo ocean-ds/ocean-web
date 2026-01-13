@@ -122,6 +122,11 @@ const meta: Meta<typeof Progress> = {
         'Define se o progresso deve ser exibido sobre fundo colorido.',
       control: 'boolean',
     },
+    percentage: {
+      description:
+        'A porcentagem do progresso (0-100). Quando undefined, o progresso é indeterminado.',
+      control: { type: 'range', min: 0, max: 100, step: 1 },
+    },
   },
 };
 
@@ -181,6 +186,78 @@ export const AllVariants: Story = {
       <Section title="Tamanhos (fundo escuro)">
         <ProgressContainer variant="dark">
           <AllSizes onColor />
+        </ProgressContainer>
+      </Section>
+    </VerticalLayout>
+  ),
+};
+
+export const Percentage: Story = {
+  args: {
+    size: 'md',
+    percentage: 50,
+    onColor: false,
+  },
+  decorators: [
+    (StoryComponent: React.ComponentType): JSX.Element => (
+      <CommonDecorator>
+        <StoryComponent />
+      </CommonDecorator>
+    ),
+  ],
+};
+
+// Componente para exibir todos os tamanhos com porcentagem
+const AllSizesWithPercentage: React.FC<{
+  percentage: number;
+  onColor?: boolean;
+}> = ({ percentage, onColor = false }) => (
+  <div style={commonStyles.flexContainer}>
+    <Progress size="sm" percentage={percentage} onColor={onColor} />
+    <Progress size="md" percentage={percentage} onColor={onColor} />
+    <Progress size="lg" percentage={percentage} onColor={onColor} />
+  </div>
+);
+
+export const PercentageVariants: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <VerticalLayout gap={commonConfig.gaps.large}>
+      <Section title="0%">
+        <ProgressContainer variant="light">
+          <AllSizesWithPercentage percentage={0} />
+        </ProgressContainer>
+      </Section>
+
+      <Section title="25%">
+        <ProgressContainer variant="light">
+          <AllSizesWithPercentage percentage={25} />
+        </ProgressContainer>
+      </Section>
+
+      <Section title="50%">
+        <ProgressContainer variant="light">
+          <AllSizesWithPercentage percentage={50} />
+        </ProgressContainer>
+      </Section>
+
+      <Section title="75%">
+        <ProgressContainer variant="light">
+          <AllSizesWithPercentage percentage={75} />
+        </ProgressContainer>
+      </Section>
+
+      <Section title="100%">
+        <ProgressContainer variant="light">
+          <AllSizesWithPercentage percentage={100} />
+        </ProgressContainer>
+      </Section>
+
+      <Section title="50% (fundo escuro)">
+        <ProgressContainer variant="dark">
+          <AllSizesWithPercentage percentage={50} onColor />
         </ProgressContainer>
       </Section>
     </VerticalLayout>
