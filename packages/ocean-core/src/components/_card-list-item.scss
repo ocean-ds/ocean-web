@@ -96,10 +96,11 @@
     .ods-card-list-item__leading-icon,
     .ods-card-list-item__action {
       color: $color-interface-light-deep;
+    }
 
-      svg {
-        color: $color-interface-light-deep;
-      }
+    .ods-card-list-item__leading-icon svg,
+    .ods-card-list-item__action svg {
+      color: $color-interface-light-deep;
     }
   }
 
