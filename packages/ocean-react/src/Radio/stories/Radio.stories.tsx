@@ -31,6 +31,14 @@ const meta: Meta<typeof Radio> = {
       description: 'Função chamada quando o valor muda.',
       control: false,
     },
+    error: {
+      description: 'Se verdadeiro, o radio será exibido em estado de erro.',
+      control: 'boolean',
+    },
+    errorMessage: {
+      description: 'A mensagem de erro a ser exibida.',
+      control: 'text',
+    },
   },
 };
 
@@ -41,7 +49,6 @@ type Story = StoryObj<typeof Radio>;
 export const Usage: Story = {
   args: {
     label: 'Opção selecionada',
-    checked: true,
     name: 'example',
     value: 'option1',
   },
@@ -119,10 +126,17 @@ export const States: Story = {
       />
       <Radio
         label="Radio desabilitado selecionado"
-        name="states"
+        name="states1"
         value="disabled-checked"
         checked
         disabled
+      />
+      <Radio
+        label="Radio com erro"
+        name="states"
+        value="error"
+        error
+        errorMessage="Este campo é obrigatório"
       />
     </div>
   ),
