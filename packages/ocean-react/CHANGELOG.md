@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.127.0](https://github.com/ocean-ds/ocean-web/compare/v1.126.0...v1.127.0) (2026-01-14)
+
+### Features
+
+- include error message on radio ([#1216](https://github.com/ocean-ds/ocean-web/issues/1216)) ([6159438](https://github.com/ocean-ds/ocean-web/commit/6159438dadcf7058674da365e2b0d3b974859baf))
+
 # [1.126.0](https://github.com/ocean-ds/ocean-web/compare/v1.125.1...v1.126.0) (2026-01-14)
 
 ### Features
