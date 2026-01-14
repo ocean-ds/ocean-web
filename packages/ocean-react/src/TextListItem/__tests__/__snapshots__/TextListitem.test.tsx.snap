@@ -51,44 +51,40 @@ exports[`TextListItem should render with a radio if the radio prop is provided 1
   <div
     class="ods-text-list-item-selectable"
   >
-    <div
-      class="ods-radio__root-container"
+    <label
+      class="ods-radio__root"
     >
-      <label
-        class="ods-radio__root"
+      <input
+        checked=""
+        class="ods-radio"
+        type="radio"
+      />
+      <span
+        class="ods-radio__checkmark"
+      />
+      <span
+        class="ods-typography ods-typography__description ods-radio__label"
       >
-        <input
-          checked=""
-          class="ods-radio"
-          type="radio"
-        />
-        <span
-          class="ods-radio__checkmark"
-        />
-        <span
-          class="ods-typography ods-typography__description ods-radio__label"
+        <div
+          class="ods-text-list-item ods-text-list-item--selectable"
         >
           <div
-            class="ods-text-list-item ods-text-list-item--selectable"
+            class="ods-text-list-item__default-content"
           >
-            <div
-              class="ods-text-list-item__default-content"
+            <p
+              class="ods-typography ods-typography__paragraph"
             >
-              <p
-                class="ods-typography ods-typography__paragraph"
-              >
-                Sample Title
-              </p>
-              <p
-                class="ods-typography ods-typography__description"
-              >
-                Sample Description
-              </p>
-            </div>
+              Sample Title
+            </p>
+            <p
+              class="ods-typography ods-typography__description"
+            >
+              Sample Description
+            </p>
           </div>
-        </span>
-      </label>
-    </div>
+        </div>
+      </span>
+    </label>
   </div>
 </DocumentFragment>
 `;
