@@ -49,7 +49,6 @@ type Story = StoryObj<typeof Radio>;
 export const Usage: Story = {
   args: {
     label: 'Opção selecionada',
-    checked: true,
     name: 'example',
     value: 'option1',
   },
@@ -127,10 +126,17 @@ export const States: Story = {
       />
       <Radio
         label="Radio desabilitado selecionado"
-        name="states"
+        name="states1"
         value="disabled-checked"
         checked
         disabled
+      />
+      <Radio
+        label="Radio com erro"
+        name="states"
+        value="error"
+        error
+        errorMessage="Este campo é obrigatório"
       />
     </div>
   ),
