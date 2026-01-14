@@ -99,7 +99,9 @@ const Tooltip = React.forwardRef<HTMLElement, TooltipProps>(
 
     // Close on Escape key (global listener for controlled mode)
     useEffect(() => {
-      if (!closeButton || !controlledVisible) return;
+      if (!closeButton || !controlledVisible) {
+        return undefined;
+      }
 
       const handleEscape = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {

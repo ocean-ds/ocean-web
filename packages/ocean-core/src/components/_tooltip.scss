@@ -35,8 +35,8 @@ $arrow-directions: (
 
 // Tooltip with close button (wrapper approach)
 .ods-tooltip-wrapper {
-  position: relative;
   display: inline-block;
+  position: relative;
 
   // Show tooltip and arrow on hover
   &:hover {
@@ -146,17 +146,17 @@ $arrow-directions: (
   @include base-effects();
   @include normalized-text();
 
-  position: absolute;
-  z-index: 10;
+  align-items: flex-start;
   background: $color-interface-dark-deep;
   border-radius: $border-radius-md;
   color: $color-interface-light-pure;
-  font-family: $font-family-base;
-  padding: $spacing-inline-xxs-extra $spacing-inline-xs;
   display: flex;
-  align-items: flex-start;
+  font-family: $font-family-base;
   gap: $spacing-inline-xxs;
+  padding: $spacing-inline-xxs-extra $spacing-inline-xs;
+  position: absolute;
   white-space: pre;
+  z-index: 10;
 
   &--visible {
     opacity: 1;
@@ -173,23 +173,23 @@ $arrow-directions: (
   }
 
   &--small {
-    width: 80px;
     white-space: normal;
+    width: 80px;
   }
 
   &--medium {
-    width: 150px;
     white-space: normal;
+    width: 150px;
   }
 
   &--large {
-    width: 260px;
     white-space: normal;
+    width: 260px;
   }
 
   &--xlarge {
-    width: 380px;
     white-space: normal;
+    width: 380px;
 
     @media screen and (max-width: 768px) {
       width: 90vw;
@@ -197,8 +197,8 @@ $arrow-directions: (
   }
 
   &--fit {
-    width: 100%;
     white-space: normal;
+    width: 100%;
   }
 
   &__text {
@@ -207,15 +207,15 @@ $arrow-directions: (
   }
 
   &__close {
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: $color-interface-dark-up;
-    display: flex;
     align-items: center;
+    background: transparent;
+    border: 0;
+    color: $color-interface-dark-up;
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
     justify-content: center;
+    padding: 0;
 
     &:hover {
       color: $color-interface-light-pure;
@@ -226,8 +226,8 @@ $arrow-directions: (
   &--up {
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%);
     margin-bottom: 10px;
+    transform: translateX(-50%);
   }
 
   // Position: up-left (tooltip above, aligned left)
@@ -240,73 +240,73 @@ $arrow-directions: (
   // Position: up-right (tooltip above, aligned right)
   &--up-right {
     bottom: 100%;
-    right: 0;
     margin-bottom: 10px;
+    right: 0;
   }
 
   // Position: down (tooltip below, centered)
   &--down {
-    top: 100%;
     left: 50%;
-    transform: translateX(-50%);
     margin-top: 10px;
+    top: 100%;
+    transform: translateX(-50%);
   }
 
   // Position: down-left (tooltip below, aligned left)
   &--down-left {
-    top: 100%;
     left: 0;
     margin-top: 10px;
+    top: 100%;
   }
 
   // Position: down-right (tooltip below, aligned right)
   &--down-right {
-    top: 100%;
-    right: 0;
     margin-top: 10px;
+    right: 0;
+    top: 100%;
   }
 
   // Position: left (tooltip to left, centered vertically)
   &--left {
+    margin-right: 10px;
     right: 100%;
     top: 50%;
     transform: translateY(-50%);
-    margin-right: 10px;
   }
 
   // Position: left-top (tooltip to left, aligned top)
   &--left-top {
+    margin-right: 10px;
     right: 100%;
     top: 0;
-    margin-right: 10px;
   }
 
   // Position: left-bottom (tooltip to left, aligned bottom)
   &--left-bottom {
-    right: 100%;
     bottom: 0;
     margin-right: 10px;
+    right: 100%;
   }
 
   // Position: right (tooltip to right, centered vertically)
   &--right {
     left: 100%;
+    margin-left: 10px;
     top: 50%;
     transform: translateY(-50%);
-    margin-left: 10px;
   }
 
   // Position: right-top (tooltip to right, aligned top)
   &--right-top {
     left: 100%;
-    top: 0;
     margin-left: 10px;
+    top: 0;
   }
 
   // Position: right-bottom (tooltip to right, aligned bottom)
   &--right-bottom {
-    left: 100%;
     bottom: 0;
+    left: 100%;
     margin-left: 10px;
   }
 }
@@ -580,8 +580,8 @@ $arrow-directions: (
 .ods-tooltip[data-tooltip-pos='left-bottom'] {
   &::after,
   &::before {
-    right: 100%;
     bottom: 0;
+    right: 100%;
     transform: translate(4px, 0);
   }
 
@@ -633,8 +633,8 @@ $arrow-directions: (
 .ods-tooltip[data-tooltip-pos='right-bottom'] {
   &::after,
   &::before {
-    left: 100%;
     bottom: 0;
+    left: 100%;
     transform: translate(calc(4px * -1), 0);
   }
 
