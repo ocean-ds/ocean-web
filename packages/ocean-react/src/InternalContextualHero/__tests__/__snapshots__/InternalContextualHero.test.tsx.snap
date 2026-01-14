@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InternalContextualHero Snapshot matches snapshot with all props 1`] = `
+<div
+  class="ods-internal-contextual-hero test-class"
+  data-testid="internal-contextual-hero"
+>
+  <div
+    class="ods-internal-contextual-hero__body"
+  >
+    <div
+      class="ods-internal-contextual-hero__content"
+    >
+      <div
+        class="ods-internal-contextual-hero__header"
+      >
+        <h3
+          class="ods-typography ods-typography__heading3"
+        >
+          Full Title
+        </h3>
+        <p
+          class="ods-typography ods-typography__description"
+        >
+          Full Description
+        </p>
+      </div>
+      <div
+        class="ods-internal-contextual-hero__actions"
+      >
+        <button
+          class="ods-btn ods-btn--sm ods-btn--primary"
+        >
+          Primary
+        </button>
+        <button
+          class="ods-btn ods-btn--sm ods-btn--tertiary"
+        >
+          Secondary
+        </button>
+      </div>
+    </div>
+    <div
+      class="ods-internal-contextual-hero__list"
+    >
+      <div
+        class="ods-internal-contextual-hero__list-item"
+      >
+        <div>
+          <svg
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20 4H4v16h16V4zm0 16L4 4l16 16zm0-16L4 20 20 4z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+        <p
+          class="ods-typography ods-typography__description"
+        >
+          Item with icon
+        </p>
+      </div>
+      <div
+        class="ods-internal-contextual-hero__list-item"
+      >
+        <p
+          class="ods-typography ods-typography__description"
+        >
+          Item without icon
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ods-internal-contextual-hero__image"
+  >
+    <img
+      alt="Full Title"
+      src="/test.png"
+    />
+  </div>
+</div>
+`;
+
+exports[`InternalContextualHero Snapshot matches snapshot with minimal props 1`] = `
+<div
+  class="ods-internal-contextual-hero"
+  data-testid="internal-contextual-hero"
+>
+  <div
+    class="ods-internal-contextual-hero__body"
+  >
+    <div
+      class="ods-internal-contextual-hero__content"
+    >
+      <div
+        class="ods-internal-contextual-hero__header"
+      >
+        <h3
+          class="ods-typography ods-typography__heading3"
+        >
+          Test Title
+        </h3>
+        <p
+          class="ods-typography ods-typography__description"
+        >
+          Test Description
+        </p>
+      </div>
+    </div>
+    <div
+      class="ods-internal-contextual-hero__list"
+    >
+      <div
+        class="ods-internal-contextual-hero__list-item"
+      >
+        <p
+          class="ods-typography ods-typography__description"
+        >
+          Item 1
+        </p>
+      </div>
+      <div
+        class="ods-internal-contextual-hero__list-item"
+      >
+        <p
+          class="ods-typography ods-typography__description"
+        >
+          Item 2
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

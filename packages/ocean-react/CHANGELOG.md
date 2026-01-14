@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.126.0](https://github.com/ocean-ds/ocean-web/compare/v1.125.1...v1.126.0) (2026-01-14)
+
+### Features
+
+- include icon prop on SubHeader ([#1218](https://github.com/ocean-ds/ocean-web/issues/1218)) ([793d4e6](https://github.com/ocean-ds/ocean-web/commit/793d4e61168d107b7361c344c0d9d4b252603464))
+
+## [1.125.1](https://github.com/ocean-ds/ocean-web/compare/v1.125.0...v1.125.1) (2026-01-13)
+
+### Bug Fixes
+
+- adjust styles of card list item disabled ([#1219](https://github.com/ocean-ds/ocean-web/issues/1219)) ([0507e8e](https://github.com/ocean-ds/ocean-web/commit/0507e8ee03060df31843d14e6e2598d2490d98de))
+
 # [1.125.0](https://github.com/ocean-ds/ocean-web/compare/v1.124.0...v1.125.0) (2026-01-13)
 
 ### Features

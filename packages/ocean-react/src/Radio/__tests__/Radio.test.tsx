@@ -9,18 +9,22 @@ test('renders element properly', () => {
   );
 
   expect(container.firstChild).toMatchInlineSnapshot(`
-    <label
-      class="ods-radio__root"
+    <div
+      class="ods-radio__root-container"
     >
-      <input
-        class="ods-radio custom-class"
-        data-testid="radio-test"
-        type="radio"
-      />
-      <span
-        class="ods-radio__checkmark"
-      />
-    </label>
+      <label
+        class="ods-radio__root"
+      >
+        <input
+          class="ods-radio custom-class"
+          data-testid="radio-test"
+          type="radio"
+        />
+        <span
+          class="ods-radio__checkmark"
+        />
+      </label>
+    </div>
   `);
   expect(screen.getByTestId('radio-test')).toHaveAttribute('type', 'radio');
 });
