@@ -7,6 +7,7 @@
   display: flex;
   height: 46px;
   width: 100%;
+  padding: 1px;
 
   input {
     border: 0;
@@ -32,6 +33,7 @@
   &:active,
   &:focus-within {
     border: $border-width-thin solid $color-brand-primary-down;
+    padding: 0;
   }
 
   &--filled {
