@@ -26,11 +26,289 @@ $arrow-directions: (
 }
 
 @mixin normalized-text() {
-  font-size: 12px;
+  font-size: $font-size-xxxs;
   font-style: normal;
-  font-weight: normal;
+  font-weight: $font-weight-regular;
   text-indent: 0;
   text-shadow: none;
+}
+
+// Tooltip with close button (wrapper approach)
+.ods-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+
+  // Show tooltip and arrow on hover
+  &:hover {
+    .ods-tooltip-content,
+    .ods-tooltip-arrow {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  // Arrow visibility controlled by wrapper position classes
+  &--up,
+  &--down {
+    .ods-tooltip-arrow {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &--up-left,
+  &--down-left {
+    .ods-tooltip-arrow {
+      left: $spacing-inline-xs;
+    }
+  }
+
+  &--up-right,
+  &--down-right {
+    .ods-tooltip-arrow {
+      right: $spacing-inline-xs;
+    }
+  }
+
+  &--left,
+  &--right {
+    .ods-tooltip-arrow {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &--left-top,
+  &--right-top {
+    .ods-tooltip-arrow {
+      top: $spacing-inline-xxs-extra;
+    }
+  }
+
+  &--left-bottom,
+  &--right-bottom {
+    .ods-tooltip-arrow {
+      bottom: $spacing-inline-xxs-extra;
+    }
+  }
+}
+
+// Separate arrow element positioned relative to wrapper (trigger)
+.ods-tooltip-arrow {
+  @include base-effects();
+
+  position: absolute;
+  z-index: 11;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  &--blunt {
+    @include no-effects();
+  }
+
+  // Arrow for up positions (points down)
+  &--up,
+  &--up-left,
+  &--up-right {
+    @include arrow(down);
+    bottom: 100%;
+  }
+
+  // Arrow for down positions (points up)
+  &--down,
+  &--down-left,
+  &--down-right {
+    @include arrow(up);
+    top: 100%;
+  }
+
+  // Arrow for left positions (points right)
+  &--left,
+  &--left-top,
+  &--left-bottom {
+    @include arrow(right);
+    right: 100%;
+  }
+
+  // Arrow for right positions (points left)
+  &--right,
+  &--right-top,
+  &--right-bottom {
+    @include arrow(left);
+    left: 100%;
+  }
+}
+
+.ods-tooltip-content {
+  @include base-effects();
+  @include normalized-text();
+
+  position: absolute;
+  z-index: 10;
+  background: $color-interface-dark-deep;
+  border-radius: $border-radius-md;
+  color: $color-interface-light-pure;
+  font-family: $font-family-base;
+  padding: $spacing-inline-xxs-extra $spacing-inline-xs;
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-inline-xxs;
+  white-space: pre;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &--blunt {
+    @include no-effects();
+  }
+
+  &--break {
+    white-space: pre-line;
+    word-break: break-word;
+  }
+
+  &--small {
+    width: 80px;
+    white-space: normal;
+  }
+
+  &--medium {
+    width: 150px;
+    white-space: normal;
+  }
+
+  &--large {
+    width: 260px;
+    white-space: normal;
+  }
+
+  &--xlarge {
+    width: 380px;
+    white-space: normal;
+
+    @media screen and (max-width: 768px) {
+      width: 90vw;
+    }
+  }
+
+  &--fit {
+    width: 100%;
+    white-space: normal;
+  }
+
+  &__text {
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  &__close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: $color-interface-dark-up;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: $color-interface-light-pure;
+    }
+  }
+
+  // Position: up (tooltip above, centered)
+  &--up {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+  }
+
+  // Position: up-left (tooltip above, aligned left)
+  &--up-left {
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 10px;
+  }
+
+  // Position: up-right (tooltip above, aligned right)
+  &--up-right {
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 10px;
+  }
+
+  // Position: down (tooltip below, centered)
+  &--down {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+  }
+
+  // Position: down-left (tooltip below, aligned left)
+  &--down-left {
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+  }
+
+  // Position: down-right (tooltip below, aligned right)
+  &--down-right {
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+  }
+
+  // Position: left (tooltip to left, centered vertically)
+  &--left {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+  }
+
+  // Position: left-top (tooltip to left, aligned top)
+  &--left-top {
+    right: 100%;
+    top: 0;
+    margin-right: 10px;
+  }
+
+  // Position: left-bottom (tooltip to left, aligned bottom)
+  &--left-bottom {
+    right: 100%;
+    bottom: 0;
+    margin-right: 10px;
+  }
+
+  // Position: right (tooltip to right, centered vertically)
+  &--right {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+  }
+
+  // Position: right-top (tooltip to right, aligned top)
+  &--right-top {
+    left: 100%;
+    top: 0;
+    margin-left: 10px;
+  }
+
+  // Position: right-bottom (tooltip to right, aligned bottom)
+  &--right-bottom {
+    left: 100%;
+    bottom: 0;
+    margin-left: 10px;
+  }
 }
 
 .ods-tooltip {
@@ -43,11 +321,10 @@ $arrow-directions: (
   @include normalized-text();
 
   background: $color-interface-dark-deep;
-  border-radius: 2px;
-  border-radius: 8px;
+  border-radius: $border-radius-md;
   color: $color-interface-light-pure;
   content: attr(aria-label);
-  padding: 12px 16px;
+  padding: $spacing-inline-xxs-extra $spacing-inline-xs;
   position: absolute;
   white-space: pre;
   z-index: 10;
@@ -270,5 +547,112 @@ $arrow-directions: (
 .ods-tooltip[data-tooltip-length='fit'] {
   &::after {
     width: 100%;
+  }
+}
+
+// New positions: left-top, left-bottom, right-top, right-bottom
+.ods-tooltip[data-tooltip-pos='left-top'] {
+  &::after,
+  &::before {
+    right: 100%;
+    top: 0;
+    transform: translate(4px, 0);
+  }
+
+  &::after {
+    margin-right: 10px;
+  }
+
+  &::before {
+    @include arrow(right);
+    top: 12px;
+  }
+
+  &:hover,
+  &[data-tooltip-visible] {
+    &::after,
+    &::before {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.ods-tooltip[data-tooltip-pos='left-bottom'] {
+  &::after,
+  &::before {
+    right: 100%;
+    bottom: 0;
+    transform: translate(4px, 0);
+  }
+
+  &::after {
+    margin-right: 10px;
+  }
+
+  &::before {
+    @include arrow(right);
+    bottom: 12px;
+    top: auto;
+  }
+
+  &:hover,
+  &[data-tooltip-visible] {
+    &::after,
+    &::before {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.ods-tooltip[data-tooltip-pos='right-top'] {
+  &::after,
+  &::before {
+    left: 100%;
+    top: 0;
+    transform: translate(calc(4px * -1), 0);
+  }
+
+  &::after {
+    margin-left: 10px;
+  }
+
+  &::before {
+    @include arrow(left);
+    top: 14px;
+  }
+
+  &:hover,
+  &[data-tooltip-visible] {
+    &::after,
+    &::before {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.ods-tooltip[data-tooltip-pos='right-bottom'] {
+  &::after,
+  &::before {
+    left: 100%;
+    bottom: 0;
+    transform: translate(calc(4px * -1), 0);
+  }
+
+  &::after {
+    margin-left: 10px;
+  }
+
+  &::before {
+    @include arrow(left);
+    bottom: 14px;
+    top: auto;
+  }
+
+  &:hover,
+  &[data-tooltip-visible] {
+    &::after,
+    &::before {
+      transform: translate(0, 0);
+    }
   }
 }
