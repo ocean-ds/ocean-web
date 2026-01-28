@@ -13,10 +13,13 @@ const meta: Meta<typeof Button> = {
       options: [
         'primary',
         'primaryCritical',
+        'primaryWarning',
         'secondary',
         'secondaryCritical',
+        'secondaryWarning',
         'tertiary',
         'tertiaryCritical',
+        'tertiaryWarning',
         'textTertiary',
         'textTertiaryCritical',
         'inverse',
@@ -76,10 +79,13 @@ export const Variants: Story = {
     <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
       <Button variant="primary">primary</Button>
       <Button variant="primaryCritical">primaryCritical</Button>
+      <Button variant="primaryWarning">primaryWarning</Button>
       <Button variant="secondary">secondary</Button>
       <Button variant="secondaryCritical">secondaryCritical</Button>
+      <Button variant="secondaryWarning">secondaryWarning</Button>
       <Button variant="tertiary">tertiary</Button>
       <Button variant="tertiaryCritical">tertiaryCritical</Button>
+      <Button variant="tertiaryWarning">tertiaryWarning</Button>
       <Button variant="textTertiary">textTertiary</Button>
       <Button variant="textTertiaryCritical">textTertiaryCritical</Button>
       <Button variant="inverse">inverse</Button>

@@ -67,6 +67,29 @@
     }
   }
 
+  &--primary-warning {
+    background-color: $color-status-warning-deep;
+    color: $color-interface-light-pure;
+
+    &:hover {
+      background-color: $color-status-warning-pure;
+    }
+
+    &:focus {
+      background-color: $color-status-warning-pure;
+    }
+
+    &:active {
+      background: linear-gradient(
+          0deg,
+          rgba($color-interface-dark-pure, 0.12) 0%,
+          rgba($color-interface-dark-pure, 0.12) 100%
+        ),
+        $color-status-warning-deep;
+      border-radius: 500px;
+    }
+  }
+
   &--secondary {
     background-color: $color-interface-light-up;
     color: $color-brand-primary-pure;
@@ -89,20 +112,66 @@
     color: $color-status-negative-pure;
 
     &:hover {
-      background-color: $color-interface-light-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &:focus {
-      background-color: $color-interface-light-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &:active {
-      background-color: $color-interface-light-down;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.16) 0%,
+          rgba($color-status-negative-deep, 0.16) 100%
+        ),
+        $color-status-negative-up;
+    }
+  }
+
+  &--secondary-warning {
+    background-color: $color-status-warning-up;
+    color: $color-status-warning-deep;
+
+    &:hover {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.08) 0%,
+          rgba($color-status-warning-deep, 0.08) 100%
+        ),
+        $color-status-warning-up;
+    }
+
+    &:focus {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.08) 0%,
+          rgba($color-status-warning-deep, 0.08) 100%
+        ),
+        $color-status-warning-up;
+    }
+
+    &:active {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.16) 0%,
+          rgba($color-status-warning-deep, 0.16) 100%
+        ),
+        $color-status-warning-up;
     }
   }
 
   &--tertiary,
-  &--tertiary-critical,
   &--text,
   &--text-critical {
     background-color: transparent;
@@ -125,9 +194,62 @@
     color: $color-brand-primary-pure;
   }
 
-  &--tertiary-critical,
   &--text-critical {
     color: $color-status-negative-pure;
+  }
+
+  &--tertiary-critical {
+    background-color: transparent;
+    color: $color-status-negative-pure;
+
+    &:hover {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
+    }
+
+    &:focus {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
+    }
+
+    &:active {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.16) 0%,
+          rgba($color-status-negative-deep, 0.16) 100%
+        ),
+        $color-status-negative-up;
+    }
+  }
+
+  &--tertiary-warning {
+    background-color: transparent;
+    color: $color-status-warning-deep;
+
+    &:hover {
+      background-color: $color-status-warning-up;
+    }
+
+    &:focus {
+      background-color: $color-status-warning-up;
+    }
+
+    &:active {
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.16) 0%,
+          rgba($color-status-warning-deep, 0.16) 100%
+        ),
+        $color-status-warning-up;
+    }
   }
 
   &--text-tertiary,
