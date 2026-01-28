@@ -80,12 +80,7 @@
     }
 
     &:active {
-      background: linear-gradient(
-          0deg,
-          rgba($color-interface-dark-pure, 0.12) 0%,
-          rgba($color-interface-dark-pure, 0.12) 100%
-        ),
-        $color-status-warning-deep;
+      background: linear-gradient(0deg, rgba($color-interface-dark-pure, 0.12) 0%, rgba($color-interface-dark-pure, 0.12) 100%), $color-status-warning-deep;
       border-radius: 500px;
     }
   }
@@ -112,30 +107,15 @@
     color: $color-status-negative-pure;
 
     &:hover {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-negative-deep, 0.08) 0%,
-          rgba($color-status-negative-deep, 0.08) 100%
-        ),
-        $color-status-negative-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
     &:focus {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-negative-deep, 0.08) 0%,
-          rgba($color-status-negative-deep, 0.08) 100%
-        ),
-        $color-status-negative-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
     &:active {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-negative-deep, 0.16) 0%,
-          rgba($color-status-negative-deep, 0.16) 100%
-        ),
-        $color-status-negative-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
     }
   }
 
@@ -144,30 +124,15 @@
     color: $color-status-warning-deep;
 
     &:hover {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-warning-deep, 0.08) 0%,
-          rgba($color-status-warning-deep, 0.08) 100%
-        ),
-        $color-status-warning-up;
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.08) 0%, rgba($color-status-warning-deep, 0.08) 100%), $color-status-warning-up;
     }
 
     &:focus {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-warning-deep, 0.08) 0%,
-          rgba($color-status-warning-deep, 0.08) 100%
-        ),
-        $color-status-warning-up;
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.08) 0%, rgba($color-status-warning-deep, 0.08) 100%), $color-status-warning-up;
     }
 
     &:active {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-warning-deep, 0.16) 0%,
-          rgba($color-status-warning-deep, 0.16) 100%
-        ),
-        $color-status-warning-up;
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
     }
   }
 
@@ -203,30 +168,15 @@
     color: $color-status-negative-pure;
 
     &:hover {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-negative-deep, 0.08) 0%,
-          rgba($color-status-negative-deep, 0.08) 100%
-        ),
-        $color-status-negative-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
     &:focus {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-negative-deep, 0.08) 0%,
-          rgba($color-status-negative-deep, 0.08) 100%
-        ),
-        $color-status-negative-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
     &:active {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-negative-deep, 0.16) 0%,
-          rgba($color-status-negative-deep, 0.16) 100%
-        ),
-        $color-status-negative-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
     }
   }
 
@@ -243,12 +193,7 @@
     }
 
     &:active {
-      background: linear-gradient(
-          0deg,
-          rgba($color-status-warning-deep, 0.16) 0%,
-          rgba($color-status-warning-deep, 0.16) 100%
-        ),
-        $color-status-warning-up;
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
     }
   }
 
