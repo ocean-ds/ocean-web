@@ -27,6 +27,15 @@ describe('InternalContextualHero', () => {
       expect(screen.getByText('Test Description')).toBeInTheDocument();
     });
 
+    test('renders with default type and imagePosition classes', () => {
+      render(<InternalContextualHero {...defaultProps} />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--default');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--top');
+    });
+
     test('renders list items with description', () => {
       render(<InternalContextualHero {...defaultProps} />);
 
@@ -147,6 +156,83 @@ describe('InternalContextualHero', () => {
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current).toHaveClass('ods-internal-contextual-hero');
+    });
+  });
+
+  describe('Type Variants', () => {
+    test('applies default type class', () => {
+      render(<InternalContextualHero {...defaultProps} type="default" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--default');
+    });
+
+    test('applies warning type class', () => {
+      render(<InternalContextualHero {...defaultProps} type="warning" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--warning');
+    });
+
+    test('applies negative type class', () => {
+      render(<InternalContextualHero {...defaultProps} type="negative" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--negative');
+    });
+
+    test('renders primary button with correct variant for default type', () => {
+      const actions: SingleAction = [createAction('Primary Action')];
+      render(<InternalContextualHero {...defaultProps} type="default" actions={actions} />);
+
+      const button = screen.getByText('Primary Action');
+      expect(button).toBeInTheDocument();
+    });
+
+    test('renders primary button with correct variant for warning type', () => {
+      const actions: SingleAction = [createAction('Primary Action')];
+      render(<InternalContextualHero {...defaultProps} type="warning" actions={actions} />);
+
+      const button = screen.getByText('Primary Action');
+      expect(button).toBeInTheDocument();
+    });
+
+    test('renders primary button with correct variant for negative type', () => {
+      const actions: SingleAction = [createAction('Primary Action')];
+      render(<InternalContextualHero {...defaultProps} type="negative" actions={actions} />);
+
+      const button = screen.getByText('Primary Action');
+      expect(button).toBeInTheDocument();
+    });
+  });
+
+  describe('Image Position', () => {
+    test('applies top image position class by default', () => {
+      render(<InternalContextualHero {...defaultProps} image="/test.png" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--top');
+    });
+
+    test('applies top image position class', () => {
+      render(<InternalContextualHero {...defaultProps} image="/test.png" imagePosition="top" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--top');
+    });
+
+    test('applies bottom image position class', () => {
+      render(<InternalContextualHero {...defaultProps} image="/test.png" imagePosition="bottom" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--bottom');
+    });
+
+    test('applies full image position class', () => {
+      render(<InternalContextualHero {...defaultProps} image="/test.png" imagePosition="full" />);
+
+      const hero = screen.getByTestId('internal-contextual-hero');
+      expect(hero).toHaveClass('ods-internal-contextual-hero--full');
     });
   });
 
