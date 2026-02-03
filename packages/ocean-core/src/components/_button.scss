@@ -136,7 +136,6 @@
     }
   }
 
-  &--tertiary,
   &--text,
   &--text-critical {
     background-color: transparent;
@@ -154,7 +153,6 @@
     }
   }
 
-  &--tertiary,
   &--text {
     color: $color-brand-primary-pure;
   }
@@ -163,37 +161,96 @@
     color: $color-status-negative-pure;
   }
 
-  &--tertiary-critical {
+  &--tertiary,
+  &--tertiary-critical,
+  &--tertiary-warning {
     background-color: transparent;
+    min-width: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &--tertiary {
+    color: $color-brand-primary-pure;
+
+    &.ods-btn--blocked:hover {
+      background-color: $color-interface-light-up;
+    }
+
+    &.ods-btn--blocked:focus {
+      background-color: $color-interface-light-up;
+    }
+
+    &.ods-btn--blocked:active {
+      background-color: $color-interface-light-down;
+    }
+
+    &:not(.ods-btn--blocked):hover {
+      color: $color-brand-primary-down;
+    }
+
+    &:not(.ods-btn--blocked):focus {
+      color: $color-brand-primary-down;
+    }
+
+    &:not(.ods-btn--blocked):active {
+      color: $color-brand-primary-deep;
+    }
+  }
+
+  &--tertiary-critical {
     color: $color-status-negative-pure;
 
-    &:hover {
+    &.ods-btn--blocked:hover {
       background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
-    &:focus {
+    &.ods-btn--blocked:focus {
       background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
-    &:active {
+    &.ods-btn--blocked:active {
       background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
+    }
+
+    &:not(.ods-btn--blocked):hover {
+      color: $color-status-negative-down;
+    }
+
+    &:not(.ods-btn--blocked):focus {
+      color: $color-status-negative-down;
+    }
+
+    &:not(.ods-btn--blocked):active {
+      color: $color-status-negative-deep;
     }
   }
 
   &--tertiary-warning {
-    background-color: transparent;
     color: $color-status-warning-deep;
 
-    &:hover {
+    &.ods-btn--blocked:hover {
       background-color: $color-status-warning-up;
     }
 
-    &:focus {
+    &.ods-btn--blocked:focus {
       background-color: $color-status-warning-up;
     }
 
-    &:active {
+    &.ods-btn--blocked:active {
       background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
+    }
+
+    &:not(.ods-btn--blocked):hover {
+      color: $color-status-warning-down;
+    }
+
+    &:not(.ods-btn--blocked):focus {
+      color: $color-status-warning-down;
+    }
+
+    &:not(.ods-btn--blocked):active {
+      color: $color-status-warning-deep;
     }
   }
 
@@ -268,7 +325,7 @@
       width: 100%;
     }
 
-    > span {
+    >span {
       display: block;
       height: 0;
       visibility: hidden;
