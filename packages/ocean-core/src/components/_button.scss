@@ -67,6 +67,24 @@
     }
   }
 
+  &--primary-warning {
+    background-color: $color-status-warning-deep;
+    color: $color-interface-light-pure;
+
+    &:hover {
+      background-color: $color-status-warning-pure;
+    }
+
+    &:focus {
+      background-color: $color-status-warning-pure;
+    }
+
+    &:active {
+      background: linear-gradient(0deg, rgba($color-interface-dark-pure, 0.12) 0%, rgba($color-interface-dark-pure, 0.12) 100%), $color-status-warning-deep;
+      border-radius: 500px;
+    }
+  }
+
   &--secondary {
     background-color: $color-interface-light-up;
     color: $color-brand-primary-pure;
@@ -89,20 +107,35 @@
     color: $color-status-negative-pure;
 
     &:hover {
-      background-color: $color-interface-light-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
     &:focus {
-      background-color: $color-interface-light-up;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
     }
 
     &:active {
-      background-color: $color-interface-light-down;
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
     }
   }
 
-  &--tertiary,
-  &--tertiary-critical,
+  &--secondary-warning {
+    background-color: $color-status-warning-up;
+    color: $color-status-warning-deep;
+
+    &:hover {
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.08) 0%, rgba($color-status-warning-deep, 0.08) 100%), $color-status-warning-up;
+    }
+
+    &:focus {
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.08) 0%, rgba($color-status-warning-deep, 0.08) 100%), $color-status-warning-up;
+    }
+
+    &:active {
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
+    }
+  }
+
   &--text,
   &--text-critical {
     background-color: transparent;
@@ -120,14 +153,105 @@
     }
   }
 
-  &--tertiary,
   &--text {
     color: $color-brand-primary-pure;
   }
 
-  &--tertiary-critical,
   &--text-critical {
     color: $color-status-negative-pure;
+  }
+
+  &--tertiary,
+  &--tertiary-critical,
+  &--tertiary-warning {
+    background-color: transparent;
+    min-width: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &--tertiary {
+    color: $color-brand-primary-pure;
+
+    &.ods-btn--blocked:hover {
+      background-color: $color-interface-light-up;
+    }
+
+    &.ods-btn--blocked:focus {
+      background-color: $color-interface-light-up;
+    }
+
+    &.ods-btn--blocked:active {
+      background-color: $color-interface-light-down;
+    }
+
+    &:not(.ods-btn--blocked):hover {
+      color: $color-brand-primary-down;
+    }
+
+    &:not(.ods-btn--blocked):focus {
+      color: $color-brand-primary-down;
+    }
+
+    &:not(.ods-btn--blocked):active {
+      color: $color-brand-primary-deep;
+    }
+  }
+
+  &--tertiary-critical {
+    color: $color-status-negative-pure;
+
+    &.ods-btn--blocked:hover {
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
+    }
+
+    &.ods-btn--blocked:focus {
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
+    }
+
+    &.ods-btn--blocked:active {
+      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
+    }
+
+    &:not(.ods-btn--blocked):hover {
+      color: $color-status-negative-down;
+    }
+
+    &:not(.ods-btn--blocked):focus {
+      color: $color-status-negative-down;
+    }
+
+    &:not(.ods-btn--blocked):active {
+      color: $color-status-negative-deep;
+    }
+  }
+
+  &--tertiary-warning {
+    color: $color-status-warning-deep;
+
+    &.ods-btn--blocked:hover {
+      background-color: $color-status-warning-up;
+    }
+
+    &.ods-btn--blocked:focus {
+      background-color: $color-status-warning-up;
+    }
+
+    &.ods-btn--blocked:active {
+      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
+    }
+
+    &:not(.ods-btn--blocked):hover {
+      color: $color-status-warning-down;
+    }
+
+    &:not(.ods-btn--blocked):focus {
+      color: $color-status-warning-down;
+    }
+
+    &:not(.ods-btn--blocked):active {
+      color: $color-status-warning-deep;
+    }
   }
 
   &--text-tertiary,
@@ -201,7 +325,7 @@
       width: 100%;
     }
 
-    > span {
+    >span {
       display: block;
       height: 0;
       visibility: hidden;
