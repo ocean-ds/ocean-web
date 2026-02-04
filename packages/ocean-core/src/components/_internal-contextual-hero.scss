@@ -1,43 +1,49 @@
 .ods-internal-contextual-hero {
   border-radius: $border-radius-sm;
   display: grid;
-  width: 100%;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
+  width: 100%;
 
-  &--bottom {
+  &--bottom &__image {
     @include media-breakpoint-up(sm) {
-      .ods-internal-contextual-hero__image {
-        grid-column: 2;
-        grid-row: 2;
-        justify-self: self-end;
-      }
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: self-end;
+    }
+  }
 
-      .ods-internal-contextual-hero__content {
-        grid-column: 1 / -1;
-      }
+  &--bottom &__content {
+    @include media-breakpoint-up(sm) {
+      grid-column: 1 / -1;
+    }
+  }
 
-      .ods-internal-contextual-hero__image > img,
-      .ods-internal-contextual-hero__image > *:not(img) {
-        border-radius: 0 0 $border-radius-sm 0;
-      }
+  &--bottom &__image > img,
+  &--bottom &__image > *:not(img) {
+    @include media-breakpoint-up(sm) {
+      border-radius: 0 0 $border-radius-sm 0;
+    }
+  }
 
-      .ods-internal-contextual-hero__list {
-        grid-column: 1;
-        grid-row: 2;
-      }
+  &--bottom &__list {
+    @include media-breakpoint-up(sm) {
+      grid-column: 1;
+      grid-row: 2;
     }
   }
 
   &--full {
     @include media-breakpoint-up(sm) {
       display: flex;
+    }
+  }
 
-      > .ods-internal-contextual-hero__body {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-      }
+  &--full > &__body {
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
     }
   }
 
