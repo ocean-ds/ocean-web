@@ -2,16 +2,10 @@
   border-radius: $border-radius-sm;
   display: grid;
   width: 100%;
-
-  &--top {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-  }
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
 
   &--bottom {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-
     @include media-breakpoint-up(sm) {
       .ods-internal-contextual-hero__image {
         grid-column: 2;
@@ -36,12 +30,14 @@
   }
 
   &--full {
-    display: flex;
-
-    > .ods-internal-contextual-hero__body {
+    @include media-breakpoint-up(sm) {
       display: flex;
-      flex: 1;
-      flex-direction: column;
+
+      > .ods-internal-contextual-hero__body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+      }
     }
   }
 
