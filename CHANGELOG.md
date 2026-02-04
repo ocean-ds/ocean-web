@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.128.1](https://github.com/ocean-ds/ocean-web/compare/v1.128.0...v1.128.1) (2026-02-04)
+
+### Bug Fixes
+
+- remove `cursor: not-allowed` from disabled list item styles ([#1224](https://github.com/ocean-ds/ocean-web/issues/1224)) ([4ac64b3](https://github.com/ocean-ds/ocean-web/commit/4ac64b3065534e0a16d726e24b729575b27565a1))
+
 # [1.128.0](https://github.com/ocean-ds/ocean-web/compare/v1.127.0...v1.128.0) (2026-02-04)
 
 ### Features
