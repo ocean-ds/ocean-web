@@ -2,7 +2,7 @@
 
 exports[`InternalContextualHero Snapshot matches snapshot with all props 1`] = `
 <div
-  class="ods-internal-contextual-hero test-class"
+  class="ods-internal-contextual-hero test-class ods-internal-contextual-hero--default ods-internal-contextual-hero--top"
   data-testid="internal-contextual-hero"
 >
   <div
@@ -46,7 +46,9 @@ exports[`InternalContextualHero Snapshot matches snapshot with all props 1`] = `
       <div
         class="ods-internal-contextual-hero__list-item"
       >
-        <div>
+        <div
+          class="ods-internal-contextual-hero__list-item-icon"
+        >
           <svg
             fill="none"
             height="24"
@@ -93,7 +95,7 @@ exports[`InternalContextualHero Snapshot matches snapshot with all props 1`] = `
 
 exports[`InternalContextualHero Snapshot matches snapshot with minimal props 1`] = `
 <div
-  class="ods-internal-contextual-hero"
+  class="ods-internal-contextual-hero ods-internal-contextual-hero--default ods-internal-contextual-hero--top"
   data-testid="internal-contextual-hero"
 >
   <div

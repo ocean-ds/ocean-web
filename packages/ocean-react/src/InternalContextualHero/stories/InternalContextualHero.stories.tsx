@@ -10,7 +10,7 @@ import ListAction from '../../ListAction';
 const ImagePlaceholder = (): ReactElement => (
   <div
     style={{
-      width: '100%',
+      width: '200px',
       height: '100%',
       border: '1px dashed #7B61FF',
       backgroundColor: '#EDEAFF',
@@ -26,9 +26,9 @@ const ImagePlaceholder = (): ReactElement => (
 const listItemsOptions: Record<string, (ReactElement | InternalContextualHeroListItemString)[]> = {
   'Without list items': [],
   'Text with icons': [
-    { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'This is item number one' },
-    { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'And this one is item number two' },
-    { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Here you have the 3rd item' },
+    { icon: <CheckCircleOutline size={20} />, description: 'This is item number one' },
+    { icon: <CheckCircleOutline size={20} />, description: 'And this one is item number two' },
+    { icon: <CheckCircleOutline size={20} />, description: 'Here you have the 3rd item' },
   ],
   'Text without icons': [
     { description: 'First item without icon' },
@@ -36,7 +36,7 @@ const listItemsOptions: Record<string, (ReactElement | InternalContextualHeroLis
     { description: 'Third item without icon' },
   ],
   'ListAction components': [
-    <ListAction key="1" title="Item 1" description="Description 1" type="text" showDivider />,
+    <ListAction key="1" title="Item 1" icon={<PlaceholderOutline size={20} color="#5872F5" />} description="Description 1" type="text" showDivider />,
     <ListAction key="2" title="Item 2" description="Description 2" type="text" showDivider />,
     <ListAction key="3" title="Item 3" description="Description 3" type="text" />,
   ],
@@ -63,10 +63,17 @@ type UsageArgs = {
   primaryActionLabel: string;
   secondaryActionLabel: string;
   listItems: string;
+  imagePosition: 'top' | 'bottom' | 'full';
+  type: 'default' | 'warning' | 'negative';
 };
 
 export const Usage = {
   argTypes: {
+    type: {
+      description: 'Tipo do hero.',
+      control: 'select',
+      options: ['default', 'warning', 'negative'],
+    },
     title: {
       description: 'Título principal do hero.',
       control: 'text',
@@ -78,6 +85,11 @@ export const Usage = {
     showImage: {
       description: 'Exibir imagem na lateral direita.',
       control: 'boolean',
+    },
+    imagePosition: {
+      description: 'Posição da imagem.',
+      control: 'select',
+      options: ['top', 'bottom', 'full'],
     },
     actionsCount: {
       description: 'Quantidade de botões de ação.',
@@ -99,11 +111,14 @@ export const Usage = {
       control: 'select',
       options: Object.keys(listItemsOptions),
     },
+
   },
   args: {
+    type: 'default',
     title: 'Highlight personalized messages based on the users journey',
     description: 'Supporting text that providing context benefits.',
     showImage: true,
+    imagePosition: 'top',
     actionsCount: 'Two',
     primaryActionLabel: 'Primary Action',
     secondaryActionLabel: 'Secondary Action',
@@ -123,7 +138,9 @@ export const Usage = {
 
     return (
       <InternalContextualHero
+        type={args.type}
         title={args.title}
+        imagePosition={args.imagePosition}
         description={args.description}
         image={args.showImage ? <ImagePlaceholder /> : undefined}
         actions={getActions()}
@@ -140,7 +157,7 @@ export const WithOneAction: Story = {
     image: <ImagePlaceholder />,
     actions: [{ label: 'Single Action', onClick: noop }],
     listItems: [
-      { icon: <PlaceholderOutline size={20} color="#5872F5" />, description: 'First item in the list' },
+      { icon: <PlaceholderOutline size={20} />, description: 'First item in the list' },
       { icon: <PlaceholderOutline size={20} color="#5872F5" />, description: 'Second item in the list' },
     ],
   },
@@ -251,12 +268,210 @@ export const Minimal: Story = {
   },
 };
 
+export const TypeDefault: Story = {
+  args: {
+    type: 'default',
+    title: 'Default type variant',
+    description: 'This is the default type with primary colors.',
+    image: <ImagePlaceholder />,
+    actions: [
+      { label: 'Primary Action', onClick: noop },
+      { label: 'Secondary Action', onClick: noop },
+    ],
+    listItems: [
+      { icon: <CheckCircleOutline size={20} />, description: 'Default styled item 1' },
+      { icon: <CheckCircleOutline size={20} />, description: 'Default styled item 2' },
+    ],
+  },
+};
+
+export const TypeWarning: Story = {
+  args: {
+    type: 'warning',
+    title: 'Warning type variant',
+    description: 'This variant uses warning colors for attention.',
+    image: <ImagePlaceholder />,
+    actions: [
+      { label: 'Primary Action', onClick: noop },
+      { label: 'Secondary Action', onClick: noop },
+    ],
+    listItems: [
+      { icon: <CheckCircleOutline size={20} />, description: 'Warning styled item 1' },
+      { icon: <CheckCircleOutline size={20} />, description: 'Warning styled item 2' },
+    ],
+  },
+};
+
+export const TypeNegative: Story = {
+  args: {
+    type: 'negative',
+    title: 'Negative type variant',
+    description: 'This variant uses critical/negative colors for errors.',
+    image: <ImagePlaceholder />,
+    actions: [
+      { label: 'Primary Action', onClick: noop },
+      { label: 'Secondary Action', onClick: noop },
+    ],
+    listItems: [
+      { icon: <CheckCircleOutline size={20} />, description: 'Negative styled item 1' },
+      { icon: <CheckCircleOutline size={20} />, description: 'Negative styled item 2' },
+    ],
+  },
+};
+
+export const ImagePositionTop: Story = {
+  args: {
+    title: 'Image position: top',
+    description: 'Image aligned to the top right corner.',
+    imagePosition: 'top',
+    image: <ImagePlaceholder />,
+    actions: [{ label: 'Action', onClick: noop }],
+    listItems: [
+      { icon: <CheckCircleOutline size={20} />, description: 'Item with top image' },
+      { icon: <CheckCircleOutline size={20} />, description: 'Another item' },
+    ],
+  },
+};
+
+export const ImagePositionBottom: Story = {
+  args: {
+    title: 'Image position: bottom',
+    description: 'Image aligned to the bottom right corner.',
+    imagePosition: 'bottom',
+    image: <ImagePlaceholder />,
+    actions: [{ label: 'Action', onClick: noop }],
+    listItems: [
+      { icon: <CheckCircleOutline size={20} />, description: 'Item with bottom image' },
+      { icon: <CheckCircleOutline size={20} />, description: 'Another item' },
+    ],
+  },
+};
+
+export const ImagePositionFull: Story = {
+  args: {
+    title: 'Image position: full',
+    description: 'Image takes full height on the right side.',
+    imagePosition: 'full',
+    image: <ImagePlaceholder />,
+    actions: [{ label: 'Action', onClick: noop }],
+    listItems: [
+      { icon: <CheckCircleOutline size={20} />, description: 'Item with full image' },
+      { icon: <CheckCircleOutline size={20} />, description: 'Another item' },
+    ],
+  },
+};
+
 export const AllVariants: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: (): ReactElement => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <h2 style={{ marginBottom: '8px' }}>Type Variants</h2>
+
+      <div>
+        <h3 style={{ marginBottom: '16px' }}>Default Type</h3>
+        <InternalContextualHero
+          type="default"
+          title="Default type"
+          description="Primary colors and styling."
+          image={<ImagePlaceholder />}
+          actions={[
+            { label: 'Primary', onClick: noop },
+            { label: 'Secondary', onClick: noop },
+          ]}
+          listItems={[
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
+          ]}
+        />
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '16px' }}>Warning Type</h3>
+        <InternalContextualHero
+          type="warning"
+          title="Warning type"
+          description="Warning colors for attention."
+          image={<ImagePlaceholder />}
+          actions={[
+            { label: 'Primary', onClick: noop },
+            { label: 'Secondary', onClick: noop },
+          ]}
+          listItems={[
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
+          ]}
+        />
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '16px' }}>Negative Type</h3>
+        <InternalContextualHero
+          type="negative"
+          title="Negative type"
+          description="Critical colors for errors."
+          image={<ImagePlaceholder />}
+          actions={[
+            { label: 'Primary', onClick: noop },
+            { label: 'Secondary', onClick: noop },
+          ]}
+          listItems={[
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
+          ]}
+        />
+      </div>
+
+      <h2 style={{ marginBottom: '8px', marginTop: '24px' }}>Image Position Variants</h2>
+
+      <div>
+        <h3 style={{ marginBottom: '16px' }}>Image Position: Top (default)</h3>
+        <InternalContextualHero
+          title="Top position"
+          description="Image aligned to top right."
+          imagePosition="top"
+          image={<ImagePlaceholder />}
+          actions={[{ label: 'Action', onClick: noop }]}
+          listItems={[
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
+          ]}
+        />
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '16px' }}>Image Position: Bottom</h3>
+        <InternalContextualHero
+          title="Bottom position"
+          description="Image aligned to bottom right."
+          imagePosition="bottom"
+          image={<ImagePlaceholder />}
+          actions={[{ label: 'Action', onClick: noop }]}
+          listItems={[
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
+          ]}
+        />
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '16px' }}>Image Position: Full</h3>
+        <InternalContextualHero
+          title="Full position"
+          description="Image takes full height."
+          imagePosition="full"
+          image={<ImagePlaceholder />}
+          actions={[{ label: 'Action', onClick: noop }]}
+          listItems={[
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
+          ]}
+        />
+      </div>
+
+      <h2 style={{ marginBottom: '8px', marginTop: '24px' }}>Content Variants</h2>
+
       <div>
         <h3 style={{ marginBottom: '16px' }}>Complete (with image, actions and list)</h3>
         <InternalContextualHero
@@ -268,8 +483,8 @@ export const AllVariants: Story = {
             { label: 'Secondary', onClick: noop },
           ]}
           listItems={[
-            { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Item 1' },
-            { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Item 2' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
           ]}
         />
       </div>
@@ -281,8 +496,8 @@ export const AllVariants: Story = {
           description="Without the image section."
           actions={[{ label: 'Action', onClick: noop }]}
           listItems={[
-            { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Item 1' },
-            { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Item 2' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
           ]}
         />
       </div>
@@ -294,8 +509,8 @@ export const AllVariants: Story = {
           description="Without action buttons."
           image={<ImagePlaceholder />}
           listItems={[
-            { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Item 1' },
-            { icon: <CheckCircleOutline size={20} color="#5872F5" />, description: 'Item 2' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 1' },
+            { icon: <CheckCircleOutline size={20} />, description: 'Item 2' },
           ]}
         />
       </div>
