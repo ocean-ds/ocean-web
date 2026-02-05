@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.129.0](https://github.com/ocean-ds/ocean-web/compare/v1.128.1...v1.129.0) (2026-02-05)
+
+### Features
+
+- create new properties to internal contextual hero ([#1223](https://github.com/ocean-ds/ocean-web/issues/1223)) ([5e2103c](https://github.com/ocean-ds/ocean-web/commit/5e2103cc6d2f16c6f06cf702686409381d4e99d6))
+
 ## [1.128.1](https://github.com/ocean-ds/ocean-web/compare/v1.128.0...v1.128.1) (2026-02-04)
 
 ### Bug Fixes
