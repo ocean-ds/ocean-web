@@ -127,7 +127,7 @@ test('renders element with highlight color', () => {
   <div
     class="ods-badge__content ods-badge__text"
   >
-    New
+    Hello
   </div>
 </div>
 `);
