@@ -118,6 +118,7 @@ Veja todas as cores do Badge em ação:
 - **complementary**: Para informações secundárias ou categorias
 - **alert**: Para avisos, erros ou ações urgentes
 - **neutral**: Para informações gerais ou estados neutros
+- **highlight**: Para destacar novidades ou itens importantes
 
 ## Comportamentos especiais
 
@@ -147,13 +148,13 @@ A variação tiny mostra apenas um pequeno indicador, ignorando texto ou contado
 
 ### Props
 
-| Prop        | Tipo                                                 | Padrão    | Descrição                                             |
-| ----------- | ---------------------------------------------------- | --------- | ----------------------------------------------------- |
-| `variation` | `'tiny' \| 'small' \| 'medium'`                      | `'small'` | Define o tamanho do badge                             |
-| `color`     | `'brand' \| 'complementary' \| 'alert' \| 'neutral'` | -         | Define a cor do badge                                 |
-| `count`     | `number`                                             | -         | Número a ser exibido (máximo 99+)                     |
-| `children`  | `ReactNode`                                          | -         | Texto do badge (usado quando count não está definido) |
-| `className` | `string`                                             | -         | Classes CSS adicionais                                |
+| Prop        | Tipo                                                                | Padrão    | Descrição                                             |
+| ----------- | ------------------------------------------------------------------- | --------- | ----------------------------------------------------- |
+| `variation` | `'tiny' \| 'small' \| 'medium'`                                     | `'small'` | Define o tamanho do badge                             |
+| `color`     | `'brand' \| 'complementary' \| 'alert' \| 'neutral' \| 'highlight'` | -         | Define a cor do badge                                 |
+| `count`     | `number`                                                            | -         | Número a ser exibido (máximo 99+)                     |
+| `children`  | `ReactNode`                                                         | -         | Texto do badge (usado quando count não está definido) |
+| `className` | `string`                                                            | -         | Classes CSS adicionais                                |
 
 ### Comportamento das props
 

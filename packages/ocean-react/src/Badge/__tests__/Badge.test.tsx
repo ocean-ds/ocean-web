@@ -110,3 +110,25 @@ test('renders element with variation', () => {
 </div>
 `);
 });
+
+test('renders element with highlight color', () => {
+  render(
+    <Badge color="highlight" data-testid="btn-test" className="custom-class">
+      Hello
+    </Badge>
+  );
+
+  expect(screen.getByTestId('btn-test')).toMatchInlineSnapshot(`
+<div
+  class="ods-badge ods-badge--small ods-badge--highlight custom-class"
+  data-testid="btn-test"
+  role="tag"
+>
+  <div
+    class="ods-badge__content ods-badge__text"
+  >
+    New
+  </div>
+</div>
+`);
+});
