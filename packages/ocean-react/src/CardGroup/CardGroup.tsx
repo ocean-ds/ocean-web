@@ -4,6 +4,12 @@ import Header from './Header';
 import ActionButton from './ActionButton';
 import { TagProps } from '../Tag/Tag';
 
+export type CardGroupActionBadgeColor =
+  | 'brand'
+  | 'complementary'
+  | 'alert'
+  | 'neutral';
+
 export interface ICardGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
   subtitle?: string;
@@ -13,6 +19,7 @@ export interface ICardGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   actionLabel?: string;
   actionCount?: number;
   actionClick?: () => void;
+  actionBadgeColor?: CardGroupActionBadgeColor;
   children?: React.ReactNode;
 }
 
@@ -24,13 +31,14 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       actionLabel,
       actionCount,
       actionClick,
+      actionBadgeColor,
       count,
       tag,
       children,
       variant = 'minimal',
       ...rest
     },
-    ref
+    ref,
   ) => (
     <div
       ref={ref}
@@ -49,10 +57,11 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
           actionLabel={actionLabel}
           actionCount={actionCount}
           actionClick={actionClick}
+          actionBadgeColor={actionBadgeColor}
         />
       )}
     </div>
-  )
+  ),
 );
 
 CardGroup.displayName = 'CardGroup';
