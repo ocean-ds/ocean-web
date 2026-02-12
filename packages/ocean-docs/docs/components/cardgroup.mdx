@@ -285,6 +285,25 @@ O botão de ação pode exibir um contador através da prop `actionCount`. Isso 
 </CardGroup>
 ```
 
+## Personalização do Badge da Ação
+
+É possível customizar a cor do badge exibido no botão de ação através da prop `actionBadgeColor`. As cores disponíveis são `brand`, `complementary`, `alert` e `neutral`.
+
+```tsx live
+<CardGroup
+  title="Status do Sistema"
+  subtitle="Verificação de serviços"
+  actionLabel="Ver detalhes"
+  actionCount={3}
+  actionBadgeColor="alert"
+  actionClick={() => alert('Ação clicada!')}
+>
+  <div style={{ padding: '16px' }}>
+    <p>3 serviços apresentam instabilidade.</p>
+  </div>
+</CardGroup>
+```
+
 ## API
 
 ### Props
@@ -298,8 +317,9 @@ O botão de ação pode exibir um contador através da prop `actionCount`. Isso 
 | `tag`         | `TagProps`              | -           | Configuração da tag de destaque exibida ao lado do título                   |
 | `actionLabel` | `string`                | -           | O texto do botão de ação                                                    |
 | `actionCount` | `number`                | -           | O valor exibido no contador do botão de ação                                |
-| `actionClick` | `() => void`            | -           | Função chamada quando o botão de ação é clicado                             |
-| `children`    | `ReactNode`             | -           | Conteúdo adicional exibido abaixo do cabeçalho (apenas na variante minimal) |
+| `actionClick` | `() => void` | - | Função chamada quando o botão de ação é clicado |
+| `actionBadgeColor` | `'brand' \| 'complementary' \| 'alert' \| 'neutral' \| 'highlight'` | - | Define a cor de fundo do badge no botão de ação |
+| `children` | `ReactNode` | - | Conteúdo adicional exibido abaixo do cabeçalho (apenas na variante minimal) |
 
 ### Comportamento das variantes
 

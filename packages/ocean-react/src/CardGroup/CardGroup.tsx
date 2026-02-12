@@ -8,7 +8,8 @@ export type CardGroupActionBadgeColor =
   | 'brand'
   | 'complementary'
   | 'alert'
-  | 'neutral';
+  | 'neutral'
+  | 'highlight';
 
 export interface ICardGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
