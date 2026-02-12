@@ -46,6 +46,11 @@ const meta: Meta<typeof CardGroup> = {
         disable: true,
       },
     },
+    actionBadgeColor: {
+      description: 'A cor do badge da ação.',
+      control: 'select',
+      options: ['brand', 'complementary', 'alert', 'neutral', 'highlight'],
+    },
     children: {
       description:
         'Conteúdo adicional exibido abaixo do cabeçalho (apenas na variante minimal).',
@@ -65,6 +70,7 @@ export const Usage: Story = {
     count: 5,
     actionLabel: 'Ação',
     variant: 'minimal',
+    actionBadgeColor: 'brand',
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -136,6 +142,24 @@ export const WithActionCount: Story = {
         subtitle="Garanta até 16% de economia ao antecipar com taxa zero."
         actionLabel="Pagar fornecedores"
         actionCount={9}
+        actionClick={() => alert('Ação clicada!')}
+      />
+    </div>
+  ),
+};
+
+export const WithCustomActionBadgeColor: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '328px' }}>
+      <CardGroup
+        title="PagBlu"
+        subtitle="Garanta até 16% de economia ao antecipar com taxa zero."
+        actionLabel="Pagar fornecedores"
+        actionCount={9}
+        actionBadgeColor="brand"
         actionClick={() => alert('Ação clicada!')}
       />
     </div>
