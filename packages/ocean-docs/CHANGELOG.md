@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.130.0](https://github.com/ocean-ds/ocean-web/compare/v1.129.0...v1.130.0) (2026-02-12)
+
+### Features
+
+- add action badge color on cardgroup ([#1226](https://github.com/ocean-ds/ocean-web/issues/1226)) ([527aaa4](https://github.com/ocean-ds/ocean-web/commit/527aaa494be3914d60b3046c63b0763f88909cc2))
+
 # [1.129.0](https://github.com/ocean-ds/ocean-web/compare/v1.128.1...v1.129.0) (2026-02-05)
 
 ### Features
