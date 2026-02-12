@@ -70,6 +70,7 @@ export const Usage: Story = {
     count: 5,
     actionLabel: 'Ação',
     variant: 'minimal',
+    actionBadgeColor: 'brand',
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
