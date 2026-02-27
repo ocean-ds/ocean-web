@@ -663,6 +663,132 @@ export const TextTypeWithDividerAndCaption: Story = {
   ),
 };
 
+// Story: Com AmountDetails
+export const WithAmountDetails: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <ListAction
+        title="Compra no débito"
+        description="Loja exemplo LTDA"
+        caption="Hoje, 14:30"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 1.234,56',
+          additionalData: '1x no débito',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Pix recebido"
+        description="João da Silva"
+        caption="Ontem, 09:15"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 500,00',
+          indicator: (
+            <Tag type="positive" size="small" setIconOff>
+              Recebido
+            </Tag>
+          ),
+          additionalData: 'Pix',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Pagamento pendente"
+        description="Conta de luz"
+        caption="Vence amanhã"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        status="warning"
+        amountDetails={{
+          amount: 'R$ 189,90',
+          indicator: (
+            <Tag type="warning" size="small" setIconOff>
+              Pendente
+            </Tag>
+          ),
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Sem indicator"
+        description="Apenas valor"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 42,00',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+    </List>
+  ),
+};
+
+// Story: AmountDetails em tipo Text
+export const AmountDetailsTextType: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ minWidth: '300px' }}>
+      <ListAction
+        title="Transferência"
+        description="Maria Souza"
+        caption="12/01/2025"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        inverted
+        showDivider
+        amountDetails={{
+          amount: 'R$ 250,00',
+          indicator: (
+            <Tag type="positive" size="small" setIconOff>
+              Concluído
+            </Tag>
+          ),
+          additionalData: 'TED',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Boleto"
+        description="Aluguel"
+        caption="15/01/2025"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        inverted
+        showDivider
+        amountDetails={{
+          amount: 'R$ 1.800,00',
+          additionalData: 'Pago',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Compra"
+        description="Mercado"
+        icon={<PlaceholderOutline size={24} />}
+        type="text"
+        inverted
+        amountDetails={{
+          amount: 'R$ 312,45',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+    </div>
+  ),
+};
+
 // Story: Comparação entre tipos Card e Text
 export const CardVsTextInsideList: Story = {
   parameters: {

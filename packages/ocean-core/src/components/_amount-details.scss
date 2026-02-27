@@ -1,0 +1,65 @@
+.ods-amount-details {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: $spacing-inline-xxxs;
+
+  &__main {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__amount {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+
+    &--inactive {
+      color: $color-interface-dark-up;
+    }
+
+    &--positive {
+      color: $color-status-positive-deep;
+    }
+
+    &--warning {
+      color: $color-status-warning-deep;
+    }
+
+    &--highlight,
+    &--highlight-lead {
+      color: $color-interface-dark-deep;
+      font-weight: $font-weight-bold;
+    }
+
+    &--strikethrough {
+      color: $color-status-positive-deep;
+    }
+  }
+
+  &__indicator {
+    display: flex;
+  }
+
+  &__caption {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+
+    &--inactive {
+      color: $color-interface-dark-up;
+    }
+  }
+}

@@ -8,6 +8,9 @@ import SkeletonBar from '../_shared/components/SkeletonBar';
 import InternalListActions, {
   ActionItem,
 } from '../_shared/components/InternalListActions';
+import AmountDetails, {
+  AmountDetailsProps,
+} from '../_shared/components/AmountDetails';
 
 export type ListActionProps = {
   /**
@@ -82,6 +85,10 @@ export type ListActionProps = {
    * @default false
    */
   showDivider?: boolean;
+  /**
+   * Amount details displayed alongside the content list (right-aligned).
+   */
+  amountDetails?: AmountDetailsProps;
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'type'>;
 
 const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
@@ -104,8 +111,9 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       onClick,
       className,
       showDivider = false,
+      amountDetails,
       ...rest
-    },
+    }: ListActionProps,
     ref
   ) => {
     const [isSwipeOpen, setIsSwipeOpen] = useState(false);
@@ -173,6 +181,9 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
             inverted={inverted}
             type={status}
           />
+          {amountDetails && (
+            <AmountDetails type={status} {...amountDetails} />
+          )}
           {indicator && (
             <div className='ods-list-action__indicator'>{indicator}</div>
           )}
