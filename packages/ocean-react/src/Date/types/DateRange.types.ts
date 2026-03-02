@@ -1,7 +1,12 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 import { Locale } from 'date-fns';
-import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
+import {
+  DateRange,
+  ClassNames,
+  DateFormatter,
+  Matcher,
+} from 'react-day-picker';
 
 export type DatePickerFields = {
   from: string;
@@ -37,6 +42,12 @@ export type DatePickerProps = {
    * @default false
    */
   disabled?: boolean;
+
+  /**
+   * Determines if date are disabled
+   * @default undefined
+   */
+  disabledDays?: Matcher | Matcher[];
 
   /**
    * Determines error os inputs
@@ -89,7 +100,6 @@ export type IDatePickerReturn = {
   handleDayClick: (day: Date) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: (fieldId: string) => void;
-  disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
   handleCloseByOutside: () => void;
   handleDisplayMonth: (displayMonth: Date) => Date;

@@ -137,6 +137,29 @@ export const WithRestrictions: Story = {
   ),
 };
 
+export const VacationPlanning: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('400px')}>
+      <div>
+        <h4>Agenda de férias</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Check-in', to: 'Check-out' }}
+          helperText="Escolha um período fora das temporadas de alto movimento"
+          disabledDays={[
+            { dayOfWeek: [0, 6] }, // Weekends
+            {
+              from: new Date(new Date().setDate(new Date().getDate() + 7)),
+              to: new Date(new Date().setDate(new Date().getDate() + 12)),
+            },
+            { before: new Date() },
+          ]}
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const Localization: Story = {
   parameters: noControlsParameters,
   render: () => (

@@ -133,12 +133,6 @@ export default function useDatePicker({
     setCurrentField(fieldId);
   };
 
-  const disabledDays = (day: Date): boolean => {
-    const startToday = handleValidateStartsToday(startsToday, day);
-
-    return startToday || (currentField === 'end-date' && day < fromDate);
-  };
-
   const closeCalendarDelay = () => {
     setTimeout(() => setShowDayPicker(false), 500);
   };
@@ -225,7 +219,6 @@ export default function useDatePicker({
     handleDayClick,
     inputChange,
     createHandleToggleClick,
-    disabledDays,
     formatDay,
     handleCloseByOutside,
     handleDisplayMonth,

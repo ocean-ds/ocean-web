@@ -133,8 +133,14 @@ export const WithDisabledDays: Story = {
         <DatePickerWrapper
           label="Datas úteis"
           helperText="Fins de semana estão desabilitados"
-          disabledDays={(day: Date) => day.getDay() === 0 || day.getDay() === 6}
-          startsToday
+          disabledDays={[
+            { dayOfWeek: [0, 6] }, // Weekends
+            {
+              from: new Date(new Date().setDate(new Date().getDate() + 7)),
+              to: new Date(new Date().setDate(new Date().getDate() + 12)),
+            },
+            { before: new Date() },
+          ]}
         />
       </div>
     </div>

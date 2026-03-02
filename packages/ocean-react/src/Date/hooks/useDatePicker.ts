@@ -3,11 +3,7 @@ import * as DateFns from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
 import { ClassNames } from 'react-day-picker';
 
-import {
-  DisabledDaysParams,
-  IDatePickerProps,
-  IDatePickerReturn,
-} from '../types/DatePicker.types';
+import { IDatePickerProps, IDatePickerReturn } from '../types/DatePicker.types';
 
 import {
   handleValidateStartsToday,
@@ -62,25 +58,6 @@ export default function useDatePickerSingle({
   const createHandleToggleClick = (fieldId: string) => {
     setShowDayPicker(!showDayPicker);
     setCurrentField(fieldId);
-  };
-
-  const disabledPreviousDays = (day: Date): boolean => {
-    const startToday = handleValidateStartsToday(startsToday, day);
-
-    return startToday;
-  };
-
-  const combineDisabledDays = ({
-    userDisabledDays,
-    startsTodayDisabled,
-  }: DisabledDaysParams) => {
-    if (typeof userDisabledDays === 'function') {
-      return startsTodayDisabled
-        ? (date: Date) => userDisabledDays(date) || startsTodayDisabled(date)
-        : userDisabledDays;
-    }
-
-    return userDisabledDays || startsTodayDisabled;
   };
 
   const closeCalendarDelay = () => {
@@ -150,10 +127,8 @@ export default function useDatePickerSingle({
     handleDayClick,
     inputChange,
     createHandleToggleClick,
-    disabledPreviousDays,
     formatDay,
     handleCloseByOutside,
     currentMonthToDisplay,
-    combineDisabledDays,
   };
 }
