@@ -13,7 +13,7 @@ describe('AmountDetails', () => {
       <AmountDetails
         amount="R$ 100,00"
         indicator={<span data-testid="test-indicator">Icon</span>}
-        showIndicator={true}
+        showIndicator
       />
     );
     expect(screen.getByTestId('test-indicator')).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe('AmountDetails', () => {
       <AmountDetails
         amount="R$ 100,00"
         additionalData="Detail info"
-        showAdditionalData={true}
+        showAdditionalData
       />
     );
     expect(screen.getByText('Detail info')).toBeInTheDocument();
@@ -53,11 +53,9 @@ describe('AmountDetails', () => {
   });
 
   test('renders with type positive applying positive class', () => {
-    const { container } = render(
-      <AmountDetails amount="R$ 50,00" type="positive" />
-    );
+    render(<AmountDetails amount="R$ 50,00" type="positive" />);
     expect(
-      container.querySelector('.ods-amount-details__amount--positive')
+      document.querySelector('.ods-amount-details__amount--positive')
     ).toBeInTheDocument();
   });
 

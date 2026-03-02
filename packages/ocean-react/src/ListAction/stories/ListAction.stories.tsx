@@ -6,7 +6,6 @@ import {
   Archive,
   Trash,
   PlaceholderOutline,
-  LockClosed,
 } from '@useblu/ocean-icons-react';
 import ListAction from '../ListAction';
 import type { ActionItem } from '../../_shared/components/InternalListActions';
