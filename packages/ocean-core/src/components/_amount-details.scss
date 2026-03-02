@@ -9,6 +9,7 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
+    gap: $spacing-inline-xxxs;
   }
 
   &__amount {
@@ -21,31 +22,25 @@
     text-align: right;
     white-space: nowrap;
 
-    &--inactive {
-      color: $color-interface-dark-up;
-    }
-
     &--positive {
-      color: $color-status-positive-deep;
-    }
-
-    &--warning {
-      color: $color-status-warning-deep;
-    }
-
-    &--highlight,
-    &--highlight-lead {
-      color: $color-interface-dark-deep;
-      font-weight: $font-weight-bold;
-    }
-
-    &--strikethrough {
       color: $color-status-positive-deep;
     }
   }
 
-  &__indicator {
+  &__amount-row {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: $spacing-inline-xxxs;
+  }
+
+  &__amount-sign {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
   }
 
   &__caption {
@@ -57,9 +52,9 @@
     margin: 0;
     text-align: right;
     white-space: nowrap;
+  }
 
-    &--inactive {
-      color: $color-interface-dark-up;
-    }
+  &__indicator {
+    display: flex;
   }
 }

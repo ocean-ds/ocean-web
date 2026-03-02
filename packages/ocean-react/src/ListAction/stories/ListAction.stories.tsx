@@ -41,10 +41,7 @@ const meta: Meta<typeof ListAction> = {
     type: {
       description: 'Tipo de estilo do conteúdo do card.',
       control: 'select',
-      options: [
-        'card',
-        'text',
-      ],
+      options: ['card', 'text'],
     },
     showDivider: {
       description: 'Mostra um divisor entre os cards quando type é "text".',
@@ -91,7 +88,6 @@ export default meta;
 type Story = StoryObj<typeof ListAction>;
 
 const defaultMenuActions: ActionItem[] = [
-
   {
     label: 'Editar',
     onClick: () => alert('Editar clicado!'),
@@ -115,7 +111,7 @@ const defaultMenuActions: ActionItem[] = [
     onClick: () => alert('Excluir clicado!'),
     icon: <Trash />,
     variant: 'negative',
-  }
+  },
 ];
 
 // Opções de indicadores disponíveis
@@ -209,7 +205,12 @@ export const Usage: Story = {
         }}
       >
         <div style={{ width: '400px' }}>
-          <ListAction {...restArgs} icon={icon} indicator={indicator} menuActions={defaultMenuActions} />
+          <ListAction
+            {...restArgs}
+            icon={icon}
+            indicator={indicator}
+            menuActions={defaultMenuActions}
+          />
         </div>
       </div>
     );
@@ -663,7 +664,7 @@ export const TextTypeWithDividerAndCaption: Story = {
   ),
 };
 
-// Story: Com AmountDetails
+// Story: Com AmountDetails (default, positive, negative)
 export const WithAmountDetails: Story = {
   parameters: {
     controls: { disable: true },
@@ -679,6 +680,7 @@ export const WithAmountDetails: Story = {
         inverted
         amountDetails={{
           amount: 'R$ 1.234,56',
+          type: 'default',
           additionalData: '1x no débito',
         }}
         onClick={() => alert('Clicado!')}
@@ -690,8 +692,10 @@ export const WithAmountDetails: Story = {
         icon={<PlaceholderOutline size={24} />}
         type="card"
         inverted
+        status="positive"
         amountDetails={{
           amount: 'R$ 500,00',
+          type: 'positive',
           indicator: (
             <Tag type="positive" size="small" setIconOff>
               Recebido
@@ -702,20 +706,21 @@ export const WithAmountDetails: Story = {
         onClick={() => alert('Clicado!')}
       />
       <ListAction
-        title="Pagamento pendente"
+        title="Pagamento debitado"
         description="Conta de luz"
         caption="Vence amanhã"
         icon={<PlaceholderOutline size={24} />}
         type="card"
         inverted
-        status="warning"
         amountDetails={{
           amount: 'R$ 189,90',
+          type: 'negative',
           indicator: (
-            <Tag type="warning" size="small" setIconOff>
-              Pendente
+            <Tag type="negative" size="small" setIconOff>
+              Débito
             </Tag>
           ),
+          additionalData: 'Débito automático',
         }}
         onClick={() => alert('Clicado!')}
       />
@@ -727,65 +732,11 @@ export const WithAmountDetails: Story = {
         inverted
         amountDetails={{
           amount: 'R$ 42,00',
+          type: 'default',
         }}
         onClick={() => alert('Clicado!')}
       />
     </List>
-  ),
-};
-
-// Story: AmountDetails em tipo Text
-export const AmountDetailsTextType: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div style={{ minWidth: '300px' }}>
-      <ListAction
-        title="Transferência"
-        description="Maria Souza"
-        caption="12/01/2025"
-        icon={<PlaceholderOutline size={24} />}
-        type="text"
-        inverted
-        showDivider
-        amountDetails={{
-          amount: 'R$ 250,00',
-          indicator: (
-            <Tag type="positive" size="small" setIconOff>
-              Concluído
-            </Tag>
-          ),
-          additionalData: 'TED',
-        }}
-        onClick={() => alert('Clicado!')}
-      />
-      <ListAction
-        title="Boleto"
-        description="Aluguel"
-        caption="15/01/2025"
-        icon={<PlaceholderOutline size={24} />}
-        type="text"
-        inverted
-        showDivider
-        amountDetails={{
-          amount: 'R$ 1.800,00',
-          additionalData: 'Pago',
-        }}
-        onClick={() => alert('Clicado!')}
-      />
-      <ListAction
-        title="Compra"
-        description="Mercado"
-        icon={<PlaceholderOutline size={24} />}
-        type="text"
-        inverted
-        amountDetails={{
-          amount: 'R$ 312,45',
-        }}
-        onClick={() => alert('Clicado!')}
-      />
-    </div>
   ),
 };
 
@@ -843,4 +794,3 @@ export const CardVsTextInsideList: Story = {
     </div>
   ),
 };
-

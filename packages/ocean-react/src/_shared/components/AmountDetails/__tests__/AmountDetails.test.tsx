@@ -52,10 +52,18 @@ describe('AmountDetails', () => {
     expect(screen.queryByText('Detail info')).not.toBeInTheDocument();
   });
 
-  test('applies status type classes', () => {
+  test('renders with type positive applying positive class', () => {
     const { container } = render(
-      <AmountDetails amount="R$ 100,00" type="positive" />
+      <AmountDetails amount="R$ 50,00" type="positive" />
     );
-    expect(container.querySelector('.ods-typography__paragraph--positive')).toBeInTheDocument();
+    expect(
+      container.querySelector('.ods-amount-details__amount--positive')
+    ).toBeInTheDocument();
+  });
+
+  test('renders type negative with minus sign before amount', () => {
+    render(<AmountDetails amount="R$ 25,00" type="negative" />);
+    expect(screen.getByText('- ')).toBeInTheDocument();
+    expect(screen.getByText('R$ 25,00')).toBeInTheDocument();
   });
 });
