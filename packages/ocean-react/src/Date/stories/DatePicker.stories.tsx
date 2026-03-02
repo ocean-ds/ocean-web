@@ -48,7 +48,7 @@ const DatePickerWrapper: React.FC<DatePickerWrapperProps> = (props) => {
   const { value, ...rest } = props;
 
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ width: '330px' }}>
       <DatePicker
         label="Data"
         {...rest}
@@ -127,20 +127,21 @@ export const WithRestrictions: Story = {
 export const WithDisabledDays: Story = {
   parameters: noControlsParameters,
   render: () => (
-    <div style={createRestrictionsContainer('300px')}>
+    <div style={createRestrictionsContainer('330px')}>
       <div>
         <h4>Sem fins de semana</h4>
         <DatePickerWrapper
           label="Datas úteis"
           helperText="Fins de semana estão desabilitados"
           disabledDays={[
-            { dayOfWeek: [0, 6] }, // Weekends
+            { dayOfWeek: [0, 6] },
             {
               from: new Date(new Date().setDate(new Date().getDate() + 7)),
               to: new Date(new Date().setDate(new Date().getDate() + 12)),
             },
             { before: new Date() },
           ]}
+          disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
         />
       </div>
     </div>

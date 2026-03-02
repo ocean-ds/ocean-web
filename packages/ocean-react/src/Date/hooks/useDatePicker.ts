@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
-import { ClassNames } from 'react-day-picker';
+import { ActiveModifiers, ClassNames } from 'react-day-picker';
 
 import { IDatePickerProps, IDatePickerReturn } from '../types/DatePicker.types';
 
@@ -17,6 +17,7 @@ export default function useDatePickerSingle({
   onSelect,
   startsToday,
   locale,
+  disabledDaysMessage,
 }: IDatePickerProps): IDatePickerReturn {
   const localeOption = locale || ptBr;
   const localeDateFormat =
@@ -32,7 +33,10 @@ export default function useDatePickerSingle({
   const [currentMonthToDisplay, setCurrentMonthToDisplay] =
     React.useState<Date>();
   const [datePickerCache, setDatePickerCache] = React.useState<string>('');
-
+  const [showDisabledTooltip, setShowDisabledTooltip] = React.useState(false);
+  const tooltipTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
   const fromDate = DateFns.parse(value || '', localeDateFormat, new Date());
 
   React.useEffect(() => {
@@ -117,6 +121,32 @@ export default function useDatePickerSingle({
 
   const inputPlaceholder = getInputPlaceholder(localeOption);
 
+  const handleDayClickWithModifiers = (
+    day: Date,
+    modifiers: ActiveModifiers
+  ) => {
+    if (modifiers.disabled) {
+      if (disabledDaysMessage) {
+        if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current);
+        setShowDisabledTooltip(true);
+        tooltipTimerRef.current = setTimeout(
+          () => setShowDisabledTooltip(false),
+          4000
+        );
+      }
+      return;
+    }
+    setShowDisabledTooltip(false);
+    handleDayClick(day);
+  };
+
+  React.useEffect(
+    () => () => {
+      if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current);
+    },
+    []
+  );
+
   return {
     input1Ref,
     input2Ref,
@@ -126,11 +156,12 @@ export default function useDatePickerSingle({
     localeOption,
     currentField,
     inputPlaceholder,
-    handleDayClick,
     inputChange,
     createHandleToggleClick,
     formatDay,
     handleCloseByOutside,
     currentMonthToDisplay,
+    showDisabledTooltip,
+    handleDayClickWithModifiers,
   };
 }

@@ -27,6 +27,7 @@ const DatePickerSingle = React.forwardRef<
       helperText,
       startsToday,
       disabledDays,
+      disabledDaysMessage,
       className,
       locale,
       ...rest
@@ -41,15 +42,37 @@ const DatePickerSingle = React.forwardRef<
       localeOption,
       currentField,
       inputPlaceholder,
-      handleDayClick,
       inputChange,
       createHandleToggleClick,
       formatDay,
       handleCloseByOutside,
       currentMonthToDisplay,
-    } = useDatePicker({ value, onSelect, startsToday, locale });
+      showDisabledTooltip,
+      handleDayClickWithModifiers,
+    } = useDatePicker({
+      value,
+      onSelect,
+      startsToday,
+      locale,
+      disabledDaysMessage,
+    });
 
     const calendarOpen = inline || showDayPicker;
+
+    const CaptionWithTooltip = ({ displayMonth }: CaptionProps) => (
+      <>
+        {DateHeader({ displayMonth, locale: localeOption, mode: 'single' })}
+        {showDisabledTooltip && disabledDaysMessage && (
+          <div
+            className="ods-date__disabled-tooltip"
+            role="tooltip"
+            data-testid="datepicker-disabled-tooltip"
+          >
+            {disabledDaysMessage}
+          </div>
+        )}
+      </>
+    );
 
     return (
       <div>
@@ -106,18 +129,13 @@ const DatePickerSingle = React.forwardRef<
                   weekStartsOn={0}
                   classNames={CustomStyles(inline)}
                   className={className}
-                  onDayClick={(day: Date) => handleDayClick(day)}
+                  onDayClick={handleDayClickWithModifiers}
                   formatters={{ formatDay }}
                   selected={selectedDay}
                   disabled={startsToday ? { before: new Date() } : disabledDays}
                   defaultMonth={currentMonthToDisplay}
                   components={{
-                    Caption: ({ displayMonth }: CaptionProps) =>
-                      DateHeader({
-                        displayMonth,
-                        locale: localeOption,
-                        mode: 'single',
-                      }),
+                    Caption: CaptionWithTooltip,
                   }}
                 />
               </div>

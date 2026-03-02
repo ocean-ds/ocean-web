@@ -96,6 +96,33 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     top: 72px;
   }
 
+  &__disabled-tooltip {
+    background-color: $color-interface-dark-deep;
+    border-radius: $border-radius-sm;
+    box-shadow: $shadow-level-2;
+    color: $color-interface-light-pure;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-regular;
+    line-height: 1.5;
+    margin: 0 $spacing-inline-xs;
+    padding: $spacing-inline-xxs-extra $spacing-inline-xs;
+    position: absolute;
+    text-align: center;
+    top: 68px;
+    z-index: 10;
+
+    &::after {
+      border: 7px solid transparent;
+      border-top-color: $color-interface-dark-deep;
+      bottom: -14px;
+      content: '';
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+    }
+  }
+
   &__inline-calendar {
     background-color: $color-interface-light-pure;
     border-radius: $border-radius-md;
