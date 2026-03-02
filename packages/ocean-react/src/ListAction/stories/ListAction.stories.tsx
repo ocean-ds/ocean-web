@@ -14,9 +14,6 @@ import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
 
-const lockIconColor = '#E0E2EE'; // colorInterfaceLightDown
-const LockIcon = <LockClosed size={24} style={{ color: lockIconColor }} />;
-
 const meta: Meta<typeof ListAction> = {
   title: 'Components/List/ListAction',
   component: ListAction,
@@ -668,90 +665,153 @@ export const TextTypeWithDividerAndCaption: Story = {
   ),
 };
 
-// Story: Com AmountDetails (Extrato — como no Figma)
+// Story: Com AmountDetails
 export const WithAmountDetails: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <List showLeading style={{ minWidth: '300px' }}>
+    <List style={{ minWidth: '300px' }}>
+      <ListAction
+        title="Compra no débito"
+        description="Loja exemplo LTDA"
+        caption="Hoje, 14:30"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 1.234,56',
+          additionalData: '1x no débito',
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+      <ListAction
+        title="Pix recebido"
+        description="João da Silva"
+        caption="Ontem, 09:15"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 500,00',
+          indicator: (
+            <Tag type="positive" size="small" setIconOff>
+              Recebido
+            </Tag>
+          ),
+          additionalData: 'Pix',
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+      <ListAction
+        title="Pagamento pendente"
+        description="Conta de luz"
+        caption="Vence amanhã"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        status="warning"
+        amountDetails={{
+          amount: 'R$ 189,90',
+          indicator: (
+            <Tag type="warning" size="small" setIconOff>
+              Pendente
+            </Tag>
+          ),
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+      <ListAction
+        title="Sem indicator"
+        description="Apenas valor"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 42,00',
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+    </List>
+  ),
+};
+
+// Story: Com Leading (Timeline)
+export const WithLeading: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '320px' }}>
       <ListAction
         title="Retenção de saldo"
         description="Boleto de Blu Instituição de Pag"
-        icon={LockIcon}
+        icon={<PlaceholderOutline size={24} />}
         type="text"
         inverted
         showDivider={false}
-        amountDetails={{
-          amount: 'R$ 150,00',
-          type: 'negative',
-        }}
+        amountDetails={{ amount: 'R$ 150,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
+        leading="first"
       />
       <ListAction
         title="Retenção de saldo"
         description="Boleto de Blu Instituição de Pag"
-        icon={LockIcon}
+        icon={<PlaceholderOutline size={24} />}
         type="text"
         inverted
         showDivider={false}
-        amountDetails={{
-          amount: 'R$ 200,00',
-          type: 'negative',
-        }}
+        amountDetails={{ amount: 'R$ 200,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
+        leading="middle"
       />
       <ListAction
         title="Retenção de saldo"
         description="Boleto de Blu Instituição de Pag"
-        icon={LockIcon}
+        icon={<PlaceholderOutline size={24} />}
         type="text"
         inverted
         showDivider={false}
-        amountDetails={{
-          amount: 'R$ 1.500,00',
-          type: 'negative',
-        }}
+        amountDetails={{ amount: 'R$ 1.500,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
+        leading="middle"
       />
       <ListAction
         title="Retenção de saldo"
         description="Boleto de Blu Instituição de Pag"
-        icon={LockIcon}
+        icon={<PlaceholderOutline size={24} />}
         type="text"
         inverted
         showDivider={false}
-        amountDetails={{
-          amount: 'R$ 300,00',
-          type: 'negative',
-        }}
+        amountDetails={{ amount: 'R$ 300,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
+        leading="middle"
       />
       <ListAction
         title="Retenção de saldo"
         description="Boleto de Blu Instituição de Pag"
-        icon={LockIcon}
+        icon={<PlaceholderOutline size={24} />}
         type="text"
         inverted
         showDivider={false}
-        amountDetails={{
-          amount: 'R$ 100,00',
-          type: 'negative',
-        }}
+        amountDetails={{ amount: 'R$ 100,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
+        leading="middle"
       />
       <ListAction
         title="Retenção de multa e juros"
         description="Boleto de Blu Instituição de Pag"
-        icon={LockIcon}
+        icon={<PlaceholderOutline size={24} />}
         type="text"
         inverted
         showDivider={false}
-        amountDetails={{
-          amount: 'R$ 10,00',
-          type: 'negative',
-        }}
+        amountDetails={{ amount: 'R$ 10,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
+        leading="last"
       />
     </List>
   ),
