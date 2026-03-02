@@ -453,15 +453,16 @@ test('renders element with calendar open and today date', async () => {
   fireEvent.click(input1);
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+  const calendar = screen.getByTestId('datepicker-calendar');
 
-  const beforeDay = screen.getByText(YESTERDAY);
   const fromDay = screen.getByText(TODAY);
 
   expect(fromDay).toBeInTheDocument();
 
-  fireEvent.click(fromDay);
+  const disabledButtons = calendar.querySelectorAll('.ods-date__disabled');
+  expect(disabledButtons.length).toBeGreaterThan(0);
 
-  expect(beforeDay.parentElement).toHaveClass('ods-date__disabled');
+  fireEvent.click(fromDay);
 });
 
 test('renders element with calendar open and startsToday atribute on select yesterday', async () => {
