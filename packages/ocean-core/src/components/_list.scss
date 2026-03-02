@@ -47,6 +47,21 @@
     }
   }
 
+  /* Leading lines: extend segments so they connect between list items */
+  .ods-list-action {
+    overflow: visible;
+  }
+
+  .ods-list-action__leading-line--visible {
+    &:first-of-type {
+      margin-top: -$spacing-inline-xs;
+    }
+
+    &:last-of-type {
+      margin-bottom: -$spacing-inline-xs;
+    }
+  }
+
   .ods-list-expandable--card {
     border: 0;
     border-radius: 0;

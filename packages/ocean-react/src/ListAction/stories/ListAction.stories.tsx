@@ -6,12 +6,16 @@ import {
   Archive,
   Trash,
   PlaceholderOutline,
+  LockClosed,
 } from '@useblu/ocean-icons-react';
 import ListAction from '../ListAction';
 import type { ActionItem } from '../../_shared/components/InternalListActions';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
+
+const lockIconColor = '#E0E2EE'; // colorInterfaceLightDown
+const LockIcon = <LockClosed size={24} style={{ color: lockIconColor }} />;
 
 const meta: Meta<typeof ListAction> = {
   title: 'Components/List/ListAction',
@@ -664,75 +668,88 @@ export const TextTypeWithDividerAndCaption: Story = {
   ),
 };
 
-// Story: Com AmountDetails (default, positive, negative)
+// Story: Com AmountDetails (Extrato — como no Figma)
 export const WithAmountDetails: Story = {
   parameters: {
     controls: { disable: true },
   },
   render: () => (
-    <List style={{ minWidth: '300px' }}>
+    <List showLeading style={{ minWidth: '300px' }}>
       <ListAction
-        title="Compra no débito"
-        description="Loja exemplo LTDA"
-        caption="Hoje, 14:30"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
+        title="Retenção de saldo"
+        description="Boleto de Blu Instituição de Pag"
+        icon={LockIcon}
+        type="text"
         inverted
+        showDivider={false}
         amountDetails={{
-          amount: 'R$ 1.234,56',
-          type: 'default',
-          additionalData: '1x no débito',
-        }}
-        onClick={() => alert('Clicado!')}
-      />
-      <ListAction
-        title="Pix recebido"
-        description="João da Silva"
-        caption="Ontem, 09:15"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        inverted
-        status="positive"
-        amountDetails={{
-          amount: 'R$ 500,00',
-          type: 'positive',
-          indicator: (
-            <Tag type="positive" size="small" setIconOff>
-              Recebido
-            </Tag>
-          ),
-          additionalData: 'Pix',
-        }}
-        onClick={() => alert('Clicado!')}
-      />
-      <ListAction
-        title="Pagamento debitado"
-        description="Conta de luz"
-        caption="Vence amanhã"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        inverted
-        amountDetails={{
-          amount: 'R$ 189,90',
+          amount: 'R$ 150,00',
           type: 'negative',
-          indicator: (
-            <Tag type="negative" size="small" setIconOff>
-              Débito
-            </Tag>
-          ),
-          additionalData: 'Débito automático',
         }}
         onClick={() => alert('Clicado!')}
       />
       <ListAction
-        title="Sem indicator"
-        description="Apenas valor"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
+        title="Retenção de saldo"
+        description="Boleto de Blu Instituição de Pag"
+        icon={LockIcon}
+        type="text"
         inverted
+        showDivider={false}
         amountDetails={{
-          amount: 'R$ 42,00',
-          type: 'default',
+          amount: 'R$ 200,00',
+          type: 'negative',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Retenção de saldo"
+        description="Boleto de Blu Instituição de Pag"
+        icon={LockIcon}
+        type="text"
+        inverted
+        showDivider={false}
+        amountDetails={{
+          amount: 'R$ 1.500,00',
+          type: 'negative',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Retenção de saldo"
+        description="Boleto de Blu Instituição de Pag"
+        icon={LockIcon}
+        type="text"
+        inverted
+        showDivider={false}
+        amountDetails={{
+          amount: 'R$ 300,00',
+          type: 'negative',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Retenção de saldo"
+        description="Boleto de Blu Instituição de Pag"
+        icon={LockIcon}
+        type="text"
+        inverted
+        showDivider={false}
+        amountDetails={{
+          amount: 'R$ 100,00',
+          type: 'negative',
+        }}
+        onClick={() => alert('Clicado!')}
+      />
+      <ListAction
+        title="Retenção de multa e juros"
+        description="Boleto de Blu Instituição de Pag"
+        icon={LockIcon}
+        type="text"
+        inverted
+        showDivider={false}
+        amountDetails={{
+          amount: 'R$ 10,00',
+          type: 'negative',
         }}
         onClick={() => alert('Clicado!')}
       />
