@@ -109,6 +109,60 @@ Você pode usar o Radio sem label:
   title="Radio - Sem Label"
 />
 
+## Estado de erro
+
+O Radio suporta estado de erro com mensagem de validação exibida verticalmente abaixo do label:
+
+```tsx live
+<Radio label="Opção com erro" error errorMessage="Esta opção é obrigatória" />
+```
+
+### Exemplo de validação em grupo
+
+```tsx
+function RadioGroupValidation() {
+  const [selected, setSelected] = React.useState('');
+  const [touched, setTouched] = React.useState(false);
+  const hasError = touched && !selected;
+
+  return (
+    <div>
+      <h3>Selecione uma opção:</h3>
+      <Radio
+        label="Opção 1"
+        name="validation-group"
+        value="option1"
+        checked={selected === 'option1'}
+        onChange={(e) => setSelected(e.target.value)}
+        onBlur={() => setTouched(true)}
+        error={hasError}
+      />
+      <Radio
+        label="Opção 2"
+        name="validation-group"
+        value="option2"
+        checked={selected === 'option2'}
+        onChange={(e) => setSelected(e.target.value)}
+        onBlur={() => setTouched(true)}
+        error={hasError}
+      />
+      <Radio
+        label="Opção 3"
+        name="validation-group"
+        value="option3"
+        checked={selected === 'option3'}
+        onChange={(e) => setSelected(e.target.value)}
+        onBlur={() => setTouched(true)}
+        error={hasError}
+        errorMessage={
+          hasError ? 'Selecione uma opção para continuar' : undefined
+        }
+      />
+    </div>
+  );
+}
+```
+
 ## Exemplo de formulário
 
 Exemplo prático de uso em formulário:
@@ -124,27 +178,32 @@ Exemplo prático de uso em formulário:
 
 ### Props
 
-| Prop        | Tipo                           | Padrão  | Descrição                          |
-| ----------- | ------------------------------ | ------- | ---------------------------------- |
-| `label`     | `ReactNode`                    | -       | Texto do label do radio            |
-| `checked`   | `boolean`                      | `false` | Define se o radio está selecionado |
-| `disabled`  | `boolean`                      | `false` | Desabilita o radio                 |
-| `name`      | `string`                       | -       | Nome do grupo de radios            |
-| `value`     | `string`                       | -       | Valor do radio                     |
-| `onChange`  | `(event: ChangeEvent) => void` | -       | Função chamada quando o valor muda |
-| `id`        | `string`                       | -       | ID único do radio                  |
-| `className` | `string`                       | -       | Classes CSS adicionais             |
+| Prop           | Tipo                           | Padrão  | Descrição                                |
+| -------------- | ------------------------------ | ------- | ---------------------------------------- |
+| `label`        | `ReactNode`                    | -       | Texto do label do radio                  |
+| `checked`      | `boolean`                      | `false` | Define se o radio está selecionado       |
+| `disabled`     | `boolean`                      | `false` | Desabilita o radio                       |
+| `error`        | `boolean`                      | `false` | Define se o radio está em estado de erro |
+| `errorMessage` | `string`                       | -       | Mensagem de erro exibida abaixo do label |
+| `name`         | `string`                       | -       | Nome do grupo de radios                  |
+| `value`        | `string`                       | -       | Valor do radio                           |
+| `onChange`     | `(event: ChangeEvent) => void` | -       | Função chamada quando o valor muda       |
+| `id`           | `string`                       | -       | ID único do radio                        |
+| `className`    | `string`                       | -       | Classes CSS adicionais                   |
 
 ### Classes CSS
 
 O componente utiliza as seguintes classes CSS que podem ser customizadas:
 
-| Classe                  | Descrição                    |
-| ----------------------- | ---------------------------- |
-| `.ods-radio__root`      | Container principal do Radio |
-| `.ods-radio`            | Elemento input do radio      |
-| `.ods-radio__checkmark` | Elemento visual do radio     |
-| `.ods-radio__label`     | Label do radio               |
+| Classe                         | Descrição                        |
+| ------------------------------ | -------------------------------- |
+| `.ods-radio__root-container`   | Container wrapper do Radio       |
+| `.ods-radio__root`             | Container do label e input       |
+| `.ods-radio`                   | Elemento input do radio          |
+| `.ods-radio__checkmark`        | Elemento visual do radio         |
+| `.ods-radio__checkmark--error` | Modificador de erro no checkmark |
+| `.ods-radio__label`            | Label do radio                   |
+| `.ods-radio__error-message`    | Mensagem de erro abaixo do label |
 
 ## Acessibilidade
 
@@ -172,6 +231,8 @@ O componente utiliza as seguintes classes CSS que podem ser customizadas:
 - Use valores únicos para cada radio
 - Use estado `disabled` quando apropriado
 - Organize radios verticalmente para melhor legibilidade
+- Use `error` e `errorMessage` para feedback de validação
+- Exiba a mensagem de erro apenas no último radio do grupo
 
 ### ❌ Não faça
 
@@ -181,6 +242,7 @@ O componente utiliza as seguintes classes CSS que podem ser customizadas:
 - Não use labels vagos ou genéricos
 - Não ignore estados de foco e hover
 - Não use para ações (use Button)
+- Não exiba múltiplas mensagens de erro para o mesmo grupo
 
 ## Casos de uso comuns
 

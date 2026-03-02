@@ -15,7 +15,7 @@ const meta: Meta<typeof Badge> = {
     color: {
       description: 'A cor da badge.',
       control: 'select',
-      options: ['brand', 'complementary', 'alert', 'neutral'],
+      options: ['brand', 'complementary', 'alert', 'neutral', 'highlight'],
     },
     count: {
       description: 'O número que a badge deve exibir (máximo 99+).',
@@ -93,6 +93,7 @@ export const Colors: Story = {
       <Badge count={5} color="complementary" />
       <Badge count={5} color="alert" />
       <Badge count={5} color="neutral" />
+      <Badge count={5} color="highlight" />
     </div>
   ),
 };
@@ -114,6 +115,7 @@ export const WithText: Story = {
       <Badge color="complementary">Popular</Badge>
       <Badge color="alert">Urgente</Badge>
       <Badge color="neutral">Info</Badge>
+      <Badge color="highlight">Novidade</Badge>
     </div>
   ),
 };
@@ -157,6 +159,7 @@ export const Tiny: Story = {
       <Badge variation="tiny" color="complementary" />
       <Badge variation="tiny" color="alert" />
       <Badge variation="tiny" color="neutral" />
+      <Badge variation="tiny" color="highlight" />
     </div>
   ),
 };

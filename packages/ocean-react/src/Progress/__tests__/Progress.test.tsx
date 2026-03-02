@@ -8,8 +8,9 @@ test('renders element properly', () => {
 
   expect(container.firstChild).toMatchInlineSnapshot(`
 <div
-  class="ods-progress ods-progress--md"
+  class="ods-progress ods-progress--md ods-progress--indeterminate"
   data-testid="progress-test"
+  role="progressbar"
 >
   <svg
     fill="none"
@@ -53,4 +54,16 @@ test('should render a progress sm', () => {
 test('should render a progress large', () => {
   render(<Progress data-testid="progress-test" size="lg" />);
   expect(screen.getByTestId('progress-test')).toHaveClass('ods-progress--lg');
+});
+
+test('should render a determinate progress with percentage', () => {
+  render(<Progress data-testid="progress-test" percentage={75} />);
+
+  const progress = screen.getByTestId('progress-test');
+
+  expect(progress).toHaveClass('ods-progress--determinate');
+  expect(progress).not.toHaveClass('ods-progress--indeterminate');
+  expect(progress).toHaveAttribute('aria-valuenow', '75');
+  expect(progress).toHaveAttribute('aria-valuemin', '0');
+  expect(progress).toHaveAttribute('aria-valuemax', '100');
 });

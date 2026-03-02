@@ -73,4 +73,8 @@
   &--neutral .ods-badge__content {
     background-color: $color-interface-dark-up;
   }
+
+  &--highlight .ods-badge__content {
+    background-color: $color-highlight-pure;
+  }
 }

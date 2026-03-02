@@ -10,7 +10,7 @@ export type BadgeProps = {
   /**
    * Determines the type of Badge colors scheam.
    */
-  color?: 'brand' | 'complementary' | 'alert' | 'neutral';
+  color?: 'brand' | 'complementary' | 'alert' | 'neutral' | 'highlight';
   /**
    * Determines the number of that badge should display
    */

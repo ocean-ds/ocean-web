@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.130.0](https://github.com/ocean-ds/ocean-web/compare/v1.129.0...v1.130.0) (2026-02-12)
+
+### Features
+
+- add action badge color on cardgroup ([#1226](https://github.com/ocean-ds/ocean-web/issues/1226)) ([527aaa4](https://github.com/ocean-ds/ocean-web/commit/527aaa494be3914d60b3046c63b0763f88909cc2))
+
+# [1.129.0](https://github.com/ocean-ds/ocean-web/compare/v1.128.1...v1.129.0) (2026-02-05)
+
+### Features
+
+- create new properties to internal contextual hero ([#1223](https://github.com/ocean-ds/ocean-web/issues/1223)) ([5e2103c](https://github.com/ocean-ds/ocean-web/commit/5e2103cc6d2f16c6f06cf702686409381d4e99d6))
+
+## [1.128.1](https://github.com/ocean-ds/ocean-web/compare/v1.128.0...v1.128.1) (2026-02-04)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.128.0](https://github.com/ocean-ds/ocean-web/compare/v1.127.0...v1.128.0) (2026-02-04)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.127.0](https://github.com/ocean-ds/ocean-web/compare/v1.126.0...v1.127.0) (2026-01-14)
+
+### Features
+
+- include error message on radio ([#1216](https://github.com/ocean-ds/ocean-web/issues/1216)) ([6159438](https://github.com/ocean-ds/ocean-web/commit/6159438dadcf7058674da365e2b0d3b974859baf))
+
+# [1.126.0](https://github.com/ocean-ds/ocean-web/compare/v1.125.1...v1.126.0) (2026-01-14)
+
+### Features
+
+- include icon prop on SubHeader ([#1218](https://github.com/ocean-ds/ocean-web/issues/1218)) ([793d4e6](https://github.com/ocean-ds/ocean-web/commit/793d4e61168d107b7361c344c0d9d4b252603464))
+
+## [1.125.1](https://github.com/ocean-ds/ocean-web/compare/v1.125.0...v1.125.1) (2026-01-13)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.125.0](https://github.com/ocean-ds/ocean-web/compare/v1.124.0...v1.125.0) (2026-01-13)
+
+### Features
+
+- Introduces a new percentage property to the component to enable loading progress control. ([#1215](https://github.com/ocean-ds/ocean-web/issues/1215)) ([688bf8e](https://github.com/ocean-ds/ocean-web/commit/688bf8e260add9d6e8b042744ddd7d5ecbe686fa))
+
 # [1.124.0](https://github.com/ocean-ds/ocean-web/compare/v1.123.0...v1.124.0) (2026-01-08)
 
 **Note:** Version bump only for package @useblu/ocean-docs

@@ -8,7 +8,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # InternalContextualHero
 
-Componente de destaque utilizado para exibir mensagens personalizadas baseadas na jornada do usuário. Permite combinar título, descrição, lista de itens, botões de ação e uma imagem opcional.
+Componente de destaque utilizado para exibir mensagens personalizadas baseadas na jornada do usuário. Permite combinar título, descrição, lista de itens, botões de ação e uma imagem opcional. Suporta diferentes variantes visuais (`type`) e posições de imagem (`imagePosition`).
 
 ## Importação
 
@@ -47,11 +47,85 @@ No Storybook você encontrará:
 - ✅ **Exemplos visuais** de todas as variantes e estados
 - ✅ **Playground** para experimentação rápida
 
+## Variantes de Tipo (`type`)
+
+O componente suporta três variantes visuais que alteram as cores dos botões e o estilo geral:
+
+### Default
+
+Estilo padrão com cores primárias:
+
+<StorybookEmbed
+  storyId="components-internalcontextualhero--type-default"
+  height={300}
+  showToolbar={false}
+  title="InternalContextualHero - Type Default"
+/>
+
+### Warning
+
+Estilo de aviso com cores de alerta:
+
+<StorybookEmbed
+  storyId="components-internalcontextualhero--type-warning"
+  height={300}
+  showToolbar={false}
+  title="InternalContextualHero - Type Warning"
+/>
+
+### Negative
+
+Estilo crítico/negativo para erros:
+
+<StorybookEmbed
+  storyId="components-internalcontextualhero--type-negative"
+  height={300}
+  showToolbar={false}
+  title="InternalContextualHero - Type Negative"
+/>
+
+## Posição da Imagem (`imagePosition`)
+
+O componente permite controlar a posição vertical da imagem na lateral direita:
+
+### Top (padrão)
+
+Imagem alinhada ao topo:
+
+<StorybookEmbed
+  storyId="components-internalcontextualhero--image-position-top"
+  height={300}
+  showToolbar={false}
+  title="InternalContextualHero - Image Position Top"
+/>
+
+### Bottom
+
+Imagem alinhada à parte inferior:
+
+<StorybookEmbed
+  storyId="components-internalcontextualhero--image-position-bottom"
+  height={300}
+  showToolbar={false}
+  title="InternalContextualHero - Image Position Bottom"
+/>
+
+### Full
+
+Imagem ocupa toda a altura:
+
+<StorybookEmbed
+  storyId="components-internalcontextualhero--image-position-full"
+  height={300}
+  showToolbar={false}
+  title="InternalContextualHero - Image Position Full"
+/>
+
 ## Exemplos de Uso
 
-### Completo
+### Todas as variantes
 
-Hero com todas as propriedades preenchidas:
+Hero com todas as variantes de tipo e posição:
 
 <StorybookEmbed
   storyId="components-internalcontextualhero--all-variants"
@@ -141,14 +215,16 @@ Hero apenas com as propriedades obrigatórias:
 
 ### Props
 
-| Prop          | Tipo                                                                                             | Padrão | Descrição                                                                                     |
-| ------------- | ------------------------------------------------------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------- |
-| `title`       | `string`                                                                                         | -      | **Obrigatório.** Título principal do hero.                                                    |
-| `description` | `string`                                                                                         | -      | **Obrigatório.** Descrição ou subtítulo do hero.                                              |
-| `listItems`   | `(ReactNode \| InternalContextualHeroListItemString)[]`                                          | -      | **Obrigatório.** Lista de itens a serem exibidos.                                             |
-| `image`       | `string \| ReactNode`                                                                            | -      | Imagem ou componente a ser exibido na lateral direita. Se for string, renderiza como `<img>`. |
-| `actions`     | `[InternalContextualHeroAction] \| [InternalContextualHeroAction, InternalContextualHeroAction]` | -      | Botões de ação (máximo 2). O primeiro usa variant `primary`, o segundo usa `tertiary`.        |
-| `className`   | `string`                                                                                         | -      | Classes CSS adicionais.                                                                       |
+| Prop            | Tipo                                                                                             | Padrão      | Descrição                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------- |
+| `type`          | `'default' \| 'warning' \| 'negative'`                                                           | `'default'` | Define a variante visual do hero. Altera as cores dos botões de ação.                         |
+| `title`         | `string`                                                                                         | -           | **Obrigatório.** Título principal exibido no cabeçalho do hero.                               |
+| `description`   | `string`                                                                                         | -           | **Obrigatório.** Descrição exibida abaixo do título.                                          |
+| `listItems`     | `(ReactNode \| InternalContextualHeroListItemString)[]`                                          | -           | **Obrigatório.** Lista de itens a serem exibidos no corpo do hero.                            |
+| `image`         | `string \| ReactNode`                                                                            | -           | Imagem ou componente a ser exibido na lateral direita. Se for string, renderiza como `<img>`. |
+| `imagePosition` | `'top' \| 'bottom' \| 'full'`                                                                    | `'top'`     | Posição da imagem em relação ao conteúdo.                                                     |
+| `actions`       | `[InternalContextualHeroAction] \| [InternalContextualHeroAction, InternalContextualHeroAction]` | -           | Botões de ação (máximo 2). As variantes são baseadas no `type` do hero.                       |
+| `className`     | `string`                                                                                         | -           | Classes CSS adicionais para o elemento raiz.                                                  |
 
 ### Tipos
 
@@ -156,7 +232,9 @@ Hero apenas com as propriedades obrigatórias:
 
 ```tsx
 type InternalContextualHeroListItemString = {
+  /** Icon element to be displayed before the description. */
   icon?: ReactNode;
+  /** Text content of the list item. */
   description: string;
 };
 ```
@@ -165,10 +243,22 @@ type InternalContextualHeroListItemString = {
 
 ```tsx
 type InternalContextualHeroAction = {
+  /** Text displayed on the action button. */
   label: string;
+  /** Callback function triggered when the action button is clicked. */
   onClick: () => void;
 };
 ```
+
+### Variantes de botões por `type`
+
+Os botões de ação adaptam suas cores automaticamente com base no `type` do hero:
+
+| `type`     | Botão primário    | Botão secundário   |
+| ---------- | ----------------- | ------------------ |
+| `default`  | `primary`         | `tertiary`         |
+| `warning`  | `primaryWarning`  | `tertiaryWarning`  |
+| `negative` | `primaryCritical` | `tertiaryCritical` |
 
 ## Estrutura de listItems
 
@@ -207,10 +297,11 @@ listItems={[
 - Limite a lista a 3-5 itens para melhor legibilidade
 - Use no máximo 2 botões de ação para evitar sobrecarga visual
 - A imagem deve ser relevante ao contexto do hero
+- Use `type="warning"` para mensagens de atenção e `type="negative"` para erros ou ações críticas
+- Escolha o `imagePosition` apropriado para o layout: `top` para imagens pequenas, `full` para imagens que precisam de mais destaque
 
 ## Links relacionados
 
 - [Button](/components/button)
 - [Typography](/components/typography)
 - [ListAction](/components/listaction)
-

@@ -1,23 +1,78 @@
 .ods-internal-contextual-hero {
-  background-color: $color-interface-light-up;
   border-radius: $border-radius-sm;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
   width: 100%;
 
-  @include media-breakpoint-up(md) {
-    display: flex;
+  &--bottom &__image {
+    @include media-breakpoint-up(sm) {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: self-end;
+    }
   }
 
-  &__body {
-    display: contents;
+  &--bottom &__content {
+    @include media-breakpoint-up(sm) {
+      grid-column: 1 / -1;
+    }
+  }
 
-    @include media-breakpoint-up(md) {
+  &--bottom &__image > img,
+  &--bottom &__image > *:not(img) {
+    @include media-breakpoint-up(sm) {
+      border-radius: 0 0 $border-radius-sm 0;
+    }
+  }
+
+  &--bottom &__list {
+    @include media-breakpoint-up(sm) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+  }
+
+  &--full {
+    @include media-breakpoint-up(sm) {
+      display: flex;
+    }
+  }
+
+  &--full > &__body {
+    @include media-breakpoint-up(sm) {
       display: flex;
       flex: 1;
       flex-direction: column;
     }
+  }
+
+  &--default {
+    background-color: $color-interface-light-up;
+  }
+
+  &--default &__list-item-icon {
+    color: $color-brand-primary-down;
+  }
+
+  &--warning {
+    background-color: $color-status-warning-up;
+  }
+
+  &--warning &__list-item-icon {
+    color: $color-status-warning-deep;
+  }
+
+  &--negative {
+    background-color: $color-status-negative-up;
+  }
+
+  &--negative &__list-item-icon {
+    color: $color-status-negative-pure;
+  }
+
+  &__body {
+    display: contents;
   }
 
   &__content {
@@ -56,10 +111,10 @@
     grid-column: 2;
     grid-row: 1;
     justify-content: flex-end;
-    width: 82px;
+    max-width: 92px;
 
     @include media-breakpoint-up(md) {
-      width: 220px;
+      max-width: 220px;
     }
 
     > img {
@@ -114,4 +169,3 @@
     }
   }
 }
-

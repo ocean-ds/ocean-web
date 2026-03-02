@@ -1,23 +1,38 @@
 .ods-progress {
-  svg {
-    animation: ods-loading-animation 0.8s linear infinite;
-  }
+  &--indeterminate {
+    svg {
+      animation: ods-loading-animation 0.8s linear infinite;
+    }
 
-  svg circle {
-    stroke: $color-brand-primary-up;
-  }
-
-  svg path {
-    stroke: $color-brand-primary-pure;
-  }
-
-  &--on-color {
     svg circle {
-      stroke: #fff;
+      stroke: $color-brand-primary-up;
     }
 
     svg path {
-      stroke: #fff;
+      stroke: $color-brand-primary-pure;
+    }
+  }
+
+  &--determinate {
+    .ods-progress__track {
+      stroke: $color-brand-primary-up;
+    }
+
+    .ods-progress__fill {
+      stroke: $color-brand-primary-pure;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+  }
+
+  &--on-color {
+    svg circle,
+    .ods-progress__track {
+      stroke: rgba(255, 255, 255, 0.4);
+    }
+
+    svg path,
+    .ods-progress__fill {
+      stroke: $color-interface-light-pure;
     }
   }
 

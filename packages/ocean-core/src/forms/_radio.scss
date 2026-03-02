@@ -4,6 +4,12 @@
   position: absolute;
   width: 0;
 
+  &__root-container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxs;
+  }
+
   &__root {
     display: flex;
     user-select: none;
@@ -33,6 +39,14 @@
     &--error {
       border-color: $color-status-negative-pure;
     }
+  }
+
+  &__error-message {
+    color: $color-status-negative-pure;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-tight;
   }
 
   &:checked ~ &__checkmark {
