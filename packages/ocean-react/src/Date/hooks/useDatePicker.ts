@@ -1,7 +1,7 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 import ptBr from 'date-fns/locale/pt-BR';
-import { ActiveModifiers, ClassNames } from 'react-day-picker';
+import { ClassNames } from 'react-day-picker';
 
 import { IDatePickerProps, IDatePickerReturn } from '../types/DatePicker.types';
 
@@ -11,6 +11,8 @@ import {
   formatDay,
   getInputPlaceholder,
 } from '../utils/dateUtils';
+
+import { useDisabledDaysTooltip } from './useDisabledDaysTooltip';
 
 export default function useDatePickerSingle({
   value,
@@ -33,15 +35,10 @@ export default function useDatePickerSingle({
   const [currentMonthToDisplay, setCurrentMonthToDisplay] =
     React.useState<Date>();
   const [datePickerCache, setDatePickerCache] = React.useState<string>('');
-  const [showDisabledTooltip, setShowDisabledTooltip] = React.useState(false);
-  const tooltipTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(
-    null
-  );
-  const fromDate = DateFns.parse(value || '', localeDateFormat, new Date());
+  const { showDisabledTooltip, createDayClickHandler } =
+    useDisabledDaysTooltip(disabledDaysMessage);
 
-  React.useEffect(() => {
-    if (value === '') setCurrentField('');
-  }, [value]);
+  const fromDate = DateFns.parse(value || '', localeDateFormat, new Date());
 
   const updateState = (updateData: string, updateCache?: boolean) => {
     onSelect(updateData);
@@ -58,6 +55,7 @@ export default function useDatePickerSingle({
       setShowDayPicker(false);
     }
   };
+  const handleDayClickWithModifiers = createDayClickHandler(handleDayClick);
 
   const createHandleToggleClick = (fieldId: string) => {
     setShowDayPicker(!showDayPicker);
@@ -121,31 +119,9 @@ export default function useDatePickerSingle({
 
   const inputPlaceholder = getInputPlaceholder(localeOption);
 
-  const handleDayClickWithModifiers = (
-    day: Date,
-    modifiers: ActiveModifiers
-  ) => {
-    if (modifiers.disabled) {
-      if (disabledDaysMessage) {
-        if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current);
-        setShowDisabledTooltip(true);
-        tooltipTimerRef.current = setTimeout(
-          () => setShowDisabledTooltip(false),
-          4000
-        );
-      }
-      return;
-    }
-    setShowDisabledTooltip(false);
-    handleDayClick(day);
-  };
-
-  React.useEffect(
-    () => () => {
-      if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current);
-    },
-    []
-  );
+  React.useEffect(() => {
+    if (value === '') setCurrentField('');
+  }, [value]);
 
   return {
     input1Ref,

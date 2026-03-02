@@ -17,11 +17,14 @@ import {
   getInputPlaceholder,
 } from '../utils/dateUtils';
 
+import { useDisabledDaysTooltip } from './useDisabledDaysTooltip';
+
 export default function useDatePicker({
   values,
   onSelect,
   startsToday,
   locale,
+  disabledDaysMessage,
 }: IDatePickerProps): IDatePickerReturn {
   const localeOption = locale || ptBr;
   const localeDateFormat =
@@ -40,13 +43,11 @@ export default function useDatePicker({
     React.useState<DatePickerFields>({ from: '', to: '' });
   const [firstInputClicked, setFirstInputClicked] =
     React.useState<boolean>(false);
+  const { showDisabledTooltip, createDayClickHandler } =
+    useDisabledDaysTooltip(disabledDaysMessage);
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
-
-  React.useEffect(() => {
-    if (values.from === '') setCurrentField('');
-  }, [values.from]);
 
   const updateState = (updateData: DatePickerFields, updateCache?: boolean) => {
     onSelect(updateData);
@@ -88,6 +89,8 @@ export default function useDatePicker({
       }
     }
   };
+
+  const handleDayClickWithModifiers = createDayClickHandler(handleDayClick);
 
   const updateCurrentMonth = (date: string) => {
     const parsedDate = DateFns.parse(date, 'dd/MM/yyyy', new Date());
@@ -204,6 +207,10 @@ export default function useDatePicker({
 
   const inputPlaceholder = getInputPlaceholder(localeOption);
 
+  React.useEffect(() => {
+    if (values.from === '') setCurrentField('');
+  }, [values.from]);
+
   return {
     input1Ref,
     input2Ref,
@@ -217,6 +224,8 @@ export default function useDatePicker({
     inputPlaceholder,
     handleDayMouseEnter,
     handleDayClick,
+    handleDayClickWithModifiers,
+    showDisabledTooltip,
     inputChange,
     createHandleToggleClick,
     formatDay,

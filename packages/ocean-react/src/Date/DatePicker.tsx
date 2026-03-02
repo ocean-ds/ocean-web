@@ -10,6 +10,7 @@ import useDatePicker from './hooks/useDatePicker';
 import { DatePickerSingleProps } from './types/DatePicker.types';
 
 import DateHeader from './DateHeader';
+import DisabledDaysTooltip from './components/DisabledDaysTooltip';
 
 const DatePickerSingle = React.forwardRef<
   HTMLDivElement,
@@ -62,14 +63,11 @@ const DatePickerSingle = React.forwardRef<
     const CaptionWithTooltip = ({ displayMonth }: CaptionProps) => (
       <>
         {DateHeader({ displayMonth, locale: localeOption, mode: 'single' })}
-        {showDisabledTooltip && disabledDaysMessage && (
-          <div
-            className="ods-date__disabled-tooltip"
-            role="tooltip"
-            data-testid="datepicker-disabled-tooltip"
-          >
-            {disabledDaysMessage}
-          </div>
+        {disabledDaysMessage && (
+          <DisabledDaysTooltip
+            message={disabledDaysMessage}
+            show={showDisabledTooltip}
+          />
         )}
       </>
     );

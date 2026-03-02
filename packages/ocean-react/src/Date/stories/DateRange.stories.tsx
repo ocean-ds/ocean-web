@@ -160,6 +160,26 @@ export const VacationPlanning: Story = {
   ),
 };
 
+export const WithDisabledDaysMessage: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('400px')}>
+      <div>
+        <h4>Período com dias bloqueados</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Data inicial', to: 'Data final' }}
+          helperText="Tente clicar em um dia bloqueado para ver o tooltip"
+          disabledDays={[
+            { dayOfWeek: [0, 6] }, // Weekends
+            { before: new Date() },
+          ]}
+          disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const Localization: Story = {
   parameters: noControlsParameters,
   render: () => (
