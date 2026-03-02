@@ -160,6 +160,7 @@ function FutureDatePicker() {
       onSelect={setDate}
       startsToday
       helperText="Selecione uma data a partir de hoje"
+      disabledDays={(current) => current < new Date()}
     />
   );
 }
@@ -321,18 +322,19 @@ function ValidatedDatePicker() {
 
 ### Props
 
-| Prop          | Tipo                     | Padrão  | Descrição                                       |
-| ------------- | ------------------------ | ------- | ----------------------------------------------- |
-| `label`       | `string`                 | -       | Label do campo de entrada                       |
-| `value`       | `string`                 | -       | Valor da data selecionada (obrigatório)         |
-| `onSelect`    | `(date: string) => void` | -       | Função chamada ao selecionar data (obrigatório) |
-| `editable`    | `boolean`                | `false` | Permite edição manual do campo                  |
-| `disabled`    | `boolean`                | `false` | Desabilita o componente                         |
-| `error`       | `boolean`                | `false` | Exibe estado de erro                            |
-| `helperText`  | `string`                 | -       | Texto de ajuda ou erro                          |
-| `startsToday` | `boolean`                | `false` | Limita seleção a partir da data atual           |
-| `locale`      | `Locale`                 | `ptBR`  | Locale do date-fns para internacionalização     |
-| `className`   | `string`                 | -       | Classes CSS adicionais                          |
+| Prop           | Tipo                                  | Padrão  | Descrição                                       |
+| -------------- | ------------------------------------- | ------- | ----------------------------------------------- |
+| `label`        | `string`                              | -       | Label do campo de entrada                       |
+| `value`        | `string`                              | -       | Valor da data selecionada (obrigatório)         |
+| `onSelect`     | `(date: string) => void`              | -       | Função chamada ao selecionar data (obrigatório) |
+| `editable`     | `boolean`                             | `false` | Permite edição manual do campo                  |
+| `disabled`     | `boolean`                             | `false` | Desabilita o componente                         |
+| `error`        | `boolean`                             | `false` | Exibe estado de erro                            |
+| `helperText`   | `string`                              | -       | Texto de ajuda ou erro                          |
+| `startsToday`  | `boolean`                             | `false` | Limita seleção a partir da data atual           |
+| `disabledDays` | `(date: Date) => boolean` \| `Date[]` | -       | Bloqueia datas específicas no calendário        |
+| `locale`       | `Locale`                              | `ptBR`  | Locale do date-fns para internacionalização     |
+| `className`    | `string`                              | -       | Classes CSS adicionais                          |
 
 ### Eventos
 

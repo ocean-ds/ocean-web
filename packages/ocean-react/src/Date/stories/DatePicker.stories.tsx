@@ -124,11 +124,28 @@ export const WithRestrictions: Story = {
   ),
 };
 
+export const WithDisabledDays: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('300px')}>
+      <div>
+        <h4>Sem fins de semana</h4>
+        <DatePickerWrapper
+          label="Datas úteis"
+          helperText="Fins de semana estão desabilitados"
+          disabledDays={(day: Date) => day.getDay() === 0 || day.getDay() === 6}
+          startsToday
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const Localization: Story = {
   parameters: noControlsParameters,
   render: () => (
     <div style={createLocalizationContainer('300px', '500px')}>
-      <div>
+      <div style={{ zIndex: 1000 }}>
         <h4>Português (padrão)</h4>
         <DatePickerWrapper label="Data em português" locale={ptBR} />
       </div>
