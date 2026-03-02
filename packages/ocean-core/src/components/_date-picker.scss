@@ -96,6 +96,19 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     top: 72px;
   }
 
+  &__inline-calendar {
+    background-color: $color-interface-light-pure;
+    border-radius: $border-radius-md;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 0 $spacing-inline-xs;
+    width: 100%;
+
+    .rdp-vhidden {
+      display: none;
+    }
+  }
+
   @media (max-width: 321px) {
     &_calendar_m2 {
       top: 150px;

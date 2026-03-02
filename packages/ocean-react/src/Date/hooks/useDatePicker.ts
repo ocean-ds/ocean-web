@@ -92,8 +92,10 @@ export default function useDatePickerSingle({
     setCurrentMonthToDisplay(parsedDate);
   };
 
-  const CustomStyles: ClassNames = {
-    root: 'ods-date__calendar ods-date_calendar_m1',
+  const CustomStyles = (inline: boolean): ClassNames => ({
+    root: inline
+      ? 'ods-date__inline-calendar'
+      : 'ods-date__calendar ods-date_calendar_m1',
     caption: 'ods-date__caption',
     nav_button: 'ods-date__navButtons',
     nav_button_previous: 'ods-date__navButtonPrev-datepicker',
@@ -109,7 +111,7 @@ export default function useDatePickerSingle({
     day_today: 'ods-date__today',
     day_selected: 'ods-date__selected-datepicker',
     day_disabled: 'ods-date__disabled',
-  };
+  });
 
   const selectedDay: Date = fromDate;
 

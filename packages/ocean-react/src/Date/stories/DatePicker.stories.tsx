@@ -147,6 +147,46 @@ export const WithDisabledDays: Story = {
   ),
 };
 
+const InlineCalendarExample: React.FC = () => {
+  const [date, setDate] = useState('');
+
+  return (
+    <div
+      style={{
+        width: '360px',
+        height: '400px',
+      }}
+    >
+      <DatePicker
+        label="Calendário inline"
+        value={date}
+        onSelect={setDate}
+        inline
+        helperText="Use este calendário como painel de consulta"
+        disabledDays={[{ before: new Date() }]}
+      />
+      <p style={{ marginTop: '12px', fontSize: '14px' }}>
+        Data selecionada: {date || 'nenhuma'}
+      </p>
+    </div>
+  );
+};
+
+export const InlineCalendar: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '24px',
+      }}
+    >
+      <InlineCalendarExample />
+    </div>
+  ),
+};
+
 export const Localization: Story = {
   parameters: noControlsParameters,
   render: () => (
