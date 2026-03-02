@@ -90,11 +90,10 @@ export type ListActionProps = {
    */
   amountDetails?: AmountDetailsProps;
   /**
-   * Optional leading (timeline) with lines around the icon. When set, the icon is wrapped with
+   * Optional position (timeline) with lines around the icon. When set, the icon is wrapped with
    * vertical lines: first = line below only, middle = line above and below, last = line above only.
-   * Injected by List when used inside it with multiple children; can be set manually otherwise.
    */
-  leading?: 'first' | 'middle' | 'last';
+  position?: 'first' | 'middle' | 'last';
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'type'>;
 
 const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
@@ -118,7 +117,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       className,
       showDivider = false,
       amountDetails,
-      leading,
+      position,
       ...rest
     }: ListActionProps,
     ref
@@ -171,18 +170,18 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
         ? { transform: `translateX(-${menuWidth}px)` }
         : {};
 
-    const showLeading = leading && icon;
-    const showLineAbove = leading === 'middle' || leading === 'last';
-    const showLineBelow = leading === 'first' || leading === 'middle';
+    const showLeading = position && icon;
+    const showLineAbove = position === 'middle' || position === 'last';
+    const showLineBelow = position === 'first' || position === 'middle';
 
     const renderContent = () => (
       <>
         <div className="ods-list-action__content" style={contentStyle}>
           {showLeading ? (
-            <div className="ods-list-action__leading">
+            <div className="ods-list-action__position">
               <div
-                className={classNames('ods-list-action__leading-line', {
-                  'ods-list-action__leading-line--visible': showLineAbove,
+                className={classNames('ods-list-action__position-line', {
+                  'ods-list-action__position-line--visible': showLineAbove,
                 })}
               />
               <div
@@ -193,8 +192,8 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
                 {icon}
               </div>
               <div
-                className={classNames('ods-list-action__leading-line', {
-                  'ods-list-action__leading-line--visible': showLineBelow,
+                className={classNames('ods-list-action__position-line', {
+                  'ods-list-action__position-line--visible': showLineBelow,
                 })}
               />
             </div>

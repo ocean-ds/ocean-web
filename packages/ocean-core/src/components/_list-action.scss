@@ -53,7 +53,7 @@
     background-color: $color-interface-light-deep;
   }
 
-  &__leading {
+  &__position {
     align-items: center;
     align-self: stretch;
     display: flex;
@@ -64,7 +64,7 @@
     width: 24px;
   }
 
-  &__leading-line {
+  &__position-line {
     flex: 1;
     width: 1px;
 

@@ -755,7 +755,7 @@ export const WithLeading: Story = {
         showDivider={false}
         amountDetails={{ amount: 'R$ 150,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
-        leading="first"
+        position="first"
       />
       <ListAction
         title="Retenção de saldo"
@@ -766,7 +766,7 @@ export const WithLeading: Story = {
         showDivider={false}
         amountDetails={{ amount: 'R$ 200,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
-        leading="middle"
+        position="middle"
       />
       <ListAction
         title="Retenção de saldo"
@@ -777,7 +777,7 @@ export const WithLeading: Story = {
         showDivider={false}
         amountDetails={{ amount: 'R$ 1.500,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
-        leading="middle"
+        position="middle"
       />
       <ListAction
         title="Retenção de saldo"
@@ -788,7 +788,7 @@ export const WithLeading: Story = {
         showDivider={false}
         amountDetails={{ amount: 'R$ 300,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
-        leading="middle"
+        position="middle"
       />
       <ListAction
         title="Retenção de saldo"
@@ -799,7 +799,7 @@ export const WithLeading: Story = {
         showDivider={false}
         amountDetails={{ amount: 'R$ 100,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
-        leading="middle"
+        position="middle"
       />
       <ListAction
         title="Retenção de multa e juros"
@@ -810,7 +810,7 @@ export const WithLeading: Story = {
         showDivider={false}
         amountDetails={{ amount: 'R$ 10,00', type: 'negative' }}
         onClick={() => alert('Clicado!')}
-        leading="last"
+        position="last"
       />
     </List>
   ),

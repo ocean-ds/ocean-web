@@ -47,7 +47,7 @@
     }
   }
 
-  /* Leading timeline: line is drawn per item via ::before; overflow visible so line is not clipped */
+  /* Position timeline: overflow visible so position lines are not clipped by padding */
   .ods-list-action {
     overflow: visible;
   }
