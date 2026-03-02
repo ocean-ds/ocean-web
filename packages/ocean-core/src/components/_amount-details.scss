@@ -28,11 +28,11 @@
   }
 
   &__amount-row {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
     gap: $spacing-inline-xxxs;
+    justify-content: flex-end;
   }
 
   &__amount-sign {
