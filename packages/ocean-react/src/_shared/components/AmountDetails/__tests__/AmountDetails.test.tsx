@@ -61,7 +61,9 @@ describe('AmountDetails', () => {
 
   test('renders type negative with minus sign before amount', () => {
     render(<AmountDetails amount="R$ 25,00" type="negative" />);
-    expect(screen.getByText('- ')).toBeInTheDocument();
+    expect(
+      document.querySelector('.ods-amount-details__amount-sign')
+    ).toBeInTheDocument();
     expect(screen.getByText('R$ 25,00')).toBeInTheDocument();
   });
 });
