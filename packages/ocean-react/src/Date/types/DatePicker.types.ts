@@ -8,6 +8,7 @@ export type DatePickerSingleProps = {
   value: string | undefined;
   onSelect: (date: string) => void;
   disabledDays?: Matcher | Matcher[];
+  inline?: boolean;
 } & Omit<DatePickerProps, 'labels' | 'values' | 'onSelect'>;
 
 export type IDatePickerProps = Pick<
@@ -20,7 +21,7 @@ export type IDatePickerReturn = {
   input2Ref: React.Ref<HTMLInputElement>;
   showDayPicker: boolean;
   selectedDay: Date;
-  CustomStyles: ClassNames;
+  CustomStyles: (inline: boolean) => ClassNames;
   localeOption: DateFns.Locale;
   currentField: string;
   inputPlaceholder: string;
