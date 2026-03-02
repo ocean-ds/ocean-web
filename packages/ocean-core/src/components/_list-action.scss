@@ -37,7 +37,6 @@
   }
 
   &__divider {
-    border-bottom: 1px solid $color-interface-light-down;
     margin: 0 $spacing-inline-xs;
   }
 
@@ -60,17 +59,17 @@
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    justify-content: center;
+    margin-bottom: -$spacing-inline-xs;
+    margin-top: -$spacing-inline-xs;
+    width: 24px;
   }
 
   &__leading-line {
-    border-left: 1px solid transparent;
     flex: 1;
-    min-height: 4px;
-    width: 0;
+    width: 1px;
 
     &--visible {
-      border-left-color: $color-interface-light-down;
+      background-color: $color-interface-light-down;
     }
   }
 

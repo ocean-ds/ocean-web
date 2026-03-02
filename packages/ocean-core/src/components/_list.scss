@@ -47,19 +47,9 @@
     }
   }
 
-  /* Leading lines: extend segments so they connect between list items */
+  /* Leading timeline: line is drawn per item via ::before; overflow visible so line is not clipped */
   .ods-list-action {
     overflow: visible;
-  }
-
-  .ods-list-action__leading-line--visible {
-    &:first-of-type {
-      margin-top: -$spacing-inline-xs;
-    }
-
-    &:last-of-type {
-      margin-bottom: -$spacing-inline-xs;
-    }
   }
 
   .ods-list-expandable--card {
