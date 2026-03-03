@@ -69,26 +69,25 @@
     flex: 1;
     gap: $spacing-inline-xxs-extra;
     min-width: 0;
-  }
 
-  &__transaction-content .ods-content-list {
-    flex: 1;
-    min-width: 0;
-  }
+    .ods-content-list {
+      flex: 1;
+      min-width: 0;
+    }
 
-  &__transaction-content .ods-amount-details {
-    flex-shrink: 0;
-  }
+    .ods-amount-details {
+      flex-shrink: 0;
+    }
 
-  &__transaction-content
     .ods-amount-details__amount:not(.ods-amount-details__amount--positive),
-  &__transaction-content .ods-amount-details__amount-sign {
-    color: $color-interface-dark-deep;
-  }
+    .ods-amount-details__amount-sign {
+      color: $color-interface-dark-deep;
+    }
 
-  &__transaction-content .ods-amount-details__amount,
-  &__transaction-content .ods-amount-details__amount-sign {
-    font-size: $font-size-xs;
+    .ods-amount-details__amount,
+    .ods-amount-details__amount-sign {
+      font-size: $font-size-xs;
+    }
   }
 
   &__trailing {
