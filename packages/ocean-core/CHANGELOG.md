@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.132.0](https://github.com/ocean-ds/ocean-web/compare/v1.131.0...v1.132.0) (2026-03-03)
+
+### Features
+
+- update data picker adding tooltip list ([#1230](https://github.com/ocean-ds/ocean-web/issues/1230)) ([e0d2fc6](https://github.com/ocean-ds/ocean-web/commit/e0d2fc63ad1a3f592db66155276a147a77bca3b1))
+
 # [1.131.0](https://github.com/ocean-ds/ocean-web/compare/v1.130.0...v1.131.0) (2026-03-03)
 
 ### Features

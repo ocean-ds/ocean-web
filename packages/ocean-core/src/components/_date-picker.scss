@@ -17,6 +17,10 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   user-select: none;
   width: 100%;
 
+  &__calendar-container {
+    position: relative;
+  }
+
   &:active,
   &:focus,
   *:active,
@@ -89,37 +93,39 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   &_calendar_m1 {
-    top: 72px;
+    top: $spacing-inline-xxxs;
   }
 
   &_calendar_m2 {
-    top: 72px;
+    top: $spacing-inline-xxxs;
   }
 
   &__disabled-tooltip {
     background-color: $color-interface-dark-deep;
     border-radius: $border-radius-sm;
     box-shadow: $shadow-level-2;
+    box-sizing: border-box;
     color: $color-interface-light-pure;
     font-family: $font-family-base;
-    font-size: $font-size-xxxs;
+    font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
+    left: 0;
     line-height: 1.5;
-    margin: 0 $spacing-inline-xs;
     padding: $spacing-inline-xxs-extra $spacing-inline-xs;
     position: absolute;
+    right: 0;
     text-align: center;
-    top: 68px;
+    transform: translateY(-100%);
     z-index: 10;
 
-    &::after {
+    &__arrow {
       border: 7px solid transparent;
       border-top-color: $color-interface-dark-deep;
       bottom: -14px;
-      content: '';
-      left: 50%;
+      height: 0;
       position: absolute;
       transform: translateX(-50%);
+      width: 0;
     }
   }
 
