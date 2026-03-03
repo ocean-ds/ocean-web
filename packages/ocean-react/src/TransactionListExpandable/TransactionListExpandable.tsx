@@ -213,7 +213,9 @@ const TransactionListExpandable = React.forwardRef<
         {expanded && !loading && (children || supportingText) && (
           <>
             {children && (
-              <div className="ods-list-expandable__content">{children}</div>
+              <div className="ods-list-expandable__content ods-list-expandable__content--transaction">
+                {children}
+              </div>
             )}
             {supportingText && (
               <div

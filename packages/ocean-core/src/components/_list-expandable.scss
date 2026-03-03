@@ -69,22 +69,21 @@
     flex: 1;
     gap: $spacing-inline-xxs-extra;
     min-width: 0;
+  }
 
-    .ods-content-list {
-      flex: 1;
-      min-width: 0;
-    }
+  &__transaction-content .ods-content-list {
+    flex: 1;
+    min-width: 0;
+  }
 
-    .ods-amount-details {
-      flex-shrink: 0;
+  &__transaction-content .ods-amount-details {
+    flex-shrink: 0;
+  }
 
-      // TransactionListExpandable: amount uses xs font and dark-deep color
-      .ods-amount-details__amount,
-      .ods-amount-details__amount-sign {
-        color: $color-interface-dark-deep;
-        font-size: $font-size-xs;
-      }
-    }
+  &__transaction-content .ods-amount-details__amount,
+  &__transaction-content .ods-amount-details__amount-sign {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xs;
   }
 
   &__trailing {
@@ -119,37 +118,33 @@
     word-wrap: break-word; // Break long words
   }
 
-  // TransactionListExpandable only: ListAction children
-  &--transaction &__content .ods-list-action {
+  // TransactionListExpandable only: ListAction children (use __content--transaction for shorter selectors)
+  &__content--transaction .ods-list-action {
     padding: $spacing-inline-xxs-extra $spacing-inline-xxs
       $spacing-inline-xxs-extra $spacing-inline-xs;
   }
 
-  &--transaction &__content .ods-list-action .ods-content-list {
-    .ods-typography__paragraph {
-      font-size: $font-size-xxs;
-    }
+  &__content--transaction .ods-content-list .ods-typography__paragraph {
+    font-size: $font-size-xxs;
+  }
 
-    .ods-typography__description {
-      font-size: $font-size-xxxs;
-    }
+  &__content--transaction .ods-content-list .ods-typography__description {
+    font-size: $font-size-xxxs;
   }
 
   &__footer {
     align-items: center;
+    color: $color-interface-dark-up;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: $spacing-inline-xxs-extra 0 $spacing-inline-sm;
-    width: 100%;
-
-    // Supporting text style (Figma: captionBold + colorInterfaceDarkUp)
-    color: $color-interface-dark-up;
     font-family: $font-family-base;
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
+    justify-content: center;
     line-height: $line-height-comfy;
+    padding: $spacing-inline-xxs-extra 0 $spacing-inline-sm;
     text-align: center;
+    width: 100%;
   }
 
   &__skeleton {
