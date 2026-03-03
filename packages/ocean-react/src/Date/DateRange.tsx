@@ -140,7 +140,8 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
             {!disabled && showDayPicker && (
               <div
                 data-testid="datepicker-calendar"
-                style={{ position: 'relative' }}
+                className="ods-date__calendar-container"
+                role="presentation"
                 onClick={handleCalendarClick}
               >
                 <DayPicker

@@ -2,7 +2,10 @@ import * as DateFns from 'date-fns';
 
 import { ClassNames, DateFormatter, Matcher } from 'react-day-picker';
 import { DatePickerProps } from './DateRange.types';
-import { DisabledDaysMessageProp } from '../hooks/useDisabledDaysTooltip';
+import {
+  DisabledDaysMessageProp,
+  TooltipPosition,
+} from '../hooks/useDisabledDaysTooltip';
 
 export type DatePickerSingleProps = {
   label: string | undefined;
@@ -43,7 +46,7 @@ export type IDatePickerReturn = {
   currentMonthToDisplay: Date | undefined;
   showDisabledTooltip: boolean;
   tooltipMessage: string;
-  tooltipPosition: import('../hooks/useDisabledDaysTooltip').TooltipPosition;
+  tooltipPosition: TooltipPosition;
   handleCalendarClick: (event: React.MouseEvent<HTMLDivElement>) => void;
   handleDayClickWithModifiers: (
     day: Date,

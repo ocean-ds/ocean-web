@@ -7,7 +7,10 @@ import {
   DateFormatter,
   Matcher,
 } from 'react-day-picker';
-import { DisabledDaysMessageProp } from '../hooks/useDisabledDaysTooltip';
+import {
+  DisabledDaysMessageProp,
+  TooltipPosition,
+} from '../hooks/useDisabledDaysTooltip';
 
 export type DatePickerFields = {
   from: string;
@@ -112,7 +115,7 @@ export type IDatePickerReturn = {
   ) => void;
   showDisabledTooltip: boolean;
   tooltipMessage: string;
-  tooltipPosition: import('../hooks/useDisabledDaysTooltip').TooltipPosition;
+  tooltipPosition: TooltipPosition;
   handleCalendarClick: (event: React.MouseEvent<HTMLDivElement>) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: (fieldId: string) => void;

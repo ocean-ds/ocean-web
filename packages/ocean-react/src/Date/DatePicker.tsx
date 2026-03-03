@@ -117,7 +117,8 @@ const DatePickerSingle = React.forwardRef<
             {!disabled && calendarOpen && (
               <div
                 data-testid="datepicker-calendar"
-                style={{ position: 'relative' }}
+                className="ods-date__calendar-container"
+                role="presentation"
                 onClick={handleCalendarClick}
               >
                 <DayPicker

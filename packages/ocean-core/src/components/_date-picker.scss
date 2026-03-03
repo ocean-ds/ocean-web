@@ -17,6 +17,10 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   user-select: none;
   width: 100%;
 
+  &__calendar-container {
+    position: relative;
+  }
+
   &:active,
   &:focus,
   *:active,
