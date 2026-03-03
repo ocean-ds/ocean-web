@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import ptBr from 'date-fns/locale/pt-BR';
 
@@ -7,6 +7,14 @@ import { format } from 'date-fns';
 
 import { enUS } from 'date-fns/locale';
 import DatePicker from '../DateRange';
+import {
+  openCalendar,
+  clickDisabledDay,
+  expectTooltipToAppear,
+  expectTooltipNotToAppear,
+  expectTooltipNotToAppearAsync,
+  commonDisabledDaysProps,
+} from '../utils/testHelpers';
 
 const YESTERDAY = 15;
 const TODAY = 16;
@@ -702,49 +710,20 @@ test('renders input ref when click', async () => {
 
 test('shows tooltip when clicking on disabled day with disabledDaysMessage', async () => {
   const onSelectMock = jest.fn();
-  const disabledDaysMessage = 'Este dia está bloqueado';
 
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
       onSelect={onSelectMock}
-      disabledDays={[{ before: new Date() }]}
-      disabledDaysMessage={disabledDaysMessage}
+      {...commonDisabledDaysProps}
     />
   );
 
-  const input1 = screen.getByTestId('datepicker-input-1');
-  fireEvent.click(input1);
+  openCalendar();
+  clickDisabledDay();
 
-  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
-
-  // Find disabled days in the calendar
-  const calendar = screen.getByTestId('datepicker-calendar');
-  const disabledDays = calendar.querySelectorAll('.ods-date__disabled');
-
-  // Should have at least one disabled day
-  expect(disabledDays.length).toBeGreaterThan(0);
-
-  // Get the first disabled day - it should be clickable directly
-  const firstDisabledDay = disabledDays[0];
-  expect(firstDisabledDay).not.toBeNull();
-
-  // Click on disabled day (the element itself or its button child)
-  const clickableElement =
-    (firstDisabledDay as HTMLElement).querySelector('button') ||
-    (firstDisabledDay as HTMLElement);
-  fireEvent.click(clickableElement);
-
-  // Tooltip should appear
-  await waitFor(
-    () => {
-      const tooltip = screen.getByTestId('datepicker-disabled-tooltip');
-      expect(tooltip).toBeInTheDocument();
-      expect(tooltip).toHaveTextContent(disabledDaysMessage);
-    },
-    { timeout: 3000 }
-  );
+  await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
 
   // onSelect should not be called for disabled days
   expect(onSelectMock).not.toHaveBeenCalled();
@@ -753,81 +732,53 @@ test('shows tooltip when clicking on disabled day with disabledDaysMessage', asy
 test('tooltip disappears after 4 seconds', async () => {
   jest.useFakeTimers();
   const onSelectMock = jest.fn();
-  const disabledDaysMessage = 'Este dia está bloqueado';
 
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
       onSelect={onSelectMock}
-      disabledDays={[{ before: new Date() }]}
-      disabledDaysMessage={disabledDaysMessage}
+      {...commonDisabledDaysProps}
     />
   );
 
-  const input1 = screen.getByTestId('datepicker-input-1');
-  fireEvent.click(input1);
-
-  const calendar = screen.getByTestId('datepicker-calendar');
-  const disabledDays = calendar.querySelectorAll('.ods-date__disabled');
-
-  expect(disabledDays.length).toBeGreaterThan(0);
-
-  const firstDisabledDay = disabledDays[0];
-  expect(firstDisabledDay).not.toBeNull();
-
-  const clickableElement =
-    (firstDisabledDay as HTMLElement).querySelector('button') ||
-    (firstDisabledDay as HTMLElement);
-  fireEvent.click(clickableElement);
+  openCalendar();
+  clickDisabledDay();
 
   // Tooltip should appear
-  await waitFor(
-    () => {
-      expect(
-        screen.getByTestId('datepicker-disabled-tooltip')
-      ).toBeInTheDocument();
-    },
-    { timeout: 3000 }
-  );
+  await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
 
   // Fast-forward 4 seconds
   jest.advanceTimersByTime(4000);
 
-  await waitFor(() => {
-    expect(
-      screen.queryByTestId('datepicker-disabled-tooltip')
-    ).not.toBeInTheDocument();
-  });
+  // Tooltip should disappear after timeout
+  await expectTooltipNotToAppearAsync();
+  expect(
+    screen.queryByTestId('datepicker-disabled-tooltip')
+  ).not.toBeInTheDocument();
 
   jest.useRealTimers();
 });
 
 test('tooltip does not appear when clicking on enabled day', async () => {
   const onSelectMock = jest.fn();
-  const disabledDaysMessage = 'Este dia está bloqueado';
 
   render(
     <DatePicker
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
       onSelect={onSelectMock}
-      disabledDays={[{ before: new Date() }]}
-      disabledDaysMessage={disabledDaysMessage}
+      {...commonDisabledDaysProps}
     />
   );
 
-  const input1 = screen.getByTestId('datepicker-input-1');
-  fireEvent.click(input1);
+  openCalendar();
 
   // Click on enabled day (today or tomorrow)
   const today = screen.getByText(TODAY);
   fireEvent.click(today);
 
-  // Tooltip should not appear
-  expect(
-    screen.queryByTestId('datepicker-disabled-tooltip')
-  ).not.toBeInTheDocument();
+  expectTooltipNotToAppear();
 
   // onSelect should be called for enabled days
   expect(onSelectMock).toHaveBeenCalled();
@@ -841,27 +792,14 @@ test('tooltip does not appear when disabledDaysMessage is not provided', async (
       labels={{ from: 'first-label', to: 'second-label' }}
       values={{ from: '', to: '' }}
       onSelect={onSelectMock}
-      disabledDays={[{ before: new Date() }]}
+      disabledDays={commonDisabledDaysProps.disabledDays}
     />
   );
 
-  const input1 = screen.getByTestId('datepicker-input-1');
-  fireEvent.click(input1);
+  openCalendar();
+  clickDisabledDay();
 
-  const calendar = screen.getByTestId('datepicker-calendar');
-  const disabledDays = calendar.querySelectorAll('.ods-date__disabled');
-
-  expect(disabledDays.length).toBeGreaterThan(0);
-
-  const firstDisabledDay = disabledDays[0];
-  expect(firstDisabledDay).not.toBeNull();
-
-  const clickableElement =
-    (firstDisabledDay as HTMLElement).querySelector('button') ||
-    (firstDisabledDay as HTMLElement);
-  fireEvent.click(clickableElement);
-
-  // Tooltip should not appear
+  expectTooltipNotToAppear();
   expect(
     screen.queryByTestId('datepicker-disabled-tooltip')
   ).not.toBeInTheDocument();
