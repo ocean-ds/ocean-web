@@ -89,11 +89,11 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   &_calendar_m1 {
-    top: 72px;
+    top: $spacing-inline-xxxs;
   }
 
   &_calendar_m2 {
-    top: 72px;
+    top: $spacing-inline-xxxs;
   }
 
   &__disabled-tooltip {

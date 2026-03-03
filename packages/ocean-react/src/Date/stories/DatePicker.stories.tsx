@@ -124,23 +124,16 @@ export const WithRestrictions: Story = {
   ),
 };
 
-export const WithDisabledDays: Story = {
+export const WithDisabledWeekends: Story = {
   parameters: noControlsParameters,
   render: () => (
     <div style={createRestrictionsContainer('330px')}>
       <div>
-        <h4>Sem fins de semana</h4>
+        <h4>Fins de semana desabilitados</h4>
         <DatePickerWrapper
           label="Datas úteis"
           helperText="Fins de semana estão desabilitados"
-          disabledDays={[
-            { dayOfWeek: [0, 6] },
-            {
-              from: new Date(new Date().setDate(new Date().getDate() + 7)),
-              to: new Date(new Date().setDate(new Date().getDate() + 12)),
-            },
-            { before: new Date() },
-          ]}
+          disabledDays={[{ dayOfWeek: [0, 6] }]}
           disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
           inline
         />
@@ -149,7 +142,6 @@ export const WithDisabledDays: Story = {
   ),
 };
 
-// Datas relativas ao dia atual para garantir visibilidade no calendário
 const addDays = (n: number): Date => {
   const d = new Date();
   d.setDate(d.getDate() + n);
