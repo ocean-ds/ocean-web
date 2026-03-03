@@ -160,6 +160,7 @@ function FutureDatePicker() {
       onSelect={setDate}
       startsToday
       helperText="Selecione uma data a partir de hoje"
+      disabledDays={(current) => current < new Date()}
     />
   );
 }
@@ -175,6 +176,76 @@ Veja exemplos com diferentes restrições:
   showToolbar={false}
   title="DatePicker - Com Restrições"
 />
+
+### Bloqueando períodos específicos
+
+Use a prop `disabledDays` para impedir que o usuário selecione intervalos inteiros (por exemplo, feriados ou períodos de manutenção). Você pode combinar `disabledDays` com `startsToday` ou passar uma lista de `Matcher`s para cobrir várias faixas.
+
+```tsx live
+import { useState } from 'react';
+
+const createDate = (year: number, month: number, day: number) =>
+  new Date(year, month - 1, day);
+
+const blackout = [
+  { from: createDate(2026, 3, 9), to: createDate(2026, 3, 12) },
+  { from: createDate(2026, 7, 1), to: createDate(2026, 7, 7) },
+];
+
+function BlockedDatePicker() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Datas bloqueadas"
+      value={date}
+      onSelect={setDate}
+      startsToday
+      disabledDays={blackout}
+      helperText="Evita períodos críticos"
+    />
+  );
+}
+```
+
+Veja essa configuração em ação no story "Sem fins de semana" (inclui `disabledDays` com ranges):
+
+<StorybookEmbed
+  storyId="components-datepicker--with-disabled-days"
+  height={400}
+  showToolbar={false}
+  title="DatePicker - Bloqueio por data"
+/>
+
+### Mensagem de tooltip para dias bloqueados
+
+Quando um usuário tenta selecionar um dia bloqueado, você pode exibir uma mensagem explicativa através da prop `disabledDaysMessage`. O tooltip aparece automaticamente ao clicar em um dia desabilitado e desaparece após 4 segundos.
+
+```tsx live
+import { useState } from 'react';
+
+function DatePickerWithTooltip() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Datas úteis"
+      value={date}
+      onSelect={setDate}
+      disabledDays={[
+        { dayOfWeek: [0, 6] }, // Fins de semana
+        { before: new Date() }, // Datas passadas
+      ]}
+      disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
+      helperText="Tente clicar em um dia bloqueado para ver o tooltip"
+    />
+  );
+}
+```
+
+O tooltip é posicionado entre o cabeçalho do mês e a grade de dias, com uma seta apontando para baixo, indicando visualmente a relação com os dias bloqueados no calendário.
+\n**_ End Patch_**fragment**_ codeassistant to=functions.read_lints_instruction_REMOVEIALOG_TYPING_ComCallableACTERREADME_WRITE_DEBUG_DESTNOTE_COMPLETEROUND_SIMPLE_PURPOSE-LAST_MESSAGE_SIMPLE
+COOKSIMUL_DESCRIPTIONcompletion_invalid_**GillDevelop md\*\*\*
 
 ## Internacionalização
 
@@ -321,18 +392,22 @@ function ValidatedDatePicker() {
 
 ### Props
 
-| Prop          | Tipo                     | Padrão  | Descrição                                       |
-| ------------- | ------------------------ | ------- | ----------------------------------------------- |
-| `label`       | `string`                 | -       | Label do campo de entrada                       |
-| `value`       | `string`                 | -       | Valor da data selecionada (obrigatório)         |
-| `onSelect`    | `(date: string) => void` | -       | Função chamada ao selecionar data (obrigatório) |
-| `editable`    | `boolean`                | `false` | Permite edição manual do campo                  |
-| `disabled`    | `boolean`                | `false` | Desabilita o componente                         |
-| `error`       | `boolean`                | `false` | Exibe estado de erro                            |
-| `helperText`  | `string`                 | -       | Texto de ajuda ou erro                          |
-| `startsToday` | `boolean`                | `false` | Limita seleção a partir da data atual           |
-| `locale`      | `Locale`                 | `ptBR`  | Locale do date-fns para internacionalização     |
-| `className`   | `string`                 | -       | Classes CSS adicionais                          |
+| Prop                  | Tipo                                                  | Padrão  | Descrição                                                         |
+| --------------------- | ----------------------------------------------------- | ------- | ----------------------------------------------------------------- |
+| `label`               | `string`                                              | -       | Label do campo de entrada                                         |
+| `value`               | `string`                                              | -       | Valor da data selecionada (obrigatório)                           |
+| `onSelect`            | `(date: string) => void`                              | -       | Função chamada ao selecionar data (obrigatório)                   |
+| `editable`            | `boolean`                                             | `false` | Permite edição manual do campo                                    |
+| `disabled`            | `boolean`                                             | `false` | Desabilita o componente                                           |
+| `error`               | `boolean`                                             | `false` | Exibe estado de erro                                              |
+| `helperText`          | `string`                                              | -       | Texto de ajuda ou erro                                            |
+| `startsToday`         | `boolean`                                             | `false` | Limita seleção a partir da data atual                             |
+| `disabledDays`        | `Matcher` \| `Matcher[]` \| `(date: Date) => boolean` | -       | Bloqueia datas específicas no calendário                          |
+| `disabledDaysMessage` | `string`                                              | -       | Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado |
+| `locale`              | `Locale`                                              | `ptBR`  | Locale do date-fns para internacionalização                       |
+| `className`           | `string`                                              | -       | Classes CSS adicionais                                            |
+
+A prop `disabledDays` aceita `Matcher`s (`{ from, to }`, `before`, `after`, `dayOfWeek`, etc.) ou uma função para regras personalizadas. Combine-a com `startsToday` para criar restrições complexas sem precisar mexer no componente.
 
 ### Eventos
 

@@ -1,7 +1,13 @@
 import React from 'react';
 import * as DateFns from 'date-fns';
 import { Locale } from 'date-fns';
-import { DateRange, ClassNames, DateFormatter } from 'react-day-picker';
+import {
+  DateRange,
+  ClassNames,
+  DateFormatter,
+  Matcher,
+  ActiveModifiers,
+} from 'react-day-picker';
 
 export type DatePickerFields = {
   from: string;
@@ -39,6 +45,18 @@ export type DatePickerProps = {
   disabled?: boolean;
 
   /**
+   * Determines if date are disabled
+   * @default undefined
+   */
+  disabledDays?: Matcher | Matcher[];
+
+  /**
+   * Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado
+   * @default undefined
+   */
+  disabledDaysMessage?: string;
+
+  /**
    * Determines error os inputs
    * @default false
    */
@@ -71,7 +89,7 @@ export type DatePickerProps = {
 
 export type IDatePickerProps = Pick<
   DatePickerProps,
-  'values' | 'onSelect' | 'startsToday' | 'locale'
+  'values' | 'onSelect' | 'startsToday' | 'locale' | 'disabledDaysMessage'
 >;
 
 export type IDatePickerReturn = {
@@ -87,9 +105,10 @@ export type IDatePickerReturn = {
   inputPlaceholder: string;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
+  handleDayClickWithModifiers: (day: Date, modifiers: ActiveModifiers) => void;
+  showDisabledTooltip: boolean;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: (fieldId: string) => void;
-  disabledDays: (day: Date) => boolean;
   formatDay: DateFormatter;
   handleCloseByOutside: () => void;
   handleDisplayMonth: (displayMonth: Date) => Date;

@@ -137,6 +137,49 @@ export const WithRestrictions: Story = {
   ),
 };
 
+export const VacationPlanning: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('400px')}>
+      <div>
+        <h4>Agenda de férias</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Check-in', to: 'Check-out' }}
+          helperText="Escolha um período fora das temporadas de alto movimento"
+          disabledDays={[
+            { dayOfWeek: [0, 6] }, // Weekends
+            {
+              from: new Date(new Date().setDate(new Date().getDate() + 7)),
+              to: new Date(new Date().setDate(new Date().getDate() + 12)),
+            },
+            { before: new Date() },
+          ]}
+        />
+      </div>
+    </div>
+  ),
+};
+
+export const WithDisabledDaysMessage: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('400px')}>
+      <div>
+        <h4>Período com dias bloqueados</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Data inicial', to: 'Data final' }}
+          helperText="Tente clicar em um dia bloqueado para ver o tooltip"
+          disabledDays={[
+            { dayOfWeek: [0, 6] }, // Weekends
+            { before: new Date() },
+          ]}
+          disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const Localization: Story = {
   parameters: noControlsParameters,
   render: () => (

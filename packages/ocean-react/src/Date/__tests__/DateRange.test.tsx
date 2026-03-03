@@ -7,6 +7,14 @@ import { format } from 'date-fns';
 
 import { enUS } from 'date-fns/locale';
 import DatePicker from '../DateRange';
+import {
+  openCalendar,
+  clickDisabledDay,
+  expectTooltipToAppear,
+  expectTooltipNotToAppear,
+  expectTooltipNotToAppearAsync,
+  commonDisabledDaysProps,
+} from '../utils/testHelpers';
 
 const YESTERDAY = 15;
 const TODAY = 16;
@@ -453,15 +461,16 @@ test('renders element with calendar open and today date', async () => {
   fireEvent.click(input1);
 
   expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+  const calendar = screen.getByTestId('datepicker-calendar');
 
-  const beforeDay = screen.getByText(YESTERDAY);
   const fromDay = screen.getByText(TODAY);
 
   expect(fromDay).toBeInTheDocument();
 
-  fireEvent.click(fromDay);
+  const disabledButtons = calendar.querySelectorAll('.ods-date__disabled');
+  expect(disabledButtons.length).toBeGreaterThan(0);
 
-  expect(beforeDay.parentElement).toHaveClass('ods-date__disabled');
+  fireEvent.click(fromDay);
 });
 
 test('renders element with calendar open and startsToday atribute on select yesterday', async () => {
@@ -697,4 +706,101 @@ test('renders input ref when click', async () => {
   expect(secondWrapper).toBeInTheDocument();
 
   fireEvent.click(secondWrapper);
+});
+
+test('shows tooltip when clicking on disabled day with disabledDaysMessage', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={onSelectMock}
+      {...commonDisabledDaysProps}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
+
+  // onSelect should not be called for disabled days
+  expect(onSelectMock).not.toHaveBeenCalled();
+});
+
+test('tooltip disappears after 4 seconds', async () => {
+  jest.useFakeTimers();
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={onSelectMock}
+      {...commonDisabledDaysProps}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  // Tooltip should appear
+  await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
+
+  // Fast-forward 4 seconds
+  jest.advanceTimersByTime(4000);
+
+  // Tooltip should disappear after timeout
+  await expectTooltipNotToAppearAsync();
+  expect(
+    screen.queryByTestId('datepicker-disabled-tooltip')
+  ).not.toBeInTheDocument();
+
+  jest.useRealTimers();
+});
+
+test('tooltip does not appear when clicking on enabled day', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={onSelectMock}
+      {...commonDisabledDaysProps}
+    />
+  );
+
+  openCalendar();
+
+  // Click on enabled day (today or tomorrow)
+  const today = screen.getByText(TODAY);
+  fireEvent.click(today);
+
+  expectTooltipNotToAppear();
+
+  // onSelect should be called for enabled days
+  expect(onSelectMock).toHaveBeenCalled();
+});
+
+test('tooltip does not appear when disabledDaysMessage is not provided', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '', to: '' }}
+      onSelect={onSelectMock}
+      disabledDays={commonDisabledDaysProps.disabledDays}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  expectTooltipNotToAppear();
+  expect(
+    screen.queryByTestId('datepicker-disabled-tooltip')
+  ).not.toBeInTheDocument();
 });

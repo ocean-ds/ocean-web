@@ -12,11 +12,14 @@ import {
   getInputPlaceholder,
 } from '../utils/dateUtils';
 
+import { useDisabledDaysTooltip } from './useDisabledDaysTooltip';
+
 export default function useDatePickerSingle({
   value,
   onSelect,
   startsToday,
   locale,
+  disabledDaysMessage,
 }: IDatePickerProps): IDatePickerReturn {
   const localeOption = locale || ptBr;
   const localeDateFormat =
@@ -32,12 +35,10 @@ export default function useDatePickerSingle({
   const [currentMonthToDisplay, setCurrentMonthToDisplay] =
     React.useState<Date>();
   const [datePickerCache, setDatePickerCache] = React.useState<string>('');
+  const { showDisabledTooltip, createDayClickHandler } =
+    useDisabledDaysTooltip(disabledDaysMessage);
 
   const fromDate = DateFns.parse(value || '', localeDateFormat, new Date());
-
-  React.useEffect(() => {
-    if (value === '') setCurrentField('');
-  }, [value]);
 
   const updateState = (updateData: string, updateCache?: boolean) => {
     onSelect(updateData);
@@ -54,16 +55,11 @@ export default function useDatePickerSingle({
       setShowDayPicker(false);
     }
   };
+  const handleDayClickWithModifiers = createDayClickHandler(handleDayClick);
 
   const createHandleToggleClick = (fieldId: string) => {
     setShowDayPicker(!showDayPicker);
     setCurrentField(fieldId);
-  };
-
-  const disabledDays = (day: Date): boolean => {
-    const startToday = handleValidateStartsToday(startsToday, day);
-
-    return startToday;
   };
 
   const closeCalendarDelay = () => {
@@ -98,8 +94,10 @@ export default function useDatePickerSingle({
     setCurrentMonthToDisplay(parsedDate);
   };
 
-  const CustomStyles: ClassNames = {
-    root: 'ods-date__calendar ods-date_calendar_m1',
+  const CustomStyles = (inline: boolean): ClassNames => ({
+    root: inline
+      ? 'ods-date__inline-calendar'
+      : 'ods-date__calendar ods-date_calendar_m1',
     caption: 'ods-date__caption',
     nav_button: 'ods-date__navButtons',
     nav_button_previous: 'ods-date__navButtonPrev-datepicker',
@@ -115,11 +113,15 @@ export default function useDatePickerSingle({
     day_today: 'ods-date__today',
     day_selected: 'ods-date__selected-datepicker',
     day_disabled: 'ods-date__disabled',
-  };
+  });
 
   const selectedDay: Date = fromDate;
 
   const inputPlaceholder = getInputPlaceholder(localeOption);
+
+  React.useEffect(() => {
+    if (value === '') setCurrentField('');
+  }, [value]);
 
   return {
     input1Ref,
@@ -130,12 +132,12 @@ export default function useDatePickerSingle({
     localeOption,
     currentField,
     inputPlaceholder,
-    handleDayClick,
     inputChange,
     createHandleToggleClick,
-    disabledDays,
     formatDay,
     handleCloseByOutside,
     currentMonthToDisplay,
+    showDisabledTooltip,
+    handleDayClickWithModifiers,
   };
 }
