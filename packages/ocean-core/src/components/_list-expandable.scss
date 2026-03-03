@@ -27,6 +27,12 @@
     border-radius: 0;
   }
 
+  &--transaction {
+    .ods-list-expandable__icon {
+      color: $color-interface-dark-up;
+    }
+  }
+
   &__main {
     align-items: center;
     background-color: transparent;

@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
+import Typography from '../../../Typography/Typography';
 import { ContentListProps } from '../ContentList';
 
 export type AmountDetailsType = 'default' | 'positive' | 'negative';
@@ -58,7 +59,12 @@ const AmountDetails = ({
         )}
       </div>
       {showAdditionalData && additionalData && (
-        <p className="ods-amount-details__caption">{additionalData}</p>
+        <Typography
+          variant="captionbold"
+          className="ods-amount-details__caption"
+        >
+          {additionalData}
+        </Typography>
       )}
     </div>
   );
