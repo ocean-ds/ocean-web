@@ -10,6 +10,7 @@ import useDateRange from './hooks/useDateRange';
 import { DatePickerProps } from './types/DateRange.types';
 
 import DatePickerHeader from './DateHeader';
+import DisabledDaysTooltip from './components/DisabledDaysTooltip';
 
 const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
   (
@@ -22,6 +23,8 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       error,
       helperText,
       startsToday,
+      disabledDays,
+      disabledDaysMessage,
       className,
       locale,
       ...rest
@@ -38,15 +41,21 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       currentField,
       inputPlaceholder,
       handleDayMouseEnter,
-      handleDayClick,
+      handleDayClickWithModifiers,
+      showDisabledTooltip,
       handleDisplayMonth,
       inputChange,
       createHandleToggleClick,
-      disabledDays,
       formatDay,
       handleCloseByOutside,
       currentMonthToDisplay,
-    } = useDateRange({ values, onSelect, startsToday, locale });
+    } = useDateRange({
+      values,
+      onSelect,
+      startsToday,
+      locale,
+      disabledDaysMessage,
+    });
 
     return (
       <div>
@@ -133,18 +142,26 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                   weekStartsOn={0}
                   classNames={CustomStyles}
                   className={className}
-                  onDayClick={(day: Date) => handleDayClick(day)}
+                  onDayClick={handleDayClickWithModifiers}
                   onDayMouseEnter={(day: Date) => handleDayMouseEnter(day)}
                   formatters={{ formatDay }}
                   selected={selectedDays}
-                  disabled={disabledDays}
+                  disabled={startsToday ? { before: new Date() } : disabledDays}
                   defaultMonth={currentMonthToDisplay}
                   components={{
                     Caption: ({ displayMonth }: CaptionProps) => (
-                      <DatePickerHeader
-                        locale={localeOption}
-                        displayMonth={handleDisplayMonth(displayMonth)}
-                      />
+                      <>
+                        <DatePickerHeader
+                          locale={localeOption}
+                          displayMonth={handleDisplayMonth(displayMonth)}
+                        />
+                        {disabledDaysMessage && (
+                          <DisabledDaysTooltip
+                            message={disabledDaysMessage}
+                            show={showDisabledTooltip}
+                          />
+                        )}
+                      </>
                     ),
                   }}
                 />
