@@ -13,6 +13,8 @@ import {
   expectTooltipNotToAppear,
   expectTooltipNotToAppearAsync,
   commonDisabledDaysProps,
+  makeDisabledDaysListProps,
+  LIST_DISABLED_MESSAGE,
 } from '../utils/testHelpers';
 
 const TODAY = 16;
@@ -261,7 +263,7 @@ test('shows tooltip when clicking on disabled day with disabledDaysMessage', asy
   expect(onSelectMock).not.toHaveBeenCalled();
 });
 
-test('tooltip disappears after 4 seconds', async () => {
+test('tooltip disappears after 5 seconds', async () => {
   jest.useFakeTimers();
   const onSelectMock = jest.fn();
 
@@ -280,8 +282,8 @@ test('tooltip disappears after 4 seconds', async () => {
   // Tooltip should appear
   await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
 
-  // Fast-forward 4 seconds
-  jest.advanceTimersByTime(4000);
+  // Fast-forward 5 seconds
+  jest.advanceTimersByTime(5000);
 
   // Tooltip should disappear after timeout
   await expectTooltipNotToAppearAsync();
@@ -325,6 +327,57 @@ test('tooltip does not appear when disabledDaysMessage is not provided', async (
       value=""
       onSelect={onSelectMock}
       disabledDays={commonDisabledDaysProps.disabledDays}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  expectTooltipNotToAppear();
+  expect(
+    screen.queryByTestId('datepicker-disabled-tooltip')
+  ).not.toBeInTheDocument();
+});
+
+test('shows specific message for matching date in disabledDaysMessage array', async () => {
+  const onSelectMock = jest.fn();
+  const listProps = makeDisabledDaysListProps();
+
+  render(
+    <DatePicker
+      label="Your label"
+      value=""
+      onSelect={onSelectMock}
+      {...listProps}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  await expectTooltipToAppear(LIST_DISABLED_MESSAGE);
+  expect(onSelectMock).not.toHaveBeenCalled();
+});
+
+test('tooltip does not appear when clicked date has no entry in disabledDaysMessage array', async () => {
+  const onSelectMock = jest.fn();
+
+  // Array com data que não corresponde ao primeiro dia desabilitado clicado
+  const nextMonthDate = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    1
+  );
+
+  render(
+    <DatePicker
+      label="Your label"
+      value=""
+      onSelect={onSelectMock}
+      disabledDays={commonDisabledDaysProps.disabledDays}
+      disabledDaysMessage={[
+        { date: nextMonthDate, message: 'Esta mensagem não deve aparecer' },
+      ]}
     />
   );
 

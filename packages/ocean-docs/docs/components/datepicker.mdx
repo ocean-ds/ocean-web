@@ -211,7 +211,7 @@ function BlockedDatePicker() {
 Veja essa configuração em ação no story "Sem fins de semana" (inclui `disabledDays` com ranges):
 
 <StorybookEmbed
-  storyId="components-datepicker--with-disabled-days"
+  storyId="components-datepicker--with-disabled-weekends"
   height={400}
   showToolbar={false}
   title="DatePicker - Bloqueio por data"
@@ -219,7 +219,14 @@ Veja essa configuração em ação no story "Sem fins de semana" (inclui `disabl
 
 ### Mensagem de tooltip para dias bloqueados
 
-Quando um usuário tenta selecionar um dia bloqueado, você pode exibir uma mensagem explicativa através da prop `disabledDaysMessage`. O tooltip aparece automaticamente ao clicar em um dia desabilitado e desaparece após 4 segundos.
+Quando um usuário tenta selecionar um dia bloqueado, você pode exibir uma mensagem explicativa através da prop `disabledDaysMessage`. O tooltip aparece automaticamente ao clicar em um dia desabilitado e desaparece após 5 segundos.
+
+A prop aceita dois formatos:
+
+- **`string`** — mesma mensagem para todos os dias bloqueados
+- **`{ date: Date; message: string }[]`** — mensagem específica por data; dias bloqueados sem entrada no array não exibem tooltip
+
+#### Mensagem fixa para todos os dias bloqueados
 
 ```tsx live
 import { useState } from 'react';
@@ -243,9 +250,54 @@ function DatePickerWithTooltip() {
 }
 ```
 
-O tooltip é posicionado entre o cabeçalho do mês e a grade de dias, com uma seta apontando para baixo, indicando visualmente a relação com os dias bloqueados no calendário.
-\n**_ End Patch_**fragment**_ codeassistant to=functions.read_lints_instruction_REMOVEIALOG_TYPING_ComCallableACTERREADME_WRITE_DEBUG_DESTNOTE_COMPLETEROUND_SIMPLE_PURPOSE-LAST_MESSAGE_SIMPLE
-COOKSIMUL_DESCRIPTIONcompletion_invalid_**GillDevelop md\*\*\*
+<StorybookEmbed
+  storyId="components-datepicker--with-disabled-days-message"
+  height={450}
+  showToolbar={false}
+  title="DatePicker - Tooltip de dias bloqueados (string)"
+/>
+
+#### Mensagem específica por data
+
+Passe um array com entradas `{ date, message }` para exibir uma mensagem diferente em cada data bloqueada. Clique em uma data que **não** tem entrada no array — nenhum tooltip é exibido.
+
+```tsx live
+import { useState } from 'react';
+
+const addDays = (n) => {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  return d;
+};
+
+const blockedDates = [
+  { date: addDays(3), message: 'Manutenção programada neste dia' },
+  { date: addDays(7), message: 'Feriado municipal' },
+  { date: addDays(10), message: 'Bloqueio operacional' },
+];
+
+function DatePickerWithListMessages() {
+  const [date, setDate] = useState('');
+
+  return (
+    <DatePicker
+      label="Selecione uma data"
+      value={date}
+      onSelect={setDate}
+      disabledDays={blockedDates.map((e) => e.date)}
+      disabledDaysMessage={blockedDates}
+      helperText="Clique nos dias marcados para ver o motivo"
+    />
+  );
+}
+```
+
+<StorybookEmbed
+  storyId="components-datepicker--with-disabled-days-list-messages"
+  height={450}
+  showToolbar={false}
+  title="DatePicker - Tooltip de dias bloqueados (array por data)"
+/>
 
 ## Internacionalização
 
@@ -403,11 +455,14 @@ function ValidatedDatePicker() {
 | `helperText`          | `string`                                              | -       | Texto de ajuda ou erro                                            |
 | `startsToday`         | `boolean`                                             | `false` | Limita seleção a partir da data atual                             |
 | `disabledDays`        | `Matcher` \| `Matcher[]` \| `(date: Date) => boolean` | -       | Bloqueia datas específicas no calendário                          |
-| `disabledDaysMessage` | `string`                                              | -       | Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado |
+| `disabledDaysMessage` | `string \| { date: Date; message: string }[]`         | -       | Mensagem fixa ou lista de mensagens por data para dias bloqueados |
+| `inline`              | `boolean`                                             | `false` | Exibe o calendário aberto sem o campo de input                    |
 | `locale`              | `Locale`                                              | `ptBR`  | Locale do date-fns para internacionalização                       |
 | `className`           | `string`                                              | -       | Classes CSS adicionais                                            |
 
 A prop `disabledDays` aceita `Matcher`s (`{ from, to }`, `before`, `after`, `dayOfWeek`, etc.) ou uma função para regras personalizadas. Combine-a com `startsToday` para criar restrições complexas sem precisar mexer no componente.
+
+> **`disabledDaysMessage` como array:** dias bloqueados sem entrada correspondente no array não exibem tooltip. Use para comunicar motivos distintos por data (feriados, manutenções, bloqueios operacionais, etc.).
 
 ### Eventos
 

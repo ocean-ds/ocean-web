@@ -66,10 +66,27 @@ export async function expectTooltipNotToAppearAsync(): Promise<void> {
   });
 }
 
-/**
- * Props comuns para testes de disabledDaysMessage
- */
 export const commonDisabledDaysProps = {
   disabledDays: [{ before: new Date() }] as Matcher[],
   disabledDaysMessage: 'Este dia está bloqueado',
 };
+
+export function getFirstDisabledDate(): Date {
+  const today = new Date();
+  return new Date(today.getFullYear(), today.getMonth(), 1);
+}
+
+/** Mensagem para o primeiro dia desabilitado nos testes de lista */
+export const LIST_DISABLED_MESSAGE = 'Feriado municipal';
+
+export function makeDisabledDaysListProps(): {
+  disabledDays: Matcher[];
+  disabledDaysMessage: { date: Date; message: string }[];
+} {
+  return {
+    disabledDays: [{ before: new Date() }] as Matcher[],
+    disabledDaysMessage: [
+      { date: getFirstDisabledDate(), message: LIST_DISABLED_MESSAGE },
+    ],
+  };
+}

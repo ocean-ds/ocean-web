@@ -35,8 +35,13 @@ export default function useDatePickerSingle({
   const [currentMonthToDisplay, setCurrentMonthToDisplay] =
     React.useState<Date>();
   const [datePickerCache, setDatePickerCache] = React.useState<string>('');
-  const { showDisabledTooltip, createDayClickHandler } =
-    useDisabledDaysTooltip(disabledDaysMessage);
+  const {
+    showDisabledTooltip,
+    tooltipMessage,
+    tooltipPosition,
+    createDayClickHandler,
+    handleCalendarClick,
+  } = useDisabledDaysTooltip(disabledDaysMessage);
 
   const fromDate = DateFns.parse(value || '', localeDateFormat, new Date());
 
@@ -138,6 +143,9 @@ export default function useDatePickerSingle({
     handleCloseByOutside,
     currentMonthToDisplay,
     showDisabledTooltip,
+    tooltipMessage,
+    tooltipPosition,
+    handleCalendarClick,
     handleDayClickWithModifiers,
   };
 }

@@ -180,6 +180,36 @@ export const WithDisabledDaysMessage: Story = {
   ),
 };
 
+// Datas relativas ao dia atual para garantir visibilidade no calendário
+const addDays = (n: number): Date => {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  return d;
+};
+
+const perDateMessages = [
+  { date: addDays(3), message: 'Manutenção programada neste dia' },
+  { date: addDays(7), message: 'Feriado municipal' },
+  { date: addDays(10), message: 'Bloqueio operacional' },
+];
+
+export const WithDisabledDaysMessages: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('400px')}>
+      <div>
+        <h4>Mensagens por data</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Data inicial', to: 'Data final' }}
+          helperText="Clique nos dias bloqueados para ver a mensagem específica"
+          disabledDays={perDateMessages.map((e) => e.date)}
+          disabledDaysMessage={perDateMessages}
+        />
+      </div>
+    </div>
+  ),
+};
+
 export const Localization: Story = {
   parameters: noControlsParameters,
   render: () => (

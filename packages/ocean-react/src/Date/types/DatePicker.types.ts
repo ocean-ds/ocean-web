@@ -1,20 +1,22 @@
 import * as DateFns from 'date-fns';
 
-import {
-  ActiveModifiers,
-  ClassNames,
-  DateFormatter,
-  Matcher,
-} from 'react-day-picker';
+import { ClassNames, DateFormatter, Matcher } from 'react-day-picker';
 import { DatePickerProps } from './DateRange.types';
+import {
+  DisabledDaysMessageProp,
+  TooltipPosition,
+} from '../hooks/useDisabledDaysTooltip';
 
 export type DatePickerSingleProps = {
   label: string | undefined;
   value: string | undefined;
   onSelect: (date: string) => void;
   disabledDays?: Matcher | Matcher[];
-  /** Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado */
-  disabledDaysMessage?: string;
+  /**
+   * Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado.
+   * Pode ser uma string fixa ou uma lista de mensagens por data.
+   */
+  disabledDaysMessage?: DisabledDaysMessageProp;
   inline?: boolean;
 } & Omit<DatePickerProps, 'labels' | 'values' | 'onSelect'>;
 
@@ -43,5 +45,11 @@ export type IDatePickerReturn = {
   handleCloseByOutside: () => void;
   currentMonthToDisplay: Date | undefined;
   showDisabledTooltip: boolean;
-  handleDayClickWithModifiers: (day: Date, modifiers: ActiveModifiers) => void;
+  tooltipMessage: string;
+  tooltipPosition: TooltipPosition;
+  handleCalendarClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+  handleDayClickWithModifiers: (
+    day: Date,
+    modifiers: import('react-day-picker').ActiveModifiers
+  ) => void;
 };
