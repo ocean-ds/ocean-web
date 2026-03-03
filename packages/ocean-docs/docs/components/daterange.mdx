@@ -186,6 +186,73 @@ Veja exemplos com diferentes restrições:
   title="DateRange - Com Restrições"
 />
 
+### Bloqueando temporadas
+
+Você pode combinar `disabledDays` com `startsToday` (ou qualquer outro critério) para impedir que o usuário selecione períodos inteiros. Use `Matcher`s ou arrays de datas para bloquear intervalos específicos.
+
+```tsx
+const blackout = [
+  { from: new Date('2026-03-09'), to: new Date('2026-03-12') }, // março
+  { from: new Date('2026-07-01'), to: new Date('2026-07-07') }, // julho
+];
+
+<DateRange
+  labels={{ from: 'Check-in', to: 'Check-out' }}
+  values={dates}
+  onSelect={setDates}
+  startsToday
+  disabledDays={blackout}
+  helperText="Evite temporadas de alta demanda"
+/>;
+```
+
+Além da demonstração acima, use o storybook "Vacation Planning" para ver isso em ação:
+
+<StorybookEmbed
+  storyId="components-daterange--vacation-planning"
+  height={400}
+  showToolbar={false}
+  title="DateRange - Planejamento de férias"
+/>
+
+### Mensagem de tooltip para dias bloqueados
+
+Quando um usuário tenta selecionar um dia bloqueado, você pode exibir uma mensagem explicativa através da prop `disabledDaysMessage`. O tooltip aparece automaticamente ao clicar em um dia desabilitado e desaparece após 4 segundos.
+
+```tsx live
+import { useState } from 'react';
+
+function DateRangeWithTooltip() {
+  const [dates, setDates] = useState({ from: '', to: '' });
+
+  return (
+    <DateRange
+      labels={{ from: 'Data inicial', to: 'Data final' }}
+      values={dates}
+      onSelect={setDates}
+      disabledDays={[
+        { dayOfWeek: [0, 6] }, // Fins de semana
+        { before: new Date() }, // Datas passadas
+      ]}
+      disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
+      helperText="Tente clicar em um dia bloqueado para ver o tooltip"
+    />
+  );
+}
+```
+
+O tooltip é posicionado entre o cabeçalho do mês e a grade de dias, com uma seta apontando para baixo, indicando visualmente a relação com os dias bloqueados no calendário.
+
+Veja um exemplo completo no Storybook:
+
+<StorybookEmbed
+  storyId="components-daterange--with-disabled-days-message"
+  height={500}
+  showToolbar={false}
+  title="DateRange - Tooltip de dias bloqueados"
+/>
+\n*** End Patch"""
+
 ## Internacionalização
 
 O DateRange suporta diferentes idiomas através do date-fns:
@@ -343,18 +410,22 @@ function ValidatedDateRange() {
 
 ### Props
 
-| Prop          | Tipo                                            | Padrão  | Descrição                                        |
-| ------------- | ----------------------------------------------- | ------- | ------------------------------------------------ |
-| `labels`      | `{ from: string; to: string }`                  | -       | Labels dos campos inicial e final (obrigatório)  |
-| `values`      | `{ from: string; to: string }`                  | -       | Valores das datas selecionadas (obrigatório)     |
-| `onSelect`    | `(dates: { from: string; to: string }) => void` | -       | Função chamada ao selecionar datas (obrigatório) |
-| `editable`    | `boolean`                                       | `false` | Permite edição manual dos campos                 |
-| `disabled`    | `boolean`                                       | `false` | Desabilita o componente                          |
-| `error`       | `boolean`                                       | `false` | Exibe estado de erro                             |
-| `helperText`  | `string`                                        | -       | Texto de ajuda ou erro                           |
-| `startsToday` | `boolean`                                       | `false` | Limita seleção a partir da data atual            |
-| `locale`      | `Locale`                                        | `ptBR`  | Locale do date-fns para internacionalização      |
-| `className`   | `string`                                        | -       | Classes CSS adicionais                           |
+| Prop                  | Tipo                                                | Padrão  | Descrição                                                         |
+| --------------------- | --------------------------------------------------- | ------- | ----------------------------------------------------------------- |
+| `labels`              | `{ from: string; to: string }`                      | -       | Labels dos campos inicial e final (obrigatório)                   |
+| `values`              | `{ from: string; to: string }`                      | -       | Valores das datas selecionadas (obrigatório)                      |
+| `onSelect`            | `(dates: { from: string; to: string }) => void`     | -       | Função chamada ao selecionar datas (obrigatório)                  |
+| `editable`            | `boolean`                                           | `false` | Permite edição manual dos campos                                  |
+| `disabled`            | `boolean`                                           | `false` | Desabilita o componente                                           |
+| `error`               | `boolean`                                           | `false` | Exibe estado de erro                                              |
+| `helperText`          | `string`                                            | -       | Texto de ajuda ou erro                                            |
+| `startsToday`         | `boolean`                                           | `false` | Limita seleção a partir da data atual                             |
+| `disabledDays`        | `Matcher \| Matcher[] \| ((date: Date) => boolean)` | -       | Bloqueia datas específicas no calendário                          |
+| `disabledDaysMessage` | `string`                                            | -       | Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado |
+| `locale`              | `Locale`                                            | `ptBR`  | Locale do date-fns para internacionalização                       |
+| `className`           | `string`                                            | -       | Classes CSS adicionais                                            |
+
+O `disabledDays` aceita matchers (`{ from, to }`, `before`, `after`, etc.) ou uma função para aplicar regras personalizadas. Combine-a com `startsToday` (ou use isoladamente) para bloquear temporadas ou feriados específicos.
 
 ### Eventos
 

@@ -6,6 +6,14 @@ import ptBr from 'date-fns/locale/pt-BR';
 
 import { format } from 'date-fns';
 import DatePicker from '../DatePicker';
+import {
+  openCalendar,
+  clickDisabledDay,
+  expectTooltipToAppear,
+  expectTooltipNotToAppear,
+  expectTooltipNotToAppearAsync,
+  commonDisabledDaysProps,
+} from '../utils/testHelpers';
 
 const TODAY = 16;
 
@@ -230,4 +238,101 @@ test('close calendar when click outside and save cache', async () => {
   fireEvent.click(outside);
 
   expect(onSelectMock).toBeCalledWith(`${TODAY_DATE}`);
+});
+
+test('shows tooltip when clicking on disabled day with disabledDaysMessage', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      label="Your label"
+      value=""
+      onSelect={onSelectMock}
+      {...commonDisabledDaysProps}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
+
+  // onSelect should not be called for disabled days
+  expect(onSelectMock).not.toHaveBeenCalled();
+});
+
+test('tooltip disappears after 4 seconds', async () => {
+  jest.useFakeTimers();
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      label="Your label"
+      value=""
+      onSelect={onSelectMock}
+      {...commonDisabledDaysProps}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  // Tooltip should appear
+  await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
+
+  // Fast-forward 4 seconds
+  jest.advanceTimersByTime(4000);
+
+  // Tooltip should disappear after timeout
+  await expectTooltipNotToAppearAsync();
+  expect(
+    screen.queryByTestId('datepicker-disabled-tooltip')
+  ).not.toBeInTheDocument();
+
+  jest.useRealTimers();
+});
+
+test('tooltip does not appear when clicking on enabled day', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      label="Your label"
+      value=""
+      onSelect={onSelectMock}
+      {...commonDisabledDaysProps}
+    />
+  );
+
+  openCalendar();
+
+  // Click on enabled day (today or tomorrow)
+  const today = screen.getByText(TODAY);
+  fireEvent.click(today);
+
+  expectTooltipNotToAppear();
+
+  // onSelect should be called for enabled days
+  expect(onSelectMock).toHaveBeenCalled();
+});
+
+test('tooltip does not appear when disabledDaysMessage is not provided', async () => {
+  const onSelectMock = jest.fn();
+
+  render(
+    <DatePicker
+      label="Your label"
+      value=""
+      onSelect={onSelectMock}
+      disabledDays={commonDisabledDaysProps.disabledDays}
+    />
+  );
+
+  openCalendar();
+  clickDisabledDay();
+
+  expectTooltipNotToAppear();
+  expect(
+    screen.queryByTestId('datepicker-disabled-tooltip')
+  ).not.toBeInTheDocument();
 });
