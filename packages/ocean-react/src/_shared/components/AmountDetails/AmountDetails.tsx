@@ -8,6 +8,11 @@ export type AmountDetailsProps = {
   amount: string;
   type?: ContentListProps['type'] | 'negative';
   indicator?: ReactNode;
+  /**
+   * Size of the indicator (e.g. Tag). Affects styling when the indicator is a Tag.
+   * @default 'small'
+   */
+  indicatorSize?: 'small' | 'medium';
   showIndicator?: boolean;
   additionalData?: string;
   showAdditionalData?: boolean;
@@ -17,6 +22,7 @@ const AmountDetails = ({
   amount,
   type = 'default',
   indicator,
+  indicatorSize = 'small',
   showIndicator = true,
   additionalData,
   showAdditionalData = true,
@@ -41,7 +47,14 @@ const AmountDetails = ({
           </p>
         )}
         {showIndicator && indicator && (
-          <div className="ods-amount-details__indicator">{indicator}</div>
+          <div
+            className={classNames('ods-amount-details__indicator', {
+              'ods-amount-details__indicator--medium':
+                indicatorSize === 'medium',
+            })}
+          >
+            {indicator}
+          </div>
         )}
       </div>
       {showAdditionalData && additionalData && (

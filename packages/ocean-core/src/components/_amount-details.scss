@@ -9,7 +9,6 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
-    gap: $spacing-inline-xxxs;
   }
 
   &__amount {
@@ -56,5 +55,13 @@
 
   &__indicator {
     display: flex;
+
+    // When indicatorSize="medium", Tag inside uses medium styling
+    &--medium .ods-tag {
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
+      line-height: 12px;
+      padding: $spacing-stack-xxxs $spacing-stack-xxs;
+    }
   }
 }

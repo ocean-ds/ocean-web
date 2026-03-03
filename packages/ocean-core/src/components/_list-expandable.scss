@@ -62,6 +62,31 @@
     color: $color-interface-light-deep;
   }
 
+  // Transaction variant: ContentList (left) + AmountDetails (right) in main row
+  &__transaction-content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 0;
+
+    .ods-content-list {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ods-amount-details {
+      flex-shrink: 0;
+
+      // TransactionListExpandable: amount uses xs font and dark-deep color
+      .ods-amount-details__amount,
+      .ods-amount-details__amount-sign {
+        color: $color-interface-dark-deep;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+
   &__trailing {
     align-items: center;
     display: flex;
@@ -94,6 +119,39 @@
     word-wrap: break-word; // Break long words
   }
 
+  // TransactionListExpandable only: ListAction children
+  &--transaction &__content .ods-list-action {
+    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+      $spacing-inline-xxs-extra $spacing-inline-xs;
+  }
+
+  &--transaction &__content .ods-list-action .ods-content-list {
+    .ods-typography__paragraph {
+      font-size: $font-size-xxs;
+    }
+
+    .ods-typography__description {
+      font-size: $font-size-xxxs;
+    }
+  }
+
+  &__footer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: $spacing-inline-xxs-extra 0 $spacing-inline-sm;
+    width: 100%;
+
+    // Supporting text style (Figma: captionBold + colorInterfaceDarkUp)
+    color: $color-interface-dark-up;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
+    text-align: center;
+  }
+
   &__skeleton {
     box-sizing: border-box; // Include padding in width calculation
     display: flex;
@@ -123,5 +181,10 @@
     .ods-list-expandable__main:hover {
       background-color: $color-interface-light-up;
     }
+  }
+
+  // Simulated hover state for docs/Storybook (State = Hover)
+  &--show-hover .ods-list-expandable__main {
+    background-color: $color-interface-light-up;
   }
 }
