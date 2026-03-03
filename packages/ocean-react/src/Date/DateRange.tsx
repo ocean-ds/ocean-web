@@ -43,6 +43,9 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       handleDayMouseEnter,
       handleDayClickWithModifiers,
       showDisabledTooltip,
+      tooltipMessage,
+      tooltipPosition,
+      handleCalendarClick,
       handleDisplayMonth,
       inputChange,
       createHandleToggleClick,
@@ -135,7 +138,11 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
             </div>
 
             {!disabled && showDayPicker && (
-              <div data-testid="datepicker-calendar">
+              <div
+                data-testid="datepicker-calendar"
+                style={{ position: 'relative' }}
+                onClick={handleCalendarClick}
+              >
                 <DayPicker
                   mode="range"
                   locale={localeOption}
@@ -150,21 +157,20 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                   defaultMonth={currentMonthToDisplay}
                   components={{
                     Caption: ({ displayMonth }: CaptionProps) => (
-                      <>
-                        <DatePickerHeader
-                          locale={localeOption}
-                          displayMonth={handleDisplayMonth(displayMonth)}
-                        />
-                        {disabledDaysMessage && (
-                          <DisabledDaysTooltip
-                            message={disabledDaysMessage}
-                            show={showDisabledTooltip}
-                          />
-                        )}
-                      </>
+                      <DatePickerHeader
+                        locale={localeOption}
+                        displayMonth={handleDisplayMonth(displayMonth)}
+                      />
                     ),
                   }}
                 />
+                {disabledDaysMessage && (
+                  <DisabledDaysTooltip
+                    message={tooltipMessage}
+                    show={showDisabledTooltip}
+                    position={tooltipPosition}
+                  />
+                )}
               </div>
             )}
           </div>

@@ -142,6 +142,56 @@ export const WithDisabledDays: Story = {
             { before: new Date() },
           ]}
           disabledDaysMessage="Boletos pagos em finais de semana, feriados ou após às 16:00 são quitados no próximo dia útil."
+          inline
+        />
+      </div>
+    </div>
+  ),
+};
+
+// Datas relativas ao dia atual para garantir visibilidade no calendário
+const addDays = (n: number): Date => {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  return d;
+};
+
+const perDateMessages = [
+  { date: addDays(3), message: 'Manutenção programada neste dia' },
+  { date: addDays(7), message: 'Feriado municipal' },
+  { date: addDays(10), message: 'Bloqueio operacional' },
+];
+
+export const WithDisabledDaysMessage: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('330px')}>
+      <div>
+        <h4>Mensagem fixa para dias bloqueados</h4>
+        <DatePickerWrapper
+          label="Data de agendamento"
+          helperText="Clique em um dia bloqueado para ver o aviso"
+          disabledDays={[{ dayOfWeek: [0, 6] }, { before: new Date() }]}
+          disabledDaysMessage="Boletos pagos em finais de semana ou feriados são quitados no próximo dia útil."
+          inline
+        />
+      </div>
+    </div>
+  ),
+};
+
+export const WithDisabledDaysListMessages: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={createRestrictionsContainer('330px')}>
+      <div>
+        <h4>Mensagens específicas por data</h4>
+        <DatePickerWrapper
+          label="Selecione uma data"
+          helperText="Clique nos dias bloqueados para ver a mensagem específica"
+          disabledDays={perDateMessages.map((e) => e.date)}
+          disabledDaysMessage={perDateMessages}
+          inline
         />
       </div>
     </div>

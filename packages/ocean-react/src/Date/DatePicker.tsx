@@ -49,6 +49,9 @@ const DatePickerSingle = React.forwardRef<
       handleCloseByOutside,
       currentMonthToDisplay,
       showDisabledTooltip,
+      tooltipMessage,
+      tooltipPosition,
+      handleCalendarClick,
       handleDayClickWithModifiers,
     } = useDatePicker({
       value,
@@ -61,15 +64,7 @@ const DatePickerSingle = React.forwardRef<
     const calendarOpen = inline || showDayPicker;
 
     const CaptionWithTooltip = ({ displayMonth }: CaptionProps) => (
-      <>
-        {DateHeader({ displayMonth, locale: localeOption, mode: 'single' })}
-        {disabledDaysMessage && (
-          <DisabledDaysTooltip
-            message={disabledDaysMessage}
-            show={showDisabledTooltip}
-          />
-        )}
-      </>
+      <>{DateHeader({ displayMonth, locale: localeOption, mode: 'single' })}</>
     );
 
     return (
@@ -120,7 +115,11 @@ const DatePickerSingle = React.forwardRef<
             )}
 
             {!disabled && calendarOpen && (
-              <div data-testid="datepicker-calendar">
+              <div
+                data-testid="datepicker-calendar"
+                style={{ position: 'relative' }}
+                onClick={handleCalendarClick}
+              >
                 <DayPicker
                   mode="single"
                   locale={localeOption}
@@ -136,6 +135,13 @@ const DatePickerSingle = React.forwardRef<
                     Caption: CaptionWithTooltip,
                   }}
                 />
+                {disabledDaysMessage && (
+                  <DisabledDaysTooltip
+                    message={tooltipMessage}
+                    show={showDisabledTooltip}
+                    position={tooltipPosition}
+                  />
+                )}
               </div>
             )}
           </div>

@@ -6,8 +6,8 @@ import {
   ClassNames,
   DateFormatter,
   Matcher,
-  ActiveModifiers,
 } from 'react-day-picker';
+import { DisabledDaysMessageProp } from '../hooks/useDisabledDaysTooltip';
 
 export type DatePickerFields = {
   from: string;
@@ -51,10 +51,11 @@ export type DatePickerProps = {
   disabledDays?: Matcher | Matcher[];
 
   /**
-   * Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado
+   * Mensagem exibida em tooltip ao tentar selecionar um dia bloqueado.
+   * Pode ser uma string fixa ou uma lista de mensagens por data.
    * @default undefined
    */
-  disabledDaysMessage?: string;
+  disabledDaysMessage?: DisabledDaysMessageProp;
 
   /**
    * Determines error os inputs
@@ -105,8 +106,14 @@ export type IDatePickerReturn = {
   inputPlaceholder: string;
   handleDayMouseEnter: (day: Date) => void;
   handleDayClick: (day: Date) => void;
-  handleDayClickWithModifiers: (day: Date, modifiers: ActiveModifiers) => void;
+  handleDayClickWithModifiers: (
+    day: Date,
+    modifiers: import('react-day-picker').ActiveModifiers
+  ) => void;
   showDisabledTooltip: boolean;
+  tooltipMessage: string;
+  tooltipPosition: import('../hooks/useDisabledDaysTooltip').TooltipPosition;
+  handleCalendarClick: (event: React.MouseEvent<HTMLDivElement>) => void;
   inputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
   createHandleToggleClick: (fieldId: string) => void;
   formatDay: DateFormatter;
