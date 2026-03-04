@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import { PlaceholderOutline, Placeholder } from '@useblu/ocean-icons-react';
 import TransactionListExpandable, {
   TransactionListExpandableProps,
 } from '../TransactionListExpandable';
@@ -115,7 +115,7 @@ const childContentWithFooter = (
       title="Title"
       description="Description"
       caption="Caption"
-      icon={<PlaceholderOutline size={16} color="#E0E2EE" />}
+      icon={<Placeholder size={16} />}
       type="text"
       inverted
       position="first"
@@ -133,7 +133,7 @@ const childContentWithFooter = (
       title="Title"
       description="Description"
       caption="Caption"
-      icon={<PlaceholderOutline size={16} color="#E0E2EE" />}
+      icon={<Placeholder size={16} />}
       type="text"
       inverted
       position="last"
