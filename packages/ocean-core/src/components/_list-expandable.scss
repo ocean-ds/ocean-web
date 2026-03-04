@@ -33,43 +33,8 @@
     }
   }
 
-  &__main {
-    align-items: center;
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    display: flex;
-    gap: $spacing-inline-xxs-extra;
-    min-width: 0; // Prevent button from overflowing
-    padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
-      $spacing-inline-xs;
-    text-align: left;
-    transition: background-color 0.2s ease;
-    width: 100%;
-
-    &:hover:not(.ods-card-list-expandable--loading &) {
-      background-color: $color-interface-light-up;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $color-brand-primary-pure;
-      outline-offset: -2px;
-    }
-  }
-
-  &__icon {
-    align-items: center;
-    color: $color-brand-primary-down;
-    display: flex;
-    flex-shrink: 0;
-  }
-
-  &__icon--inactive svg {
-    color: $color-interface-light-deep;
-  }
-
   // Transaction variant: ContentList (left) + AmountDetails (right) in main row
-  &__transaction-content {
+  &--transaction &__transaction-content {
     align-items: center;
     display: flex;
     flex: 1;
@@ -94,6 +59,94 @@
     .ods-amount-details__amount-sign {
       font-size: $font-size-xs;
     }
+  }
+
+  // TransactionListExpandable only: ListAction children
+  &--transaction &__content--transaction {
+    .ods-list-action {
+      padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+        $spacing-inline-xxs-extra $spacing-inline-xs;
+    }
+
+    .ods-typography__paragraph {
+      font-size: $font-size-xxs;
+    }
+
+    .ods-typography__description {
+      font-size: $font-size-xxxs;
+    }
+  }
+
+  &--transaction &__skeleton.ods-list-expandable__transaction-content {
+    flex-direction: row;
+    gap: $spacing-inline-xxs-extra;
+
+    .ods-skeleton-bar {
+      width: auto;
+    }
+  }
+
+  &--transaction &__skeleton-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    min-width: 0;
+  }
+
+  &--transaction &__skeleton-title-row {
+    display: flex;
+    gap: $spacing-inline-xxs;
+    justify-content: stretch;
+
+    .ods-skeleton-bar {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  &--transaction &__skeleton-amount {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    width: 86px;
+  }
+
+  &__main {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 0; // Prevent button from overflowing
+    padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
+      $spacing-inline-xs;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    width: 100%;
+
+    &:hover:not(.ods-list-expandable--loading &) {
+      background-color: $color-interface-light-up;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-brand-primary-pure;
+      outline-offset: -2px;
+    }
+  }
+
+  &__icon {
+    align-items: center;
+    color: $color-brand-primary-down;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__icon--inactive svg {
+    color: $color-interface-light-deep;
   }
 
   &__trailing {
@@ -126,20 +179,6 @@
     overflow: hidden; // Prevent content from overflowing
     width: 100%;
     word-wrap: break-word; // Break long words
-  }
-
-  // TransactionListExpandable only: ListAction children (use __content--transaction for shorter selectors)
-  &__content--transaction .ods-list-action {
-    padding: $spacing-inline-xxs-extra $spacing-inline-xxs
-      $spacing-inline-xxs-extra $spacing-inline-xs;
-  }
-
-  &__content--transaction .ods-content-list .ods-typography__paragraph {
-    font-size: $font-size-xxs;
-  }
-
-  &__content--transaction .ods-content-list .ods-typography__description {
-    font-size: $font-size-xxxs;
   }
 
   &__footer {
@@ -177,6 +216,7 @@
       box-sizing: border-box;
       cursor: default;
       overflow: hidden; // Prevent skeleton from overflowing
+      padding: $spacing-inline-xs;
       pointer-events: none;
     }
   }

@@ -131,10 +131,21 @@ const TransactionListExpandable = React.forwardRef<
     };
 
     const renderLoadingContent = () => (
-      <div className="ods-list-expandable__skeleton">
-        <SkeletonBar width="40%" height="16px" />
-        <SkeletonBar width="100%" height="16px" />
-      </div>
+      <>
+        <div className="ods-list-expandable__icon" aria-hidden>
+          <SkeletonBar width="24px" height="24px" />
+        </div>
+        <div className="ods-list-expandable__skeleton ods-list-expandable__transaction-content">
+          <div className="ods-list-expandable__skeleton-list">
+            <SkeletonBar width="33%" height="16px" />
+            <SkeletonBar width="100%" height="16px" />
+          </div>
+          <div className="ods-list-expandable__skeleton-amount">
+            <SkeletonBar width="100%" height="16px" />
+            <SkeletonBar width="100%" height="16px" />
+          </div>
+        </div>
+      </>
     );
 
     const renderContent = () => (
