@@ -98,17 +98,6 @@
     min-width: 0;
   }
 
-  &--transaction &__skeleton-title-row {
-    display: flex;
-    gap: $spacing-inline-xxs;
-    justify-content: stretch;
-
-    .ods-skeleton-bar {
-      flex: 1;
-      min-width: 0;
-    }
-  }
-
   &--transaction &__skeleton-amount {
     align-items: flex-end;
     display: flex;
