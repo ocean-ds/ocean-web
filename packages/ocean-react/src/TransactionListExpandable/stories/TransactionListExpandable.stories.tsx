@@ -115,7 +115,9 @@ const childContentWithFooter = (
       title="Title"
       description="Description"
       caption="Caption"
-      icon={<Placeholder size={16} />}
+      icon={
+        <Placeholder size={16} style={{ color: '#E0E2EE', fill: 'none' }} />
+      }
       type="text"
       inverted
       position="first"
@@ -133,7 +135,9 @@ const childContentWithFooter = (
       title="Title"
       description="Description"
       caption="Caption"
-      icon={<Placeholder size={16} />}
+      icon={
+        <Placeholder size={16} style={{ color: '#E0E2EE', fill: 'none' }} />
+      }
       type="text"
       inverted
       position="last"
