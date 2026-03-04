@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { PlaceholderOutline, Placeholder } from '@useblu/ocean-icons-react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import TransactionListExpandable, {
   TransactionListExpandableProps,
 } from '../TransactionListExpandable';
 import Tag from '../../Tag';
 import List from '../../List';
 import ListAction from '../../ListAction';
+import placeholderIcon from '../assets/placeholder.svg';
 
 export type StateOption = 'Default' | 'Hover' | 'Loading';
 
@@ -116,7 +117,7 @@ const childContentWithFooter = (
       description="Description"
       caption="Caption"
       icon={
-        <Placeholder size={16} style={{ color: '#E0E2EE', fill: 'none' }} />
+        <img src={placeholderIcon as unknown as string} alt="placeholder" />
       }
       type="text"
       inverted
@@ -136,7 +137,7 @@ const childContentWithFooter = (
       description="Description"
       caption="Caption"
       icon={
-        <Placeholder size={16} style={{ color: '#E0E2EE', fill: 'none' }} />
+        <img src={placeholderIcon as unknown as string} alt="placeholder" />
       }
       type="text"
       inverted
