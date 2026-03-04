@@ -68,6 +68,10 @@
         $spacing-inline-xxs-extra $spacing-inline-xs;
     }
 
+    .ods-list-action__icon {
+      padding: $spacing-inline-xxxs;
+    }
+
     .ods-typography__paragraph {
       font-size: $font-size-xxs;
     }
