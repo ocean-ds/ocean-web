@@ -1,0 +1,384 @@
+---
+title: TransactionListExpandable
+sidebar_label: TransactionListExpandable
+---
+
+import { TransactionListExpandable, List, Tag } from '@useblu/ocean-react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TransactionListExpandable
+
+O componente TransactionListExpandable é uma variação do ListExpandable otimizada para exibir transações financeiras com suporte a valores, indicadores e dados adicionais, permitindo expandir para mostrar detalhes ou ações relacionadas.
+
+## Importação
+
+```tsx
+import { TransactionListExpandable } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TransactionListExpandable } from '@useblu/ocean-react/TransactionListExpandable';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TransactionListExpandableProps } from '@useblu/ocean-react';
+
+// Uso em componente customizado
+const MyComponent: React.FC<TransactionListExpandableProps> = (props) => {
+  return <TransactionListExpandable {...props} />;
+};
+```
+
+## Playground Interativo
+
+Explore o componente TransactionListExpandable no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-list-transactionlistexpandable--usage"
+  height={550}
+  title="TransactionListExpandable - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TransactionListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-transactionlistexpandable--docs)**.
+
+No Storybook você encontrará:
+
+- ✅ **Controles interativos** para testar todas as props
+- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Exemplos visuais** de todas as variantes e estados
+- ✅ **Playground** para experimentação rápida
+
+## Uso básico
+
+```tsx live
+<TransactionListExpandable
+  title="Transferência PIX"
+  description="João Silva"
+  amount="R$ 150,00"
+  icon={<PlaceholderOutline size={24} />}
+>
+  <div style={{ padding: '16px' }}>
+    <p>Detalhes da transação...</p>
+  </div>
+</TransactionListExpandable>
+```
+
+## Variações de Valor (amountType)
+
+O TransactionListExpandable suporta diferentes tipos visuais para o valor:
+
+<StorybookEmbed
+  storyId="components-list-transactionlistexpandable--amount-types"
+  height={400}
+  showToolbar={false}
+  title="TransactionListExpandable - Tipos de Valor"
+/>
+
+```tsx
+<List>
+  <TransactionListExpandable
+    title="Depósito"
+    amount="R$ 500,00"
+    amountType="positive"
+    amountIndicator={
+      <Tag type="positive" size="small">
+        Crédito
+      </Tag>
+    }
+  >
+    <div>Detalhes do depósito</div>
+  </TransactionListExpandable>
+  <TransactionListExpandable
+    title="Pagamento"
+    amount="R$ 150,00"
+    amountType="negative"
+    amountIndicator={
+      <Tag type="negative" size="small">
+        Débito
+      </Tag>
+    }
+  >
+    <div>Detalhes do pagamento</div>
+  </TransactionListExpandable>
+</List>
+```
+
+## Estados de Carregamento
+
+Use a prop `loading` para exibir um estado de skeleton durante o carregamento dos dados:
+
+<StorybookEmbed
+  storyId="components-list-transactionlistexpandable--state-loading"
+  height={200}
+  showToolbar={false}
+  title="TransactionListExpandable - Estado de Carregamento"
+/>
+
+```tsx
+<TransactionListExpandable title="Transação" amount="R$ 0,00" loading={true} />
+```
+
+## Estado Disabled
+
+Desabilite a interação com o componente usando a prop `disabled`:
+
+```tsx
+<TransactionListExpandable
+  title="Transação bloqueada"
+  description="Esta transação não pode ser expandida"
+  amount="R$ 50,00"
+  disabled
+>
+  <div>Conteúdo não acessível</div>
+</TransactionListExpandable>
+```
+
+## Com Divisor (showDivider)
+
+Adicione um divisor visual entre o header e o conteúdo expandido:
+
+```tsx
+<TransactionListExpandable
+  title="Transferência TED"
+  description="Maria Souza"
+  amount="R$ 300,00"
+  showDivider
+>
+  <div>Detalhes da transferência</div>
+</TransactionListExpandable>
+```
+
+## Com Texto de Apoio (supportingText)
+
+Use `supportingText` para exibir informações complementares abaixo do conteúdo expandido:
+
+```tsx
+<TransactionListExpandable
+  title="Compra no cartão"
+  description="Loja XYZ"
+  amount="R$ 89,90"
+  supportingText="Parcela 2/6 - Próximo vencimento: 15/01/2026"
+>
+  <div>Detalhes da compra</div>
+</TransactionListExpandable>
+```
+
+## Estados de Expansão
+
+O TransactionListExpandable pode ser usado em modo controlado:
+
+### Controlled
+
+```tsx
+const [expanded, setExpanded] = useState(false);
+
+<TransactionListExpandable
+  title="Transferência PIX"
+  description="João Silva"
+  amount="R$ 150,00"
+  expanded={expanded}
+  onToggle={(newExpanded) => setExpanded(newExpanded)}
+>
+  <div>Detalhes da transferência</div>
+</TransactionListExpandable>;
+```
+
+## API
+
+### Props
+
+| Prop                  | Tipo                                                                                                       | Padrão      | Descrição                                                 |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- |
+| `title`               | `string`                                                                                                   | -           | Título principal da transação (obrigatório)               |
+| `description`         | `string`                                                                                                   | -           | Descrição ou texto secundário                             |
+| `caption`             | `string`                                                                                                   | -           | Legenda ou texto terciário                                |
+| `amount`              | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                     |
+| `amountType`          | `'default' \| 'positive' \| 'negative'`                                                                    | `'default'` | Tipo visual do valor                                      |
+| `amountIndicator`     | `ReactNode`                                                                                                | -           | Indicador (tag) exibido ao lado do valor                  |
+| `showAmountIndicator` | `boolean`                                                                                                  | `true`      | Define se o indicador deve ser exibido                    |
+| `additionalData`      | `string`                                                                                                   | -           | Dado adicional exibido abaixo do valor                    |
+| `inverted`            | `boolean`                                                                                                  | `true`      | Inverte a posição do título e descrição                   |
+| `type`                | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de estilo visual do container                        |
+| `status`              | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status de estilo do conteúdo                              |
+| `loading`             | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                 |
+| `icon`                | `ReactNode`                                                                                                | -           | Ícone exibido à esquerda                                  |
+| `expanded`            | `boolean`                                                                                                  | `false`     | Controla o estado de expansão                             |
+| `onToggle`            | `(expanded: boolean) => void`                                                                              | -           | Callback disparado ao alterar o estado de expansão        |
+| `children`            | `ReactNode`                                                                                                | -           | Conteúdo exibido quando expandido                         |
+| `supportingText`      | `ReactNode`                                                                                                | -           | Texto de apoio exibido abaixo dos filhos quando expandido |
+| `disabled`            | `boolean`                                                                                                  | `false`     | Desabilita a interação                                    |
+| `showDivider`         | `boolean`                                                                                                  | `false`     | Exibe um divisor entre o header e o conteúdo expandido    |
+| `className`           | `string`                                                                                                   | -           | Classes CSS adicionais                                    |
+
+### Eventos
+
+- **onToggle**: Disparado quando o item é expandido ou recolhido, recebe o novo estado como parâmetro
+
+## Acessibilidade
+
+- ✅ Elemento `<button>` semântico para ação de expansão
+- ✅ Atributo `aria-expanded` para comunicar o estado aos leitores de tela
+- ✅ Rótulos `aria-label` automatizados para clarificar a ação ("Expandir/Recolher [Título]")
+- ✅ Suporte completo à navegação por teclado
+- ✅ Estados de foco visíveis via `focus-visible`
+- ✅ Estado `disabled` corretamente aplicado ao botão
+- ✅ Indicadores visuais claros (ícones de chevron)
+- ✅ Skeleton acessível durante loading
+
+### Navegação por teclado
+
+| Tecla             | Função                           |
+| ----------------- | -------------------------------- |
+| `Tab`             | Move foco para o item            |
+| `Space` / `Enter` | Expande ou recolhe o conteúdo    |
+| `Shift + Tab`     | Move foco para elemento anterior |
+
+## CSS Classes
+
+| Classe                                       | Descrição                                   |
+| -------------------------------------------- | ------------------------------------------- |
+| `.ods-list-expandable`                       | Classe base do componente                   |
+| `.ods-list-expandable--transaction`          | Modificador da variante transação           |
+| `.ods-list-expandable--card`                 | Aplicada quando type="card"                 |
+| `.ods-list-expandable--text`                 | Aplicada quando type="text"                 |
+| `.ods-list-expandable--expanded`             | Aplicada quando expandido                   |
+| `.ods-list-expandable--disabled`             | Aplicada quando desabilitado                |
+| `.ods-list-expandable--loading`              | Aplicada durante loading                    |
+| `.ods-list-expandable__main`                 | Container principal (botão)                 |
+| `.ods-list-expandable__icon`                 | Container do ícone                          |
+| `.ods-list-expandable__icon--inactive`       | Ícone com status inactive                   |
+| `.ods-list-expandable__transaction-content`  | Container do conteúdo de transação          |
+| `.ods-list-expandable__trailing`             | Container do indicator e action             |
+| `.ods-list-expandable__action`               | Container da ação (chevron)                 |
+| `.ods-list-expandable__content`              | Container do conteúdo expandido             |
+| `.ods-list-expandable__content--transaction` | Conteúdo expandido com estilos de transação |
+| `.ods-list-expandable__footer`               | Container do supportingText                 |
+| `.ods-list-expandable__divider`              | Divisor entre header e conteúdo             |
+| `.ods-list-expandable__skeleton`             | Container do skeleton                       |
+| `.ods-list-expandable__skeleton-list`        | Skeleton das linhas de texto                |
+| `.ods-list-expandable__skeleton-amount`      | Skeleton do valor                           |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Use `amountType` para diferenciar entradas (positive) de saídas (negative)
+- Forneça um `icon` que ajude a identificar rapidamente a categoria da transação
+- Use `supportingText` para informações complementares importantes que não cabem no header
+- Utilize o estado `loading` enquanto busca detalhes pesados da transação
+- Use `amountIndicator` com Tag para categorizar o tipo da transação (Crédito, Débito)
+- Combine com `List` para agrupar múltiplas transações
+- Implemente `onToggle` para tracking de interações do usuário
+- Use `additionalData` para exibir informações auxiliares como data ou parcela
+- Use `showDivider` quando precisar separar visualmente header do conteúdo expandido
+
+### ❌ Não faça
+
+- Não coloque informações cruciais apenas no conteúdo expandido se o usuário precisar vê-las de relance
+- Evite aninhamentos excessivos de componentes expansíveis
+- Não use `disabled` e `loading` simultaneamente
+- Não omita o `amount` (é obrigatório)
+- Não abuse de itens expandidos na mesma tela (pode confundir)
+- Evite textos excessivamente longos no `supportingText`
+
+### Uso de Valores
+
+- **Positivos**: Use `amountType="positive"` para receitas, créditos, entradas
+- **Negativos**: Use `amountType="negative"` para despesas, débitos, saídas
+- **Padrão**: Use `amountType="default"` para valores informativos sem conotação
+- **Formatação**: Inclua símbolo da moeda e formatação adequada (ex: "R$ 1.234,56")
+
+## Casos de uso comuns
+
+### 1. Extrato de Transações
+
+```tsx
+<List>
+  <TransactionListExpandable
+    title="Transferência PIX"
+    description="João Silva"
+    amount="R$ 250,00"
+    amountType="negative"
+    icon={<PixIcon size={24} />}
+    amountIndicator={
+      <Tag type="negative" size="small">
+        Débito
+      </Tag>
+    }
+  >
+    <TransactionDetails id="pix-123" />
+  </TransactionListExpandable>
+  <TransactionListExpandable
+    title="Depósito"
+    description="Salário - Empresa LTDA"
+    amount="R$ 5.000,00"
+    amountType="positive"
+    icon={<DepositIcon size={24} />}
+    amountIndicator={
+      <Tag type="positive" size="small">
+        Crédito
+      </Tag>
+    }
+  >
+    <TransactionDetails id="dep-456" />
+  </TransactionListExpandable>
+</List>
+```
+
+### 2. Detalhes de Cobrança com Ações
+
+```tsx
+<TransactionListExpandable
+  title="Cobrança PIX"
+  description="Cliente ABC"
+  amount="R$ 1.500,00"
+  amountType="positive"
+  additionalData="Vencimento: 20/01/2026"
+  icon={<BarcodeIcon size={24} />}
+  supportingText="Cobrança enviada em 10/01/2026"
+>
+  <ListAction icon={<CopyIcon />} title="Copiar código" />
+  <ListAction icon={<ShareIcon />} title="Compartilhar cobrança" />
+</TransactionListExpandable>
+```
+
+### 3. Lista de Pagamentos com Loading
+
+```tsx
+<List>
+  {isLoading ? (
+    <>
+      <TransactionListExpandable title="" amount="" loading />
+      <TransactionListExpandable title="" amount="" loading />
+    </>
+  ) : (
+    payments.map((payment) => (
+      <TransactionListExpandable
+        key={payment.id}
+        title={payment.description}
+        description={payment.recipient}
+        amount={payment.formattedAmount}
+        amountType={payment.type}
+        icon={<PaymentIcon size={24} />}
+      >
+        <PaymentDetails payment={payment} />
+      </TransactionListExpandable>
+    ))
+  )}
+</List>
+```
+
+## Links relacionados
+
+- [ListExpandable](/components/listexpandable) - Componente base para itens expansíveis
+- [TransactionListItem](/components/transactionlistitem) - Itens de transação não expansíveis
+- [List](/components/list) - Container para agrupar itens de lista
+- [Tag](/components/tag) - Para indicadores de status
+- [Storybook - TransactionListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-transactionlistexpandable--docs) - Documentação técnica completa

@@ -1,0 +1,61 @@
+.ods-amount-details {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: $spacing-inline-xxxs;
+
+  &__main {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__amount {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+
+    &--positive {
+      color: $color-status-positive-deep;
+    }
+  }
+
+  &__amount-row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-inline-xxxs;
+    justify-content: flex-end;
+  }
+
+  &__amount-sign {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-comfy;
+  }
+
+  &__caption {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  &__indicator {
+    display: flex;
+
+    // When indicatorSize="medium", Tag inside uses medium styling
+    &--medium .ods-tag {
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
+      line-height: $spacing-inline-xxs-extra;
+      padding: $spacing-stack-xxxs $spacing-stack-xxs;
+    }
+  }
+}

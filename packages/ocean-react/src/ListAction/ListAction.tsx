@@ -8,6 +8,9 @@ import SkeletonBar from '../_shared/components/SkeletonBar';
 import InternalListActions, {
   ActionItem,
 } from '../_shared/components/InternalListActions';
+import AmountDetails, {
+  AmountDetailsProps,
+} from '../_shared/components/AmountDetails';
 
 export type ListActionProps = {
   /**
@@ -82,6 +85,15 @@ export type ListActionProps = {
    * @default false
    */
   showDivider?: boolean;
+  /**
+   * Amount details displayed alongside the content list (right-aligned).
+   */
+  amountDetails?: AmountDetailsProps;
+  /**
+   * Optional position (timeline) with lines around the icon. When set, the icon is wrapped with
+   * vertical lines: first = line below only, middle = line above and below, last = line above only.
+   */
+  position?: 'first' | 'middle' | 'last';
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'type'>;
 
 const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
@@ -104,8 +116,10 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       onClick,
       className,
       showDivider = false,
+      amountDetails,
+      position,
       ...rest
-    },
+    }: ListActionProps,
     ref
   ) => {
     const [isSwipeOpen, setIsSwipeOpen] = useState(false);
@@ -121,7 +135,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
     const renderActionIcon = () => {
       if (actionType === 'chevron') {
         return (
-          <div className='ods-list-action__action'>
+          <div className="ods-list-action__action">
             <ChevronRight size={20} />
           </div>
         );
@@ -134,7 +148,9 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
             disabled={disabled}
             position={menuPosition}
             actionType={actionType}
-            onOpenChange={actionType === 'swipe' ? handleSwipeOpenChange : undefined}
+            onOpenChange={
+              actionType === 'swipe' ? handleSwipeOpenChange : undefined
+            }
           />
         );
       }
@@ -143,27 +159,54 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
     };
 
     const renderLoadingContent = () => (
-      <div className='ods-list-action__skeleton'>
-        <SkeletonBar width='40%' height='16px' />
-        <SkeletonBar width='100%' height='16px' />
+      <div className="ods-list-action__skeleton">
+        <SkeletonBar width="40%" height="16px" />
+        <SkeletonBar width="100%" height="16px" />
       </div>
     );
 
-    const contentStyle: React.CSSProperties = isSwipeOpen && menuWidth > 0
-      ? { transform: `translateX(-${menuWidth}px)` }
-      : {};
+    const contentStyle: React.CSSProperties =
+      isSwipeOpen && menuWidth > 0
+        ? { transform: `translateX(-${menuWidth}px)` }
+        : {};
+
+    const showLeading = position && icon;
+    const showLineAbove = position === 'middle' || position === 'last';
+    const showLineBelow = position === 'first' || position === 'middle';
 
     const renderContent = () => (
       <>
-        <div className='ods-list-action__content' style={contentStyle}>
-          {icon && (
-            <div
-              className={classNames('ods-list-action__icon', {
-                'ods-list-action__icon--inactive': status === 'inactive',
-              })}
-            >
-              {icon}
+        <div className="ods-list-action__content" style={contentStyle}>
+          {showLeading ? (
+            <div className="ods-list-action__position">
+              <div
+                className={classNames('ods-list-action__position-line', {
+                  'ods-list-action__position-line--visible': showLineAbove,
+                })}
+              />
+              <div
+                className={classNames('ods-list-action__icon', {
+                  'ods-list-action__icon--inactive': status === 'inactive',
+                })}
+              >
+                {icon}
+              </div>
+              <div
+                className={classNames('ods-list-action__position-line', {
+                  'ods-list-action__position-line--visible': showLineBelow,
+                })}
+              />
             </div>
+          ) : (
+            icon && (
+              <div
+                className={classNames('ods-list-action__icon', {
+                  'ods-list-action__icon--inactive': status === 'inactive',
+                })}
+              >
+                {icon}
+              </div>
+            )
           )}
           <ContentList
             title={title}
@@ -173,8 +216,9 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
             inverted={inverted}
             type={status}
           />
+          {amountDetails && <AmountDetails type={status} {...amountDetails} />}
           {indicator && (
-            <div className='ods-list-action__indicator'>{indicator}</div>
+            <div className="ods-list-action__indicator">{indicator}</div>
           )}
         </div>
         {renderActionIcon()}
@@ -190,11 +234,11 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
     });
 
     return (
-      <div className='ods-list-action__container'>
+      <div className="ods-list-action__container">
         <button
           ref={ref}
-          type='button'
-          data-testid='list-action'
+          type="button"
+          data-testid="list-action"
           className={buttonClassName}
           onClick={loading ? undefined : onClick}
           disabled={disabled || loading}
@@ -203,7 +247,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
           {loading ? renderLoadingContent() : renderContent()}
         </button>
         {showDivider && type === 'text' && (
-          <div className='ods-list-action__divider' />
+          <div className="ods-list-action__divider" />
         )}
       </div>
     );
@@ -213,4 +257,3 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
 ListAction.displayName = 'ListAction';
 
 export default ListAction;
-

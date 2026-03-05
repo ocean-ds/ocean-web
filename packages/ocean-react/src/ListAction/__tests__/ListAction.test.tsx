@@ -77,6 +77,53 @@ describe('ListAction', () => {
         'custom-test-class'
       );
     });
+
+    test('renders amountDetails alongside content list', () => {
+      render(
+        <ListAction
+          title="Transaction Title"
+          amountDetails={{
+            amount: 'R$ 50,00',
+            additionalData: 'Extra info',
+          }}
+        />
+      );
+
+      expect(screen.getByText('R$ 50,00')).toBeInTheDocument();
+      expect(screen.getByText('Extra info')).toBeInTheDocument();
+      expect(screen.getByText('Transaction Title')).toBeInTheDocument();
+    });
+
+    test('renders amountDetails with indicator', () => {
+      render(
+        <ListAction
+          title="Title"
+          amountDetails={{
+            amount: 'R$ 100,00',
+            indicator: <Tag type="positive" size="small">Aprovado</Tag>,
+          }}
+        />
+      );
+
+      expect(screen.getByText('R$ 100,00')).toBeInTheDocument();
+      expect(screen.getByText('Aprovado')).toBeInTheDocument();
+    });
+
+    test('hides amountDetails indicator when showIndicator is false', () => {
+      render(
+        <ListAction
+          title="Title"
+          amountDetails={{
+            amount: 'R$ 100,00',
+            indicator: <Tag type="positive" size="small">Hidden</Tag>,
+            showIndicator: false,
+          }}
+        />
+      );
+
+      expect(screen.getByText('R$ 100,00')).toBeInTheDocument();
+      expect(screen.queryByText('Hidden')).not.toBeInTheDocument();
+    });
   });
 
   describe('States', () => {

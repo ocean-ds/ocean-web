@@ -41,10 +41,7 @@ const meta: Meta<typeof ListAction> = {
     type: {
       description: 'Tipo de estilo do conteúdo do card.',
       control: 'select',
-      options: [
-        'card',
-        'text',
-      ],
+      options: ['card', 'text'],
     },
     showDivider: {
       description: 'Mostra um divisor entre os cards quando type é "text".',
@@ -91,7 +88,6 @@ export default meta;
 type Story = StoryObj<typeof ListAction>;
 
 const defaultMenuActions: ActionItem[] = [
-
   {
     label: 'Editar',
     onClick: () => alert('Editar clicado!'),
@@ -115,7 +111,7 @@ const defaultMenuActions: ActionItem[] = [
     onClick: () => alert('Excluir clicado!'),
     icon: <Trash />,
     variant: 'negative',
-  }
+  },
 ];
 
 // Opções de indicadores disponíveis
@@ -156,6 +152,58 @@ const indicatorOptions = {
 };
 
 type IndicatorOptionKey = keyof typeof indicatorOptions;
+
+type AllTypesItem = {
+  title: string;
+  description: string;
+  strikethroughDescription?: string;
+  status:
+    | 'default'
+    | 'inactive'
+    | 'positive'
+    | 'warning'
+    | 'highlight'
+    | 'highlight-lead'
+    | 'strikethrough';
+};
+
+const allTypesData: AllTypesItem[] = [
+  { title: 'Tipo Default', description: 'R$ 1.234,56', status: 'default' },
+  { title: 'Tipo Inactive', description: 'Inativo', status: 'inactive' },
+  { title: 'Tipo Positive', description: '+ R$ 500,00', status: 'positive' },
+  {
+    title: 'Tipo Warning',
+    description: 'Atenção necessária',
+    status: 'warning',
+  },
+  { title: 'Tipo Highlight', description: 'Destaque', status: 'highlight' },
+  {
+    title: 'Tipo Highlight Lead',
+    description: 'Destaque principal',
+    status: 'highlight-lead',
+  },
+  {
+    title: 'Tipo Strikethrough',
+    description: 'R$ 1.234,56',
+    strikethroughDescription: 'riscado',
+    status: 'strikethrough',
+  },
+];
+
+type LeadingItem = {
+  title: string;
+  amount: string;
+  position: 'first' | 'middle' | 'last';
+};
+
+const withLeadingData: LeadingItem[] = [
+  { title: 'Retenção de saldo', amount: 'R$ 150,00', position: 'first' },
+  { title: 'Retenção de saldo', amount: 'R$ 200,00', position: 'middle' },
+  { title: 'Retenção de saldo', amount: 'R$ 1.500,00', position: 'middle' },
+  { title: 'Retenção de saldo', amount: 'R$ 300,00', position: 'middle' },
+  { title: 'Retenção de saldo', amount: 'R$ 100,00', position: 'middle' },
+  { title: 'Retenção de multa e juros', amount: 'R$ 10,00', position: 'last' },
+];
 
 // Story Usage (Principal com Controles)
 export const Usage: Story = {
@@ -209,7 +257,12 @@ export const Usage: Story = {
         }}
       >
         <div style={{ width: '400px' }}>
-          <ListAction {...restArgs} icon={icon} indicator={indicator} menuActions={defaultMenuActions} />
+          <ListAction
+            {...restArgs}
+            icon={icon}
+            indicator={indicator}
+            menuActions={defaultMenuActions}
+          />
         </div>
       </div>
     );
@@ -223,63 +276,18 @@ export const AllTypes: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <ListAction
-        title="Tipo Default"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="default"
-        onClick={() => alert('Default clicado!')}
-      />
-      <ListAction
-        title="Tipo Inactive"
-        description="Inativo"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="inactive"
-        onClick={() => alert('Inactive clicado!')}
-      />
-      <ListAction
-        title="Tipo Positive"
-        description="+ R$ 500,00"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="positive"
-        onClick={() => alert('Positive clicado!')}
-      />
-      <ListAction
-        title="Tipo Warning"
-        description="Atenção necessária"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="warning"
-        onClick={() => alert('Warning clicado!')}
-      />
-      <ListAction
-        title="Tipo Highlight"
-        description="Destaque"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="highlight"
-        onClick={() => alert('Highlight clicado!')}
-      />
-      <ListAction
-        title="Tipo Highlight Lead"
-        description="Destaque principal"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="highlight-lead"
-        onClick={() => alert('Highlight Lead clicado!')}
-      />
-      <ListAction
-        title="Tipo Strikethrough"
-        description="R$ 1.234,56"
-        strikethroughDescription="riscado"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="strikethrough"
-        onClick={() => alert('Strikethrough clicado!')}
-      />
+      {allTypesData.map((item) => (
+        <ListAction
+          key={item.status}
+          title={item.title}
+          description={item.description}
+          strikethroughDescription={item.strikethroughDescription}
+          icon={<PlaceholderOutline size={24} />}
+          type="card"
+          status={item.status}
+          onClick={() => alert(`${item.title} clicado!`)}
+        />
+      ))}
     </List>
   ),
 };
@@ -291,70 +299,19 @@ export const AllTypesInverted: Story = {
   },
   render: () => (
     <List style={{ minWidth: '300px' }}>
-      <ListAction
-        title="Tipo Default"
-        description="R$ 1.234,56"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="default"
-        inverted
-        onClick={() => alert('Default clicado!')}
-      />
-      <ListAction
-        title="Tipo Inactive"
-        description="Inativo"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="inactive"
-        inverted
-        onClick={() => alert('Inactive clicado!')}
-      />
-      <ListAction
-        title="Tipo Positive"
-        description="+ R$ 500,00"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="positive"
-        inverted
-        onClick={() => alert('Positive clicado!')}
-      />
-      <ListAction
-        title="Tipo Warning"
-        description="Atenção necessária"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="warning"
-        inverted
-        onClick={() => alert('Warning clicado!')}
-      />
-      <ListAction
-        title="Tipo Highlight"
-        description="Destaque"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="highlight"
-        inverted
-        onClick={() => alert('Highlight clicado!')}
-      />
-      <ListAction
-        title="Tipo Highlight Lead"
-        description="Destaque principal"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="highlight-lead"
-        inverted
-        onClick={() => alert('Highlight Lead clicado!')}
-      />
-      <ListAction
-        title="Tipo Strikethrough"
-        description="R$ 1.234,56"
-        strikethroughDescription="riscado"
-        icon={<PlaceholderOutline size={24} />}
-        type="card"
-        status="strikethrough"
-        inverted
-        onClick={() => alert('Strikethrough clicado!')}
-      />
+      {allTypesData.map((item) => (
+        <ListAction
+          key={item.status}
+          title={item.title}
+          description={item.description}
+          strikethroughDescription={item.strikethroughDescription}
+          icon={<PlaceholderOutline size={24} />}
+          type="card"
+          status={item.status}
+          inverted
+          onClick={() => alert(`${item.title} clicado!`)}
+        />
+      ))}
     </List>
   ),
 };
@@ -663,6 +620,106 @@ export const TextTypeWithDividerAndCaption: Story = {
   ),
 };
 
+// Story: Com AmountDetails
+export const WithAmountDetails: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '300px' }}>
+      <ListAction
+        title="Compra no débito"
+        description="Loja exemplo LTDA"
+        caption="Hoje, 14:30"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 1.234,56',
+          additionalData: '1x no débito',
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+      <ListAction
+        title="Pix recebido"
+        description="João da Silva"
+        caption="Ontem, 09:15"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 500,00',
+          indicator: (
+            <Tag type="positive" size="small" setIconOff>
+              Recebido
+            </Tag>
+          ),
+          additionalData: 'Pix',
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+      <ListAction
+        title="Pagamento pendente"
+        description="Conta de luz"
+        caption="Vence amanhã"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        status="warning"
+        amountDetails={{
+          amount: 'R$ 189,90',
+          indicator: (
+            <Tag type="warning" size="small" setIconOff>
+              Pendente
+            </Tag>
+          ),
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+      <ListAction
+        title="Sem indicator"
+        description="Apenas valor"
+        icon={<PlaceholderOutline size={24} />}
+        type="card"
+        inverted
+        amountDetails={{
+          amount: 'R$ 42,00',
+        }}
+        onClick={() => alert('Clicado!')}
+        showDivider={false}
+      />
+    </List>
+  ),
+};
+
+// Story: Com Leading (Timeline)
+export const WithLeading: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List style={{ minWidth: '320px' }}>
+      {withLeadingData.map((item) => (
+        <ListAction
+          key={`${item.position}-${item.amount}`}
+          title={item.title}
+          description="Boleto de Blu Instituição de Pag"
+          icon={<PlaceholderOutline size={24} />}
+          type="text"
+          inverted
+          showDivider={false}
+          amountDetails={{ amount: item.amount, type: 'negative' }}
+          onClick={() => alert('Clicado!')}
+          position={item.position}
+        />
+      ))}
+    </List>
+  ),
+};
+
 // Story: Comparação entre tipos Card e Text
 export const CardVsTextInsideList: Story = {
   parameters: {
@@ -717,4 +774,3 @@ export const CardVsTextInsideList: Story = {
     </div>
   ),
 };
-
