@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.133.0](https://github.com/ocean-ds/ocean-web/compare/v1.132.0...v1.133.0) (2026-03-05)
+
+### Features
+
+- create TransactionListExpandable ([#1228](https://github.com/ocean-ds/ocean-web/issues/1228)) ([2bb4832](https://github.com/ocean-ds/ocean-web/commit/2bb48326df10a830d940990d7881070ddde1d805))
+
 # [1.132.0](https://github.com/ocean-ds/ocean-web/compare/v1.131.0...v1.132.0) (2026-03-03)
 
 ### Features
