@@ -54,7 +54,7 @@
     &--medium .ods-tag {
       font-size: $font-size-xxxs;
       font-weight: $font-weight-medium;
-      line-height: 12px;
+      line-height: $spacing-inline-xxs-extra;
       padding: $spacing-stack-xxxs $spacing-stack-xxs;
     }
   }
