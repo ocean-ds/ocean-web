@@ -27,6 +27,87 @@
     border-radius: 0;
   }
 
+  &--transaction {
+    .ods-list-expandable__icon {
+      color: $color-interface-dark-up;
+    }
+  }
+
+  // Transaction variant: ContentList (left) + AmountDetails (right) in main row
+  &--transaction &__transaction-content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: $spacing-inline-xxs-extra;
+    min-width: 0;
+
+    .ods-content-list {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ods-amount-details {
+      flex-shrink: 0;
+    }
+
+    .ods-amount-details__amount:not(.ods-amount-details__amount--positive),
+    .ods-amount-details__amount-sign {
+      color: $color-interface-dark-deep;
+    }
+
+    .ods-amount-details__amount,
+    .ods-amount-details__amount-sign {
+      font-size: $font-size-xs;
+    }
+  }
+
+  // TransactionListExpandable only: ListAction children
+  &--transaction &__content--transaction {
+    .ods-list-action {
+      padding: $spacing-inline-xxs-extra $spacing-inline-xxs
+        $spacing-inline-xxs-extra $spacing-inline-xs;
+    }
+
+    .ods-list-action__icon {
+      padding: $spacing-inline-xxxs;
+    }
+
+    .ods-typography__paragraph {
+      font-size: $font-size-xxs;
+    }
+
+    .ods-typography__description {
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &--transaction &__skeleton.ods-list-expandable__transaction-content {
+    flex-direction: row;
+    gap: $spacing-inline-xxs-extra;
+
+    .ods-skeleton-bar {
+      width: auto;
+    }
+  }
+
+  &--transaction &__skeleton-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    min-width: 0;
+  }
+
+  &--transaction &__skeleton-amount {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    width: 86px;
+  }
+
   &__main {
     align-items: center;
     background-color: transparent;
@@ -41,7 +122,7 @@
     transition: background-color 0.2s ease;
     width: 100%;
 
-    &:hover:not(.ods-card-list-expandable--loading &) {
+    &:hover:not(.ods-list-expandable--loading &) {
       background-color: $color-interface-light-up;
     }
 
@@ -94,6 +175,21 @@
     word-wrap: break-word; // Break long words
   }
 
+  &__footer {
+    align-items: center;
+    color: $color-interface-dark-up;
+    display: flex;
+    flex-direction: column;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-medium;
+    justify-content: center;
+    line-height: $line-height-comfy;
+    padding: $spacing-inline-xxs-extra 0 $spacing-inline-sm;
+    text-align: center;
+    width: 100%;
+  }
+
   &__skeleton {
     box-sizing: border-box; // Include padding in width calculation
     display: flex;
@@ -114,6 +210,7 @@
       box-sizing: border-box;
       cursor: default;
       overflow: hidden; // Prevent skeleton from overflowing
+      padding: $spacing-inline-xs;
       pointer-events: none;
     }
   }
@@ -123,5 +220,10 @@
     .ods-list-expandable__main:hover {
       background-color: $color-interface-light-up;
     }
+  }
+
+  // Simulated hover state for docs/Storybook (State = Hover)
+  &--show-hover .ods-list-expandable__main {
+    background-color: $color-interface-light-up;
   }
 }

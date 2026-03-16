@@ -43,8 +43,13 @@ export default function useDatePicker({
     React.useState<DatePickerFields>({ from: '', to: '' });
   const [firstInputClicked, setFirstInputClicked] =
     React.useState<boolean>(false);
-  const { showDisabledTooltip, createDayClickHandler } =
-    useDisabledDaysTooltip(disabledDaysMessage);
+  const {
+    showDisabledTooltip,
+    tooltipMessage,
+    tooltipPosition,
+    createDayClickHandler,
+    handleCalendarClick,
+  } = useDisabledDaysTooltip(disabledDaysMessage);
 
   const fromDate = DateFns.parse(values.from, localeDateFormat, new Date());
   const toDate = DateFns.parse(values.to, localeDateFormat, new Date());
@@ -226,6 +231,9 @@ export default function useDatePicker({
     handleDayClick,
     handleDayClickWithModifiers,
     showDisabledTooltip,
+    tooltipMessage,
+    tooltipPosition,
+    handleCalendarClick,
     inputChange,
     createHandleToggleClick,
     formatDay,

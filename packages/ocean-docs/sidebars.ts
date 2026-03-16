@@ -74,6 +74,7 @@ const sidebars: SidebarsConfig = {
         'components/tooltip',
         'components/topbar',
         'components/transactionlistitem',
+        'components/transactionlistexpandable',
         'components/typography',
         'components/unordered-list-item',
         'components/webnotification',

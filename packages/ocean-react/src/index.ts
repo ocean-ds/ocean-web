@@ -138,6 +138,9 @@ export * from './ListReadOnly';
 export { default as ListExpandable } from './ListExpandable';
 export * from './ListExpandable';
 
+export { default as TransactionListExpandable } from './TransactionListExpandable';
+export * from './TransactionListExpandable';
+
 export { default as InternalContextualHero } from './InternalContextualHero';
 export * from './InternalContextualHero';
 

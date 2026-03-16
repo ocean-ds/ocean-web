@@ -37,7 +37,6 @@
   }
 
   &__divider {
-    border-bottom: 1px solid $color-interface-light-down;
     margin: 0 $spacing-inline-xs;
   }
 
@@ -52,6 +51,26 @@
 
   &:active:not(&--disabled):not(&--loading):not(&--swipe-open) {
     background-color: $color-interface-light-deep;
+  }
+
+  &__position {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin-bottom: -$spacing-inline-xs;
+    margin-top: -$spacing-inline-xs;
+    width: $spacing-inline-sm;
+  }
+
+  &__position-line {
+    flex: 1;
+    width: 1px;
+
+    &--visible {
+      background-color: $color-interface-light-down;
+    }
   }
 
   &__icon {

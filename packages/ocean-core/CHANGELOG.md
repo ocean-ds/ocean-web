@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.133.1](https://github.com/ocean-ds/ocean-web/compare/v1.133.0...v1.133.1) (2026-03-06)
+
+**Note:** Version bump only for package @useblu/ocean-core
+
+# [1.133.0](https://github.com/ocean-ds/ocean-web/compare/v1.132.0...v1.133.0) (2026-03-05)
+
+### Features
+
+- create TransactionListExpandable ([#1228](https://github.com/ocean-ds/ocean-web/issues/1228)) ([2bb4832](https://github.com/ocean-ds/ocean-web/commit/2bb48326df10a830d940990d7881070ddde1d805))
+
+# [1.132.0](https://github.com/ocean-ds/ocean-web/compare/v1.131.0...v1.132.0) (2026-03-03)
+
+### Features
+
+- update data picker adding tooltip list ([#1230](https://github.com/ocean-ds/ocean-web/issues/1230)) ([e0d2fc6](https://github.com/ocean-ds/ocean-web/commit/e0d2fc63ad1a3f592db66155276a147a77bca3b1))
+
 # [1.131.0](https://github.com/ocean-ds/ocean-web/compare/v1.130.0...v1.131.0) (2026-03-03)
 
 ### Features
