@@ -46,11 +46,7 @@ const ListContainer = React.forwardRef<HTMLDivElement, ListContainerProps>(
       type = 'card',
       showDivider = false,
       hasError = false,
-      highlight = {
-        caption: '',
-        captionColor: '#67697A',
-        backgroundColor: '#F3F5FE',
-      },
+      highlight,
       children,
       className,
       ...rest
@@ -73,15 +69,15 @@ const ListContainer = React.forwardRef<HTMLDivElement, ListContainerProps>(
           <div className="ods-list-container__content__divider" />
         )}
       </div>
-      {highlight.caption && (
+      {highlight?.caption && (
         <div
           className="ods-list-container__highlight"
           data-testid="list-container-highlight"
-          style={{ backgroundColor: highlight.backgroundColor }}
+          style={{ backgroundColor: highlight.backgroundColor ?? '#F3F5FE' }}
         >
           <p
             className="ods-typography ods-typography__caption"
-            style={{ color: highlight.captionColor }}
+            style={{ color: highlight.captionColor ?? '#67697A' }}
           >
             {highlight.caption}
           </p>

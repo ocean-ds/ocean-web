@@ -22,7 +22,6 @@ exports[`CardListReadOnly Snapshot matches snapshot in disabled state 1`] = `
       </div>
     </div>
   </div>
-  
 </div>
 `;
 
@@ -51,7 +50,6 @@ exports[`CardListReadOnly Snapshot matches snapshot in loading state 1`] = `
       </div>
     </div>
   </div>
-  
 </div>
 `;
 
@@ -140,7 +138,6 @@ exports[`CardListReadOnly Snapshot matches snapshot with all props 1`] = `
       </div>
     </div>
   </div>
-  
 </div>
 `;
 
@@ -166,7 +163,6 @@ exports[`CardListReadOnly Snapshot matches snapshot with default props 1`] = `
       </div>
     </div>
   </div>
-  
 </div>
 `;
 
@@ -229,6 +225,5 @@ exports[`CardListReadOnly Snapshot matches snapshot with icon and indicator 1`] 
       </div>
     </div>
   </div>
-  
 </div>
 `;
