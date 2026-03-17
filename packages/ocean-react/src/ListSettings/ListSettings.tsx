@@ -6,7 +6,9 @@ import ContentList, {
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import Button from '../Button';
 import Switch from '../Switch';
-import ListContainer from '../_shared/components/ListContainer';
+import ListContainer, {
+  ListContainerHighlight,
+} from '../_shared/components/ListContainer';
 
 export type ListSettingsProps = {
   /**
@@ -98,6 +100,10 @@ export type ListSettingsProps = {
    * @default false
    */
   showDivider?: boolean;
+  /**
+   * Renders a highlighted caption area at the bottom of the container.
+   */
+  highlight?: ListContainerHighlight;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
@@ -121,6 +127,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
       onButtonClick,
       onToggleChange,
       showDivider = false,
+      highlight,
       className,
       ...rest
     },
@@ -190,7 +197,11 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
     });
 
     return (
-      <ListContainer type={type} showDivider={showDivider}>
+      <ListContainer
+        type={type}
+        showDivider={showDivider}
+        highlight={highlight}
+      >
         <div
           ref={ref}
           data-testid="list-settings"

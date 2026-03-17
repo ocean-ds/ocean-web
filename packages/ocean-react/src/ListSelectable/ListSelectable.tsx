@@ -7,7 +7,9 @@ import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import Radio, { RadioProps } from '../Radio/Radio';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import ListReadOnly from '../ListReadOnly/ListReadOnly';
-import ListContainer from '../_shared/components/ListContainer';
+import ListContainer, {
+  ListContainerHighlight,
+} from '../_shared/components/ListContainer';
 
 interface ListSelectableProps {
   /** Required main title displayed on the list item. */
@@ -42,6 +44,8 @@ interface ListSelectableProps {
   platform?: 'web' | 'app';
   /** If the selectable is disabled, the input will be hidden. */
   isSelectableDisabled?: string;
+  /** Renders a highlighted caption area at the bottom of the container. */
+  highlight?: ListContainerHighlight;
 }
 
 const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
@@ -60,6 +64,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       showDivider,
       indicator,
       isSelectableDisabled,
+      highlight,
       status = 'default',
       type = 'card',
       platform = 'web',
@@ -135,6 +140,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           indicator={indicator}
           caption={caption}
           strikethroughDescription={strikethroughDescription}
+          highlight={highlight}
           {...rest}
           ref={ref}
         />
@@ -142,7 +148,12 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
     }
 
     return (
-      <ListContainer type={type} showDivider={showDivider} hasError={hasError}>
+      <ListContainer
+        type={type}
+        showDivider={showDivider}
+        hasError={hasError}
+        highlight={highlight}
+      >
         <div
           className={classNames('ods-list-selectable', className, {
             'ods-list-selectable--disabled': isInputDisabled,

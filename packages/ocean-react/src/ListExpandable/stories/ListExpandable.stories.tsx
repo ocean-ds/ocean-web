@@ -167,9 +167,7 @@ export const Usage: Story = {
     strikethroughDescription: 'strikethrough',
     defaultExpanded: true,
     showDivider: false,
-    children: (
-      content
-    ),
+    children: content,
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
@@ -525,7 +523,7 @@ export const WithDivider: Story = {
         icon={<PlaceholderOutline size={24} />}
         showDivider
         defaultExpanded
-        type='text'
+        type="text"
       >
         {content}
       </ListExpandable>
@@ -534,7 +532,7 @@ export const WithDivider: Story = {
         description="Card com divisor entre header e conteúdo"
         icon={<PlaceholderOutline size={24} />}
         defaultExpanded
-        type='text'
+        type="text"
       >
         {content}
       </ListExpandable>
@@ -548,7 +546,14 @@ export const TypeText: Story = {
     controls: { disable: true },
   },
   render: () => (
-    <div style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <div
+      style={{
+        width: '400px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+      }}
+    >
       <ListExpandable
         title="Card Tipo Text"
         description="Estilo apenas texto, sem card"
@@ -602,6 +607,63 @@ export const TypeText: Story = {
       >
         {content}
       </ListExpandable>
+    </div>
+  ),
+};
+
+// Story: Com Highlight
+export const WithHighlight: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '360px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor padrão</h4>
+        <ListExpandable
+          title="Detalhes da transação"
+          description="Transferência PIX"
+          icon={<PlaceholderOutline size={24} />}
+          defaultExpanded
+          highlight={{
+            caption:
+              'Esta transação foi processada com sucesso e não pode ser estornada.',
+          }}
+        >
+          <div style={{ padding: '12px 16px' }}>
+            <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+              Destinatário: João Silva
+            </p>
+            <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#666' }}>
+              CPF: ***.***.***-90
+            </p>
+          </div>
+        </ListExpandable>
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor customizada</h4>
+        <ListExpandable
+          title="Cobrança pendente"
+          description="Vence em 3 dias"
+          icon={<PlaceholderOutline size={24} />}
+          defaultExpanded
+          highlight={{
+            caption: 'Pague antes do vencimento para evitar juros e multas.',
+            backgroundColor: '#FFF3CD',
+          }}
+        >
+          <div style={{ padding: '12px 16px' }}>
+            <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+              Valor: R$ 350,00
+            </p>
+          </div>
+        </ListExpandable>
+      </div>
     </div>
   ),
 };

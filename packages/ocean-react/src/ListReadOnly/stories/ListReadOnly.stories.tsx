@@ -43,12 +43,7 @@ const renderCardList = (
         mergedProps.title = '';
       }
       const key = mergedProps.title || `item-${index}`;
-      return (
-        <ListReadOnly
-          key={key}
-          {...(mergedProps as ListReadOnlyProps)}
-        />
-      );
+      return <ListReadOnly key={key} {...(mergedProps as ListReadOnlyProps)} />;
     })}
   </List>
 );
@@ -398,8 +393,16 @@ export const CardVsText: Story = {
         <h4 style={{ marginBottom: '16px' }}>type=&quot;card&quot; (padrão)</h4>
         {renderCardList(
           [
-            { title: 'Card Type', description: 'Com borda de card', caption: 'Caption de exemplo' },
-            { title: 'Outro Card', description: 'Segunda linha', caption: 'Mais informações' },
+            {
+              title: 'Card Type',
+              description: 'Com borda de card',
+              caption: 'Caption de exemplo',
+            },
+            {
+              title: 'Outro Card',
+              description: 'Segunda linha',
+              caption: 'Mais informações',
+            },
             { title: 'Terceiro Card', description: 'Terceira linha' },
           ],
           { type: 'card', icon: defaultIcon }
@@ -409,8 +412,16 @@ export const CardVsText: Story = {
         <h4 style={{ marginBottom: '16px' }}>type=&quot;text&quot;</h4>
         {renderCardList(
           [
-            { title: 'Text Type', description: 'Sem borda de card', caption: 'Caption de exemplo' },
-            { title: 'Outro Text', description: 'Segunda linha', caption: 'Mais informações' },
+            {
+              title: 'Text Type',
+              description: 'Sem borda de card',
+              caption: 'Caption de exemplo',
+            },
+            {
+              title: 'Outro Text',
+              description: 'Segunda linha',
+              caption: 'Mais informações',
+            },
             { title: 'Terceiro Text', description: 'Terceira linha' },
           ],
           { type: 'text', icon: defaultIcon }
@@ -446,6 +457,44 @@ export const ShowDivider: Story = {
           ],
           { type: 'text', showDivider: true, icon: defaultIcon }
         )}
+      </div>
+    </div>
+  ),
+};
+
+// Story: Com highlight
+export const WithHighlight: Story = {
+  parameters: disabledControls,
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '360px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor padrão</h4>
+        <ListReadOnly
+          title="Agenda de outras maquininhas"
+          description="Disponível: R$ 353.861,30"
+          highlight={{
+            caption:
+              'Conforme você for usando mais a Blu, esta agenda ficará disponível para você antecipar.',
+          }}
+        />
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor customizada</h4>
+        <ListReadOnly
+          title="Limite de crédito"
+          description="R$ 10.000,00"
+          highlight={{
+            caption: 'Seu limite será revisado em 30 dias.',
+            backgroundColor: '#F3F5FE',
+          }}
+        />
       </div>
     </div>
   ),

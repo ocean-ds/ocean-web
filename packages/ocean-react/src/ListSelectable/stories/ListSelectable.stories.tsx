@@ -647,3 +647,43 @@ export const SelectableDisabled: Story = {
     </div>
   ),
 };
+
+// Story: Com Highlight
+export const WithHighlight: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '360px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor padrão</h4>
+        <ListSelectable
+          title="Plano Premium"
+          description="R$ 49,90/mês"
+          checkbox={{ checked: true, onChange: () => undefined }}
+          highlight={{
+            caption:
+              'Inclui acesso ilimitado a todos os recursos da plataforma.',
+          }}
+        />
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor customizada</h4>
+        <ListSelectable
+          title="Plano Básico"
+          description="R$ 19,90/mês"
+          checkbox={{ checked: false, onChange: () => undefined }}
+          highlight={{
+            caption: 'Limitado a 3 usuários. Faça upgrade para adicionar mais.',
+            backgroundColor: '#FFF3CD',
+          }}
+        />
+      </div>
+    </div>
+  ),
+};

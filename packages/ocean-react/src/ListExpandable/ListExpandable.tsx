@@ -5,7 +5,9 @@ import ContentList, {
   ContentListProps,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
-import ListContainer from '../_shared/components/ListContainer';
+import ListContainer, {
+  ListContainerHighlight,
+} from '../_shared/components/ListContainer';
 
 export type ListExpandableProps = {
   /**
@@ -79,6 +81,10 @@ export type ListExpandableProps = {
    * @default false
    */
   showDivider?: boolean;
+  /**
+   * Renders a highlighted caption area at the bottom of the container.
+   */
+  highlight?: ListContainerHighlight;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
@@ -101,6 +107,7 @@ const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
       className,
       disabled = false,
       showDivider = false,
+      highlight,
       ...rest
     },
     ref
@@ -165,7 +172,12 @@ const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
     });
 
     return (
-      <ListContainer type={type} showDivider={false} ref={ref}>
+      <ListContainer
+        type={type}
+        showDivider={false}
+        highlight={highlight}
+        ref={ref}
+      >
         <div
           data-testid="list-expandable"
           className={containerClassName}

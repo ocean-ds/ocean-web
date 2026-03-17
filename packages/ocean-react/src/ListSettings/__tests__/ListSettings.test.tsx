@@ -36,10 +36,8 @@ describe('ListSettings', () => {
     });
 
     test('renders with custom className', () => {
-      const { container } = render(
-        <ListSettings title="Test Title" className="custom-class" />
-      );
-      expect(container.firstChild?.firstChild).toHaveClass('custom-class');
+      render(<ListSettings title="Test Title" className="custom-class" />);
+      expect(screen.getByTestId('list-settings')).toHaveClass('custom-class');
     });
 
     test('renders with strikethroughDescription', () => {
@@ -354,13 +352,17 @@ describe('ListSettings', () => {
 
     test('renders divider when showDivider is true and type is text', () => {
       render(<ListSettings title="Test Title" type="text" showDivider />);
-      const divider = document.querySelector('.ods-list-container__divider');
+      const divider = document.querySelector(
+        '.ods-list-container__content__divider'
+      );
       expect(divider).toBeInTheDocument();
     });
 
     test('does not render divider when type is card', () => {
       render(<ListSettings title="Test Title" type="card" showDivider />);
-      const divider = document.querySelector('.ods-list-container__divider');
+      const divider = document.querySelector(
+        '.ods-list-container__content__divider'
+      );
       expect(divider).not.toBeInTheDocument();
     });
   });
@@ -481,6 +483,49 @@ describe('ListSettings', () => {
   describe('DisplayName', () => {
     test('has correct displayName', () => {
       expect(ListSettings.displayName).toBe('ListSettings');
+    });
+  });
+
+  describe('Highlight', () => {
+    test('renders highlight with string caption', () => {
+      render(
+        <ListSettings
+          title="Test Title"
+          highlight={{ caption: 'Texto de destaque' }}
+        />
+      );
+      expect(screen.getByText('Texto de destaque')).toBeInTheDocument();
+    });
+
+    test('renders highlight with ReactNode caption', () => {
+      render(
+        <ListSettings
+          title="Test Title"
+          highlight={{
+            caption: <span data-testid="highlight-node">Conteúdo</span>,
+          }}
+        />
+      );
+      expect(screen.getByTestId('highlight-node')).toBeInTheDocument();
+    });
+
+    test('applies custom backgroundColor to highlight', () => {
+      render(
+        <ListSettings
+          title="Test Title"
+          highlight={{ caption: 'Texto', backgroundColor: '#FFF3CD' }}
+        />
+      );
+      expect(screen.getByTestId('list-container-highlight')).toHaveStyle({
+        backgroundColor: '#FFF3CD',
+      });
+    });
+
+    test('does not render highlight when caption is empty', () => {
+      render(<ListSettings title="Test Title" highlight={{ caption: '' }} />);
+      expect(
+        screen.queryByTestId('list-container-highlight')
+      ).not.toBeInTheDocument();
     });
   });
 });

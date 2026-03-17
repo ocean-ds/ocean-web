@@ -32,9 +32,7 @@ describe('ListExpandable', () => {
   });
 
   test('renders the icon', () => {
-    render(
-      <ListExpandable title="Test Title" icon={<div>Test Icon</div>} />
-    );
+    render(<ListExpandable title="Test Title" icon={<div>Test Icon</div>} />);
     expect(screen.getByText('Test Icon')).toBeInTheDocument();
   });
 
@@ -402,6 +400,49 @@ describe('ListExpandable', () => {
       render(<ListExpandable title="Test Title" loading ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
+    });
+  });
+
+  describe('Highlight', () => {
+    test('renders highlight with string caption', () => {
+      render(
+        <ListExpandable
+          title="Test Title"
+          highlight={{ caption: 'Texto de destaque' }}
+        />
+      );
+      expect(screen.getByText('Texto de destaque')).toBeInTheDocument();
+    });
+
+    test('renders highlight with ReactNode caption', () => {
+      render(
+        <ListExpandable
+          title="Test Title"
+          highlight={{
+            caption: <span data-testid="highlight-node">Conteúdo</span>,
+          }}
+        />
+      );
+      expect(screen.getByTestId('highlight-node')).toBeInTheDocument();
+    });
+
+    test('applies custom backgroundColor to highlight', () => {
+      render(
+        <ListExpandable
+          title="Test Title"
+          highlight={{ caption: 'Texto', backgroundColor: '#FFF3CD' }}
+        />
+      );
+      expect(screen.getByTestId('list-container-highlight')).toHaveStyle({
+        backgroundColor: '#FFF3CD',
+      });
+    });
+
+    test('does not render highlight when caption is empty', () => {
+      render(<ListExpandable title="Test Title" highlight={{ caption: '' }} />);
+      expect(
+        screen.queryByTestId('list-container-highlight')
+      ).not.toBeInTheDocument();
     });
   });
 });

@@ -25,16 +25,16 @@
   }
 
   .ods-list-container {
-    &--card {
+    &__content--card {
       border: 0;
       border-radius: 0;
-
-      &:not(:last-of-type) {
-        border-bottom: 1px solid $color-interface-light-down;
-      }
     }
 
-    &:last-of-type > .ods-list-container__divider {
+    &:not(:last-of-type) > .ods-list-container__content--card {
+      border-bottom: 1px solid $color-interface-light-down;
+    }
+
+    &:last-of-type > .ods-list-container__content__divider {
       display: none;
     }
   }
