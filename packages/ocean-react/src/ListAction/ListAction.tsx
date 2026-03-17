@@ -11,6 +11,7 @@ import InternalListActions, {
 import AmountDetails, {
   AmountDetailsProps,
 } from '../_shared/components/AmountDetails';
+import ListContainer from '../_shared/components/ListContainer';
 
 export type ListActionProps = {
   /**
@@ -234,7 +235,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
     });
 
     return (
-      <div className="ods-list-action__container">
+      <ListContainer type={type} showDivider={showDivider}>
         <button
           ref={ref}
           type="button"
@@ -246,10 +247,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
         >
           {loading ? renderLoadingContent() : renderContent()}
         </button>
-        {showDivider && type === 'text' && (
-          <div className="ods-list-action__divider" />
-        )}
-      </div>
+      </ListContainer>
     );
   }
 );

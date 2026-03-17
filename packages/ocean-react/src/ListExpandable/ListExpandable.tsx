@@ -5,6 +5,7 @@ import ContentList, {
   ContentListProps,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
+import ListContainer from '../_shared/components/ListContainer';
 
 export type ListExpandableProps = {
   /**
@@ -80,10 +81,7 @@ export type ListExpandableProps = {
   showDivider?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
-const ListExpandable = React.forwardRef<
-  HTMLDivElement,
-  ListExpandableProps
->(
+const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
   (
     {
       title,
@@ -150,9 +148,7 @@ const ListExpandable = React.forwardRef<
         />
         <div className="ods-list-expandable__trailing">
           {indicator && (
-            <div className="ods-list-expandable__indicator">
-              {indicator}
-            </div>
+            <div className="ods-list-expandable__indicator">{indicator}</div>
           )}
           <div className="ods-list-expandable__action">
             {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -169,28 +165,34 @@ const ListExpandable = React.forwardRef<
     });
 
     return (
-      <div
-        ref={ref}
-        data-testid="list-expandable"
-        className={containerClassName}
-        {...rest}
-      >
-        <button
-          type="button"
-          className="ods-list-expandable__main"
-          onClick={loading ? undefined : handleToggle}
-          disabled={disabled || loading}
-          aria-expanded={isExpanded}
-          aria-label={`${isExpanded ? 'Recolher' : 'Expandir'} ${title}`}
-          data-testid="list-expandable-button"
+      <ListContainer type={type} showDivider={false} ref={ref}>
+        <div
+          data-testid="list-expandable"
+          className={containerClassName}
+          {...rest}
         >
-          {loading ? renderLoadingContent() : renderContent()}
-        </button>
-        {showDivider && <div className="ods-list-expandable__divider" data-testid="list-expandable-divider" />}
-        {isExpanded && children && (
-          <div className="ods-list-expandable__content">{children}</div>
-        )}
-      </div>
+          <button
+            type="button"
+            className="ods-list-expandable__main"
+            onClick={loading ? undefined : handleToggle}
+            disabled={disabled || loading}
+            aria-expanded={isExpanded}
+            aria-label={`${isExpanded ? 'Recolher' : 'Expandir'} ${title}`}
+            data-testid="list-expandable-button"
+          >
+            {loading ? renderLoadingContent() : renderContent()}
+          </button>
+          {showDivider && (
+            <div
+              className="ods-list-expandable__divider"
+              data-testid="list-expandable-divider"
+            />
+          )}
+          {isExpanded && children && (
+            <div className="ods-list-expandable__content">{children}</div>
+          )}
+        </div>
+      </ListContainer>
     );
   }
 );

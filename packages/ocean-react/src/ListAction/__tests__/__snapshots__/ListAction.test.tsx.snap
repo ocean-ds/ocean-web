@@ -2,7 +2,7 @@
 
 exports[`ListAction Snapshot matches snapshot in disabled state 1`] = `
 <div
-  class="ods-list-action__container"
+  class="ods-list-container ods-list-container--card"
 >
   <button
     class="ods-list-action ods-list-action--disabled ods-list-action--card"
@@ -46,7 +46,7 @@ exports[`ListAction Snapshot matches snapshot in disabled state 1`] = `
 
 exports[`ListAction Snapshot matches snapshot in loading state 1`] = `
 <div
-  class="ods-list-action__container"
+  class="ods-list-container ods-list-container--card"
 >
   <button
     class="ods-list-action ods-list-action--loading ods-list-action--card"
@@ -72,7 +72,7 @@ exports[`ListAction Snapshot matches snapshot in loading state 1`] = `
 
 exports[`ListAction Snapshot matches snapshot with all props 1`] = `
 <div
-  class="ods-list-action__container"
+  class="ods-list-container ods-list-container--card"
 >
   <button
     class="ods-list-action test-class ods-list-action--card"
@@ -174,7 +174,7 @@ exports[`ListAction Snapshot matches snapshot with all props 1`] = `
 
 exports[`ListAction Snapshot matches snapshot with default props 1`] = `
 <div
-  class="ods-list-action__container"
+  class="ods-list-container ods-list-container--card"
 >
   <button
     class="ods-list-action ods-list-action--card"

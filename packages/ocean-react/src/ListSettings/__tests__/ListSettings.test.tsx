@@ -138,11 +138,7 @@ describe('ListSettings', () => {
 
     test('renders small button size', () => {
       render(
-        <ListSettings
-          title="Test Title"
-          actionType="button"
-          buttonSize="sm"
-        />
+        <ListSettings title="Test Title" actionType="button" buttonSize="sm" />
       );
       const button = screen.getByText('Label');
       expect(button.closest('button')).toHaveClass('ods-btn--sm');
@@ -150,11 +146,7 @@ describe('ListSettings', () => {
 
     test('renders medium button size', () => {
       render(
-        <ListSettings
-          title="Test Title"
-          actionType="button"
-          buttonSize="md"
-        />
+        <ListSettings title="Test Title" actionType="button" buttonSize="md" />
       );
       const button = screen.getByText('Label');
       expect(button.closest('button')).toHaveClass('ods-btn--md');
@@ -199,20 +191,14 @@ describe('ListSettings', () => {
 
   describe('Action Type - Toggle', () => {
     test('renders toggle switch', () => {
-      render(
-        <ListSettings title="Test Title" actionType="toggle" />
-      );
+      render(<ListSettings title="Test Title" actionType="toggle" />);
       const switchElement = screen.getByRole('checkbox');
       expect(switchElement).toBeInTheDocument();
     });
 
     test('renders toggle with checked state', () => {
       render(
-        <ListSettings
-          title="Test Title"
-          actionType="toggle"
-          toggleChecked
-        />
+        <ListSettings title="Test Title" actionType="toggle" toggleChecked />
       );
       const switchElement = screen.getByRole('checkbox') as HTMLInputElement;
       expect(switchElement.checked).toBe(true);
@@ -275,30 +261,32 @@ describe('ListSettings', () => {
 
   describe('States', () => {
     test('renders disabled state', () => {
-      render(
-        <ListSettings title="Test Title" disabled />
+      render(<ListSettings title="Test Title" disabled />);
+      expect(screen.getByTestId('list-settings')).toHaveClass(
+        'ods-list-settings--disabled'
       );
-      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--disabled');
     });
 
     test('renders loading state', () => {
-      render(
-        <ListSettings title="Test Title" loading />
+      render(<ListSettings title="Test Title" loading />);
+      expect(screen.getByTestId('list-settings')).toHaveClass(
+        'ods-list-settings--loading'
       );
-      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--loading');
     });
 
     test('renders skeleton when loading', () => {
-      render(
-        <ListSettings title="Test Title" loading />
-      );
+      render(<ListSettings title="Test Title" loading />);
 
       // Check that the loading class is present
-      const loadingElement = document.querySelector('.ods-list-settings--loading');
+      const loadingElement = document.querySelector(
+        '.ods-list-settings--loading'
+      );
       expect(loadingElement).toBeInTheDocument();
 
       // Check that skeleton is rendered
-      const skeletonElement = document.querySelector('.ods-list-settings__skeleton');
+      const skeletonElement = document.querySelector(
+        '.ods-list-settings__skeleton'
+      );
       expect(skeletonElement).toBeInTheDocument();
     });
 
@@ -352,23 +340,27 @@ describe('ListSettings', () => {
   describe('Type', () => {
     test('renders card type by default', () => {
       render(<ListSettings title="Test Title" />);
-      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--card');
+      expect(screen.getByTestId('list-settings')).toHaveClass(
+        'ods-list-settings--card'
+      );
     });
 
     test('renders text type', () => {
       render(<ListSettings title="Test Title" type="text" />);
-      expect(screen.getByTestId('list-settings')).toHaveClass('ods-list-settings--text');
+      expect(screen.getByTestId('list-settings')).toHaveClass(
+        'ods-list-settings--text'
+      );
     });
 
     test('renders divider when showDivider is true and type is text', () => {
       render(<ListSettings title="Test Title" type="text" showDivider />);
-      const divider = document.querySelector('.ods-list-settings__divider');
+      const divider = document.querySelector('.ods-list-container__divider');
       expect(divider).toBeInTheDocument();
     });
 
     test('does not render divider when type is card', () => {
       render(<ListSettings title="Test Title" type="card" showDivider />);
-      const divider = document.querySelector('.ods-list-settings__divider');
+      const divider = document.querySelector('.ods-list-container__divider');
       expect(divider).not.toBeInTheDocument();
     });
   });

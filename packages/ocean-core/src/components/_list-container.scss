@@ -1,0 +1,18 @@
+.ods-list-container {
+  overflow: hidden;
+  width: 100%;
+
+  &--card {
+    border: $border-width-hairline solid $color-interface-light-deep;
+    border-radius: $border-radius-sm;
+
+    &--error {
+      border-color: $color-status-negative-pure;
+    }
+  }
+
+  &__divider {
+    border-bottom: 1px solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+  }
+}

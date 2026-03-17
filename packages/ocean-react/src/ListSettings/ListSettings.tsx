@@ -6,6 +6,7 @@ import ContentList, {
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import Button from '../Button';
 import Switch from '../Switch';
+import ListContainer from '../_shared/components/ListContainer';
 
 export type ListSettingsProps = {
   /**
@@ -72,7 +73,13 @@ export type ListSettingsProps = {
    * Variant of the button.
    * @default 'primary'
    */
-  buttonVariant?: 'primary' | 'primaryCritical' | 'secondary' | 'secondaryCritical' | 'tertiary' | 'tertiaryCritical';
+  buttonVariant?:
+    | 'primary'
+    | 'primaryCritical'
+    | 'secondary'
+    | 'secondaryCritical'
+    | 'tertiary'
+    | 'tertiaryCritical';
   /**
    * Checked state for toggle action.
    * @default false
@@ -172,9 +179,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
           inverted={inverted}
           type={status}
         />
-        <div className="ods-list-settings__action">
-          {renderActionElement()}
-        </div>
+        <div className="ods-list-settings__action">{renderActionElement()}</div>
       </>
     );
 
@@ -185,7 +190,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
     });
 
     return (
-      <div className="ods-list-settings__container">
+      <ListContainer type={type} showDivider={showDivider}>
         <div
           ref={ref}
           data-testid="list-settings"
@@ -194,10 +199,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
         >
           {loading ? renderLoadingContent() : renderContent()}
         </div>
-        {showDivider && type === 'text' && (
-          <div className="ods-list-settings__divider" />
-        )}
-      </div>
+      </ListContainer>
     );
   }
 );

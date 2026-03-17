@@ -2,7 +2,7 @@
 
 exports[`CardListReadOnly Snapshot matches snapshot in disabled state 1`] = `
 <div
-  class="ods-list-readonly__container"
+  class="ods-list-container ods-list-container--card"
 >
   <div
     class="ods-list-readonly ods-list-readonly--disabled ods-list-readonly--card"
@@ -23,7 +23,7 @@ exports[`CardListReadOnly Snapshot matches snapshot in disabled state 1`] = `
 
 exports[`CardListReadOnly Snapshot matches snapshot in loading state 1`] = `
 <div
-  class="ods-list-readonly__container"
+  class="ods-list-container ods-list-container--card"
 >
   <div
     class="ods-list-readonly ods-list-readonly--loading ods-list-readonly--card"
@@ -47,7 +47,7 @@ exports[`CardListReadOnly Snapshot matches snapshot in loading state 1`] = `
 
 exports[`CardListReadOnly Snapshot matches snapshot with all props 1`] = `
 <div
-  class="ods-list-readonly__container"
+  class="ods-list-container ods-list-container--card"
 >
   <div
     class="ods-list-readonly test-class ods-list-readonly--card"
@@ -131,7 +131,7 @@ exports[`CardListReadOnly Snapshot matches snapshot with all props 1`] = `
 
 exports[`CardListReadOnly Snapshot matches snapshot with default props 1`] = `
 <div
-  class="ods-list-readonly__container"
+  class="ods-list-container ods-list-container--card"
 >
   <div
     class="ods-list-readonly ods-list-readonly--card"
@@ -152,7 +152,7 @@ exports[`CardListReadOnly Snapshot matches snapshot with default props 1`] = `
 
 exports[`CardListReadOnly Snapshot matches snapshot with icon and indicator 1`] = `
 <div
-  class="ods-list-readonly__container"
+  class="ods-list-container ods-list-container--card"
 >
   <div
     class="ods-list-readonly ods-list-readonly--card"
