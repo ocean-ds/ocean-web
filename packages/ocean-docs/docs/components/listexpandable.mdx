@@ -338,25 +338,26 @@ Veja como controlar o estado de expansão externamente:
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                        |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------ |
-| `title`                    | `string`                                                                                                   | -           | Título principal do item (obrigatório)           |
-| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário                    |
-| `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado (usado com status="strikethrough") |
-| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                       |
-| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte posição título/descrição                 |
-| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de estilo visual do container               |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status de estilo do conteúdo                     |
-| `loading`                  | `boolean`                                                                                                  | `false`     | Mostra skeleton de carregamento                  |
-| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita a interação com o componente          |
-| `showDivider`              | `boolean`                                                                                                  | `false`     | Mostra divisor entre header e conteúdo           |
-| `icon`                     | `ReactNode`                                                                                                | -           | Ícone à esquerda do conteúdo                     |
-| `indicator`                | `ReactNode`                                                                                                | -           | Badge/Tag antes da ação de expansão              |
-| `expanded`                 | `boolean`                                                                                                  | -           | Controla estado expandido (controlled)           |
-| `defaultExpanded`          | `boolean`                                                                                                  | `false`     | Estado inicial (uncontrolled)                    |
-| `onToggle`                 | `(expanded: boolean) => void`                                                                              | -           | Callback ao expandir/colapsar                    |
-| `children`                 | `ReactNode`                                                                                                | -           | Conteúdo exibido quando expandido                |
-| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                           |
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| `title`                    | `string`                                                                                                   | -           | Título principal do item (obrigatório)                       |
+| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário                                |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado (usado com status="strikethrough")             |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                                   |
+| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte posição título/descrição                             |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de estilo visual do container                           |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status de estilo do conteúdo                                 |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Mostra skeleton de carregamento                              |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita a interação com o componente                      |
+| `showDivider`              | `boolean`                                                                                                  | `false`     | Mostra divisor entre header e conteúdo                       |
+| `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card |
+| `icon`                     | `ReactNode`                                                                                                | -           | Ícone à esquerda do conteúdo                                 |
+| `indicator`                | `ReactNode`                                                                                                | -           | Badge/Tag antes da ação de expansão                          |
+| `expanded`                 | `boolean`                                                                                                  | -           | Controla estado expandido (controlled)                       |
+| `defaultExpanded`          | `boolean`                                                                                                  | `false`     | Estado inicial (uncontrolled)                                |
+| `onToggle`                 | `(expanded: boolean) => void`                                                                              | -           | Callback ao expandir/colapsar                                |
+| `children`                 | `ReactNode`                                                                                                | -           | Conteúdo exibido quando expandido                            |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                       |
 
 ### Eventos
 

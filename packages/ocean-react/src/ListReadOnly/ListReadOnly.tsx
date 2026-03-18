@@ -4,6 +4,9 @@ import ContentList, {
   ContentListProps,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
+import ListContainer, {
+  ListContainerHighlight,
+} from '../_shared/components/ListContainer';
 
 export type ListReadOnlyProps = {
   /**
@@ -60,12 +63,13 @@ export type ListReadOnlyProps = {
    * @default false
    */
   showDivider?: boolean;
+  /**
+   * Renders a highlighted caption area at the bottom of the container.
+   */
+  highlight?: ListContainerHighlight;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-const ListReadOnly = React.forwardRef<
-  HTMLDivElement,
-  ListReadOnlyProps
->(
+const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
   (
     {
       title,
@@ -81,14 +85,15 @@ const ListReadOnly = React.forwardRef<
       loading = false,
       className,
       showDivider = false,
+      highlight,
       ...rest
     },
     ref
   ) => {
     const renderLoadingContent = () => (
-      <div className='ods-list-readonly__skeleton'>
-        <SkeletonBar width='40%' height='16px' />
-        <SkeletonBar width='100%' height='16px' />
+      <div className="ods-list-readonly__skeleton">
+        <SkeletonBar width="40%" height="16px" />
+        <SkeletonBar width="100%" height="16px" />
       </div>
     );
 
@@ -112,8 +117,8 @@ const ListReadOnly = React.forwardRef<
           type={status}
         />
         {indicator && (
-          <div className='ods-list-readonly__trailing'>
-            <div className='ods-list-readonly__indicator'>{indicator}</div>
+          <div className="ods-list-readonly__trailing">
+            <div className="ods-list-readonly__indicator">{indicator}</div>
           </div>
         )}
       </>
@@ -126,19 +131,20 @@ const ListReadOnly = React.forwardRef<
     });
 
     return (
-      <div className='ods-list-readonly__container'>
+      <ListContainer
+        type={type}
+        showDivider={showDivider}
+        highlight={highlight}
+      >
         <div
           ref={ref}
-          data-testid='card-list-readonly'
+          data-testid="card-list-readonly"
           className={cardClassName}
           {...rest}
         >
           {loading ? renderLoadingContent() : renderContent()}
         </div>
-        {showDivider && type === 'text' && (
-          <div className='ods-list-readonly__divider' />
-        )}
-      </div>
+      </ListContainer>
     );
   }
 );
@@ -146,4 +152,3 @@ const ListReadOnly = React.forwardRef<
 ListReadOnly.displayName = 'ListReadOnly';
 
 export default ListReadOnly;
-

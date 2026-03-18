@@ -22,7 +22,15 @@ const meta: Meta<typeof ListSettings> = {
     status: {
       description: 'Status do conteúdo do card.',
       control: 'select',
-      options: ['default', 'inactive', 'positive', 'warning', 'highlight', 'highlight-lead', 'strikethrough'],
+      options: [
+        'default',
+        'inactive',
+        'positive',
+        'warning',
+        'highlight',
+        'highlight-lead',
+        'strikethrough',
+      ],
     },
     showDivider: {
       description: 'Mostra um divisor entre os cards quando type é "text".',
@@ -35,7 +43,8 @@ const meta: Meta<typeof ListSettings> = {
       options: ['withoutIcon', 'withIcon'],
     },
     actionType: {
-      description: 'Tipo de ação: botão (requer confirmação) ou toggle (ação imediata)',
+      description:
+        'Tipo de ação: botão (requer confirmação) ou toggle (ação imediata)',
       control: 'select',
       options: ['button', 'toggle'],
     },
@@ -50,7 +59,14 @@ const meta: Meta<typeof ListSettings> = {
     buttonVariant: {
       description: 'Variant do botão (apenas quando actionType="button")',
       control: 'select',
-      options: ['primary', 'primaryCritical', 'secondary', 'secondaryCritical', 'tertiary', 'tertiaryCritical'],
+      options: [
+        'primary',
+        'primaryCritical',
+        'secondary',
+        'secondaryCritical',
+        'tertiary',
+        'tertiaryCritical',
+      ],
     },
     toggleChecked: {
       description: 'Estado do toggle (apenas quando actionType="toggle")',
@@ -469,7 +485,11 @@ export const WithRef: Story = {
 
     return (
       <div style={{ minWidth: '300px' }}>
-        <button type="button" onClick={scrollToElement} style={{ marginBottom: '20px' }}>
+        <button
+          type="button"
+          onClick={scrollToElement}
+          style={{ marginBottom: '20px' }}
+        >
           Scroll to Card with Ref
         </button>
         <List>
@@ -613,6 +633,49 @@ export const CardVsTextType: Story = {
             onToggleChange={() => undefined}
           />
         </List>
+      </div>
+    </div>
+  ),
+};
+
+// Story: Com Highlight
+export const WithHighlight: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '360px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor padrão</h4>
+        <ListSettings
+          title="Notificações push"
+          description="Receba alertas em tempo real"
+          actionType="toggle"
+          toggleChecked
+          onToggleChange={() => undefined}
+          highlight={{
+            caption:
+              'As notificações são enviadas apenas em dias úteis das 8h às 20h.',
+          }}
+        />
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor customizada</h4>
+        <ListSettings
+          title="Limite de transferência"
+          description="R$ 5.000,00 por dia"
+          buttonLabel="Alterar"
+          highlight={{
+            caption:
+              'Para aumentar o limite, acesse as configurações de segurança.',
+            backgroundColor: '#FFF3CD',
+          }}
+        />
       </div>
     </div>
   ),

@@ -17,7 +17,7 @@ import {
   LIST_DISABLED_MESSAGE,
 } from '../utils/testHelpers';
 
-const TODAY = 16;
+const TODAY = new Date().getDate();
 
 const TODAY_DATE = format(
   new Date().setDate(TODAY),

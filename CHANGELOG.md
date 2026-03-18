@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.134.0](https://github.com/ocean-ds/ocean-web/compare/v1.133.1...v1.134.0) (2026-03-18)
+
+### Features
+
+- adjust list components ([#1232](https://github.com/ocean-ds/ocean-web/issues/1232)) ([1888076](https://github.com/ocean-ds/ocean-web/commit/1888076b0d5f7c443f9863497e150ee431791e17))
+
 ## [1.133.1](https://github.com/ocean-ds/ocean-web/compare/v1.133.0...v1.133.1) (2026-03-06)
 
 **Note:** Version bump only for package root

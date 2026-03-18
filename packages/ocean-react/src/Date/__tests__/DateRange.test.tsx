@@ -18,9 +18,9 @@ import {
   LIST_DISABLED_MESSAGE,
 } from '../utils/testHelpers';
 
-const YESTERDAY = 15;
-const TODAY = 16;
-const TOMORROW = 17;
+const TODAY = new Date().getDate();
+const YESTERDAY = TODAY - 1;
+const TOMORROW = TODAY + 1;
 
 const YESTERDAY_DATE = format(
   new Date().setDate(YESTERDAY),

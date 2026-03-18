@@ -8,7 +8,7 @@ import Tag from '../../Tag';
 describe('CardListReadOnly', () => {
   describe('Basic Rendering', () => {
     test('renders with required props', () => {
-      render(<ListReadOnly title='Test Title' />);
+      render(<ListReadOnly title="Test Title" />);
 
       expect(screen.getByTestId('card-list-readonly')).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -17,9 +17,9 @@ describe('CardListReadOnly', () => {
     test('renders with all text props', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          description='Test Description'
-          caption='Test Caption'
+          title="Test Title"
+          description="Test Description"
+          caption="Test Caption"
         />
       );
 
@@ -31,11 +31,11 @@ describe('CardListReadOnly', () => {
     test('renders with strikethrough description', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          description='Normal text'
-          strikethroughDescription='Strikethrough text'
-          type='text'
-          status='strikethrough'
+          title="Test Title"
+          description="Normal text"
+          strikethroughDescription="Strikethrough text"
+          type="text"
+          status="strikethrough"
         />
       );
 
@@ -46,8 +46,8 @@ describe('CardListReadOnly', () => {
     test('renders with icon', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          icon={<PlaceholderOutline data-testid='test-icon' />}
+          title="Test Title"
+          icon={<PlaceholderOutline data-testid="test-icon" />}
         />
       );
 
@@ -58,8 +58,8 @@ describe('CardListReadOnly', () => {
     test('renders with indicator', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          indicator={<Badge count={3} color='brand' data-testid='test-badge' />}
+          title="Test Title"
+          indicator={<Badge count={3} color="brand" data-testid="test-badge" />}
         />
       );
 
@@ -68,9 +68,7 @@ describe('CardListReadOnly', () => {
     });
 
     test('applies custom className', () => {
-      render(
-        <ListReadOnly title='Test Title' className='custom-test-class' />
-      );
+      render(<ListReadOnly title="Test Title" className="custom-test-class" />);
 
       expect(screen.getByTestId('card-list-readonly')).toHaveClass(
         'custom-test-class'
@@ -80,7 +78,7 @@ describe('CardListReadOnly', () => {
 
   describe('States', () => {
     test('renders loading state with skeleton', () => {
-      render(<ListReadOnly title='Test Title' loading />);
+      render(<ListReadOnly title="Test Title" loading />);
 
       expect(screen.getByTestId('card-list-readonly')).toHaveClass(
         'ods-list-readonly--loading'
@@ -89,7 +87,7 @@ describe('CardListReadOnly', () => {
     });
 
     test('renders disabled state', () => {
-      render(<ListReadOnly title='Test Title' disabled />);
+      render(<ListReadOnly title="Test Title" disabled />);
 
       const element = screen.getByTestId('card-list-readonly');
       expect(element).toHaveClass('ods-list-readonly--disabled');
@@ -98,8 +96,8 @@ describe('CardListReadOnly', () => {
     test('loading state hides content and shows skeleton', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          description='Test Description'
+          title="Test Title"
+          description="Test Description"
           loading
         />
       );
@@ -111,19 +109,16 @@ describe('CardListReadOnly', () => {
   });
 
   describe('Types', () => {
-    test.each([
-      'card',
-      'text',
-    ] as const)('renders with type %s', (type) => {
-      render(<ListReadOnly title='Test Title' type={type} />);
+    test.each(['card', 'text'] as const)('renders with type %s', (type) => {
+      render(<ListReadOnly title="Test Title" type={type} />);
       expect(screen.getByTestId('card-list-readonly')).toBeInTheDocument();
     });
 
     test('renders inverted layout', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          description='Test Description'
+          title="Test Title"
+          description="Test Description"
           inverted
         />
       );
@@ -137,8 +132,8 @@ describe('CardListReadOnly', () => {
     test('renders icon when provided', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          icon={<PlaceholderOutline data-testid='test-icon' />}
+          title="Test Title"
+          icon={<PlaceholderOutline data-testid="test-icon" />}
         />
       );
 
@@ -148,8 +143,8 @@ describe('CardListReadOnly', () => {
     test('renders indicator when provided', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          indicator={<Badge count={3} color='brand' data-testid='test-badge' />}
+          title="Test Title"
+          indicator={<Badge count={3} color="brand" data-testid="test-badge" />}
         />
       );
 
@@ -157,13 +152,13 @@ describe('CardListReadOnly', () => {
     });
 
     test('does not render icon when not provided', () => {
-      render(<ListReadOnly title='Test Title' />);
+      render(<ListReadOnly title="Test Title" />);
 
       expect(screen.queryByTestId('test-icon')).not.toBeInTheDocument();
     });
 
     test('does not render indicator when not provided', () => {
-      render(<ListReadOnly title='Test Title' />);
+      render(<ListReadOnly title="Test Title" />);
 
       expect(screen.queryByTestId('test-badge')).not.toBeInTheDocument();
     });
@@ -173,10 +168,10 @@ describe('CardListReadOnly', () => {
     test('forwards native div props', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          aria-label='Custom aria label'
-          id='custom-id'
-          data-custom='custom-value'
+          title="Test Title"
+          aria-label="Custom aria label"
+          id="custom-id"
+          data-custom="custom-value"
         />
       );
 
@@ -187,20 +182,20 @@ describe('CardListReadOnly', () => {
     });
 
     test('is a div element', () => {
-      render(<ListReadOnly title='Test Title' />);
+      render(<ListReadOnly title="Test Title" />);
 
       const element = screen.getByTestId('card-list-readonly');
       expect(element.tagName).toBe('DIV');
     });
 
     test('has correct data-testid', () => {
-      render(<ListReadOnly title='Test Title' />);
+      render(<ListReadOnly title="Test Title" />);
 
       expect(screen.getByTestId('card-list-readonly')).toBeInTheDocument();
     });
 
     test('forwards role attribute', () => {
-      render(<ListReadOnly title='Test Title' role='article' />);
+      render(<ListReadOnly title="Test Title" role="article" />);
 
       expect(screen.getByTestId('card-list-readonly')).toHaveAttribute(
         'role',
@@ -209,9 +204,7 @@ describe('CardListReadOnly', () => {
     });
 
     test('forwards style attribute', () => {
-      render(
-        <ListReadOnly title='Test Title' style={{ padding: '20px' }} />
-      );
+      render(<ListReadOnly title="Test Title" style={{ padding: '20px' }} />);
 
       expect(screen.getByTestId('card-list-readonly')).toHaveStyle({
         padding: '20px',
@@ -222,7 +215,7 @@ describe('CardListReadOnly', () => {
   describe('ForwardRef', () => {
     test('forwards ref to div element', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<ListReadOnly title='Test Title' ref={ref} />);
+      render(<ListReadOnly title="Test Title" ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current?.tagName).toBe('DIV');
@@ -230,7 +223,7 @@ describe('CardListReadOnly', () => {
 
     test('allows accessing div methods through ref', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<ListReadOnly title='Test Title' ref={ref} />);
+      render(<ListReadOnly title="Test Title" ref={ref} />);
 
       expect(ref.current?.focus).toBeDefined();
       expect(typeof ref.current?.focus).toBe('function');
@@ -238,7 +231,7 @@ describe('CardListReadOnly', () => {
 
     test('ref works in loading state', () => {
       const ref = React.createRef<HTMLDivElement>();
-      render(<ListReadOnly title='Test Title' loading ref={ref} />);
+      render(<ListReadOnly title="Test Title" loading ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
       expect(ref.current).toHaveClass('ods-list-readonly--loading');
@@ -255,17 +248,17 @@ describe('CardListReadOnly', () => {
     test('renders with all props combined', () => {
       render(
         <ListReadOnly
-          title='Test Title'
-          description='Test Description'
-          caption='Test Caption'
-          strikethroughDescription='Strikethrough'
-          icon={<PlaceholderOutline data-testid='test-icon' />}
-          indicator={<Badge count={5} color='brand' data-testid='test-badge' />}
-          type='card'
+          title="Test Title"
+          description="Test Description"
+          caption="Test Caption"
+          strikethroughDescription="Strikethrough"
+          icon={<PlaceholderOutline data-testid="test-icon" />}
+          indicator={<Badge count={5} color="brand" data-testid="test-badge" />}
+          type="card"
           inverted
           disabled
-          className='custom-class'
-          aria-label='Complex card'
+          className="custom-class"
+          aria-label="Complex card"
         />
       );
 
@@ -281,8 +274,8 @@ describe('CardListReadOnly', () => {
     test('renders with different indicator types', () => {
       const { rerender } = render(
         <ListReadOnly
-          title='Test Title'
-          indicator={<Badge count={3} color='brand' data-testid='badge' />}
+          title="Test Title"
+          indicator={<Badge count={3} color="brand" data-testid="badge" />}
         />
       );
 
@@ -290,9 +283,9 @@ describe('CardListReadOnly', () => {
 
       rerender(
         <ListReadOnly
-          title='Test Title'
+          title="Test Title"
           indicator={
-            <Tag variant='highlight' type='important' data-testid='tag'>
+            <Tag variant="highlight" type="important" data-testid="tag">
               Tag
             </Tag>
           }
@@ -305,34 +298,34 @@ describe('CardListReadOnly', () => {
 
   describe('Snapshot', () => {
     test('matches snapshot with default props', () => {
-      const { container } = render(<ListReadOnly title='Test Title' />);
+      const { container } = render(<ListReadOnly title="Test Title" />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot with all props', () => {
       const { container } = render(
         <ListReadOnly
-          title='Test Title'
-          description='Test Description'
-          caption='Test Caption'
+          title="Test Title"
+          description="Test Description"
+          caption="Test Caption"
           icon={<PlaceholderOutline />}
-          indicator={<Tag type='positive'>New</Tag>}
-          type='card'
+          indicator={<Tag type="positive">New</Tag>}
+          type="card"
           inverted
-          className='test-class'
+          className="test-class"
         />
       );
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot in loading state', () => {
-      const { container } = render(<ListReadOnly title='Test Title' loading />);
+      const { container } = render(<ListReadOnly title="Test Title" loading />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot in disabled state', () => {
       const { container } = render(
-        <ListReadOnly title='Test Title' disabled />
+        <ListReadOnly title="Test Title" disabled />
       );
       expect(container.firstChild).toMatchSnapshot();
     });
@@ -340,12 +333,55 @@ describe('CardListReadOnly', () => {
     test('matches snapshot with icon and indicator', () => {
       const { container } = render(
         <ListReadOnly
-          title='Test Title'
+          title="Test Title"
           icon={<PlaceholderOutline />}
-          indicator={<Badge count={3} color='brand' />}
+          indicator={<Badge count={3} color="brand" />}
         />
       );
       expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('Highlight', () => {
+    test('renders highlight with string caption', () => {
+      render(
+        <ListReadOnly
+          title="Test Title"
+          highlight={{ caption: 'Texto de destaque' }}
+        />
+      );
+      expect(screen.getByText('Texto de destaque')).toBeInTheDocument();
+    });
+
+    test('renders highlight with ReactNode caption', () => {
+      render(
+        <ListReadOnly
+          title="Test Title"
+          highlight={{
+            caption: <span data-testid="highlight-node">Conteúdo</span>,
+          }}
+        />
+      );
+      expect(screen.getByTestId('highlight-node')).toBeInTheDocument();
+    });
+
+    test('applies custom backgroundColor to highlight', () => {
+      render(
+        <ListReadOnly
+          title="Test Title"
+          highlight={{ caption: 'Texto', backgroundColor: '#FFF3CD' }}
+        />
+      );
+      expect(screen.getByTestId('list-container-highlight')).toHaveStyle({
+        backgroundColor: '#FFF3CD',
+      });
+    });
+
+    test('does not render highlight when caption is empty', () => {
+      render(<ListReadOnly title="Test Title" highlight={{ caption: '' }} />);
+      expect(
+        screen.queryByTestId('list-container-highlight')
+      ).not.toBeInTheDocument();
     });
   });
 });

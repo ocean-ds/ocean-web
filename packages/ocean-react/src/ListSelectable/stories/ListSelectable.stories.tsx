@@ -579,3 +579,111 @@ export const IndicatorsAppPlatform: Story = {
     </div>
   ),
 };
+
+export const SelectableDisabled: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div>
+        <p style={{ marginBottom: '12px', fontWeight: 600 }}>
+          Tipo texto (com divisor)
+        </p>
+        <div style={storyStyles.container}>
+          <ListSelectable
+            title="Item somente leitura"
+            description="Sem checkbox ou radio — renderiza como ListReadOnly"
+            isSelectableDisabled="true"
+            showDivider
+            type="text"
+          />
+          <ListSelectable
+            title="Com indicador"
+            description="Também sem controle de seleção"
+            indicator={<Badge count={3} color="alert" />}
+            isSelectableDisabled="true"
+            showDivider
+            type="text"
+          />
+          <ListSelectable
+            title="Estado inativo"
+            description="Desabilitado e somente leitura"
+            isSelectableDisabled="true"
+            disabled
+            showDivider
+            type="text"
+          />
+        </div>
+      </div>
+
+      <div>
+        <p style={{ marginBottom: '12px', fontWeight: 600 }}>
+          Tipo card (com bordas, sem divisor)
+        </p>
+        <div style={storyStyles.container}>
+          <ListSelectable
+            title="Item somente leitura"
+            description="Sem checkbox ou radio — renderiza como ListReadOnly"
+            isSelectableDisabled="true"
+            type="card"
+          />
+          <ListSelectable
+            title="Com indicador"
+            description="Também sem controle de seleção"
+            indicator={<Badge count={3} color="alert" />}
+            isSelectableDisabled="true"
+            type="card"
+          />
+          <ListSelectable
+            title="Estado inativo"
+            description="Desabilitado e somente leitura"
+            isSelectableDisabled="true"
+            disabled
+            type="card"
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+// Story: Com Highlight
+export const WithHighlight: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '360px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor padrão</h4>
+        <ListSelectable
+          title="Plano Premium"
+          description="R$ 49,90/mês"
+          checkbox={{ checked: true, onChange: () => undefined }}
+          highlight={{
+            caption:
+              'Inclui acesso ilimitado a todos os recursos da plataforma.',
+          }}
+        />
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor customizada</h4>
+        <ListSelectable
+          title="Plano Básico"
+          description="R$ 19,90/mês"
+          checkbox={{ checked: false, onChange: () => undefined }}
+          highlight={{
+            caption: 'Limitado a 3 usuários. Faça upgrade para adicionar mais.',
+            backgroundColor: '#FFF3CD',
+          }}
+        />
+      </div>
+    </div>
+  ),
+};

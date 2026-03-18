@@ -428,26 +428,27 @@ function PrivacySettings() {
 
 ### Props
 
-| Prop             | Tipo                                                                                                       | Padrão      | Descrição                                     |
-| ---------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------- |
-| `title`          | `string`                                                                                                   | -           | Título principal do card (obrigatório)        |
-| `description`    | `string`                                                                                                   | -           | Descrição ou texto secundário                 |
-| `caption`        | `string`                                                                                                   | -           | Legenda ou texto terciário                    |
-| `inverted`       | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição       |
-| `type`           | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de borda/estilo do card                  |
-| `status`         | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                     |
-| `showDivider`    | `boolean`                                                                                                  | `false`     | Mostra divisor quando type="text"             |
-| `disabled`       | `boolean`                                                                                                  | `false`     | Desabilita o card e suas ações                |
-| `loading`        | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                |
-| `icon`           | `ReactNode`                                                                                                | -           | Ícone exibido no início do card               |
-| `actionType`     | `'button' \| 'toggle'`                                                                                     | `'button'`  | Tipo de ação exibida no card                  |
-| `buttonLabel`    | `string`                                                                                                   | `'Label'`   | Label do botão (quando actionType="button")   |
-| `buttonSize`     | `'sm' \| 'md'`                                                                                             | `'sm'`      | Tamanho do botão                              |
-| `buttonVariant`  | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical'` | `'primary'` | Variante do botão                             |
-| `toggleChecked`  | `boolean`                                                                                                  | `false`     | Estado do toggle (quando actionType="toggle") |
-| `onButtonClick`  | `() => void`                                                                                               | -           | Callback ao clicar no botão                   |
-| `onToggleChange` | `(checked: boolean) => void`                                                                               | -           | Callback ao mudar estado do toggle            |
-| `className`      | `string`                                                                                                   | -           | Classes CSS adicionais                        |
+| Prop             | Tipo                                                                                                       | Padrão      | Descrição                                                    |
+| ---------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| `title`          | `string`                                                                                                   | -           | Título principal do card (obrigatório)                       |
+| `description`    | `string`                                                                                                   | -           | Descrição ou texto secundário                                |
+| `caption`        | `string`                                                                                                   | -           | Legenda ou texto terciário                                   |
+| `inverted`       | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição                      |
+| `type`           | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de borda/estilo do card                                 |
+| `status`         | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                                    |
+| `showDivider`    | `boolean`                                                                                                  | `false`     | Mostra divisor quando type="text"                            |
+| `highlight`      | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card |
+| `disabled`       | `boolean`                                                                                                  | `false`     | Desabilita o card e suas ações                               |
+| `loading`        | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                               |
+| `icon`           | `ReactNode`                                                                                                | -           | Ícone exibido no início do card                              |
+| `actionType`     | `'button' \| 'toggle'`                                                                                     | `'button'`  | Tipo de ação exibida no card                                 |
+| `buttonLabel`    | `string`                                                                                                   | `'Label'`   | Label do botão (quando actionType="button")                  |
+| `buttonSize`     | `'sm' \| 'md'`                                                                                             | `'sm'`      | Tamanho do botão                                             |
+| `buttonVariant`  | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical'` | `'primary'` | Variante do botão                                            |
+| `toggleChecked`  | `boolean`                                                                                                  | `false`     | Estado do toggle (quando actionType="toggle")                |
+| `onButtonClick`  | `() => void`                                                                                               | -           | Callback ao clicar no botão                                  |
+| `onToggleChange` | `(checked: boolean) => void`                                                                               | -           | Callback ao mudar estado do toggle                           |
+| `className`      | `string`                                                                                                   | -           | Classes CSS adicionais                                       |
 
 ## Acessibilidade
 
