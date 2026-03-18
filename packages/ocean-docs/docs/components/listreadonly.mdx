@@ -472,21 +472,22 @@ Mostra um skeleton placeholder durante carregamento:
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                          |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------- |
-| `title`                    | `string`                                                                                                   | -           | Título principal do card (obrigatório)             |
-| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário                      |
-| `strikethroughDescription` | `string`                                                                                                   | -           | Descrição com texto riscado (valor antigo)         |
-| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                         |
-| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição            |
-| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de exibição visual do item                    |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                          |
-| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o card (visual apenas)                  |
-| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                     |
-| `icon`                     | `ReactNode`                                                                                                | -           | Ícone exibido no início do card                    |
-| `indicator`                | `ReactNode`                                                                                                | -           | Indicador (badge/tag) à direita                    |
-| `showDivider`              | `boolean`                                                                                                  | `false`     | Mostra divisor entre itens (apenas para type=text) |
-| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                             |
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
+| `title`                    | `string`                                                                                                   | -           | Título principal do card (obrigatório)                       |
+| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário                                |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Descrição com texto riscado (valor antigo)                   |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                                   |
+| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte posição do título com descrição                      |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de exibição visual do item                              |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status visual do conteúdo                                    |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o card (visual apenas)                            |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe skeleton de carregamento                               |
+| `icon`                     | `ReactNode`                                                                                                | -           | Ícone exibido no início do card                              |
+| `indicator`                | `ReactNode`                                                                                                | -           | Indicador (badge/tag) à direita                              |
+| `showDivider`              | `boolean`                                                                                                  | `false`     | Mostra divisor entre itens (apenas para type=text)           |
+| `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                       |
 
 ## Acessibilidade
 

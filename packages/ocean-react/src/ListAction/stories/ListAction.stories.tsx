@@ -774,3 +774,43 @@ export const CardVsTextInsideList: Story = {
     </div>
   ),
 };
+
+// Story: Com Highlight
+export const WithHighlight: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px',
+        minWidth: '360px',
+      }}
+    >
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor padrão</h4>
+        <ListAction
+          title="Antecipação de recebíveis"
+          description="Disponível: R$ 12.430,00"
+          highlight={{
+            caption:
+              'Antecipe seus recebíveis com taxas a partir de 1,5% ao mês.',
+          }}
+          onClick={() => alert('Clicado!')}
+        />
+      </div>
+      <div>
+        <h4 style={{ marginBottom: '8px' }}>Highlight com cor customizada</h4>
+        <ListAction
+          title="Empréstimo disponível"
+          description="Até R$ 50.000,00"
+          highlight={{
+            caption: 'Oferta válida até 31/12. Sujeita à análise de crédito.',
+            backgroundColor: '#FFF3CD',
+          }}
+          onClick={() => alert('Clicado!')}
+        />
+      </div>
+    </div>
+  ),
+};

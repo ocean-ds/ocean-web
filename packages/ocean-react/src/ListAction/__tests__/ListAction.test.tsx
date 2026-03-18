@@ -9,7 +9,7 @@ import type { ActionItem } from '../../_shared/components/InternalListActions';
 describe('ListAction', () => {
   describe('Basic Rendering', () => {
     test('renders with required props', () => {
-      render(<ListAction title='Test Title' />);
+      render(<ListAction title="Test Title" />);
 
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
@@ -18,9 +18,9 @@ describe('ListAction', () => {
     test('renders with all text props', () => {
       render(
         <ListAction
-          title='Test Title'
-          description='Test Description'
-          caption='Test Caption'
+          title="Test Title"
+          description="Test Description"
+          caption="Test Caption"
         />
       );
 
@@ -32,11 +32,11 @@ describe('ListAction', () => {
     test('renders with strikethrough description', () => {
       render(
         <ListAction
-          title='Test Title'
-          description='Normal text'
-          strikethroughDescription='Strikethrough text'
-          type='card'
-          status='strikethrough'
+          title="Test Title"
+          description="Normal text"
+          strikethroughDescription="Strikethrough text"
+          type="card"
+          status="strikethrough"
         />
       );
 
@@ -47,8 +47,8 @@ describe('ListAction', () => {
     test('renders with icon', () => {
       render(
         <ListAction
-          title='Test Title'
-          icon={<PlaceholderOutline data-testid='test-icon' />}
+          title="Test Title"
+          icon={<PlaceholderOutline data-testid="test-icon" />}
         />
       );
 
@@ -59,8 +59,8 @@ describe('ListAction', () => {
     test('renders with indicator', () => {
       render(
         <ListAction
-          title='Test Title'
-          indicator={<Badge count={3} color='brand' data-testid='test-badge' />}
+          title="Test Title"
+          indicator={<Badge count={3} color="brand" data-testid="test-badge" />}
         />
       );
 
@@ -69,9 +69,7 @@ describe('ListAction', () => {
     });
 
     test('applies custom className', () => {
-      render(
-        <ListAction title='Test Title' className='custom-test-class' />
-      );
+      render(<ListAction title="Test Title" className="custom-test-class" />);
 
       expect(screen.getByTestId('list-action')).toHaveClass(
         'custom-test-class'
@@ -100,7 +98,11 @@ describe('ListAction', () => {
           title="Title"
           amountDetails={{
             amount: 'R$ 100,00',
-            indicator: <Tag type="positive" size="small">Aprovado</Tag>,
+            indicator: (
+              <Tag type="positive" size="small">
+                Aprovado
+              </Tag>
+            ),
           }}
         />
       );
@@ -115,7 +117,11 @@ describe('ListAction', () => {
           title="Title"
           amountDetails={{
             amount: 'R$ 100,00',
-            indicator: <Tag type="positive" size="small">Hidden</Tag>,
+            indicator: (
+              <Tag type="positive" size="small">
+                Hidden
+              </Tag>
+            ),
             showIndicator: false,
           }}
         />
@@ -128,7 +134,7 @@ describe('ListAction', () => {
 
   describe('States', () => {
     test('renders loading state with skeleton', () => {
-      render(<ListAction title='Test Title' loading />);
+      render(<ListAction title="Test Title" loading />);
 
       expect(screen.getByTestId('list-action')).toHaveClass(
         'ods-list-action--loading'
@@ -137,7 +143,7 @@ describe('ListAction', () => {
     });
 
     test('renders disabled state', () => {
-      render(<ListAction title='Test Title' disabled />);
+      render(<ListAction title="Test Title" disabled />);
 
       const button = screen.getByTestId('list-action');
       expect(button).toBeDisabled();
@@ -146,9 +152,7 @@ describe('ListAction', () => {
 
     test('does not call onClick when disabled', () => {
       const handleClick = jest.fn();
-      render(
-        <ListAction title='Test Title' disabled onClick={handleClick} />
-      );
+      render(<ListAction title="Test Title" disabled onClick={handleClick} />);
 
       fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).not.toHaveBeenCalled();
@@ -156,19 +160,16 @@ describe('ListAction', () => {
   });
 
   describe('Types', () => {
-    test.each([
-      'card',
-      'text',
-    ] as const)('renders with type %s', (type) => {
-      render(<ListAction title='Test Title' type={type} />);
+    test.each(['card', 'text'] as const)('renders with type %s', (type) => {
+      render(<ListAction title="Test Title" type={type} />);
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders inverted layout', () => {
       render(
         <ListAction
-          title='Test Title'
-          description='Test Description'
+          title="Test Title"
+          description="Test Description"
           inverted
         />
       );
@@ -180,13 +181,13 @@ describe('ListAction', () => {
 
   describe('Action Types', () => {
     test('renders chevron action by default', () => {
-      render(<ListAction title='Test Title' />);
+      render(<ListAction title="Test Title" />);
 
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
     test('renders chevron action explicitly', () => {
-      render(<ListAction title='Test Title' actionType='chevron' />);
+      render(<ListAction title="Test Title" actionType="chevron" />);
 
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
@@ -209,8 +210,8 @@ describe('ListAction', () => {
 
       render(
         <ListAction
-          title='Test Title'
-          actionType='menu'
+          title="Test Title"
+          actionType="menu"
           menuActions={menuActions}
         />
       );
@@ -230,8 +231,8 @@ describe('ListAction', () => {
 
       render(
         <ListAction
-          title='Test Title'
-          actionType='swipe'
+          title="Test Title"
+          actionType="swipe"
           menuActions={swipeActions}
         />
       );
@@ -260,8 +261,8 @@ describe('ListAction', () => {
     ] as const)('renders with menu position %s', (position) => {
       render(
         <ListAction
-          title='Test Title'
-          actionType='menu'
+          title="Test Title"
+          actionType="menu"
           menuActions={menuActions}
           menuPosition={position}
         />
@@ -274,7 +275,7 @@ describe('ListAction', () => {
   describe('Interactions', () => {
     test('calls onClick when clicked', () => {
       const handleClick = jest.fn();
-      render(<ListAction title='Test Title' onClick={handleClick} />);
+      render(<ListAction title="Test Title" onClick={handleClick} />);
 
       fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).toHaveBeenCalledTimes(1);
@@ -282,7 +283,7 @@ describe('ListAction', () => {
 
     test('passes event to onClick handler', () => {
       const handleClick = jest.fn();
-      render(<ListAction title='Test Title' onClick={handleClick} />);
+      render(<ListAction title="Test Title" onClick={handleClick} />);
 
       fireEvent.click(screen.getByTestId('list-action'));
       expect(handleClick).toHaveBeenCalledWith(expect.any(Object));
@@ -291,7 +292,7 @@ describe('ListAction', () => {
 
     test('does not throw error when onClick is not provided', () => {
       expect(() => {
-        render(<ListAction title='Test Title' />);
+        render(<ListAction title="Test Title" />);
         fireEvent.click(screen.getByTestId('list-action'));
       }).not.toThrow();
     });
@@ -301,10 +302,10 @@ describe('ListAction', () => {
     test('forwards native button props', () => {
       render(
         <ListAction
-          title='Test Title'
-          aria-label='Custom aria label'
-          id='custom-id'
-          data-custom='custom-value'
+          title="Test Title"
+          aria-label="Custom aria label"
+          id="custom-id"
+          data-custom="custom-value"
         />
       );
 
@@ -315,7 +316,7 @@ describe('ListAction', () => {
     });
 
     test('is a button element', () => {
-      render(<ListAction title='Test Title' />);
+      render(<ListAction title="Test Title" />);
 
       const element = screen.getByTestId('list-action');
       expect(element.tagName).toBe('BUTTON');
@@ -323,7 +324,7 @@ describe('ListAction', () => {
     });
 
     test('has correct data-testid', () => {
-      render(<ListAction title='Test Title' />);
+      render(<ListAction title="Test Title" />);
 
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
@@ -332,7 +333,7 @@ describe('ListAction', () => {
   describe('ForwardRef', () => {
     test('forwards ref to button element', () => {
       const ref = React.createRef<HTMLButtonElement>();
-      render(<ListAction title='Test Title' ref={ref} />);
+      render(<ListAction title="Test Title" ref={ref} />);
 
       expect(ref.current).toBeInstanceOf(HTMLButtonElement);
       expect(ref.current?.tagName).toBe('BUTTON');
@@ -340,7 +341,7 @@ describe('ListAction', () => {
 
     test('allows calling button methods through ref', () => {
       const ref = React.createRef<HTMLButtonElement>();
-      render(<ListAction title='Test Title' ref={ref} />);
+      render(<ListAction title="Test Title" ref={ref} />);
 
       expect(ref.current?.focus).toBeDefined();
       expect(ref.current?.click).toBeDefined();
@@ -349,21 +350,21 @@ describe('ListAction', () => {
 
   describe('Snapshot', () => {
     test('matches snapshot with default props', () => {
-      const { container } = render(<ListAction title='Test Title' />);
+      const { container } = render(<ListAction title="Test Title" />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot with all props', () => {
       const { container } = render(
         <ListAction
-          title='Test Title'
-          description='Test Description'
-          caption='Test Caption'
+          title="Test Title"
+          description="Test Description"
+          caption="Test Caption"
           icon={<PlaceholderOutline />}
-          indicator={<Tag type='positive'>New</Tag>}
-          type='card'
-          status='default'
-          actionType='chevron'
+          indicator={<Tag type="positive">New</Tag>}
+          type="card"
+          status="default"
+          actionType="chevron"
           onClick={jest.fn()}
           className="test-class"
         />
@@ -372,15 +373,56 @@ describe('ListAction', () => {
     });
 
     test('matches snapshot in loading state', () => {
-      const { container } = render(<ListAction title='Test Title' loading />);
+      const { container } = render(<ListAction title="Test Title" loading />);
       expect(container.firstChild).toMatchSnapshot();
     });
 
     test('matches snapshot in disabled state', () => {
-      const { container } = render(
-        <ListAction title='Test Title' disabled />
-      );
+      const { container } = render(<ListAction title="Test Title" disabled />);
       expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('Highlight', () => {
+    test('renders highlight with string caption', () => {
+      render(
+        <ListAction
+          title="Test Title"
+          highlight={{ caption: 'Texto de destaque' }}
+        />
+      );
+      expect(screen.getByText('Texto de destaque')).toBeInTheDocument();
+    });
+
+    test('renders highlight with ReactNode caption', () => {
+      render(
+        <ListAction
+          title="Test Title"
+          highlight={{
+            caption: <span data-testid="highlight-node">Conteúdo</span>,
+          }}
+        />
+      );
+      expect(screen.getByTestId('highlight-node')).toBeInTheDocument();
+    });
+
+    test('applies custom backgroundColor to highlight', () => {
+      render(
+        <ListAction
+          title="Test Title"
+          highlight={{ caption: 'Texto', backgroundColor: '#FFF3CD' }}
+        />
+      );
+      expect(screen.getByTestId('list-container-highlight')).toHaveStyle({
+        backgroundColor: '#FFF3CD',
+      });
+    });
+
+    test('does not render highlight when caption is empty', () => {
+      render(<ListAction title="Test Title" highlight={{ caption: '' }} />);
+      expect(
+        screen.queryByTestId('list-container-highlight')
+      ).not.toBeInTheDocument();
     });
   });
 });

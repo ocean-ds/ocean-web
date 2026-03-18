@@ -11,6 +11,9 @@ import InternalListActions, {
 import AmountDetails, {
   AmountDetailsProps,
 } from '../_shared/components/AmountDetails';
+import ListContainer, {
+  ListContainerHighlight,
+} from '../_shared/components/ListContainer';
 
 export type ListActionProps = {
   /**
@@ -94,6 +97,10 @@ export type ListActionProps = {
    * vertical lines: first = line below only, middle = line above and below, last = line above only.
    */
   position?: 'first' | 'middle' | 'last';
+  /**
+   * Renders a highlighted caption area at the bottom of the container.
+   */
+  highlight?: ListContainerHighlight;
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'type'>;
 
 const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
@@ -118,6 +125,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       showDivider = false,
       amountDetails,
       position,
+      highlight,
       ...rest
     }: ListActionProps,
     ref
@@ -234,7 +242,11 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
     });
 
     return (
-      <div className="ods-list-action__container">
+      <ListContainer
+        type={type}
+        showDivider={showDivider}
+        highlight={highlight}
+      >
         <button
           ref={ref}
           type="button"
@@ -246,10 +258,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
         >
           {loading ? renderLoadingContent() : renderContent()}
         </button>
-        {showDivider && type === 'text' && (
-          <div className="ods-list-action__divider" />
-        )}
-      </div>
+      </ListContainer>
     );
   }
 );

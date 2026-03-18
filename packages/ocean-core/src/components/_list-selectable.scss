@@ -62,24 +62,3 @@
     }
   }
 }
-
-.ods-list-selectable__root {
-  overflow: hidden;
-
-  &--card {
-    border: $border-width-hairline solid $color-interface-light-down;
-    border-radius: $border-radius-sm;
-
-    &--error {
-      border-color: $color-status-negative-pure;
-    }
-  }
-
-  &--text {
-    &--divider {
-      background-color: $color-interface-light-down;
-      height: 1px;
-      margin: 0 $spacing-inline-xs;
-    }
-  }
-}
