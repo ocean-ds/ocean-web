@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.134.1](https://github.com/ocean-ds/ocean-web/compare/v1.134.0...v1.134.1) (2026-03-18)
+
+### Bug Fixes
+
+- adjust is selectable disabled type ([#1233](https://github.com/ocean-ds/ocean-web/issues/1233)) ([a491433](https://github.com/ocean-ds/ocean-web/commit/a491433adc26e2f2035e95fa16ee2de3c45620af))
+
 # [1.134.0](https://github.com/ocean-ds/ocean-web/compare/v1.133.1...v1.134.0) (2026-03-18)
 
 ### Features
