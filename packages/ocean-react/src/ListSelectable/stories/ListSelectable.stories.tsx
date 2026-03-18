@@ -147,6 +147,16 @@ const meta: Meta<typeof ListSelectable> = {
         defaultValue: { summary: "'web'" },
       },
     },
+    isSelectableDisabled: {
+      description:
+        'Quando `true`, oculta os controles de seleção (checkbox/radio) e renderiza o conteúdo como `ListReadOnly`.',
+      control: 'boolean',
+      table: {
+        category: category.state,
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     checkbox: {
       table: { disable: true },
     },
@@ -594,7 +604,7 @@ export const SelectableDisabled: Story = {
           <ListSelectable
             title="Item somente leitura"
             description="Sem checkbox ou radio — renderiza como ListReadOnly"
-            isSelectableDisabled="true"
+            isSelectableDisabled
             showDivider
             type="text"
           />
@@ -602,14 +612,14 @@ export const SelectableDisabled: Story = {
             title="Com indicador"
             description="Também sem controle de seleção"
             indicator={<Badge count={3} color="alert" />}
-            isSelectableDisabled="true"
+            isSelectableDisabled
             showDivider
             type="text"
           />
           <ListSelectable
             title="Estado inativo"
             description="Desabilitado e somente leitura"
-            isSelectableDisabled="true"
+            isSelectableDisabled
             disabled
             showDivider
             type="text"
@@ -625,20 +635,20 @@ export const SelectableDisabled: Story = {
           <ListSelectable
             title="Item somente leitura"
             description="Sem checkbox ou radio — renderiza como ListReadOnly"
-            isSelectableDisabled="true"
+            isSelectableDisabled
             type="card"
           />
           <ListSelectable
             title="Com indicador"
             description="Também sem controle de seleção"
             indicator={<Badge count={3} color="alert" />}
-            isSelectableDisabled="true"
+            isSelectableDisabled
             type="card"
           />
           <ListSelectable
             title="Estado inativo"
             description="Desabilitado e somente leitura"
-            isSelectableDisabled="true"
+            isSelectableDisabled
             disabled
             type="card"
           />

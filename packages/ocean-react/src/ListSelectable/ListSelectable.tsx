@@ -42,8 +42,8 @@ interface ListSelectableProps {
   type?: 'card' | 'text';
   /** Platform context used to adjust spacing (web or app). */
   platform?: 'web' | 'app';
-  /** If the selectable is disabled, the input will be hidden. */
-  isSelectableDisabled?: string;
+  /** If the selectable is disabled, the input will be hidden and the content will be rendered as ListReadOnly. */
+  isSelectableDisabled?: boolean;
   /** Renders a highlighted caption area at the bottom of the container. */
   highlight?: ListContainerHighlight;
 }
