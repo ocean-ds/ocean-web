@@ -127,6 +127,20 @@ test('renders default element properly with all possible information', () => {
   `);
 });
 
+test('renders without inverted class by default', () => {
+  setup();
+
+  const element = document.querySelector('.ods-transaction-list-item');
+  expect(element).not.toHaveClass('ods-transaction-list-item--inverted');
+});
+
+test('renders with inverted class when isInverted is true', () => {
+  setup({ isInverted: true, level2: 'Beneficiary' });
+
+  const element = document.querySelector('.ods-transaction-list-item');
+  expect(element).toHaveClass('ods-transaction-list-item--inverted');
+});
+
 test('renders default element properly with sub transaction-list-items', () => {
   setup({
     icon: <ExclamationCircle />,
