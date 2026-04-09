@@ -217,3 +217,12 @@
     margin-left: $spacing-inline-xxs;
   }
 }
+
+.ods-transaction-list-item--inverted {
+  .ods-transaction-list-item__level1 {
+    font-size: $font-size-xxs;
+  }
+  .ods-transaction-list-item__level2 {
+    font-size: $font-size-xs;
+  }
+}
