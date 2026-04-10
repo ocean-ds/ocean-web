@@ -56,7 +56,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: 'build:storybook'
+          storybookBuildDir: 'storybook-static'
 
       - name: Publish to Chromatic and auto accept changes (main)
         if: ${{ github.actor != 'dependabot[bot]' && github.ref == 'refs/heads/main' }}
@@ -64,5 +64,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: 'build:storybook'
+          storybookBuildDir: 'storybook-static'
           autoAcceptChanges: true # 👈 Option to accept all changes

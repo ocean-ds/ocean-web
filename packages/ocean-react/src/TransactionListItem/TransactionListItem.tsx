@@ -42,6 +42,12 @@ export type TransactionListItemProps = {
   withChevron?: boolean;
   readOnly?: boolean;
   isLoading?: boolean;
+  /**
+   * Inverts the typography hierarchy between level1 and level2.
+   * When true, level1 uses description (smaller) and level2 uses paragraph (larger) typography.
+   * @default false
+   */
+  isInverted?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const TransactionListItem = React.forwardRef<
@@ -64,6 +70,7 @@ const TransactionListItem = React.forwardRef<
       withChevron,
       readOnly,
       isLoading,
+      isInverted = false,
       ...rest
     },
     ref
@@ -75,6 +82,7 @@ const TransactionListItem = React.forwardRef<
         { 'ods-transaction-list-item--chevron': withChevron },
         { 'ods-transaction-list-item--readonly': readOnly },
         { 'ods-transaction-list-item--isloading': isLoading },
+        { 'ods-transaction-list-item--inverted': isInverted },
         className
       )}
       {...rest}

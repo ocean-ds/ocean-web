@@ -283,6 +283,39 @@ Para mostrar detalhes expandíveis:
   title="TransactionListItem - Exemplo Completo"
 />
 
+## Hierarquia invertida
+
+Use `isInverted` para inverter a hierarquia tipográfica entre Level 1 e Level 2. Quando ativado, Level 1 (children) recebe fonte menor (description) e Level 2 recebe fonte maior (paragraph), dando destaque visual ao beneficiário:
+
+```tsx live
+<List>
+  <TransactionListItem
+    icon={<Reply />}
+    level2="Transferência PIX"
+    value="R$ 250,00"
+    positive
+  >
+    João da Silva
+  </TransactionListItem>
+  <TransactionListItem
+    icon={<Reply />}
+    level2="Transferência PIX"
+    value="R$ 250,00"
+    positive
+    isInverted
+  >
+    João da Silva
+  </TransactionListItem>
+</List>
+```
+
+<StorybookEmbed
+  storyId="components-list-transactionlistitem--inverted"
+  height={300}
+  showToolbar={false}
+  title="TransactionListItem - Hierarquia Invertida"
+/>
+
 ## Estados
 
 ### Estados de interação
@@ -322,6 +355,7 @@ Para mostrar detalhes expandíveis:
 | `subItens`    | `React.ReactNode` | -       | Subitens aninhados                        |
 | `readOnly`    | `boolean`         | `false` | Define se o item é somente leitura        |
 | `isLoading`   | `boolean`         | `false` | Exibe estado de carregamento              |
+| `isInverted`  | `boolean`         | `false` | Inverte a hierarquia tipográfica entre Level 1 e Level 2 |
 | `className`   | `string`          | -       | Classes CSS adicionais                    |
 | `onClick`     | `function`        | -       | Função chamada ao clicar no item          |
 
@@ -342,6 +376,7 @@ Para mostrar detalhes expandíveis:
 | `.ods-transaction-list-item__tags`            | Estilos aplicados às tags                        |
 | `.ods-transaction-list-item__time`            | Estilos aplicados ao horário                     |
 | `.ods-transaction-list-item__sub-itens`       | Estilos aplicados ao container de subitens       |
+| `.ods-transaction-list-item--inverted`        | Inverte tamanhos de fonte entre Level 1 e Level 2 |
 
 ## Acessibilidade
 
