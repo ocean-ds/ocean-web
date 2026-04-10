@@ -9,8 +9,6 @@ jobs:
   chromatic-deployment:
     if: ${{ github.actor != 'dependabot[bot]' && (github.secret_source != 'push' || github.event_name == 'pull_request_target') }}
     runs-on: ubuntu-latest
-    env:
-      STORYBOOK_DISABLE_TELEMETRY: 1
     steps:
       - name: Checkout
         if: github.event_name == 'push'
@@ -49,11 +47,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build libs
-        run: yarn build:libs
-
-      - name: Build Storybook
-        run: yarn storybook build -s .storybook/assets --no-manager-cache
+      - name: Build all
+        run: yarn build
 
       - name: Publish to Chromatic (branches)
         if: ${{ github.actor != 'dependabot[bot]' && github.ref != 'refs/heads/master' && github.ref != 'refs/heads/main' }}
@@ -61,7 +56,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          storybookBuildDir: 'storybook-static'
+          buildScriptName: 'build:storybook'
 
       - name: Publish to Chromatic and auto accept changes (main)
         if: ${{ github.actor != 'dependabot[bot]' && github.ref == 'refs/heads/main' }}
@@ -69,5 +64,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          storybookBuildDir: 'storybook-static'
+          buildScriptName: 'build:storybook'
           autoAcceptChanges: true # 👈 Option to accept all changes
