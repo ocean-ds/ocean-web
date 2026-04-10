@@ -100,6 +100,12 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 <Button variant="textTertiaryCritical">Texto destrutivo</Button>
 ```
 
+### Text Tertiary Warning
+
+```tsx live
+<Button variant="textTertiaryWarning">Texto de aviso</Button>
+```
+
 ### Inverse
 
 ```tsx live
@@ -118,6 +124,7 @@ O Button tem diferentes variantes para diferentes contextos de uso:
 - **tertiaryCritical**: Para ações terciárias destrutivas
 - **textTertiary**: Para ações discretas estilo link
 - **textTertiaryCritical**: Para ações destrutivas discretas
+- **textTertiaryWarning**: Para ações de aviso discretas estilo link
 - **inverse**: Para uso em fundos escuros
 
 ## Tamanhos
@@ -227,19 +234,19 @@ O componente Button suporta todos os tipos padrão de botão HTML. O atributo `t
 
 ### Props
 
-| Prop        | Tipo                                                                                                                                                                | Padrão      | Descrição                                    |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------- |
-| `variant`   | `'primary' \| 'primaryCritical' \| 'secondary' \| 'secondaryCritical' \| 'tertiary' \| 'tertiaryCritical' \| 'textTertiary' \| 'textTertiaryCritical' \| 'inverse'` | `'primary'` | Define o estilo visual do botão              |
-| `size`      | `'sm' \| 'md' \| 'lg'`                                                                                                                                              | `'md'`      | Define o tamanho do botão                    |
-| `disabled`  | `boolean`                                                                                                                                                           | `false`     | Desabilita o botão                           |
-| `loading`   | `boolean`                                                                                                                                                           | `false`     | Mostra estado de carregamento                |
-| `blocked`   | `boolean`                                                                                                                                                           | `false`     | Faz o botão ocupar toda a largura disponível |
-| `iconLeft`  | `string`                                                                                                                                                            | -           | Nome do ícone à esquerda do texto            |
-| `iconRight` | `string`                                                                                                                                                            | -           | Nome do ícone à direita do texto             |
-| `onClick`   | `(event: MouseEvent) => void`                                                                                                                                       | -           | Função chamada ao clicar no botão            |
-| `type`      | `'button' \| 'submit' \| 'reset'`                                                                                                                                   | `'button'`  | Tipo do botão HTML                           |
-| `className` | `string`                                                                                                                                                            | -           | Classes CSS adicionais                       |
-| `children`  | `ReactNode`                                                                                                                                                         | -           | Conteúdo do botão                            |
+| Prop        | Tipo                                                                                                                                                                                                                                                        | Padrão      | Descrição                                    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------- |
+| `variant`   | `'primary' \| 'primaryCritical' \| 'primaryWarning' \| 'secondary' \| 'secondaryCritical' \| 'secondaryWarning' \| 'tertiary' \| 'tertiaryCritical' \| 'tertiaryWarning' \| 'textTertiary' \| 'textTertiaryCritical' \| 'textTertiaryWarning' \| 'inverse'` | `'primary'` | Define o estilo visual do botão              |
+| `size`      | `'sm' \| 'md' \| 'lg'`                                                                                                                                                                                                                                      | `'md'`      | Define o tamanho do botão                    |
+| `disabled`  | `boolean`                                                                                                                                                                                                                                                   | `false`     | Desabilita o botão                           |
+| `loading`   | `boolean`                                                                                                                                                                                                                                                   | `false`     | Mostra estado de carregamento                |
+| `blocked`   | `boolean`                                                                                                                                                                                                                                                   | `false`     | Faz o botão ocupar toda a largura disponível |
+| `iconLeft`  | `string`                                                                                                                                                                                                                                                    | -           | Nome do ícone à esquerda do texto            |
+| `iconRight` | `string`                                                                                                                                                                                                                                                    | -           | Nome do ícone à direita do texto             |
+| `onClick`   | `(event: MouseEvent) => void`                                                                                                                                                                                                                               | -           | Função chamada ao clicar no botão            |
+| `type`      | `'button' \| 'submit' \| 'reset'`                                                                                                                                                                                                                           | `'button'`  | Tipo do botão HTML                           |
+| `className` | `string`                                                                                                                                                                                                                                                    | -           | Classes CSS adicionais                       |
+| `children`  | `ReactNode`                                                                                                                                                                                                                                                 | -           | Conteúdo do botão                            |
 
 ### Eventos
 
@@ -288,6 +295,7 @@ O componente Button utiliza as seguintes classes CSS que podem ser utilizadas pa
 | `.ods-btn--tertiary-critical`      | Define estilos do botão tertiary critical          |
 | `.ods-btn--text-tertiary`          | Define estilos do botão text tertiary              |
 | `.ods-btn--text-tertiary-critical` | Define estilos do botão text tertiary critical     |
+| `.ods-btn--text-tertiary-warning`  | Define estilos do botão text tertiary warning      |
 | `.ods-btn--inverse`                | Use o botão inverse em fundos escuros              |
 | `.ods-btn--blocked`                | Faz o botão ocupar toda a largura do container pai |
 

@@ -80,7 +80,12 @@
     }
 
     &:active {
-      background: linear-gradient(0deg, rgba($color-interface-dark-pure, 0.12) 0%, rgba($color-interface-dark-pure, 0.12) 100%), $color-status-warning-deep;
+      background: linear-gradient(
+          0deg,
+          rgba($color-interface-dark-pure, 0.12) 0%,
+          rgba($color-interface-dark-pure, 0.12) 100%
+        ),
+        $color-status-warning-deep;
       border-radius: 500px;
     }
   }
@@ -107,15 +112,30 @@
     color: $color-status-negative-pure;
 
     &:hover {
-      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &:focus {
-      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &:active {
-      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.16) 0%,
+          rgba($color-status-negative-deep, 0.16) 100%
+        ),
+        $color-status-negative-up;
     }
   }
 
@@ -124,15 +144,30 @@
     color: $color-status-warning-deep;
 
     &:hover {
-      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.08) 0%, rgba($color-status-warning-deep, 0.08) 100%), $color-status-warning-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.08) 0%,
+          rgba($color-status-warning-deep, 0.08) 100%
+        ),
+        $color-status-warning-up;
     }
 
     &:focus {
-      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.08) 0%, rgba($color-status-warning-deep, 0.08) 100%), $color-status-warning-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.08) 0%,
+          rgba($color-status-warning-deep, 0.08) 100%
+        ),
+        $color-status-warning-up;
     }
 
     &:active {
-      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.16) 0%,
+          rgba($color-status-warning-deep, 0.16) 100%
+        ),
+        $color-status-warning-up;
     }
   }
 
@@ -202,15 +237,30 @@
     color: $color-status-negative-pure;
 
     &.ods-btn--blocked:hover {
-      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &.ods-btn--blocked:focus {
-      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.08) 0%, rgba($color-status-negative-deep, 0.08) 100%), $color-status-negative-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.08) 0%,
+          rgba($color-status-negative-deep, 0.08) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &.ods-btn--blocked:active {
-      background: linear-gradient(0deg, rgba($color-status-negative-deep, 0.16) 0%, rgba($color-status-negative-deep, 0.16) 100%), $color-status-negative-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-negative-deep, 0.16) 0%,
+          rgba($color-status-negative-deep, 0.16) 100%
+        ),
+        $color-status-negative-up;
     }
 
     &:not(.ods-btn--blocked):hover {
@@ -238,7 +288,12 @@
     }
 
     &.ods-btn--blocked:active {
-      background: linear-gradient(0deg, rgba($color-status-warning-deep, 0.16) 0%, rgba($color-status-warning-deep, 0.16) 100%), $color-status-warning-up;
+      background: linear-gradient(
+          0deg,
+          rgba($color-status-warning-deep, 0.16) 0%,
+          rgba($color-status-warning-deep, 0.16) 100%
+        ),
+        $color-status-warning-up;
     }
 
     &:not(.ods-btn--blocked):hover {
@@ -255,7 +310,8 @@
   }
 
   &--text-tertiary,
-  &--text-tertiary-critical {
+  &--text-tertiary-critical,
+  &--text-tertiary-warning {
     background-color: transparent;
     min-width: auto;
     padding-left: 0;
@@ -294,6 +350,22 @@
     }
   }
 
+  &--text-tertiary-warning {
+    color: $color-status-warning-deep;
+
+    &:hover {
+      color: $color-status-warning-down;
+    }
+
+    &:focus {
+      color: $color-status-warning-down;
+    }
+
+    &:active {
+      color: $color-status-warning-pure;
+    }
+  }
+
   &--inverse {
     background-color: $color-complementary-pure;
     color: $color-interface-light-pure;
@@ -325,7 +397,7 @@
       width: 100%;
     }
 
-    >span {
+    > span {
       display: block;
       height: 0;
       visibility: hidden;
@@ -344,7 +416,8 @@
   &--text:disabled,
   &--text-critical:disabled,
   &--text-tertiary:disabled,
-  &--text-tertiary-critical:disabled {
+  &--text-tertiary-critical:disabled,
+  &--text-tertiary-warning:disabled {
     background-color: transparent;
   }
 }

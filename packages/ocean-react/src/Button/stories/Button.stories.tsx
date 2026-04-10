@@ -22,6 +22,7 @@ const meta: Meta<typeof Button> = {
         'tertiaryWarning',
         'textTertiary',
         'textTertiaryCritical',
+        'textTertiaryWarning',
         'inverse',
       ],
     },
@@ -88,6 +89,7 @@ export const Variants: Story = {
       <Button variant="tertiaryWarning">tertiaryWarning</Button>
       <Button variant="textTertiary">textTertiary</Button>
       <Button variant="textTertiaryCritical">textTertiaryCritical</Button>
+      <Button variant="textTertiaryWarning">textTertiaryWarning</Button>
       <Button variant="inverse">inverse</Button>
     </div>
   ),
@@ -169,6 +171,9 @@ export const Disabled: Story = {
       <Button variant="textTertiaryCritical" disabled>
         Text Tertiary Critical Desabilitado
       </Button>
+      <Button variant="textTertiaryWarning" disabled>
+        Text Tertiary Warning Desabilitado
+      </Button>
       <Button variant="inverse" disabled>
         Inverse Desabilitado
       </Button>
@@ -212,6 +217,9 @@ export const Loading: Story = {
       </Button>
       <Button variant="textTertiaryCritical" loading>
         Text Tertiary Critical Carregando
+      </Button>
+      <Button variant="textTertiaryWarning" loading>
+        Text Tertiary Warning Carregando
       </Button>
       <Button variant="inverse" loading>
         Inverse Carregando
