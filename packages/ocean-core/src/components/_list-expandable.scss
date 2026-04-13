@@ -226,4 +226,10 @@
   &--show-hover .ods-list-expandable__main {
     background-color: $color-interface-light-up;
   }
+
+  // Disabled state
+  &--disabled .ods-list-expandable__main {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
