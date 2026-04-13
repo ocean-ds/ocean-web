@@ -17,16 +17,6 @@
     margin: 0 $spacing-inline-xs;
   }
 
-  &--card {
-    border: $border-width-hairline solid $color-interface-light-down;
-    border-radius: $border-radius-sm;
-  }
-
-  &--text {
-    border: 0;
-    border-radius: 0;
-  }
-
   &--transaction {
     .ods-list-expandable__icon {
       color: $color-interface-dark-up;

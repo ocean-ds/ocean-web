@@ -131,27 +131,40 @@ O componente suporta diversos indicadores visuais como Badges e Tags:
   title="ListSelectable - Loading"
 />
 
+### Somente Leitura (isSelectableDisabled)
+
+Quando `isSelectableDisabled` é fornecida, o componente oculta os controles de seleção e renderiza o conteúdo como `ListReadOnly`. Suporta os estilos `text` (com divisor) e `card` (com bordas, sem divisor):
+
+<StorybookEmbed
+  storyId="components-list-listselectable--selectable-disabled"
+  height={600}
+  showToolbar={false}
+  title="ListSelectable - Somente Leitura"
+/>
+
 ## API
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------- |
-| `title`                    | `string`                                                                                                   | -           | Título principal do item (obrigatório)                   |
-| `description`              | `string`                                                                                                   | -           | Descrição detalhada do item                              |
-| `caption`                  | `string`                                                                                                   | -           | Legenda ou informação adicional em destaque              |
-| `strikethroughDescription` | `string`                                                                                                   | -           | Texto com linha cortada (riscado)                        |
-| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte a hierarquia visual do título e descrição        |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Estado visual aplicado ao conteúdo                       |
-| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Estilo do wrapper (`card` com borda, `text` com divisor) |
-| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                |
-| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o item, tornando-o não interativo             |
-| `showDivider`              | `boolean`                                                                                                  | `true`      | Exibe divisor visual (aplicado apenas em `type="text"`)  |
-| `platform`                 | `'web' \| 'app'`                                                                                           | `'web'`     | Define a plataforma para ajustes visuais específicos     |
-| `checkbox`                 | `CheckboxProps`                                                                                            | -           | Props do componente Checkbox para seleção múltipla       |
-| `radio`                    | `RadioProps`                                                                                               | -           | Props do componente Radio para seleção única             |
-| `indicator`                | `ReactNode`                                                                                                | -           | Elemento visual indicador (Badge, Tag, etc.)             |
-| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                   |
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+| `title`                    | `string`                                                                                                   | -           | Título principal do item (obrigatório)                                                   |
+| `description`              | `string`                                                                                                   | -           | Descrição detalhada do item                                                              |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou informação adicional em destaque                                              |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Texto com linha cortada (riscado)                                                        |
+| `inverted`                 | `boolean`                                                                                                  | `false`     | Inverte a hierarquia visual do título e descrição                                        |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Estado visual aplicado ao conteúdo                                                       |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Estilo do wrapper (`card` com borda, `text` com divisor)                                 |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                                                |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita o item, tornando-o não interativo                                             |
+| `showDivider`              | `boolean`                                                                                                  | `true`      | Exibe divisor visual (aplicado apenas em `type="text"`)                                  |
+| `platform`                 | `'web' \| 'app'`                                                                                           | `'web'`     | Define a plataforma para ajustes visuais específicos                                     |
+| `checkbox`                 | `CheckboxProps`                                                                                            | -           | Props do componente Checkbox para seleção múltipla                                       |
+| `radio`                    | `RadioProps`                                                                                               | -           | Props do componente Radio para seleção única                                             |
+| `indicator`                | `ReactNode`                                                                                                | -           | Elemento visual indicador (Badge, Tag, etc.)                                             |
+| `isSelectableDisabled`     | `boolean`                                                                                                  | `false`     | Quando `true`, oculta os controles de seleção e renderiza o conteúdo como `ListReadOnly` |
+| `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card                             |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                                                   |
 
 ## Tipos de Layout
 

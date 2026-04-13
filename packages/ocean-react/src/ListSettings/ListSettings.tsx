@@ -6,6 +6,9 @@ import ContentList, {
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import Button from '../Button';
 import Switch from '../Switch';
+import ListContainer, {
+  ListContainerHighlight,
+} from '../_shared/components/ListContainer';
 
 export type ListSettingsProps = {
   /**
@@ -72,7 +75,13 @@ export type ListSettingsProps = {
    * Variant of the button.
    * @default 'primary'
    */
-  buttonVariant?: 'primary' | 'primaryCritical' | 'secondary' | 'secondaryCritical' | 'tertiary' | 'tertiaryCritical';
+  buttonVariant?:
+    | 'primary'
+    | 'primaryCritical'
+    | 'secondary'
+    | 'secondaryCritical'
+    | 'tertiary'
+    | 'tertiaryCritical';
   /**
    * Checked state for toggle action.
    * @default false
@@ -91,6 +100,10 @@ export type ListSettingsProps = {
    * @default false
    */
   showDivider?: boolean;
+  /**
+   * Renders a highlighted caption area at the bottom of the container.
+   */
+  highlight?: ListContainerHighlight;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
@@ -114,6 +127,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
       onButtonClick,
       onToggleChange,
       showDivider = false,
+      highlight,
       className,
       ...rest
     },
@@ -172,9 +186,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
           inverted={inverted}
           type={status}
         />
-        <div className="ods-list-settings__action">
-          {renderActionElement()}
-        </div>
+        <div className="ods-list-settings__action">{renderActionElement()}</div>
       </>
     );
 
@@ -185,7 +197,11 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
     });
 
     return (
-      <div className="ods-list-settings__container">
+      <ListContainer
+        type={type}
+        showDivider={showDivider}
+        highlight={highlight}
+      >
         <div
           ref={ref}
           data-testid="list-settings"
@@ -194,10 +210,7 @@ const ListSettings = React.forwardRef<HTMLDivElement, ListSettingsProps>(
         >
           {loading ? renderLoadingContent() : renderContent()}
         </div>
-        {showDivider && type === 'text' && (
-          <div className="ods-list-settings__divider" />
-        )}
-      </div>
+      </ListContainer>
     );
   }
 );

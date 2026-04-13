@@ -1,8 +1,7 @@
 .ods-list-action {
   align-items: center;
   background-color: $color-interface-light-pure;
-  border: $border-width-hairline solid $color-interface-light-deep;
-  border-radius: $border-radius-sm;
+  border: 0;
   cursor: pointer;
   display: flex;
   gap: $spacing-inline-xxs-extra;
@@ -14,10 +13,6 @@
   transition: background-color 0.2s ease;
   width: 100%;
 
-  &__container {
-    width: 100%;
-  }
-
   &__content {
     align-items: center;
     display: flex;
@@ -25,19 +20,6 @@
     gap: $spacing-inline-xxs-extra;
     min-width: 0;
     transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &--card {
-    border-color: $color-interface-light-deep;
-  }
-
-  &--text {
-    border: 0;
-    border-radius: 0;
-  }
-
-  &__divider {
-    margin: 0 $spacing-inline-xs;
   }
 
   &:hover:not(&--disabled):not(&--loading):not(&--swipe-open) {
