@@ -67,6 +67,11 @@ const meta: Meta<typeof TransactionListItem> = {
       description: 'Exibe estado de carregamento.',
       control: 'boolean',
     },
+    isInverted: {
+      description:
+        'Inverte a hierarquia tipográfica entre Level 1 e Level 2.',
+      control: 'boolean',
+    },
     className: {
       description: 'Classes CSS adicionais.',
       control: 'text',
@@ -302,6 +307,33 @@ export const CompleteExample: Story = {
         tags={<Tag>Processando</Tag>}
       >
         Saque em dinheiro
+      </TransactionListItem>
+    </List>
+  ),
+};
+
+export const Inverted: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <List>
+      <TransactionListItem
+        icon={<Reply />}
+        level2="Transferência PIX"
+        value="R$ 250,00"
+        positive
+      >
+        João da Silva
+      </TransactionListItem>
+      <TransactionListItem
+        icon={<Reply />}
+        level2="Transferência PIX"
+        value="R$ 250,00"
+        positive
+        isInverted
+      >
+        João da Silva
       </TransactionListItem>
     </List>
   ),
