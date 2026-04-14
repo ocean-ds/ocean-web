@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.135.1](https://github.com/ocean-ds/ocean-web/compare/v1.135.0...v1.135.1) (2026-04-14)
+
+### Bug Fixes
+
+- swap colors in isInverted mode (BAN-52) ([#1239](https://github.com/ocean-ds/ocean-web/issues/1239)) ([99382da](https://github.com/ocean-ds/ocean-web/commit/99382da8ceedb0d219a6562855bd47670634f56a))
+
 # [1.135.0](https://github.com/ocean-ds/ocean-web/compare/v1.134.1...v1.135.0) (2026-04-14)
 
 ### Features
