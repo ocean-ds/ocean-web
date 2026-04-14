@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.135.0](https://github.com/ocean-ds/ocean-web/compare/v1.134.1...v1.135.0) (2026-04-14)
+
+### Features
+
+- add isInverted prop for typography hierarchy (BAN-52). ([#1236](https://github.com/ocean-ds/ocean-web/issues/1236)) ([6b628d0](https://github.com/ocean-ds/ocean-web/commit/6b628d0ffe0714f6f6b39f3ad5d4a14fae5998ad))
+
 # [1.134.0](https://github.com/ocean-ds/ocean-web/compare/v1.133.1...v1.134.0) (2026-03-18)
 
 ### Features
