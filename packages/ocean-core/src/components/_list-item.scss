@@ -220,10 +220,12 @@
 
 .ods-transaction-list-item--inverted {
   .ods-transaction-list-item__level1 {
+    color: $color-interface-dark-down;
     font-size: $font-size-xxs;
   }
 
   .ods-transaction-list-item__level2 {
+    color: $color-interface-dark-deep;
     font-size: $font-size-xs;
   }
 }
