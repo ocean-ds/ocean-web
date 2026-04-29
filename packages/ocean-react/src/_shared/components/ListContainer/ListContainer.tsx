@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+import CornerTag, { CornerTagProps } from '../../../CornerTag/CornerTag';
 
 export type ListContainerHighlight = {
   /**
@@ -36,6 +37,11 @@ export type ListContainerProps = {
    * Renders a highlighted caption area at the bottom of the container.
    */
   highlight?: ListContainerHighlight;
+  /**
+   * Renders a Highlight Corner Tag at the top-right corner of the card.
+   * Only rendered when `type='card'` (no visual container in `type='text'`).
+   */
+  cornerTag?: CornerTagProps;
   children: ReactNode;
   className?: string;
 } & React.ComponentPropsWithoutRef<'div'>;
@@ -47,6 +53,7 @@ const ListContainer = React.forwardRef<HTMLDivElement, ListContainerProps>(
       showDivider = false,
       hasError = false,
       highlight,
+      cornerTag,
       children,
       className,
       ...rest
@@ -68,6 +75,7 @@ const ListContainer = React.forwardRef<HTMLDivElement, ListContainerProps>(
         {showDivider && type === 'text' && (
           <div className="ods-list-container__content__divider" />
         )}
+        {type === 'card' && cornerTag?.label && <CornerTag {...cornerTag} />}
       </div>
       {highlight?.caption && (
         <div
