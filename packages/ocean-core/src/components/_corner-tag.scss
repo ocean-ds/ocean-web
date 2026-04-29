@@ -4,9 +4,12 @@
   color: $color-interface-light-pure;
   display: inline-flex;
   font-family: $font-family-base;
-  font-size: $font-size-xxxs;
+  // No 10px token in @useblu/ocean-tokens — smallest is $font-size-xxxs (12px).
+  // Hardcoded literal follows precedent in _tag.scss and _badge.scss.
+  font-size: 10px;
   font-weight: $font-weight-extrabold;
   height: 20px;
+  line-height: 100%;
   justify-content: flex-end;
   padding: 0 $spacing-inline-xxs;
   position: absolute;
