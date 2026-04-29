@@ -7,6 +7,7 @@ import SkeletonBar from '../_shared/components/SkeletonBar';
 import ListContainer, {
   ListContainerHighlight,
 } from '../_shared/components/ListContainer';
+import { CornerTagProps } from '../CornerTag/CornerTag';
 
 export type ListReadOnlyProps = {
   /**
@@ -67,6 +68,11 @@ export type ListReadOnlyProps = {
    * Renders a highlighted caption area at the bottom of the container.
    */
   highlight?: ListContainerHighlight;
+  /**
+   * Renders a Highlight Corner Tag at the top-right corner of the card.
+   * Only rendered when `type='card'`.
+   */
+  cornerTag?: CornerTagProps;
 } & React.ComponentPropsWithoutRef<'div'>;
 
 const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
@@ -86,6 +92,7 @@ const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
       className,
       showDivider = false,
       highlight,
+      cornerTag,
       ...rest
     },
     ref
@@ -135,6 +142,7 @@ const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
         type={type}
         showDivider={showDivider}
         highlight={highlight}
+        cornerTag={cornerTag}
       >
         <div
           ref={ref}
