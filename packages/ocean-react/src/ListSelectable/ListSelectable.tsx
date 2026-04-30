@@ -85,10 +85,10 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       status = 'default',
       type = 'card',
       platform = 'web',
-      cornerTag: _cornerTag,
+      cornerTag,
       ...rest
     } = props as ListSelectableCardProps;
-    const cornerTag = type === 'card' ? _cornerTag : undefined;
+    const cardCornerTag = type === 'card' ? cornerTag : undefined;
     const hasError = useMemo(
       () => radio?.error || checkbox?.error,
       [radio?.error, checkbox?.error]
@@ -158,7 +158,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           caption={caption}
           strikethroughDescription={strikethroughDescription}
           highlight={highlight}
-          cornerTag={cornerTag}
+          cornerTag={cardCornerTag}
           {...rest}
           ref={ref}
         />
@@ -171,7 +171,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
         showDivider={showDivider}
         hasError={hasError}
         highlight={highlight}
-        cornerTag={cornerTag}
+        cornerTag={cardCornerTag}
       >
         <div
           className={classNames('ods-list-selectable', className, {
