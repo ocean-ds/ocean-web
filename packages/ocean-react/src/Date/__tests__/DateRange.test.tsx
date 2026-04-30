@@ -18,6 +18,30 @@ import {
   LIST_DISABLED_MESSAGE,
 } from '../utils/testHelpers';
 
+// Pin `new Date()` (no-args) to a fixed mid-month date so day-of-month
+// arithmetic (TODAY ± 1) never crosses month boundaries — tests broke on
+// the 30/31. Other Date uses (parsing, Date.now, timers) stay real so
+// waitFor and setTimeout-based behavior keeps working.
+const RealDate = global.Date;
+const FIXED_NOW_MS = new RealDate(2025, 5, 15, 12, 0, 0).getTime();
+
+class PinnedDate extends RealDate {
+  constructor(...args: unknown[]) {
+    if (args.length === 0) {
+      super(FIXED_NOW_MS);
+    } else {
+      // @ts-expect-error - forwarding variadic args to Date constructor
+      super(...args);
+    }
+  }
+}
+
+(global as { Date: DateConstructor }).Date = PinnedDate as DateConstructor;
+
+afterAll(() => {
+  (global as { Date: DateConstructor }).Date = RealDate;
+});
+
 const TODAY = new Date().getDate();
 const YESTERDAY = TODAY - 1;
 const TOMORROW = TODAY + 1;

@@ -67,7 +67,9 @@ export async function expectTooltipNotToAppearAsync(): Promise<void> {
 }
 
 export const commonDisabledDaysProps = {
-  disabledDays: [{ before: new Date() }] as Matcher[],
+  get disabledDays(): Matcher[] {
+    return [{ before: new Date() }] as Matcher[];
+  },
   disabledDaysMessage: 'Este dia está bloqueado',
 };
 
