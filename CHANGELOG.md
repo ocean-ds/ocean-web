@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.135.2](https://github.com/ocean-ds/ocean-web/compare/v1.135.1...v1.135.2) (2026-04-30)
+
+### Bug Fixes
+
+- **list-container:** card border color should match Figma spec ([#1245](https://github.com/ocean-ds/ocean-web/issues/1245)) não ([fabf3ba](https://github.com/ocean-ds/ocean-web/commit/fabf3baa989c4fe270cd9292d6e47d074eac5807)), closes [#CED1E1](https://github.com/ocean-ds/ocean-web/issues/CED1E1) [#E0E2](https://github.com/ocean-ds/ocean-web/issues/E0E2)
+
 ## [1.135.1](https://github.com/ocean-ds/ocean-web/compare/v1.135.0...v1.135.1) (2026-04-14)
 
 ### Bug Fixes
