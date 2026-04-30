@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-docs",
-  "version": "1.135.2",
+  "version": "1.135.3",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
@@ -20,7 +20,7 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@mdx-js/react": "^3.0.0",
     "@useblu/ocean-core": "^1.135.2",
-    "@useblu/ocean-react": "^1.135.0",
+    "@useblu/ocean-react": "^1.135.3",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.3.1",

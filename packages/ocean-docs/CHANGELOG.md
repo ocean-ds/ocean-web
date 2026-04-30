@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.135.3](https://github.com/ocean-ds/ocean-web/compare/v1.135.2...v1.135.3) (2026-04-30)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
 ## [1.135.2](https://github.com/ocean-ds/ocean-web/compare/v1.135.1...v1.135.2) (2026-04-30)
 
 **Note:** Version bump only for package @useblu/ocean-docs
