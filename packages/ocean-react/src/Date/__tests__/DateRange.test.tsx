@@ -22,7 +22,7 @@ import {
 // arithmetic (TODAY ± 1) never crosses month boundaries — tests broke on
 // the 30/31. Other Date uses (parsing, Date.now, timers) stay real so
 // waitFor and setTimeout-based behavior keeps working.
-const RealDate = global.Date;
+const RealDate = globalThis.Date;
 const FIXED_NOW_MS = new RealDate(2025, 5, 15, 12, 0, 0).getTime();
 
 class PinnedDate extends RealDate {
@@ -36,10 +36,10 @@ class PinnedDate extends RealDate {
   }
 }
 
-(global as { Date: DateConstructor }).Date = PinnedDate as DateConstructor;
+(globalThis as { Date: DateConstructor }).Date = PinnedDate as DateConstructor;
 
 afterAll(() => {
-  (global as { Date: DateConstructor }).Date = RealDate;
+  (globalThis as { Date: DateConstructor }).Date = RealDate;
 });
 
 const TODAY = new Date().getDate();
