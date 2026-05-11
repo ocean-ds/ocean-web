@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.136.0](https://github.com/ocean-ds/ocean-web/compare/v1.135.3...v1.136.0) (2026-05-11)
+
+### Features
+
+- **list-selectable:** add cornerTag prop with Highlight Corner Tag (MR-490) ([#1244](https://github.com/ocean-ds/ocean-web/issues/1244)) ([d30ed92](https://github.com/ocean-ds/ocean-web/commit/d30ed92d41b2837a42749ca0056314b6cda9243f)), closes [/github.com/Pagnet/pagnet/issues/16178#issuecomment-4343595459](https://github.com//github.com/Pagnet/pagnet/issues/16178/issues/issuecomment-4343595459)
+
 ## [1.135.3](https://github.com/ocean-ds/ocean-web/compare/v1.135.2...v1.135.3) (2026-04-30)
 
 **Note:** Version bump only for package root
