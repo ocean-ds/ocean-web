@@ -10,8 +10,9 @@ import ListReadOnly from '../ListReadOnly/ListReadOnly';
 import ListContainer, {
   ListContainerHighlight,
 } from '../_shared/components/ListContainer';
+import { CornerTagProps } from '../CornerTag/CornerTag';
 
-interface ListSelectableProps {
+interface ListSelectableBaseProps {
   /** Required main title displayed on the list item. */
   title: string;
   /** Optional secondary text rendered below the title. */
@@ -38,8 +39,6 @@ interface ListSelectableProps {
   indicator?: ReactNode;
   /** Visual state applied to the text content (`default`, `warning`, etc.). */
   status?: ContentListProps['type'];
-  /** Layout style of the wrapper: `text` keeps inline divider, `card` shows borders. */
-  type?: 'card' | 'text';
   /** Platform context used to adjust spacing (web or app). */
   platform?: 'web' | 'app';
   /** If the selectable is disabled, the input will be hidden and the content will be rendered as ListReadOnly. */
@@ -48,9 +47,27 @@ interface ListSelectableProps {
   highlight?: ListContainerHighlight;
 }
 
+type ListSelectableCardProps = ListSelectableBaseProps & {
+  /** Layout style of the wrapper: `text` keeps inline divider, `card` shows borders. */
+  type?: 'card';
+  /**
+   * Renders a Highlight Corner Tag at the top-right corner of the card.
+   * Only available when `type='card'`.
+   */
+  cornerTag?: CornerTagProps;
+};
+
+type ListSelectableTextProps = ListSelectableBaseProps & {
+  type: 'text';
+  /** Corner Tag is not supported in `type='text'` (no visual container to anchor it). */
+  cornerTag?: never;
+};
+
+type ListSelectableProps = ListSelectableCardProps | ListSelectableTextProps;
+
 const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       title,
       description,
       caption,
@@ -68,10 +85,10 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       status = 'default',
       type = 'card',
       platform = 'web',
+      cornerTag,
       ...rest
-    },
-    ref
-  ) => {
+    } = props as ListSelectableCardProps;
+    const cardCornerTag = type === 'card' ? cornerTag : undefined;
     const hasError = useMemo(
       () => radio?.error || checkbox?.error,
       [radio?.error, checkbox?.error]
@@ -141,6 +158,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           caption={caption}
           strikethroughDescription={strikethroughDescription}
           highlight={highlight}
+          cornerTag={cardCornerTag}
           {...rest}
           ref={ref}
         />
@@ -153,6 +171,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
         showDivider={showDivider}
         hasError={hasError}
         highlight={highlight}
+        cornerTag={cardCornerTag}
       >
         <div
           className={classNames('ods-list-selectable', className, {

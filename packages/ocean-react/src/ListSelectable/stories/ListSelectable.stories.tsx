@@ -658,6 +658,57 @@ export const SelectableDisabled: Story = {
   ),
 };
 
+// Story: Com Corner Tag
+export const WithCornerTag: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div style={storyStyles.container}>
+      <ListSelectable
+        title="Plano Premium"
+        description="R$ 49,90/mês"
+        checkbox={{ id: 'corner-tag-1' }}
+        cornerTag={{ label: 'Recomendado' }}
+      />
+      <ListSelectable
+        title="Plano Plus"
+        description="R$ 79,90/mês"
+        radio={{ id: 'corner-tag-2', name: 'plan' }}
+        cornerTag={{ label: 'Novo', color: 'complementaryPure' }}
+      />
+      <ListSelectable
+        title="Plano com inline e corner"
+        description="Coexistência das duas tags"
+        checkbox={{ id: 'corner-tag-3' }}
+        indicator={
+          <Tag type="positive" size="small" setIconOff>
+            Aprovado
+          </Tag>
+        }
+        cornerTag={{ label: 'Mais vendido' }}
+      />
+      <ListSelectable
+        title="Plano selecionado"
+        description="Corner Tag persiste em selected"
+        checkbox={{ id: 'corner-tag-4', checked: true }}
+        cornerTag={{ label: 'Em breve', color: 'complementaryPure' }}
+      />
+      <ListSelectable
+        title="Plano desabilitado"
+        description="Corner Tag mantém aparência normal"
+        disabled
+        checkbox={{ id: 'corner-tag-5', disabled: true }}
+        cornerTag={{ label: 'Recomendado' }}
+      />
+      <ListSelectable
+        title="Plano com label longo"
+        description="Corner Tag expande sem truncamento"
+        checkbox={{ id: 'corner-tag-6' }}
+        cornerTag={{ label: 'Texto muito longo de exemplo' }}
+      />
+    </div>
+  ),
+};
+
 // Story: Com Highlight
 export const WithHighlight: Story = {
   parameters: { controls: { disable: true } },
