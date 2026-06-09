@@ -110,7 +110,7 @@ describe('Banner', () => {
   test('applies custom backgroundColor via inline style', () => {
     setup({ backgroundColor: 'rgb(255, 0, 0)' });
     const banner = document.querySelector('.ods-banner') as HTMLElement;
-    expect(banner.style.backgroundColor).toBe('rgb(255, 0, 0)');
+    expect(banner).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   test('forwards extra className', () => {

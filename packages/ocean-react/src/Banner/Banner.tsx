@@ -105,9 +105,9 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
 
             {visibleButtons && visibleButtons.length > 0 && (
               <div className="ods-banner__actions">
-                {visibleButtons.map((btn, index) => (
+                {visibleButtons.map((btn) => (
                   <Button
-                    key={index}
+                    key={btn.label}
                     size="sm"
                     variant={buttonVariant}
                     onClick={btn.onClick}
