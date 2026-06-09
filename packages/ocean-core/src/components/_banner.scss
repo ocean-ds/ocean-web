@@ -61,6 +61,10 @@
       flex-shrink: 0;
       width: 25%;
 
+      @include media-breakpoint-down(md) {
+        width: 100%;
+      }
+
       .ods-banner__image {
         display: block;
         height: 100%;
@@ -131,21 +135,7 @@
   &--small {
     .ods-banner__body {
       flex-direction: row;
-    }
-
-    @include media-breakpoint-down(md) {
-      .ods-banner__body {
-        flex-direction: column;
-      }
-
-      .ods-banner__image-wrapper--side {
-        width: 100%;
-
-        .ods-banner__image {
-          height: auto;
-          max-height: 160px;
-        }
-      }
+      flex-wrap: wrap;
     }
   }
 }
