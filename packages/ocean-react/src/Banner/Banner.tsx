@@ -73,6 +73,10 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       ...(backgroundColor ? { backgroundColor } : {}),
     };
 
+    const imageEl = image ? (
+      <img className="ods-banner__image" src={image} alt="" aria-hidden="true" />
+    ) : null;
+
     return (
       <div
         ref={ref}
@@ -85,14 +89,9 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         )}
         style={inlineStyle}
       >
-        {image && size === 'large' && (
+        {imageEl && size === 'large' && (
           <div className="ods-banner__image-wrapper ods-banner__image-wrapper--top">
-            <img
-              className="ods-banner__image"
-              src={image}
-              alt=""
-              aria-hidden="true"
-            />
+            {imageEl}
           </div>
         )}
 
@@ -120,14 +119,9 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
             )}
           </div>
 
-          {image && size === 'small' && (
+          {imageEl && size === 'small' && (
             <div className="ods-banner__image-wrapper ods-banner__image-wrapper--side">
-              <img
-                className="ods-banner__image"
-                src={image}
-                alt=""
-                aria-hidden="true"
-              />
+              {imageEl}
             </div>
           )}
         </div>

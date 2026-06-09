@@ -28,19 +28,15 @@ describe('Banner', () => {
     expect(screen.queryByText('Some description text')).not.toBeInTheDocument();
   });
 
-  test('renders the image when provided (large)', () => {
-    setup({ size: 'large', image: 'http://example.com/img.png' });
-    const img = document.querySelector('.ods-banner__image') as HTMLImageElement;
-    expect(img).toBeInTheDocument();
-    expect(img.src).toContain('http://example.com/img.png');
-  });
-
-  test('renders the image when provided (small)', () => {
-    setup({ size: 'small', image: 'http://example.com/img.png' });
-    const img = document.querySelector('.ods-banner__image') as HTMLImageElement;
-    expect(img).toBeInTheDocument();
-    expect(img.src).toContain('http://example.com/img.png');
-  });
+  test.each(['large', 'small'] as const)(
+    'renders the image when provided (%s)',
+    (size) => {
+      setup({ size, image: 'http://example.com/img.png' });
+      const img = document.querySelector('.ods-banner__image') as HTMLImageElement;
+      expect(img).toBeInTheDocument();
+      expect(img.src).toContain('http://example.com/img.png');
+    }
+  );
 
   test('does not render the image area when image is absent', () => {
     setup();
@@ -90,52 +86,25 @@ describe('Banner', () => {
     expect(mockFn).toHaveBeenCalledTimes(1);
   });
 
-  test('applies size class for large', () => {
-    setup({ size: 'large' });
-    expect(document.querySelector('.ods-banner--large')).toBeInTheDocument();
+  test.each(['large', 'small'] as const)('applies %s size class', (size) => {
+    setup({ size });
+    expect(document.querySelector(`.ods-banner--${size}`)).toBeInTheDocument();
   });
 
-  test('applies size class for small', () => {
-    setup({ size: 'small' });
-    expect(document.querySelector('.ods-banner--small')).toBeInTheDocument();
-  });
+  test.each(['default', 'warning', 'negative', 'emphasys'] as const)(
+    'applies %s type class',
+    (type) => {
+      setup({ type });
+      expect(document.querySelector(`.ods-banner--${type}`)).toBeInTheDocument();
+    }
+  );
 
-  test('applies default type class', () => {
-    setup({ type: 'default' });
-    expect(document.querySelector('.ods-banner--default')).toBeInTheDocument();
-  });
-
-  test('applies warning type class', () => {
-    setup({ type: 'warning' });
-    expect(document.querySelector('.ods-banner--warning')).toBeInTheDocument();
-  });
-
-  test('applies negative type class', () => {
-    setup({ type: 'negative' });
-    expect(document.querySelector('.ods-banner--negative')).toBeInTheDocument();
-  });
-
-  test('applies emphasys type class', () => {
-    setup({ type: 'emphasys' });
-    expect(document.querySelector('.ods-banner--emphasys')).toBeInTheDocument();
-  });
-
-  test('renders inverse button variant for emphasys type', () => {
-    setup({
-      type: 'emphasys',
-      buttons: [{ label: 'Emphasys Btn', onClick: jest.fn() }],
-    });
-    const btn = document.querySelector('.ods-btn--inverse');
-    expect(btn).toBeInTheDocument();
-  });
-
-  test('renders primary button variant for default type', () => {
-    setup({
-      type: 'default',
-      buttons: [{ label: 'Default Btn', onClick: jest.fn() }],
-    });
-    const btn = document.querySelector('.ods-btn--primary');
-    expect(btn).toBeInTheDocument();
+  test.each([
+    ['emphasys', '.ods-btn--inverse'],
+    ['default', '.ods-btn--primary'],
+  ] as const)('renders correct button variant for %s type', (type, selector) => {
+    setup({ type, buttons: [{ label: 'Btn', onClick: jest.fn() }] });
+    expect(document.querySelector(selector)).toBeInTheDocument();
   });
 
   test('applies custom backgroundColor via inline style', () => {
@@ -149,17 +118,11 @@ describe('Banner', () => {
     expect(document.querySelector('.my-custom-class')).toBeInTheDocument();
   });
 
-  test('renders image in top wrapper for large size', () => {
-    setup({ size: 'large', image: 'http://example.com/img.png' });
-    expect(
-      document.querySelector('.ods-banner__image-wrapper--top')
-    ).toBeInTheDocument();
-  });
-
-  test('renders image in side wrapper for small size', () => {
-    setup({ size: 'small', image: 'http://example.com/img.png' });
-    expect(
-      document.querySelector('.ods-banner__image-wrapper--side')
-    ).toBeInTheDocument();
+  test.each([
+    ['large', '.ods-banner__image-wrapper--top'],
+    ['small', '.ods-banner__image-wrapper--side'],
+  ] as const)('renders image in correct wrapper for %s size', (size, selector) => {
+    setup({ size, image: 'http://example.com/img.png' });
+    expect(document.querySelector(selector)).toBeInTheDocument();
   });
 });
