@@ -42,43 +42,41 @@
     }
   }
 
-  // ── Image ─────────────────────────────────────────────────────────────────
+  // ── Image wrappers (flattened to depth 1 to respect max-nesting-depth) ───
 
-  &__image-wrapper {
-    &--top {
+  &__image-wrapper--top {
+    line-height: 0;
+    width: 100%;
+  }
+
+  &__image-wrapper--top &__image {
+    display: block;
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__image-wrapper--side {
+    flex-shrink: 0;
+    width: 25%;
+
+    @include media-breakpoint-down(md) {
       width: 100%;
-      line-height: 0;
-
-      .ods-banner__image {
-        display: block;
-        height: auto;
-        object-fit: cover;
-        width: 100%;
-      }
     }
+  }
 
-    &--side {
-      flex-shrink: 0;
-      width: 25%;
-
-      @include media-breakpoint-down(md) {
-        width: 100%;
-      }
-
-      .ods-banner__image {
-        display: block;
-        height: 100%;
-        object-fit: cover;
-        width: 100%;
-      }
-    }
+  &__image-wrapper--side &__image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
   }
 
   // ── Body ──────────────────────────────────────────────────────────────────
 
   &__body {
-    display: flex;
     align-items: stretch;
+    display: flex;
   }
 
   &__content {
