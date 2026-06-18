@@ -2,15 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Button from '../Button';
+import Typography from '../Typography';
 
-export type ButtonProps = {
-  /**
-   * The label text of the button.
-   */
+export type ActionProps = {
   label: string;
-  /**
-   * The action triggered when the button is clicked.
-   */
   onClick: () => void;
 };
 
@@ -18,9 +13,10 @@ export type BannerProps = {
   /**
    * Determines the layout of the banner.
    * - `large`: image on top (full-width), then title/description/buttons below.
-   * - `small`: image on the right (25% width), title/description/buttons on the left.
+   * - `small`: image on the right (82px width), title/description/buttons on the left.
+   * @default 'large'
    */
-  size: 'large' | 'small';
+  size?: 'large' | 'small';
   /**
    * Determines the visual type of the banner.
    * @default 'default'
@@ -39,39 +35,46 @@ export type BannerProps = {
    */
   image?: string;
   /**
-   * Optional array of buttons (max 2). When empty or absent, no buttons are rendered.
+   * Primary action button. Variant is derived from `type`.
    */
-  buttons?: ButtonProps[];
+  primaryAction?: ActionProps;
   /**
-   * Optional custom background color that overrides the type default.
+   * Secondary action button. Variant is derived from `type`.
    */
-  backgroundColor?: string;
+  secondaryAction?: ActionProps;
 } & React.ComponentPropsWithoutRef<'div'>;
+
+const PRIMARY_VARIANT_MAP = {
+  default: 'primary',
+  warning: 'primaryWarning',
+  negative: 'primaryCritical',
+  emphasys: 'secondary',
+} as const;
+
+const SECONDARY_VARIANT_MAP = {
+  default: 'tertiary',
+  warning: 'tertiaryWarning',
+  negative: 'tertiaryCritical',
+  emphasys: 'inverse',
+} as const;
 
 const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
   (
     {
-      size,
+      size = 'large',
       type = 'default',
       title,
       description,
       image,
-      buttons,
-      backgroundColor,
+      primaryAction,
+      secondaryAction,
       className,
-      style,
       ...rest
     },
     ref
   ) => {
     const isEmphasys = type === 'emphasys';
-    const buttonVariant = isEmphasys ? 'inverse' : 'primary';
-    const visibleButtons = buttons?.slice(0, 2);
-
-    const inlineStyle: React.CSSProperties = {
-      ...style,
-      ...(backgroundColor ? { backgroundColor } : {}),
-    };
+    const hasActions = primaryAction || secondaryAction;
 
     const imageEl = image ? (
       <img className="ods-banner__image" src={image} alt="" aria-hidden="true" />
@@ -87,7 +90,6 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
           `ods-banner--${type}`,
           className
         )}
-        style={inlineStyle}
       >
         {imageEl && size === 'large' && (
           <div className="ods-banner__image-wrapper ods-banner__image-wrapper--top">
@@ -97,24 +99,44 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
 
         <div className="ods-banner__body">
           <div className="ods-banner__content">
-            <div className="ods-banner__title">{title}</div>
+            <Typography
+              variant="heading4"
+              inverse={isEmphasys}
+              className="ods-banner__title"
+            >
+              {title}
+            </Typography>
 
             {description && (
-              <div className="ods-banner__description">{description}</div>
+              <Typography
+                variant="description"
+                inverse={isEmphasys}
+                className="ods-banner__description"
+              >
+                {description}
+              </Typography>
             )}
 
-            {visibleButtons && visibleButtons.length > 0 && (
+            {hasActions && (
               <div className="ods-banner__actions">
-                {visibleButtons.map((btn) => (
+                {primaryAction && (
                   <Button
-                    key={btn.label}
                     size="sm"
-                    variant={buttonVariant}
-                    onClick={btn.onClick}
+                    variant={PRIMARY_VARIANT_MAP[type]}
+                    onClick={primaryAction.onClick}
                   >
-                    {btn.label}
+                    {primaryAction.label}
                   </Button>
-                ))}
+                )}
+                {secondaryAction && (
+                  <Button
+                    size="sm"
+                    variant={SECONDARY_VARIANT_MAP[type]}
+                    onClick={secondaryAction.onClick}
+                  >
+                    {secondaryAction.label}
+                  </Button>
+                )}
               </div>
             )}
           </div>

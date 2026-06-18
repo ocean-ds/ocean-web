@@ -5,7 +5,6 @@ import Banner, { BannerProps } from '../Banner';
 
 const setup = (props: Partial<BannerProps> = {}) => {
   const defaultProps: BannerProps = {
-    size: 'large',
     title: 'Test Title',
     ...props,
   };
@@ -43,47 +42,35 @@ describe('Banner', () => {
     expect(document.querySelector('.ods-banner__image')).not.toBeInTheDocument();
   });
 
-  test('renders buttons when provided', () => {
-    setup({
-      buttons: [
-        { label: 'Button One', onClick: jest.fn() },
-        { label: 'Button Two', onClick: jest.fn() },
-      ],
-    });
-    expect(screen.getByText('Button One')).toBeInTheDocument();
-    expect(screen.getByText('Button Two')).toBeInTheDocument();
+  test('renders primaryAction button when provided', () => {
+    setup({ primaryAction: { label: 'Primary', onClick: jest.fn() } });
+    expect(screen.getByText('Primary')).toBeInTheDocument();
   });
 
-  test('does not render buttons when buttons prop is absent', () => {
+  test('renders both actions when provided', () => {
+    setup({
+      primaryAction: { label: 'Primary', onClick: jest.fn() },
+      secondaryAction: { label: 'Secondary', onClick: jest.fn() },
+    });
+    expect(screen.getByText('Primary')).toBeInTheDocument();
+    expect(screen.getByText('Secondary')).toBeInTheDocument();
+  });
+
+  test('does not render actions area when no actions are provided', () => {
     setup();
     expect(document.querySelector('.ods-banner__actions')).not.toBeInTheDocument();
   });
 
-  test('does not render buttons when buttons array is empty', () => {
-    setup({ buttons: [] });
-    expect(document.querySelector('.ods-banner__actions')).not.toBeInTheDocument();
-  });
-
-  test('renders at most 2 buttons even when more are provided', () => {
-    setup({
-      buttons: [
-        { label: 'Btn 1', onClick: jest.fn() },
-        { label: 'Btn 2', onClick: jest.fn() },
-        { label: 'Btn 3', onClick: jest.fn() },
-      ],
-    });
-    const buttons = document.querySelectorAll('.ods-banner__actions .ods-btn');
-    expect(buttons.length).toBe(2);
-    expect(screen.queryByText('Btn 3')).not.toBeInTheDocument();
-  });
-
-  test('calls onClick when a button is clicked', () => {
+  test('calls onClick when primaryAction button is clicked', () => {
     const mockFn = jest.fn();
-    setup({
-      buttons: [{ label: 'Click Me', onClick: mockFn }],
-    });
+    setup({ primaryAction: { label: 'Click Me', onClick: mockFn } });
     fireEvent.click(screen.getByText('Click Me'));
     expect(mockFn).toHaveBeenCalledTimes(1);
+  });
+
+  test('defaults size to large when not specified', () => {
+    setup();
+    expect(document.querySelector('.ods-banner--large')).toBeInTheDocument();
   });
 
   test.each(['large', 'small'] as const)('applies %s size class', (size) => {
@@ -100,18 +87,22 @@ describe('Banner', () => {
   );
 
   test.each([
-    ['emphasys', '.ods-btn--inverse'],
-    ['default', '.ods-btn--primary'],
-  ] as const)('renders correct button variant for %s type', (type, selector) => {
-    setup({ type, buttons: [{ label: 'Btn', onClick: jest.fn() }] });
-    expect(document.querySelector(selector)).toBeInTheDocument();
-  });
-
-  test('applies custom backgroundColor via inline style', () => {
-    setup({ backgroundColor: 'rgb(255, 0, 0)' });
-    const banner = document.querySelector('.ods-banner') as HTMLElement;
-    expect(banner).toHaveStyle('background-color: rgb(255, 0, 0)');
-  });
+    ['default', '.ods-btn--primary', '.ods-btn--tertiary'],
+    ['warning', '.ods-btn--primary-warning', '.ods-btn--tertiary-warning'],
+    ['negative', '.ods-btn--primary-critical', '.ods-btn--tertiary-critical'],
+    ['emphasys', '.ods-btn--secondary', '.ods-btn--inverse'],
+  ] as const)(
+    'renders correct button variants for %s type',
+    (type, primarySelector, secondarySelector) => {
+      setup({
+        type,
+        primaryAction: { label: 'Primary', onClick: jest.fn() },
+        secondaryAction: { label: 'Secondary', onClick: jest.fn() },
+      });
+      expect(document.querySelector(primarySelector)).toBeInTheDocument();
+      expect(document.querySelector(secondarySelector)).toBeInTheDocument();
+    }
+  );
 
   test('forwards extra className', () => {
     setup({ className: 'my-custom-class' });

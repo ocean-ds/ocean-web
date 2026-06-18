@@ -1,5 +1,5 @@
 .ods-banner {
-  border-radius: $border-radius-md;
+  border-radius: $border-radius-sm;
   font-family: $font-family-base;
   overflow: hidden;
   width: 100%;
@@ -8,37 +8,21 @@
 
   &--default {
     background-color: $color-interface-light-up;
-
-    .ods-banner__title,
-    .ods-banner__description {
-      color: $color-interface-dark-deep;
-    }
   }
 
   &--warning {
     background-color: $color-status-warning-up;
-
-    .ods-banner__title,
-    .ods-banner__description {
-      color: $color-interface-dark-deep;
-    }
   }
 
   &--negative {
     background-color: $color-status-negative-up;
-
-    .ods-banner__title,
-    .ods-banner__description {
-      color: $color-interface-dark-deep;
-    }
   }
 
   &--emphasys {
     background-color: $color-brand-primary-pure;
 
-    .ods-banner__title,
-    .ods-banner__description {
-      color: $color-interface-light-pure;
+    .ods-banner__description .ods-typography--inverse {
+      color: $color-interface-light-up;
     }
   }
 
@@ -58,7 +42,7 @@
 
   &__image-wrapper--side {
     flex-shrink: 0;
-    width: 25%;
+    width: 82px;
 
     @include media-breakpoint-down(md) {
       width: 100%;
@@ -83,32 +67,13 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: $spacing-stack-xxs;
     padding: $spacing-inset-sm;
-  }
-
-  // ── Title ─────────────────────────────────────────────────────────────────
-
-  &__title {
-    font-size: $font-size-sm;
-    font-weight: $font-weight-extrabold;
-    line-height: $line-height-medium;
-
-    @include media-breakpoint-down(md) {
-      font-size: $font-size-xs;
-    }
   }
 
   // ── Description ───────────────────────────────────────────────────────────
 
   &__description {
-    font-size: $font-size-xxs;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-comfy;
-
-    @include media-breakpoint-down(md) {
-      font-size: $font-size-xxxs;
-    }
+    margin-top: $spacing-stack-xxxs;
   }
 
   // ── Actions ───────────────────────────────────────────────────────────────
@@ -117,12 +82,16 @@
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-inline-xs;
-    margin-top: $spacing-stack-xxxs;
+    margin-top: $spacing-stack-xxs-extra;
   }
 
   // ── Size: large ───────────────────────────────────────────────────────────
 
   &--large {
+    .ods-banner__actions {
+      margin-top: $spacing-stack-sm;
+    }
+
     .ods-banner__body {
       flex-direction: column;
     }
