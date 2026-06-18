@@ -24,7 +24,7 @@ import Banner from '@useblu/ocean-react/Banner';
 ### Importação de tipos TypeScript
 
 ```tsx
-import type { BannerProps } from '@useblu/ocean-react';
+import type { BannerProps, ActionProps } from '@useblu/ocean-react';
 ```
 
 ## Playground Interativo
@@ -45,10 +45,9 @@ Para documentação técnica detalhada, exemplos de uso e API completa, consulte
 
 ```tsx live
 <Banner
-  size="large"
   title="Título do Banner"
   description="Mensagem descritiva do banner."
-  buttons={[{ label: 'Saiba Mais', onClick: () => console.log('clicked') }]}
+  primaryAction={{ label: 'Saiba Mais', onClick: () => console.log('clicked') }}
 />
 ```
 
@@ -58,8 +57,8 @@ Para documentação técnica detalhada, exemplos de uso e API completa, consulte
 
 O `size` define o layout do banner:
 
-- **`large`** — a imagem ocupa a largura total acima do conteúdo.
-- **`small`** — a imagem fica à direita (25% da largura) e o conteúdo à esquerda.
+- **`large`** *(padrão)* — a imagem ocupa a largura total acima do conteúdo.
+- **`small`** — a imagem fica à direita (82px) e o conteúdo à esquerda.
 
 ```tsx live
 <Banner
@@ -67,7 +66,7 @@ O `size` define o layout do banner:
   title="Banner Large"
   description="Imagem no topo, conteúdo abaixo."
   image="https://placehold.co/800x200"
-  buttons={[{ label: 'Ação', onClick: () => {} }]}
+  primaryAction={{ label: 'Ação', onClick: () => {} }}
 />
 ```
 
@@ -77,26 +76,42 @@ O `size` define o layout do banner:
   title="Banner Small"
   description="Imagem à direita, conteúdo à esquerda."
   image="https://placehold.co/200x150"
-  buttons={[{ label: 'Ação', onClick: () => {} }]}
+  primaryAction={{ label: 'Ação', onClick: () => {} }}
 />
 ```
 
 ### Tipos (type)
 
-| Tipo        | Cor de fundo                   | Cor do texto                |
-| ----------- | ------------------------------ | --------------------------- |
-| `default`   | `$color-interface-light-up`    | `$color-interface-dark-deep` |
-| `warning`   | `$color-status-warning-up`     | `$color-interface-dark-deep` |
-| `negative`  | `$color-status-negative-up`    | `$color-interface-dark-deep` |
-| `emphasys`  | `$color-brand-primary-pure`    | `$color-interface-light-pure` |
+| Tipo        | Cor de fundo                   | Título                        | Descrição                     |
+| ----------- | ------------------------------ | ----------------------------- | ----------------------------- |
+| `default`   | `$color-interface-light-up`    | `$color-interface-dark-deep`  | `$color-interface-dark-down`  |
+| `warning`   | `$color-status-warning-up`     | `$color-interface-dark-deep`  | `$color-interface-dark-down`  |
+| `negative`  | `$color-status-negative-up`    | `$color-interface-dark-deep`  | `$color-interface-dark-down`  |
+| `emphasys`  | `$color-brand-primary-pure`    | `$color-interface-light-pure` | `$color-interface-light-up`   |
 
-Para o tipo `emphasys`, os botões usam a variante `inverse`.
+### Variantes de botão por tipo
+
+A variante dos botões é derivada automaticamente do `type` — não é necessário especificá-la manualmente.
+
+| Tipo       | `primaryAction`   | `secondaryAction`  |
+| ---------- | ----------------- | ------------------ |
+| `default`  | `primary`         | `tertiary`         |
+| `warning`  | `primaryWarning`  | `tertiaryWarning`  |
+| `negative` | `primaryCritical` | `tertiaryCritical` |
+| `emphasys` | `secondary`       | `tertiary` (texto `$color-interface-light-pure`) |
 
 <StorybookEmbed
-  storyId="components-banner--types"
+  storyId="components-banner--with-primary-and-secondary-actions"
   height={700}
   showToolbar={false}
-  title="Banner - Tipos"
+  title="Banner - Primária e Secundária"
+/>
+
+<StorybookEmbed
+  storyId="components-banner--with-primary-action-only"
+  height={700}
+  showToolbar={false}
+  title="Banner - Apenas Primária"
 />
 
 ### Sem imagem
@@ -105,20 +120,18 @@ Quando a prop `image` é omitida, nenhuma área de imagem é renderizada.
 
 ```tsx live
 <Banner
-  size="large"
   title="Banner sem Imagem"
   description="Apenas título, descrição e botões."
-  buttons={[{ label: 'Ação', onClick: () => {} }]}
+  primaryAction={{ label: 'Ação', onClick: () => {} }}
 />
 ```
 
 ### Sem botões
 
-Quando a prop `buttons` é omitida ou vazia, nenhum botão é renderizado.
+Quando `primaryAction` e `secondaryAction` são omitidos, nenhum botão é renderizado.
 
 ```tsx live
 <Banner
-  size="large"
   title="Banner sem Botões"
   description="Apenas título e descrição."
   image="https://placehold.co/800x200"
@@ -131,16 +144,16 @@ Quando a prop `buttons` é omitida ou vazia, nenhum botão é renderizado.
 
 | Prop              | Tipo                                                   | Padrão      | Descrição                                                                               |
 | ----------------- | ------------------------------------------------------ | ----------- | --------------------------------------------------------------------------------------- |
-| `size`            | `'large' \| 'small'`                                   | —           | Layout do banner. **Obrigatório.**                                                       |
-| `type`            | `'default' \| 'warning' \| 'negative' \| 'emphasys'`  | `'default'` | Tipo visual com cores do Ocean DS.                                                      |
 | `title`           | `string`                                               | —           | Título principal exibido no banner. **Obrigatório.**                                    |
+| `size`            | `'large' \| 'small'`                                   | `'large'`   | Layout do banner.                                                                       |
+| `type`            | `'default' \| 'warning' \| 'negative' \| 'emphasys'`  | `'default'` | Tipo visual com cores do Ocean DS.                                                      |
 | `description`     | `string`                                               | —           | Texto descritivo abaixo do título (opcional).                                           |
 | `image`           | `string`                                               | —           | URL da imagem. Quando ausente, a área de imagem não é renderizada.                      |
-| `buttons`         | `ButtonProps[]`                                        | —           | Array de botões (máx. 2). Quando vazio ou ausente, nenhum botão é renderizado.         |
-| `backgroundColor` | `string`                                               | —           | Cor de fundo customizada que sobrescreve o padrão do tipo selecionado.                  |
+| `primaryAction`   | `ActionProps`                                          | —           | Ação primária. Variante do botão derivada do `type`.                                    |
+| `secondaryAction` | `ActionProps`                                          | —           | Ação secundária. Variante do botão derivada do `type`.                                  |
 | `className`       | `string`                                               | —           | Classes CSS adicionais para customização.                                               |
 
-### ButtonProps
+### ActionProps
 
 | Prop      | Tipo          | Descrição                                          |
 | --------- | ------------- | -------------------------------------------------- |
