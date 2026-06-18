@@ -21,6 +21,10 @@
   &--emphasys {
     background-color: $color-brand-primary-pure;
 
+    .ods-banner__actions .ods-btn--tertiary {
+      color: $color-interface-light-pure;
+    }
+
     .ods-banner__description .ods-typography--inverse {
       color: $color-interface-light-up;
     }
@@ -88,10 +92,6 @@
   // ── Size: large ───────────────────────────────────────────────────────────
 
   &--large {
-    .ods-banner__actions {
-      margin-top: $spacing-stack-sm;
-    }
-
     .ods-banner__body {
       flex-direction: column;
     }

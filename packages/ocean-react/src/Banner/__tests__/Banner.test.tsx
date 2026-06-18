@@ -90,7 +90,7 @@ describe('Banner', () => {
     ['default', '.ods-btn--primary', '.ods-btn--tertiary'],
     ['warning', '.ods-btn--primary-warning', '.ods-btn--tertiary-warning'],
     ['negative', '.ods-btn--primary-critical', '.ods-btn--tertiary-critical'],
-    ['emphasys', '.ods-btn--secondary', '.ods-btn--inverse'],
+    ['emphasys', '.ods-btn--secondary', '.ods-btn--tertiary'],
   ] as const)(
     'renders correct button variants for %s type',
     (type, primarySelector, secondarySelector) => {

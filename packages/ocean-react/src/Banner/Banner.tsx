@@ -55,7 +55,7 @@ const SECONDARY_VARIANT_MAP = {
   default: 'tertiary',
   warning: 'tertiaryWarning',
   negative: 'tertiaryCritical',
-  emphasys: 'inverse',
+  emphasys: 'tertiary',
 } as const;
 
 const Banner = React.forwardRef<HTMLDivElement, BannerProps>(

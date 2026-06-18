@@ -72,6 +72,84 @@ export const Usage: Story = {
   ],
 };
 
+export const WithPrimaryAndSecondaryActions: Story = {
+  name: 'With Primary & Secondary Actions',
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px' }}
+    >
+      <Banner
+        type="default"
+        title="Tipo Default"
+        description="Fundo claro com texto escuro — para comunicações gerais."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('default primary') }}
+        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('default secondary') }}
+      />
+      <Banner
+        type="warning"
+        title="Tipo Warning"
+        description="Fundo amarelo de atenção — para avisos importantes."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('warning primary') }}
+        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('warning secondary') }}
+      />
+      <Banner
+        type="negative"
+        title="Tipo Negative"
+        description="Fundo vermelho suave — para erros ou alertas críticos."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('negative primary') }}
+        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('negative secondary') }}
+      />
+      <Banner
+        type="emphasys"
+        title="Tipo Emphasys"
+        description="Fundo azul primário — para destaques e chamadas de ação importantes."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('emphasys primary') }}
+        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('emphasys secondary') }}
+      />
+    </div>
+  ),
+};
+
+export const WithPrimaryActionOnly: Story = {
+  name: 'With Primary Action Only',
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px' }}
+    >
+      <Banner
+        type="default"
+        title="Tipo Default"
+        description="Fundo claro com texto escuro — para comunicações gerais."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('default primary') }}
+      />
+      <Banner
+        type="warning"
+        title="Tipo Warning"
+        description="Fundo amarelo de atenção — para avisos importantes."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('warning primary') }}
+      />
+      <Banner
+        type="negative"
+        title="Tipo Negative"
+        description="Fundo vermelho suave — para erros ou alertas críticos."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('negative primary') }}
+      />
+      <Banner
+        type="emphasys"
+        title="Tipo Emphasys"
+        description="Fundo azul primário — para destaques e chamadas de ação importantes."
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('emphasys primary') }}
+      />
+    </div>
+  ),
+};
+
 export const Sizes: Story = {
   parameters: {
     controls: { disable: true },
@@ -86,6 +164,7 @@ export const Sizes: Story = {
         description="Imagem no topo (full-width), seguida de título, descrição e botões."
         image="https://placehold.co/800x200"
         primaryAction={{ label: 'Ação Primária', onClick: () => console.log('Large primary') }}
+        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('Large secondary') }}
       />
       <Banner
         size="small"
@@ -93,44 +172,7 @@ export const Sizes: Story = {
         description="Imagem à direita (82px), conteúdo à esquerda."
         image="https://placehold.co/200x150"
         primaryAction={{ label: 'Ação Primária', onClick: () => console.log('Small primary') }}
-      />
-    </div>
-  ),
-};
-
-export const Types: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px' }}
-    >
-      <Banner
-        type="default"
-        title="Tipo Default"
-        description="Fundo claro com texto escuro — para comunicações gerais."
-        primaryAction={{ label: 'Saiba Mais', onClick: () => console.log('default') }}
-      />
-      <Banner
-        type="warning"
-        title="Tipo Warning"
-        description="Fundo amarelo de atenção — para avisos importantes."
-        primaryAction={{ label: 'Entendi', onClick: () => console.log('warning') }}
-        secondaryAction={{ label: 'Cancelar', onClick: () => console.log('warning secondary') }}
-      />
-      <Banner
-        type="negative"
-        title="Tipo Negative"
-        description="Fundo vermelho suave — para erros ou alertas críticos."
-        primaryAction={{ label: 'Ver Detalhes', onClick: () => console.log('negative') }}
-      />
-      <Banner
-        type="emphasys"
-        title="Tipo Emphasys"
-        description="Fundo azul primário — para destaques e chamadas de ação importantes."
-        primaryAction={{ label: 'Começar', onClick: () => console.log('emphasys primary') }}
-        secondaryAction={{ label: 'Saiba Mais', onClick: () => console.log('emphasys secondary') }}
+        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('Small secondary') }}
       />
     </div>
   ),
@@ -145,7 +187,7 @@ export const WithoutImage: Story = {
       <Banner
         title="Banner sem Imagem"
         description="Quando a prop `image` é omitida, nenhuma área de imagem é renderizada."
-        primaryAction={{ label: 'Ação', onClick: () => console.log('no image') }}
+        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('no image') }}
       />
     </div>
   ),
