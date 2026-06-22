@@ -70,16 +70,14 @@
     padding: $spacing-inset-sm;
   }
 
-  // ── Title ─────────────────────────────────────────────────────────────────
+  // ── Typography overrides ──────────────────────────────────────────────────
 
-  &__title {
+  .ods-typography__heading4 {
     font-weight: $font-weight-bold;
     line-height: $line-height-medium;
   }
 
-  // ── Description ───────────────────────────────────────────────────────────
-
-  &__description {
+  .ods-typography__description {
     font-weight: $font-weight-medium;
     margin-top: $spacing-stack-xxxs;
   }
