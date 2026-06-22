@@ -9,14 +9,7 @@ export type ActionProps = {
   onClick: () => void;
 };
 
-export type BannerProps = {
-  /**
-   * Determines the layout of the banner.
-   * - `large`: image on top (full-width), then title/description/buttons below.
-   * - `small`: image on the right (82px width), title/description/buttons on the left.
-   * @default 'large'
-   */
-  size?: 'large' | 'small';
+type BannerCommonProps = {
   /**
    * Determines the visual type of the banner.
    * @default 'default'
@@ -31,10 +24,6 @@ export type BannerProps = {
    */
   description?: string;
   /**
-   * Optional image URL. When absent, no image area is rendered.
-   */
-  image?: string;
-  /**
    * Primary action button. Variant is derived from `type`.
    */
   primaryAction?: ActionProps;
@@ -43,6 +32,25 @@ export type BannerProps = {
    */
   secondaryAction?: ActionProps;
 } & React.ComponentPropsWithoutRef<'div'>;
+
+type BannerLargeProps = BannerCommonProps & {
+  /**
+   * Large layout: image on top (full-width), content below. Image is required.
+   * @default 'large'
+   */
+  size?: 'large';
+  /** Required image URL displayed above the content. */
+  image: string;
+};
+
+type BannerSmallProps = BannerCommonProps & {
+  /** Small layout: content on the left, optional image on the right (82px). */
+  size: 'small';
+  /** Optional image URL displayed to the right of the content. */
+  image?: string;
+};
+
+export type BannerProps = BannerLargeProps | BannerSmallProps;
 
 const PRIMARY_VARIANT_MAP = {
   default: 'primary',
@@ -77,7 +85,12 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     const hasActions = primaryAction || secondaryAction;
 
     const imageEl = image ? (
-      <img className="ods-banner__image" src={image} alt="" aria-hidden="true" />
+      <img
+        className="ods-banner__image"
+        src={image}
+        alt=""
+        aria-hidden="true"
+      />
     ) : null;
 
     return (

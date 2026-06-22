@@ -6,8 +6,9 @@ import Banner, { BannerProps } from '../Banner';
 const setup = (props: Partial<BannerProps> = {}) => {
   const defaultProps: BannerProps = {
     title: 'Test Title',
+    image: 'http://example.com/img.png',
     ...props,
-  };
+  } as BannerProps;
   return render(<Banner {...defaultProps} />);
 };
 
@@ -31,15 +32,19 @@ describe('Banner', () => {
     'renders the image when provided (%s)',
     (size) => {
       setup({ size, image: 'http://example.com/img.png' });
-      const img = document.querySelector('.ods-banner__image') as HTMLImageElement;
+      const img = document.querySelector(
+        '.ods-banner__image'
+      ) as HTMLImageElement;
       expect(img).toBeInTheDocument();
       expect(img.src).toContain('http://example.com/img.png');
     }
   );
 
-  test('does not render the image area when image is absent', () => {
-    setup();
-    expect(document.querySelector('.ods-banner__image')).not.toBeInTheDocument();
+  test('does not render the image area when image is absent (small)', () => {
+    setup({ size: 'small', image: undefined });
+    expect(
+      document.querySelector('.ods-banner__image')
+    ).not.toBeInTheDocument();
   });
 
   test('renders primaryAction button when provided', () => {
@@ -58,7 +63,9 @@ describe('Banner', () => {
 
   test('does not render actions area when no actions are provided', () => {
     setup();
-    expect(document.querySelector('.ods-banner__actions')).not.toBeInTheDocument();
+    expect(
+      document.querySelector('.ods-banner__actions')
+    ).not.toBeInTheDocument();
   });
 
   test('calls onClick when primaryAction button is clicked', () => {
@@ -82,7 +89,9 @@ describe('Banner', () => {
     'applies %s type class',
     (type) => {
       setup({ type });
-      expect(document.querySelector(`.ods-banner--${type}`)).toBeInTheDocument();
+      expect(
+        document.querySelector(`.ods-banner--${type}`)
+      ).toBeInTheDocument();
     }
   );
 
@@ -112,8 +121,11 @@ describe('Banner', () => {
   test.each([
     ['large', '.ods-banner__image-wrapper--top'],
     ['small', '.ods-banner__image-wrapper--side'],
-  ] as const)('renders image in correct wrapper for %s size', (size, selector) => {
-    setup({ size, image: 'http://example.com/img.png' });
-    expect(document.querySelector(selector)).toBeInTheDocument();
-  });
+  ] as const)(
+    'renders image in correct wrapper for %s size',
+    (size, selector) => {
+      setup({ size, image: 'http://example.com/img.png' });
+      expect(document.querySelector(selector)).toBeInTheDocument();
+    }
+  );
 });

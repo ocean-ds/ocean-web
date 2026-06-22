@@ -57,7 +57,10 @@ export const Usage: Story = {
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.',
     image: 'https://placehold.co/800x200',
-    primaryAction: { label: 'Ação Primária', onClick: () => console.log('Primary clicked') },
+    primaryAction: {
+      label: 'Ação Primária',
+      onClick: () => console.log('Primary clicked'),
+    },
     secondaryAction: {
       label: 'Ação Secundária',
       onClick: () => console.log('Secondary clicked'),
@@ -79,35 +82,68 @@ export const WithPrimaryAndSecondaryActions: Story = {
   },
   render: () => (
     <div
-      style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        maxWidth: '800px',
+      }}
     >
       <Banner
+        size="small"
         type="default"
         title="Tipo Default"
         description="Fundo claro com texto escuro — para comunicações gerais."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('default primary') }}
-        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('default secondary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('default primary'),
+        }}
+        secondaryAction={{
+          label: 'Ação Secundária',
+          onClick: () => console.log('default secondary'),
+        }}
       />
       <Banner
+        size="small"
         type="warning"
         title="Tipo Warning"
         description="Fundo amarelo de atenção — para avisos importantes."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('warning primary') }}
-        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('warning secondary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('warning primary'),
+        }}
+        secondaryAction={{
+          label: 'Ação Secundária',
+          onClick: () => console.log('warning secondary'),
+        }}
       />
       <Banner
+        size="small"
         type="negative"
         title="Tipo Negative"
         description="Fundo vermelho suave — para erros ou alertas críticos."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('negative primary') }}
-        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('negative secondary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('negative primary'),
+        }}
+        secondaryAction={{
+          label: 'Ação Secundária',
+          onClick: () => console.log('negative secondary'),
+        }}
       />
       <Banner
+        size="small"
         type="emphasys"
         title="Tipo Emphasys"
         description="Fundo azul primário — para destaques e chamadas de ação importantes."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('emphasys primary') }}
-        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('emphasys secondary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('emphasys primary'),
+        }}
+        secondaryAction={{
+          label: 'Ação Secundária',
+          onClick: () => console.log('emphasys secondary'),
+        }}
       />
     </div>
   ),
@@ -120,31 +156,52 @@ export const WithPrimaryActionOnly: Story = {
   },
   render: () => (
     <div
-      style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        maxWidth: '800px',
+      }}
     >
       <Banner
+        size="small"
         type="default"
         title="Tipo Default"
         description="Fundo claro com texto escuro — para comunicações gerais."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('default primary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('default primary'),
+        }}
       />
       <Banner
+        size="small"
         type="warning"
         title="Tipo Warning"
         description="Fundo amarelo de atenção — para avisos importantes."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('warning primary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('warning primary'),
+        }}
       />
       <Banner
+        size="small"
         type="negative"
         title="Tipo Negative"
         description="Fundo vermelho suave — para erros ou alertas críticos."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('negative primary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('negative primary'),
+        }}
       />
       <Banner
+        size="small"
         type="emphasys"
         title="Tipo Emphasys"
         description="Fundo azul primário — para destaques e chamadas de ação importantes."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('emphasys primary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('emphasys primary'),
+        }}
       />
     </div>
   ),
@@ -156,23 +213,40 @@ export const Sizes: Story = {
   },
   render: () => (
     <div
-      style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '800px' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        maxWidth: '800px',
+      }}
     >
       <Banner
         size="large"
         title="Banner Large"
         description="Imagem no topo (full-width), seguida de título, descrição e botões."
         image="https://placehold.co/800x200"
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('Large primary') }}
-        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('Large secondary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('Large primary'),
+        }}
+        secondaryAction={{
+          label: 'Ação Secundária',
+          onClick: () => console.log('Large secondary'),
+        }}
       />
       <Banner
         size="small"
         title="Banner Small"
         description="Imagem à direita (82px), conteúdo à esquerda."
         image="https://placehold.co/200x150"
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('Small primary') }}
-        secondaryAction={{ label: 'Ação Secundária', onClick: () => console.log('Small secondary') }}
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('Small primary'),
+        }}
+        secondaryAction={{
+          label: 'Ação Secundária',
+          onClick: () => console.log('Small secondary'),
+        }}
       />
     </div>
   ),
@@ -185,9 +259,13 @@ export const WithoutImage: Story = {
   render: () => (
     <div style={{ maxWidth: '800px' }}>
       <Banner
-        title="Banner sem Imagem"
-        description="Quando a prop `image` é omitida, nenhuma área de imagem é renderizada."
-        primaryAction={{ label: 'Ação Primária', onClick: () => console.log('no image') }}
+        size="small"
+        title="Banner Small sem Imagem"
+        description="No tamanho small, a imagem é opcional. Quando omitida, o conteúdo ocupa toda a largura."
+        primaryAction={{
+          label: 'Ação Primária',
+          onClick: () => console.log('no image'),
+        }}
       />
     </div>
   ),
