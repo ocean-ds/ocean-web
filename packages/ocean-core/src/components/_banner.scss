@@ -47,10 +47,6 @@
   &__image-wrapper--side {
     flex-shrink: 0;
     width: 82px;
-
-    @include media-breakpoint-down(md) {
-      width: 100%;
-    }
   }
 
   &__image-wrapper--side &__image {
@@ -114,7 +110,7 @@
   &--small {
     .ods-banner__body {
       flex-direction: row;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
   }
 }
