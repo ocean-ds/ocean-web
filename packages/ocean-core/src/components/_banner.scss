@@ -84,6 +84,10 @@
 
   // ── Actions ───────────────────────────────────────────────────────────────
 
+  .ods-btn--sm {
+    min-width: unset;
+  }
+
   &__actions {
     display: flex;
     flex-wrap: wrap;
