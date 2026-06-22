@@ -74,6 +74,13 @@
     padding: $spacing-inset-sm;
   }
 
+  // ── Title ─────────────────────────────────────────────────────────────────
+
+  &__title {
+    font-weight: $font-weight-bold;
+    line-height: $line-height-medium;
+  }
+
   // ── Description ───────────────────────────────────────────────────────────
 
   &__description {
