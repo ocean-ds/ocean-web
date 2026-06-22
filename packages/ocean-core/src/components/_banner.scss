@@ -103,6 +103,10 @@
     .ods-banner__body {
       flex-direction: column;
     }
+
+    .ods-banner__actions {
+      margin-top: $spacing-stack-sm;
+    }
   }
 
   // ── Size: small ───────────────────────────────────────────────────────────
