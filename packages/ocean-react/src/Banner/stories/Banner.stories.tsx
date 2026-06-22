@@ -58,11 +58,11 @@ export const Usage: Story = {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.',
     image: 'https://placehold.co/800x200',
     primaryAction: {
-      label: 'Ação Primária',
+      label: 'Label',
       onClick: () => console.log('Primary clicked'),
     },
     secondaryAction: {
-      label: 'Ação Secundária',
+      label: 'Label',
       onClick: () => console.log('Secondary clicked'),
     },
   },
@@ -95,11 +95,11 @@ export const WithPrimaryAndSecondaryActions: Story = {
         title="Tipo Default"
         description="Fundo claro com texto escuro — para comunicações gerais."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('default primary'),
         }}
         secondaryAction={{
-          label: 'Ação Secundária',
+          label: 'Label',
           onClick: () => console.log('default secondary'),
         }}
       />
@@ -109,11 +109,11 @@ export const WithPrimaryAndSecondaryActions: Story = {
         title="Tipo Warning"
         description="Fundo amarelo de atenção — para avisos importantes."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('warning primary'),
         }}
         secondaryAction={{
-          label: 'Ação Secundária',
+          label: 'Label',
           onClick: () => console.log('warning secondary'),
         }}
       />
@@ -123,11 +123,11 @@ export const WithPrimaryAndSecondaryActions: Story = {
         title="Tipo Negative"
         description="Fundo vermelho suave — para erros ou alertas críticos."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('negative primary'),
         }}
         secondaryAction={{
-          label: 'Ação Secundária',
+          label: 'Label',
           onClick: () => console.log('negative secondary'),
         }}
       />
@@ -137,11 +137,11 @@ export const WithPrimaryAndSecondaryActions: Story = {
         title="Tipo Emphasys"
         description="Fundo azul primário — para destaques e chamadas de ação importantes."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('emphasys primary'),
         }}
         secondaryAction={{
-          label: 'Ação Secundária',
+          label: 'Label',
           onClick: () => console.log('emphasys secondary'),
         }}
       />
@@ -169,7 +169,7 @@ export const WithPrimaryActionOnly: Story = {
         title="Tipo Default"
         description="Fundo claro com texto escuro — para comunicações gerais."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('default primary'),
         }}
       />
@@ -179,7 +179,7 @@ export const WithPrimaryActionOnly: Story = {
         title="Tipo Warning"
         description="Fundo amarelo de atenção — para avisos importantes."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('warning primary'),
         }}
       />
@@ -189,7 +189,7 @@ export const WithPrimaryActionOnly: Story = {
         title="Tipo Negative"
         description="Fundo vermelho suave — para erros ou alertas críticos."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('negative primary'),
         }}
       />
@@ -199,7 +199,7 @@ export const WithPrimaryActionOnly: Story = {
         title="Tipo Emphasys"
         description="Fundo azul primário — para destaques e chamadas de ação importantes."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('emphasys primary'),
         }}
       />
@@ -226,11 +226,11 @@ export const Sizes: Story = {
         description="Imagem no topo (full-width), seguida de título, descrição e botões."
         image="https://placehold.co/800x200"
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('Large primary'),
         }}
         secondaryAction={{
-          label: 'Ação Secundária',
+          label: 'Label',
           onClick: () => console.log('Large secondary'),
         }}
       />
@@ -240,11 +240,11 @@ export const Sizes: Story = {
         description="Imagem à direita (82px), conteúdo à esquerda."
         image="https://placehold.co/200x150"
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('Small primary'),
         }}
         secondaryAction={{
-          label: 'Ação Secundária',
+          label: 'Label',
           onClick: () => console.log('Small secondary'),
         }}
       />
@@ -263,7 +263,7 @@ export const WithoutImage: Story = {
         title="Banner Small sem Imagem"
         description="No tamanho small, a imagem é opcional. Quando omitida, o conteúdo ocupa toda a largura."
         primaryAction={{
-          label: 'Ação Primária',
+          label: 'Label',
           onClick: () => console.log('no image'),
         }}
       />
