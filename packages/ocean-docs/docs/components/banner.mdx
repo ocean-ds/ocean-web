@@ -1,0 +1,205 @@
+---
+title: Banner
+---
+
+import { Banner } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Banner
+
+O componente Banner é usado para exibir comunicações destacadas — informativos, avisos, alertas ou chamadas de ação — com suporte a imagem, descrição e botões de ação.
+
+## Importação
+
+```tsx
+import { Banner } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import Banner from '@useblu/ocean-react/Banner';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { BannerProps, ActionProps } from '@useblu/ocean-react';
+```
+
+## Playground Interativo
+
+Explore o componente Banner no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-banner--usage"
+  height={500}
+  title="Banner - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Banner](https://ocean-ds.github.io/ocean-web/?path=/docs/components-banner--docs)**.
+
+## Uso básico
+
+```tsx live
+<Banner
+  size="small"
+  title="Título do Banner"
+  description="Mensagem descritiva do banner."
+  primaryAction={{ label: 'Saiba Mais', onClick: () => console.log('clicked') }}
+/>
+```
+
+## Variações
+
+### Tamanhos (size)
+
+O `size` define o layout do banner:
+
+- **`large`** _(padrão)_ — a imagem ocupa a largura total acima do conteúdo. **A imagem é obrigatória.**
+- **`small`** — a imagem fica à direita (82px) e o conteúdo à esquerda. A imagem é opcional.
+
+```tsx live
+<Banner
+  size="large"
+  title="Banner Large"
+  description="Imagem no topo, conteúdo abaixo."
+  image="https://placehold.co/800x200"
+  primaryAction={{ label: 'Ação', onClick: () => {} }}
+/>
+```
+
+```tsx live
+<Banner
+  size="small"
+  title="Banner Small"
+  description="Imagem à direita, conteúdo à esquerda."
+  image="https://placehold.co/200x150"
+  primaryAction={{ label: 'Ação', onClick: () => {} }}
+/>
+```
+
+### Tipos (type)
+
+| Tipo       | Cor de fundo                | Título                        | Descrição                    |
+| ---------- | --------------------------- | ----------------------------- | ---------------------------- |
+| `default`  | `$color-interface-light-up` | `$color-interface-dark-deep`  | `$color-interface-dark-down` |
+| `warning`  | `$color-status-warning-up`  | `$color-interface-dark-deep`  | `$color-interface-dark-down` |
+| `negative` | `$color-status-negative-up` | `$color-interface-dark-deep`  | `$color-interface-dark-down` |
+| `emphasys` | `$color-brand-primary-pure` | `$color-interface-light-pure` | `$color-interface-light-up`  |
+
+### Variantes de botão por tipo
+
+A variante dos botões é derivada automaticamente do `type` — não é necessário especificá-la manualmente.
+
+| Tipo       | `primaryAction`   | `secondaryAction`                                |
+| ---------- | ----------------- | ------------------------------------------------ |
+| `default`  | `primary`         | `tertiary`                                       |
+| `warning`  | `primaryWarning`  | `tertiaryWarning`                                |
+| `negative` | `primaryCritical` | `tertiaryCritical`                               |
+| `emphasys` | `secondary`       | `tertiary` (texto `$color-interface-light-pure`) |
+
+<StorybookEmbed
+  storyId="components-banner--with-primary-and-secondary-actions"
+  height={700}
+  showToolbar={false}
+  title="Banner - Primária e Secundária"
+/>
+
+<StorybookEmbed
+  storyId="components-banner--with-primary-action-only"
+  height={700}
+  showToolbar={false}
+  title="Banner - Apenas Primária"
+/>
+
+### Sem imagem
+
+Quando a prop `image` é omitida, nenhuma área de imagem é renderizada.
+
+```tsx live
+<Banner
+  title="Banner sem Imagem"
+  description="Apenas título, descrição e botões."
+  primaryAction={{ label: 'Ação', onClick: () => {} }}
+/>
+```
+
+### Sem botões
+
+Quando `primaryAction` e `secondaryAction` são omitidos, nenhum botão é renderizado.
+
+```tsx live
+<Banner
+  title="Banner sem Botões"
+  description="Apenas título e descrição."
+  image="https://placehold.co/800x200"
+/>
+```
+
+## API
+
+### Props
+
+| Prop              | Tipo                                                 | Padrão      | Descrição                                                       |
+| ----------------- | ---------------------------------------------------- | ----------- | --------------------------------------------------------------- |
+| `title`           | `string`                                             | —           | Título principal exibido no banner. **Obrigatório.**            |
+| `size`            | `'large' \| 'small'`                                 | `'large'`   | Layout do banner.                                               |
+| `type`            | `'default' \| 'warning' \| 'negative' \| 'emphasys'` | `'default'` | Tipo visual com cores do Ocean DS.                              |
+| `description`     | `string`                                             | —           | Texto descritivo abaixo do título (opcional).                   |
+| `image`           | `string`                                             | —           | URL da imagem. **Obrigatória** em `large`; opcional em `small`. |
+| `primaryAction`   | `ActionProps`                                        | —           | Ação primária. Variante do botão derivada do `type`.            |
+| `secondaryAction` | `ActionProps`                                        | —           | Ação secundária. Variante do botão derivada do `type`.          |
+| `className`       | `string`                                             | —           | Classes CSS adicionais para customização.                       |
+
+### ActionProps
+
+| Prop      | Tipo         | Descrição                          |
+| --------- | ------------ | ---------------------------------- |
+| `label`   | `string`     | Texto exibido no botão.            |
+| `onClick` | `() => void` | Função chamada ao clicar no botão. |
+
+## CSS Classes
+
+| Classe                             | Descrição                                       |
+| ---------------------------------- | ----------------------------------------------- |
+| `.ods-banner`                      | Classe base aplicada ao elemento raiz.          |
+| `.ods-banner--large`               | Modificador de tamanho `large`.                 |
+| `.ods-banner--small`               | Modificador de tamanho `small`.                 |
+| `.ods-banner--default`             | Modificador de tipo `default`.                  |
+| `.ods-banner--warning`             | Modificador de tipo `warning`.                  |
+| `.ods-banner--negative`            | Modificador de tipo `negative`.                 |
+| `.ods-banner--emphasys`            | Modificador de tipo `emphasys`.                 |
+| `.ods-banner__image-wrapper--top`  | Container da imagem no topo (tamanho `large`).  |
+| `.ods-banner__image-wrapper--side` | Container da imagem lateral (tamanho `small`).  |
+| `.ods-banner__image`               | Elemento `<img>` do banner.                     |
+| `.ods-banner__body`                | Container que agrupa conteúdo e imagem lateral. |
+| `.ods-banner__content`             | Container do título, descrição e botões.        |
+| `.ods-banner__title`               | Elemento de título do banner.                   |
+| `.ods-banner__description`         | Elemento de descrição do banner.                |
+| `.ods-banner__actions`             | Container dos botões de ação.                   |
+
+## Quando Usar
+
+### Ideal para:
+
+- **Comunicações destacadas**: avisos, promoções ou informações importantes.
+- **Chamadas de ação**: incentivar o usuário a realizar uma ação específica.
+- **Onboarding**: guiar usuários com contexto visual e textual.
+- **Alertas visuais**: distinção por cor para tipos `warning` e `negative`.
+
+### Evite para:
+
+- Notificações descartáveis — use o componente **Alert** para isso.
+- Mensagens temporárias — use o componente **Snackbar**.
+- Navegação principal do sistema.
+- Múltiplos banners na mesma tela que competem entre si.
+
+## Links relacionados
+
+- [Alert](/components/alert) - Para notificações inline descartáveis
+- [Snackbar](/components/snackbar) - Para mensagens temporárias
+- [Button](/components/button) - Para ações isoladas
+- [Storybook - Banner](https://ocean-ds.github.io/ocean-web/?path=/docs/components-banner--docs) - Documentação técnica
