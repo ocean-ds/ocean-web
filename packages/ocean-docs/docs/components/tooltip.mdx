@@ -27,12 +27,15 @@ import { Tooltip } from '@useblu/ocean-react/Tooltip';
 ### Importação de tipos TypeScript
 
 ```tsx
-import type { TooltipProps } from '@useblu/ocean-react';
+import type { TooltipProps, TooltipPosition } from '@useblu/ocean-react';
 
 // Uso em componente customizado
 const MyTooltip: React.FC<TooltipProps> = (props) => {
   return <Tooltip {...props} />;
 };
+
+// Uso do tipo de posição
+const position: TooltipPosition = 'up-left';
 ```
 
 ## Playground Interativo
@@ -112,6 +115,28 @@ O Tooltip pode ser posicionado em diferentes direções em relação ao elemento
 </div>
 ```
 
+### Posições laterais alinhadas
+
+```tsx live
+<div>
+  <Tooltip text="Tooltip à esquerda, alinhado ao topo" position="left-top">
+    <Button>Left Top</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip à esquerda, alinhado abaixo" position="left-bottom">
+    <Button>Left Bottom</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip à direita, alinhado ao topo" position="right-top">
+    <Button>Right Top</Button>
+  </Tooltip>
+
+  <Tooltip text="Tooltip à direita, alinhado abaixo" position="right-bottom">
+    <Button>Right Bottom</Button>
+  </Tooltip>
+</div>
+```
+
 ## Tamanhos
 
 O Tooltip oferece diferentes tamanhos para acomodar diferentes quantidades de conteúdo:
@@ -182,42 +207,93 @@ Por padrão, o Tooltip possui animações suaves. Você pode removê-las usando 
 </div>
 ```
 
+## Botão de fechar
+
+O Tooltip pode exibir um botão de fechar para permitir que o usuário feche manualmente:
+
+```tsx live
+<div>
+  <Tooltip
+    text="Este tooltip pode ser fechado clicando no X"
+    position="up"
+    closeButton
+    onClose={() => console.log('Tooltip fechado!')}
+  >
+    <Button>Com botão de fechar</Button>
+  </Tooltip>
+</div>
+```
+
+### Tooltip controlado
+
+Você pode controlar a visibilidade do tooltip externamente usando as props `visible` e `onClose`:
+
+```tsx live
+function ControlledTooltipExample() {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  return (
+    <div>
+      <Button onClick={() => setIsVisible(!isVisible)}>
+        {isVisible ? 'Esconder' : 'Mostrar'} Tooltip
+      </Button>
+
+      <Tooltip
+        text="Este tooltip é controlado externamente"
+        position="right"
+        closeButton
+        visible={isVisible}
+        onClose={() => setIsVisible(false)}
+      >
+        <Button>Elemento com tooltip</Button>
+      </Tooltip>
+    </div>
+  );
+}
+```
+
 ## API
 
 ### Props
 
-| Prop        | Tipo                                                                                            | Padrão  | Descrição                             |
-| ----------- | ----------------------------------------------------------------------------------------------- | ------- | ------------------------------------- |
-| `text`      | `string`                                                                                        | -       | Texto que será exibido no tooltip     |
-| `position`  | `'up' \| 'down' \| 'left' \| 'right' \| 'up-left' \| 'up-right' \| 'down-left' \| 'down-right'` | `'up'`  | Posição do tooltip                    |
-| `length`    | `'small' \| 'medium' \| 'large' \| 'xlarge' \| 'fit'`                                           | -       | Tamanho do tooltip                    |
-| `break`     | `boolean`                                                                                       | `false` | Permite quebra de linha no tooltip    |
-| `blunt`     | `boolean`                                                                                       | `false` | Remove animações do tooltip           |
-| `noFocus`   | `boolean`                                                                                       | `false` | Desabilita o tooltip no foco          |
-| `children`  | `ReactElement`                                                                                  | -       | Elemento filho que receberá o tooltip |
-| `className` | `string`                                                                                        | -       | Classes CSS adicionais                |
+| Prop          | Tipo                                                                                                                                                                    | Padrão  | Descrição                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------- |
+| `text`        | `string`                                                                                                                                                                | -       | Texto que será exibido no tooltip             |
+| `position`    | `'up' \| 'down' \| 'left' \| 'right' \| 'up-left' \| 'up-right' \| 'down-left' \| 'down-right' \| 'left-top' \| 'left-bottom' \| 'right-top' \| 'right-bottom'`         | `'up'`  | Posição do tooltip                            |
+| `length`      | `'small' \| 'medium' \| 'large' \| 'xlarge' \| 'fit'`                                                                                                                   | -       | Tamanho do tooltip                            |
+| `break`       | `boolean`                                                                                                                                                               | `false` | Permite quebra de linha no tooltip            |
+| `blunt`       | `boolean`                                                                                                                                                               | `false` | Remove animações do tooltip                   |
+| `noFocus`     | `boolean`                                                                                                                                                               | `false` | Desabilita o tooltip no foco                  |
+| `closeButton` | `boolean`                                                                                                                                                               | `false` | Exibe botão de fechar no tooltip              |
+| `onClose`     | `() => void`                                                                                                                                                            | -       | Callback quando o tooltip é fechado           |
+| `visible`     | `boolean`                                                                                                                                                               | -       | Controla a visibilidade externamente          |
+| `children`    | `ReactElement`                                                                                                                                                          | -       | Elemento filho que receberá o tooltip         |
+| `className`   | `string`                                                                                                                                                                | -       | Classes CSS adicionais                        |
 
 ### Comportamento
 
 - **Hover**: O tooltip aparece quando o mouse passa sobre o elemento
 - **Focus**: O tooltip aparece quando o elemento recebe foco (a menos que `noFocus` seja `true`)
 - **Posicionamento**: O tooltip se posiciona automaticamente para evitar sair da tela
-- **Acessibilidade**: O texto do tooltip é acessível via `aria-label`
+- **Acessibilidade**: O texto do tooltip é acessível via `aria-label` ou `aria-describedby` (quando `closeButton` está ativo)
+- **Fechar com Escape**: Quando `closeButton` está ativo, pressionar `Escape` fecha o tooltip
 
 ## Acessibilidade
 
 - ✅ Suporte completo a navegação por teclado
 - ✅ Estados de foco visíveis
-- ✅ Atributos ARIA apropriados
+- ✅ Atributos ARIA apropriados (`aria-label`, `aria-describedby`, `aria-hidden`)
 - ✅ Suporte a screen readers
 - ✅ Contraste adequado em todos os estados
+- ✅ Fechamento via tecla `Escape` (quando `closeButton` ativo)
 
 ### Navegação por teclado
 
-| Tecla             | Função                         |
-| ----------------- | ------------------------------ |
-| `Tab`             | Move o foco para o elemento    |
-| `Enter` / `Space` | Ativa o elemento (se clicável) |
+| Tecla             | Função                                                   |
+| ----------------- | -------------------------------------------------------- |
+| `Tab`             | Move o foco para o elemento                              |
+| `Enter` / `Space` | Ativa o elemento (se clicável)                           |
+| `Escape`          | Fecha o tooltip (quando `closeButton` está ativo)        |
 
 ### Boas práticas para acessibilidade
 
@@ -230,15 +306,20 @@ Por padrão, o Tooltip possui animações suaves. Você pode removê-las usando 
 
 ### Classes globais
 
-| Classe CSS             | Descrição                     |
-| ---------------------- | ----------------------------- |
-| `.ods-tooltip`         | Classe base do tooltip        |
-| `.ods-tooltip::after`  | Container do texto do tooltip |
-| `.ods-tooltip::before` | Seta/indicador do tooltip     |
+| Classe CSS                    | Descrição                                         |
+| ----------------------------- | ------------------------------------------------- |
+| `.ods-tooltip`                | Classe base do tooltip (modo padrão)              |
+| `.ods-tooltip::after`         | Container do texto do tooltip                     |
+| `.ods-tooltip::before`        | Seta/indicador do tooltip                         |
+| `.ods-tooltip-wrapper`        | Wrapper do tooltip (modo com botão de fechar)     |
+| `.ods-tooltip-content`        | Container do tooltip (modo com botão de fechar)   |
+| `.ods-tooltip-content__text`  | Texto do tooltip                                  |
+| `.ods-tooltip-content__close` | Botão de fechar                                   |
+| `.ods-tooltip-arrow`          | Seta do tooltip (modo com botão de fechar)        |
 
 ### Atributos de dados
 
-O componente gera automaticamente os seguintes atributos:
+O componente gera automaticamente os seguintes atributos (modo padrão):
 
 - `data-tooltip-pos`: Posição do tooltip
 - `data-tooltip-length`: Tamanho do tooltip
@@ -302,6 +383,15 @@ Veja todas as posições do Tooltip em ação:
   height={300}
   showToolbar={false}
   title="Tooltip - Tamanhos"
+/>
+
+## Com botão de fechar
+
+<StorybookEmbed
+  storyId="components-tooltip--with-close-button"
+  height={500}
+  showToolbar={false}
+  title="Tooltip - Com botão de fechar"
 />
 
 ## Links relacionados
