@@ -1,0 +1,445 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import Button from '../Button';
+import {
+  colorStatusPositivePure,
+  colorStatusNegativePure,
+  colorStatusWarningPure,
+  colorBrandPrimaryPure,
+  colorInterfaceLightPure,
+  colorInterfaceDarkPure,
+  colorInterfaceDarkDown,
+  colorInterfaceLightDeep,
+  spacingInlineXs,
+  spacingInlineXxs,
+  borderRadiusSm,
+  borderWidthHairline,
+} from '@useblu/ocean-tokens/web/tokens';
+
+<Meta title="Foundation/Accessibility" />
+
+# Acessibilidade
+
+A acessibilidade é um princípio fundamental do Ocean Design System. Nosso objetivo é criar interfaces inclusivas que funcionem para todos os usuários, independentemente de suas habilidades ou limitações.
+
+## Por que Acessibilidade Importa
+
+### Inclusão Universal
+
+Garantir que produtos digitais sejam utilizáveis por pessoas com diferentes habilidades e necessidades.
+
+### Conformidade Legal
+
+Atender a requisitos legais como ADA, Seção 508 e Lei Brasileira de Inclusão (LBI).
+
+### Melhor Experiência para Todos
+
+Interfaces acessíveis frequentemente resultam em melhor usabilidade para todos os usuários.
+
+### Alcance Maior
+
+Aproximadamente 15% da população mundial vive com alguma forma de deficiência.
+
+## Diretrizes WCAG 2.1
+
+O Ocean segue as Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.1 nível AA.
+
+### Contraste de Cores
+
+<Canvas>
+  <Story name="Color Contrast">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={6}>
+          <div
+            style={{
+              padding: spacingInlineXs,
+              border: `${borderWidthHairline} solid ${colorStatusPositivePure}`,
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXs,
+            }}
+          >
+            <Typography
+              variant="heading3"
+              style={{
+                color: colorStatusPositivePure,
+                marginBottom: spacingInlineXxs,
+              }}
+            >
+              ✓ Bom Contraste
+            </Typography>
+            <Typography
+              variant="paragraph"
+              style={{ color: colorInterfaceDarkPure }}
+            >
+              Este texto atende aos requisitos de contraste WCAG AA (4.5:1 para
+              texto normal).
+            </Typography>
+          </div>
+        </Grid.Col>
+        <Grid.Col md={6}>
+          <div
+            style={{
+              padding: spacingInlineXs,
+              border: `${borderWidthHairline} solid ${colorStatusNegativePure}`,
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXs,
+            }}
+          >
+            <Typography
+              variant="heading3"
+              style={{
+                color: colorStatusNegativePure,
+                marginBottom: spacingInlineXxs,
+              }}
+            >
+              ✕ Contraste Insuficiente
+            </Typography>
+            <Typography
+              variant="paragraph"
+              style={{ color: colorInterfaceLightDeep }}
+            >
+              Este texto não atende aos requisitos mínimos de contraste.
+            </Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+### Navegação por Teclado
+
+Todos os elementos interativos devem ser acessíveis via teclado:
+
+<Canvas>
+  <Story name="Keyboard Navigation">
+    <div
+      style={{
+        padding: spacingInlineXs,
+        border: `${borderWidthHairline} solid ${colorBrandPrimaryPure}`,
+        borderRadius: borderRadiusSm,
+      }}
+    >
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXs }}>
+        Teste de Navegação por Teclado
+      </Typography>
+      <div style={{ display: 'flex', gap: spacingInlineXxs, flexWrap: 'wrap' }}>
+        <Button variant="primary">Botão 1 (Tab)</Button>
+        <Button variant="secondary">Botão 2 (Tab)</Button>
+        <Button variant="tertiary">Botão 3 (Enter/Space)</Button>
+      </div>
+      <Typography
+        variant="caption"
+        style={{
+          marginTop: spacingInlineXxs,
+          color: colorInterfaceDarkDown,
+          display: 'block',
+        }}
+      >
+        Use Tab para navegar, Enter ou Space para ativar
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+## Implementação Prática
+
+### Texto Alternativo para Imagens
+
+```jsx
+// ✅ Correto
+<img src="chart.png" alt="Vendas aumentaram 25% no último trimestre" />
+
+// ✅ Imagem decorativa
+<img src="decoration.png" alt="" role="presentation" />
+
+// ❌ Incorreto
+<img src="chart.png" alt="imagem" />
+```
+
+### Cabeçalhos Hierárquicos
+
+```jsx
+// ✅ Estrutura correta
+<h1>Título Principal</h1>
+  <h2>Seção</h2>
+    <h3>Subseção</h3>
+    <h3>Outra Subseção</h3>
+  <h2>Nova Seção</h2>
+
+// ❌ Estrutura incorreta - pula níveis
+<h1>Título</h1>
+  <h3>Subseção</h3> {/* Pulou o h2 */}
+```
+
+### Labels em Formulários
+
+<Canvas>
+  <Story name="Form Labels">
+    <div
+      style={{
+        padding: spacingInlineXs,
+        border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+        borderRadius: borderRadiusSm,
+      }}
+    >
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXs }}>
+        Exemplo de Formulário Acessível
+      </Typography>
+      <div style={{ marginBottom: spacingInlineXs }}>
+        <label htmlFor="name" style={{ display: 'block', marginBottom: '4px' }}>
+          <Typography
+            variant="caption"
+            style={{ color: colorInterfaceDarkDown }}
+          >
+            Nome Completo *
+          </Typography>
+        </label>
+        <input
+          id="name"
+          type="text"
+          required
+          aria-describedby="name-help"
+          style={{
+            width: '100%',
+            padding: spacingInlineXxs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+            borderRadius: borderRadiusSm,
+          }}
+        />
+        <Typography
+          variant="caption"
+          id="name-help"
+          style={{ color: colorInterfaceDarkDown }}
+        >
+          Digite seu nome completo como aparece no documento
+        </Typography>
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## Estados de Foco
+
+### Indicadores Visuais Claros
+
+Os elementos focados devem ter indicadores visuais óbvios:
+
+<Canvas>
+  <Story name="Focus States">
+    <div style={{ display: 'flex', gap: spacingInlineXs, flexWrap: 'wrap' }}>
+      <Button
+        variant="primary"
+        style={{
+          backgroundColor: colorBrandPrimaryPure,
+          color: colorInterfaceLightPure,
+          border: 'none',
+          borderRadius: borderRadiusSm,
+          padding: spacingInlineXs,
+          cursor: 'pointer',
+        }}
+      >
+        Primário
+      </Button>
+      <Button
+        variant="primary"
+        style={{
+          backgroundColor: colorStatusPositivePure,
+          color: colorInterfaceLightPure,
+          border: 'none',
+          borderRadius: borderRadiusSm,
+          padding: spacingInlineXs,
+          cursor: 'pointer',
+        }}
+      >
+        Sucesso
+      </Button>
+      <Button
+        variant="primary"
+        style={{
+          backgroundColor: colorStatusNegativePure,
+          color: colorInterfaceLightPure,
+          border: 'none',
+          borderRadius: borderRadiusSm,
+          padding: spacingInlineXs,
+          cursor: 'pointer',
+        }}
+      >
+        Erro
+      </Button>
+      <Button
+        variant="primary"
+        style={{
+          backgroundColor: colorStatusWarningPure,
+          color: colorInterfaceDarkPure,
+          border: 'none',
+          borderRadius: borderRadiusSm,
+          padding: spacingInlineXs,
+          cursor: 'pointer',
+        }}
+      >
+        Aviso
+      </Button>
+    </div>
+  </Story>
+</Canvas>
+
+## ARIA (Accessible Rich Internet Applications)
+
+### Roles e Properties
+
+```jsx
+// Modal acessível
+<div role="dialog" aria-labelledby="modal-title" aria-modal="true">
+  <h2 id="modal-title">Confirmar Exclusão</h2>
+  <p>Tem certeza que deseja excluir este item?</p>
+  <button aria-label="Confirmar exclusão">Sim</button>
+  <button aria-label="Cancelar">Não</button>
+</div>
+
+// Lista de navegação
+<nav aria-label="Navegação principal">
+  <ul role="menubar">
+    <li role="none">
+      <a href="/home" role="menuitem">Início</a>
+    </li>
+    <li role="none">
+      <a href="/about" role="menuitem">Sobre</a>
+    </li>
+  </ul>
+</nav>
+```
+
+### Estados Dinâmicos
+
+```jsx
+// Botão de toggle
+<button
+  aria-pressed={isPressed}
+  aria-label={isPressed ? 'Desativar' : 'Ativar'}
+>
+  {isPressed ? 'Ativado' : 'Desativado'}
+</button>
+
+// Região que atualiza
+<div aria-live="polite" aria-atomic="true">
+  {status && <p>{status}</p>}
+</div>
+```
+
+## Testes de Acessibilidade
+
+### Ferramentas Automatizadas
+
+- **axe-core**: Biblioteca para testes automatizados
+- **WAVE**: Extensão para navegador
+- **Lighthouse**: Audit de acessibilidade no Chrome DevTools
+
+### Testes Manuais
+
+1. **Navegação por teclado**: Tab, Shift+Tab, Enter, Space, setas
+2. **Leitores de tela**: NVDA (Windows), VoiceOver (macOS), TalkBack (Android)
+3. **Zoom**: Teste até 200% de ampliação
+4. **Alto contraste**: Teste em modo de alto contraste do SO
+
+### Checklist Básico
+
+- [ ] Todas as imagens têm texto alternativo apropriado
+- [ ] Existe uma estrutura lógica de cabeçalhos (h1-h6)
+- [ ] Contraste mínimo de 4.5:1 para texto normal
+- [ ] Contraste mínimo de 3:1 para texto grande
+- [ ] Todos os elementos são acessíveis por teclado
+- [ ] Estados de foco são visualmente óbvios
+- [ ] Formulários têm labels apropriados
+- [ ] Conteúdo dinâmico usa ARIA live regions
+- [ ] A página é utilizável sem CSS
+- [ ] A página é utilizável sem JavaScript
+
+## Implementação no Ocean
+
+### CSS Focus-Visible
+
+```css
+/* Usando a pseudo-classe moderna */
+.btn:focus-visible {
+  outline: 2px solid var(--color-brand-primary-pure);
+  outline-offset: 2px;
+}
+
+/* Fallback para navegadores antigos */
+.btn:focus {
+  outline: 2px solid var(--color-brand-primary-pure);
+  outline-offset: 2px;
+}
+
+.btn:focus:not(:focus-visible) {
+  outline: none;
+}
+```
+
+### React Focus Management
+
+```jsx
+import { useRef, useEffect } from 'react';
+
+const Modal = ({ isOpen, onClose }) => {
+  const modalRef = useRef(null);
+  const previousActiveElement = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      previousActiveElement.current = document.activeElement;
+      modalRef.current?.focus();
+    } else {
+      previousActiveElement.current?.focus();
+    }
+  }, [isOpen]);
+
+  return isOpen ? (
+    <div ref={modalRef} role="dialog" aria-modal="true" tabIndex={-1}>
+      {/* Conteúdo do modal */}
+    </div>
+  ) : null;
+};
+```
+
+## Recursos e Referências
+
+### Documentação Oficial
+
+- [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [MDN Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)
+- [WAI-ARIA Practices](https://www.w3.org/WAI/ARIA/apg/)
+
+### Ferramentas de Teste
+
+- [axe DevTools](https://www.deque.com/axe/devtools/)
+- [WAVE Web Accessibility Evaluator](https://wave.webaim.org/)
+- [Colour Contrast Analyser](https://www.tpgi.com/color-contrast-checker/)
+
+### Leitores de Tela
+
+- **NVDA** (Windows, gratuito)
+- **JAWS** (Windows, pago)
+- **VoiceOver** (macOS/iOS, nativo)
+- **TalkBack** (Android, nativo)
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Teste com usuários reais com deficiência
+- Use ferramentas automatizadas como primeiro passo
+- Implemente foco visível em todos os elementos interativos
+- Forneça múltiplas formas de acessar o mesmo conteúdo
+- Use linguagem clara e simples
+
+### ❌ Evite
+
+- Confiar apenas em cor para transmitir informação
+- Usar placeholders como substitutos para labels
+- Remover outline de foco sem fornecer alternativa
+- Criar elementos interativos que não são acessíveis por teclado
+- Ignorar a ordem de foco lógica
