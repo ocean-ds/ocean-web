@@ -1,6 +1,21 @@
 .ods-transaction-footer {
   background-color: $color-interface-light-pure;
-  padding: $spacing-inset-sm;
+  display: flex;
+  flex-direction: column;
+  padding-top: $spacing-stack-xxs;
+  position: relative;
+
+  // Divisor de topo da variante Default — desenhado dentro do espaçador de 8px
+  // (`padding-top`), sem adicionar altura, então alternar variante não gera "pulo".
+  &--default::before {
+    background-color: $color-interface-light-down;
+    content: '';
+    height: $border-width-hairline;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 
   &--highlight {
     background-color: $color-interface-light-up;

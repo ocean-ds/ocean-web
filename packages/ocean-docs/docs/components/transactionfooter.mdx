@@ -14,6 +14,8 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 O `TransactionFooter` é o rodapé de resumo financeiro de telas de pagamento: agrupa as linhas de benefício → custo → total, um divisor e os botões de ação em um único bloco visual. Ele recebe o conteúdo como `children` (composição livre pelo consumidor) e expõe apenas a variante visual.
 
+A estrutura interna segue o Figma do Ocean DS Core: um **Section Header** opcional, linhas de resumo (label à esquerda em `colorInterfaceDarkDown`, valor à direita em `colorInterfaceDarkDeep`, `paragraph` 16px), um **Divider** interno e uma **Button Bar** com o botão primário. As linhas usam `padding` de `8px 16px` e a Button Bar `16px`.
+
 ## Importação
 
 ```tsx
@@ -53,60 +55,109 @@ Para documentação técnica detalhada, exemplos de uso e API completa, consulte
 
 ### Variante `default`
 
-Fundo neutro (`colorInterfaceLightPure`) com cantos retos — é o valor inicial da prop `variant`.
+Fundo `colorInterfaceLightPure`, cantos retos e um **divisor no topo** (`colorInterfaceLightDown`). É o valor inicial da prop `variant`.
 
 ```tsx live
 <TransactionFooter variant="default">
+  <div style={{ padding: '8px 16px 4px' }}>
+    <Typography variant="heading5">
+      <span style={{ color: '#AAADC0' }}>Resumo</span>
+    </Typography>
+  </div>
   <div
     style={{
       display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: 8,
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
     }}
   >
-    <Typography variant="paragraph">Total</Typography>
-    <Typography variant="paragraph">
-      <strong>R$ 42.314,10</strong>
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Você vai economizar</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      R$ 3.574,28
     </Typography>
   </div>
-  <Button variant="primary" blocked>
-    Continuar
-  </Button>
+  <div style={{ padding: '12px 16px' }}>
+    <Divider />
+  </div>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
+    }}
+  >
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Total</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      R$ 42.314,10
+    </Typography>
+  </div>
+  <div style={{ padding: 16 }}>
+    <Button variant="primary" blocked>
+      Continuar
+    </Button>
+  </div>
 </TransactionFooter>
 ```
 
 ### Variante `highlight`
 
-Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px). As dimensões externas do bloco são idênticas às da `default` — alternar a variante não causa "pulo" de layout.
+Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px) e **sem** divisor no topo. As dimensões externas do bloco são idênticas às da `default` — alternar a variante não causa "pulo" de layout.
 
 ```tsx live
 <TransactionFooter variant="highlight">
   <div
     style={{
       display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: 8,
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
     }}
   >
-    <Typography variant="paragraph">Você vai economizar</Typography>
-    <Typography variant="paragraph">R$ 3.574,28</Typography>
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Desconto</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      -R$ 1.057,85
+    </Typography>
   </div>
-  <Divider style={{ marginTop: 8, marginBottom: 8 }} />
   <div
     style={{
       display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: 16,
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
     }}
   >
-    <Typography variant="paragraph">Pagando</Typography>
-    <Typography variant="paragraph">
-      <strong>R$ 41.256,25</strong>
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Pagando</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      R$ 41.256,25
     </Typography>
   </div>
-  <Button variant="primary" blocked>
-    Confirmar pagamento
-  </Button>
+  <div style={{ padding: 16 }}>
+    <Button variant="primary" blocked>
+      Confirmar pagamento
+    </Button>
+  </div>
 </TransactionFooter>
 ```
 
@@ -114,13 +165,26 @@ Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px). As dime
 
 ### Props
 
-| Prop        | Tipo                       | Padrão      | Descrição                                                                                                                        |
-| ----------- | -------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `variant`   | `'default' \| 'highlight'` | `'default'` | Variante visual. `default` = fundo neutro e cantos retos; `highlight` = fundo destacado e cantos superiores arredondados (16px). |
-| `children`  | `ReactNode`                | -           | Conteúdo do rodapé (linhas de resumo, divisor e botões), composto pelo consumidor.                                               |
-| `className` | `string`                   | -           | Classes CSS adicionais.                                                                                                          |
+| Prop        | Tipo                       | Padrão      | Descrição                                                                                                                                         |
+| ----------- | -------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `'default' \| 'highlight'` | `'default'` | Variante visual. `default` = fundo neutro, cantos retos e divisor no topo; `highlight` = fundo destacado e cantos superiores arredondados (16px). |
+| `children`  | `ReactNode`                | -           | Conteúdo do rodapé (Section Header, linhas de resumo, Divider e Button Bar), composto pelo consumidor.                                            |
+| `className` | `string`                   | -           | Classes CSS adicionais.                                                                                                                           |
 
 O componente também repassa (`...rest`) qualquer atributo válido de uma `<div>` (por exemplo `id`, `aria-*`, `data-*`, `style`).
+
+## Tokens usados
+
+| Elemento           | Token                                            | Valor                              |
+| ------------------ | ------------------------------------------------ | ---------------------------------- |
+| Fundo `default`    | `colorInterfaceLightPure`                        | `#FFFFFF`                          |
+| Fundo `highlight`  | `colorInterfaceLightUp`                          | `#F3F5FE`                          |
+| Divisores          | `colorInterfaceLightDown`                        | `#E0E2EE`                          |
+| Cantos `highlight` | `borderRadiusLg`                                 | `16px`                             |
+| Section Header     | `heading5` / `colorInterfaceDarkUp`              | Nunito Sans Bold 14 / `#AAADC0`    |
+| Label da linha     | `paragraph` / `colorInterfaceDarkDown`           | Nunito Sans Regular 16 / `#67697A` |
+| Valor da linha     | `paragraph` / `colorInterfaceDarkDeep`           | Nunito Sans Regular 16 / `#393B47` |
+| Botão primário     | `colorBrandPrimaryPure` / `borderRadiusCircular` | `#0025E0` / pill                   |
 
 ## Acessibilidade
 
@@ -132,13 +196,13 @@ O componente também repassa (`...rest`) qualquer atributo válido de uma `<div>
 
 ### ✅ Faça
 
-- Mantenha a **linha de benefício em primeiro** e o **total como última linha**, em negrito.
+- Mantenha a **linha de benefício em primeiro** e o **total como última linha**.
 - Coloque o **botão dentro do footer**, usando `Button` com `variant="primary"` e `blocked`.
 - Use `highlight` quando o rodapé precisa se destacar do conteúdo rolável acima (ex.: card fixo na base).
 
 ### ❌ Não faça
 
-- Não recrie o container com `styled-components` ou `<div>` cru quando o `TransactionFooter` já resolve fundo, padding e cantos.
+- Não recrie o container com `styled-components` ou `<div>` cru quando o `TransactionFooter` já resolve fundo, padding de topo, divisor e cantos.
 - Não coloque custos técnicos (IOF, juros, CET) como linha — eles pertencem a um drawer de detalhes.
 - Não altere padding/dimensões para "compensar" a variante — as duas variantes têm a mesma caixa externa.
 
@@ -155,11 +219,11 @@ O componente também repassa (`...rest`) qualquer atributo válido de uma `<div>
 
 ## CSS Classes
 
-| Classe                               | Descrição                                                |
-| ------------------------------------ | -------------------------------------------------------- |
-| `.ods-transaction-footer`            | Classe base aplicada ao container do rodapé.             |
-| `.ods-transaction-footer--default`   | Modificador da variante padrão (fundo neutro).           |
-| `.ods-transaction-footer--highlight` | Modificador da variante destacada (fundo + cantos 16px). |
+| Classe                               | Descrição                                                       |
+| ------------------------------------ | --------------------------------------------------------------- |
+| `.ods-transaction-footer`            | Classe base do container (fundo, espaçador de topo de 8px).     |
+| `.ods-transaction-footer--default`   | Variante padrão — fundo neutro + divisor no topo (`::before`).  |
+| `.ods-transaction-footer--highlight` | Variante destacada — fundo `light-up` + cantos superiores 16px. |
 
 ## Links relacionados
 
