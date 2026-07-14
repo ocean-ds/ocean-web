@@ -102,11 +102,11 @@ const ButtonBar = ({
 
 const Summary = (): JSX.Element => (
   <>
-    <SectionHeader title="Resumo" />
-    <Row label="Você vai economizar" value="R$ 3.574,28" />
-    <Row label="Custo de antecipação" value="Grátis" />
+    <SectionHeader title="Title" />
+    <Row label="Title" value="Description" />
+    <Row label="Title" value="Description" />
     <InternalDivider />
-    <Row label="Total" value="R$ 42.314,10" />
+    <Row label="Title" value="Description" />
   </>
 );
 
@@ -128,7 +128,7 @@ export const Usage: Story = {
       <Summary />
       <ButtonBar>
         <Button variant="primary" blocked>
-          Continuar
+          Label
         </Button>
       </ButtonBar>
     </TransactionFooter>
@@ -145,7 +145,7 @@ export const Default: Story = {
       <Summary />
       <ButtonBar>
         <Button variant="primary" blocked>
-          Continuar
+          Label
         </Button>
       </ButtonBar>
     </TransactionFooter>
@@ -162,7 +162,7 @@ export const Highlight: Story = {
       <Summary />
       <ButtonBar>
         <Button variant="primary" blocked>
-          Continuar
+          Label
         </Button>
       </ButtonBar>
     </TransactionFooter>
@@ -176,11 +176,11 @@ export const WithoutHeader: Story = {
   decorators,
   render: () => (
     <TransactionFooter variant="highlight">
-      <Row label="Desconto" value="-R$ 1.057,85" />
-      <Row label="Pagando" value="R$ 41.256,25" />
+      <Row label="Title" value="Description" />
+      <Row label="Title" value="Description" />
       <ButtonBar>
         <Button variant="primary" blocked>
-          Confirmar pagamento
+          Label
         </Button>
       </ButtonBar>
     </TransactionFooter>
@@ -197,10 +197,10 @@ export const WithTwoButtons: Story = {
       <Summary />
       <ButtonBar>
         <Button variant="primary" blocked>
-          Confirmar
+          Primary
         </Button>
         <Button variant="secondary" blocked>
-          Voltar
+          Secondary
         </Button>
       </ButtonBar>
     </TransactionFooter>

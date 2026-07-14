@@ -12,7 +12,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # TransactionFooter
 
-O `TransactionFooter` é o rodapé de resumo financeiro de telas de pagamento: agrupa as linhas de benefício → custo → total, um divisor e os botões de ação em um único bloco visual. Ele recebe o conteúdo como `children` (composição livre pelo consumidor) e expõe apenas a variante visual.
+O `TransactionFooter` é o rodapé de resumo financeiro de telas de pagamento: agrupa as linhas de resumo, um divisor e os botões de ação em um único bloco visual. Ele recebe o conteúdo como `children` (composição livre pelo consumidor) e expõe apenas a variante visual.
 
 A estrutura interna segue o Figma do Ocean DS Core: um **Section Header** opcional, linhas de resumo (label à esquerda em `colorInterfaceDarkDown`, valor à direita em `colorInterfaceDarkDeep`, `paragraph` 16px), um **Divider** interno e uma **Button Bar** com o botão primário. As linhas usam `padding` de `8px 16px` e a Button Bar `16px`.
 
@@ -61,7 +61,7 @@ Fundo `colorInterfaceLightPure`, cantos retos e um **divisor no topo** (`colorIn
 <TransactionFooter variant="default">
   <div style={{ padding: '8px 16px 4px' }}>
     <Typography variant="heading5">
-      <span style={{ color: '#AAADC0' }}>Resumo</span>
+      <span style={{ color: '#AAADC0' }}>Title</span>
     </Typography>
   </div>
   <div
@@ -73,13 +73,13 @@ Fundo `colorInterfaceLightPure`, cantos retos e um **divisor no topo** (`colorIn
     }}
   >
     <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
-      <span style={{ color: '#67697A' }}>Você vai economizar</span>
+      <span style={{ color: '#67697A' }}>Title</span>
     </Typography>
     <Typography
       variant="paragraph"
       style={{ flex: '1 0 0', textAlign: 'right' }}
     >
-      R$ 3.574,28
+      Description
     </Typography>
   </div>
   <div style={{ padding: '12px 16px' }}>
@@ -94,18 +94,18 @@ Fundo `colorInterfaceLightPure`, cantos retos e um **divisor no topo** (`colorIn
     }}
   >
     <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
-      <span style={{ color: '#67697A' }}>Total</span>
+      <span style={{ color: '#67697A' }}>Title</span>
     </Typography>
     <Typography
       variant="paragraph"
       style={{ flex: '1 0 0', textAlign: 'right' }}
     >
-      R$ 42.314,10
+      Description
     </Typography>
   </div>
   <div style={{ padding: 16 }}>
     <Button variant="primary" blocked>
-      Continuar
+      Label
     </Button>
   </div>
 </TransactionFooter>
@@ -126,13 +126,13 @@ Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px) e **sem*
     }}
   >
     <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
-      <span style={{ color: '#67697A' }}>Desconto</span>
+      <span style={{ color: '#67697A' }}>Title</span>
     </Typography>
     <Typography
       variant="paragraph"
       style={{ flex: '1 0 0', textAlign: 'right' }}
     >
-      -R$ 1.057,85
+      Description
     </Typography>
   </div>
   <div
@@ -144,18 +144,18 @@ Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px) e **sem*
     }}
   >
     <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
-      <span style={{ color: '#67697A' }}>Pagando</span>
+      <span style={{ color: '#67697A' }}>Title</span>
     </Typography>
     <Typography
       variant="paragraph"
       style={{ flex: '1 0 0', textAlign: 'right' }}
     >
-      R$ 41.256,25
+      Description
     </Typography>
   </div>
   <div style={{ padding: 16 }}>
     <Button variant="primary" blocked>
-      Confirmar pagamento
+      Label
     </Button>
   </div>
 </TransactionFooter>
