@@ -1,0 +1,169 @@
+---
+title: TransactionFooter
+---
+
+import {
+  TransactionFooter,
+  Typography,
+  Divider,
+  Button,
+} from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TransactionFooter
+
+O `TransactionFooter` é o rodapé de resumo financeiro de telas de pagamento: agrupa as linhas de benefício → custo → total, um divisor e os botões de ação em um único bloco visual. Ele recebe o conteúdo como `children` (composição livre pelo consumidor) e expõe apenas a variante visual.
+
+## Importação
+
+```tsx
+import { TransactionFooter } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TransactionFooter } from '@useblu/ocean-react/TransactionFooter';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type {
+  TransactionFooterProps,
+  TransactionFooterVariant,
+} from '@useblu/ocean-react';
+```
+
+## Playground Interativo
+
+Explore o componente `TransactionFooter` no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-transactionfooter--usage"
+  height={520}
+  title="TransactionFooter - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TransactionFooter](https://ocean-ds.github.io/ocean-web/?path=/docs/components-transactionfooter--docs)**.
+
+## Uso básico
+
+### Variante `default`
+
+Fundo neutro (`colorInterfaceLightPure`) com cantos retos — é o valor inicial da prop `variant`.
+
+```tsx live
+<TransactionFooter variant="default">
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: 8,
+    }}
+  >
+    <Typography variant="paragraph">Total</Typography>
+    <Typography variant="paragraph">
+      <strong>R$ 42.314,10</strong>
+    </Typography>
+  </div>
+  <Button variant="primary" blocked>
+    Continuar
+  </Button>
+</TransactionFooter>
+```
+
+### Variante `highlight`
+
+Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px). As dimensões externas do bloco são idênticas às da `default` — alternar a variante não causa "pulo" de layout.
+
+```tsx live
+<TransactionFooter variant="highlight">
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: 8,
+    }}
+  >
+    <Typography variant="paragraph">Você vai economizar</Typography>
+    <Typography variant="paragraph">R$ 3.574,28</Typography>
+  </div>
+  <Divider style={{ marginTop: 8, marginBottom: 8 }} />
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: 16,
+    }}
+  >
+    <Typography variant="paragraph">Pagando</Typography>
+    <Typography variant="paragraph">
+      <strong>R$ 41.256,25</strong>
+    </Typography>
+  </div>
+  <Button variant="primary" blocked>
+    Confirmar pagamento
+  </Button>
+</TransactionFooter>
+```
+
+## API
+
+### Props
+
+| Prop        | Tipo                       | Padrão      | Descrição                                                                                                                        |
+| ----------- | -------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `'default' \| 'highlight'` | `'default'` | Variante visual. `default` = fundo neutro e cantos retos; `highlight` = fundo destacado e cantos superiores arredondados (16px). |
+| `children`  | `ReactNode`                | -           | Conteúdo do rodapé (linhas de resumo, divisor e botões), composto pelo consumidor.                                               |
+| `className` | `string`                   | -           | Classes CSS adicionais.                                                                                                          |
+
+O componente também repassa (`...rest`) qualquer atributo válido de uma `<div>` (por exemplo `id`, `aria-*`, `data-*`, `style`).
+
+## Acessibilidade
+
+- ✅ É renderizado como um `<div>` neutro — a semântica do conteúdo (linhas, botões) é responsabilidade da composição interna.
+- ✅ O contraste dos textos sobre o fundo `colorInterfaceLightUp` (variante `highlight`) atende ao WCAG AA.
+- ✅ Aceita atributos `aria-*` via `...rest` quando o bloco precisa de um rótulo próprio.
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Mantenha a **linha de benefício em primeiro** e o **total como última linha**, em negrito.
+- Coloque o **botão dentro do footer**, usando `Button` com `variant="primary"` e `blocked`.
+- Use `highlight` quando o rodapé precisa se destacar do conteúdo rolável acima (ex.: card fixo na base).
+
+### ❌ Não faça
+
+- Não recrie o container com `styled-components` ou `<div>` cru quando o `TransactionFooter` já resolve fundo, padding e cantos.
+- Não coloque custos técnicos (IOF, juros, CET) como linha — eles pertencem a um drawer de detalhes.
+- Não altere padding/dimensões para "compensar" a variante — as duas variantes têm a mesma caixa externa.
+
+## Quando Usar
+
+### ✅ Ideal para:
+
+- Telas de **seleção de método de pagamento** e **revisão de pagamento**, resumindo o impacto financeiro antes da ação principal.
+
+### ❌ Evite para:
+
+- Listagens onde o toque em cada item já navega (use `TransactionListItem` com chevron).
+- Exibir a cobrança principal (essa vai no cabeçalho da tela, não no rodapé).
+
+## CSS Classes
+
+| Classe                               | Descrição                                                |
+| ------------------------------------ | -------------------------------------------------------- |
+| `.ods-transaction-footer`            | Classe base aplicada ao container do rodapé.             |
+| `.ods-transaction-footer--default`   | Modificador da variante padrão (fundo neutro).           |
+| `.ods-transaction-footer--highlight` | Modificador da variante destacada (fundo + cantos 16px). |
+
+## Links relacionados
+
+- [TransactionListItem](/components/transactionlistitem) - Para itens de lista de transações.
+- [Button](/components/button) - Botão de ação usado dentro do rodapé.
+- [Divider](/components/divider) - Divisor entre as linhas do resumo.
+- [Storybook - TransactionFooter](https://ocean-ds.github.io/ocean-web/?path=/docs/components-transactionfooter--docs) - Documentação técnica.
