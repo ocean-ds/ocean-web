@@ -104,7 +104,9 @@
     border: 0;
     cursor: pointer;
     display: flex;
-    gap: $spacing-inline-xxs-extra;
+    // Aligned with Figma (Card List Expandable, itemSpacing 12 -> 8 across the 18 variants):
+    // the same token as the stacked indicator's breathing room.
+    gap: $spacing-stack-xxs;
     min-width: 0; // Prevent button from overflowing
     padding: $spacing-inline-xs $spacing-inline-xxs $spacing-inline-xs
       $spacing-inline-xs;

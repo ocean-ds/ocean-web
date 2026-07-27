@@ -2,6 +2,7 @@ import React, { ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 import ContentList, {
   ContentListProps,
+  IndicatorPosition,
 } from '../_shared/components/ContentList/ContentList';
 import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 import Radio, { RadioProps } from '../Radio/Radio';
@@ -37,6 +38,17 @@ interface ListSelectableBaseProps {
   showDivider?: boolean;
   /** Optional visual indicator element (Badge, Tag, etc.). */
   indicator?: ReactNode;
+  /**
+   * Where the `indicator` is rendered relative to the text content.
+   *
+   * - `inline` (default): same row as the text, at the end of the content block.
+   * - `above`: stacked above the title, inside the content column.
+   * - `below`: stacked below the text, inside the content column.
+   *
+   * Has no effect when `indicator` is not provided.
+   * @default 'inline'
+   */
+  indicatorPosition?: IndicatorPosition;
   /** Visual state applied to the text content (`default`, `warning`, etc.). */
   status?: ContentListProps['type'];
   /** Platform context used to adjust spacing (web or app). */
@@ -63,7 +75,9 @@ type ListSelectableTextProps = ListSelectableBaseProps & {
   cornerTag?: never;
 };
 
-type ListSelectableProps = ListSelectableCardProps | ListSelectableTextProps;
+export type ListSelectableProps =
+  | ListSelectableCardProps
+  | ListSelectableTextProps;
 
 const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
   (props, ref) => {
@@ -80,6 +94,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       className,
       showDivider,
       indicator,
+      indicatorPosition = 'inline',
       isSelectableDisabled,
       highlight,
       status = 'default',
@@ -98,6 +113,11 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       [radio?.disabled, checkbox?.disabled, disabled]
     );
 
+    // Only `above`/`below` are passed into ContentList; `inline` keeps the component's
+    // current wrapper, preserving the production DOM.
+    const stackedPosition =
+      indicatorPosition !== 'inline' ? indicatorPosition : undefined;
+
     const internalList = useMemo(
       () => (
         <>
@@ -108,8 +128,10 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
             caption={caption}
             inverted={inverted}
             type={disabled ? 'inactive' : status}
+            indicator={stackedPosition ? indicator : undefined}
+            indicatorPosition={stackedPosition}
           />
-          {indicator && (
+          {indicator && !stackedPosition && (
             <div
               className={classNames('ods-list-selectable__indicator', {
                 [`ods-list-selectable__indicator--${platform}`]: platform,
@@ -128,6 +150,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
         inverted,
         status,
         indicator,
+        stackedPosition,
         disabled,
         platform,
       ]
@@ -155,6 +178,7 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
           className={className}
           showDivider={showDivider}
           indicator={indicator}
+          indicatorPosition={indicatorPosition}
           caption={caption}
           strikethroughDescription={strikethroughDescription}
           highlight={highlight}

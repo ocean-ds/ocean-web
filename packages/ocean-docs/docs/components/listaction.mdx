@@ -505,26 +505,27 @@ Mostra um skeleton placeholder durante carregamento:
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão           | Descrição                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------ |
-| `title`                    | `string`                                                                                                   | -                | Título principal do item (obrigatório)                       |
-| `description`              | `string`                                                                                                   | -                | Descrição ou texto secundário                                |
-| `strikethroughDescription` | `string`                                                                                                   | -                | Descrição com texto riscado (valor antigo)                   |
-| `caption`                  | `string`                                                                                                   | -                | Legenda ou texto terciário                                   |
-| `inverted`                 | `boolean`                                                                                                  | `false`          | Inverte posição do título com descrição                      |
-| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`         | Tipo de borda do item                                        |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Status visual do conteúdo                                    |
-| `showDivider`              | `boolean`                                                                                                  | `false`          | Mostra divisor entre itens (apenas para `type="text"`)       |
-| `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -                | Exibe área de destaque com texto ou conteúdo na base do card |
-| `disabled`                 | `boolean`                                                                                                  | `false`          | Desabilita o item                                            |
-| `loading`                  | `boolean`                                                                                                  | `false`          | Exibe skeleton de carregamento                               |
-| `icon`                     | `ReactNode`                                                                                                | -                | Ícone exibido no início do item                              |
-| `indicator`                | `ReactNode`                                                                                                | -                | Indicador (badge/tag) antes da ação                          |
-| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Tipo de ação do item                                         |
-| `menuActions`              | `ActionItem[]`                                                                                             | -                | Lista de ações para tipos menu/swipe                         |
-| `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu dropdown                                     |
-| `onClick`                  | `(event: React.MouseEvent<HTMLButtonElement>) => void`                                                     | -                | Função chamada ao clicar no item                             |
-| `className`                | `string`                                                                                                   | -                | Classes CSS adicionais                                       |
+| Prop                       | Tipo                                                                                                       | Padrão           | Descrição                                                                                                         |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `title`                    | `string`                                                                                                   | -                | Título principal do item (obrigatório)                                                                            |
+| `description`              | `string`                                                                                                   | -                | Descrição ou texto secundário                                                                                     |
+| `strikethroughDescription` | `string`                                                                                                   | -                | Descrição com texto riscado (valor antigo)                                                                        |
+| `caption`                  | `string`                                                                                                   | -                | Legenda ou texto terciário                                                                                        |
+| `inverted`                 | `boolean`                                                                                                  | `false`          | Inverte posição do título com descrição                                                                           |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`         | Tipo de borda do item                                                                                             |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Status visual do conteúdo                                                                                         |
+| `showDivider`              | `boolean`                                                                                                  | `false`          | Mostra divisor entre itens (apenas para `type="text"`)                                                            |
+| `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -                | Exibe área de destaque com texto ou conteúdo na base do card                                                      |
+| `disabled`                 | `boolean`                                                                                                  | `false`          | Desabilita o item                                                                                                 |
+| `loading`                  | `boolean`                                                                                                  | `false`          | Exibe skeleton de carregamento                                                                                    |
+| `icon`                     | `ReactNode`                                                                                                | -                | Ícone exibido no início do item                                                                                   |
+| `indicator`                | `ReactNode`                                                                                                | -                | Indicador (badge/tag) antes da ação                                                                               |
+| `indicatorPosition`        | `'inline' \| 'above' \| 'below'`                                                                           | `'inline'`       | Posição do `indicator` em relação ao texto. Não confundir com `position` (timeline) nem `menuPosition` (dropdown) |
+| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Tipo de ação do item                                                                                              |
+| `menuActions`              | `ActionItem[]`                                                                                             | -                | Lista de ações para tipos menu/swipe                                                                              |
+| `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu dropdown                                                                                          |
+| `onClick`                  | `(event: React.MouseEvent<HTMLButtonElement>) => void`                                                     | -                | Função chamada ao clicar no item                                                                                  |
+| `className`                | `string`                                                                                                   | -                | Classes CSS adicionais                                                                                            |
 
 ### ActionItem (menuActions)
 
@@ -639,3 +640,31 @@ No Storybook você encontrará:
 - [TransactionListItem](/components/transactionlistitem) - Para transações financeiras
 - [SettingsListItem](/components/settingslistitem) - Para itens de configuração
 - [Storybook - ListAction](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listaction--docs)
+
+## Posição do indicator
+
+A prop `indicatorPosition` define onde o `indicator` é renderizado em relação ao texto:
+
+| Valor              | Comportamento                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `inline` (default) | Mantém a posição atual do componente — mesma linha do texto, no fim do bloco de conteúdo. Nenhuma tela em produção muda. |
+| `above`            | Empilha o indicator **acima do título**, dentro do bloco de conteúdo.                                                    |
+| `below`            | Empilha o indicator **abaixo do texto**, dentro do bloco de conteúdo.                                                    |
+
+O indicator pertence ao bloco de conteúdo, nunca ao slot do controle: em qualquer posição o
+chevron, o menu, o radio/checkbox e o `amountDetails` permanecem onde estão. Nas posições
+empilhadas o respiro é de 8px (`spacingStackXxs`) e o indicator fica alinhado à esquerda.
+
+A prop não tem efeito quando `indicator` não é informado.
+
+```jsx
+<Component
+  title="Limite de compra adicional"
+  description="Pague em até 3x"
+  indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+  indicatorPosition="above"
+/>
+```
+
+> **Não confundir:** `indicatorPosition` posiciona o _indicator_; `position` desenha a
+> _timeline_ (`first`/`middle`/`last`) e `menuPosition` posiciona o _dropdown_ do menu.

@@ -5,6 +5,11 @@ import Tag from '../../Tag';
 import ListSelectable from '../ListSelectable';
 
 import List from '../../List';
+import {
+  indicatorPositionCases,
+  indicatorPositionStackStyle,
+  indicatorPositionStoryConfig,
+} from '../../_stories/components/indicatorPosition';
 
 const storyStyles = {
   container: {
@@ -745,6 +750,22 @@ export const WithHighlight: Story = {
           }}
         />
       </div>
+    </div>
+  ),
+};
+
+export const IndicatorPosition: Story = {
+  ...indicatorPositionStoryConfig,
+  render: ({ indicator }) => (
+    <div style={indicatorPositionStackStyle}>
+      {indicatorPositionCases.map(({ id, ...caseProps }) => (
+        <ListSelectable
+          key={id}
+          {...caseProps}
+          indicator={indicator}
+          radio={{ id: `ip-${id}`, name: 'indicator-position' }}
+        />
+      ))}
     </div>
   ),
 };

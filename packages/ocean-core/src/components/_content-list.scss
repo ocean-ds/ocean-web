@@ -4,6 +4,22 @@
   flex-direction: column;
   min-width: 0;
 
+  // Do NOT add `gap` here: the spacing between title, description and caption comes from
+  // the caption's `margin-top`, and a `gap` on the container would regress every component
+  // that uses ContentList. The stacked indicator's breathing room goes in its own `margin`.
+  &__indicator {
+    align-self: flex-start;
+    display: flex;
+
+    &--above {
+      margin-bottom: $spacing-stack-xxs;
+    }
+
+    &--below {
+      margin-top: $spacing-stack-xxs;
+    }
+  }
+
   .ods-typography__paragraph {
     color: $color-interface-dark-deep;
   }

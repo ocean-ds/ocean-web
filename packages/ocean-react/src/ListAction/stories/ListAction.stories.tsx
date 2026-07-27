@@ -12,6 +12,11 @@ import type { ActionItem } from '../../_shared/components/InternalListActions';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
+import {
+  indicatorPositionCases,
+  indicatorPositionStackStyle,
+  indicatorPositionStoryConfig,
+} from '../../_stories/components/indicatorPosition';
 
 const meta: Meta<typeof ListAction> = {
   title: 'Components/List/ListAction',
@@ -811,6 +816,17 @@ export const WithHighlight: Story = {
           onClick={() => alert('Clicado!')}
         />
       </div>
+    </div>
+  ),
+};
+
+export const IndicatorPosition: Story = {
+  ...indicatorPositionStoryConfig,
+  render: ({ indicator }) => (
+    <div style={indicatorPositionStackStyle}>
+      {indicatorPositionCases.map(({ id, ...caseProps }) => (
+        <ListAction key={id} {...caseProps} indicator={indicator} />
+      ))}
     </div>
   ),
 };

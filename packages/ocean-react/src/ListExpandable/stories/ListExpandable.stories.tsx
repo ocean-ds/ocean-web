@@ -10,6 +10,11 @@ import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
 import Typography from '../../Typography';
+import {
+  indicatorPositionCases,
+  indicatorPositionStackStyle,
+  indicatorPositionStoryConfig,
+} from '../../_stories/components/indicatorPosition';
 
 // Mapeia os nomes dos ícones para seus componentes
 const iconMap = {
@@ -664,6 +669,17 @@ export const WithHighlight: Story = {
           </div>
         </ListExpandable>
       </div>
+    </div>
+  ),
+};
+
+export const IndicatorPosition: Story = {
+  ...indicatorPositionStoryConfig,
+  render: ({ indicator }) => (
+    <div style={indicatorPositionStackStyle}>
+      {indicatorPositionCases.map(({ id, ...caseProps }) => (
+        <ListExpandable key={id} {...caseProps} indicator={indicator} />
+      ))}
     </div>
   ),
 };
