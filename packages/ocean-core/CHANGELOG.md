@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.137.0](https://github.com/ocean-ds/ocean-web/compare/v1.136.0...v1.137.0) (2026-07-27)
+
+### Features
+
+- add Banner component ([#1251](https://github.com/ocean-ds/ocean-web/issues/1251)) ([a4dfe36](https://github.com/ocean-ds/ocean-web/commit/a4dfe36148b75521725c2b837943f7d9b607c390))
+- **list:** adiciona indicatorPosition nos componentes de lista ([#1253](https://github.com/ocean-ds/ocean-web/issues/1253)) ([e98be1d](https://github.com/ocean-ds/ocean-web/commit/e98be1d8b99faa3c1f3fe7d6d970e914bc8d979a))
+
 # [1.136.0](https://github.com/ocean-ds/ocean-web/compare/v1.135.3...v1.136.0) (2026-05-11)
 
 ### Features
