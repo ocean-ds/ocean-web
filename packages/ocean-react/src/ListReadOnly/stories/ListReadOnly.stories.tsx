@@ -547,3 +547,40 @@ export const CompleteExample: Story = {
       { icon: defaultIcon }
     ),
 };
+
+export const IndicatorPosition: Story = {
+  parameters: {
+    ...disabledControls,
+    docs: {
+      description: {
+        story:
+          'A prop `indicatorPosition` define onde o `indicator` fica em relação ao texto. ' +
+          '`inline` (default) mantém o comportamento atual — mesma linha do texto, no fim do ' +
+          'bloco de conteúdo. `above` e `below` empilham dentro do bloco de conteúdo, com 8px ' +
+          'de respiro e alinhados à esquerda. O slot do controle nunca recebe o indicator.',
+      },
+    },
+  },
+  render: () => (
+    <List style={listStyle}>
+      <ListReadOnly
+        title="inline (default)"
+        description="Comportamento atual — nenhuma tela em produção muda"
+        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+      />
+      <ListReadOnly
+        title="above"
+        description="Tag empilhada acima do título"
+        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        indicatorPosition="above"
+      />
+      <ListReadOnly
+        title="below"
+        description="Tag empilhada abaixo do texto"
+        caption="Caption"
+        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        indicatorPosition="below"
+      />
+    </List>
+  ),
+};

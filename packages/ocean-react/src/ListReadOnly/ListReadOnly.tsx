@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import ContentList, {
   ContentListProps,
+  IndicatorPosition,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import ListContainer, {
@@ -34,6 +35,17 @@ export type ListReadOnlyProps = {
    * Indicator/badge displayed at the end of the card.
    */
   indicator?: ReactNode;
+  /**
+   * Where the `indicator` is rendered relative to the text content.
+   *
+   * - `inline` (default): same row as the text, at the end of the content block.
+   * - `above`: stacked above the title, inside the content column.
+   * - `below`: stacked below the text, inside the content column.
+   *
+   * Has no effect when `indicator` is not provided.
+   * @default 'inline'
+   */
+  indicatorPosition?: IndicatorPosition;
   /**
    * The style type of the list item.
    * @default 'card'
@@ -84,6 +96,7 @@ const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
       caption,
       icon,
       indicator,
+      indicatorPosition = 'inline',
       type = 'card',
       status = 'default',
       inverted = false,
@@ -104,6 +117,11 @@ const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
       </div>
     );
 
+    // Só `above`/`below` vão para dentro do ContentList; `inline` mantém o wrapper
+    // atual do componente, preservando o DOM em produção.
+    const stackedPosition =
+      indicatorPosition !== 'inline' ? indicatorPosition : undefined;
+
     const renderContent = () => (
       <>
         {icon && (
@@ -122,8 +140,10 @@ const ListReadOnly = React.forwardRef<HTMLDivElement, ListReadOnlyProps>(
           caption={caption}
           inverted={inverted}
           type={status}
+          indicator={stackedPosition ? indicator : undefined}
+          indicatorPosition={stackedPosition}
         />
-        {indicator && (
+        {indicator && !stackedPosition && (
           <div className="ods-list-readonly__trailing">
             <div className="ods-list-readonly__indicator">{indicator}</div>
           </div>

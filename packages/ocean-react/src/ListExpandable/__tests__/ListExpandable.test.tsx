@@ -445,4 +445,76 @@ describe('ListExpandable', () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  describe('indicatorPosition', () => {
+    const indicator = <span>3x sem acréscimo</span>;
+
+    test('CT-1: keeps the current wrapper when the prop is omitted', () => {
+      render(<ListExpandable title="Title" indicator={indicator} />);
+
+      const tag = screen.getByText('3x sem acréscimo');
+
+      expect(
+        tag.closest('.ods-list-expandable__indicator')
+      ).toBeInTheDocument();
+      expect(tag.closest('.ods-content-list__indicator')).toBeNull();
+    });
+
+    test('CT-4: explicit inline renders the same tree as the default', () => {
+      const { asFragment: defaultTree } = render(
+        <ListExpandable title="Title" indicator={indicator} />
+      );
+      const { asFragment: inlineTree } = render(
+        <ListExpandable
+          title="Title"
+          indicator={indicator}
+          indicatorPosition="inline"
+        />
+      );
+
+      expect(inlineTree()).toEqual(defaultTree());
+    });
+
+    test('CT-6: trailing keeps only the chevron when stacked', () => {
+      render(
+        <ListExpandable
+          title="Title"
+          indicator={indicator}
+          indicatorPosition="above"
+        />
+      );
+
+      const trailing = screen
+        .getByText('Title')
+        .closest('.ods-list-expandable')
+        ?.querySelector('.ods-list-expandable__trailing');
+
+      expect(trailing?.children).toHaveLength(1);
+      expect(trailing?.firstElementChild).toHaveClass(
+        'ods-list-expandable__action'
+      );
+      expect(
+        screen
+          .getByText('3x sem acréscimo')
+          .closest('.ods-content-list__indicator--above')
+      ).toBeInTheDocument();
+    });
+
+    test('CT-3: renders below as the last child of the content column', () => {
+      render(
+        <ListExpandable
+          title="Title"
+          caption="Caption"
+          indicator={indicator}
+          indicatorPosition="below"
+        />
+      );
+
+      const content = screen.getByText('Title').closest('.ods-content-list');
+
+      expect(content?.lastElementChild).toHaveClass(
+        'ods-content-list__indicator--below'
+      );
+    });
+  });
 });

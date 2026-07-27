@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
 import ContentList, {
   ContentListProps,
+  IndicatorPosition,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import ListContainer, {
@@ -55,6 +56,17 @@ export type ListExpandableProps = {
    */
   indicator?: ReactNode;
   /**
+   * Where the `indicator` is rendered relative to the text content.
+   *
+   * - `inline` (default): same row as the text, before the chevron.
+   * - `above`: stacked above the title, inside the content column.
+   * - `below`: stacked below the text, inside the content column.
+   *
+   * Has no effect when `indicator` is not provided.
+   * @default 'inline'
+   */
+  indicatorPosition?: IndicatorPosition;
+  /**
    * Controls the expanded state (controlled component).
    */
   expanded?: boolean;
@@ -100,6 +112,7 @@ const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
       loading = false,
       icon,
       indicator,
+      indicatorPosition = 'inline',
       expanded: controlledExpanded,
       defaultExpanded = false,
       onToggle,
@@ -134,6 +147,11 @@ const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
       </div>
     );
 
+    // Só `above`/`below` vão para dentro do ContentList; `inline` mantém o wrapper
+    // atual do componente, preservando o DOM em produção.
+    const stackedPosition =
+      indicatorPosition !== 'inline' ? indicatorPosition : undefined;
+
     const renderContent = () => (
       <>
         {icon && (
@@ -152,9 +170,11 @@ const ListExpandable = React.forwardRef<HTMLDivElement, ListExpandableProps>(
           caption={caption}
           inverted={inverted}
           type={status}
+          indicator={stackedPosition ? indicator : undefined}
+          indicatorPosition={stackedPosition}
         />
         <div className="ods-list-expandable__trailing">
-          {indicator && (
+          {indicator && !stackedPosition && (
             <div className="ods-list-expandable__indicator">{indicator}</div>
           )}
           <div className="ods-list-expandable__action">

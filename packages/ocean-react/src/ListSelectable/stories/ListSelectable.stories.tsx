@@ -748,3 +748,50 @@ export const WithHighlight: Story = {
     </div>
   ),
 };
+
+export const IndicatorPosition: Story = {
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'A prop `indicatorPosition` define onde o `indicator` fica em relação ao texto. ' +
+          '`inline` (default) mantém o comportamento atual — mesma linha do texto, no fim do ' +
+          'bloco de conteúdo. `above` e `below` empilham dentro do bloco de conteúdo, com 8px ' +
+          'de respiro e alinhados à esquerda. O slot do controle nunca recebe o indicator.',
+      },
+    },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        minWidth: 320,
+      }}
+    >
+      <ListSelectable
+        title="inline (default)"
+        description="Comportamento atual — nenhuma tela em produção muda"
+        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        radio={{ id: 'ip-inline', name: 'indicator-position' }}
+      />
+      <ListSelectable
+        title="above"
+        description="Tag empilhada acima do título"
+        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        indicatorPosition="above"
+        radio={{ id: 'ip-above', name: 'indicator-position' }}
+      />
+      <ListSelectable
+        title="below"
+        description="Tag empilhada abaixo do texto"
+        caption="Caption"
+        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        indicatorPosition="below"
+        radio={{ id: 'ip-below', name: 'indicator-position' }}
+      />
+    </div>
+  ),
+};

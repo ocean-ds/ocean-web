@@ -353,6 +353,7 @@ Veja como controlar o estado de expansão externamente:
 | `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card |
 | `icon`                     | `ReactNode`                                                                                                | -           | Ícone à esquerda do conteúdo                                 |
 | `indicator`                | `ReactNode`                                                                                                | -           | Badge/Tag antes da ação de expansão                          |
+| `indicatorPosition`        | `'inline' \| 'above' \| 'below'`                                                                           | `'inline'`  | Posição do `indicator` em relação ao texto                   |
 | `expanded`                 | `boolean`                                                                                                  | -           | Controla estado expandido (controlled)                       |
 | `defaultExpanded`          | `boolean`                                                                                                  | `false`     | Estado inicial (uncontrolled)                                |
 | `onToggle`                 | `(expanded: boolean) => void`                                                                              | -           | Callback ao expandir/colapsar                                |
@@ -512,3 +513,28 @@ Veja como controlar o estado de expansão externamente:
 - [Tag](/components/tag) - Para indicadores de status
 - [Accordion](/components/accordion) - Para seções expansíveis de página
 - [Storybook - ListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listexpandable--docs) - Documentação técnica completa
+
+## Posição do indicator
+
+A prop `indicatorPosition` define onde o `indicator` é renderizado em relação ao texto:
+
+| Valor              | Comportamento                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `inline` (default) | Mantém a posição atual do componente — mesma linha do texto, no fim do bloco de conteúdo. Nenhuma tela em produção muda. |
+| `above`            | Empilha o indicator **acima do título**, dentro do bloco de conteúdo.                                                    |
+| `below`            | Empilha o indicator **abaixo do texto**, dentro do bloco de conteúdo.                                                    |
+
+O indicator pertence ao bloco de conteúdo, nunca ao slot do controle: em qualquer posição o
+chevron, o menu, o radio/checkbox e o `amountDetails` permanecem onde estão. Nas posições
+empilhadas o respiro é de 8px (`spacingStackXxs`) e o indicator fica alinhado à esquerda.
+
+A prop não tem efeito quando `indicator` não é informado.
+
+```jsx
+<Component
+  title="Limite de compra adicional"
+  description="Pague em até 3x"
+  indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+  indicatorPosition="above"
+/>
+```
