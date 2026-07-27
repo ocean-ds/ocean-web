@@ -548,37 +548,53 @@ export const CompleteExample: Story = {
     ),
 };
 
+const positionIndicatorOptions = {
+  tag: <Tag type="positive">3x sem acréscimo</Tag>,
+  withoutIndicator: undefined,
+};
+
 export const IndicatorPosition: Story = {
   parameters: {
-    ...disabledControls,
     docs: {
       description: {
         story:
-          'A prop `indicatorPosition` define onde o `indicator` fica em relação ao texto. ' +
-          '`inline` (default) mantém o comportamento atual — mesma linha do texto, no fim do ' +
-          'bloco de conteúdo. `above` e `below` empilham dentro do bloco de conteúdo, com 8px ' +
-          'de respiro e alinhados à esquerda. O slot do controle nunca recebe o indicator.',
+          'The `indicatorPosition` prop sets where the `indicator` sits relative to the text. ' +
+          '`inline` (default) keeps the current behaviour — same row as the text, at the end ' +
+          'of the content block. `above` and `below` stack it inside the content block, with ' +
+          '8px of breathing room, left-aligned. The control slot never receives the indicator.',
       },
     },
   },
-  render: () => (
+  argTypes: {
+    indicator: {
+      options: Object.keys(positionIndicatorOptions),
+      mapping: positionIndicatorOptions,
+      control: { type: 'radio' },
+      description:
+        'Toggles the indicator on and off in the three positions below.',
+    },
+  },
+  args: {
+    indicator: 'tag' as unknown as React.ReactNode,
+  },
+  render: ({ indicator }) => (
     <List style={listStyle}>
       <ListReadOnly
         title="inline (default)"
-        description="Comportamento atual — nenhuma tela em produção muda"
-        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        description="Current behaviour — nothing changes in production"
+        indicator={indicator}
       />
       <ListReadOnly
         title="above"
-        description="Tag empilhada acima do título"
-        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        description="Tag stacked above the title"
+        indicator={indicator}
         indicatorPosition="above"
       />
       <ListReadOnly
         title="below"
-        description="Tag empilhada abaixo do texto"
+        description="Tag stacked below the text"
         caption="Caption"
-        indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+        indicator={indicator}
         indicatorPosition="below"
       />
     </List>
