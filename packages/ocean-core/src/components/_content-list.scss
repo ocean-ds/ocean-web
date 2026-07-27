@@ -4,9 +4,9 @@
   flex-direction: column;
   min-width: 0;
 
-  // NÃO adicionar `gap` aqui: o espaçamento entre título, descrição e caption vem do
-  // `margin-top` do caption, e um `gap` no container regrediria todos os componentes
-  // que usam o ContentList. O respiro do indicator empilhado vai no `margin` dele.
+  // Do NOT add `gap` here: the spacing between title, description and caption comes from
+  // the caption's `margin-top`, and a `gap` on the container would regress every component
+  // that uses ContentList. The stacked indicator's breathing room goes in its own `margin`.
   &__indicator {
     align-self: flex-start;
     display: flex;

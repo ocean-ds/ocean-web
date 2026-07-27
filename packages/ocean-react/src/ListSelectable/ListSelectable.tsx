@@ -113,8 +113,8 @@ const ListSelectable = React.forwardRef<HTMLDivElement, ListSelectableProps>(
       [radio?.disabled, checkbox?.disabled, disabled]
     );
 
-    // Só `above`/`below` vão para dentro do ContentList; `inline` mantém o wrapper
-    // atual do componente, preservando o DOM em produção.
+    // Only `above`/`below` are passed into ContentList; `inline` keeps the component's
+    // current wrapper, preserving the production DOM.
     const stackedPosition =
       indicatorPosition !== 'inline' ? indicatorPosition : undefined;
 
