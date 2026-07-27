@@ -6,6 +6,10 @@ import type { ListReadOnlyProps } from '../ListReadOnly';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
+import {
+  indicatorPositionCases,
+  indicatorPositionStoryConfig,
+} from '../../_stories/components/indicatorPosition';
 
 const defaultIcon = <PlaceholderOutline size={24} />;
 const listStyle = { minWidth: '300px' };
@@ -548,55 +552,13 @@ export const CompleteExample: Story = {
     ),
 };
 
-const positionIndicatorOptions = {
-  tag: <Tag type="positive">3x sem acréscimo</Tag>,
-  withoutIndicator: undefined,
-};
-
 export const IndicatorPosition: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The `indicatorPosition` prop sets where the `indicator` sits relative to the text. ' +
-          '`inline` (default) keeps the current behaviour — same row as the text, at the end ' +
-          'of the content block. `above` and `below` stack it inside the content block, with ' +
-          '8px of breathing room, left-aligned. The control slot never receives the indicator.',
-      },
-    },
-  },
-  argTypes: {
-    indicator: {
-      options: Object.keys(positionIndicatorOptions),
-      mapping: positionIndicatorOptions,
-      control: { type: 'radio' },
-      description:
-        'Toggles the indicator on and off in the three positions below.',
-    },
-  },
-  args: {
-    indicator: 'tag' as unknown as React.ReactNode,
-  },
+  ...indicatorPositionStoryConfig,
   render: ({ indicator }) => (
     <List style={listStyle}>
-      <ListReadOnly
-        title="inline (default)"
-        description="Current behaviour — nothing changes in production"
-        indicator={indicator}
-      />
-      <ListReadOnly
-        title="above"
-        description="Tag stacked above the title"
-        indicator={indicator}
-        indicatorPosition="above"
-      />
-      <ListReadOnly
-        title="below"
-        description="Tag stacked below the text"
-        caption="Caption"
-        indicator={indicator}
-        indicatorPosition="below"
-      />
+      {indicatorPositionCases.map(({ id, ...caseProps }) => (
+        <ListReadOnly key={id} {...caseProps} indicator={indicator} />
+      ))}
     </List>
   ),
 };

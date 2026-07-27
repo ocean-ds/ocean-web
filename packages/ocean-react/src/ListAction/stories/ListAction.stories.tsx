@@ -12,6 +12,11 @@ import type { ActionItem } from '../../_shared/components/InternalListActions';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
+import {
+  indicatorPositionCases,
+  indicatorPositionStackStyle,
+  indicatorPositionStoryConfig,
+} from '../../_stories/components/indicatorPosition';
 
 const meta: Meta<typeof ListAction> = {
   title: 'Components/List/ListAction',
@@ -815,62 +820,13 @@ export const WithHighlight: Story = {
   ),
 };
 
-const positionIndicatorOptions = {
-  tag: <Tag type="positive">3x sem acréscimo</Tag>,
-  withoutIndicator: undefined,
-};
-
 export const IndicatorPosition: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'The `indicatorPosition` prop sets where the `indicator` sits relative to the text. ' +
-          '`inline` (default) keeps the current behaviour — same row as the text, at the end ' +
-          'of the content block. `above` and `below` stack it inside the content block, with ' +
-          '8px of breathing room, left-aligned. The control slot never receives the indicator.',
-      },
-    },
-  },
-  argTypes: {
-    indicator: {
-      options: Object.keys(positionIndicatorOptions),
-      mapping: positionIndicatorOptions,
-      control: { type: 'radio' },
-      description:
-        'Toggles the indicator on and off in the three positions below.',
-    },
-  },
-  args: {
-    indicator: 'tag' as unknown as React.ReactNode,
-  },
+  ...indicatorPositionStoryConfig,
   render: ({ indicator }) => (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-        minWidth: 320,
-      }}
-    >
-      <ListAction
-        title="inline (default)"
-        description="Current behaviour — nothing changes in production"
-        indicator={indicator}
-      />
-      <ListAction
-        title="above"
-        description="Tag stacked above the title"
-        indicator={indicator}
-        indicatorPosition="above"
-      />
-      <ListAction
-        title="below"
-        description="Tag stacked below the text"
-        caption="Caption"
-        indicator={indicator}
-        indicatorPosition="below"
-      />
+    <div style={indicatorPositionStackStyle}>
+      {indicatorPositionCases.map(({ id, ...caseProps }) => (
+        <ListAction key={id} {...caseProps} indicator={indicator} />
+      ))}
     </div>
   ),
 };
