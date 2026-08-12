@@ -3,8 +3,10 @@
   background-color: $color-interface-light-pure;
   border: $border-width-hairline solid $color-interface-light-deep;
   border-radius: $border-radius-sm;
+  box-sizing: border-box;
   display: flex;
   height: 46px;
+  padding: 1px;
   width: 100%;
 
   input {
@@ -31,6 +33,7 @@
   &:active,
   &:focus-within {
     border: $border-width-thin solid $color-brand-primary-down;
+    padding: 0;
   }
 
   &--filled {
@@ -64,6 +67,14 @@
     svg {
       color: #d8dae8;
     }
+  }
+
+  &__adornment--focused > svg {
+    color: $color-brand-primary-pure;
+  }
+
+  &__adornment--filled > svg {
+    color: $color-brand-primary-down;
   }
 
   &__clean {
