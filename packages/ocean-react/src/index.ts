@@ -149,3 +149,6 @@ export * from './InternalContextualHero';
 
 export { default as ListSettings } from './ListSettings';
 export * from './ListSettings';
+
+export { default as TransactionFooter } from './TransactionFooter';
+export * from './TransactionFooter';
