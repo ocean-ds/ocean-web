@@ -3,12 +3,14 @@ import type { ChipValue, IUseChipOptions, IUseChipReturn } from '../types';
 
 const shouldDefaultToEmpty = (
   defaultValue?: ChipValue,
-  multiChoice?: boolean
-) => Boolean(defaultValue) || Boolean(multiChoice);
+  multiChoice?: boolean,
+  singleSelection?: boolean
+) => Boolean(defaultValue) || Boolean(multiChoice) || Boolean(singleSelection);
 
 const useChip = ({
   defaultValue,
   multiChoice = false,
+  singleSelection = false,
   onChange,
   onClean,
   onConfirm,
@@ -23,7 +25,7 @@ const useChip = ({
   const [selectedOptions, setSelectedOptions] = useState<
     ChipValue[] | ChipValue
   >(() =>
-    shouldDefaultToEmpty(defaultValue, multiChoice)
+    shouldDefaultToEmpty(defaultValue, multiChoice, singleSelection)
       ? []
       : { label: '', value: '' }
   );
@@ -32,7 +34,7 @@ const useChip = ({
     if (selectedValue && selectedValue !== selectedOptions) {
       setSelectedOptions(selectedValue);
 
-      if (multiChoice && Array.isArray(selectedValue)) {
+      if (multiChoice && !singleSelection && Array.isArray(selectedValue)) {
         setCounter(selectedValue.length);
       }
     }
@@ -71,6 +73,29 @@ const useChip = ({
 
   const handleSelectOption = useCallback(
     (labelProp: string, value: string) => {
+      if (singleSelection) {
+        setSelectedOptions((prev) => {
+          const previous = Array.isArray(prev) ? prev : [];
+          const isSameOption = previous.some(
+            (option) => option.value === value
+          );
+          const matchedOption = options.find(
+            (option) => option.value === value
+          );
+          const next = isSameOption
+            ? []
+            : [matchedOption ?? { label: labelProp, value }];
+
+          if (onChange) {
+            onChange(next);
+          }
+
+          return next;
+        });
+
+        return;
+      }
+
       if (!multiChoice) {
         const nextSelection = { label: labelProp, value };
         setSelectedOptions(nextSelection);
@@ -108,7 +133,7 @@ const useChip = ({
         return copyOptions;
       });
     },
-    [multiChoice, onChange, options]
+    [multiChoice, onChange, options, singleSelection]
   );
 
   const clearOptions = useCallback(() => {
