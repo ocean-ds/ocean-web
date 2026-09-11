@@ -17,7 +17,6 @@
 }
 
 .ods-transaction {
-  background-color: $color-interface-light-pure;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -25,7 +24,7 @@
 
   &:hover,
   &:focus {
-    background-color: $color-interface-light-up;
+    @include list-state-blend;
 
     .ods-transaction__icon {
       background-color: $color-interface-light-down;
@@ -33,7 +32,7 @@
   }
 
   &:active {
-    background-color: $color-interface-light-deep;
+    @include list-state-blend($color-interface-light-deep);
 
     .ods-transaction__icon {
       background-color: $color-interface-light-down;

@@ -1,0 +1,12 @@
+// Itens de lista não têm fundo próprio: herdam o do container.
+// Hover/focus/active e dividers compõem por MULTIPLY com o fundo real,
+// então sobre branco o resultado é idêntico ao token puro.
+@mixin list-state-blend($color: $color-interface-light-up) {
+  background-color: $color;
+  mix-blend-mode: multiply;
+}
+
+@mixin list-divider-blend {
+  border-color: $color-interface-light-down;
+  mix-blend-mode: multiply;
+}

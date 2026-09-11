@@ -2,13 +2,13 @@
   .ods-checkbox__root,
   .ods-radio__root {
     align-items: center;
-    background-color: $color-interface-light-pure;
     padding: $spacing-inline-xs;
     width: 100%;
 
     &:hover,
     &:focus {
-      background-color: $color-interface-light-up;
+      @include list-state-blend;
+
       cursor: pointer;
     }
   }
@@ -37,7 +37,6 @@
 .ods-text-list-item {
   align-items: center;
   align-items: flex-start;
-  background-color: $color-interface-light-pure;
   display: flex;
   flex-direction: column;
   padding: $spacing-inline-xs;
@@ -58,7 +57,8 @@
 
     &:hover,
     &:focus {
-      background-color: $color-interface-light-up;
+      @include list-state-blend;
+
       cursor: pointer;
     }
   }

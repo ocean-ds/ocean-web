@@ -1,5 +1,4 @@
 .ods-list-expandable {
-  background-color: $color-interface-light-pure;
   display: flex;
   flex-direction: column;
   min-width: 0; // Prevent flex items from overflowing
@@ -13,8 +12,12 @@
   }
 
   &__divider {
+    @include list-divider-blend;
+
     border-bottom: 1px solid $color-interface-light-down;
-    margin: 0 $spacing-inline-xs;
+    margin: -1px $spacing-inline-xs 0;
+    pointer-events: none;
+    position: relative;
   }
 
   &--transaction {
@@ -114,8 +117,9 @@
     transition: background-color 0.2s ease;
     width: 100%;
 
-    &:hover:not(.ods-list-expandable--loading &) {
-      background-color: $color-interface-light-up;
+    &:hover:not(.ods-list-expandable--loading &),
+    &:focus-visible:not(.ods-list-expandable--loading &) {
+      @include list-state-blend;
     }
 
     &:focus-visible {
@@ -210,12 +214,12 @@
   // Expanded state
   &--expanded {
     .ods-list-expandable__main:hover {
-      background-color: $color-interface-light-up;
+      @include list-state-blend;
     }
   }
 
   // Simulated hover state for docs/Storybook (State = Hover)
   &--show-hover .ods-list-expandable__main {
-    background-color: $color-interface-light-up;
+    @include list-state-blend;
   }
 }
