@@ -505,4 +505,100 @@ describe('Chips', () => {
 
     expect(screen.getByText('Option 1')).toBeInTheDocument();
   });
+
+  describe('single selection', () => {
+    const options = [
+      { label: 'Option 1', value: '1' },
+      { label: 'Option 2', value: '2' },
+    ];
+
+    const singleSelectionSetup = (props = {}) => {
+      render(
+        <Chips
+          label="Test Label"
+          options={options}
+          filterLabel="Test Filter"
+          clearLabel="Test Clear"
+          singleSelection
+          {...props}
+        />
+      );
+
+      fireEvent.click(screen.getByText('Test Label'));
+    };
+
+    test('renders the options as radios, keeping the footer actions', async () => {
+      singleSelectionSetup();
+
+      await waitFor(() => {
+        expect(screen.getAllByRole('radio')).toHaveLength(2);
+      });
+
+      expect(screen.queryByRole('checkbox')).not.toBeInTheDocument();
+      expect(screen.getByText('Test Clear')).toBeInTheDocument();
+      expect(screen.getByText('Test Filter')).toBeInTheDocument();
+    });
+
+    test('keeps a single option selected', async () => {
+      const handleChange = jest.fn();
+      singleSelectionSetup({ onChange: handleChange });
+
+      await clickInOption('Option 1');
+      await clickInOption('Option 2');
+
+      expect(handleChange).toHaveBeenLastCalledWith([
+        { label: 'Option 2', value: '2' },
+      ]);
+
+      const [first, second] = screen.getAllByRole('radio');
+      expect(first).not.toBeChecked();
+      expect(second).toBeChecked();
+    });
+
+    test('clicking the selected option gives the empty state back', async () => {
+      const handleChange = jest.fn();
+      singleSelectionSetup({ onChange: handleChange });
+
+      await clickInOption('Option 1');
+      await clickInOption('Option 1');
+
+      expect(handleChange).toHaveBeenLastCalledWith([]);
+      expect(screen.getAllByRole('radio')[0]).not.toBeChecked();
+    });
+
+    test('confirms the selection on filter, without a counter badge', async () => {
+      const handleConfirm = jest.fn();
+      singleSelectionSetup({ onConfirm: handleConfirm });
+
+      await clickInOption('Option 1');
+      fireEvent.click(screen.getByText('Test Filter'));
+
+      expect(handleConfirm).toHaveBeenCalledWith([
+        { label: 'Option 1', value: '1' },
+      ]);
+      expect(screen.queryByRole('tag')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('ods-chips-option')).not.toBeInTheDocument();
+    });
+
+    test('calls onClean when the selection is cleared', async () => {
+      const handleClean = jest.fn();
+      singleSelectionSetup({ onClean: handleClean });
+
+      await clickInOption('Option 1');
+      fireEvent.click(screen.getByText('Test Clear'));
+
+      expect(handleClean).toHaveBeenCalled();
+      expect(screen.getByText('Test Label')).toBeInTheDocument();
+    });
+
+    test('ignores the select all option', async () => {
+      singleSelectionSetup({ selectAllOptions: true });
+
+      await waitFor(() => {
+        expect(screen.getAllByRole('radio')).toHaveLength(2);
+      });
+
+      expect(screen.queryByText('Selecionar todos')).not.toBeInTheDocument();
+    });
+  });
 });

@@ -27,6 +27,11 @@ const meta: Meta<typeof Chips> = {
       description: 'Permite seleção múltipla de opções.',
       control: 'boolean',
     },
+    singleSelection: {
+      description:
+        'Escolha única no dropdown: opções como radio, rodapé com limpar/filtrar e "nada selecionado" como estado válido.',
+      control: 'boolean',
+    },
     options: {
       description: 'Array de opções disponíveis para seleção.',
       control: false,
@@ -148,6 +153,35 @@ export const SingleChoice: Story = {
           { label: 'Casa e Jardim', value: 'casa-jardim' },
           { label: 'Esportes', value: 'esportes' },
         ]}
+      />
+    </div>
+  ),
+};
+
+export const SingleSelection: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div
+      style={{
+        display: 'flex',
+        gap: '16px',
+        flexWrap: 'wrap',
+        height: '340px',
+      }}
+    >
+      <Chips
+        label="Período"
+        options={[
+          { label: 'Próximos 7 dias', value: '7' },
+          { label: 'Próximos 15 dias', value: '15' },
+          { label: 'Próximos 30 dias', value: '30' },
+          { label: 'Próximos 60 dias', value: '60' },
+        ]}
+        clearLabel="Limpar"
+        filterLabel="Filtrar"
+        singleSelection
       />
     </div>
   ),
