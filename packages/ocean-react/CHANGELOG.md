@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.137.1](https://github.com/ocean-ds/ocean-web/compare/v1.137.0...v1.137.1) (2026-09-11)
+
+### Bug Fixes
+
+- **core:** MR-748 hover das famílias de lista compõe com o fundo do container ([#1254](https://github.com/ocean-ds/ocean-web/issues/1254)) ([516eef0](https://github.com/ocean-ds/ocean-web/commit/516eef02ed0f1a89b1536520c9f01ab33b779ac0))
+
 # [1.137.0](https://github.com/ocean-ds/ocean-web/compare/v1.136.0...v1.137.0) (2026-07-27)
 
 ### Features
