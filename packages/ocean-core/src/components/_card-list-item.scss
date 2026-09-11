@@ -81,7 +81,7 @@
   }
 
   &:hover:not(.ods-card-list-item--disabled, .ods-card-list-item--loading) {
-    background-color: $color-interface-light-up;
+    @include list-state-blend;
   }
 
   &--disabled {

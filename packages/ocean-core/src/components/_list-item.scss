@@ -12,7 +12,6 @@
 }
 
 .ods-transaction-list-item {
-  background-color: $color-interface-light-pure;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -20,11 +19,11 @@
 
   &:hover,
   &:focus {
-    background-color: $color-interface-light-up;
+    @include list-state-blend;
   }
 
   &:active {
-    background-color: $color-interface-light-deep;
+    @include list-state-blend($color-interface-light-deep);
   }
 
   &.ods-transaction-list-item--readonly {
@@ -55,7 +54,8 @@
   &--isloading .ods-transaction-list-item__content {
     &:hover,
     &:focus {
-      background-color: $color-interface-light-pure;
+      background-color: transparent;
+      mix-blend-mode: normal;
     }
   }
 
