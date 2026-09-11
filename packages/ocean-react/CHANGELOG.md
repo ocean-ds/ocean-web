@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.138.0](https://github.com/ocean-ds/ocean-web/compare/v1.137.1...v1.138.0) (2026-09-11)
+
+### Features
+
+- **chips:** modo de escolha única com radio e rodapé Limpar/Filtrar ([#1256](https://github.com/ocean-ds/ocean-web/issues/1256)) ([ef91666](https://github.com/ocean-ds/ocean-web/commit/ef916660be89486b3b07a3b342af61b5a353215e))
+
 ## [1.137.1](https://github.com/ocean-ds/ocean-web/compare/v1.137.0...v1.137.1) (2026-09-11)
 
 ### Bug Fixes
