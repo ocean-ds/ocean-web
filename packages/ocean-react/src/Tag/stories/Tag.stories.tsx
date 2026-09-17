@@ -3,6 +3,7 @@ import * as DocBlock from '@storybook/blocks';
 import React from 'react';
 import { Star } from '@useblu/ocean-icons-react';
 import Tag from '../Tag';
+import ListAction from '../../ListAction';
 
 const meta: Meta<typeof Tag> = {
   title: 'Components/Tag',
@@ -60,7 +61,17 @@ const meta: Meta<typeof Tag> = {
           <HighlightVariantsDescription />
           <DocBlock.Canvas of={HighlightVariants} />
           <h3 id="tamanhos">Tamanhos</h3>
+          <SizesDescription />
           <DocBlock.Canvas of={Sizes} />
+          <h3 id="todas-as-variantes">Todas as variantes</h3>
+          <DocBlock.Canvas of={AllVariants} />
+          <h3 id="lista-de-pagblu">Lado a lado em uma lista</h3>
+          <PagBluListDescription />
+          <DocBlock.Canvas of={PagBluList} />
+          <h3 id="texto-longo-em-tela-estreita">
+            Texto longo em tela estreita
+          </h3>
+          <DocBlock.Canvas of={LongLabelInList} />
           <h3 id="icones">Ícones</h3>
           <IconsDescription />
           <DocBlock.Canvas of={Icons} />
@@ -244,6 +255,14 @@ export const HighlightVariants: Story = {
   ),
 };
 
+const SizesDescription = (): JSX.Element => (
+  <DocBlock.Markdown>
+    A tipografia da Tag é definida só pelo `size`, nunca pela `variant`:
+    `medium` usa Nunito Sans SemiBold 12px e `small` usa Nunito Sans Bold 10px.
+    Uma Tag `highlight` e uma `default` de mesmo `size` têm o mesmo texto.
+  </DocBlock.Markdown>
+);
+
 export const Sizes: Story = {
   parameters: {
     controls: { disable: true },
@@ -259,6 +278,133 @@ export const Sizes: Story = {
     >
       <Tag size="medium">Medium Tag</Tag>
       <Tag size="small">Small Tag</Tag>
+      <Tag variant="highlight" type="neutral" size="medium">
+        Highlight medium
+      </Tag>
+      <Tag variant="highlight" type="neutral" size="small">
+        Highlight small
+      </Tag>
+    </div>
+  ),
+};
+
+const STATUS_TYPES = [
+  'positive',
+  'warning',
+  'negative',
+  'neutral',
+  'neutral-02',
+  'neutral-03',
+] as const;
+
+const STATUS_LABELS: Record<typeof STATUS_TYPES[number], string> = {
+  positive: 'Pago',
+  warning: 'Pagamento atrasado',
+  negative: 'Risco de negativação',
+  neutral: 'Processando',
+  'neutral-02': 'Pagamento agendado',
+  'neutral-03': 'Boleto',
+};
+
+export const AllVariants: Story = {
+  name: 'All variants',
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <Tag variant="highlight" type="important">
+          Novo
+        </Tag>
+        <Tag variant="highlight" type="neutral">
+          3x sem acréscimo
+        </Tag>
+      </div>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {STATUS_TYPES.map((type) => (
+          <Tag key={type} type={type} setIconOff>
+            {STATUS_LABELS[type]}
+          </Tag>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {STATUS_TYPES.map((type) => (
+          <Tag key={type} type={type} size="small" setIconOff>
+            {STATUS_LABELS[type]}
+          </Tag>
+        ))}
+      </div>
+    </div>
+  ),
+};
+
+const PagBluListDescription = (): JSX.Element => (
+  <DocBlock.Markdown>
+    Na lista de PagBlu a etiqueta da oferta (`highlight neutral`) aparece ao
+    lado da etiqueta de status (`default`) na mesma linha: as duas têm o mesmo
+    tamanho e peso de texto, e o fundo azul da oferta é `brandPrimaryPure`.
+  </DocBlock.Markdown>
+);
+
+export const PagBluList: Story = {
+  name: 'PagBlu list',
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ width: '600px', maxWidth: '100%' }}>
+      <ListAction
+        title="Atacadão Bahia"
+        description="Pedido 84213"
+        caption="Vence em 22/09"
+        type="card"
+        position="first"
+        indicator={
+          <Tag variant="highlight" type="neutral">
+            3x sem acréscimo
+          </Tag>
+        }
+        amountDetails={{ amount: 'R$ 1.240,00' }}
+      />
+      <ListAction
+        title="Distribuidora Sul"
+        description="Pedido 84198"
+        caption="Vence em 25/09"
+        type="card"
+        position="middle"
+        indicator={<Tag type="neutral-02">Pagamento agendado</Tag>}
+        amountDetails={{ amount: 'R$ 860,00' }}
+      />
+      <ListAction
+        title="Comercial Norte"
+        description="Pedido 84077"
+        caption="Venceu em 12/09"
+        type="card"
+        position="last"
+        indicator={<Tag type="warning">Pagamento atrasado</Tag>}
+        amountDetails={{ amount: 'R$ 2.115,00' }}
+      />
+    </div>
+  ),
+};
+
+export const LongLabelInList: Story = {
+  name: 'Long label in list, 320px',
+  parameters: {
+    controls: { disable: true },
+    viewport: { defaultViewport: 'mobile1' },
+  },
+  render: () => (
+    <div style={{ width: '320px' }}>
+      <ListAction
+        title="Comercial Norte"
+        description="Pedido 84077"
+        type="card"
+        indicator={<Tag type="negative">Possível bloqueio de vendas</Tag>}
+        indicatorPosition="below"
+        amountDetails={{ amount: 'R$ 2.115,00' }}
+      />
     </div>
   ),
 };
