@@ -267,6 +267,16 @@ export const InsideModal: Story = {
   ),
 };
 
+export const NarrowContainer: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={{ width: 320 }}>
+      <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
+      {contentBelow}
+    </div>
+  ),
+};
+
 export const InlineWithInput: Story = {
   parameters: noControlsParameters,
   render: () => (
