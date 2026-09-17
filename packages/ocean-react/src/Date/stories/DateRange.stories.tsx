@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { ptBR, enUS } from 'date-fns/locale';
 import DateRange from '../DateRange';
+import Drawer from '../../Drawer';
+import Modal from '../../Modal';
+import Input from '../../Input';
 import type { DatePickerFields } from '../types/DateRange.types';
 import {
   createDateDecorator,
@@ -229,6 +232,49 @@ export const Localization: Story = {
           locale={enUS}
         />
       </div>
+    </div>
+  ),
+};
+
+const contentBelow = (
+  <div style={{ marginTop: 16 }}>
+    <h4>Seção seguinte</h4>
+    <p>Este conteúdo não deve se mover quando o calendário abre.</p>
+  </div>
+);
+
+export const InsideDrawer: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <Drawer open size="small">
+      <div style={{ padding: 16 }}>
+        <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
+        {contentBelow}
+      </div>
+    </Drawer>
+  ),
+};
+
+export const InsideModal: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <Modal isOpen onRequestClose={() => undefined}>
+      <div style={{ width: 400 }}>
+        <DateRangeWrapper labels={{ from: 'Data inicial', to: 'Data final' }} />
+        {contentBelow}
+      </div>
+    </Modal>
+  ),
+};
+
+export const InlineWithInput: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+      <div style={{ width: 240 }}>
+        <Input label="Nome do cliente" placeholder="Buscar" />
+      </div>
+      <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
     </div>
   ),
 };
