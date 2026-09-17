@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import classNames from 'classnames';
-import { XOutline } from '@useblu/ocean-icons-react';
+import { ArrowLeftOutline, XOutline } from '@useblu/ocean-icons-react';
 import Button from '../Button/Button';
 
 interface DrawerProps {
@@ -21,6 +21,20 @@ interface DrawerProps {
   anchorEl?: RefObject<HTMLDivElement> | null;
   onMouseOutDrawer?: (event?: MouseEvent<HTMLDivElement>) => void;
   size?: 'small' | 'large';
+  /**
+   * Modo pilha (duas Drawers lado a lado): a Drawer flutua com margem das
+   * bordas, cantos arredondados e transição coordenada de `transform`.
+   * Sem a prop, o comportamento é o de sempre.
+   */
+  floating?: boolean;
+  /** Deslocamento horizontal extra, em px, aplicado ao `translateX` quando aberta. */
+  offsetX?: number;
+  /** Posição na pilha (0 = primeira, 1 = segunda). Define o `z-index` relativo. */
+  depth?: number;
+  /** Não renderiza o scrim próprio — quem empilha fornece um único scrim. */
+  hideOverlay?: boolean;
+  /** Ação "voltar" no cabeçalho: troca o X pela seta e alinha à esquerda. */
+  onBack?: (event: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
 const Drawer = ({
@@ -34,6 +48,11 @@ const Drawer = ({
   anchorEl,
   onMouseOutDrawer,
   size = 'small',
+  floating = false,
+  offsetX,
+  depth,
+  hideOverlay = false,
+  onBack,
 }: DrawerProps): React.ReactElement => {
   const drawerRef = useRef<HTMLDivElement>(null);
   const handleOverlayClose = (event: MouseEvent<HTMLDivElement>) => {
@@ -79,12 +98,28 @@ const Drawer = ({
     attachDrawer();
   }, [anchorEl, drawerRef, attachDrawer]);
 
+  const overlayStyle: React.CSSProperties | undefined =
+    depth !== undefined ? { zIndex: 200 + depth } : undefined;
+  const drawerStyle: React.CSSProperties | undefined =
+    depth !== undefined || (open && offsetX)
+      ? {
+          ...(depth !== undefined && { zIndex: 400 + depth }),
+          ...(open && offsetX && { transform: `translateX(${-offsetX}px)` }),
+        }
+      : undefined;
+  const headerAlignment = onBack ? 'left' : iconAlignment;
+
   return (
     <div
-      className={classNames('ods-overlay', open && 'ods-overlay--open')}
+      className={classNames(
+        'ods-overlay',
+        open && 'ods-overlay--open',
+        hideOverlay && 'ods-overlay--transparent'
+      )}
       aria-hidden="true"
       onClick={handleOverlayClose}
       ref={drawerRef}
+      style={overlayStyle}
       data-testid="drawer-overlay"
     >
       <div
@@ -92,18 +127,25 @@ const Drawer = ({
           'ods-drawer',
           open && 'ods-drawer--open',
           `ods-drawer--${align}`,
-          `ods-drawer--${size}`
+          `ods-drawer--${size}`,
+          floating && 'ods-drawer--floating',
+          onBack && 'ods-drawer--covering'
         )}
+        style={drawerStyle}
         onMouseLeave={onMouseOutDrawer}
       >
         <div
           className={classNames(
             'ods-drawer__content--header',
-            `ods-drawer__content--header--${iconAlignment}`
+            `ods-drawer__content--header--${headerAlignment}`
           )}
         >
-          <Button type="button" onClick={onDrawerClose}>
-            {headerIcon}
+          <Button
+            type="button"
+            onClick={onBack ?? onDrawerClose}
+            aria-label={onBack ? 'Voltar' : undefined}
+          >
+            {onBack ? <ArrowLeftOutline /> : headerIcon}
           </Button>
         </div>
         {children}
