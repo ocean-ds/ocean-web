@@ -31,9 +31,11 @@ interface DrawerProps {
   offsetX?: number;
   /** Posição na pilha (0 = primeira, 1 = segunda). Define o `z-index` relativo. */
   depth?: number;
+  /** Largura em px que substitui a de `size` (pilha em viewport estreito). */
+  width?: number;
   /** Não renderiza o scrim próprio — quem empilha fornece um único scrim. */
   hideOverlay?: boolean;
-  /** Ação "voltar" no cabeçalho: troca o X pela seta e alinha à esquerda. */
+  /** Ação "voltar" no cabeçalho (drawer mobile): troca o X pela seta e alinha à esquerda. */
   onBack?: (event: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
@@ -51,6 +53,7 @@ const Drawer = ({
   floating = false,
   offsetX,
   depth,
+  width,
   hideOverlay = false,
   onBack,
 }: DrawerProps): React.ReactElement => {
@@ -101,9 +104,10 @@ const Drawer = ({
   const overlayStyle: React.CSSProperties | undefined =
     depth !== undefined ? { zIndex: 200 + depth } : undefined;
   const drawerStyle: React.CSSProperties | undefined =
-    depth !== undefined || (open && offsetX)
+    depth !== undefined || width !== undefined || (open && offsetX)
       ? {
           ...(depth !== undefined && { zIndex: 400 + depth }),
+          ...(width !== undefined && { width: `${width}px` }),
           ...(open && offsetX && { transform: `translateX(${-offsetX}px)` }),
         }
       : undefined;
@@ -128,8 +132,7 @@ const Drawer = ({
           open && 'ods-drawer--open',
           `ods-drawer--${align}`,
           `ods-drawer--${size}`,
-          floating && 'ods-drawer--floating',
-          onBack && 'ods-drawer--covering'
+          floating && 'ods-drawer--floating'
         )}
         style={drawerStyle}
         onMouseLeave={onMouseOutDrawer}

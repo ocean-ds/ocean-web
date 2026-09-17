@@ -1,30 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Drawer from '../Drawer';
 import Button from '../../Button';
 
 const WIDTHS = { small: 378, large: 476 };
-const GAP = 8;
+const GAP = 16;
+const MOBILE_MAX_WIDTH = 575;
 
 export interface StackedDrawersProps {
   first: React.ReactElement;
   second: React.ReactElement;
   size?: 'small' | 'large';
-  covering?: boolean;
 }
+
+const useViewportWidth = () => {
+  const [width, setWidth] = useState(() => window.innerWidth);
+
+  useEffect(() => {
+    const onResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  return width;
+};
 
 const StackedDrawers = ({
   first,
   second,
   size = 'small',
-  covering = false,
 }: StackedDrawersProps): React.ReactElement => {
   const [firstOpen, setFirstOpen] = useState(false);
   const [secondOpen, setSecondOpen] = useState(false);
+  const viewport = useViewportWidth();
+
+  const mobile = viewport <= MOBILE_MAX_WIDTH;
+  const drawerWidth = Math.min(
+    WIDTHS[size],
+    Math.floor((viewport - GAP * 3) / 2)
+  );
 
   const closeSecond = () => setSecondOpen(false);
   const closeTop = () => (secondOpen ? closeSecond() : setFirstOpen(false));
-  const offsetX = secondOpen && !covering ? WIDTHS[size] + GAP : 0;
+  const offsetX = secondOpen && !mobile ? drawerWidth + GAP : 0;
 
   return (
     <>
@@ -36,7 +54,8 @@ const StackedDrawers = ({
         onDrawerClose={() => setFirstOpen(false)}
         overlayClose={closeTop}
         size={size}
-        floating
+        floating={!mobile}
+        width={mobile ? undefined : drawerWidth}
         depth={0}
         offsetX={offsetX}
       >
@@ -56,10 +75,11 @@ const StackedDrawers = ({
         onDrawerClose={closeSecond}
         overlayClose={closeSecond}
         size={size}
-        floating
+        floating={!mobile}
+        width={mobile ? undefined : drawerWidth}
         depth={1}
         hideOverlay
-        onBack={covering ? closeSecond : undefined}
+        onBack={mobile ? closeSecond : undefined}
       >
         <div style={{ padding: '0 24px' }}>{second}</div>
       </Drawer>

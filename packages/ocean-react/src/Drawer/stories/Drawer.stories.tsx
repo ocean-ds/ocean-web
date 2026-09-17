@@ -68,6 +68,11 @@ const meta: Meta<typeof Drawer> = {
       description: 'Posição na pilha (0 ou 1). Define o z-index relativo.',
       control: 'number',
     },
+    width: {
+      description:
+        'Largura em px que substitui a de `size` — usada para as duas drawers caberem lado a lado em viewport estreito.',
+      control: 'number',
+    },
     hideOverlay: {
       description:
         'Não pinta o próprio scrim — quem empilha fornece um scrim só.',
@@ -75,7 +80,7 @@ const meta: Meta<typeof Drawer> = {
     },
     onBack: {
       description:
-        'Quando presente, o cabeçalho troca o X por uma seta "Voltar" à esquerda (tela estreita, segundo drawer por cima do primeiro).',
+        'Quando presente, o cabeçalho troca o X por uma seta "Voltar" à esquerda (drawer mobile, abaixo de `sm`).',
       control: false,
     },
   },
@@ -241,19 +246,6 @@ export const Stacked: Story = {
     <StackedDrawers
       first={<h3 style={{ fontFamily: 'Avenir' }}>Primeiro drawer</h3>}
       second={<h3 style={{ fontFamily: 'Avenir' }}>Segundo drawer</h3>}
-    />
-  ),
-};
-
-export const StackedCovering: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <StackedDrawers
-      covering
-      first={<h3 style={{ fontFamily: 'Avenir' }}>Primeiro drawer</h3>}
-      second={<h3 style={{ fontFamily: 'Avenir' }}>Segundo por cima</h3>}
     />
   ),
 };

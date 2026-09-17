@@ -280,6 +280,16 @@ describe('stack props (MR-795)', () => {
     expect(document.querySelector('.ods-drawer')).toHaveStyle('z-index: 401');
   });
 
+  test('width overrides the size width in px', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} floating width={300}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer')).toHaveStyle('width: 300px');
+  });
+
   test('hideOverlay makes the instance scrim transparent', () => {
     render(
       <Drawer open overlayClose={jest.fn()} hideOverlay>
@@ -307,9 +317,6 @@ describe('stack props (MR-795)', () => {
       </Drawer>
     );
 
-    expect(document.querySelector('.ods-drawer')).toHaveClass(
-      'ods-drawer--covering'
-    );
     expect(
       document.querySelector('.ods-drawer__content--header--left')
     ).toBeInTheDocument();
