@@ -19,7 +19,7 @@
   &--medium {
     font-size: $font-size-xxxs;
     font-weight: $font-weight-medium;
-    line-height: 12px;
+    line-height: $line-height-tight;
     padding: $spacing-stack-xxxs $spacing-stack-xxs;
 
     &__with-icon {
@@ -30,7 +30,7 @@
   &--small {
     font-size: 10px;
     font-weight: $font-weight-bold;
-    line-height: 10px;
+    line-height: $line-height-tight;
     padding: $spacing-stack-xxxs $spacing-stack-xxxs;
   }
 
