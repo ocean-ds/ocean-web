@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.139.4](https://github.com/ocean-ds/ocean-web/compare/v1.139.3...v1.139.4) (2026-09-18)
+
+### Bug Fixes
+
+- **drawer:** overlay transparente não intercepta o ponteiro (MR-795) ([#1261](https://github.com/ocean-ds/ocean-web/issues/1261)) ([a8fe950](https://github.com/ocean-ds/ocean-web/commit/a8fe950ae37848acf5d1897c5b412e024c8db97d))
+
 ## [1.139.3](https://github.com/ocean-ds/ocean-web/compare/v1.139.2...v1.139.3) (2026-09-18)
 
 ### Bug Fixes
