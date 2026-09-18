@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.139.1](https://github.com/ocean-ds/ocean-web/compare/v1.139.0...v1.139.1) (2026-09-18)
+
+### Bug Fixes
+
+- **core:** MR-772 calendário do DateRange/DatePicker na largura dos dois campos ([#1257](https://github.com/ocean-ds/ocean-web/issues/1257)) ([0e533a5](https://github.com/ocean-ds/ocean-web/commit/0e533a55eed990e8a0bdd9f9c871934825362d3e))
+
 # [1.139.0](https://github.com/ocean-ds/ocean-web/compare/v1.138.0...v1.139.0) (2026-09-17)
 
 ### Features
