@@ -114,6 +114,17 @@ export const States: Story = {
       </div>
 
       <div>
+        <h4>Com erro em um só campo</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Data inicial', to: 'Data final' }}
+          values={{ from: '31/02/2026', to: '09/09/2026' }}
+          editable
+          error={{ from: true }}
+          helperText={{ from: 'Essa data não existe. Confira o dia e o mês.' }}
+        />
+      </div>
+
+      <div>
         <h4>Desabilitado</h4>
         <DateRangeWrapper
           labels={{ from: 'Data inicial', to: 'Data final' }}
@@ -246,7 +257,7 @@ const contentBelow = (
 export const InsideDrawer: Story = {
   parameters: noControlsParameters,
   render: () => (
-    <Drawer open size="small">
+    <Drawer open size="small" overlayClose={() => undefined}>
       <div style={{ padding: 16 }}>
         <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
         {contentBelow}
