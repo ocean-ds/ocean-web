@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.139.2](https://github.com/ocean-ds/ocean-web/compare/v1.139.1...v1.139.2) (2026-09-18)
+
+### Bug Fixes
+
+- **tag:** tipografia definida só pelo size e highlight neutral em brandPrimaryPure (MR-802) ([#1258](https://github.com/ocean-ds/ocean-web/issues/1258)) ([2167d99](https://github.com/ocean-ds/ocean-web/commit/2167d99da9383c40e1499d24dcb18648f50ab6a6))
+
 ## [1.139.1](https://github.com/ocean-ds/ocean-web/compare/v1.139.0...v1.139.1) (2026-09-18)
 
 ### Bug Fixes
