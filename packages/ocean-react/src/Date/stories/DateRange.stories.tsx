@@ -2,6 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { ptBR, enUS } from 'date-fns/locale';
 import DateRange from '../DateRange';
+import Drawer from '../../Drawer';
+import Modal from '../../Modal';
+import Input from '../../Input';
 import type { DatePickerFields } from '../types/DateRange.types';
 import {
   createDateDecorator,
@@ -107,6 +110,17 @@ export const States: Story = {
           labels={{ from: 'Data inicial', to: 'Data final' }}
           error
           helperText="Período inválido ou obrigatório"
+        />
+      </div>
+
+      <div>
+        <h4>Com erro em um só campo</h4>
+        <DateRangeWrapper
+          labels={{ from: 'Data inicial', to: 'Data final' }}
+          values={{ from: '31/02/2026', to: '09/09/2026' }}
+          editable
+          error={{ from: true }}
+          helperText={{ from: 'Essa data não existe. Confira o dia e o mês.' }}
         />
       </div>
 
@@ -229,6 +243,59 @@ export const Localization: Story = {
           locale={enUS}
         />
       </div>
+    </div>
+  ),
+};
+
+const contentBelow = (
+  <div style={{ marginTop: 16 }}>
+    <h4>Seção seguinte</h4>
+    <p>Este conteúdo não deve se mover quando o calendário abre.</p>
+  </div>
+);
+
+export const InsideDrawer: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <Drawer open size="small" overlayClose={() => undefined}>
+      <div style={{ padding: 16 }}>
+        <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
+        {contentBelow}
+      </div>
+    </Drawer>
+  ),
+};
+
+export const InsideModal: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <Modal isOpen onRequestClose={() => undefined}>
+      <div style={{ width: 400 }}>
+        <DateRangeWrapper labels={{ from: 'Data inicial', to: 'Data final' }} />
+        {contentBelow}
+      </div>
+    </Modal>
+  ),
+};
+
+export const NarrowContainer: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={{ width: 320 }}>
+      <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
+      {contentBelow}
+    </div>
+  ),
+};
+
+export const InlineWithInput: Story = {
+  parameters: noControlsParameters,
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+      <div style={{ width: 240 }}>
+        <Input label="Nome do cliente" placeholder="Buscar" />
+      </div>
+      <DateRangeWrapper labels={{ from: 'De', to: 'Até' }} />
     </div>
   ),
 };

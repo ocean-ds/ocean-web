@@ -58,7 +58,18 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
       startsToday,
       locale,
       disabledDaysMessage,
+      error,
     });
+
+    const fieldError = (field: 'from' | 'to'): boolean =>
+      !disabled && (typeof error === 'object' ? !!error[field] : !!error);
+
+    const fieldHelperText = (field: 'from' | 'to'): string | undefined => {
+      if (disabled || showDayPicker) return undefined;
+      const text =
+        typeof helperText === 'object' ? helperText[field] : helperText;
+      return text || undefined;
+    };
 
     return (
       <div>
@@ -95,11 +106,9 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
-                error={!disabled && error}
+                error={fieldError('from')}
                 inputMode="numeric"
-                helperText={
-                  (!disabled && !showDayPicker && helperText) || undefined
-                }
+                helperText={fieldHelperText('from')}
                 maxLength={10}
               />
             </div>
@@ -128,11 +137,9 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
-                error={!disabled && error}
+                error={fieldError('to')}
                 inputMode="numeric"
-                helperText={
-                  (!disabled && !showDayPicker && helperText) || undefined
-                }
+                helperText={fieldHelperText('to')}
                 maxLength={10}
               />
             </div>
