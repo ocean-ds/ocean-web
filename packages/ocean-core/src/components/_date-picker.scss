@@ -18,7 +18,18 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   width: 100%;
 
   &__calendar-container {
-    position: relative;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 100%;
+    z-index: 1;
+
+    &--inline {
+      position: relative;
+      top: auto;
+      z-index: auto;
+    }
   }
 
   &:active,
@@ -32,10 +43,12 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     display: grid;
     gap: $spacing-inline-xxs;
     grid-template-columns: repeat(2, 1fr);
+    position: relative;
     width: 100%;
   }
 
   &__form-row-datepicker {
+    position: relative;
     width: 100%;
   }
 
@@ -44,12 +57,15 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     margin: 0;
 
     > label {
+      align-items: center;
       color: $color-interface-dark-down;
+      display: flex;
       font-family: $font-family-base;
       font-size: $font-size-xxs;
       font-weight: 400;
       line-height: 15px;
-      margin: 0 0 $spacing-inline-xxs;
+      margin: 0 $spacing-inline-xxxs $spacing-inline-xxs 0;
+      min-height: 22px;
       padding: 0;
       text-transform: none;
     }
@@ -82,9 +98,11 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     border-radius: $border-radius-md;
     box-shadow: $shadow-level-2;
     box-sizing: border-box;
-    margin: 0;
+    left: 0;
+    margin: $spacing-inline-xxxs 0 0;
     padding: 0 0 $spacing-inline-xs;
     position: absolute;
+    right: 0;
     width: 100%;
 
     .rdp-vhidden {
@@ -92,12 +110,9 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     }
   }
 
-  &_calendar_m1 {
-    top: $spacing-inline-xxxs;
-  }
-
+  &_calendar_m1,
   &_calendar_m2 {
-    top: $spacing-inline-xxxs;
+    top: 0;
   }
 
   &__disabled-tooltip {
@@ -139,12 +154,6 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
     .rdp-vhidden {
       display: none;
-    }
-  }
-
-  @media (max-width: 321px) {
-    &_calendar_m2 {
-      top: 150px;
     }
   }
 

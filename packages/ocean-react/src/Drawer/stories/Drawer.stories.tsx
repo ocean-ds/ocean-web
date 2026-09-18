@@ -3,6 +3,7 @@ import React from 'react';
 import Drawer from '../Drawer';
 import SimpleDrawer from '../examples/SimpleDrawer';
 import AttachedDrawer from '../examples/AttachedDrawer';
+import StackedDrawers from '../examples/StackedDrawers';
 import Button from '../../Button';
 
 const meta: Meta<typeof Drawer> = {
@@ -52,6 +53,35 @@ const meta: Meta<typeof Drawer> = {
       description: 'Tamanho do drawer.',
       control: 'radio',
       options: ['small', 'large'],
+    },
+    floating: {
+      description:
+        'Modo pilha: o drawer flutua com margem e cantos arredondados e anima por transform. Sem a prop, o visual é o atual.',
+      control: 'boolean',
+    },
+    offsetX: {
+      description:
+        'Deslocamento horizontal extra (px) aplicado quando aberto — usado para empurrar o primeiro drawer quando o segundo abre ao lado.',
+      control: 'number',
+    },
+    depth: {
+      description: 'Posição na pilha (0 ou 1). Define o z-index relativo.',
+      control: 'number',
+    },
+    width: {
+      description:
+        'Largura em px que substitui a de `size` — usada para as duas drawers caberem lado a lado em viewport estreito.',
+      control: 'number',
+    },
+    hideOverlay: {
+      description:
+        'Não pinta o próprio scrim — quem empilha fornece um scrim só.',
+      control: 'boolean',
+    },
+    onBack: {
+      description:
+        'Quando presente, o cabeçalho troca o X por uma seta "Voltar" à esquerda (drawer mobile, abaixo de `sm`).',
+      control: false,
     },
   },
 };
@@ -205,5 +235,17 @@ export const Attached: Story = {
         <p>Este drawer está anexado a um elemento específico da página.</p>
       </div>
     </AttachedDrawer>
+  ),
+};
+
+export const Stacked: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <StackedDrawers
+      first={<h3 style={{ fontFamily: 'Avenir' }}>Primeiro drawer</h3>}
+      second={<h3 style={{ fontFamily: 'Avenir' }}>Segundo drawer</h3>}
+    />
   ),
 };

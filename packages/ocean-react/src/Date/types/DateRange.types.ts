@@ -17,6 +17,12 @@ export type DatePickerFields = {
   to: string;
 };
 
+/**
+ * Estado por campo (from/to). Um booleano/string único vale para os dois.
+ */
+export type DateFieldFlags = { from?: boolean; to?: boolean };
+export type DateFieldTexts = { from?: string; to?: string };
+
 export type DatePickerProps = {
   /**
    * Determines names of inputs (from/to)
@@ -61,16 +67,18 @@ export type DatePickerProps = {
   disabledDaysMessage?: DisabledDaysMessageProp;
 
   /**
-   * Determines error os inputs
+   * Determines error on the inputs. A boolean applies to both fields;
+   * `{ from, to }` marks only the field(s) with an invalid date.
    * @default false
    */
-  error?: boolean;
+  error?: boolean | DateFieldFlags;
 
   /**
-   * Determines error message
+   * Determines error message. A string applies to both fields;
+   * `{ from, to }` shows a message under a specific field.
    * @default null
    */
-  helperText?: string;
+  helperText?: string | DateFieldTexts;
 
   /**
    * Determines if date seleting starts today
@@ -93,7 +101,12 @@ export type DatePickerProps = {
 
 export type IDatePickerProps = Pick<
   DatePickerProps,
-  'values' | 'onSelect' | 'startsToday' | 'locale' | 'disabledDaysMessage'
+  | 'values'
+  | 'onSelect'
+  | 'startsToday'
+  | 'locale'
+  | 'disabledDaysMessage'
+  | 'error'
 >;
 
 export type IDatePickerReturn = {

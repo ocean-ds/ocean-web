@@ -7,6 +7,7 @@ import Drawer from '../../Drawer';
 
 jest.mock('@useblu/ocean-icons-react', () => ({
   XOutline: () => 'mock-x-outline-xvg',
+  ArrowLeftOutline: () => 'mock-arrow-left-xvg',
 }));
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -208,4 +209,124 @@ test('close the drawer clicking the overlay', () => {
   fireEvent.click(screen.getByTestId('drawer-overlay'));
 
   expect(document.querySelector(`.ods-overlay`)?.className).toBe('ods-overlay');
+});
+
+describe('stack props (MR-795)', () => {
+  test('without stack props keeps the legacy markup', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    const overlay = screen.getByTestId('drawer-overlay');
+    const drawer = document.querySelector('.ods-drawer') as HTMLElement;
+
+    expect(overlay).toHaveClass('ods-overlay ods-overlay--open', {
+      exact: true,
+    });
+    expect(overlay).not.toHaveAttribute('style');
+    expect(drawer.className).toBe(
+      'ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small'
+    );
+    expect(drawer).not.toHaveAttribute('style');
+    expect(screen.getByRole('button', { hidden: true })).toHaveTextContent(
+      'mock-x-outline-xvg'
+    );
+  });
+
+  test('floating adds the floating class and keeps the size class', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} floating size="large">
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    const drawer = document.querySelector('.ods-drawer') as HTMLElement;
+    expect(drawer).toHaveClass('ods-drawer--floating');
+    expect(drawer).toHaveClass('ods-drawer--large');
+  });
+
+  test('offsetX shifts the open drawer to the left by the given px', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} floating offsetX={394}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer')).toHaveStyle(
+      'transform: translateX(-394px)'
+    );
+  });
+
+  test('offsetX is not applied while the drawer is closed', () => {
+    render(
+      <Drawer open={false} overlayClose={jest.fn()} floating offsetX={394}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer')).not.toHaveAttribute('style');
+  });
+
+  test('depth stacks the overlay z-index', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} depth={1}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(screen.getByTestId('drawer-overlay')).toHaveStyle('z-index: 201');
+    expect(document.querySelector('.ods-drawer')).toHaveStyle('z-index: 401');
+  });
+
+  test('width overrides the size width in px', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} floating width={300}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer')).toHaveStyle('width: 300px');
+  });
+
+  test('hideOverlay makes the instance scrim transparent', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} hideOverlay>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(screen.getByTestId('drawer-overlay')).toHaveClass(
+      'ods-overlay--transparent'
+    );
+  });
+
+  test('onBack replaces the close icon by a left-aligned back arrow', () => {
+    const onBack = jest.fn();
+    const onDrawerClose = jest.fn();
+
+    render(
+      <Drawer
+        open
+        overlayClose={jest.fn()}
+        onDrawerClose={onDrawerClose}
+        onBack={onBack}
+      >
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(
+      document.querySelector('.ods-drawer__content--header--left')
+    ).toBeInTheDocument();
+
+    const back = screen.getByRole('button', { name: 'Voltar', hidden: true });
+    expect(back).toHaveTextContent('mock-arrow-left-xvg');
+
+    fireEvent.click(back);
+
+    expect(onBack).toHaveBeenCalledTimes(1);
+    expect(onDrawerClose).not.toHaveBeenCalled();
+  });
 });
