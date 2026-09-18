@@ -2,9 +2,6 @@
 
 @mixin highlight {
   color: $color-interface-light-pure;
-  font-size: 10px;
-  font-weight: $font-weight-extrabold;
-  line-height: 10px;
   padding: $spacing-stack-xxxs $spacing-stack-xxs;
 }
 
@@ -45,7 +42,7 @@
 
     &__neutral {
       @include highlight;
-      background-color: $color-brand-primary-down;
+      background-color: $color-brand-primary-pure;
     }
   }
 

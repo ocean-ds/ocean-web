@@ -1,0 +1,191 @@
+---
+title: Tag
+---
+
+import { Tag } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Tag
+
+A Tag é um rótulo textual de **status ou categoria** — uma pílula pequena com cor semântica e, em alguns tipos, ícone. Comunica o estado de uma entidade ("Pago", "Pendente", "Recusado") ou um destaque promocional ("Pague em 3x"). É display-only: não é clicável, não filtra e não conta.
+
+> Para contagem numérica use `Badge`. Para filtro interativo use `Chips`.
+
+## Importação
+
+```tsx
+import { Tag } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { Tag } from '@useblu/ocean-react/Tag';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type { TagProps } from '@useblu/ocean-react';
+
+const StatusTag: React.FC<TagProps> = (props) => <Tag {...props} />;
+```
+
+## Playground Interativo
+
+<StorybookEmbed
+  storyId="components-tag--usage"
+  height={300}
+  title="Tag - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para a API completa e todos os exemplos, consulte o **[Storybook da Tag](https://ocean-ds.github.io/ocean-web/?path=/docs/components-tag--docs)**.
+
+## Uso básico
+
+```tsx live
+<Tag type="positive">Pago</Tag>
+```
+
+## Variantes
+
+A API é uma união discriminada: escolha a `variant` primeiro; o `type` válido depende dela.
+
+### Default (padrão)
+
+Pílula de status com cor semântica.
+
+```tsx live
+<div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+  <Tag type="positive">Pago</Tag>
+  <Tag type="warning">A vencer</Tag>
+  <Tag type="negative">Vencido</Tag>
+  <Tag type="neutral">Em processamento</Tag>
+  <Tag type="neutral-02">Neutral 02</Tag>
+  <Tag type="neutral-03">Neutral 03</Tag>
+  <Tag type="default">Boleto</Tag>
+</div>
+```
+
+### Highlight
+
+Pílula de destaque, para oferta ou informação promocional. Sai sempre sem ícone.
+
+```tsx live
+<div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+  <Tag variant="highlight" type="important">
+    Economize 75%
+  </Tag>
+  <Tag variant="highlight" type="neutral">
+    Pague em 3x
+  </Tag>
+</div>
+```
+
+<StorybookEmbed
+  storyId="components-tag--highlight-variants"
+  height={200}
+  showToolbar={false}
+  title="Tag - Variante highlight"
+/>
+
+## Tamanhos
+
+Os dois tamanhos valem para as duas variantes. **A tipografia é definida só pelo `size`** — uma Tag `highlight` e uma Tag `default` de mesmo tamanho, lado a lado na mesma linha, têm o mesmo texto.
+
+| `size`            | Fonte                      | Tamanho / altura da linha | Uso                                                          |
+| ----------------- | -------------------------- | ------------------------- | ------------------------------------------------------------ |
+| `medium` (padrão) | Nunito Sans SemiBold (600) | 12px / 12px               | Itens de lista, cards, cabeçalhos de detalhe                 |
+| `small`           | Nunito Sans Bold (700)     | 8px / 8px                 | Ao lado de um rótulo, quando a pílula precisa ficar discreta |
+
+```tsx live
+<div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+  <Tag type="warning">Medium</Tag>
+  <Tag variant="highlight" type="neutral">
+    Medium
+  </Tag>
+  <Tag type="warning" size="small">
+    Small
+  </Tag>
+  <Tag variant="highlight" type="neutral" size="small">
+    Small
+  </Tag>
+</div>
+```
+
+<StorybookEmbed
+  storyId="components-tag--sizes"
+  height={200}
+  showToolbar={false}
+  title="Tag - Tamanhos"
+/>
+
+## Cores e contraste
+
+Toda combinação fundo/texto da Tag deve atingir contraste mínimo de **4,5:1** (WCAG 2.2 AA para texto normal).
+
+| Variante / tipo         | Fundo                                   | Texto                         |
+| ----------------------- | --------------------------------------- | ----------------------------- |
+| `highlight` `important` | `$color-highlight-pure` (coral)         | `$color-interface-light-pure` |
+| `highlight` `neutral`   | `$color-brand-primary-pure` (`#0025E0`) | `$color-interface-light-pure` |
+
+> A `highlight neutral` usa o azul cheio da marca (`brandPrimaryPure`): com texto branco o contraste é 8,97:1. O tom anterior (`brandPrimaryDown`) ficava em 4,09:1, abaixo do mínimo.
+
+## Ícones
+
+Os tipos `positive`, `warning` e `negative` recebem ícone padrão. `icon` substitui o padrão; `setIconOff` remove o ícone por completo.
+
+```tsx live
+<div style={{ display: 'flex', gap: 8 }}>
+  <Tag type="positive">Com ícone padrão</Tag>
+  <Tag type="positive" setIconOff>
+    Sem ícone
+  </Tag>
+</div>
+```
+
+## API
+
+### Props
+
+| Prop         | Tipo                                                                                                                                               | Padrão      | Descrição                                      |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------- |
+| `variant`    | `'default' \| 'highlight'`                                                                                                                         | `'default'` | Variante visual — discrimina os `type` válidos |
+| `type`       | default: `'positive' \| 'warning' \| 'negative' \| 'neutral' \| 'neutral-02' \| 'neutral-03' \| 'default'` · highlight: `'important' \| 'neutral'` | `'default'` | Tipo semântico                                 |
+| `size`       | `'small' \| 'medium'`                                                                                                                              | `'medium'`  | Tamanho — define a tipografia                  |
+| `icon`       | `React.ReactElement`                                                                                                                               | -           | Ícone custom (substitui o padrão do `type`)    |
+| `setIconOff` | `boolean`                                                                                                                                          | `false`     | Remove o ícone, inclusive o padrão             |
+| `children`   | `React.ReactNode`                                                                                                                                  | -           | Texto da Tag                                   |
+| `className`  | `string`                                                                                                                                           | -           | Classes CSS adicionais                         |
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Case o `type` ao significado: `positive` para concluído, `warning` para atenção, `negative` para problema
+- Use `highlight` para oferta ou destaque — nunca para status
+- Use o mesmo `size` para as Tags que aparecem na mesma linha
+
+### ❌ Não faça
+
+- Não use `type="important"` com `variant="default"` — só existe em `highlight`
+- Não use a Tag como botão ou filtro
+- Não use a Tag para contagem numérica
+
+## CSS Classes
+
+| Classe                         | Descrição                                            |
+| ------------------------------ | ---------------------------------------------------- |
+| `.ods-tag`                     | Classe base                                          |
+| `.ods-tag--medium` / `--small` | Tamanho — carrega a tipografia                       |
+| `.ods-tag--{size}__with-icon`  | Ajuste de padding quando há ícone                    |
+| `.ods-tag--{type}`             | Cor da variante default                              |
+| `.ods-tag--highlight__{type}`  | Cor da variante highlight (`important` ou `neutral`) |
+| `.ods-tag__icon`               | Slot do ícone                                        |
+| `.ods-tag__content`            | Texto                                                |
+
+## Histórico
+
+- **Padronização de tamanho, peso e contraste:** a variante `highlight` deixou de ter tipografia própria (10px ExtraBold) e passou a seguir o `size`; a `highlight neutral` passou de `brandPrimaryDown` para `brandPrimaryPure`. A mudança é visual e alcança todas as telas que já usam a Tag.

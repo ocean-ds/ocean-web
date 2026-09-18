@@ -67,6 +67,7 @@ const sidebars: SidebarsConfig = {
         'components/steps',
         'components/subheader',
         'components/switch',
+        'components/tag',
         'components/textarea',
         'components/textlistitem',
         'components/listselectable',
