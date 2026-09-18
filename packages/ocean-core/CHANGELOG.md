@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.139.3](https://github.com/ocean-ds/ocean-web/compare/v1.139.2...v1.139.3) (2026-09-18)
+
+### Bug Fixes
+
+- **drawer:** entrada da direita e empurrão coordenados com motion Gentle (MR-795) ([#1260](https://github.com/ocean-ds/ocean-web/issues/1260)) ([be61858](https://github.com/ocean-ds/ocean-web/commit/be61858efc2ac22e6085d600fa6259eb672147a8))
+
 ## [1.139.2](https://github.com/ocean-ds/ocean-web/compare/v1.139.1...v1.139.2) (2026-09-18)
 
 ### Bug Fixes
