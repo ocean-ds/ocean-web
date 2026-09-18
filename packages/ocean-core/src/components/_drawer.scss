@@ -72,15 +72,18 @@
 }
 
 $drawer-stack-margin: $spacing-stack-xs;
-$drawer-stack-motion: 320ms cubic-bezier(0.4, 0, 0.2, 1);
 
+// `--ods-drawer-offset-x`: deslocamento da pilha (px, positivo afasta da borda).
 .ods-drawer--floating {
+  // stylelint-disable-next-line length-zero-no-unit -- `calc()` exige unidade
+  --ods-drawer-offset-x: 0px;
+
   border-radius: $border-radius-md;
   height: calc(100% - (#{$drawer-stack-margin} * 2));
   overflow: hidden;
   top: $drawer-stack-margin;
-  transition: transform $drawer-stack-motion, box-shadow $drawer-stack-motion,
-    visibility 0s linear 340ms;
+  transition: transform $motion-gentle, box-shadow $motion-gentle,
+    visibility 0s linear $motion-duration-gentle;
 
   &.ods-drawer--right {
     right: $drawer-stack-margin;
@@ -93,9 +96,16 @@ $drawer-stack-motion: 320ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &.ods-drawer--open {
-    transform: translateX(0);
-    transition: transform $drawer-stack-motion, box-shadow $drawer-stack-motion,
+    transition: transform $motion-gentle, box-shadow $motion-gentle,
       visibility 0s;
+  }
+
+  &.ods-drawer--open.ods-drawer--right {
+    transform: translateX(calc(-1 * var(--ods-drawer-offset-x)));
+  }
+
+  &.ods-drawer--open.ods-drawer--left {
+    transform: translateX(var(--ods-drawer-offset-x));
   }
 }
 
