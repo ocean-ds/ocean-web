@@ -3,7 +3,9 @@ import React, {
   RefObject,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 
 import classNames from 'classnames';
@@ -58,6 +60,21 @@ const Drawer = ({
   onBack,
 }: DrawerProps): React.ReactElement => {
   const drawerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [entered, setEntered] = useState(!floating);
+
+  /*
+   * Modo flutuante: uma Drawer montada já com `open` nasce fechada por um
+   * ciclo de estilo e só então abre, para a transição de `transform`
+   * deslizar da borda em vez de aparecer pronta.
+   */
+  useLayoutEffect(() => {
+    if (!floating || entered === open) return;
+    if (open) panelRef.current?.getBoundingClientRect();
+    setEntered(open);
+  }, [floating, open, entered]);
+
+  const visuallyOpen = floating ? entered : open;
   const handleOverlayClose = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       event.preventDefault();
@@ -104,12 +121,14 @@ const Drawer = ({
   const overlayStyle: React.CSSProperties | undefined =
     depth !== undefined ? { zIndex: 200 + depth } : undefined;
   const drawerStyle: React.CSSProperties | undefined =
-    depth !== undefined || width !== undefined || (open && offsetX)
-      ? {
+    depth !== undefined || width !== undefined || offsetX !== undefined
+      ? ({
           ...(depth !== undefined && { zIndex: 400 + depth }),
           ...(width !== undefined && { width: `${width}px` }),
-          ...(open && offsetX && { transform: `translateX(${-offsetX}px)` }),
-        }
+          ...(offsetX !== undefined && {
+            '--ods-drawer-offset-x': `${offsetX}px`,
+          }),
+        } as React.CSSProperties)
       : undefined;
   const headerAlignment = onBack ? 'left' : iconAlignment;
 
@@ -117,7 +136,7 @@ const Drawer = ({
     <div
       className={classNames(
         'ods-overlay',
-        open && 'ods-overlay--open',
+        visuallyOpen && 'ods-overlay--open',
         hideOverlay && 'ods-overlay--transparent'
       )}
       aria-hidden="true"
@@ -129,12 +148,13 @@ const Drawer = ({
       <div
         className={classNames(
           'ods-drawer',
-          open && 'ods-drawer--open',
+          visuallyOpen && 'ods-drawer--open',
           `ods-drawer--${align}`,
           `ods-drawer--${size}`,
           floating && 'ods-drawer--floating'
         )}
         style={drawerStyle}
+        ref={panelRef}
         onMouseLeave={onMouseOutDrawer}
       >
         <div

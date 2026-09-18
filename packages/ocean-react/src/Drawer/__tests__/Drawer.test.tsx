@@ -247,26 +247,52 @@ describe('stack props (MR-795)', () => {
     expect(drawer).toHaveClass('ods-drawer--large');
   });
 
-  test('offsetX shifts the open drawer to the left by the given px', () => {
+  test('offsetX is exposed as the stack offset custom property', () => {
     render(
       <Drawer open overlayClose={jest.fn()} floating offsetX={394}>
         <p>Drawer content!</p>
       </Drawer>
     );
 
-    expect(document.querySelector('.ods-drawer')).toHaveStyle(
-      'transform: translateX(-394px)'
+    const drawer = document.querySelector('.ods-drawer') as HTMLElement;
+    expect(drawer.style.getPropertyValue('--ods-drawer-offset-x')).toBe(
+      '394px'
     );
+    expect(drawer).not.toHaveStyle({ transform: 'translateX(-394px)' });
   });
 
-  test('offsetX is not applied while the drawer is closed', () => {
+  test('floating drawer mounted open enters from the closed state', () => {
+    const reflow = jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
+
     render(
-      <Drawer open={false} overlayClose={jest.fn()} floating offsetX={394}>
+      <Drawer open overlayClose={jest.fn()} floating>
         <p>Drawer content!</p>
       </Drawer>
     );
 
-    expect(document.querySelector('.ods-drawer')).not.toHaveAttribute('style');
+    expect(reflow).toHaveBeenCalled();
+    expect(document.querySelector('.ods-drawer')).toHaveClass(
+      'ods-drawer--open'
+    );
+    reflow.mockRestore();
+  });
+
+  test('floating drawer closes as soon as open becomes false', () => {
+    const { rerender } = render(
+      <Drawer open overlayClose={jest.fn()} floating>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    rerender(
+      <Drawer open={false} overlayClose={jest.fn()} floating>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer')).not.toHaveClass(
+      'ods-drawer--open'
+    );
   });
 
   test('depth stacks the overlay z-index', () => {

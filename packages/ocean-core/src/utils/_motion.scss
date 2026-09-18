@@ -1,0 +1,32 @@
+// Motion tokens
+//
+// Gentle: mola do Figma (stiffness 100, damping 15, mass 1) amostrada em
+// `linear()`. Passa ~3% do destino e assenta em 800ms.
+
+$motion-duration-gentle: 800ms !default;
+// stylelint-disable function-parentheses-space-inside -- formato do prettier
+$motion-easing-gentle: linear(
+  0,
+  0.0653,
+  0.2121,
+  0.3862,
+  0.5547,
+  0.7,
+  0.8153,
+  0.9006,
+  0.9592,
+  0.9962,
+  1.0169,
+  1.0263,
+  1.0283,
+  1.0261,
+  1.0218,
+  1.0168,
+  1.0121,
+  1.0081,
+  1.0049,
+  1.0026,
+  1
+) !default;
+// stylelint-enable function-parentheses-space-inside
+$motion-gentle: $motion-duration-gentle $motion-easing-gentle !default;
