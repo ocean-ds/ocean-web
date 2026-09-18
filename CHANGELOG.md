@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.139.0](https://github.com/ocean-ds/ocean-web/compare/v1.138.0...v1.139.0) (2026-09-17)
+
+### Features
+
+- **drawer:** props para pilha de drawers lado a lado (MR-795) ([#1259](https://github.com/ocean-ds/ocean-web/issues/1259)) ([56d1d04](https://github.com/ocean-ds/ocean-web/commit/56d1d04aaeab16c17349dafbd95e90db49591bf1))
+
 # [1.138.0](https://github.com/ocean-ds/ocean-web/compare/v1.137.1...v1.138.0) (2026-09-11)
 
 ### Features
