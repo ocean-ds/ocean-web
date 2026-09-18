@@ -19,7 +19,12 @@
   &--transparent {
     background-color: transparent;
     opacity: 1;
+    pointer-events: none;
     transition: none;
+
+    > .ods-drawer {
+      pointer-events: auto;
+    }
   }
 }
 
