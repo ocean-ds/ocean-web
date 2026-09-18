@@ -35,7 +35,10 @@ interface DrawerProps {
   depth?: number;
   /** Largura em px que substitui a de `size` (pilha em viewport estreito). */
   width?: number;
-  /** Não renderiza o scrim próprio — quem empilha fornece um único scrim. */
+  /**
+   * Não renderiza o scrim próprio — quem empilha fornece um único scrim e trata
+   * o clique fora; o overlay fica transparente e não intercepta o ponteiro.
+   */
   hideOverlay?: boolean;
   /** Ação "voltar" no cabeçalho (drawer mobile): troca o X pela seta e alinha à esquerda. */
   onBack?: (event: React.MouseEvent | React.KeyboardEvent) => void;
