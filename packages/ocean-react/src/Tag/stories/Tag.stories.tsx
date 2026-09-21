@@ -343,7 +343,7 @@ const PagBluListDescription = (): JSX.Element => (
   <DocBlock.Markdown>
     Na lista de PagBlu a etiqueta da oferta (`highlight neutral`) aparece ao
     lado da etiqueta de status (`default`) na mesma linha: as duas têm o mesmo
-    tamanho e peso de texto, e o fundo azul da oferta é `brandPrimaryPure`.
+    tamanho e peso de texto, e o fundo azul da oferta é `brandPrimaryDown`.
   </DocBlock.Markdown>
 );
 

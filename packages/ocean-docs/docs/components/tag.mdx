@@ -122,16 +122,12 @@ Os dois tamanhos valem para as duas variantes. **A tipografia é definida só pe
   title="Tag - Tamanhos"
 />
 
-## Cores e contraste
-
-Toda combinação fundo/texto da Tag deve atingir contraste mínimo de **4,5:1** (WCAG 2.2 AA para texto normal).
+## Cores
 
 | Variante / tipo         | Fundo                                   | Texto                         |
 | ----------------------- | --------------------------------------- | ----------------------------- |
 | `highlight` `important` | `$color-highlight-pure` (coral)         | `$color-interface-light-pure` |
-| `highlight` `neutral`   | `$color-brand-primary-pure` (`#0025E0`) | `$color-interface-light-pure` |
-
-> A `highlight neutral` usa o azul cheio da marca (`brandPrimaryPure`): com texto branco o contraste é 8,97:1. O tom anterior (`brandPrimaryDown`) ficava em 4,09:1, abaixo do mínimo.
+| `highlight` `neutral`   | `$color-brand-primary-down` (`#5872F5`) | `$color-interface-light-pure` |
 
 ## Ícones
 
@@ -188,4 +184,4 @@ Os tipos `positive`, `warning` e `negative` recebem ícone padrão. `icon` subst
 
 ## Histórico
 
-- **Padronização de tamanho, peso e contraste:** a variante `highlight` deixou de ter tipografia própria (10px ExtraBold) e passou a seguir o `size`; a `highlight neutral` passou de `brandPrimaryDown` para `brandPrimaryPure`. A mudança é visual e alcança todas as telas que já usam a Tag.
+- **Padronização de tamanho e peso:** a variante `highlight` deixou de ter tipografia própria (10px ExtraBold) e passou a seguir o `size`. A mudança é visual e alcança todas as telas que já usam a Tag. O fundo da `highlight neutral` segue `brandPrimaryDown`.
