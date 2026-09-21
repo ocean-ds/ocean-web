@@ -33,9 +33,9 @@ describe('compiled styles', () => {
     expect(rule('.ods-tag--highlight__important')).not.toMatch(/font-weight/);
   });
 
-  test('highlight neutral uses brand primary pure background', () => {
+  test('highlight neutral uses brand primary down background', () => {
     expect(rule('.ods-tag--highlight__neutral')).toMatch(
-      /background-color:\s*(rgb\(0, 37, 224\)|#0025e0)/i
+      /background-color:\s*(rgb\(88, 114, 245\)|#5872f5)/i
     );
   });
 });
