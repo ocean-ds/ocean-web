@@ -1,3 +1,7 @@
+$drawer-stack-margin: $spacing-stack-xs;
+$drawer-scrim-fade: 120ms;
+$drawer-scrim-delay: 280ms;
+
 .ods-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
@@ -14,6 +18,17 @@
     opacity: 1;
     visibility: visible;
     z-index: 200;
+  }
+
+  // Scrim do drawer flutuante: entra junto com o painel e, ao fechar, só
+  // esmaece depois que o painel cruza a borda (~280ms da curva Gentle).
+  &--floating {
+    transition: opacity $drawer-scrim-fade linear $drawer-scrim-delay,
+      visibility 0s linear ($drawer-scrim-fade + $drawer-scrim-delay);
+
+    &.ods-overlay--open {
+      transition: opacity $drawer-scrim-fade linear, visibility 0s;
+    }
   }
 
   &--transparent {
@@ -76,8 +91,6 @@
   }
 }
 
-$drawer-stack-margin: $spacing-stack-xs;
-
 // `--ods-drawer-offset-x`: deslocamento da pilha (px, positivo afasta da borda).
 .ods-drawer--floating {
   // stylelint-disable-next-line length-zero-no-unit -- `calc()` exige unidade
@@ -111,6 +124,30 @@ $drawer-stack-margin: $spacing-stack-xs;
 
   &.ods-drawer--open.ods-drawer--left {
     transform: translateX(var(--ods-drawer-offset-x));
+  }
+}
+
+// Celular: o painel flutuante ocupa a tela inteira, sem margem nem cantos.
+@include media-breakpoint-down(xs) {
+  .ods-drawer--floating {
+    border-radius: 0;
+    height: 100%;
+    top: 0;
+
+    &.ods-drawer--right {
+      right: 0;
+      transform: translateX(100%);
+    }
+
+    &.ods-drawer--left {
+      left: 0;
+      transform: translateX(-100%);
+    }
+
+    &.ods-drawer--open.ods-drawer--right,
+    &.ods-drawer--open.ods-drawer--left {
+      transform: translateX(0);
+    }
   }
 }
 

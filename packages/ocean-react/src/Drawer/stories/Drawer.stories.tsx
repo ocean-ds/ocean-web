@@ -56,7 +56,7 @@ const meta: Meta<typeof Drawer> = {
     },
     floating: {
       description:
-        'Modo pilha: o drawer flutua com margem e cantos arredondados e anima por transform. Sem a prop, o visual é o atual.',
+        'Padrão: o drawer flutua com margem de 16px, cantos arredondados e motion Gentle (tela inteira abaixo de 576px). `false` volta ao painel colado na borda.',
       control: 'boolean',
     },
     offsetX: {

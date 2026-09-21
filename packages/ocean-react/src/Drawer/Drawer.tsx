@@ -24,9 +24,10 @@ interface DrawerProps {
   onMouseOutDrawer?: (event?: MouseEvent<HTMLDivElement>) => void;
   size?: 'small' | 'large';
   /**
-   * Modo pilha (duas Drawers lado a lado): a Drawer flutua com margem das
-   * bordas, cantos arredondados e transição coordenada de `transform`.
-   * Sem a prop, o comportamento é o de sempre.
+   * Drawer flutuante: margem das bordas, cantos arredondados, motion Gentle e
+   * scrim que só esmaece depois que o painel cruza a borda. Abaixo de 576px o
+   * painel ocupa a tela inteira. É o padrão; `floating={false}` volta ao painel
+   * colado na borda. Drawers ancoradas (`anchorEl`) nunca flutuam.
    */
   floating?: boolean;
   /** Deslocamento horizontal extra, em px, aplicado ao `translateX` quando aberta. */
@@ -55,13 +56,14 @@ const Drawer = ({
   anchorEl,
   onMouseOutDrawer,
   size = 'small',
-  floating = false,
+  floating: floatingProp,
   offsetX,
   depth,
   width,
   hideOverlay = false,
   onBack,
 }: DrawerProps): React.ReactElement => {
+  const floating = floatingProp ?? !anchorEl;
   const drawerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [entered, setEntered] = useState(!floating);
@@ -140,6 +142,7 @@ const Drawer = ({
       className={classNames(
         'ods-overlay',
         visuallyOpen && 'ods-overlay--open',
+        floating && 'ods-overlay--floating',
         hideOverlay && 'ods-overlay--transparent'
       )}
       aria-hidden="true"
