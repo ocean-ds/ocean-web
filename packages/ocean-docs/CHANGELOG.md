@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.139.5](https://github.com/ocean-ds/ocean-web/compare/v1.139.4...v1.139.5) (2026-09-21)
+
+### Bug Fixes
+
+- **tag:** highlight neutral volta a brandPrimaryDown (MR-802) ([#1263](https://github.com/ocean-ds/ocean-web/issues/1263)) ([3eda3df](https://github.com/ocean-ds/ocean-web/commit/3eda3dfda1154a7f315b394ea772cf4fb257006e))
+
 ## [1.139.4](https://github.com/ocean-ds/ocean-web/compare/v1.139.3...v1.139.4) (2026-09-18)
 
 **Note:** Version bump only for package @useblu/ocean-docs
