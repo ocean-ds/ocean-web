@@ -128,7 +128,7 @@ $drawer-scrim-delay: 280ms;
 }
 
 // Celular: o painel flutuante ocupa a tela inteira, sem margem nem cantos.
-@include media-breakpoint-down(xs) {
+@include media-breakpoint-down(sm) {
   .ods-drawer--floating {
     border-radius: 0;
     height: 100%;
