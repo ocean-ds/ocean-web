@@ -55,7 +55,9 @@ const StackedDrawers = ({
       </Button>
       <div
         aria-hidden="true"
-        className={`ods-overlay${anyOpen ? ' ods-overlay--open' : ''}`}
+        className={`ods-overlay ods-overlay--floating${
+          anyOpen ? ' ods-overlay--open' : ''
+        }`}
         onClick={closeAll}
       />
       <Drawer
