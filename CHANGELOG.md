@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.140.0](https://github.com/ocean-ds/ocean-web/compare/v1.139.6...v1.140.0) (2026-09-21)
+
+### Features
+
+- **drawer:** visual flutuante como padrão do Drawer (MR-823) ([#1264](https://github.com/ocean-ds/ocean-web/issues/1264)) ([d6cca5f](https://github.com/ocean-ds/ocean-web/commit/d6cca5f9f6febe3168862fa7614d45e98b982788))
+
 ## [1.139.6](https://github.com/ocean-ds/ocean-web/compare/v1.139.5...v1.139.6) (2026-09-21)
 
 ### Bug Fixes
