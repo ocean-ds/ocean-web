@@ -41,23 +41,33 @@ const StackedDrawers = ({
   );
 
   const closeSecond = () => setSecondOpen(false);
-  const closeTop = () => (secondOpen ? closeSecond() : setFirstOpen(false));
+  const closeAll = () => {
+    setFirstOpen(false);
+    setSecondOpen(false);
+  };
   const offsetX = secondOpen && !mobile ? drawerWidth + GAP : 0;
+  const anyOpen = firstOpen || secondOpen;
 
   return (
     <>
       <Button onClick={() => setFirstOpen(true)} type="button">
         Abrir primeira
       </Button>
+      <div
+        aria-hidden="true"
+        className={`ods-overlay${anyOpen ? ' ods-overlay--open' : ''}`}
+        onClick={closeAll}
+      />
       <Drawer
         open={firstOpen}
         onDrawerClose={() => setFirstOpen(false)}
-        overlayClose={closeTop}
+        overlayClose={closeAll}
         size={size}
         floating={!mobile}
         width={mobile ? undefined : drawerWidth}
         depth={0}
         offsetX={offsetX}
+        hideOverlay
       >
         <div style={{ padding: '0 24px' }}>
           {first}
@@ -73,7 +83,7 @@ const StackedDrawers = ({
       <Drawer
         open={secondOpen}
         onDrawerClose={closeSecond}
-        overlayClose={closeSecond}
+        overlayClose={closeAll}
         size={size}
         floating={!mobile}
         width={mobile ? undefined : drawerWidth}
