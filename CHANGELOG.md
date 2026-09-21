@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.140.1](https://github.com/ocean-ds/ocean-web/compare/v1.140.0...v1.140.1) (2026-09-21)
+
+### Bug Fixes
+
+- **drawer:** scrim e painel mantêm z-index durante a saída (MR-823) ([#1265](https://github.com/ocean-ds/ocean-web/issues/1265)) ([0427a8a](https://github.com/ocean-ds/ocean-web/commit/0427a8a2210fb3c5780063ece3a0f1523d80ef0e))
+
 # [1.140.0](https://github.com/ocean-ds/ocean-web/compare/v1.139.6...v1.140.0) (2026-09-21)
 
 ### Features
