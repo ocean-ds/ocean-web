@@ -26,7 +26,7 @@ test('renders drawer component properly', () => {
 
   expect(document.querySelector('.ods-drawer')).toMatchInlineSnapshot(`
     <div
-      class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small"
+      class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small ods-drawer--floating"
     >
       <div
         class="ods-drawer__content--header ods-drawer__content--header--right"
@@ -208,11 +208,13 @@ test('close the drawer clicking the overlay', () => {
 
   fireEvent.click(screen.getByTestId('drawer-overlay'));
 
-  expect(document.querySelector(`.ods-overlay`)?.className).toBe('ods-overlay');
+  expect(document.querySelector(`.ods-overlay`)?.className).toBe(
+    'ods-overlay ods-overlay--floating'
+  );
 });
 
 describe('stack props (MR-795)', () => {
-  test('without stack props keeps the legacy markup', () => {
+  test('floating is the default and adds no inline style', () => {
     render(
       <Drawer open overlayClose={jest.fn()}>
         <p>Drawer content!</p>
@@ -222,16 +224,46 @@ describe('stack props (MR-795)', () => {
     const overlay = screen.getByTestId('drawer-overlay');
     const drawer = document.querySelector('.ods-drawer') as HTMLElement;
 
-    expect(overlay).toHaveClass('ods-overlay ods-overlay--open', {
-      exact: true,
-    });
+    expect(overlay).toHaveClass(
+      'ods-overlay ods-overlay--open ods-overlay--floating',
+      { exact: true }
+    );
     expect(overlay).not.toHaveAttribute('style');
     expect(drawer.className).toBe(
-      'ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small'
+      'ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small ods-drawer--floating'
     );
     expect(drawer).not.toHaveAttribute('style');
     expect(screen.getByRole('button', { hidden: true })).toHaveTextContent(
       'mock-x-outline-xvg'
+    );
+  });
+
+  test('floating={false} keeps the legacy edge-attached markup', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} floating={false}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(screen.getByTestId('drawer-overlay')).toHaveClass(
+      'ods-overlay ods-overlay--open',
+      { exact: true }
+    );
+    expect(document.querySelector('.ods-drawer')?.className).toBe(
+      'ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small'
+    );
+  });
+
+  test('anchored drawer does not float', () => {
+    const anchor = { current: document.createElement('div') };
+    render(
+      <Drawer open overlayClose={jest.fn()} anchorEl={anchor}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer')).not.toHaveClass(
+      'ods-drawer--floating'
     );
   });
 
