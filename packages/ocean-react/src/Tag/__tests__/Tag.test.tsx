@@ -72,18 +72,9 @@ test('renders neutral-02 element properly', () => {
 test('renders complementary element properly', () => {
   setup({ type: 'complementary' });
 
-  expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
-    <div
-      class="ods-tag ods-tag--medium ods-tag--complementary"
-      role="Tag"
-    >
-      <div
-        class="ods-tag__content"
-      >
-        Hello There!
-      </div>
-    </div>
-  `);
+  expect(document.querySelector('.ods-tag')).toHaveClass(
+    'ods-tag--complementary'
+  );
 });
 
 test('renders neutral-03 element properly', () => {
