@@ -22,15 +22,35 @@ describe('compiled styles', () => {
     return match ? match[1] : '';
   };
 
-  test('typography is defined by size only', () => {
+  test('font-size is defined by size only', () => {
     expect(rule('.ods-tag--medium')).toMatch(/font-size:\s*12px/);
     expect(rule('.ods-tag--medium')).toMatch(/font-weight:\s*600/);
     expect(rule('.ods-tag--small')).toMatch(/font-size:\s*8px/);
     expect(rule('.ods-tag--small')).toMatch(/font-weight:\s*700/);
     expect(rule('.ods-tag--highlight__neutral')).not.toMatch(/font-size/);
-    expect(rule('.ods-tag--highlight__neutral')).not.toMatch(/font-weight/);
     expect(rule('.ods-tag--highlight__important')).not.toMatch(/font-size/);
-    expect(rule('.ods-tag--highlight__important')).not.toMatch(/font-weight/);
+  });
+
+  test('highlight is bold (700) regardless of size', () => {
+    expect(rule('.ods-tag--highlight__neutral')).toMatch(/font-weight:\s*700/);
+    expect(rule('.ods-tag--highlight__important')).toMatch(
+      /font-weight:\s*700/
+    );
+  });
+
+  test('complementary uses complementary deep for text and icon', () => {
+    expect(rule('.ods-tag--complementary')).toMatch(
+      /background-color:\s*#edfdfd/i
+    );
+    expect(rule('.ods-tag--complementary .ods-tag__content')).toMatch(
+      /color:\s*(rgb\(28, 153, 153\)|#1c9999)/i
+    );
+    expect(rule('.ods-tag--complementary .ods-tag__icon')).toMatch(
+      /fill:\s*(rgb\(28, 153, 153\)|#1c9999)/i
+    );
+    expect(rule('.ods-tag--neutral-03 .ods-tag__content')).toMatch(
+      /color:\s*(rgb\(19, 189, 189\)|#13bdbd)/i
+    );
   });
 
   test('highlight neutral uses brand primary down background', () => {

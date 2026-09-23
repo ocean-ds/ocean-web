@@ -2,6 +2,7 @@
 
 @mixin highlight {
   color: $color-interface-light-pure;
+  font-weight: $font-weight-bold;
   padding: $spacing-stack-xxxs $spacing-stack-xxs;
 }
 
@@ -115,6 +116,18 @@
 
     .ods-tag__content {
       color: $color-complementary-pure;
+    }
+  }
+
+  &--complementary {
+    background-color: #edfdfd;
+
+    .ods-tag__icon {
+      fill: $color-complementary-deep;
+    }
+
+    .ods-tag__content {
+      color: $color-complementary-deep;
     }
   }
 
