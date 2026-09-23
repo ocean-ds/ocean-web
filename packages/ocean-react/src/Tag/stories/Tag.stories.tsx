@@ -23,6 +23,7 @@ const meta: Meta<typeof Tag> = {
         'neutral',
         'neutral-02',
         'neutral-03',
+        'complementary',
         'positive',
         'warning',
         'negative',
@@ -113,6 +114,10 @@ const DefaultVariantsDescription = (): JSX.Element => (
       </li>
       <li>
         <code>neutral-03</code>: Terceira variante neutra
+      </li>
+      <li>
+        <code>complementary</code>: Status agendado (texto e ícone em
+        complementary deep)
       </li>
       <li>
         <code>positive</code>: Para informações positivas/sucesso
@@ -226,6 +231,7 @@ export const DefaultVariants: Story = {
       <Tag type="neutral">Neutral</Tag>
       <Tag type="neutral-02">Neutral 02</Tag>
       <Tag type="neutral-03">Neutral 03</Tag>
+      <Tag type="complementary">Complementary</Tag>
       <Tag type="positive" setIconOff>
         Positive
       </Tag>
@@ -295,6 +301,7 @@ const STATUS_TYPES = [
   'neutral',
   'neutral-02',
   'neutral-03',
+  'complementary',
 ] as const;
 
 const STATUS_LABELS: Record<typeof STATUS_TYPES[number], string> = {
@@ -304,6 +311,7 @@ const STATUS_LABELS: Record<typeof STATUS_TYPES[number], string> = {
   neutral: 'Processando',
   'neutral-02': 'Pagamento agendado',
   'neutral-03': 'Boleto',
+  complementary: 'Pagamento agendado',
 };
 
 export const AllVariants: Story = {
@@ -464,6 +472,9 @@ export const CustomIcons: Story = {
       </Tag>
       <Tag icon={<Star size={16} />} type="neutral-03">
         Neutral 03
+      </Tag>
+      <Tag icon={<Star size={16} />} type="complementary">
+        Complementary
       </Tag>
       <Tag type="warning" icon={<Star size={16} />}>
         Warning
@@ -737,8 +748,9 @@ const ApiReference = (): JSX.Element => (
           <td>
             <code>
               &quot;default&quot; | &quot;neutral&quot; | &quot;neutral-02&quot;
-              | &quot;neutral-03&quot; | &quot;positive&quot; |
-              &quot;warning&quot; | &quot;negative&quot; | &quot;important&quot;
+              | &quot;neutral-03&quot; | &quot;complementary&quot; |
+              &quot;positive&quot; | &quot;warning&quot; | &quot;negative&quot;
+              | &quot;important&quot;
             </code>
           </td>
           <td>

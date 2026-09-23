@@ -69,6 +69,14 @@ test('renders neutral-02 element properly', () => {
   `);
 });
 
+test('renders complementary element properly', () => {
+  setup({ type: 'complementary' });
+
+  expect(document.querySelector('.ods-tag')).toHaveClass(
+    'ods-tag--complementary'
+  );
+});
+
 test('renders neutral-03 element properly', () => {
   setup({ type: 'neutral-03' });
 

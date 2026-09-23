@@ -1,7 +1,20 @@
 @use 'sass:math';
 
+@mixin complementary-tag($foreground) {
+  background-color: #edfdfd;
+
+  .ods-tag__icon {
+    fill: $foreground;
+  }
+
+  .ods-tag__content {
+    color: $foreground;
+  }
+}
+
 @mixin highlight {
   color: $color-interface-light-pure;
+  font-weight: $font-weight-bold;
   padding: $spacing-stack-xxxs $spacing-stack-xxs;
 }
 
@@ -107,15 +120,11 @@
   }
 
   &--neutral-03 {
-    background-color: #edfdfd;
+    @include complementary-tag($color-complementary-pure);
+  }
 
-    .ods-tag__icon {
-      fill: $color-complementary-pure;
-    }
-
-    .ods-tag__content {
-      color: $color-complementary-pure;
-    }
+  &--complementary {
+    @include complementary-tag($color-complementary-deep);
   }
 
   &__icon {
