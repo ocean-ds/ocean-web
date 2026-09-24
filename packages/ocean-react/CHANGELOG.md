@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.141.1](https://github.com/ocean-ds/ocean-web/compare/v1.141.0...v1.141.1) (2026-09-24)
+
+### Bug Fixes
+
+- **tag:** highlight em ExtraBold 800 (MR-836) ([#1267](https://github.com/ocean-ds/ocean-web/issues/1267)) ([a816710](https://github.com/ocean-ds/ocean-web/commit/a81671021ea3a61571d64e441b097398f1eb1b26))
+
 # [1.141.0](https://github.com/ocean-ds/ocean-web/compare/v1.140.1...v1.141.0) (2026-09-23)
 
 ### Features
