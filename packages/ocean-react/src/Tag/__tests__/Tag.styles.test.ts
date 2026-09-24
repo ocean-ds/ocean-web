@@ -31,10 +31,10 @@ describe('compiled styles', () => {
     expect(rule('.ods-tag--highlight__important')).not.toMatch(/font-size/);
   });
 
-  test('highlight is bold (700) regardless of size', () => {
-    expect(rule('.ods-tag--highlight__neutral')).toMatch(/font-weight:\s*700/);
+  test('highlight is extrabold (800) regardless of size', () => {
+    expect(rule('.ods-tag--highlight__neutral')).toMatch(/font-weight:\s*800/);
     expect(rule('.ods-tag--highlight__important')).toMatch(
-      /font-weight:\s*700/
+      /font-weight:\s*800/
     );
   });
 
