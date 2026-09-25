@@ -756,7 +756,7 @@ test('shows tooltip when clicking on disabled day with disabledDaysMessage', asy
   expect(onSelectMock).not.toHaveBeenCalled();
 });
 
-test('tooltip disappears after 5 seconds', async () => {
+test('tooltip disappears after 3 seconds', async () => {
   jest.useFakeTimers();
   const onSelectMock = jest.fn();
 
@@ -775,8 +775,8 @@ test('tooltip disappears after 5 seconds', async () => {
   // Tooltip should appear
   await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
 
-  // Fast-forward 5 seconds
-  jest.advanceTimersByTime(5000);
+  // Fast-forward 3 seconds
+  jest.advanceTimersByTime(3000);
 
   // Tooltip should disappear after timeout
   await expectTooltipNotToAppearAsync();

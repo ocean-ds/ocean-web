@@ -93,7 +93,7 @@ export function useDisabledDaysTooltip(
       setShowDisabledTooltip(true);
       tooltipTimerRef.current = setTimeout(
         () => setShowDisabledTooltip(false),
-        5000
+        3000
       );
     },
     [disabledDaysMessage, resolveMessage]
