@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.141.2](https://github.com/ocean-ds/ocean-web/compare/v1.141.1...v1.141.2) (2026-09-25)
+
+### Bug Fixes
+
+- **date:** tooltip de dia indisponível fecha em 3 s (MR-665) ([#1268](https://github.com/ocean-ds/ocean-web/issues/1268)) ([03d7f83](https://github.com/ocean-ds/ocean-web/commit/03d7f834173c0f0014a339a8aef5deb0cd191534))
+
 ## [1.141.1](https://github.com/ocean-ds/ocean-web/compare/v1.141.0...v1.141.1) (2026-09-24)
 
 ### Bug Fixes
