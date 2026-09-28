@@ -11,6 +11,7 @@ import React, {
 import classNames from 'classnames';
 import { ArrowLeftOutline, XOutline } from '@useblu/ocean-icons-react';
 import Button from '../Button/Button';
+import IconButton from '../IconButton/IconButton';
 
 interface DrawerProps {
   children: React.ReactNode;
@@ -43,6 +44,19 @@ interface DrawerProps {
   hideOverlay?: boolean;
   /** Ação "voltar" no cabeçalho (drawer mobile): troca o X pela seta e alinha à esquerda. */
   onBack?: (event: React.MouseEvent | React.KeyboardEvent) => void;
+  /**
+   * Esmaece o painel inteiro quando ele fica atrás de outro na pilha:
+   * `near` = imediatamente atrás, `far` = mais antigo. Exige `onDimClick`.
+   */
+  dim?: 'near' | 'far';
+  /**
+   * Drawer que participa de pilha. O conteúdo fica num contêiner que o `dim`
+   * torna `inert`; com `dim`, clicar no painel (fora do X) chama esta função
+   * em vez de acionar o conteúdo.
+   */
+  onDimClick?: () => void;
+  /** `icon`: X (e seta voltar) como `IconButton`, alinhado ao título. */
+  closeButton?: 'legacy' | 'icon';
 }
 
 const Drawer = ({
@@ -62,10 +76,17 @@ const Drawer = ({
   width,
   hideOverlay = false,
   onBack,
+  dim,
+  onDimClick,
+  closeButton = 'legacy',
 }: DrawerProps): React.ReactElement => {
   const floating = floatingProp ?? !anchorEl;
   const drawerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const stacked = onDimClick !== undefined;
+  const dimmed = stacked && dim !== undefined;
   const [entered, setEntered] = useState(!floating);
 
   /*
@@ -80,6 +101,19 @@ const Drawer = ({
   }, [floating, open, entered]);
 
   const visuallyOpen = floating ? entered : open;
+
+  useEffect(() => {
+    bodyRef.current?.toggleAttribute('inert', dimmed);
+  }, [dimmed]);
+
+  const handleDimmedClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (!dimmed) return;
+    const target = event.target as Node;
+    if (closeRef.current?.contains(target)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    onDimClick?.();
+  };
   const handleOverlayClose = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       event.preventDefault();
@@ -157,27 +191,63 @@ const Drawer = ({
           visuallyOpen && 'ods-drawer--open',
           `ods-drawer--${align}`,
           `ods-drawer--${size}`,
-          floating && 'ods-drawer--floating'
+          floating && 'ods-drawer--floating',
+          dimmed && 'ods-drawer--dimmed'
         )}
         style={drawerStyle}
         ref={panelRef}
         onMouseLeave={onMouseOutDrawer}
+        onClickCapture={stacked ? handleDimmedClick : undefined}
       >
         <div
           className={classNames(
             'ods-drawer__content--header',
-            `ods-drawer__content--header--${headerAlignment}`
+            `ods-drawer__content--header--${headerAlignment}`,
+            closeButton === 'icon' && 'ods-drawer__content--header--icon'
           )}
         >
-          <Button
-            type="button"
-            onClick={onBack ?? onDrawerClose}
-            aria-label={onBack ? 'Voltar' : undefined}
-          >
-            {onBack ? <ArrowLeftOutline /> : headerIcon}
-          </Button>
+          {closeButton === 'icon' ? (
+            <IconButton
+              type="button"
+              ref={closeRef}
+              onClick={onBack ?? onDrawerClose}
+              aria-label={onBack ? 'Voltar' : 'Fechar'}
+              tabIndex={dimmed ? -1 : undefined}
+            >
+              {onBack ? <ArrowLeftOutline /> : headerIcon}
+            </IconButton>
+          ) : (
+            <Button
+              type="button"
+              ref={closeRef}
+              onClick={onBack ?? onDrawerClose}
+              aria-label={onBack ? 'Voltar' : undefined}
+              tabIndex={dimmed ? -1 : undefined}
+            >
+              {onBack ? <ArrowLeftOutline /> : headerIcon}
+            </Button>
+          )}
         </div>
-        {children}
+        {stacked ? (
+          <div className="ods-drawer__body" ref={bodyRef}>
+            {children}
+          </div>
+        ) : (
+          children
+        )}
+        {stacked && (
+          <button
+            type="button"
+            className={classNames(
+              'ods-drawer__dim',
+              dim && `ods-drawer__dim--${dim}`
+            )}
+            aria-label="Voltar para esta janela"
+            aria-hidden={dimmed ? undefined : true}
+            tabIndex={dimmed ? 0 : -1}
+            data-testid="drawer-dim"
+          />
+        )}
       </div>
     </div>
   );

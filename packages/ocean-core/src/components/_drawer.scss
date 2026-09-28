@@ -1,9 +1,11 @@
 $drawer-stack-margin: $spacing-stack-xs;
 $drawer-scrim-fade: 120ms;
 $drawer-scrim-delay: 280ms;
+$drawer-scrim-color: rgba(0, 0, 0, 0.5);
+$drawer-dim-near: 0.48;
 
 .ods-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $drawer-scrim-color;
   height: 100%;
   opacity: 0;
   overflow: hidden;
@@ -88,6 +90,46 @@ $drawer-scrim-delay: 280ms;
       cursor: default;
       width: fill-available;
     }
+  }
+}
+
+// Pilha: o painel de trás recebe o scrim só sobre ele. O clique no painel
+// (fora do X) volta para ele; o conteúdo fica `inert`.
+.ods-drawer--dimmed {
+  cursor: pointer;
+}
+
+.ods-drawer__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.ods-drawer__dim {
+  background-color: $drawer-scrim-color;
+  border: 0;
+  cursor: pointer;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 200ms ease-out;
+  z-index: 2;
+
+  &--near {
+    opacity: $drawer-dim-near;
+  }
+
+  &--far {
+    opacity: $opacity-level-intense;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-brand-primary-pure;
+    outline-offset: -2px;
   }
 }
 
@@ -185,5 +227,15 @@ $drawer-scrim-delay: 280ms;
 
   @media (max-width: 767px) {
     padding: 0 16px;
+  }
+
+  &--icon {
+    align-items: center;
+    min-height: 0;
+    padding: $spacing-stack-xxs $spacing-inline-xs 0;
+
+    @media (max-width: 767px) {
+      padding: $spacing-stack-xxs $spacing-inline-xs 0;
+    }
   }
 }
