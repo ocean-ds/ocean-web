@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.142.0](https://github.com/ocean-ds/ocean-web/compare/v1.141.2...v1.142.0) (2026-09-28)
+
+### Features
+
+- **drawer:** scrim por painel na pilha, retorno pelo clique e X em IconButton (MR-854) ([#1269](https://github.com/ocean-ds/ocean-web/issues/1269)) ([8e7bd6c](https://github.com/ocean-ds/ocean-web/commit/8e7bd6c33e2aeaf575eb53a1540e2b054fc728b1))
+
 ## [1.141.1](https://github.com/ocean-ds/ocean-web/compare/v1.141.0...v1.141.1) (2026-09-24)
 
 ### Bug Fixes
