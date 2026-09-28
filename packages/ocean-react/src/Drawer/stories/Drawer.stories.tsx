@@ -83,6 +83,23 @@ const meta: Meta<typeof Drawer> = {
         'Quando presente, o cabeçalho troca o X por uma seta "Voltar" à esquerda (drawer mobile, abaixo de `sm`).',
       control: false,
     },
+    dim: {
+      description:
+        'Scrim só sobre este painel, quando ele fica atrás de outro na pilha: `near` (0.48, imediatamente atrás) ou `far` (0.64, mais antigo). Exige `onDimClick`.',
+      control: 'select',
+      options: [undefined, 'near', 'far'],
+    },
+    onDimClick: {
+      description:
+        'Drawer de pilha: com `dim`, clicar no painel (fora do X) volta para ele em vez de acionar o conteúdo, que fica `inert`.',
+      control: false,
+    },
+    closeButton: {
+      description:
+        '`icon`: X (ou seta voltar) como `IconButton` alinhado ao título, com o hover padrão.',
+      control: 'select',
+      options: ['legacy', 'icon'],
+    },
   },
 };
 
