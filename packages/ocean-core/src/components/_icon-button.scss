@@ -42,6 +42,15 @@
 
   &--light {
     color: $color-interface-dark-up;
+
+    &:hover {
+      background: rgba($color-interface-light-down, $opacity-level-medium);
+      color: $color-interface-dark-deep;
+    }
+
+    &:active {
+      background: rgba($color-interface-light-deep, $opacity-level-medium);
+    }
   }
 
   &--disabled {
