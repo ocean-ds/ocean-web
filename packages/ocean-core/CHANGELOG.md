@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.143.0](https://github.com/ocean-ds/ocean-web/compare/v1.142.0...v1.143.0) (2026-09-29)
+
+### Features
+
+- **drawer:** x pequeno e claro, título e barra de ações; chevronFlipped nos itens de lista (MR-877) ([#1270](https://github.com/ocean-ds/ocean-web/issues/1270)) ([b4cf973](https://github.com/ocean-ds/ocean-web/commit/b4cf97393878b53799f4fea7f1e9e99d5d0a659e))
+
 # [1.142.0](https://github.com/ocean-ds/ocean-web/compare/v1.141.2...v1.142.0) (2026-09-28)
 
 ### Features
