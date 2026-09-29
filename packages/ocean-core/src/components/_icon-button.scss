@@ -43,13 +43,10 @@
   &--light {
     color: $color-interface-dark-up;
 
-    &:hover {
-      background: rgba($color-interface-light-down, $opacity-level-medium);
-      color: $color-interface-dark-deep;
-    }
-
+    &:hover,
     &:active {
-      background: rgba($color-interface-light-deep, $opacity-level-medium);
+      color: $color-interface-dark-deep;
+      mix-blend-mode: multiply;
     }
   }
 
