@@ -8,6 +8,7 @@ import TransactionListItem, {
 
 jest.mock('@useblu/ocean-icons-react', () => ({
   ExclamationCircle: () => 'mock-exclamation-circle-outline',
+  ChevronRight: () => 'mock-chevron-right',
 }));
 
 const setup = (props?: TransactionListItemProps) => {
@@ -216,4 +217,20 @@ test('renders default element properly with sub transaction-list-items', () => {
       </div>
     </div>
   `);
+});
+
+test('renders the chevron pointing right by default', () => {
+  setup({ withChevron: true });
+
+  expect(
+    document.querySelector('.ods-transaction-list-item__chevron')
+  ).not.toHaveClass('ods-transaction-list-item__chevron--flipped');
+});
+
+test('flips the chevron when chevronFlipped is true', () => {
+  setup({ withChevron: true, chevronFlipped: true });
+
+  expect(
+    document.querySelector('.ods-transaction-list-item__chevron')
+  ).toHaveClass('ods-transaction-list-item__chevron--flipped');
 });

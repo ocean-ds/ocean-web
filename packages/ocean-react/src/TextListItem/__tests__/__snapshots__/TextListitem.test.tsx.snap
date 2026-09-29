@@ -122,6 +122,7 @@ exports[`TextListItem should render with action and match snapshot 1`] = `
         </p>
       </div>
       <svg
+        class="ods-text-list-item__chevron"
         fill="currentColor"
         height="24"
         viewBox="0 0 20 20"

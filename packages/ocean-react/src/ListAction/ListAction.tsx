@@ -114,6 +114,12 @@ export type ListActionProps = {
    * Renders a highlighted caption area at the bottom of the container.
    */
   highlight?: ListContainerHighlight;
+  /**
+   * Vira o chevron para a esquerda, com transição. Use enquanto a drawer que o
+   * item abre ao lado estiver aberta.
+   * @default false
+   */
+  chevronFlipped?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'type'>;
 
 const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
@@ -132,6 +138,7 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       indicator,
       indicatorPosition = 'inline',
       actionType = 'chevron',
+      chevronFlipped = false,
       menuActions,
       menuPosition = 'bottom-right',
       onClick,
@@ -158,7 +165,13 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       if (actionType === 'chevron') {
         return (
           <div className="ods-list-action__action">
-            <ChevronRight size={20} />
+            <ChevronRight
+              size={20}
+              className={classNames(
+                'ods-list-action__chevron',
+                chevronFlipped && 'ods-list-action__chevron--flipped'
+              )}
+            />
           </div>
         );
       }

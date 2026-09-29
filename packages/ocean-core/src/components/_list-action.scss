@@ -124,3 +124,11 @@
     margin-right: $spacing-inline-sm;
   }
 }
+
+.ods-list-action__chevron {
+  transition: transform 0.3s ease;
+
+  &--flipped {
+    transform: rotate(180deg);
+  }
+}

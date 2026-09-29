@@ -186,6 +186,22 @@ describe('ListAction', () => {
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
+    test('keeps the chevron pointing right by default', () => {
+      render(<ListAction title="Test Title" />);
+
+      expect(
+        document.querySelector('.ods-list-action__chevron')
+      ).not.toHaveClass('ods-list-action__chevron--flipped');
+    });
+
+    test('flips the chevron when chevronFlipped is true', () => {
+      render(<ListAction title="Test Title" chevronFlipped />);
+
+      expect(document.querySelector('.ods-list-action__chevron')).toHaveClass(
+        'ods-list-action__chevron--flipped'
+      );
+    });
+
     test('renders chevron action explicitly', () => {
       render(<ListAction title="Test Title" actionType="chevron" />);
 

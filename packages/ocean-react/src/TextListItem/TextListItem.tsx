@@ -39,6 +39,12 @@ export type TextListItemProps = {
    */
   onActionClick?: () => void;
   /**
+   * Vira o chevron para a esquerda, com transição. Use enquanto a drawer que o
+   * item abre ao lado estiver aberta.
+   * @default false
+   */
+  chevronFlipped?: boolean;
+  /**
    * Show a checkbox on the left side of the component.
    */
   checkbox?: CheckboxProps;
@@ -66,6 +72,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
       infoText,
       infoTextType = 'neutral',
       withAction,
+      chevronFlipped = false,
       onActionClick,
       checkbox,
       radio,
@@ -143,7 +150,14 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
               {infoText}
             </p>
           )}
-          {withAction && <ChevronRight />}
+          {withAction && (
+            <ChevronRight
+              className={classNames(
+                'ods-text-list-item__chevron',
+                chevronFlipped && 'ods-text-list-item__chevron--flipped'
+              )}
+            />
+          )}
         </div>
       ),
       [
@@ -154,6 +168,7 @@ const TextListItem = React.forwardRef<HTMLDivElement, TextListItemProps>(
         infoText,
         infoTextType,
         withAction,
+        chevronFlipped,
         checkbox,
         radio,
         className,

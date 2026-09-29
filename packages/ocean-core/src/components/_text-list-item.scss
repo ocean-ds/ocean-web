@@ -130,3 +130,11 @@
   border: hidden;
   padding: 0;
 }
+
+.ods-text-list-item__chevron {
+  transition: transform 0.3s ease;
+
+  &--flipped {
+    transform: rotate(180deg);
+  }
+}

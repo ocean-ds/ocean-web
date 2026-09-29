@@ -194,9 +194,10 @@ $drawer-dim-near: 0.48;
 }
 
 .ods-drawer__content--header {
+  align-items: center;
   display: flex;
-  min-height: 48px;
-  padding: 0 24px;
+  flex-shrink: 0;
+  padding: $spacing-stack-xxs $spacing-inline-xs;
 
   &--left {
     justify-content: flex-start;
@@ -211,8 +212,7 @@ $drawer-dim-near: 0.48;
     border: 0;
     color: $color-interface-dark-up;
     cursor: pointer;
-    height: 100%;
-
+    height: 40px;
     min-width: 0;
     padding: 0;
 
@@ -224,18 +224,31 @@ $drawer-dim-near: 0.48;
       background-color: $color-interface-light-pure;
     }
   }
+}
 
-  @media (max-width: 767px) {
-    padding: 0 16px;
-  }
+.ods-drawer__scroll {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+}
 
-  &--icon {
-    align-items: center;
-    min-height: 0;
-    padding: $spacing-stack-xxs $spacing-inline-xs 0;
+.ods-drawer__title {
+  padding: 0 $spacing-inline-sm $spacing-stack-xs;
+}
 
-    @media (max-width: 767px) {
-      padding: $spacing-stack-xxs $spacing-inline-xs 0;
-    }
-  }
+.ods-drawer__main {
+  flex: 1;
+  padding: 0 $spacing-inline-sm;
+}
+
+.ods-drawer__actions {
+  align-items: flex-start;
+  border-top: 1px solid $color-interface-light-down;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: $spacing-stack-xxs;
+  padding: $spacing-stack-xs $spacing-inline-sm;
 }

@@ -340,43 +340,45 @@ Use `isInverted` para inverter a hierarquia tipográfica entre Level 1 e Level 2
 
 ### Props
 
-| Prop          | Tipo              | Padrão  | Descrição                                 |
-| ------------- | ----------------- | ------- | ----------------------------------------- |
-| `children`    | `React.ReactNode` | -       | Conteúdo principal do item (Level 1)      |
-| `level2`      | `string`          | -       | Texto secundário (Level 2)                |
-| `level3`      | `string`          | -       | Texto terciário (Level 3)                 |
-| `level4`      | `string`          | -       | Texto quaternário (Level 4)               |
-| `value`       | `string`          | -       | Valor monetário ou numérico exibido       |
-| `positive`    | `boolean`         | `false` | Define se o valor é positivo (cor verde)  |
-| `time`        | `string`          | -       | Horário ou timestamp                      |
-| `tags`        | `React.ReactNode` | -       | Tags ou badges para categorização         |
-| `icon`        | `React.ReactNode` | -       | Ícone exibido à esquerda do item          |
-| `withChevron` | `boolean`         | `false` | Exibe ícone de chevron indicando expansão |
-| `subItens`    | `React.ReactNode` | -       | Subitens aninhados                        |
-| `readOnly`    | `boolean`         | `false` | Define se o item é somente leitura        |
-| `isLoading`   | `boolean`         | `false` | Exibe estado de carregamento              |
-| `isInverted`  | `boolean`         | `false` | Inverte a hierarquia tipográfica entre Level 1 e Level 2 |
-| `className`   | `string`          | -       | Classes CSS adicionais                    |
-| `onClick`     | `function`        | -       | Função chamada ao clicar no item          |
+| Prop             | Tipo              | Padrão  | Descrição                                                                                                                            |
+| ---------------- | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `children`       | `React.ReactNode` | -       | Conteúdo principal do item (Level 1)                                                                                                 |
+| `level2`         | `string`          | -       | Texto secundário (Level 2)                                                                                                           |
+| `level3`         | `string`          | -       | Texto terciário (Level 3)                                                                                                            |
+| `level4`         | `string`          | -       | Texto quaternário (Level 4)                                                                                                          |
+| `value`          | `string`          | -       | Valor monetário ou numérico exibido                                                                                                  |
+| `positive`       | `boolean`         | `false` | Define se o valor é positivo (cor verde)                                                                                             |
+| `time`           | `string`          | -       | Horário ou timestamp                                                                                                                 |
+| `tags`           | `React.ReactNode` | -       | Tags ou badges para categorização                                                                                                    |
+| `icon`           | `React.ReactNode` | -       | Ícone exibido à esquerda do item                                                                                                     |
+| `withChevron`    | `boolean`         | `false` | Exibe ícone de chevron indicando expansão                                                                                            |
+| `chevronFlipped` | `boolean`         | `false` | Vira o chevron para a esquerda, com transição. Ligue só enquanto a drawer que o item abre ao lado estiver aberta (com `withChevron`) |
+| `subItens`       | `React.ReactNode` | -       | Subitens aninhados                                                                                                                   |
+| `readOnly`       | `boolean`         | `false` | Define se o item é somente leitura                                                                                                   |
+| `isLoading`      | `boolean`         | `false` | Exibe estado de carregamento                                                                                                         |
+| `isInverted`     | `boolean`         | `false` | Inverte a hierarquia tipográfica entre Level 1 e Level 2                                                                             |
+| `className`      | `string`          | -       | Classes CSS adicionais                                                                                                               |
+| `onClick`        | `function`        | -       | Função chamada ao clicar no item                                                                                                     |
 
 ### Classes CSS
 
-| Classe                                        | Descrição                                        |
-| --------------------------------------------- | ------------------------------------------------ |
-| `.ods-transaction-list-item`                  | Estilos aplicados ao elemento raiz               |
-| `.ods-transaction-list-item__content`         | Estilos aplicados ao conteúdo                    |
-| `.ods-transaction-list-item__icon`            | Estilos aplicados ao ícone                       |
-| `.ods-transaction-list-item__information`     | Estilos aplicados ao container de informações    |
-| `.ods-transaction-list-item__level1`          | Estilos aplicados ao texto de nível 1            |
-| `.ods-transaction-list-item__level2`          | Estilos aplicados ao texto de nível 2            |
-| `.ods-transaction-list-item__level3`          | Estilos aplicados ao texto de nível 3            |
-| `.ods-transaction-list-item__level4`          | Estilos aplicados ao texto de nível 4            |
-| `.ods-transaction-list-item__sub-information` | Estilos aplicados às informações do lado direito |
-| `.ods-transaction-list-item__value`           | Estilos aplicados ao valor                       |
-| `.ods-transaction-list-item__tags`            | Estilos aplicados às tags                        |
-| `.ods-transaction-list-item__time`            | Estilos aplicados ao horário                     |
-| `.ods-transaction-list-item__sub-itens`       | Estilos aplicados ao container de subitens       |
-| `.ods-transaction-list-item--inverted`        | Inverte tamanhos de fonte entre Level 1 e Level 2 |
+| Classe                                         | Descrição                                         |
+| ---------------------------------------------- | ------------------------------------------------- |
+| `.ods-transaction-list-item`                   | Estilos aplicados ao elemento raiz                |
+| `.ods-transaction-list-item__content`          | Estilos aplicados ao conteúdo                     |
+| `.ods-transaction-list-item__icon`             | Estilos aplicados ao ícone                        |
+| `.ods-transaction-list-item__information`      | Estilos aplicados ao container de informações     |
+| `.ods-transaction-list-item__level1`           | Estilos aplicados ao texto de nível 1             |
+| `.ods-transaction-list-item__level2`           | Estilos aplicados ao texto de nível 2             |
+| `.ods-transaction-list-item__level3`           | Estilos aplicados ao texto de nível 3             |
+| `.ods-transaction-list-item__level4`           | Estilos aplicados ao texto de nível 4             |
+| `.ods-transaction-list-item__sub-information`  | Estilos aplicados às informações do lado direito  |
+| `.ods-transaction-list-item__value`            | Estilos aplicados ao valor                        |
+| `.ods-transaction-list-item__tags`             | Estilos aplicados às tags                         |
+| `.ods-transaction-list-item__time`             | Estilos aplicados ao horário                      |
+| `.ods-transaction-list-item__sub-itens`        | Estilos aplicados ao container de subitens        |
+| `.ods-transaction-list-item--inverted`         | Inverte tamanhos de fonte entre Level 1 e Level 2 |
+| `.ods-transaction-list-item__chevron--flipped` | Chevron virado para a esquerda                    |
 
 ## Acessibilidade
 
