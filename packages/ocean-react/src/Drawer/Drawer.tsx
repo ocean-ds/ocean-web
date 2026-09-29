@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { ArrowLeftOutline, XOutline } from '@useblu/ocean-icons-react';
 import Button from '../Button/Button';
 import IconButton from '../IconButton/IconButton';
+import Typography from '../Typography/Typography';
 
 interface DrawerProps {
   children: React.ReactNode;
@@ -55,8 +56,15 @@ interface DrawerProps {
    * em vez de acionar o conteúdo.
    */
   onDimClick?: () => void;
-  /** `icon`: X (e seta voltar) como `IconButton`, alinhado ao título. */
+  /**
+   * `icon` (padrão): X (e seta voltar) como `IconButton` pequeno e claro.
+   * `legacy`: X como `Button`, mantido para quem ainda sobrescreve esse botão.
+   */
   closeButton?: 'legacy' | 'icon';
+  /** Título logo abaixo da barra do X; rola junto com o conteúdo. */
+  title?: React.ReactNode;
+  /** Barra de ações fixa no rodapé, com linha acima; os botões ficam em coluna. */
+  actions?: React.ReactNode;
 }
 
 const Drawer = ({
@@ -78,7 +86,9 @@ const Drawer = ({
   onBack,
   dim,
   onDimClick,
-  closeButton = 'legacy',
+  closeButton = 'icon',
+  title,
+  actions,
 }: DrawerProps): React.ReactElement => {
   const floating = floatingProp ?? !anchorEl;
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -170,6 +180,28 @@ const Drawer = ({
         } as React.CSSProperties)
       : undefined;
   const headerAlignment = onBack ? 'left' : iconAlignment;
+  const structured = title !== undefined || actions !== undefined;
+  const content = structured ? (
+    <>
+      <div className="ods-drawer__scroll">
+        {title !== undefined && (
+          <div className="ods-drawer__title">
+            {typeof title === 'string' ? (
+              <Typography variant="heading3">{title}</Typography>
+            ) : (
+              title
+            )}
+          </div>
+        )}
+        <div className="ods-drawer__main">{children}</div>
+      </div>
+      {actions !== undefined && (
+        <div className="ods-drawer__actions">{actions}</div>
+      )}
+    </>
+  ) : (
+    children
+  );
 
   return (
     <div
@@ -209,6 +241,8 @@ const Drawer = ({
           {closeButton === 'icon' ? (
             <IconButton
               type="button"
+              size="sm"
+              color="light"
               ref={closeRef}
               onClick={onBack ?? onDrawerClose}
               aria-label={onBack ? 'Voltar' : 'Fechar'}
@@ -230,10 +264,10 @@ const Drawer = ({
         </div>
         {stacked ? (
           <div className="ods-drawer__body" ref={bodyRef}>
-            {children}
+            {content}
           </div>
         ) : (
-          children
+          content
         )}
         {stacked && (
           <button

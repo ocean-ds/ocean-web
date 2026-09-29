@@ -29,10 +29,11 @@ test('renders drawer component properly', () => {
       class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small ods-drawer--floating"
     >
       <div
-        class="ods-drawer__content--header ods-drawer__content--header--right"
+        class="ods-drawer__content--header ods-drawer__content--header--right ods-drawer__content--header--icon"
       >
         <button
-          class="ods-btn ods-btn--md ods-btn--primary"
+          aria-label="Fechar"
+          class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--light"
           type="button"
         >
           mock-x-outline-xvg
@@ -59,10 +60,11 @@ test('renders drawer attached to div on right', () => {
       class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small"
     >
       <div
-        class="ods-drawer__content--header ods-drawer__content--header--right"
+        class="ods-drawer__content--header ods-drawer__content--header--right ods-drawer__content--header--icon"
       >
         <button
-          class="ods-btn ods-btn--md ods-btn--primary"
+          aria-label="Fechar"
+          class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--light"
           type="button"
         >
           mock-x-outline-xvg
@@ -89,10 +91,11 @@ test('renders drawer attached to div on left', () => {
       class="ods-drawer ods-drawer--open ods-drawer--left ods-drawer--small"
     >
       <div
-        class="ods-drawer__content--header ods-drawer__content--header--right"
+        class="ods-drawer__content--header ods-drawer__content--header--right ods-drawer__content--header--icon"
       >
         <button
-          class="ods-btn ods-btn--md ods-btn--primary"
+          aria-label="Fechar"
+          class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--light"
           type="button"
         >
           mock-x-outline-xvg
@@ -119,10 +122,11 @@ test('renders drawer small drawer', () => {
       class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--small"
     >
       <div
-        class="ods-drawer__content--header ods-drawer__content--header--right"
+        class="ods-drawer__content--header ods-drawer__content--header--right ods-drawer__content--header--icon"
       >
         <button
-          class="ods-btn ods-btn--md ods-btn--primary"
+          aria-label="Fechar"
+          class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--light"
           type="button"
         >
           mock-x-outline-xvg
@@ -149,10 +153,11 @@ test('renders drawer large drawer', () => {
       class="ods-drawer ods-drawer--open ods-drawer--right ods-drawer--large"
     >
       <div
-        class="ods-drawer__content--header ods-drawer__content--header--right"
+        class="ods-drawer__content--header ods-drawer__content--header--right ods-drawer__content--header--icon"
       >
         <button
-          class="ods-btn ods-btn--md ods-btn--primary"
+          aria-label="Fechar"
+          class="ods-icon-btn ods-icon-btn--sm ods-icon-btn--light"
           type="button"
         >
           mock-x-outline-xvg
@@ -515,7 +520,9 @@ describe('stack props (MR-795)', () => {
 
       expect(
         screen.getByRole('button', { name: 'Fechar', hidden: true })
-      ).toHaveClass('ods-icon-btn ods-icon-btn--md', { exact: true });
+      ).toHaveClass('ods-icon-btn ods-icon-btn--sm ods-icon-btn--light', {
+        exact: true,
+      });
       expect(
         document.querySelector('.ods-drawer__content--header')
       ).toHaveClass('ods-drawer__content--header--icon');
@@ -553,5 +560,110 @@ describe('stack props (MR-795)', () => {
         'ods-drawer--dimmed'
       );
     });
+  });
+});
+
+describe('MR-877: X, title and actions', () => {
+  test('the X is a small light IconButton by default', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(
+      screen.getByRole('button', { name: 'Fechar', hidden: true })
+    ).toHaveClass('ods-icon-btn ods-icon-btn--sm ods-icon-btn--light', {
+      exact: true,
+    });
+  });
+
+  test('closeButton="legacy" keeps the X as a Button', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} closeButton="legacy">
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(
+      document.querySelector('.ods-drawer__content--header button')
+    ).toHaveClass('ods-btn');
+  });
+
+  test('without title and actions the children render directly', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer__scroll')).toBeNull();
+    expect(document.querySelector('.ods-drawer__actions')).toBeNull();
+    expect(screen.getByText('Drawer content!').parentElement).toHaveClass(
+      'ods-drawer'
+    );
+  });
+
+  test('a string title renders as heading3 above the content', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} title="Detalhes do contrato">
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    const title = document.querySelector('.ods-drawer__title');
+    expect(title).toHaveTextContent('Detalhes do contrato');
+    expect(title?.firstElementChild).toHaveClass('ods-typography__heading3');
+    expect(title?.nextElementSibling).toHaveClass('ods-drawer__main');
+    expect(document.querySelector('.ods-drawer__actions')).toBeNull();
+  });
+
+  test('a node title is rendered as given', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} title={<span>Custom</span>}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(
+      document.querySelector('.ods-drawer__title > span')
+    ).toHaveTextContent('Custom');
+  });
+
+  test('actions render in a footer outside the scroll area', () => {
+    render(
+      <Drawer
+        open
+        overlayClose={jest.fn()}
+        actions={<button type="button">Pagar</button>}
+      >
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    const actions = document.querySelector('.ods-drawer__actions');
+    expect(actions).toHaveTextContent('Pagar');
+    expect(actions?.previousElementSibling).toHaveClass('ods-drawer__scroll');
+    expect(document.querySelector('.ods-drawer__title')).toBeNull();
+  });
+
+  test('in a stack the title and actions stay inside the inert body', () => {
+    render(
+      <Drawer
+        open
+        overlayClose={jest.fn()}
+        onDimClick={jest.fn()}
+        dim="near"
+        title="Título"
+        actions={<button type="button">Pagar</button>}
+      >
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    const body = document.querySelector('.ods-drawer__body');
+    expect(body).toHaveAttribute('inert');
+    expect(body?.querySelector('.ods-drawer__title')).not.toBeNull();
+    expect(body?.querySelector('.ods-drawer__actions')).not.toBeNull();
   });
 });

@@ -31,6 +31,16 @@ test('renders a small icon button', () => {
   expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--sm');
 });
 
+test('renders a light icon button', () => {
+  render(<IconButton data-testid="btn-test" color="light" />);
+  expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--light');
+});
+
+test('renders the default color without the light modifier', () => {
+  render(<IconButton data-testid="btn-test" />);
+  expect(screen.getByTestId('btn-test')).not.toHaveClass('ods-icon-btn--light');
+});
+
 test('renders a disabled icon button', () => {
   render(<IconButton data-testid="btn-test" disabled />);
   expect(screen.getByTestId('btn-test')).toHaveClass('ods-icon-btn--disabled');

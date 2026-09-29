@@ -96,9 +96,19 @@ const meta: Meta<typeof Drawer> = {
     },
     closeButton: {
       description:
-        '`icon`: X (ou seta voltar) como `IconButton` alinhado ao título, com o hover padrão.',
+        '`icon` (padrão): X (ou seta voltar) como `IconButton` pequeno e claro. `legacy`: X como `Button`.',
       control: 'select',
-      options: ['legacy', 'icon'],
+      options: ['icon', 'legacy'],
+    },
+    title: {
+      description:
+        'Título logo abaixo da barra do X; texto vira `heading3`. Rola junto com o conteúdo.',
+      control: 'text',
+    },
+    actions: {
+      description:
+        'Barra de ações fixa no rodapé, com linha acima e botões em coluna.',
+      control: false,
     },
   },
 };
@@ -264,5 +274,36 @@ export const Stacked: Story = {
       first={<h3 style={{ fontFamily: 'Avenir' }}>Primeiro drawer</h3>}
       second={<h3 style={{ fontFamily: 'Avenir' }}>Segundo drawer</h3>}
     />
+  ),
+};
+
+export const WithTitleAndActions: Story = {
+  args: {
+    open: true,
+    title: 'Detalhes do contrato',
+  },
+  render: (args) => (
+    <Drawer
+      {...args}
+      overlayClose={() => undefined}
+      onDrawerClose={() => undefined}
+      actions={
+        <>
+          <Button blocked>Pagar parcela</Button>
+          <Button variant="secondary" blocked>
+            Ver contrato
+          </Button>
+        </>
+      }
+    >
+      {Array.from({ length: 12 }, (_, index) => (
+        <p
+          key={index}
+          style={{ fontFamily: 'Nunito Sans', margin: '0 0 16px' }}
+        >
+          Conteúdo que rola junto com o título.
+        </p>
+      ))}
+    </Drawer>
   ),
 };

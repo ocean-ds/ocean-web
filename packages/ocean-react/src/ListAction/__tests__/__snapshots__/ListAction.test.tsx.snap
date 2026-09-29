@@ -30,6 +30,7 @@ exports[`ListAction Snapshot matches snapshot in disabled state 1`] = `
         class="ods-list-action__action"
       >
         <svg
+          class="ods-list-action__chevron"
           fill="currentColor"
           height="20"
           viewBox="0 0 20 20"
@@ -166,6 +167,7 @@ exports[`ListAction Snapshot matches snapshot with all props 1`] = `
         class="ods-list-action__action"
       >
         <svg
+          class="ods-list-action__chevron"
           fill="currentColor"
           height="20"
           viewBox="0 0 20 20"
@@ -213,6 +215,7 @@ exports[`ListAction Snapshot matches snapshot with default props 1`] = `
         class="ods-list-action__action"
       >
         <svg
+          class="ods-list-action__chevron"
           fill="currentColor"
           height="20"
           viewBox="0 0 20 20"

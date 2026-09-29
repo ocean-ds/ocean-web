@@ -212,9 +212,14 @@
   margin-left: 12px;
   min-height: 20px;
   min-width: 20px;
+  transition: transform 0.3s ease;
 
   @include media-breakpoint-down(sm) {
     margin-left: $spacing-inline-xxs;
+  }
+
+  &--flipped {
+    transform: rotate(180deg);
   }
 }
 
