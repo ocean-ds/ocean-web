@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.144.0](https://github.com/ocean-ds/ocean-web/compare/v1.143.0...v1.144.0) (2026-09-30)
+
+### Features
+
+- **drawer:** headerColor pinta a barra do X e ajusta o hover no fundo colorido (MR-877) ([#1271](https://github.com/ocean-ds/ocean-web/issues/1271)) ([a84a9dc](https://github.com/ocean-ds/ocean-web/commit/a84a9dcd301a55f1dd65d2a51fcb3e8203c04297))
+
 # [1.143.0](https://github.com/ocean-ds/ocean-web/compare/v1.142.0...v1.143.0) (2026-09-29)
 
 ### Features
