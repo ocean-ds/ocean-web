@@ -65,6 +65,11 @@ interface DrawerProps {
   title?: React.ReactNode;
   /** Barra de ações fixa no rodapé, com linha acima; os botões ficam em coluna. */
   actions?: React.ReactNode;
+  /**
+   * Cor de fundo da barra do X. `warning` e `negative` pintam a barra e trocam
+   * o hover do X para escuro com círculo em multiply.
+   */
+  headerColor?: 'default' | 'warning' | 'negative';
 }
 
 const Drawer = ({
@@ -89,6 +94,7 @@ const Drawer = ({
   closeButton = 'icon',
   title,
   actions,
+  headerColor = 'default',
 }: DrawerProps): React.ReactElement => {
   const floating = floatingProp ?? !anchorEl;
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -235,7 +241,9 @@ const Drawer = ({
           className={classNames(
             'ods-drawer__content--header',
             `ods-drawer__content--header--${headerAlignment}`,
-            closeButton === 'icon' && 'ods-drawer__content--header--icon'
+            closeButton === 'icon' && 'ods-drawer__content--header--icon',
+            headerColor !== 'default' &&
+              `ods-drawer__content--header--${headerColor}`
           )}
         >
           {closeButton === 'icon' ? (

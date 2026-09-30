@@ -107,21 +107,22 @@ Exemplo de drawer anexado a um elemento específico da página:
 
 ### Props
 
-| Prop               | Tipo                                           | Padrão         | Descrição                                                                          |
-| ------------------ | ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------- |
-| `children`         | `ReactNode`                                    | -              | Conteúdo a ser exibido dentro do drawer                                            |
-| `open`             | `boolean`                                      | -              | Controla se o drawer está aberto                                                   |
-| `onDrawerClose`    | `(event: MouseEvent \| KeyboardEvent) => void` | -              | Função chamada quando o drawer é fechado                                           |
-| `overlayClose`     | `(event?: MouseEvent) => void`                 | -              | Função chamada quando clica no overlay                                             |
-| `headerIcon`       | `ReactNode`                                    | `<XOutline />` | Ícone customizado para o cabeçalho                                                 |
-| `align`            | `'left' \| 'right'`                            | `'right'`      | Posição do drawer na tela                                                          |
-| `iconAlignment`    | `'left' \| 'right'`                            | `'right'`      | Alinhamento do ícone no cabeçalho                                                  |
-| `anchorEl`         | `RefObject<HTMLDivElement> \| null`            | -              | Elemento de referência para posicionamento                                         |
-| `onMouseOutDrawer` | `(event?: MouseEvent) => void`                 | -              | Função chamada quando o mouse sai do drawer                                        |
-| `size`             | `'small' \| 'large'`                           | `'small'`      | Tamanho do drawer                                                                  |
-| `closeButton`      | `'icon' \| 'legacy'`                           | `'icon'`       | `icon`: X como `IconButton` pequeno e claro. `legacy`: X como `Button`             |
-| `title`            | `ReactNode`                                    | -              | Título logo abaixo da barra do X; texto vira `heading3`. Rola junto com o conteúdo |
-| `actions`          | `ReactNode`                                    | -              | Barra de ações fixa no rodapé, com linha acima e botões em coluna                  |
+| Prop               | Tipo                                           | Padrão         | Descrição                                                                             |
+| ------------------ | ---------------------------------------------- | -------------- | ------------------------------------------------------------------------------------- |
+| `children`         | `ReactNode`                                    | -              | Conteúdo a ser exibido dentro do drawer                                               |
+| `open`             | `boolean`                                      | -              | Controla se o drawer está aberto                                                      |
+| `onDrawerClose`    | `(event: MouseEvent \| KeyboardEvent) => void` | -              | Função chamada quando o drawer é fechado                                              |
+| `overlayClose`     | `(event?: MouseEvent) => void`                 | -              | Função chamada quando clica no overlay                                                |
+| `headerIcon`       | `ReactNode`                                    | `<XOutline />` | Ícone customizado para o cabeçalho                                                    |
+| `align`            | `'left' \| 'right'`                            | `'right'`      | Posição do drawer na tela                                                             |
+| `iconAlignment`    | `'left' \| 'right'`                            | `'right'`      | Alinhamento do ícone no cabeçalho                                                     |
+| `anchorEl`         | `RefObject<HTMLDivElement> \| null`            | -              | Elemento de referência para posicionamento                                            |
+| `onMouseOutDrawer` | `(event?: MouseEvent) => void`                 | -              | Função chamada quando o mouse sai do drawer                                           |
+| `size`             | `'small' \| 'large'`                           | `'small'`      | Tamanho do drawer                                                                     |
+| `closeButton`      | `'icon' \| 'legacy'`                           | `'icon'`       | `icon`: X como `IconButton` pequeno e claro. `legacy`: X como `Button`                |
+| `title`            | `ReactNode`                                    | -              | Título logo abaixo da barra do X; texto vira `heading3`. Rola junto com o conteúdo    |
+| `actions`          | `ReactNode`                                    | -              | Barra de ações fixa no rodapé, com linha acima e botões em coluna                     |
+| `headerColor`      | `'default' \| 'warning' \| 'negative'`         | `'default'`    | Cor da barra do X. `warning` e `negative` pintam a barra e deixam o hover do X escuro |
 
 ### Eventos
 

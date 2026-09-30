@@ -110,6 +110,12 @@ const meta: Meta<typeof Drawer> = {
         'Barra de ações fixa no rodapé, com linha acima e botões em coluna.',
       control: false,
     },
+    headerColor: {
+      description:
+        'Cor da barra do X. `warning` e `negative` pintam a barra e deixam o hover do X escuro, com círculo em multiply.',
+      control: 'select',
+      options: ['default', 'warning', 'negative'],
+    },
   },
 };
 
@@ -304,6 +310,25 @@ export const WithTitleAndActions: Story = {
           Conteúdo que rola junto com o título.
         </p>
       ))}
+    </Drawer>
+  ),
+};
+
+export const HeaderColor: Story = {
+  args: {
+    open: true,
+    headerColor: 'warning',
+    title: 'Limite de compra',
+  },
+  render: (args) => (
+    <Drawer
+      {...args}
+      overlayClose={() => undefined}
+      onDrawerClose={() => undefined}
+    >
+      <p style={{ fontFamily: 'Nunito Sans', margin: 0 }}>
+        Passe o mouse no X: no fundo colorido ele fica escuro; no padrão, azul.
+      </p>
     </Drawer>
   ),
 };
