@@ -666,4 +666,31 @@ describe('MR-877: X, title and actions', () => {
     expect(body?.querySelector('.ods-drawer__title')).not.toBeNull();
     expect(body?.querySelector('.ods-drawer__actions')).not.toBeNull();
   });
+
+  test.each(['warning', 'negative'] as const)(
+    'headerColor="%s" tints the header',
+    (headerColor) => {
+      render(
+        <Drawer open overlayClose={jest.fn()} headerColor={headerColor}>
+          <p>Drawer content!</p>
+        </Drawer>
+      );
+
+      expect(
+        document.querySelector('.ods-drawer__content--header')
+      ).toHaveClass(`ods-drawer__content--header--${headerColor}`);
+    }
+  );
+
+  test('without headerColor the header has no tint class', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    const header = document.querySelector('.ods-drawer__content--header');
+    expect(header).not.toHaveClass('ods-drawer__content--header--warning');
+    expect(header).not.toHaveClass('ods-drawer__content--header--negative');
+  });
 });

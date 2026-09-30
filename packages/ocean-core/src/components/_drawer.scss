@@ -226,6 +226,23 @@ $drawer-dim-near: 0.48;
   }
 }
 
+.ods-drawer__content--header--warning,
+.ods-drawer__content--header--negative {
+  .ods-icon-btn:hover,
+  .ods-icon-btn:active {
+    color: $color-interface-dark-deep;
+    mix-blend-mode: multiply;
+  }
+}
+
+.ods-drawer__content--header--warning {
+  background-color: $color-status-warning-up;
+}
+
+.ods-drawer__content--header--negative {
+  background-color: $color-status-negative-up;
+}
+
 .ods-drawer__scroll {
   display: flex;
   flex: 1;

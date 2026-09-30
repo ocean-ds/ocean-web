@@ -42,12 +42,6 @@
 
   &--light {
     color: $color-interface-dark-up;
-
-    &:hover,
-    &:active {
-      color: $color-interface-dark-deep;
-      mix-blend-mode: multiply;
-    }
   }
 
   &--disabled {
