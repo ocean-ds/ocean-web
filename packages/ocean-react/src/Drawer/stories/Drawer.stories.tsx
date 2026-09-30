@@ -291,6 +291,7 @@ export const WithTitleAndActions: Story = {
   render: (args) => (
     <Drawer
       {...args}
+      onBack={undefined}
       overlayClose={() => undefined}
       onDrawerClose={() => undefined}
       actions={
@@ -323,6 +324,7 @@ export const HeaderColor: Story = {
   render: (args) => (
     <Drawer
       {...args}
+      onBack={undefined}
       overlayClose={() => undefined}
       onDrawerClose={() => undefined}
     >
