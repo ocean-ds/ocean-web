@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { XOutline, ChevronDown, Plus } from '@useblu/ocean-icons-react';
+import {
+  colorInterfaceLightPure,
+  colorStatusNegativeUp,
+  colorStatusWarningUp,
+} from '@useblu/ocean-tokens/web/tokens';
 import IconButton from '../IconButton';
 
 const meta: Meta<typeof IconButton> = {
@@ -137,4 +142,34 @@ export const Interactive: Story = {
     controls: { disable: true },
   },
   render: () => <InteractiveComponent />,
+};
+
+export const LightOnColoredBackground: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      {[
+        colorInterfaceLightPure,
+        colorStatusWarningUp,
+        colorStatusNegativeUp,
+      ].map((background) => (
+        <div
+          key={background}
+          style={{
+            background,
+            display: 'flex',
+            justifyContent: 'flex-end',
+            padding: '8px 16px',
+            width: '160px',
+          }}
+        >
+          <IconButton size="sm" color="light">
+            <XOutline />
+          </IconButton>
+        </div>
+      ))}
+    </div>
+  ),
 };
