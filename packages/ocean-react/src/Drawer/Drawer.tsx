@@ -61,9 +61,15 @@ interface DrawerProps {
    * `legacy`: X como `Button`, mantido para quem ainda sobrescreve esse botão.
    */
   closeButton?: 'legacy' | 'icon';
-  /** Título logo abaixo da barra do X; rola junto com o conteúdo. */
+  /**
+   * Título logo abaixo da barra do X; rola junto com o conteúdo. `null` mantém
+   * a anatomia (régua lateral do conteúdo) sem desenhar o título.
+   */
   title?: React.ReactNode;
-  /** Barra de ações fixa no rodapé, com linha acima; os botões ficam em coluna. */
+  /**
+   * Barra de ações fixa no rodapé, com linha acima; os botões ficam em coluna.
+   * `null` mantém a anatomia sem desenhar a barra.
+   */
   actions?: React.ReactNode;
   /**
    * Cor de fundo da barra do X. `warning` e `negative` pintam a barra e trocam
@@ -190,7 +196,7 @@ const Drawer = ({
   const content = structured ? (
     <>
       <div className="ods-drawer__scroll">
-        {title !== undefined && (
+        {title != null && (
           <div className="ods-drawer__title">
             {typeof title === 'string' ? (
               <Typography variant="heading3">{title}</Typography>
@@ -201,9 +207,7 @@ const Drawer = ({
         )}
         <div className="ods-drawer__main">{children}</div>
       </div>
-      {actions !== undefined && (
-        <div className="ods-drawer__actions">{actions}</div>
-      )}
+      {actions != null && <div className="ods-drawer__actions">{actions}</div>}
     </>
   ) : (
     children

@@ -604,6 +604,20 @@ describe('MR-877: X, title and actions', () => {
     );
   });
 
+  test('a null title or actions keeps the anatomy without drawing them', () => {
+    render(
+      <Drawer open overlayClose={jest.fn()} title={null} actions={null}>
+        <p>Drawer content!</p>
+      </Drawer>
+    );
+
+    expect(document.querySelector('.ods-drawer__title')).toBeNull();
+    expect(document.querySelector('.ods-drawer__actions')).toBeNull();
+    expect(screen.getByText('Drawer content!').parentElement).toHaveClass(
+      'ods-drawer__main'
+    );
+  });
+
   test('a string title renders as heading3 above the content', () => {
     render(
       <Drawer open overlayClose={jest.fn()} title="Detalhes do contrato">
