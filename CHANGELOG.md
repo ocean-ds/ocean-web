@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.144.2](https://github.com/ocean-ds/ocean-web/compare/v1.144.1...v1.144.2) (2026-10-02)
+
+### Bug Fixes
+
+- **drawer:** title e actions nulos mantêm a anatomia do conteúdo (MR-871) ([#1273](https://github.com/ocean-ds/ocean-web/issues/1273)) ([b2a1e4c](https://github.com/ocean-ds/ocean-web/commit/b2a1e4cb8f6f6453987cd0afd20df0f1ad069837))
+
 ## [1.144.1](https://github.com/ocean-ds/ocean-web/compare/v1.144.0...v1.144.1) (2026-09-30)
 
 **Note:** Version bump only for package root
