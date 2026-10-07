@@ -1,0 +1,233 @@
+---
+title: TransactionFooter
+---
+
+import {
+  TransactionFooter,
+  Typography,
+  Divider,
+  Button,
+} from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TransactionFooter
+
+O `TransactionFooter` é o rodapé de resumo financeiro de telas de pagamento: agrupa as linhas de resumo, um divisor e os botões de ação em um único bloco visual. Ele recebe o conteúdo como `children` (composição livre pelo consumidor) e expõe apenas a variante visual.
+
+A estrutura interna segue o Figma do Ocean DS Core: um **Section Header** opcional, linhas de resumo (label à esquerda em `colorInterfaceDarkDown`, valor à direita em `colorInterfaceDarkDeep`, `paragraph` 16px), um **Divider** interno e uma **Button Bar** com o botão primário. As linhas usam `padding` de `8px 16px` e a Button Bar `16px`.
+
+## Importação
+
+```tsx
+import { TransactionFooter } from '@useblu/ocean-react';
+```
+
+### Importação específica (recomendado para tree-shaking)
+
+```tsx
+import { TransactionFooter } from '@useblu/ocean-react/TransactionFooter';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type {
+  TransactionFooterProps,
+  TransactionFooterVariant,
+} from '@useblu/ocean-react';
+```
+
+## Playground Interativo
+
+Explore o componente `TransactionFooter` no playground interativo do Storybook:
+
+<StorybookEmbed
+  storyId="components-transactionfooter--usage"
+  height={520}
+  title="TransactionFooter - Playground Interativo"
+/>
+
+## Documentação Completa
+
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TransactionFooter](https://ocean-ds.github.io/ocean-web/?path=/docs/components-transactionfooter--docs)**.
+
+## Uso básico
+
+### Variante `default`
+
+Fundo `colorInterfaceLightPure`, cantos retos e um **divisor no topo** (`colorInterfaceLightDown`). É o valor inicial da prop `variant`.
+
+```tsx live
+<TransactionFooter variant="default">
+  <div style={{ padding: '8px 16px 4px' }}>
+    <Typography variant="heading5">
+      <span style={{ color: '#AAADC0' }}>Title</span>
+    </Typography>
+  </div>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
+    }}
+  >
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Title</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      Description
+    </Typography>
+  </div>
+  <div style={{ padding: '12px 16px' }}>
+    <Divider />
+  </div>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
+    }}
+  >
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Title</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      Description
+    </Typography>
+  </div>
+  <div style={{ padding: 16 }}>
+    <Button variant="primary" blocked>
+      Label
+    </Button>
+  </div>
+</TransactionFooter>
+```
+
+### Variante `highlight`
+
+Fundo `colorInterfaceLightUp` com cantos superiores arredondados (16px) e **sem** divisor no topo. As dimensões externas do bloco são idênticas às da `default` — alternar a variante não causa "pulo" de layout.
+
+```tsx live
+<TransactionFooter variant="highlight">
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
+    }}
+  >
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Title</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      Description
+    </Typography>
+  </div>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+      padding: '8px 16px',
+    }}
+  >
+    <Typography variant="paragraph" style={{ flex: '1 0 0' }}>
+      <span style={{ color: '#67697A' }}>Title</span>
+    </Typography>
+    <Typography
+      variant="paragraph"
+      style={{ flex: '1 0 0', textAlign: 'right' }}
+    >
+      Description
+    </Typography>
+  </div>
+  <div style={{ padding: 16 }}>
+    <Button variant="primary" blocked>
+      Label
+    </Button>
+  </div>
+</TransactionFooter>
+```
+
+## API
+
+### Props
+
+| Prop        | Tipo                       | Padrão      | Descrição                                                                                                                                         |
+| ----------- | -------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `variant`   | `'default' \| 'highlight'` | `'default'` | Variante visual. `default` = fundo neutro, cantos retos e divisor no topo; `highlight` = fundo destacado e cantos superiores arredondados (16px). |
+| `children`  | `ReactNode`                | -           | Conteúdo do rodapé (Section Header, linhas de resumo, Divider e Button Bar), composto pelo consumidor.                                            |
+| `className` | `string`                   | -           | Classes CSS adicionais.                                                                                                                           |
+
+O componente também repassa (`...rest`) qualquer atributo válido de uma `<div>` (por exemplo `id`, `aria-*`, `data-*`, `style`).
+
+## Tokens usados
+
+| Elemento           | Token                                            | Valor                              |
+| ------------------ | ------------------------------------------------ | ---------------------------------- |
+| Fundo `default`    | `colorInterfaceLightPure`                        | `#FFFFFF`                          |
+| Fundo `highlight`  | `colorInterfaceLightUp`                          | `#F3F5FE`                          |
+| Divisores          | `colorInterfaceLightDown`                        | `#E0E2EE`                          |
+| Cantos `highlight` | `borderRadiusLg`                                 | `16px`                             |
+| Section Header     | `heading5` / `colorInterfaceDarkUp`              | Nunito Sans Bold 14 / `#AAADC0`    |
+| Label da linha     | `paragraph` / `colorInterfaceDarkDown`           | Nunito Sans Regular 16 / `#67697A` |
+| Valor da linha     | `paragraph` / `colorInterfaceDarkDeep`           | Nunito Sans Regular 16 / `#393B47` |
+| Botão primário     | `colorBrandPrimaryPure` / `borderRadiusCircular` | `#0025E0` / pill                   |
+
+## Acessibilidade
+
+- ✅ É renderizado como um `<div>` neutro — a semântica do conteúdo (linhas, botões) é responsabilidade da composição interna.
+- ✅ O contraste dos textos sobre o fundo `colorInterfaceLightUp` (variante `highlight`) atende ao WCAG AA.
+- ✅ Aceita atributos `aria-*` via `...rest` quando o bloco precisa de um rótulo próprio.
+
+## Melhores práticas
+
+### ✅ Faça
+
+- Mantenha a **linha de benefício em primeiro** e o **total como última linha**.
+- Coloque o **botão dentro do footer**, usando `Button` com `variant="primary"` e `blocked`.
+- Use `highlight` quando o rodapé precisa se destacar do conteúdo rolável acima (ex.: card fixo na base).
+
+### ❌ Não faça
+
+- Não recrie o container com `styled-components` ou `<div>` cru quando o `TransactionFooter` já resolve fundo, padding de topo, divisor e cantos.
+- Não coloque custos técnicos (IOF, juros, CET) como linha — eles pertencem a um drawer de detalhes.
+- Não altere padding/dimensões para "compensar" a variante — as duas variantes têm a mesma caixa externa.
+
+## Quando Usar
+
+### ✅ Ideal para:
+
+- Telas de **seleção de método de pagamento** e **revisão de pagamento**, resumindo o impacto financeiro antes da ação principal.
+
+### ❌ Evite para:
+
+- Listagens onde o toque em cada item já navega (use `TransactionListItem` com chevron).
+- Exibir a cobrança principal (essa vai no cabeçalho da tela, não no rodapé).
+
+## CSS Classes
+
+| Classe                               | Descrição                                                       |
+| ------------------------------------ | --------------------------------------------------------------- |
+| `.ods-transaction-footer`            | Classe base do container (fundo, espaçador de topo de 8px).     |
+| `.ods-transaction-footer--default`   | Variante padrão — fundo neutro + divisor no topo (`::before`).  |
+| `.ods-transaction-footer--highlight` | Variante destacada — fundo `light-up` + cantos superiores 16px. |
+
+## Links relacionados
+
+- [TransactionListItem](/components/transactionlistitem) - Para itens de lista de transações.
+- [Button](/components/button) - Botão de ação usado dentro do rodapé.
+- [Divider](/components/divider) - Divisor entre as linhas do resumo.
+- [Storybook - TransactionFooter](https://ocean-ds.github.io/ocean-web/?path=/docs/components-transactionfooter--docs) - Documentação técnica.
