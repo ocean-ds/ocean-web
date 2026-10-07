@@ -119,4 +119,105 @@ describe('TransactionListSelectable', () => {
 
     expect(ref.current).toBe(screen.getByTestId('transaction-list-selectable'));
   });
+
+  describe.each([
+    ['checkbox', 'web'],
+    ['checkbox', 'app'],
+    ['radio', 'web'],
+    ['radio', 'app'],
+  ] as const)('Figma states — %s / %s', (controller, platform) => {
+    const renderState = (
+      controlProps: Record<string, unknown>,
+      extra: Record<string, unknown> = {}
+    ) =>
+      render(
+        <TransactionListSelectable
+          title="Title"
+          amount="R$ 0,00"
+          platform={platform}
+          {...{ [controller]: { readOnly: true, ...controlProps } }}
+          {...extra}
+        />
+      );
+
+    test('Default: unchecked and enabled', () => {
+      renderState({});
+
+      expect(screen.getByRole(controller)).not.toBeChecked();
+      expect(screen.getByRole(controller)).toBeEnabled();
+      expect(screen.getByTestId('transaction-list-selectable')).toHaveClass(
+        `ods-transaction-list--${platform}`
+      );
+    });
+
+    test('Hover: simulated hover class reaches the root', () => {
+      renderState({}, { className: 'ods-transaction-list--show-hover' });
+
+      expect(screen.getByTestId('transaction-list-selectable')).toHaveClass(
+        'ods-transaction-list--show-hover'
+      );
+    });
+
+    test('Selected: checked', () => {
+      renderState({ checked: true });
+
+      expect(screen.getByRole(controller)).toBeChecked();
+    });
+
+    test('Disabled: disabled and inactive', () => {
+      renderState({}, { disabled: true });
+
+      expect(screen.getByRole(controller)).toBeDisabled();
+      expect(screen.getByRole(controller)).not.toBeChecked();
+      expect(
+        document.querySelector('.ods-amount-details--inactive')
+      ).toBeInTheDocument();
+    });
+
+    test('Disabled Selected: disabled and checked', () => {
+      renderState({ checked: true }, { disabled: true });
+
+      expect(screen.getByRole(controller)).toBeDisabled();
+      expect(screen.getByRole(controller)).toBeChecked();
+    });
+
+    test('Error: control in error state', () => {
+      renderState({ error: true });
+
+      expect(
+        document.querySelector(`.ods-${controller}__checkmark--error`)
+      ).toBeInTheDocument();
+    });
+
+    test('Loading: skeleton, no control', () => {
+      renderState({}, { loading: true });
+
+      expect(screen.queryByRole(controller)).not.toBeInTheDocument();
+      expect(
+        screen.getByTestId('transaction-list-skeleton')
+      ).toBeInTheDocument();
+    });
+  });
+
+  test.each(['web', 'app'] as const)(
+    'Indeterminate (checkbox only) on %s',
+    (platform) => {
+      render(
+        <TransactionListSelectable
+          title="Title"
+          amount="R$ 0,00"
+          platform={platform}
+          checkbox={{ indeterminate: true, readOnly: true }}
+        />
+      );
+
+      expect(screen.getByRole('checkbox')).toHaveAttribute(
+        'data-indeterminate',
+        'true'
+      );
+      expect(
+        document.querySelector('.ods-checkbox__checkmark--indeterminate')
+      ).toBeInTheDocument();
+    }
+  );
 });

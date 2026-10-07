@@ -9,9 +9,9 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # TransactionListAction
 
-Linha de transação que **leva ao detalhe**: seta à direita, realce ao passar o mouse (`Interface/Light/Up` em `multiply`) e um `onClick` por toque. Faz parte da família Transaction List.
+Linha de transação com **ação à direita**: seta (leva ao detalhe), menu contextual ou swipe — o mesmo padrão de `actionType` / `menuActions` da `ListAction`. Realce ao passar o mouse (`Interface/Light/Up` em `multiply`) e um `onClick` por toque. Faz parte da família Transaction List.
 
-Figma: [Transaction List Action](https://www.figma.com/design/PgLv9k22CHHZZ867HwN65y/%F0%9F%8C%8A-Ocean-DS-Core?node-id=24289-64384) (`Type=Chevron`).
+Figma: [Transaction List Action](https://www.figma.com/design/PgLv9k22CHHZZ867HwN65y/%F0%9F%8C%8A-Ocean-DS-Core?node-id=24289-64384) (`Type` = Chevron, Menu, Swipe).
 
 ## Importação
 
@@ -43,6 +43,53 @@ import type { TransactionListActionProps } from '@useblu/ocean-react';
 />
 ```
 
+## Tipos de ação (actionType)
+
+```tsx live
+<List>
+  <TransactionListAction
+    title="Chevron"
+    description="Leva ao detalhe"
+    amount="R$ 0,00"
+    icon={<PlaceholderOutline size={24} />}
+  />
+  <TransactionListAction
+    title="Menu"
+    description="Abre o menu contextual"
+    amount="R$ 0,00"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="menu"
+    menuActions={[
+      { label: 'Editar', onClick: () => {} },
+      { label: 'Excluir', onClick: () => {}, variant: 'negative' },
+    ]}
+  />
+  <TransactionListAction
+    title="Swipe"
+    description="Revela as ações de lado"
+    amount="R$ 0,00"
+    icon={<PlaceholderOutline size={24} />}
+    actionType="swipe"
+    menuActions={[
+      {
+        label: 'Arquivar',
+        onClick: () => {},
+        variant: 'neutral',
+        icon: <PlaceholderOutline size={24} />,
+      },
+      {
+        label: 'Excluir',
+        onClick: () => {},
+        variant: 'negative',
+        icon: <PlaceholderOutline size={24} />,
+      },
+    ]}
+  />
+</List>
+```
+
+O clique no gatilho do menu/swipe não dispara o `onClick` da linha. No carregamento o gatilho não aparece; desabilitado, o gatilho fica desabilitado em `Interface/Light/Deep`.
+
 ## Estados
 
 ```tsx live
@@ -59,7 +106,7 @@ import type { TransactionListActionProps } from '@useblu/ocean-react';
 </List>
 ```
 
-Desabilitado: conteúdo e valor no tipo inativo, tag neutra e a seta em `Interface/Light/Deep` (a única cor forçada do estado).
+Desabilitado: conteúdo e valor no tipo inativo, tag neutra e a seta (ou o gatilho do menu/swipe) em `Interface/Light/Deep` (a única cor forçada do estado).
 
 ## Tamanhos e tipos de valor
 
@@ -69,29 +116,32 @@ Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `c
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                                                 |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------------------- |
-| `title`                    | `string`                                                                                                   | -           | Texto principal (obrigatório). Com `inverted` (padrão) é a linha menor acima da descrição |
-| `description`              | `string`                                                                                                   | -           | Texto secundário                                                                          |
-| `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado antes do texto em destaque, com `status="strikethrough"`                    |
-| `caption`                  | `string`                                                                                                   | -           | Legenda (captionBold)                                                                     |
-| `inverted`                 | `boolean`                                                                                                  | `true`      | Inverte título e descrição (Figma `Inverted=Yes`)                                         |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Tipo do bloco de conteúdo                                                                 |
-| `contentSize`              | `'md' \| 'sm'`                                                                                             | `'md'`      | Escala do texto, independente do valor                                                    |
-| `amount`                   | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                                                     |
-| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'inactive' \| 'strikethrough' \| 'strikethrough-neutral'`        | `'default'` | Tipo do valor                                                                             |
-| `amountSize`               | `'md' \| 'sm'`                                                                                             | `'md'`      | Tamanho do valor (md 16 / sm 14); a tag acompanha (Medium / Small)                        |
-| `strikethroughAmount`      | `string`                                                                                                   | -           | Valor original riscado antes de `amount` (tipos `strikethrough*`)                         |
-| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -           | Tag abaixo do valor; tamanho vem de `amountSize`, fica `neutral` quando desabilitado      |
-| `amountIndicator`          | `ReactNode`                                                                                                | -           | Indicador livre abaixo do valor (quando `amountTag` não basta)                            |
-| `showAmountIndicator`      | `boolean`                                                                                                  | `true`      | Exibe a tag/indicador do valor                                                            |
-| `additionalData`           | `string`                                                                                                   | -           | Dado adicional abaixo do valor                                                            |
-| `disabled`                 | `boolean`                                                                                                  | `false`     | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                   |
-| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe o esqueleto                                                                         |
-| `icon`                     | `ReactNode`                                                                                                | -           | Ícone à esquerda                                                                          |
-| `onClick`                  | `(event) => void`                                                                                          | -           | Disparado uma vez por toque; não dispara com `disabled` ou `loading`                      |
-| `showDivider`              | `boolean`                                                                                                  | `true`      | Exibe o divisor abaixo do item                                                            |
-| `className`                | `string`                                                                                                   | -           | Classes CSS no elemento raiz (o `ref` e as demais props vão para o `<button>`)            |
+| Prop                       | Tipo                                                                                                       | Padrão           | Descrição                                                                                 |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------- |
+| `title`                    | `string`                                                                                                   | -                | Texto principal (obrigatório). Com `inverted` (padrão) é a linha menor acima da descrição |
+| `description`              | `string`                                                                                                   | -                | Texto secundário                                                                          |
+| `strikethroughDescription` | `string`                                                                                                   | -                | Texto riscado antes do texto em destaque, com `status="strikethrough"`                    |
+| `caption`                  | `string`                                                                                                   | -                | Legenda (captionBold)                                                                     |
+| `inverted`                 | `boolean`                                                                                                  | `true`           | Inverte título e descrição (Figma `Inverted=Yes`)                                         |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Tipo do bloco de conteúdo                                                                 |
+| `contentSize`              | `'md' \| 'sm'`                                                                                             | `'md'`           | Escala do texto, independente do valor                                                    |
+| `amount`                   | `string`                                                                                                   | -                | Valor exibido à direita (obrigatório)                                                     |
+| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'inactive' \| 'strikethrough' \| 'strikethrough-neutral'`        | `'default'`      | Tipo do valor                                                                             |
+| `amountSize`               | `'md' \| 'sm'`                                                                                             | `'md'`           | Tamanho do valor (md 16 / sm 14); a tag acompanha (Medium / Small)                        |
+| `strikethroughAmount`      | `string`                                                                                                   | -                | Valor original riscado antes de `amount` (tipos `strikethrough*`)                         |
+| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -                | Tag abaixo do valor; tamanho vem de `amountSize`, fica `neutral` quando desabilitado      |
+| `amountIndicator`          | `ReactNode`                                                                                                | -                | Indicador livre abaixo do valor (quando `amountTag` não basta)                            |
+| `showAmountIndicator`      | `boolean`                                                                                                  | `true`           | Exibe a tag/indicador do valor                                                            |
+| `additionalData`           | `string`                                                                                                   | -                | Dado adicional abaixo do valor                                                            |
+| `disabled`                 | `boolean`                                                                                                  | `false`          | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                   |
+| `loading`                  | `boolean`                                                                                                  | `false`          | Exibe o esqueleto                                                                         |
+| `icon`                     | `ReactNode`                                                                                                | -                | Ícone à esquerda                                                                          |
+| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Ação à direita (Figma `Type`)                                                             |
+| `menuActions`              | `ActionItem[]`                                                                                             | `[]`             | Ações dos tipos `menu` e `swipe`                                                          |
+| `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu                                                                           |
+| `onClick`                  | `(event) => void`                                                                                          | -                | Disparado uma vez por toque; não dispara com `disabled` ou `loading`                      |
+| `showDivider`              | `boolean`                                                                                                  | `true`           | Exibe o divisor abaixo do item                                                            |
+| `className`                | `string`                                                                                                   | -                | Classes CSS no elemento raiz (o `ref` e as demais props vão para o `<button>`)            |
 
 ## Acessibilidade
 

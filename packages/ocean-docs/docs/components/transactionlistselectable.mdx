@@ -78,6 +78,19 @@ function Example() {
 
 ## Estados
 
+Todos os estados do Figma (`State` × Checkbox/Radio × App/Web) saem das props:
+
+| Estado do Figma   | Props                                                     |
+| ----------------- | --------------------------------------------------------- |
+| Default           | controle sem `checked`                                    |
+| Hover             | realce automático ao passar o mouse                       |
+| Indeterminate     | `checkbox={{ indeterminate: true }}` (só caixa de marcar) |
+| Selected          | `checked: true` no controle                               |
+| Disabled          | `disabled`                                                |
+| Disabled Selected | `disabled` + `checked: true`                              |
+| Error             | `error: true` no controle                                 |
+| Loading           | `loading`                                                 |
+
 - `disabled` (ou `checkbox.disabled` / `radio.disabled`): desabilita o controle e usa o tipo inativo nos blocos.
 - `checkbox.indeterminate` e `checkbox.error` / `radio.error`: estados do próprio controle.
 - `loading`: esqueleto do controle e do conteúdo.

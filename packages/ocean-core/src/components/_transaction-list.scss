@@ -257,8 +257,67 @@
 }
 
 // Simulated hover state for docs/Storybook (State = Hover).
-.ods-transaction-list--show-hover .ods-transaction-list__main--interactive,
+.ods-transaction-list--show-hover > .ods-transaction-list__main--interactive,
 .ods-transaction-list--show-hover .ods-checkbox__root,
 .ods-transaction-list--show-hover .ods-radio__root {
   @include list-state-blend;
+}
+
+// Action with `menu` / `swipe` (Figma Transaction List Action › Type=Menu | Swipe).
+// The row holds the clickable main and the trailing actions side by side; the highlight
+// moves from the button to the row so it covers the trailing slot too.
+.ods-transaction-list__row {
+  align-items: center;
+  display: flex;
+  gap: $spacing-inline-xxs-extra;
+  position: relative;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.ods-transaction-list__row .ods-transaction-list__main--interactive {
+  flex: 1;
+  min-width: 0;
+  padding-right: 0;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: transparent;
+    mix-blend-mode: normal;
+  }
+}
+
+.ods-transaction-list__row:hover,
+.ods-transaction-list--show-hover .ods-transaction-list__row {
+  @include list-state-blend;
+}
+
+.ods-transaction-list--disabled .ods-transaction-list__row:hover,
+.ods-transaction-list--swipe-open .ods-transaction-list__row:hover {
+  background-color: transparent;
+  mix-blend-mode: normal;
+}
+
+.ods-transaction-list__actions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  padding-right: $spacing-inline-xxs;
+}
+
+// Swipe: the actions overlay the row (InternalListActions › force-swipe), so the slot is not
+// positioned and the main keeps room for the drag handle.
+.ods-transaction-list--swipe .ods-transaction-list__actions {
+  padding-right: 0;
+}
+
+.ods-transaction-list--swipe .ods-transaction-list__main {
+  padding-right: $spacing-inline-md;
+}
+
+// Disabled: the trigger follows the chevron rule (Interface/Light/Deep), no opacity.
+.ods-transaction-list--disabled .ods-internal-list-actions__trigger:disabled {
+  color: $color-interface-light-deep;
+  opacity: 1;
 }

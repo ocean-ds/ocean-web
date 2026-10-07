@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import TransactionListSelectable from '../TransactionListSelectable';
 import type { TransactionListSelectableProps } from '../TransactionListSelectable';
 
-const frame = { width: '360px' };
 const noControls = { controls: { disable: true } };
 
 const baseArgs = {
@@ -14,6 +13,74 @@ const baseArgs = {
   amountTag: { label: 'Label' },
   additionalData: 'Additional data',
 };
+
+type Controller = 'checkbox' | 'radio';
+type Platform = 'web' | 'app';
+
+/**
+ * Figma `State` → props. Indeterminate exists only for the checkbox.
+ */
+const stateProps: Record<
+  string,
+  (controller: Controller) => Partial<TransactionListSelectableProps> | null
+> = {
+  Default: (controller) => ({ [controller]: { readOnly: true } }),
+  Hover: (controller) => ({
+    [controller]: { readOnly: true },
+    className: 'ods-transaction-list--show-hover',
+  }),
+  Indeterminate: (controller) =>
+    controller === 'checkbox'
+      ? { checkbox: { indeterminate: true, checked: true, readOnly: true } }
+      : null,
+  Selected: (controller) => ({
+    [controller]: { checked: true, readOnly: true },
+  }),
+  Disabled: (controller) => ({
+    [controller]: { readOnly: true },
+    disabled: true,
+  }),
+  'Disabled Selected': (controller) => ({
+    [controller]: { checked: true, readOnly: true },
+    disabled: true,
+  }),
+  Error: (controller) => ({ [controller]: { error: true, readOnly: true } }),
+  Loading: (controller) => ({ [controller]: {}, loading: true }),
+};
+
+const combos: Array<[Controller, Platform]> = [
+  ['checkbox', 'app'],
+  ['radio', 'app'],
+  ['checkbox', 'web'],
+  ['radio', 'web'],
+];
+
+const StateRow = ({ state }: { state: string }) => (
+  <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+    {combos.map(([controller, platform]) => {
+      const props = stateProps[state](controller);
+
+      return (
+        <div key={`${controller}-${platform}`} style={{ width: '360px' }}>
+          <p className="ods-typography ods-typography__caption">
+            {`${state} · ${controller} · ${platform}`}
+          </p>
+          {props ? (
+            <TransactionListSelectable
+              {...baseArgs}
+              platform={platform}
+              {...props}
+            />
+          ) : (
+            <p className="ods-typography ods-typography__caption">
+              Não se aplica
+            </p>
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
 
 const meta: Meta<typeof TransactionListSelectable> = {
   title: 'Components/List/Transaction List Selectable',
@@ -33,13 +100,6 @@ const meta: Meta<typeof TransactionListSelectable> = {
     amountSize: { control: 'inline-radio', options: ['md', 'sm'] },
   },
   args: baseArgs,
-  decorators: [
-    (Story: React.ComponentType): React.ReactElement => (
-      <div style={frame}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
@@ -48,12 +108,10 @@ type Story = StoryObj<typeof TransactionListSelectable>;
 
 const CheckboxGroup = (props: Partial<TransactionListSelectableProps>) => {
   const { platform } = props;
-  const [checked, setChecked] = useState<Record<string, boolean>>({
-    b: true,
-  });
+  const [checked, setChecked] = useState<Record<string, boolean>>({ b: true });
 
   return (
-    <div>
+    <div style={{ width: '360px' }}>
       {['a', 'b'].map((id) => (
         <TransactionListSelectable
           key={id}
@@ -67,16 +125,6 @@ const CheckboxGroup = (props: Partial<TransactionListSelectableProps>) => {
           }}
         />
       ))}
-      <TransactionListSelectable
-        {...baseArgs}
-        {...props}
-        checkbox={{ indeterminate: true, readOnly: true }}
-      />
-      <TransactionListSelectable
-        {...baseArgs}
-        {...props}
-        checkbox={{ error: true }}
-      />
     </div>
   );
 };
@@ -86,7 +134,7 @@ const RadioGroup = (props: Partial<TransactionListSelectableProps>) => {
   const [selected, setSelected] = useState('b');
 
   return (
-    <div>
+    <div style={{ width: '360px' }}>
       {['a', 'b'].map((id) => (
         <TransactionListSelectable
           key={id}
@@ -101,11 +149,6 @@ const RadioGroup = (props: Partial<TransactionListSelectableProps>) => {
           }}
         />
       ))}
-      <TransactionListSelectable
-        {...baseArgs}
-        {...props}
-        radio={{ error: true, name: `${platform}-radio-error` }}
-      />
     </div>
   );
 };
@@ -136,50 +179,17 @@ export const PlatformApp: Story = {
   ),
 };
 
-export const Hover: Story = {
+const stateStory = (state: string): Story => ({
+  name: `State: ${state}`,
   parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListSelectable
-        {...baseArgs}
-        className="ods-transaction-list--show-hover"
-      />
-      <TransactionListSelectable
-        {...baseArgs}
-        platform="app"
-        radio={{ name: 'hover' }}
-        className="ods-transaction-list--show-hover"
-      />
-    </div>
-  ),
-};
+  render: () => <StateRow state={state} />,
+});
 
-export const Disabled: Story = {
-  parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListSelectable {...baseArgs} disabled />
-      <TransactionListSelectable
-        {...baseArgs}
-        checkbox={{ checked: true, readOnly: true }}
-        disabled
-      />
-      <TransactionListSelectable
-        {...baseArgs}
-        platform="app"
-        radio={{ checked: true, readOnly: true }}
-        disabled
-      />
-    </div>
-  ),
-};
-
-export const Loading: Story = {
-  parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListSelectable {...baseArgs} loading />
-      <TransactionListSelectable {...baseArgs} platform="app" loading />
-    </div>
-  ),
-};
+export const StateDefault = stateStory('Default');
+export const StateHover = stateStory('Hover');
+export const StateIndeterminate = stateStory('Indeterminate');
+export const StateSelected = stateStory('Selected');
+export const StateDisabled = stateStory('Disabled');
+export const StateDisabledSelected = stateStory('Disabled Selected');
+export const StateError = stateStory('Error');
+export const StateLoading = stateStory('Loading');
