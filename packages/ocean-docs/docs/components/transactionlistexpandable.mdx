@@ -3,8 +3,13 @@ title: TransactionListExpandable
 sidebar_label: TransactionListExpandable
 ---
 
-import { TransactionListExpandable, List, Tag } from '@useblu/ocean-react';
-import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import {
+  TransactionListExpandable,
+  TransactionListChildAction,
+  List,
+  Tag,
+} from '@useblu/ocean-react';
+import { Placeholder, PlaceholderOutline } from '@useblu/ocean-icons-react';
 import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # TransactionListExpandable
@@ -190,32 +195,75 @@ const [expanded, setExpanded] = useState(false);
 </TransactionListExpandable>;
 ```
 
+## Com os itens filhos da família
+
+Use [TransactionListChildAction / TransactionListChildReadOnly](/components/transactionlistchild) como filhos, com `position` formando a linha do tempo. As props `contentSize`, `amountSize`, `amountTag` e `strikethroughAmount` são opcionais: sem elas a renderização atual não muda.
+
+```tsx live
+function Example() {
+  const [expanded, setExpanded] = React.useState(true);
+
+  return (
+    <div style={{ maxWidth: 360 }}>
+      <TransactionListExpandable
+        title="Vendas do dia"
+        description="3 transações"
+        amount="R$ 300,00"
+        amountSize="md"
+        amountTag={{ label: 'Recebido' }}
+        icon={<PlaceholderOutline size={24} />}
+        expanded={expanded}
+        onToggle={setExpanded}
+        supportingText="Valores líquidos"
+        showDivider
+      >
+        {['first', 'middle', 'last'].map((position) => (
+          <TransactionListChildAction
+            key={position}
+            title="Cartão de crédito"
+            description="Venda"
+            amount="R$ 100,00"
+            icon={<Placeholder size={16} />}
+            position={position}
+          />
+        ))}
+      </TransactionListExpandable>
+    </div>
+  );
+}
+```
+
 ## API
 
 ### Props
 
-| Prop                  | Tipo                                                                                                       | Padrão      | Descrição                                                 |
-| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- |
-| `title`               | `string`                                                                                                   | -           | Título principal da transação (obrigatório)               |
-| `description`         | `string`                                                                                                   | -           | Descrição ou texto secundário                             |
-| `caption`             | `string`                                                                                                   | -           | Legenda ou texto terciário                                |
-| `amount`              | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                     |
-| `amountType`          | `'default' \| 'positive' \| 'negative'`                                                                    | `'default'` | Tipo visual do valor                                      |
-| `amountIndicator`     | `ReactNode`                                                                                                | -           | Indicador (tag) exibido ao lado do valor                  |
-| `showAmountIndicator` | `boolean`                                                                                                  | `true`      | Define se o indicador deve ser exibido                    |
-| `additionalData`      | `string`                                                                                                   | -           | Dado adicional exibido abaixo do valor                    |
-| `inverted`            | `boolean`                                                                                                  | `true`      | Inverte a posição do título e descrição                   |
-| `type`                | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de estilo visual do container                        |
-| `status`              | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status de estilo do conteúdo                              |
-| `loading`             | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                 |
-| `icon`                | `ReactNode`                                                                                                | -           | Ícone exibido à esquerda                                  |
-| `expanded`            | `boolean`                                                                                                  | `false`     | Controla o estado de expansão                             |
-| `onToggle`            | `(expanded: boolean) => void`                                                                              | -           | Callback disparado ao alterar o estado de expansão        |
-| `children`            | `ReactNode`                                                                                                | -           | Conteúdo exibido quando expandido                         |
-| `supportingText`      | `ReactNode`                                                                                                | -           | Texto de apoio exibido abaixo dos filhos quando expandido |
-| `disabled`            | `boolean`                                                                                                  | `false`     | Desabilita a interação                                    |
-| `showDivider`         | `boolean`                                                                                                  | `false`     | Exibe um divisor entre o header e o conteúdo expandido    |
-| `className`           | `string`                                                                                                   | -           | Classes CSS adicionais                                    |
+| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                                                              |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------ |
+| `title`                    | `string`                                                                                                   | -           | Título principal da transação (obrigatório)                                                            |
+| `description`              | `string`                                                                                                   | -           | Descrição ou texto secundário                                                                          |
+| `caption`                  | `string`                                                                                                   | -           | Legenda ou texto terciário                                                                             |
+| `amount`                   | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                                                                  |
+| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'strikethrough' \| 'strikethrough-neutral'`                      | `'default'` | Tipo visual do valor                                                                                   |
+| `strikethroughAmount`      | `string`                                                                                                   | -           | Valor original riscado antes de `amount` (tipos `strikethrough*`)                                      |
+| `amountSize`               | `'md' \| 'sm'`                                                                                             | -           | Tamanho do valor da família Transaction List; sem ele, mantém a renderização atual                     |
+| `contentSize`              | `'md' \| 'sm'`                                                                                             | -           | Escala do texto da família Transaction List; sem ele, mantém a renderização atual                      |
+| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -           | Tag abaixo do valor (Medium sem `amountSize`; senão segue o tamanho)                                   |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                 |
+| `amountIndicator`          | `ReactNode`                                                                                                | -           | Indicador (tag) exibido ao lado do valor                                                               |
+| `showAmountIndicator`      | `boolean`                                                                                                  | `true`      | Define se o indicador deve ser exibido                                                                 |
+| `additionalData`           | `string`                                                                                                   | -           | Dado adicional exibido abaixo do valor                                                                 |
+| `inverted`                 | `boolean`                                                                                                  | `true`      | Inverte a posição do título e descrição                                                                |
+| `type`                     | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de estilo visual do container                                                                     |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status de estilo do conteúdo                                                                           |
+| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                                                              |
+| `icon`                     | `ReactNode`                                                                                                | -           | Ícone exibido à esquerda                                                                               |
+| `expanded`                 | `boolean`                                                                                                  | `false`     | Controla o estado de expansão                                                                          |
+| `onToggle`                 | `(expanded: boolean) => void`                                                                              | -           | Callback disparado ao alterar o estado de expansão                                                     |
+| `children`                 | `ReactNode`                                                                                                | -           | Itens filhos exibidos quando expandido (`TransactionListChildAction` / `TransactionListChildReadOnly`) |
+| `supportingText`           | `ReactNode`                                                                                                | -           | Texto de apoio exibido abaixo dos filhos quando expandido                                              |
+| `disabled`                 | `boolean`                                                                                                  | `false`     | Desabilita a interação                                                                                 |
+| `showDivider`              | `boolean`                                                                                                  | `false`     | Exibe o divisor abaixo do item (abaixo do conteúdo expandido quando aberto)                            |
+| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                                                                 |
 
 ### Eventos
 
