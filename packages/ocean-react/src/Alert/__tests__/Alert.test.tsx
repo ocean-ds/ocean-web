@@ -27,6 +27,15 @@ const setup = (props?: AlertProps) => {
 };
 
 describe('Alert', () => {
+  test('long size wraps header and content in a full-width body', () => {
+    setup({ title: 'Test Title', size: 'long' });
+
+    const body = document.querySelector('.ods-alert--long > .ods-alert__body');
+    expect(body).toBeInTheDocument();
+    expect(body).toContainElement(screen.getByText('Test Title'));
+    expect(body).toContainElement(screen.getByText('Hello There!'));
+  });
+
   test('renders the title', () => {
     setup({ title: 'Test Title' });
 
@@ -70,7 +79,9 @@ describe('Alert', () => {
         class="ods-alert ods-alert--default ods-alert--long"
         role="alert"
       >
-        <div>
+        <div
+          class="ods-alert__body"
+        >
           <div
             class="ods-alert__header ods-alert__header--margin"
           >
@@ -138,7 +149,9 @@ describe('Alert', () => {
         class="ods-alert ods-alert--default ods-alert--long"
         role="alert"
       >
-        <div>
+        <div
+          class="ods-alert__body"
+        >
           <div
             class="ods-alert__header"
           >

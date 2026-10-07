@@ -146,6 +146,12 @@ export const CustomIcon: Story = {
 export const Sizes: Story = {
   parameters: {
     controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          '`short` mantém ícone e texto na mesma linha e serve para avisos de uma frase (ex.: benefício na tela de revisão de pagamento). `long` empilha título e texto e ocupa toda a largura disponível em qualquer viewport — o bloco interno (`ods-alert__body`) tem `width: 100%`, então o conteúdo nunca encolhe nem fica centralizado dentro do Alert.',
+      },
+    },
   },
   render: () => (
     <div
