@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.145.0](https://github.com/ocean-ds/ocean-web/compare/v1.144.2...v1.145.0) (2026-10-07)
+
+### Features
+
+- add TransactionFooter component with default and highlight variants ([#1252](https://github.com/ocean-ds/ocean-web/issues/1252)) ([b57ab69](https://github.com/ocean-ds/ocean-web/commit/b57ab69cdab983f7e234a003d2881be1c44874b3)), closes [#AAADC0](https://github.com/ocean-ds/ocean-web/issues/AAADC0) [#67697](https://github.com/ocean-ds/ocean-web/issues/67697) [#393B47](https://github.com/ocean-ds/ocean-web/issues/393B47)
+
 ## [1.144.2](https://github.com/ocean-ds/ocean-web/compare/v1.144.1...v1.144.2) (2026-10-02)
 
 ### Bug Fixes
