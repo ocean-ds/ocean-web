@@ -18,6 +18,11 @@ export type IconButtonProps<P extends React.ElementType = 'button'> = {
      */
     size?: 'sm' | 'md';
     /**
+     * The color of the icon. `light` uses the interface dark-up color.
+     * @default 'default'
+     */
+    color?: 'default' | 'light';
+    /**
      * If true, the button will be disabled.
      * @default false
      */
@@ -30,6 +35,7 @@ function IconButtonBase<T extends React.ElementType = 'button'>(
     children,
     className,
     size = 'md',
+    color = 'default',
     disabled = false,
     component,
     ...rest
@@ -43,6 +49,7 @@ function IconButtonBase<T extends React.ElementType = 'button'>(
       className: classNames(
         'ods-icon-btn',
         `ods-icon-btn--${size}`,
+        color === 'light' && 'ods-icon-btn--light',
         disabled && 'ods-icon-btn--disabled',
         className
       ),

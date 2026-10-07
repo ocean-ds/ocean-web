@@ -186,6 +186,22 @@ describe('ListAction', () => {
       expect(screen.getByTestId('list-action')).toBeInTheDocument();
     });
 
+    test('keeps the chevron pointing right by default', () => {
+      render(<ListAction title="Test Title" />);
+
+      expect(
+        document.querySelector('.ods-list-action__chevron')
+      ).not.toHaveClass('ods-list-action__chevron--flipped');
+    });
+
+    test('flips the chevron when chevronFlipped is true', () => {
+      render(<ListAction title="Test Title" chevronFlipped />);
+
+      expect(document.querySelector('.ods-list-action__chevron')).toHaveClass(
+        'ods-list-action__chevron--flipped'
+      );
+    });
+
     test('renders chevron action explicitly', () => {
       render(<ListAction title="Test Title" actionType="chevron" />);
 
@@ -423,6 +439,95 @@ describe('ListAction', () => {
       expect(
         screen.queryByTestId('list-container-highlight')
       ).not.toBeInTheDocument();
+    });
+  });
+
+  describe('indicatorPosition', () => {
+    const indicator = <Tag type="positive">3x sem acréscimo</Tag>;
+
+    test('CT-1: keeps the current wrapper when the prop is omitted', () => {
+      render(<ListAction title="Title" indicator={indicator} />);
+
+      const tag = screen.getByText('3x sem acréscimo');
+
+      expect(tag.closest('.ods-list-action__indicator')).toBeInTheDocument();
+      expect(tag.closest('.ods-content-list__indicator')).toBeNull();
+    });
+
+    test('CT-4: explicit inline renders the same tree as the default', () => {
+      const { asFragment: defaultTree } = render(
+        <ListAction title="Title" indicator={indicator} />
+      );
+      const { asFragment: inlineTree } = render(
+        <ListAction
+          title="Title"
+          indicator={indicator}
+          indicatorPosition="inline"
+        />
+      );
+
+      expect(inlineTree()).toEqual(defaultTree());
+    });
+
+    test('CT-2: renders above as the first child of the content column', () => {
+      render(
+        <ListAction
+          title="Title"
+          description="Description"
+          indicator={indicator}
+          indicatorPosition="above"
+        />
+      );
+
+      const content = screen.getByText('Title').closest('.ods-content-list');
+
+      expect(content?.firstElementChild).toHaveClass(
+        'ods-content-list__indicator--above'
+      );
+      expect(
+        screen
+          .getByText('3x sem acréscimo')
+          .closest('.ods-list-action__indicator')
+      ).toBeNull();
+    });
+
+    test('CT-10: swipe mode still renders with the indicator stacked', () => {
+      render(
+        <ListAction
+          title="Title"
+          actionType="swipe"
+          menuActions={[{ label: 'Delete', onClick: jest.fn() }]}
+          indicator={indicator}
+          indicatorPosition="above"
+        />
+      );
+
+      const tag = screen.getByText('3x sem acréscimo');
+
+      expect(tag.closest('.ods-list-action--swipe-mode')).toBeInTheDocument();
+      expect(tag.closest('.ods-list-action__indicator')).toBeNull();
+      expect(
+        tag.closest('.ods-content-list__indicator--above')
+      ).toBeInTheDocument();
+    });
+
+    test('indicatorPosition does not interfere with position (timeline)', () => {
+      render(
+        <ListAction
+          title="Title"
+          icon={<PlaceholderOutline />}
+          position="middle"
+          indicator={indicator}
+          indicatorPosition="above"
+        />
+      );
+
+      const tag = screen.getByText('3x sem acréscimo');
+
+      expect(tag.closest('.ods-list-action')).toBeInTheDocument();
+      expect(
+        tag.closest('.ods-content-list__indicator--above')
+      ).toBeInTheDocument();
     });
   });
 });

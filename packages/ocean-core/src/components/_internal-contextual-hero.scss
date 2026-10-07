@@ -157,11 +157,6 @@
       padding: $spacing-stack-xxs;
     }
 
-    > div > button,
-    > div > div {
-      background-color: transparent;
-    }
-
     &-item {
       display: flex;
       gap: $spacing-inline-xxs;

@@ -25,6 +25,7 @@ export interface IUseChipReturn {
 export interface IUseChipOptions {
   defaultValue?: ChipValue;
   multiChoice?: boolean;
+  singleSelection?: boolean;
   onChange?: (value: ChipValue[] | ChipValue) => void;
   onClean?: () => void;
   onConfirm?: (value: ChipValue[] | ChipValue) => void;

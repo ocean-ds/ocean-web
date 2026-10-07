@@ -18,7 +18,12 @@ export type DatePickerSingleProps = {
    */
   disabledDaysMessage?: DisabledDaysMessageProp;
   inline?: boolean;
-} & Omit<DatePickerProps, 'labels' | 'values' | 'onSelect'>;
+  error?: boolean;
+  helperText?: string;
+} & Omit<
+  DatePickerProps,
+  'labels' | 'values' | 'onSelect' | 'error' | 'helperText'
+>;
 
 export type IDatePickerProps = Pick<
   DatePickerSingleProps,

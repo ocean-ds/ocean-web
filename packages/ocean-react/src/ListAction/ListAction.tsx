@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ChevronRight } from '@useblu/ocean-icons-react';
 import ContentList, {
   ContentListProps,
+  IndicatorPosition,
 } from '../_shared/components/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 import InternalListActions, {
@@ -66,6 +67,18 @@ export type ListActionProps = {
    */
   indicator?: ReactNode;
   /**
+   * Where the `indicator` is rendered relative to the text content.
+   *
+   * - `inline` (default): same row as the text, at the end of the content block.
+   * - `above`: stacked above the title, inside the content column.
+   * - `below`: stacked below the text, inside the content column.
+   *
+   * Has no effect when `indicator` is not provided. Not to be confused with
+   * `position` (timeline) or `menuPosition` (dropdown).
+   * @default 'inline'
+   */
+  indicatorPosition?: IndicatorPosition;
+  /**
    * The type of action displayed on the card.
    * @default 'chevron'
    */
@@ -101,6 +114,12 @@ export type ListActionProps = {
    * Renders a highlighted caption area at the bottom of the container.
    */
   highlight?: ListContainerHighlight;
+  /**
+   * Vira o chevron para a esquerda, com transição. Use enquanto a drawer que o
+   * item abre ao lado estiver aberta.
+   * @default false
+   */
+  chevronFlipped?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'type'>;
 
 const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
@@ -117,7 +136,9 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       loading = false,
       icon,
       indicator,
+      indicatorPosition = 'inline',
       actionType = 'chevron',
+      chevronFlipped = false,
       menuActions,
       menuPosition = 'bottom-right',
       onClick,
@@ -144,7 +165,13 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       if (actionType === 'chevron') {
         return (
           <div className="ods-list-action__action">
-            <ChevronRight size={20} />
+            <ChevronRight
+              size={20}
+              className={classNames(
+                'ods-list-action__chevron',
+                chevronFlipped && 'ods-list-action__chevron--flipped'
+              )}
+            />
           </div>
         );
       }
@@ -177,6 +204,11 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
       isSwipeOpen && menuWidth > 0
         ? { transform: `translateX(-${menuWidth}px)` }
         : {};
+
+    // Only `above`/`below` are passed into ContentList; `inline` keeps the component's
+    // current wrapper, preserving the production DOM.
+    const stackedPosition =
+      indicatorPosition !== 'inline' ? indicatorPosition : undefined;
 
     const showLeading = position && icon;
     const showLineAbove = position === 'middle' || position === 'last';
@@ -223,9 +255,11 @@ const ListAction = React.forwardRef<HTMLButtonElement, ListActionProps>(
             caption={caption}
             inverted={inverted}
             type={status}
+            indicator={stackedPosition ? indicator : undefined}
+            indicatorPosition={stackedPosition}
           />
           {amountDetails && <AmountDetails type={status} {...amountDetails} />}
-          {indicator && (
+          {indicator && !stackedPosition && (
             <div className="ods-list-action__indicator">{indicator}</div>
           )}
         </div>

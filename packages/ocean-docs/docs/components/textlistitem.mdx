@@ -150,20 +150,21 @@ Veja todas as funcionalidades juntas:
 
 ### Props
 
-| Prop            | Tipo                      | Padrão      | Descrição                                     |
-| --------------- | ------------------------- | ----------- | --------------------------------------------- |
-| `title`         | `string`                  | -           | Título do item (obrigatório)                  |
-| `description`   | `string`                  | -           | Descrição do item (obrigatório)               |
-| `caption`       | `string`                  | -           | Texto de legenda adicional                    |
-| `tagLabel`      | `string`                  | -           | Texto da tag exibida ao lado do título        |
-| `infoText`      | `string`                  | -           | Texto informativo adicional                   |
-| `infoTextType`  | `'neutral' \| 'positive'` | `'neutral'` | Tipo do texto informativo                     |
-| `withAction`    | `boolean`                 | `false`     | Exibe ícone de ação no lado direito           |
-| `onActionClick` | `() => void`              | -           | Callback quando o item é clicado              |
-| `checkbox`      | `CheckboxProps`           | -           | Props do checkbox (torna o item selecionável) |
-| `radio`         | `RadioProps`              | -           | Props do radio (torna o item selecionável)    |
-| `disabled`      | `boolean`                 | `false`     | Desabilita o componente                       |
-| `className`     | `string`                  | -           | Classes CSS adicionais                        |
+| Prop             | Tipo                      | Padrão      | Descrição                                                                                                                           |
+| ---------------- | ------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `title`          | `string`                  | -           | Título do item (obrigatório)                                                                                                        |
+| `description`    | `string`                  | -           | Descrição do item (obrigatório)                                                                                                     |
+| `caption`        | `string`                  | -           | Texto de legenda adicional                                                                                                          |
+| `tagLabel`       | `string`                  | -           | Texto da tag exibida ao lado do título                                                                                              |
+| `infoText`       | `string`                  | -           | Texto informativo adicional                                                                                                         |
+| `infoTextType`   | `'neutral' \| 'positive'` | `'neutral'` | Tipo do texto informativo                                                                                                           |
+| `withAction`     | `boolean`                 | `false`     | Exibe ícone de ação no lado direito                                                                                                 |
+| `chevronFlipped` | `boolean`                 | `false`     | Vira o chevron para a esquerda, com transição. Ligue só enquanto a drawer que o item abre ao lado estiver aberta (com `withAction`) |
+| `onActionClick`  | `() => void`              | -           | Callback quando o item é clicado                                                                                                    |
+| `checkbox`       | `CheckboxProps`           | -           | Props do checkbox (torna o item selecionável)                                                                                       |
+| `radio`          | `RadioProps`              | -           | Props do radio (torna o item selecionável)                                                                                          |
+| `disabled`       | `boolean`                 | `false`     | Desabilita o componente                                                                                                             |
+| `className`      | `string`                  | -           | Classes CSS adicionais                                                                                                              |
 
 ### Eventos
 

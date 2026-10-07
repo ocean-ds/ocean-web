@@ -282,6 +282,10 @@ listItems={[
 ]}
 ```
 
+## Itens de lista sobre o fundo da hero
+
+`ListAction`, `ListReadOnly` e demais itens de lista passados em `listItems` herdam o fundo da hero e compõem o hover com `mix-blend-mode: multiply` — em `warning` e `negative` o destaque fica no tom do próprio fundo. Não aplique `background: transparent` nos itens: o comportamento já vem do componente.
+
 ## Acessibilidade
 
 - ✅ Utiliza elementos semânticos HTML

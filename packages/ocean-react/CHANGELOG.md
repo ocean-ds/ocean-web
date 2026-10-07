@@ -3,6 +3,119 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.144.2](https://github.com/ocean-ds/ocean-web/compare/v1.144.1...v1.144.2) (2026-10-02)
+
+### Bug Fixes
+
+- **drawer:** title e actions nulos mantêm a anatomia do conteúdo (MR-871) ([#1273](https://github.com/ocean-ds/ocean-web/issues/1273)) ([b2a1e4c](https://github.com/ocean-ds/ocean-web/commit/b2a1e4cb8f6f6453987cd0afd20df0f1ad069837))
+
+## [1.144.1](https://github.com/ocean-ds/ocean-web/compare/v1.144.0...v1.144.1) (2026-09-30)
+
+**Note:** Version bump only for package @useblu/ocean-react
+
+# [1.144.0](https://github.com/ocean-ds/ocean-web/compare/v1.143.0...v1.144.0) (2026-09-30)
+
+### Features
+
+- **drawer:** headerColor pinta a barra do X e ajusta o hover no fundo colorido (MR-877) ([#1271](https://github.com/ocean-ds/ocean-web/issues/1271)) ([a84a9dc](https://github.com/ocean-ds/ocean-web/commit/a84a9dcd301a55f1dd65d2a51fcb3e8203c04297))
+
+# [1.143.0](https://github.com/ocean-ds/ocean-web/compare/v1.142.0...v1.143.0) (2026-09-29)
+
+### Features
+
+- **drawer:** x pequeno e claro, título e barra de ações; chevronFlipped nos itens de lista (MR-877) ([#1270](https://github.com/ocean-ds/ocean-web/issues/1270)) ([b4cf973](https://github.com/ocean-ds/ocean-web/commit/b4cf97393878b53799f4fea7f1e9e99d5d0a659e))
+
+# [1.142.0](https://github.com/ocean-ds/ocean-web/compare/v1.141.2...v1.142.0) (2026-09-28)
+
+### Features
+
+- **drawer:** scrim por painel na pilha, retorno pelo clique e X em IconButton (MR-854) ([#1269](https://github.com/ocean-ds/ocean-web/issues/1269)) ([8e7bd6c](https://github.com/ocean-ds/ocean-web/commit/8e7bd6c33e2aeaf575eb53a1540e2b054fc728b1))
+
+## [1.141.2](https://github.com/ocean-ds/ocean-web/compare/v1.141.1...v1.141.2) (2026-09-25)
+
+### Bug Fixes
+
+- **date:** tooltip de dia indisponível fecha em 3 s (MR-665) ([#1268](https://github.com/ocean-ds/ocean-web/issues/1268)) ([03d7f83](https://github.com/ocean-ds/ocean-web/commit/03d7f834173c0f0014a339a8aef5deb0cd191534))
+
+## [1.141.1](https://github.com/ocean-ds/ocean-web/compare/v1.141.0...v1.141.1) (2026-09-24)
+
+### Bug Fixes
+
+- **tag:** highlight em ExtraBold 800 (MR-836) ([#1267](https://github.com/ocean-ds/ocean-web/issues/1267)) ([a816710](https://github.com/ocean-ds/ocean-web/commit/a81671021ea3a61571d64e441b097398f1eb1b26))
+
+# [1.141.0](https://github.com/ocean-ds/ocean-web/compare/v1.140.1...v1.141.0) (2026-09-23)
+
+### Features
+
+- **tag:** type complementary em Deep e highlight em Bold 700 (MR-836) ([#1266](https://github.com/ocean-ds/ocean-web/issues/1266)) ([4589eeb](https://github.com/ocean-ds/ocean-web/commit/4589eeb57071c95ef551130d3d0e749441b0a3bf))
+
+# [1.140.0](https://github.com/ocean-ds/ocean-web/compare/v1.139.6...v1.140.0) (2026-09-21)
+
+### Features
+
+- **drawer:** visual flutuante como padrão do Drawer (MR-823) ([#1264](https://github.com/ocean-ds/ocean-web/issues/1264)) ([d6cca5f](https://github.com/ocean-ds/ocean-web/commit/d6cca5f9f6febe3168862fa7614d45e98b982788))
+
+## [1.139.6](https://github.com/ocean-ds/ocean-web/compare/v1.139.5...v1.139.6) (2026-09-21)
+
+### Bug Fixes
+
+- **motion:** token Gentle assenta em 600ms (MR-795) ([#1262](https://github.com/ocean-ds/ocean-web/issues/1262)) ([f062717](https://github.com/ocean-ds/ocean-web/commit/f0627171277e11e2e34b1ed5af428990a200f4c4))
+
+## [1.139.5](https://github.com/ocean-ds/ocean-web/compare/v1.139.4...v1.139.5) (2026-09-21)
+
+### Bug Fixes
+
+- **tag:** highlight neutral volta a brandPrimaryDown (MR-802) ([#1263](https://github.com/ocean-ds/ocean-web/issues/1263)) ([3eda3df](https://github.com/ocean-ds/ocean-web/commit/3eda3dfda1154a7f315b394ea772cf4fb257006e))
+
+## [1.139.4](https://github.com/ocean-ds/ocean-web/compare/v1.139.3...v1.139.4) (2026-09-18)
+
+### Bug Fixes
+
+- **drawer:** overlay transparente não intercepta o ponteiro (MR-795) ([#1261](https://github.com/ocean-ds/ocean-web/issues/1261)) ([a8fe950](https://github.com/ocean-ds/ocean-web/commit/a8fe950ae37848acf5d1897c5b412e024c8db97d))
+
+## [1.139.3](https://github.com/ocean-ds/ocean-web/compare/v1.139.2...v1.139.3) (2026-09-18)
+
+### Bug Fixes
+
+- **drawer:** entrada da direita e empurrão coordenados com motion Gentle (MR-795) ([#1260](https://github.com/ocean-ds/ocean-web/issues/1260)) ([be61858](https://github.com/ocean-ds/ocean-web/commit/be61858efc2ac22e6085d600fa6259eb672147a8))
+
+## [1.139.2](https://github.com/ocean-ds/ocean-web/compare/v1.139.1...v1.139.2) (2026-09-18)
+
+### Bug Fixes
+
+- **tag:** tipografia definida só pelo size e highlight neutral em brandPrimaryPure (MR-802) ([#1258](https://github.com/ocean-ds/ocean-web/issues/1258)) ([2167d99](https://github.com/ocean-ds/ocean-web/commit/2167d99da9383c40e1499d24dcb18648f50ab6a6))
+
+## [1.139.1](https://github.com/ocean-ds/ocean-web/compare/v1.139.0...v1.139.1) (2026-09-18)
+
+### Bug Fixes
+
+- **core:** MR-772 calendário do DateRange/DatePicker na largura dos dois campos ([#1257](https://github.com/ocean-ds/ocean-web/issues/1257)) ([0e533a5](https://github.com/ocean-ds/ocean-web/commit/0e533a55eed990e8a0bdd9f9c871934825362d3e))
+
+# [1.139.0](https://github.com/ocean-ds/ocean-web/compare/v1.138.0...v1.139.0) (2026-09-17)
+
+### Features
+
+- **drawer:** props para pilha de drawers lado a lado (MR-795) ([#1259](https://github.com/ocean-ds/ocean-web/issues/1259)) ([56d1d04](https://github.com/ocean-ds/ocean-web/commit/56d1d04aaeab16c17349dafbd95e90db49591bf1))
+
+# [1.138.0](https://github.com/ocean-ds/ocean-web/compare/v1.137.1...v1.138.0) (2026-09-11)
+
+### Features
+
+- **chips:** modo de escolha única com radio e rodapé Limpar/Filtrar ([#1256](https://github.com/ocean-ds/ocean-web/issues/1256)) ([ef91666](https://github.com/ocean-ds/ocean-web/commit/ef916660be89486b3b07a3b342af61b5a353215e))
+
+## [1.137.1](https://github.com/ocean-ds/ocean-web/compare/v1.137.0...v1.137.1) (2026-09-11)
+
+### Bug Fixes
+
+- **core:** MR-748 hover das famílias de lista compõe com o fundo do container ([#1254](https://github.com/ocean-ds/ocean-web/issues/1254)) ([516eef0](https://github.com/ocean-ds/ocean-web/commit/516eef02ed0f1a89b1536520c9f01ab33b779ac0))
+
+# [1.137.0](https://github.com/ocean-ds/ocean-web/compare/v1.136.0...v1.137.0) (2026-07-27)
+
+### Features
+
+- add Banner component ([#1251](https://github.com/ocean-ds/ocean-web/issues/1251)) ([a4dfe36](https://github.com/ocean-ds/ocean-web/commit/a4dfe36148b75521725c2b837943f7d9b607c390))
+- **list:** adiciona indicatorPosition nos componentes de lista ([#1253](https://github.com/ocean-ds/ocean-web/issues/1253)) ([e98be1d](https://github.com/ocean-ds/ocean-web/commit/e98be1d8b99faa3c1f3fe7d6d970e914bc8d979a))
+
 # [1.136.0](https://github.com/ocean-ds/ocean-web/compare/v1.135.3...v1.136.0) (2026-05-11)
 
 ### Features

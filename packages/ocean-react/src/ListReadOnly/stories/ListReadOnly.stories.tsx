@@ -6,6 +6,10 @@ import type { ListReadOnlyProps } from '../ListReadOnly';
 import Badge from '../../Badge';
 import Tag from '../../Tag';
 import List from '../../List';
+import {
+  indicatorPositionCases,
+  indicatorPositionStoryConfig,
+} from '../../_stories/components/indicatorPosition';
 
 const defaultIcon = <PlaceholderOutline size={24} />;
 const listStyle = { minWidth: '300px' };
@@ -546,4 +550,15 @@ export const CompleteExample: Story = {
       ],
       { icon: defaultIcon }
     ),
+};
+
+export const IndicatorPosition: Story = {
+  ...indicatorPositionStoryConfig,
+  render: ({ indicator }) => (
+    <List style={listStyle}>
+      {indicatorPositionCases.map(({ id, ...caseProps }) => (
+        <ListReadOnly key={id} {...caseProps} indicator={indicator} />
+      ))}
+    </List>
+  ),
 };

@@ -40,6 +40,10 @@
     width: 48px;
   }
 
+  &--light {
+    color: $color-interface-dark-up;
+  }
+
   &--disabled {
     color: $color-interface-light-deep;
     cursor: not-allowed;

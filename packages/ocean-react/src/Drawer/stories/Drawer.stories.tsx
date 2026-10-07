@@ -3,6 +3,7 @@ import React from 'react';
 import Drawer from '../Drawer';
 import SimpleDrawer from '../examples/SimpleDrawer';
 import AttachedDrawer from '../examples/AttachedDrawer';
+import StackedDrawers from '../examples/StackedDrawers';
 import Button from '../../Button';
 
 const meta: Meta<typeof Drawer> = {
@@ -52,6 +53,68 @@ const meta: Meta<typeof Drawer> = {
       description: 'Tamanho do drawer.',
       control: 'radio',
       options: ['small', 'large'],
+    },
+    floating: {
+      description:
+        'Padrão: o drawer flutua com margem de 16px, cantos arredondados e motion Gentle (tela inteira abaixo de 576px). `false` volta ao painel colado na borda.',
+      control: 'boolean',
+    },
+    offsetX: {
+      description:
+        'Deslocamento horizontal extra (px) aplicado quando aberto — usado para empurrar o primeiro drawer quando o segundo abre ao lado.',
+      control: 'number',
+    },
+    depth: {
+      description: 'Posição na pilha (0 ou 1). Define o z-index relativo.',
+      control: 'number',
+    },
+    width: {
+      description:
+        'Largura em px que substitui a de `size` — usada para as duas drawers caberem lado a lado em viewport estreito.',
+      control: 'number',
+    },
+    hideOverlay: {
+      description:
+        'Não pinta o próprio scrim — quem empilha fornece um scrim só.',
+      control: 'boolean',
+    },
+    onBack: {
+      description:
+        'Quando presente, o cabeçalho troca o X por uma seta "Voltar" à esquerda (drawer mobile, abaixo de `sm`).',
+      control: false,
+    },
+    dim: {
+      description:
+        'Scrim só sobre este painel, quando ele fica atrás de outro na pilha: `near` (0.48, imediatamente atrás) ou `far` (0.64, mais antigo). Exige `onDimClick`.',
+      control: 'select',
+      options: [undefined, 'near', 'far'],
+    },
+    onDimClick: {
+      description:
+        'Drawer de pilha: com `dim`, clicar no painel (fora do X) volta para ele em vez de acionar o conteúdo, que fica `inert`.',
+      control: false,
+    },
+    closeButton: {
+      description:
+        '`icon` (padrão): X (ou seta voltar) como `IconButton` pequeno e claro. `legacy`: X como `Button`.',
+      control: 'select',
+      options: ['icon', 'legacy'],
+    },
+    title: {
+      description:
+        'Título logo abaixo da barra do X; texto vira `heading3`. Rola junto com o conteúdo.',
+      control: 'text',
+    },
+    actions: {
+      description:
+        'Barra de ações fixa no rodapé, com linha acima e botões em coluna.',
+      control: false,
+    },
+    headerColor: {
+      description:
+        'Cor da barra do X. `warning` e `negative` pintam a barra e deixam o hover do X escuro, com círculo em multiply.',
+      control: 'select',
+      options: ['default', 'warning', 'negative'],
     },
   },
 };
@@ -205,5 +268,69 @@ export const Attached: Story = {
         <p>Este drawer está anexado a um elemento específico da página.</p>
       </div>
     </AttachedDrawer>
+  ),
+};
+
+export const Stacked: Story = {
+  parameters: {
+    controls: { disable: true },
+  },
+  render: () => (
+    <StackedDrawers
+      first={<h3 style={{ fontFamily: 'Avenir' }}>Primeiro drawer</h3>}
+      second={<h3 style={{ fontFamily: 'Avenir' }}>Segundo drawer</h3>}
+    />
+  ),
+};
+
+export const WithTitleAndActions: Story = {
+  args: {
+    open: true,
+    title: 'Detalhes do contrato',
+  },
+  render: (args) => (
+    <Drawer
+      {...args}
+      onBack={undefined}
+      overlayClose={() => undefined}
+      onDrawerClose={() => undefined}
+      actions={
+        <>
+          <Button blocked>Pagar parcela</Button>
+          <Button variant="secondary" blocked>
+            Ver contrato
+          </Button>
+        </>
+      }
+    >
+      {Array.from({ length: 12 }, (_, index) => (
+        <p
+          key={index}
+          style={{ fontFamily: 'Nunito Sans', margin: '0 0 16px' }}
+        >
+          Conteúdo que rola junto com o título.
+        </p>
+      ))}
+    </Drawer>
+  ),
+};
+
+export const HeaderColor: Story = {
+  args: {
+    open: true,
+    headerColor: 'warning',
+    title: 'Limite de compra',
+  },
+  render: (args) => (
+    <Drawer
+      {...args}
+      onBack={undefined}
+      overlayClose={() => undefined}
+      onDrawerClose={() => undefined}
+    >
+      <p style={{ fontFamily: 'Nunito Sans', margin: 0 }}>
+        Passe o mouse no X: no fundo colorido ele fica escuro; no padrão, azul.
+      </p>
+    </Drawer>
   ),
 };

@@ -117,7 +117,9 @@ const DatePickerSingle = React.forwardRef<
             {!disabled && calendarOpen && (
               <div
                 data-testid="datepicker-calendar"
-                className="ods-date__calendar-container"
+                className={classNames('ods-date__calendar-container', {
+                  'ods-date__calendar-container--inline': inline,
+                })}
                 role="presentation"
                 onClick={handleCalendarClick}
               >

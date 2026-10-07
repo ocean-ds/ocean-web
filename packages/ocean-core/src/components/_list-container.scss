@@ -3,8 +3,6 @@
 
   &__content {
     overflow: hidden;
-    position: relative;
-    z-index: 1;
   }
 
   &__content--card {
@@ -17,8 +15,12 @@
   }
 
   &__content__divider {
+    @include list-divider-blend;
+
     border-bottom: 1px solid $color-interface-light-down;
-    margin: 0 $spacing-inline-xs;
+    margin: -1px $spacing-inline-xs 0;
+    pointer-events: none;
+    position: relative;
   }
 
   &__highlight {

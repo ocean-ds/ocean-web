@@ -30,6 +30,7 @@ type DefaultType = {
     | 'neutral'
     | 'neutral-02'
     | 'neutral-03'
+    | 'complementary'
     | 'default';
 } & BaseTagProps;
 

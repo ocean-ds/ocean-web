@@ -25,6 +25,12 @@ interface IChips {
    */
   multiChoice?: boolean;
   /*
+   * Whether the options popover holds a single selection. Options render as
+   * radios and the footer keeps the clear/filter actions, so the selection is a
+   * draft until it is confirmed and "nothing selected" stays a valid state.
+   */
+  singleSelection?: boolean;
+  /*
    * The options of the chip button.
    */
   options?: ChipValue[];
@@ -90,6 +96,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   defaultValue,
   options = [],
   multiChoice = false,
+  singleSelection = false,
   clearLabel = 'Limpar',
   filterLabel = 'Filtrar',
   initialCounter,
@@ -116,6 +123,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   } = useChip({
     defaultValue,
     multiChoice,
+    singleSelection,
     onChange,
     onClean,
     onConfirm,
@@ -135,7 +143,7 @@ const Chips: React.FunctionComponent<IChips> = ({
 
   const contextualMenuItems = React.useMemo(
     () =>
-      multiChoice
+      multiChoice || singleSelection
         ? []
         : options.map(
             ({
@@ -154,7 +162,7 @@ const Chips: React.FunctionComponent<IChips> = ({
               type: 'neutral' as const,
             })
           ),
-    [multiChoice, options]
+    [multiChoice, singleSelection, options]
   );
 
   const handleContextualMenuSelect = (value: string) => {
@@ -174,7 +182,7 @@ const Chips: React.FunctionComponent<IChips> = ({
   const shouldRenderOptions = selectionIsOpen && hasOptions;
 
   const renderOptions = () => {
-    if (multiChoice) {
+    if (multiChoice || singleSelection) {
       return (
         <MultipleChoiceOptions
           options={options}
@@ -183,6 +191,7 @@ const Chips: React.FunctionComponent<IChips> = ({
           clearLabel={clearLabel}
           filterLabel={filterLabel}
           multiChoice={multiChoice}
+          singleSelection={singleSelection}
           clearOptions={clearOptions}
           filterOptions={filterOptions}
           headerOptions={headerOptions}

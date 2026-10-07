@@ -756,7 +756,7 @@ test('shows tooltip when clicking on disabled day with disabledDaysMessage', asy
   expect(onSelectMock).not.toHaveBeenCalled();
 });
 
-test('tooltip disappears after 5 seconds', async () => {
+test('tooltip disappears after 3 seconds', async () => {
   jest.useFakeTimers();
   const onSelectMock = jest.fn();
 
@@ -775,8 +775,8 @@ test('tooltip disappears after 5 seconds', async () => {
   // Tooltip should appear
   await expectTooltipToAppear(commonDisabledDaysProps.disabledDaysMessage);
 
-  // Fast-forward 5 seconds
-  jest.advanceTimersByTime(5000);
+  // Fast-forward 3 seconds
+  jest.advanceTimersByTime(3000);
 
   // Tooltip should disappear after timeout
   await expectTooltipNotToAppearAsync();
@@ -881,4 +881,53 @@ test('tooltip does not appear when clicked date has no entry in disabledDaysMess
   expect(
     screen.queryByTestId('datepicker-disabled-tooltip')
   ).not.toBeInTheDocument();
+});
+
+test('shows error and helper text only on the field passed per field', () => {
+  render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '31/02/2026', to: '09/09/2026' }}
+      onSelect={jest.fn()}
+      editable
+      error={{ from: true }}
+      helperText={{ from: 'Essa data não existe' }}
+    />
+  );
+
+  expect(screen.getByText('Essa data não existe')).toBeInTheDocument();
+  expect(
+    screen.getByTestId('datepicker-input-1').closest('.ods-input')
+  ).toHaveClass('ods-input--error');
+  expect(
+    screen.getByTestId('datepicker-input-2').closest('.ods-input')
+  ).not.toHaveClass('ods-input--error');
+});
+
+test('closes the calendar when an error arrives so the message is visible', () => {
+  const { rerender } = render(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '31/02/2026', to: '' }}
+      onSelect={jest.fn()}
+      editable
+    />
+  );
+
+  fireEvent.click(screen.getByTestId('datepicker-input-1'));
+  expect(screen.getByTestId('datepicker-calendar')).toBeInTheDocument();
+
+  rerender(
+    <DatePicker
+      labels={{ from: 'first-label', to: 'second-label' }}
+      values={{ from: '31/02/2026', to: '' }}
+      onSelect={jest.fn()}
+      editable
+      error={{ from: true }}
+      helperText={{ from: 'Essa data não existe' }}
+    />
+  );
+
+  expect(screen.queryByTestId('datepicker-calendar')).not.toBeInTheDocument();
+  expect(screen.getByText('Essa data não existe')).toBeInTheDocument();
 });

@@ -211,6 +211,10 @@ Para mostrar hierarquia e detalhes aninhados:
 
 O componente List é baseado no elemento `<div>` e suporta todos os atributos padrão de div.
 
+## Fundo do container
+
+A `List` e seus itens não têm fundo próprio: eles herdam o fundo do container onde estão (branco, `Interface/Light/Up`, hero `warning`/`negative` etc.). Os estados hover, focus e `:active` usam os tokens `Interface/Light/Up` e `Interface/Light/Deep` com `mix-blend-mode: multiply`, então o destaque deriva do fundo real — sobre branco o resultado é idêntico ao token puro; sobre fundo colorido o item escurece levemente no tom do container. Os divisores (`Interface/Light/Down`) seguem a mesma composição. Não é necessário nenhum override de `background` ao usar o item dentro de containers coloridos.
+
 ## Acessibilidade
 
 - ✅ Estrutura semântica correta para listas

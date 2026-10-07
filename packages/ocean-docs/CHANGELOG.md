@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.144.2](https://github.com/ocean-ds/ocean-web/compare/v1.144.1...v1.144.2) (2026-10-02)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.144.1](https://github.com/ocean-ds/ocean-web/compare/v1.144.0...v1.144.1) (2026-09-30)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.144.0](https://github.com/ocean-ds/ocean-web/compare/v1.143.0...v1.144.0) (2026-09-30)
+
+### Features
+
+- **drawer:** headerColor pinta a barra do X e ajusta o hover no fundo colorido (MR-877) ([#1271](https://github.com/ocean-ds/ocean-web/issues/1271)) ([a84a9dc](https://github.com/ocean-ds/ocean-web/commit/a84a9dcd301a55f1dd65d2a51fcb3e8203c04297))
+
+# [1.143.0](https://github.com/ocean-ds/ocean-web/compare/v1.142.0...v1.143.0) (2026-09-29)
+
+### Features
+
+- **drawer:** x pequeno e claro, título e barra de ações; chevronFlipped nos itens de lista (MR-877) ([#1270](https://github.com/ocean-ds/ocean-web/issues/1270)) ([b4cf973](https://github.com/ocean-ds/ocean-web/commit/b4cf97393878b53799f4fea7f1e9e99d5d0a659e))
+
+# [1.142.0](https://github.com/ocean-ds/ocean-web/compare/v1.141.2...v1.142.0) (2026-09-28)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.141.2](https://github.com/ocean-ds/ocean-web/compare/v1.141.1...v1.141.2) (2026-09-25)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.141.1](https://github.com/ocean-ds/ocean-web/compare/v1.141.0...v1.141.1) (2026-09-24)
+
+### Bug Fixes
+
+- **tag:** highlight em ExtraBold 800 (MR-836) ([#1267](https://github.com/ocean-ds/ocean-web/issues/1267)) ([a816710](https://github.com/ocean-ds/ocean-web/commit/a81671021ea3a61571d64e441b097398f1eb1b26))
+
+# [1.141.0](https://github.com/ocean-ds/ocean-web/compare/v1.140.1...v1.141.0) (2026-09-23)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.140.1](https://github.com/ocean-ds/ocean-web/compare/v1.140.0...v1.140.1) (2026-09-21)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.140.0](https://github.com/ocean-ds/ocean-web/compare/v1.139.6...v1.140.0) (2026-09-21)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.139.6](https://github.com/ocean-ds/ocean-web/compare/v1.139.5...v1.139.6) (2026-09-21)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.139.5](https://github.com/ocean-ds/ocean-web/compare/v1.139.4...v1.139.5) (2026-09-21)
+
+### Bug Fixes
+
+- **tag:** highlight neutral volta a brandPrimaryDown (MR-802) ([#1263](https://github.com/ocean-ds/ocean-web/issues/1263)) ([3eda3df](https://github.com/ocean-ds/ocean-web/commit/3eda3dfda1154a7f315b394ea772cf4fb257006e))
+
+## [1.139.4](https://github.com/ocean-ds/ocean-web/compare/v1.139.3...v1.139.4) (2026-09-18)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.139.3](https://github.com/ocean-ds/ocean-web/compare/v1.139.2...v1.139.3) (2026-09-18)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.139.2](https://github.com/ocean-ds/ocean-web/compare/v1.139.1...v1.139.2) (2026-09-18)
+
+### Bug Fixes
+
+- **tag:** tipografia definida só pelo size e highlight neutral em brandPrimaryPure (MR-802) ([#1258](https://github.com/ocean-ds/ocean-web/issues/1258)) ([2167d99](https://github.com/ocean-ds/ocean-web/commit/2167d99da9383c40e1499d24dcb18648f50ab6a6))
+
+## [1.139.1](https://github.com/ocean-ds/ocean-web/compare/v1.139.0...v1.139.1) (2026-09-18)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.139.0](https://github.com/ocean-ds/ocean-web/compare/v1.138.0...v1.139.0) (2026-09-17)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+# [1.138.0](https://github.com/ocean-ds/ocean-web/compare/v1.137.1...v1.138.0) (2026-09-11)
+
+**Note:** Version bump only for package @useblu/ocean-docs
+
+## [1.137.1](https://github.com/ocean-ds/ocean-web/compare/v1.137.0...v1.137.1) (2026-09-11)
+
+### Bug Fixes
+
+- **core:** MR-748 hover das famílias de lista compõe com o fundo do container ([#1254](https://github.com/ocean-ds/ocean-web/issues/1254)) ([516eef0](https://github.com/ocean-ds/ocean-web/commit/516eef02ed0f1a89b1536520c9f01ab33b779ac0))
+
+# [1.137.0](https://github.com/ocean-ds/ocean-web/compare/v1.136.0...v1.137.0) (2026-07-27)
+
+### Features
+
+- add Banner component ([#1251](https://github.com/ocean-ds/ocean-web/issues/1251)) ([a4dfe36](https://github.com/ocean-ds/ocean-web/commit/a4dfe36148b75521725c2b837943f7d9b607c390))
+- **list:** adiciona indicatorPosition nos componentes de lista ([#1253](https://github.com/ocean-ds/ocean-web/issues/1253)) ([e98be1d](https://github.com/ocean-ds/ocean-web/commit/e98be1d8b99faa3c1f3fe7d6d970e914bc8d979a))
+
 # [1.136.0](https://github.com/ocean-ds/ocean-web/compare/v1.135.3...v1.136.0) (2026-05-11)
 
 **Note:** Version bump only for package @useblu/ocean-docs

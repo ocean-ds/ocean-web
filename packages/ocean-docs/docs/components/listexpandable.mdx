@@ -334,6 +334,10 @@ Veja como controlar o estado de expansão externamente:
   title="ListExpandable - Exemplo Controlado"
 />
 
+### Fundo do container e hover
+
+O item não tem fundo próprio: ele herda o fundo do container onde está (branco, `Interface/Light/Up`, hero `warning`/`negative` etc.). Os estados hover, focus e `:active` usam os tokens `Interface/Light/Up` e `Interface/Light/Deep` com `mix-blend-mode: multiply`, então o destaque deriva do fundo real — sobre branco o resultado é idêntico ao token puro; sobre fundo colorido o item escurece levemente no tom do container. Os divisores (`Interface/Light/Down`) seguem a mesma composição. Não é necessário nenhum override de `background` ao usar o item dentro de containers coloridos.
+
 ## API
 
 ### Props
@@ -353,6 +357,7 @@ Veja como controlar o estado de expansão externamente:
 | `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card |
 | `icon`                     | `ReactNode`                                                                                                | -           | Ícone à esquerda do conteúdo                                 |
 | `indicator`                | `ReactNode`                                                                                                | -           | Badge/Tag antes da ação de expansão                          |
+| `indicatorPosition`        | `'inline' \| 'above' \| 'below'`                                                                           | `'inline'`  | Posição do `indicator` em relação ao texto                   |
 | `expanded`                 | `boolean`                                                                                                  | -           | Controla estado expandido (controlled)                       |
 | `defaultExpanded`          | `boolean`                                                                                                  | `false`     | Estado inicial (uncontrolled)                                |
 | `onToggle`                 | `(expanded: boolean) => void`                                                                              | -           | Callback ao expandir/colapsar                                |
@@ -512,3 +517,28 @@ Veja como controlar o estado de expansão externamente:
 - [Tag](/components/tag) - Para indicadores de status
 - [Accordion](/components/accordion) - Para seções expansíveis de página
 - [Storybook - ListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-listexpandable--docs) - Documentação técnica completa
+
+## Posição do indicator
+
+A prop `indicatorPosition` define onde o `indicator` é renderizado em relação ao texto:
+
+| Valor              | Comportamento                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `inline` (default) | Mantém a posição atual do componente — mesma linha do texto, no fim do bloco de conteúdo. Nenhuma tela em produção muda. |
+| `above`            | Empilha o indicator **acima do título**, dentro do bloco de conteúdo.                                                    |
+| `below`            | Empilha o indicator **abaixo do texto**, dentro do bloco de conteúdo.                                                    |
+
+O indicator pertence ao bloco de conteúdo, nunca ao slot do controle: em qualquer posição o
+chevron, o menu, o radio/checkbox e o `amountDetails` permanecem onde estão. Nas posições
+empilhadas o respiro é de 8px (`spacingStackXxs`) e o indicator fica alinhado à esquerda.
+
+A prop não tem efeito quando `indicator` não é informado.
+
+```jsx
+<Component
+  title="Limite de compra adicional"
+  description="Pague em até 3x"
+  indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+  indicatorPosition="above"
+/>
+```

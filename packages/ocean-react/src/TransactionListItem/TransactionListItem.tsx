@@ -40,6 +40,12 @@ export type TransactionListItemProps = {
    */
   subItens?: React.ReactElement;
   withChevron?: boolean;
+  /**
+   * Vira o chevron para a esquerda, com transição. Use enquanto a drawer que o
+   * item abre ao lado estiver aberta.
+   * @default false
+   */
+  chevronFlipped?: boolean;
   readOnly?: boolean;
   isLoading?: boolean;
   /**
@@ -68,6 +74,7 @@ const TransactionListItem = React.forwardRef<
       subItens,
       className,
       withChevron,
+      chevronFlipped = false,
       readOnly,
       isLoading,
       isInverted = false,
@@ -121,7 +128,12 @@ const TransactionListItem = React.forwardRef<
           )}
         </div>
         {withChevron && !readOnly && (
-          <span className="ods-transaction-list-item__chevron">
+          <span
+            className={classNames(
+              'ods-transaction-list-item__chevron',
+              chevronFlipped && 'ods-transaction-list-item__chevron--flipped'
+            )}
+          >
             <ChevronRight size={20} />
           </span>
         )}

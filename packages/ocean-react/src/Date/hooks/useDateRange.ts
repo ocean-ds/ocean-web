@@ -25,6 +25,7 @@ export default function useDatePicker({
   startsToday,
   locale,
   disabledDaysMessage,
+  error,
 }: IDatePickerProps): IDatePickerReturn {
   const localeOption = locale || ptBr;
   const localeDateFormat =
@@ -168,6 +169,16 @@ export default function useDatePicker({
       }
     }
   };
+
+  const hasError =
+    typeof error === 'object' ? !!(error.from || error.to) : !!error;
+
+  React.useEffect(() => {
+    if (hasError) {
+      setShowDayPicker(false);
+      setCurrentField('');
+    }
+  }, [hasError]);
 
   const handleCloseByOutside = () => {
     if (showDayPicker) {

@@ -384,4 +384,75 @@ describe('CardListReadOnly', () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  describe('indicatorPosition', () => {
+    const indicator = <Tag type="positive">3x sem acréscimo</Tag>;
+
+    test('CT-1: keeps the current wrappers when the prop is omitted', () => {
+      render(<ListReadOnly title="Title" indicator={indicator} />);
+
+      const tag = screen.getByText('3x sem acréscimo');
+
+      expect(tag.closest('.ods-list-readonly__indicator')).toBeInTheDocument();
+      expect(tag.closest('.ods-list-readonly__trailing')).toBeInTheDocument();
+      expect(tag.closest('.ods-content-list__indicator')).toBeNull();
+    });
+
+    test('CT-4: explicit inline renders the same tree as the default', () => {
+      const { asFragment: defaultTree } = render(
+        <ListReadOnly title="Title" indicator={indicator} />
+      );
+      const { asFragment: inlineTree } = render(
+        <ListReadOnly
+          title="Title"
+          indicator={indicator}
+          indicatorPosition="inline"
+        />
+      );
+
+      expect(inlineTree()).toEqual(defaultTree());
+    });
+
+    test('CT-7: drops the trailing wrapper and stacks above', () => {
+      render(
+        <ListReadOnly
+          title="Title"
+          indicator={indicator}
+          indicatorPosition="above"
+        />
+      );
+
+      const tag = screen.getByText('3x sem acréscimo');
+
+      expect(tag.closest('.ods-list-readonly__trailing')).toBeNull();
+      expect(
+        tag.closest('.ods-content-list__indicator--above')
+      ).toBeInTheDocument();
+    });
+
+    test('CT-3: renders below as the last child of the content column', () => {
+      render(
+        <ListReadOnly
+          title="Title"
+          caption="Caption"
+          indicator={indicator}
+          indicatorPosition="below"
+        />
+      );
+
+      const content = screen.getByText('Title').closest('.ods-content-list');
+
+      expect(content?.lastElementChild).toHaveClass(
+        'ods-content-list__indicator--below'
+      );
+    });
+
+    test('CT-11: the prop is inert without an indicator', () => {
+      render(<ListReadOnly title="Title" indicatorPosition="above" />);
+
+      const content = screen.getByText('Title').closest('.ods-content-list');
+
+      expect(content?.children).toHaveLength(1);
+    });
+  });
 });

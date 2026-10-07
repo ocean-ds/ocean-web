@@ -12,6 +12,7 @@ interface IMultipleChoiceOptions {
   clearLabel: string;
   filterLabel: string;
   multiChoice: boolean;
+  singleSelection?: boolean;
   onSelect: (label: string, value: string) => void;
   clearOptions: () => void;
   filterOptions: () => void;
@@ -29,6 +30,7 @@ const MultipleChoiceOptions: React.FunctionComponent<
   clearLabel,
   filterLabel,
   multiChoice,
+  singleSelection = false,
   onSelect,
   clearOptions,
   filterOptions,
@@ -66,7 +68,7 @@ const MultipleChoiceOptions: React.FunctionComponent<
     });
   };
 
-  if (!multiChoice) {
+  if (!multiChoice && !singleSelection) {
     return null;
   }
 
@@ -102,7 +104,7 @@ const MultipleChoiceOptions: React.FunctionComponent<
             <X />
           </IconButton>
         </div>
-        {selectAllOptions && (
+        {selectAllOptions && !singleSelection && (
           <div className="ods-chips__options__select-all">
             <ListSelectable
               status="highlight"
@@ -129,6 +131,14 @@ const MultipleChoiceOptions: React.FunctionComponent<
                 )
               : selectedOptions.value === value;
 
+            const selectionInput = {
+              id: `chips-option-${value}`,
+              checked: isSelected,
+              onClick: () => onSelect(label, value),
+              readOnly: true,
+              disabled,
+            };
+
             return (
               <div key={value}>
                 <ListSelectable
@@ -138,14 +148,15 @@ const MultipleChoiceOptions: React.FunctionComponent<
                   title={label}
                   showDivider={index !== options.length - 1}
                   platform={isMobile ? 'app' : 'web'}
-                  checkbox={{
-                    id: `chips-option-${value}`,
-                    checked: isSelected,
-                    onClick: () => onSelect(label, value),
-                    readOnly: true,
-                    disabled,
-                    indeterminate: indeterminate || false,
-                  }}
+                  radio={singleSelection ? selectionInput : undefined}
+                  checkbox={
+                    singleSelection
+                      ? undefined
+                      : {
+                          ...selectionInput,
+                          indeterminate: indeterminate || false,
+                        }
+                  }
                 />
               </div>
             );

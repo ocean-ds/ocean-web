@@ -162,6 +162,7 @@ Quando `isSelectableDisabled` é fornecida, o componente oculta os controles de 
 | `checkbox`                 | `CheckboxProps`                                                                                            | -           | Props do componente Checkbox para seleção múltipla                                       |
 | `radio`                    | `RadioProps`                                                                                               | -           | Props do componente Radio para seleção única                                             |
 | `indicator`                | `ReactNode`                                                                                                | -           | Elemento visual indicador (Badge, Tag, etc.)                                             |
+| `indicatorPosition`        | `'inline' \| 'above' \| 'below'`                                                                           | `'inline'`  | Posição do `indicator` em relação ao texto                                               |
 | `isSelectableDisabled`     | `boolean`                                                                                                  | `false`     | Quando `true`, oculta os controles de seleção e renderiza o conteúdo como `ListReadOnly` |
 | `highlight`                | `{ caption: string \| ReactNode; backgroundColor?: string; captionColor?: string }`                        | -           | Exibe área de destaque com texto ou conteúdo na base do card                             |
 | `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                                                   |
@@ -196,3 +197,28 @@ Quando `isSelectableDisabled` é fornecida, o componente oculta os controles de 
 - [Radio](/components/radio)
 - [Badge](/components/badge)
 - [Tag](/components/tag)
+
+## Posição do indicator
+
+A prop `indicatorPosition` define onde o `indicator` é renderizado em relação ao texto:
+
+| Valor              | Comportamento                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `inline` (default) | Mantém a posição atual do componente — mesma linha do texto, no fim do bloco de conteúdo. Nenhuma tela em produção muda. |
+| `above`            | Empilha o indicator **acima do título**, dentro do bloco de conteúdo.                                                    |
+| `below`            | Empilha o indicator **abaixo do texto**, dentro do bloco de conteúdo.                                                    |
+
+O indicator pertence ao bloco de conteúdo, nunca ao slot do controle: em qualquer posição o
+chevron, o menu, o radio/checkbox e o `amountDetails` permanecem onde estão. Nas posições
+empilhadas o respiro é de 8px (`spacingStackXxs`) e o indicator fica alinhado à esquerda.
+
+A prop não tem efeito quando `indicator` não é informado.
+
+```jsx
+<Component
+  title="Limite de compra adicional"
+  description="Pague em até 3x"
+  indicator={<Tag type="positive">3x sem acréscimo</Tag>}
+  indicatorPosition="above"
+/>
+```

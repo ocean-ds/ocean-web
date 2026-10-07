@@ -113,14 +113,15 @@ Exemplo de IconButton com funcionalidade interativa:
 
 ### Props
 
-| Prop        | Tipo                          | Padrão     | Descrição                                   |
-| ----------- | ----------------------------- | ---------- | ------------------------------------------- |
-| `children`  | `ReactNode`                   | -          | Ícone a ser exibido no botão                |
-| `component` | `ElementType`                 | `'button'` | Elemento HTML ou componente usado como root |
-| `size`      | `'sm' \| 'md'`                | `'md'`     | Tamanho do botão                            |
-| `disabled`  | `boolean`                     | `false`    | Desabilita o botão                          |
-| `onClick`   | `(event: MouseEvent) => void` | -          | Função chamada ao clicar no botão           |
-| `className` | `string`                      | -          | Classes CSS adicionais                      |
+| Prop        | Tipo                          | Padrão      | Descrição                                                                 |
+| ----------- | ----------------------------- | ----------- | ------------------------------------------------------------------------- |
+| `children`  | `ReactNode`                   | -           | Ícone a ser exibido no botão                                              |
+| `component` | `ElementType`                 | `'button'`  | Elemento HTML ou componente usado como root                               |
+| `size`      | `'sm' \| 'md'`                | `'md'`      | Tamanho do botão                                                          |
+| `color`     | `'default' \| 'light'`        | `'default'` | `light` usa a cor clara (`$color-interface-dark-up`), como no X da Drawer |
+| `disabled`  | `boolean`                     | `false`     | Desabilita o botão                                                        |
+| `onClick`   | `(event: MouseEvent) => void` | -           | Função chamada ao clicar no botão                                         |
+| `className` | `string`                      | -           | Classes CSS adicionais                                                    |
 
 ### Classes CSS
 
