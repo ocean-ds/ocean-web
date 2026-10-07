@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import { Placeholder, PlaceholderOutline } from '@useblu/ocean-icons-react';
 import TransactionListExpandable, {
   TransactionListExpandableProps,
 } from '../TransactionListExpandable';
 import Tag from '../../Tag';
 import List from '../../List';
 import ListAction from '../../ListAction';
+import TransactionListChildAction from '../../TransactionListChildAction';
 import placeholderIcon from '../assets/placeholder.svg';
 
 export type StateOption = 'Default' | 'Hover' | 'Loading';
@@ -312,4 +313,47 @@ export const AmountTypes: Story = {
       />
     </List>
   ),
+};
+
+const FamilyExpandable = () => {
+  const [expanded, setExpanded] = React.useState(true);
+
+  return (
+    <div style={{ width: '360px' }}>
+      <TransactionListExpandable
+        title="Title"
+        description="Description"
+        caption="Caption"
+        amount="R$ 0,00"
+        amountSize="md"
+        amountTag={{ label: 'Label' }}
+        additionalData="Additional data"
+        icon={<PlaceholderOutline size={24} />}
+        showDivider
+        expanded={expanded}
+        onToggle={setExpanded}
+        supportingText="Additional information"
+      >
+        {(['first', 'middle', 'last'] as const).map((position) => (
+          <TransactionListChildAction
+            key={position}
+            title="Title"
+            description="Description"
+            caption="Caption"
+            amount="R$ 0,00"
+            amountTag={{ label: 'Label' }}
+            additionalData="Additional data"
+            icon={<Placeholder size={16} />}
+            position={position}
+          />
+        ))}
+      </TransactionListExpandable>
+    </div>
+  );
+};
+
+export const WithFamilyChildren: Story = {
+  name: 'With Transaction List children',
+  parameters: { controls: { disable: true } },
+  render: () => <FamilyExpandable />,
 };

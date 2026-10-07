@@ -3,9 +3,12 @@ import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
 import ContentList, {
   ContentListProps,
+  ContentListSize,
 } from '../_shared/components/ContentList';
 import AmountDetails, {
   AmountDetailsProps,
+  AmountDetailsSize,
+  AmountDetailsTag,
 } from '../_shared/components/AmountDetails';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
@@ -19,6 +22,11 @@ export type TransactionListExpandableProps = {
    */
   description?: string;
   /**
+   * Original text shown struck-through before the emphasized text when
+   * `status="strikethrough"`.
+   */
+  strikethroughDescription?: string;
+  /**
    * Caption or tertiary text.
    */
   caption?: string;
@@ -27,9 +35,29 @@ export type TransactionListExpandableProps = {
    */
   amount: string;
   /**
-   * Amount visual type (default, positive, negative).
+   * Amount visual type (default, positive, negative, strikethrough, strikethrough-neutral).
    */
   amountType?: AmountDetailsProps['type'];
+  /**
+   * Original amount rendered struck-through before `amount`
+   * (amount types `strikethrough` and `strikethrough-neutral`).
+   */
+  strikethroughAmount?: string;
+  /**
+   * Typography scale of the content block (Transaction List family). When omitted, the
+   * current rendering is kept.
+   */
+  contentSize?: ContentListSize;
+  /**
+   * Size of the amount block (Transaction List family): `md` value 16 / tag Medium,
+   * `sm` value 14 / tag Small. When omitted, the current rendering is kept.
+   */
+  amountSize?: AmountDetailsSize;
+  /**
+   * Tag shown below the amount, sized from `amountSize` (Medium when `amountSize` is
+   * omitted). Takes precedence over `amountIndicator`.
+   */
+  amountTag?: AmountDetailsTag;
   /**
    * Indicator/tag shown next to the amount (e.g. Tag with status).
    */
@@ -77,7 +105,8 @@ export type TransactionListExpandableProps = {
    */
   onToggle?: (expanded: boolean) => void;
   /**
-   * Content to display when expanded (e.g. ListAction as child transaction list actions).
+   * Content to display when expanded — the child rows
+   * (`TransactionListChildAction` / `TransactionListChildReadOnly`).
    */
   children?: ReactNode;
   /**
@@ -90,8 +119,8 @@ export type TransactionListExpandableProps = {
    */
   disabled?: boolean;
   /**
-   * If true, shows a divider between the main row and the expanded content.
-   * @default true (per Figma)
+   * If true, shows a divider below the item (below the expanded content when open).
+   * @default false
    */
   showDivider?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
@@ -104,9 +133,14 @@ const TransactionListExpandable = React.forwardRef<
     {
       title,
       description,
+      strikethroughDescription,
       caption,
       amount,
       amountType = 'default',
+      strikethroughAmount,
+      contentSize,
+      amountSize,
+      amountTag,
       amountIndicator,
       showAmountIndicator = true,
       additionalData,
@@ -163,15 +197,20 @@ const TransactionListExpandable = React.forwardRef<
           <ContentList
             title={title}
             description={description}
+            strikethroughDescription={strikethroughDescription}
             caption={caption}
             inverted={inverted}
             type={status}
+            size={contentSize}
           />
           <AmountDetails
             amount={amount}
             type={amountType}
+            size={amountSize}
+            strikethroughAmount={strikethroughAmount}
+            tag={amountTag}
             indicator={amountIndicator}
-            indicatorSize="medium"
+            indicatorSize={amountSize ? undefined : 'medium'}
             showIndicator={showAmountIndicator}
             additionalData={additionalData}
             showAdditionalData={Boolean(additionalData)}

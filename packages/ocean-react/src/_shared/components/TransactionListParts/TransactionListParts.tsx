@@ -1,0 +1,259 @@
+import React, { ReactElement, ReactNode } from 'react';
+import classNames from 'classnames';
+import { ChevronRight } from '@useblu/ocean-icons-react';
+import ContentList, { ContentListProps, ContentListSize } from '../ContentList';
+import AmountDetails, {
+  AmountDetailsProps,
+  AmountDetailsSize,
+  AmountDetailsTag,
+} from '../AmountDetails';
+import SkeletonBar from '../SkeletonBar';
+
+/**
+ * Props shared by every component of the Transaction List family
+ * (Figma: Transaction List Read Only / Action / Selectable and the child rows).
+ */
+export type TransactionListBaseProps = {
+  /**
+   * Primary text. With `inverted` (default) it is the small line above the description.
+   */
+  title: string;
+  /**
+   * Secondary text.
+   */
+  description?: string;
+  /**
+   * Original text shown struck-through before the emphasized text when
+   * `status="strikethrough"`.
+   */
+  strikethroughDescription?: string;
+  /**
+   * Tertiary text (captionBold).
+   */
+  caption?: string;
+  /**
+   * Inverts title and description (Figma `Inverted=Yes`).
+   * @default true
+   */
+  inverted?: boolean;
+  /**
+   * Type of the content block.
+   * @default 'default'
+   */
+  status?: ContentListProps['type'];
+  /**
+   * Typography scale of the content block, independent from `amountSize`.
+   */
+  contentSize?: ContentListSize;
+  /**
+   * Amount shown on the right (e.g. "R$ 0,00").
+   */
+  amount: string;
+  /**
+   * Type of the amount: default, positive, negative, inactive, strikethrough or
+   * strikethrough-neutral.
+   * @default 'default'
+   */
+  amountType?: AmountDetailsProps['type'];
+  /**
+   * Size of the amount block, independent from `contentSize`. The tag size follows it
+   * (`md` → Medium, `sm` → Small).
+   */
+  amountSize?: AmountDetailsSize;
+  /**
+   * Original amount rendered struck-through before `amount` (amount types `strikethrough`
+   * and `strikethrough-neutral`).
+   */
+  strikethroughAmount?: string;
+  /**
+   * Tag shown below the amount. Its size follows `amountSize` and it turns neutral when the
+   * item is disabled.
+   */
+  amountTag?: AmountDetailsTag;
+  /**
+   * Custom indicator shown below the amount when `amountTag` is not enough.
+   */
+  amountIndicator?: ReactNode;
+  /**
+   * Whether to show the amount tag/indicator.
+   * @default true
+   */
+  showAmountIndicator?: boolean;
+  /**
+   * Additional data shown below the amount (captionBold).
+   */
+  additionalData?: string;
+  /**
+   * Leading icon.
+   */
+  icon?: ReactNode;
+  /**
+   * Disabled state: content and amount use the inactive type and the tag turns neutral.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * Shows the skeleton instead of the content.
+   * @default false
+   */
+  loading?: boolean;
+};
+
+type TransactionListContentProps = Omit<
+  TransactionListBaseProps,
+  'icon' | 'loading' | 'contentSize' | 'amountSize'
+> & {
+  // Resolved by the host component (each one has its own defaults).
+  inverted: boolean;
+  status: NonNullable<TransactionListBaseProps['status']>;
+  contentSize: ContentListSize;
+  amountType: NonNullable<TransactionListBaseProps['amountType']>;
+  amountSize: AmountDetailsSize;
+  showAmountIndicator: boolean;
+  disabled: boolean;
+};
+
+export const TransactionListContent = ({
+  title,
+  description,
+  strikethroughDescription,
+  caption,
+  inverted,
+  status,
+  contentSize,
+  amount,
+  amountType,
+  amountSize,
+  strikethroughAmount,
+  amountTag,
+  amountIndicator,
+  showAmountIndicator,
+  additionalData,
+  disabled,
+}: TransactionListContentProps): ReactElement => (
+  <div className="ods-transaction-list__content">
+    <ContentList
+      title={title}
+      description={description}
+      strikethroughDescription={strikethroughDescription}
+      caption={caption}
+      inverted={inverted}
+      type={disabled ? 'inactive' : status}
+      size={contentSize}
+    />
+    <AmountDetails
+      amount={amount}
+      type={disabled ? 'inactive' : amountType}
+      size={amountSize}
+      strikethroughAmount={strikethroughAmount}
+      tag={amountTag}
+      indicator={amountIndicator}
+      showIndicator={showAmountIndicator}
+      additionalData={additionalData}
+      showAdditionalData={Boolean(additionalData)}
+    />
+  </div>
+);
+
+export const TransactionListIcon = ({
+  icon,
+  disabled,
+}: {
+  icon: ReactNode;
+  disabled: boolean;
+}): ReactElement => (
+  <div
+    className={classNames('ods-transaction-list__icon', {
+      'ods-transaction-list__icon--inactive': disabled,
+    })}
+  >
+    {icon}
+  </div>
+);
+
+export const TransactionListChevron = (): ReactElement => (
+  <div className="ods-transaction-list__trailing">
+    <ChevronRight size={20} className="ods-transaction-list__chevron" />
+  </div>
+);
+
+export const TransactionListSkeleton = ({
+  showLeading,
+}: {
+  showLeading: boolean;
+}): ReactElement => (
+  <>
+    {showLeading && (
+      <div className="ods-transaction-list__icon" aria-hidden>
+        <SkeletonBar width="24px" height="24px" />
+      </div>
+    )}
+    <div
+      className="ods-transaction-list__content ods-transaction-list__skeleton"
+      data-testid="transaction-list-skeleton"
+    >
+      <div className="ods-transaction-list__skeleton-text">
+        <SkeletonBar width="33%" height="16px" />
+        <SkeletonBar width="100%" height="16px" />
+      </div>
+      <div className="ods-transaction-list__skeleton-amount">
+        <SkeletonBar width="100%" height="16px" />
+        <SkeletonBar width="100%" height="16px" />
+      </div>
+    </div>
+  </>
+);
+
+export const TransactionListDivider = (): ReactElement => (
+  <div
+    className="ods-transaction-list__divider"
+    data-testid="transaction-list-divider"
+  />
+);
+
+/**
+ * Position of a child row on the timeline that links the rows of an expanded item.
+ */
+export type TransactionListChildPosition =
+  | 'standalone'
+  | 'first'
+  | 'middle'
+  | 'last';
+
+export const TransactionListTimeline = ({
+  position,
+  icon,
+  disabled,
+}: {
+  position: TransactionListChildPosition;
+  icon?: ReactNode;
+  disabled: boolean;
+}): ReactElement => {
+  const showLineAbove = position === 'middle' || position === 'last';
+  const showLineBelow = position === 'first' || position === 'middle';
+
+  return (
+    <div
+      className="ods-transaction-list__timeline"
+      data-testid="transaction-list-timeline"
+    >
+      <span
+        className={classNames('ods-transaction-list__timeline-line', {
+          'ods-transaction-list__timeline-line--visible': showLineAbove,
+        })}
+      />
+      <div
+        className={classNames('ods-transaction-list__timeline-icon', {
+          'ods-transaction-list__timeline-icon--inactive': disabled,
+        })}
+      >
+        {icon}
+      </div>
+      <span
+        className={classNames('ods-transaction-list__timeline-line', {
+          'ods-transaction-list__timeline-line--visible': showLineBelow,
+        })}
+      />
+    </div>
+  );
+};
