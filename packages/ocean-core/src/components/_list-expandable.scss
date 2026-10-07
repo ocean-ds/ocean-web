@@ -43,13 +43,15 @@
       flex-shrink: 0;
     }
 
-    .ods-amount-details__amount:not(.ods-amount-details__amount--positive),
-    .ods-amount-details__amount-sign {
+    // Legacy amount (no `size`): 16 / Interface Dark Deep. A sized amount brings its own
+    // scale and colors (`--sized` modifiers).
+    .ods-amount-details__amount:not(.ods-amount-details__amount--positive):not(.ods-amount-details__amount--sized),
+    .ods-amount-details__amount-sign:not(.ods-amount-details__amount-sign--sized) {
       color: $color-interface-dark-deep;
     }
 
-    .ods-amount-details__amount,
-    .ods-amount-details__amount-sign {
+    .ods-amount-details__amount:not(.ods-amount-details__amount--sized),
+    .ods-amount-details__amount-sign:not(.ods-amount-details__amount-sign--sized) {
       font-size: $font-size-xs;
     }
   }
@@ -65,11 +67,13 @@
       padding: $spacing-inline-xxxs;
     }
 
-    .ods-typography__paragraph {
+    // `ods-content-list__text` marks the sized ContentList (Transaction List children),
+    // which already carries its own scale.
+    .ods-typography__paragraph:not(.ods-content-list__text) {
       font-size: $font-size-xxs;
     }
 
-    .ods-typography__description {
+    .ods-typography__description:not(.ods-content-list__text) {
       font-size: $font-size-xxxs;
       font-weight: $font-weight-medium;
     }

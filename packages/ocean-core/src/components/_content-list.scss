@@ -66,3 +66,54 @@
     text-decoration: line-through;
   }
 }
+
+// Size `sm` (compact scale, former "Child" typography). Only the `sm` branch of ContentList
+// renders these hooks, so `md` (default) is untouched. Selectors are doubled
+// (`.ods-content-list.ods-content-list--sm`) to win over host overrides that target the
+// generic typography classes inside lists.
+.ods-content-list.ods-content-list--sm {
+  .ods-content-list__emphasis {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-regular;
+
+    &--inactive {
+      color: $color-interface-dark-up;
+    }
+
+    &--positive,
+    &--strikethrough {
+      color: $color-status-positive-deep;
+    }
+
+    &--warning {
+      color: $color-status-warning-deep;
+    }
+
+    &--highlight {
+      font-weight: $font-weight-bold;
+    }
+
+    &--highlight-lead {
+      font-size: $font-size-xs;
+    }
+  }
+
+  .ods-content-list__support {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+    margin-top: 0;
+
+    &.ods-typography__caption {
+      font-weight: $font-weight-regular;
+    }
+
+    &.ods-typography__captionbold {
+      font-weight: $font-weight-medium;
+    }
+
+    &--inactive {
+      color: $color-interface-dark-up;
+    }
+  }
+}

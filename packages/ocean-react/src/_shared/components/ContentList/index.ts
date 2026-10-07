@@ -1,2 +1,6 @@
 export { default } from './ContentList';
-export type { ContentListProps, IndicatorPosition } from './ContentList';
+export type {
+  ContentListProps,
+  ContentListSize,
+  IndicatorPosition,
+} from './ContentList';

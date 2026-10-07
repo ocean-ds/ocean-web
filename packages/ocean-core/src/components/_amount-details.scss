@@ -59,3 +59,71 @@
     }
   }
 }
+
+// Struck-through original value (types `strikethrough` / `strikethrough-neutral`).
+.ods-amount-details__amount-row--strikethrough {
+  align-items: baseline;
+}
+
+.ods-amount-details__strikethrough {
+  color: $color-interface-dark-up;
+  font-family: $font-family-base;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-comfy;
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+
+.ods-amount-details__amount--strikethrough {
+  color: $color-status-positive-deep;
+}
+
+.ods-amount-details__amount--strikethrough-neutral {
+  color: $color-interface-dark-deep;
+}
+
+// Sized variants (Figma `_Content List / Amount` › Size). Only rendered when `size` is passed,
+// so the original block (no size) keeps its rendering.
+.ods-amount-details--md,
+.ods-amount-details--sm {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign {
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-medium;
+  }
+
+  .ods-amount-details__amount--positive,
+  .ods-amount-details__amount--strikethrough {
+    color: $color-status-positive-deep;
+  }
+
+  .ods-amount-details__caption {
+    color: $color-interface-dark-down;
+  }
+}
+
+.ods-amount-details--md {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign,
+  .ods-amount-details__strikethrough {
+    font-size: $font-size-xs;
+  }
+}
+
+.ods-amount-details--sm {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign,
+  .ods-amount-details__strikethrough {
+    font-size: $font-size-xxs;
+  }
+}
+
+// Disabled comes from Type=Inactive (never a forced opacity).
+.ods-amount-details--inactive {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign,
+  .ods-amount-details__caption {
+    color: $color-interface-dark-up;
+  }
+}
