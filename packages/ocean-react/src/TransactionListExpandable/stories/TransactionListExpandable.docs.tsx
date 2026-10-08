@@ -596,14 +596,14 @@ const Accessibility = () => (
           topic: 'Verificação automática',
           content: (
             <>
-              axe (painel Accessibility) em 08/10: {c('States')} 42 e{' '}
-              {c('Sizes × amount types')} 22 violações — role=&quot;Tag&quot;
-              inválido no componente Tag; contraste de tokens (etiqueta positiva
+              axe (painel Accessibility) em 08/10, depois da correção do Tag:{' '}
+              {c('States')} 33 e {c('Sizes × amount types')} 14 violações —
+              todas de contraste de cor: sem token disponível (etiqueta positiva
               2,9:1 e de aviso 2,2:1; valor verde 3,0:1, 2,8:1 no hover; riscado
-              e rodapé em Interface/Dark/Up 2,2:1); e o desabilitado por
+              e rodapé em Interface/Dark/Up 2,2:1) e o desabilitado por
               opacidade 0,6 da Expandable no web (comportamento anterior,
-              mantido para as telas no ar), que baixa o contraste de todos os
-              textos. Ver o painel Accessibility de cada story.
+              mantido para as telas no ar). Ver o painel Accessibility de cada
+              story.
             </>
           ),
         },

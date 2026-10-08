@@ -527,12 +527,11 @@ const Accessibility = () => (
           topic: 'Verificação automática',
           content: (
             <>
-              axe (painel Accessibility) em 08/10: {c('Timeline')} 16,{' '}
-              {c('States')} 15 e {c('Icon colors')} 18 violações — todas de fora
-              da linha: role=&quot;Tag&quot; inválido no componente Tag e
-              contraste da etiqueta positiva (2,9:1). O nome do botão carregando
-              foi corrigido na família. Ver o painel Accessibility de cada
-              story.
+              axe (painel Accessibility) em 08/10, depois da correção do Tag e
+              do nome do botão carregando: {c('Timeline')} 8, {c('States')} 6 e{' '}
+              {c('Icon colors')} 8 violações — todas de contraste da etiqueta
+              positiva (2,9:1), sem token disponível. Ver o painel Accessibility
+              de cada story.
             </>
           ),
         },

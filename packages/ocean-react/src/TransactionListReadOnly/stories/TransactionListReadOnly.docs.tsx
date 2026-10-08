@@ -763,13 +763,12 @@ const Accessibility = () => (
           topic: 'Verificação automática',
           content: (
             <>
-              axe (painel Accessibility) em 08/10: {c('States × sizes')} 12,{' '}
-              {c('Sizes × amount types')} 28 e {c('Icon colors')} 21 violações.
-              Todas vêm de fora da linha: {c('role="Tag"')} inválido no
-              componente Tag e contraste dos tokens (Status/Positive/Deep 3,0:1
-              no branco e 2,9:1 na etiqueta; riscado Interface/Dark/Up 2,2:1).
-              Pendente de decisão de design. Ver o painel Accessibility de cada
-              story.
+              axe (painel Accessibility) em 08/10, depois da correção do Tag:{' '}
+              {c('States × sizes')} 4, {c('Sizes × amount types')} 18,{' '}
+              {c('Icon colors')} 9 e {c('Density')} 4 violações — todas de
+              contraste de cor, sem token disponível (etiqueta positiva 2,9:1;
+              valor verde 3,0:1; riscado Interface/Dark/Up 2,2:1). Ver o painel
+              Accessibility de cada story.
             </>
           ),
         },

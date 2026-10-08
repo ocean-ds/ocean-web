@@ -547,8 +547,8 @@ const Accessibility = () => (
             <>
               axe (painel Accessibility) em 08/10: {c('States · checkbox')} 0,{' '}
               {c('States · radio')} 0 e {c('Sizes × amount types')} 6 violações
-              — as 6 são contraste de tokens (valor verde 3,0:1; riscado 2,2:1).
-              Ver o painel Accessibility de cada story.
+              — todas de contraste de cor, sem token disponível (valor verde
+              3,0:1; riscado 2,2:1). Ver o painel Accessibility de cada story.
             </>
           ),
         },
