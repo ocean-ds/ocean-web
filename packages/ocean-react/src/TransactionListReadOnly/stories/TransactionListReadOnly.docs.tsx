@@ -92,7 +92,7 @@ export const AI_RULES: AiRules = {
   ],
   defaults: [
     'inverted=true · contentSize="md" · amountSize="md" · status="default" · amountType="default"',
-    'iconColor="default" · showDivider=true · showAmountIndicator=true',
+    'iconColor="default" · density="default" · showDivider=true · showAmountIndicator=true',
     'amountTag.type="positive" · amountTag.setIconOff=true',
   ],
   childOf: [
@@ -417,6 +417,16 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
           },
           {
             category: 'Aparência',
+            option: c('density'),
+            values: (
+              <>
+                {c('default')} (padding vertical 16) · {c('compact')} (8)
+              </>
+            ),
+            defaultValue: c('default'),
+          },
+          {
+            category: 'Aparência',
             option: c('showDivider'),
             values: (
               <>
@@ -525,12 +535,26 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
       </PreviewCanvas>
     </DocSection>
 
+    <DocSection
+      title="Densidade"
+      intro="default: padding vertical 16 (Spacing/Xs), linha de 94. compact: 8 (Spacing/Xxs), linha de 78. Horizontal, espaço entre elementos e divisor não mudam."
+    >
+      <PreviewCanvas
+        width="auto"
+        code={`<TransactionListReadOnly {...props} />
+<TransactionListReadOnly {...props} density="compact" />`}
+      >
+        <Story of={stories.Density} />
+      </PreviewCanvas>
+    </DocSection>
+
     <DocSection title="Medidas">
       <DocTable
         head={['Medida', 'Valor', 'Token']}
         rows={[
           ['Largura de referência (frame)', '360', '—'],
-          ['Padding da linha', '16', c('Spacing/Xs')],
+          ['Padding da linha (default)', '16', c('Spacing/Xs')],
+          ['Padding vertical (compact)', '8', c('Spacing/Xxs')],
           ['Espaço ícone ↔ conteúdo', '12', c('Spacing/XxsExtra')],
           ['Espaço conteúdo ↔ valor', '8', c('Spacing/Xxs')],
           [

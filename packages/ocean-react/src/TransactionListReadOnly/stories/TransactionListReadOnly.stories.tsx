@@ -69,7 +69,9 @@ const meta: Meta<typeof TransactionListReadOnly> = {
       // Página em abas (protótipo MR-615 T16); as stories são lidas na hora de renderizar.
       page: () => (
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        <TransactionListReadOnlyDocs stories={{ Default, States, Sizes }} />
+        <TransactionListReadOnlyDocs
+          stories={{ Default, States, Sizes, Density }}
+        />
       ),
     },
   },
@@ -91,6 +93,16 @@ const meta: Meta<typeof TransactionListReadOnly> = {
       ),
       control: 'inline-radio',
       options: ['default', 'on-color', 'highlight'],
+    },
+    density: {
+      ...arg(
+        category.appearance,
+        'Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda',
+        "'default' | 'compact'",
+        "'default'"
+      ),
+      control: 'inline-radio',
+      options: ['default', 'compact'],
     },
     showDivider: arg(
       category.appearance,
@@ -391,18 +403,30 @@ export const IconColors: Story = {
   ),
 };
 
+/** Matriz: densidade (default × compact) × estado. */
 export const Density: Story = {
   name: 'Density',
-  parameters: noControls,
+  parameters: { ...snapshot, controls: { disable: true } },
   render: () => (
-    <div style={{ display: 'flex', gap: '24px' }}>
-      {(['default', 'compact'] as const).map((density) => (
-        <div key={density} style={{ width: '360px' }}>
-          <p className="ods-typography ods-typography__caption">{density}</p>
-          <TransactionListReadOnly {...baseArgs} density={density} />
-          <TransactionListReadOnly {...baseArgs} density={density} loading />
-        </div>
-      ))}
-    </div>
+    <Grid
+      columns={['default', 'compact']}
+      rows={(
+        [
+          ['Padrão', {}],
+          ['Carregando', { loading: true }],
+        ] as const
+      ).map(([label, props]) => ({
+        label,
+        cells: (['default', 'compact'] as const).map((density) => (
+          <div key={density}>
+            <TransactionListReadOnly
+              {...baseArgs}
+              {...props}
+              density={density}
+            />
+          </div>
+        )),
+      }))}
+    />
   ),
 };
