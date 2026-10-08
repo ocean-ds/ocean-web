@@ -537,7 +537,7 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
 
     <DocSection
       title="Densidade"
-      intro="default: padding vertical 16 (Spacing/Xs), linha de 94. compact: 8 (Spacing/Xxs), linha de 78. Horizontal, espaço entre elementos e divisor não mudam."
+      intro="default: padding vertical 16 (Spacing/Xs); compact: 8 (Spacing/Xxs) — a linha perde 16. Altura por tamanho (conteúdo + valor com legenda, etiqueta e informação extra): md 100 / compact 84; sm 94 / compact 78; carregando 73 / compact 57. Horizontal, espaço entre elementos e divisor não mudam."
     >
       <PreviewCanvas
         width="auto"
