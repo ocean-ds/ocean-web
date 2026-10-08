@@ -245,4 +245,16 @@ describe('TransactionListAction', () => {
       );
     });
   });
+
+  test('loading button has an accessible name; loaded button uses its content', () => {
+    const { rerender } = render(
+      <TransactionListAction title="Title" amount="R$ 0,00" loading />
+    );
+
+    expect(screen.getByRole('button', { name: 'Carregando' })).toBeDisabled();
+
+    rerender(<TransactionListAction title="Title" amount="R$ 0,00" />);
+
+    expect(screen.getByRole('button', { name: /Title/ })).toBeEnabled();
+  });
 });
