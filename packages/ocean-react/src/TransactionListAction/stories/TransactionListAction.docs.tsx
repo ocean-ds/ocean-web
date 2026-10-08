@@ -566,10 +566,10 @@ const Accessibility = () => (
             <>
               axe (painel Accessibility) em 08/10: {c('Types × states')} 13 e{' '}
               {c('Sizes × amount types')} 28 violações — todas de fora da linha:
-              role=&quot;Tag&quot; inválido no componente Tag e contraste de tokens
-              (etiqueta positiva 2,9:1; valor verde 3,0:1; riscado 2,2:1). O
-              nome do botão carregando foi corrigido na família. Menu/swipe
-              aberto (sem snapshot): 7, todas do InternalListActions
+              role=&quot;Tag&quot; inválido no componente Tag e contraste de
+              tokens (etiqueta positiva 2,9:1; valor verde 3,0:1; riscado
+              2,2:1). O nome do botão carregando foi corrigido na família.
+              Menu/swipe aberto (sem snapshot): 7, todas do InternalListActions
               compartilhado (estrutura de lista do menu e texto branco sobre
               Interface/Dark/Up 2,2:1 e Status/Negative/Pure 3,5:1). Ver o
               painel Accessibility de cada story.

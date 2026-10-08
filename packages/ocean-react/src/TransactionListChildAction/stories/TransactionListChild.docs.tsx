@@ -529,9 +529,10 @@ const Accessibility = () => (
             <>
               axe (painel Accessibility) em 08/10: {c('Timeline')} 16,{' '}
               {c('States')} 15 e {c('Icon colors')} 18 violações — todas de fora
-              da linha: role=&quot;Tag&quot; inválido no componente Tag e contraste da
-              etiqueta positiva (2,9:1). O nome do botão carregando foi
-              corrigido na família. Ver o painel Accessibility de cada story.
+              da linha: role=&quot;Tag&quot; inválido no componente Tag e
+              contraste da etiqueta positiva (2,9:1). O nome do botão carregando
+              foi corrigido na família. Ver o painel Accessibility de cada
+              story.
             </>
           ),
         },
