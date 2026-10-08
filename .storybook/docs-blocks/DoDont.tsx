@@ -16,7 +16,7 @@ export const DoDont = ({
 }): React.ReactElement => (
   <figure className="odoc__card" style={{ margin: 0 }}>
     <div className="odoc__card-example" style={{ background }}>
-      {children}
+      <div style={{ width: 360, maxWidth: '100%' }}>{children}</div>
     </div>
     <figcaption>
       <div className={`odoc__card-label odoc__card-label--${kind}`}>

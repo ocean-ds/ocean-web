@@ -2,7 +2,7 @@
  * Texto: base de conhecimento (ux-knowledge-layer/components/usage-guidelines/
  * transactionlistreadonly.md + padrao-de-documentacao.md); exemplos vivos. */
 import React from 'react';
-import { Canvas, Controls, Source, Unstyled } from '@storybook/blocks';
+import { Controls, Source, Story, Unstyled } from '@storybook/blocks';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import TransactionListReadOnly from '../TransactionListReadOnly';
@@ -18,6 +18,7 @@ import {
   DoDontGrid,
   KeyboardTable,
   MigrationTable,
+  PreviewCanvas,
   TokenTable,
 } from '../../../../../.storybook/docs-blocks';
 
@@ -46,9 +47,9 @@ const Overview = () => (
         Linha de transação só de leitura: mostra o que é a transação e o valor,
         sem toque.
       </p>
-      <div style={{ width: 360, marginBottom: 24 }}>
+      <PreviewCanvas>
         <TransactionListReadOnly {...example} showDivider={false} />
-      </div>
+      </PreviewCanvas>
       <ul className="odoc__list">
         <li>
           <strong>Dois blocos:</strong> conteúdo (título, descrição, legenda) à
@@ -244,11 +245,14 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
         parts={[
           {
             selector: '.ods-transaction-list__icon',
+            side: 'left',
             label: 'Ícone',
             prop: c('icon'),
           },
           {
             selector: '.ods-content-list',
+            side: 'left',
+            anchor: 0.12,
             label: 'Bloco de conteúdo',
             prop: (
               <>
@@ -257,22 +261,26 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
             ),
           },
           {
-            selector: '.ods-amount-details__main',
+            selector: '.ods-amount-details__amount',
+            side: 'right',
             label: 'Bloco de valor',
             prop: c('amount'),
           },
           {
             selector: '.ods-amount-details__indicator',
+            side: 'right',
             label: 'Etiqueta',
             prop: c('amountTag'),
           },
           {
             selector: '.ods-amount-details__caption',
+            side: 'right',
             label: 'Informação extra',
             prop: c('additionalData'),
           },
           {
             selector: '.ods-transaction-list__divider',
+            side: 'bottom',
             label: 'Divisor (recuo 16, multiply)',
             prop: c('showDivider'),
           },
@@ -434,11 +442,15 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
       title="Estados lado a lado"
       intro="Padrão, carregando e desabilitado em cada combinação de tamanho de conteúdo e de valor."
     >
-      <Canvas of={stories.States} />
+      <PreviewCanvas width="auto">
+        <Story of={stories.States} />
+      </PreviewCanvas>
     </DocSection>
 
     <DocSection title="Tamanhos × tipos de valor">
-      <Canvas of={stories.Sizes} />
+      <PreviewCanvas width="auto">
+        <Story of={stories.Sizes} />
+      </PreviewCanvas>
     </DocSection>
 
     <DocSection title="Medidas">
@@ -497,10 +509,6 @@ const Guidelines = () => (
             'Child Read Only / Child Action',
           ],
           ['Linha sem valor monetário', c('ListReadOnly')],
-          [
-            'Resumo de pagamento (Pedido · Juros · Total)',
-            'Padrão de resumo / Transaction Footer / Inline Text List Item — fora desta família',
-          ],
         ]}
       />
     </DocSection>
@@ -694,7 +702,9 @@ const Code = ({ stories }: { stories: Record<string, StoryRef> }) => (
       />
     </DocSection>
     <DocSection title="Playground" intro="Todas as propriedades nos controles.">
-      <Canvas of={stories.Default} />
+      <PreviewCanvas compact>
+        <Story of={stories.Default} />
+      </PreviewCanvas>
       <Controls of={stories.Default} />
     </DocSection>
     <DocSection title="Exemplo">
@@ -735,10 +745,12 @@ const TransactionListReadOnlyDocs = ({
   // Unstyled: sem o CSS do Storybook Docs, os componentes vivos saem como no produto.
   <Unstyled>
     <div className="odoc" style={{ maxWidth: 1200 }}>
-      <Typography variant="heading2">Transaction List Read Only</Typography>
-      <p className="odoc__lead" style={{ marginTop: 8 }}>
-        Família Transaction List · substitui o {c('TransactionListItem')}
-      </p>
+      <header className="odoc__header">
+        <Typography variant="heading2">Transaction List Read Only</Typography>
+        <p className="odoc__lead">
+          Família Transaction List · substitui o {c('TransactionListItem')}
+        </p>
+      </header>
       <DocTabs
         tabs={[
           { id: 'overview', label: 'Visão geral', content: <Overview /> },

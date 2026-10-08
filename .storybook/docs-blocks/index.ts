@@ -7,3 +7,4 @@ export * from './ConfigTable';
 export * from './TokenTable';
 export * from './DoDont';
 export * from './AnatomyLegend';
+export * from './PreviewCanvas';

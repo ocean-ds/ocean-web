@@ -58,7 +58,8 @@ const meta: Meta<typeof TransactionListReadOnly> = {
   component: TransactionListReadOnly,
   tags: ['autodocs'],
   parameters: {
-    layout: 'padded',
+    // Playground e matrizes centralizados no canvas (e no Canvas da página de docs).
+    layout: 'centered',
     docs: {
       // Página em abas (protótipo MR-615 T16); as stories são lidas na hora de renderizar.
       page: () => (

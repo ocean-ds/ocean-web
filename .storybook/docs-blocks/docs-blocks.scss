@@ -65,6 +65,36 @@
     line-height: $line-height-comfy;
     margin: 0 0 $spacing-stack-xs;
     padding-left: $spacing-inline-sm;
+
+    li + li {
+      margin-top: $spacing-stack-xxs;
+    }
+  }
+
+  &__header {
+    margin-bottom: $spacing-stack-md;
+
+    .odoc__lead {
+      margin-top: $spacing-stack-xxs;
+    }
+  }
+
+  // Moldura dos exemplos vivos: centralizado, respiro grande em cima e embaixo.
+  &__canvas {
+    align-items: center;
+    background: $color-interface-light-pure;
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-md;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing-stack-xl;
+    padding: $spacing-stack-xxl $spacing-inline-sm;
+    width: 100%;
+
+    &--compact {
+      margin-bottom: $spacing-stack-sm;
+    }
   }
 
   &__table-wrap {
@@ -133,8 +163,11 @@
   }
 
   &__card-example {
+    align-items: center;
     background: $color-interface-light-pure;
-    padding: $spacing-stack-xs 0;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-stack-xl $spacing-inline-xs;
   }
 
   &__card-label {
@@ -169,17 +202,36 @@
 
   // Anatomia
   &__anatomy {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: $spacing-inline-md;
+    gap: $spacing-inline-lg;
     margin-bottom: $spacing-stack-md;
   }
 
   &__anatomy-stage {
     background: $color-interface-light-pure;
-    border: $border-width-hairline dashed $color-interface-light-deep;
-    padding: $spacing-stack-md $spacing-inline-md;
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-md;
     position: relative;
+  }
+
+  &__anatomy-lines {
+    left: 0;
+    overflow: visible;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+
+    path {
+      fill: none;
+      stroke: $color-brand-primary-pure;
+      stroke-width: 1;
+    }
+
+    circle {
+      fill: $color-brand-primary-pure;
+    }
   }
 
   &__anatomy-marker {
