@@ -2,6 +2,9 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import TransactionListSelectable from '../TransactionListSelectable';
 
+const tagElement = (): HTMLElement =>
+  document.querySelector('.ods-tag') as HTMLElement;
+
 describe('TransactionListSelectable', () => {
   test('renders a checkbox by default (web) and toggles it', () => {
     const onChange = jest.fn();
@@ -62,7 +65,7 @@ describe('TransactionListSelectable', () => {
     expect(screen.getByTestId('transaction-list-selectable')).toHaveClass(
       'ods-transaction-list--disabled'
     );
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--neutral');
+    expect(tagElement()).toHaveClass('ods-tag--neutral');
     expect(
       document.querySelector('.ods-amount-details--inactive')
     ).toBeInTheDocument();

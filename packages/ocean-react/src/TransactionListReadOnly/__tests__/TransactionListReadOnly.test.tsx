@@ -4,6 +4,9 @@ import TransactionListReadOnly from '../TransactionListReadOnly';
 
 const icon = <svg data-testid="icon" />;
 
+const tagElement = (): HTMLElement =>
+  document.querySelector('.ods-tag') as HTMLElement;
+
 describe('TransactionListReadOnly', () => {
   test('renders content, amount, tag, additional data and divider by default', () => {
     render(
@@ -30,7 +33,7 @@ describe('TransactionListReadOnly', () => {
       'ods-typography__paragraph'
     );
     expect(screen.getByText('Additional data')).toBeInTheDocument();
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--medium');
+    expect(tagElement()).toHaveClass('ods-tag--medium');
     expect(
       document.querySelector('.ods-amount-details--md')
     ).toBeInTheDocument();
@@ -91,7 +94,7 @@ describe('TransactionListReadOnly', () => {
     expect(
       document.querySelector('.ods-amount-details--inactive')
     ).toBeInTheDocument();
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--neutral');
+    expect(tagElement()).toHaveClass('ods-tag--neutral');
     expect(
       document.querySelector('.ods-transaction-list__icon--inactive')
     ).toBeInTheDocument();

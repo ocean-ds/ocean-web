@@ -67,7 +67,6 @@ const Tag = React.forwardRef<HTMLDivElement, TagProps>(
     return (
       <div
         ref={ref}
-        role="Tag"
         className={classNames(
           'ods-tag',
           `ods-tag--${size}`,

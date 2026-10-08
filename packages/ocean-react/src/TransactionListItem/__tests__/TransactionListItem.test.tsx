@@ -108,7 +108,6 @@ test('renders default element properly with all possible information', () => {
           >
             <div
               class="ods-tag ods-tag--medium ods-tag--default"
-              role="Tag"
             >
               <div
                 class="ods-tag__content"

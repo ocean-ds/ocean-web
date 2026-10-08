@@ -2,6 +2,9 @@ import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import TransactionListAction from '../TransactionListAction';
 
+const tagElement = (): HTMLElement =>
+  document.querySelector('.ods-tag') as HTMLElement;
+
 describe('TransactionListAction', () => {
   test('renders the chevron and calls onClick once per click', () => {
     const onClick = jest.fn();
@@ -43,7 +46,7 @@ describe('TransactionListAction', () => {
     expect(screen.getByTestId('transaction-list-action')).toHaveClass(
       'ods-transaction-list--disabled'
     );
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--neutral');
+    expect(tagElement()).toHaveClass('ods-tag--neutral');
     expect(
       document.querySelector('.ods-amount-details--inactive')
     ).toBeInTheDocument();
