@@ -11,7 +11,10 @@ import AmountDetails, {
   AmountDetailsTag,
 } from '../_shared/components/AmountDetails';
 import SkeletonBar from '../_shared/components/SkeletonBar';
-import type { TransactionListIconColor } from '../_shared/components/TransactionListParts';
+import type {
+  TransactionListDensity,
+  TransactionListIconColor,
+} from '../_shared/components/TransactionListParts';
 
 export type TransactionListExpandableProps = {
   /**
@@ -104,6 +107,12 @@ export type TransactionListExpandableProps = {
    */
   iconColor?: TransactionListIconColor;
   /**
+   * Vertical density of the row (Transaction List family): \`compact\` sets top and bottom
+   * padding to 8 (the skeleton follows). Children set their own \`density\`.
+   * @default 'default'
+   */
+  density?: TransactionListDensity;
+  /**
    * Whether the content is expanded.
    * @default false
    */
@@ -158,6 +167,7 @@ const TransactionListExpandable = React.forwardRef<
       loading = false,
       icon,
       iconColor,
+      density = 'default',
       expanded = false,
       onToggle,
       children,
@@ -244,6 +254,7 @@ const TransactionListExpandable = React.forwardRef<
         'ods-list-expandable--expanded': expanded,
         'ods-list-expandable--disabled': disabled,
         'ods-list-expandable--loading': loading,
+        'ods-list-expandable--compact': density === 'compact',
         [`ods-list-expandable--${type}`]: type,
       }
     );

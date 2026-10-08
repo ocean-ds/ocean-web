@@ -23,6 +23,12 @@ import SkeletonBar from '../SkeletonBar';
 export type TransactionListIconColor = 'default' | 'on-color' | 'highlight';
 
 /**
+ * Vertical density of the row (decision 08/10): `default` keeps each component's padding;
+ * `compact` sets top and bottom padding to 8 (Spacing/Xxs). Horizontal padding is unchanged.
+ */
+export type TransactionListDensity = 'default' | 'compact';
+
+/**
  * Props shared by every component of the Transaction List family
  * (Figma: Transaction List Read Only / Action / Selectable and the child rows).
  */
@@ -115,11 +121,16 @@ export type TransactionListBaseProps = {
    * @default false
    */
   loading?: boolean;
+  /**
+   * Vertical density: `compact` sets top and bottom padding to 8 (the skeleton follows).
+   * @default 'default'
+   */
+  density?: TransactionListDensity;
 };
 
 type TransactionListContentProps = Omit<
   TransactionListBaseProps,
-  'icon' | 'iconColor' | 'loading' | 'contentSize' | 'amountSize'
+  'icon' | 'iconColor' | 'loading' | 'density' | 'contentSize' | 'amountSize'
 > & {
   // Resolved by the host component (each one has its own defaults).
   inverted: boolean;

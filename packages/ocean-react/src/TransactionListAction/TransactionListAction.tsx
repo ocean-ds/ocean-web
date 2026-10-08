@@ -88,6 +88,7 @@ const TransactionListAction = React.forwardRef<
       iconColor = 'default',
       disabled = false,
       loading = false,
+      density = 'default',
       actionType = 'chevron',
       menuActions = [],
       menuPosition = 'bottom-right',
@@ -169,6 +170,7 @@ const TransactionListAction = React.forwardRef<
           {
             'ods-transaction-list--disabled': disabled,
             'ods-transaction-list--loading': loading,
+            'ods-transaction-list--compact': density === 'compact',
             'ods-transaction-list--swipe-open': isSwipeOpen,
           },
           className

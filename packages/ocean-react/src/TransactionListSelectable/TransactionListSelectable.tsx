@@ -73,6 +73,7 @@ const TransactionListSelectable = React.forwardRef<
       additionalData,
       disabled = false,
       loading = false,
+      density = 'default',
       checkbox,
       radio,
       platform = 'web',
@@ -125,6 +126,7 @@ const TransactionListSelectable = React.forwardRef<
           {
             'ods-transaction-list--disabled': controlDisabled,
             'ods-transaction-list--loading': loading,
+            'ods-transaction-list--compact': density === 'compact',
           },
           className
         )}
