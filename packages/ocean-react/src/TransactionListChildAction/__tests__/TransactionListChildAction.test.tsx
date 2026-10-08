@@ -96,4 +96,12 @@ describe('TransactionListChildAction', () => {
       'custom'
     );
   });
+
+  test('loading button has an accessible name', () => {
+    render(
+      <TransactionListChildAction title="Title" amount="R$ 0,00" loading />
+    );
+
+    expect(screen.getByRole('button', { name: 'Carregando' })).toBeDisabled();
+  });
 });

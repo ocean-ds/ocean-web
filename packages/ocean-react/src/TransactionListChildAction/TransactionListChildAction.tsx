@@ -106,6 +106,8 @@ const TransactionListChildAction = React.forwardRef<
         onClick={disabled || loading ? undefined : onClick}
         disabled={disabled || loading}
         aria-busy={loading || undefined}
+        // While loading the button only holds the skeleton: give it a name (axe button-name).
+        aria-label={loading ? 'Carregando' : undefined}
         {...rest}
       >
         <TransactionListTimeline
