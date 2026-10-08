@@ -118,7 +118,17 @@ export const IconColors: Story = {
   parameters: noControls,
   render: () => (
     <div>
+      <p className="ods-typography ods-typography__caption">
+        sem iconColor (padrão do filho: Interface/Light/Down)
+      </p>
       <TransactionListChildAction {...baseArgs} position="first" />
+      <p className="ods-typography ods-typography__caption">default</p>
+      <TransactionListChildAction
+        {...baseArgs}
+        position="middle"
+        iconColor="default"
+      />
+      <p className="ods-typography ods-typography__caption">on-color</p>
       <div style={{ backgroundColor: colorStatusWarningUp }}>
         <TransactionListChildAction
           {...baseArgs}
@@ -126,11 +136,15 @@ export const IconColors: Story = {
           iconColor="on-color"
         />
       </div>
+      <p className="ods-typography ods-typography__caption">highlight</p>
       <TransactionListChildAction
         {...baseArgs}
         position="middle"
         iconColor="highlight"
       />
+      <p className="ods-typography ods-typography__caption">
+        disabled (sempre Interface/Light/Deep)
+      </p>
       <TransactionListChildReadOnly
         {...baseArgs}
         position="last"

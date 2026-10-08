@@ -175,7 +175,7 @@ export const TransactionListContent = ({
 
 const iconColorClass = (
   block: string,
-  iconColor: TransactionListIconColor,
+  iconColor: TransactionListIconColor | 'child',
   disabled: boolean
 ) =>
   disabled
@@ -258,7 +258,10 @@ export const TransactionListTimeline = ({
 }: {
   position: TransactionListChildPosition;
   icon?: ReactNode;
-  iconColor: TransactionListIconColor;
+  /**
+   * Explicit color; when omitted, child rows use Interface/Light/Down (decision 08/10).
+   */
+  iconColor?: TransactionListIconColor;
   disabled: boolean;
 }): ReactElement => {
   const showLineAbove = position === 'middle' || position === 'last';
@@ -277,7 +280,7 @@ export const TransactionListTimeline = ({
       <div
         className={classNames(
           'ods-transaction-list__timeline-icon',
-          iconColorClass('timeline-icon', iconColor, disabled)
+          iconColorClass('timeline-icon', iconColor ?? 'child', disabled)
         )}
       >
         {icon}

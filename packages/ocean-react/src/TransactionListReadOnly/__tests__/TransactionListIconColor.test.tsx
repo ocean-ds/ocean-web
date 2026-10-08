@@ -11,14 +11,62 @@ const wrapper = () => screen.getByTestId('icon').parentElement as HTMLElement;
 
 describe('iconColor (Transaction List family)', () => {
   test.each([
-    ['ReadOnly', TransactionListReadOnly, 'icon'],
-    ['Action', TransactionListAction, 'icon'],
-    ['ChildAction', TransactionListChildAction, 'timeline-icon'],
-    ['ChildReadOnly', TransactionListChildReadOnly, 'timeline-icon'],
-  ] as const)('%s defaults to the default color', (_, Component, block) => {
+    ['ReadOnly', TransactionListReadOnly],
+    ['Action', TransactionListAction],
+  ] as const)('top-level %s defaults to the default color', (_, Component) => {
     render(<Component title="Title" amount="R$ 0,00" icon={icon} />);
 
-    expect(wrapper()).toHaveClass(`ods-transaction-list__${block}--default`);
+    expect(wrapper()).toHaveClass('ods-transaction-list__icon--default');
+  });
+
+  test.each([
+    ['ChildAction', TransactionListChildAction],
+    ['ChildReadOnly', TransactionListChildReadOnly],
+  ] as const)(
+    '%s without iconColor uses the child color (Light/Down)',
+    (_, Component) => {
+      render(<Component title="Title" amount="R$ 0,00" icon={icon} />);
+
+      expect(wrapper()).toHaveClass(
+        'ods-transaction-list__timeline-icon--child'
+      );
+    }
+  );
+
+  test.each(['default', 'on-color', 'highlight'] as const)(
+    'child explicit %s overrides the child color',
+    (iconColor) => {
+      render(
+        <TransactionListChildAction
+          title="Title"
+          amount="R$ 0,00"
+          icon={icon}
+          iconColor={iconColor}
+        />
+      );
+
+      expect(wrapper()).toHaveClass(
+        `ods-transaction-list__timeline-icon--${iconColor}`
+      );
+      expect(wrapper()).not.toHaveClass(
+        'ods-transaction-list__timeline-icon--child'
+      );
+    }
+  );
+
+  test('child without iconColor and disabled is inactive', () => {
+    render(
+      <TransactionListChildReadOnly
+        title="Title"
+        amount="R$ 0,00"
+        icon={icon}
+        disabled
+      />
+    );
+
+    expect(wrapper()).toHaveClass(
+      'ods-transaction-list__timeline-icon--inactive'
+    );
   });
 
   test.each(['default', 'on-color', 'highlight'] as const)(

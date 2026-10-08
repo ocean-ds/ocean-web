@@ -20,6 +20,12 @@ export type TransactionListChildReadOnlyProps = TransactionListBaseProps & {
    */
   amountSize?: TransactionListBaseProps['amountSize'];
   /**
+   * Color of the timeline icon. When omitted, child rows use Interface/Light/Down; an explicit
+   * `default` / `on-color` / `highlight` overrides it. Disabled always forces
+   * Interface/Light/Deep.
+   */
+  iconColor?: TransactionListBaseProps['iconColor'];
+  /**
    * Position on the timeline: `standalone` (no line), `first` (line below), `middle`
    * (above and below) or `last` (line above).
    * @default 'standalone'
@@ -53,7 +59,7 @@ const TransactionListChildReadOnly = React.forwardRef<
       showAmountIndicator = true,
       additionalData,
       icon,
-      iconColor = 'default',
+      iconColor,
       disabled = false,
       loading = false,
       position = 'standalone',

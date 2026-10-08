@@ -67,6 +67,11 @@
       color: $color-brand-primary-down;
     }
 
+    // Child rows without an explicit `iconColor` (decision 08/10).
+    &--child {
+      color: $color-interface-light-down;
+    }
+
     &--inactive {
       color: $color-interface-light-deep;
     }
