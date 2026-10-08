@@ -23,7 +23,6 @@ test('renders default element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--default"
-      role="Tag"
     >
       <div
         class="ods-tag__content"
@@ -40,7 +39,6 @@ test('renders positive element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--small ods-tag--small__with-icon ods-tag--positive"
-      role="Tag"
     >
       mock-check-circle-outline
       <div
@@ -58,7 +56,6 @@ test('renders neutral-02 element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--neutral-02"
-      role="Tag"
     >
       <div
         class="ods-tag__content"
@@ -83,7 +80,6 @@ test('renders neutral-03 element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--neutral-03"
-      role="Tag"
     >
       <div
         class="ods-tag__content"
@@ -100,7 +96,6 @@ test('renders negative element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--negative"
-      role="Tag"
     >
       mock-x-circle-outline
       <div
@@ -118,7 +113,6 @@ test('renders element with a custom icon', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--default"
-      role="Tag"
     >
       <div
         class="ods-tag__icon"
@@ -140,7 +134,6 @@ test('renders warning element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--warning"
-      role="Tag"
     >
       mock-exclamation-circle-outline
       <div
@@ -158,7 +151,6 @@ test('renders warning element without icon by properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--warning"
-      role="Tag"
     >
       <div
         class="ods-tag__content"
@@ -175,7 +167,6 @@ test('renders highlight element with important element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--highlight__important"
-      role="Tag"
     >
       <div
         class="ods-tag__content"
@@ -192,7 +183,6 @@ test('renders highlight element with neutral element properly', () => {
   expect(document.querySelector('.ods-tag')).toMatchInlineSnapshot(`
     <div
       class="ods-tag ods-tag--medium ods-tag--highlight__neutral"
-      role="Tag"
     >
       <div
         class="ods-tag__content"
@@ -201,4 +191,12 @@ test('renders highlight element with neutral element properly', () => {
       </div>
     </div>
   `);
+});
+
+test('has no invalid ARIA role; the text is read as plain content', () => {
+  setup({ type: 'positive', size: 'small', setIconOff: true });
+
+  const tag = document.querySelector('.ods-tag');
+  expect(tag).not.toHaveAttribute('role');
+  expect(tag).toHaveTextContent('Hello There!');
 });

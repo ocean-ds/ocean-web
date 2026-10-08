@@ -3,6 +3,9 @@ import { render, screen } from '@testing-library/react';
 import TransactionListExpandable from '../TransactionListExpandable';
 import TransactionListChildAction from '../../TransactionListChildAction';
 
+const tagElement = (): HTMLElement =>
+  document.querySelector('.ods-tag') as HTMLElement;
+
 describe('TransactionListExpandable — Transaction List family props', () => {
   test('without the new props keeps the original amount and content markup', () => {
     render(
@@ -61,7 +64,7 @@ describe('TransactionListExpandable — Transaction List family props', () => {
     expect(screen.getByText('R$ 3,99')).toHaveClass(
       'ods-amount-details__strikethrough'
     );
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--small');
+    expect(tagElement()).toHaveClass('ods-tag--small');
   });
 
   test('tag is medium when amountSize is omitted', () => {
@@ -73,7 +76,7 @@ describe('TransactionListExpandable — Transaction List family props', () => {
       />
     );
 
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--medium');
+    expect(tagElement()).toHaveClass('ods-tag--medium');
   });
 
   test('renders the family child rows when expanded', () => {

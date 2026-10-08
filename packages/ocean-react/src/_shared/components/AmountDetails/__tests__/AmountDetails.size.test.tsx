@@ -4,6 +4,9 @@ import AmountDetails from '../AmountDetails';
 
 const root = () => document.querySelector('.ods-amount-details') as HTMLElement;
 
+const tagElement = (): HTMLElement =>
+  document.querySelector('.ods-tag') as HTMLElement;
+
 describe('AmountDetails size, strikethrough and tag', () => {
   test('without size keeps the original markup (no size modifiers)', () => {
     render(<AmountDetails amount="R$ 1,00" indicator={<span>Tag</span>} />);
@@ -101,7 +104,7 @@ describe('AmountDetails size, strikethrough and tag', () => {
       <AmountDetails amount="R$ 1,00" size="md" tag={{ label: 'Label' }} />
     );
 
-    let tag = screen.getByRole('Tag');
+    let tag = tagElement();
     expect(tag).toHaveClass('ods-tag--medium', 'ods-tag--positive');
     expect(tag.querySelector('svg')).not.toBeInTheDocument();
     expect(tag.parentElement).not.toHaveClass(
@@ -116,7 +119,7 @@ describe('AmountDetails size, strikethrough and tag', () => {
       />
     );
 
-    tag = screen.getByRole('Tag');
+    tag = tagElement();
     expect(tag).toHaveClass('ods-tag--small', 'ods-tag--warning');
   });
 
@@ -130,7 +133,7 @@ describe('AmountDetails size, strikethrough and tag', () => {
       />
     );
 
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--neutral');
+    expect(tagElement()).toHaveClass('ods-tag--neutral');
   });
 
   test('tag takes precedence over the indicator', () => {

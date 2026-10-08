@@ -9,6 +9,9 @@ const lines = () =>
     line.classList.contains('ods-transaction-list__timeline-line--visible')
   );
 
+const tagElement = (): HTMLElement =>
+  document.querySelector('.ods-tag') as HTMLElement;
+
 describe('TransactionListChildAction', () => {
   test('defaults: standalone, sm content and sm amount, chevron, clickable', () => {
     const onClick = jest.fn();
@@ -32,7 +35,7 @@ describe('TransactionListChildAction', () => {
     expect(
       document.querySelector('.ods-amount-details--sm')
     ).toBeInTheDocument();
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--small');
+    expect(tagElement()).toHaveClass('ods-tag--small');
     expect(
       document.querySelector('.ods-transaction-list__chevron')
     ).toBeInTheDocument();
