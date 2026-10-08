@@ -339,3 +339,25 @@
   color: $color-interface-light-deep;
   opacity: 1;
 }
+
+// Density (decision 08/10): `compact` sets top and bottom padding to 8 (Spacing/Xxs);
+// horizontal padding unchanged. The skeleton lives inside the same main, so it follows.
+.ods-transaction-list--compact .ods-transaction-list__main,
+.ods-transaction-list--compact .ods-checkbox__root,
+.ods-transaction-list--compact .ods-radio__root {
+  padding-bottom: $spacing-stack-xxs;
+  padding-top: $spacing-stack-xxs;
+}
+
+// Children keep padding 0 on the main; the vertical padding is on the content.
+.ods-transaction-list--compact.ods-transaction-list--child {
+  .ods-transaction-list__main {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .ods-transaction-list__content {
+    padding-bottom: $spacing-stack-xxs;
+    padding-top: $spacing-stack-xxs;
+  }
+}

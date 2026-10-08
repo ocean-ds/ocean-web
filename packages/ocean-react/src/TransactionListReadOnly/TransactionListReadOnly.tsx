@@ -55,6 +55,7 @@ const TransactionListReadOnly = React.forwardRef<
       iconColor = 'default',
       disabled = false,
       loading = false,
+      density = 'default',
       showDivider = true,
       className,
       ...rest
@@ -70,6 +71,7 @@ const TransactionListReadOnly = React.forwardRef<
         {
           'ods-transaction-list--disabled': disabled,
           'ods-transaction-list--loading': loading,
+          'ods-transaction-list--compact': density === 'compact',
         },
         className
       )}

@@ -242,6 +242,13 @@
     }
   }
 
+  // Density `compact` (Transaction List family, opt-in): top and bottom padding 8.
+  &--compact &__main,
+  &--compact.ods-list-expandable--loading &__main {
+    padding-bottom: $spacing-stack-xxs;
+    padding-top: $spacing-stack-xxs;
+  }
+
   // Simulated hover state for docs/Storybook (State = Hover)
   &--show-hover .ods-list-expandable__main {
     @include list-state-blend;

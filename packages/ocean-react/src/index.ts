@@ -162,6 +162,7 @@ export * from './TransactionListChildReadOnly';
 export type {
   TransactionListBaseProps,
   TransactionListChildPosition,
+  TransactionListDensity,
   TransactionListIconColor,
 } from './_shared/components/TransactionListParts';
 export type {

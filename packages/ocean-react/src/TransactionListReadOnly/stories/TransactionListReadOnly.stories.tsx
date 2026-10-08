@@ -230,3 +230,19 @@ export const IconColors: Story = {
     </div>
   ),
 };
+
+export const Density: Story = {
+  name: 'Density',
+  parameters: noControls,
+  render: () => (
+    <div style={{ display: 'flex', gap: '24px' }}>
+      {(['default', 'compact'] as const).map((density) => (
+        <div key={density} style={{ width: '360px' }}>
+          <p className="ods-typography ods-typography__caption">{density}</p>
+          <TransactionListReadOnly {...baseArgs} density={density} />
+          <TransactionListReadOnly {...baseArgs} density={density} loading />
+        </div>
+      ))}
+    </div>
+  ),
+};

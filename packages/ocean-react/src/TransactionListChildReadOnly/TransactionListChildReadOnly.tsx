@@ -62,6 +62,7 @@ const TransactionListChildReadOnly = React.forwardRef<
       iconColor,
       disabled = false,
       loading = false,
+      density = 'default',
       position = 'standalone',
       className,
       ...rest
@@ -79,6 +80,7 @@ const TransactionListChildReadOnly = React.forwardRef<
         {
           'ods-transaction-list--disabled': disabled,
           'ods-transaction-list--loading': loading,
+          'ods-transaction-list--compact': density === 'compact',
         },
         className
       )}
