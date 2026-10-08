@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { CodeToggle } from './PreviewCanvas';
 
 const labels = { do: 'Faça', dont: 'Não faça', caution: 'Cuidado' };
 
@@ -8,11 +9,14 @@ export const DoDont = ({
   caption,
   children,
   background,
+  code,
 }: {
   kind: 'do' | 'dont' | 'caution';
   caption: ReactNode;
   children: ReactNode;
   background?: string;
+  /** Código do exemplo (barra "Mostrar código · Copiar"). */
+  code?: string;
 }): React.ReactElement => (
   <figure className="odoc__card" style={{ margin: 0 }}>
     <div className="odoc__card-example" style={{ background }}>
@@ -23,6 +27,7 @@ export const DoDont = ({
         {labels[kind]}
       </div>
       <p className="odoc__card-caption">{caption}</p>
+      {code && <CodeToggle code={code} />}
     </figcaption>
   </figure>
 );

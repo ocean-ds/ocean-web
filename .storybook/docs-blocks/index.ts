@@ -8,3 +8,5 @@ export * from './TokenTable';
 export * from './DoDont';
 export * from './AnatomyLegend';
 export * from './PreviewCanvas';
+export * from './DocLinks';
+export * from './StatusTable';

@@ -79,6 +79,74 @@
     }
   }
 
+  &__preview {
+    margin-bottom: $spacing-stack-xl;
+
+    &--compact {
+      margin-bottom: $spacing-stack-sm;
+    }
+  }
+
+  &__code {
+    padding: 0 $spacing-inline-xs $spacing-stack-xxs;
+  }
+
+  &__preview &__code {
+    padding: 0;
+  }
+
+  &__code-bar {
+    display: flex;
+    gap: $spacing-inline-xs;
+    justify-content: flex-end;
+    padding: $spacing-stack-xxs 0;
+  }
+
+  &__code-button {
+    background: transparent;
+    border: 0;
+    color: $color-brand-primary-pure;
+    cursor: pointer;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    padding: $spacing-stack-xxxs $spacing-inline-xxxs;
+
+    &:focus-visible {
+      outline: 2px solid $color-brand-primary-pure;
+    }
+  }
+
+  &__links {
+    color: $color-interface-dark-up;
+    font-size: $font-size-xxs;
+    margin-top: $spacing-stack-xxs;
+
+    a {
+      color: $color-brand-primary-pure;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  &__footer {
+    border-top: $border-width-hairline solid $color-interface-light-down;
+    margin-top: $spacing-stack-xl;
+    padding-top: $spacing-stack-xs;
+  }
+
+  &__ai-text {
+    background: $color-interface-light-up;
+    border-radius: $border-radius-sm;
+    color: $color-interface-dark-deep;
+    font-family: monospace;
+    font-size: $font-size-xxxs;
+    line-height: $line-height-comfy;
+    margin: 0;
+    overflow-x: auto;
+    padding: $spacing-stack-xs $spacing-inline-xs;
+    white-space: pre-wrap;
+  }
+
   // Moldura dos exemplos vivos: centralizado, respiro grande em cima e embaixo.
   &__canvas {
     align-items: center;
@@ -88,13 +156,8 @@
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    margin-bottom: $spacing-stack-xl;
     padding: $spacing-stack-xxl $spacing-inline-sm;
     width: 100%;
-
-    &--compact {
-      margin-bottom: $spacing-stack-sm;
-    }
   }
 
   &__table-wrap {

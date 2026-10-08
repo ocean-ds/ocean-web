@@ -8,6 +8,8 @@ import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import TransactionListReadOnly from '../TransactionListReadOnly';
 import Typography from '../../Typography';
 import {
+  AiRules,
+  AiRulesBlock,
   AnatomyLegend,
   AvailabilityTable,
   ConfigTable,
@@ -16,7 +18,9 @@ import {
   DocTabs,
   DoDont,
   DoDontGrid,
-  KeyboardTable,
+  DocFooter,
+  DocHeaderLinks,
+  FixedRowsTable,
   MigrationTable,
   PreviewCanvas,
   TokenTable,
@@ -40,6 +44,63 @@ const example = {
 
 const c = (text: string) => <code>{text}</code>;
 
+const GH_WEB =
+  'https://github.com/ocean-ds/ocean-web/tree/feature/MR-615-familia-transaction-list-web/packages/ocean-react/src/TransactionListReadOnly';
+export const KB_GUIDE_PATH =
+  'knowledge-bases/ux-knowledge-layer/components/usage-guidelines/transactionlistreadonly.md';
+const KB_GUIDE = `https://github.com/Pagnet/knowledge-bases/blob/feat/MR-615-transaction-list-kb/${KB_GUIDE_PATH}`;
+const JIRA = 'https://useblu.atlassian.net/browse/MR-615';
+
+const exampleCode = `<TransactionListReadOnly
+  icon={<PlaceholderOutline size={24} />}
+  title="Pix recebido"
+  description="Padaria São José"
+  caption="12 de novembro às 14:32"
+  amount="R$ 150,00"
+  amountTag={{ label: 'Pago' }}
+  additionalData="Saldo disponível"
+/>`;
+
+/** Regras para IA — mesmo texto na aba Diretrizes e no resumo da Meta (manifesto). */
+export const AI_RULES: AiRules = {
+  useWhen: [
+    'O valor monetário é a peça mais importante da linha (extrato, movimentação, saldo por loja/conta).',
+    'A linha não navega, não expande e não é selecionada.',
+  ],
+  dontUse: [
+    'Linha que leva ao detalhe ou abre menu/ações → TransactionListAction.',
+    'Linha escolhida pelo valor → TransactionListSelectable.',
+    'Linha que abre detalhes na própria lista → TransactionListExpandable.',
+    'Linha dentro da expansão de uma transação → TransactionListChildReadOnly / TransactionListChildAction.',
+    'Linha sem valor monetário → ListReadOnly.',
+  ],
+  required: [
+    'title e amount.',
+    'amount já formatado e sem sinal ("R$ 1.234,56"); o "- " de negative é do componente.',
+    'Entrada: amountType="positive" (sem "+"). Saída: amountType="negative".',
+    'disabled para desabilitar (aplica o tipo inactive nos dois blocos e a etiqueta neutral).',
+    'showDivider={false} no último item do grupo.',
+  ],
+  forbidden: [
+    'Sinal no amount ("-R$ 24,50", "+R$ 150,00").',
+    'amountType="strikethrough" para item cancelado (use default + amountTag Cancelado neutral).',
+    'status ou amountType "inactive" à mão para desabilitar.',
+    'Dois dados num texto ("Crédito • Final 1234").',
+    'iconColor="on-color" sobre fundo branco.',
+    'amountTag e amountIndicator juntos.',
+    'Montar a linha com <div> + flex.',
+  ],
+  defaults: [
+    'inverted=true · contentSize="md" · amountSize="md" · status="default" · amountType="default"',
+    'iconColor="default" · showDivider=true · showAmountIndicator=true',
+    'amountTag.type="positive" · amountTag.setIconOff=true',
+  ],
+  childOf: [
+    'List (ou outro container de lista). Dentro de TransactionListExpandable use os itens filhos.',
+  ],
+  source: [KB_GUIDE_PATH],
+};
+
 const Overview = () => (
   <>
     <DocSection title="Transaction List Read Only">
@@ -47,7 +108,7 @@ const Overview = () => (
         Linha de transação só de leitura: mostra o que é a transação e o valor,
         sem toque.
       </p>
-      <PreviewCanvas>
+      <PreviewCanvas code={exampleCode}>
         <TransactionListReadOnly {...example} showDivider={false} />
       </PreviewCanvas>
       <ul className="odoc__list">
@@ -442,13 +503,24 @@ const Specs = ({ stories }: { stories: Record<string, StoryRef> }) => (
       title="Estados lado a lado"
       intro="Padrão, carregando e desabilitado em cada combinação de tamanho de conteúdo e de valor."
     >
-      <PreviewCanvas width="auto">
+      <PreviewCanvas
+        width="auto"
+        code={`<TransactionListReadOnly {...props} />
+<TransactionListReadOnly {...props} loading />
+<TransactionListReadOnly {...props} disabled />
+// em cada combinação de contentSize="md" | "sm" e amountSize="md" | "sm"`}
+      >
         <Story of={stories.States} />
       </PreviewCanvas>
     </DocSection>
 
     <DocSection title="Tamanhos × tipos de valor">
-      <PreviewCanvas width="auto">
+      <PreviewCanvas
+        width="auto"
+        code={`<TransactionListReadOnly {...props} amountType="positive" contentSize="sm" amountSize="sm" />
+<TransactionListReadOnly {...props} amount="Grátis" strikethroughAmount="3,99%" amountType="strikethrough" />
+<TransactionListReadOnly {...props} amount="R$ 2,00" strikethroughAmount="R$ 3,99" amountType="strikethrough-neutral" />`}
+      >
         <Story of={stories.Sizes} />
       </PreviewCanvas>
     </DocSection>
@@ -518,6 +590,7 @@ const Guidelines = () => (
         <DoDont
           kind="do"
           caption="Valor que mudou a favor do cliente: original riscado e o atual em verde, na mesma linha."
+          code={`<TransactionListReadOnly\n  title="Taxa"\n  description="Antecipação"\n  amount="Grátis"\n  strikethroughAmount="3,99%"\n  amountType="strikethrough"\n/>`}
         >
           <TransactionListReadOnly
             title="Taxa"
@@ -532,6 +605,7 @@ const Guidelines = () => (
         <DoDont
           kind="dont"
           caption='Não passe o valor com sinal junto com amountType="negative": sai "- -R$ 24,50".'
+          code={`// Não faça\n<TransactionListReadOnly amount="-R$ 24,50" amountType="negative" … />\n// Faça\n<TransactionListReadOnly amount="R$ 24,50" amountType="negative" … />`}
         >
           <TransactionListReadOnly
             title="Pagamento"
@@ -545,6 +619,7 @@ const Guidelines = () => (
         <DoDont
           kind="do"
           caption="Item cancelado: valor normal, sem riscar e sem sinal; a etiqueta comunica."
+          code={`<TransactionListReadOnly\n  title="PagBlu"\n  description="Padaria São José"\n  amount="R$ 15,00"\n  amountTag={{ label: 'Cancelado', type: 'neutral' }}\n/>`}
         >
           <TransactionListReadOnly
             title="PagBlu"
@@ -558,6 +633,7 @@ const Guidelines = () => (
         <DoDont
           kind="dont"
           caption="Não junte dois dados num texto: um dado por linha; o segundo vai ao detalhe."
+          code={`// Não faça\n<TransactionListReadOnly description="Crédito • Final 1234 • Padaria São José" … />\n// Faça\n<TransactionListReadOnly description="Padaria São José" … />`}
         >
           <TransactionListReadOnly
             title="Pagamento"
@@ -571,6 +647,7 @@ const Guidelines = () => (
           kind="caution"
           background={colorStatusWarningUp}
           caption="on-color só sobre fundo colorido (ex.: herói em Status/Warning/Up); no fundo branco, use default."
+          code={`// sobre fundo colorido (ex.: herói Status/Warning/Up)\n<TransactionListReadOnly iconColor="on-color" … />`}
         >
           <TransactionListReadOnly
             {...example}
@@ -581,6 +658,7 @@ const Guidelines = () => (
         <DoDont
           kind="caution"
           caption="Desabilite com disabled — não passe status/amountType inactive à mão."
+          code="<TransactionListReadOnly … disabled />"
         >
           <TransactionListReadOnly {...example} disabled showDivider={false} />
         </DoDont>
@@ -606,90 +684,74 @@ const Guidelines = () => (
         <li>Último item do grupo sem divisor ({c('showDivider={false}')}).</li>
       </ul>
     </DocSection>
+
+    <DocSection title="Regras para IA">
+      <AiRulesBlock
+        rules={AI_RULES}
+        intro="Resumo para agentes de código, com rótulos fixos. O mesmo texto vai no resumo da story (manifesto)."
+      />
+    </DocSection>
   </>
 );
 
 const Accessibility = () => (
-  <>
-    <DocSection title="O que o leitor de tela anuncia">
-      <ul className="odoc__list">
-        <li>
-          A linha é um {c('<div>')} sem papel interativo: os textos são lidos na
-          ordem — título, descrição, legenda, valor, etiqueta e informação
-          extra.
-        </li>
-        <li>
-          Saída é lida com o &quot;- &quot; antes do valor; o riscado é lido
-          como texto (original e depois o atual).
-        </li>
-        <li>
-          Desabilitado: {c('aria-disabled="true"')}. Carregando:{' '}
-          {c('aria-busy="true"')}.
-        </li>
-        <li>
-          O ícone não tem nome acessível (SVG sem título); a informação tem de
-          estar no texto.
-        </li>
-      </ul>
-    </DocSection>
-
-    <DocSection title="Foco e teclado">
-      <KeyboardTable
-        rows={[
-          [
-            'Tab',
-            'Passa direto: a linha só de leitura não entra na ordem de foco.',
-          ],
-          [
-            'Linha que precisa de toque',
-            'Use a Transaction List Action (botão focável, Enter/Espaço) ou a Expandable para os itens filhos.',
-          ],
-        ].map(([keys, behavior]) => ({ keys, behavior }))}
-      />
-    </DocSection>
-
-    <DocSection
-      title="Contraste do ícone"
-      intro="Ícone é gráfico, não texto. A informação está sempre no texto da linha."
-    >
-      <DocTable
-        head={[
-          'iconColor',
-          'Token',
-          'Branco',
-          'Status/Warning/Up',
-          'Status/Negative/Up',
-        ]}
-        rows={[
-          [c('default'), c('Interface/Dark/Up'), '2,2:1', '2,1:1', '2,0:1'],
-          [c('on-color'), c('Interface/Dark/Down'), '5,4:1', '5,1:1', '4,9:1'],
-          [c('highlight'), c('Brand/Primary/Down'), '4,1:1', '3,9:1', '3,7:1'],
-          [
-            'desabilitado',
-            c('Interface/Light/Deep'),
-            '1,5:1',
-            '1,4:1',
-            '1,4:1',
-          ],
-        ]}
-      />
-      <p className="odoc__lead" style={{ marginTop: 8 }}>
-        Sobre fundo colorido, {c('on-color')} é a única opção com 4,5:1 ou mais.
-      </p>
-    </DocSection>
-
-    <DocSection title="Texto ampliado">
-      <ul className="odoc__list">
-        <li>
-          Os textos do conteúdo quebram linha; o valor não quebra (fica inteiro
-          à direita).
-        </li>
-        <li>
-          Tamanhos em px dos tokens: o zoom do navegador amplia a linha inteira.
-        </li>
-      </ul>
-    </DocSection>
-  </>
+  <DocSection title="Acessibilidade">
+    <FixedRowsTable
+      rows={[
+        {
+          topic: 'O que o leitor de tela anuncia',
+          content: (
+            <>
+              Os textos, na ordem do DOM: &quot;Pix recebido, Padaria São José,
+              12 de novembro às 14:32, R$ 150,00, Pago, Saldo disponível&quot;.
+              O ícone não é lido (SVG sem nome). Saída vem com &quot;-&quot;
+              antes do valor. {c('aria-disabled')} quando desabilitado,{' '}
+              {c('aria-busy')} carregando.
+            </>
+          ),
+        },
+        {
+          topic: 'Teclado',
+          content: (
+            <>
+              Não recebe foco (só leitura). Para toque, use a Transaction List
+              Action.
+            </>
+          ),
+        },
+        {
+          topic: 'Contraste',
+          content: (
+            <>
+              Ícone {c('default')} (Interface/Dark/Up) no branco 2,2:1 ·{' '}
+              {c('on-color')} (Interface/Dark/Down) sobre Status/Warning/Up
+              5,1:1 e Status/Negative/Up 4,9:1 · {c('highlight')}{' '}
+              (Brand/Primary/Down) no branco 4,1:1. {c('on-color')} só sobre
+              fundo colorido.
+            </>
+          ),
+        },
+        {
+          topic: 'Texto grande',
+          content: 'O conteúdo quebra linha; o valor não quebra.',
+        },
+        {
+          topic: 'Verificação automática',
+          content: (
+            <>
+              axe (painel Accessibility) em 08/10: {c('States × sizes')} 12,{' '}
+              {c('Sizes × amount types')} 28 e {c('Icon colors')} 21 violações.
+              Todas vêm de fora da linha: {c('role="Tag"')} inválido no
+              componente Tag e contraste dos tokens (Status/Positive/Deep 3,0:1
+              no branco e 2,9:1 na etiqueta; riscado Interface/Dark/Up 2,2:1).
+              Pendente de decisão de design. Ver o painel Accessibility de cada
+              story.
+            </>
+          ),
+        },
+      ]}
+    />
+  </DocSection>
 );
 
 const Code = ({ stories }: { stories: Record<string, StoryRef> }) => (
@@ -707,11 +769,14 @@ const Code = ({ stories }: { stories: Record<string, StoryRef> }) => (
       </PreviewCanvas>
       <Controls of={stories.Default} />
     </DocSection>
-    <DocSection title="Exemplo">
+    <DocSection title="Uso (pronto para copiar)">
       <Source
         language="tsx"
         dark
-        code={`<List>
+        code={`import { List, TransactionListReadOnly } from '@useblu/ocean-react';
+import { ArrowDownOutline, ArrowUpOutline } from '@useblu/ocean-icons-react';
+
+<List>
   {/* Entrada: positive, sem "+" */}
   <TransactionListReadOnly
     icon={<ArrowDownOutline />}
@@ -750,6 +815,13 @@ const TransactionListReadOnlyDocs = ({
         <p className="odoc__lead">
           Família Transaction List · substitui o {c('TransactionListItem')}
         </p>
+        <DocHeaderLinks
+          links={[
+            { label: 'Código-fonte', href: GH_WEB },
+            { label: 'Guia na base de conhecimento', href: KB_GUIDE },
+            { label: 'Figma', href: FIGMA },
+          ]}
+        />
       </header>
       <DocTabs
         tabs={[
@@ -762,6 +834,12 @@ const TransactionListReadOnlyDocs = ({
           { id: 'guidelines', label: 'Diretrizes', content: <Guidelines /> },
           { id: 'a11y', label: 'Acessibilidade', content: <Accessibility /> },
           { id: 'code', label: 'Código', content: <Code stories={stories} /> },
+        ]}
+      />
+      <DocFooter
+        links={[
+          { label: 'Editar esta documentação', href: KB_GUIDE },
+          { label: 'Dar feedback', href: JIRA },
         ]}
       />
     </div>

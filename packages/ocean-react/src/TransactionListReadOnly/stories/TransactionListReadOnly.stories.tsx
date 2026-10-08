@@ -7,7 +7,10 @@ import {
 import React from 'react';
 import TransactionListReadOnly from '../TransactionListReadOnly';
 import type { TransactionListReadOnlyProps } from '../TransactionListReadOnly';
-import TransactionListReadOnlyDocs from './TransactionListReadOnly.docs';
+import TransactionListReadOnlyDocs, {
+  AI_RULES,
+} from './TransactionListReadOnly.docs';
+import { aiRulesText } from '../../../../../.storybook/docs-blocks';
 
 const icon = <PlaceholderOutline size={24} />;
 const snapshot = { chromatic: { disableSnapshot: false } };
@@ -56,11 +59,13 @@ const arg = (
 const meta: Meta<typeof TransactionListReadOnly> = {
   title: 'Components/List/Transaction List Read Only',
   component: TransactionListReadOnly,
-  tags: ['autodocs'],
+  // "manifest": entra no manifesto de componentes (resumo = regras para IA).
+  tags: ['autodocs', 'manifest'],
   parameters: {
     // Playground e matrizes centralizados no canvas (e no Canvas da página de docs).
     layout: 'centered',
     docs: {
+      description: { component: aiRulesText(AI_RULES) },
       // Página em abas (protótipo MR-615 T16); as stories são lidas na hora de renderizar.
       page: () => (
         // eslint-disable-next-line @typescript-eslint/no-use-before-define

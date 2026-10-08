@@ -4,57 +4,74 @@ import TransactionListReadOnly from '../TransactionListReadOnly';
 
 const icon = <svg data-testid="icon" />;
 
+const row = () => screen.getByTestId('transaction-list-read-only');
+
 describe('TransactionListReadOnly', () => {
-  test('renders content, amount, tag, additional data and divider by default', () => {
+  test('reads content, amount, tag and additional data in order', () => {
     render(
       <TransactionListReadOnly
-        title="Title"
-        description="Description"
-        caption="Caption"
-        amount="R$ 0,00"
-        amountTag={{ label: 'Label' }}
-        additionalData="Additional data"
+        title="Pix recebido"
+        description="Padaria São José"
+        caption="12 de novembro às 14:32"
+        amount="R$ 150,00"
+        amountTag={{ label: 'Pago' }}
+        additionalData="Saldo disponível"
         icon={icon}
       />
     );
 
-    expect(screen.getByTestId('transaction-list-read-only')).toHaveClass(
-      'ods-transaction-list',
-      'ods-transaction-list--read-only'
+    expect(row()).toHaveTextContent(
+      'Pix recebidoPadaria São José12 de novembro às 14:32R$ 150,00PagoSaldo disponível'
     );
-    expect(screen.getByTestId('icon')).toBeInTheDocument();
-    expect(screen.getByText('Title')).toHaveClass(
+    expect(screen.getByText('Pix recebido')).toHaveClass(
       'ods-typography__description'
     );
-    expect(screen.getByText('Description')).toHaveClass(
+    expect(screen.getByText('Padaria São José')).toHaveClass(
       'ods-typography__paragraph'
     );
-    expect(screen.getByText('Additional data')).toBeInTheDocument();
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--medium');
-    expect(
-      document.querySelector('.ods-amount-details--md')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Pago')).toBeInTheDocument();
     expect(screen.getByTestId('transaction-list-divider')).toBeInTheDocument();
+  });
+
+  test('is not focusable and has no interactive role', () => {
+    render(
+      <TransactionListReadOnly
+        title="Pix recebido"
+        amount="R$ 150,00"
+        icon={icon}
+      />
+    );
+
+    row().focus();
+    expect(row()).not.toHaveFocus();
+    expect(row()).not.toHaveAttribute('tabindex');
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   test('content and amount sizes are independent', () => {
     render(
       <TransactionListReadOnly
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
+        title="Pix recebido"
+        description="Padaria São José"
+        amount="R$ 150,00"
         contentSize="sm"
         amountSize="md"
       />
     );
 
-    expect(document.querySelector('.ods-content-list--sm')).toBeInTheDocument();
+    expect(screen.getByText('Pix recebido')).toHaveClass(
+      'ods-content-list__support'
+    );
+    expect(screen.getByText('R$ 150,00')).toHaveClass(
+      'ods-amount-details__amount--sized'
+    );
     expect(
       document.querySelector('.ods-amount-details--md')
     ).toBeInTheDocument();
   });
 
-  test('renders strikethrough amount', () => {
+  test('renders the strikethrough amount before the current amount', () => {
     render(
       <TransactionListReadOnly
         title="Juros"
@@ -67,62 +84,61 @@ describe('TransactionListReadOnly', () => {
     expect(screen.getByText('3,99%')).toHaveClass(
       'ods-amount-details__strikethrough'
     );
+    expect(screen.getByText('3,99%').nextElementSibling).toBe(
+      screen.getByText('Grátis')
+    );
   });
 
-  test('disabled uses the inactive type and a neutral tag', () => {
+  test('disabled is announced and uses the inactive type and a neutral tag', () => {
     render(
       <TransactionListReadOnly
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
-        amountTag={{ label: 'Label' }}
+        title="Pix recebido"
+        description="Padaria São José"
+        amount="R$ 150,00"
+        amountTag={{ label: 'Pago' }}
         icon={icon}
         disabled
       />
     );
 
-    expect(screen.getByTestId('transaction-list-read-only')).toHaveAttribute(
-      'aria-disabled',
-      'true'
-    );
-    expect(screen.getByText('Description')).toHaveClass(
+    expect(row()).toHaveAttribute('aria-disabled', 'true');
+    expect(screen.getByText('Padaria São José')).toHaveClass(
       'ods-typography__paragraph--inactive'
     );
     expect(
       document.querySelector('.ods-amount-details--inactive')
     ).toBeInTheDocument();
-    expect(screen.getByRole('Tag')).toHaveClass('ods-tag--neutral');
-    expect(
-      document.querySelector('.ods-transaction-list__icon--inactive')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Pago').closest('.ods-tag')).toHaveClass(
+      'ods-tag--neutral'
+    );
+    expect(screen.getByTestId('icon').parentElement).toHaveClass(
+      'ods-transaction-list__icon--inactive'
+    );
   });
 
-  test('loading shows the skeleton with the icon placeholder', () => {
+  test('loading is announced as busy and hides the texts', () => {
     render(
       <TransactionListReadOnly
-        title="Title"
-        amount="R$ 0,00"
+        title="Pix recebido"
+        amount="R$ 150,00"
         icon={icon}
         loading
       />
     );
 
+    expect(row()).toHaveAttribute('aria-busy', 'true');
     expect(screen.getByTestId('transaction-list-skeleton')).toBeInTheDocument();
-    expect(screen.queryByText('Title')).not.toBeInTheDocument();
+    expect(screen.queryByText('Pix recebido')).not.toBeInTheDocument();
     expect(
       document.querySelector('.ods-transaction-list__icon .ods-skeleton-bar')
     ).toBeInTheDocument();
-    expect(screen.getByTestId('transaction-list-read-only')).toHaveAttribute(
-      'aria-busy',
-      'true'
-    );
   });
 
   test('loading without icon has no icon placeholder; divider can be hidden', () => {
     render(
       <TransactionListReadOnly
-        title="Title"
-        amount="R$ 0,00"
+        title="Pix recebido"
+        amount="R$ 150,00"
         loading
         showDivider={false}
         className="custom"
@@ -135,15 +151,15 @@ describe('TransactionListReadOnly', () => {
     expect(
       screen.queryByTestId('transaction-list-divider')
     ).not.toBeInTheDocument();
-    expect(screen.getByTestId('transaction-list-read-only')).toHaveClass(
-      'custom'
-    );
+    expect(row()).toHaveClass('custom');
   });
 
   test('forwards ref to the root', () => {
     const ref = React.createRef<HTMLDivElement>();
-    render(<TransactionListReadOnly ref={ref} title="T" amount="R$ 0,00" />);
+    render(
+      <TransactionListReadOnly ref={ref} title="Pix" amount="R$ 150,00" />
+    );
 
-    expect(ref.current).toBe(screen.getByTestId('transaction-list-read-only'));
+    expect(ref.current).toBe(row());
   });
 });
