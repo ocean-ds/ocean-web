@@ -90,6 +90,18 @@ import type { TransactionListActionProps } from '@useblu/ocean-react';
 
 O clique no gatilho do menu/swipe não dispara o `onClick` da linha. No carregamento o gatilho não aparece; desabilitado, o gatilho fica desabilitado em `Interface/Light/Deep`.
 
+## Cor do ícone (iconColor)
+
+A cor do ícone à esquerda vem de um conjunto fechado:
+
+| Valor              | Token                 | Quando usar                                                                           |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------------- |
+| `default` (padrão) | `Interface/Dark/Up`   | Linha sobre fundo branco                                                              |
+| `on-color`         | `Interface/Dark/Down` | Linha sobre fundo colorido (ex.: heróis em `Status/Warning/Up`, `Status/Negative/Up`) |
+| `highlight`        | `Brand/Primary/Down`  | Mais ênfase                                                                           |
+
+Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escolha — não é uma opção. O ícone herda a cor do componente: passe ícones **sem cor própria** (ex.: `<PlaceholderOutline size={24} />`, sem `color`).
+
 ## Estados
 
 ```tsx live
@@ -136,6 +148,7 @@ Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `c
 | `disabled`                 | `boolean`                                                                                                  | `false`          | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                   |
 | `loading`                  | `boolean`                                                                                                  | `false`          | Exibe o esqueleto                                                                         |
 | `icon`                     | `ReactNode`                                                                                                | -                | Ícone à esquerda                                                                          |
+| `iconColor`                | `'default' \| 'on-color' \| 'highlight'`                                                                   | `'default'`      | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`         |
 | `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Ação à direita (Figma `Type`)                                                             |
 | `menuActions`              | `ActionItem[]`                                                                                             | `[]`             | Ações dos tipos `menu` e `swipe`                                                          |
 | `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu                                                                           |

@@ -10,9 +10,10 @@ import {
   TransactionListSkeleton,
 } from '../_shared/components/TransactionListParts';
 
+// No leading icon: in the Figma the control occupies the leading slot.
 export type TransactionListSelectableProps = Omit<
   TransactionListBaseProps,
-  'icon'
+  'icon' | 'iconColor'
 > & {
   /**
    * Typography scale of the content block, independent from `amountSize`.

@@ -53,6 +53,7 @@ const TransactionListChildReadOnly = React.forwardRef<
       showAmountIndicator = true,
       additionalData,
       icon,
+      iconColor = 'default',
       disabled = false,
       loading = false,
       position = 'standalone',
@@ -83,6 +84,7 @@ const TransactionListChildReadOnly = React.forwardRef<
         <TransactionListTimeline
           position={position}
           icon={icon}
+          iconColor={iconColor}
           disabled={disabled}
         />
         {loading ? (

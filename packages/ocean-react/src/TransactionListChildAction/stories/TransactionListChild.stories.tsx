@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import React from 'react';
 import { Placeholder } from '@useblu/ocean-icons-react';
 import TransactionListChildAction from '../TransactionListChildAction';
@@ -108,6 +109,34 @@ export const Loading: Story = {
     <div>
       <TransactionListChildAction {...baseArgs} position="first" loading />
       <TransactionListChildReadOnly {...baseArgs} position="last" loading />
+    </div>
+  ),
+};
+
+export const IconColors: Story = {
+  name: 'Icon colors',
+  parameters: noControls,
+  render: () => (
+    <div>
+      <TransactionListChildAction {...baseArgs} position="first" />
+      <div style={{ backgroundColor: colorStatusWarningUp }}>
+        <TransactionListChildAction
+          {...baseArgs}
+          position="middle"
+          iconColor="on-color"
+        />
+      </div>
+      <TransactionListChildAction
+        {...baseArgs}
+        position="middle"
+        iconColor="highlight"
+      />
+      <TransactionListChildReadOnly
+        {...baseArgs}
+        position="last"
+        iconColor="highlight"
+        disabled
+      />
     </div>
   ),
 };

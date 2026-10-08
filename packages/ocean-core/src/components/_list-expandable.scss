@@ -24,6 +24,26 @@
     .ods-list-expandable__icon {
       color: $color-interface-dark-up;
     }
+
+    // `iconColor` (Transaction List family, opt-in): closed set; disabled always wins.
+    .ods-list-expandable__icon--on-color {
+      color: $color-interface-dark-down;
+    }
+
+    .ods-list-expandable__icon--highlight {
+      color: $color-brand-primary-down;
+    }
+
+    .ods-list-expandable__icon--disabled {
+      color: $color-interface-light-deep;
+    }
+  }
+
+  &__icon--default svg,
+  &__icon--on-color svg,
+  &__icon--highlight svg,
+  &__icon--disabled svg {
+    color: inherit;
   }
 
   // Transaction variant: ContentList (left) + AmountDetails (right) in main row

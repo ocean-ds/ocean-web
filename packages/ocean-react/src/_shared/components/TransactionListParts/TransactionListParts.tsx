@@ -10,6 +10,19 @@ import AmountDetails, {
 import SkeletonBar from '../SkeletonBar';
 
 /**
+ * Color of the leading icon, from a closed set (MR-615, 08/10):
+ *
+ * - `default`: Interface/Dark/Up — rows on a white background.
+ * - `on-color`: Interface/Dark/Down — rows on colored backgrounds (e.g. Status/Warning/Up or
+ *   Status/Negative/Up heroes).
+ * - `highlight`: Brand/Primary/Down — more emphasis.
+ *
+ * Disabled always forces Interface/Light/Deep, whatever the choice. The icon inherits the
+ * color (`currentColor`), so pass icons without their own color.
+ */
+export type TransactionListIconColor = 'default' | 'on-color' | 'highlight';
+
+/**
  * Props shared by every component of the Transaction List family
  * (Figma: Transaction List Read Only / Action / Selectable and the child rows).
  */
@@ -84,9 +97,14 @@ export type TransactionListBaseProps = {
    */
   additionalData?: string;
   /**
-   * Leading icon.
+   * Leading icon. It takes the color from `iconColor` (pass it without its own color).
    */
   icon?: ReactNode;
+  /**
+   * Color of the leading icon. Disabled always forces Interface/Light/Deep.
+   * @default 'default'
+   */
+  iconColor?: TransactionListIconColor;
   /**
    * Disabled state: content and amount use the inactive type and the tag turns neutral.
    * @default false
@@ -101,7 +119,7 @@ export type TransactionListBaseProps = {
 
 type TransactionListContentProps = Omit<
   TransactionListBaseProps,
-  'icon' | 'loading' | 'contentSize' | 'amountSize'
+  'icon' | 'iconColor' | 'loading' | 'contentSize' | 'amountSize'
 > & {
   // Resolved by the host component (each one has its own defaults).
   inverted: boolean;
@@ -155,17 +173,29 @@ export const TransactionListContent = ({
   </div>
 );
 
+const iconColorClass = (
+  block: string,
+  iconColor: TransactionListIconColor,
+  disabled: boolean
+) =>
+  disabled
+    ? `ods-transaction-list__${block}--inactive`
+    : `ods-transaction-list__${block}--${iconColor}`;
+
 export const TransactionListIcon = ({
   icon,
+  iconColor,
   disabled,
 }: {
   icon: ReactNode;
+  iconColor: TransactionListIconColor;
   disabled: boolean;
 }): ReactElement => (
   <div
-    className={classNames('ods-transaction-list__icon', {
-      'ods-transaction-list__icon--inactive': disabled,
-    })}
+    className={classNames(
+      'ods-transaction-list__icon',
+      iconColorClass('icon', iconColor, disabled)
+    )}
   >
     {icon}
   </div>
@@ -223,10 +253,12 @@ export type TransactionListChildPosition =
 export const TransactionListTimeline = ({
   position,
   icon,
+  iconColor,
   disabled,
 }: {
   position: TransactionListChildPosition;
   icon?: ReactNode;
+  iconColor: TransactionListIconColor;
   disabled: boolean;
 }): ReactElement => {
   const showLineAbove = position === 'middle' || position === 'last';
@@ -243,9 +275,10 @@ export const TransactionListTimeline = ({
         })}
       />
       <div
-        className={classNames('ods-transaction-list__timeline-icon', {
-          'ods-transaction-list__timeline-icon--inactive': disabled,
-        })}
+        className={classNames(
+          'ods-transaction-list__timeline-icon',
+          iconColorClass('timeline-icon', iconColor, disabled)
+        )}
       >
         {icon}
       </div>

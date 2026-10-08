@@ -67,6 +67,7 @@ const TransactionListChildAction = React.forwardRef<
       showAmountIndicator = true,
       additionalData,
       icon,
+      iconColor = 'default',
       disabled = false,
       loading = false,
       position = 'standalone',
@@ -102,6 +103,7 @@ const TransactionListChildAction = React.forwardRef<
         <TransactionListTimeline
           position={position}
           icon={icon}
+          iconColor={iconColor}
           disabled={disabled}
         />
         {loading ? (

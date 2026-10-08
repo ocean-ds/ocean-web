@@ -49,15 +49,33 @@
     }
   }
 
-  &__icon {
-    align-items: center;
+  // Leading icon color: closed set (`iconColor`); disabled always wins. The icon inherits
+  // the color, even when it declares its own.
+  &__icon,
+  &__timeline-icon {
     color: $color-interface-dark-up;
-    display: flex;
-    flex-shrink: 0;
+
+    svg {
+      color: inherit;
+    }
+
+    &--on-color {
+      color: $color-interface-dark-down;
+    }
+
+    &--highlight {
+      color: $color-brand-primary-down;
+    }
 
     &--inactive {
       color: $color-interface-light-deep;
     }
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
   }
 
   &__content {
@@ -239,14 +257,9 @@
 
   &__timeline-icon {
     align-items: center;
-    color: $color-interface-dark-up;
     display: flex;
     justify-content: center;
     padding: $spacing-inline-xxxs;
-
-    &--inactive {
-      color: $color-interface-light-deep;
-    }
   }
 }
 

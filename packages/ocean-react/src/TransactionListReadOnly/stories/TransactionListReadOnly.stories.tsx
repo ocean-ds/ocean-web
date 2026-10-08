@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import React from 'react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import TransactionListReadOnly from '../TransactionListReadOnly';
@@ -56,6 +57,10 @@ const meta: Meta<typeof TransactionListReadOnly> = {
     contentSize: { control: 'inline-radio', options: ['md', 'sm'] },
     amountSize: { control: 'inline-radio', options: ['md', 'sm'] },
     icon: { control: false },
+    iconColor: {
+      control: 'inline-radio',
+      options: ['default', 'on-color', 'highlight'],
+    },
   },
   args: baseArgs,
   decorators: [
@@ -192,4 +197,36 @@ export const WithoutIcon: Story = {
   name: 'Without icon',
   parameters: noControls,
   args: { icon: undefined, showDivider: false },
+};
+
+export const IconColors: Story = {
+  name: 'Icon colors',
+  parameters: noControls,
+  render: () => (
+    <div>
+      <TransactionListReadOnly
+        {...baseArgs}
+        description="default · fundo branco"
+        iconColor="default"
+      />
+      <div style={{ backgroundColor: colorStatusWarningUp }}>
+        <TransactionListReadOnly
+          {...baseArgs}
+          description="on-color · fundo colorido"
+          iconColor="on-color"
+        />
+      </div>
+      <TransactionListReadOnly
+        {...baseArgs}
+        description="highlight · mais ênfase"
+        iconColor="highlight"
+      />
+      <TransactionListReadOnly
+        {...baseArgs}
+        description="disabled · sempre Light/Deep"
+        iconColor="highlight"
+        disabled
+      />
+    </div>
+  ),
 };

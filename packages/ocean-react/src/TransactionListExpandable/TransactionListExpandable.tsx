@@ -11,6 +11,7 @@ import AmountDetails, {
   AmountDetailsTag,
 } from '../_shared/components/AmountDetails';
 import SkeletonBar from '../_shared/components/SkeletonBar';
+import type { TransactionListIconColor } from '../_shared/components/TransactionListParts';
 
 export type TransactionListExpandableProps = {
   /**
@@ -92,9 +93,16 @@ export type TransactionListExpandableProps = {
    */
   loading?: boolean;
   /**
-   * Icon displayed at the beginning of the row.
+   * Icon displayed at the beginning of the row. With `iconColor` it takes that color
+   * (pass it without its own color).
    */
   icon?: ReactNode;
+  /**
+   * Color of the leading icon (Transaction List family): `default` Interface/Dark/Up,
+   * `on-color` Interface/Dark/Down (colored backgrounds), `highlight` Brand/Primary/Down.
+   * `disabled` always forces Interface/Light/Deep. When omitted, the current rendering is kept.
+   */
+  iconColor?: TransactionListIconColor;
   /**
    * Whether the content is expanded.
    * @default false
@@ -149,6 +157,7 @@ const TransactionListExpandable = React.forwardRef<
       status = 'default',
       loading = false,
       icon,
+      iconColor,
       expanded = false,
       onToggle,
       children,
@@ -188,6 +197,9 @@ const TransactionListExpandable = React.forwardRef<
           <div
             className={classNames('ods-list-expandable__icon', {
               'ods-list-expandable__icon--inactive': status === 'inactive',
+              [`ods-list-expandable__icon--${
+                disabled ? 'disabled' : iconColor
+              }`]: iconColor,
             })}
           >
             {icon}

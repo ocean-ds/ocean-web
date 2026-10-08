@@ -106,6 +106,18 @@ O tamanho do texto e o tamanho do valor são escolhidos **separadamente**. `md` 
 - **strikethrough**: o valor mudou a favor do cliente — original riscado (`Interface/Dark/Up`) e atual em verde (`Status/Positive/Deep`), na mesma linha.
 - **strikethrough-neutral**: o valor só mudou — atual em `Interface/Dark/Deep`.
 
+## Cor do ícone (iconColor)
+
+A cor do ícone à esquerda vem de um conjunto fechado:
+
+| Valor              | Token                 | Quando usar                                                                           |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------------- |
+| `default` (padrão) | `Interface/Dark/Up`   | Linha sobre fundo branco                                                              |
+| `on-color`         | `Interface/Dark/Down` | Linha sobre fundo colorido (ex.: heróis em `Status/Warning/Up`, `Status/Negative/Up`) |
+| `highlight`        | `Brand/Primary/Down`  | Mais ênfase                                                                           |
+
+Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escolha — não é uma opção. O ícone herda a cor do componente: passe ícones **sem cor própria** (ex.: `<PlaceholderOutline size={24} />`, sem `color`).
+
 ## Estados
 
 ```tsx live
@@ -157,6 +169,7 @@ O divisor (recuo de 16px, `mix-blend-mode: multiply`) aparece por padrão, como 
 | `disabled`                 | `boolean`                                                                                                  | `false`     | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                   |
 | `loading`                  | `boolean`                                                                                                  | `false`     | Exibe o esqueleto                                                                         |
 | `icon`                     | `ReactNode`                                                                                                | -           | Ícone à esquerda                                                                          |
+| `iconColor`                | `'default' \| 'on-color' \| 'highlight'`                                                                   | `'default'` | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`         |
 | `showDivider`              | `boolean`                                                                                                  | `true`      | Exibe o divisor abaixo do item                                                            |
 | `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                                                    |
 

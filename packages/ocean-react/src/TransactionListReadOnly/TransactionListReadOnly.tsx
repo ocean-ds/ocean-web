@@ -52,6 +52,7 @@ const TransactionListReadOnly = React.forwardRef<
       showAmountIndicator = true,
       additionalData,
       icon,
+      iconColor = 'default',
       disabled = false,
       loading = false,
       showDivider = true,
@@ -81,7 +82,13 @@ const TransactionListReadOnly = React.forwardRef<
           <TransactionListSkeleton showLeading={Boolean(icon)} />
         ) : (
           <>
-            {icon && <TransactionListIcon icon={icon} disabled={disabled} />}
+            {icon && (
+              <TransactionListIcon
+                icon={icon}
+                iconColor={iconColor}
+                disabled={disabled}
+              />
+            )}
             <TransactionListContent
               title={title}
               description={description}
