@@ -1,0 +1,223 @@
+// Blocos da página de documentação no Storybook (protótipo MR-615 T16).
+// Só tokens do Ocean; nenhum valor solto.
+@import '@useblu/ocean-tokens/web/tokens';
+
+.odoc {
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+
+  &__tabs {
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
+    display: flex;
+    gap: $spacing-inline-xs;
+    margin-bottom: $spacing-stack-sm;
+    overflow-x: auto;
+  }
+
+  &__tab {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    color: $color-interface-dark-down;
+    cursor: pointer;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+    padding: $spacing-stack-xxs $spacing-inline-xxxs;
+    white-space: nowrap;
+
+    &:hover {
+      color: $color-brand-primary-pure;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-brand-primary-pure;
+      outline-offset: 2px;
+    }
+
+    &--active {
+      border-bottom-color: $color-brand-primary-pure;
+      color: $color-brand-primary-pure;
+    }
+  }
+
+  &__section {
+    margin-bottom: $spacing-stack-md;
+
+    > h3 {
+      margin-bottom: $spacing-stack-xxs;
+    }
+
+    > p {
+      margin-bottom: $spacing-stack-xs;
+    }
+  }
+
+  &__lead {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xs;
+    margin: 0 0 $spacing-stack-xs;
+  }
+
+  &__list {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxs;
+    line-height: $line-height-comfy;
+    margin: 0 0 $spacing-stack-xs;
+    padding-left: $spacing-inline-sm;
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+  }
+
+  &__table {
+    border-collapse: collapse;
+    font-size: $font-size-xxs;
+    line-height: $line-height-comfy;
+    width: 100%;
+
+    th {
+      border-bottom: $border-width-hairline solid $color-interface-light-deep;
+      color: $color-interface-dark-down;
+      font-size: $font-size-xxxs;
+      font-weight: $font-weight-bold;
+      padding: $spacing-stack-xxs $spacing-inline-xxs;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    td {
+      border-bottom: $border-width-hairline solid $color-interface-light-down;
+      color: $color-interface-dark-deep;
+      padding: $spacing-stack-xxs $spacing-inline-xxs;
+      vertical-align: top;
+    }
+
+    code {
+      background: $color-interface-light-up;
+      border-radius: $border-radius-tiny;
+      font-size: $font-size-xxxs;
+      padding: 0 $spacing-inline-xxxs;
+    }
+  }
+
+  &__swatch {
+    align-items: center;
+    display: inline-flex;
+    gap: $spacing-inline-xxs;
+    white-space: nowrap;
+  }
+
+  &__swatch-dot {
+    border: $border-width-hairline solid $color-interface-light-deep;
+    border-radius: $border-radius-circular;
+    display: inline-block;
+    flex-shrink: 0;
+    height: $spacing-stack-xs;
+    width: $spacing-inline-xs;
+  }
+
+  // Faça / Não faça / Cuidado
+  &__dodont {
+    display: grid;
+    gap: $spacing-inline-sm;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    margin-bottom: $spacing-stack-md;
+  }
+
+  &__card {
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-md;
+    overflow: hidden;
+  }
+
+  &__card-example {
+    background: $color-interface-light-pure;
+    padding: $spacing-stack-xs 0;
+  }
+
+  &__card-label {
+    border-top: 4px solid $color-interface-light-deep;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    padding: $spacing-stack-xxs $spacing-inline-xs 0;
+
+    &--do {
+      border-top-color: $color-status-positive-pure;
+      color: $color-status-positive-deep;
+    }
+
+    &--dont {
+      border-top-color: $color-status-negative-pure;
+      color: $color-status-negative-deep;
+    }
+
+    &--caution {
+      border-top-color: $color-status-warning-pure;
+      color: $color-status-warning-deep;
+    }
+  }
+
+  &__card-caption {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxs;
+    line-height: $line-height-comfy;
+    margin: 0;
+    padding: $spacing-stack-xxxs $spacing-inline-xs $spacing-stack-xs;
+  }
+
+  // Anatomia
+  &__anatomy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-inline-md;
+    margin-bottom: $spacing-stack-md;
+  }
+
+  &__anatomy-stage {
+    background: $color-interface-light-pure;
+    border: $border-width-hairline dashed $color-interface-light-deep;
+    padding: $spacing-stack-md $spacing-inline-md;
+    position: relative;
+  }
+
+  &__anatomy-marker {
+    align-items: center;
+    background: $color-brand-primary-pure;
+    border-radius: $border-radius-circular;
+    color: $color-interface-light-pure;
+    display: flex;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    height: $spacing-stack-sm;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: $spacing-inline-sm;
+  }
+
+  &__anatomy-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      align-items: baseline;
+      display: flex;
+      font-size: $font-size-xxs;
+      gap: $spacing-inline-xxs;
+      line-height: $line-height-comfy;
+      margin-bottom: $spacing-stack-xxs;
+    }
+  }
+
+  &__anatomy-number {
+    @extend .odoc__anatomy-marker;
+
+    flex-shrink: 0;
+    position: static;
+    transform: none;
+  }
+}
