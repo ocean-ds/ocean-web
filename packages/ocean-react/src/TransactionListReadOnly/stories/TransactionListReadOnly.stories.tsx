@@ -412,8 +412,9 @@ export const Density: Story = {
       columns={['default', 'compact']}
       rows={(
         [
-          ['Padrão', {}],
-          ['Carregando', { loading: true }],
+          ['md · md (100 / 84)', {}],
+          ['sm · sm (94 / 78)', { contentSize: 'sm', amountSize: 'sm' }],
+          ['Carregando (73 / 57)', { loading: true }],
         ] as const
       ).map(([label, props]) => ({
         label,

@@ -1,156 +1,196 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import React from 'react';
 import { Placeholder } from '@useblu/ocean-icons-react';
+import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import TransactionListChildAction from '../TransactionListChildAction';
 import TransactionListChildReadOnly from '../../TransactionListChildReadOnly';
-import type { TransactionListChildPosition } from '../../_shared/components/TransactionListParts';
+import TransactionListChildDocs, {
+  AI_RULES,
+} from './TransactionListChild.docs';
+import { aiRulesText } from '../../../../../.storybook/docs-blocks';
+import {
+  arg,
+  blockArgTypes,
+  category,
+  classNameArgType,
+  densityArgType,
+  iconArgTypes,
+  stateArgTypes,
+} from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
+import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
-const frame = { width: '360px' };
+const noSnapshot = { chromatic: { disableSnapshot: true } };
 const icon = <Placeholder size={16} />;
-const noControls = { controls: { disable: true } };
 
 const baseArgs = {
-  title: 'Title',
-  description: 'Description',
-  caption: 'Caption',
-  amount: 'R$ 0,00',
-  amountTag: { label: 'Label' },
-  additionalData: 'Additional data',
+  title: 'Agenda antecipada',
+  description: 'Antecipação',
+  caption: '12 de novembro',
+  amount: 'R$ 150,00',
+  amountType: 'negative' as const,
+  amountTag: { label: 'Pago' },
+  additionalData: 'Taxa 1,99%',
   icon,
 };
+
+const positions = ['standalone', 'first', 'middle', 'last'] as const;
 
 const meta: Meta<typeof TransactionListChildAction> = {
   title: 'Components/List/Transaction List Child',
   component: TransactionListChildAction,
-  tags: ['autodocs'],
+  // "manifest": entra no manifesto de componentes (resumo = regras para IA).
+  tags: ['autodocs', 'manifest'],
   parameters: {
+    layout: 'centered',
     docs: {
-      description: {
-        component:
-          'Itens filhos da Transaction List Expandable, ligados pela linha do tempo (sozinho, primeiro, meio, último). `TransactionListChildAction` tem seta; `TransactionListChildReadOnly` não. Figma: _Child Transaction List Action (24323:3663) e _Child Transaction List Read Only (26758:376).',
-      },
+      description: { component: aiRulesText(AI_RULES) },
+      page: () => (
+        <TransactionListChildDocs
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          stories={{ Default, Timeline, States, IconColors }}
+        />
+      ),
     },
   },
   argTypes: {
-    position: {
-      control: 'inline-radio',
-      options: ['standalone', 'first', 'middle', 'last'],
-    },
-    contentSize: { control: 'inline-radio', options: ['md', 'sm'] },
-    amountSize: { control: 'inline-radio', options: ['md', 'sm'] },
-    icon: { control: false },
-    onClick: { action: 'clicked' },
+    ...iconArgTypes({
+      iconSize: 16,
+      iconColorDefault: '— (Interface/Light/Down)',
+    }),
+    position: arg(
+      category.appearance,
+      'Onde o filho está no grupo: decide o traço acima e abaixo do ícone',
+      "'standalone' | 'first' | 'middle' | 'last'",
+      "'standalone'",
+      { control: 'inline-radio', options: [...positions] }
+    ),
+    ...densityArgType(),
+    ...stateArgTypes(),
+    onClick: arg(
+      category.interaction,
+      'Chamado uma vez por toque na linha; não é chamado com `disabled` ou `loading` (só Child Action)',
+      '(event: MouseEvent<HTMLButtonElement>) => void',
+      undefined,
+      { action: 'clicked' }
+    ),
+    ...blockArgTypes({ sizeDefault: "'sm'" }),
+    ...classNameArgType(
+      '<button> da linha (Child Action) / <div> raiz (Child Read Only)'
+    ),
   },
   args: baseArgs,
-  decorators: [
-    (Story: React.ComponentType): React.ReactElement => (
-      <div style={frame}>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
 
 type Story = StoryObj<typeof TransactionListChildAction>;
 
-const positionStory = (position: TransactionListChildPosition): Story => ({
-  name: `Position: ${position}`,
-  parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListChildAction {...baseArgs} position={position} />
-      <TransactionListChildReadOnly {...baseArgs} position={position} />
+/** Playground — Child Action com todas as propriedades nos controles. */
+export const Default: Story = {
+  name: 'Playground',
+  parameters: noSnapshot,
+  render: (args) => (
+    <div style={{ width: '360px' }}>
+      <TransactionListChildAction {...args} />
     </div>
   ),
-});
+};
 
-export const Default: Story = {};
-
-export const PositionStandalone = positionStory('standalone');
-export const PositionFirst = positionStory('first');
-export const PositionMiddle = positionStory('middle');
-export const PositionLast = positionStory('last');
-
+/** Matriz: posição na linha do tempo × tipo de filho (mantém o id `--timeline`). */
 export const Timeline: Story = {
-  parameters: noControls,
+  name: 'Timeline',
+  parameters: { controls: { disable: true } },
   render: () => (
-    <div>
-      <TransactionListChildAction {...baseArgs} position="first" />
-      <TransactionListChildAction {...baseArgs} position="middle" />
-      <TransactionListChildAction {...baseArgs} position="last" />
-      <TransactionListChildReadOnly {...baseArgs} position="first" />
-      <TransactionListChildReadOnly {...baseArgs} position="middle" />
-      <TransactionListChildReadOnly {...baseArgs} position="last" />
-    </div>
+    <MatrixGrid
+      columns={['Child Action', 'Child Read Only']}
+      rows={positions.map((position) => ({
+        label: position,
+        cells: [
+          <TransactionListChildAction
+            key="a"
+            {...baseArgs}
+            position={position}
+          />,
+          <TransactionListChildReadOnly
+            key="r"
+            {...baseArgs}
+            position={position}
+          />,
+        ],
+      }))}
+    />
   ),
 };
 
-export const Hover: Story = {
-  parameters: noControls,
-  args: { className: 'ods-transaction-list--show-hover', position: 'middle' },
-};
+const stateRows = [
+  ['Padrão', {}],
+  ['Hover (só Action)', { className: 'ods-transaction-list--show-hover' }],
+  ['Desabilitado', { disabled: true }],
+  ['Carregando', { loading: true }],
+] as const;
 
-export const Disabled: Story = {
-  parameters: noControls,
+/** Matriz: estado × tipo de filho × densidade. */
+export const States: Story = {
+  name: 'States',
+  parameters: { controls: { disable: true } },
   render: () => (
-    <div>
-      <TransactionListChildAction {...baseArgs} position="first" disabled />
-      <TransactionListChildReadOnly {...baseArgs} position="last" disabled />
-    </div>
+    <MatrixGrid
+      columns={['Child Action', 'Child Read Only', 'Child Action · compact']}
+      rows={stateRows.map(([label, props]) => ({
+        label,
+        cells: [
+          <TransactionListChildAction
+            key="a"
+            {...baseArgs}
+            {...props}
+            position="middle"
+          />,
+          <TransactionListChildReadOnly
+            key="r"
+            {...baseArgs}
+            {...props}
+            position="middle"
+          />,
+          <TransactionListChildAction
+            key="c"
+            {...baseArgs}
+            {...props}
+            position="middle"
+            density="compact"
+          />,
+        ],
+      }))}
+    />
   ),
 };
 
-export const Loading: Story = {
-  parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListChildAction {...baseArgs} position="first" loading />
-      <TransactionListChildReadOnly {...baseArgs} position="last" loading />
-    </div>
-  ),
-};
-
+/** Matriz: cor do ícone (sem iconColor = Interface/Light/Down) × fundo. */
 export const IconColors: Story = {
   name: 'Icon colors',
-  parameters: noControls,
+  parameters: { controls: { disable: true } },
   render: () => (
-    <div>
-      <p className="ods-typography ods-typography__caption">
-        sem iconColor (padrão do filho: Interface/Light/Down)
-      </p>
-      <TransactionListChildAction {...baseArgs} position="first" />
-      <p className="ods-typography ods-typography__caption">default</p>
-      <TransactionListChildAction
-        {...baseArgs}
-        position="middle"
-        iconColor="default"
-      />
-      <p className="ods-typography ods-typography__caption">on-color</p>
-      <div style={{ backgroundColor: colorStatusWarningUp }}>
-        <TransactionListChildAction
-          {...baseArgs}
-          position="middle"
-          iconColor="on-color"
-        />
-      </div>
-      <p className="ods-typography ods-typography__caption">highlight</p>
-      <TransactionListChildAction
-        {...baseArgs}
-        position="middle"
-        iconColor="highlight"
-      />
-      <p className="ods-typography ods-typography__caption">
-        disabled (sempre Interface/Light/Deep)
-      </p>
-      <TransactionListChildReadOnly
-        {...baseArgs}
-        position="last"
-        iconColor="highlight"
-        disabled
-      />
-    </div>
+    <MatrixGrid
+      columns={['Fundo branco', 'Status/Warning/Up']}
+      rows={(
+        [
+          ['sem iconColor', {}],
+          ['default', { iconColor: 'default' }],
+          ['on-color', { iconColor: 'on-color' }],
+          ['highlight', { iconColor: 'highlight' }],
+          ['disabled', { iconColor: 'highlight', disabled: true }],
+        ] as const
+      ).map(([label, props]) => ({
+        label,
+        cells: [undefined, colorStatusWarningUp].map((background) => (
+          <div key={background ?? 'white'} style={{ background }}>
+            <TransactionListChildAction
+              {...baseArgs}
+              {...props}
+              position="middle"
+            />
+          </div>
+        )),
+      }))}
+    />
   ),
 };

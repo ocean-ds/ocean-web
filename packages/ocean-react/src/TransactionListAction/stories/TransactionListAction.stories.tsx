@@ -3,42 +3,57 @@ import React, { useState } from 'react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import TransactionListAction from '../TransactionListAction';
 import type { TransactionListActionProps } from '../TransactionListAction';
+import TransactionListActionDocs, {
+  AI_RULES,
+} from './TransactionListAction.docs';
+import { aiRulesText } from '../../../../../.storybook/docs-blocks';
+import {
+  arg,
+  blockArgTypes,
+  category,
+  classNameArgType,
+  densityArgType,
+  dividerArgType,
+  iconArgTypes,
+  stateArgTypes,
+} from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
+import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
-const frame = { width: '360px' };
 const icon = <PlaceholderOutline size={24} />;
-const noControls = { controls: { disable: true } };
+const noSnapshot = { chromatic: { disableSnapshot: true } };
+const noop = (): void => undefined;
 
 const menuActions = [
-  { label: 'Option Text', onClick: () => undefined },
+  { label: 'Reenviar cobrança', onClick: noop },
   {
-    label: 'Option Text',
-    onClick: () => undefined,
+    label: 'Cancelar cobrança',
+    onClick: noop,
     variant: 'negative' as const,
   },
 ];
 
 const swipeActions = [
   {
-    label: 'Label',
-    onClick: () => undefined,
+    label: 'Reenviar',
+    onClick: noop,
     icon,
     variant: 'neutral' as const,
   },
   {
-    label: 'Label',
-    onClick: () => undefined,
+    label: 'Cancelar',
+    onClick: noop,
     icon,
     variant: 'negative' as const,
   },
 ];
 
-const baseArgs = {
-  title: 'Title',
-  description: 'Description',
-  caption: 'Caption',
-  amount: 'R$ 0,00',
-  amountTag: { label: 'Label' },
-  additionalData: 'Additional data',
+const baseArgs: TransactionListActionProps = {
+  title: 'PagBlu',
+  description: 'Padaria São José',
+  caption: 'Cobrança 10482',
+  amount: 'R$ 15,00',
+  amountTag: { label: 'Pago' },
+  additionalData: '6x de R$ 2,50',
   icon,
 };
 
@@ -51,73 +66,142 @@ const typeArgs = {
 const meta: Meta<typeof TransactionListAction> = {
   title: 'Components/List/Transaction List Action',
   component: TransactionListAction,
-  tags: ['autodocs'],
+  // "manifest": entra no manifesto de componentes (resumo = regras para IA).
+  tags: ['autodocs', 'manifest'],
   parameters: {
+    layout: 'centered',
     docs: {
-      description: {
-        component:
-          'Linha de transação com ação à direita: seta (leva ao detalhe), menu contextual ou swipe. Realce ao passar o mouse em Interface/Light/Up (multiply). Figma: Transaction List Action (24289:64384).',
-      },
+      description: { component: aiRulesText(AI_RULES) },
+      page: () => (
+        <TransactionListActionDocs
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          stories={{ Default, States, Sizes, MenuActive, SwipeActive }}
+        />
+      ),
     },
   },
   argTypes: {
-    actionType: {
-      control: 'inline-radio',
-      options: ['chevron', 'menu', 'swipe'],
-    },
-    contentSize: { control: 'inline-radio', options: ['md', 'sm'] },
-    amountSize: { control: 'inline-radio', options: ['md', 'sm'] },
-    icon: { control: false },
-    menuActions: { control: false },
-    onClick: { action: 'clicked' },
-  },
-  args: baseArgs,
-  decorators: [
-    (Story: React.ComponentType): React.ReactElement => (
-      <div style={frame}>
-        <Story />
-      </div>
+    ...iconArgTypes(),
+    ...densityArgType(),
+    ...dividerArgType(),
+    actionType: arg(
+      category.appearance,
+      'Ação à direita: seta para o detalhe, menu de ações ou deslizar para revelar ações',
+      "'chevron' | 'menu' | 'swipe'",
+      "'chevron'",
+      { control: 'inline-radio', options: ['chevron', 'menu', 'swipe'] }
     ),
-  ],
+    menuActions: arg(
+      category.appearance,
+      'Ações do menu e do deslizar. Só tem efeito com `actionType` `menu` ou `swipe`',
+      'ActionItem[]',
+      '[]',
+      { control: false }
+    ),
+    menuPosition: arg(
+      category.appearance,
+      'Lado em que o menu abre. Só tem efeito com `actionType="menu"`',
+      "'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'",
+      "'bottom-right'",
+      {
+        control: 'select',
+        options: ['bottom-left', 'bottom-right', 'top-left', 'top-right'],
+      }
+    ),
+    ...stateArgTypes(),
+    onClick: arg(
+      category.interaction,
+      'Chamado uma vez por toque na linha; não é chamado com `disabled` ou `loading`',
+      '(event: MouseEvent<HTMLButtonElement>) => void',
+      undefined,
+      { action: 'clicked' }
+    ),
+    ...blockArgTypes({ sizeDefault: "'md'" }),
+    ...classNameArgType('<button> da linha'),
+  },
+  args: { ...baseArgs, menuActions },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof TransactionListAction>;
 
-const ClickCounter = (props: Partial<TransactionListActionProps>) => {
-  const [clicks, setClicks] = useState(0);
-
-  return (
-    <div>
-      <TransactionListAction
-        {...baseArgs}
-        {...props}
-        onClick={() => setClicks((count) => count + 1)}
-      />
-      <p className="ods-typography ods-typography__caption">Toques: {clicks}</p>
-    </div>
-  );
-};
-
-const States = (props: Partial<TransactionListActionProps>) => (
-  <div>
-    <p className="ods-typography ods-typography__caption">Default</p>
-    <TransactionListAction {...baseArgs} {...props} />
-    <p className="ods-typography ods-typography__caption">Hover</p>
-    <TransactionListAction
-      {...baseArgs}
-      {...props}
-      className="ods-transaction-list--show-hover"
-    />
-    <p className="ods-typography ods-typography__caption">Disabled</p>
-    <TransactionListAction {...baseArgs} {...props} disabled />
-    <p className="ods-typography ods-typography__caption">Loading</p>
-    <TransactionListAction {...baseArgs} {...props} loading />
-  </div>
+const frame = (children: React.ReactNode) => (
+  <div style={{ width: '360px' }}>{children}</div>
 );
 
-const openActions = async ({
+/** Playground — todas as propriedades nos controles. */
+export const Default: Story = {
+  name: 'Playground',
+  parameters: noSnapshot,
+  render: (args) => frame(<TransactionListAction {...args} />),
+};
+
+const states = [
+  ['Padrão', {}],
+  ['Hover', { className: 'ods-transaction-list--show-hover' }],
+  ['Desabilitado', { disabled: true }],
+  ['Carregando', { loading: true }],
+] as const;
+
+/** Matriz: tipo de ação × estado. */
+export const States: Story = {
+  name: 'Types × states',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <MatrixGrid
+      columns={['chevron', 'menu', 'swipe']}
+      rows={states.map(([label, props]) => ({
+        label,
+        cells: (['chevron', 'menu', 'swipe'] as const).map((type) => (
+          <TransactionListAction
+            key={type}
+            {...baseArgs}
+            {...typeArgs[type]}
+            {...props}
+          />
+        )),
+      }))}
+    />
+  ),
+};
+
+const amountTypes = [
+  ['default', {}],
+  ['positive', {}],
+  ['negative', {}],
+  ['strikethrough', { amount: 'Grátis', strikethroughAmount: '3,99%' }],
+  [
+    'strikethrough-neutral',
+    { amount: 'R$ 2,00', strikethroughAmount: 'R$ 3,99' },
+  ],
+] as const;
+
+/** Matriz: tipos de valor × tamanho. */
+export const Sizes: Story = {
+  name: 'Sizes × amount types',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <MatrixGrid
+      columns={['md', 'sm']}
+      rows={amountTypes.map(([amountType, props]) => ({
+        label: amountType,
+        cells: (['md', 'sm'] as const).map((size) => (
+          <TransactionListAction
+            key={size}
+            {...baseArgs}
+            {...props}
+            amountType={amountType}
+            contentSize={size}
+            amountSize={size}
+          />
+        )),
+      }))}
+    />
+  ),
+};
+
+const openTrigger = async ({
   canvasElement,
 }: {
   canvasElement: HTMLElement;
@@ -127,109 +211,49 @@ const openActions = async ({
     ?.click();
 };
 
-export const Default: Story = {
-  render: (args) => <ClickCounter {...args} />,
-};
-
-export const TypeChevron: Story = {
-  name: 'Type: Chevron',
-  parameters: noControls,
-  render: () => <States {...typeArgs.chevron} />,
-};
-
-export const TypeMenu: Story = {
-  name: 'Type: Menu',
-  parameters: noControls,
-  render: () => <States {...typeArgs.menu} />,
-};
-
-export const TypeSwipe: Story = {
-  name: 'Type: Swipe',
-  parameters: noControls,
-  render: () => <States {...typeArgs.swipe} />,
-};
-
-export const Hover: Story = {
-  parameters: noControls,
-  render: () => (
-    <div>
-      {Object.entries(typeArgs).map(([type, args]) => (
-        <TransactionListAction
-          key={type}
-          {...baseArgs}
-          {...args}
-          className="ods-transaction-list--show-hover"
-        />
-      ))}
-    </div>
-  ),
-};
-
+/** Interativo: menu aberto (Figma State=Active). */
 export const MenuActive: Story = {
   name: 'Menu: Active',
-  parameters: noControls,
-  render: () => (
-    <div style={{ paddingBottom: '120px' }}>
-      <TransactionListAction {...baseArgs} {...typeArgs.menu} />
-    </div>
-  ),
-  play: openActions,
+  parameters: { ...noSnapshot, controls: { disable: true } },
+  render: () =>
+    frame(
+      <div style={{ paddingBottom: '120px' }}>
+        <TransactionListAction {...baseArgs} {...typeArgs.menu} />
+      </div>
+    ),
+  play: openTrigger,
 };
 
+/** Interativo: ações reveladas pelo deslizar (Figma State=Active). */
 export const SwipeActive: Story = {
   name: 'Swipe: Active',
-  parameters: noControls,
-  render: () => <TransactionListAction {...baseArgs} {...typeArgs.swipe} />,
-  play: openActions,
+  parameters: { ...noSnapshot, controls: { disable: true } },
+  render: () =>
+    frame(<TransactionListAction {...baseArgs} {...typeArgs.swipe} />),
+  play: openTrigger,
 };
 
-export const Loading: Story = {
-  parameters: noControls,
-  args: { loading: true },
-};
-
-export const Disabled: Story = {
-  parameters: noControls,
-  render: () => (
-    <div>
-      <ClickCounter disabled />
-      <TransactionListAction {...baseArgs} {...typeArgs.menu} disabled />
-      <TransactionListAction {...baseArgs} {...typeArgs.swipe} disabled />
-    </div>
-  ),
-};
-
-export const Sizes: Story = {
-  parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListAction {...baseArgs} contentSize="md" amountSize="md" />
-      <TransactionListAction {...baseArgs} contentSize="sm" amountSize="md" />
-      <TransactionListAction {...baseArgs} contentSize="md" amountSize="sm" />
-      <TransactionListAction {...baseArgs} contentSize="sm" amountSize="sm" />
-    </div>
-  ),
-};
-
-export const AmountTypes: Story = {
-  name: 'Amount types',
-  parameters: noControls,
-  render: () => (
-    <div>
-      <TransactionListAction {...baseArgs} amountType="positive" />
-      <TransactionListAction {...baseArgs} amountType="negative" />
+/** Interativo: contador de toques (um onClick por toque; nenhum desabilitado). */
+const ClickCounter = () => {
+  const [clicks, setClicks] = useState(0);
+  return frame(
+    <>
       <TransactionListAction
         {...baseArgs}
-        amount="Grátis"
-        strikethroughAmount="3,99%"
-        amountType="strikethrough"
+        onClick={() => setClicks((count) => count + 1)}
       />
       <TransactionListAction
         {...baseArgs}
-        amount="R$ 2,00"
-        strikethroughAmount="R$ 3,99"
-        amountType="strikethrough-neutral"
+        disabled
+        onClick={() => setClicks((count) => count + 1)}
       />
-    </div>
-  ),
+      <p className="ods-typography ods-typography__caption">Toques: {clicks}</p>
+    </>
+  );
+};
+
+export const Clicks: Story = {
+  name: 'Click counter',
+  parameters: { ...noSnapshot, controls: { disable: true } },
+  render: () => <ClickCounter />,
 };

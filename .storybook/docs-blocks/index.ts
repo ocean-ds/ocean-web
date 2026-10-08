@@ -9,4 +9,5 @@ export * from './DoDont';
 export * from './AnatomyLegend';
 export * from './PreviewCanvas';
 export * from './DocLinks';
+export * from './DocPage';
 export * from './StatusTable';

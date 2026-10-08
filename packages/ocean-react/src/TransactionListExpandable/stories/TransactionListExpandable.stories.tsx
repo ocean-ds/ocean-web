@@ -5,355 +5,291 @@ import TransactionListExpandable, {
   TransactionListExpandableProps,
 } from '../TransactionListExpandable';
 import Tag from '../../Tag';
-import List from '../../List';
 import ListAction from '../../ListAction';
 import TransactionListChildAction from '../../TransactionListChildAction';
-import placeholderIcon from '../assets/placeholder.svg';
+import TransactionListChildReadOnly from '../../TransactionListChildReadOnly';
+import TransactionListExpandableDocs, {
+  AI_RULES,
+} from './TransactionListExpandable.docs';
+import { aiRulesText } from '../../../../../.storybook/docs-blocks';
+import {
+  arg,
+  blockArgTypes,
+  category,
+  classNameArgType,
+  densityArgType,
+  iconArgTypes,
+  stateArgTypes,
+} from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
+import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
-export type StateOption = 'Default' | 'Hover' | 'Loading';
+const noSnapshot = { chromatic: { disableSnapshot: true } };
 
-type TransactionListExpandableStoryArgs = TransactionListExpandableProps & {
-  state?: StateOption;
+/** Linha principal no formato da família (props opt-in de tamanho). */
+const familyArgs: TransactionListExpandableProps = {
+  title: 'Maquininha Blu',
+  description: 'Crédito Mastercard',
+  caption: '12 de novembro',
+  amount: 'R$ 850,00',
+  amountType: 'positive',
+  amountTag: { label: 'Agendado', type: 'warning' },
+  additionalData: 'Líquido a receber',
+  contentSize: 'md',
+  amountSize: 'md',
+  icon: <PlaceholderOutline size={24} />,
+  showDivider: true,
+  supportingText: 'Valores líquidos de taxas',
 };
+
+const childIcon = <Placeholder size={16} />;
+
+const familyChildren = (
+  <>
+    <TransactionListChildAction
+      title="Agenda gerada"
+      description="Bruto"
+      amount="R$ 1.000,00"
+      icon={childIcon}
+      position="first"
+    />
+    <TransactionListChildAction
+      title="Agenda antecipada"
+      description="Antecipação"
+      amount="R$ 100,00"
+      amountType="negative"
+      icon={childIcon}
+      position="middle"
+    />
+    <TransactionListChildReadOnly
+      title="Agenda em trava bancária"
+      description="Banco Exemplo"
+      amount="R$ 50,00"
+      amountType="negative"
+      icon={childIcon}
+      position="last"
+    />
+  </>
+);
+
+/** Filhos legados (ListAction) — como o extrato e a OriginSection montam hoje. */
+const legacyChildren = (
+  <>
+    <ListAction
+      title="Title"
+      description="Description"
+      type="text"
+      inverted
+      position="first"
+      icon={childIcon}
+      amountDetails={{ amount: 'R$ 0,00', additionalData: 'Additional data' }}
+    />
+    <ListAction
+      title="Title"
+      description="Description"
+      type="text"
+      inverted
+      position="last"
+      icon={childIcon}
+      amountDetails={{ amount: 'R$ 0,00', additionalData: 'Additional data' }}
+    />
+  </>
+);
 
 const meta: Meta<typeof TransactionListExpandable> = {
   title: 'Components/List/TransactionListExpandable',
   component: TransactionListExpandable,
-  tags: ['autodocs'],
-  argTypes: {
-    title: {
-      description: 'Título principal da transação.',
-      control: 'text',
-    },
-    description: {
-      description: 'Descrição ou texto secundário.',
-      control: 'text',
-    },
-    caption: {
-      description: 'Legenda ou texto terciário.',
-      control: 'text',
-    },
-    amount: {
-      description: 'Valor exibido à direita (ex: R$ 0,00).',
-      control: 'text',
-    },
-    amountType: {
-      description: 'Tipo visual do valor (default, positive, negative).',
-      control: 'select',
-      options: ['default', 'positive', 'negative'],
-    },
-    showAmountIndicator: {
-      description: 'Exibe o indicador (tag) ao lado do valor.',
-      control: 'boolean',
-    },
-    additionalData: {
-      description:
-        'Dado adicional abaixo do valor (exibido apenas se preenchido).',
-      control: 'text',
-    },
-    inverted: {
-      description: 'Inverte a posição do título com a descrição.',
-      control: 'boolean',
-    },
-    type: {
-      description: 'Tipo de estilo (card ou text).',
-      control: 'select',
-      options: ['card', 'text'],
-    },
-    status: {
-      description: 'Status do conteúdo.',
-      control: 'select',
-      options: [
-        'default',
-        'inactive',
-        'positive',
-        'warning',
-        'highlight',
-        'highlight-lead',
-        'strikethrough',
-      ],
-    },
-    loading: {
-      description:
-        'Estado de carregamento com skeleton (espelhado por state=Loading).',
-      control: { type: null },
-    },
-    disabled: {
-      description: 'Se está desabilitado.',
-      control: 'boolean',
-    },
-    showDivider: {
-      description: 'Mostra divisor entre o header e o conteúdo expandido.',
-      control: 'boolean',
-    },
-    expanded: {
-      description: 'Se o conteúdo está expandido.',
-      control: 'boolean',
-    },
-    onToggle: {
-      description: 'Callback ao expandir/colapsar.',
-      action: 'toggled',
-    },
-    children: {
-      description: 'Conteúdo exibido quando expandido (ex.: ListAction).',
-      control: false,
-    },
-    supportingText: {
-      description: 'Texto de apoio exibido abaixo do conteúdo expandido.',
-      control: 'text',
+  // "manifest": entra no manifesto de componentes (resumo = regras para IA).
+  tags: ['autodocs', 'manifest'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: { component: aiRulesText(AI_RULES) },
+      page: () => (
+        <TransactionListExpandableDocs
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          stories={{ Usage, States, AmountTypes, WithFamilyChildren }}
+        />
+      ),
     },
   },
+  argTypes: {
+    ...iconArgTypes({ iconColorDefault: '— (cor atual)' }),
+    children: arg(
+      category.content,
+      'Itens filhos mostrados com a linha aberta: TransactionListChildAction / TransactionListChildReadOnly com `position`',
+      'ReactNode',
+      undefined,
+      { control: false }
+    ),
+    supportingText: arg(
+      category.content,
+      'Texto de apoio abaixo dos filhos, com a linha aberta',
+      'ReactNode'
+    ),
+    type: arg(
+      category.appearance,
+      'Container: `card` com destaque individual, `text` para lista contínua (extrato)',
+      "'card' | 'text'",
+      "'card'",
+      { control: 'inline-radio', options: ['card', 'text'] }
+    ),
+    ...densityArgType(),
+    showDivider: arg(
+      category.appearance,
+      'Divisor abaixo do item; aberta, abaixo do conteúdo expandido (nunca entre a linha e os filhos)',
+      'boolean',
+      'false'
+    ),
+    expanded: arg(
+      category.state,
+      'Linha aberta, com os filhos e o rodapé. Controlado: passe junto com `onToggle`',
+      'boolean',
+      'false'
+    ),
+    ...stateArgTypes(),
+    onToggle: arg(
+      category.interaction,
+      'Chamado no toque com o próximo estado (`true` = abrir)',
+      '(expanded: boolean) => void',
+      undefined,
+      { action: 'toggled' }
+    ),
+    ...blockArgTypes({ sizeDefault: '— (opt-in; passe md)' }),
+    ...classNameArgType('<div> raiz'),
+  },
+  args: familyArgs,
 };
 
 export default meta;
 
 type Story = StoryObj<typeof TransactionListExpandable>;
 
-const defaultSupportingText = 'Supporting text that providing context.';
-
-const childContentWithFooter = (
-  <>
-    <ListAction
-      title="Title"
-      description="Description"
-      caption="Caption"
-      icon={
-        <img src={placeholderIcon as unknown as string} alt="placeholder" />
-      }
-      type="text"
-      inverted
-      position="first"
-      amountDetails={{
-        amount: 'R$ 0,00',
-        indicator: (
-          <Tag type="positive" size="small" setIconOff>
-            Label
-          </Tag>
-        ),
-        additionalData: 'Additional data',
-      }}
-    />
-    <ListAction
-      title="Title"
-      description="Description"
-      caption="Caption"
-      icon={
-        <img src={placeholderIcon as unknown as string} alt="placeholder" />
-      }
-      type="text"
-      inverted
-      position="last"
-      amountDetails={{
-        amount: 'R$ 0,00',
-        indicator: (
-          <Tag type="positive" size="small" setIconOff>
-            Label
-          </Tag>
-        ),
-        additionalData: 'Additional data',
-      }}
-    />
-  </>
-);
-
-function UsageWrapper(props: TransactionListExpandableStoryArgs) {
-  const [expanded, setExpanded] = React.useState(true);
-  const { state = 'Default', ...rest } = props;
-  const isLoading = state === 'Loading';
-  const showHover = state === 'Hover';
-  const wrapperClassName = showHover
-    ? 'ods-list-expandable--show-hover'
-    : undefined;
-
-  return (
-    <div style={{ width: '400px' }} className={wrapperClassName}>
-      <TransactionListExpandable
-        {...rest}
-        expanded={expanded}
-        onToggle={setExpanded}
-        loading={isLoading}
-        amountIndicator={
-          <Tag type="positive" size="small" setIconOff>
-            Label
-          </Tag>
-        }
-        icon={<PlaceholderOutline size={24} />}
-      >
-        {childContentWithFooter}
-      </TransactionListExpandable>
-    </div>
-  );
-}
-
-export const Usage: StoryObj<TransactionListExpandableStoryArgs> = {
-  argTypes: {
-    state: {
-      description: 'Estado visual do componente (Default, Hover, Loading).',
-      control: 'select',
-      options: ['Default', 'Hover', 'Loading'],
-    },
-  },
-  args: {
-    state: 'Default',
-    title: 'Title',
-    description: 'Description',
-    caption: 'Caption',
-    amount: 'R$ 0,00',
-    amountType: 'default',
-    additionalData: 'Additional data',
-    type: 'card',
-    showDivider: false,
-    expanded: true,
-    supportingText: defaultSupportingText,
-  },
-  render: (args) => <UsageWrapper {...args} />,
-};
-
-export const StateDefault: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={{ width: '400px' }}>
-      <TransactionListExpandable
-        title="Title"
-        description="Description"
-        caption="Caption"
-        amount="R$ 0,00"
-        amountIndicator={
-          <Tag type="positive" size="small" setIconOff>
-            Label
-          </Tag>
-        }
-        additionalData="Additional data"
-        icon={<PlaceholderOutline size={24} />}
-        showDivider
-        expanded
-        supportingText={defaultSupportingText}
-      >
-        {childContentWithFooter}
-      </TransactionListExpandable>
-    </div>
-  ),
-};
-
-export const StateHover: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={{ width: '400px' }} className="ods-list-expandable--show-hover">
-      <TransactionListExpandable
-        title="Title"
-        description="Description"
-        caption="Caption"
-        amount="R$ 0,00"
-        amountIndicator={
-          <Tag type="positive" size="small" setIconOff>
-            Label
-          </Tag>
-        }
-        additionalData="Additional data"
-        icon={<PlaceholderOutline size={24} />}
-        showDivider
-        expanded
-        supportingText={defaultSupportingText}
-      >
-        {childContentWithFooter}
-      </TransactionListExpandable>
-    </div>
-  ),
-};
-
-export const StateLoading: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={{ width: '400px' }}>
-      <TransactionListExpandable
-        title="Transação"
-        description="Descrição"
-        amount="R$ 0,00"
-        icon={<PlaceholderOutline size={24} />}
-        showDivider={false}
-        loading
-      />
-    </div>
-  ),
-};
-
-export const AmountTypes: Story = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <List style={{ width: '400px' }}>
-      <TransactionListExpandable
-        title="Transação"
-        description="Valor default"
-        amount="R$ 0,00"
-        icon={<PlaceholderOutline size={24} />}
-      />
-      <TransactionListExpandable
-        title="Transação"
-        description="Valor positivo"
-        amount="R$ 500,00"
-        amountType="positive"
-        amountIndicator={
-          <Tag type="positive" size="small" setIconOff>
-            Crédito
-          </Tag>
-        }
-        icon={<PlaceholderOutline size={24} />}
-      />
-      <TransactionListExpandable
-        title="Transação"
-        description="Valor negativo"
-        amount="R$ 150,00"
-        amountType="negative"
-        amountIndicator={
-          <Tag type="negative" size="small" setIconOff>
-            Débito
-          </Tag>
-        }
-        icon={<PlaceholderOutline size={24} />}
-      />
-    </List>
-  ),
-};
-
-const FamilyExpandable = () => {
-  const [expanded, setExpanded] = React.useState(true);
-
+const ExpandableWithState = (props: TransactionListExpandableProps) => {
+  const { expanded: initial = true } = props;
+  const [expanded, setExpanded] = React.useState(initial);
   return (
     <div style={{ width: '360px' }}>
       <TransactionListExpandable
-        title="Title"
-        description="Description"
-        caption="Caption"
-        amount="R$ 0,00"
-        amountSize="md"
-        amountTag={{ label: 'Label' }}
-        additionalData="Additional data"
-        icon={<PlaceholderOutline size={24} />}
-        showDivider
+        {...props}
         expanded={expanded}
         onToggle={setExpanded}
-        supportingText="Additional information"
       >
-        {(['first', 'middle', 'last'] as const).map((position) => (
-          <TransactionListChildAction
-            key={position}
+        {familyChildren}
+      </TransactionListExpandable>
+    </div>
+  );
+};
+
+/** Playground — todas as propriedades nos controles; abre e fecha no toque. */
+export const Usage: Story = {
+  name: 'Playground',
+  parameters: noSnapshot,
+  render: (args) => <ExpandableWithState {...args} />,
+};
+
+const stateRows = [
+  ['Padrão', {}],
+  ['Hover', { className: 'ods-list-expandable--show-hover' }],
+  ['Desabilitado', { disabled: true }],
+  ['Carregando', { loading: true }],
+] as const;
+
+/** Matriz: fechada/aberta/legado × estado (o legado cobre as telas no ar). */
+export const States: Story = {
+  name: 'States',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <MatrixGrid
+      columns={['Fechada', 'Aberta', 'Legado (sem props novas), aberta']}
+      rows={stateRows.map(([label, props]) => ({
+        label,
+        cells: [
+          <TransactionListExpandable key="closed" {...familyArgs} {...props} />,
+          <TransactionListExpandable
+            key="open"
+            {...familyArgs}
+            {...props}
+            expanded
+          >
+            {familyChildren}
+          </TransactionListExpandable>,
+          <TransactionListExpandable
+            key="legacy"
             title="Title"
             description="Description"
             caption="Caption"
             amount="R$ 0,00"
-            amountTag={{ label: 'Label' }}
+            amountIndicator={
+              <Tag type="positive" size="small" setIconOff>
+                Label
+              </Tag>
+            }
             additionalData="Additional data"
-            icon={<Placeholder size={16} />}
-            position={position}
-          />
-        ))}
-      </TransactionListExpandable>
-    </div>
-  );
+            icon={<PlaceholderOutline size={24} />}
+            supportingText="Supporting text"
+            expanded
+            {...props}
+          >
+            {legacyChildren}
+          </TransactionListExpandable>,
+        ],
+      }))}
+    />
+  ),
 };
 
+/** Mantido para a página do Docusaurus (embed `--state-loading`). */
+export const StateLoading: Story = {
+  name: 'Loading',
+  parameters: { ...noSnapshot, controls: { disable: true } },
+  render: () => (
+    <div style={{ width: '360px' }}>
+      <TransactionListExpandable {...familyArgs} loading />
+    </div>
+  ),
+};
+
+/** Matriz: tipos de valor × tamanho e densidade. */
+export const AmountTypes: Story = {
+  name: 'Sizes × amount types',
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <MatrixGrid
+      columns={['md · default', 'sm · compact']}
+      rows={(
+        [
+          ['default', {}],
+          ['positive', {}],
+          ['negative', {}],
+          ['strikethrough', { amount: 'Grátis', strikethroughAmount: '3,99%' }],
+        ] as const
+      ).map(([amountType, props]) => ({
+        label: amountType,
+        cells: [
+          <TransactionListExpandable
+            key="md"
+            {...familyArgs}
+            {...props}
+            amountType={amountType}
+          />,
+          <TransactionListExpandable
+            key="sm"
+            {...familyArgs}
+            {...props}
+            amountType={amountType}
+            contentSize="sm"
+            amountSize="sm"
+            density="compact"
+          />,
+        ],
+      }))}
+    />
+  ),
+};
+
+/** Interativo: abre e fecha com os filhos da família. */
 export const WithFamilyChildren: Story = {
   name: 'With Transaction List children',
-  parameters: { controls: { disable: true } },
-  render: () => <FamilyExpandable />,
+  parameters: { ...noSnapshot, controls: { disable: true } },
+  render: () => <ExpandableWithState {...familyArgs} expanded={false} />,
 };
