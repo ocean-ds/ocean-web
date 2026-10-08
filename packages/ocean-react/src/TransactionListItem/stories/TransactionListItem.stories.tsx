@@ -68,8 +68,7 @@ const meta: Meta<typeof TransactionListItem> = {
       control: 'boolean',
     },
     isInverted: {
-      description:
-        'Inverte a hierarquia tipográfica entre Level 1 e Level 2.',
+      description: 'Inverte a hierarquia tipográfica entre Level 1 e Level 2.',
       control: 'boolean',
     },
     className: {

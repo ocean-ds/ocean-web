@@ -545,10 +545,10 @@ const Accessibility = () => (
           topic: 'Verificação automática',
           content: (
             <>
-              axe (painel Accessibility) em 08/10: {c('States · checkbox')}{' '}
-              __AXE_CB__, {c('States · radio')} __AXE_RADIO__ e{' '}
-              {c('Sizes × amount types')} __AXE_SIZES__ violações —
-              __AXE_CAUSE__ Ver o painel Accessibility de cada story.
+              axe (painel Accessibility) em 08/10: {c('States · checkbox')} 0,{' '}
+              {c('States · radio')} 0 e {c('Sizes × amount types')} 6 violações
+              — as 6 são contraste de tokens (valor verde 3,0:1; riscado 2,2:1).
+              Ver o painel Accessibility de cada story.
             </>
           ),
         },
