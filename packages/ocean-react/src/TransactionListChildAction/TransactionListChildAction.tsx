@@ -5,6 +5,7 @@ import {
   TransactionListChevron,
   TransactionListChildPosition,
   TransactionListContent,
+  splitContentProps,
   TransactionListSkeleton,
   TransactionListTimeline,
 } from '../_shared/components/TransactionListParts';
@@ -57,21 +58,8 @@ const TransactionListChildAction = React.forwardRef<
 >(
   (
     {
-      title,
-      description,
-      strikethroughDescription,
-      caption,
-      inverted = true,
-      status = 'default',
       contentSize = 'sm',
-      amount,
-      amountType = 'default',
       amountSize = 'sm',
-      strikethroughAmount,
-      amountTag,
-      amountIndicator,
-      showAmountIndicator = true,
-      additionalData,
       icon,
       iconColor,
       disabled = false,
@@ -80,70 +68,62 @@ const TransactionListChildAction = React.forwardRef<
       position = 'standalone',
       onClick,
       className,
-      ...rest
+      ...props
     },
     ref
-  ) => (
-    <div
-      data-testid="transaction-list-child-action"
-      className={classNames(
-        'ods-transaction-list',
-        'ods-transaction-list--child',
-        'ods-transaction-list--action',
-        `ods-transaction-list--${position}`,
-        {
-          'ods-transaction-list--disabled': disabled,
-          'ods-transaction-list--loading': loading,
-          'ods-transaction-list--compact': density === 'compact',
-        },
-        className
-      )}
-    >
-      <button
-        ref={ref}
-        type="button"
-        className="ods-transaction-list__main ods-transaction-list__main--interactive"
-        onClick={disabled || loading ? undefined : onClick}
-        disabled={disabled || loading}
-        aria-busy={loading || undefined}
-        // While loading the button only holds the skeleton: give it a name (axe button-name).
-        aria-label={loading ? 'Carregando' : undefined}
-        {...rest}
-      >
-        <TransactionListTimeline
-          position={position}
-          icon={icon}
-          iconColor={iconColor}
-          disabled={disabled}
-        />
-        {loading ? (
-          <TransactionListSkeleton showLeading={false} />
-        ) : (
-          <>
-            <TransactionListContent
-              title={title}
-              description={description}
-              strikethroughDescription={strikethroughDescription}
-              caption={caption}
-              inverted={inverted}
-              status={status}
-              contentSize={contentSize}
-              amount={amount}
-              amountType={amountType}
-              amountSize={amountSize}
-              strikethroughAmount={strikethroughAmount}
-              amountTag={amountTag}
-              amountIndicator={amountIndicator}
-              showAmountIndicator={showAmountIndicator}
-              additionalData={additionalData}
-              disabled={disabled}
-            />
-            <TransactionListChevron />
-          </>
+  ) => {
+    const [content, rest] = splitContentProps(props);
+
+    return (
+      <div
+        data-testid="transaction-list-child-action"
+        className={classNames(
+          'ods-transaction-list',
+          'ods-transaction-list--child',
+          'ods-transaction-list--action',
+          `ods-transaction-list--${position}`,
+          {
+            'ods-transaction-list--disabled': disabled,
+            'ods-transaction-list--loading': loading,
+            'ods-transaction-list--compact': density === 'compact',
+          },
+          className
         )}
-      </button>
-    </div>
-  )
+      >
+        <button
+          ref={ref}
+          type="button"
+          className="ods-transaction-list__main ods-transaction-list__main--interactive"
+          onClick={disabled || loading ? undefined : onClick}
+          disabled={disabled || loading}
+          aria-busy={loading || undefined}
+          // While loading the button only holds the skeleton: give it a name (axe button-name).
+          aria-label={loading ? 'Carregando' : undefined}
+          {...rest}
+        >
+          <TransactionListTimeline
+            position={position}
+            icon={icon}
+            iconColor={iconColor}
+            disabled={disabled}
+          />
+          {loading ? (
+            <TransactionListSkeleton showLeading={false} />
+          ) : (
+            <>
+              <TransactionListContent
+                {...content}
+                contentSize={contentSize}
+                amountSize={amountSize}
+                disabled={disabled}
+              />
+              <TransactionListChevron />
+            </>
+          )}
+        </button>
+      </div>
+    );
+  }
 );
 
 TransactionListChildAction.displayName = 'TransactionListChildAction';

@@ -91,7 +91,7 @@ export const MatrixGrid = ({
 );
 
 /** Configurações dos blocos (iguais na família; o padrão de tamanho muda por componente). */
-export const blockConfigRows = (sizeDefault: string): ConfigRow[] => [
+export const blockConfigRows = (sizeDefault: ReactNode): ConfigRow[] => [
   {
     category: 'Bloco de conteúdo',
     option: c('contentSize'),
@@ -139,18 +139,19 @@ export const blockConfigRows = (sizeDefault: string): ConfigRow[] => [
 /** Linhas de cor (tokens) dos blocos — mesmas em toda a família. */
 export const blockTokenRows = (
   states: number,
-  disabledIndex: number,
+  disabledIndex: number | number[],
   loadingIndex?: number
 ): { part: string; tokens: string[] }[] => {
+  const disabledColumns = ([] as number[]).concat(disabledIndex);
   const row = (
     part: string,
     normal: string,
-    disabled: string,
+    disabledToken: string,
     loading = 'Interface/Light/Up'
   ) => ({
     part,
     tokens: Array.from({ length: states }, (_, index) => {
-      if (index === disabledIndex) return disabled;
+      if (disabledColumns.includes(index)) return disabledToken;
       if (index === loadingIndex) return loading;
       return normal;
     }),
@@ -260,3 +261,54 @@ export const FAMILY_FORBIDDEN = [
   'iconColor="on-color" sobre fundo branco.',
   'amountTag e amountIndicator juntos.',
 ];
+
+/** Casos de estado das matrizes (a classe de hover simulado muda por componente). */
+export const stateCases = (
+  hoverClassName: string
+): readonly (readonly [string, Record<string, unknown>])[] => [
+  ['Padrão', {}],
+  ['Hover', { className: hoverClassName }],
+  ['Desabilitado', { disabled: true }],
+  ['Carregando', { loading: true }],
+];
+
+/** Tipos de valor das matrizes, com os textos de riscado. */
+export const AMOUNT_TYPE_CASES = [
+  ['default', {}],
+  ['positive', {}],
+  ['negative', {}],
+  ['strikethrough', { amount: 'Grátis', strikethroughAmount: '3,99%' }],
+  [
+    'strikethrough-neutral',
+    { amount: 'R$ 2,00', strikethroughAmount: 'R$ 3,99' },
+  ],
+] as const;
+
+/**
+ * Matriz tipos de valor × tamanho. `compactSm` põe a coluna sm também em densidade compact.
+ */
+export const SizesMatrix = ({
+  render,
+  compactSm = false,
+}: {
+  render: (props: Record<string, unknown>) => ReactNode;
+  compactSm?: boolean;
+}): React.ReactElement => (
+  <MatrixGrid
+    columns={compactSm ? ['md · default', 'sm · compact'] : ['md', 'sm']}
+    rows={AMOUNT_TYPE_CASES.map(([amountType, props]) => ({
+      label: amountType,
+      cells: (['md', 'sm'] as const).map((size) => (
+        <React.Fragment key={size}>
+          {render({
+            ...props,
+            amountType,
+            contentSize: size,
+            amountSize: size,
+            ...(compactSm && size === 'sm' ? { density: 'compact' } : {}),
+          })}
+        </React.Fragment>
+      )),
+    }))}
+  />
+);

@@ -128,17 +128,52 @@ export type TransactionListBaseProps = {
   density?: TransactionListDensity;
 };
 
-type TransactionListContentProps = Omit<
+const CONTENT_KEYS = [
+  'title',
+  'description',
+  'strikethroughDescription',
+  'caption',
+  'inverted',
+  'status',
+  'amount',
+  'amountType',
+  'strikethroughAmount',
+  'amountTag',
+  'amountIndicator',
+  'showAmountIndicator',
+  'additionalData',
+] as const;
+
+/** Props of the two blocks (content + amount) that every family member forwards as-is. */
+export type TransactionListContentData = Pick<
   TransactionListBaseProps,
-  'icon' | 'iconColor' | 'loading' | 'density' | 'contentSize' | 'amountSize'
-> & {
-  // Resolved by the host component (each one has its own defaults).
-  inverted: boolean;
-  status: NonNullable<TransactionListBaseProps['status']>;
+  typeof CONTENT_KEYS[number]
+>;
+
+/**
+ * Splits the block props (forwarded to `TransactionListContent`) from the remaining props
+ * (forwarded to the host element), so each family member does not repeat the list.
+ */
+export const splitContentProps = <T extends TransactionListContentData>(
+  props: T
+): [TransactionListContentData, Omit<T, keyof TransactionListContentData>] => {
+  const content: Record<string, unknown> = {};
+  const rest: Record<string, unknown> = {};
+  Object.entries(props).forEach(([key, value]) => {
+    const target = (CONTENT_KEYS as readonly string[]).includes(key)
+      ? content
+      : rest;
+    target[key] = value;
+  });
+  return [
+    content as TransactionListContentData,
+    rest as Omit<T, keyof TransactionListContentData>,
+  ];
+};
+
+type TransactionListContentProps = TransactionListContentData & {
   contentSize: ContentListSize;
-  amountType: NonNullable<TransactionListBaseProps['amountType']>;
   amountSize: AmountDetailsSize;
-  showAmountIndicator: boolean;
   disabled: boolean;
 };
 
@@ -147,16 +182,16 @@ export const TransactionListContent = ({
   description,
   strikethroughDescription,
   caption,
-  inverted,
-  status,
+  inverted = true,
+  status = 'default',
   contentSize,
   amount,
-  amountType,
+  amountType = 'default',
   amountSize,
   strikethroughAmount,
   amountTag,
   amountIndicator,
-  showAmountIndicator,
+  showAmountIndicator = true,
   additionalData,
   disabled,
 }: TransactionListContentProps): ReactElement => (

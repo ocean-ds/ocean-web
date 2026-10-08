@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import TransactionListSelectable from '../TransactionListSelectable';
 import type { TransactionListSelectableProps } from '../TransactionListSelectable';
-import TransactionListSelectableDocs, {
-  AI_RULES,
-} from './TransactionListSelectable.docs';
+import docsJson from './TransactionListSelectable.docs.json';
+import { familyDocs } from '../../../../../.storybook/docs-blocks/transaction-list/FamilyDocsPage';
 import { aiRulesText } from '../../../../../.storybook/docs-blocks';
 import {
   arg,
@@ -15,8 +14,12 @@ import {
   dividerArgType,
   stateArgTypes,
 } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
+import {
+  MatrixGrid,
+  SizesMatrix,
+} from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
+const docs = familyDocs(docsJson);
 const noSnapshot = { chromatic: { disableSnapshot: true } };
 
 const baseArgs: TransactionListSelectableProps = {
@@ -68,13 +71,9 @@ const meta: Meta<typeof TransactionListSelectable> = {
   parameters: {
     layout: 'centered',
     docs: {
-      description: { component: aiRulesText(AI_RULES) },
-      page: () => (
-        <TransactionListSelectableDocs
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          stories={{ Default, StatesCheckbox, StatesRadio, Sizes }}
-        />
-      ),
+      description: { component: aiRulesText(docs.aiRules) },
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      page: docs.page(() => ({ Default, StatesCheckbox, StatesRadio, Sizes })),
     },
   },
   argTypes: {
@@ -176,40 +175,14 @@ export const StatesRadio: Story = {
   render: () => statesMatrix('radio'),
 };
 
-const amountTypes = [
-  ['default', {}],
-  ['positive', {}],
-  ['negative', {}],
-  ['strikethrough', { amount: 'Grátis', strikethroughAmount: '3,99%' }],
-] as const;
-
 /** Matriz: tipos de valor × tamanho e densidade. */
 export const Sizes: Story = {
   name: 'Sizes × amount types',
   parameters: { controls: { disable: true } },
   render: () => (
-    <MatrixGrid
-      columns={['md · default', 'sm · compact']}
-      rows={amountTypes.map(([amountType, props]) => ({
-        label: amountType,
-        cells: [
-          <TransactionListSelectable
-            key="md"
-            {...baseArgs}
-            {...props}
-            amountType={amountType}
-          />,
-          <TransactionListSelectable
-            key="sm"
-            {...baseArgs}
-            {...props}
-            amountType={amountType}
-            contentSize="sm"
-            amountSize="sm"
-            density="compact"
-          />,
-        ],
-      }))}
+    <SizesMatrix
+      compactSm
+      render={(props) => <TransactionListSelectable {...baseArgs} {...props} />}
     />
   ),
 };

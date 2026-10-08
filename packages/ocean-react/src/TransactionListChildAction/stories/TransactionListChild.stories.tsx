@@ -4,9 +4,8 @@ import { Placeholder } from '@useblu/ocean-icons-react';
 import { colorStatusWarningUp } from '@useblu/ocean-tokens/web/tokens';
 import TransactionListChildAction from '../TransactionListChildAction';
 import TransactionListChildReadOnly from '../../TransactionListChildReadOnly';
-import TransactionListChildDocs, {
-  AI_RULES,
-} from './TransactionListChild.docs';
+import docsJson from './TransactionListChild.docs.json';
+import { familyDocs } from '../../../../../.storybook/docs-blocks/transaction-list/FamilyDocsPage';
 import { aiRulesText } from '../../../../../.storybook/docs-blocks';
 import {
   arg,
@@ -17,8 +16,12 @@ import {
   iconArgTypes,
   stateArgTypes,
 } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
+import {
+  MatrixGrid,
+  stateCases,
+} from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
+const docs = familyDocs(docsJson);
 const noSnapshot = { chromatic: { disableSnapshot: true } };
 const icon = <Placeholder size={16} />;
 
@@ -43,13 +46,9 @@ const meta: Meta<typeof TransactionListChildAction> = {
   parameters: {
     layout: 'centered',
     docs: {
-      description: { component: aiRulesText(AI_RULES) },
-      page: () => (
-        <TransactionListChildDocs
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          stories={{ Default, Timeline, States, IconColors }}
-        />
-      ),
+      description: { component: aiRulesText(docs.aiRules) },
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      page: docs.page(() => ({ Default, Timeline, States, IconColors })),
     },
   },
   argTypes: {
@@ -122,12 +121,7 @@ export const Timeline: Story = {
   ),
 };
 
-const stateRows = [
-  ['Padrão', {}],
-  ['Hover (só Action)', { className: 'ods-transaction-list--show-hover' }],
-  ['Desabilitado', { disabled: true }],
-  ['Carregando', { loading: true }],
-] as const;
+const stateRows = stateCases('ods-transaction-list--show-hover');
 
 /** Matriz: estado × tipo de filho × densidade. */
 export const States: Story = {

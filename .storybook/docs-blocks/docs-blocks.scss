@@ -336,3 +336,17 @@
     transform: none;
   }
 }
+
+.odoc__separator {
+  border-top: $border-width-hairline solid $color-interface-light-down;
+}
+
+.odoc__note {
+  margin-top: $spacing-stack-xxs;
+}
+
+.odoc__stories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-inline-md;
+}

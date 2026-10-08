@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
 import TransactionListAction from '../TransactionListAction';
 import type { TransactionListActionProps } from '../TransactionListAction';
-import TransactionListActionDocs, {
-  AI_RULES,
-} from './TransactionListAction.docs';
+import docsJson from './TransactionListAction.docs.json';
+import { familyDocs } from '../../../../../.storybook/docs-blocks/transaction-list/FamilyDocsPage';
 import { aiRulesText } from '../../../../../.storybook/docs-blocks';
 import {
   arg,
@@ -17,8 +16,13 @@ import {
   iconArgTypes,
   stateArgTypes,
 } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
+import {
+  MatrixGrid,
+  SizesMatrix,
+  stateCases,
+} from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
+const docs = familyDocs(docsJson);
 const icon = <PlaceholderOutline size={24} />;
 const noSnapshot = { chromatic: { disableSnapshot: true } };
 const noop = (): void => undefined;
@@ -71,13 +75,15 @@ const meta: Meta<typeof TransactionListAction> = {
   parameters: {
     layout: 'centered',
     docs: {
-      description: { component: aiRulesText(AI_RULES) },
-      page: () => (
-        <TransactionListActionDocs
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          stories={{ Default, States, Sizes, MenuActive, SwipeActive }}
-        />
-      ),
+      description: { component: aiRulesText(docs.aiRules) },
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      page: docs.page(() => ({
+        Default,
+        States,
+        Sizes,
+        MenuActive,
+        SwipeActive,
+      })),
     },
   },
   argTypes: {
@@ -137,12 +143,7 @@ export const Default: Story = {
   render: (args) => frame(<TransactionListAction {...args} />),
 };
 
-const states = [
-  ['Padrão', {}],
-  ['Hover', { className: 'ods-transaction-list--show-hover' }],
-  ['Desabilitado', { disabled: true }],
-  ['Carregando', { loading: true }],
-] as const;
+const states = stateCases('ods-transaction-list--show-hover');
 
 /** Matriz: tipo de ação × estado. */
 export const States: Story = {
@@ -166,37 +167,13 @@ export const States: Story = {
   ),
 };
 
-const amountTypes = [
-  ['default', {}],
-  ['positive', {}],
-  ['negative', {}],
-  ['strikethrough', { amount: 'Grátis', strikethroughAmount: '3,99%' }],
-  [
-    'strikethrough-neutral',
-    { amount: 'R$ 2,00', strikethroughAmount: 'R$ 3,99' },
-  ],
-] as const;
-
 /** Matriz: tipos de valor × tamanho. */
 export const Sizes: Story = {
   name: 'Sizes × amount types',
   parameters: { controls: { disable: true } },
   render: () => (
-    <MatrixGrid
-      columns={['md', 'sm']}
-      rows={amountTypes.map(([amountType, props]) => ({
-        label: amountType,
-        cells: (['md', 'sm'] as const).map((size) => (
-          <TransactionListAction
-            key={size}
-            {...baseArgs}
-            {...props}
-            amountType={amountType}
-            contentSize={size}
-            amountSize={size}
-          />
-        )),
-      }))}
+    <SizesMatrix
+      render={(props) => <TransactionListAction {...baseArgs} {...props} />}
     />
   ),
 };

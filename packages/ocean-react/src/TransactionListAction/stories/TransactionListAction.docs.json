@@ -1,0 +1,415 @@
+{
+  "page": {
+    "title": "Transaction List Action",
+    "subtitle": "Família Transaction List · substitui o `TransactionListItem` com seta",
+    "componentDir": "TransactionListAction",
+    "kbFile": "transactionlistaction.md",
+    "node": "24289-64384"
+  },
+  "overview": {
+    "purpose": "Linha de transação com ação à direita: um toque leva ao detalhe (seta) ou abre as ações do item (menu, deslizar).",
+    "example": [
+      {
+        "component": "TransactionListAction",
+        "props": {
+          "title": "PagBlu",
+          "description": "Padaria São José",
+          "caption": "Cobrança 10482",
+          "amount": "R$ 15,00",
+          "amountTag": {
+            "label": "Pago"
+          },
+          "additionalData": "6x de R$ 2,50",
+          "icon": "$icon24",
+          "showDivider": false
+        }
+      }
+    ],
+    "exampleCode": "<TransactionListAction\n  icon={<PlaceholderOutline size={24} />}\n  title=\"PagBlu\"\n  description=\"Padaria São José\"\n  caption=\"Cobrança 10482\"\n  amount=\"R$ 15,00\"\n  amountTag={{ label: 'Pago' }}\n  additionalData=\"6x de R$ 2,50\"\n  onClick={() => navigate('/cobrancas/10482')}\n/>",
+    "bullets": [
+      "**Três ações:** `chevron` (detalhe, padrão), `menu` (três pontos) e `swipe` (deslizar, web mobile).",
+      "**Mesmos blocos da família:** conteúdo e valor, com `contentSize` e `amountSize` independentes.",
+      "**Estados:** padrão, hover, ativo (menu/swipe aberto), carregando e desabilitado.",
+      "**Densidade:** `default` ou `compact`."
+    ],
+    "availability": [
+      {
+        "platform": "Portal (web)",
+        "status": "em revisão",
+        "pr": "web",
+        "notes": "`chevron`, `menu` e `swipe`; o menu abre ancorado nos três pontos (`menuActions`, `menuPosition`)."
+      },
+      {
+        "platform": "iOS",
+        "status": "em revisão",
+        "pr": "ios",
+        "notes": "`.chevron` e `.menu`, sem deslizar; as opções do menu abrem no bottom sheet do Ocean (`isMenuActive` enquanto aberto)."
+      },
+      {
+        "platform": "Android",
+        "status": "em revisão",
+        "pr": "android",
+        "notes": "`Chevron` e `Menu`, sem deslizar; as opções abrem no bottom sheet do Ocean (`onMenuClick`, `menuActive`)."
+      },
+      {
+        "platform": "Figma",
+        "status": "pronto",
+        "figma": true,
+        "notes": "Type = Chevron · Menu · Swipe × State = Default · Hover · Active · Disabled · Loading."
+      }
+    ],
+    "migration": {
+      "intro": "Substitui o `TransactionListItem` com `withChevron`; as telas migram no MR-903.",
+      "rows": [
+        [
+          "`withChevron` + `onClick`",
+          "`TransactionListAction` (`actionType=\"chevron\"`, padrão) + `onClick`",
+          "Linha que leva ao detalhe"
+        ],
+        [
+          "`chevronFlipped`",
+          "não existe na família",
+          "Drawer ao lado: a seta não vira"
+        ]
+      ],
+      "legacyBlocks": true
+    }
+  },
+  "specs": {
+    "anatomy": {
+      "example": [
+        {
+          "component": "TransactionListAction",
+          "props": {
+            "title": "PagBlu",
+            "description": "Padaria São José",
+            "caption": "Cobrança 10482",
+            "amount": "R$ 15,00",
+            "amountTag": {
+              "label": "Pago"
+            },
+            "additionalData": "6x de R$ 2,50",
+            "icon": "$icon24"
+          }
+        }
+      ],
+      "parts": [
+        {
+          "selector": ".ods-transaction-list__icon",
+          "side": "left",
+          "label": "Ícone",
+          "prop": "`icon`"
+        },
+        {
+          "selector": ".ods-content-list",
+          "side": "left",
+          "anchor": 0.12,
+          "label": "Bloco de conteúdo",
+          "prop": "`title`, `description`, `caption`"
+        },
+        {
+          "selector": ".ods-amount-details__amount",
+          "side": "right",
+          "label": "Bloco de valor",
+          "prop": "`amount`"
+        },
+        {
+          "selector": ".ods-amount-details__indicator",
+          "side": "right",
+          "label": "Etiqueta",
+          "prop": "`amountTag`"
+        },
+        {
+          "selector": ".ods-amount-details__caption",
+          "side": "right",
+          "label": "Informação extra",
+          "prop": "`additionalData`"
+        },
+        {
+          "selector": ".ods-transaction-list__chevron",
+          "side": "top",
+          "label": "Ação (seta 20 / três pontos / alça)",
+          "prop": "`actionType`"
+        },
+        {
+          "selector": ".ods-transaction-list__divider",
+          "side": "bottom",
+          "label": "Divisor (recuo 16, multiply)",
+          "prop": "`showDivider`"
+        }
+      ]
+    },
+    "config": [
+      [
+        "Aparência",
+        "`actionType`",
+        "`chevron` · `menu` · `swipe`",
+        "`chevron`"
+      ],
+      [
+        "Aparência",
+        "`menuPosition`",
+        "`bottom-right` · `bottom-left` · `top-right` · `top-left`",
+        "`bottom-right`"
+      ],
+      [
+        "Aparência",
+        "`iconColor`",
+        "`default` · `on-color` · `highlight`",
+        "`default`"
+      ],
+      ["Aparência", "`density`", "`default` (16) · `compact` (8)", "`default`"],
+      ["Aparência", "`showDivider`", "`true` · `false`", "`true`"]
+    ],
+    "blockConfigDefault": "`md`",
+    "tokens": {
+      "states": [
+        "Padrão",
+        "Hover",
+        "Pressionado / Ativo",
+        "Carregando",
+        "Desabilitado"
+      ],
+      "rows": [
+        {
+          "part": "Fundo da linha (multiply)",
+          "tokens": [
+            "—",
+            "Interface/Light/Up",
+            "Interface/Light/Deep",
+            "—",
+            "—"
+          ]
+        },
+        {
+          "part": "Ícone (default)",
+          "tokens": [
+            "Interface/Dark/Up",
+            "Interface/Dark/Up",
+            "Interface/Dark/Up",
+            "Interface/Light/Up",
+            "Interface/Light/Deep"
+          ]
+        },
+        {
+          "part": "Seta / gatilho do menu",
+          "tokens": [
+            "Interface/Dark/Up",
+            "Interface/Dark/Up",
+            "Brand/Primary/Pure",
+            "—",
+            "Interface/Light/Deep"
+          ]
+        },
+        {
+          "part": "Divisor",
+          "tokens": [
+            "Interface/Light/Down",
+            "Interface/Light/Down",
+            "Interface/Light/Down",
+            "Interface/Light/Down",
+            "Interface/Light/Down"
+          ]
+        }
+      ],
+      "blockRows": {
+        "disabledIndex": 4,
+        "loadingIndex": 3,
+        "after": 3
+      },
+      "note": "Ativo no menu: o gatilho ganha fundo Interface/Light/Up e ícone Brand/Primary/Pure. No swipe, a linha desliza e mostra as ações."
+    },
+    "sections": [
+      {
+        "title": "Estados lado a lado",
+        "intro": "Tipo de ação × padrão, hover, desabilitado e carregando.",
+        "stories": ["States"],
+        "code": "<TransactionListAction {...props} actionType=\"chevron\" />\n<TransactionListAction {...props} actionType=\"menu\" menuActions={actions} />\n<TransactionListAction {...props} actionType=\"swipe\" menuActions={actions} />\n// + disabled / loading"
+      },
+      {
+        "title": "Menu e swipe abertos (interativo)",
+        "stories": ["MenuActive", "SwipeActive"],
+        "code": "<TransactionListAction actionType=\"menu\" menuActions={[\n  { label: 'Reenviar cobrança', onClick: resend },\n  { label: 'Cancelar cobrança', onClick: cancel, variant: 'negative' },\n]} … />"
+      },
+      {
+        "title": "Tamanhos × tipos de valor",
+        "stories": ["Sizes"],
+        "code": "<TransactionListAction {...props} contentSize=\"sm\" amountSize=\"sm\" amountType=\"positive\" />"
+      }
+    ],
+    "measures": {
+      "rowGap": ["12", "Spacing/XxsExtra"],
+      "rows": [
+        ["Padding vertical (compact)", "8", "`Spacing/Xxs`"],
+        ["Padding à direita (menu)", "8", "`Spacing/Xxs`"],
+        ["Seta", "20", "—"],
+        ["Gatilho do menu", "32", "—"]
+      ]
+    }
+  },
+  "guidelines": {
+    "useWhen": [
+      "O valor é a peça mais importante da linha **e** a linha leva ao detalhe da transação (extrato, vendas, cobranças) — `actionType=\"chevron\"`.",
+      "Ações por item sobre uma transação (reenviar, cancelar) — `menu`; no app, as opções abrem no bottom sheet do Ocean; no web mobile também `swipe`."
+    ],
+    "dontUse": [
+      ["A linha não tem destino nem ação", "Transaction List Read Only"],
+      [
+        "A linha é escolhida pelo valor (marcar)",
+        "Transaction List Selectable"
+      ],
+      ["O detalhe abre na própria lista", "Transaction List Expandable"],
+      ["Linha dentro da expansão que leva a um detalhe", "Child Action"],
+      ["Linha sem valor monetário que navega", "`ListAction`"],
+      [
+        "Item de identidade (convite, membro) com menu",
+        "Padrão identity-list-item"
+      ]
+    ],
+    "doDont": [
+      {
+        "kind": "do",
+        "caption": "Linha que leva ao detalhe: seta à direita e um onClick por toque.",
+        "code": "<TransactionListAction\n  icon={<PlaceholderOutline size={24} />}\n  title=\"PagBlu\"\n  description=\"Padaria São José\"\n  caption=\"Cobrança 10482\"\n  amount=\"R$ 15,00\"\n  amountTag={{ label: 'Pago' }}\n  additionalData=\"6x de R$ 2,50\"\n  onClick={() => navigate('/cobrancas/10482')}\n/>",
+        "examples": [
+          {
+            "component": "TransactionListAction",
+            "props": {
+              "title": "PagBlu",
+              "description": "Padaria São José",
+              "caption": "Cobrança 10482",
+              "amount": "R$ 15,00",
+              "amountTag": {
+                "label": "Pago"
+              },
+              "additionalData": "6x de R$ 2,50",
+              "icon": "$icon24",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "dont",
+        "caption": "Não use menu com uma ação só: use a seta e leve a ação ao detalhe.",
+        "code": "// Não faça\n<TransactionListAction actionType=\"menu\" menuActions={[{ label: 'Ver detalhe', onClick }]} … />\n// Faça\n<TransactionListAction onClick={openDetail} … />",
+        "examples": [
+          {
+            "component": "TransactionListAction",
+            "props": {
+              "title": "PagBlu",
+              "description": "Padaria São José",
+              "caption": "Cobrança 10482",
+              "amount": "R$ 15,00",
+              "amountTag": {
+                "label": "Pago"
+              },
+              "additionalData": "6x de R$ 2,50",
+              "icon": "$icon24",
+              "actionType": "menu",
+              "menuActions": [
+                {
+                  "label": "Ver detalhe",
+                  "onClick": "$noop"
+                }
+              ],
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "dont",
+        "caption": "Não use Action sem destino só para parecer clicável: use a Read Only.",
+        "code": "// Sem destino: use TransactionListReadOnly",
+        "examples": [
+          {
+            "component": "TransactionListAction",
+            "props": {
+              "title": "PagBlu",
+              "description": "Padaria São José",
+              "caption": "Cobrança 10482",
+              "amount": "R$ 15,00",
+              "amountTag": {
+                "label": "Pago"
+              },
+              "additionalData": "6x de R$ 2,50",
+              "icon": "$icon24",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "caution",
+        "caption": "Item indisponível que precisa explicar o motivo não fica desabilitado: a linha ativa abre a explicação.",
+        "code": "<TransactionListAction … disabled />",
+        "examples": [
+          {
+            "component": "TransactionListAction",
+            "props": {
+              "title": "PagBlu",
+              "description": "Padaria São José",
+              "caption": "Cobrança 10482",
+              "amount": "R$ 15,00",
+              "amountTag": {
+                "label": "Pago"
+              },
+              "additionalData": "6x de R$ 2,50",
+              "icon": "$icon24",
+              "disabled": true,
+              "showDivider": false
+            }
+          }
+        ]
+      }
+    ],
+    "aiRules": {
+      "familyForbidden": true,
+      "useWhen": [
+        "O valor é a peça mais importante da linha e a linha leva ao detalhe da transação (actionType=\"chevron\").",
+        "Duas ou mais ações sobre o item (actionType=\"menu\"; no web mobile, \"swipe\")."
+      ],
+      "dontUse": [
+        "Linha sem destino nem ação → TransactionListReadOnly.",
+        "Linha escolhida pelo valor → TransactionListSelectable.",
+        "Detalhe que abre na própria lista → TransactionListExpandable.",
+        "Linha dentro da expansão que leva a um detalhe → TransactionListChildAction.",
+        "Linha sem valor monetário que navega → ListAction."
+      ],
+      "required": [
+        "title e amount; amount formatado e sem sinal.",
+        "onClick na linha (chevron); menuActions com menu/swipe.",
+        "disabled para desabilitar; showDivider={false} no último item do grupo."
+      ],
+      "forbidden": [
+        "Action sem destino (só para parecer clicável).",
+        "menu com uma ação só (use chevron e leve a ação ao detalhe).",
+        "menu/swipe sem menuActions."
+      ],
+      "defaults": [
+        "actionType=\"chevron\" · menuActions=[] · menuPosition=\"bottom-right\"",
+        "inverted=true · contentSize=\"md\" · amountSize=\"md\" · status=\"default\" · amountType=\"default\"",
+        "iconColor=\"default\" · density=\"default\" · showDivider=true"
+      ],
+      "childOf": [
+        "List (ou outro container de lista). Dentro de TransactionListExpandable use TransactionListChildAction."
+      ],
+      "source": [
+        "knowledge-bases/ux-knowledge-layer/components/usage-guidelines/transactionlistaction.md"
+      ]
+    }
+  },
+  "a11y": {
+    "reading": "Um botão com os textos na ordem: \"PagBlu, Padaria São José, Cobrança 10482, R$ 15,00, Pago, 6x de R$ 2,50, botão\". O gatilho do menu/swipe é outro botão: \"Abrir menu de ações\". Desabilitado e carregando: botão desabilitado; carregando, o botão se chama \"Carregando\" (`aria-busy`).",
+    "keyboard": "Tab foca a linha (foco visível); Enter/Espaço chamam o `onClick`. O gatilho do menu é um foco à parte; Enter/Espaço abrem o menu e Esc fecha.",
+    "contrast": "Ícone `default` no branco 2,2:1 · `on-color` sobre fundo colorido 4,9–5,1:1 · `highlight` 4,1:1. Seta e gatilho em Interface/Dark/Up (2,2:1). `on-color` só sobre fundo colorido.",
+    "verification": "axe (painel Accessibility) em 08/10, depois da correção do Tag e do nome do botão carregando: `Types × states` 4 e `Sizes × amount types` 18 violações — todas de contraste de cor, sem token disponível (etiqueta positiva 2,9:1; valor verde 3,0:1; riscado 2,2:1). Menu/swipe aberto (sem snapshot): 6, do InternalListActions compartilhado (estrutura de lista do menu e texto branco sobre Interface/Dark/Up 2,2:1 e Status/Negative/Pure 3,5:1). Ver o painel Accessibility de cada story."
+  },
+  "code": {
+    "importCode": "import { TransactionListAction } from '@useblu/ocean-react';\nimport type { TransactionListActionProps, ActionItem } from '@useblu/ocean-react';",
+    "playgroundStory": "Default",
+    "playgroundIntro": "Todas as propriedades nos controles.",
+    "usageCode": "import { List, TransactionListAction } from '@useblu/ocean-react';\n\n<List>\n  {/* Leva ao detalhe */}\n  <TransactionListAction\n    title=\"PagBlu\"\n    description=\"Padaria São José\"\n    caption=\"Cobrança 10482\"\n    amount=\"R$ 15,00\"\n    onClick={() => navigate('/cobrancas/10482')}\n  />\n  {/* Ações sobre o item */}\n  <TransactionListAction\n    title=\"PagBlu\"\n    description=\"Mercado Central\"\n    amount=\"R$ 42,00\"\n    actionType=\"menu\"\n    menuActions={[\n      { label: 'Reenviar cobrança', onClick: resend },\n      { label: 'Cancelar cobrança', onClick: cancel, variant: 'negative' },\n    ]}\n    showDivider={false}\n  />\n</List>"
+  }
+}

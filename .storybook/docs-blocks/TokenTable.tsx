@@ -3,7 +3,7 @@ import * as tokens from '@useblu/ocean-tokens/web/tokens';
 import { DocTable } from './DocTable';
 
 /** Nome do token no padrão do Figma (`Interface/Dark/Up`) → valor do pacote de tokens. */
-const tokenValue = (name: string): string | undefined => {
+export const tokenValue = (name: string): string | undefined => {
   const key = `color${name
     .split('/')
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))

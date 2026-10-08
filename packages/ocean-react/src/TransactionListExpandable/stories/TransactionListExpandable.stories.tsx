@@ -8,9 +8,8 @@ import Tag from '../../Tag';
 import ListAction from '../../ListAction';
 import TransactionListChildAction from '../../TransactionListChildAction';
 import TransactionListChildReadOnly from '../../TransactionListChildReadOnly';
-import TransactionListExpandableDocs, {
-  AI_RULES,
-} from './TransactionListExpandable.docs';
+import docsJson from './TransactionListExpandable.docs.json';
+import { familyDocs } from '../../../../../.storybook/docs-blocks/transaction-list/FamilyDocsPage';
 import { aiRulesText } from '../../../../../.storybook/docs-blocks';
 import {
   arg,
@@ -21,8 +20,13 @@ import {
   iconArgTypes,
   stateArgTypes,
 } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import { MatrixGrid } from '../../../../../.storybook/docs-blocks/transaction-list/shared';
+import {
+  MatrixGrid,
+  SizesMatrix,
+  stateCases,
+} from '../../../../../.storybook/docs-blocks/transaction-list/shared';
 
+const docs = familyDocs(docsJson);
 const noSnapshot = { chromatic: { disableSnapshot: true } };
 
 /** Linha principal no formato da família (props opt-in de tamanho). */
@@ -103,13 +107,14 @@ const meta: Meta<typeof TransactionListExpandable> = {
   parameters: {
     layout: 'centered',
     docs: {
-      description: { component: aiRulesText(AI_RULES) },
-      page: () => (
-        <TransactionListExpandableDocs
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          stories={{ Usage, States, AmountTypes, WithFamilyChildren }}
-        />
-      ),
+      description: { component: aiRulesText(docs.aiRules) },
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      page: docs.page(() => ({
+        Usage,
+        States,
+        AmountTypes,
+        WithFamilyChildren,
+      })),
     },
   },
   argTypes: {
@@ -187,12 +192,7 @@ export const Usage: Story = {
   render: (args) => <ExpandableWithState {...args} />,
 };
 
-const stateRows = [
-  ['Padrão', {}],
-  ['Hover', { className: 'ods-list-expandable--show-hover' }],
-  ['Desabilitado', { disabled: true }],
-  ['Carregando', { loading: true }],
-] as const;
+const stateRows = stateCases('ods-list-expandable--show-hover');
 
 /** Matriz: fechada/aberta/legado × estado (o legado cobre as telas no ar). */
 export const States: Story = {
@@ -254,35 +254,11 @@ export const AmountTypes: Story = {
   name: 'Sizes × amount types',
   parameters: { controls: { disable: true } },
   render: () => (
-    <MatrixGrid
-      columns={['md · default', 'sm · compact']}
-      rows={(
-        [
-          ['default', {}],
-          ['positive', {}],
-          ['negative', {}],
-          ['strikethrough', { amount: 'Grátis', strikethroughAmount: '3,99%' }],
-        ] as const
-      ).map(([amountType, props]) => ({
-        label: amountType,
-        cells: [
-          <TransactionListExpandable
-            key="md"
-            {...familyArgs}
-            {...props}
-            amountType={amountType}
-          />,
-          <TransactionListExpandable
-            key="sm"
-            {...familyArgs}
-            {...props}
-            amountType={amountType}
-            contentSize="sm"
-            amountSize="sm"
-            density="compact"
-          />,
-        ],
-      }))}
+    <SizesMatrix
+      compactSm
+      render={(props) => (
+        <TransactionListExpandable {...familyArgs} {...props} />
+      )}
     />
   ),
 };

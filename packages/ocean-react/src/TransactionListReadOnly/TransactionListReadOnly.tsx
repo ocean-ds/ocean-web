@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import {
   TransactionListBaseProps,
   TransactionListContent,
+  splitContentProps,
   TransactionListDivider,
   TransactionListIcon,
   TransactionListSkeleton,
@@ -36,21 +37,8 @@ const TransactionListReadOnly = React.forwardRef<
 >(
   (
     {
-      title,
-      description,
-      strikethroughDescription,
-      caption,
-      inverted = true,
-      status = 'default',
       contentSize = 'md',
-      amount,
-      amountType = 'default',
       amountSize = 'md',
-      strikethroughAmount,
-      amountTag,
-      amountIndicator,
-      showAmountIndicator = true,
-      additionalData,
       icon,
       iconColor = 'default',
       disabled = false,
@@ -58,63 +46,55 @@ const TransactionListReadOnly = React.forwardRef<
       density = 'default',
       showDivider = true,
       className,
-      ...rest
+      ...props
     },
     ref
-  ) => (
-    <div
-      ref={ref}
-      data-testid="transaction-list-read-only"
-      className={classNames(
-        'ods-transaction-list',
-        'ods-transaction-list--read-only',
-        {
-          'ods-transaction-list--disabled': disabled,
-          'ods-transaction-list--loading': loading,
-          'ods-transaction-list--compact': density === 'compact',
-        },
-        className
-      )}
-      aria-disabled={disabled || undefined}
-      aria-busy={loading || undefined}
-      {...rest}
-    >
-      <div className="ods-transaction-list__main">
-        {loading ? (
-          <TransactionListSkeleton showLeading={Boolean(icon)} />
-        ) : (
-          <>
-            {icon && (
-              <TransactionListIcon
-                icon={icon}
-                iconColor={iconColor}
+  ) => {
+    const [content, rest] = splitContentProps(props);
+
+    return (
+      <div
+        ref={ref}
+        data-testid="transaction-list-read-only"
+        className={classNames(
+          'ods-transaction-list',
+          'ods-transaction-list--read-only',
+          {
+            'ods-transaction-list--disabled': disabled,
+            'ods-transaction-list--loading': loading,
+            'ods-transaction-list--compact': density === 'compact',
+          },
+          className
+        )}
+        aria-disabled={disabled || undefined}
+        aria-busy={loading || undefined}
+        {...rest}
+      >
+        <div className="ods-transaction-list__main">
+          {loading ? (
+            <TransactionListSkeleton showLeading={Boolean(icon)} />
+          ) : (
+            <>
+              {icon && (
+                <TransactionListIcon
+                  icon={icon}
+                  iconColor={iconColor}
+                  disabled={disabled}
+                />
+              )}
+              <TransactionListContent
+                {...content}
+                contentSize={contentSize}
+                amountSize={amountSize}
                 disabled={disabled}
               />
-            )}
-            <TransactionListContent
-              title={title}
-              description={description}
-              strikethroughDescription={strikethroughDescription}
-              caption={caption}
-              inverted={inverted}
-              status={status}
-              contentSize={contentSize}
-              amount={amount}
-              amountType={amountType}
-              amountSize={amountSize}
-              strikethroughAmount={strikethroughAmount}
-              amountTag={amountTag}
-              amountIndicator={amountIndicator}
-              showAmountIndicator={showAmountIndicator}
-              additionalData={additionalData}
-              disabled={disabled}
-            />
-          </>
-        )}
+            </>
+          )}
+        </div>
+        {showDivider && <TransactionListDivider />}
       </div>
-      {showDivider && <TransactionListDivider />}
-    </div>
-  )
+    );
+  }
 );
 
 TransactionListReadOnly.displayName = 'TransactionListReadOnly';

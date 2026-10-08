@@ -6,6 +6,7 @@ import SkeletonBar from '../_shared/components/SkeletonBar';
 import {
   TransactionListBaseProps,
   TransactionListContent,
+  splitContentProps,
   TransactionListDivider,
   TransactionListSkeleton,
 } from '../_shared/components/TransactionListParts';
@@ -56,21 +57,8 @@ const TransactionListSelectable = React.forwardRef<
 >(
   (
     {
-      title,
-      description,
-      strikethroughDescription,
-      caption,
-      inverted = true,
-      status = 'default',
       contentSize = 'md',
-      amount,
-      amountType = 'default',
       amountSize = 'md',
-      strikethroughAmount,
-      amountTag,
-      amountIndicator,
-      showAmountIndicator = true,
-      additionalData,
       disabled = false,
       loading = false,
       density = 'default',
@@ -79,40 +67,29 @@ const TransactionListSelectable = React.forwardRef<
       platform = 'web',
       showDivider = true,
       className,
-      ...rest
+      ...props
     },
     ref
   ) => {
+    const [contentProps, rest] = splitContentProps(props);
     const controlDisabled = Boolean(
       disabled || checkbox?.disabled || radio?.disabled
     );
 
-    const content = (
+    const row = (
       <TransactionListContent
-        title={title}
-        description={description}
-        strikethroughDescription={strikethroughDescription}
-        caption={caption}
-        inverted={inverted}
-        status={status}
+        {...contentProps}
         contentSize={contentSize}
-        amount={amount}
-        amountType={amountType}
         amountSize={amountSize}
-        strikethroughAmount={strikethroughAmount}
-        amountTag={amountTag}
-        amountIndicator={amountIndicator}
-        showAmountIndicator={showAmountIndicator}
-        additionalData={additionalData}
         disabled={controlDisabled}
       />
     );
 
     const renderControl = () =>
       radio ? (
-        <Radio {...radio} disabled={controlDisabled} label={content} />
+        <Radio {...radio} disabled={controlDisabled} label={row} />
       ) : (
-        <Checkbox {...checkbox} disabled={controlDisabled} label={content} />
+        <Checkbox {...checkbox} disabled={controlDisabled} label={row} />
       );
 
     return (

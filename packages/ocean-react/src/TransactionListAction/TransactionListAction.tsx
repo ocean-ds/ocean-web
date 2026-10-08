@@ -7,6 +7,7 @@ import {
   TransactionListBaseProps,
   TransactionListChevron,
   TransactionListContent,
+  splitContentProps,
   TransactionListDivider,
   TransactionListIcon,
   TransactionListSkeleton,
@@ -69,21 +70,8 @@ const TransactionListAction = React.forwardRef<
 >(
   (
     {
-      title,
-      description,
-      strikethroughDescription,
-      caption,
-      inverted = true,
-      status = 'default',
       contentSize = 'md',
-      amount,
-      amountType = 'default',
       amountSize = 'md',
-      strikethroughAmount,
-      amountTag,
-      amountIndicator,
-      showAmountIndicator = true,
-      additionalData,
       icon,
       iconColor = 'default',
       disabled = false,
@@ -95,10 +83,11 @@ const TransactionListAction = React.forwardRef<
       showDivider = true,
       onClick,
       className,
-      ...rest
+      ...props
     },
     ref
   ) => {
+    const [content, rest] = splitContentProps(props);
     const [isSwipeOpen, setIsSwipeOpen] = useState(false);
     const [menuWidth, setMenuWidth] = useState(0);
     const isChevron = actionType === 'chevron';
@@ -139,21 +128,9 @@ const TransactionListAction = React.forwardRef<
               />
             )}
             <TransactionListContent
-              title={title}
-              description={description}
-              strikethroughDescription={strikethroughDescription}
-              caption={caption}
-              inverted={inverted}
-              status={status}
+              {...content}
               contentSize={contentSize}
-              amount={amount}
-              amountType={amountType}
               amountSize={amountSize}
-              strikethroughAmount={strikethroughAmount}
-              amountTag={amountTag}
-              amountIndicator={amountIndicator}
-              showAmountIndicator={showAmountIndicator}
-              additionalData={additionalData}
               disabled={disabled}
             />
             {isChevron && <TransactionListChevron />}

@@ -1,0 +1,414 @@
+{
+  "page": {
+    "title": "Transaction List Read Only",
+    "subtitle": "Família Transaction List · substitui o `TransactionListItem`",
+    "componentDir": "TransactionListReadOnly",
+    "kbFile": "transactionlistreadonly.md",
+    "node": "26559-4449"
+  },
+  "overview": {
+    "purpose": "Linha de transação só de leitura: mostra o que é a transação e o valor, sem toque.",
+    "example": [
+      {
+        "component": "TransactionListReadOnly",
+        "props": {
+          "title": "Pix recebido",
+          "description": "Padaria São José",
+          "caption": "12 de novembro às 14:32",
+          "amount": "R$ 150,00",
+          "amountTag": {
+            "label": "Pago"
+          },
+          "additionalData": "Saldo disponível",
+          "icon": "$icon24",
+          "showDivider": false
+        }
+      }
+    ],
+    "exampleCode": "<TransactionListReadOnly\n  icon={<PlaceholderOutline size={24} />}\n  title=\"Pix recebido\"\n  description=\"Padaria São José\"\n  caption=\"12 de novembro às 14:32\"\n  amount=\"R$ 150,00\"\n  amountTag={{ label: 'Pago' }}\n  additionalData=\"Saldo disponível\"\n/>",
+    "bullets": [
+      "**Dois blocos:** conteúdo (título, descrição, legenda) à esquerda e valor (com etiqueta e informação extra) à direita.",
+      "**Tamanhos independentes:** `contentSize` e `amountSize` em `md` (padrão) ou `sm`; **densidade** `default` ou `compact`.",
+      "**Tipos de valor:** padrão, entrada (`positive`), saída (`negative`) e valor que mudou (`strikethrough` verde ou `strikethrough-neutral`).",
+      "**Estados:** padrão, carregando e desabilitado. Sem hover nem toque — para linha que leva ao detalhe, use a Transaction List Action.",
+      "**Cor do ícone:** `default`, `on-color` ou `highlight`; desabilitado sempre apaga o ícone."
+    ],
+    "availability": [
+      {
+        "platform": "Portal (web)",
+        "status": "em revisão",
+        "pr": "web",
+        "notes": "`TransactionListReadOnly` em `@useblu/ocean-react` (versão depois de 1.145.0). Estado por booleanos `loading` / `disabled`."
+      },
+      {
+        "platform": "iOS",
+        "status": "em revisão",
+        "pr": "ios",
+        "notes": "`OceanSwiftUI.TransactionListReadOnly`; estado em `state`; layout sempre invertido."
+      },
+      {
+        "platform": "Android",
+        "status": "em revisão",
+        "pr": "android",
+        "notes": "`OceanTransactionListReadOnly` (Compose); valor opcional; no riscado do conteúdo, `description` é o texto riscado."
+      },
+      {
+        "platform": "Figma",
+        "status": "pronto",
+        "figma": true,
+        "notes": "State = Default · Loading · Disabled; frame 360."
+      }
+    ],
+    "availabilityNote": "Valor riscado verde (`strikethrough`) e neutro (`strikethrough-neutral`) existem nas três plataformas.",
+    "migration": {
+      "intro": "A família Transaction List substitui o `TransactionListItem`, marcado como substituído no código sem mudar comportamento. As telas migram no MR-903.",
+      "rows": [
+        [
+          "`readOnly`",
+          "`TransactionListReadOnly`",
+          "Linha sem destino de clique"
+        ],
+        [
+          "`withChevron` + `onClick`",
+          "Transaction List Action",
+          "Não é Read Only"
+        ],
+        [
+          "`subItens`",
+          "Transaction List Expandable + itens filhos",
+          "`children` + `position`"
+        ]
+      ],
+      "legacyBlocks": true
+    }
+  },
+  "specs": {
+    "anatomy": {
+      "example": [
+        {
+          "component": "TransactionListReadOnly",
+          "props": {
+            "title": "Pix recebido",
+            "description": "Padaria São José",
+            "caption": "12 de novembro às 14:32",
+            "amount": "R$ 150,00",
+            "amountTag": {
+              "label": "Pago"
+            },
+            "additionalData": "Saldo disponível",
+            "icon": "$icon24"
+          }
+        }
+      ],
+      "parts": [
+        {
+          "selector": ".ods-transaction-list__icon",
+          "side": "left",
+          "label": "Ícone",
+          "prop": "`icon`"
+        },
+        {
+          "selector": ".ods-content-list",
+          "side": "left",
+          "anchor": 0.12,
+          "label": "Bloco de conteúdo",
+          "prop": "`title`, `description`, `caption`"
+        },
+        {
+          "selector": ".ods-amount-details__amount",
+          "side": "right",
+          "label": "Bloco de valor",
+          "prop": "`amount`"
+        },
+        {
+          "selector": ".ods-amount-details__indicator",
+          "side": "right",
+          "label": "Etiqueta",
+          "prop": "`amountTag`"
+        },
+        {
+          "selector": ".ods-amount-details__caption",
+          "side": "right",
+          "label": "Informação extra",
+          "prop": "`additionalData`"
+        },
+        {
+          "selector": ".ods-transaction-list__divider",
+          "side": "bottom",
+          "label": "Divisor (recuo 16, multiply)",
+          "prop": "`showDivider`"
+        }
+      ]
+    },
+    "config": [
+      [
+        "Aparência",
+        "`iconColor`",
+        "`default` · `on-color` · `highlight`",
+        "`default`"
+      ],
+      [
+        "Aparência",
+        "`density`",
+        "`default` (padding vertical 16) · `compact` (8)",
+        "`default`"
+      ],
+      [
+        "Aparência",
+        "`showDivider`",
+        "`true` · `false` (último item do grupo)",
+        "`true`"
+      ],
+      ["Bloco de conteúdo", "`inverted`", "`true` · `false`", "`true`"],
+      [
+        "Estado",
+        "`loading` / `disabled`",
+        "Padrão · Carregando · Desabilitado",
+        "Padrão"
+      ]
+    ],
+    "blockConfigDefault": "`md`",
+    "tokens": {
+      "states": ["Padrão", "Carregando", "Desabilitado"],
+      "rows": [
+        {
+          "part": "Ícone (default)",
+          "tokens": [
+            "Interface/Dark/Up",
+            "Interface/Light/Up",
+            "Interface/Light/Deep"
+          ]
+        },
+        {
+          "part": "Divisor",
+          "tokens": [
+            "Interface/Light/Down",
+            "Interface/Light/Down",
+            "Interface/Light/Down"
+          ]
+        }
+      ],
+      "blockRows": {
+        "disabledIndex": 2,
+        "loadingIndex": 1,
+        "after": 1
+      },
+      "note": "Carregando: o esqueleto usa a base do Skeleton (Interface/Light/Up). O divisor compõe em `multiply` com o fundo real."
+    },
+    "sections": [
+      {
+        "title": "Estados lado a lado",
+        "intro": "Padrão, carregando e desabilitado em cada combinação de tamanho de conteúdo e de valor.",
+        "stories": ["States"],
+        "code": "<TransactionListReadOnly {...props} />\n<TransactionListReadOnly {...props} loading />\n<TransactionListReadOnly {...props} disabled />\n// em cada combinação de contentSize=\"md\" | \"sm\" e amountSize=\"md\" | \"sm\""
+      },
+      {
+        "title": "Tamanhos × tipos de valor",
+        "stories": ["Sizes"],
+        "code": "<TransactionListReadOnly {...props} amountType=\"positive\" contentSize=\"sm\" amountSize=\"sm\" />\n<TransactionListReadOnly {...props} amount=\"Grátis\" strikethroughAmount=\"3,99%\" amountType=\"strikethrough\" />"
+      },
+      {
+        "title": "Densidade",
+        "intro": "`default`: padding vertical 16 (Spacing/Xs); `compact`: 8 (Spacing/Xxs) — a linha perde 16. Altura por tamanho (conteúdo + valor com legenda, etiqueta e informação extra): md 100 / compact 84; sm 94 / compact 78; carregando 73 / compact 57.",
+        "stories": ["Density"],
+        "code": "<TransactionListReadOnly {...props} />\n<TransactionListReadOnly {...props} density=\"compact\" />"
+      }
+    ],
+    "measures": {
+      "rowGap": ["12", "Spacing/XxsExtra"],
+      "rows": [
+        ["Padding vertical (compact)", "8", "`Spacing/Xxs`"],
+        ["Recuo do divisor", "16", "`Spacing/Xs`"],
+        ["Ícone", "24", "—"]
+      ]
+    }
+  },
+  "guidelines": {
+    "useWhen": [
+      "Lista em que o **valor monetário é a peça mais importante** da linha (extrato, movimentação, saldo por loja/conta) e a linha não navega, não expande e não é selecionada.",
+      "Linhas de composição já mostradas sem drill-down (ex.: parcelas pagas numa tela de detalhe)."
+    ],
+    "dontUse": [
+      [
+        "A linha leva ao detalhe (ou abre menu/ações)",
+        "Transaction List Action"
+      ],
+      ["A linha é escolhida pelo valor", "Transaction List Selectable"],
+      ["A linha abre detalhes na própria lista", "Transaction List Expandable"],
+      [
+        "Linha dentro da expansão de uma transação",
+        "Child Read Only / Child Action"
+      ],
+      ["Linha sem valor monetário", "`ListReadOnly`"]
+    ],
+    "doDont": [
+      {
+        "kind": "do",
+        "caption": "Valor que mudou a favor do cliente: original riscado e o atual em verde, na mesma linha.",
+        "code": "<TransactionListReadOnly\n  title=\"Taxa\"\n  description=\"Antecipação\"\n  amount=\"Grátis\"\n  strikethroughAmount=\"3,99%\"\n  amountType=\"strikethrough\"\n/>",
+        "examples": [
+          {
+            "component": "TransactionListReadOnly",
+            "props": {
+              "title": "Taxa",
+              "description": "Antecipação",
+              "amount": "Grátis",
+              "strikethroughAmount": "3,99%",
+              "amountType": "strikethrough",
+              "icon": "$icon24",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "dont",
+        "caption": "Não passe o valor com sinal junto com amountType=\"negative\": sai \"- -R$ 24,50\".",
+        "code": "// Não faça\n<TransactionListReadOnly amount=\"-R$ 24,50\" amountType=\"negative\" … />\n// Faça\n<TransactionListReadOnly amount=\"R$ 24,50\" amountType=\"negative\" … />",
+        "examples": [
+          {
+            "component": "TransactionListReadOnly",
+            "props": {
+              "title": "Pagamento",
+              "description": "Padaria São José",
+              "amount": "-R$ 24,50",
+              "amountType": "negative",
+              "icon": "$icon24",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "do",
+        "caption": "Item cancelado: valor normal, sem riscar e sem sinal; a etiqueta comunica.",
+        "code": "<TransactionListReadOnly\n  title=\"PagBlu\"\n  description=\"Padaria São José\"\n  amount=\"R$ 15,00\"\n  amountTag={{ label: 'Cancelado', type: 'neutral' }}\n/>",
+        "examples": [
+          {
+            "component": "TransactionListReadOnly",
+            "props": {
+              "title": "PagBlu",
+              "description": "Padaria São José",
+              "amount": "R$ 15,00",
+              "amountTag": {
+                "label": "Cancelado",
+                "type": "neutral"
+              },
+              "icon": "$icon24",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "dont",
+        "caption": "Não junte dois dados num texto: um dado por linha; o segundo vai ao detalhe.",
+        "code": "// Não faça\n<TransactionListReadOnly description=\"Crédito • Final 1234 • Padaria São José\" … />\n// Faça\n<TransactionListReadOnly description=\"Padaria São José\" … />",
+        "examples": [
+          {
+            "component": "TransactionListReadOnly",
+            "props": {
+              "title": "Pagamento",
+              "description": "Crédito • Final 1234 • Padaria São José",
+              "amount": "R$ 24,50",
+              "icon": "$icon24",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "caution",
+        "background": "Status/Warning/Up",
+        "caption": "on-color só sobre fundo colorido (ex.: herói em Status/Warning/Up); no fundo branco, use default.",
+        "code": "// sobre fundo colorido (ex.: herói Status/Warning/Up)\n<TransactionListReadOnly iconColor=\"on-color\" … />",
+        "examples": [
+          {
+            "component": "TransactionListReadOnly",
+            "props": {
+              "title": "Pix recebido",
+              "description": "Padaria São José",
+              "caption": "12 de novembro às 14:32",
+              "amount": "R$ 150,00",
+              "amountTag": {
+                "label": "Pago"
+              },
+              "additionalData": "Saldo disponível",
+              "icon": "$icon24",
+              "iconColor": "on-color",
+              "showDivider": false
+            }
+          }
+        ]
+      },
+      {
+        "kind": "caution",
+        "caption": "Desabilite com disabled — não passe status/amountType inactive à mão.",
+        "code": "<TransactionListReadOnly … disabled />",
+        "examples": [
+          {
+            "component": "TransactionListReadOnly",
+            "props": {
+              "title": "Pix recebido",
+              "description": "Padaria São José",
+              "caption": "12 de novembro às 14:32",
+              "amount": "R$ 150,00",
+              "amountTag": {
+                "label": "Pago"
+              },
+              "additionalData": "Saldo disponível",
+              "icon": "$icon24",
+              "disabled": true,
+              "showDivider": false
+            }
+          }
+        ]
+      }
+    ],
+    "aiRules": {
+      "familyForbidden": true,
+      "useWhen": [
+        "O valor monetário é a peça mais importante da linha (extrato, movimentação, saldo por loja/conta).",
+        "A linha não navega, não expande e não é selecionada."
+      ],
+      "dontUse": [
+        "Linha que leva ao detalhe ou abre menu/ações → TransactionListAction.",
+        "Linha escolhida pelo valor → TransactionListSelectable.",
+        "Linha que abre detalhes na própria lista → TransactionListExpandable.",
+        "Linha dentro da expansão de uma transação → TransactionListChildReadOnly / TransactionListChildAction.",
+        "Linha sem valor monetário → ListReadOnly."
+      ],
+      "required": [
+        "title e amount.",
+        "amount já formatado e sem sinal (\"R$ 1.234,56\"); o \"- \" de negative é do componente.",
+        "Entrada: amountType=\"positive\" (sem \"+\"). Saída: amountType=\"negative\".",
+        "disabled para desabilitar (aplica o tipo inactive nos dois blocos e a etiqueta neutral).",
+        "showDivider={false} no último item do grupo."
+      ],
+      "forbidden": ["Montar a linha com <div> + flex."],
+      "defaults": [
+        "inverted=true · contentSize=\"md\" · amountSize=\"md\" · status=\"default\" · amountType=\"default\"",
+        "iconColor=\"default\" · density=\"default\" · showDivider=true · showAmountIndicator=true",
+        "amountTag.type=\"positive\" · amountTag.setIconOff=true"
+      ],
+      "childOf": [
+        "List (ou outro container de lista). Dentro de TransactionListExpandable use os itens filhos."
+      ],
+      "source": [
+        "knowledge-bases/ux-knowledge-layer/components/usage-guidelines/transactionlistreadonly.md"
+      ]
+    }
+  },
+  "a11y": {
+    "reading": "Os textos, na ordem do DOM: \"Pix recebido, Padaria São José, 12 de novembro às 14:32, R$ 150,00, Pago, Saldo disponível\". O ícone não é lido (SVG sem nome). Saída vem com \"-\" antes do valor. `aria-disabled` quando desabilitado, `aria-busy` carregando.",
+    "keyboard": "Não recebe foco (só leitura). Para toque, use a Transaction List Action.",
+    "contrast": "Ícone `default` (Interface/Dark/Up) no branco 2,2:1 · `on-color` (Interface/Dark/Down) sobre Status/Warning/Up 5,1:1 e Status/Negative/Up 4,9:1 · `highlight` (Brand/Primary/Down) no branco 4,1:1. `on-color` só sobre fundo colorido.",
+    "verification": "axe (painel Accessibility) em 08/10, depois da correção do Tag: `States × sizes` 4, `Sizes × amount types` 18, `Icon colors` 9 e `Density` 4 violações — todas de contraste de cor, sem token disponível (etiqueta positiva 2,9:1; valor verde 3,0:1; riscado Interface/Dark/Up 2,2:1). Ver o painel Accessibility de cada story."
+  },
+  "code": {
+    "importCode": "import { TransactionListReadOnly } from '@useblu/ocean-react';\nimport type { TransactionListReadOnlyProps } from '@useblu/ocean-react';",
+    "playgroundStory": "Default",
+    "playgroundIntro": "Todas as propriedades nos controles.",
+    "usageCode": "import { List, TransactionListReadOnly } from '@useblu/ocean-react';\nimport { ArrowDownOutline, ArrowUpOutline } from '@useblu/ocean-icons-react';\n\n<List>\n  {/* Entrada: positive, sem \"+\" */}\n  <TransactionListReadOnly\n    icon={<ArrowDownOutline />}\n    title=\"Pix recebido\"\n    description=\"João Silva\"\n    caption=\"12 de novembro às 09:15\"\n    amount=\"R$ 150,00\"\n    amountType=\"positive\"\n  />\n  {/* Saída: negative — o componente põe o \"- \" */}\n  <TransactionListReadOnly\n    icon={<ArrowUpOutline />}\n    title=\"Pagamento\"\n    description=\"Padaria São José\"\n    caption=\"12 de novembro às 14:32\"\n    amount=\"R$ 24,50\"\n    amountType=\"negative\"\n    showDivider={false}\n  />\n</List>"
+  }
+}
