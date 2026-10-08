@@ -25,7 +25,7 @@ export type TransactionListActionProps = TransactionListBaseProps & {
    */
   amountSize?: TransactionListBaseProps['amountSize'];
   /**
-   * Trailing action (Figma `Type`): `chevron` leads to a detail, `menu` opens a contextual
+   * Trailing action: `chevron` leads to a detail, `menu` opens a contextual
    * menu, `swipe` reveals the actions sideways (mobile pattern). Same behavior as
    * `ListAction`.
    * @default 'chevron'
@@ -60,7 +60,7 @@ export type TransactionListActionProps = TransactionListBaseProps & {
 
 /**
  * Transaction row with a trailing action: chevron (detail), contextual menu or swipe.
- * Hover highlight is Interface/Light/Up in multiply. Figma: Transaction List Action.
+ * Hover highlight is Interface/Light/Up in multiply.
  *
  * `ref` and the remaining props go to the inner `<button>`; `className` goes to the root.
  */

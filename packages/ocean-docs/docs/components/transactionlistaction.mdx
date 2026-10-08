@@ -11,8 +11,6 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 Linha de transação com **ação à direita**: seta (leva ao detalhe), menu contextual ou swipe — o mesmo padrão de `actionType` / `menuActions` da `ListAction`. Realce ao passar o mouse (`Interface/Light/Up` em `multiply`) e um `onClick` por toque. Faz parte da família Transaction List.
 
-Figma: [Transaction List Action](https://www.figma.com/design/PgLv9k22CHHZZ867HwN65y/%F0%9F%8C%8A-Ocean-DS-Core?node-id=24289-64384) (`Type` = Chevron, Menu, Swipe).
-
 ## Importação
 
 ```tsx
@@ -126,7 +124,7 @@ Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `c
 
 ## Densidade (density)
 
-`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha. Figma: [node 26804-18127](https://www.figma.com/design/PgLv9k22CHHZZ867HwN65y/%F0%9F%8C%8A-Ocean-DS-Core?node-id=26804-18127).
+`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
 
 ## API
 
@@ -138,7 +136,7 @@ Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `c
 | `description`              | `string`                                                                                                   | -                | Texto secundário                                                                                                                     |
 | `strikethroughDescription` | `string`                                                                                                   | -                | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                                               |
 | `caption`                  | `string`                                                                                                   | -                | Legenda (captionBold)                                                                                                                |
-| `inverted`                 | `boolean`                                                                                                  | `true`           | Inverte título e descrição (Figma `Inverted=Yes`)                                                                                    |
+| `inverted`                 | `boolean`                                                                                                  | `true`           | Inverte título e descrição                                                                                                           |
 | `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Tipo do bloco de conteúdo                                                                                                            |
 | `contentSize`              | `'md' \| 'sm'`                                                                                             | `'md'`           | Escala do texto, independente do valor                                                                                               |
 | `amount`                   | `string`                                                                                                   | -                | Valor exibido à direita (obrigatório)                                                                                                |
@@ -154,7 +152,7 @@ Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `c
 | `icon`                     | `ReactNode`                                                                                                | -                | Ícone à esquerda                                                                                                                     |
 | `iconColor`                | `'default' \| 'on-color' \| 'highlight'`                                                                   | `'default'`      | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`                                                    |
 | `density`                  | `'default' \| 'compact'`                                                                                   | `'default'`      | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda |
-| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Ação à direita (Figma `Type`)                                                                                                        |
+| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Ação à direita                                                                                                                       |
 | `menuActions`              | `ActionItem[]`                                                                                             | `[]`             | Ações dos tipos `menu` e `swipe`                                                                                                     |
 | `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu                                                                                                                      |
 | `onClick`                  | `(event) => void`                                                                                          | -                | Disparado uma vez por toque; não dispara com `disabled` ou `loading`                                                                 |

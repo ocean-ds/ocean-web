@@ -1,61 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PlaceholderOutline } from '@useblu/ocean-icons-react';
-import {
-  colorStatusNegativeUp,
-  colorStatusWarningUp,
-} from '@useblu/ocean-tokens/web/tokens';
 import React from 'react';
 import TransactionListReadOnly from '../TransactionListReadOnly';
-import type { TransactionListReadOnlyProps } from '../TransactionListReadOnly';
-import docsJson from './TransactionListReadOnly.docs.json';
-import { aiRulesText } from '../../../../../.storybook/docs-blocks';
-import { familyDocs } from '../../../../../.storybook/docs-blocks/transaction-list/FamilyDocsPage';
-import {
-  blockArgTypes,
-  classNameArgType,
-  densityArgType,
-  dividerArgType,
-  iconArgTypes,
-  stateArgTypes,
-} from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import {
-  MatrixGrid,
-  SizesMatrix,
-} from '../../../../../.storybook/docs-blocks/transaction-list/shared';
+import { Frame, MatrixGrid } from '../../../../../.storybook/docs-blocks';
+import { TransactionListDocs } from '../../../../../.storybook/docs-blocks/transaction-list/TransactionListDocs';
+import { readOnlyArgTypes } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
+import { rows } from '../../../../../.storybook/docs-blocks/transaction-list/fixtures';
+import { SizesMatrix } from '../../../../../.storybook/docs-blocks/transaction-list/examples';
 
-const docs = familyDocs(docsJson);
-
-const baseArgs: TransactionListReadOnlyProps = {
-  title: 'Pix recebido',
-  description: 'Padaria São José',
-  caption: '12 de novembro às 14:32',
-  amount: 'R$ 150,00',
-  amountTag: { label: 'Pago' },
-  additionalData: 'Saldo disponível',
-  icon: <PlaceholderOutline size={24} />,
-};
+const baseArgs = rows.pixReceived;
 
 const meta: Meta<typeof TransactionListReadOnly> = {
   title: 'Components/List/Transaction List Read Only',
   component: TransactionListReadOnly,
-  // "manifest": entra no manifesto de componentes (resumo = regras para IA).
-  tags: ['autodocs', 'manifest'],
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    docs: {
-      description: { component: aiRulesText(docs.aiRules) },
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      page: docs.page(() => ({ Default, States, Sizes, Density })),
-    },
+    docs: { page: () => <TransactionListDocs variant="readOnly" /> },
   },
-  argTypes: {
-    ...iconArgTypes(),
-    ...densityArgType(),
-    ...dividerArgType(),
-    ...stateArgTypes(),
-    ...blockArgTypes({ sizeDefault: "'md'" }),
-    ...classNameArgType('<div> raiz'),
-  },
+  argTypes: readOnlyArgTypes,
   args: baseArgs,
 };
 
@@ -65,14 +27,14 @@ type Story = StoryObj<typeof TransactionListReadOnly>;
 
 const noControls = { controls: { disable: true } };
 
-/** Playground — todas as propriedades nos controles. Sem snapshot (as matrizes cobrem). */
+/** Every prop in the controls. No snapshot: the matrices cover the visuals. */
 export const Default: Story = {
   name: 'Playground',
   parameters: { chromatic: { disableSnapshot: true } },
   render: (args) => (
-    <div style={{ width: '360px' }}>
+    <Frame>
       <TransactionListReadOnly {...args} />
-    </div>
+    </Frame>
   ),
 };
 
@@ -83,7 +45,7 @@ const sizeCombos = [
   ['sm', 'sm'],
 ] as const;
 
-/** Matriz: estados (padrão, carregando, desabilitado) × tamanhos de conteúdo e valor. */
+/** States (default, loading, disabled) × content and amount sizes. */
 export const States: Story = {
   name: 'States × sizes',
   parameters: noControls,
@@ -94,9 +56,9 @@ export const States: Story = {
       )}
       rows={(
         [
-          ['Padrão', {}],
-          ['Carregando', { loading: true }],
-          ['Desabilitado', { disabled: true }],
+          ['Default', {}],
+          ['Loading', { loading: true }],
+          ['Disabled', { disabled: true }],
         ] as const
       ).map(([label, props]) => ({
         label,
@@ -114,7 +76,7 @@ export const States: Story = {
   ),
 };
 
-/** Matriz: tipos de valor × tamanho (conteúdo e valor no mesmo tamanho). */
+/** Amount types × size. */
 export const Sizes: Story = {
   name: 'Sizes × amount types',
   parameters: noControls,
@@ -125,13 +87,13 @@ export const Sizes: Story = {
   ),
 };
 
-/** Matriz: cor do ícone (e desabilitado) × fundo. */
+/** Icon color (and disabled) × background. */
 export const IconColors: Story = {
   name: 'Icon colors',
   parameters: noControls,
   render: () => (
     <MatrixGrid
-      columns={['Fundo branco', 'Status/Warning/Up', 'Status/Negative/Up']}
+      columns={['White', 'Warning up', 'Negative up']}
       rows={(
         [
           ['default', { iconColor: 'default' }],
@@ -141,9 +103,9 @@ export const IconColors: Story = {
         ] as const
       ).map(([label, props]) => ({
         label,
-        cells: [undefined, colorStatusWarningUp, colorStatusNegativeUp].map(
+        cells: ['', 'odoc-bg--warning', 'odoc-bg--negative'].map(
           (background) => (
-            <div key={background ?? 'white'} style={{ background }}>
+            <div key={background} className={background}>
               <TransactionListReadOnly {...baseArgs} {...props} />
             </div>
           )
@@ -153,7 +115,7 @@ export const IconColors: Story = {
   ),
 };
 
-/** Matriz: densidade (default × compact) × tamanho e carregando. */
+/** Density (default × compact) × size and loading. Heights: 100/84, 94/78, 73/57. */
 export const Density: Story = {
   name: 'Density',
   parameters: noControls,
@@ -162,9 +124,9 @@ export const Density: Story = {
       columns={['default', 'compact']}
       rows={(
         [
-          ['md · md (100 / 84)', {}],
-          ['sm · sm (94 / 78)', { contentSize: 'sm', amountSize: 'sm' }],
-          ['Carregando (73 / 57)', { loading: true }],
+          ['md · md', {}],
+          ['sm · sm', { contentSize: 'sm', amountSize: 'sm' }],
+          ['Loading', { loading: true }],
         ] as const
       ).map(([label, props]) => ({
         label,

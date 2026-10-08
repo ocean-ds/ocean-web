@@ -11,7 +11,7 @@ import {
   TransactionListSkeleton,
 } from '../_shared/components/TransactionListParts';
 
-// No leading icon: in the Figma the control occupies the leading slot.
+// No leading icon: the control occupies the leading slot.
 export type TransactionListSelectableProps = Omit<
   TransactionListBaseProps,
   'icon' | 'iconColor'
@@ -49,7 +49,7 @@ export type TransactionListSelectableProps = Omit<
 
 /**
  * Transaction row selectable by its value, with a checkbox or a radio.
- * Figma: Transaction List Selectable (Platform Web | App, Controller Checkbox | Radio).
+ * The control sits on the left (`web`) or on the right (`app`).
  */
 const TransactionListSelectable = React.forwardRef<
   HTMLDivElement,

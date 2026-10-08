@@ -10,8 +10,6 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 Linha de transação **selecionável pelo valor**, com caixa de marcar (padrão) ou opção única. Versão portal (`platform="web"`, controle à esquerda) e app (`platform="app"`, controle à direita). Faz parte da família Transaction List e fecha o gap de seleção em lista com valor no web.
 
-Figma: [Transaction List Selectable](https://www.figma.com/design/PgLv9k22CHHZZ867HwN65y/%F0%9F%8C%8A-Ocean-DS-Core?node-id=24320-5708).
-
 ## Importação
 
 ```tsx
@@ -76,13 +74,13 @@ function Example() {
 }
 ```
 
-Não há ícone à esquerda: no Figma o controle ocupa esse lugar, então `iconColor` não se aplica.
+Não há ícone à esquerda: o controle ocupa esse lugar, então `iconColor` não se aplica.
 
 ## Estados
 
-Todos os estados do Figma (`State` × Checkbox/Radio × App/Web) saem das props:
+Todos os estados (Checkbox/Radio × App/Web) saem das props:
 
-| Estado do Figma   | Props                                                     |
+| Estado            | Props                                                     |
 | ----------------- | --------------------------------------------------------- |
 | Default           | controle sem `checked`                                    |
 | Hover             | realce automático ao passar o mouse                       |
@@ -99,7 +97,7 @@ Todos os estados do Figma (`State` × Checkbox/Radio × App/Web) saem das props:
 
 ## Densidade (density)
 
-`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha. Figma: [node 26804-18127](https://www.figma.com/design/PgLv9k22CHHZZ867HwN65y/%F0%9F%8C%8A-Ocean-DS-Core?node-id=26804-18127).
+`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
 
 ## API
 
@@ -111,7 +109,7 @@ Todos os estados do Figma (`State` × Checkbox/Radio × App/Web) saem das props:
 | `description`              | `string`                                                                                                   | -           | Texto secundário                                                                                                                     |
 | `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                                               |
 | `caption`                  | `string`                                                                                                   | -           | Legenda (captionBold)                                                                                                                |
-| `inverted`                 | `boolean`                                                                                                  | `true`      | Inverte título e descrição (Figma `Inverted=Yes`)                                                                                    |
+| `inverted`                 | `boolean`                                                                                                  | `true`      | Inverte título e descrição                                                                                                           |
 | `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Tipo do bloco de conteúdo                                                                                                            |
 | `contentSize`              | `'md' \| 'sm'`                                                                                             | `'md'`      | Escala do texto, independente do valor                                                                                               |
 | `amount`                   | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                                                                                                |

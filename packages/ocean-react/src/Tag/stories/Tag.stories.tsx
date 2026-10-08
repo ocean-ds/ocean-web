@@ -282,7 +282,7 @@ export const Sizes: Story = {
         alignItems: 'center',
       }}
     >
-      {/* Figma Tag / Default 3594:34230: Medium 12 semibold, altura 20; Small 10 bold, altura 16 */}
+      {/* Medium: 12 semibold, height 20. Small: 10 bold, height 16. */}
       <Tag size="medium">Medium · 20</Tag>
       <Tag size="small">Small · 16</Tag>
       <Tag type="positive" size="medium" setIconOff>

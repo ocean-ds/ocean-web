@@ -29,7 +29,6 @@ export type TransactionListReadOnlyProps = TransactionListBaseProps & {
 
 /**
  * Read-only transaction row: content on the left, amount on the right, no interaction.
- * Figma: Transaction List Read Only.
  */
 const TransactionListReadOnly = React.forwardRef<
   HTMLDivElement,

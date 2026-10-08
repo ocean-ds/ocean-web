@@ -1,6 +1,6 @@
 // Transaction List family (Read Only, Action, Selectable, Child Action, Child Read Only).
-// Figma: 🌊 Ocean DS Core — Transaction List (MR-616). Every spacing is an Ocean Spacing token,
-// every color an Ocean Colors token; the root has no background (MR-748): hover and divider
+// Transaction List family. Every spacing is an Ocean Spacing token,
+// every color an Ocean Colors token; the root has no background: hover and divider
 // compose by multiply with the real background.
 .ods-transaction-list {
   box-sizing: border-box;
@@ -108,7 +108,7 @@
   }
 
   &--disabled &__chevron {
-    // Only forced color of the disabled state (MR-616): the chevron vector.
+    // Only forced color of the disabled state: the chevron vector.
     color: $color-interface-light-deep;
   }
 
@@ -269,7 +269,7 @@
 }
 
 // Expanded slot of TransactionListExpandable with the family's child rows: white slot with
-// vertical padding 8 (Figma 24289:64430 › Slot).
+// vertical padding 8.
 .ods-list-expandable__content--transaction:has(> .ods-transaction-list--child) {
   padding: $spacing-inline-xxs 0;
 }
@@ -281,7 +281,7 @@
   @include list-state-blend;
 }
 
-// Action with `menu` / `swipe` (Figma Transaction List Action › Type=Menu | Swipe).
+// Action with `menu` / `swipe`.
 // The row holds the clickable main and the trailing actions side by side; the highlight
 // moves from the button to the row so it covers the trailing slot too.
 .ods-transaction-list__row {

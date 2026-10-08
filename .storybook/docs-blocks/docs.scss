@@ -1,0 +1,572 @@
+// Documentation page blocks. Ocean tokens only: `yarn lint:docs-tokens` rejects hex/rgb
+// colors, raw px values and font-family literals in this folder.
+@import '@useblu/ocean-tokens/web/tokens';
+
+// Layout measures with no Ocean token, composed from spacing tokens.
+$doc-frame-width: $spacing-inline-xxxl * 4 + $spacing-inline-lg; // mobile frame
+$doc-aside-width: $spacing-inline-xxxl * 3; // "On this page"
+$doc-panel-width: $spacing-inline-xxxl * 4; // header side panel
+$doc-max-width: $spacing-inline-xxxl * 16;
+$doc-wide: $spacing-inline-xxxl * 13; // above: side nav and side panel
+$doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
+
+// The family page takes the full docs width.
+.sbdocs-content:has(.odoc) {
+  max-width: none;
+}
+
+.odoc {
+  background: $color-interface-light-pure;
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  margin: 0 auto;
+  max-width: $doc-max-width;
+
+  code {
+    background: $color-interface-light-up;
+    border-radius: $border-radius-tiny;
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xxxs;
+    padding: 0 $spacing-inline-xxxs;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: $border-width-thin solid $color-brand-primary-pure;
+    outline-offset: $border-width-thin;
+  }
+}
+
+// Header -------------------------------------------------------------------------------
+
+.odoc-header {
+  display: grid;
+  gap: $spacing-inline-lg;
+  grid-template-columns: minmax(0, 1fr);
+  padding: $spacing-stack-md 0 $spacing-stack-lg;
+
+  @media (min-width: $doc-wide) {
+    grid-template-columns: minmax(0, 1fr) $doc-panel-width;
+  }
+
+  &__title.ods-typography {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-light;
+    line-height: $line-height-medium;
+    margin: $spacing-stack-xs 0;
+  }
+
+  &__meta {
+    align-items: center;
+    color: $color-interface-dark-down;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $font-size-xxxs;
+    gap: $spacing-inline-xs;
+    margin-bottom: $spacing-stack-sm;
+  }
+
+  &__description.ods-typography {
+    color: $color-interface-dark-down;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-comfy;
+    margin: 0;
+    max-width: $spacing-inline-xxxl * 9;
+  }
+}
+
+.odoc-panel {
+  align-self: start;
+  border-left: $border-width-hairline solid $color-interface-light-down;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-stack-xs;
+  padding-left: $spacing-inline-sm;
+
+  &__label {
+    color: $color-interface-dark-down;
+    display: block;
+    font-size: $font-size-xxxs;
+    margin-bottom: $spacing-stack-xxxs;
+  }
+
+  &__value {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// Tabs (Ocean Tab: 56 high, heading 4 label, primary indicator) ---------------------------
+
+.odoc-tabs {
+  background: $color-interface-light-pure;
+  border-bottom: $border-width-hairline solid $color-interface-light-down;
+  display: flex;
+  overflow-x: auto;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  &__tab {
+    background: transparent;
+    border: 0;
+    border-bottom: $border-width-thin solid transparent;
+    color: $color-interface-dark-up;
+    cursor: pointer;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-loose;
+    min-height: $doc-tab-height;
+    padding: 0 $spacing-inline-xs;
+    white-space: nowrap;
+
+    &:hover {
+      color: $color-interface-dark-down;
+    }
+
+    &--active,
+    &--active:hover {
+      border-bottom-color: $color-brand-primary-pure;
+      color: $color-brand-primary-pure;
+    }
+  }
+}
+
+// Body: content + "On this page" --------------------------------------------------------
+
+.odoc-body {
+  display: grid;
+  gap: $spacing-inline-xl;
+  grid-template-columns: minmax(0, 1fr);
+  padding: $spacing-stack-lg 0 $spacing-stack-xxxl;
+
+  @media (min-width: $doc-wide) {
+    grid-template-columns: minmax(0, 1fr) $doc-aside-width;
+  }
+}
+
+.odoc-toc {
+  display: none;
+
+  @media (min-width: $doc-wide) {
+    align-self: start;
+    display: block;
+    position: sticky;
+    top: $doc-tab-height + $spacing-stack-sm;
+  }
+
+  &__title {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-stack-xxs;
+  }
+
+  &__list {
+    border-left: $border-width-hairline solid $color-interface-light-down;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__link {
+    background: transparent;
+    border: 0;
+    border-left: $border-width-thin solid transparent;
+    color: $color-interface-dark-down;
+    cursor: pointer;
+    display: block;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    line-height: $line-height-comfy;
+    margin-left: -$border-width-hairline;
+    padding: $spacing-stack-xxxs $spacing-inline-xs;
+    text-align: left;
+    width: 100%;
+
+    &:hover {
+      color: $color-interface-dark-deep;
+    }
+
+    &--active {
+      border-left-color: $color-brand-primary-pure;
+      color: $color-interface-dark-deep;
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+// Sections ------------------------------------------------------------------------------
+
+.odoc-section {
+  margin-bottom: $spacing-stack-xxl;
+  scroll-margin-top: $doc-tab-height + $spacing-stack-sm;
+
+  &__title.ods-typography {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-light;
+    line-height: $line-height-medium;
+    margin: 0 0 $spacing-stack-sm;
+  }
+
+  &__subtitle.ods-typography {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-loose;
+    margin: $spacing-stack-lg 0 $spacing-stack-xs;
+    scroll-margin-top: $doc-tab-height + $spacing-stack-sm;
+  }
+}
+
+// Prose: only direct children, so component markup inside examples is untouched.
+.odoc-prose {
+  > h4 {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-stack-xxs;
+  }
+
+  > p,
+  > ul > li {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xs;
+    line-height: $line-height-comfy;
+  }
+
+  > p {
+    margin: 0 0 $spacing-stack-xs;
+    max-width: $spacing-inline-xxxl * 9;
+  }
+
+  > ul {
+    margin: 0 0 $spacing-stack-sm;
+    max-width: $spacing-inline-xxxl * 9;
+    padding-left: $spacing-inline-sm;
+  }
+}
+
+.odoc-columns {
+  display: grid;
+  gap: $spacing-inline-lg;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax($spacing-inline-xxxl * 3, 1fr)
+  );
+  margin-bottom: $spacing-stack-sm;
+}
+
+// Stage: examples on a neutral background ----------------------------------------------
+
+.odoc-stage {
+  margin: 0 0 $spacing-stack-md;
+
+  &__surface {
+    align-items: flex-start;
+    background: $color-interface-light-up;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-inline-lg;
+    justify-content: center;
+    padding: $spacing-stack-md $spacing-inline-xs;
+
+    > div {
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    @media (min-width: $doc-wide) {
+      padding: $spacing-stack-xl $spacing-inline-sm;
+    }
+  }
+
+  &__frame {
+    background: $color-interface-light-pure;
+    box-shadow: $shadow-level-1;
+    max-width: 100%;
+    width: $doc-frame-width;
+  }
+
+  &__frame--plain {
+    box-shadow: none;
+  }
+
+  &__label {
+    color: $color-interface-dark-down;
+    display: block;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-stack-xxs;
+  }
+
+  &__caption {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+    line-height: $line-height-comfy;
+    margin: $spacing-stack-xxs 0 0;
+  }
+}
+
+// Tables --------------------------------------------------------------------------------
+
+.odoc-table-wrap {
+  margin: 0 0 $spacing-stack-md;
+  overflow-x: auto;
+}
+
+.odoc-table {
+  border-collapse: collapse;
+  font-size: $font-size-xxs;
+  line-height: $line-height-comfy;
+  min-width: 100%;
+
+  th {
+    background: $color-interface-light-up;
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-bold;
+    padding: $spacing-stack-xxs-extra $spacing-inline-xs;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td {
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
+    color: $color-interface-dark-deep;
+    padding: $spacing-stack-xxs-extra $spacing-inline-xs;
+    vertical-align: top;
+  }
+}
+
+.odoc-swatch {
+  align-items: center;
+  display: inline-flex;
+  gap: $spacing-inline-xxs;
+
+  &__chip {
+    border: $border-width-hairline solid $color-interface-light-deep;
+    border-radius: $border-radius-tiny;
+    display: inline-block;
+    flex-shrink: 0;
+    height: $spacing-stack-xs;
+    width: $spacing-inline-xs;
+  }
+}
+
+// Do / Don't ----------------------------------------------------------------------------
+
+.odoc-dodont {
+  display: grid;
+  gap: $spacing-inline-sm;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax($spacing-inline-xxxl * 4, 1fr)
+  );
+  margin-bottom: $spacing-stack-md;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__example {
+    align-items: center;
+    background: $color-interface-light-up;
+    border-bottom: $border-width-thick solid $color-interface-light-down;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: $spacing-stack-md $spacing-inline-xs;
+  }
+
+  &__card--do &__example {
+    border-bottom-color: $color-status-positive-pure;
+  }
+
+  &__card--dont &__example {
+    border-bottom-color: $color-status-negative-pure;
+  }
+
+  &__card--caution &__example {
+    border-bottom-color: $color-status-warning-pure;
+  }
+
+  &__verdict {
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    margin: $spacing-stack-xs 0 $spacing-stack-xxxs;
+  }
+
+  &__card--do &__verdict {
+    color: $color-status-positive-deep;
+  }
+
+  &__card--dont &__verdict {
+    color: $color-status-negative-deep;
+  }
+
+  &__card--caution &__verdict {
+    color: $color-status-warning-deep;
+  }
+
+  &__text {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xxs;
+    line-height: $line-height-comfy;
+    margin: 0;
+  }
+}
+
+// Anatomy -------------------------------------------------------------------------------
+
+.odoc-anatomy {
+  background: $color-interface-light-up;
+  display: flex;
+  justify-content: center;
+  margin-bottom: $spacing-stack-sm;
+  overflow-x: auto;
+
+  &__stage {
+    padding: $spacing-stack-xxl;
+    position: relative;
+  }
+
+  &__lines {
+    left: 0;
+    overflow: visible;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+
+    path {
+      fill: none;
+      stroke: $color-interface-dark-deep;
+      stroke-width: $border-width-hairline;
+    }
+  }
+
+  &__pin {
+    align-items: center;
+    background: $color-interface-dark-deep;
+    border-radius: $border-radius-circular;
+    color: $color-interface-light-pure;
+    display: flex;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    height: $spacing-stack-sm;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: $spacing-inline-sm;
+  }
+}
+
+// Code ----------------------------------------------------------------------------------
+
+.odoc-code {
+  margin: 0 0 $spacing-stack-sm;
+
+  &__label {
+    color: $color-interface-dark-down;
+    display: block;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-stack-xxs;
+  }
+
+  .docblock-source {
+    margin: 0;
+  }
+}
+
+.odoc-subtabs {
+  border-bottom: $border-width-hairline solid $color-interface-light-down;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-stack-sm;
+
+  &__tab {
+    background: transparent;
+    border: 0;
+    border-bottom: $border-width-thin solid transparent;
+    color: $color-interface-dark-up;
+    cursor: pointer;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-bold;
+    padding: $spacing-stack-xxs-extra $spacing-inline-xs;
+
+    &--active {
+      border-bottom-color: $color-brand-primary-pure;
+      color: $color-brand-primary-pure;
+    }
+  }
+}
+
+.odoc-callout {
+  margin: 0 0 $spacing-stack-sm;
+}
+
+.odoc-related {
+  display: grid;
+  gap: $spacing-inline-sm;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax($spacing-inline-xxxl * 3, 1fr)
+  );
+
+  &__card {
+    border-top: $border-width-thin solid $color-interface-light-down;
+    padding-top: $spacing-stack-xs;
+  }
+}
+
+// Story matrices (Chromatic snapshots) -------------------------------------------------
+
+.odoc-matrix {
+  align-items: start;
+  display: grid;
+  gap: $spacing-stack-xs $spacing-inline-sm;
+  grid-template-columns: ($spacing-inline-xxxl + $spacing-inline-lg) repeat(
+      var(--odoc-columns),
+      $doc-frame-width
+    );
+
+  &__label {
+    color: $color-interface-dark-down;
+    font-family: $font-family-base;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-bold;
+    margin: 0;
+  }
+}
+
+.odoc-frame {
+  width: $doc-frame-width;
+}
+
+.odoc-bg--warning {
+  background: $color-status-warning-up;
+}
+
+.odoc-bg--negative {
+  background: $color-status-negative-up;
+}
+
+.odoc-frame--menu {
+  padding-bottom: $spacing-stack-xxxl + $spacing-stack-lg;
+}
+
+.odoc-api-head {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-inline-xs;
+  margin-bottom: $spacing-stack-xs;
+}

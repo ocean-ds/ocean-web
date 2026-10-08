@@ -77,7 +77,7 @@ export type TransactionListExpandableProps = {
   additionalData?: string;
   /**
    * Inverts the position of title and description in ContentList.
-   * @default true (per Figma Transaction List Expandable)
+   * @default true
    */
   inverted?: boolean;
   /**

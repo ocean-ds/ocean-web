@@ -48,7 +48,7 @@ export type TransactionListChildActionProps = TransactionListBaseProps & {
 
 /**
  * Child row of an expanded transaction, linked by the timeline, with a chevron.
- * Use inside `TransactionListExpandable`. Figma: _Child Transaction List Action.
+ * Use inside `TransactionListExpandable`.
  *
  * `ref` and the remaining props go to the inner `<button>`; `className` goes to the root.
  */

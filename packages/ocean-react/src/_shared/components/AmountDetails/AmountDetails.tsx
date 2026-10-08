@@ -7,7 +7,7 @@ import { ContentListProps } from '../ContentList';
 export type AmountDetailsType = 'default' | 'positive' | 'negative';
 
 /**
- * Size of the amount block (Figma `_Content List / Amount` › `Size`).
+ * Size of the amount block.
  *
  * - `md`: value 16 semibold, tag Medium.
  * - `sm`: value 14 semibold, tag Small.
@@ -33,7 +33,7 @@ export type AmountDetailsTag = {
    */
   type?: AmountDetailsTagType;
   /**
-   * Hides the tag icon (the Figma tag has no icon).
+   * Hides the tag icon.
    * @default true
    */
   setIconOff?: boolean;

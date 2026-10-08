@@ -60,7 +60,7 @@ export type TransactionListItemProps = {
  * @deprecated Replaced by the Transaction List family — use `TransactionListReadOnly`,
  * `TransactionListAction`, `TransactionListSelectable` or `TransactionListExpandable`
  * (with `TransactionListChildAction` / `TransactionListChildReadOnly` as children).
- * Kept with the same behavior until the screens migrate (MR-903).
+ * Kept with the same behavior until the screens migrate.
  */
 const TransactionListItem = React.forwardRef<
   HTMLDivElement,

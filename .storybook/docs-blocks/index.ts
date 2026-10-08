@@ -1,13 +1,3 @@
-import './docs-blocks.scss';
+import './docs.scss';
 
-export * from './DocTabs';
-export * from './DocTable';
-export * from './AvailabilityTable';
-export * from './ConfigTable';
-export * from './TokenTable';
-export * from './DoDont';
-export * from './AnatomyLegend';
-export * from './PreviewCanvas';
-export * from './DocLinks';
-export * from './DocPage';
-export * from './StatusTable';
+export * from './blocks';

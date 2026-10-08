@@ -10,7 +10,7 @@ import AmountDetails, {
 import SkeletonBar from '../SkeletonBar';
 
 /**
- * Color of the leading icon, from a closed set (MR-615, 08/10):
+ * Color of the leading icon, from a closed set:
  *
  * - `default`: Interface/Dark/Up — rows on a white background.
  * - `on-color`: Interface/Dark/Down — rows on colored backgrounds (e.g. Status/Warning/Up or
@@ -23,14 +23,14 @@ import SkeletonBar from '../SkeletonBar';
 export type TransactionListIconColor = 'default' | 'on-color' | 'highlight';
 
 /**
- * Vertical density of the row (decision 08/10): `default` keeps each component's padding;
+ * Vertical density of the row: `default` keeps each component's padding;
  * `compact` sets top and bottom padding to 8 (Spacing/Xxs). Horizontal padding is unchanged.
  */
 export type TransactionListDensity = 'default' | 'compact';
 
 /**
  * Props shared by every component of the Transaction List family
- * (Figma: Transaction List Read Only / Action / Selectable and the child rows).
+ * (Read Only, Action, Selectable and the child rows).
  */
 export type TransactionListBaseProps = {
   /**
@@ -51,7 +51,7 @@ export type TransactionListBaseProps = {
    */
   caption?: string;
   /**
-   * Inverts title and description (Figma `Inverted=Yes`).
+   * Inverts title and description.
    * @default true
    */
   inverted?: boolean;

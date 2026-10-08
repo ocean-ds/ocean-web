@@ -83,7 +83,7 @@
   color: $color-interface-dark-deep;
 }
 
-// Sized variants (Figma `_Content List / Amount` › Size). Only rendered when `size` is passed,
+// Sized variants. Only rendered when `size` is passed,
 // so the original block (no size) keeps its rendering.
 .ods-amount-details--md,
 .ods-amount-details--sm {

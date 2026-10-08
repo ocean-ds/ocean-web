@@ -2,38 +2,20 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import TransactionListSelectable from '../TransactionListSelectable';
 import type { TransactionListSelectableProps } from '../TransactionListSelectable';
-import docsJson from './TransactionListSelectable.docs.json';
-import { familyDocs } from '../../../../../.storybook/docs-blocks/transaction-list/FamilyDocsPage';
-import { aiRulesText } from '../../../../../.storybook/docs-blocks';
-import {
-  arg,
-  blockArgTypes,
-  category,
-  classNameArgType,
-  densityArgType,
-  dividerArgType,
-  stateArgTypes,
-} from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import {
-  MatrixGrid,
-  SizesMatrix,
-} from '../../../../../.storybook/docs-blocks/transaction-list/shared';
+import { Frame, MatrixGrid } from '../../../../../.storybook/docs-blocks';
+import { TransactionListDocs } from '../../../../../.storybook/docs-blocks/transaction-list/TransactionListDocs';
+import { selectableArgTypes } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
+import { selectableRows } from '../../../../../.storybook/docs-blocks/transaction-list/fixtures';
+import { SizesMatrix } from '../../../../../.storybook/docs-blocks/transaction-list/examples';
 
-const docs = familyDocs(docsJson);
 const noSnapshot = { chromatic: { disableSnapshot: true } };
-
-const baseArgs: TransactionListSelectableProps = {
-  title: 'Loja Centro',
-  description: 'CNPJ 12.345.678/0001-90',
-  caption: 'Conta digital',
-  amount: 'R$ 1.250,00',
-  additionalData: 'Saldo disponível',
-};
+const noControls = { controls: { disable: true } };
+const baseArgs = selectableRows[0] as TransactionListSelectableProps;
 
 type Controller = 'checkbox' | 'radio';
 type Platform = 'web' | 'app';
 
-/** Estado do Figma → props (Indeterminate só na caixa). */
+/** State → props (indeterminate only applies to the checkbox). */
 const stateProps: [
   string,
   (c: Controller) => Partial<TransactionListSelectableProps> | null
@@ -56,7 +38,7 @@ const stateProps: [
   ['Selected', (c) => ({ [c]: { checked: true, readOnly: true } })],
   ['Disabled', (c) => ({ [c]: { readOnly: true }, disabled: true })],
   [
-    'Disabled Selected',
+    'Disabled selected',
     (c) => ({ [c]: { checked: true, readOnly: true }, disabled: true }),
   ],
   ['Error', (c) => ({ [c]: { error: true, readOnly: true } })],
@@ -66,40 +48,12 @@ const stateProps: [
 const meta: Meta<typeof TransactionListSelectable> = {
   title: 'Components/List/Transaction List Selectable',
   component: TransactionListSelectable,
-  // "manifest": entra no manifesto de componentes (resumo = regras para IA).
-  tags: ['autodocs', 'manifest'],
+  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
-    docs: {
-      description: { component: aiRulesText(docs.aiRules) },
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      page: docs.page(() => ({ Default, StatesCheckbox, StatesRadio, Sizes })),
-    },
+    docs: { page: () => <TransactionListDocs variant="selectable" /> },
   },
-  argTypes: {
-    checkbox: arg(
-      category.content,
-      'Caixa de marcar (controle padrão): `checked`, `onChange`, `indeterminate`, `error` e `id` vão aqui',
-      'CheckboxProps'
-    ),
-    radio: arg(
-      category.content,
-      'Opção única; quando passada, substitui a caixa. `name` igual em todo o grupo',
-      'RadioProps'
-    ),
-    platform: arg(
-      category.appearance,
-      'Lado do controle: `web` à esquerda (portal), `app` à direita (web mobile e app)',
-      "'web' | 'app'",
-      "'web'",
-      { control: 'inline-radio', options: ['web', 'app'] }
-    ),
-    ...densityArgType(),
-    ...dividerArgType(),
-    ...stateArgTypes(),
-    ...blockArgTypes({ sizeDefault: "'md'" }),
-    ...classNameArgType('<div> raiz'),
-  },
+  argTypes: selectableArgTypes,
   args: baseArgs,
 };
 
@@ -111,7 +65,7 @@ const CheckboxPlayground = (props: Partial<TransactionListSelectableProps>) => {
   const { checkbox } = props;
   const [checked, setChecked] = useState(false);
   return (
-    <div style={{ width: '360px' }}>
+    <Frame>
       <TransactionListSelectable
         {...baseArgs}
         {...props}
@@ -122,34 +76,34 @@ const CheckboxPlayground = (props: Partial<TransactionListSelectableProps>) => {
           onChange: () => setChecked(!checked),
         }}
       />
-    </div>
+    </Frame>
   );
 };
 
-/** Playground — todas as propriedades nos controles; marcar/desmarcar funciona. */
+/** Every prop in the controls; checking and unchecking works. */
 export const Default: Story = {
   name: 'Playground',
   parameters: noSnapshot,
   render: (args) =>
     args.radio ? (
-      <div style={{ width: '360px' }}>
+      <Frame>
         <TransactionListSelectable {...args} />
-      </div>
+      </Frame>
     ) : (
       <CheckboxPlayground {...args} />
     ),
 };
 
-const combos: Platform[] = ['web', 'app'];
+const platforms: Platform[] = ['web', 'app'];
 
 const statesMatrix = (controller: Controller) => (
   <MatrixGrid
-    columns={combos.map((platform) => `${controller} · ${platform}`)}
+    columns={platforms.map((platform) => `${controller} · ${platform}`)}
     rows={stateProps
       .filter(([, fn]) => fn(controller))
       .map(([label, fn]) => ({
         label,
-        cells: combos.map((platform) => (
+        cells: platforms.map((platform) => (
           <TransactionListSelectable
             key={platform}
             {...baseArgs}
@@ -161,24 +115,24 @@ const statesMatrix = (controller: Controller) => (
   />
 );
 
-/** Matriz: estados do Figma × plataforma, com caixa de marcar. */
+/** States × platform, with a checkbox. */
 export const StatesCheckbox: Story = {
   name: 'States · checkbox',
-  parameters: { controls: { disable: true } },
+  parameters: noControls,
   render: () => statesMatrix('checkbox'),
 };
 
-/** Matriz: estados do Figma × plataforma, com opção única. */
+/** States × platform, with a radio. */
 export const StatesRadio: Story = {
   name: 'States · radio',
-  parameters: { controls: { disable: true } },
+  parameters: noControls,
   render: () => statesMatrix('radio'),
 };
 
-/** Matriz: tipos de valor × tamanho e densidade. */
+/** Amount types × size and density. */
 export const Sizes: Story = {
   name: 'Sizes × amount types',
-  parameters: { controls: { disable: true } },
+  parameters: noControls,
   render: () => (
     <SizesMatrix
       compactSm

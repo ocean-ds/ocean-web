@@ -36,7 +36,7 @@ export type TransactionListChildReadOnlyProps = TransactionListBaseProps & {
 
 /**
  * Read-only child row of an expanded transaction, linked by the timeline, without chevron.
- * Use inside `TransactionListExpandable`. Figma: _Child Transaction List Read Only.
+ * Use inside `TransactionListExpandable`.
  */
 const TransactionListChildReadOnly = React.forwardRef<
   HTMLDivElement,
