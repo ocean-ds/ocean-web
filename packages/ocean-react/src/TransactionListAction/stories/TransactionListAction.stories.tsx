@@ -40,7 +40,7 @@ export const Menu: Story = {
     menuActions,
     menuLabel: 'Actions for Payment to supplier',
   },
-  parameters: { layout: 'padded' },
+  parameters: { canvasClass: 'odoc-canvas--menu' },
   play: openTrigger,
 };
 

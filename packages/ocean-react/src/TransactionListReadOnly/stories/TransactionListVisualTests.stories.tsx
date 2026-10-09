@@ -25,6 +25,7 @@ import {
   selectableRows,
   swipeActions,
 } from '../../../../../.storybook/docs-blocks/transaction-list/fixtures';
+import { centeredMatrix } from '../../../../../.storybook/docs-blocks/transaction-list/story-helpers';
 import { STATUS } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
 
 /*
@@ -34,6 +35,7 @@ import { STATUS } from '../../../../../.storybook/docs-blocks/transaction-list/a
 
 const meta: Meta = {
   title: 'Visual tests/Transaction List',
+  decorators: [centeredMatrix],
   parameters: {
     layout: 'padded',
     controls: { disable: true },

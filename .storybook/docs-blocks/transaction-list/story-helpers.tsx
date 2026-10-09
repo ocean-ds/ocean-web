@@ -6,8 +6,8 @@ import TransactionListExpandable from '../../../packages/ocean-react/src/Transac
 import { childRows, expandableParent } from './fixtures';
 
 /** Stories render the rows on a plain white mobile screen, centered on the stage background. */
-export const inList: Decorator = (Story) => (
-  <div className="odoc-canvas">
+export const inList: Decorator = (Story, context) => (
+  <div className={`odoc-canvas ${context.parameters.canvasClass ?? ''}`}>
     <Frame>
       <Screen>
         <Story />
@@ -18,9 +18,18 @@ export const inList: Decorator = (Story) => (
 
 /** Blocks render on their own, inside a padded card. */
 export const asBlock: Decorator = (Story) => (
-  <Frame className="odoc-frame--block">
+  <div className="odoc-canvas">
+    <Frame className="odoc-frame--block">
+      <Story />
+    </Frame>
+  </div>
+);
+
+/** Visual tests: matrices top-aligned and centered horizontally. */
+export const centeredMatrix: Decorator = (Story) => (
+  <div className="odoc-visual-root">
     <Story />
-  </Frame>
+  </div>
 );
 
 type ChildProps = Record<string, unknown> & {

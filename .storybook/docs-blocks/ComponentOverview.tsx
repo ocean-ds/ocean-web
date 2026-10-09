@@ -143,8 +143,8 @@ export const ComponentOverview = ({
   return (
     <Unstyled>
       <div className="odoc odoc--component">
-        <div className="odoc-body">
-          <div>
+        <div className="odoc-band">
+          <div className="odoc-band__inner">
             <header className="odoc-component-header">
               <Typography
                 variant="heading1"
@@ -154,7 +154,8 @@ export const ComponentOverview = ({
               </Typography>
               <div className="odoc-component-header__links">
                 <Tag
-                  type={item ? 'neutral-02' : 'neutral'}
+                  variant="highlight"
+                  type="neutral"
                   size="medium"
                   setIconOff
                 >
@@ -188,8 +189,12 @@ export const ComponentOverview = ({
                   </>
                 )}
               </div>
-              {!item && <Callout text={t('usedBy')} />}
             </header>
+          </div>
+        </div>
+        <div className="odoc-body">
+          <div>
+            {!item && <Callout text={t('usedBy')} />}
 
             <Section id="overview" title={t('sections.overview')}>
               <p>
@@ -275,9 +280,7 @@ export const ComponentOverview = ({
               </p>
               <div className="odoc-example">
                 <div className="odoc-example__stage">
-                  <div className="odoc-example__frame">
-                    <Story of={config.story} />
-                  </div>
+                  <Story of={config.story} />
                 </div>
               </div>
               <ApiTable of={config.story} argTypes={config.argTypes} t={t} />

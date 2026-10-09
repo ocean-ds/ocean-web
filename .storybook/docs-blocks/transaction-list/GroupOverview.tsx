@@ -963,51 +963,62 @@ export const GroupOverview = (): React.ReactElement => {
   return (
     <Unstyled>
       <div className="odoc">
-        <header className="odoc-header">
-          <div>
-            <Breadcrumb items={t.list('breadcrumb')} />
-            <Typography variant="heading1" className="odoc-header__title">
-              {PAGE.title}
-            </Typography>
-            <div className="odoc-header__meta">
-              <Tag type="neutral-02" size="medium" setIconOff>
-                {PAGE.status}
-              </Tag>
-              <span>
-                {t('lastUpdated').replace(
-                  '{date}',
-                  formatDate(PAGE.lastUpdated, t.locale)
-                )}
-              </span>
-            </div>
-            <Typography variant="lead" className="odoc-header__description">
-              {t('description')}
-            </Typography>
+        <div className="odoc-band">
+          <div className="odoc-band__inner">
+            <header className="odoc-header">
+              <div>
+                <Breadcrumb items={t.list('breadcrumb')} />
+                <Typography variant="heading1" className="odoc-header__title">
+                  {PAGE.title}
+                </Typography>
+                <div className="odoc-header__meta">
+                  <Tag
+                    variant="highlight"
+                    type="neutral"
+                    size="medium"
+                    setIconOff
+                  >
+                    {PAGE.status}
+                  </Tag>
+                  <span>
+                    {t('lastUpdated').replace(
+                      '{date}',
+                      formatDate(PAGE.lastUpdated, t.locale)
+                    )}
+                  </span>
+                </div>
+                <Typography variant="lead" className="odoc-header__description">
+                  {t('description')}
+                </Typography>
+              </div>
+              <aside className="odoc-panel" aria-label={t('componentDetails')}>
+                <div>
+                  <span className="odoc-panel__label">{t('library')}</span>
+                  <span className="odoc-panel__value">{PAGE.library}</span>
+                </div>
+                <Link
+                  href={PAGE.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  icon="externalLink"
+                >
+                  GitHub
+                </Link>
+              </aside>
+            </header>
           </div>
-          <aside className="odoc-panel" aria-label={t('componentDetails')}>
-            <div>
-              <span className="odoc-panel__label">{t('library')}</span>
-              <span className="odoc-panel__value">{PAGE.library}</span>
-            </div>
-            <Link
-              href={PAGE.github}
-              target="_blank"
-              rel="noreferrer"
-              icon="externalLink"
-            >
-              GitHub
-            </Link>
-          </aside>
-        </header>
-        <Tabs
-          label={t('documentation')}
-          tabs={(Object.keys(TOC) as TabId[]).map((id) => ({
-            id,
-            label: t(`tabs.${id}`),
-          }))}
-          active={tab}
-          onChange={(id) => setTab(id as TabId)}
-        />
+        </div>
+        <div className="odoc-tabbar">
+          <Tabs
+            label={t('documentation')}
+            tabs={(Object.keys(TOC) as TabId[]).map((id) => ({
+              id,
+              label: t(`tabs.${id}`),
+            }))}
+            active={tab}
+            onChange={(id) => setTab(id as TabId)}
+          />
+        </div>
         <div className="odoc-body">
           <div role="tabpanel" aria-labelledby={`odoc-tab-${tab}`}>
             {tab === 'guidelines' && <Guidelines t={t} />}

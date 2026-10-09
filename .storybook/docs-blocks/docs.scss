@@ -10,7 +10,11 @@ $doc-max-width: $spacing-inline-xxxl * 16;
 $doc-wide: $spacing-inline-xxxl * 13; // above: side nav and side panel
 $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
-// The family page takes the full docs width.
+// The docs pages take the full docs width; the header band runs edge to edge.
+.sbdocs-wrapper:has(.odoc) {
+  padding: 0;
+}
+
 .sbdocs-content:has(.odoc) {
   max-width: none;
 }
@@ -19,8 +23,6 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   background: $color-interface-light-pure;
   color: $color-interface-dark-deep;
   font-family: $font-family-base;
-  margin: 0 auto;
-  max-width: $doc-max-width;
 
   code {
     background: $color-interface-light-up;
@@ -102,13 +104,11 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 // Tabs (Ocean Tab: 56 high, heading 4 label, primary indicator) ---------------------------
 
 .odoc-tabs {
-  background: $color-interface-light-pure;
-  border-bottom: $border-width-hairline solid $color-interface-light-down;
   display: flex;
+  margin: 0 auto;
+  max-width: $doc-max-width;
   overflow-x: auto;
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  padding: 0 $spacing-inline-lg;
 
   &__tab {
     background: transparent;
@@ -142,7 +142,9 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   display: grid;
   gap: $spacing-inline-xl;
   grid-template-columns: minmax(0, 1fr);
-  padding: $spacing-stack-lg 0 $spacing-stack-xxxl;
+  margin: 0 auto;
+  max-width: $doc-max-width;
+  padding: $spacing-stack-lg $spacing-inline-lg $spacing-stack-xxxl;
 
   @media (min-width: $doc-wide) {
     grid-template-columns: minmax(0, 1fr) $doc-aside-width;
@@ -276,7 +278,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
   &__surface {
     align-items: flex-start;
-    background: $color-interface-light-up;
+    background: $color-interface-light-down;
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-inline-lg;
@@ -387,7 +389,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
   &__example {
     align-items: center;
-    background: $color-interface-light-up;
+    background: $color-interface-light-down;
     border-bottom: $border-width-thick solid $color-interface-light-down;
     display: flex;
     justify-content: center;
@@ -441,7 +443,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 // Anatomy -------------------------------------------------------------------------------
 
 .odoc-anatomy {
-  background: $color-interface-light-up;
+  background: $color-interface-light-down;
   display: flex;
   justify-content: center;
   margin-bottom: $spacing-stack-sm;
@@ -641,7 +643,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   overflow: hidden;
 
   &__stage {
-    background: $color-interface-light-up;
+    background: $color-interface-light-down;
     display: flex;
     justify-content: center;
     padding: $spacing-stack-lg $spacing-inline-xs;
@@ -820,7 +822,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
 // Story canvas: stage background around the white screen.
 .odoc-canvas {
-  background: $color-interface-light-up;
+  background: $color-interface-light-down;
   padding: $spacing-stack-xl $spacing-inline-lg;
 }
 
@@ -830,4 +832,50 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   .docblock-source {
     margin: 0;
   }
+}
+
+// Header band (Carbon-like): Interface/Light/Up, full width; the tab bar is its bottom edge.
+.odoc-band {
+  background: $color-interface-light-up;
+
+  &__inner {
+    margin: 0 auto;
+    max-width: $doc-max-width;
+    padding: 0 $spacing-inline-lg;
+  }
+}
+
+.odoc-tabbar {
+  background: $color-interface-light-up;
+  border-bottom: $border-width-hairline solid $color-interface-light-down;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.odoc-component-header {
+  margin-bottom: 0;
+  padding: $spacing-stack-xl 0 $spacing-stack-lg;
+}
+
+// Story canvas centered; inside the docs examples the stage already frames it.
+.odoc-canvas {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.odoc-canvas--menu {
+  padding-bottom: $spacing-stack-xxxl + $spacing-stack-xxl;
+}
+
+.odoc-example__stage .odoc-canvas {
+  background: transparent;
+  padding: 0;
+}
+
+.odoc-visual-root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
