@@ -24,7 +24,7 @@
     },
     "withTag": {
       "title": "Com tag",
-      "text": "Uma tag por linha, só quando o status pede atenção: `complementary` para Pagamento agendado, `neutral` para Processando e Cancelado. Itens pagos não têm tag, e um pagamento cancelado mantém o valor."
+      "text": "Uma tag por linha mostra o status da transação. O tipo vem das regras de status do produto, como `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado. Um pagamento cancelado mantém o valor."
     }
   },
   "options": {
@@ -41,8 +41,7 @@
   "rules": [
     "Passe o valor já formatado em R$ e sem sinal.",
     "Use `strikethrough` só quando a mudança favorece o cliente; nos demais casos, use `strikethrough-neutral`.",
-    "Use tag só quando o status pede atenção; itens pagos não têm tag.",
-    "Use `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado.",
+    "Use a tag para o status da transação; o tipo vem das regras de status do produto, como `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado.",
     "Mantenha `info` em uma informação curta, como \"Taxa de antecipação\"."
   ],
   "api": {

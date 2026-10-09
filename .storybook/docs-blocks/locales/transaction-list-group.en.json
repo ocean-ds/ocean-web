@@ -53,7 +53,7 @@
         ["Amount", "Formatted value; the type adds sign and color."],
         [
           "Tag",
-          "Status that needs attention: Payment scheduled, Processing, Canceled."
+          "Status of the transaction, such as Payment scheduled, Processing or Canceled."
         ],
         ["Additional data", "One short fact about the amount."],
         ["Divider", "Inset hairline between rows; off on the last row."]
@@ -76,7 +76,7 @@
         "**Description** names the counterpart: the supplier, the retailer, the card or the bank. One fact per line.",
         "**Caption** carries the date, the order number or the due date.",
         "**Amount** is always formatted and unsigned (`R$ 6.819,33`); `amount.type` adds the sign and the color.",
-        "**Tag** appears only when the status needs attention. Paid items have no tag."
+        "**Tag** shows the status of the transaction; its type comes from the product's status rules."
       ],
       "amountType": "Amount type",
       "amountTypeColumns": ["Type", "Appearance", "Use for"],
@@ -104,13 +104,12 @@
         "inactive": ["Muted", "Disabled rows."]
       },
       "tags": "Tags",
-      "tagsText": "One tag per row, from the status of the transaction. A canceled payment keeps its amount.",
+      "tagsText": "One tag per row shows the status of the transaction. Its type comes from the product's status rules; the examples below follow them. A canceled payment keeps its amount.",
       "tagColumns": ["Status", "Tag type"],
       "tagRows": [
         ["Payment scheduled", "`complementary`"],
         ["Processing", "`neutral`"],
-        ["Canceled", "`neutral`"],
-        ["Paid", "No tag"]
+        ["Canceled", "`neutral`"]
       ],
       "doDont": "Do and don't",
       "verdicts": {
@@ -119,12 +118,13 @@
         "caution": "Caution"
       },
       "doDontItems": [
-        "Pass the amount unsigned and let the amount type add the sign.",
-        "Don’t type the sign into the amount; it skips the color and breaks alignment.",
+        "Pass the value unsigned and set the type; the negative type adds the sign.",
+        "Don't type the sign in the value. The negative type already adds it, so it shows twice.",
         "Show a canceled payment with the neutral Canceled tag and the amount unchanged.",
-        "Don’t tag paid items; the tag is for statuses that need attention.",
+        "Don't write a sentence in the tag. Keep it to a short status.",
+        "Keep the tag short and move the detail to info.",
         "Use the strikethrough types only when the original value really changed, such as a waived fee.",
-        "Use the on-color icon only on colored backgrounds; on white it reads as disabled."
+        "Use `iconColor=\"on-color\"` only on colored backgrounds. On white, its icon is darker than the icons of the rows around it."
       ]
     },
     "behaviors": {

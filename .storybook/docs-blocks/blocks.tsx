@@ -254,7 +254,13 @@ export const DoDont = ({
   items,
   verdicts = VERDICT_LABEL,
 }: {
-  items: { kind: Verdict; example: ReactNode; text: ReactNode }[];
+  items: {
+    kind: Verdict;
+    example: ReactNode;
+    text: ReactNode;
+    /** Snippet below the text (for example, the wrong and the right version). */
+    code?: string;
+  }[];
   verdicts?: Record<Verdict, string>;
 }): React.ReactElement => (
   <div className="odoc-dodont">
@@ -269,6 +275,11 @@ export const DoDont = ({
         </div>
         <p className="odoc-dodont__verdict">{verdicts[item.kind]}</p>
         <p className="odoc-dodont__text">{item.text}</p>
+        {item.code && (
+          <div className="odoc-dodont__code">
+            <Source code={item.code} language="tsx" dark />
+          </div>
+        )}
       </div>
     ))}
   </div>

@@ -812,3 +812,11 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   background: $color-interface-light-up;
   padding: $spacing-stack-xl $spacing-inline-lg;
 }
+
+.odoc-dodont__code {
+  margin-top: $spacing-stack-xs;
+
+  .docblock-source {
+    margin: 0;
+  }
+}

@@ -24,7 +24,7 @@
     },
     "withTag": {
       "title": "With tag",
-      "text": "One tag per row, only when the status needs attention: `complementary` for Payment scheduled, `neutral` for Processing and Canceled. Paid items have no tag, and a canceled payment keeps its amount."
+      "text": "One tag per row shows the status of the transaction. Its type comes from the product's status rules, such as `complementary` for Payment scheduled and `neutral` for Processing and Canceled. A canceled payment keeps its amount."
     }
   },
   "options": {
@@ -41,8 +41,7 @@
   "rules": [
     "Pass the value already formatted in R$ and without a sign.",
     "Use `strikethrough` only when the change favors the customer; otherwise use `strikethrough-neutral`.",
-    "Use a tag only when the status needs attention; paid items have no tag.",
-    "Use `complementary` for Payment scheduled and `neutral` for Processing and Canceled.",
+    "Use the tag for the status of the transaction; take its type from the product's status rules, such as `complementary` for Payment scheduled and `neutral` for Processing and Canceled.",
     "Keep `info` to one short fact, such as \"Advance fee\"."
   ],
   "api": {

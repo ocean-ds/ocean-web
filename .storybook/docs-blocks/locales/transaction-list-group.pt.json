@@ -56,7 +56,7 @@
         ["Valor", "Valor formatado; o tipo adiciona sinal e cor."],
         [
           "Tag",
-          "Status que pede atenção: Pagamento agendado, Processando, Cancelado."
+          "Status da transação, como Pagamento agendado, Processando ou Cancelado."
         ],
         ["Informação adicional", "Uma informação curta sobre o valor."],
         [
@@ -82,7 +82,7 @@
         "**Descrição** nomeia a contraparte: o fornecedor, o lojista, o cartão ou o banco. Uma informação por linha.",
         "**Legenda** traz a data, o número do pedido ou o vencimento.",
         "**Valor** é sempre formatado e sem sinal (`R$ 6.819,33`); `amount.type` adiciona o sinal e a cor.",
-        "**Tag** aparece só quando o status pede atenção. Itens pagos não têm tag."
+        "**Tag** mostra o status da transação; o tipo vem das regras de status do produto."
       ],
       "amountType": "Tipo de valor",
       "amountTypeColumns": ["Tipo", "Aparência", "Quando usar"],
@@ -110,13 +110,12 @@
         "inactive": ["Esmaecido", "Linhas desabilitadas."]
       },
       "tags": "Tags",
-      "tagsText": "Uma tag por linha, conforme o status da transação. Um pagamento cancelado mantém o valor.",
+      "tagsText": "Uma tag por linha mostra o status da transação. O tipo vem das regras de status do produto; os exemplos abaixo seguem essas regras. Um pagamento cancelado mantém o valor.",
       "tagColumns": ["Status", "Tipo da tag"],
       "tagRows": [
         ["Pagamento agendado", "`complementary`"],
         ["Processando", "`neutral`"],
-        ["Cancelado", "`neutral`"],
-        ["Pago", "Sem tag"]
+        ["Cancelado", "`neutral`"]
       ],
       "doDont": "Faça e não faça",
       "verdicts": {
@@ -125,12 +124,13 @@
         "caution": "Atenção"
       },
       "doDontItems": [
-        "Passe o valor sem sinal e deixe o tipo de valor adicionar o sinal.",
-        "Não digite o sinal no valor; ele perde a cor e quebra o alinhamento.",
+        "Passe o valor sem sinal e defina o tipo; o tipo negative adiciona o sinal.",
+        "Não digite o sinal no valor. O tipo negative já adiciona o sinal, e ele aparece duas vezes.",
         "Mostre um pagamento cancelado com a tag neutra Cancelado e o valor mantido.",
-        "Não coloque tag em itens pagos; a tag é para status que pedem atenção.",
+        "Não escreva uma frase na tag. Use um status curto.",
+        "Mantenha a tag curta e leve o detalhe para o info.",
         "Use os tipos riscados só quando o valor original realmente mudou, como uma taxa isenta.",
-        "Use o ícone on-color só em fundos coloridos; no branco, ele parece desabilitado."
+        "Use `iconColor=\"on-color\"` só em fundos coloridos. No branco, o ícone fica mais escuro que os das linhas ao redor."
       ]
     },
     "behaviors": {

@@ -467,16 +467,24 @@ const Guidelines = ({ t }: { t: Translate }) => {
             items={[
               {
                 kind: 'do',
-                example: single(rows.supplierPayment),
+                example: single({
+                  ...rows.supplierPayment,
+                  amount: { value: 'R$ 6.819,33', type: 'negative' },
+                }),
                 text: <Md text={doDont[0]} />,
               },
               {
                 kind: 'dont',
                 example: single({
                   ...rows.supplierPayment,
-                  amount: { value: '-R$ 6.819,33' },
+                  amount: { value: '-R$ 6.819,33', type: 'negative' },
                 }),
                 text: <Md text={doDont[1]} />,
+                code: `// Don't: the sign shows twice
+amount={{ value: '-R$ 6.819,33', type: 'negative' }}
+
+// Do
+amount={{ value: 'R$ 6.819,33', type: 'negative' }}`,
               },
               {
                 kind: 'do',
@@ -486,23 +494,49 @@ const Guidelines = ({ t }: { t: Translate }) => {
               {
                 kind: 'dont',
                 example: single({
-                  ...rows.supplierPayment,
+                  ...rows.bankTransfer,
                   amount: {
-                    ...rows.supplierPayment.amount,
-                    tag: { label: 'Paid', type: 'positive' },
+                    value: 'R$ 1.314,28',
+                    tag: {
+                      label: 'Payment scheduled for Oct 15 by bank transfer',
+                      type: 'complementary',
+                    },
                   },
                 }),
                 text: <Md text={doDont[3]} />,
               },
               {
-                kind: 'caution',
-                example: single(rows.receivablesAdvance),
+                kind: 'do',
+                example: single({
+                  ...rows.bankTransfer,
+                  amount: {
+                    value: 'R$ 1.314,28',
+                    tag: { label: 'Payment scheduled', type: 'complementary' },
+                    info: 'Due Oct 15',
+                  },
+                }),
                 text: <Md text={doDont[4]} />,
               },
               {
                 kind: 'caution',
-                example: single({ ...rows.creditSales, iconColor: 'on-color' }),
+                example: single(rows.receivablesAdvance),
                 text: <Md text={doDont[5]} />,
+              },
+              {
+                kind: 'caution',
+                example: (
+                  <Group
+                    list={[
+                      rows.creditSales,
+                      {
+                        ...rows.debitSales,
+                        iconColor: 'on-color',
+                      } as RowFixture,
+                    ]}
+                    render={readOnly}
+                  />
+                ),
+                text: <Md text={doDont[6]} />,
               },
             ]}
           />
