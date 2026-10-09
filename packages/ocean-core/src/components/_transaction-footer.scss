@@ -1,25 +1,192 @@
+@mixin ods-transaction-notice {
+  $positive-overlay: rgba($color-status-positive-deep, 0.12);
+
+  background: linear-gradient($positive-overlay, $positive-overlay),
+    $color-status-positive-up;
+  box-sizing: border-box;
+  display: flex;
+  gap: $spacing-inline-xxs;
+  width: 100%;
+}
+
+@mixin ods-transaction-total {
+  align-items: center;
+  display: flex;
+  gap: $spacing-inline-xs;
+  justify-content: space-between;
+}
+
+@mixin ods-transaction-total-label {
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-comfy;
+}
+
+@mixin ods-transaction-total-value {
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-comfy;
+  text-align: right;
+}
+
+.ods-transaction-notice {
+  @include ods-transaction-notice;
+
+  align-items: center;
+  font-family: $font-family-base;
+
+  &__icon {
+    align-items: center;
+    color: $color-status-positive-deep;
+    display: flex;
+    flex: 0 0 $spacing-inline-sm;
+    height: $spacing-inline-sm;
+    justify-content: center;
+    width: $spacing-inline-sm;
+
+    svg {
+      color: inherit;
+      height: $spacing-inline-sm;
+      width: $spacing-inline-sm;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-inline-xxxs;
+    min-width: 0;
+  }
+
+  &__title,
+  &__description {
+    color: $color-interface-dark-deep;
+    font-family: $font-family-base;
+    width: 100%;
+  }
+}
+
 .ods-transaction-footer {
   background-color: $color-interface-light-pure;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding-top: $spacing-stack-xxs;
   position: relative;
+  width: 100%;
 
-  // Divisor de topo da variante Default — desenhado dentro do espaçador de 8px
-  // (`padding-top`), sem adicionar altura, então alternar variante não gera "pulo".
-  &--default::before {
-    background-color: $color-interface-light-down;
-    content: '';
-    height: $border-width-hairline;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+  &--default {
+    border-top: $border-width-hairline solid $color-interface-light-down;
   }
 
   &--highlight {
     background-color: $color-interface-light-up;
-    border-top-left-radius: $border-radius-lg;
-    border-top-right-radius: $border-radius-lg;
+    border-top-left-radius: $border-radius-md;
+    border-top-right-radius: $border-radius-md;
+  }
+
+  &__notice {
+    border-radius: $border-radius-md $border-radius-md 0 0;
+    margin-bottom: -$spacing-stack-xs;
+    padding: $spacing-stack-xs $spacing-inline-xs $spacing-stack-md;
+    position: relative;
+    z-index: 0;
+  }
+
+  &__content {
+    background-color: inherit;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__total {
+    @include ods-transaction-total;
+    padding: $spacing-stack-xs;
+  }
+
+  &__total-label {
+    @include ods-transaction-total-label;
+  }
+
+  &__total-value {
+    @include ods-transaction-total-value;
+  }
+
+  &__action {
+    box-sizing: border-box;
+    padding: $spacing-stack-xs;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  &__details {
+    padding: $spacing-stack-xxs 0;
+  }
+}
+
+.ods-transaction-summary {
+  width: 100%;
+
+  &__title {
+    align-items: center;
+    color: $color-interface-dark-up;
+    display: flex;
+    height: 20px;
+    margin: 0 0 $spacing-stack-xxs;
+  }
+
+  &__card {
+    background-color: $color-interface-light-up;
+    border-radius: $border-radius-md;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__total {
+    @include ods-transaction-total;
+    padding: $spacing-stack-xs;
+  }
+
+  &__total-label {
+    @include ods-transaction-total-label;
+  }
+
+  &__total-value {
+    @include ods-transaction-total-value;
+  }
+
+  &__notice {
+    border-radius: 0 0 $border-radius-md $border-radius-md;
+    padding: $spacing-stack-md $spacing-inline-xs $spacing-stack-xs;
+    position: relative;
+    z-index: 0;
+  }
+
+  &--has-notice &__card {
+    margin-bottom: -$spacing-stack-xs;
+  }
+
+  &__action {
+    box-sizing: border-box;
+    padding: $spacing-stack-xs 0;
+    width: 100%;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  &__details {
+    padding: $spacing-stack-xxs 0;
   }
 }

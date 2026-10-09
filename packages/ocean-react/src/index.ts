@@ -182,3 +182,6 @@ export * from './ListSettings';
 
 export { default as TransactionFooter } from './TransactionFooter';
 export * from './TransactionFooter';
+
+export { default as TransactionSummary } from './TransactionSummary';
+export * from './TransactionSummary';

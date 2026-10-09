@@ -1,0 +1,41 @@
+{
+  "usedBy": "Use this building block in the side column of a desktop payment screen. It keeps transaction rows and their total together in a card.",
+  "overview": "A desktop side-column summary that groups transaction rows and their total in a card, with an optional notice and action.",
+  "sections": {
+    "default": {
+      "title": "With title",
+      "text": "The optional heading sits above the light-up card; rows and total stay inside the card."
+    },
+    "without-title": {
+      "title": "Without title",
+      "text": "Omit the heading when the surrounding page already labels the summary."
+    },
+    "with-notice": {
+      "title": "With notice",
+      "text": "The notice follows the card and overlaps it by 16px. The action stays outside both."
+    }
+  },
+  "api": {
+    "intro": "Transaction Summary is available on Web only and uses the same read-only row and total structure as the Footer.",
+    "title": "Optional heading displayed above the card.",
+    "items": "Read-only transaction rows. All supplied rows render; the first uses default density and following rows use compact density.",
+    "total": "Label and value rendered after a divider below the transaction rows.",
+    "notice": "Optional structured notice with a required title, optional description and optional custom icon. When omitted, an Ocean positive check icon is used.",
+    "action": "Optional consumer-provided action rendered full width below the card and notice.",
+    "className": "Additional class name for the root element."
+  },
+  "platforms": {
+    "platform": "Platform",
+    "type": "Availability",
+    "react": "Available as `TransactionSummary`.",
+    "ios": "Not available; use the mobile Transaction Footer at the bottom of the payment screen.",
+    "android": "Not available; use the mobile Transaction Footer at the bottom of the payment screen."
+  },
+  "rules": [
+    "Use Summary in the desktop side column of a payment screen.",
+    "Use no more than five items as a screen-level guideline; the component renders every item it receives.",
+    "Keep the action outside the card; when present, it follows the card and optional notice.",
+    "Use TransactionListReadOnly props for row content, including extra information, tags and struck-through values.",
+    "Sticky positioning and safe-area behavior belong to the screen, not the Summary component."
+  ]
+}

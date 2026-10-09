@@ -1,0 +1,49 @@
+{
+  "usedBy": "Use this building block at the bottom of a mobile payment screen. The screen handles sticky positioning and safe-area insets.",
+  "overview": "A mobile payment-screen footer that groups read-only transaction rows, a total, an optional notice and a full-width action.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Use the default surface for a white footer with a subtle top border."
+    },
+    "highlight": {
+      "title": "Highlight",
+      "text": "Use the highlight surface when the payment screen calls for the elevated light-up background and rounded top corners."
+    },
+    "with-notice": {
+      "title": "With notice",
+      "text": "The structured notice sits above the rows. Its title is required; description and icon are optional."
+    },
+    "with-notice-highlight": {
+      "title": "Highlight with notice",
+      "text": "The notice overlaps the body by 16px, keeping the footer surface above the notice."
+    },
+    "rich-rows": {
+      "title": "Rich rows",
+      "text": "Rows can use the existing Transaction List Read Only content, amount, tag and strikethrough props."
+    },
+    "many-rows": {
+      "title": "Usage guideline",
+      "text": "Use no more than five items as a screen-level guideline; the component renders every item it receives."
+    }
+  },
+  "api": {
+    "intro": "The React component accepts Transaction List Read Only rows and leaves business behavior to the consumer.",
+    "type": "Surface appearance. `default` is white with a top border; `highlight` uses the light-up surface and rounded top corners.",
+    "items": "Read-only transaction rows. All supplied rows render; the first uses default density and following rows use compact density.",
+    "total": "Label and value rendered after a divider below the transaction rows.",
+    "notice": "Optional structured notice with a required title, optional description and optional custom icon. When omitted, an Ocean positive check icon is used.",
+    "action": "Consumer-provided action, rendered full width inside the footer body.",
+    "className": "Additional class name for the root element."
+  },
+  "platforms": {
+    "text": "The same Footer is available in SwiftUI and Jetpack Compose. iOS keeps `.legacy` as the default style; opt into 2.0 with `.transaction(...)`. Android keeps the legacy overload and adds `OceanTransactionFooter(items, total, button, modifier, type, notice)`. Native notice content is text; sticky positioning and safe-area handling remain the screen's responsibility."
+  },
+  "rules": [
+    "Place the Footer at the bottom of a mobile payment screen; the screen owns sticky positioning and safe-area insets.",
+    "Use no more than five items as a screen-level guideline; the component renders every item it receives.",
+    "Use TransactionListReadOnly props for row content, including extra information, tags and struck-through values.",
+    "Pass a structured notice object with a title; the description and custom icon are optional.",
+    "Pass the Ocean button through `action`; do not add a second action inside a row."
+  ]
+}
