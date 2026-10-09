@@ -68,7 +68,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         {...rest}
       >
         {longSize ? (
-          <div>
+          <div className="ods-alert__body">
             <div
               className={classNames(
                 'ods-alert__header',

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.145.1](https://github.com/ocean-ds/ocean-web/compare/v1.145.0...v1.145.1) (2026-10-08)
+
+### Bug Fixes
+
+- **alert:** long size body takes full width ([#1274](https://github.com/ocean-ds/ocean-web/issues/1274)) ([367f819](https://github.com/ocean-ds/ocean-web/commit/367f8191eceeef12bb11db7a7589becc92c41c22))
+
 # [1.145.0](https://github.com/ocean-ds/ocean-web/compare/v1.144.2...v1.145.0) (2026-10-07)
 
 ### Features
