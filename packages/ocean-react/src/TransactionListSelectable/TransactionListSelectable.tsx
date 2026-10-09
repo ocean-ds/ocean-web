@@ -6,7 +6,7 @@ import SkeletonBar from '../_shared/components/SkeletonBar';
 import {
   TransactionListBaseProps,
   TransactionListContent,
-  splitContentProps,
+  TransactionListOmittedDomProps,
   TransactionListDivider,
   TransactionListSkeleton,
 } from '../_shared/components/TransactionListParts';
@@ -16,16 +16,6 @@ export type TransactionListSelectableProps = Omit<
   TransactionListBaseProps,
   'icon' | 'iconColor'
 > & {
-  /**
-   * Typography scale of the content block, independent from `amountSize`.
-   * @default 'md'
-   */
-  contentSize?: TransactionListBaseProps['contentSize'];
-  /**
-   * Size of the amount block, independent from `contentSize`.
-   * @default 'md'
-   */
-  amountSize?: TransactionListBaseProps['amountSize'];
   /**
    * Props of the checkbox control (default control). `checked`, `indeterminate`,
    * `error` and `onChange` go here.
@@ -45,7 +35,7 @@ export type TransactionListSelectableProps = Omit<
    * @default true
    */
   showDivider?: boolean;
-} & React.ComponentPropsWithoutRef<'div'>;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, TransactionListOmittedDomProps>;
 
 /**
  * Transaction row selectable by its value, with a checkbox or a radio.
@@ -57,8 +47,8 @@ const TransactionListSelectable = React.forwardRef<
 >(
   (
     {
-      contentSize = 'md',
-      amountSize = 'md',
+      content,
+      amount,
       disabled = false,
       loading = false,
       density = 'default',
@@ -67,20 +57,19 @@ const TransactionListSelectable = React.forwardRef<
       platform = 'web',
       showDivider = true,
       className,
-      ...props
+      ...rest
     },
     ref
   ) => {
-    const [contentProps, rest] = splitContentProps(props);
     const controlDisabled = Boolean(
       disabled || checkbox?.disabled || radio?.disabled
     );
 
     const row = (
       <TransactionListContent
-        {...contentProps}
-        contentSize={contentSize}
-        amountSize={amountSize}
+        content={content}
+        amount={amount}
+        defaultSize="md"
         disabled={controlDisabled}
       />
     );

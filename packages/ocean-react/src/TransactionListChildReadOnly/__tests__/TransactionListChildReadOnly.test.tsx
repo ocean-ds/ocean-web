@@ -6,9 +6,8 @@ describe('TransactionListChildReadOnly', () => {
   test('defaults: standalone, sm sizes and no chevron', () => {
     render(
       <TransactionListChildReadOnly
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
+        content={{ title: 'Title', description: 'Description' }}
+        amount={{ value: 'R$ 0,00' }}
       />
     );
 
@@ -29,8 +28,8 @@ describe('TransactionListChildReadOnly', () => {
   test('position middle draws both lines', () => {
     render(
       <TransactionListChildReadOnly
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         position="middle"
       />
     );
@@ -42,7 +41,11 @@ describe('TransactionListChildReadOnly', () => {
 
   test('disabled uses the inactive type', () => {
     render(
-      <TransactionListChildReadOnly title="Title" amount="R$ 0,00" disabled />
+      <TransactionListChildReadOnly
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
+        disabled
+      />
     );
 
     expect(
@@ -57,9 +60,9 @@ describe('TransactionListChildReadOnly', () => {
     const ref = React.createRef<HTMLDivElement>();
     render(
       <TransactionListChildReadOnly
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         ref={ref}
-        title="Title"
-        amount="R$ 0,00"
         loading
         className="custom"
       />

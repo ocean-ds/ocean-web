@@ -17,10 +17,8 @@ describe('TransactionListChildAction', () => {
     const onClick = jest.fn();
     render(
       <TransactionListChildAction
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
-        amountTag={{ label: 'Label' }}
+        content={{ title: 'Title', description: 'Description' }}
+        amount={{ value: 'R$ 0,00', tag: { label: 'Label' } }}
         icon={<svg data-testid="icon" />}
         onClick={onClick}
       />
@@ -50,8 +48,8 @@ describe('TransactionListChildAction', () => {
   ] as const)('position %s draws the timeline lines', (position, expected) => {
     render(
       <TransactionListChildAction
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         position={position}
       />
     );
@@ -63,8 +61,8 @@ describe('TransactionListChildAction', () => {
     const onClick = jest.fn();
     render(
       <TransactionListChildAction
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         icon={<svg />}
         onClick={onClick}
         disabled
@@ -82,9 +80,9 @@ describe('TransactionListChildAction', () => {
     const ref = React.createRef<HTMLButtonElement>();
     render(
       <TransactionListChildAction
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         ref={ref}
-        title="Title"
-        amount="R$ 0,00"
         loading
         className="custom"
       />
@@ -102,7 +100,11 @@ describe('TransactionListChildAction', () => {
 
   test('loading button has an accessible name', () => {
     render(
-      <TransactionListChildAction title="Title" amount="R$ 0,00" loading />
+      <TransactionListChildAction
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
+        loading
+      />
     );
 
     expect(screen.getByRole('button', { name: 'Carregando' })).toBeDisabled();

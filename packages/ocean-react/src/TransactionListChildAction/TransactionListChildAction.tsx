@@ -5,22 +5,12 @@ import {
   TransactionListChevron,
   TransactionListChildPosition,
   TransactionListContent,
-  splitContentProps,
+  TransactionListOmittedDomProps,
   TransactionListSkeleton,
   TransactionListTimeline,
 } from '../_shared/components/TransactionListParts';
 
 export type TransactionListChildActionProps = TransactionListBaseProps & {
-  /**
-   * Typography scale of the content block, independent from `amountSize`.
-   * @default 'sm'
-   */
-  contentSize?: TransactionListBaseProps['contentSize'];
-  /**
-   * Size of the amount block, independent from `contentSize`.
-   * @default 'sm'
-   */
-  amountSize?: TransactionListBaseProps['amountSize'];
   /**
    * Color of the timeline icon. When omitted, child rows use Interface/Light/Down; an explicit
    * `default` / `on-color` / `highlight` overrides it. Disabled always forces
@@ -43,7 +33,11 @@ export type TransactionListChildActionProps = TransactionListBaseProps & {
   className?: string;
 } & Omit<
     React.ComponentPropsWithoutRef<'button'>,
-    'type' | 'onClick' | 'className' | 'disabled'
+    | 'type'
+    | 'onClick'
+    | 'className'
+    | 'disabled'
+    | TransactionListOmittedDomProps
   >;
 
 /**
@@ -58,8 +52,8 @@ const TransactionListChildAction = React.forwardRef<
 >(
   (
     {
-      contentSize = 'sm',
-      amountSize = 'sm',
+      content,
+      amount,
       icon,
       iconColor,
       disabled = false,
@@ -68,13 +62,10 @@ const TransactionListChildAction = React.forwardRef<
       position = 'standalone',
       onClick,
       className,
-      ...props
+      ...rest
     },
     ref
-  ) => {
-    const [content, rest] = splitContentProps(props);
-
-    return (
+  ) => (
       <div
         data-testid="transaction-list-child-action"
         className={classNames(
@@ -112,9 +103,9 @@ const TransactionListChildAction = React.forwardRef<
           ) : (
             <>
               <TransactionListContent
-                {...content}
-                contentSize={contentSize}
-                amountSize={amountSize}
+                content={content}
+                amount={amount}
+                defaultSize="sm"
                 disabled={disabled}
               />
               <TransactionListChevron />
@@ -122,8 +113,7 @@ const TransactionListChildAction = React.forwardRef<
           )}
         </button>
       </div>
-    );
-  }
+    )
 );
 
 TransactionListChildAction.displayName = 'TransactionListChildAction';

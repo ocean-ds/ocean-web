@@ -1,9 +1,22 @@
 /**
- * Storybook argTypes of the Transaction list family. One description per prop, shared by the
- * Playground controls and the Component API tables of the docs page.
+ * Storybook argTypes of the Transaction List family and of its two blocks. The English
+ * descriptions come from the locale files, so the Controls panel and the localized Component
+ * API tables of the docs say the same thing.
  */
+import common from '../locales/common.en.json';
+import action from '../locales/transaction-list-action.en.json';
+import selectable from '../locales/transaction-list-selectable.en.json';
+import expandable from '../locales/transaction-list-expandable.en.json';
+import childReadOnly from '../locales/transaction-list-child-read-only.en.json';
+import contentDefault from '../locales/content-list-default.en.json';
+import contentAmount from '../locales/content-list-amount.en.json';
+
 export type ArgType = {
   description: string;
+  /** Locale key of the description (Component API table of the docs). */
+  descriptionKey: string;
+  /** Values for `{placeholders}` in the description. */
+  descriptionVars?: Record<string, string>;
   control?: unknown;
   options?: string[];
   action?: string;
@@ -14,43 +27,48 @@ export type ArgType = {
   };
 };
 
-export const category = {
-  content: 'Content',
-  appearance: 'Appearance',
-  state: 'State',
-  interaction: 'Interaction',
-  contentBlock: 'Content block',
-  amountBlock: 'Amount block',
-  advanced: 'Advanced',
-};
+type ArgTypes = Record<string, ArgType>;
+type Api = Record<string, string>;
+
+export const NESTED = 'Nested blocks';
 
 const controlFor = (type: string) => {
   if (type === 'string') return 'text';
   if (type === 'boolean') return 'boolean';
-  if (type.startsWith('{')) return 'object';
   return undefined;
 };
 
-export const arg = (
-  cat: string,
-  description: string,
-  type: string,
-  defaultValue?: string,
-  extra: Partial<ArgType> = {}
-): ArgType => ({
-  description,
-  control: controlFor(type),
-  table: {
-    category: cat,
-    type: { summary: type },
-    defaultValue: defaultValue ? { summary: defaultValue } : undefined,
-  },
-  ...extra,
-});
+const arg =
+  (api: Api, category: string) =>
+  (
+    name: string,
+    type: string,
+    defaultValue?: string,
+    extra: Partial<ArgType> = {}
+  ): ArgType => {
+    const key = extra.descriptionKey ?? `api.${name}`;
+    const vars = extra.descriptionVars ?? {};
+    const text = api[key.replace(/^api\./, '')] ?? '';
+    return {
+      description: Object.entries(vars).reduce(
+        (result, [k, v]) => result.replace(`{${k}}`, v),
+        text
+      ),
+      descriptionKey: key,
+      control: controlFor(type),
+      table: {
+        category,
+        type: { summary: type },
+        defaultValue: defaultValue ? { summary: defaultValue } : undefined,
+      },
+      ...extra,
+    };
+  };
 
 const radio = (options: string[]) => ({ control: 'inline-radio', options });
 const select = (options: string[]) => ({ control: 'select', options });
 const quoted = (values: string[]) => values.map((v) => `'${v}'`).join(' | ');
+const noControl = { control: false };
 
 export const STATUS = [
   'default',
@@ -70,294 +88,205 @@ export const AMOUNT_TYPES = [
   'strikethrough-neutral',
 ];
 
-type ArgTypes = Record<string, ArgType>;
+/* ----- Blocks ----- */
 
-/** Content block + amount block, shared by every member of the family. */
-export const blockArgTypes = (sizeDefault: string): ArgTypes => ({
-  title: arg(
-    category.contentBlock,
-    'What happened, such as "Supplier payment". With `inverted` it is the smaller line. Required.',
-    'string'
-  ),
-  description: arg(
-    category.contentBlock,
-    'Who or what the transaction relates to. One fact only.',
-    'string'
-  ),
-  strikethroughDescription: arg(
-    category.contentBlock,
-    'Original text shown struck through before the emphasized text. Only with `status="strikethrough"`.',
-    'string'
-  ),
-  caption: arg(category.contentBlock, 'Date, time or due date.', 'string'),
-  inverted: arg(
-    category.contentBlock,
-    'Emphasizes the description instead of the title.',
-    'boolean',
-    'true'
-  ),
-  status: arg(
-    category.contentBlock,
-    'Color and weight of the emphasized text. Ignored when disabled.',
-    quoted(STATUS),
-    "'default'",
-    select(STATUS)
-  ),
-  contentSize: arg(
-    category.contentBlock,
-    'Size of the content block, set independently from the amount.',
-    "'md' | 'sm'",
-    sizeDefault,
-    radio(['md', 'sm'])
-  ),
-  amount: arg(
-    category.amountBlock,
-    'Formatted value without a sign, such as "R$ 1.250,00". Required.',
-    'string'
-  ),
-  amountType: arg(
-    category.amountBlock,
-    'Adds the sign and the color to the amount. Ignored when disabled.',
+const contentArg = arg(contentDefault.api, 'Content List Default');
+
+export const contentListDefaultArgTypes: ArgTypes = {
+  title: contentArg('title', 'string'),
+  description: contentArg('description', 'string'),
+  caption: contentArg('caption', 'string'),
+  strikethroughDescription: contentArg('strikethroughDescription', 'string'),
+  inverted: contentArg('inverted', 'boolean', 'true'),
+  status: contentArg('status', quoted(STATUS), "'default'", select(STATUS)),
+  size: contentArg('size', "'md' | 'sm'", "'md'", radio(['md', 'sm'])),
+};
+
+const amountArg = arg(contentAmount.api, 'Content List Amount');
+
+export const contentListAmountArgTypes: ArgTypes = {
+  value: amountArg('value', 'string'),
+  type: amountArg(
+    'type',
     quoted(AMOUNT_TYPES),
     "'default'",
     select(AMOUNT_TYPES)
   ),
-  amountSize: arg(
-    category.amountBlock,
-    'Size of the amount and of its tag, set independently from the content.',
-    "'md' | 'sm'",
-    sizeDefault,
-    radio(['md', 'sm'])
-  ),
-  strikethroughAmount: arg(
-    category.amountBlock,
-    'Original value, struck through before the amount. Only with the strikethrough amount types.',
-    'string'
-  ),
-  amountTag: arg(
-    category.amountBlock,
-    'Status tag below the amount. Its size follows `amountSize`; it turns neutral when disabled.',
-    '{ label: ReactNode; type?: TagType; setIconOff?: boolean }'
-  ),
-  amountIndicator: arg(
-    category.amountBlock,
-    'Custom element below the amount. Ignored when `amountTag` is set.',
-    'ReactNode',
-    undefined,
-    { control: false }
-  ),
-  showAmountIndicator: arg(
-    category.amountBlock,
-    'Shows the tag or the indicator below the amount.',
-    'boolean',
-    'true'
-  ),
-  additionalData: arg(
-    category.amountBlock,
-    'One short fact about the amount, such as "Available balance".',
-    'string'
-  ),
-});
+  strikethroughValue: amountArg('strikethroughValue', 'string'),
+  tag: amountArg('tag', '{ label: ReactNode; type?: TagType }', undefined, {
+    control: 'object',
+  }),
+  info: amountArg('info', 'string'),
+  size: amountArg('size', "'md' | 'sm'", "'md'", radio(['md', 'sm'])),
+};
 
-const stateArgs = (): ArgTypes => ({
-  loading: arg(
-    category.state,
-    'Shows the skeleton in place of the content.',
-    'boolean',
-    'false'
-  ),
-  disabled: arg(
-    category.state,
-    'Mutes the row: inactive content and amount, neutral tag, no callbacks.',
-    'boolean',
-    'false'
-  ),
-});
+/* ----- Items ----- */
 
-const densityArg = (padding: string): ArgTypes => ({
-  density: arg(
-    category.appearance,
-    `Vertical padding: \`default\` (${padding}) or \`compact\` (8px).`,
-    "'default' | 'compact'",
-    "'default'",
-    radio(['default', 'compact'])
-  ),
-});
+const commonArg = (category: string) => arg(common.api, category);
 
-const iconArgs = (size: number, colorDefault: string): ArgTypes => ({
-  icon: arg(
-    category.content,
-    `Leading icon, ${size}px. Pass it without its own color; it follows \`iconColor\`.`,
-    'ReactNode',
-    undefined,
-    { control: false }
-  ),
-  iconColor: arg(
-    category.appearance,
-    'Icon color: `default` on white, `on-color` on colored backgrounds, `highlight` for emphasis. Ignored when disabled.',
-    quoted(['default', 'on-color', 'highlight']),
-    colorDefault,
-    radio(['default', 'on-color', 'highlight'])
-  ),
-});
+const nested = (): ArgTypes => {
+  const nestedArg = commonArg(NESTED);
+  return {
+    content: nestedArg('content', 'ContentListDefaultProps', undefined, {
+      control: 'object',
+    }),
+    amount: nestedArg('amount', 'ContentListAmountProps', undefined, {
+      control: 'object',
+    }),
+  };
+};
 
-const dividerArg = (defaultValue: string): ArgTypes => ({
-  showDivider: arg(
-    category.appearance,
-    'Divider below the row, inset 16px. Turn it off on the last row of a group.',
-    'boolean',
-    defaultValue
-  ),
-});
+const rowProps = (
+  category: string,
+  {
+    icon = true,
+    child = false,
+    target,
+    divider = 'true',
+  }: {
+    icon?: boolean;
+    child?: boolean;
+    target: string;
+    divider?: string | false;
+  }
+): ArgTypes => {
+  const a = commonArg(category);
+  return {
+    ...(icon
+      ? {
+          icon: a('icon', 'ReactNode', undefined, {
+            ...noControl,
+            descriptionKey: child ? 'api.iconChild' : 'api.icon',
+          }),
+          iconColor: a(
+            'iconColor',
+            quoted(['default', 'on-color', 'highlight']),
+            child ? undefined : "'default'",
+            {
+              ...select(['default', 'on-color', 'highlight']),
+              descriptionKey: child ? 'api.iconColorChild' : 'api.iconColor',
+            }
+          ),
+        }
+      : {}),
+    density: a(
+      'density',
+      "'default' | 'compact'",
+      "'default'",
+      radio(['default', 'compact'])
+    ),
+    ...(divider ? { showDivider: a('showDivider', 'boolean', divider) } : {}),
+    loading: a('loading', 'boolean', 'false'),
+    disabled: a('disabled', 'boolean', 'false'),
+    className: a('className', 'string', undefined, {
+      ...noControl,
+      descriptionVars: { target },
+    }),
+  };
+};
 
-const onClickArg = (): ArgTypes => ({
-  onClick: arg(
-    category.interaction,
-    'Called once per click. Not called while disabled or loading.',
+const onClick = (category: string): ArgTypes => ({
+  onClick: commonArg(category)(
+    'onClick',
     '(event: MouseEvent<HTMLButtonElement>) => void',
     undefined,
-    { action: 'clicked' }
+    { action: 'clicked', ...noControl }
   ),
 });
 
-const classNameArg = (target: string): ArgTypes => ({
-  className: arg(
-    category.advanced,
-    `Class on the root element. \`ref\` and the other attributes go to the ${target}.`,
-    'string',
-    undefined,
-    { control: false }
-  ),
-});
-
+const READ_ONLY = 'Transaction List Read Only';
 export const readOnlyArgTypes: ArgTypes = {
-  ...iconArgs(24, "'default'"),
-  ...densityArg('16px'),
-  ...dividerArg('true'),
-  ...stateArgs(),
-  ...blockArgTypes("'md'"),
-  ...classNameArg('root `<div>`'),
+  ...rowProps(READ_ONLY, { target: 'root `<div>`' }),
+  ...nested(),
 };
 
+const ACTION = 'Transaction List Action';
+const actionArg = arg(action.api, ACTION);
+const ACTION_TYPES = ['chevron', 'menu', 'swipe'];
+const MENU_POSITIONS = ['bottom-left', 'bottom-right', 'top-left', 'top-right'];
 export const actionArgTypes: ArgTypes = {
-  ...iconArgs(24, "'default'"),
-  actionType: arg(
-    category.appearance,
-    'Trailing action: chevron to open details, overflow menu or swipe to reveal actions.',
-    "'chevron' | 'menu' | 'swipe'",
+  actionType: actionArg(
+    'actionType',
+    quoted(ACTION_TYPES),
     "'chevron'",
-    radio(['chevron', 'menu', 'swipe'])
+    radio(ACTION_TYPES)
   ),
-  menuActions: arg(
-    category.appearance,
-    'Actions of the menu and of the swipe. Only with `menu` or `swipe`.',
-    'ActionItem[]',
-    '[]',
-    { control: false }
-  ),
-  menuPosition: arg(
-    category.appearance,
-    'Where the menu opens. Only with `actionType="menu"`.',
-    quoted(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+  menuActions: actionArg('menuActions', 'ActionItem[]', '[]', noControl),
+  menuPosition: actionArg(
+    'menuPosition',
+    quoted(MENU_POSITIONS),
     "'bottom-right'",
-    select(['bottom-left', 'bottom-right', 'top-left', 'top-right'])
+    select(MENU_POSITIONS)
   ),
-  ...densityArg('16px'),
-  ...dividerArg('true'),
-  ...stateArgs(),
-  ...onClickArg(),
-  ...blockArgTypes("'md'"),
-  ...classNameArg('row `<button>`'),
+  menuLabel: actionArg('menuLabel', 'string', "'Open actions menu'"),
+  ...rowProps(ACTION, { target: 'row `<button>`' }),
+  ...onClick(ACTION),
+  ...nested(),
 };
 
+const SELECTABLE = 'Transaction List Selectable';
+const selectableArg = arg(selectable.api, SELECTABLE);
 export const selectableArgTypes: ArgTypes = {
-  checkbox: arg(
-    category.content,
-    'Checkbox (default control): `checked`, `onChange`, `indeterminate`, `error` and `id`.',
-    'CheckboxProps'
-  ),
-  radio: arg(
-    category.content,
-    'Radio control. Replaces the checkbox when set. Use the same `name` in the group.',
-    'RadioProps'
-  ),
-  platform: arg(
-    category.appearance,
-    'Control side: `web` on the left, `app` on the right.',
+  checkbox: selectableArg('checkbox', 'CheckboxProps', undefined, {
+    control: 'object',
+  }),
+  radio: selectableArg('radio', 'RadioProps', undefined, { control: 'object' }),
+  platform: selectableArg(
+    'platform',
     "'web' | 'app'",
     "'web'",
     radio(['web', 'app'])
   ),
-  ...densityArg('16px'),
-  ...dividerArg('true'),
-  ...stateArgs(),
-  ...blockArgTypes("'md'"),
-  ...classNameArg('root `<div>`'),
+  ...rowProps(SELECTABLE, { icon: false, target: 'root `<div>`' }),
+  ...nested(),
 };
 
+const EXPANDABLE = 'Transaction List Expandable';
+const expandableArg = arg(expandable.api, EXPANDABLE);
 export const expandableArgTypes: ArgTypes = {
-  ...iconArgs(24, '–'),
-  children: arg(
-    category.content,
-    'Child items shown when expanded, with `position` set on each.',
-    'ReactNode',
+  expanded: expandableArg('expanded', 'boolean', 'false'),
+  onToggle: expandableArg(
+    'onToggle',
+    '(expanded: boolean) => void',
     undefined,
-    { control: false }
+    {
+      action: 'toggled',
+      ...noControl,
+    }
   ),
-  supportingText: arg(
-    category.content,
-    'Text below the child items, when expanded.',
-    'ReactNode'
-  ),
-  type: arg(
-    category.appearance,
-    'Container: `card` or `text` for a continuous list.',
+  children: expandableArg('children', 'ReactNode', undefined, noControl),
+  supportingText: expandableArg('supportingText', 'ReactNode', undefined, {
+    control: 'text',
+  }),
+  type: expandableArg(
+    'type',
     "'card' | 'text'",
     "'card'",
     radio(['card', 'text'])
   ),
-  ...densityArg('16px'),
-  showDivider: arg(
-    category.appearance,
-    'Divider below the row, or below the child items when expanded.',
-    'boolean',
-    'false'
-  ),
-  expanded: arg(
-    category.state,
-    'Shows the child items. Controlled: use with `onToggle`.',
-    'boolean',
-    'false'
-  ),
-  ...stateArgs(),
-  onToggle: arg(
-    category.interaction,
-    'Called with the next state when the row is toggled.',
-    '(expanded: boolean) => void',
-    undefined,
-    { action: 'toggled' }
-  ),
-  ...blockArgTypes('–'),
-  ...classNameArg('root `<div>`'),
+  ...rowProps(EXPANDABLE, { target: 'root `<div>`', divider: 'false' }),
+  ...nested(),
 };
 
-const childArgs = (target: string): ArgTypes => ({
-  ...iconArgs(16, '– (interface-light-down)'),
-  position: arg(
-    category.appearance,
-    'Position on the timeline: standalone, first, middle or last.',
+const childArgTypes = (category: string, target: string): ArgTypes => ({
+  position: arg(childReadOnly.api, category)(
+    'position',
     quoted(['standalone', 'first', 'middle', 'last']),
     "'standalone'",
     radio(['standalone', 'first', 'middle', 'last'])
   ),
-  ...densityArg('12px'),
-  ...stateArgs(),
-  ...blockArgTypes("'sm'"),
-  ...classNameArg(target),
+  ...rowProps(category, { child: true, target, divider: false }),
 });
 
-export const childReadOnlyArgTypes: ArgTypes = childArgs('root `<div>`');
+const CHILD_READ_ONLY = 'Transaction List Child Read Only';
+export const childReadOnlyArgTypes: ArgTypes = {
+  ...childArgTypes(CHILD_READ_ONLY, 'root `<div>`'),
+  ...nested(),
+};
+
+const CHILD_ACTION = 'Transaction List Child Action';
 export const childActionArgTypes: ArgTypes = {
-  ...childArgs('row `<button>`'),
-  ...onClickArg(),
+  ...childArgTypes(CHILD_ACTION, 'row `<button>`'),
+  ...onClick(CHILD_ACTION),
+  ...nested(),
 };

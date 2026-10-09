@@ -1,0 +1,88 @@
+{
+  "status": {
+    "beta": "Beta",
+    "block": "Bloco de construção"
+  },
+  "links": {
+    "sourceCode": "Código-fonte",
+    "usageGuidelines": "Diretrizes de uso",
+    "accessibility": "Acessibilidade"
+  },
+  "toc": "Nesta página",
+  "example": {
+    "showCode": "Mostrar código",
+    "hideCode": "Ocultar código",
+    "copyCode": "Copiar código",
+    "copied": "Copiado"
+  },
+  "sections": {
+    "overview": "Visão geral",
+    "rowOptions": "Opções da linha",
+    "contentAndAmount": "Conteúdo e valor",
+    "otherPlatforms": "Outras plataformas",
+    "componentApi": "API do componente",
+    "designTokens": "Tokens de design",
+    "implementationRules": "Regras de implementação",
+    "feedback": "Feedback"
+  },
+  "rowOptions": {
+    "density": {
+      "title": "Densidade",
+      "text": "`density=\"compact\"` reduz o espaçamento vertical de 16px para 8px. Use em listas longas em telas grandes; mantenha o padrão em telas de toque."
+    },
+    "iconColor": {
+      "title": "Cor do ícone",
+      "text": "`iconColor` aceita `default` (fundos brancos), `on-color` (fundos coloridos) e `highlight` (destaque). O ícone recebe a cor, então passe-o sem cor própria."
+    },
+    "states": {
+      "title": "Carregando e desabilitado",
+      "text": "`loading` mostra um esqueleto no lugar do conteúdo. `disabled` esmaece a linha, deixa a tag neutra e interrompe os callbacks."
+    },
+    "divider": {
+      "title": "Divisor",
+      "text": "As linhas mostram um divisor recuado abaixo. Use `showDivider={false}` na última linha do grupo, para não duplicar a borda do contêiner."
+    }
+  },
+  "contentAndAmount": "Este componente usa o [Content List Default](docs:components-lists-content-list-content-list-default--overview) à esquerda e o [Content List Amount](docs:components-lists-content-list-content-list-amount--overview) à direita. Passe as props deles em `content` e `amount`; tipos de valor, riscado, tag e tamanhos estão documentados lá.",
+  "platforms": {
+    "text": "O mesmo componente existe nas bibliotecas de iOS e Android, com os mesmos blocos.",
+    "react": "React",
+    "swift": "SwiftUI",
+    "compose": "Compose",
+    "platform": "Plataforma",
+    "type": "Tipo"
+  },
+  "api": {
+    "intro": "Os controles atualizam o exemplo abaixo. Os valores se mantêm enquanto você estiver nesta página.",
+    "name": "Nome",
+    "description": "Descrição",
+    "default": "Padrão",
+    "control": "Controle",
+    "nestedBlocks": "Blocos aninhados",
+    "invalidJson": "JSON inválido: o valor anterior foi mantido.",
+    "icon": "Ícone à esquerda, 24px. Passe-o sem cor própria; ele segue `iconColor`.",
+    "iconChild": "Ícone da linha do tempo, 16px. Passe-o sem cor própria.",
+    "iconColor": "Cor do ícone: `default` em fundo branco, `on-color` em fundos coloridos, `highlight` para destaque. Ignorada quando desabilitado.",
+    "iconColorChild": "Cor do ícone. Sem ela, os itens filhos usam a própria cor clara; um valor explícito a substitui. Ignorada quando desabilitado.",
+    "density": "Espaçamento vertical: `default` ou `compact` (8px).",
+    "showDivider": "Divisor abaixo da linha, recuado 16px. Desligue na última linha do grupo.",
+    "loading": "Mostra o esqueleto no lugar do conteúdo.",
+    "disabled": "Esmaece a linha: conteúdo e valor inativos, tag neutra, sem callbacks.",
+    "onClick": "Chamado uma vez por clique. Não é chamado quando desabilitado ou carregando.",
+    "className": "Classe no elemento raiz. `ref` e os demais atributos vão para o {target}.",
+    "content": "Props do [Content List Default](docs:components-lists-content-list-content-list-default--overview): título, descrição, legenda, status, tamanho.",
+    "amount": "Props do [Content List Amount](docs:components-lists-content-list-content-list-amount--overview): valor, tipo, tag, informação, tamanho."
+  },
+  "tokens": {
+    "intro": "Gerado a partir dos estilos do componente durante o build. Valores sem token do Ocean estão marcados.",
+    "blocks": "Os tokens de conteúdo e valor estão em [Content List Default](docs:components-lists-content-list-content-list-default--overview) e [Content List Amount](docs:components-lists-content-list-content-list-amount--overview).",
+    "download": "Baixar tokens.json",
+    "part": "Parte",
+    "property": "Propriedade",
+    "state": "Estado",
+    "token": "Token",
+    "value": "Valor",
+    "noToken": "Sem token"
+  },
+  "feedback": "Encontrou um problema ou tem uma sugestão? Abra uma issue ou um pull request no [GitHub](https://github.com/ocean-ds/ocean-web/issues)."
+}

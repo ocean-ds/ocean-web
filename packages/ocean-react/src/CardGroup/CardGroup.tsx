@@ -39,7 +39,7 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
       variant = 'minimal',
       ...rest
     },
-    ref,
+    ref
   ) => (
     <div
       ref={ref}
@@ -62,7 +62,7 @@ const CardGroup = forwardRef<HTMLDivElement, ICardGroupProps>(
         />
       )}
     </div>
-  ),
+  )
 );
 
 CardGroup.displayName = 'CardGroup';

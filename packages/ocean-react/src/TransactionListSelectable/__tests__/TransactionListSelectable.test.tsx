@@ -10,9 +10,8 @@ describe('TransactionListSelectable', () => {
     const onChange = jest.fn();
     render(
       <TransactionListSelectable
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
+        content={{ title: 'Title', description: 'Description' }}
+        amount={{ value: 'R$ 0,00' }}
         checkbox={{ onChange }}
       />
     );
@@ -29,7 +28,12 @@ describe('TransactionListSelectable', () => {
   });
 
   test('renders without control props as an uncontrolled checkbox', () => {
-    render(<TransactionListSelectable title="Title" amount="R$ 0,00" />);
+    render(
+      <TransactionListSelectable
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
+      />
+    );
 
     expect(screen.getByRole('checkbox')).toBeInTheDocument();
   });
@@ -37,8 +41,8 @@ describe('TransactionListSelectable', () => {
   test('renders a radio on the app platform', () => {
     render(
       <TransactionListSelectable
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         platform="app"
         radio={{ name: 'group', value: 'a' }}
       />
@@ -53,10 +57,8 @@ describe('TransactionListSelectable', () => {
   test('disabled disables the control and uses the inactive type', () => {
     render(
       <TransactionListSelectable
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
-        amountTag={{ label: 'Label' }}
+        content={{ title: 'Title', description: 'Description' }}
+        amount={{ value: 'R$ 0,00', tag: { label: 'Label' } }}
         disabled
       />
     );
@@ -80,8 +82,8 @@ describe('TransactionListSelectable', () => {
   ])('disabled %s control also disables the item', (role, controlProps) => {
     render(
       <TransactionListSelectable
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         {...controlProps}
       />
     );
@@ -95,8 +97,8 @@ describe('TransactionListSelectable', () => {
   test('loading shows the control and content skeletons', () => {
     render(
       <TransactionListSelectable
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         loading
         showDivider={false}
         className="custom"
@@ -118,7 +120,13 @@ describe('TransactionListSelectable', () => {
 
   test('forwards ref to the root', () => {
     const ref = React.createRef<HTMLDivElement>();
-    render(<TransactionListSelectable ref={ref} title="T" amount="R$ 0,00" />);
+    render(
+      <TransactionListSelectable
+        content={{ title: 'T' }}
+        amount={{ value: 'R$ 0,00' }}
+        ref={ref}
+      />
+    );
 
     expect(ref.current).toBe(screen.getByTestId('transaction-list-selectable'));
   });
@@ -128,15 +136,15 @@ describe('TransactionListSelectable', () => {
     ['checkbox', 'app'],
     ['radio', 'web'],
     ['radio', 'app'],
-  ] as const)('Figma states — %s / %s', (controller, platform) => {
+  ] as const)('states — %s / %s', (controller, platform) => {
     const renderState = (
       controlProps: Record<string, unknown>,
       extra: Record<string, unknown> = {}
     ) =>
       render(
         <TransactionListSelectable
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           platform={platform}
           {...{ [controller]: { readOnly: true, ...controlProps } }}
           {...extra}
@@ -207,8 +215,8 @@ describe('TransactionListSelectable', () => {
     (platform) => {
       render(
         <TransactionListSelectable
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           platform={platform}
           checkbox={{ indeterminate: true, readOnly: true }}
         />

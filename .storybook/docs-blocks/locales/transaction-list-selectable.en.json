@@ -1,0 +1,25 @@
+{
+  "overview": "A transaction row people can select: a checkbox to choose several items or a radio to choose one, such as the receivables to advance.",
+  "sections": {
+    "checkbox": {
+      "title": "Checkbox",
+      "text": "Default. Pass `checked`, `onChange`, `indeterminate`, `error` and `id` in `checkbox`. The whole row is the label of the control."
+    },
+    "radio": {
+      "title": "Radio",
+      "text": "Pass `radio` instead of `checkbox` to choose one item. Use the same `name` in every row of the group."
+    }
+  },
+  "rules": [
+    "Control the selection through `checkbox` or `radio`; don’t add a separate control next to the row.",
+    "Use radios only when exactly one item can be chosen, and give every radio of the group the same `name`.",
+    "Keep `platform=\"web\"` (control on the left) on the web and `platform=\"app\"` (control on the right) in apps.",
+    "Pass amounts formatted and without a sign; `amount.type` adds the sign and the color.",
+    "Place rows inside `List` and set `showDivider={false}` on the last row."
+  ],
+  "api": {
+    "checkbox": "Checkbox control (default): `checked`, `onChange`, `indeterminate`, `error` and `id`.",
+    "radio": "Radio control. Replaces the checkbox when set. Use the same `name` in the group.",
+    "platform": "Side of the control: `web` on the left, `app` on the right."
+  }
+}

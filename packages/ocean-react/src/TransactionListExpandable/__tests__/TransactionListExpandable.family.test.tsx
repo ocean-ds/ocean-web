@@ -83,13 +83,13 @@ describe('TransactionListExpandable — Transaction List family props', () => {
     render(
       <TransactionListExpandable title="Title" amount="R$ 0,00" expanded>
         <TransactionListChildAction
-          title="Child"
-          amount="R$ 1,00"
+          content={{ title: 'Child' }}
+          amount={{ value: 'R$ 1,00' }}
           position="first"
         />
         <TransactionListChildAction
-          title="Child 2"
-          amount="R$ 2,00"
+          content={{ title: 'Child 2' }}
+          amount={{ value: 'R$ 2,00' }}
           position="last"
         />
       </TransactionListExpandable>
@@ -117,5 +117,46 @@ describe('TransactionListExpandable — remaining branches', () => {
     expect(
       screen.getByTestId('transaction-list-expandable-divider')
     ).toBeInTheDocument();
+  });
+
+  test('nested content and amount render like the flat props', () => {
+    render(
+      <TransactionListExpandable
+        content={{
+          title: 'Sales received',
+          description: 'Credit card',
+          caption: 'Oct 8',
+          size: 'md',
+        }}
+        amount={{
+          value: 'R$ 7.899,01',
+          type: 'positive',
+          tag: { label: 'Processing', type: 'neutral' },
+          info: 'Net amount',
+          size: 'md',
+        }}
+      />
+    );
+
+    expect(screen.getByTestId('transaction-list-expandable')).toHaveTextContent(
+      'Sales receivedCredit cardOct 8R$ 7.899,01ProcessingNet amount'
+    );
+    expect(
+      screen.getByRole('button', { name: 'Expandir Sales received' })
+    ).toBeInTheDocument();
+    expect(tagElement()).toHaveClass('ods-tag--neutral');
+  });
+
+  test('showAmountIndicator false hides the flat tag', () => {
+    render(
+      <TransactionListExpandable
+        title="Title"
+        amount="R$ 0,00"
+        amountTag={{ label: 'Processing' }}
+        showAmountIndicator={false}
+      />
+    );
+
+    expect(tagElement()).toBeNull();
   });
 });

@@ -1,133 +1,58 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import TransactionListExpandable, {
-  TransactionListExpandableProps,
-} from '../TransactionListExpandable';
+import type { Meta, StoryObj } from '@storybook/react';
+import { useArgs } from '@storybook/preview-api';
+import TransactionListExpandable from '../TransactionListExpandable';
+import type { TransactionListExpandableProps } from '../TransactionListExpandable';
 import TransactionListChildReadOnly from '../../TransactionListChildReadOnly';
-import { Frame, MatrixGrid } from '../../../../../.storybook/docs-blocks';
-import { TransactionListDocs } from '../../../../../.storybook/docs-blocks/transaction-list/TransactionListDocs';
 import { expandableArgTypes } from '../../../../../.storybook/docs-blocks/transaction-list/argTypes';
-import { expandableParent } from '../../../../../.storybook/docs-blocks/transaction-list/fixtures';
 import {
-  ExpandableExample,
-  SizesMatrix,
-  childItems,
-  stateCases,
-} from '../../../../../.storybook/docs-blocks/transaction-list/examples';
+  CHILD_POSITIONS,
+  childRows,
+  expandableParent,
+} from '../../../../../.storybook/docs-blocks/transaction-list/fixtures';
+import { inList } from '../../../../../.storybook/docs-blocks/transaction-list/story-helpers';
 
-const noSnapshot = { chromatic: { disableSnapshot: true } };
-const noControls = { controls: { disable: true } };
-
-const familyArgs: TransactionListExpandableProps = {
-  ...expandableParent,
-  showDivider: true,
-  supportingText: 'Fees already deducted',
+/** Toggling updates the `expanded` arg, so the Controls panel follows the canvas. */
+const RenderExpandable = (
+  args: TransactionListExpandableProps
+): React.ReactElement => {
+  const [, updateArgs] = useArgs();
+  return (
+    <TransactionListExpandable
+      {...args}
+      onToggle={(expanded) => updateArgs({ expanded })}
+    />
+  );
 };
 
-const withoutSizes: TransactionListExpandableProps = {
-  ...familyArgs,
-  contentSize: undefined,
-  amountSize: undefined,
-};
+const childItems = childRows.map((row, index) => (
+  <TransactionListChildReadOnly
+    key={row.content.title}
+    {...row}
+    position={CHILD_POSITIONS[index]}
+  />
+));
 
 const meta: Meta<typeof TransactionListExpandable> = {
-  title: 'Components/List/TransactionListExpandable',
+  title: 'Components/Lists/Transaction List/Transaction List Expandable',
   component: TransactionListExpandable,
-  tags: ['autodocs'],
-  parameters: {
-    layout: 'centered',
-    docs: { page: () => <TransactionListDocs variant="expandable" /> },
-  },
+  decorators: [inList],
+  parameters: { layout: 'centered' },
   argTypes: expandableArgTypes,
-  args: familyArgs,
+  args: {
+    ...expandableParent,
+    supportingText: 'Fees already deducted',
+    children: childItems,
+  },
+  render: RenderExpandable,
 };
 
 export default meta;
 
 type Story = StoryObj<typeof TransactionListExpandable>;
 
-/** Every prop in the controls; opens and closes on click. */
-export const Usage: Story = {
-  name: 'Playground',
-  parameters: noSnapshot,
-  render: (args) => (
-    <Frame>
-      <ExpandableExample {...args} initial={args.expanded ?? true} />
-    </Frame>
-  ),
-};
+/** The total with a chevron; a click opens the items. */
+export const Collapsed: Story = { args: { expanded: false } };
 
-/** Collapsed / expanded / without size props × state. */
-export const States: Story = {
-  name: 'States',
-  parameters: noControls,
-  render: () => (
-    <MatrixGrid
-      columns={['Collapsed', 'Expanded', 'Without size props, expanded']}
-      rows={stateCases('ods-list-expandable--show-hover').map(
-        ([label, props]) => ({
-          label,
-          cells: [
-            <TransactionListExpandable
-              key="closed"
-              {...familyArgs}
-              {...props}
-            />,
-            <TransactionListExpandable
-              key="open"
-              {...familyArgs}
-              {...props}
-              expanded
-            >
-              {childItems(TransactionListChildReadOnly)}
-            </TransactionListExpandable>,
-            <TransactionListExpandable
-              key="unsized"
-              {...withoutSizes}
-              {...props}
-              expanded
-            >
-              {childItems(TransactionListChildReadOnly)}
-            </TransactionListExpandable>,
-          ],
-        })
-      )}
-    />
-  ),
-};
-
-/** Loading row (kept for the external documentation embed). */
-export const StateLoading: Story = {
-  name: 'Loading',
-  parameters: { ...noSnapshot, ...noControls },
-  render: () => (
-    <Frame>
-      <TransactionListExpandable {...familyArgs} loading />
-    </Frame>
-  ),
-};
-
-/** Amount types × size and density. */
-export const AmountTypes: Story = {
-  name: 'Sizes × amount types',
-  parameters: noControls,
-  render: () => (
-    <SizesMatrix
-      compactSm
-      render={(props) => (
-        <TransactionListExpandable {...familyArgs} {...props} />
-      )}
-    />
-  ),
-};
-
-/** Opens and closes with the family child items. */
-export const WithFamilyChildren: Story = {
-  name: 'With child items',
-  parameters: { ...noSnapshot, ...noControls },
-  render: () => (
-    <Frame>
-      <ExpandableExample initial={false} />
-    </Frame>
-  ),
-};
+/** The items that compose the total, on a timeline, with the supporting text. */
+export const Expanded: Story = { args: { expanded: true } };

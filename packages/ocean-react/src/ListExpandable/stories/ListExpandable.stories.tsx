@@ -65,7 +65,7 @@ const content = (
 );
 
 const meta: Meta<typeof ListExpandable> = {
-  title: 'Components/List/ListExpandable',
+  title: 'Components/Lists/List/ListExpandable',
   component: ListExpandable,
   tags: ['autodocs'],
   argTypes: {

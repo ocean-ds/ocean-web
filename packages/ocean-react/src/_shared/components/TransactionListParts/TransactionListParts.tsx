@@ -29,79 +29,91 @@ export type TransactionListIconColor = 'default' | 'on-color' | 'highlight';
 export type TransactionListDensity = 'default' | 'compact';
 
 /**
+ * Props of the content block (Content List Default): the texts on the left of the row.
+ * Passed to every Transaction List item in `content`.
+ */
+export type ContentListDefaultProps = {
+  /**
+   * What happened, such as "Payment to supplier". With `inverted` (default) it is the
+   * small line above the description.
+   */
+  title: string;
+  /**
+   * Who or what the transaction relates to.
+   */
+  description?: string;
+  /**
+   * Original text shown struck through before the emphasized text when
+   * `status="strikethrough"`.
+   */
+  strikethroughDescription?: string;
+  /**
+   * Date, time, order number or due date.
+   */
+  caption?: string;
+  /**
+   * Emphasizes the description instead of the title.
+   * @default true
+   */
+  inverted?: boolean;
+  /**
+   * Color and weight of the emphasized text. Ignored when the item is disabled.
+   * @default 'default'
+   */
+  status?: ContentListProps['type'];
+  /**
+   * Type scale of the block, independent from `amount.size`.
+   */
+  size?: ContentListSize;
+};
+
+/**
+ * Props of the amount block (Content List Amount): the value on the right of the row.
+ * Passed to every Transaction List item in `amount`.
+ */
+export type ContentListAmountProps = {
+  /**
+   * Formatted value without a sign, such as "R$ 6.819,33".
+   */
+  value: string;
+  /**
+   * Adds the sign and the color. Ignored when the item is disabled.
+   * @default 'default'
+   */
+  type?: AmountDetailsProps['type'];
+  /**
+   * Original value, struck through before `value` (types `strikethrough` and
+   * `strikethrough-neutral`).
+   */
+  strikethroughValue?: string;
+  /**
+   * Status tag below the value. Its size follows `size`; it turns neutral when the item is
+   * disabled.
+   */
+  tag?: AmountDetailsTag;
+  /**
+   * One short fact about the value, such as "Advance fee".
+   */
+  info?: string;
+  /**
+   * Type scale of the block, independent from `content.size`.
+   */
+  size?: AmountDetailsSize;
+};
+
+/**
  * Props shared by every component of the Transaction List family
  * (Read Only, Action, Selectable and the child rows).
  */
 export type TransactionListBaseProps = {
   /**
-   * Primary text. With `inverted` (default) it is the small line above the description.
+   * Content block (left): title, description, caption.
    */
-  title: string;
+  content: ContentListDefaultProps;
   /**
-   * Secondary text.
+   * Amount block (right): value, type, tag, info.
    */
-  description?: string;
-  /**
-   * Original text shown struck-through before the emphasized text when
-   * `status="strikethrough"`.
-   */
-  strikethroughDescription?: string;
-  /**
-   * Tertiary text (captionBold).
-   */
-  caption?: string;
-  /**
-   * Inverts title and description.
-   * @default true
-   */
-  inverted?: boolean;
-  /**
-   * Type of the content block.
-   * @default 'default'
-   */
-  status?: ContentListProps['type'];
-  /**
-   * Typography scale of the content block, independent from `amountSize`.
-   */
-  contentSize?: ContentListSize;
-  /**
-   * Amount shown on the right (e.g. "R$ 0,00").
-   */
-  amount: string;
-  /**
-   * Type of the amount: default, positive, negative, inactive, strikethrough or
-   * strikethrough-neutral.
-   * @default 'default'
-   */
-  amountType?: AmountDetailsProps['type'];
-  /**
-   * Size of the amount block, independent from `contentSize`. The tag size follows it
-   * (`md` → Medium, `sm` → Small).
-   */
-  amountSize?: AmountDetailsSize;
-  /**
-   * Original amount rendered struck-through before `amount` (amount types `strikethrough`
-   * and `strikethrough-neutral`).
-   */
-  strikethroughAmount?: string;
-  /**
-   * Tag shown below the amount. Its size follows `amountSize` and it turns neutral when the
-   * item is disabled.
-   */
-  amountTag?: AmountDetailsTag;
-  /**
-   * Custom indicator shown below the amount when `amountTag` is not enough.
-   */
-  amountIndicator?: ReactNode;
-  /**
-   * Whether to show the amount tag/indicator.
-   * @default true
-   */
-  showAmountIndicator?: boolean;
-  /**
-   * Additional data shown below the amount (captionBold).
-   */
-  additionalData?: string;
+  amount: ContentListAmountProps;
   /**
    * Leading icon. It takes the color from `iconColor` (pass it without its own color).
    */
@@ -128,96 +140,68 @@ export type TransactionListBaseProps = {
   density?: TransactionListDensity;
 };
 
-const CONTENT_KEYS = [
-  'title',
-  'description',
-  'strikethroughDescription',
-  'caption',
-  'inverted',
-  'status',
-  'amount',
-  'amountType',
-  'strikethroughAmount',
-  'amountTag',
-  'amountIndicator',
-  'showAmountIndicator',
-  'additionalData',
-] as const;
+/** DOM attributes that clash with the family props. */
+export type TransactionListOmittedDomProps = 'content';
 
-/** Props of the two blocks (content + amount) that every family member forwards as-is. */
-export type TransactionListContentData = Pick<
-  TransactionListBaseProps,
-  typeof CONTENT_KEYS[number]
->;
+type TransactionListContentProps = {
+  content: ContentListDefaultProps;
+  amount: ContentListAmountProps;
+  /** Size used when `content.size` / `amount.size` are not set. */
+  defaultSize?: ContentListSize;
+  disabled: boolean;
+  /** Custom element below the value (legacy Expandable API). */
+  indicator?: ReactNode;
+  /** Class of the wrapper (the Expandable keeps its own). */
+  className?: string;
+};
 
 /**
- * Splits the block props (forwarded to `TransactionListContent`) from the remaining props
- * (forwarded to the host element), so each family member does not repeat the list.
+ * The two blocks of a row: Content List Default on the left, Content List Amount on the
+ * right.
  */
-export const splitContentProps = <T extends TransactionListContentData>(
-  props: T
-): [TransactionListContentData, Omit<T, keyof TransactionListContentData>] => {
-  const content: Record<string, unknown> = {};
-  const rest: Record<string, unknown> = {};
-  Object.entries(props).forEach(([key, value]) => {
-    const target = (CONTENT_KEYS as readonly string[]).includes(key)
-      ? content
-      : rest;
-    target[key] = value;
-  });
-  return [
-    content as TransactionListContentData,
-    rest as Omit<T, keyof TransactionListContentData>,
-  ];
-};
-
-type TransactionListContentProps = TransactionListContentData & {
-  contentSize: ContentListSize;
-  amountSize: AmountDetailsSize;
-  disabled: boolean;
-};
-
 export const TransactionListContent = ({
-  title,
-  description,
-  strikethroughDescription,
-  caption,
-  inverted = true,
-  status = 'default',
-  contentSize,
-  amount,
-  amountType = 'default',
-  amountSize,
-  strikethroughAmount,
-  amountTag,
-  amountIndicator,
-  showAmountIndicator = true,
-  additionalData,
+  content: {
+    title,
+    description,
+    strikethroughDescription,
+    caption,
+    inverted = true,
+    status = 'default',
+    size: contentSize,
+  },
+  amount: { value, type = 'default', strikethroughValue, tag, info, size },
+  defaultSize,
   disabled,
-}: TransactionListContentProps): ReactElement => (
-  <div className="ods-transaction-list__content">
-    <ContentList
-      title={title}
-      description={description}
-      strikethroughDescription={strikethroughDescription}
-      caption={caption}
-      inverted={inverted}
-      type={disabled ? 'inactive' : status}
-      size={contentSize}
-    />
-    <AmountDetails
-      amount={amount}
-      type={disabled ? 'inactive' : amountType}
-      size={amountSize}
-      strikethroughAmount={strikethroughAmount}
-      tag={amountTag}
-      indicator={amountIndicator}
-      showIndicator={showAmountIndicator}
-      additionalData={additionalData}
-      showAdditionalData={Boolean(additionalData)}
-    />
-  </div>
-);
+  indicator,
+  className = 'ods-transaction-list__content',
+}: TransactionListContentProps): ReactElement => {
+  const resolvedContentSize = contentSize ?? defaultSize;
+  const amountSize = size ?? defaultSize;
+  return (
+    <div className={className}>
+      <ContentList
+        title={title}
+        description={description}
+        strikethroughDescription={strikethroughDescription}
+        caption={caption}
+        inverted={inverted}
+        type={disabled ? 'inactive' : status}
+        size={resolvedContentSize}
+      />
+      <AmountDetails
+        amount={value}
+        type={disabled ? 'inactive' : type}
+        size={amountSize}
+        strikethroughAmount={strikethroughValue}
+        tag={tag}
+        indicator={indicator}
+        indicatorSize={amountSize ? undefined : 'medium'}
+        additionalData={info}
+        showAdditionalData={Boolean(info)}
+      />
+    </div>
+  );
+};
 
 const iconColorClass = (
   block: string,

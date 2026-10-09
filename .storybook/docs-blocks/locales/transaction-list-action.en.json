@@ -1,0 +1,33 @@
+{
+  "overview": "A transaction row people can act on. It opens the transaction details (chevron), offers a list of actions (menu) or reveals actions by swiping (swipe).",
+  "sections": {
+    "chevron": {
+      "title": "Chevron",
+      "text": "Default. The whole row is one button that opens the details of the transaction. Set `onClick`."
+    },
+    "menu": {
+      "title": "Menu",
+      "text": "`actionType=\"menu\"` shows an overflow button with the options in `menuActions`. On the web the menu opens below the button; on iOS and Android it opens in a bottom sheet. Name the button with `menuLabel` when several rows are on screen."
+    },
+    "swipe": {
+      "title": "Swipe",
+      "text": "`actionType=\"swipe\"` reveals the same `menuActions` when the row is swiped left. Use it on touch screens and keep at most two actions."
+    }
+  },
+  "rules": [
+    "Use this component for any transaction row that responds to a click or tap; use Read Only otherwise.",
+    "Use one trailing affordance per row: chevron, menu or swipe.",
+    "With two or more actions, use `actionType=\"menu\"`; keep swipe to two actions at most.",
+    "Give the overflow button a name that identifies the row (`menuLabel`) when the list has more than one row.",
+    "Pass amounts formatted and without a sign; `amount.type` adds the sign and the color.",
+    "Place rows inside `List` and set `showDivider={false}` on the last row.",
+    "Use `disabled` for unavailable rows; never fade a row with opacity or custom classes.",
+    "Don’t rebuild the row with `div` and flex."
+  ],
+  "api": {
+    "actionType": "Trailing affordance: chevron to open details, overflow menu or swipe to reveal actions.",
+    "menuActions": "Options of the menu and of the swipe. Only with `menu` or `swipe`.",
+    "menuPosition": "Where the menu opens. Only with `actionType=\"menu\"`.",
+    "menuLabel": "Accessible name of the overflow button (`menu` and `swipe`), such as \"Actions for Payment to supplier\"."
+  }
+}

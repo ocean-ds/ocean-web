@@ -10,9 +10,8 @@ describe('TransactionListAction', () => {
     const onClick = jest.fn();
     render(
       <TransactionListAction
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
+        content={{ title: 'Title', description: 'Description' }}
+        amount={{ value: 'R$ 0,00' }}
         icon={<svg data-testid="icon" />}
         onClick={onClick}
       />
@@ -30,10 +29,8 @@ describe('TransactionListAction', () => {
     const onClick = jest.fn();
     render(
       <TransactionListAction
-        title="Title"
-        description="Description"
-        amount="R$ 0,00"
-        amountTag={{ label: 'Label' }}
+        content={{ title: 'Title', description: 'Description' }}
+        amount={{ value: 'R$ 0,00', tag: { label: 'Label' } }}
         onClick={onClick}
         disabled
       />
@@ -56,8 +53,8 @@ describe('TransactionListAction', () => {
     const onClick = jest.fn();
     render(
       <TransactionListAction
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         onClick={onClick}
         loading
         showDivider={false}
@@ -78,8 +75,8 @@ describe('TransactionListAction', () => {
   test('loading with icon shows the icon placeholder', () => {
     render(
       <TransactionListAction
-        title="Title"
-        amount="R$ 0,00"
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
         icon={<svg />}
         loading
       />
@@ -94,13 +91,11 @@ describe('TransactionListAction', () => {
     const ref = React.createRef<HTMLButtonElement>();
     render(
       <TransactionListAction
+        content={{ title: 'Title', size: 'sm' }}
+        amount={{ value: 'R$ 0,00', size: 'sm' }}
         ref={ref}
-        title="Title"
-        amount="R$ 0,00"
         className="custom"
         aria-label="Abrir detalhe"
-        contentSize="sm"
-        amountSize="sm"
       />
     );
 
@@ -112,7 +107,7 @@ describe('TransactionListAction', () => {
     expect(screen.getByTestId('transaction-list-action')).toHaveClass('custom');
   });
 
-  describe('menu and swipe (Figma Type=Menu | Swipe)', () => {
+  describe('menu and swipe', () => {
     const actions = [
       { label: 'Editar', onClick: jest.fn() },
       { label: 'Excluir', onClick: jest.fn(), variant: 'negative' as const },
@@ -122,8 +117,8 @@ describe('TransactionListAction', () => {
       const onClick = jest.fn();
       render(
         <TransactionListAction
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           actionType="menu"
           menuActions={actions}
           menuPosition="bottom-left"
@@ -138,7 +133,7 @@ describe('TransactionListAction', () => {
         document.querySelector('.ods-transaction-list__chevron')
       ).not.toBeInTheDocument();
 
-      fireEvent.click(screen.getByLabelText('Abrir menu de ações'));
+      fireEvent.click(screen.getByLabelText('Open actions menu'));
       expect(screen.getByText('Editar')).toBeInTheDocument();
       expect(onClick).not.toHaveBeenCalled();
 
@@ -149,34 +144,34 @@ describe('TransactionListAction', () => {
     test('menu without actions still renders the trigger', () => {
       render(
         <TransactionListAction
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           actionType="menu"
         />
       );
 
-      expect(screen.getByLabelText('Abrir menu de ações')).toBeInTheDocument();
+      expect(screen.getByLabelText('Open actions menu')).toBeInTheDocument();
     });
 
     test('menu disabled disables the trigger', () => {
       render(
         <TransactionListAction
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           actionType="menu"
           menuActions={actions}
           disabled
         />
       );
 
-      expect(screen.getByLabelText('Abrir menu de ações')).toBeDisabled();
+      expect(screen.getByLabelText('Open actions menu')).toBeDisabled();
     });
 
     test('menu and swipe loading hide the actions', () => {
       render(
         <TransactionListAction
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           actionType="swipe"
           menuActions={actions}
           loading
@@ -184,7 +179,7 @@ describe('TransactionListAction', () => {
       );
 
       expect(
-        screen.queryByLabelText('Abrir menu de ações')
+        screen.queryByLabelText('Open actions menu')
       ).not.toBeInTheDocument();
       expect(
         screen.getByTestId('transaction-list-skeleton')
@@ -198,8 +193,8 @@ describe('TransactionListAction', () => {
 
       render(
         <TransactionListAction
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           actionType="swipe"
           menuActions={actions}
         />
@@ -208,7 +203,7 @@ describe('TransactionListAction', () => {
       const root = screen.getByTestId('transaction-list-action');
       expect(root).toHaveClass('ods-transaction-list--swipe');
 
-      fireEvent.click(screen.getByLabelText('Abrir menu de ações'));
+      fireEvent.click(screen.getByLabelText('Open actions menu'));
 
       await waitFor(() =>
         expect(root).toHaveClass('ods-transaction-list--swipe-open')
@@ -230,14 +225,14 @@ describe('TransactionListAction', () => {
     test('swipe without measured width does not translate', async () => {
       render(
         <TransactionListAction
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           actionType="swipe"
           menuActions={actions}
         />
       );
 
-      fireEvent.click(screen.getByLabelText('Abrir menu de ações'));
+      fireEvent.click(screen.getByLabelText('Open actions menu'));
 
       const root = screen.getByTestId('transaction-list-action');
       await waitFor(() =>
@@ -251,13 +246,37 @@ describe('TransactionListAction', () => {
 
   test('loading button has an accessible name; loaded button uses its content', () => {
     const { rerender } = render(
-      <TransactionListAction title="Title" amount="R$ 0,00" loading />
+      <TransactionListAction
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
+        loading
+      />
     );
 
     expect(screen.getByRole('button', { name: 'Carregando' })).toBeDisabled();
 
-    rerender(<TransactionListAction title="Title" amount="R$ 0,00" />);
+    rerender(
+      <TransactionListAction
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
+      />
+    );
 
     expect(screen.getByRole('button', { name: /Title/ })).toBeEnabled();
+  });
+
+  test('menuLabel names the overflow trigger', () => {
+    render(
+      <TransactionListAction
+        content={{ title: 'Payment to supplier' }}
+        amount={{ value: 'R$ 6.819,33' }}
+        actionType="menu"
+        menuLabel="Actions for Payment to supplier"
+      />
+    );
+
+    expect(
+      screen.getByRole('button', { name: 'Actions for Payment to supplier' })
+    ).toHaveAttribute('aria-expanded', 'false');
   });
 });

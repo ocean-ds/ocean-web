@@ -1,0 +1,19 @@
+{
+  "overview": "Um item dentro de uma linha expandida, ligado aos demais por uma linha do tempo. Ele não tem ação.",
+  "sections": {
+    "timeline": {
+      "title": "Linha do tempo",
+      "text": "Defina `position` em cada item: `first`, `middle` e `last` desenham a linha entre os ícones; `standalone` é um item único, sem linha."
+    }
+  },
+  "rules": [
+    "Use itens filhos apenas dentro de um Transaction List Expandable.",
+    "Defina `position` pelo índice do item: first, middle, last, ou standalone quando ele estiver sozinho.",
+    "Não adicione handlers de clique ao Child Read Only; use o Child Action para itens que abrem detalhes.",
+    "Mantenha uma ordem que faça sentido: ela é a ordem de leitura.",
+    "Passe os valores formatados e sem sinal; `amount.type` adiciona o sinal e a cor."
+  ],
+  "api": {
+    "position": "Posição na linha do tempo: `standalone`, `first`, `middle` ou `last`."
+  }
+}

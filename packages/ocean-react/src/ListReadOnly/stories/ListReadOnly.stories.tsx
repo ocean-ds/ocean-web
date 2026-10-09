@@ -53,7 +53,7 @@ const renderCardList = (
 );
 
 const meta: Meta<typeof ListReadOnly> = {
-  title: 'Components/List/ListReadOnly',
+  title: 'Components/Lists/List/ListReadOnly',
   component: ListReadOnly,
   tags: ['autodocs'],
   argTypes: {

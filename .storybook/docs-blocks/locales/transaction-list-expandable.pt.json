@@ -1,0 +1,27 @@
+{
+  "overview": "Uma linha de transação que se abre para mostrar os itens que compõem o valor, como o valor bruto e as taxas de uma venda.",
+  "sections": {
+    "collapsed": {
+      "title": "Recolhido",
+      "text": "Padrão. A linha mostra o total e um chevron. O estado é controlado: guarde `expanded` no seu estado e atualize-o em `onToggle`."
+    },
+    "expanded": {
+      "title": "Expandido",
+      "text": "`expanded` mostra os itens filhos em uma linha do tempo e o `supportingText` abaixo deles. Use Child Read Only ou Child Action como filhos, com `position` em cada um."
+    }
+  },
+  "rules": [
+    "Use o Expandable apenas quando o valor for composto por partes que a pessoa precisa conferir.",
+    "Controle o estado: passe `expanded` e atualize-o em `onToggle`.",
+    "Use apenas Child Read Only e Child Action como filhos e defina `position` em cada um.",
+    "Defina `content.size` e `amount.size` para alinhar a linha com as demais da lista.",
+    "Mantenha o `supportingText` em uma frase curta."
+  ],
+  "api": {
+    "expanded": "Mostra os itens filhos. Controlado: use com `onToggle`.",
+    "onToggle": "Chamado com o próximo estado quando a linha é aberta ou fechada.",
+    "children": "Itens filhos mostrados quando expandido, com `position` em cada um.",
+    "supportingText": "Texto abaixo dos itens filhos, quando expandido.",
+    "type": "Contêiner: `card` ou `text` para uma lista contínua."
+  }
+}

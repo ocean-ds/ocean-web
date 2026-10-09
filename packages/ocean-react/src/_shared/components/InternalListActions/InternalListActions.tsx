@@ -17,6 +17,7 @@ const InternalListActions = forwardRef<
       position = 'bottom-right',
       className,
       onOpenChange,
+      triggerLabel,
       ...rest
     },
     forwardedRef
@@ -125,6 +126,7 @@ const InternalListActions = forwardRef<
           isOpen={isOpen}
           isSwipeGesture={isSwipeMode}
           onClick={handleToggle}
+          label={triggerLabel}
         />
 
         {isOpen && isSwipeMode && <MenuBackdrop onClick={handleClose} />}

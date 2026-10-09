@@ -4,6 +4,7 @@
 
 // Layout measures with no Ocean token, composed from spacing tokens.
 $doc-frame-width: $spacing-inline-xxxl * 4 + $spacing-inline-lg; // mobile frame
+$doc-example-width: $spacing-inline-xxxl * 5; // examples on the docs pages
 $doc-aside-width: $spacing-inline-xxxl * 3; // "On this page"
 $doc-panel-width: $spacing-inline-xxxl * 4; // header side panel
 $doc-max-width: $spacing-inline-xxxl * 16;
@@ -203,8 +204,15 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 // Sections ------------------------------------------------------------------------------
 
 .odoc-section {
-  margin-bottom: $spacing-stack-xxl;
+  border-top: $border-width-hairline solid $color-interface-light-down;
+  margin-bottom: $spacing-stack-xl;
+  padding-top: $spacing-stack-lg;
   scroll-margin-top: $doc-tab-height + $spacing-stack-sm;
+
+  &:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
 
   &__title.ods-typography {
     color: $color-interface-dark-deep;
@@ -288,9 +296,9 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
   &__frame {
     background: $color-interface-light-pure;
-    box-shadow: $shadow-level-1;
+    border-radius: $border-radius-sm;
     max-width: 100%;
-    width: $doc-frame-width;
+    width: $doc-example-width;
   }
 
   &__frame--plain {
@@ -569,4 +577,213 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   flex-wrap: wrap;
   gap: $spacing-inline-xs;
   margin-bottom: $spacing-stack-xs;
+}
+
+// Component Overview pages ---------------------------------------------------------------
+
+.odoc--component .odoc-body {
+  padding-top: $spacing-stack-md;
+}
+
+.odoc-component-header {
+  margin-bottom: $spacing-stack-lg;
+
+  &__title.ods-typography {
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-extrabold;
+    line-height: $line-height-medium;
+    margin: 0 0 $spacing-stack-xs;
+  }
+
+  &__links {
+    align-items: center;
+    color: $color-interface-dark-up;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $font-size-xxs;
+    gap: $spacing-inline-xxs-extra;
+    margin-bottom: $spacing-stack-sm;
+  }
+}
+
+.odoc-header__title.ods-typography {
+  font-weight: $font-weight-extrabold;
+}
+
+.odoc-subsection {
+  margin-top: $spacing-stack-md;
+  scroll-margin-top: $spacing-stack-md;
+}
+
+.odoc-section,
+.odoc-subsection {
+  scroll-margin-top: $spacing-stack-md;
+}
+
+.odoc-list {
+  background: $color-interface-light-pure;
+}
+
+.odoc-example {
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-sm;
+  margin: 0 0 $spacing-stack-md;
+  overflow: hidden;
+
+  &__stage {
+    background: $color-interface-light-up;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-stack-lg $spacing-inline-xs;
+  }
+
+  &__frame {
+    max-width: 100%;
+    width: $doc-example-width;
+  }
+
+  &__bar {
+    background: $color-interface-light-pure;
+    border-top: $border-width-hairline solid $color-interface-light-down;
+    display: flex;
+    gap: $spacing-inline-xxs;
+    justify-content: flex-end;
+    padding: $spacing-stack-xxs $spacing-inline-xs;
+  }
+
+  &__code .docblock-source {
+    border-radius: 0;
+    margin: 0;
+  }
+}
+
+.odoc-callout {
+  background: $color-interface-light-up;
+  border-left: $border-width-thick solid $color-brand-primary-pure;
+  border-radius: $border-radius-tiny;
+  margin: 0 0 $spacing-stack-sm;
+  max-width: $spacing-inline-xxxl * 9;
+  padding: $spacing-stack-xs $spacing-inline-sm;
+
+  .ods-typography {
+    color: $color-interface-dark-deep;
+    margin: 0;
+  }
+}
+
+.odoc-rules {
+  counter-reset: rule;
+  list-style: none;
+  margin: 0;
+  max-width: $spacing-inline-xxxl * 9;
+  padding: 0;
+
+  li {
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
+    color: $color-interface-dark-deep;
+    column-gap: $spacing-inline-xs;
+    counter-increment: rule;
+    display: grid;
+    font-size: $font-size-xs;
+    grid-template-columns: $spacing-inline-sm 1fr;
+    line-height: $line-height-comfy;
+    padding: $spacing-stack-xxs-extra 0;
+  }
+
+  li::before {
+    color: $color-brand-primary-pure;
+    content: counter(rule, decimal-leading-zero);
+    flex-shrink: 0;
+    font-weight: $font-weight-bold;
+  }
+}
+
+.odoc-api {
+  &__group th {
+    background: $color-interface-light-pure;
+    border-bottom: $border-width-thin solid $color-interface-light-down;
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+    padding-top: $spacing-stack-sm;
+    text-transform: uppercase;
+  }
+
+  &__type {
+    display: block;
+    margin-top: $spacing-stack-xxxs;
+  }
+
+  &__control {
+    min-width: $spacing-inline-xxxl * 2 + $spacing-inline-lg;
+  }
+}
+
+.odoc-api__control .ods-form-control__root,
+.odoc-api__control .ods-input {
+  margin: 0;
+}
+
+.odoc-token-list {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-stack-xxxs;
+}
+
+.odoc-token-value {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-stack-xxxs;
+}
+
+.odoc-download {
+  display: inline-block;
+  margin-bottom: $spacing-stack-xs;
+}
+
+.odoc-fulllist {
+  align-items: center;
+  color: $color-interface-dark-down;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: $font-size-xxs;
+  gap: $spacing-inline-xs;
+  margin: 0;
+}
+
+.odoc-toc__link--sub {
+  padding-left: $spacing-inline-md;
+}
+
+.odoc-platforms .docblock-source {
+  margin-top: 0;
+}
+
+.odoc-frame--block {
+  background: $color-interface-light-pure;
+  border: $border-width-hairline solid $color-interface-light-down;
+  border-radius: $border-radius-sm;
+  padding: $spacing-stack-xs;
+}
+
+.odoc-block {
+  display: flex;
+}
+
+.odoc-block--amount {
+  justify-content: flex-end;
+}
+
+.odoc-visual {
+  margin-bottom: $spacing-stack-xl;
+
+  &__title {
+    color: $color-interface-dark-deep;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-stack-xs;
+  }
 }

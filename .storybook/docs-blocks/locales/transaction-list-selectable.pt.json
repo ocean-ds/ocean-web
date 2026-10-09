@@ -1,0 +1,25 @@
+{
+  "overview": "Uma linha de transação que a pessoa pode selecionar: checkbox para escolher vários itens ou radio para escolher um, como os recebíveis a antecipar.",
+  "sections": {
+    "checkbox": {
+      "title": "Checkbox",
+      "text": "Padrão. Passe `checked`, `onChange`, `indeterminate`, `error` e `id` em `checkbox`. A linha inteira é o rótulo do controle."
+    },
+    "radio": {
+      "title": "Radio",
+      "text": "Passe `radio` no lugar de `checkbox` para escolher um item. Use o mesmo `name` em todas as linhas do grupo."
+    }
+  },
+  "rules": [
+    "Controle a seleção por `checkbox` ou `radio`; não adicione um controle separado ao lado da linha.",
+    "Use radio apenas quando exatamente um item puder ser escolhido e dê o mesmo `name` a todos os radios do grupo.",
+    "Mantenha `platform=\"web\"` (controle à esquerda) na web e `platform=\"app\"` (controle à direita) nos apps.",
+    "Passe os valores formatados e sem sinal; `amount.type` adiciona o sinal e a cor.",
+    "Coloque as linhas dentro de `List` e use `showDivider={false}` na última linha."
+  ],
+  "api": {
+    "checkbox": "Controle checkbox (padrão): `checked`, `onChange`, `indeterminate`, `error` e `id`.",
+    "radio": "Controle radio. Substitui o checkbox quando definido. Use o mesmo `name` no grupo.",
+    "platform": "Lado do controle: `web` à esquerda, `app` à direita."
+  }
+}

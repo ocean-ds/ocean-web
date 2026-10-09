@@ -1,0 +1,18 @@
+{
+  "overview": "A transaction row people only read, such as a line of a statement. It has no hover, no focus stop and no callback.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Content on the left, amount on the right and an optional leading icon. Group the rows inside `List`."
+    }
+  },
+  "rules": [
+    "Use Read Only only when the row has no action; any row that responds to a click is a Transaction List Action.",
+    "Don’t attach click handlers to a Read Only row.",
+    "Pass amounts formatted and without a sign; `amount.type` adds the sign and the color.",
+    "Place rows inside `List` and set `showDivider={false}` on the last row.",
+    "Use `disabled` for unavailable rows; never fade a row with opacity or custom classes.",
+    "Don’t rebuild the row with `div` and flex."
+  ],
+  "api": {}
+}

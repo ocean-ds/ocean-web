@@ -38,7 +38,7 @@ const category = {
 };
 
 const meta: Meta<typeof ListSelectable> = {
-  title: 'Components/List/ListSelectable',
+  title: 'Components/Lists/List/ListSelectable',
   component: ListSelectable,
   tags: ['autodocs'],
   argTypes: {

@@ -1,3 +1,4 @@
+import './docs.scss';
 import React, {
   ReactNode,
   useCallback,
@@ -14,7 +15,7 @@ import Typography from '../../packages/ocean-react/src/Typography';
 
 export const c = (text: string): React.ReactElement => <code>{text}</code>;
 
-const slug = (text: string) =>
+export const slug = (text: string): string =>
   text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
@@ -24,15 +25,17 @@ export const scrollToId = (id: string): void => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 };
 
-/** Section of a tab, listed in "On this page". */
+/** Section of a page, listed in "On this page". A divider separates it from the previous one. */
 export const Section = ({
+  id,
   title,
   children,
 }: {
+  id?: string;
   title: string;
   children: ReactNode;
 }): React.ReactElement => (
-  <section className="odoc-section odoc-prose" id={slug(title)}>
+  <section className="odoc-section odoc-prose" id={id ?? slug(title)}>
     <Typography variant="heading2" className="odoc-section__title">
       {title}
     </Typography>
@@ -41,67 +44,68 @@ export const Section = ({
 );
 
 export const Subsection = ({
+  id,
   title,
   children,
 }: {
+  id?: string;
   title: string;
   children: ReactNode;
 }): React.ReactElement => (
-  <>
-    <Typography
-      variant="heading3"
-      className="odoc-section__subtitle"
-      id={slug(title)}
-    >
+  <div className="odoc-subsection odoc-prose" id={id ?? slug(title)}>
+    <Typography variant="heading3" className="odoc-section__subtitle">
       {title}
     </Typography>
     {children}
-  </>
+  </div>
 );
 
-/** "On this page": one link per section of the active tab, highlighted while in view. */
+export type TocItem = { id: string; label: string; sub?: boolean };
+
+/** "On this page": one link per section, highlighted while in view. */
 export const OnThisPage = ({
   items,
+  title = 'On this page',
 }: {
-  items: string[];
+  items: TocItem[];
+  title?: string;
 }): React.ReactElement => {
-  const [active, setActive] = useState(items[0]);
+  const [active, setActive] = useState(items[0]?.id);
 
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') return undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.find((entry) => entry.isIntersecting);
-        const match = items.find((item) => slug(item) === visible?.target.id);
-        if (match) setActive(match);
+        if (visible) setActive(visible.target.id);
       },
       { rootMargin: '0px 0px -70% 0px' }
     );
     items.forEach((item) => {
-      const el = document.getElementById(slug(item));
+      const el = document.getElementById(item.id);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
   }, [items]);
 
   return (
-    <nav className="odoc-toc" aria-label="On this page">
-      <p className="odoc-toc__title">On this page</p>
+    <nav className="odoc-toc" aria-label={title}>
+      <p className="odoc-toc__title">{title}</p>
       <ul className="odoc-toc__list">
         {items.map((item) => (
-          <li key={item}>
+          <li key={item.id}>
             <button
               type="button"
               className={`odoc-toc__link${
-                item === active ? ' odoc-toc__link--active' : ''
-              }`}
-              aria-current={item === active ? 'true' : undefined}
+                item.sub ? ' odoc-toc__link--sub' : ''
+              }${item.id === active ? ' odoc-toc__link--active' : ''}`}
+              aria-current={item.id === active ? 'true' : undefined}
               onClick={() => {
-                setActive(item);
-                scrollToId(slug(item));
+                setActive(item.id);
+                scrollToId(item.id);
               }}
             >
-              {item}
+              {item.label}
             </button>
           </li>
         ))}
@@ -248,8 +252,10 @@ const VERDICT_LABEL: Record<Verdict, string> = {
 
 export const DoDont = ({
   items,
+  verdicts = VERDICT_LABEL,
 }: {
   items: { kind: Verdict; example: ReactNode; text: ReactNode }[];
+  verdicts?: Record<Verdict, string>;
 }): React.ReactElement => (
   <div className="odoc-dodont">
     {items.map((item, index) => (
@@ -261,7 +267,7 @@ export const DoDont = ({
         <div className="odoc-dodont__example">
           <div className="odoc-stage__frame">{item.example}</div>
         </div>
-        <p className="odoc-dodont__verdict">{VERDICT_LABEL[item.kind]}</p>
+        <p className="odoc-dodont__verdict">{verdicts[item.kind]}</p>
         <p className="odoc-dodont__text">{item.text}</p>
       </div>
     ))}

@@ -1,0 +1,8 @@
+import { Meta } from '@storybook/blocks';
+import * as Stories from './ContentListAmount.stories';
+import { ComponentOverview } from '../../../../../../../.storybook/docs-blocks/ComponentOverview';
+import { contentAmountDoc } from '../../../../../../../.storybook/docs-blocks/transaction-list/pages';
+
+<Meta of={Stories} name="Overview" />
+
+<ComponentOverview config={{ ...contentAmountDoc, story: Stories.Default }} />

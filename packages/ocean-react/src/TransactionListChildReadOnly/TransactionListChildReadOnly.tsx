@@ -4,22 +4,12 @@ import {
   TransactionListBaseProps,
   TransactionListChildPosition,
   TransactionListContent,
-  splitContentProps,
+  TransactionListOmittedDomProps,
   TransactionListSkeleton,
   TransactionListTimeline,
 } from '../_shared/components/TransactionListParts';
 
 export type TransactionListChildReadOnlyProps = TransactionListBaseProps & {
-  /**
-   * Typography scale of the content block, independent from `amountSize`.
-   * @default 'sm'
-   */
-  contentSize?: TransactionListBaseProps['contentSize'];
-  /**
-   * Size of the amount block, independent from `contentSize`.
-   * @default 'sm'
-   */
-  amountSize?: TransactionListBaseProps['amountSize'];
   /**
    * Color of the timeline icon. When omitted, child rows use Interface/Light/Down; an explicit
    * `default` / `on-color` / `highlight` overrides it. Disabled always forces
@@ -32,7 +22,7 @@ export type TransactionListChildReadOnlyProps = TransactionListBaseProps & {
    * @default 'standalone'
    */
   position?: TransactionListChildPosition;
-} & React.ComponentPropsWithoutRef<'div'>;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, TransactionListOmittedDomProps>;
 
 /**
  * Read-only child row of an expanded transaction, linked by the timeline, without chevron.
@@ -44,8 +34,8 @@ const TransactionListChildReadOnly = React.forwardRef<
 >(
   (
     {
-      contentSize = 'sm',
-      amountSize = 'sm',
+      content,
+      amount,
       icon,
       iconColor,
       disabled = false,
@@ -53,13 +43,10 @@ const TransactionListChildReadOnly = React.forwardRef<
       density = 'default',
       position = 'standalone',
       className,
-      ...props
+      ...rest
     },
     ref
-  ) => {
-    const [content, rest] = splitContentProps(props);
-
-    return (
+  ) => (
       <div
         ref={ref}
         data-testid="transaction-list-child-read-only"
@@ -90,16 +77,15 @@ const TransactionListChildReadOnly = React.forwardRef<
             <TransactionListSkeleton showLeading={false} />
           ) : (
             <TransactionListContent
-              {...content}
-              contentSize={contentSize}
-              amountSize={amountSize}
+              content={content}
+              amount={amount}
+              defaultSize="sm"
               disabled={disabled}
             />
           )}
         </div>
       </div>
-    );
-  }
+    )
 );
 
 TransactionListChildReadOnly.displayName = 'TransactionListChildReadOnly';

@@ -101,9 +101,13 @@ export const WithSubtitle: Story = {
         Hoje
       </SubHeader>
 
-      <SubHeader subtitle="Total: 15 itens" size="medium">Produtos</SubHeader>
+      <SubHeader subtitle="Total: 15 itens" size="medium">
+        Produtos
+      </SubHeader>
 
-      <SubHeader subtitle="Última atualização: 2h atrás" size="medium">Dashboard</SubHeader>
+      <SubHeader subtitle="Última atualização: 2h atrás" size="medium">
+        Dashboard
+      </SubHeader>
     </div>
   ),
 };
@@ -123,9 +127,12 @@ export const TextVariants: Story = {
     >
       <SubHeader size="medium">Texto simples</SubHeader>
 
-      <SubHeader subtitle="Subtítulo simples" size="medium">Título com subtítulo</SubHeader>
+      <SubHeader subtitle="Subtítulo simples" size="medium">
+        Título com subtítulo
+      </SubHeader>
 
-      <SubHeader size="medium"
+      <SubHeader
+        size="medium"
         subtitle={
           <>
             <span style={{ color: '#28a745' }}>✓</span> Concluído
@@ -151,18 +158,29 @@ export const WithIcon: Story = {
         minWidth: '300px',
       }}
     >
-      <SubHeader icon={<CalendarOutline size={16} />} size="medium">Hoje</SubHeader>
+      <SubHeader icon={<CalendarOutline size={16} />} size="medium">
+        Hoje
+      </SubHeader>
 
-      <SubHeader size="medium" icon={<HomeOutline size={16} />} subtitle="Bem-vindo de volta">
+      <SubHeader
+        size="medium"
+        icon={<HomeOutline size={16} />}
+        subtitle="Bem-vindo de volta"
+      >
         Início
       </SubHeader>
 
-      <SubHeader size="medium" icon={<Star size={16} />} subtitle="12 favoritos">
+      <SubHeader
+        size="medium"
+        icon={<Star size={16} />}
+        subtitle="12 favoritos"
+      >
         Favoritos
       </SubHeader>
 
       <SubHeader
-        size="medium" icon={<ShoppingCart size={16} />}
+        size="medium"
+        icon={<ShoppingCart size={16} />}
         subtitle={
           <>
             Total: <strong>R$ 250,00</strong>

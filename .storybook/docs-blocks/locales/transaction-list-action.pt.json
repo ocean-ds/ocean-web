@@ -1,0 +1,33 @@
+{
+  "overview": "Uma linha de transação com a qual a pessoa pode interagir. Ela abre os detalhes da transação (chevron), oferece uma lista de ações (menu) ou revela ações ao deslizar (swipe).",
+  "sections": {
+    "chevron": {
+      "title": "Chevron",
+      "text": "Padrão. A linha inteira é um botão que abre os detalhes da transação. Defina `onClick`."
+    },
+    "menu": {
+      "title": "Menu",
+      "text": "`actionType=\"menu\"` mostra um botão de mais opções com as ações de `menuActions`. Na web, o menu abre abaixo do botão; no iOS e no Android, abre em uma bottom sheet. Dê um nome ao botão com `menuLabel` quando houver várias linhas na tela."
+    },
+    "swipe": {
+      "title": "Swipe",
+      "text": "`actionType=\"swipe\"` revela as mesmas `menuActions` quando a linha é deslizada para a esquerda. Use em telas de toque e mantenha no máximo duas ações."
+    }
+  },
+  "rules": [
+    "Use este componente em toda linha de transação que responde a clique ou toque; nos demais casos, use o Read Only.",
+    "Use um único recurso à direita por linha: chevron, menu ou swipe.",
+    "Com duas ou mais ações, use `actionType=\"menu\"`; no swipe, mantenha no máximo duas ações.",
+    "Dê ao botão de mais opções um nome que identifique a linha (`menuLabel`) quando a lista tiver mais de uma linha.",
+    "Passe os valores formatados e sem sinal; `amount.type` adiciona o sinal e a cor.",
+    "Coloque as linhas dentro de `List` e use `showDivider={false}` na última linha.",
+    "Use `disabled` para linhas indisponíveis; nunca esmaeça a linha com opacidade ou classes próprias.",
+    "Não recrie a linha com `div` e flex."
+  ],
+  "api": {
+    "actionType": "Recurso à direita: chevron para abrir os detalhes, menu de mais opções ou swipe para revelar ações.",
+    "menuActions": "Opções do menu e do swipe. Só com `menu` ou `swipe`.",
+    "menuPosition": "Onde o menu abre. Só com `actionType=\"menu\"`.",
+    "menuLabel": "Nome acessível do botão de mais opções (`menu` e `swipe`), como \"Ações de Pagamento a fornecedor\"."
+  }
+}

@@ -1,0 +1,8 @@
+import { Meta } from '@storybook/blocks';
+import * as Stories from './TransactionListExpandable.stories';
+import { ComponentOverview } from '../../../../../.storybook/docs-blocks/ComponentOverview';
+import { expandableDoc } from '../../../../../.storybook/docs-blocks/transaction-list/pages';
+
+<Meta of={Stories} name="Overview" />
+
+<ComponentOverview config={{ ...expandableDoc, story: Stories.Expanded }} />

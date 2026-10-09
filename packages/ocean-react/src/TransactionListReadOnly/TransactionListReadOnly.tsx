@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import {
   TransactionListBaseProps,
   TransactionListContent,
-  splitContentProps,
+  TransactionListOmittedDomProps,
   TransactionListDivider,
   TransactionListIcon,
   TransactionListSkeleton,
@@ -11,21 +11,11 @@ import {
 
 export type TransactionListReadOnlyProps = TransactionListBaseProps & {
   /**
-   * Typography scale of the content block, independent from `amountSize`.
-   * @default 'md'
-   */
-  contentSize?: TransactionListBaseProps['contentSize'];
-  /**
-   * Size of the amount block, independent from `contentSize`.
-   * @default 'md'
-   */
-  amountSize?: TransactionListBaseProps['amountSize'];
-  /**
    * Shows the divider below the item (inset 16, multiply).
    * @default true
    */
   showDivider?: boolean;
-} & React.ComponentPropsWithoutRef<'div'>;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, TransactionListOmittedDomProps>;
 
 /**
  * Read-only transaction row: content on the left, amount on the right, no interaction.
@@ -36,8 +26,8 @@ const TransactionListReadOnly = React.forwardRef<
 >(
   (
     {
-      contentSize = 'md',
-      amountSize = 'md',
+      content,
+      amount,
       icon,
       iconColor = 'default',
       disabled = false,
@@ -45,13 +35,10 @@ const TransactionListReadOnly = React.forwardRef<
       density = 'default',
       showDivider = true,
       className,
-      ...props
+      ...rest
     },
     ref
-  ) => {
-    const [content, rest] = splitContentProps(props);
-
-    return (
+  ) => (
       <div
         ref={ref}
         data-testid="transaction-list-read-only"
@@ -82,9 +69,9 @@ const TransactionListReadOnly = React.forwardRef<
                 />
               )}
               <TransactionListContent
-                {...content}
-                contentSize={contentSize}
-                amountSize={amountSize}
+                content={content}
+                amount={amount}
+                defaultSize="md"
                 disabled={disabled}
               />
             </>
@@ -92,8 +79,7 @@ const TransactionListReadOnly = React.forwardRef<
         </div>
         {showDivider && <TransactionListDivider />}
       </div>
-    );
-  }
+    )
 );
 
 TransactionListReadOnly.displayName = 'TransactionListReadOnly';

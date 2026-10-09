@@ -14,7 +14,13 @@ describe('iconColor (Transaction List family)', () => {
     ['ReadOnly', TransactionListReadOnly],
     ['Action', TransactionListAction],
   ] as const)('top-level %s defaults to the default color', (_, Component) => {
-    render(<Component title="Title" amount="R$ 0,00" icon={icon} />);
+    render(
+      <Component
+        content={{ title: 'Title' }}
+        amount={{ value: 'R$ 0,00' }}
+        icon={icon}
+      />
+    );
 
     expect(wrapper()).toHaveClass('ods-transaction-list__icon--default');
   });
@@ -25,7 +31,13 @@ describe('iconColor (Transaction List family)', () => {
   ] as const)(
     '%s without iconColor uses the child color (Light/Down)',
     (_, Component) => {
-      render(<Component title="Title" amount="R$ 0,00" icon={icon} />);
+      render(
+        <Component
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
+          icon={icon}
+        />
+      );
 
       expect(wrapper()).toHaveClass(
         'ods-transaction-list__timeline-icon--child'
@@ -38,8 +50,8 @@ describe('iconColor (Transaction List family)', () => {
     (iconColor) => {
       render(
         <TransactionListChildAction
-          title="Title"
-          amount="R$ 0,00"
+          amount={{ value: 'R$ 0,00' }}
+          content={{ title: 'Title' }}
           icon={icon}
           iconColor={iconColor}
         />
@@ -57,8 +69,8 @@ describe('iconColor (Transaction List family)', () => {
   test('child without iconColor and disabled is inactive', () => {
     render(
       <TransactionListChildReadOnly
-        title="Title"
-        amount="R$ 0,00"
+        amount={{ value: 'R$ 0,00' }}
+        content={{ title: 'Title' }}
         icon={icon}
         disabled
       />
@@ -74,8 +86,8 @@ describe('iconColor (Transaction List family)', () => {
     (iconColor) => {
       render(
         <TransactionListReadOnly
-          title="Title"
-          amount="R$ 0,00"
+          amount={{ value: 'R$ 0,00' }}
+          content={{ title: 'Title' }}
           icon={icon}
           iconColor={iconColor}
         />
@@ -95,8 +107,8 @@ describe('iconColor (Transaction List family)', () => {
     (Component, block) => {
       render(
         <Component
-          title="Title"
-          amount="R$ 0,00"
+          content={{ title: 'Title' }}
+          amount={{ value: 'R$ 0,00' }}
           icon={icon}
           iconColor="highlight"
           disabled

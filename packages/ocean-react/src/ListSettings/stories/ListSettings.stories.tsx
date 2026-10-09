@@ -5,7 +5,7 @@ import ListSettings from '../ListSettings';
 import List from '../../List';
 
 const meta: Meta<typeof ListSettings> = {
-  title: 'Components/List/ListSettings',
+  title: 'Components/Lists/List/ListSettings',
   component: ListSettings,
   tags: ['autodocs'],
   argTypes: {

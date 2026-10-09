@@ -126,7 +126,9 @@ test('renders a tertiary critical button', () => {
 
 test('renders a primary warning button', () => {
   render(<Button data-testid="btn-test" variant="primaryWarning" />);
-  expect(screen.getByTestId('btn-test')).toHaveClass('ods-btn--primary-warning');
+  expect(screen.getByTestId('btn-test')).toHaveClass(
+    'ods-btn--primary-warning'
+  );
 });
 
 test('renders a secondary critical button', () => {

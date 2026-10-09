@@ -37,4 +37,6 @@ export type InternalListActionsProps = {
    * @param menuWidth - The width of the menu in pixels (only provided when opening)
    */
   onOpenChange?: (isOpen: boolean, menuWidth?: number) => void;
+  /** Accessible name of the trigger button. */
+  triggerLabel?: string;
 } & Omit<ComponentPropsWithoutRef<'div'>, 'children'>;

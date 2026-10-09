@@ -1,12 +1,17 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PlaceholderOutline } from '@useblu/ocean-icons-react';
-import InternalContextualHero, { InternalContextualHeroAction } from '../InternalContextualHero';
+import InternalContextualHero, {
+  InternalContextualHeroAction,
+} from '../InternalContextualHero';
 
 type SingleAction = [InternalContextualHeroAction];
 type TwoActions = [InternalContextualHeroAction, InternalContextualHeroAction];
 
-const createAction = (label: string, onClick = jest.fn()): InternalContextualHeroAction => ({
+const createAction = (
+  label: string,
+  onClick = jest.fn()
+): InternalContextualHeroAction => ({
   label,
   onClick,
 });
@@ -22,7 +27,9 @@ describe('InternalContextualHero', () => {
     test('renders with required props', () => {
       render(<InternalContextualHero {...defaultProps} />);
 
-      expect(screen.getByTestId('internal-contextual-hero')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('internal-contextual-hero')
+      ).toBeInTheDocument();
       expect(screen.getByText('Test Title')).toBeInTheDocument();
       expect(screen.getByText('Test Description')).toBeInTheDocument();
     });
@@ -51,7 +58,9 @@ describe('InternalContextualHero', () => {
         },
       ];
 
-      render(<InternalContextualHero {...defaultProps} listItems={listItems} />);
+      render(
+        <InternalContextualHero {...defaultProps} listItems={listItems} />
+      );
 
       expect(screen.getByTestId('icon-1')).toBeInTheDocument();
       expect(screen.getByText('Item with icon')).toBeInTheDocument();
@@ -64,13 +73,17 @@ describe('InternalContextualHero', () => {
         </div>,
       ];
 
-      render(<InternalContextualHero {...defaultProps} listItems={listItems} />);
+      render(
+        <InternalContextualHero {...defaultProps} listItems={listItems} />
+      );
 
       expect(screen.getByTestId('custom-item')).toBeInTheDocument();
     });
 
     test('applies custom className', () => {
-      render(<InternalContextualHero {...defaultProps} className="custom-class" />);
+      render(
+        <InternalContextualHero {...defaultProps} className="custom-class" />
+      );
 
       const hero = screen.getByTestId('internal-contextual-hero');
       expect(hero).toHaveClass('custom-class', 'ods-internal-contextual-hero');
@@ -79,7 +92,9 @@ describe('InternalContextualHero', () => {
 
   describe('Image', () => {
     test('renders image when provided as string', () => {
-      render(<InternalContextualHero {...defaultProps} image="/test-image.png" />);
+      render(
+        <InternalContextualHero {...defaultProps} image="/test-image.png" />
+      );
 
       const img = screen.getByRole('img');
       expect(img).toHaveAttribute('src', '/test-image.png');
@@ -183,7 +198,13 @@ describe('InternalContextualHero', () => {
 
     test('renders primary button with correct variant for default type', () => {
       const actions: SingleAction = [createAction('Primary Action')];
-      render(<InternalContextualHero {...defaultProps} type="default" actions={actions} />);
+      render(
+        <InternalContextualHero
+          {...defaultProps}
+          type="default"
+          actions={actions}
+        />
+      );
 
       const button = screen.getByText('Primary Action');
       expect(button).toBeInTheDocument();
@@ -191,7 +212,13 @@ describe('InternalContextualHero', () => {
 
     test('renders primary button with correct variant for warning type', () => {
       const actions: SingleAction = [createAction('Primary Action')];
-      render(<InternalContextualHero {...defaultProps} type="warning" actions={actions} />);
+      render(
+        <InternalContextualHero
+          {...defaultProps}
+          type="warning"
+          actions={actions}
+        />
+      );
 
       const button = screen.getByText('Primary Action');
       expect(button).toBeInTheDocument();
@@ -199,7 +226,13 @@ describe('InternalContextualHero', () => {
 
     test('renders primary button with correct variant for negative type', () => {
       const actions: SingleAction = [createAction('Primary Action')];
-      render(<InternalContextualHero {...defaultProps} type="negative" actions={actions} />);
+      render(
+        <InternalContextualHero
+          {...defaultProps}
+          type="negative"
+          actions={actions}
+        />
+      );
 
       const button = screen.getByText('Primary Action');
       expect(button).toBeInTheDocument();
@@ -215,21 +248,39 @@ describe('InternalContextualHero', () => {
     });
 
     test('applies top image position class', () => {
-      render(<InternalContextualHero {...defaultProps} image="/test.png" imagePosition="top" />);
+      render(
+        <InternalContextualHero
+          {...defaultProps}
+          image="/test.png"
+          imagePosition="top"
+        />
+      );
 
       const hero = screen.getByTestId('internal-contextual-hero');
       expect(hero).toHaveClass('ods-internal-contextual-hero--top');
     });
 
     test('applies bottom image position class', () => {
-      render(<InternalContextualHero {...defaultProps} image="/test.png" imagePosition="bottom" />);
+      render(
+        <InternalContextualHero
+          {...defaultProps}
+          image="/test.png"
+          imagePosition="bottom"
+        />
+      );
 
       const hero = screen.getByTestId('internal-contextual-hero');
       expect(hero).toHaveClass('ods-internal-contextual-hero--bottom');
     });
 
     test('applies full image position class', () => {
-      render(<InternalContextualHero {...defaultProps} image="/test.png" imagePosition="full" />);
+      render(
+        <InternalContextualHero
+          {...defaultProps}
+          image="/test.png"
+          imagePosition="full"
+        />
+      );
 
       const hero = screen.getByTestId('internal-contextual-hero');
       expect(hero).toHaveClass('ods-internal-contextual-hero--full');
@@ -238,7 +289,9 @@ describe('InternalContextualHero', () => {
 
   describe('Snapshot', () => {
     test('matches snapshot with minimal props', () => {
-      const { container } = render(<InternalContextualHero {...defaultProps} />);
+      const { container } = render(
+        <InternalContextualHero {...defaultProps} />
+      );
       expect(container.firstChild).toMatchSnapshot();
     });
 
@@ -260,4 +313,3 @@ describe('InternalContextualHero', () => {
     });
   });
 });
-

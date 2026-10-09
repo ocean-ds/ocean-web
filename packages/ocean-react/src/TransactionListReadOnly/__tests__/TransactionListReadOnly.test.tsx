@@ -10,12 +10,16 @@ describe('TransactionListReadOnly', () => {
   test('reads content, amount, tag and additional data in order', () => {
     render(
       <TransactionListReadOnly
-        title="Pix recebido"
-        description="Padaria São José"
-        caption="12 de novembro às 14:32"
-        amount="R$ 150,00"
-        amountTag={{ label: 'Pago' }}
-        additionalData="Saldo disponível"
+        content={{
+          title: 'Pix recebido',
+          description: 'Padaria São José',
+          caption: '12 de novembro às 14:32',
+        }}
+        amount={{
+          value: 'R$ 150,00',
+          tag: { label: 'Pago' },
+          info: 'Saldo disponível',
+        }}
         icon={icon}
       />
     );
@@ -36,8 +40,8 @@ describe('TransactionListReadOnly', () => {
   test('is not focusable and has no interactive role', () => {
     render(
       <TransactionListReadOnly
-        title="Pix recebido"
-        amount="R$ 150,00"
+        content={{ title: 'Pix recebido' }}
+        amount={{ value: 'R$ 150,00' }}
         icon={icon}
       />
     );
@@ -52,11 +56,12 @@ describe('TransactionListReadOnly', () => {
   test('content and amount sizes are independent', () => {
     render(
       <TransactionListReadOnly
-        title="Pix recebido"
-        description="Padaria São José"
-        amount="R$ 150,00"
-        contentSize="sm"
-        amountSize="md"
+        content={{
+          title: 'Pix recebido',
+          description: 'Padaria São José',
+          size: 'sm',
+        }}
+        amount={{ value: 'R$ 150,00', size: 'md' }}
       />
     );
 
@@ -74,10 +79,12 @@ describe('TransactionListReadOnly', () => {
   test('renders the strikethrough amount before the current amount', () => {
     render(
       <TransactionListReadOnly
-        title="Juros"
-        amount="Grátis"
-        amountType="strikethrough"
-        strikethroughAmount="3,99%"
+        content={{ title: 'Juros' }}
+        amount={{
+          value: 'Grátis',
+          type: 'strikethrough',
+          strikethroughValue: '3,99%',
+        }}
       />
     );
 
@@ -92,10 +99,8 @@ describe('TransactionListReadOnly', () => {
   test('disabled is announced and uses the inactive type and a neutral tag', () => {
     render(
       <TransactionListReadOnly
-        title="Pix recebido"
-        description="Padaria São José"
-        amount="R$ 150,00"
-        amountTag={{ label: 'Pago' }}
+        content={{ title: 'Pix recebido', description: 'Padaria São José' }}
+        amount={{ value: 'R$ 150,00', tag: { label: 'Pago' } }}
         icon={icon}
         disabled
       />
@@ -119,8 +124,8 @@ describe('TransactionListReadOnly', () => {
   test('loading is announced as busy and hides the texts', () => {
     render(
       <TransactionListReadOnly
-        title="Pix recebido"
-        amount="R$ 150,00"
+        content={{ title: 'Pix recebido' }}
+        amount={{ value: 'R$ 150,00' }}
         icon={icon}
         loading
       />
@@ -137,8 +142,8 @@ describe('TransactionListReadOnly', () => {
   test('loading without icon has no icon placeholder; divider can be hidden', () => {
     render(
       <TransactionListReadOnly
-        title="Pix recebido"
-        amount="R$ 150,00"
+        content={{ title: 'Pix recebido' }}
+        amount={{ value: 'R$ 150,00' }}
         loading
         showDivider={false}
         className="custom"
@@ -157,7 +162,11 @@ describe('TransactionListReadOnly', () => {
   test('forwards ref to the root', () => {
     const ref = React.createRef<HTMLDivElement>();
     render(
-      <TransactionListReadOnly ref={ref} title="Pix" amount="R$ 150,00" />
+      <TransactionListReadOnly
+        content={{ title: 'Pix' }}
+        amount={{ value: 'R$ 150,00' }}
+        ref={ref}
+      />
     );
 
     expect(ref.current).toBe(row());

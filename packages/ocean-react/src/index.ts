@@ -160,6 +160,8 @@ export { default as TransactionListChildReadOnly } from './TransactionListChildR
 export * from './TransactionListChildReadOnly';
 
 export type {
+  ContentListAmountProps,
+  ContentListDefaultProps,
   TransactionListBaseProps,
   TransactionListChildPosition,
   TransactionListDensity,

@@ -7,23 +7,13 @@ import {
   TransactionListBaseProps,
   TransactionListChevron,
   TransactionListContent,
-  splitContentProps,
+  TransactionListOmittedDomProps,
   TransactionListDivider,
   TransactionListIcon,
   TransactionListSkeleton,
 } from '../_shared/components/TransactionListParts';
 
 export type TransactionListActionProps = TransactionListBaseProps & {
-  /**
-   * Typography scale of the content block, independent from `amountSize`.
-   * @default 'md'
-   */
-  contentSize?: TransactionListBaseProps['contentSize'];
-  /**
-   * Size of the amount block, independent from `contentSize`.
-   * @default 'md'
-   */
-  amountSize?: TransactionListBaseProps['amountSize'];
   /**
    * Trailing action: `chevron` leads to a detail, `menu` opens a contextual
    * menu, `swipe` reveals the actions sideways (mobile pattern). Same behavior as
@@ -41,6 +31,12 @@ export type TransactionListActionProps = TransactionListBaseProps & {
    */
   menuPosition?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
   /**
+   * Accessible name of the overflow trigger (`menu` and `swipe`). Name the row when there
+   * are several on screen, such as "Actions for Payment to supplier".
+   * @default 'Open actions menu'
+   */
+  menuLabel?: string;
+  /**
    * Shows the divider below the item (inset 16, multiply).
    * @default true
    */
@@ -55,7 +51,11 @@ export type TransactionListActionProps = TransactionListBaseProps & {
   className?: string;
 } & Omit<
     React.ComponentPropsWithoutRef<'button'>,
-    'type' | 'onClick' | 'className' | 'disabled'
+    | 'type'
+    | 'onClick'
+    | 'className'
+    | 'disabled'
+    | TransactionListOmittedDomProps
   >;
 
 /**
@@ -70,8 +70,8 @@ const TransactionListAction = React.forwardRef<
 >(
   (
     {
-      contentSize = 'md',
-      amountSize = 'md',
+      content,
+      amount,
       icon,
       iconColor = 'default',
       disabled = false,
@@ -80,14 +80,14 @@ const TransactionListAction = React.forwardRef<
       actionType = 'chevron',
       menuActions = [],
       menuPosition = 'bottom-right',
+      menuLabel = 'Open actions menu',
       showDivider = true,
       onClick,
       className,
-      ...props
+      ...rest
     },
     ref
   ) => {
-    const [content, rest] = splitContentProps(props);
     const [isSwipeOpen, setIsSwipeOpen] = useState(false);
     const [menuWidth, setMenuWidth] = useState(0);
     const isChevron = actionType === 'chevron';
@@ -128,9 +128,9 @@ const TransactionListAction = React.forwardRef<
               />
             )}
             <TransactionListContent
-              {...content}
-              contentSize={contentSize}
-              amountSize={amountSize}
+              content={content}
+              amount={amount}
+              defaultSize="md"
               disabled={disabled}
             />
             {isChevron && <TransactionListChevron />}
@@ -167,6 +167,7 @@ const TransactionListAction = React.forwardRef<
                   actionType={actionType}
                   disabled={disabled}
                   position={menuPosition}
+                  triggerLabel={menuLabel}
                   onOpenChange={
                     actionType === 'swipe' ? handleSwipeOpenChange : undefined
                   }
