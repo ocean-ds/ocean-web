@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import React from 'react';
 import TransactionFooter from '../TransactionFooter';
-import Button from '../../Button';
+import {
+  getTransactionSummaryItems,
+  transactionSummaryAction as action,
+  transactionSummaryDecorators as decorators,
+  transactionSummaryTotal as total,
+} from '../../_shared/__fixtures__/transactionFooterSummary';
 
 const meta: Meta<typeof TransactionFooter> = {
   title: 'Components/Transaction Footer',
@@ -18,23 +22,7 @@ const meta: Meta<typeof TransactionFooter> = {
 export default meta;
 type Story = StoryObj<typeof TransactionFooter>;
 
-const items = [
-  { content: { title: 'Compra' }, amount: { value: 'R$ 100,00' } },
-  { content: { title: 'Desconto' }, amount: { value: 'R$ 10,00' } },
-];
-const total = { label: 'Total', value: 'R$ 90,00' };
-const action = (
-  <Button variant="primary" blocked>
-    Continuar
-  </Button>
-);
-const decorators = [
-  (StoryComponent: React.ComponentType): JSX.Element => (
-    <div style={{ maxWidth: 393 }}>
-      <StoryComponent />
-    </div>
-  ),
-];
+const items = getTransactionSummaryItems('Compra');
 
 export const Default: Story = {
   args: { items, total, action },
