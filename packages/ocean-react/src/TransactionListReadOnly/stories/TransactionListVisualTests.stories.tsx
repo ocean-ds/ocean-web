@@ -8,7 +8,7 @@ import TransactionListExpandable from '../../TransactionListExpandable';
 import TransactionListChildAction from '../../TransactionListChildAction';
 import TransactionListChildReadOnly from '../../TransactionListChildReadOnly';
 import { MatrixGrid } from '../../../../../.storybook/docs-blocks';
-import { ListFrame } from '../../../../../.storybook/docs-blocks/doc-parts';
+import { Screen } from '../../../../../.storybook/docs-blocks/doc-parts';
 import {
   ContentListAmount,
   ContentListDefault,
@@ -53,7 +53,7 @@ const sized = (row: RowFixture, size: 'md' | 'sm'): RowFixture => ({
   amount: { ...row.amount, size },
 });
 
-const cell = (node: ReactNode) => <ListFrame>{node}</ListFrame>;
+const cell = (node: ReactNode) => <Screen>{node}</Screen>;
 
 const LAYOUTS = [
   ['md · default', 'md', 'default'],

@@ -4,7 +4,6 @@
 
 // Layout measures with no Ocean token, composed from spacing tokens.
 $doc-frame-width: $spacing-inline-xxxl * 4 + $spacing-inline-lg; // mobile frame
-$doc-example-width: $spacing-inline-xxxl * 5; // examples on the docs pages
 $doc-aside-width: $spacing-inline-xxxl * 3; // "On this page"
 $doc-panel-width: $spacing-inline-xxxl * 4; // header side panel
 $doc-max-width: $spacing-inline-xxxl * 16;
@@ -295,10 +294,8 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   }
 
   &__frame {
-    background: $color-interface-light-pure;
-    border-radius: $border-radius-sm;
     max-width: 100%;
-    width: $doc-example-width;
+    width: $doc-frame-width;
   }
 
   &__frame--plain {
@@ -621,8 +618,9 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   scroll-margin-top: $spacing-stack-md;
 }
 
-.odoc-list {
+.odoc-screen {
   background: $color-interface-light-pure;
+  padding-bottom: $spacing-stack-xs;
 }
 
 .odoc-example {
@@ -640,7 +638,16 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
   &__frame {
     max-width: 100%;
-    width: $doc-example-width;
+    width: $doc-frame-width;
+  }
+
+  &__caption {
+    background: $color-interface-light-pure;
+    border-top: $border-width-hairline solid $color-interface-light-down;
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxs;
+    line-height: $line-height-comfy;
+    padding: $spacing-stack-xxs $spacing-inline-xs;
   }
 
   &__bar {
@@ -763,8 +770,6 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
 .odoc-frame--block {
   background: $color-interface-light-pure;
-  border: $border-width-hairline solid $color-interface-light-down;
-  border-radius: $border-radius-sm;
   padding: $spacing-stack-xs;
 }
 
@@ -800,4 +805,10 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   &__part {
     color: $color-interface-dark-up;
   }
+}
+
+// Story canvas: stage background around the white screen.
+.odoc-canvas {
+  background: $color-interface-light-up;
+  padding: $spacing-stack-xl $spacing-inline-lg;
 }

@@ -2,7 +2,6 @@ import React, { ReactNode, useState } from 'react';
 import { Source } from '@storybook/blocks';
 import Button from '../../packages/ocean-react/src/Button';
 import Link from '../../packages/ocean-react/src/Link';
-import List from '../../packages/ocean-react/src/List';
 import Tag from '../../packages/ocean-react/src/Tag';
 import Typography from '../../packages/ocean-react/src/Typography';
 import { Swatch, Tabs, c } from './blocks';
@@ -10,12 +9,15 @@ import { Md, Translate } from './i18n';
 
 /* Blocks of the component Overview pages. Styles in docs.scss (Ocean tokens only). */
 
-/** Rows rendered inside the Ocean List container (bordered, rounded card). */
-export const ListFrame = ({
+/**
+ * Example surface: a plain white mobile screen (no border, radius or shadow) with space
+ * below the last row, so the inset divider stays visible.
+ */
+export const Screen = ({
   children,
 }: {
   children: ReactNode;
-}): React.ReactElement => <List className="odoc-list">{children}</List>;
+}): React.ReactElement => <div className="odoc-screen">{children}</div>;
 
 const copy = async (text: string): Promise<boolean> => {
   try {
@@ -33,10 +35,13 @@ export const Example = ({
   t,
   language = 'tsx',
   plain = false,
+  caption,
 }: {
   children: ReactNode;
   code: string;
   t: Translate;
+  /** Text below the stage. */
+  caption?: string;
   language?: string;
   /** Without the List container (blocks shown on their own). */
   plain?: boolean;
@@ -50,10 +55,15 @@ export const Example = ({
           {plain ? (
             <div className="odoc-frame--block">{children}</div>
           ) : (
-            <ListFrame>{children}</ListFrame>
+            <Screen>{children}</Screen>
           )}
         </div>
       </div>
+      {caption && (
+        <figcaption className="odoc-example__caption">
+          <Md text={caption} />
+        </figcaption>
+      )}
       <div className="odoc-example__bar">
         <Button
           variant="tertiary"

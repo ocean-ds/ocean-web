@@ -23,7 +23,7 @@ import {
   c,
   tokenValue,
 } from '../blocks';
-import { ListFrame } from '../doc-parts';
+import { Screen } from '../doc-parts';
 import { LocaleFiles, Md, Translate, useTranslate } from '../i18n';
 import {
   SECTION_REQUEST_KEY,
@@ -155,13 +155,13 @@ const Group = ({
   render: Render;
   extra?: Record<string, unknown>;
 }) => (
-  <ListFrame>
+  <Screen>
     {list.map((row, index) => (
       <React.Fragment key={index}>
         {render({ ...row, ...extra, showDivider: index < list.length - 1 })}
       </React.Fragment>
     ))}
-  </ListFrame>
+  </Screen>
 );
 
 const SelectableGroup = ({ radio = false }: { radio?: boolean }) => {
@@ -174,7 +174,7 @@ const SelectableGroup = ({ radio = false }: { radio?: boolean }) => {
         : [...current, index];
     });
   return (
-    <ListFrame>
+    <Screen>
       {selectableRows.map((row, index) => {
         const control = {
           id: `${radio ? 'radio' : 'checkbox'}-${index}`,
@@ -192,14 +192,14 @@ const SelectableGroup = ({ radio = false }: { radio?: boolean }) => {
           />
         );
       })}
-    </ListFrame>
+    </Screen>
   );
 };
 
 const ExpandableGroup = () => {
   const [expanded, setExpanded] = useState(true);
   return (
-    <ListFrame>
+    <Screen>
       <TransactionListExpandable
         {...expandableParent}
         supportingText="Fees already deducted"
@@ -214,7 +214,7 @@ const ExpandableGroup = () => {
           />
         ))}
       </TransactionListExpandable>
-    </ListFrame>
+    </Screen>
   );
 };
 
@@ -225,11 +225,11 @@ const Children = ({
     | typeof TransactionListChildAction
     | typeof TransactionListChildReadOnly;
 }) => (
-  <ListFrame>
+  <Screen>
     {childRows.map((row, index) => (
       <Child key={index} {...row} position={CHILD_POSITIONS[index]} />
     ))}
-  </ListFrame>
+  </Screen>
 );
 
 /* ----- Guidelines ----- */
@@ -250,9 +250,9 @@ const Guidelines = ({ t }: { t: Translate }) => {
     g(`content.verdicts.${kind}`);
   const doDont = t.list('guidelines.content.doDontItems');
   const single = (props: RowFixture & Record<string, unknown>) => (
-    <ListFrame>
+    <Screen>
       <TransactionListReadOnly {...props} showDivider={false} />
-    </ListFrame>
+    </Screen>
   );
   return (
     <>
@@ -292,7 +292,7 @@ const Guidelines = ({ t }: { t: Translate }) => {
         <Subsection id="anatomy" title={g('formatting.anatomy')}>
           <Anatomy
             example={
-              <ListFrame>
+              <Screen>
                 <TransactionListReadOnly
                   {...rows.bankTransfer}
                   content={{
@@ -301,7 +301,7 @@ const Guidelines = ({ t }: { t: Translate }) => {
                   }}
                   amount={{ ...rows.bankTransfer.amount, info: 'Due Oct 15' }}
                 />
-              </ListFrame>
+              </Screen>
             }
             parts={[
               { selector: '.ods-transaction-list__icon', side: 'left' },
@@ -386,6 +386,7 @@ const Guidelines = ({ t }: { t: Translate }) => {
                 ),
               },
             ]}
+            caption={t('rowOptions.divider.caption')}
           />
         </Subsection>
       </Section>
@@ -524,14 +525,14 @@ const Guidelines = ({ t }: { t: Translate }) => {
               (state) => ({
                 label: g(`behaviors.stateLabels.${state}`),
                 content: (
-                  <ListFrame>
+                  <Screen>
                     <TransactionListAction
                       {...rows.supplierPayment}
                       loading={state === 'loading'}
                       disabled={state === 'disabled'}
                       showDivider={false}
                     />
-                  </ListFrame>
+                  </Screen>
                 ),
               })
             )}
@@ -545,14 +546,14 @@ const Guidelines = ({ t }: { t: Translate }) => {
             frames={(['chevron', 'menu', 'swipe'] as const).map((type) => ({
               label: g(`behaviors.actionTypes.${type}`),
               content: (
-                <ListFrame>
+                <Screen>
                   <TransactionListAction
                     {...rows.supplierPayment}
                     actionType={type}
                     menuActions={type === 'swipe' ? swipeActions : menuActions}
                     showDivider={false}
                   />
-                </ListFrame>
+                </Screen>
               ),
             }))}
           />

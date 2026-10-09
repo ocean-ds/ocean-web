@@ -40,7 +40,8 @@
     },
     "divider": {
       "title": "Divider",
-      "text": "Rows show an inset divider below. Set `showDivider={false}` on the last row of a group, so it does not double the container border."
+      "text": "Rows show an inset divider below. Set `showDivider={false}` on the last row of a group, so it does not double the container border.",
+      "caption": "The last row of a group has no divider."
     }
   },
   "contentAndAmount": "This component renders [Content List Default](docs:components-lists-content-list-content-list-default--overview) on the left and [Content List Amount](docs:components-lists-content-list-content-list-amount--overview) on the right. Pass their props in `content` and `amount`; amount types, strikethrough, tag and sizes are documented there.",

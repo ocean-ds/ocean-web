@@ -1,17 +1,19 @@
 import React from 'react';
 import type { Decorator } from '@storybook/react';
 import { Frame } from '../blocks';
-import { ListFrame } from '../doc-parts';
+import { Screen } from '../doc-parts';
 import TransactionListExpandable from '../../../packages/ocean-react/src/TransactionListExpandable';
 import { childRows, expandableParent } from './fixtures';
 
-/** Stories render the rows inside the Ocean List container, at the mobile frame width. */
+/** Stories render the rows on a plain white mobile screen, centered on the stage background. */
 export const inList: Decorator = (Story) => (
-  <Frame>
-    <ListFrame>
-      <Story />
-    </ListFrame>
-  </Frame>
+  <div className="odoc-canvas">
+    <Frame>
+      <Screen>
+        <Story />
+      </Screen>
+    </Frame>
+  </div>
 );
 
 /** Blocks render on their own, inside a padded card. */
@@ -41,14 +43,16 @@ export const timelineRender =
     const { density, iconColor, loading, disabled } = props;
     const shared = { density, iconColor, loading, disabled };
     return (
-      <Frame>
-        <ListFrame>
-          <TransactionListExpandable {...expandableParent} expanded>
-            <Item {...childRows[0]} {...shared} position="first" />
-            <Item {...props} />
-            <Item {...childRows[2]} {...shared} position="last" />
-          </TransactionListExpandable>
-        </ListFrame>
-      </Frame>
+      <div className="odoc-canvas">
+        <Frame>
+          <Screen>
+            <TransactionListExpandable {...expandableParent} expanded>
+              <Item {...childRows[0]} {...shared} position="first" />
+              <Item {...props} />
+              <Item {...childRows[2]} {...shared} position="last" />
+            </TransactionListExpandable>
+          </Screen>
+        </Frame>
+      </div>
     );
   };

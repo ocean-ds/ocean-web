@@ -40,7 +40,8 @@
     },
     "divider": {
       "title": "Divisor",
-      "text": "As linhas mostram um divisor recuado abaixo. Use `showDivider={false}` na última linha do grupo, para não duplicar a borda do contêiner."
+      "text": "As linhas mostram um divisor recuado abaixo. Use `showDivider={false}` na última linha do grupo, para não duplicar a borda do contêiner.",
+      "caption": "A última linha de um grupo não tem divisor."
     }
   },
   "contentAndAmount": "Este componente usa o [Content List Default](docs:components-lists-content-list-content-list-default--overview) à esquerda e o [Content List Amount](docs:components-lists-content-list-content-list-amount--overview) à direita. Passe as props deles em `content` e `amount`; tipos de valor, riscado, tag e tamanhos estão documentados lá.",

@@ -37,6 +37,8 @@ export type ExampleSpec = {
   plain?: boolean;
   /** Snippet; generated from `rows` when omitted. */
   code?: string;
+  /** Locale key of a caption shown below the example. */
+  caption?: string;
 };
 
 export type ComponentDocConfig = {
@@ -86,6 +88,7 @@ const Snippet = ({
     <Example
       t={t}
       plain={spec.plain}
+      caption={spec.caption ? t(spec.caption) : undefined}
       code={imports ? `${imports}\n\n${code}` : code}
     >
       {spec.rows}

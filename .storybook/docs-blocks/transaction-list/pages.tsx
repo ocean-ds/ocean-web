@@ -111,7 +111,10 @@ const rowOptions = (render: Row, sample: RowFixture[], icon = true) => ({
       }),
     ],
   },
-  divider: { rows: group(render, sample.slice(0, 2)) },
+  divider: {
+    rows: group(render, sample.slice(0, 3)),
+    caption: 'rowOptions.divider.caption',
+  },
 });
 
 const SRC = 'packages/ocean-react/src/';
@@ -277,7 +280,12 @@ export const expandableDoc: Omit<ComponentDocConfig, 'story'> = {
         expandable({ key: 'd', ...expandableBase, disabled: true }),
       ],
     },
-    divider: { rows: [expandable({ ...expandableBase, showDivider: true })] },
+    divider: {
+      rows: [true, true, false].map((showDivider, index) =>
+        expandable({ key: index, ...expandableBase, showDivider })
+      ),
+      caption: 'rowOptions.divider.caption',
+    },
   },
   platforms: snippets.expandable,
   argTypes: expandableArgTypes,
