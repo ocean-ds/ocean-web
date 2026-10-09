@@ -466,14 +466,6 @@ const Guidelines = ({ t }: { t: Translate }) => {
             }}
             items={[
               {
-                kind: 'do',
-                example: single({
-                  ...rows.supplierPayment,
-                  amount: { value: 'R$ 6.819,33', type: 'negative' },
-                }),
-                text: <Md text={doDont[0]} />,
-              },
-              {
                 kind: 'dont',
                 example: single({
                   ...rows.supplierPayment,
@@ -488,22 +480,23 @@ amount={{ value: 'R$ 6.819,33', type: 'negative' }}`,
               },
               {
                 kind: 'do',
-                example: single(rows.canceled),
-                text: <Md text={doDont[2]} />,
+                example: single({
+                  ...rows.supplierPayment,
+                  amount: { value: 'R$ 6.819,33', type: 'negative' },
+                }),
+                text: <Md text={doDont[0]} />,
               },
               {
+                // Live render on hold: the component behavior for long tags is being decided.
                 kind: 'dont',
-                example: single({
-                  ...rows.bankTransfer,
-                  amount: {
-                    value: 'R$ 1.314,28',
-                    tag: {
-                      label: 'Payment scheduled for Oct 15 by bank transfer',
-                      type: 'complementary',
-                    },
-                  },
-                }),
                 text: <Md text={doDont[3]} />,
+                code: `amount={{
+  value: 'R$ 1.314,28',
+  tag: {
+    label: 'Payment scheduled for Oct 15 by bank transfer',
+    type: 'complementary',
+  },
+}}`,
               },
               {
                 kind: 'do',
@@ -516,6 +509,11 @@ amount={{ value: 'R$ 6.819,33', type: 'negative' }}`,
                   },
                 }),
                 text: <Md text={doDont[4]} />,
+              },
+              {
+                kind: 'do',
+                example: single(rows.canceled),
+                text: <Md text={doDont[2]} />,
               },
               {
                 kind: 'caution',

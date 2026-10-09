@@ -256,7 +256,8 @@ export const DoDont = ({
 }: {
   items: {
     kind: Verdict;
-    example: ReactNode;
+    /** Live example; when omitted, the code is shown in its place. */
+    example?: ReactNode;
     text: ReactNode;
     /** Snippet below the text (for example, the wrong and the right version). */
     code?: string;
@@ -271,15 +272,19 @@ export const DoDont = ({
         className={`odoc-dodont__card odoc-dodont__card--${item.kind}`}
       >
         <div className="odoc-dodont__example">
-          <div className="odoc-stage__frame">{item.example}</div>
+          {item.example ? (
+            <div className="odoc-stage__frame">{item.example}</div>
+          ) : (
+            <Source code={item.code ?? ''} language="tsx" dark />
+          )}
         </div>
         <p className="odoc-dodont__verdict">{verdicts[item.kind]}</p>
         <p className="odoc-dodont__text">{item.text}</p>
-        {item.code && (
-          <div className="odoc-dodont__code">
+        <div className="odoc-dodont__code">
+          {item.example && item.code && (
             <Source code={item.code} language="tsx" dark />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     ))}
   </div>
