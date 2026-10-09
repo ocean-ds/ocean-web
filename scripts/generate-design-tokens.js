@@ -401,6 +401,69 @@ const COMPONENTS = {
   },
 };
 
+// Visual order of the anatomy parts (left to right, top to bottom), then of the states.
+const PART_ORDER = [
+  'Row',
+  'Block',
+  'Control',
+  'Label',
+  'Icon',
+  'Content area',
+  'Emphasized line (md)',
+  'Small line (md)',
+  'Emphasized line (sm)',
+  'Small line (sm)',
+  'Caption',
+  'Struck text',
+  'Indicator',
+  'Value row',
+  'Value',
+  'Sign',
+  'Struck value',
+  'Tag',
+  'Tag text',
+  'Tag icon',
+  'Info',
+  'Trailing',
+  'Chevron',
+  'Menu trigger',
+  'Timeline',
+  'Timeline icon',
+  'Timeline line',
+  'Child items',
+  'Supporting text',
+  'Divider',
+  'Skeleton',
+];
+const STATE_ORDER = [
+  'Default',
+  'Hover',
+  'Focus',
+  'Pressed',
+  'Selected',
+  'Expanded',
+];
+const STATE_LAST = ['Compact', 'Swipe', 'App', 'Loading', 'Disabled'];
+
+const partRank = (part) => {
+  const index = PART_ORDER.indexOf(part);
+  return index < 0 ? PART_ORDER.length : index;
+};
+
+/** Default and interactive states first, variants (sizes, types, colors) next, then density, loading and disabled. */
+const stateRank = (state) => {
+  const first = state.split(' · ')[0];
+  if (STATE_ORDER.includes(first)) return STATE_ORDER.indexOf(first);
+  if (STATE_LAST.includes(first)) return 100 + STATE_LAST.indexOf(first);
+  return 50;
+};
+
+const compareRows = (a, b) =>
+  partRank(a.part) - partRank(b.part) ||
+  stateRank(a.state) - stateRank(b.state) ||
+  a.state.localeCompare(b.state) ||
+  a.property.localeCompare(b.property);
+
 const generate = () => {
   fs.mkdirSync(OUT, { recursive: true });
   const index = {};
@@ -435,7 +498,8 @@ const generate = () => {
         seen.add(key);
         return row;
       })
-      .filter(Boolean);
+      .filter(Boolean)
+      .sort(compareRows);
     const output = {
       component: id,
       generatedFrom: files.map(

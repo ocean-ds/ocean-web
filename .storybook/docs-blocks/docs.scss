@@ -787,3 +787,17 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
     margin: 0 0 $spacing-stack-xs;
   }
 }
+
+.odoc-tokens {
+  &__group th {
+    background: $color-interface-light-pure;
+    border-bottom: $border-width-thin solid $color-interface-light-down;
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xxs;
+    padding-top: $spacing-stack-sm;
+  }
+
+  &__part {
+    color: $color-interface-dark-up;
+  }
+}

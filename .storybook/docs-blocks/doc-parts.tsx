@@ -5,7 +5,7 @@ import Link from '../../packages/ocean-react/src/Link';
 import List from '../../packages/ocean-react/src/List';
 import Tag from '../../packages/ocean-react/src/Tag';
 import Typography from '../../packages/ocean-react/src/Typography';
-import { DocTable, Swatch, Tabs, c } from './blocks';
+import { Swatch, Tabs, c } from './blocks';
 import { Md, Translate } from './i18n';
 
 /* Blocks of the component Overview pages. Styles in docs.scss (Ocean tokens only). */
@@ -162,41 +162,69 @@ export const TokensTable = ({
     >
       {t('tokens.download')}
     </Link>
-    <DocTable
-      columns={[
-        t('tokens.part'),
-        t('tokens.property'),
-        t('tokens.state'),
-        t('tokens.token'),
-        t('tokens.value'),
-      ]}
-      rows={file.rows.map((row) => [
-        row.part,
-        c(row.property),
-        row.state,
-        row.tokens.length ? (
-          <span className="odoc-token-list">
-            {row.tokens.map((token) =>
-              token.startsWith('color-') ? (
-                <Swatch key={token} token={token} />
-              ) : (
-                <React.Fragment key={token}>{c(token)}</React.Fragment>
-              )
-            )}
-          </span>
-        ) : (
-          '–'
-        ),
-        <span className="odoc-token-value">
-          {row.value}
-          {row.noToken && (
-            <Tag type="warning" size="small" setIconOff>
-              {`${t('tokens.noToken')}: ${row.noToken}`}
-            </Tag>
-          )}
-        </span>,
-      ])}
-    />
+    <div className="odoc-table-wrap">
+      <table className="odoc-table odoc-tokens">
+        <thead>
+          <tr>
+            {['part', 'property', 'state', 'token', 'value'].map((key) => (
+              <th key={key} scope="col">
+                {t(`tokens.${key}`)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {file.rows.map((row, index) => {
+            const first = index === 0 || file.rows[index - 1].part !== row.part;
+            return (
+              <React.Fragment
+                key={`${row.part}-${row.property}-${row.state}-${row.value}`}
+              >
+                {first && (
+                  <tr className="odoc-tokens__group">
+                    <th scope="rowgroup" colSpan={5}>
+                      {row.part}
+                    </th>
+                  </tr>
+                )}
+                <tr>
+                  <td className="odoc-tokens__part">{row.part}</td>
+                  <td>{c(row.property)}</td>
+                  <td>{row.state}</td>
+                  <td>
+                    {row.tokens.length ? (
+                      <span className="odoc-token-list">
+                        {row.tokens.map((token) =>
+                          token.startsWith('color-') ? (
+                            <Swatch key={token} token={token} />
+                          ) : (
+                            <React.Fragment key={token}>
+                              {c(token)}
+                            </React.Fragment>
+                          )
+                        )}
+                      </span>
+                    ) : (
+                      '–'
+                    )}
+                  </td>
+                  <td>
+                    <span className="odoc-token-value">
+                      {row.value}
+                      {row.noToken && (
+                        <Tag type="warning" size="small" setIconOff>
+                          {`${t('tokens.noToken')}: ${row.noToken}`}
+                        </Tag>
+                      )}
+                    </span>
+                  </td>
+                </tr>
+              </React.Fragment>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   </>
 );
 
