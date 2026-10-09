@@ -8,13 +8,17 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # TransactionListSelectable
 
-Linha de transação **selecionável pelo valor**, com caixa de marcar (padrão) ou opção única. Versão portal (`platform="web"`, controle à esquerda) e app (`platform="app"`, controle à direita). Faz parte da família Transaction List e fecha o gap de seleção em lista com valor no web.
+Linha de transação **selecionável pelo valor**, com caixa de marcar (padrão) ou opção única. Versão portal (`platform="web"`, controle à esquerda) e app (`platform="app"`, controle à direita). Faz parte da família Transaction List.
 
 ## Importação
 
 ```tsx
 import { TransactionListSelectable } from '@useblu/ocean-react';
-import type { TransactionListSelectableProps } from '@useblu/ocean-react';
+import type {
+  TransactionListSelectableProps,
+  ContentListDefaultProps,
+  ContentListAmountProps,
+} from '@useblu/ocean-react';
 ```
 
 ## Playground Interativo
@@ -33,10 +37,11 @@ function Example() {
 
   return (
     <TransactionListSelectable
-      title="Parcela 1 de 3"
-      description="Vence em 10/11"
-      amount="R$ 330,00"
-      amountTag={{ label: 'Em aberto', type: 'warning' }}
+      content={{ title: 'Parcela 1 de 3', description: 'Vence em 10/11' }}
+      amount={{
+        value: 'R$ 330,00',
+        tag: { label: 'Em aberto', type: 'warning' },
+      }}
       checkbox={{
         id: 'parcela-1',
         checked,
@@ -59,8 +64,8 @@ function Example() {
         <TransactionListSelectable
           key={id}
           platform="app"
-          title={`Opção ${id.toUpperCase()}`}
-          amount="R$ 100,00"
+          content={{ title: `Opção ${id.toUpperCase()}` }}
+          amount={{ value: 'R$ 100,00' }}
           radio={{
             id: `opcao-${id}`,
             name: 'opcoes',
@@ -95,6 +100,10 @@ Todos os estados (Checkbox/Radio × App/Web) saem das props:
 - `checkbox.indeterminate` e `checkbox.error` / `radio.error`: estados do próprio controle.
 - `loading`: esqueleto do controle e do conteúdo.
 
+## Textos longos
+
+Os textos do conteúdo e a informação do valor (`amount.info`) quebram em até **duas linhas** e depois são cortados com reticências; o corte é só visual, então leitores de tela leem o texto completo. A tag fica em uma linha; rótulos longos são truncados com reticências, e o rótulo completo fica disponível como dica (`title`).
+
 ## Densidade (density)
 
 `density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
@@ -103,35 +112,22 @@ Todos os estados (Checkbox/Radio × App/Web) saem das props:
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão      | Descrição                                                                                                                            |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `title`                    | `string`                                                                                                   | -           | Texto principal (obrigatório). Com `inverted` (padrão) é a linha menor acima da descrição                                            |
-| `description`              | `string`                                                                                                   | -           | Texto secundário                                                                                                                     |
-| `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                                               |
-| `caption`                  | `string`                                                                                                   | -           | Legenda (captionBold)                                                                                                                |
-| `inverted`                 | `boolean`                                                                                                  | `true`      | Inverte título e descrição                                                                                                           |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Tipo do bloco de conteúdo                                                                                                            |
-| `contentSize`              | `'md' \| 'sm'`                                                                                             | `'md'`      | Escala do texto, independente do valor                                                                                               |
-| `amount`                   | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                                                                                                |
-| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'inactive' \| 'strikethrough' \| 'strikethrough-neutral'`        | `'default'` | Tipo do valor                                                                                                                        |
-| `amountSize`               | `'md' \| 'sm'`                                                                                             | `'md'`      | Tamanho do valor (md 16 / sm 14); a tag acompanha (Medium / Small)                                                                   |
-| `strikethroughAmount`      | `string`                                                                                                   | -           | Valor original riscado antes de `amount` (tipos `strikethrough*`)                                                                    |
-| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -           | Tag abaixo do valor; tamanho vem de `amountSize`, fica `neutral` quando desabilitado                                                 |
-| `amountIndicator`          | `ReactNode`                                                                                                | -           | Indicador livre abaixo do valor (quando `amountTag` não basta)                                                                       |
-| `showAmountIndicator`      | `boolean`                                                                                                  | `true`      | Exibe a tag/indicador do valor                                                                                                       |
-| `additionalData`           | `string`                                                                                                   | -           | Dado adicional abaixo do valor                                                                                                       |
-| `disabled`                 | `boolean`                                                                                                  | `false`     | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                              |
-| `loading`                  | `boolean`                                                                                                  | `false`     | Exibe o esqueleto                                                                                                                    |
-| `density`                  | `'default' \| 'compact'`                                                                                   | `'default'` | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda |
-| `checkbox`                 | `CheckboxProps`                                                                                            | -           | Props da caixa de marcar (controle padrão)                                                                                           |
-| `radio`                    | `RadioProps`                                                                                               | -           | Props da opção única; quando informado, substitui a caixa de marcar                                                                  |
-| `platform`                 | `'web' \| 'app'`                                                                                           | `'web'`     | `web`: controle à esquerda; `app`: controle à direita                                                                                |
-| `showDivider`              | `boolean`                                                                                                  | `true`      | Exibe o divisor abaixo do item                                                                                                       |
-| `className`                | `string`                                                                                                   | -           | Classes CSS adicionais                                                                                                               |
+| Prop          | Tipo                      | Padrão      | Descrição                                                                                                                                                                                                                 |
+| ------------- | ------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`     | `ContentListDefaultProps` | -           | Bloco de conteúdo à esquerda (obrigatório): `title`, `description`, `strikethroughDescription`, `caption`, `inverted`, `status`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#content) |
+| `amount`      | `ContentListAmountProps`  | -           | Bloco de valor à direita (obrigatório): `value`, `type`, `strikethroughValue`, `tag`, `info`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#amount)                                     |
+| `disabled`    | `boolean`                 | `false`     | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                                                                                                                   |
+| `loading`     | `boolean`                 | `false`     | Exibe o esqueleto                                                                                                                                                                                                         |
+| `density`     | `'default' \| 'compact'`  | `'default'` | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda                                                                                      |
+| `checkbox`    | `CheckboxProps`           | -           | Props da caixa de marcar (controle padrão)                                                                                                                                                                                |
+| `radio`       | `RadioProps`              | -           | Props da opção única; quando informado, substitui a caixa de marcar                                                                                                                                                       |
+| `platform`    | `'web' \| 'app'`          | `'web'`     | `web`: controle à esquerda; `app`: controle à direita                                                                                                                                                                     |
+| `showDivider` | `boolean`                 | `true`      | Exibe o divisor abaixo do item                                                                                                                                                                                            |
+| `className`   | `string`                  | -           | Classes CSS adicionais                                                                                                                                                                                                    |
 
 ## Acessibilidade
 
-- O item inteiro é o `<label>` do controle: clicar em qualquer ponto marca/desmarca. Use `id` no controle e `name` nos radios do mesmo grupo.
+- O item inteiro é o `<label>` do controle: clicar em qualquer ponto marca/desmarca, e o nome do controle inclui título, descrição e valor. Use `id` no controle e `name` nos radios do mesmo grupo.
 
 ## Links relacionados
 

@@ -15,7 +15,11 @@ Linha de transação com **ação à direita**: seta (leva ao detalhe), menu con
 
 ```tsx
 import { TransactionListAction } from '@useblu/ocean-react';
-import type { TransactionListActionProps } from '@useblu/ocean-react';
+import type {
+  TransactionListActionProps,
+  ContentListDefaultProps,
+  ContentListAmountProps,
+} from '@useblu/ocean-react';
 ```
 
 ## Playground Interativo
@@ -30,12 +34,12 @@ import type { TransactionListActionProps } from '@useblu/ocean-react';
 
 ```tsx live
 <TransactionListAction
-  title="Boleto pago"
-  description="Fornecedor Exemplo"
-  caption="Ontem"
-  amount="R$ 1.250,00"
-  amountType="negative"
-  additionalData="Conta digital"
+  content={{
+    title: 'Boleto pago',
+    description: 'Fornecedor Exemplo',
+    caption: 'Ontem',
+  }}
+  amount={{ value: 'R$ 1.250,00', type: 'negative', info: 'Conta digital' }}
   icon={<PlaceholderOutline size={24} />}
   onClick={() => alert('Abrir detalhe')}
 />
@@ -46,28 +50,27 @@ import type { TransactionListActionProps } from '@useblu/ocean-react';
 ```tsx live
 <List>
   <TransactionListAction
-    title="Chevron"
-    description="Leva ao detalhe"
-    amount="R$ 0,00"
+    content={{ title: 'Chevron', description: 'Leva ao detalhe' }}
+    amount={{ value: 'R$ 0,00' }}
     icon={<PlaceholderOutline size={24} />}
   />
   <TransactionListAction
-    title="Menu"
-    description="Abre o menu contextual"
-    amount="R$ 0,00"
+    content={{ title: 'Menu', description: 'Abre o menu contextual' }}
+    amount={{ value: 'R$ 0,00' }}
     icon={<PlaceholderOutline size={24} />}
     actionType="menu"
+    menuLabel="Ações de Menu"
     menuActions={[
       { label: 'Editar', onClick: () => {} },
       { label: 'Excluir', onClick: () => {}, variant: 'negative' },
     ]}
   />
   <TransactionListAction
-    title="Swipe"
-    description="Revela as ações de lado"
-    amount="R$ 0,00"
+    content={{ title: 'Swipe', description: 'Revela as ações de lado' }}
+    amount={{ value: 'R$ 0,00' }}
     icon={<PlaceholderOutline size={24} />}
     actionType="swipe"
+    menuLabel="Ações de Swipe"
     menuActions={[
       {
         label: 'Arquivar',
@@ -86,7 +89,7 @@ import type { TransactionListActionProps } from '@useblu/ocean-react';
 </List>
 ```
 
-O clique no gatilho do menu/swipe não dispara o `onClick` da linha. No carregamento o gatilho não aparece; desabilitado, o gatilho fica desabilitado em `Interface/Light/Deep`.
+O clique no gatilho do menu/swipe não dispara o `onClick` da linha. Dê ao botão de mais opções um nome que identifique a linha com `menuLabel` (ex.: "Ações de Pagamento a fornecedor") quando houver várias linhas na tela; sem ele, todos os botões têm o mesmo nome padrão. No carregamento o gatilho não aparece; desabilitado, o gatilho fica desabilitado em `Interface/Light/Deep`.
 
 ## Cor do ícone (iconColor)
 
@@ -105,14 +108,16 @@ Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escol
 ```tsx live
 <List>
   <TransactionListAction
-    title="Desabilitado"
-    description="Não dispara onClick"
-    amount="R$ 0,00"
-    amountTag={{ label: 'Label' }}
+    content={{ title: 'Desabilitado', description: 'Não dispara onClick' }}
+    amount={{ value: 'R$ 0,00', tag: { label: 'Label' } }}
     icon={<PlaceholderOutline size={24} />}
     disabled
   />
-  <TransactionListAction title="Carregando" amount="R$ 0,00" loading />
+  <TransactionListAction
+    content={{ title: 'Carregando' }}
+    amount={{ value: 'R$ 0,00' }}
+    loading
+  />
 </List>
 ```
 
@@ -120,7 +125,11 @@ Desabilitado: conteúdo e valor no tipo inativo, tag neutra e a seta (ou o gatil
 
 ## Tamanhos e tipos de valor
 
-Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `contentSize` e `amountSize` independentes (`md` padrão) e `amountType` com `strikethrough` / `strikethrough-neutral`.
+Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `content.size` e `amount.size` independentes (`md` padrão) e `amount.type` com `strikethrough` / `strikethrough-neutral`.
+
+## Textos longos
+
+Os textos do conteúdo e a informação do valor (`amount.info`) quebram em até **duas linhas** e depois são cortados com reticências; o corte é só visual, então leitores de tela leem o texto completo. A tag fica em uma linha; rótulos longos são truncados com reticências, e o rótulo completo fica disponível como dica (`title`).
 
 ## Densidade (density)
 
@@ -130,38 +139,27 @@ Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `c
 
 ### Props
 
-| Prop                       | Tipo                                                                                                       | Padrão           | Descrição                                                                                                                            |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `title`                    | `string`                                                                                                   | -                | Texto principal (obrigatório). Com `inverted` (padrão) é a linha menor acima da descrição                                            |
-| `description`              | `string`                                                                                                   | -                | Texto secundário                                                                                                                     |
-| `strikethroughDescription` | `string`                                                                                                   | -                | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                                               |
-| `caption`                  | `string`                                                                                                   | -                | Legenda (captionBold)                                                                                                                |
-| `inverted`                 | `boolean`                                                                                                  | `true`           | Inverte título e descrição                                                                                                           |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`      | Tipo do bloco de conteúdo                                                                                                            |
-| `contentSize`              | `'md' \| 'sm'`                                                                                             | `'md'`           | Escala do texto, independente do valor                                                                                               |
-| `amount`                   | `string`                                                                                                   | -                | Valor exibido à direita (obrigatório)                                                                                                |
-| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'inactive' \| 'strikethrough' \| 'strikethrough-neutral'`        | `'default'`      | Tipo do valor                                                                                                                        |
-| `amountSize`               | `'md' \| 'sm'`                                                                                             | `'md'`           | Tamanho do valor (md 16 / sm 14); a tag acompanha (Medium / Small)                                                                   |
-| `strikethroughAmount`      | `string`                                                                                                   | -                | Valor original riscado antes de `amount` (tipos `strikethrough*`)                                                                    |
-| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -                | Tag abaixo do valor; tamanho vem de `amountSize`, fica `neutral` quando desabilitado                                                 |
-| `amountIndicator`          | `ReactNode`                                                                                                | -                | Indicador livre abaixo do valor (quando `amountTag` não basta)                                                                       |
-| `showAmountIndicator`      | `boolean`                                                                                                  | `true`           | Exibe a tag/indicador do valor                                                                                                       |
-| `additionalData`           | `string`                                                                                                   | -                | Dado adicional abaixo do valor                                                                                                       |
-| `disabled`                 | `boolean`                                                                                                  | `false`          | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                              |
-| `loading`                  | `boolean`                                                                                                  | `false`          | Exibe o esqueleto                                                                                                                    |
-| `icon`                     | `ReactNode`                                                                                                | -                | Ícone à esquerda                                                                                                                     |
-| `iconColor`                | `'default' \| 'on-color' \| 'highlight'`                                                                   | `'default'`      | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`                                                    |
-| `density`                  | `'default' \| 'compact'`                                                                                   | `'default'`      | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda |
-| `actionType`               | `'chevron' \| 'menu' \| 'swipe'`                                                                           | `'chevron'`      | Ação à direita                                                                                                                       |
-| `menuActions`              | `ActionItem[]`                                                                                             | `[]`             | Ações dos tipos `menu` e `swipe`                                                                                                     |
-| `menuPosition`             | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'`                                             | `'bottom-right'` | Posição do menu                                                                                                                      |
-| `onClick`                  | `(event) => void`                                                                                          | -                | Disparado uma vez por toque; não dispara com `disabled` ou `loading`                                                                 |
-| `showDivider`              | `boolean`                                                                                                  | `true`           | Exibe o divisor abaixo do item                                                                                                       |
-| `className`                | `string`                                                                                                   | -                | Classes CSS no elemento raiz (o `ref` e as demais props vão para o `<button>`)                                                       |
+| Prop           | Tipo                                                           | Padrão                | Descrição                                                                                                                                                                                                                 |
+| -------------- | -------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`      | `ContentListDefaultProps`                                      | -                     | Bloco de conteúdo à esquerda (obrigatório): `title`, `description`, `strikethroughDescription`, `caption`, `inverted`, `status`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#content) |
+| `amount`       | `ContentListAmountProps`                                       | -                     | Bloco de valor à direita (obrigatório): `value`, `type`, `strikethroughValue`, `tag`, `info`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#amount)                                     |
+| `icon`         | `ReactNode`                                                    | -                     | Ícone à esquerda                                                                                                                                                                                                          |
+| `iconColor`    | `'default' \| 'on-color' \| 'highlight'`                       | `'default'`           | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`                                                                                                                                         |
+| `disabled`     | `boolean`                                                      | `false`               | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                                                                                                                   |
+| `loading`      | `boolean`                                                      | `false`               | Exibe o esqueleto                                                                                                                                                                                                         |
+| `density`      | `'default' \| 'compact'`                                       | `'default'`           | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda                                                                                      |
+| `actionType`   | `'chevron' \| 'menu' \| 'swipe'`                               | `'chevron'`           | Ação à direita                                                                                                                                                                                                            |
+| `menuActions`  | `ActionItem[]`                                                 | `[]`                  | Ações dos tipos `menu` e `swipe`                                                                                                                                                                                          |
+| `menuPosition` | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'` | `'bottom-right'`      | Posição do menu                                                                                                                                                                                                           |
+| `menuLabel`    | `string`                                                       | `'Open actions menu'` | Nome acessível do botão de mais opções (`menu` e `swipe`), como "Ações de Pagamento a fornecedor"                                                                                                                         |
+| `onClick`      | `(event) => void`                                              | -                     | Disparado uma vez por toque; não dispara com `disabled` ou `loading`                                                                                                                                                      |
+| `showDivider`  | `boolean`                                                      | `true`                | Exibe o divisor abaixo do item                                                                                                                                                                                            |
+| `className`    | `string`                                                       | -                     | Classes CSS no elemento raiz (o `ref` e as demais props vão para o `<button>`)                                                                                                                                            |
 
 ## Acessibilidade
 
 - A área clicável é um `<button type="button">` com foco visível; `disabled` e `loading` desabilitam o botão.
+- O botão de mais opções (`menu` e `swipe`) é nomeado por `menuLabel`; `aria-expanded` acompanha o menu, que tem `role="menu"`.
 
 ## Links relacionados
 

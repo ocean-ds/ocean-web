@@ -12,7 +12,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # Itens filhos da Transaction List
 
-`TransactionListChildAction` (com seta) e `TransactionListChildReadOnly` (sem seta) são os itens que aparecem **dentro** da [TransactionListExpandable](/components/transactionlistexpandable), ligados por uma linha do tempo. Por padrão usam a escala compacta (`contentSize="sm"`, `amountSize="sm"`).
+`TransactionListChildAction` (com seta) e `TransactionListChildReadOnly` (sem seta) são os itens que aparecem **dentro** da [TransactionListExpandable](/components/transactionlistexpandable), ligados por uma linha do tempo. Recebem os mesmos blocos `content` e `amount` da família e, por padrão, usam a escala compacta (`content.size` e `amount.size` em `sm`).
 
 ## Importação
 
@@ -44,23 +44,20 @@ import {
 ```tsx live
 <div style={{ maxWidth: 360 }}>
   <TransactionListChildAction
-    title="Parcela 1"
-    description="Paga"
-    amount="R$ 100,00"
+    content={{ title: 'Parcela 1', description: 'Paga' }}
+    amount={{ value: 'R$ 100,00' }}
     icon={<Placeholder size={16} />}
     position="first"
   />
   <TransactionListChildAction
-    title="Parcela 2"
-    description="Paga"
-    amount="R$ 100,00"
+    content={{ title: 'Parcela 2', description: 'Paga' }}
+    amount={{ value: 'R$ 100,00' }}
     icon={<Placeholder size={16} />}
     position="middle"
   />
   <TransactionListChildReadOnly
-    title="Parcela 3"
-    description="A vencer"
-    amount="R$ 100,00"
+    content={{ title: 'Parcela 3', description: 'A vencer' }}
+    amount={{ value: 'R$ 100,00' }}
     icon={<Placeholder size={16} />}
     position="last"
     disabled
@@ -82,6 +79,10 @@ Nos itens filhos (também quando usados na `TransactionListExpandable`), **sem `
 
 Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escolha — não é uma opção. O ícone herda a cor do componente: passe ícones **sem cor própria** (ex.: `<PlaceholderOutline size={24} />`, sem `color`).
 
+## Textos longos
+
+Os textos do conteúdo e a informação do valor (`amount.info`) quebram em até **duas linhas** e depois são cortados com reticências; o corte é só visual, então leitores de tela leem o texto completo. A tag fica em uma linha; rótulos longos são truncados com reticências, e o rótulo completo fica disponível como dica (`title`).
+
 ## Densidade (density)
 
 `density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 12 no `default` dos filhos. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
@@ -90,30 +91,17 @@ Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escol
 
 As duas compartilham as props da família:
 
-| Prop                       | Tipo                                                                                                       | Padrão         | Descrição                                                                                                                            |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `title`                    | `string`                                                                                                   | -              | Texto principal (obrigatório). Com `inverted` (padrão) é a linha menor acima da descrição                                            |
-| `description`              | `string`                                                                                                   | -              | Texto secundário                                                                                                                     |
-| `strikethroughDescription` | `string`                                                                                                   | -              | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                                               |
-| `caption`                  | `string`                                                                                                   | -              | Legenda (captionBold)                                                                                                                |
-| `inverted`                 | `boolean`                                                                                                  | `true`         | Inverte título e descrição                                                                                                           |
-| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'`    | Tipo do bloco de conteúdo                                                                                                            |
-| `contentSize`              | `'md' \| 'sm'`                                                                                             | `'sm'`         | Escala do texto, independente do valor                                                                                               |
-| `amount`                   | `string`                                                                                                   | -              | Valor exibido à direita (obrigatório)                                                                                                |
-| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'inactive' \| 'strikethrough' \| 'strikethrough-neutral'`        | `'default'`    | Tipo do valor                                                                                                                        |
-| `amountSize`               | `'md' \| 'sm'`                                                                                             | `'sm'`         | Tamanho do valor (md 16 / sm 14); a tag acompanha (Medium / Small)                                                                   |
-| `strikethroughAmount`      | `string`                                                                                                   | -              | Valor original riscado antes de `amount` (tipos `strikethrough*`)                                                                    |
-| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -              | Tag abaixo do valor; tamanho vem de `amountSize`, fica `neutral` quando desabilitado                                                 |
-| `amountIndicator`          | `ReactNode`                                                                                                | -              | Indicador livre abaixo do valor (quando `amountTag` não basta)                                                                       |
-| `showAmountIndicator`      | `boolean`                                                                                                  | `true`         | Exibe a tag/indicador do valor                                                                                                       |
-| `additionalData`           | `string`                                                                                                   | -              | Dado adicional abaixo do valor                                                                                                       |
-| `disabled`                 | `boolean`                                                                                                  | `false`        | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                              |
-| `loading`                  | `boolean`                                                                                                  | `false`        | Exibe o esqueleto                                                                                                                    |
-| `icon`                     | `ReactNode`                                                                                                | -              | Ícone de 16px no centro da linha do tempo                                                                                            |
-| `iconColor`                | `'default' \| 'on-color' \| 'highlight'`                                                                   | -              | Sem a prop: `Interface/Light/Down` (padrão do filho). Explícito substitui; desabilitado sempre força `Interface/Light/Deep`          |
-| `density`                  | `'default' \| 'compact'`                                                                                   | `'default'`    | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda |
-| `position`                 | `'standalone' \| 'first' \| 'middle' \| 'last'`                                                            | `'standalone'` | Posição na linha do tempo                                                                                                            |
-| `className`                | `string`                                                                                                   | -              | Classes CSS no elemento raiz                                                                                                         |
+| Prop        | Tipo                                            | Padrão         | Descrição                                                                                                                                                                                                                      |
+| ----------- | ----------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `content`   | `ContentListDefaultProps`                       | -              | Bloco de conteúdo (obrigatório): `title`, `description`, `strikethroughDescription`, `caption`, `inverted`, `status`, `size` (padrão `'sm'`). Campos em [TransactionListReadOnly](/components/transactionlistreadonly#content) |
+| `amount`    | `ContentListAmountProps`                        | -              | Bloco de valor (obrigatório): `value`, `type`, `strikethroughValue`, `tag`, `info`, `size` (padrão `'sm'`). Campos em [TransactionListReadOnly](/components/transactionlistreadonly#amount)                                    |
+| `icon`      | `ReactNode`                                     | -              | Ícone de 16px no centro da linha do tempo                                                                                                                                                                                      |
+| `iconColor` | `'default' \| 'on-color' \| 'highlight'`        | -              | Sem a prop: `Interface/Light/Down` (padrão do filho). Explícito substitui; desabilitado sempre força `Interface/Light/Deep`                                                                                                    |
+| `disabled`  | `boolean`                                       | `false`        | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                                                                                                                        |
+| `loading`   | `boolean`                                       | `false`        | Exibe o esqueleto                                                                                                                                                                                                              |
+| `density`   | `'default' \| 'compact'`                        | `'default'`    | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda                                                                                           |
+| `position`  | `'standalone' \| 'first' \| 'middle' \| 'last'` | `'standalone'` | Posição na linha do tempo                                                                                                                                                                                                      |
+| `className` | `string`                                        | -              | Classes CSS no elemento raiz                                                                                                                                                                                                   |
 
 `TransactionListChildAction` também recebe `onClick` (um disparo por toque; nada com `disabled`/`loading`) e encaminha `ref` e as demais props para o `<button>`.
 
