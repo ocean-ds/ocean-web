@@ -1,0 +1,385 @@
+{
+  "breadcrumb": ["Componentes", "Listas"],
+  "description": "Linhas que mostram movimentações financeiras, unindo o que aconteceu e o valor, nas variantes somente leitura, ação, seleção e expansível.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Especificações",
+    "accessibility": "Acessibilidade"
+  },
+  "guidelines": {
+    "overview": {
+      "title": "Visão geral",
+      "text": "A transaction list mostra movimentações financeiras, como pagamentos, vendas, transferências e taxas, em linhas que unem o que aconteceu e o valor. Toda linha tem um bloco de conteúdo à esquerda e um bloco de valor à direita. A família compartilha essa estrutura e acrescenta o comportamento que cada contexto pede.",
+      "whenToUse": "Quando usar",
+      "whenToUseItems": [
+        "Extratos, comprovantes e históricos de pagamento.",
+        "Listas de recebíveis, parcelas e pagamentos agendados.",
+        "Escolha de transações para pagar, antecipar ou exportar.",
+        "Detalhamento de um total nas partes que o compõem."
+      ],
+      "whenNotToUse": "Quando não usar",
+      "whenNotToUseItems": [
+        "Linhas sem valor: use List.",
+        "Menus de configuração e navegação: use List.",
+        "Comparação de muitas colunas de dados: use uma tabela.",
+        "Um saldo ou total sozinho: use um card."
+      ],
+      "variants": "Variantes",
+      "variantColumns": ["Variante", "Finalidade"],
+      "variantRows": {
+        "readOnly": "Mostra uma transação sem ação, como uma linha de extrato.",
+        "action": "Abre detalhes ou oferece ações por chevron, menu de mais opções ou swipe.",
+        "selectable": "Permite escolher uma ou mais transações com checkbox ou radio.",
+        "expandable": "Revela os itens que compõem um total, como o valor bruto e as taxas.",
+        "childReadOnly": "Um item dentro de uma linha expansível, em uma linha do tempo.",
+        "childAction": "Um item filho que abre os próprios detalhes."
+      }
+    },
+    "formatting": {
+      "title": "Formatação",
+      "anatomy": "Anatomia",
+      "anatomyColumns": ["#", "Elemento", "Obrigatório", "Observações"],
+      "yes": "Sim",
+      "no": "Não",
+      "anatomyRows": [
+        ["Ícone", "Categoria da movimentação, 24px. Segue `iconColor`."],
+        ["Título", "O que aconteceu, como \"Pagamento a fornecedor\"."],
+        [
+          "Descrição",
+          "Com quem a transação se relaciona. Linha em destaque por padrão."
+        ],
+        ["Legenda", "Data, número do pedido ou vencimento."],
+        ["Valor", "Valor formatado; o tipo adiciona sinal e cor."],
+        [
+          "Tag",
+          "Status da transação, como Pagamento agendado, Processando ou Cancelado."
+        ],
+        ["Informação adicional", "Uma informação curta sobre o valor."],
+        [
+          "Divisor",
+          "Linha fina e recuada entre as linhas; desligada na última."
+        ]
+      ],
+      "sizes": "Tamanhos",
+      "sizesText": "Conteúdo e valor têm dois tamanhos cada, definidos de forma independente com `content.size` e `amount.size`. Use `md` em linhas principais e `sm` em listas densas e itens filhos.",
+      "size": "Tamanho {size}",
+      "density": "Densidade",
+      "densityText": "`density=\"compact\"` reduz o espaçamento vertical de 16px para 8px. Use em listas longas em telas grandes; mantenha o padrão em telas de toque.",
+      "densityDefault": "Padrão",
+      "densityCompact": "Compacta",
+      "dividers": "Divisores",
+      "dividersText": "Os divisores separam as linhas de um mesmo grupo. Eles ficam recuados 16px e vêm ligados por padrão; desligue na última linha para não duplicar a borda do contêiner."
+    },
+    "content": {
+      "title": "Conteúdo",
+      "mainElements": "Elementos principais",
+      "mainElementsItems": [
+        "**Título** nomeia a movimentação no vocabulário do produto: \"Pagamento a fornecedor\", \"Transferência bancária\", \"Vendas recebidas\".",
+        "**Descrição** nomeia a contraparte: o fornecedor, o lojista, o cartão ou o banco. Uma informação por linha.",
+        "**Legenda** traz a data, o número do pedido ou o vencimento.",
+        "**Valor** é sempre formatado e sem sinal (`R$ 6.819,33`); `amount.type` adiciona o sinal e a cor.",
+        "**Tag** mostra o status da transação; o tipo vem das regras de status do produto."
+      ],
+      "amountType": "Tipo de valor",
+      "amountTypeColumns": ["Tipo", "Aparência", "Quando usar"],
+      "amountTypes": {
+        "default": [
+          "Sem sinal, neutro",
+          "Valores que não entram nem saem da conta."
+        ],
+        "positive": [
+          "Sem sinal, cor positiva",
+          "Dinheiro entrando: vendas, Pix recebido, estornos."
+        ],
+        "negative": [
+          "Sinal \"-\", cor neutra",
+          "Dinheiro saindo: pagamentos, taxas, transferências."
+        ],
+        "strikethrough": [
+          "Valor original riscado, novo valor em cor positiva",
+          "Um desconto ou uma taxa isenta."
+        ],
+        "strikethrough-neutral": [
+          "Valor original riscado, novo valor neutro",
+          "Um valor alterado que não é um benefício."
+        ],
+        "inactive": ["Esmaecido", "Linhas desabilitadas."]
+      },
+      "tags": "Tags",
+      "tagsText": "Uma tag por linha mostra o status da transação. O tipo vem das regras de status do produto; os exemplos abaixo seguem essas regras. Um pagamento cancelado mantém o valor.",
+      "tagColumns": ["Status", "Tipo da tag"],
+      "tagRows": [
+        ["Pagamento agendado", "`complementary`"],
+        ["Processando", "`neutral`"],
+        ["Cancelado", "`neutral`"]
+      ],
+      "doDont": "Faça e não faça",
+      "verdicts": {
+        "do": "Faça",
+        "dont": "Não faça",
+        "caution": "Atenção"
+      },
+      "doDontItems": [
+        "Passe o valor sem sinal e defina o tipo; o tipo negative adiciona o sinal.",
+        "Não digite o sinal no valor. O tipo negative já adiciona o sinal, e ele aparece duas vezes.",
+        "Mostre um pagamento cancelado com a tag neutra Cancelado e o valor mantido.",
+        "Não escreva uma frase na tag. Use um status curto.",
+        "Mantenha a tag curta e leve o detalhe para o info.",
+        "Use os tipos riscados só quando o valor original realmente mudou, como uma taxa isenta.",
+        "Use `iconColor=\"on-color\"` só em fundos coloridos. No branco, o ícone fica mais escuro que os das linhas ao redor."
+      ]
+    },
+    "behaviors": {
+      "title": "Comportamentos",
+      "states": "Estados",
+      "stateColumns": ["Estado", "Quando", "Aparência"],
+      "stateRows": [
+        ["Padrão", "A linha está pronta.", "Conteúdo e valor com cor plena."],
+        [
+          "Hover",
+          "Ponteiro sobre uma linha interativa.",
+          "Sobreposição clara na linha inteira."
+        ],
+        [
+          "Pressionado",
+          "Ponteiro pressionado em uma linha interativa.",
+          "Sobreposição mais forte."
+        ],
+        [
+          "Foco",
+          "Foco do teclado em uma linha interativa.",
+          "Contorno primário dentro da linha."
+        ],
+        [
+          "Carregando",
+          "Os dados estão a caminho.",
+          "Esqueleto no lugar do conteúdo."
+        ],
+        [
+          "Desabilitado",
+          "Não é possível agir sobre a movimentação.",
+          "Conteúdo esmaecido, tag neutra, sem callbacks."
+        ]
+      ],
+      "stateLabels": {
+        "default": "Padrão",
+        "loading": "Carregando",
+        "disabled": "Desabilitado"
+      },
+      "interaction": "Interação",
+      "interactionText": "Uma linha Action é um único alvo: um clique em qualquer ponto chama `onClick` uma vez. Com o menu de mais opções, o botão abre as ações abaixo dele na web; no iOS e no Android, as mesmas ações abrem em uma bottom sheet. O swipe revela as ações na própria linha em telas de toque.",
+      "actionTypes": {
+        "chevron": "Chevron",
+        "menu": "Menu",
+        "swipe": "Swipe"
+      }
+    },
+    "variants": {
+      "title": "Variantes",
+      "readOnly": "Para linhas apenas de leitura, como um extrato. Sem hover e sem foco.",
+      "action": "Para linhas que abrem algo. Use o chevron para abrir detalhes, o menu de mais opções para duas ou mais ações e o swipe em telas de toque.",
+      "selectable": "Para escolher transações. O checkbox permite várias; o radio, uma. O controle fica à esquerda na web e à direita nos apps.",
+      "checkbox": "Checkbox",
+      "radio": "Radio",
+      "expandable": "Para totais compostos por partes. A linha abre e fecha os itens filhos; o texto de apoio fecha o grupo.",
+      "child": "Os itens filhos ficam em uma linha do tempo dentro de uma linha expansível. Defina `position` em cada um: first, middle, last, ou standalone para um item único. Use o Child Action quando o item abrir os próprios detalhes."
+    },
+    "related": {
+      "title": "Relacionados",
+      "list": [
+        "List",
+        "Linhas sem valor: configurações, navegação e conteúdo simples."
+      ],
+      "tag": ["Tag", "O status mostrado abaixo do valor."],
+      "bottomSheet": [
+        "Bottom sheet",
+        "Reúne as ações da linha no iOS e no Android, no lugar do menu da web."
+      ]
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Encontrou um problema ou tem uma sugestão? Abra uma issue ou um pull request no [GitHub](https://github.com/ocean-ds/ocean-web/issues)."
+    }
+  },
+  "specs": {
+    "fullList": "Lista completa de tokens →",
+    "color": {
+      "title": "Cor",
+      "columns": ["Elemento", "Propriedade", "Token de cor"],
+      "rows": [
+        ["Título (linha pequena)", "Texto"],
+        ["Descrição (linha em destaque)", "Texto"],
+        ["Legenda", "Texto"],
+        ["Linha em destaque, positiva / riscada", "Texto"],
+        ["Linha em destaque, alerta", "Texto"],
+        ["Valor, padrão e negativo", "Texto"],
+        ["Valor, positivo e riscado", "Texto"],
+        ["Valor original riscado", "Texto"],
+        ["Informação adicional", "Texto"],
+        ["Texto e valor desabilitados", "Texto"],
+        ["Chevron", "Ícone"],
+        ["Chevron, desabilitado", "Ícone"],
+        ["Divisor", "Borda"],
+        ["Linha do tempo (itens filhos)", "Fundo"],
+        ["Esqueleto", "Fundo"]
+      ]
+    },
+    "iconColor": {
+      "title": "Cor do ícone",
+      "columns": ["iconColor", "Uso", "Token de cor"],
+      "rows": [
+        "Linhas em fundo branco",
+        "Linhas em fundos coloridos",
+        "Um ícone que precisa de destaque",
+        "Qualquer linha com `disabled`",
+        "Itens filhos na linha do tempo"
+      ]
+    },
+    "states": {
+      "title": "Estados interativos",
+      "columns": ["Estado", "Token de cor", "Tratamento"],
+      "rows": [
+        ["Hover", "Sobreposição na linha, blend multiply"],
+        ["Pressionado", "Sobreposição na linha, blend multiply"],
+        ["Foco", "Contorno de 2px dentro da linha"],
+        ["Desabilitado", "Sem sobreposição; o ponteiro indica não permitido"]
+      ]
+    },
+    "typography": {
+      "title": "Tipografia",
+      "text": "Todo o texto usa `font-family-base` ({font}) com `line-height-comfy`. Os tokens aparecem como md / sm.",
+      "columns": [
+        "Elemento",
+        "Tamanho md",
+        "Tamanho sm",
+        "Peso",
+        "Tokens (md / sm)"
+      ],
+      "rows": [
+        ["Título (linha pequena)", "Regular / Medium"],
+        ["Descrição (linha em destaque)", "Regular"],
+        ["Legenda", "Medium"],
+        ["Valor", "Medium"],
+        ["Valor original riscado", "Regular"],
+        ["Informação adicional", "Medium"],
+        ["Tag", "Medium / Bold"]
+      ],
+      "noToken": "sem token (10px)"
+    },
+    "structure": {
+      "title": "Estrutura",
+      "columns": [
+        "Elemento",
+        "Propriedade",
+        "px",
+        "rem",
+        "Token de espaçamento"
+      ],
+      "rows": [
+        ["Linha", "Espaçamento interno"],
+        ["Linha, compacta", "Espaçamento vertical"],
+        ["Ícone até o conteúdo", "Espaço"],
+        ["Conteúdo até o valor", "Espaço"],
+        ["Bloco de valor", "Espaço entre linhas"],
+        ["Legenda", "Margem superior"],
+        ["Divisor", "Recuo (esquerda e direita)"],
+        ["Divisor", "Espessura"],
+        ["Controle de seleção até o conteúdo", "Espaço"],
+        ["Botão de menu", "Espaçamento à direita"],
+        ["Conteúdo do item filho", "Espaçamento vertical"],
+        ["Coluna da linha do tempo", "Largura"],
+        ["Ícone da linha do tempo", "Espaçamento interno"],
+        ["Ícone", "Tamanho (principal / filho)"]
+      ],
+      "noToken": "Sem token"
+    },
+    "size": {
+      "title": "Tamanho",
+      "text": "A altura da linha vem do conteúdo; os valores abaixo são as alturas com todos os elementos (título, descrição, legenda, valor, tag e informação adicional).",
+      "columns": ["Configuração", "Padrão", "Compacta"],
+      "rows": ["Conteúdo md · valor md", "Conteúdo sm · valor sm", "Carregando"]
+    }
+  },
+  "accessibility": {
+    "provides": {
+      "title": "O que o Ocean oferece",
+      "keyboard": "Teclado",
+      "keyboardColumns": ["Tecla", "Ação", "Variantes"],
+      "keyboardRows": [
+        [
+          "Tab",
+          "Vai para a próxima linha, botão de menu ou controle. Linhas Read Only são ignoradas.",
+          "Action, Selectable, Expandable, Child Action"
+        ],
+        [
+          "Enter / Espaço",
+          "Ativa a linha: abre os detalhes, abre ou fecha os itens filhos ou o menu.",
+          "Action, Expandable, Child Action"
+        ],
+        ["Espaço", "Marca ou desmarca o controle.", "Selectable"],
+        ["Setas", "Movem entre os radios de um grupo.", "Selectable (radio)"],
+        [
+          "Enter / Espaço em um item do menu",
+          "Executa a ação e fecha o menu.",
+          "Action (menu, swipe)"
+        ]
+      ],
+      "screenReaders": "Leitores de tela",
+      "screenReaderColumns": ["Elemento", "Comportamento"],
+      "screenReaderRows": [
+        [
+          "Action, Child Action",
+          "Renderizado como `<button>` nativo; o texto da linha é o nome."
+        ],
+        [
+          "Selectable",
+          "Checkbox ou radio nativo; a linha inteira é o rótulo, então o nome inclui título, descrição e valor."
+        ],
+        [
+          "Expandable",
+          "Botão com `aria-expanded` e um nome que diz se ele abre ou fecha a linha."
+        ],
+        [
+          "Botão de menu",
+          "Nomeado por `menuLabel` (padrão \"Open actions menu\"); `aria-expanded` acompanha o menu, que tem `role=\"menu\"`."
+        ],
+        [
+          "Tag",
+          "Rótulos longos são truncados com reticências; o rótulo completo continua disponível para leitores de tela e como dica (`title`)."
+        ],
+        [
+          "Conteúdo",
+          "Os textos quebram em até duas linhas e depois são cortados; o corte é só visual, então os leitores de tela leem o texto completo."
+        ],
+        [
+          "Carregando",
+          "`aria-busy=\"true\"` na linha enquanto o esqueleto aparece."
+        ],
+        [
+          "Desabilitado",
+          "`disabled` nativo em botões e controles; `aria-disabled=\"true\"` em linhas Read Only."
+        ],
+        [
+          "Ícones",
+          "Decorativos: ocultos para tecnologias assistivas (`aria-hidden`)."
+        ]
+      ],
+      "focus": "Foco",
+      "focusText": "Linhas interativas mostram um contorno primário de 2px dentro da linha no foco do teclado, então o contêiner da lista nunca o corta."
+    },
+    "considerations": {
+      "title": "Pontos de atenção no desenvolvimento",
+      "items": [
+        "**Cor nunca é o único sinal.** O valor positivo e o texto da tag positiva ficam abaixo de 4,5:1 de contraste no branco. Mantenha o significado no texto: o título diz o que aconteceu e a tag tem rótulo.",
+        "**Use Action para tudo que é clicável.** Não adicione handlers de clique a linhas Read Only; elas não recebem foco e os leitores de tela não as anunciam como botões.",
+        "**Dê nome ao botão de mais opções.** Com várias linhas na tela, defina `menuLabel` com a linha, como \"Ações de Pagamento a fornecedor\", para que cada botão tenha um nome diferente.",
+        "**Anuncie as novas linhas.** Quando mais linhas carregarem, anuncie o resultado em uma live region (`aria-live=\"polite\"`), como \"Mais 10 transações carregadas\".",
+        "**Mantenha a ordem dos filhos.** A linha do tempo é só visual; a ordem dos itens filhos é a ordem de leitura."
+      ]
+    }
+  }
+}

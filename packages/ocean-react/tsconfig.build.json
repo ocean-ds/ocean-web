@@ -9,5 +9,10 @@
   },
 
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.stories.*", "src/**/__tests__/**", "src/_stories/**"]
+  "exclude": [
+    "src/**/*.stories.*",
+    "src/**/*.docs.*",
+    "src/**/__tests__/**",
+    "src/_stories/**"
+  ]
 }

@@ -1,0 +1,19 @@
+{
+  "overview": "Um item filho que abre os próprios detalhes, como o comprovante de uma taxa.",
+  "sections": {
+    "timeline": {
+      "title": "Linha do tempo",
+      "text": "Defina `position` em cada item: `first`, `middle` e `last` desenham a linha entre os ícones; `standalone` é um item único, sem linha."
+    }
+  },
+  "rules": [
+    "Use itens filhos apenas dentro de um Transaction List Expandable.",
+    "Defina `position` pelo índice do item: first, middle, last, ou standalone quando ele estiver sozinho.",
+    "Defina `onClick`; um Child Action sem ação é um Child Read Only.",
+    "Mantenha uma ordem que faça sentido: ela é a ordem de leitura.",
+    "Passe os valores formatados e sem sinal; `amount.type` adiciona o sinal e a cor."
+  ],
+  "api": {
+    "position": "Posição na linha do tempo: `standalone`, `first`, `middle` ou `last`."
+  }
+}

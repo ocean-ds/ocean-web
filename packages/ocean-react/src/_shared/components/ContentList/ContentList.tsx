@@ -11,6 +11,15 @@ import classNames from 'classnames';
  */
 export type IndicatorPosition = 'inline' | 'above' | 'below';
 
+/**
+ * Typography scale of the content block.
+ *
+ * - `md` (default): the current scale — paragraph 16 / description 14.
+ * - `sm`: the compact scale used by child rows (former "Child" typography) —
+ *   inverted: title captionBold 12 / description 14; not inverted: title 14 / description 12.
+ */
+export type ContentListSize = 'md' | 'sm';
+
 export type ContentListProps = {
   title: string;
   description?: string;
@@ -32,6 +41,11 @@ export type ContentListProps = {
   indicator?: ReactNode;
   /** Stacking side of `indicator`. Ignored when `indicator` is not provided. */
   indicatorPosition?: Exclude<IndicatorPosition, 'inline'>;
+  /**
+   * Typography scale. `md` keeps the current rendering; `sm` is the compact scale.
+   * @default 'md'
+   */
+  size?: ContentListSize;
 };
 
 const ContentList = ({
@@ -43,6 +57,7 @@ const ContentList = ({
   type = 'default',
   indicator,
   indicatorPosition,
+  size = 'md',
 }: ContentListProps): ReactElement => {
   const stackedIndicator = indicator && indicatorPosition && (
     <div
@@ -54,6 +69,62 @@ const ContentList = ({
       {indicator}
     </div>
   );
+
+  const strikethroughText = strikethroughDescription &&
+    type === 'strikethrough' && (
+      <span className="ods-typography__paragraph--strikethrough-text">
+        {strikethroughDescription}
+      </span>
+    );
+
+  if (size === 'sm') {
+    // The "emphasis" text carries the type color (title when not inverted, description when
+    // inverted); the "support" text is the secondary line. Only this branch adds the
+    // `ods-content-list__text` hooks, so the `md` DOM stays exactly as before.
+    const emphasisClassName = classNames(
+      'ods-typography',
+      'ods-content-list__text',
+      'ods-content-list__emphasis',
+      type === 'highlight-lead'
+        ? 'ods-typography__paragraph'
+        : 'ods-typography__description',
+      `ods-content-list__emphasis--${type}`
+    );
+    const supportClassName = classNames(
+      'ods-typography',
+      'ods-content-list__text',
+      'ods-content-list__support',
+      inverted ? 'ods-typography__captionbold' : 'ods-typography__caption',
+      { 'ods-content-list__support--inactive': type === 'inactive' }
+    );
+
+    return (
+      <div className="ods-content-list ods-content-list--sm">
+        {indicatorPosition === 'above' && stackedIndicator}
+        <p className={inverted ? supportClassName : emphasisClassName}>
+          {!inverted && strikethroughText}
+          {title}
+        </p>
+        {description && (
+          <p className={inverted ? emphasisClassName : supportClassName}>
+            {inverted && strikethroughText}
+            {description}
+          </p>
+        )}
+        {caption && (
+          <p
+            className={classNames(
+              'ods-typography ods-typography__captionbold',
+              { 'ods-typography__paragraph--inactive': type === 'inactive' }
+            )}
+          >
+            {caption}
+          </p>
+        )}
+        {indicatorPosition === 'below' && stackedIndicator}
+      </div>
+    );
+  }
 
   return (
     <div className="ods-content-list">

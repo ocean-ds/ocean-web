@@ -1,0 +1,369 @@
+{
+  "breadcrumb": ["Components", "Lists"],
+  "description": "Rows that show money movements, pairing what happened with how much, with read only, action, selectable and expandable variants.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility"
+  },
+  "guidelines": {
+    "overview": {
+      "title": "Overview",
+      "text": "A transaction list shows money movements, such as payments, sales, transfers and fees, as rows that pair what happened with how much. Every row has a content block on the left and an amount block on the right. The family shares this structure and adds the behavior each context needs.",
+      "whenToUse": "When to use",
+      "whenToUseItems": [
+        "Statements, receipts and payment histories.",
+        "Lists of receivables, installments and scheduled payments.",
+        "Choosing which transactions to pay, advance or export.",
+        "Breaking a total down into its parts."
+      ],
+      "whenNotToUse": "When not to use",
+      "whenNotToUseItems": [
+        "Rows without an amount: use List.",
+        "Settings and navigation menus: use List.",
+        "Comparing many columns of data: use a table.",
+        "A single balance or total on its own: use a card."
+      ],
+      "variants": "Variants",
+      "variantColumns": ["Variant", "Purpose"],
+      "variantRows": {
+        "readOnly": "Shows a transaction that has no action, such as a statement line.",
+        "action": "Opens details or offers actions through a chevron, an overflow menu or a swipe.",
+        "selectable": "Lets people pick one or more transactions with a checkbox or a radio.",
+        "expandable": "Reveals the items that compose a total, such as gross amount and fees.",
+        "childReadOnly": "One item inside an expandable row, on a timeline.",
+        "childAction": "A child item that opens its own details."
+      }
+    },
+    "formatting": {
+      "title": "Formatting",
+      "anatomy": "Anatomy",
+      "anatomyColumns": ["#", "Element", "Required", "Notes"],
+      "yes": "Yes",
+      "no": "No",
+      "anatomyRows": [
+        ["Icon", "Category of the movement, 24px. Follows `iconColor`."],
+        ["Title", "What happened, such as \"Payment to supplier\"."],
+        ["Description", "Who it relates to. Emphasized line by default."],
+        ["Caption", "Date, order number or due date."],
+        ["Amount", "Formatted value; the type adds sign and color."],
+        [
+          "Tag",
+          "Status of the transaction, such as Payment scheduled, Processing or Canceled."
+        ],
+        ["Additional data", "One short fact about the amount."],
+        ["Divider", "Inset hairline between rows; off on the last row."]
+      ],
+      "sizes": "Sizes",
+      "sizesText": "Content and amount have two sizes each, set independently with `content.size` and `amount.size`. Use `md` for top-level rows and `sm` for dense lists and child items.",
+      "size": "Size {size}",
+      "density": "Density",
+      "densityText": "`density=\"compact\"` reduces the vertical padding from 16px to 8px. Use it for long lists on large screens; keep the default on touch screens.",
+      "densityDefault": "Default",
+      "densityCompact": "Compact",
+      "dividers": "Dividers",
+      "dividersText": "Dividers separate rows of the same group. They are inset 16px and on by default; turn them off on the last row so the group edge does not double the container border."
+    },
+    "content": {
+      "title": "Content",
+      "mainElements": "Main elements",
+      "mainElementsItems": [
+        "**Title** names the movement in the product vocabulary: \"Payment to supplier\", \"Bank transfer\", \"Sales received\".",
+        "**Description** names the counterpart: the supplier, the retailer, the card or the bank. One fact per line.",
+        "**Caption** carries the date, the order number or the due date.",
+        "**Amount** is always formatted and unsigned (`R$ 6.819,33`); `amount.type` adds the sign and the color.",
+        "**Tag** shows the status of the transaction; its type comes from the product's status rules."
+      ],
+      "amountType": "Amount type",
+      "amountTypeColumns": ["Type", "Appearance", "Use for"],
+      "amountTypes": {
+        "default": [
+          "No sign, neutral",
+          "Values that neither enter nor leave the account."
+        ],
+        "positive": [
+          "No sign, positive color",
+          "Money in: sales, Pix received, refunds."
+        ],
+        "negative": [
+          "\"-\" sign, neutral color",
+          "Money out: payments, fees, transfers."
+        ],
+        "strikethrough": [
+          "Original value struck, new value in positive color",
+          "A discount or a waived fee."
+        ],
+        "strikethrough-neutral": [
+          "Original value struck, new value neutral",
+          "A changed value that is not a benefit."
+        ],
+        "inactive": ["Muted", "Disabled rows."]
+      },
+      "tags": "Tags",
+      "tagsText": "One tag per row shows the status of the transaction. Its type comes from the product's status rules; the examples below follow them. A canceled payment keeps its amount.",
+      "tagColumns": ["Status", "Tag type"],
+      "tagRows": [
+        ["Payment scheduled", "`complementary`"],
+        ["Processing", "`neutral`"],
+        ["Canceled", "`neutral`"]
+      ],
+      "doDont": "Do and don't",
+      "verdicts": {
+        "do": "Do",
+        "dont": "Don't",
+        "caution": "Caution"
+      },
+      "doDontItems": [
+        "Pass the value unsigned and set the type; the negative type adds the sign.",
+        "Don't type the sign in the value. The negative type already adds it, so it shows twice.",
+        "Show a canceled payment with the neutral Canceled tag and the amount unchanged.",
+        "Don't write a sentence in the tag. Keep it to a short status.",
+        "Keep the tag short and move the detail to info.",
+        "Use the strikethrough types only when the original value really changed, such as a waived fee.",
+        "Use `iconColor=\"on-color\"` only on colored backgrounds. On white, its icon is darker than the icons of the rows around it."
+      ]
+    },
+    "behaviors": {
+      "title": "Behaviors",
+      "states": "States",
+      "stateColumns": ["State", "When", "Appearance"],
+      "stateRows": [
+        ["Default", "The row is ready.", "Full color content and amount."],
+        [
+          "Hover",
+          "Pointer over an interactive row.",
+          "Light overlay over the whole row."
+        ],
+        ["Pressed", "Pointer down on an interactive row.", "Stronger overlay."],
+        [
+          "Focus",
+          "Keyboard focus on an interactive row.",
+          "Primary outline inside the row."
+        ],
+        ["Loading", "Data is on its way.", "Skeleton in place of the content."],
+        [
+          "Disabled",
+          "The movement cannot be acted on.",
+          "Muted content, neutral tag, no callbacks."
+        ]
+      ],
+      "stateLabels": {
+        "default": "Default",
+        "loading": "Loading",
+        "disabled": "Disabled"
+      },
+      "interaction": "Interaction",
+      "interactionText": "An Action row is a single target: a click anywhere on it calls `onClick` once. With the overflow menu, the button opens the actions below it on the web; on iOS and Android the same actions open in a bottom sheet. Swipe reveals the actions in place on touch screens.",
+      "actionTypes": {
+        "chevron": "Chevron",
+        "menu": "Menu",
+        "swipe": "Swipe"
+      }
+    },
+    "variants": {
+      "title": "Variants",
+      "readOnly": "For rows people only read, such as a statement. No hover, no focus stop.",
+      "action": "For rows that open something. Use the chevron to open details, the overflow menu for two or more actions, and swipe on touch screens.",
+      "selectable": "For choosing transactions. Checkboxes allow several, radios one. The control sits on the left on the web and on the right in apps.",
+      "checkbox": "Checkbox",
+      "radio": "Radio",
+      "expandable": "For totals made of parts. The row toggles the child items; the supporting text closes the group.",
+      "child": "Child items sit on a timeline inside an expandable row. Set `position` on each: first, middle, last, or standalone for a single item. Use Child Action when the item opens its own details."
+    },
+    "related": {
+      "title": "Related",
+      "list": [
+        "List",
+        "Rows without an amount: settings, navigation and plain content."
+      ],
+      "tag": ["Tag", "The status shown below the amount."],
+      "bottomSheet": [
+        "Bottom sheet",
+        "Holds the row actions on iOS and Android, in place of the web menu."
+      ]
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Found a problem or have a suggestion? Open an issue or a pull request on [GitHub](https://github.com/ocean-ds/ocean-web/issues)."
+    }
+  },
+  "specs": {
+    "fullList": "Full token list →",
+    "color": {
+      "title": "Color",
+      "columns": ["Element", "Property", "Color token"],
+      "rows": [
+        ["Title (small line)", "Text"],
+        ["Description (emphasized line)", "Text"],
+        ["Caption", "Text"],
+        ["Emphasized line, positive / strikethrough", "Text"],
+        ["Emphasized line, warning", "Text"],
+        ["Amount, default and negative", "Text"],
+        ["Amount, positive and strikethrough", "Text"],
+        ["Struck original value", "Text"],
+        ["Additional data", "Text"],
+        ["Disabled text and amount", "Text"],
+        ["Chevron", "Icon"],
+        ["Chevron, disabled", "Icon"],
+        ["Divider", "Border"],
+        ["Timeline line (child items)", "Background"],
+        ["Skeleton", "Background"]
+      ]
+    },
+    "iconColor": {
+      "title": "Icon color",
+      "columns": ["iconColor", "Use", "Color token"],
+      "rows": [
+        "Rows on white backgrounds",
+        "Rows on colored backgrounds",
+        "An icon that needs emphasis",
+        "Any row with `disabled`",
+        "Child items on the timeline"
+      ]
+    },
+    "states": {
+      "title": "Interactive states",
+      "columns": ["State", "Color token", "Treatment"],
+      "rows": [
+        ["Hover", "Overlay on the row, multiply blend"],
+        ["Pressed", "Overlay on the row, multiply blend"],
+        ["Focus", "2px outline inside the row"],
+        ["Disabled", "No overlay; the pointer shows not-allowed"]
+      ]
+    },
+    "typography": {
+      "title": "Typography",
+      "text": "All text uses `font-family-base` ({font}) with `line-height-comfy`. Tokens are listed as md / sm.",
+      "columns": [
+        "Element",
+        "Size md",
+        "Size sm",
+        "Weight",
+        "Tokens (md / sm)"
+      ],
+      "rows": [
+        ["Title (small line)", "Regular / Medium"],
+        ["Description (emphasized line)", "Regular"],
+        ["Caption", "Medium"],
+        ["Amount", "Medium"],
+        ["Struck original value", "Regular"],
+        ["Additional data", "Medium"],
+        ["Tag", "Medium / Bold"]
+      ],
+      "noToken": "no token (10px)"
+    },
+    "structure": {
+      "title": "Structure",
+      "columns": ["Element", "Property", "px", "rem", "Spacing token"],
+      "rows": [
+        ["Row", "Padding"],
+        ["Row, compact", "Vertical padding"],
+        ["Icon to content", "Gap"],
+        ["Content to amount", "Gap"],
+        ["Amount block", "Gap between lines"],
+        ["Caption", "Top margin"],
+        ["Divider", "Inset (left and right)"],
+        ["Divider", "Thickness"],
+        ["Selectable control to content", "Gap"],
+        ["Menu button", "Right padding"],
+        ["Child item content", "Vertical padding"],
+        ["Timeline column", "Width"],
+        ["Timeline icon", "Padding"],
+        ["Icon", "Size (top level / child)"]
+      ],
+      "noToken": "No token"
+    },
+    "size": {
+      "title": "Size",
+      "text": "Row height comes from the content; the values below are the heights with every element shown (title, description, caption, amount, tag and additional data).",
+      "columns": ["Configuration", "Default", "Compact"],
+      "rows": ["Content md · amount md", "Content sm · amount sm", "Loading"]
+    }
+  },
+  "accessibility": {
+    "provides": {
+      "title": "What Ocean provides",
+      "keyboard": "Keyboard",
+      "keyboardColumns": ["Key", "Action", "Variants"],
+      "keyboardRows": [
+        [
+          "Tab",
+          "Moves to the next row, menu button or control. Read only rows are skipped.",
+          "Action, Selectable, Expandable, Child Action"
+        ],
+        [
+          "Enter / Space",
+          "Activates the row: opens details, toggles the child items or the menu.",
+          "Action, Expandable, Child Action"
+        ],
+        ["Space", "Checks or unchecks the control.", "Selectable"],
+        [
+          "Arrow keys",
+          "Move between the radios of a group.",
+          "Selectable (radio)"
+        ],
+        [
+          "Enter / Space on a menu item",
+          "Runs the action and closes the menu.",
+          "Action (menu, swipe)"
+        ]
+      ],
+      "screenReaders": "Screen readers",
+      "screenReaderColumns": ["Element", "Behavior"],
+      "screenReaderRows": [
+        [
+          "Action, Child Action",
+          "Rendered as a native `<button>`; the row text is its name."
+        ],
+        [
+          "Selectable",
+          "Native checkbox or radio; the whole row is its label, so the name includes title, description and amount."
+        ],
+        [
+          "Expandable",
+          "Toggle with `aria-expanded` and a name that says whether it expands or collapses the row."
+        ],
+        [
+          "Menu button",
+          "Named by `menuLabel` (default \"Open actions menu\"); `aria-expanded` reflects the menu, which has `role=\"menu\"`."
+        ],
+        [
+          "Tag",
+          "Long labels are truncated with an ellipsis; the full label stays available to screen readers and as a tooltip (`title`)."
+        ],
+        [
+          "Content",
+          "Texts wrap up to two lines and then truncate; the clamp is visual only, so screen readers read the full text."
+        ],
+        [
+          "Loading",
+          "`aria-busy=\"true\"` on the row while the skeleton is shown."
+        ],
+        [
+          "Disabled",
+          "Native `disabled` on buttons and controls; `aria-disabled=\"true\"` on read only rows."
+        ],
+        [
+          "Icons",
+          "Decorative: hidden from assistive technology (`aria-hidden`)."
+        ]
+      ],
+      "focus": "Focus",
+      "focusText": "Interactive rows show a 2px primary outline inside the row on keyboard focus, so the list container never clips it."
+    },
+    "considerations": {
+      "title": "Development considerations",
+      "items": [
+        "**Color is never the only signal.** The positive amount and the positive tag text are below 4.5:1 contrast on white. Keep the meaning in the text: the title says what happened and the tag has a label.",
+        "**Use Action for anything clickable.** Don’t attach click handlers to Read Only rows; they are not focusable and screen readers don’t announce them as buttons.",
+        "**Name the overflow button.** With several rows on screen, set `menuLabel` with the row, such as \"Actions for Payment to supplier\", so each button has a distinct name.",
+        "**Announce new rows.** When more rows load, announce the result in a live region (`aria-live=\"polite\"`), such as \"10 more transactions loaded\".",
+        "**Keep the child order meaningful.** The timeline is visual only; the order of the child items is the reading order."
+      ]
+    }
+  }
+}

@@ -83,7 +83,12 @@ function ButtonBase<T extends React.ElementType = 'button'>(
     }
   }, [variant]);
 
-  const onColor = ['primary', 'primaryCritical', 'primaryWarning', 'inverse'].includes(variant);
+  const onColor = [
+    'primary',
+    'primaryCritical',
+    'primaryWarning',
+    'inverse',
+  ].includes(variant);
 
   return React.createElement(
     component || 'button',

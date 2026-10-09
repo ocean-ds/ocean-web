@@ -19,7 +19,7 @@ import {
 } from '../../_stories/components/indicatorPosition';
 
 const meta: Meta<typeof ListAction> = {
-  title: 'Components/List/ListAction',
+  title: 'Components/Lists/List/ListAction',
   component: ListAction,
   tags: ['autodocs'],
   argTypes: {

@@ -24,6 +24,26 @@
     .ods-list-expandable__icon {
       color: $color-interface-dark-up;
     }
+
+    // `iconColor` (Transaction List family, opt-in): closed set; disabled always wins.
+    .ods-list-expandable__icon--on-color {
+      color: $color-interface-dark-down;
+    }
+
+    .ods-list-expandable__icon--highlight {
+      color: $color-brand-primary-down;
+    }
+
+    .ods-list-expandable__icon--disabled {
+      color: $color-interface-light-deep;
+    }
+  }
+
+  &__icon--default svg,
+  &__icon--on-color svg,
+  &__icon--highlight svg,
+  &__icon--disabled svg {
+    color: inherit;
   }
 
   // Transaction variant: ContentList (left) + AmountDetails (right) in main row
@@ -43,13 +63,15 @@
       flex-shrink: 0;
     }
 
-    .ods-amount-details__amount:not(.ods-amount-details__amount--positive),
-    .ods-amount-details__amount-sign {
+    // Legacy amount (no `size`): 16 / Interface Dark Deep. A sized amount brings its own
+    // scale and colors (`--sized` modifiers).
+    .ods-amount-details__amount:not(.ods-amount-details__amount--positive):not(.ods-amount-details__amount--sized),
+    .ods-amount-details__amount-sign:not(.ods-amount-details__amount-sign--sized) {
       color: $color-interface-dark-deep;
     }
 
-    .ods-amount-details__amount,
-    .ods-amount-details__amount-sign {
+    .ods-amount-details__amount:not(.ods-amount-details__amount--sized),
+    .ods-amount-details__amount-sign:not(.ods-amount-details__amount-sign--sized) {
       font-size: $font-size-xs;
     }
   }
@@ -65,11 +87,13 @@
       padding: $spacing-inline-xxxs;
     }
 
-    .ods-typography__paragraph {
+    // `ods-content-list__text` marks the sized ContentList (Transaction List children),
+    // which already carries its own scale.
+    .ods-typography__paragraph:not(.ods-content-list__text) {
       font-size: $font-size-xxs;
     }
 
-    .ods-typography__description {
+    .ods-typography__description:not(.ods-content-list__text) {
       font-size: $font-size-xxxs;
       font-weight: $font-weight-medium;
     }
@@ -216,6 +240,13 @@
     .ods-list-expandable__main:hover {
       @include list-state-blend;
     }
+  }
+
+  // Density `compact` (Transaction List family, opt-in): top and bottom padding 8.
+  &--compact &__main,
+  &--compact.ods-list-expandable--loading &__main {
+    padding-bottom: $spacing-stack-xxs;
+    padding-top: $spacing-stack-xxs;
   }
 
   // Simulated hover state for docs/Storybook (State = Hover)

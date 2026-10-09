@@ -1,0 +1,89 @@
+{
+  "status": {
+    "beta": "Beta",
+    "block": "Building block"
+  },
+  "links": {
+    "sourceCode": "Source code",
+    "usageGuidelines": "Usage guidelines",
+    "accessibility": "Accessibility"
+  },
+  "toc": "On this page",
+  "example": {
+    "showCode": "Show code",
+    "hideCode": "Hide code",
+    "copyCode": "Copy code",
+    "copied": "Copied"
+  },
+  "sections": {
+    "overview": "Overview",
+    "rowOptions": "Row options",
+    "contentAndAmount": "Content and amount",
+    "otherPlatforms": "Other platforms",
+    "componentApi": "Component API",
+    "designTokens": "Design tokens",
+    "implementationRules": "Implementation rules",
+    "feedback": "Feedback"
+  },
+  "rowOptions": {
+    "density": {
+      "title": "Density",
+      "text": "`density=\"compact\"` reduces the vertical padding from 16px to 8px. Use it in long lists on large screens; keep the default on touch screens."
+    },
+    "iconColor": {
+      "title": "Icon color",
+      "text": "`iconColor` accepts `default` (white backgrounds), `on-color` (colored backgrounds) and `highlight` (emphasis). The icon takes the color, so pass it without its own."
+    },
+    "states": {
+      "title": "Loading and disabled",
+      "text": "`loading` shows a skeleton in place of the content. `disabled` mutes the row, turns the tag neutral and stops the callbacks."
+    },
+    "divider": {
+      "title": "Divider",
+      "text": "Rows show an inset divider below. Set `showDivider={false}` on the last row of a group, so it does not double the container border.",
+      "caption": "The last row of a group has no divider."
+    }
+  },
+  "contentAndAmount": "This component renders [Content List Default](docs:components-lists-content-list-content-list-default--overview) on the left and [Content List Amount](docs:components-lists-content-list-content-list-amount--overview) on the right. Pass their props in `content` and `amount`; amount types, strikethrough, tag and sizes are documented there.",
+  "platforms": {
+    "text": "The same component exists in the iOS and Android libraries, with the same blocks.",
+    "react": "React",
+    "swift": "SwiftUI",
+    "compose": "Compose",
+    "platform": "Platform",
+    "type": "Type"
+  },
+  "api": {
+    "intro": "Changing the controls updates the example below. The values are kept while you stay on this page.",
+    "name": "Name",
+    "description": "Description",
+    "default": "Default",
+    "control": "Control",
+    "nestedBlocks": "Nested blocks",
+    "invalidJson": "Invalid JSON: the previous value is kept.",
+    "icon": "Leading icon, 24px. Pass it without its own color; it follows `iconColor`.",
+    "iconChild": "Timeline icon, 16px. Pass it without its own color.",
+    "iconColor": "Icon color: `default` on white, `on-color` on colored backgrounds, `highlight` for emphasis. Ignored when disabled.",
+    "iconColorChild": "Icon color. Without it, child items use their own light color; an explicit value overrides it. Ignored when disabled.",
+    "density": "Vertical padding: `default` or `compact` (8px).",
+    "showDivider": "Divider below the row, inset 16px. Turn it off on the last row of a group.",
+    "loading": "Shows the skeleton in place of the content.",
+    "disabled": "Mutes the row: inactive content and amount, neutral tag, no callbacks.",
+    "onClick": "Called once per click. Not called while disabled or loading.",
+    "className": "Class on the root element. `ref` and the other attributes go to the {target}.",
+    "content": "Props of [Content List Default](docs:components-lists-content-list-content-list-default--overview): title, description, caption, status, size.",
+    "amount": "Props of [Content List Amount](docs:components-lists-content-list-content-list-amount--overview): value, type, tag, info, size."
+  },
+  "tokens": {
+    "intro": "Generated from the component styles at build time. Values without an Ocean token are marked.",
+    "blocks": "Content and amount tokens are listed in [Content List Default](docs:components-lists-content-list-content-list-default--overview) and [Content List Amount](docs:components-lists-content-list-content-list-amount--overview).",
+    "download": "Download tokens.json",
+    "part": "Part",
+    "property": "Property",
+    "state": "State",
+    "token": "Token",
+    "value": "Value",
+    "noToken": "No token"
+  },
+  "feedback": "Found a problem or have a suggestion? Open an issue or a pull request on [GitHub](https://github.com/ocean-ds/ocean-web/issues)."
+}

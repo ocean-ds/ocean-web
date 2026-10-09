@@ -1,7 +1,13 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { generate } = require('../scripts/generate-design-tokens');
+
+// Design tokens tables come from the component styles; regenerate on every start/build.
+generate();
 
 const config: StorybookConfig = {
   stories: [
+    '../packages/*/src/**/*.docs.mdx',
     '../packages/*/src/**/*.stories.mdx',
     '../packages/*/src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
@@ -11,6 +17,7 @@ const config: StorybookConfig = {
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-docs',
+    '@storybook/addon-a11y',
   ],
   framework: {
     name: '@storybook/react-webpack5',

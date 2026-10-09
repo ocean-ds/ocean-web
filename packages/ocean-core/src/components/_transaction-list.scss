@@ -1,0 +1,363 @@
+// Transaction List family (Read Only, Action, Selectable, Child Action, Child Read Only).
+// Transaction List family. Every spacing is an Ocean Spacing token,
+// every color an Ocean Colors token; the root has no background: hover and divider
+// compose by multiply with the real background.
+.ods-transaction-list {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &__main {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    box-sizing: border-box;
+    display: flex;
+    gap: $spacing-inline-xxs-extra;
+    margin: 0;
+    padding: $spacing-inline-xs;
+    text-align: left;
+    width: 100%;
+  }
+
+  &__main--interactive {
+    cursor: pointer;
+    font: inherit;
+    transition: background-color 0.2s ease;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      @include list-state-blend;
+    }
+
+    &:active:not(:disabled) {
+      @include list-state-blend($color-interface-light-deep);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-brand-primary-pure;
+      outline-offset: -2px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  // Leading icon color: closed set (`iconColor`); disabled always wins. The icon inherits
+  // the color, even when it declares its own.
+  &__icon,
+  &__timeline-icon {
+    color: $color-interface-dark-up;
+
+    svg {
+      color: inherit;
+    }
+
+    &--on-color {
+      color: $color-interface-dark-down;
+    }
+
+    &--highlight {
+      color: $color-brand-primary-down;
+    }
+
+    // Child rows without an explicit `iconColor` (decision 08/10).
+    &--child {
+      color: $color-interface-light-down;
+    }
+
+    &--inactive {
+      color: $color-interface-light-deep;
+    }
+  }
+
+  &__icon {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: $spacing-inline-xxs;
+    min-width: 0;
+
+    .ods-content-list {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+  }
+
+  &__trailing {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__chevron {
+    color: $color-interface-dark-up;
+  }
+
+  &--disabled &__chevron {
+    // Only forced color of the disabled state: the chevron vector.
+    color: $color-interface-light-deep;
+  }
+
+  &__divider {
+    @include list-divider-blend;
+
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
+    margin: 0 $spacing-inline-xs;
+    pointer-events: none;
+  }
+
+  // Loading
+  &__skeleton {
+    gap: $spacing-inline-xxs-extra;
+
+    .ods-skeleton-bar {
+      max-width: 100%;
+    }
+  }
+
+  &__skeleton-text {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-inline-xxs;
+    min-width: 0;
+  }
+
+  &__skeleton-amount {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    gap: $spacing-inline-xxs;
+    width: 86px;
+  }
+
+  &--loading &__main {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  // Selectable — Main gap 16; control on the left (web) or on the right (app).
+  &--selectable {
+    .ods-checkbox__root-container,
+    .ods-radio__root-container {
+      width: 100%;
+    }
+
+    .ods-checkbox__root,
+    .ods-radio__root,
+    .ods-transaction-list__main {
+      align-items: center;
+      box-sizing: border-box;
+      display: flex;
+      gap: $spacing-inline-xs;
+      padding: $spacing-inline-xs;
+      width: 100%;
+    }
+
+    .ods-checkbox__root,
+    .ods-radio__root {
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .ods-checkbox__root:hover,
+    .ods-checkbox__root:focus-within,
+    .ods-radio__root:hover,
+    .ods-radio__root:focus-within {
+      @include list-state-blend;
+    }
+
+    .ods-checkbox__label,
+    .ods-radio__label {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+      padding-left: 0;
+    }
+
+    .ods-checkbox__checkmark,
+    .ods-radio__checkmark {
+      flex-shrink: 0;
+    }
+  }
+
+  &--selectable#{&}--app {
+    .ods-checkbox__root,
+    .ods-radio__root,
+    .ods-transaction-list__main {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &--selectable#{&}--disabled {
+    .ods-checkbox__root,
+    .ods-radio__root {
+      cursor: not-allowed;
+    }
+
+    .ods-checkbox__root:hover,
+    .ods-checkbox__root:focus-within,
+    .ods-radio__root:hover,
+    .ods-radio__root:focus-within {
+      background-color: transparent;
+      mix-blend-mode: normal;
+    }
+
+    .ods-checkbox__label,
+    .ods-radio__label {
+      cursor: not-allowed;
+    }
+  }
+
+  &__control {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  // Child rows — Main padding 0 16, Content padding 12 0; timeline on the leading slot.
+  &--child &__main {
+    align-items: stretch;
+    padding: 0 $spacing-inline-xs;
+  }
+
+  &--child &__content {
+    padding: $spacing-inline-xxs-extra 0;
+  }
+
+  &--child &__trailing {
+    align-self: center;
+  }
+
+  &__timeline {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: $spacing-inline-sm;
+  }
+
+  &__timeline-line {
+    flex: 1;
+    width: $border-width-hairline;
+
+    &--visible {
+      background-color: $color-interface-light-down;
+    }
+  }
+
+  &__timeline-icon {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-inline-xxxs;
+  }
+}
+
+// Expanded slot of TransactionListExpandable with the family's child rows: white slot with
+// vertical padding 8.
+.ods-list-expandable__content--transaction:has(> .ods-transaction-list--child) {
+  padding: $spacing-inline-xxs 0;
+}
+
+// Simulated hover state for docs/Storybook (State = Hover).
+.ods-transaction-list--show-hover > .ods-transaction-list__main--interactive,
+.ods-transaction-list--show-hover .ods-checkbox__root,
+.ods-transaction-list--show-hover .ods-radio__root {
+  @include list-state-blend;
+}
+
+// Action with `menu` / `swipe`.
+// The row holds the clickable main and the trailing actions side by side; the highlight
+// moves from the button to the row so it covers the trailing slot too.
+.ods-transaction-list__row {
+  align-items: center;
+  display: flex;
+  gap: $spacing-inline-xxs-extra;
+  position: relative;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.ods-transaction-list__row .ods-transaction-list__main--interactive {
+  flex: 1;
+  min-width: 0;
+  padding-right: 0;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    background-color: transparent;
+    mix-blend-mode: normal;
+  }
+}
+
+.ods-transaction-list__row:hover,
+.ods-transaction-list--show-hover .ods-transaction-list__row {
+  @include list-state-blend;
+}
+
+.ods-transaction-list--disabled .ods-transaction-list__row:hover,
+.ods-transaction-list--swipe-open .ods-transaction-list__row:hover {
+  background-color: transparent;
+  mix-blend-mode: normal;
+}
+
+.ods-transaction-list__actions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  padding-right: $spacing-inline-xxs;
+}
+
+// Swipe: the actions overlay the row (InternalListActions › force-swipe), so the slot is not
+// positioned and the main keeps room for the drag handle.
+.ods-transaction-list--swipe .ods-transaction-list__actions {
+  padding-right: 0;
+}
+
+.ods-transaction-list--swipe .ods-transaction-list__main {
+  padding-right: $spacing-inline-md;
+}
+
+// Disabled: the trigger follows the chevron rule (Interface/Light/Deep), no opacity.
+.ods-transaction-list--disabled .ods-internal-list-actions__trigger:disabled {
+  color: $color-interface-light-deep;
+  opacity: 1;
+}
+
+// Density (decision 08/10): `compact` sets top and bottom padding to 8 (Spacing/Xxs);
+// horizontal padding unchanged. The skeleton lives inside the same main, so it follows.
+.ods-transaction-list--compact .ods-transaction-list__main,
+.ods-transaction-list--compact .ods-checkbox__root,
+.ods-transaction-list--compact .ods-radio__root {
+  padding-bottom: $spacing-stack-xxs;
+  padding-top: $spacing-stack-xxs;
+}
+
+// Children keep padding 0 on the main; the vertical padding is on the content.
+.ods-transaction-list--compact.ods-transaction-list--child {
+  .ods-transaction-list__main {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .ods-transaction-list__content {
+    padding-bottom: $spacing-stack-xxs;
+    padding-top: $spacing-stack-xxs;
+  }
+}

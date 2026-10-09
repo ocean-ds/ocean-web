@@ -33,9 +33,7 @@ const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         )}
       </label>
       {error && errorMessage && (
-        <span className="ods-radio__error-message">
-          {errorMessage}
-        </span>
+        <span className="ods-radio__error-message">{errorMessage}</span>
       )}
     </div>
   )

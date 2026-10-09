@@ -113,7 +113,10 @@ test('renders element with subtitle and size small', () => {
 
 test('renders element with icon', () => {
   const { container } = render(
-    <SubHeader className="custom-class" icon={<span data-testid="icon">🔔</span>}>
+    <SubHeader
+      className="custom-class"
+      icon={<span data-testid="icon">🔔</span>}
+    >
       Title
     </SubHeader>
   );

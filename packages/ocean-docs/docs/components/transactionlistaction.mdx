@@ -1,0 +1,168 @@
+---
+title: TransactionListAction
+sidebar_label: TransactionListAction
+---
+
+import { TransactionListAction, List } from '@useblu/ocean-react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TransactionListAction
+
+Linha de transação com **ação à direita**: seta (leva ao detalhe), menu contextual ou swipe — o mesmo padrão de `actionType` / `menuActions` da `ListAction`. Realce ao passar o mouse (`Interface/Light/Up` em `multiply`) e um `onClick` por toque. Faz parte da família Transaction List.
+
+## Importação
+
+```tsx
+import { TransactionListAction } from '@useblu/ocean-react';
+import type {
+  TransactionListActionProps,
+  ContentListDefaultProps,
+  ContentListAmountProps,
+} from '@useblu/ocean-react';
+```
+
+## Playground Interativo
+
+<StorybookEmbed
+  storyId="components-lists-transaction-list-transaction-list-action--chevron"
+  height={300}
+  title="TransactionListAction - Playground Interativo"
+/>
+
+## Uso básico
+
+```tsx live
+<TransactionListAction
+  content={{
+    title: 'Boleto pago',
+    description: 'Fornecedor Exemplo',
+    caption: 'Ontem',
+  }}
+  amount={{ value: 'R$ 1.250,00', type: 'negative', info: 'Conta digital' }}
+  icon={<PlaceholderOutline size={24} />}
+  onClick={() => alert('Abrir detalhe')}
+/>
+```
+
+## Tipos de ação (actionType)
+
+```tsx live
+<List>
+  <TransactionListAction
+    content={{ title: 'Chevron', description: 'Leva ao detalhe' }}
+    amount={{ value: 'R$ 0,00' }}
+    icon={<PlaceholderOutline size={24} />}
+  />
+  <TransactionListAction
+    content={{ title: 'Menu', description: 'Abre o menu contextual' }}
+    amount={{ value: 'R$ 0,00' }}
+    icon={<PlaceholderOutline size={24} />}
+    actionType="menu"
+    menuLabel="Ações de Menu"
+    menuActions={[
+      { label: 'Editar', onClick: () => {} },
+      { label: 'Excluir', onClick: () => {}, variant: 'negative' },
+    ]}
+  />
+  <TransactionListAction
+    content={{ title: 'Swipe', description: 'Revela as ações de lado' }}
+    amount={{ value: 'R$ 0,00' }}
+    icon={<PlaceholderOutline size={24} />}
+    actionType="swipe"
+    menuLabel="Ações de Swipe"
+    menuActions={[
+      {
+        label: 'Arquivar',
+        onClick: () => {},
+        variant: 'neutral',
+        icon: <PlaceholderOutline size={24} />,
+      },
+      {
+        label: 'Excluir',
+        onClick: () => {},
+        variant: 'negative',
+        icon: <PlaceholderOutline size={24} />,
+      },
+    ]}
+  />
+</List>
+```
+
+O clique no gatilho do menu/swipe não dispara o `onClick` da linha. Dê ao botão de mais opções um nome que identifique a linha com `menuLabel` (ex.: "Ações de Pagamento a fornecedor") quando houver várias linhas na tela; sem ele, todos os botões têm o mesmo nome padrão. No carregamento o gatilho não aparece; desabilitado, o gatilho fica desabilitado em `Interface/Light/Deep`.
+
+## Cor do ícone (iconColor)
+
+A cor do ícone à esquerda vem de um conjunto fechado:
+
+| Valor              | Token                 | Quando usar                                                                           |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------------- |
+| `default` (padrão) | `Interface/Dark/Up`   | Linha sobre fundo branco                                                              |
+| `on-color`         | `Interface/Dark/Down` | Linha sobre fundo colorido (ex.: heróis em `Status/Warning/Up`, `Status/Negative/Up`) |
+| `highlight`        | `Brand/Primary/Down`  | Mais ênfase                                                                           |
+
+Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escolha — não é uma opção. O ícone herda a cor do componente: passe ícones **sem cor própria** (ex.: `<PlaceholderOutline size={24} />`, sem `color`).
+
+## Estados
+
+```tsx live
+<List>
+  <TransactionListAction
+    content={{ title: 'Desabilitado', description: 'Não dispara onClick' }}
+    amount={{ value: 'R$ 0,00', tag: { label: 'Label' } }}
+    icon={<PlaceholderOutline size={24} />}
+    disabled
+  />
+  <TransactionListAction
+    content={{ title: 'Carregando' }}
+    amount={{ value: 'R$ 0,00' }}
+    loading
+  />
+</List>
+```
+
+Desabilitado: conteúdo e valor no tipo inativo, tag neutra e a seta (ou o gatilho do menu/swipe) em `Interface/Light/Deep` (a única cor forçada do estado).
+
+## Tamanhos e tipos de valor
+
+Iguais aos da [TransactionListReadOnly](/components/transactionlistreadonly): `content.size` e `amount.size` independentes (`md` padrão) e `amount.type` com `strikethrough` / `strikethrough-neutral`.
+
+## Textos longos
+
+Os textos do conteúdo e a informação do valor (`amount.info`) quebram em até **duas linhas** e depois são cortados com reticências; o corte é só visual, então leitores de tela leem o texto completo. A tag fica em uma linha; rótulos longos são truncados com reticências, e o rótulo completo fica disponível como dica (`title`).
+
+## Densidade (density)
+
+`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
+
+## API
+
+### Props
+
+| Prop           | Tipo                                                           | Padrão                | Descrição                                                                                                                                                                                                                 |
+| -------------- | -------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`      | `ContentListDefaultProps`                                      | -                     | Bloco de conteúdo à esquerda (obrigatório): `title`, `description`, `strikethroughDescription`, `caption`, `inverted`, `status`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#content) |
+| `amount`       | `ContentListAmountProps`                                       | -                     | Bloco de valor à direita (obrigatório): `value`, `type`, `strikethroughValue`, `tag`, `info`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#amount)                                     |
+| `icon`         | `ReactNode`                                                    | -                     | Ícone à esquerda                                                                                                                                                                                                          |
+| `iconColor`    | `'default' \| 'on-color' \| 'highlight'`                       | `'default'`           | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`                                                                                                                                         |
+| `disabled`     | `boolean`                                                      | `false`               | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                                                                                                                   |
+| `loading`      | `boolean`                                                      | `false`               | Exibe o esqueleto                                                                                                                                                                                                         |
+| `density`      | `'default' \| 'compact'`                                       | `'default'`           | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda                                                                                      |
+| `actionType`   | `'chevron' \| 'menu' \| 'swipe'`                               | `'chevron'`           | Ação à direita                                                                                                                                                                                                            |
+| `menuActions`  | `ActionItem[]`                                                 | `[]`                  | Ações dos tipos `menu` e `swipe`                                                                                                                                                                                          |
+| `menuPosition` | `'bottom-left' \| 'bottom-right' \| 'top-left' \| 'top-right'` | `'bottom-right'`      | Posição do menu                                                                                                                                                                                                           |
+| `menuLabel`    | `string`                                                       | `'Open actions menu'` | Nome acessível do botão de mais opções (`menu` e `swipe`), como "Ações de Pagamento a fornecedor"                                                                                                                         |
+| `onClick`      | `(event) => void`                                              | -                     | Disparado uma vez por toque; não dispara com `disabled` ou `loading`                                                                                                                                                      |
+| `showDivider`  | `boolean`                                                      | `true`                | Exibe o divisor abaixo do item                                                                                                                                                                                            |
+| `className`    | `string`                                                       | -                     | Classes CSS no elemento raiz (o `ref` e as demais props vão para o `<button>`)                                                                                                                                            |
+
+## Acessibilidade
+
+- A área clicável é um `<button type="button">` com foco visível; `disabled` e `loading` desabilitam o botão.
+- O botão de mais opções (`menu` e `swipe`) é nomeado por `menuLabel`; `aria-expanded` acompanha o menu, que tem `role="menu"`.
+
+## Links relacionados
+
+- [TransactionListReadOnly](/components/transactionlistreadonly)
+- [TransactionListExpandable](/components/transactionlistexpandable)
+- [Storybook - Transaction List Action](https://ocean-ds.github.io/ocean-web/?path=/docs/components-lists-transaction-list-transaction-list-action--overview)

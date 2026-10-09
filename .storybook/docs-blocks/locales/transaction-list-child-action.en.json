@@ -1,0 +1,19 @@
+{
+  "overview": "A child item that opens its own details, such as the receipt of a fee.",
+  "sections": {
+    "timeline": {
+      "title": "Timeline",
+      "text": "Set `position` on each item: `first`, `middle` and `last` draw the line between the icons; `standalone` is a single item with no line."
+    }
+  },
+  "rules": [
+    "Use child items only inside a Transaction List Expandable.",
+    "Set `position` from the index of the item: first, middle, last, or standalone when it is alone.",
+    "Set `onClick`; a Child Action without an action is a Child Read Only.",
+    "Keep the order of the items meaningful: it is the reading order.",
+    "Pass amounts formatted and without a sign; `amount.type` adds the sign and the color."
+  ],
+  "api": {
+    "position": "Position on the timeline: `standalone`, `first`, `middle` or `last`."
+  }
+}

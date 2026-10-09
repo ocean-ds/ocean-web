@@ -3,8 +3,12 @@ title: TransactionListExpandable
 sidebar_label: TransactionListExpandable
 ---
 
-import { TransactionListExpandable, List, Tag } from '@useblu/ocean-react';
-import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import {
+  TransactionListExpandable,
+  TransactionListChildAction,
+  List,
+} from '@useblu/ocean-react';
+import { Placeholder, PlaceholderOutline } from '@useblu/ocean-icons-react';
 import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # TransactionListExpandable
@@ -26,7 +30,11 @@ import { TransactionListExpandable } from '@useblu/ocean-react/TransactionListEx
 ### Importação de tipos TypeScript
 
 ```tsx
-import type { TransactionListExpandableProps } from '@useblu/ocean-react';
+import type {
+  TransactionListExpandableProps,
+  ContentListDefaultProps,
+  ContentListAmountProps,
+} from '@useblu/ocean-react';
 
 // Uso em componente customizado
 const MyComponent: React.FC<TransactionListExpandableProps> = (props) => {
@@ -39,14 +47,14 @@ const MyComponent: React.FC<TransactionListExpandableProps> = (props) => {
 Explore o componente TransactionListExpandable no playground interativo do Storybook:
 
 <StorybookEmbed
-  storyId="components-list-transactionlistexpandable--usage"
+  storyId="components-lists-transaction-list-transaction-list-expandable--expanded"
   height={550}
   title="TransactionListExpandable - Playground Interativo"
 />
 
 ## Documentação Completa
 
-Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TransactionListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-transactionlistexpandable--docs)**.
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do TransactionListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-lists-transaction-list-transaction-list-expandable--overview)**.
 
 No Storybook você encontrará:
 
@@ -59,9 +67,8 @@ No Storybook você encontrará:
 
 ```tsx live
 <TransactionListExpandable
-  title="Transferência PIX"
-  description="João Silva"
-  amount="R$ 150,00"
+  content={{ title: 'Transferência PIX', description: 'João Silva' }}
+  amount={{ value: 'R$ 150,00' }}
   icon={<PlaceholderOutline size={24} />}
 >
   <div style={{ padding: '16px' }}>
@@ -70,12 +77,14 @@ No Storybook você encontrará:
 </TransactionListExpandable>
 ```
 
-## Variações de Valor (amountType)
+A linha principal recebe os mesmos blocos `content` e `amount` do resto da família Transaction List. As props planas antigas (`title`, `description`, `amountType`, `amountTag`, `additionalData`…) continuam funcionando, mas estão **deprecated**: veja [Migração da API plana](#migração-da-api-plana).
+
+## Variações de Valor (amount.type)
 
 O TransactionListExpandable suporta diferentes tipos visuais para o valor:
 
 <StorybookEmbed
-  storyId="components-list-transactionlistexpandable--amount-types"
+  storyId="visual-tests-transaction-list--expandable"
   height={400}
   showToolbar={false}
   title="TransactionListExpandable - Tipos de Valor"
@@ -84,26 +93,22 @@ O TransactionListExpandable suporta diferentes tipos visuais para o valor:
 ```tsx
 <List>
   <TransactionListExpandable
-    title="Depósito"
-    amount="R$ 500,00"
-    amountType="positive"
-    amountIndicator={
-      <Tag type="positive" size="small">
-        Crédito
-      </Tag>
-    }
+    content={{ title: 'Depósito' }}
+    amount={{
+      value: 'R$ 500,00',
+      type: 'positive',
+      tag: { label: 'Crédito', type: 'positive' },
+    }}
   >
     <div>Detalhes do depósito</div>
   </TransactionListExpandable>
   <TransactionListExpandable
-    title="Pagamento"
-    amount="R$ 150,00"
-    amountType="negative"
-    amountIndicator={
-      <Tag type="negative" size="small">
-        Débito
-      </Tag>
-    }
+    content={{ title: 'Pagamento' }}
+    amount={{
+      value: 'R$ 150,00',
+      type: 'negative',
+      tag: { label: 'Débito', type: 'negative' },
+    }}
   >
     <div>Detalhes do pagamento</div>
   </TransactionListExpandable>
@@ -115,14 +120,18 @@ O TransactionListExpandable suporta diferentes tipos visuais para o valor:
 Use a prop `loading` para exibir um estado de skeleton durante o carregamento dos dados:
 
 <StorybookEmbed
-  storyId="components-list-transactionlistexpandable--state-loading"
+  storyId="components-lists-transaction-list-transaction-list-expandable--collapsed&args=loading:!true"
   height={200}
   showToolbar={false}
   title="TransactionListExpandable - Estado de Carregamento"
 />
 
 ```tsx
-<TransactionListExpandable title="Transação" amount="R$ 0,00" loading={true} />
+<TransactionListExpandable
+  content={{ title: 'Transação' }}
+  amount={{ value: 'R$ 0,00' }}
+  loading
+/>
 ```
 
 ## Estado Disabled
@@ -131,9 +140,11 @@ Desabilite a interação com o componente usando a prop `disabled`:
 
 ```tsx
 <TransactionListExpandable
-  title="Transação bloqueada"
-  description="Esta transação não pode ser expandida"
-  amount="R$ 50,00"
+  content={{
+    title: 'Transação bloqueada',
+    description: 'Esta transação não pode ser expandida',
+  }}
+  amount={{ value: 'R$ 50,00' }}
   disabled
 >
   <div>Conteúdo não acessível</div>
@@ -146,9 +157,8 @@ Adicione um divisor visual entre o header e o conteúdo expandido:
 
 ```tsx
 <TransactionListExpandable
-  title="Transferência TED"
-  description="Maria Souza"
-  amount="R$ 300,00"
+  content={{ title: 'Transferência TED', description: 'Maria Souza' }}
+  amount={{ value: 'R$ 300,00' }}
   showDivider
 >
   <div>Detalhes da transferência</div>
@@ -161,9 +171,8 @@ Use `supportingText` para exibir informações complementares abaixo do conteúd
 
 ```tsx
 <TransactionListExpandable
-  title="Compra no cartão"
-  description="Loja XYZ"
-  amount="R$ 89,90"
+  content={{ title: 'Compra no cartão', description: 'Loja XYZ' }}
+  amount={{ value: 'R$ 89,90' }}
   supportingText="Parcela 2/6 - Próximo vencimento: 15/01/2026"
 >
   <div>Detalhes da compra</div>
@@ -180,9 +189,8 @@ O TransactionListExpandable pode ser usado em modo controlado:
 const [expanded, setExpanded] = useState(false);
 
 <TransactionListExpandable
-  title="Transferência PIX"
-  description="João Silva"
-  amount="R$ 150,00"
+  content={{ title: 'Transferência PIX', description: 'João Silva' }}
+  amount={{ value: 'R$ 150,00' }}
   expanded={expanded}
   onToggle={(newExpanded) => setExpanded(newExpanded)}
 >
@@ -190,32 +198,133 @@ const [expanded, setExpanded] = useState(false);
 </TransactionListExpandable>;
 ```
 
+## Com os itens filhos da família
+
+Use [TransactionListChildAction / TransactionListChildReadOnly](/components/transactionlistchild) como filhos, com `position` formando a linha do tempo. `content.size`, `amount.size` e `amount.tag` são opcionais: sem eles a renderização atual da linha principal não muda.
+
+```tsx live
+function Example() {
+  const [expanded, setExpanded] = React.useState(true);
+
+  return (
+    <div style={{ maxWidth: 360 }}>
+      <TransactionListExpandable
+        content={{ title: 'Vendas do dia', description: '3 transações' }}
+        amount={{ value: 'R$ 300,00', size: 'md', tag: { label: 'Recebido' } }}
+        icon={<PlaceholderOutline size={24} />}
+        expanded={expanded}
+        onToggle={setExpanded}
+        supportingText="Valores líquidos"
+        showDivider
+      >
+        {['first', 'middle', 'last'].map((position) => (
+          <TransactionListChildAction
+            key={position}
+            content={{ title: 'Cartão de crédito', description: 'Venda' }}
+            amount={{ value: 'R$ 100,00' }}
+            icon={<Placeholder size={16} />}
+            position={position}
+          />
+        ))}
+      </TransactionListExpandable>
+    </div>
+  );
+}
+```
+
+## Textos longos
+
+Os textos do conteúdo e a informação do valor (`amount.info`) quebram em até **duas linhas** e depois são cortados com reticências; o corte é só visual, então leitores de tela leem o texto completo. A tag fica em uma linha; rótulos longos são truncados com reticências, e o rótulo completo fica disponível como dica (`title`).
+
+## Densidade (density)
+
+`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. Na Expandable é opt-in e vale para a linha principal; os filhos recebem o próprio `density`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
+
+## Migração da API plana
+
+Cada prop plana tem um campo equivalente em `content` ou `amount`. Quando `content` é informado, ele tem prioridade sobre as props planas de conteúdo; quando `amount` é um objeto, as props planas de valor são ignoradas.
+
+| Prop plana (deprecated)    | Use                                                     |
+| -------------------------- | ------------------------------------------------------- |
+| `title`                    | `content.title`                                         |
+| `description`              | `content.description`                                   |
+| `strikethroughDescription` | `content.strikethroughDescription`                      |
+| `caption`                  | `content.caption`                                       |
+| `inverted`                 | `content.inverted`                                      |
+| `status`                   | `content.status`                                        |
+| `contentSize`              | `content.size`                                          |
+| `amount` (string)          | `amount.value`                                          |
+| `amountType`               | `amount.type`                                           |
+| `strikethroughAmount`      | `amount.strikethroughValue`                             |
+| `amountSize`               | `amount.size`                                           |
+| `amountTag`                | `amount.tag`                                            |
+| `additionalData`           | `amount.info`                                           |
+| `amountIndicator`          | `amount.tag` (só funciona com `amount` em string)       |
+| `showAmountIndicator`      | omita `amount.tag` (só funciona com `amount` em string) |
+
+```tsx
+// Antes (deprecated)
+<TransactionListExpandable
+  title="Pagamento"
+  amount="R$ 150,00"
+  amountType="negative"
+  amountTag={{ label: 'Débito', type: 'negative' }}
+  additionalData="Conta digital"
+/>
+
+// Depois
+<TransactionListExpandable
+  content={{ title: 'Pagamento' }}
+  amount={{
+    value: 'R$ 150,00',
+    type: 'negative',
+    tag: { label: 'Débito', type: 'negative' },
+    info: 'Conta digital',
+  }}
+/>
+```
+
 ## API
 
 ### Props
 
-| Prop                  | Tipo                                                                                                       | Padrão      | Descrição                                                 |
-| --------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------- |
-| `title`               | `string`                                                                                                   | -           | Título principal da transação (obrigatório)               |
-| `description`         | `string`                                                                                                   | -           | Descrição ou texto secundário                             |
-| `caption`             | `string`                                                                                                   | -           | Legenda ou texto terciário                                |
-| `amount`              | `string`                                                                                                   | -           | Valor exibido à direita (obrigatório)                     |
-| `amountType`          | `'default' \| 'positive' \| 'negative'`                                                                    | `'default'` | Tipo visual do valor                                      |
-| `amountIndicator`     | `ReactNode`                                                                                                | -           | Indicador (tag) exibido ao lado do valor                  |
-| `showAmountIndicator` | `boolean`                                                                                                  | `true`      | Define se o indicador deve ser exibido                    |
-| `additionalData`      | `string`                                                                                                   | -           | Dado adicional exibido abaixo do valor                    |
-| `inverted`            | `boolean`                                                                                                  | `true`      | Inverte a posição do título e descrição                   |
-| `type`                | `'card' \| 'text'`                                                                                         | `'card'`    | Tipo de estilo visual do container                        |
-| `status`              | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Status de estilo do conteúdo                              |
-| `loading`             | `boolean`                                                                                                  | `false`     | Exibe estado de carregamento com skeleton                 |
-| `icon`                | `ReactNode`                                                                                                | -           | Ícone exibido à esquerda                                  |
-| `expanded`            | `boolean`                                                                                                  | `false`     | Controla o estado de expansão                             |
-| `onToggle`            | `(expanded: boolean) => void`                                                                              | -           | Callback disparado ao alterar o estado de expansão        |
-| `children`            | `ReactNode`                                                                                                | -           | Conteúdo exibido quando expandido                         |
-| `supportingText`      | `ReactNode`                                                                                                | -           | Texto de apoio exibido abaixo dos filhos quando expandido |
-| `disabled`            | `boolean`                                                                                                  | `false`     | Desabilita a interação                                    |
-| `showDivider`         | `boolean`                                                                                                  | `false`     | Exibe um divisor entre o header e o conteúdo expandido    |
-| `className`           | `string`                                                                                                   | -           | Classes CSS adicionais                                    |
+| Prop             | Tipo                                     | Padrão      | Descrição                                                                                                                                                                                                                                                     |
+| ---------------- | ---------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content`        | `ContentListDefaultProps`                | -           | Bloco de conteúdo à esquerda: `title`, `description`, `strikethroughDescription`, `caption`, `inverted`, `status`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#content). Tem prioridade sobre as props planas de conteúdo |
+| `amount`         | `ContentListAmountProps \| string`       | -           | Bloco de valor à direita (obrigatório): `value`, `type`, `strikethroughValue`, `tag`, `info`, `size`. Campos em [TransactionListReadOnly](/components/transactionlistreadonly#amount). Em string, mantém a API plana (deprecated)                             |
+| `type`           | `'card' \| 'text'`                       | `'card'`    | Tipo de estilo visual do container                                                                                                                                                                                                                            |
+| `loading`        | `boolean`                                | `false`     | Exibe estado de carregamento com skeleton                                                                                                                                                                                                                     |
+| `icon`           | `ReactNode`                              | -           | Ícone exibido à esquerda                                                                                                                                                                                                                                      |
+| `iconColor`      | `'default' \| 'on-color' \| 'highlight'` | -           | Cor do ícone da família Transaction List (`Interface/Dark/Up`, `Interface/Dark/Down`, `Brand/Primary/Down`); `disabled` sempre força `Interface/Light/Deep`. Sem ela, mantém a renderização atual                                                             |
+| `density`        | `'default' \| 'compact'`                 | `'default'` | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda                                                                                                                          |
+| `expanded`       | `boolean`                                | `false`     | Controla o estado de expansão                                                                                                                                                                                                                                 |
+| `onToggle`       | `(expanded: boolean) => void`            | -           | Callback disparado ao alterar o estado de expansão                                                                                                                                                                                                            |
+| `children`       | `ReactNode`                              | -           | Itens filhos exibidos quando expandido (`TransactionListChildAction` / `TransactionListChildReadOnly`)                                                                                                                                                        |
+| `supportingText` | `ReactNode`                              | -           | Texto de apoio exibido abaixo dos filhos quando expandido                                                                                                                                                                                                     |
+| `disabled`       | `boolean`                                | `false`     | Desabilita a interação                                                                                                                                                                                                                                        |
+| `showDivider`    | `boolean`                                | `false`     | Exibe o divisor abaixo do item (abaixo do conteúdo expandido quando aberto)                                                                                                                                                                                   |
+| `className`      | `string`                                 | -           | Classes CSS adicionais                                                                                                                                                                                                                                        |
+
+### Props deprecated
+
+Continuam funcionando para não quebrar quem já usa a API plana. Prefira `content` e `amount` (ver [Migração da API plana](#migração-da-api-plana)).
+
+| Prop                       | Tipo                                                                                                       | Padrão      | Use no lugar                       |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------- |
+| `title`                    | `string`                                                                                                   | -           | `content.title`                    |
+| `description`              | `string`                                                                                                   | -           | `content.description`              |
+| `strikethroughDescription` | `string`                                                                                                   | -           | `content.strikethroughDescription` |
+| `caption`                  | `string`                                                                                                   | -           | `content.caption`                  |
+| `inverted`                 | `boolean`                                                                                                  | `true`      | `content.inverted`                 |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | `content.status`                   |
+| `contentSize`              | `'md' \| 'sm'`                                                                                             | -           | `content.size`                     |
+| `amountType`               | `'default' \| 'positive' \| 'negative' \| 'strikethrough' \| 'strikethrough-neutral'`                      | `'default'` | `amount.type`                      |
+| `strikethroughAmount`      | `string`                                                                                                   | -           | `amount.strikethroughValue`        |
+| `amountSize`               | `'md' \| 'sm'`                                                                                             | -           | `amount.size`                      |
+| `amountTag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                               | -           | `amount.tag`                       |
+| `additionalData`           | `string`                                                                                                   | -           | `amount.info`                      |
+
+`amountIndicator` (`ReactNode`) e `showAmountIndicator` (`boolean`, padrão `true`) só têm efeito com `amount` em string; com o bloco `amount`, use `amount.tag`.
 
 ### Eventos
 
@@ -226,6 +335,7 @@ const [expanded, setExpanded] = useState(false);
 - ✅ Elemento `<button>` semântico para ação de expansão
 - ✅ Atributo `aria-expanded` para comunicar o estado aos leitores de tela
 - ✅ Rótulos `aria-label` automatizados para clarificar a ação ("Expandir/Recolher [Título]")
+- ✅ Textos longos cortados só visualmente: leitores de tela leem o conteúdo e o rótulo da tag completos
 - ✅ Suporte completo à navegação por teclado
 - ✅ Estados de foco visíveis via `focus-visible`
 - ✅ Estado `disabled` corretamente aplicado ao botão
@@ -269,14 +379,15 @@ const [expanded, setExpanded] = useState(false);
 
 ### ✅ Faça
 
-- Use `amountType` para diferenciar entradas (positive) de saídas (negative)
+- Use `amount.type` para diferenciar entradas (positive) de saídas (negative)
 - Forneça um `icon` que ajude a identificar rapidamente a categoria da transação
 - Use `supportingText` para informações complementares importantes que não cabem no header
 - Utilize o estado `loading` enquanto busca detalhes pesados da transação
-- Use `amountIndicator` com Tag para categorizar o tipo da transação (Crédito, Débito)
+- Use `amount.tag` para mostrar o status da transação (Crédito, Débito)
 - Combine com `List` para agrupar múltiplas transações
 - Implemente `onToggle` para tracking de interações do usuário
-- Use `additionalData` para exibir informações auxiliares como data ou parcela
+- Use `amount.info` para exibir informações auxiliares como data ou parcela
+- Use os blocos `content` e `amount` em vez das props planas (deprecated)
 - Use `showDivider` quando precisar separar visualmente header do conteúdo expandido
 
 ### ❌ Não faça
@@ -285,15 +396,16 @@ const [expanded, setExpanded] = useState(false);
 - Evite aninhamentos excessivos de componentes expansíveis
 - Não use `disabled` e `loading` simultaneamente
 - Não omita o `amount` (é obrigatório)
+- Não misture `content`/`amount` com as props planas na mesma linha: as props planas são ignoradas
 - Não abuse de itens expandidos na mesma tela (pode confundir)
 - Evite textos excessivamente longos no `supportingText`
 
 ### Uso de Valores
 
-- **Positivos**: Use `amountType="positive"` para receitas, créditos, entradas
-- **Negativos**: Use `amountType="negative"` para despesas, débitos, saídas
-- **Padrão**: Use `amountType="default"` para valores informativos sem conotação
-- **Formatação**: Inclua símbolo da moeda e formatação adequada (ex: "R$ 1.234,56")
+- **Positivos**: Use `amount.type: 'positive'` para receitas, créditos, entradas
+- **Negativos**: Use `amount.type: 'negative'` para despesas, débitos, saídas
+- **Padrão**: Use `amount.type: 'default'` para valores informativos sem conotação
+- **Formatação**: Inclua símbolo da moeda e formatação adequada, sem sinal (ex: "R$ 1.234,56"); o sinal vem de `amount.type`
 
 ## Casos de uso comuns
 
@@ -302,30 +414,24 @@ const [expanded, setExpanded] = useState(false);
 ```tsx
 <List>
   <TransactionListExpandable
-    title="Transferência PIX"
-    description="João Silva"
-    amount="R$ 250,00"
-    amountType="negative"
+    content={{ title: 'Transferência PIX', description: 'João Silva' }}
+    amount={{
+      value: 'R$ 250,00',
+      type: 'negative',
+      tag: { label: 'Débito', type: 'negative' },
+    }}
     icon={<PixIcon size={24} />}
-    amountIndicator={
-      <Tag type="negative" size="small">
-        Débito
-      </Tag>
-    }
   >
     <TransactionDetails id="pix-123" />
   </TransactionListExpandable>
   <TransactionListExpandable
-    title="Depósito"
-    description="Salário - Empresa LTDA"
-    amount="R$ 5.000,00"
-    amountType="positive"
+    content={{ title: 'Depósito', description: 'Salário - Empresa LTDA' }}
+    amount={{
+      value: 'R$ 5.000,00',
+      type: 'positive',
+      tag: { label: 'Crédito', type: 'positive' },
+    }}
     icon={<DepositIcon size={24} />}
-    amountIndicator={
-      <Tag type="positive" size="small">
-        Crédito
-      </Tag>
-    }
   >
     <TransactionDetails id="dep-456" />
   </TransactionListExpandable>
@@ -336,11 +442,12 @@ const [expanded, setExpanded] = useState(false);
 
 ```tsx
 <TransactionListExpandable
-  title="Cobrança PIX"
-  description="Cliente ABC"
-  amount="R$ 1.500,00"
-  amountType="positive"
-  additionalData="Vencimento: 20/01/2026"
+  content={{ title: 'Cobrança PIX', description: 'Cliente ABC' }}
+  amount={{
+    value: 'R$ 1.500,00',
+    type: 'positive',
+    info: 'Vencimento: 20/01/2026',
+  }}
   icon={<BarcodeIcon size={24} />}
   supportingText="Cobrança enviada em 10/01/2026"
 >
@@ -355,17 +462,26 @@ const [expanded, setExpanded] = useState(false);
 <List>
   {isLoading ? (
     <>
-      <TransactionListExpandable title="" amount="" loading />
-      <TransactionListExpandable title="" amount="" loading />
+      <TransactionListExpandable
+        content={{ title: '' }}
+        amount={{ value: '' }}
+        loading
+      />
+      <TransactionListExpandable
+        content={{ title: '' }}
+        amount={{ value: '' }}
+        loading
+      />
     </>
   ) : (
     payments.map((payment) => (
       <TransactionListExpandable
         key={payment.id}
-        title={payment.description}
-        description={payment.recipient}
-        amount={payment.formattedAmount}
-        amountType={payment.type}
+        content={{
+          title: payment.description,
+          description: payment.recipient,
+        }}
+        amount={{ value: payment.formattedAmount, type: payment.type }}
         icon={<PaymentIcon size={24} />}
       >
         <PaymentDetails payment={payment} />
@@ -378,7 +494,8 @@ const [expanded, setExpanded] = useState(false);
 ## Links relacionados
 
 - [ListExpandable](/components/listexpandable) - Componente base para itens expansíveis
-- [TransactionListItem](/components/transactionlistitem) - Itens de transação não expansíveis
+- [TransactionListReadOnly](/components/transactionlistreadonly) e [TransactionListAction](/components/transactionlistaction) - Linhas de transação não expansíveis da mesma família
+- [Itens filhos](/components/transactionlistchild) - Linhas exibidas dentro da Expandable
 - [List](/components/list) - Container para agrupar itens de lista
 - [Tag](/components/tag) - Para indicadores de status
-- [Storybook - TransactionListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-list-transactionlistexpandable--docs) - Documentação técnica completa
+- [Storybook - TransactionListExpandable](https://ocean-ds.github.io/ocean-web/?path=/docs/components-lists-transaction-list-transaction-list-expandable--overview) - Documentação técnica completa

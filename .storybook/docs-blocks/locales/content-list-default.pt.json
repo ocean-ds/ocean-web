@@ -1,0 +1,48 @@
+{
+  "usedBy": "Não é usado sozinho. É o bloco de conteúdo de todos os itens da Transaction List: Read Only, Action, Selectable, Expandable e os itens filhos. Passe estas props na prop `content` do item.",
+  "overview": "Mostra o que aconteceu e com quem: uma linha pequena de título, uma descrição em destaque e uma legenda opcional com a data ou a referência. O texto quebra em até duas linhas e depois é cortado com reticências.",
+  "sections": {
+    "default": {
+      "title": "Padrão",
+      "text": "Título (linha pequena), descrição (em destaque) e legenda. Mantenha uma informação por linha."
+    },
+    "strikethrough": {
+      "title": "Riscado",
+      "text": "`status=\"strikethrough\"` com `strikethroughDescription` mostra o texto original riscado antes do novo, como uma data de vencimento alterada."
+    }
+  },
+  "options": {
+    "inverted": {
+      "title": "Invertido",
+      "text": "Ligado por padrão: a descrição é a linha em destaque. Use `inverted={false}` para destacar o título."
+    },
+    "status": {
+      "title": "Status",
+      "text": "`status` muda a cor e o peso da linha em destaque: `positive`, `warning`, `highlight`, `highlight-lead` e `inactive`. Itens desabilitados forçam `inactive`."
+    },
+    "size": {
+      "title": "Tamanho",
+      "text": "`size=\"sm\"` para listas densas e itens filhos. Nos itens, `content.size` é independente de `amount.size`."
+    }
+  },
+  "platforms": {
+    "react": "`ContentListDefaultProps`, passado em `content`",
+    "ios": "`OceanSwiftUI.ContentListParameters`, passado em `contentList`",
+    "android": "`ContentListStyle.Inverted`, passado em `content`"
+  },
+  "rules": [
+    "Escreva o título no vocabulário do produto, como \"Pagamento a fornecedor\" ou \"Vendas recebidas\".",
+    "Use a descrição para a contraparte: fornecedor, lojista, cartão ou banco.",
+    "Mantenha uma informação por linha; não junte informações com separadores.",
+    "Use a legenda para a data, o número do pedido ou o vencimento."
+  ],
+  "api": {
+    "title": "O que aconteceu, como \"Pagamento a fornecedor\". Com `inverted`, é a linha pequena. Obrigatório.",
+    "description": "Com quem ou com o que a transação se relaciona. Uma informação só.",
+    "caption": "Data, número do pedido ou vencimento.",
+    "strikethroughDescription": "Texto original riscado antes do texto em destaque. Só com `status=\"strikethrough\"`.",
+    "inverted": "Destaca a descrição em vez do título.",
+    "status": "Cor e peso do texto em destaque. Ignorado quando o item está desabilitado.",
+    "size": "Escala tipográfica do bloco, independente do valor."
+  }
+}

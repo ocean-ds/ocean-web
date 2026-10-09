@@ -1,0 +1,27 @@
+{
+  "overview": "A transaction row that opens to show the items that compose its amount, such as the gross amount and the fees of a sale.",
+  "sections": {
+    "collapsed": {
+      "title": "Collapsed",
+      "text": "Default. The row shows the total and a chevron. It is controlled: keep `expanded` in your state and update it in `onToggle`."
+    },
+    "expanded": {
+      "title": "Expanded",
+      "text": "`expanded` shows the child items on a timeline and the `supportingText` below them. Use Child Read Only or Child Action as children, with `position` set on each."
+    }
+  },
+  "rules": [
+    "Use Expandable only when the amount is made of parts people need to check.",
+    "Control the state: pass `expanded` and update it in `onToggle`.",
+    "Use only Child Read Only and Child Action as children, and set `position` on every child.",
+    "Set `content.size` and `amount.size` so the row aligns with the other rows of the list.",
+    "Keep `supportingText` to one short sentence."
+  ],
+  "api": {
+    "expanded": "Shows the child items. Controlled: use it with `onToggle`.",
+    "onToggle": "Called with the next state when the row is toggled.",
+    "children": "Child items shown when expanded, with `position` set on each.",
+    "supportingText": "Text below the child items, when expanded.",
+    "type": "Container: `card` or `text` for a continuous list."
+  }
+}

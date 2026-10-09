@@ -52,7 +52,9 @@ export type InternalContextualHeroProps = {
    * Action buttons to be displayed in the hero.
    * Accepts one or two actions (primary and optional secondary).
    */
-  actions?: [InternalContextualHeroAction] | [InternalContextualHeroAction, InternalContextualHeroAction];
+  actions?:
+    | [InternalContextualHeroAction]
+    | [InternalContextualHeroAction, InternalContextualHeroAction];
   /**
    * Additional CSS class name to apply to the root element.
    */
@@ -81,8 +83,23 @@ const secondaryButtonVariants = {
   negative: 'tertiaryCritical',
 } as const;
 
-const InternalContextualHero = React.forwardRef<HTMLDivElement, InternalContextualHeroProps>(
-  ({ title, description, image, listItems, actions, className, imagePosition = 'top', type = 'default' }, ref) => {
+const InternalContextualHero = React.forwardRef<
+  HTMLDivElement,
+  InternalContextualHeroProps
+>(
+  (
+    {
+      title,
+      description,
+      image,
+      listItems,
+      actions,
+      className,
+      imagePosition = 'top',
+      type = 'default',
+    },
+    ref
+  ) => {
     const renderImage = () => {
       if (typeof image === 'string') {
         return <img src={image} alt={title} />;
@@ -99,31 +116,48 @@ const InternalContextualHero = React.forwardRef<HTMLDivElement, InternalContextu
         })}
         ref={ref}
       >
-        <div className='ods-internal-contextual-hero__body'>
-          <div className='ods-internal-contextual-hero__content'>
-            <div className='ods-internal-contextual-hero__header'>
+        <div className="ods-internal-contextual-hero__body">
+          <div className="ods-internal-contextual-hero__content">
+            <div className="ods-internal-contextual-hero__header">
               <Typography variant="heading3">{title}</Typography>
               <Typography variant="description">{description}</Typography>
             </div>
             {actions && actions.length > 0 && (
-              <div className='ods-internal-contextual-hero__actions'>
-                <Button variant={primaryButtonVariants[type]} size='sm' onClick={actions[0].onClick}>
+              <div className="ods-internal-contextual-hero__actions">
+                <Button
+                  variant={primaryButtonVariants[type]}
+                  size="sm"
+                  onClick={actions[0].onClick}
+                >
                   {actions[0].label}
                 </Button>
                 {actions[1] && (
-                  <Button variant={secondaryButtonVariants[type]} size='sm' onClick={actions[1].onClick}>
+                  <Button
+                    variant={secondaryButtonVariants[type]}
+                    size="sm"
+                    onClick={actions[1].onClick}
+                  >
                     {actions[1].label}
                   </Button>
                 )}
               </div>
             )}
           </div>
-          <div className='ods-internal-contextual-hero__list'>
+          <div className="ods-internal-contextual-hero__list">
             {listItems?.map((item) =>
               isListItemString(item) ? (
-                <div key={item.description} className='ods-internal-contextual-hero__list-item'>
-                  {item.icon && <div className="ods-internal-contextual-hero__list-item-icon">{item.icon}</div>}
-                  <Typography variant="description">{item.description}</Typography>
+                <div
+                  key={item.description}
+                  className="ods-internal-contextual-hero__list-item"
+                >
+                  {item.icon && (
+                    <div className="ods-internal-contextual-hero__list-item-icon">
+                      {item.icon}
+                    </div>
+                  )}
+                  <Typography variant="description">
+                    {item.description}
+                  </Typography>
                 </div>
               ) : (
                 item
@@ -132,7 +166,7 @@ const InternalContextualHero = React.forwardRef<HTMLDivElement, InternalContextu
           </div>
         </div>
         {image && (
-          <div className='ods-internal-contextual-hero__image'>
+          <div className="ods-internal-contextual-hero__image">
             {renderImage()}
           </div>
         )}
@@ -144,4 +178,3 @@ const InternalContextualHero = React.forwardRef<HTMLDivElement, InternalContextu
 InternalContextualHero.displayName = 'InternalContextualHero';
 
 export default InternalContextualHero;
-

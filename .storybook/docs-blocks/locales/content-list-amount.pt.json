@@ -1,0 +1,55 @@
+{
+  "usedBy": "Não é usado sozinho. É o bloco de valor de todas as listas com valor: Transaction List Read Only, Action, Selectable, Expandable e os itens filhos. Passe estas props na prop `amount` do item.",
+  "overview": "Mostra um valor formatado, alinhado ao fim da linha, com uma tag opcional e uma linha de informação adicional. A informação quebra em até duas linhas e depois é cortada com reticências.",
+  "sections": {
+    "default": {
+      "title": "Padrão",
+      "text": "Valores neutros, como um pagamento ou uma transferência."
+    },
+    "positive": {
+      "title": "Positivo",
+      "text": "Dinheiro entrando. O bloco colore o valor; não adicione \"+\"."
+    },
+    "negative": {
+      "title": "Negativo",
+      "text": "Dinheiro saindo. O bloco adiciona o \"-\"; passe o valor sem sinal."
+    },
+    "strikethrough": {
+      "title": "Riscado",
+      "text": "Um valor que mudou a favor do cliente: o original aparece riscado e o novo valor fica positivo."
+    },
+    "strikethroughNeutral": {
+      "title": "Riscado neutro",
+      "text": "Um valor que mudou sem indicar ganho ou perda, como um total atualizado."
+    },
+    "withTag": {
+      "title": "Com tag",
+      "text": "Uma tag por linha mostra o status da transação. O tipo vem das regras de status do produto, como `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado. Um pagamento cancelado mantém o valor. As tags ficam em uma linha; rótulos longos são truncados com reticências."
+    }
+  },
+  "options": {
+    "size": {
+      "title": "Tamanho",
+      "text": "`size=\"sm\"` para listas secundárias e itens filhos; a tag acompanha. Nos itens, `amount.size` é independente de `content.size`."
+    }
+  },
+  "platforms": {
+    "react": "`ContentListAmountProps`, passado em `amount`",
+    "ios": "`OceanSwiftUI.AmountDetailsParameters`, passado em `amountDetails`",
+    "android": "`ContentListStyle.Amount`, passado em `amount`"
+  },
+  "rules": [
+    "Passe o valor já formatado em R$ e sem sinal.",
+    "Use `strikethrough` só quando a mudança favorece o cliente; nos demais casos, use `strikethrough-neutral`.",
+    "Use a tag para o status da transação; o tipo vem das regras de status do produto, como `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado.",
+    "Mantenha `info` em uma informação curta, como \"Taxa de antecipação\"."
+  ],
+  "api": {
+    "value": "Valor formatado e sem sinal, como \"R$ 6.819,33\". Obrigatório.",
+    "type": "Adiciona o sinal e a cor. Ignorado quando o item está desabilitado.",
+    "strikethroughValue": "Valor original, riscado antes de `value`. Só com os tipos riscados.",
+    "tag": "Status abaixo do valor, uma Tag do Ocean. O tamanho segue `size`; fica neutra quando o item está desabilitado.",
+    "info": "Uma informação curta sobre o valor, como \"Taxa de antecipação\".",
+    "size": "Escala tipográfica do bloco, independente do conteúdo."
+  }
+}

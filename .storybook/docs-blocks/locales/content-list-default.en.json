@@ -1,0 +1,48 @@
+{
+  "usedBy": "Not used on its own. It is the content block of every Transaction List item: Read Only, Action, Selectable, Expandable and the child items. Pass these props in the item’s `content` prop.",
+  "overview": "Shows what happened and who it relates to: a small title line, an emphasized description and an optional caption with the date or reference. Text wraps up to two lines and then truncates with an ellipsis.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Title (small line), description (emphasized) and caption. Keep one fact per line."
+    },
+    "strikethrough": {
+      "title": "Strikethrough",
+      "text": "`status=\"strikethrough\"` with `strikethroughDescription` shows the original text struck through before the new one, such as a changed due date."
+    }
+  },
+  "options": {
+    "inverted": {
+      "title": "Inverted",
+      "text": "On by default: the description is the emphasized line. Set `inverted={false}` to emphasize the title instead."
+    },
+    "status": {
+      "title": "Status",
+      "text": "`status` changes the color and weight of the emphasized line: `positive`, `warning`, `highlight`, `highlight-lead` and `inactive`. Disabled items force `inactive`."
+    },
+    "size": {
+      "title": "Size",
+      "text": "`size=\"sm\"` for dense lists and child items. In the items, `content.size` is independent from `amount.size`."
+    }
+  },
+  "platforms": {
+    "react": "`ContentListDefaultProps`, passed in `content`",
+    "ios": "`OceanSwiftUI.ContentListParameters`, passed in `contentList`",
+    "android": "`ContentListStyle.Inverted`, passed in `content`"
+  },
+  "rules": [
+    "Write the title in the product vocabulary, such as \"Payment to supplier\" or \"Sales received\".",
+    "Use the description for the counterpart: supplier, retailer, card or bank.",
+    "Keep one fact per line; don’t join facts with separators.",
+    "Use the caption for the date, the order number or the due date."
+  ],
+  "api": {
+    "title": "What happened, such as \"Payment to supplier\". With `inverted` it is the small line. Required.",
+    "description": "Who or what the transaction relates to. One fact only.",
+    "caption": "Date, order number or due date.",
+    "strikethroughDescription": "Original text shown struck through before the emphasized text. Only with `status=\"strikethrough\"`.",
+    "inverted": "Emphasizes the description instead of the title.",
+    "status": "Color and weight of the emphasized text. Ignored when the item is disabled.",
+    "size": "Type scale of the block, independent from the amount."
+  }
+}

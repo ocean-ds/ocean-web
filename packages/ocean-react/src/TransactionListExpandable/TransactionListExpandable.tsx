@@ -1,35 +1,84 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ChevronDown, ChevronUp } from '@useblu/ocean-icons-react';
-import ContentList, {
+import {
   ContentListProps,
+  ContentListSize,
 } from '../_shared/components/ContentList';
-import AmountDetails, {
+import {
   AmountDetailsProps,
+  AmountDetailsSize,
+  AmountDetailsTag,
 } from '../_shared/components/AmountDetails';
 import SkeletonBar from '../_shared/components/SkeletonBar';
+import {
+  ContentListAmountProps,
+  ContentListDefaultProps,
+  TransactionListContent,
+  TransactionListDensity,
+  TransactionListIconColor,
+} from '../_shared/components/TransactionListParts';
 
 export type TransactionListExpandableProps = {
   /**
-   * The title of the transaction (primary text, description style when inverted).
+   * Content block (left): title, description, caption. Takes precedence over the flat
+   * `title`, `description`, `caption`, `inverted`, `status` and `contentSize` props.
    */
-  title: string;
+  content?: ContentListDefaultProps;
+  /**
+   * Amount block (right) as an object: value, type, tag, info. A string keeps the flat
+   * API (`amountType`, `amountTag`, `additionalData`…).
+   */
+  amount: ContentListAmountProps | string;
+  /**
+   * @deprecated Use `content.title`.
+   */
+  title?: string;
   /**
    * The description or secondary text of the transaction.
+   * @deprecated Use `content.description`.
    */
   description?: string;
   /**
+   * Original text shown struck-through before the emphasized text when
+   * `status="strikethrough"`.
+   * @deprecated Use `content.strikethroughDescription`.
+   */
+  strikethroughDescription?: string;
+  /**
    * Caption or tertiary text.
+   * @deprecated Use `content.caption`.
    */
   caption?: string;
   /**
-   * Amount to display on the right (e.g. "R$ 0,00").
-   */
-  amount: string;
-  /**
-   * Amount visual type (default, positive, negative).
+   * Amount visual type (default, positive, negative, strikethrough, strikethrough-neutral).
+   * @deprecated Use `amount.type`.
    */
   amountType?: AmountDetailsProps['type'];
+  /**
+   * Original amount rendered struck-through before `amount`
+   * (amount types `strikethrough` and `strikethrough-neutral`).
+   * @deprecated Use `amount.strikethroughValue`.
+   */
+  strikethroughAmount?: string;
+  /**
+   * Typography scale of the content block (Transaction List family). When omitted, the
+   * current rendering is kept.
+   * @deprecated Use `content.size`.
+   */
+  contentSize?: ContentListSize;
+  /**
+   * Size of the amount block (Transaction List family): `md` value 16 / tag Medium,
+   * `sm` value 14 / tag Small. When omitted, the current rendering is kept.
+   * @deprecated Use `amount.size`.
+   */
+  amountSize?: AmountDetailsSize;
+  /**
+   * Tag shown below the amount, sized from `amountSize` (Medium when `amountSize` is
+   * omitted). Takes precedence over `amountIndicator`.
+   * @deprecated Use `amount.tag`.
+   */
+  amountTag?: AmountDetailsTag;
   /**
    * Indicator/tag shown next to the amount (e.g. Tag with status).
    */
@@ -41,11 +90,13 @@ export type TransactionListExpandableProps = {
   showAmountIndicator?: boolean;
   /**
    * Additional data below the amount (caption). Shown only when this string is provided.
+   * @deprecated Use `amount.info`.
    */
   additionalData?: string;
   /**
    * Inverts the position of title and description in ContentList.
-   * @default true (per Figma Transaction List Expandable)
+   * @default true
+   * @deprecated Use `content.inverted`.
    */
   inverted?: boolean;
   /**
@@ -56,6 +107,7 @@ export type TransactionListExpandableProps = {
   /**
    * Status type of the content list.
    * @default 'default'
+   * @deprecated Use `content.status`.
    */
   status?: ContentListProps['type'];
   /**
@@ -64,9 +116,22 @@ export type TransactionListExpandableProps = {
    */
   loading?: boolean;
   /**
-   * Icon displayed at the beginning of the row.
+   * Icon displayed at the beginning of the row. With `iconColor` it takes that color
+   * (pass it without its own color).
    */
   icon?: ReactNode;
+  /**
+   * Color of the leading icon (Transaction List family): `default` Interface/Dark/Up,
+   * `on-color` Interface/Dark/Down (colored backgrounds), `highlight` Brand/Primary/Down.
+   * `disabled` always forces Interface/Light/Deep. When omitted, the current rendering is kept.
+   */
+  iconColor?: TransactionListIconColor;
+  /**
+   * Vertical density of the row (Transaction List family): \`compact\` sets top and bottom
+   * padding to 8 (the skeleton follows). Children set their own \`density\`.
+   * @default 'default'
+   */
+  density?: TransactionListDensity;
   /**
    * Whether the content is expanded.
    * @default false
@@ -77,7 +142,8 @@ export type TransactionListExpandableProps = {
    */
   onToggle?: (expanded: boolean) => void;
   /**
-   * Content to display when expanded (e.g. ListAction as child transaction list actions).
+   * Content to display when expanded — the child rows
+   * (`TransactionListChildAction` / `TransactionListChildReadOnly`).
    */
   children?: ReactNode;
   /**
@@ -90,11 +156,11 @@ export type TransactionListExpandableProps = {
    */
   disabled?: boolean;
   /**
-   * If true, shows a divider between the main row and the expanded content.
-   * @default true (per Figma)
+   * If true, shows a divider below the item (below the expanded content when open).
+   * @default false
    */
   showDivider?: boolean;
-} & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'content'>;
 
 const TransactionListExpandable = React.forwardRef<
   HTMLDivElement,
@@ -102,11 +168,17 @@ const TransactionListExpandable = React.forwardRef<
 >(
   (
     {
-      title,
+      content,
+      title = '',
       description,
+      strikethroughDescription,
       caption,
       amount,
       amountType = 'default',
+      strikethroughAmount,
+      contentSize,
+      amountSize,
+      amountTag,
       amountIndicator,
       showAmountIndicator = true,
       additionalData,
@@ -115,6 +187,8 @@ const TransactionListExpandable = React.forwardRef<
       status = 'default',
       loading = false,
       icon,
+      iconColor,
+      density = 'default',
       expanded = false,
       onToggle,
       children,
@@ -126,6 +200,31 @@ const TransactionListExpandable = React.forwardRef<
     },
     ref
   ) => {
+    const contentBlock: ContentListDefaultProps = content ?? {
+      title,
+      description,
+      strikethroughDescription,
+      caption,
+      inverted,
+      status,
+      size: contentSize,
+    };
+    const amountBlock: ContentListAmountProps =
+      typeof amount === 'string'
+        ? {
+            value: amount,
+            type: amountType,
+            strikethroughValue: strikethroughAmount,
+            tag: showAmountIndicator ? amountTag : undefined,
+            info: additionalData,
+            size: amountSize,
+          }
+        : amount;
+    const legacyIndicator =
+      typeof amount === 'string' && !amountTag && showAmountIndicator
+        ? amountIndicator
+        : undefined;
+
     const handleToggle = () => {
       onToggle?.(!expanded);
     };
@@ -153,30 +252,23 @@ const TransactionListExpandable = React.forwardRef<
         {icon && (
           <div
             className={classNames('ods-list-expandable__icon', {
-              'ods-list-expandable__icon--inactive': status === 'inactive',
+              'ods-list-expandable__icon--inactive':
+                contentBlock.status === 'inactive',
+              [`ods-list-expandable__icon--${
+                disabled ? 'disabled' : iconColor
+              }`]: iconColor,
             })}
           >
             {icon}
           </div>
         )}
-        <div className="ods-list-expandable__transaction-content">
-          <ContentList
-            title={title}
-            description={description}
-            caption={caption}
-            inverted={inverted}
-            type={status}
-          />
-          <AmountDetails
-            amount={amount}
-            type={amountType}
-            indicator={amountIndicator}
-            indicatorSize="medium"
-            showIndicator={showAmountIndicator}
-            additionalData={additionalData}
-            showAdditionalData={Boolean(additionalData)}
-          />
-        </div>
+        <TransactionListContent
+          className="ods-list-expandable__transaction-content"
+          content={contentBlock}
+          amount={amountBlock}
+          indicator={legacyIndicator}
+          disabled={false}
+        />
         <div className="ods-list-expandable__trailing">
           <div className="ods-list-expandable__action">
             {expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -193,6 +285,7 @@ const TransactionListExpandable = React.forwardRef<
         'ods-list-expandable--expanded': expanded,
         'ods-list-expandable--disabled': disabled,
         'ods-list-expandable--loading': loading,
+        'ods-list-expandable--compact': density === 'compact',
         [`ods-list-expandable--${type}`]: type,
       }
     );
@@ -210,7 +303,9 @@ const TransactionListExpandable = React.forwardRef<
           onClick={loading ? undefined : handleToggle}
           disabled={disabled || loading}
           aria-expanded={expanded}
-          aria-label={`${expanded ? 'Recolher' : 'Expandir'} ${title}`}
+          aria-label={`${expanded ? 'Recolher' : 'Expandir'} ${
+            contentBlock.title
+          }`}
           data-testid="transaction-list-expandable-button"
         >
           {loading ? renderLoadingContent() : renderContent()}

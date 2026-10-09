@@ -8,6 +8,7 @@ interface TriggerButtonProps {
   isOpen: boolean;
   isSwipeGesture: boolean;
   onClick: () => void;
+  label?: string;
 }
 
 const TriggerButton: React.FC<TriggerButtonProps> = ({
@@ -16,6 +17,7 @@ const TriggerButton: React.FC<TriggerButtonProps> = ({
   isOpen,
   isSwipeGesture,
   onClick,
+  label = 'Abrir menu de ações',
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -32,7 +34,7 @@ const TriggerButton: React.FC<TriggerButtonProps> = ({
         'ods-internal-list-actions__trigger--swipe-gesture': isSwipeGesture,
       })}
       onClick={handleClick}
-      aria-label="Abrir menu de ações"
+      aria-label={label}
       aria-expanded={isOpen}
     >
       {isSwipeGesture ? (

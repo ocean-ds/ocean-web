@@ -110,7 +110,6 @@ exports[`CardListReadOnly Snapshot matches snapshot with all props 1`] = `
         >
           <div
             class="ods-tag ods-tag--medium ods-tag--medium__with-icon ods-tag--positive"
-            role="Tag"
           >
             <svg
               aria-hidden="true"

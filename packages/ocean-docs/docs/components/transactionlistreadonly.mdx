@@ -1,0 +1,221 @@
+---
+title: TransactionListReadOnly
+sidebar_label: TransactionListReadOnly
+---
+
+import { TransactionListReadOnly, List } from '@useblu/ocean-react';
+import { PlaceholderOutline } from '@useblu/ocean-icons-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# TransactionListReadOnly
+
+Linha de transação **só de leitura**: conteúdo à esquerda e valor à direita, sem interação. Faz parte da família Transaction List (Read Only, Action, Selectable, Expandable e os itens filhos), que substitui o `TransactionListItem`.
+
+Toda linha da família recebe dois blocos: `content` (o que aconteceu e com quem) e `amount` (o valor, com tag e informação opcionais).
+
+## Importação
+
+```tsx
+import { TransactionListReadOnly } from '@useblu/ocean-react';
+```
+
+### Importação de tipos TypeScript
+
+```tsx
+import type {
+  TransactionListReadOnlyProps,
+  ContentListDefaultProps,
+  ContentListAmountProps,
+} from '@useblu/ocean-react';
+```
+
+## Playground Interativo
+
+<StorybookEmbed
+  storyId="components-lists-transaction-list-transaction-list-read-only--default"
+  height={300}
+  title="TransactionListReadOnly - Playground Interativo"
+/>
+
+## Uso básico
+
+```tsx live
+<TransactionListReadOnly
+  content={{
+    title: 'Pix recebido',
+    description: 'Loja Exemplo',
+    caption: 'Hoje às 14:32',
+  }}
+  amount={{
+    value: 'R$ 150,00',
+    tag: { label: 'Aprovado' },
+    info: 'Saldo disponível',
+  }}
+  icon={<PlaceholderOutline size={24} />}
+/>
+```
+
+## Tamanhos (content.size e amount.size)
+
+O tamanho do texto e o tamanho do valor são escolhidos **separadamente**. `md` é o padrão; `sm` é a escala compacta (a mesma dos itens filhos). A tag do valor acompanha o `amount.size` (`md` → Medium, `sm` → Small).
+
+```tsx live
+<List>
+  <TransactionListReadOnly
+    content={{ title: 'Title', description: 'md / md' }}
+    amount={{ value: 'R$ 0,00' }}
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Title', description: 'sm / md', size: 'sm' }}
+    amount={{ value: 'R$ 0,00' }}
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Title', description: 'md / sm' }}
+    amount={{ value: 'R$ 0,00', size: 'sm' }}
+  />
+</List>
+```
+
+## Tipos de valor (amount.type)
+
+```tsx live
+<List>
+  <TransactionListReadOnly
+    content={{ title: 'Default' }}
+    amount={{ value: 'R$ 100,00' }}
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Positive' }}
+    amount={{ value: 'R$ 100,00', type: 'positive' }}
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Negative' }}
+    amount={{ value: 'R$ 100,00', type: 'negative' }}
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Strikethrough' }}
+    amount={{
+      value: 'Grátis',
+      strikethroughValue: '3,99%',
+      type: 'strikethrough',
+    }}
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Strikethrough Neutral' }}
+    amount={{
+      value: 'R$ 2,00',
+      strikethroughValue: 'R$ 3,99',
+      type: 'strikethrough-neutral',
+    }}
+  />
+</List>
+```
+
+- **strikethrough**: o valor mudou a favor do cliente — original riscado (`Interface/Dark/Up`) e atual em verde (`Status/Positive/Deep`), na mesma linha.
+- **strikethrough-neutral**: o valor só mudou — atual em `Interface/Dark/Deep`.
+
+## Textos longos
+
+- Os textos do conteúdo (`content`) quebram em até **duas linhas** e depois são cortados com reticências. O corte é só visual: leitores de tela leem o texto completo.
+- A informação do valor (`amount.info`) também quebra em até duas linhas e depois é cortada com reticências.
+- A tag (`amount.tag`) fica em **uma linha**; rótulos longos são truncados com reticências, e o rótulo completo continua disponível para leitores de tela e como dica (`title`).
+
+## Cor do ícone (iconColor)
+
+A cor do ícone à esquerda vem de um conjunto fechado:
+
+| Valor              | Token                 | Quando usar                                                                           |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------------- |
+| `default` (padrão) | `Interface/Dark/Up`   | Linha sobre fundo branco                                                              |
+| `on-color`         | `Interface/Dark/Down` | Linha sobre fundo colorido (ex.: heróis em `Status/Warning/Up`, `Status/Negative/Up`) |
+| `highlight`        | `Brand/Primary/Down`  | Mais ênfase                                                                           |
+
+Desabilitado **sempre** força `Interface/Light/Deep`, qualquer que seja a escolha — não é uma opção. O ícone herda a cor do componente: passe ícones **sem cor própria** (ex.: `<PlaceholderOutline size={24} />`, sem `color`).
+
+## Estados
+
+```tsx live
+<List>
+  <TransactionListReadOnly
+    content={{ title: 'Desabilitado', description: 'Tipo inativo nos blocos' }}
+    amount={{ value: 'R$ 0,00', tag: { label: 'Label' } }}
+    icon={<PlaceholderOutline size={24} />}
+    disabled
+  />
+  <TransactionListReadOnly
+    content={{ title: 'Carregando' }}
+    amount={{ value: 'R$ 0,00' }}
+    icon={<PlaceholderOutline size={24} />}
+    loading
+  />
+</List>
+```
+
+O desabilitado vem do tipo **Inactive** de conteúdo e valor (tag neutra), nunca de opacidade forçada. `content.status` e `amount.type` são ignorados enquanto a linha está desabilitada.
+
+## Divisor
+
+O divisor (recuo de 16px, `mix-blend-mode: multiply`) aparece por padrão. Use `showDivider={false}` no último item quando o container já separa o grupo.
+
+## Densidade (density)
+
+`density="compact"` reduz o padding vertical da linha para 8 (Spacing/Xxs) — 16 no `default`. O padding horizontal, o espaço entre os elementos e o divisor não mudam; o esqueleto de carregamento acompanha.
+
+Altura da linha por tamanho (conteúdo + valor com legenda, etiqueta e informação extra): `md` 100 / compact 84; `sm` 94 / compact 78; carregando 73 / compact 57.
+
+## API
+
+### Props
+
+| Prop          | Tipo                                     | Padrão      | Descrição                                                                                                                            |
+| ------------- | ---------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `content`     | `ContentListDefaultProps`                | -           | Bloco de conteúdo à esquerda (obrigatório). Ver [content](#content)                                                                  |
+| `amount`      | `ContentListAmountProps`                 | -           | Bloco de valor à direita (obrigatório). Ver [amount](#amount)                                                                        |
+| `icon`        | `ReactNode`                              | -           | Ícone à esquerda                                                                                                                     |
+| `iconColor`   | `'default' \| 'on-color' \| 'highlight'` | `'default'` | Cor do ícone (conjunto fechado); desabilitado sempre força `Interface/Light/Deep`                                                    |
+| `disabled`    | `boolean`                                | `false`     | Conteúdo e valor usam o tipo inativo; a tag fica neutra                                                                              |
+| `loading`     | `boolean`                                | `false`     | Exibe o esqueleto                                                                                                                    |
+| `density`     | `'default' \| 'compact'`                 | `'default'` | Densidade vertical: `compact` usa padding de 8 (Spacing/Xxs) em cima e embaixo; o esqueleto acompanha. O padding horizontal não muda |
+| `showDivider` | `boolean`                                | `true`      | Exibe o divisor abaixo do item                                                                                                       |
+| `className`   | `string`                                 | -           | Classes CSS adicionais                                                                                                               |
+
+### content
+
+| Campo                      | Tipo                                                                                                       | Padrão      | Descrição                                                                                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `title`                    | `string`                                                                                                   | -           | O que aconteceu, como "Pagamento a fornecedor" (obrigatório). Com `inverted` (padrão) é a linha menor acima da descrição |
+| `description`              | `string`                                                                                                   | -           | Com quem ou com o que a transação se relaciona                                                                           |
+| `strikethroughDescription` | `string`                                                                                                   | -           | Texto riscado antes do texto em destaque, com `status="strikethrough"`                                                   |
+| `caption`                  | `string`                                                                                                   | -           | Data, hora, número do pedido ou vencimento                                                                               |
+| `inverted`                 | `boolean`                                                                                                  | `true`      | Destaca a descrição em vez do título                                                                                     |
+| `status`                   | `'default' \| 'inactive' \| 'positive' \| 'warning' \| 'highlight' \| 'highlight-lead' \| 'strikethrough'` | `'default'` | Cor e peso do texto em destaque; ignorado quando desabilitado                                                            |
+| `size`                     | `'md' \| 'sm'`                                                                                             | `'md'`      | Escala do texto, independente de `amount.size`                                                                           |
+
+### amount
+
+| Campo                | Tipo                                                                                                | Padrão      | Descrição                                                                                                                    |
+| -------------------- | --------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `value`              | `string`                                                                                            | -           | Valor formatado, sem sinal, como "R$ 6.819,33" (obrigatório)                                                                 |
+| `type`               | `'default' \| 'positive' \| 'negative' \| 'inactive' \| 'strikethrough' \| 'strikethrough-neutral'` | `'default'` | Adiciona o sinal e a cor; ignorado quando desabilitado                                                                       |
+| `strikethroughValue` | `string`                                                                                            | -           | Valor original riscado antes de `value` (tipos `strikethrough*`)                                                             |
+| `tag`                | `{ label: ReactNode; type?: TagType; setIconOff?: boolean }`                                        | -           | Tag de status abaixo do valor (`type` padrão `positive`); o tamanho vem de `amount.size`; fica `neutral` quando desabilitado |
+| `info`               | `string`                                                                                            | -           | Um dado curto sobre o valor, como "Taxa de antecipação"                                                                      |
+| `size`               | `'md' \| 'sm'`                                                                                      | `'md'`      | Tamanho do valor (md 16 / sm 14); a tag acompanha (Medium / Small)                                                           |
+
+## Acessibilidade
+
+- Elemento `<div>` sem papel interativo; `aria-disabled` quando desabilitado e `aria-busy` durante o carregamento.
+- O corte de textos longos é só visual: leitores de tela leem o conteúdo e o rótulo da tag completos.
+
+## Quando usar
+
+- Valor monetário como peça principal, **sem** navegação, expansão ou seleção.
+- Com navegação → [TransactionListAction](/components/transactionlistaction). Com seleção → [TransactionListSelectable](/components/transactionlistselectable). Com detalhes na própria lista → [TransactionListExpandable](/components/transactionlistexpandable).
+
+## Links relacionados
+
+- [TransactionListAction](/components/transactionlistaction)
+- [TransactionListSelectable](/components/transactionlistselectable)
+- [TransactionListExpandable](/components/transactionlistexpandable)
+- [Itens filhos](/components/transactionlistchild)
+- [Storybook - Transaction List Read Only](https://ocean-ds.github.io/ocean-web/?path=/docs/components-lists-transaction-list-transaction-list-read-only--overview)

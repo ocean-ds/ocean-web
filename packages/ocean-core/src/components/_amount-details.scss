@@ -59,3 +59,126 @@
     }
   }
 }
+
+// Struck-through original value (types `strikethrough` / `strikethrough-neutral`).
+.ods-amount-details__amount-row--strikethrough {
+  align-items: baseline;
+}
+
+.ods-amount-details__strikethrough {
+  color: $color-interface-dark-up;
+  font-family: $font-family-base;
+  font-size: $font-size-xxs;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-comfy;
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+
+.ods-amount-details__amount--strikethrough {
+  color: $color-status-positive-deep;
+}
+
+.ods-amount-details__amount--strikethrough-neutral {
+  color: $color-interface-dark-deep;
+}
+
+// Sized variants. Only rendered when `size` is passed,
+// so the original block (no size) keeps its rendering.
+.ods-amount-details--md,
+.ods-amount-details--sm {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign {
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-medium;
+  }
+
+  .ods-amount-details__amount--positive,
+  .ods-amount-details__amount--strikethrough {
+    color: $color-status-positive-deep;
+  }
+
+  .ods-amount-details__caption {
+    color: $color-interface-dark-down;
+  }
+}
+
+.ods-amount-details--md {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign,
+  .ods-amount-details__strikethrough {
+    font-size: $font-size-xs;
+  }
+}
+
+.ods-amount-details--sm {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign,
+  .ods-amount-details__strikethrough {
+    font-size: $font-size-xxs;
+  }
+}
+
+// Disabled comes from Type=Inactive (never a forced opacity).
+.ods-amount-details--inactive {
+  .ods-amount-details__amount,
+  .ods-amount-details__amount-sign,
+  .ods-amount-details__caption {
+    color: $color-interface-dark-up;
+  }
+}
+
+// Transaction List family: the content block keeps its space and the amount block takes at
+// most half of the row. The value never wraps; a long tag stays on one line and is truncated
+// with an ellipsis (the full label stays in the DOM and in the title). The content texts
+// and the info wrap up to two lines and then truncate.
+@mixin two-line-clamp {
+  /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
+  overflow: hidden;
+}
+
+.ods-transaction-list__content,
+.ods-list-expandable__transaction-content {
+  > .ods-content-list {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  > .ods-amount-details {
+    flex: 0 1 auto;
+    max-width: 50%;
+    min-width: 0;
+  }
+
+  .ods-amount-details__main,
+  .ods-amount-details__indicator {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ods-amount-details__indicator .ods-tag {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ods-amount-details__indicator .ods-tag__content {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ods-amount-details__caption {
+    @include two-line-clamp;
+
+    white-space: normal;
+  }
+
+  .ods-content-list > p {
+    @include two-line-clamp;
+  }
+}

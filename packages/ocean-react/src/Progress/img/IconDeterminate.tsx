@@ -55,4 +55,3 @@ const IconDeterminate: React.FunctionComponent<IconDeterminateProps> = ({
 };
 
 export default IconDeterminate;
-

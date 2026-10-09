@@ -1,0 +1,18 @@
+{
+  "overview": "Uma linha de transação apenas para leitura, como uma linha de extrato. Ela não tem hover, não recebe foco e não tem callback.",
+  "sections": {
+    "default": {
+      "title": "Padrão",
+      "text": "Conteúdo à esquerda, valor à direita e um ícone opcional no início. Agrupe as linhas dentro de `List`."
+    }
+  },
+  "rules": [
+    "Use o Read Only apenas quando a linha não tiver ação; toda linha que responde a clique é um Transaction List Action.",
+    "Não adicione handlers de clique a uma linha Read Only.",
+    "Passe os valores formatados e sem sinal; `amount.type` adiciona o sinal e a cor.",
+    "Coloque as linhas dentro de `List` e use `showDivider={false}` na última linha.",
+    "Use `disabled` para linhas indisponíveis; nunca esmaeça a linha com opacidade ou classes próprias.",
+    "Não recrie a linha com `div` e flex."
+  ],
+  "api": {}
+}
