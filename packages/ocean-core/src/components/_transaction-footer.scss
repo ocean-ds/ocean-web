@@ -1,25 +1,105 @@
 .ods-transaction-footer {
+  box-sizing: border-box;
   background-color: $color-interface-light-pure;
   display: flex;
   flex-direction: column;
-  padding-top: $spacing-stack-xxs;
-  position: relative;
+  width: 100%;
 
-  // Divisor de topo da variante Default — desenhado dentro do espaçador de 8px
-  // (`padding-top`), sem adicionar altura, então alternar variante não gera "pulo".
-  &--default::before {
-    background-color: $color-interface-light-down;
-    content: '';
-    height: $border-width-hairline;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+  &--default {
+    border-top: $border-width-hairline solid $color-interface-light-down;
   }
 
   &--highlight {
     background-color: $color-interface-light-up;
-    border-top-left-radius: $border-radius-lg;
-    border-top-right-radius: $border-radius-lg;
+    border-top-left-radius: $border-radius-md;
+    border-top-right-radius: $border-radius-md;
+  }
+
+  &__notice {
+    background: linear-gradient(
+        rgba(45, 169, 79, 0.12),
+        rgba(45, 169, 79, 0.12)
+      ),
+      #f2fcf5;
+    margin-bottom: $spacing-stack-xs;
+    padding: $spacing-inline-xs;
+  }
+
+  &__content {
+    padding: 0 $spacing-inline-xs;
+  }
+
+  &__total {
+    align-items: center;
+    border-top: $border-width-hairline solid $color-interface-light-down;
+    display: flex;
+    gap: $spacing-inline-xs;
+    justify-content: space-between;
+    padding: $spacing-stack-xs 0;
+  }
+
+  &__total-label {
+    color: $color-interface-dark-down;
+  }
+
+  &__total-value {
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-bold;
+  }
+
+  &__action {
+    margin-top: $spacing-stack-md;
+    padding: 0 $spacing-inline-xs $spacing-inline-xs;
+  }
+}
+
+.ods-transaction-summary {
+  width: 100%;
+
+  &__title {
+    color: #aaadc0;
+    margin: 0 0 $spacing-stack-xxs;
+  }
+
+  &__card {
+    background-color: $color-interface-light-up;
+    border-radius: $border-radius-md;
+    padding: $spacing-inline-xs;
+  }
+
+  &__rows {
+    margin: 0 -#{$spacing-inline-xs};
+  }
+
+  &__total {
+    align-items: center;
+    border-top: $border-width-hairline solid $color-interface-light-down;
+    display: flex;
+    gap: $spacing-inline-xs;
+    justify-content: space-between;
+    padding: $spacing-stack-xs 0 0;
+  }
+
+  &__total-label {
+    color: $color-interface-dark-down;
+  }
+
+  &__total-value {
+    color: $color-interface-dark-deep;
+    font-weight: $font-weight-bold;
+  }
+
+  &__notice {
+    background: linear-gradient(
+        rgba(45, 169, 79, 0.12),
+        rgba(45, 169, 79, 0.12)
+      ),
+      #f2fcf5;
+    margin-top: $spacing-stack-xs;
+    padding: $spacing-inline-xs;
+  }
+
+  &__action {
+    margin-top: $spacing-stack-md;
   }
 }

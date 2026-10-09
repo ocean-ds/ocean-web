@@ -1,60 +1,56 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import TransactionFooter from '../TransactionFooter';
+import TransactionSummary from '../TransactionSummary';
 
 const items = [
   { content: { title: 'Compra' }, amount: { value: 'R$ 10,00' } },
   { content: { title: 'Desconto' }, amount: { value: 'R$ 2,00' } },
 ];
 const total = { label: 'Total', value: 'R$ 8,00' };
-const action = <button type="button">Continuar</button>;
 
-test('renders default type, notice, rows, total, action and forwards props and ref', () => {
+test('renders title, rows, total, notice, action and forwards props and ref', () => {
   const ref = React.createRef<HTMLDivElement>();
 
   render(
-    <TransactionFooter
+    <TransactionSummary
       ref={ref}
+      title="Resumo"
       items={items}
       total={total}
-      action={action}
       notice="Aviso"
-      data-testid="footer"
-      className="custom-class"
+      action={<button type="button">Continuar</button>}
+      data-testid="summary"
       aria-label="resumo da compra"
     />
   );
 
-  const footer = screen.getByTestId('footer');
-  expect(ref.current).toBe(footer);
-  expect(footer).toHaveClass(
-    'ods-transaction-footer',
-    'ods-transaction-footer--default',
-    'custom-class'
-  );
-  expect(footer).toHaveAttribute('aria-label', 'resumo da compra');
-  expect(screen.getByText('Aviso')).toBeInTheDocument();
+  const summary = screen.getByTestId('summary');
+  expect(ref.current).toBe(summary);
+  expect(summary).toHaveAttribute('aria-label', 'resumo da compra');
+  expect(summary).toHaveClass('ods-transaction-summary');
+  expect(screen.getByText('Resumo')).toBeInTheDocument();
   expect(screen.getByText('Compra')).toBeInTheDocument();
   expect(screen.getByText('Desconto')).toBeInTheDocument();
   expect(screen.getByText('Total')).toBeInTheDocument();
+  expect(screen.getByText('R$ 8,00')).toBeInTheDocument();
+  expect(screen.getByText('Aviso')).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Continuar' })).toBeInTheDocument();
 });
 
-test('renders the highlight type without a notice', () => {
+test('renders without optional title, notice and action', () => {
   render(
-    <TransactionFooter
-      type="highlight"
+    <TransactionSummary
       items={items}
       total={total}
-      action={action}
-      data-testid="footer"
+      data-testid="summary"
+      className="custom-class"
     />
   );
 
-  expect(screen.getByTestId('footer')).toHaveClass(
-    'ods-transaction-footer--highlight'
-  );
+  expect(screen.getByTestId('summary')).toHaveClass('custom-class');
+  expect(screen.queryByText('Resumo')).not.toBeInTheDocument();
   expect(screen.queryByText('Aviso')).not.toBeInTheDocument();
+  expect(screen.queryByRole('button')).not.toBeInTheDocument();
 });
 
 test('renders no more than five rows', () => {
@@ -64,10 +60,10 @@ test('renders no more than five rows', () => {
   }));
 
   render(
-    <TransactionFooter
+    <TransactionSummary
       items={moreThanFiveItems}
       total={total}
-      action={action}
+      data-testid="summary"
     />
   );
 

@@ -1,0 +1,65 @@
+---
+title: Transaction Summary
+---
+
+import { TransactionSummary, Button } from '@useblu/ocean-react';
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Transaction Summary
+
+`TransactionSummary` reúne linhas somente de leitura em um card, com total, aviso e ação opcionais. A primeira linha usa densidade padrão; as demais usam densidade compacta. São exibidas no máximo cinco linhas, sem contar o total.
+
+## Importação
+
+```tsx
+import { TransactionSummary } from '@useblu/ocean-react';
+```
+
+## Playground
+
+<StorybookEmbed
+  storyId="components-transaction-summary--default"
+  height={520}
+  title="Transaction Summary"
+/>
+
+## Exemplo
+
+```tsx live
+<TransactionSummary
+  title="Resumo"
+  items={[
+    {
+      content: { title: 'Compra', description: 'Loja' },
+      amount: { value: 'R$ 100,00' },
+    },
+    {
+      content: { title: 'Desconto' },
+      amount: { value: 'R$ 10,00', type: 'positive' },
+    },
+  ]}
+  total={{ label: 'Total', value: 'R$ 90,00' }}
+  notice="Confira o resumo antes de continuar."
+  action={
+    <Button variant="primary" blocked>
+      Continuar
+    </Button>
+  }
+/>
+```
+
+## Propriedades
+
+| Propriedade | Tipo                                     | Obrigatória | Descrição                                                                                           |
+| ----------- | ---------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| `title`     | `ReactNode`                              | Não         | Título acima do card, exibido em `colorInterfaceDarkUp`.                                            |
+| `items`     | `TransactionListReadOnlyProps[]`         | Sim         | Linhas da transação. A primeira é exibida em densidade padrão e as seguintes em densidade compacta. |
+| `total`     | `{ label: ReactNode; value: ReactNode }` | Sim         | Rótulo e valor do total, separados das linhas por um divisor.                                       |
+| `notice`    | `ReactNode`                              | Não         | Aviso exibido abaixo do card.                                                                       |
+| `action`    | `ReactNode`                              | Não         | Ação exibida fora do card, abaixo do aviso.                                                         |
+
+O componente também aceita `className` e atributos válidos de uma `<div>`.
+
+## Estilo
+
+O card usa `colorInterfaceLightUp` e cantos de 12px (`borderRadiusMd`). O aviso usa fundo `#f2fcf5` com `#2da94f` aplicado a 12%, conforme definido para este componente. As demais cores e espaçamentos usam tokens Ocean.

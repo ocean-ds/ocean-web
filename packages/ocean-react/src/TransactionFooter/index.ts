@@ -1,5 +1,5 @@
 export { default } from './TransactionFooter';
 export type {
   TransactionFooterProps,
-  TransactionFooterVariant,
+  TransactionFooterType,
 } from './TransactionFooter';
