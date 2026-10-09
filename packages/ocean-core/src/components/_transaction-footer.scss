@@ -1,8 +1,6 @@
 @mixin ods-transaction-notice {
-  background: linear-gradient(
-      rgba($color-status-positive-deep, 0.12),
-      rgba($color-status-positive-deep, 0.12)
-    ),
+  $positive-overlay: rgba($color-status-positive-deep, 0.12);
+  background: linear-gradient($positive-overlay, $positive-overlay),
     $color-status-positive-up;
   padding: $spacing-inline-xs;
 }
