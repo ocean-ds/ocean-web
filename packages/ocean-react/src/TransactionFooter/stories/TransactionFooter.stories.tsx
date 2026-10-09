@@ -78,9 +78,9 @@ export const RichRows: Story = {
   decorators,
 };
 
-export const MaxRows: Story = {
+export const ManyRows: Story = {
   args: {
-    items: Array.from({ length: 7 }, (_, index) => ({
+    items: Array.from({ length: 5 }, (_, index) => ({
       content: { title: `Item ${index + 1}` },
       amount: { value: `R$ ${100 + index},00` },
     })),

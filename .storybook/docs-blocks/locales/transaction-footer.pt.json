@@ -1,6 +1,6 @@
 {
   "usedBy": "Use este bloco na parte inferior de uma tela de pagamento móvel. A tela é responsável pelo posicionamento fixo e pelas margens da área segura.",
-  "overview": "Rodapé móvel de telas de pagamento que reúne até cinco linhas de transação somente leitura, o total, um aviso opcional e uma ação em largura total.",
+  "overview": "Rodapé móvel de telas de pagamento que reúne linhas de transação somente leitura, o total, um aviso opcional e uma ação em largura total.",
   "sections": {
     "default": {
       "title": "Padrão",
@@ -22,15 +22,15 @@
       "title": "Linhas com detalhes",
       "text": "As linhas aceitam as propriedades existentes de conteúdo, valor, tag e valor riscado de Transaction List Read Only."
     },
-    "max-rows": {
-      "title": "Limite de linhas",
-      "text": "Somente os cinco primeiros itens são exibidos; o total não entra nesse limite."
+    "many-rows": {
+      "title": "Regra de uso",
+      "text": "Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos."
     }
   },
   "api": {
     "intro": "O componente React recebe linhas de Transaction List Read Only e deixa o comportamento de negócio com quem o consome.",
     "type": "Aparência da superfície. `default` é branco com borda superior; `highlight` usa light-up e cantos superiores arredondados.",
-    "items": "Linhas de transação somente leitura. A primeira usa densidade padrão e as seguintes usam densidade compacta.",
+    "items": "Linhas de transação somente leitura. Todos os itens recebidos são renderizados; o primeiro usa densidade padrão e os seguintes usam densidade compacta.",
     "total": "Rótulo e valor exibidos depois de um divisor abaixo das linhas.",
     "notice": "Aviso estruturado opcional com título obrigatório, descrição opcional e ícone personalizado opcional. Sem ícone, usa-se o ícone positivo de confirmação do Ocean.",
     "action": "Ação fornecida pelo consumidor, exibida em largura total dentro do corpo do rodapé.",
@@ -41,7 +41,7 @@
   },
   "rules": [
     "Posicione o Footer na parte inferior de uma tela móvel de pagamento; a tela é responsável pelo posicionamento fixo e pelas margens da área segura.",
-    "Passe no máximo cinco itens. Linhas extras são descartadas e o total é exibido à parte.",
+    "Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos.",
     "Use as propriedades de TransactionListReadOnly nas linhas, incluindo informação extra, tags e valores riscados.",
     "Passe um objeto estruturado em `notice` com título; descrição e ícone personalizado são opcionais.",
     "Passe o botão Ocean por `action`; não adicione uma segunda ação dentro de uma linha."

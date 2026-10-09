@@ -18,7 +18,7 @@
   "api": {
     "intro": "Transaction Summary está disponível somente na Web e usa a mesma estrutura de linhas somente leitura e total do Footer.",
     "title": "Título opcional exibido acima do card.",
-    "items": "Linhas de transação somente leitura. A primeira usa densidade padrão e as seguintes usam densidade compacta.",
+    "items": "Linhas de transação somente leitura. Todos os itens recebidos são renderizados; o primeiro usa densidade padrão e os seguintes usam densidade compacta.",
     "total": "Rótulo e valor exibidos depois de um divisor abaixo das linhas.",
     "notice": "Aviso estruturado opcional com título obrigatório, descrição opcional e ícone personalizado opcional. Sem ícone, usa-se o ícone positivo de confirmação do Ocean.",
     "action": "Ação opcional fornecida pelo consumidor, exibida em largura total abaixo do card e do aviso.",
@@ -33,7 +33,7 @@
   },
   "rules": [
     "Use Summary na coluna lateral de uma tela desktop de pagamento.",
-    "Passe no máximo cinco itens. Linhas extras são descartadas e o total é exibido à parte.",
+    "Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos.",
     "Mantenha a ação fora do card; quando existir, ela aparece depois do card e do aviso opcional.",
     "Use as propriedades de TransactionListReadOnly nas linhas, incluindo informação extra, tags e valores riscados.",
     "Posicionamento fixo e comportamento de área segura pertencem à tela, não ao componente Summary."

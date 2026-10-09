@@ -58,7 +58,7 @@ const richItems = [
     },
   },
 ];
-const maxItems = Array.from({ length: 6 }, (_, index) => ({
+const manyItems = Array.from({ length: 5 }, (_, index) => ({
   content: { title: `Item ${index + 1}` },
   amount: { value: `R$ ${100 + index},00` },
 }));
@@ -126,10 +126,10 @@ export const footerDoc: Omit<ComponentDocConfig, 'story'> = {
       ),
     },
     {
-      key: 'max-rows',
+      key: 'many-rows',
       example: footerExample(
-        { items: maxItems, total, action },
-        `<TransactionFooter items={maxItems} total={total} action={action} />`
+        { items: manyItems, total, action },
+        `<TransactionFooter items={manyItems} total={total} action={action} />`
       ),
     },
   ],

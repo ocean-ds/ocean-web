@@ -77,7 +77,7 @@ test('renders a single main row', () => {
   expect(screen.getByText('Total')).toBeInTheDocument();
 });
 
-test('renders no more than five rows', () => {
+test('renders every supplied row', () => {
   const moreThanFiveItems = Array.from({ length: 6 }, (_, index) => ({
     content: { title: `Linha ${index + 1}` },
     amount: { value: `R$ ${index + 1}` },
@@ -91,6 +91,5 @@ test('renders no more than five rows', () => {
     />
   );
 
-  expect(screen.getByText('Linha 5')).toBeInTheDocument();
-  expect(screen.queryByText('Linha 6')).not.toBeInTheDocument();
+  expect(screen.getAllByText(/^Linha [1-6]$/)).toHaveLength(6);
 });

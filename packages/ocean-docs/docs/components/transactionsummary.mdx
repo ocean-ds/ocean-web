@@ -7,7 +7,7 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # Transaction Summary
 
-`TransactionSummary` reúne linhas somente de leitura em um card para a coluna lateral de uma tela desktop, com título, aviso e ação opcionais. A primeira linha usa densidade padrão; as demais usam densidade compacta. São exibidas no máximo cinco linhas, sem contar o total. Posicionamento fixo e área segura continuam sob responsabilidade da tela.
+`TransactionSummary` reúne linhas somente de leitura em um card para a coluna lateral de uma tela desktop, com título, aviso e ação opcionais. A primeira linha usa densidade padrão; as demais usam densidade compacta. Como regra de uso, passe no máximo cinco linhas, sem contar o total; o componente renderiza todas as linhas recebidas, sem truncar. Posicionamento fixo e área segura continuam sob responsabilidade da tela.
 
 ## Importação
 
@@ -70,6 +70,6 @@ O card usa `colorInterfaceLightUp` e cantos de 12px (`borderRadiusMd`). O aviso 
 ## Boas práticas
 
 - Use Summary na coluna lateral de uma tela desktop; o componente está disponível somente na Web.
-- Passe no máximo cinco linhas, sem contar o total.
+- Use no máximo cinco linhas como regra para a tela; o componente renderiza todas as linhas recebidas.
 - Mantenha a ação fora do card; ela aparece depois do card e do aviso opcional.
 - Sticky, posicionamento e área segura são responsabilidade da tela.

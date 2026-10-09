@@ -21,8 +21,7 @@ const TransactionSummaryContent = ({
   items,
   total,
 }: TransactionSummaryContentProps): React.ReactElement => {
-  const visibleItems = items.slice(0, 5);
-  const [mainItem, ...details] = visibleItems;
+  const [mainItem, ...details] = items;
 
   return (
     <>
