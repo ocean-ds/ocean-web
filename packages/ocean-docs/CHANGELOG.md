@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.146.0](https://github.com/ocean-ds/ocean-web/compare/v1.145.1...v1.146.0) (2026-10-09)
+
+### Features
+
+- **list:** cria a família Transaction List no web (MR-615) ([#1275](https://github.com/ocean-ds/ocean-web/issues/1275)) ([f037cbc](https://github.com/ocean-ds/ocean-web/commit/f037cbc84c3f2d5c54fd142e211ea30463dc711f))
+
 ## [1.145.1](https://github.com/ocean-ds/ocean-web/compare/v1.145.0...v1.145.1) (2026-10-08)
 
 **Note:** Version bump only for package @useblu/ocean-docs
