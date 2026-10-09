@@ -1,3 +1,26 @@
+@mixin ods-transaction-notice {
+  background: linear-gradient(rgba(45, 169, 79, 0.12), rgba(45, 169, 79, 0.12)),
+    #f2fcf5;
+  padding: $spacing-inline-xs;
+}
+
+@mixin ods-transaction-total {
+  align-items: center;
+  border-top: $border-width-hairline solid $color-interface-light-down;
+  display: flex;
+  gap: $spacing-inline-xs;
+  justify-content: space-between;
+}
+
+@mixin ods-transaction-total-label {
+  color: $color-interface-dark-down;
+}
+
+@mixin ods-transaction-total-value {
+  color: $color-interface-dark-deep;
+  font-weight: $font-weight-bold;
+}
+
 .ods-transaction-footer {
   box-sizing: border-box;
   background-color: $color-interface-light-pure;
@@ -16,13 +39,8 @@
   }
 
   &__notice {
-    background: linear-gradient(
-        rgba(45, 169, 79, 0.12),
-        rgba(45, 169, 79, 0.12)
-      ),
-      #f2fcf5;
+    @include ods-transaction-notice;
     margin-bottom: $spacing-stack-xs;
-    padding: $spacing-inline-xs;
   }
 
   &__content {
@@ -30,21 +48,16 @@
   }
 
   &__total {
-    align-items: center;
-    border-top: $border-width-hairline solid $color-interface-light-down;
-    display: flex;
-    gap: $spacing-inline-xs;
-    justify-content: space-between;
+    @include ods-transaction-total;
     padding: $spacing-stack-xs 0;
   }
 
   &__total-label {
-    color: $color-interface-dark-down;
+    @include ods-transaction-total-label;
   }
 
   &__total-value {
-    color: $color-interface-dark-deep;
-    font-weight: $font-weight-bold;
+    @include ods-transaction-total-value;
   }
 
   &__action {
@@ -72,31 +85,21 @@
   }
 
   &__total {
-    align-items: center;
-    border-top: $border-width-hairline solid $color-interface-light-down;
-    display: flex;
-    gap: $spacing-inline-xs;
-    justify-content: space-between;
+    @include ods-transaction-total;
     padding: $spacing-stack-xs 0 0;
   }
 
   &__total-label {
-    color: $color-interface-dark-down;
+    @include ods-transaction-total-label;
   }
 
   &__total-value {
-    color: $color-interface-dark-deep;
-    font-weight: $font-weight-bold;
+    @include ods-transaction-total-value;
   }
 
   &__notice {
-    background: linear-gradient(
-        rgba(45, 169, 79, 0.12),
-        rgba(45, 169, 79, 0.12)
-      ),
-      #f2fcf5;
+    @include ods-transaction-notice;
     margin-top: $spacing-stack-xs;
-    padding: $spacing-inline-xs;
   }
 
   &__action {

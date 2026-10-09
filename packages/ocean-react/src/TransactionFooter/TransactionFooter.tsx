@@ -1,9 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import TransactionListReadOnly, {
-  TransactionListReadOnlyProps,
-} from '../TransactionListReadOnly';
-import Typography from '../Typography';
+import TransactionSummaryContent from '../_shared/components/TransactionSummaryContent';
+import { TransactionListReadOnlyProps } from '../TransactionListReadOnly';
 
 export type TransactionFooterType = 'default' | 'highlight';
 
@@ -26,48 +24,28 @@ const TransactionFooter = React.forwardRef<
   (
     { type = 'default', notice, items, total, action, className, ...rest },
     ref
-  ) => {
-    const visibleItems = items.slice(0, 5);
-
-    return (
-      <div
-        ref={ref}
-        className={classNames(
-          'ods-transaction-footer',
-          `ods-transaction-footer--${type}`,
-          className
-        )}
-        {...rest}
-      >
-        {notice != null && (
-          <div className="ods-transaction-footer__notice">{notice}</div>
-        )}
-        <div className="ods-transaction-footer__content">
-          {visibleItems.map((item, index) => (
-            <TransactionListReadOnly
-              key={`${item.content.title}-${item.amount.value}`}
-              {...item}
-              density={index === 0 ? 'default' : 'compact'}
-              showDivider={index === 0 && visibleItems.length > 1}
-            />
-          ))}
-          <div className="ods-transaction-footer__total">
-            <Typography variant="paragraph">
-              <span className="ods-transaction-footer__total-label">
-                {total.label}
-              </span>
-            </Typography>
-            <Typography variant="paragraph">
-              <span className="ods-transaction-footer__total-value">
-                {total.value}
-              </span>
-            </Typography>
-          </div>
-        </div>
-        <div className="ods-transaction-footer__action">{action}</div>
-      </div>
-    );
-  }
+  ) => (
+    <div
+      ref={ref}
+      className={classNames(
+        'ods-transaction-footer',
+        `ods-transaction-footer--${type}`,
+        className
+      )}
+      {...rest}
+    >
+      {notice != null && (
+        <div className="ods-transaction-footer__notice">{notice}</div>
+      )}
+      <TransactionSummaryContent
+        classPrefix="ods-transaction-footer"
+        rowsClassName="ods-transaction-footer__content"
+        items={items}
+        total={total}
+      />
+      <div className="ods-transaction-footer__action">{action}</div>
+    </div>
+  )
 );
 
 TransactionFooter.displayName = 'TransactionFooter';

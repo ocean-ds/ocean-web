@@ -57,6 +57,15 @@ test('renders the highlight type without a notice', () => {
   expect(screen.queryByText('Aviso')).not.toBeInTheDocument();
 });
 
+test('renders a single main row', () => {
+  render(
+    <TransactionFooter items={[items[0]]} total={total} action={action} />
+  );
+
+  expect(screen.getByText('Compra')).toBeInTheDocument();
+  expect(screen.getByText('Total')).toBeInTheDocument();
+});
+
 test('renders no more than five rows', () => {
   const moreThanFiveItems = Array.from({ length: 6 }, (_, index) => ({
     content: { title: `Linha ${index + 1}` },
