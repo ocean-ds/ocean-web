@@ -1,25 +1,74 @@
 @mixin ods-transaction-notice {
   $positive-overlay: rgba($color-status-positive-deep, 0.12);
+
   background: linear-gradient($positive-overlay, $positive-overlay),
     $color-status-positive-up;
-  padding: $spacing-inline-xs;
+  box-sizing: border-box;
+  display: flex;
+  gap: $spacing-inline-xxs;
+  width: 100%;
 }
 
 @mixin ods-transaction-total {
   align-items: center;
-  border-top: $border-width-hairline solid $color-interface-light-down;
   display: flex;
   gap: $spacing-inline-xs;
   justify-content: space-between;
 }
 
 @mixin ods-transaction-total-label {
-  color: $color-interface-dark-down;
+  color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-comfy;
 }
 
 @mixin ods-transaction-total-value {
   color: $color-interface-dark-deep;
+  font-family: $font-family-base;
+  font-size: $font-size-xs;
   font-weight: $font-weight-bold;
+  line-height: $line-height-comfy;
+  text-align: right;
+}
+
+.ods-transaction-notice {
+  @include ods-transaction-notice;
+
+  align-items: center;
+  font-family: $font-family-base;
+
+  &__icon {
+    align-items: center;
+    color: $color-status-positive-deep;
+    display: flex;
+    flex: 0 0 $spacing-inline-sm;
+    height: $spacing-inline-sm;
+    justify-content: center;
+    width: $spacing-inline-sm;
+
+    svg {
+      color: inherit;
+      height: $spacing-inline-sm;
+      width: $spacing-inline-sm;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $spacing-inline-xxxs;
+    min-width: 0;
+  }
+
+  &__title,
+  &__description {
+    color: $color-interface-dark-deep;
+    font-family: $font-family-base;
+    width: 100%;
+  }
 }
 
 .ods-transaction-footer {
@@ -27,6 +76,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100%;
 
   &--default {
@@ -40,17 +90,22 @@
   }
 
   &__notice {
-    @include ods-transaction-notice;
-    margin-bottom: $spacing-stack-xs;
+    border-radius: $border-radius-md $border-radius-md 0 0;
+    margin-bottom: -$spacing-stack-xs;
+    padding: $spacing-stack-xs $spacing-inline-xs $spacing-stack-md;
+    position: relative;
+    z-index: 0;
   }
 
   &__content {
-    padding: 0 $spacing-inline-xs;
+    background-color: inherit;
+    position: relative;
+    z-index: 1;
   }
 
   &__total {
     @include ods-transaction-total;
-    padding: $spacing-stack-xs 0;
+    padding: $spacing-stack-xs;
   }
 
   &__total-label {
@@ -62,8 +117,19 @@
   }
 
   &__action {
-    margin-top: $spacing-stack-md;
-    padding: 0 $spacing-inline-xs $spacing-inline-xs;
+    box-sizing: border-box;
+    padding: $spacing-stack-xs;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  &__details {
+    padding: $spacing-stack-xxs 0;
   }
 }
 
@@ -71,23 +137,24 @@
   width: 100%;
 
   &__title {
+    align-items: center;
     color: $color-interface-dark-up;
+    display: flex;
+    height: 20px;
     margin: 0 0 $spacing-stack-xxs;
   }
 
   &__card {
     background-color: $color-interface-light-up;
     border-radius: $border-radius-md;
-    padding: $spacing-inline-xs;
-  }
-
-  &__rows {
-    margin: 0 -#{$spacing-inline-xs};
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
   }
 
   &__total {
     @include ods-transaction-total;
-    padding: $spacing-stack-xs 0 0;
+    padding: $spacing-stack-xs;
   }
 
   &__total-label {
@@ -99,11 +166,27 @@
   }
 
   &__notice {
-    @include ods-transaction-notice;
-    margin-top: $spacing-stack-xs;
+    border-radius: 0 0 $border-radius-md $border-radius-md;
+    padding: $spacing-stack-md $spacing-inline-xs $spacing-stack-xs;
+    position: relative;
+    z-index: 0;
+  }
+
+  &--has-notice &__card {
+    margin-bottom: -$spacing-stack-xs;
   }
 
   &__action {
-    margin-top: $spacing-stack-md;
+    box-sizing: border-box;
+    padding: $spacing-stack-xs 0;
+    width: 100%;
+
+    > * {
+      width: 100%;
+    }
+  }
+
+  &__details {
+    padding: $spacing-stack-xxs 0;
   }
 }

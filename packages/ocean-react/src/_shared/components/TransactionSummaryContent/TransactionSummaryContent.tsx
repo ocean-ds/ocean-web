@@ -2,7 +2,7 @@ import React from 'react';
 import TransactionListReadOnly, {
   TransactionListReadOnlyProps,
 } from '../../../TransactionListReadOnly';
-import Typography from '../../../Typography';
+import { TransactionListDivider } from '../TransactionListParts';
 
 export type TransactionSummaryContentProps = {
   classPrefix: 'ods-transaction-footer' | 'ods-transaction-summary';
@@ -22,26 +22,43 @@ const TransactionSummaryContent = ({
   total,
 }: TransactionSummaryContentProps): React.ReactElement => {
   const visibleItems = items.slice(0, 5);
+  const [mainItem, ...details] = visibleItems;
 
   return (
     <>
       <div className={rowsClassName}>
-        {visibleItems.map((item, index) => (
+        {mainItem && (
           <TransactionListReadOnly
-            key={`${index}-${item.content.title}`}
-            {...item}
-            density={index === 0 ? 'default' : 'compact'}
-            showDivider={index === 0 && visibleItems.length > 1}
+            key="main"
+            {...mainItem}
+            content={{ ...mainItem.content, inverted: false, size: 'sm' }}
+            amount={{ ...mainItem.amount, size: 'sm' }}
+            density="default"
+            showDivider
           />
-        ))}
+        )}
+        {details.length > 0 && (
+          <>
+            <div className={`${classPrefix}__details`}>
+              {details.map((item, index) => (
+                <TransactionListReadOnly
+                  key={`${index}-${item.content.title}`}
+                  {...item}
+                  content={{ ...item.content, inverted: false, size: 'sm' }}
+                  amount={{ ...item.amount, size: 'sm' }}
+                  density="compact"
+                  showDivider={false}
+                />
+              ))}
+            </div>
+            <TransactionListDivider />
+          </>
+        )}
+        {!mainItem && <TransactionListDivider />}
       </div>
       <div className={`${classPrefix}__total`}>
-        <Typography variant="paragraph">
-          <span className={`${classPrefix}__total-label`}>{total.label}</span>
-        </Typography>
-        <Typography variant="paragraph">
-          <span className={`${classPrefix}__total-value`}>{total.value}</span>
-        </Typography>
+        <span className={`${classPrefix}__total-label`}>{total.label}</span>
+        <span className={`${classPrefix}__total-value`}>{total.value}</span>
       </div>
     </>
   );

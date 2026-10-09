@@ -237,6 +237,29 @@ const PART_NAMES = {
   'ods-tag': 'Tag',
   'ods-tag__content': 'Tag text',
   'ods-tag__icon': 'Tag icon',
+  'ods-transaction-footer': 'Footer',
+  'ods-transaction-footer__content': 'Rows',
+  'ods-transaction-footer__details': 'Details',
+  'ods-transaction-footer__total': 'Total',
+  'ods-transaction-footer__total-label': 'Total label',
+  'ods-transaction-footer__total-value': 'Total value',
+  'ods-transaction-footer__notice': 'Notice',
+  'ods-transaction-footer__action': 'Action',
+  'ods-transaction-summary': 'Summary',
+  'ods-transaction-summary__title': 'Title',
+  'ods-transaction-summary__card': 'Card',
+  'ods-transaction-summary__rows': 'Rows',
+  'ods-transaction-summary__details': 'Details',
+  'ods-transaction-summary__total': 'Total',
+  'ods-transaction-summary__total-label': 'Total label',
+  'ods-transaction-summary__total-value': 'Total value',
+  'ods-transaction-summary__notice': 'Notice',
+  'ods-transaction-summary__action': 'Action',
+  'ods-transaction-notice': 'Notice',
+  'ods-transaction-notice__icon': 'Notice icon',
+  'ods-transaction-notice__content': 'Notice content',
+  'ods-transaction-notice__title': 'Notice title',
+  'ods-transaction-notice__description': 'Notice description',
 };
 
 const STATE_NAMES = {
@@ -343,6 +366,10 @@ const COMPONENTS = {
       not(ROW_VARIANTS.interactive)
     ),
   },
+  'transaction-footer-summary': {
+    files: ['_transaction-footer.scss'],
+    include: (selector) => selector.startsWith('.ods-transaction-'),
+  },
   'transaction-list-action': {
     files: [ROW_FILE, SKELETON_FILE],
     include: all(
@@ -403,6 +430,21 @@ const COMPONENTS = {
 
 // Visual order of the anatomy parts (left to right, top to bottom), then of the states.
 const PART_ORDER = [
+  'Footer',
+  'Summary',
+  'Card',
+  'Rows',
+  'Details',
+  'Notice',
+  'Notice content',
+  'Notice icon',
+  'Notice title',
+  'Notice description',
+  'Title',
+  'Total',
+  'Total label',
+  'Total value',
+  'Action',
   'Row',
   'Block',
   'Control',

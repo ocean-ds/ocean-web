@@ -17,7 +17,10 @@ test('renders title, rows, total, notice, action and forwards props and ref', ()
       title="Resumo"
       items={items}
       total={total}
-      notice="Aviso"
+      notice={{
+        title: 'Economia de R$ 96,39',
+        icon: <span data-testid="notice-icon" />,
+      }}
       action={<button type="button">Continuar</button>}
       data-testid="summary"
       aria-label="resumo da compra"
@@ -33,7 +36,12 @@ test('renders title, rows, total, notice, action and forwards props and ref', ()
   expect(screen.getByText('Desconto')).toBeInTheDocument();
   expect(screen.getByText('Total')).toBeInTheDocument();
   expect(screen.getByText('R$ 8,00')).toBeInTheDocument();
-  expect(screen.getByText('Aviso')).toBeInTheDocument();
+  expect(screen.getByText('Economia de R$ 96,39')).toBeInTheDocument();
+  expect(screen.getByTestId('notice-icon')).toBeInTheDocument();
+  expect(summary).toHaveClass('ods-transaction-summary--has-notice');
+  expect(
+    summary.querySelector('.ods-transaction-notice__description')
+  ).not.toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Continuar' })).toBeInTheDocument();
 });
 
@@ -49,7 +57,9 @@ test('renders without optional title, notice and action', () => {
 
   expect(screen.getByTestId('summary')).toHaveClass('custom-class');
   expect(screen.queryByText('Resumo')).not.toBeInTheDocument();
-  expect(screen.queryByText('Aviso')).not.toBeInTheDocument();
+  expect(screen.getByTestId('summary')).not.toHaveClass(
+    'ods-transaction-summary--has-notice'
+  );
   expect(screen.queryByRole('button')).not.toBeInTheDocument();
 });
 
@@ -69,4 +79,14 @@ test('renders no more than five rows', () => {
 
   expect(screen.getByText('Linha 5')).toBeInTheDocument();
   expect(screen.queryByText('Linha 6')).not.toBeInTheDocument();
+});
+
+test('renders a divider when there are no rows', () => {
+  render(<TransactionSummary items={[]} total={total} data-testid="summary" />);
+
+  expect(
+    screen
+      .getByTestId('summary')
+      .querySelector('.ods-transaction-list__divider')
+  ).toBeInTheDocument();
 });

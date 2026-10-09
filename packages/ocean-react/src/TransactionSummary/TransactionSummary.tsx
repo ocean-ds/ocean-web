@@ -1,6 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import TransactionSummaryContent from '../_shared/components/TransactionSummaryContent';
+import TransactionNotice, {
+  TransactionNoticeProps,
+} from '../_shared/components/TransactionNotice';
 import { TransactionListReadOnlyProps } from '../TransactionListReadOnly';
 import Typography from '../Typography';
 
@@ -11,7 +14,7 @@ export type TransactionSummaryProps = {
     label: React.ReactNode;
     value: React.ReactNode;
   };
-  notice?: React.ReactNode;
+  notice?: TransactionNoticeProps;
   action?: React.ReactNode;
   className?: string;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
@@ -22,7 +25,11 @@ const TransactionSummary = React.forwardRef<
 >(({ title, items, total, notice, action, className, ...rest }, ref) => (
   <div
     ref={ref}
-    className={classNames('ods-transaction-summary', className)}
+    className={classNames(
+      'ods-transaction-summary',
+      { 'ods-transaction-summary--has-notice': notice != null },
+      className
+    )}
     {...rest}
   >
     {title != null && (
@@ -39,7 +46,10 @@ const TransactionSummary = React.forwardRef<
       />
     </div>
     {notice != null && (
-      <div className="ods-transaction-summary__notice">{notice}</div>
+      <TransactionNotice
+        className="ods-transaction-summary__notice"
+        notice={notice}
+      />
     )}
     {action != null && (
       <div className="ods-transaction-summary__action">{action}</div>

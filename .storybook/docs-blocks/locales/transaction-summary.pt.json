@@ -1,0 +1,41 @@
+{
+  "usedBy": "Use este bloco na coluna lateral de uma tela desktop de pagamento. Ele mantém as linhas da transação e o total juntos em um card.",
+  "overview": "Resumo para a coluna lateral de telas desktop que agrupa linhas de transação e o total em um card, com aviso e ação opcionais.",
+  "sections": {
+    "default": {
+      "title": "Com título",
+      "text": "O título opcional fica acima do card light-up; as linhas e o total permanecem dentro do card."
+    },
+    "without-title": {
+      "title": "Sem título",
+      "text": "Omitir o título quando a própria tela já identifica o resumo."
+    },
+    "with-notice": {
+      "title": "Com aviso",
+      "text": "O aviso aparece depois do card e se sobrepõe a ele em 16px. A ação permanece fora de ambos."
+    }
+  },
+  "api": {
+    "intro": "Transaction Summary está disponível somente na Web e usa a mesma estrutura de linhas somente leitura e total do Footer.",
+    "title": "Título opcional exibido acima do card.",
+    "items": "Linhas de transação somente leitura. A primeira usa densidade padrão e as seguintes usam densidade compacta.",
+    "total": "Rótulo e valor exibidos depois de um divisor abaixo das linhas.",
+    "notice": "Aviso estruturado opcional com título obrigatório, descrição opcional e ícone personalizado opcional. Sem ícone, usa-se o ícone positivo de confirmação do Ocean.",
+    "action": "Ação opcional fornecida pelo consumidor, exibida em largura total abaixo do card e do aviso.",
+    "className": "Classe adicional para o elemento raiz."
+  },
+  "platforms": {
+    "platform": "Plataforma",
+    "type": "Disponibilidade",
+    "react": "Disponível como `TransactionSummary`.",
+    "ios": "Não disponível; use o Transaction Footer móvel na parte inferior da tela de pagamento.",
+    "android": "Não disponível; use o Transaction Footer móvel na parte inferior da tela de pagamento."
+  },
+  "rules": [
+    "Use Summary na coluna lateral de uma tela desktop de pagamento.",
+    "Passe no máximo cinco itens. Linhas extras são descartadas e o total é exibido à parte.",
+    "Mantenha a ação fora do card; quando existir, ela aparece depois do card e do aviso opcional.",
+    "Use as propriedades de TransactionListReadOnly nas linhas, incluindo informação extra, tags e valores riscados.",
+    "Posicionamento fixo e comportamento de área segura pertencem à tela, não ao componente Summary."
+  ]
+}

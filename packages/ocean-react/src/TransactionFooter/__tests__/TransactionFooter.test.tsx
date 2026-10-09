@@ -9,7 +9,7 @@ const items = [
 const total = { label: 'Total', value: 'R$ 8,00' };
 const action = <button type="button">Continuar</button>;
 
-test('renders default type, notice, rows, total, action and forwards props and ref', () => {
+test('renders structured notice, rows, total, action and forwards props and ref', () => {
   const ref = React.createRef<HTMLDivElement>();
 
   render(
@@ -18,7 +18,10 @@ test('renders default type, notice, rows, total, action and forwards props and r
       items={items}
       total={total}
       action={action}
-      notice="Aviso"
+      notice={{
+        title: 'Economia de R$ 96,39',
+        description: 'Economia aplicada ao pagamento.',
+      }}
       data-testid="footer"
       className="custom-class"
       aria-label="resumo da compra"
@@ -33,7 +36,13 @@ test('renders default type, notice, rows, total, action and forwards props and r
     'custom-class'
   );
   expect(footer).toHaveAttribute('aria-label', 'resumo da compra');
-  expect(screen.getByText('Aviso')).toBeInTheDocument();
+  expect(screen.getByText('Economia de R$ 96,39')).toBeInTheDocument();
+  expect(
+    screen.getByText('Economia aplicada ao pagamento.')
+  ).toBeInTheDocument();
+  expect(
+    footer.querySelector('.ods-transaction-notice__icon svg')
+  ).toBeInTheDocument();
   expect(screen.getByText('Compra')).toBeInTheDocument();
   expect(screen.getByText('Desconto')).toBeInTheDocument();
   expect(screen.getByText('Total')).toBeInTheDocument();
@@ -54,7 +63,9 @@ test('renders the highlight type without a notice', () => {
   expect(screen.getByTestId('footer')).toHaveClass(
     'ods-transaction-footer--highlight'
   );
-  expect(screen.queryByText('Aviso')).not.toBeInTheDocument();
+  expect(
+    screen.getByTestId('footer').querySelector('.ods-transaction-notice')
+  ).not.toBeInTheDocument();
 });
 
 test('renders a single main row', () => {

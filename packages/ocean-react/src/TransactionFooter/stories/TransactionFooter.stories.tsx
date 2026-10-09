@@ -3,8 +3,9 @@ import TransactionFooter from '../TransactionFooter';
 import {
   getTransactionSummaryItems,
   transactionSummaryAction as action,
-  transactionSummaryDecorators as decorators,
+  transactionFooterDecorators as decorators,
   transactionSummaryTotal as total,
+  transactionNotice,
 } from '../../_shared/__fixtures__/transactionFooterSummary';
 
 const meta: Meta<typeof TransactionFooter> = {
@@ -22,7 +23,7 @@ const meta: Meta<typeof TransactionFooter> = {
 export default meta;
 type Story = StoryObj<typeof TransactionFooter>;
 
-const items = getTransactionSummaryItems('Compra');
+const items = getTransactionSummaryItems();
 
 export const Default: Story = {
   args: { items, total, action },
@@ -39,7 +40,18 @@ export const WithNotice: Story = {
     items,
     total,
     action,
-    notice: 'Seu pagamento será processado após a confirmação.',
+    notice: transactionNotice,
+  },
+  decorators,
+};
+
+export const WithNoticeHighlight: Story = {
+  args: {
+    type: 'highlight',
+    items,
+    total,
+    action,
+    notice: transactionNotice,
   },
   decorators,
 };
@@ -48,16 +60,16 @@ export const RichRows: Story = {
   args: {
     items: [
       {
-        content: { title: 'Compra', description: 'Loja', caption: 'Hoje' },
-        amount: {
-          value: 'R$ 0,00',
-          strikethroughValue: 'R$ 10,00',
-          tag: { label: 'Grátis', type: 'positive' },
-        },
+        content: { title: 'Pedido', description: 'Loja de colchões' },
+        amount: { value: 'R$ 623,80' },
       },
       {
-        content: { title: 'Desconto', description: 'Benefício aplicado' },
-        amount: { value: 'R$ 10,00', type: 'positive' },
+        content: { title: 'Custo de antecipação' },
+        amount: {
+          value: 'Grátis',
+          strikethroughValue: 'R$ 96,39',
+          type: 'strikethrough',
+        },
       },
     ],
     total,
@@ -69,8 +81,8 @@ export const RichRows: Story = {
 export const MaxRows: Story = {
   args: {
     items: Array.from({ length: 7 }, (_, index) => ({
-      content: { title: `Linha ${index + 1}` },
-      amount: { value: `R$ ${index + 1},00` },
+      content: { title: `Item ${index + 1}` },
+      amount: { value: `R$ ${100 + index},00` },
     })),
     total,
     action,

@@ -5,6 +5,7 @@ import {
   transactionSummaryAction as action,
   transactionSummaryDecorators as decorators,
   transactionSummaryTotal as total,
+  transactionNotice,
 } from '../../_shared/__fixtures__/transactionFooterSummary';
 
 const meta: Meta<typeof TransactionSummary> = {
@@ -16,7 +17,7 @@ const meta: Meta<typeof TransactionSummary> = {
 export default meta;
 type Story = StoryObj<typeof TransactionSummary>;
 
-const items = getTransactionSummaryItems('Valor da compra');
+const items = getTransactionSummaryItems();
 
 export const Default: Story = {
   args: {
@@ -42,7 +43,7 @@ export const WithNotice: Story = {
     title: 'Resumo',
     items,
     total,
-    notice: 'Seu pagamento será processado após a confirmação.',
+    notice: transactionNotice,
     action,
   },
   decorators,
