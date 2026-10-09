@@ -173,4 +173,34 @@ describe('AmountDetails size, strikethrough and tag', () => {
       document.querySelector('.ods-amount-details__indicator')
     ).not.toHaveClass('ods-amount-details__indicator--medium');
   });
+
+  test('the tag keeps its full label as a tooltip', () => {
+    const label = 'Payment scheduled for Oct 15 by bank transfer';
+    render(
+      <AmountDetails
+        amount="R$ 1.314,28"
+        size="md"
+        tag={{ label, type: 'complementary' }}
+      />
+    );
+
+    expect(screen.getByText(label).closest('.ods-tag')).toHaveAttribute(
+      'title',
+      label
+    );
+  });
+
+  test('a tag with a node label has no tooltip', () => {
+    render(
+      <AmountDetails
+        amount="R$ 1.314,28"
+        size="md"
+        tag={{ label: <span>Processing</span> }}
+      />
+    );
+
+    expect(
+      screen.getByText('Processing').closest('.ods-tag')
+    ).not.toHaveAttribute('title');
+  });
 });

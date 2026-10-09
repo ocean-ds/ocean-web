@@ -39,47 +39,47 @@ const TransactionListReadOnly = React.forwardRef<
     },
     ref
   ) => (
-      <div
-        ref={ref}
-        data-testid="transaction-list-read-only"
-        className={classNames(
-          'ods-transaction-list',
-          'ods-transaction-list--read-only',
-          {
-            'ods-transaction-list--disabled': disabled,
-            'ods-transaction-list--loading': loading,
-            'ods-transaction-list--compact': density === 'compact',
-          },
-          className
-        )}
-        aria-disabled={disabled || undefined}
-        aria-busy={loading || undefined}
-        {...rest}
-      >
-        <div className="ods-transaction-list__main">
-          {loading ? (
-            <TransactionListSkeleton showLeading={Boolean(icon)} />
-          ) : (
-            <>
-              {icon && (
-                <TransactionListIcon
-                  icon={icon}
-                  iconColor={iconColor}
-                  disabled={disabled}
-                />
-              )}
-              <TransactionListContent
-                content={content}
-                amount={amount}
-                defaultSize="md"
+    <div
+      ref={ref}
+      data-testid="transaction-list-read-only"
+      className={classNames(
+        'ods-transaction-list',
+        'ods-transaction-list--read-only',
+        {
+          'ods-transaction-list--disabled': disabled,
+          'ods-transaction-list--loading': loading,
+          'ods-transaction-list--compact': density === 'compact',
+        },
+        className
+      )}
+      aria-disabled={disabled || undefined}
+      aria-busy={loading || undefined}
+      {...rest}
+    >
+      <div className="ods-transaction-list__main">
+        {loading ? (
+          <TransactionListSkeleton showLeading={Boolean(icon)} />
+        ) : (
+          <>
+            {icon && (
+              <TransactionListIcon
+                icon={icon}
+                iconColor={iconColor}
                 disabled={disabled}
               />
-            </>
-          )}
-        </div>
-        {showDivider && <TransactionListDivider />}
+            )}
+            <TransactionListContent
+              content={content}
+              amount={amount}
+              defaultSize="md"
+              disabled={disabled}
+            />
+          </>
+        )}
       </div>
-    )
+      {showDivider && <TransactionListDivider />}
+    </div>
+  )
 );
 
 TransactionListReadOnly.displayName = 'TransactionListReadOnly';

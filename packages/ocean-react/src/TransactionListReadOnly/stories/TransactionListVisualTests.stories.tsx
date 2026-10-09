@@ -146,6 +146,66 @@ const IconMatrix = ({ render, row }: { render: Render; row: RowFixture }) => (
   />
 );
 
+const LONG_TAG = {
+  label: 'Payment scheduled for Oct 15 by bank transfer',
+  type: 'complementary' as const,
+};
+
+/** Long tag and long info: the content keeps its space, the tag truncates. */
+const LongTagMatrix = ({
+  render,
+  row,
+}: {
+  render: Render;
+  row: RowFixture;
+}) => (
+  <MatrixGrid
+    columns={['md', 'sm']}
+    rows={(
+      [
+        ['Long tag', { tag: LONG_TAG }],
+        [
+          'Long tag + info',
+          {
+            tag: LONG_TAG,
+            info: 'Transfer to Seashell Corporation, account 4821',
+          },
+        ],
+        [
+          'Long text + long tag',
+          {
+            tag: LONG_TAG,
+            info: 'Transfer to Seashell Corporation, account 4821',
+          },
+        ],
+      ] as [string, Props][]
+    ).map(([label, amount]) => ({
+      label,
+      cells: (['md', 'sm'] as const).map((size) =>
+        cell(
+          render({
+            ...sized(row, size),
+            ...(label.startsWith('Long text')
+              ? {
+                  content: {
+                    ...row.content,
+                    title: 'Bank transfer to supplier with a long reference',
+                    description:
+                      'Seashell Corporation Wholesale Distribution of Coastal Goods',
+                    caption: 'Order #7182, invoice 4821, scheduled for Oct 15',
+                    size,
+                  },
+                }
+              : {}),
+            amount: { ...row.amount, ...amount, size },
+            showDivider: false,
+          })
+        )
+      ),
+    }))}
+  />
+);
+
 const FamilyMatrices = ({
   render,
   row,
@@ -163,6 +223,9 @@ const FamilyMatrices = ({
     </Block>
     <Block title="Amount types × size">
       <AmountMatrix render={render} row={row} />
+    </Block>
+    <Block title="Long tag × size">
+      <LongTagMatrix render={render} row={row} />
     </Block>
     {icon && (
       <Block title="Icon color × background">

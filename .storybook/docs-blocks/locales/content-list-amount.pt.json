@@ -1,6 +1,6 @@
 {
   "usedBy": "Não é usado sozinho. É o bloco de valor de todas as listas com valor: Transaction List Read Only, Action, Selectable, Expandable e os itens filhos. Passe estas props na prop `amount` do item.",
-  "overview": "Mostra um valor formatado, alinhado ao fim da linha, com uma tag opcional e uma linha de informação adicional.",
+  "overview": "Mostra um valor formatado, alinhado ao fim da linha, com uma tag opcional e uma linha de informação adicional. A informação quebra em até duas linhas e depois é cortada com reticências.",
   "sections": {
     "default": {
       "title": "Padrão",
@@ -24,7 +24,7 @@
     },
     "withTag": {
       "title": "Com tag",
-      "text": "Uma tag por linha mostra o status da transação. O tipo vem das regras de status do produto, como `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado. Um pagamento cancelado mantém o valor."
+      "text": "Uma tag por linha mostra o status da transação. O tipo vem das regras de status do produto, como `complementary` para Pagamento agendado e `neutral` para Processando e Cancelado. Um pagamento cancelado mantém o valor. As tags ficam em uma linha; rótulos longos são truncados com reticências."
     }
   },
   "options": {

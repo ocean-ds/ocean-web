@@ -66,54 +66,54 @@ const TransactionListChildAction = React.forwardRef<
     },
     ref
   ) => (
-      <div
-        data-testid="transaction-list-child-action"
-        className={classNames(
-          'ods-transaction-list',
-          'ods-transaction-list--child',
-          'ods-transaction-list--action',
-          `ods-transaction-list--${position}`,
-          {
-            'ods-transaction-list--disabled': disabled,
-            'ods-transaction-list--loading': loading,
-            'ods-transaction-list--compact': density === 'compact',
-          },
-          className
-        )}
+    <div
+      data-testid="transaction-list-child-action"
+      className={classNames(
+        'ods-transaction-list',
+        'ods-transaction-list--child',
+        'ods-transaction-list--action',
+        `ods-transaction-list--${position}`,
+        {
+          'ods-transaction-list--disabled': disabled,
+          'ods-transaction-list--loading': loading,
+          'ods-transaction-list--compact': density === 'compact',
+        },
+        className
+      )}
+    >
+      <button
+        ref={ref}
+        type="button"
+        className="ods-transaction-list__main ods-transaction-list__main--interactive"
+        onClick={disabled || loading ? undefined : onClick}
+        disabled={disabled || loading}
+        aria-busy={loading || undefined}
+        // While loading the button only holds the skeleton: give it a name (axe button-name).
+        aria-label={loading ? 'Carregando' : undefined}
+        {...rest}
       >
-        <button
-          ref={ref}
-          type="button"
-          className="ods-transaction-list__main ods-transaction-list__main--interactive"
-          onClick={disabled || loading ? undefined : onClick}
-          disabled={disabled || loading}
-          aria-busy={loading || undefined}
-          // While loading the button only holds the skeleton: give it a name (axe button-name).
-          aria-label={loading ? 'Carregando' : undefined}
-          {...rest}
-        >
-          <TransactionListTimeline
-            position={position}
-            icon={icon}
-            iconColor={iconColor}
-            disabled={disabled}
-          />
-          {loading ? (
-            <TransactionListSkeleton showLeading={false} />
-          ) : (
-            <>
-              <TransactionListContent
-                content={content}
-                amount={amount}
-                defaultSize="sm"
-                disabled={disabled}
-              />
-              <TransactionListChevron />
-            </>
-          )}
-        </button>
-      </div>
-    )
+        <TransactionListTimeline
+          position={position}
+          icon={icon}
+          iconColor={iconColor}
+          disabled={disabled}
+        />
+        {loading ? (
+          <TransactionListSkeleton showLeading={false} />
+        ) : (
+          <>
+            <TransactionListContent
+              content={content}
+              amount={amount}
+              defaultSize="sm"
+              disabled={disabled}
+            />
+            <TransactionListChevron />
+          </>
+        )}
+      </button>
+    </div>
+  )
 );
 
 TransactionListChildAction.displayName = 'TransactionListChildAction';

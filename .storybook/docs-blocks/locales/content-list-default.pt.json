@@ -1,6 +1,6 @@
 {
   "usedBy": "Não é usado sozinho. É o bloco de conteúdo de todos os itens da Transaction List: Read Only, Action, Selectable, Expandable e os itens filhos. Passe estas props na prop `content` do item.",
-  "overview": "Mostra o que aconteceu e com quem: uma linha pequena de título, uma descrição em destaque e uma legenda opcional com a data ou a referência.",
+  "overview": "Mostra o que aconteceu e com quem: uma linha pequena de título, uma descrição em destaque e uma legenda opcional com a data ou a referência. O texto quebra em até duas linhas e depois é cortado com reticências.",
   "sections": {
     "default": {
       "title": "Padrão",

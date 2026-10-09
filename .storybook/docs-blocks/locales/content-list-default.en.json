@@ -1,6 +1,6 @@
 {
   "usedBy": "Not used on its own. It is the content block of every Transaction List item: Read Only, Action, Selectable, Expandable and the child items. Pass these props in the item’s `content` prop.",
-  "overview": "Shows what happened and who it relates to: a small title line, an emphasized description and an optional caption with the date or reference.",
+  "overview": "Shows what happened and who it relates to: a small title line, an emphasized description and an optional caption with the date or reference. Text wraps up to two lines and then truncates with an ellipsis.",
   "sections": {
     "default": {
       "title": "Default",

@@ -159,6 +159,8 @@ const AmountDetails = ({
           size={resolvedIndicatorSize}
           type={isInactive ? 'neutral' : tag.type ?? 'positive'}
           setIconOff={tag.setIconOff ?? true}
+          // Long labels are truncated with an ellipsis: keep the full text as a tooltip.
+          title={typeof tag.label === 'string' ? tag.label : undefined}
         >
           {tag.label}
         </Tag>

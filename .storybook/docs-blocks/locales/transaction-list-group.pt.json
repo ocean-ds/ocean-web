@@ -348,6 +348,14 @@
           "Nomeado por `menuLabel` (padrão \"Open actions menu\"); `aria-expanded` acompanha o menu, que tem `role=\"menu\"`."
         ],
         [
+          "Tag",
+          "Rótulos longos são truncados com reticências; o rótulo completo continua disponível para leitores de tela e como dica (`title`)."
+        ],
+        [
+          "Conteúdo",
+          "Os textos quebram em até duas linhas e depois são cortados; o corte é só visual, então os leitores de tela leem o texto completo."
+        ],
+        [
           "Carregando",
           "`aria-busy=\"true\"` na linha enquanto o esqueleto aparece."
         ],

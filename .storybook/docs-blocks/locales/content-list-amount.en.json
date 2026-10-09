@@ -1,6 +1,6 @@
 {
   "usedBy": "Not used on its own. It is the amount block of every list with a value: Transaction List Read Only, Action, Selectable, Expandable and the child items. Pass these props in the item’s `amount` prop.",
-  "overview": "Shows a formatted amount aligned to the end of the row, with an optional tag and one line of additional information.",
+  "overview": "Shows a formatted amount aligned to the end of the row, with an optional tag and one line of additional information. The info wraps up to two lines and then truncates with an ellipsis.",
   "sections": {
     "default": {
       "title": "Default",
@@ -24,7 +24,7 @@
     },
     "withTag": {
       "title": "With tag",
-      "text": "One tag per row shows the status of the transaction. Its type comes from the product's status rules, such as `complementary` for Payment scheduled and `neutral` for Processing and Canceled. A canceled payment keeps its amount."
+      "text": "One tag per row shows the status of the transaction. Its type comes from the product's status rules, such as `complementary` for Payment scheduled and `neutral` for Processing and Canceled. A canceled payment keeps its amount. Tags stay on one line; long labels are truncated with an ellipsis."
     }
   },
   "options": {

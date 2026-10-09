@@ -332,6 +332,14 @@
           "Named by `menuLabel` (default \"Open actions menu\"); `aria-expanded` reflects the menu, which has `role=\"menu\"`."
         ],
         [
+          "Tag",
+          "Long labels are truncated with an ellipsis; the full label stays available to screen readers and as a tooltip (`title`)."
+        ],
+        [
+          "Content",
+          "Texts wrap up to two lines and then truncate; the clamp is visual only, so screen readers read the full text."
+        ],
+        [
           "Loading",
           "`aria-busy=\"true\"` on the row while the skeleton is shown."
         ],
