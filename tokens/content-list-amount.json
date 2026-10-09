@@ -1,0 +1,749 @@
+{
+  "component": "content-list-amount",
+  "generatedFrom": [
+    "packages/ocean-core/src/components/_amount-details.scss",
+    "packages/ocean-core/src/components/_tag.scss"
+  ],
+  "rows": [
+    {
+      "part": "Block",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxxs"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details"
+    },
+    {
+      "part": "Block",
+      "property": "max-width",
+      "state": "Default",
+      "tokens": [],
+      "value": "50%",
+      "noToken": "50%",
+      "source": "_amount-details.scss .ods-transaction-list__content > .ods-amount-details"
+    },
+    {
+      "part": "Value row",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxxs"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount-row"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-down"
+      ],
+      "value": "rgb(103, 105, 122)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-comfy"
+      ],
+      "value": "1.5",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "positive",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount--positive"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Size md",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-size",
+      "state": "Size md",
+      "tokens": [
+        "font-size-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-weight",
+      "state": "Size md",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Size md · positive",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount--positive"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Size md · strikethrough",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount--strikethrough"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Size sm",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-size",
+      "state": "Size sm",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "font-weight",
+      "state": "Size sm",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Size sm · positive",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount--positive"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Size sm · strikethrough",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount--strikethrough"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "strikethrough",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount--strikethrough"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "strikethrough-neutral",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount--strikethrough-neutral"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--inactive .ods-amount-details__amount"
+    },
+    {
+      "part": "Sign",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-down"
+      ],
+      "value": "rgb(103, 105, 122)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-comfy"
+      ],
+      "value": "1.5",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "color",
+      "state": "Size md",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-size",
+      "state": "Size md",
+      "tokens": [
+        "font-size-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-weight",
+      "state": "Size md",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "color",
+      "state": "Size sm",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-size",
+      "state": "Size sm",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "font-weight",
+      "state": "Size sm",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Sign",
+      "property": "color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--inactive .ods-amount-details__amount-sign"
+    },
+    {
+      "part": "Struck value",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Struck value",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Struck value",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Struck value",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-regular"
+      ],
+      "value": "400",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Struck value",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-comfy"
+      ],
+      "value": "1.5",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Struck value",
+      "property": "font-size",
+      "state": "Size md",
+      "tokens": [
+        "font-size-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Struck value",
+      "property": "font-size",
+      "state": "Size sm",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__strikethrough"
+    },
+    {
+      "part": "Tag",
+      "property": "background-color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "border-radius",
+      "state": "Default",
+      "tokens": [
+        "border-radius-lg"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-down"
+      ],
+      "value": "rgb(103, 105, 122)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xxxs"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "background-color",
+      "state": "complementary",
+      "tokens": [],
+      "value": "#edfdfd",
+      "noToken": "#edfdfd",
+      "source": "_tag.scss .ods-tag--complementary"
+    },
+    {
+      "part": "Tag",
+      "property": "background-color",
+      "state": "negative",
+      "tokens": [
+        "color-status-negative-up"
+      ],
+      "value": "rgb(255, 241, 244)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--negative"
+    },
+    {
+      "part": "Tag",
+      "property": "background-color",
+      "state": "neutral",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--neutral"
+    },
+    {
+      "part": "Tag",
+      "property": "background-color",
+      "state": "positive",
+      "tokens": [
+        "color-status-positive-up"
+      ],
+      "value": "rgb(242, 253, 245)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--positive"
+    },
+    {
+      "part": "Tag",
+      "property": "font-size",
+      "state": "Size md",
+      "tokens": [
+        "font-size-xxxs"
+      ],
+      "value": "12px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__indicator--medium .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "font-weight",
+      "state": "Size md",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__indicator--medium .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "line-height",
+      "state": "Size md",
+      "tokens": [
+        "spacing-inline-xxs-extra"
+      ],
+      "value": "12px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__indicator--medium .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "line-height",
+      "state": "Size md",
+      "tokens": [],
+      "value": "12px",
+      "noToken": "12px",
+      "source": "_tag.scss .ods-tag--medium"
+    },
+    {
+      "part": "Tag",
+      "property": "padding",
+      "state": "Size md",
+      "tokens": [
+        "spacing-stack-xxxs",
+        "spacing-stack-xxs"
+      ],
+      "value": "4px 8px",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details__indicator--medium .ods-tag"
+    },
+    {
+      "part": "Tag",
+      "property": "font-size",
+      "state": "Size sm",
+      "tokens": [],
+      "value": "10px",
+      "noToken": "10px",
+      "source": "_tag.scss .ods-tag--small"
+    },
+    {
+      "part": "Tag",
+      "property": "font-weight",
+      "state": "Size sm",
+      "tokens": [
+        "font-weight-bold"
+      ],
+      "value": "700",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--small"
+    },
+    {
+      "part": "Tag",
+      "property": "line-height",
+      "state": "Size sm",
+      "tokens": [],
+      "value": "8px",
+      "noToken": "8px",
+      "source": "_tag.scss .ods-tag--small"
+    },
+    {
+      "part": "Tag",
+      "property": "padding",
+      "state": "Size sm",
+      "tokens": [
+        "spacing-stack-xxxs",
+        "spacing-stack-xxxs"
+      ],
+      "value": "4px 4px",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--small"
+    },
+    {
+      "part": "Tag",
+      "property": "background-color",
+      "state": "warning",
+      "tokens": [
+        "color-status-warning-up"
+      ],
+      "value": "rgb(255, 247, 240)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--warning"
+    },
+    {
+      "part": "Tag text",
+      "property": "color",
+      "state": "complementary",
+      "tokens": [
+        "color-complementary-deep"
+      ],
+      "value": "rgb(28, 153, 153)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--complementary .ods-tag__content"
+    },
+    {
+      "part": "Tag text",
+      "property": "color",
+      "state": "negative",
+      "tokens": [
+        "color-status-negative-pure"
+      ],
+      "value": "rgb(245, 69, 110)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--negative .ods-tag__content"
+    },
+    {
+      "part": "Tag text",
+      "property": "color",
+      "state": "neutral",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--neutral .ods-tag__content"
+    },
+    {
+      "part": "Tag text",
+      "property": "color",
+      "state": "positive",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--positive .ods-tag__content"
+    },
+    {
+      "part": "Tag text",
+      "property": "color",
+      "state": "warning",
+      "tokens": [
+        "color-status-warning-deep"
+      ],
+      "value": "rgb(255, 138, 20)",
+      "noToken": null,
+      "source": "_tag.scss .ods-tag--warning .ods-tag__content"
+    },
+    {
+      "part": "Info",
+      "property": "color",
+      "state": "Size md",
+      "tokens": [
+        "color-interface-dark-down"
+      ],
+      "value": "rgb(103, 105, 122)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--md .ods-amount-details__caption"
+    },
+    {
+      "part": "Info",
+      "property": "color",
+      "state": "Size sm",
+      "tokens": [
+        "color-interface-dark-down"
+      ],
+      "value": "rgb(103, 105, 122)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--sm .ods-amount-details__caption"
+    },
+    {
+      "part": "Info",
+      "property": "color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_amount-details.scss .ods-amount-details--inactive .ods-amount-details__caption"
+    }
+  ]
+}
