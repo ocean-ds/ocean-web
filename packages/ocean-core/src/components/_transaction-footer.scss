@@ -1,6 +1,9 @@
 @mixin ods-transaction-notice {
-  background: linear-gradient(rgba(45, 169, 79, 0.12), rgba(45, 169, 79, 0.12)),
-    #f2fcf5;
+  background: linear-gradient(
+      rgba($color-status-positive-deep, 0.12),
+      rgba($color-status-positive-deep, 0.12)
+    ),
+    $color-status-positive-up;
   padding: $spacing-inline-xs;
 }
 
@@ -70,7 +73,7 @@
   width: 100%;
 
   &__title {
-    color: #aaadc0;
+    color: $color-interface-dark-up;
     margin: 0 0 $spacing-stack-xxs;
   }
 
