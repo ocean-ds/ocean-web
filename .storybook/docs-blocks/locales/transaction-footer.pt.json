@@ -1,26 +1,24 @@
 {
-  "usedBy": "Use este bloco na parte inferior de uma tela móvel de pagamento. A tela é responsável pelo posicionamento fixo e pela área segura.",
   "overview": "Rodapé móvel de pagamento com linha principal opcional, detalhes opcionais, total obrigatório, aviso opcional e ação em largura total.",
   "sections": {
+    "options": "Opções",
     "default": {
       "title": "Padrão",
-      "text": "O corpo padrão tem fundo branco e borda superior de 1px. A raiz não tem fundo próprio."
+      "text": "O corpo padrão usa superfície branca; a raiz não tem fundo próprio."
     },
     "highlight": {
       "title": "Destaque",
-      "text": "O corpo de destaque usa a superfície light-up e cantos superiores de 12px."
-    },
-    "with-notice": {
-      "title": "Com aviso",
-      "text": "O aviso pode ter apenas a descrição. O corpo cobre 16px do aviso."
-    },
-    "with-notice-highlight": {
-      "title": "Destaque com aviso",
-      "text": "O corpo de destaque se sobrepõe ao aviso em 16px e fica acima dele."
+      "text": "O corpo de destaque usa a superfície light-up."
+    }
+  },
+  "options": {
+    "notice": {
+      "title": "Aviso",
+      "text": "A descrição é obrigatória; o título e o ícone são opcionais."
     },
     "notice-title-icon": {
       "title": "Aviso com título e ícone",
-      "text": "Título e ícone são opcionais. Sem ícone, usa-se o check positivo do Ocean; passe null para ocultá-lo."
+      "text": "O check-circle sólido é o ícone recomendado. Passe null para ocultá-lo."
     },
     "main-item-only": {
       "title": "Somente linha principal",
@@ -28,32 +26,36 @@
     },
     "details-only": {
       "title": "Somente detalhes",
-      "text": "Os detalhes podem ser exibidos sem uma linha principal. Eles usam densidade compacta."
+      "text": "Os detalhes podem ser exibidos sem uma linha principal e usam densidade compacta."
     },
     "four-details": {
       "title": "Quatro detalhes",
-      "text": "Use no máximo quatro detalhes como regra para a tela. O componente renderiza todos os detalhes recebidos."
+      "text": "Use até quatro detalhes como regra para a tela; o componente renderiza todos os recebidos."
+    },
+    "additional-info": {
+      "title": "Informação adicional",
+      "text": "O info opcional aparece abaixo do valor da linha e fica alinhado à direita."
     }
   },
   "api": {
     "intro": "O componente React recebe linhas de rótulo e valor em papéis separados: mainItem e details. Todos os detalhes recebidos são renderizados; o comportamento de negócio fica com quem consome.",
-    "type": "Aparência do corpo. `default` é branco com borda superior; `highlight` usa light-up e cantos superiores arredondados.",
-    "mainItem": "Linha opcional de rótulo e valor com densidade padrão. Ela nunca é inferida do primeiro detalhe.",
-    "details": "Lista opcional de linhas de rótulo e valor com densidade compacta. Use no máximo quatro como regra para a tela; o componente não corta a lista.",
-    "total": "Linha obrigatória de rótulo e valor com tipografia bold de 16px. Há divisor antes dela quando existem linha principal ou detalhes.",
-    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. Sem ícone, usa-se o check positivo do Ocean; `icon={null}` o oculta.",
+    "type": "Aparência do corpo. `default` é branco; `highlight` usa light-up.",
+    "mainItem": "Linha opcional de rótulo e valor, com informação opcional abaixo do valor, em densidade padrão. Ela nunca é inferida do primeiro detalhe.",
+    "details": "Lista opcional de linhas de rótulo e valor, com informação opcional abaixo do valor, em densidade compacta. Use no máximo quatro como regra para a tela; o componente não corta a lista.",
+    "total": "Linha obrigatória de rótulo e valor em negrito. Há divisor antes dela quando existem linha principal ou detalhes.",
+    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. O check-circle sólido é o ícone recomendado; `icon={null}` o oculta.",
     "action": "Ação obrigatória fornecida pelo consumidor, exibida em largura total dentro do corpo.",
     "className": "Classe adicional para a raiz do componente."
   },
   "platforms": {
-    "text": "O Footer também está disponível em SwiftUI e Jetpack Compose. No iOS, `.legacy` continua como padrão; use `.v2(...)` para esta API. No Android, o overload deprecated continua disponível e há um novo overload com total, button, type, notice, mainItem e details."
+    "text": "Os mesmos dados de linha são mapeados para `TransactionFooterRow` no SwiftUI e `OceanTransactionFooterItem` no Compose."
   },
   "rules": [
     "Use Footer na parte inferior de uma tela móvel de pagamento; a tela é responsável pelo posicionamento fixo e pela área segura.",
-    "Uma linha contém somente rótulo e valor. Use mainItem e details de forma independente; o componente nunca transforma o primeiro detalhe em linha principal.",
+    "As linhas contêm rótulo, valor e informação opcional abaixo do valor. Use mainItem e details de forma independente; o componente nunca transforma o primeiro detalhe em linha principal.",
     "Use no máximo quatro detalhes como regra para a tela. Footer renderiza todos os itens recebidos.",
     "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após a linha principal quando há detalhes e antes do total quando existem linhas acima.",
-    "O aviso é uma peça separada acima do corpo; o corpo cobre 16px do aviso.",
-    "No web, use a API 2.0. Transaction Footer 1.0 permanece deprecated no iOS e no Android."
+    "O aviso permanece separado do corpo, e o corpo se sobrepõe a ele.",
+    "Use o componente Ocean de ação para a ação obrigatória."
   ]
 }

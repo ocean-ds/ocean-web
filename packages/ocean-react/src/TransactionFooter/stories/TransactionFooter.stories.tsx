@@ -1,34 +1,69 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import Button from '../../Button';
 import TransactionFooter from '../TransactionFooter';
+import type { TransactionFooterProps } from '../TransactionFooter';
 import {
-  transactionFourDetails,
-  transactionFooterDecorators as decorators,
-  transactionNotice,
-  transactionNoticeWithTitleAndIcon,
-  transactionSummaryAction as action,
   transactionSummaryDetails,
   transactionSummaryMainItem as mainItem,
   transactionSummaryTotal as total,
-} from '../../_shared/__fixtures__/transactionFooterSummary';
+} from '../../../../../.storybook/docs-blocks/transaction-footer-summary/fixtures';
+import { transactionFooterDecorator } from '../../../../../.storybook/docs-blocks/transaction-footer-summary/story-helpers';
 
-const meta: Meta<typeof TransactionFooter> = {
-  title: 'Components/Transaction Footer',
+type StoryArgs = TransactionFooterProps & {
+  actionLabel: string;
+  showNoticeIcon: boolean;
+};
+
+const meta: Meta<StoryArgs> = {
+  title: 'Components/Transaction Summary/Footer',
   component: TransactionFooter,
-  tags: ['autodocs'],
+  decorators: [transactionFooterDecorator],
+  args: {
+    actionLabel: 'Continue',
+    action: (
+      <Button variant="primary" blocked>
+        Continue
+      </Button>
+    ),
+    showNoticeIcon: true,
+  },
   argTypes: {
     type: {
-      control: 'select',
+      control: 'radio',
       options: ['default', 'highlight'],
     },
+    mainItem: { control: 'object' },
+    details: { control: 'object' },
+    total: { control: 'object' },
+    notice: { control: 'object' },
+    action: { control: false },
+    actionLabel: { control: 'text', name: 'Action label' },
+    showNoticeIcon: { control: 'boolean' },
+    className: { control: 'text' },
   },
+  render: ({ notice, showNoticeIcon, actionLabel, ...props }) => (
+    <TransactionFooter
+      {...props}
+      notice={
+        notice
+          ? { ...notice, icon: showNoticeIcon ? notice.icon : null }
+          : undefined
+      }
+      action={
+        <Button variant="primary" blocked>
+          {actionLabel}
+        </Button>
+      }
+    />
+  ),
 };
 
 export default meta;
 type Story = StoryObj<typeof TransactionFooter>;
 
 export const Default: Story = {
-  args: { mainItem, details: transactionSummaryDetails, total, action },
-  decorators,
+  args: { mainItem, details: transactionSummaryDetails, total },
 };
 
 export const Highlight: Story = {
@@ -37,56 +72,5 @@ export const Highlight: Story = {
     mainItem,
     details: transactionSummaryDetails,
     total,
-    action,
   },
-  decorators,
-};
-
-export const WithNotice: Story = {
-  args: {
-    mainItem,
-    details: transactionSummaryDetails,
-    total,
-    action,
-    notice: transactionNotice,
-  },
-  decorators,
-};
-
-export const WithNoticeHighlight: Story = {
-  args: {
-    type: 'highlight',
-    mainItem,
-    details: transactionSummaryDetails,
-    total,
-    action,
-    notice: transactionNotice,
-  },
-  decorators,
-};
-
-export const NoticeWithTitleAndIcon: Story = {
-  args: {
-    mainItem,
-    details: transactionSummaryDetails,
-    total,
-    action,
-    notice: transactionNoticeWithTitleAndIcon,
-  },
-  decorators,
-};
-
-export const MainItemOnly: Story = {
-  args: { mainItem, total, action },
-  decorators,
-};
-
-export const DetailsOnly: Story = {
-  args: { details: transactionSummaryDetails, total, action },
-  decorators,
-};
-
-export const FourDetails: Story = {
-  args: { details: transactionFourDetails, total, action },
-  decorators,
 };

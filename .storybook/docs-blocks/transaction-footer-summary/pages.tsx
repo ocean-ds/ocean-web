@@ -6,6 +6,7 @@ import type { TransactionSummaryProps } from '../../../packages/ocean-react/src/
 import TransactionFooter from '../../../packages/ocean-react/src/TransactionFooter';
 import TransactionSummary from '../../../packages/ocean-react/src/TransactionSummary';
 import {
+  transactionAsideTitle,
   transactionFourDetails,
   transactionNotice,
   transactionNoticeWithTitleAndIcon,
@@ -13,12 +14,13 @@ import {
   transactionSummaryDetails,
   transactionSummaryMainItem,
   transactionSummaryTotal,
-} from '../../../packages/ocean-react/src/_shared/__fixtures__/transactionFooterSummary';
+} from './fixtures';
 import footerEn from '../locales/transaction-footer.en.json';
 import footerPt from '../locales/transaction-footer.pt.json';
 import summaryEn from '../locales/transaction-summary.en.json';
 import summaryPt from '../locales/transaction-summary.pt.json';
-import tokens from '../../assets/tokens/transaction-footer-summary.json';
+import footerTokens from '../../assets/tokens/transaction-footer.json';
+import summaryTokens from '../../assets/tokens/transaction-summary.json';
 import { footerArgTypes, summaryArgTypes } from './argTypes';
 import { footerPlatforms, summaryPlatforms } from './platform-snippets';
 
@@ -44,14 +46,14 @@ const summaryExample = (
 ): ExampleSpec => ({
   rows: [<TransactionSummary key="transaction-summary" {...props} />],
   code,
+  unframed: true,
+  canvasClass: 'odoc-canvas--white',
 });
 
 const mainItem = transactionSummaryMainItem;
 const details = transactionSummaryDetails;
 const total = transactionSummaryTotal;
 const action = transactionSummaryAction;
-const notice = transactionNotice;
-const noticeWithTitleAndIcon = transactionNoticeWithTitleAndIcon;
 
 const footerImports =
   "import { Button, TransactionFooter } from '@useblu/ocean-react';";
@@ -60,20 +62,22 @@ const summaryImports =
 
 export const footerDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-footer',
-  title: 'Transaction Footer',
-  kind: 'block',
+  title: 'Footer',
+  codeName: 'TransactionFooter',
+  kind: 'component',
   source: 'packages/ocean-react/src/TransactionFooter',
+  groupOverview: 'components-transaction-summary-overview--docs',
   locale: locale(footerEn, footerPt),
   imports: footerImports,
   primary: footerExample(
     { mainItem, details, total, action },
     `<TransactionFooter
-  mainItem={{ label: 'Pedido', value: 'R$ 623,80' }}
+  mainItem={{ label: 'Subtotal', value: 'R$ 1.250,00' }}
   details={[
-    { label: 'Pague em', value: '3x de R$ 207,93 sem acréscimo' },
+    { label: 'Installments', value: '5x of R$ 250,00', info: 'No additional fees' },
   ]}
-  total={{ label: 'Total', value: 'R$ 623,80' }}
-  action={<Button variant="primary" blocked>Revisar pagamento</Button>}
+  total={{ label: 'Total', value: 'R$ 1.250,00' }}
+  action={<Button variant="primary" blocked>Continue</Button>}
 />`
   ),
   sections: [
@@ -91,109 +95,98 @@ export const footerDoc: Omit<ComponentDocConfig, 'story'> = {
         `<TransactionFooter type="highlight" mainItem={mainItem} details={details} total={total} action={action} />`
       ),
     },
-    {
-      key: 'with-notice',
-      example: footerExample(
-        { mainItem, details, total, action, notice },
-        `<TransactionFooter mainItem={mainItem} details={details} total={total} notice={notice} action={action} />`
-      ),
-    },
-    {
-      key: 'with-notice-highlight',
-      example: footerExample(
-        { type: 'highlight', mainItem, details, total, action, notice },
-        `<TransactionFooter type="highlight" mainItem={mainItem} details={details} total={total} notice={notice} action={action} />`
-      ),
-    },
-    {
-      key: 'notice-title-icon',
-      example: footerExample(
-        { mainItem, details, total, action, notice: noticeWithTitleAndIcon },
-        `<TransactionFooter notice={{ title: 'Economia de R$ 96,39', description: 'A economia será aplicada ao pagamento.', icon: <CheckCircleOutline /> }} mainItem={mainItem} details={details} total={total} action={action} />`
-      ),
-    },
-    {
-      key: 'main-item-only',
-      example: footerExample(
-        { mainItem, total, action },
-        `<TransactionFooter mainItem={mainItem} total={total} action={action} />`
-      ),
-    },
-    {
-      key: 'details-only',
-      example: footerExample(
-        { details, total, action },
-        `<TransactionFooter details={details} total={total} action={action} />`
-      ),
-    },
-    {
-      key: 'four-details',
-      example: footerExample(
-        { details: transactionFourDetails, total, action },
-        `<TransactionFooter details={fourDetails} total={total} action={action} />`
-      ),
-    },
   ],
+  optionsTitle: 'sections.options',
+  optionsLocalePrefix: 'options',
+  options: {
+    notice: footerExample(
+      { notice: transactionNotice, mainItem, details, total, action },
+      `<TransactionFooter notice={notice} mainItem={mainItem} details={details} total={total} action={action} />`
+    ),
+    'notice-title-icon': footerExample(
+      {
+        notice: transactionNoticeWithTitleAndIcon,
+        mainItem,
+        details,
+        total,
+        action,
+      },
+      `<TransactionFooter notice={noticeWithTitleAndIcon} mainItem={mainItem} details={details} total={total} action={action} />`
+    ),
+    'main-item-only': footerExample(
+      { mainItem, total, action },
+      `<TransactionFooter mainItem={mainItem} total={total} action={action} />`
+    ),
+    'details-only': footerExample(
+      { details, total, action },
+      `<TransactionFooter details={details} total={total} action={action} />`
+    ),
+    'four-details': footerExample(
+      { details: transactionFourDetails, total, action },
+      `<TransactionFooter details={fourDetails} total={total} action={action} />`
+    ),
+    'additional-info': footerExample(
+      { mainItem: { ...mainItem, info: 'No additional fees' }, total, action },
+      `<TransactionFooter mainItem={{ ...mainItem, info: 'No additional fees' }} total={total} action={action} />`
+    ),
+  },
   platforms: footerPlatforms,
   argTypes: footerArgTypes,
-  tokens,
+  tokens: footerTokens,
 };
 
 export const summaryDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-summary',
-  title: 'Transaction Summary',
-  kind: 'block',
+  title: 'Aside',
+  codeName: 'TransactionSummary',
+  kind: 'component',
   source: 'packages/ocean-react/src/TransactionSummary',
+  groupOverview: 'components-transaction-summary-overview--docs',
   locale: locale(summaryEn, summaryPt),
   imports: summaryImports,
   primary: summaryExample(
-    { title: 'Resumo do pagamento', mainItem, details, total, action },
+    { title: transactionAsideTitle, mainItem, details, total, action },
     `<TransactionSummary
-  title="Resumo do pagamento"
+  title="Payment summary"
   mainItem={mainItem}
   details={details}
   total={total}
-  action={<Button variant="primary" blocked>Revisar pagamento</Button>}
+  action={<Button variant="primary" blocked>Continue</Button>}
 />`
   ),
   sections: [
     {
       key: 'default',
       example: summaryExample(
-        { title: 'Resumo do pagamento', mainItem, details, total, action },
-        `<TransactionSummary title="Resumo do pagamento" mainItem={mainItem} details={details} total={total} action={action} />`
-      ),
-    },
-    {
-      key: 'without-title',
-      example: summaryExample(
-        { mainItem, details, total, action },
-        `<TransactionSummary mainItem={mainItem} details={details} total={total} action={action} />`
-      ),
-    },
-    {
-      key: 'with-notice',
-      example: summaryExample(
-        {
-          title: 'Resumo do pagamento',
-          mainItem,
-          details,
-          total,
-          notice,
-          action,
-        },
-        `<TransactionSummary title="Resumo do pagamento" mainItem={mainItem} details={details} total={total} notice={notice} action={action} />`
-      ),
-    },
-    {
-      key: 'details-only',
-      example: summaryExample(
-        { title: 'Resumo do pagamento', details, total, action },
-        `<TransactionSummary title="Resumo do pagamento" details={details} total={total} action={action} />`
+        { title: transactionAsideTitle, mainItem, details, total, action },
+        `<TransactionSummary title="Payment summary" mainItem={mainItem} details={details} total={total} action={action} />`
       ),
     },
   ],
+  optionsTitle: 'sections.options',
+  optionsLocalePrefix: 'options',
+  options: {
+    'without-title': summaryExample(
+      { mainItem, details, total, action },
+      `<TransactionSummary mainItem={mainItem} details={details} total={total} action={action} />`
+    ),
+    notice: summaryExample(
+      {
+        title: transactionAsideTitle,
+        mainItem,
+        details,
+        total,
+        notice: transactionNotice,
+        action,
+      },
+      `<TransactionSummary title="Payment summary" notice={notice} mainItem={mainItem} details={details} total={total} action={action} />`
+    ),
+    'details-only': summaryExample(
+      { title: transactionAsideTitle, details, total, action },
+      `<TransactionSummary title="Payment summary" details={details} total={total} action={action} />`
+    ),
+  },
   platforms: summaryPlatforms,
   argTypes: summaryArgTypes,
-  tokens,
+  tokens: summaryTokens,
 };

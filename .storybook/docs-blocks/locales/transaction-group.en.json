@@ -1,0 +1,91 @@
+{
+  "breadcrumb": ["Components", "Transaction Summary"],
+  "description": "A Footer for mobile totals and an Aside for desktop summaries.",
+  "toc": "On this page",
+  "documentation": "Documentation",
+  "onThisPage": "On this page",
+  "page": {
+    "title": "Transaction Summary",
+    "status": "Beta",
+    "lastUpdated": "Updated Oct 13, 2026",
+    "library": "Ocean Core",
+    "description": "A Footer for mobile totals and an Aside for desktop summaries."
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility"
+  },
+  "guidelines": {
+    "whenToUse": {
+      "title": "When to use",
+      "items": [
+        "Use **Transaction Footer** on mobile payment screens.",
+        "Use **Transaction Summary** in the side column of desktop payment screens."
+      ]
+    },
+    "anatomy": {
+      "title": "Anatomy",
+      "text": "The value block is ordered as optional `mainItem`, optional `details`, and required `total`. The optional `notice` is separate from that block, and `action` is required."
+    },
+    "content": {
+      "title": "Content",
+      "items": [
+        "Rows contain `label`, `value`, and optional `info` on a second line below the value. Keep icons, descriptions, captions, tags, and struck-through values out of rows.",
+        "Use no more than four details as a screen-level rule; the components render every detail received.",
+        "In normal use, always pass a Summary title, such as **Payment summary**. Leaving it out is an exception.",
+        "The notice description is required; its title and icon are optional. The recommended solid check-circle icon stays vertically centered with or without a title."
+      ]
+    },
+    "behavior": {
+      "title": "Behavior",
+      "items": [
+        "The body or card overlaps the separate notice.",
+        "Dividers appear only between existing rows and before the total when a row precedes it.",
+        "Main item and details are independent; the first detail is never promoted to main.",
+        "No supplied rows are truncated."
+      ]
+    }
+  },
+  "specs": {
+    "tokens": {
+      "title": "Tokens and colors",
+      "text": "Use Ocean tokens for surfaces, text, dividers, spacing, and radius. Notice colors remain fixed values outside the token system intentionally.",
+      "table": {
+        "columns": ["Part", "Color or token", "Use"]
+      },
+      "rows": [
+        "Body|colorInterfaceLightPure|Footer Default",
+        "Card|colorInterfaceLightUp|Footer Highlight and Summary",
+        "Text|colorInterfaceDarkDeep|Rows and notice text",
+        "Divider|colorInterfaceLightDown|Footer Default top border and row dividers",
+        "Notice|#f2fcf5 + #2da94f at 12%|Fixed notice treatment"
+      ]
+    },
+    "typography": {
+      "title": "Typography",
+      "text": "Row labels use Regular 14 and values use SemiBold 14. Optional info follows the Transaction List amount.info style: captionbold with $font-size-xxxs, $font-weight-medium, $line-height-comfy, and $color-interface-dark-down; keep $spacing-inline-xxxs between the value and info. Total label and value use Bold 16; notice title uses ExtraBold 14 and description Regular 12."
+    },
+    "spacing": {
+      "title": "Spacing",
+      "text": "Use 8px between the notice icon and text, 4px between notice title and description, 8px of vertical padding around details, and 16px for the notice overlap and action spacing."
+    },
+    "structure": {
+      "title": "Structure",
+      "footer": "Footer",
+      "footerText": "The notice sits above the body. Its solid 20 × 20 check-circle stays vertically centered with or without a title. Default has a 1px top border on the body; Highlight has 12px top corners on the body. The root has no background.",
+      "summary": "Summary",
+      "summaryText": "The light-up card with 12px radius sits above the notice. The optional title appears only when passed, and the required action stays outside the card."
+    }
+  },
+  "accessibility": {
+    "requirements": {
+      "title": "Requirements",
+      "items": [
+        "Keep row labels and values in a meaningful reading order.",
+        "The notice description remains available as text when its icon is hidden.",
+        "Treat the decorative default notice icon as hidden from assistive technology."
+      ]
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "breadcrumb": ["Componentes", "Resumo da transação"],
+  "description": "Um Footer para totais em telas mobile e um Aside para resumos em telas desktop.",
+  "toc": "Nesta página",
+  "documentation": "Documentação",
+  "onThisPage": "Nesta página",
+  "page": {
+    "title": "Resumo da transação",
+    "status": "Beta",
+    "lastUpdated": "Atualizado em 13 out. 2026",
+    "library": "Ocean Core",
+    "description": "Um Footer para totais em telas mobile e um Aside para resumos em telas desktop."
+  },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Especificações",
+    "accessibility": "Acessibilidade"
+  },
+  "guidelines": {
+    "whenToUse": {
+      "title": "Quando usar",
+      "items": [
+        "Use **Transaction Footer** em telas de pagamento mobile.",
+        "Use **Transaction Summary** na coluna lateral de telas de pagamento desktop."
+      ]
+    },
+    "anatomy": {
+      "title": "Anatomia",
+      "text": "O bloco de valores segue a ordem `mainItem` opcional, `details` opcionais e `total` obrigatório. O `notice` é separado desse bloco, e a `action` é obrigatória."
+    },
+    "content": {
+      "title": "Conteúdo",
+      "items": [
+        "As linhas contêm `label`, `value` e `info` opcional em uma segunda linha abaixo do valor. Não inclua ícone, descrição, legenda, tag ou valor riscado nas linhas.",
+        "Use no máximo quatro details como regra da tela; os componentes renderizam todos os detalhes recebidos.",
+        "No uso normal, sempre passe um título no Summary, como **Resumo do pagamento**. Omiti-lo é uma exceção.",
+        "A descrição do aviso é obrigatória; título e ícone são opcionais. O check-circle sólido recomendado fica centralizado verticalmente com ou sem título."
+      ]
+    },
+    "behavior": {
+      "title": "Comportamento",
+      "items": [
+        "O corpo ou card se sobrepõe ao aviso separado.",
+        "Os divisores aparecem apenas entre linhas existentes e antes do total quando há uma linha acima.",
+        "Item principal e details são independentes; o primeiro detail nunca é promovido a principal.",
+        "Nenhuma linha recebida é truncada."
+      ]
+    }
+  },
+  "specs": {
+    "tokens": {
+      "title": "Tokens e cores",
+      "text": "Use tokens Ocean para superfícies, texto, divisores, espaçamento e raio. As cores do aviso permanecem intencionalmente fixas, fora do sistema de tokens.",
+      "table": {
+        "columns": ["Parte", "Cor ou token", "Uso"]
+      },
+      "rows": [
+        "Corpo|colorInterfaceLightPure|Footer Default",
+        "Card|colorInterfaceLightUp|Footer Highlight e Summary",
+        "Texto|colorInterfaceDarkDeep|Linhas e texto do aviso",
+        "Divisor|colorInterfaceLightDown|Borda superior do Footer Default e divisores das linhas",
+        "Aviso|#f2fcf5 + #2da94f a 12%|Tratamento fixo do aviso"
+      ]
+    },
+    "typography": {
+      "title": "Tipografia",
+      "text": "Labels usam Regular 14 e values, SemiBold 14. O info opcional segue o estilo amount.info do Transaction List: captionbold com $font-size-xxxs, $font-weight-medium, $line-height-comfy e $color-interface-dark-down; mantenha $spacing-inline-xxxs entre o valor e o info. Label e value do total usam Bold 16; o título do aviso usa ExtraBold 14 e a descrição Regular 12."
+    },
+    "spacing": {
+      "title": "Espaçamento",
+      "text": "Use 8px entre o ícone e o texto do aviso, 4px entre o título e a descrição, 8px de padding vertical nos details e 16px para a sobreposição do aviso e o espaçamento da ação."
+    },
+    "structure": {
+      "title": "Estrutura",
+      "footer": "Footer",
+      "footerText": "O aviso fica acima do corpo. O check-circle sólido de 20 × 20 fica centralizado verticalmente com ou sem título. Default tem borda superior de 1px no corpo; Highlight tem cantos superiores de 12px no corpo. A raiz não tem fundo.",
+      "summary": "Summary",
+      "summaryText": "O card light-up com raio 12 fica acima do aviso. O título opcional aparece apenas quando passado, e a ação obrigatória fica fora do card."
+    }
+  },
+  "accessibility": {
+    "requirements": {
+      "title": "Requisitos",
+      "items": [
+        "Mantenha labels e values das linhas em uma ordem de leitura significativa.",
+        "A descrição do aviso continua disponível como texto quando o ícone está oculto.",
+        "O ícone padrão decorativo do aviso deve ficar oculto para tecnologias assistivas."
+      ]
+    }
+  }
+}

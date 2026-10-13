@@ -1,32 +1,33 @@
 {
-  "usedBy": "Use este bloco na coluna lateral de uma tela desktop de pagamento. A ação fica fora do card.",
-  "overview": "Resumo para a coluna lateral desktop com linha principal opcional, detalhes opcionais, total obrigatório, aviso opcional e ação obrigatória.",
+  "overview": "Resumo para a coluna lateral desktop com título, linha principal e detalhes opcionais, total obrigatório, aviso opcional e ação obrigatória.",
   "sections": {
     "default": {
-      "title": "Com título",
-      "text": "O título fica visível por padrão acima do card light-up. Linhas e total ficam dentro do card."
-    },
+      "title": "Padrão",
+      "text": "No uso normal, sempre informe um título, como “Resumo do pagamento”. Omiti-lo é uma exceção."
+    }
+  },
+  "options": {
     "without-title": {
       "title": "Sem título",
-      "text": "No uso normal, sempre informe um título, como “Resumo do pagamento”. Omiti-lo é uma exceção para quando a própria tela já identifica o resumo."
+      "text": "Omitir o título é uma exceção para quando a própria tela já identifica o resumo."
     },
-    "with-notice": {
+    "notice": {
       "title": "Com aviso",
-      "text": "O card cobre 16px do aviso abaixo dele. A ação fica fora de ambos."
+      "text": "O aviso é opcional e permanece separado do card."
     },
     "details-only": {
       "title": "Somente detalhes",
-      "text": "Os detalhes podem ser informados sem uma linha principal; o componente renderiza todos em densidade compacta."
+      "text": "Os detalhes podem ser informados sem uma linha principal; o componente renderiza todos os recebidos."
     }
   },
   "api": {
     "intro": "Transaction Summary está disponível somente na Web e usa os papéis separados mainItem, details e total.",
-    "title": "Título opcional exibido acima do card quando informado. No uso normal, sempre informe um título, como “Resumo do pagamento”; omiti-lo é uma exceção.",
-    "mainItem": "Linha opcional de rótulo e valor com densidade padrão. Ela nunca é inferida do primeiro detalhe.",
-    "details": "Linhas opcionais de rótulo e valor com densidade compacta. Use no máximo quatro como regra para a tela; o componente renderiza todos os detalhes recebidos.",
-    "total": "Linha obrigatória de rótulo e valor com tipografia bold de 16px. Há divisor antes dela quando existem linha principal ou detalhes.",
-    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. Sem ícone, usa-se o check positivo do Ocean; `icon={null}` o oculta.",
-    "action": "Ação obrigatória em largura total fora do card, com 16px de padding vertical.",
+    "title": "Título opcional exibido acima do card somente quando informado. No uso normal, sempre informe um título, como “Resumo do pagamento”; omiti-lo é uma exceção.",
+    "mainItem": "Linha opcional de rótulo e valor, com informação opcional abaixo do valor, em densidade padrão. Ela nunca é inferida do primeiro detalhe.",
+    "details": "Linhas opcionais de rótulo e valor, com informação opcional abaixo do valor, em densidade compacta. Use no máximo quatro como regra para a tela; o componente renderiza todos os detalhes recebidos.",
+    "total": "Linha obrigatória de rótulo e valor. Há divisor antes dela quando existem linha principal ou detalhes.",
+    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. O check-circle sólido é o ícone recomendado; `icon={null}` o oculta.",
+    "action": "Ação obrigatória em largura total fora do card.",
     "className": "Classe adicional para a raiz do componente."
   },
   "platforms": {
@@ -38,10 +39,10 @@
   },
   "rules": [
     "Use Summary na coluna lateral de uma tela desktop; Footer é o componente móvel.",
-    "Linhas contêm somente rótulo e valor. Use mainItem e details de forma independente; o primeiro detalhe não é promovido a principal.",
+    "As linhas contêm rótulo, valor e informação opcional abaixo do valor. Use mainItem e details de forma independente; o primeiro detalhe não é promovido a principal.",
     "Use no máximo quatro detalhes como regra para a tela. Summary renderiza todos os detalhes recebidos.",
     "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após main quando há detalhes e antes do total quando existem linhas acima.",
-    "O card é sempre light-up, tem cantos de 12px e cobre 16px do aviso abaixo dele.",
+    "O card é sempre light-up e se sobrepõe ao aviso abaixo dele.",
     "Mantenha a ação obrigatória fora do card e do aviso."
   ]
 }

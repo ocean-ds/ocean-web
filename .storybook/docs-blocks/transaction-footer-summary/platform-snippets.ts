@@ -3,28 +3,32 @@ export const footerPlatforms = {
 
 <TransactionFooter
   type="default"
-  mainItem={{ label: 'Pedido', value: 'R$ 623,80' }}
+  mainItem={{ label: 'Subtotal', value: 'R$ 1.250,00' }}
   details={[
-    { label: 'Pague em', value: '3x de R$ 207,93 sem acréscimo' },
+    { label: 'Installments', value: '5x of R$ 250,00', info: 'No additional fees' },
   ]}
-  total={{ label: 'Total', value: 'R$ 623,80' }}
+  total={{ label: 'Total', value: 'R$ 1.250,00' }}
   notice={{
-    title: 'Economia de R$ 96,39',
-    description: 'Economia aplicada ao seu pagamento.',
+    title: 'Discount applied',
+    description: 'Supporting text for the notice.',
   }}
-  action={<Button variant="primary" blocked>Revisar pagamento</Button>}
+  action={<Button variant="primary" blocked>Continue</Button>}
 />`,
   swift: `let content = TransactionFooterContent(
     type: .default,
     notice: TransactionFooterNotice(
-        title: "Economia de R$ 96,39",
-        description: "Economia aplicada ao seu pagamento."
+        title: "Discount applied",
+        description: "Supporting text for the notice."
     ),
-    mainItem: TransactionFooterRow(label: "Pedido", value: "R$ 623,80"),
+    mainItem: TransactionFooterRow(label: "Subtotal", value: "R$ 1.250,00"),
     details: [
-        TransactionFooterRow(label: "Pague em", value: "3x de R$ 207,93 sem acréscimo")
+        TransactionFooterRow(
+            label: "Installments",
+            value: "5x of R$ 250,00",
+            info: "No additional fees"
+        )
     ],
-    total: TransactionFooterTotal(label: "Total", value: "R$ 623,80"),
+    total: TransactionFooterTotal(label: "Total", value: "R$ 1.250,00"),
     button: button
 )
 
@@ -34,23 +38,24 @@ OceanSwiftUI.TransactionFooter(
   compose: `OceanTransactionFooter(
     total = OceanTransactionFooterTotal(
         label = "Total",
-        value = "R$ 623,80"
+        value = "R$ 1.250,00"
     ),
     button = button,
     modifier = Modifier,
     type = OceanTransactionFooterType.Default,
     notice = OceanTransactionFooterNotice(
-        title = "Economia de R$ 96,39",
-        description = "Economia aplicada ao seu pagamento."
+        title = "Discount applied",
+        description = "Supporting text for the notice."
     ),
     mainItem = OceanTransactionFooterItem(
-        label = "Pedido",
-        value = "R$ 623,80"
+        label = "Subtotal",
+        value = "R$ 1.250,00"
     ),
     details = listOf(
         OceanTransactionFooterItem(
-            label = "Pague em",
-            value = "3x de R$ 207,93 sem acréscimo"
+            label = "Installments",
+            value = "5x of R$ 250,00",
+            info = "No additional fees"
         )
     )
 )`,

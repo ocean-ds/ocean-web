@@ -1,10 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import TransactionFooter from '../TransactionFooter';
 
-const mainItem = { label: 'Pedido', value: 'R$ 10,00' };
-const details = [{ label: 'Desconto', value: 'R$ 2,00' }];
-const total = { label: 'Total', value: 'R$ 8,00' };
+const mainItem = { label: 'Subtotal', value: 'R$ 1.250,00' };
+const details = [
+  {
+    label: 'Parcelamento',
+    value: '5x de R$ 250,00',
+    info: 'sem acréscimo',
+  },
+];
+const total = { label: 'Total', value: 'R$ 1.250,00' };
 const action = <button type="button">Continuar</button>;
 const dividerSelector = '.ods-transaction-list__divider';
 
@@ -19,8 +25,8 @@ test('renders notice before the body, rows, total and action', () => {
       total={total}
       action={action}
       notice={{
-        title: 'Economia de R$ 96,39',
-        description: 'A economia será aplicada ao pagamento.',
+        title: 'Desconto aplicado',
+        description: 'Texto de apoio do aviso.',
       }}
       data-testid="footer"
       className="custom-class"
@@ -38,20 +44,18 @@ test('renders notice before the body, rows, total and action', () => {
   expect(notice?.nextElementSibling).toBe(body);
   expect(body).toHaveClass('ods-transaction-footer-v2__body--default');
   expect(footer).not.toHaveClass('ods-transaction-footer--default');
-  expect(screen.getByText('Economia de R$ 96,39')).toBeInTheDocument();
-  expect(
-    screen.getByText('A economia será aplicada ao pagamento.')
-  ).toBeInTheDocument();
+  expect(screen.getByText('Desconto aplicado')).toBeInTheDocument();
+  expect(screen.getByText('Texto de apoio do aviso.')).toBeInTheDocument();
   expect(
     notice?.querySelector('.ods-transaction-notice__icon svg')
   ).toBeInTheDocument();
-  expect(screen.getByText('Pedido')).toHaveClass(
+  expect(screen.getByText('Subtotal')).toHaveClass(
     'ods-transaction-footer-v2__row-label'
   );
-  expect(screen.getByText('Desconto').parentElement).toHaveClass(
+  expect(screen.getByText('Parcelamento').parentElement).toHaveClass(
     'ods-transaction-footer-v2__row--compact'
   );
-  expect(screen.getByText('Pedido').parentElement).toHaveClass(
+  expect(screen.getByText('Subtotal').parentElement).toHaveClass(
     'ods-transaction-footer-v2__row--default'
   );
   expect(screen.getByText('Total').parentElement).toHaveClass(
@@ -61,6 +65,7 @@ test('renders notice before the body, rows, total and action', () => {
 });
 
 test('places highlight styling on the body', () => {
+  cleanup();
   render(
     <TransactionFooter
       type="highlight"
@@ -85,13 +90,13 @@ test('omits the optional notice title and icon', () => {
       total={total}
       action={action}
       notice={{
-        description: 'Economia aplicada.',
+        description: 'Texto de apoio do aviso.',
         icon: null,
       }}
     />
   );
 
-  expect(screen.getByText('Economia aplicada.')).toBeInTheDocument();
+  expect(screen.getByText('Texto de apoio do aviso.')).toBeInTheDocument();
   expect(
     document.querySelector('.ods-transaction-notice__title')
   ).not.toBeInTheDocument();
@@ -186,4 +191,33 @@ test('renders every supplied detail', () => {
       .querySelectorAll('.ods-transaction-footer-v2__row--compact')
   ).toHaveLength(6);
   expect(screen.getAllByText(/^Detalhe [1-6]$/)).toHaveLength(6);
+});
+
+test('renders additional info under main and detail values only when provided', () => {
+  render(
+    <TransactionFooter
+      mainItem={{ ...mainItem, info: 'sem acréscimo' }}
+      details={[{ ...details[0], info: 'Sem acréscimo' }]}
+      total={total}
+      action={action}
+    />
+  );
+
+  expect(screen.getByText('sem acréscimo')).toHaveClass(
+    'ods-transaction-footer-v2__row-info'
+  );
+  expect(screen.getByText('Sem acréscimo')).toHaveClass(
+    'ods-transaction-footer-v2__row-info'
+  );
+
+  cleanup();
+  render(
+    <TransactionFooter
+      mainItem={mainItem}
+      details={[{ label: 'Parcelamento', value: '5x de R$ 250,00' }]}
+      total={total}
+      action={action}
+    />
+  );
+  expect(screen.queryByText('sem acréscimo')).not.toBeInTheDocument();
 });

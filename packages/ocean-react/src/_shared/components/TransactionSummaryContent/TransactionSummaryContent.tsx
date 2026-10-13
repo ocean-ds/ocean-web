@@ -1,9 +1,11 @@
 import React from 'react';
 import { TransactionListDivider } from '../TransactionListParts';
+import Typography from '../../../Typography';
 
 export type TransactionRow = {
   label: React.ReactNode;
   value: React.ReactNode;
+  info?: React.ReactNode;
 };
 
 export type TransactionSummaryContentProps = {
@@ -48,7 +50,19 @@ const TransactionSummaryContent = ({
       {mainItem && (
         <div className={`${classPrefix}__row ${classPrefix}__row--default`}>
           <span className={`${classPrefix}__row-label`}>{mainItem.label}</span>
-          <span className={`${classPrefix}__row-value`}>{mainItem.value}</span>
+          <span className={`${classPrefix}__row-value-column`}>
+            <span className={`${classPrefix}__row-value`}>
+              {mainItem.value}
+            </span>
+            {mainItem.info != null && (
+              <Typography
+                variant="captionbold"
+                className={`${classPrefix}__row-info`}
+              >
+                {mainItem.info}
+              </Typography>
+            )}
+          </span>
         </div>
       )}
       {mainItem && details.length > 0 && <TransactionListDivider />}
@@ -60,7 +74,19 @@ const TransactionSummaryContent = ({
               className={`${classPrefix}__row ${classPrefix}__row--compact`}
             >
               <span className={`${classPrefix}__row-label`}>{item.label}</span>
-              <span className={`${classPrefix}__row-value`}>{item.value}</span>
+              <span className={`${classPrefix}__row-value-column`}>
+                <span className={`${classPrefix}__row-value`}>
+                  {item.value}
+                </span>
+                {item.info != null && (
+                  <Typography
+                    variant="captionbold"
+                    className={`${classPrefix}__row-info`}
+                  >
+                    {item.info}
+                  </Typography>
+                )}
+              </span>
             </div>
           ))}
         </div>

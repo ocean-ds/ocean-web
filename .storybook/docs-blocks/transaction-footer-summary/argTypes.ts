@@ -22,7 +22,7 @@ export const footerArgTypes: Record<string, ApiArgType> = {
   type: prop(
     'type',
     "'default' | 'highlight'",
-    'Transaction Footer 2.0',
+    'Transaction Footer',
     "'default'",
     'inline-radio',
     ['default', 'highlight']
@@ -30,37 +30,37 @@ export const footerArgTypes: Record<string, ApiArgType> = {
   mainItem: prop(
     'mainItem',
     'TransactionRow',
-    'Transaction Footer 2.0',
+    'Transaction Footer',
     undefined,
     'object'
   ),
   details: prop(
     'details',
     'TransactionRow[]',
-    'Transaction Footer 2.0',
+    'Transaction Footer',
     '[]',
     'object'
   ),
   total: prop(
     'total',
     'TransactionRow',
-    'Transaction Footer 2.0',
+    'Transaction Footer',
     undefined,
     'object'
   ),
   notice: prop(
     'notice',
     'TransactionNoticeProps',
-    'Transaction Footer 2.0',
+    'Transaction Footer',
     undefined,
     'object'
   ),
-  action: prop('action', 'ReactNode', 'Transaction Footer 2.0'),
+  action: prop('action', 'ReactNode', 'Transaction Footer'),
   className: prop('className', 'string', 'HTML attributes'),
 };
 
 export const summaryArgTypes: Record<string, ApiArgType> = {
-  title: prop('title', 'ReactNode', 'Transaction Summary'),
+  title: prop('title', 'ReactNode', 'Transaction Summary', undefined, 'text'),
   mainItem: prop(
     'mainItem',
     'TransactionRow',

@@ -19,22 +19,22 @@
 .ods-transaction-notice {
   @include ods-transaction-notice;
 
-  align-items: flex-start;
+  align-items: center;
   font-family: $font-family-base;
 
   &__icon {
     align-items: center;
     color: $color-status-positive-deep;
     display: flex;
-    flex: 0 0 $spacing-inline-sm;
-    height: $spacing-inline-sm;
+    flex: 0 0 20px;
+    height: 20px;
     justify-content: center;
-    width: $spacing-inline-sm;
+    width: 20px;
 
     svg {
       color: inherit;
-      height: $spacing-inline-sm;
-      width: $spacing-inline-sm;
+      height: 20px;
+      width: 20px;
     }
   }
 
@@ -138,6 +138,20 @@
     text-align: right;
   }
 
+  &__row-value-column {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  &__row-info {
+    color: $color-interface-dark-down;
+    margin-top: $spacing-inline-xxxs;
+    text-align: right;
+    white-space: nowrap;
+  }
+
   &__details {
     padding: $spacing-stack-xxs 0;
   }
@@ -229,6 +243,20 @@
     flex-shrink: 0;
     font-weight: $font-weight-medium;
     text-align: right;
+  }
+
+  &__row-value-column {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  &__row-info {
+    color: $color-interface-dark-down;
+    margin-top: $spacing-inline-xxxs;
+    text-align: right;
+    white-space: nowrap;
   }
 
   &__details {

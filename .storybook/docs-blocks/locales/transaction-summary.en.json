@@ -1,32 +1,33 @@
 {
-  "usedBy": "Use this building block in the side column of a desktop payment screen. The action stays outside the card.",
-  "overview": "A desktop side-column summary with an optional main row, optional details, a required total, an optional notice and a required action.",
+  "overview": "A desktop side-column summary with a title, optional main row and details, a required total, an optional notice and a required action.",
   "sections": {
     "default": {
-      "title": "With title",
-      "text": "The title is visible by default above the light-up card. Rows and total stay inside the card."
-    },
+      "title": "Default",
+      "text": "Always pass a title in normal use, such as “Payment summary”. Omitting it is an exception."
+    }
+  },
+  "options": {
     "without-title": {
       "title": "Without title",
-      "text": "Pass a title in normal use, such as “Payment summary”. Omitting it is an exception when the surrounding screen already identifies the summary."
+      "text": "Omitting the title is an exception when the surrounding screen already identifies the summary."
     },
-    "with-notice": {
+    "notice": {
       "title": "With notice",
-      "text": "The card covers 16px of the notice below it. The action stays outside both."
+      "text": "The notice is optional and remains separate from the card."
     },
     "details-only": {
       "title": "Details only",
-      "text": "Details can be supplied without a main item; the component renders them all in compact density."
+      "text": "Details can be supplied without a main item; the component renders every supplied detail."
     }
   },
   "api": {
     "intro": "Transaction Summary is available on Web only and uses separate mainItem, details and total roles.",
-    "title": "Optional title rendered above the card when supplied. In normal use, always pass a title such as “Payment summary”; omitting it is an exception.",
-    "mainItem": "Optional label/value row with default density. It is never inferred from the first detail.",
-    "details": "Optional label/value rows with compact density. Use at most four as a screen-level rule; the component renders all supplied details.",
-    "total": "Required label/value row with bold 16px typography. A divider precedes it whenever a main item or details are present.",
-    "notice": "Optional structured notice. Description is required; title is optional. An omitted icon uses the Ocean positive check icon, while `icon={null}` hides it.",
-    "action": "Required action rendered full width outside the card, with 16px vertical padding.",
+    "title": "Optional title rendered above the card only when supplied. In normal use, always pass a title such as “Payment summary”; omitting it is an exception.",
+    "mainItem": "Optional label/value row with optional info below the value, using default density. It is never inferred from the first detail.",
+    "details": "Optional label/value rows with optional info below the value, using compact density. Use at most four as a screen-level rule; the component renders all supplied details.",
+    "total": "Required label/value row. A divider precedes it whenever a main item or details are present.",
+    "notice": "Optional structured notice. Description is required; title is optional. A solid check-circle is recommended; `icon={null}` hides it.",
+    "action": "Required action rendered full width outside the card.",
     "className": "Additional class name for the component root."
   },
   "platforms": {
@@ -38,10 +39,10 @@
   },
   "rules": [
     "Use Summary in the side column of a desktop payment screen; Footer is the mobile component.",
-    "Rows contain only label and value. Use mainItem and details independently; the first detail is not promoted to main.",
+    "Rows contain a label, value, and optional info below the value. Use mainItem and details independently; the first detail is not promoted to main.",
     "Use no more than four details as a screen-level rule. Summary renders every detail it receives.",
     "Main and total use default density; details use compact density. Dividers appear after main when details follow and before total whenever rows are above it.",
-    "The card is always light-up with 12px corners and covers 16px of the notice below it.",
+    "The card is always light-up and overlaps the notice below it.",
     "Keep the required action outside the card and notice."
   ]
 }

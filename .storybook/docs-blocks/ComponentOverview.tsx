@@ -49,6 +49,7 @@ export type ComponentDocConfig = {
   /** Locale and tokens id, e.g. `transaction-list-action`. */
   id: string;
   title: string;
+  codeName?: string;
   kind: 'component' | 'block';
   /** Folder of the source code in the repository. */
   source: string;
@@ -157,6 +158,12 @@ export const ComponentOverview = ({
                 className="odoc-component-header__title"
               >
                 {config.title}
+                {config.codeName && (
+                  <>
+                    {' · '}
+                    <code>{config.codeName}</code>
+                  </>
+                )}
               </Typography>
               <div className="odoc-component-header__links">
                 <Tag

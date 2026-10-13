@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { CheckCircleOutline } from '@useblu/ocean-icons-react';
+import { CheckCircle } from '@useblu/ocean-icons-react';
 import Typography from '../../../Typography';
 
 export type TransactionNoticeProps = {
@@ -22,7 +22,7 @@ const TransactionNotice = ({
     {icon !== null && (
       <span className="ods-transaction-notice__icon" aria-hidden="true">
         {icon === undefined ? (
-          <CheckCircleOutline size={24} focusable={false} />
+          <CheckCircle size={20} focusable={false} />
         ) : (
           icon
         )}

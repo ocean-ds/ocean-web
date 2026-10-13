@@ -1,19 +1,60 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import Button from '../../Button';
 import TransactionSummary from '../TransactionSummary';
+import type { TransactionSummaryProps } from '../TransactionSummary';
 import {
-  transactionSummaryDecorators,
-  transactionSummaryAction as action,
-  transactionNotice,
   transactionSummaryDetails,
   transactionSummaryMainItem as mainItem,
   transactionSummaryTotal as total,
-} from '../../_shared/__fixtures__/transactionFooterSummary';
+  transactionAsideTitle,
+} from '../../../../../.storybook/docs-blocks/transaction-footer-summary/fixtures';
+import { transactionSummaryDecorator } from '../../../../../.storybook/docs-blocks/transaction-footer-summary/story-helpers';
 
-const meta: Meta<typeof TransactionSummary> = {
-  title: 'Components/Transaction Summary',
+type StoryArgs = TransactionSummaryProps & {
+  actionLabel: string;
+  showNoticeIcon: boolean;
+};
+
+const meta: Meta<StoryArgs> = {
+  title: 'Components/Transaction Summary/Aside',
   component: TransactionSummary,
-  tags: ['autodocs'],
-  decorators: transactionSummaryDecorators,
+  decorators: [transactionSummaryDecorator],
+  args: {
+    actionLabel: 'Continue',
+    action: (
+      <Button variant="primary" blocked>
+        Continue
+      </Button>
+    ),
+    showNoticeIcon: true,
+  },
+  argTypes: {
+    title: { control: 'text' },
+    mainItem: { control: 'object' },
+    details: { control: 'object' },
+    total: { control: 'object' },
+    notice: { control: 'object' },
+    action: { control: false },
+    actionLabel: { control: 'text', name: 'Action label' },
+    showNoticeIcon: { control: 'boolean' },
+    className: { control: 'text' },
+  },
+  render: ({ notice, showNoticeIcon, actionLabel, ...props }) => (
+    <TransactionSummary
+      {...props}
+      notice={
+        notice
+          ? { ...notice, icon: showNoticeIcon ? notice.icon : null }
+          : undefined
+      }
+      action={
+        <Button variant="primary" blocked>
+          {actionLabel}
+        </Button>
+      }
+    />
+  ),
 };
 
 export default meta;
@@ -21,39 +62,9 @@ type Story = StoryObj<typeof TransactionSummary>;
 
 export const Default: Story = {
   args: {
-    title: 'Resumo do pagamento',
+    title: transactionAsideTitle,
     mainItem,
     details: transactionSummaryDetails,
     total,
-    action,
-  },
-};
-
-export const WithoutTitle: Story = {
-  args: {
-    mainItem,
-    details: transactionSummaryDetails,
-    total,
-    action,
-  },
-};
-
-export const WithNotice: Story = {
-  args: {
-    title: 'Resumo do pagamento',
-    mainItem,
-    details: transactionSummaryDetails,
-    total,
-    notice: transactionNotice,
-    action,
-  },
-};
-
-export const DetailsOnly: Story = {
-  args: {
-    title: 'Resumo do pagamento',
-    details: transactionSummaryDetails,
-    total,
-    action,
   },
 };
