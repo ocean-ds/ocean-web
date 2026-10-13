@@ -4,8 +4,8 @@ import { CheckCircleOutline } from '@useblu/ocean-icons-react';
 import Typography from '../../../Typography';
 
 export type TransactionNoticeProps = {
-  title: React.ReactNode;
-  description?: React.ReactNode;
+  title?: React.ReactNode;
+  description: React.ReactNode;
   icon?: React.ReactNode;
 };
 
@@ -19,21 +19,30 @@ const TransactionNotice = ({
   notice: { title, description, icon },
 }: TransactionNoticeComponentProps): React.ReactElement => (
   <div className={classNames('ods-transaction-notice', className)}>
-    <span className="ods-transaction-notice__icon" aria-hidden="true">
-      {icon ?? <CheckCircleOutline size={24} focusable={false} />}
-    </span>
+    {icon !== null && (
+      <span className="ods-transaction-notice__icon" aria-hidden="true">
+        {icon === undefined ? (
+          <CheckCircleOutline size={24} focusable={false} />
+        ) : (
+          icon
+        )}
+      </span>
+    )}
     <div className="ods-transaction-notice__content">
-      <Typography variant="heading5" className="ods-transaction-notice__title">
-        {title}
-      </Typography>
-      {description != null && (
+      {title != null && (
         <Typography
-          variant="caption"
-          className="ods-transaction-notice__description"
+          variant="heading5"
+          className="ods-transaction-notice__title"
         >
-          {description}
+          {title}
         </Typography>
       )}
+      <Typography
+        variant="caption"
+        className="ods-transaction-notice__description"
+      >
+        {description}
+      </Typography>
     </div>
   </div>
 );

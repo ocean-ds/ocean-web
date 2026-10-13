@@ -1,49 +1,59 @@
 {
-  "usedBy": "Use este bloco na parte inferior de uma tela de pagamento móvel. A tela é responsável pelo posicionamento fixo e pelas margens da área segura.",
-  "overview": "Rodapé móvel de telas de pagamento que reúne linhas de transação somente leitura, o total, um aviso opcional e uma ação em largura total.",
+  "usedBy": "Use este bloco na parte inferior de uma tela móvel de pagamento. A tela é responsável pelo posicionamento fixo e pela área segura.",
+  "overview": "Rodapé móvel de pagamento com linha principal opcional, detalhes opcionais, total obrigatório, aviso opcional e ação em largura total.",
   "sections": {
     "default": {
       "title": "Padrão",
-      "text": "Use a superfície padrão para um rodapé branco com uma borda superior sutil."
+      "text": "O corpo padrão tem fundo branco e borda superior de 1px. A raiz não tem fundo próprio."
     },
     "highlight": {
       "title": "Destaque",
-      "text": "Use a superfície de destaque quando a tela de pagamento pedir fundo light-up e cantos superiores arredondados."
+      "text": "O corpo de destaque usa a superfície light-up e cantos superiores de 12px."
     },
     "with-notice": {
       "title": "Com aviso",
-      "text": "O aviso estruturado fica acima das linhas. O título é obrigatório; descrição e ícone são opcionais."
+      "text": "O aviso pode ter apenas a descrição. O corpo cobre 16px do aviso."
     },
     "with-notice-highlight": {
       "title": "Destaque com aviso",
-      "text": "O aviso se sobrepõe ao corpo em 16px, mantendo a superfície do rodapé acima dele."
+      "text": "O corpo de destaque se sobrepõe ao aviso em 16px e fica acima dele."
     },
-    "rich-rows": {
-      "title": "Linhas com detalhes",
-      "text": "As linhas aceitam as propriedades existentes de conteúdo, valor, tag e valor riscado de Transaction List Read Only."
+    "notice-title-icon": {
+      "title": "Aviso com título e ícone",
+      "text": "Título e ícone são opcionais. Sem ícone, usa-se o check positivo do Ocean; passe null para ocultá-lo."
     },
-    "many-rows": {
-      "title": "Regra de uso",
-      "text": "Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos."
+    "main-item-only": {
+      "title": "Somente linha principal",
+      "text": "A linha principal é independente dos detalhes e usa densidade padrão."
+    },
+    "details-only": {
+      "title": "Somente detalhes",
+      "text": "Os detalhes podem ser exibidos sem uma linha principal. Eles usam densidade compacta."
+    },
+    "four-details": {
+      "title": "Quatro detalhes",
+      "text": "Use no máximo quatro detalhes como regra para a tela. O componente renderiza todos os detalhes recebidos."
     }
   },
   "api": {
-    "intro": "O componente React recebe linhas de Transaction List Read Only e deixa o comportamento de negócio com quem o consome.",
-    "type": "Aparência da superfície. `default` é branco com borda superior; `highlight` usa light-up e cantos superiores arredondados.",
-    "items": "Linhas de transação somente leitura. Todos os itens recebidos são renderizados; o primeiro usa densidade padrão e os seguintes usam densidade compacta.",
-    "total": "Rótulo e valor exibidos depois de um divisor abaixo das linhas.",
-    "notice": "Aviso estruturado opcional com título obrigatório, descrição opcional e ícone personalizado opcional. Sem ícone, usa-se o ícone positivo de confirmação do Ocean.",
-    "action": "Ação fornecida pelo consumidor, exibida em largura total dentro do corpo do rodapé.",
-    "className": "Classe adicional para o elemento raiz."
+    "intro": "O componente React recebe linhas de rótulo e valor em papéis separados: mainItem e details. Todos os detalhes recebidos são renderizados; o comportamento de negócio fica com quem consome.",
+    "type": "Aparência do corpo. `default` é branco com borda superior; `highlight` usa light-up e cantos superiores arredondados.",
+    "mainItem": "Linha opcional de rótulo e valor com densidade padrão. Ela nunca é inferida do primeiro detalhe.",
+    "details": "Lista opcional de linhas de rótulo e valor com densidade compacta. Use no máximo quatro como regra para a tela; o componente não corta a lista.",
+    "total": "Linha obrigatória de rótulo e valor com tipografia bold de 16px. Há divisor antes dela quando existem linha principal ou detalhes.",
+    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. Sem ícone, usa-se o check positivo do Ocean; `icon={null}` o oculta.",
+    "action": "Ação obrigatória fornecida pelo consumidor, exibida em largura total dentro do corpo.",
+    "className": "Classe adicional para a raiz do componente."
   },
   "platforms": {
-    "text": "O mesmo Footer está disponível em SwiftUI e Jetpack Compose. No iOS, `.legacy` continua sendo o estilo padrão; use `.transaction(...)` para optar pela versão 2.0. No Android, o overload legado continua disponível e há o overload `OceanTransactionFooter(items, total, button, modifier, type, notice)`. Nas plataformas nativas, o aviso é textual; posicionamento fixo e área segura continuam sob responsabilidade da tela."
+    "text": "O Footer também está disponível em SwiftUI e Jetpack Compose. No iOS, `.legacy` continua como padrão; use `.v2(...)` para esta API. No Android, o overload deprecated continua disponível e há um novo overload com total, button, type, notice, mainItem e details."
   },
   "rules": [
-    "Posicione o Footer na parte inferior de uma tela móvel de pagamento; a tela é responsável pelo posicionamento fixo e pelas margens da área segura.",
-    "Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos.",
-    "Use as propriedades de TransactionListReadOnly nas linhas, incluindo informação extra, tags e valores riscados.",
-    "Passe um objeto estruturado em `notice` com título; descrição e ícone personalizado são opcionais.",
-    "Passe o botão Ocean por `action`; não adicione uma segunda ação dentro de uma linha."
+    "Use Footer na parte inferior de uma tela móvel de pagamento; a tela é responsável pelo posicionamento fixo e pela área segura.",
+    "Uma linha contém somente rótulo e valor. Use mainItem e details de forma independente; o componente nunca transforma o primeiro detalhe em linha principal.",
+    "Use no máximo quatro detalhes como regra para a tela. Footer renderiza todos os itens recebidos.",
+    "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após a linha principal quando há detalhes e antes do total quando existem linhas acima.",
+    "O aviso é uma peça separada acima do corpo; o corpo cobre 16px do aviso.",
+    "No web, use a API 2.0. Transaction Footer 1.0 permanece deprecated no iOS e no Android."
   ]
 }

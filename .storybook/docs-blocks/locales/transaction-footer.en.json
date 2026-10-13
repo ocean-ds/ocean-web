@@ -1,49 +1,59 @@
 {
-  "usedBy": "Use this building block at the bottom of a mobile payment screen. The screen handles sticky positioning and safe-area insets.",
-  "overview": "A mobile payment-screen footer that groups read-only transaction rows, a total, an optional notice and a full-width action.",
+  "usedBy": "Use this building block at the bottom of a mobile payment screen. The screen owns sticky positioning and safe-area insets.",
+  "overview": "A mobile payment footer with an optional main row, optional details, a required total, an optional notice and a full-width action.",
   "sections": {
     "default": {
       "title": "Default",
-      "text": "Use the default surface for a white footer with a subtle top border."
+      "text": "The default body has a white surface and a 1px top border. The root itself has no background."
     },
     "highlight": {
       "title": "Highlight",
-      "text": "Use the highlight surface when the payment screen calls for the elevated light-up background and rounded top corners."
+      "text": "The highlight body uses the light-up surface and 12px top corners."
     },
     "with-notice": {
       "title": "With notice",
-      "text": "The structured notice sits above the rows. Its title is required; description and icon are optional."
+      "text": "The notice can contain only a description. Its body covers 16px of the notice."
     },
     "with-notice-highlight": {
       "title": "Highlight with notice",
-      "text": "The notice overlaps the body by 16px, keeping the footer surface above the notice."
+      "text": "The highlight body overlaps the notice by 16px and sits above it."
     },
-    "rich-rows": {
-      "title": "Rich rows",
-      "text": "Rows can use the existing Transaction List Read Only content, amount, tag and strikethrough props."
+    "notice-title-icon": {
+      "title": "Notice with title and icon",
+      "text": "Title and icon are optional. The icon defaults to the Ocean positive check icon; pass null to hide it."
     },
-    "many-rows": {
-      "title": "Usage guideline",
-      "text": "Use no more than five items as a screen-level guideline; the component renders every item it receives."
+    "main-item-only": {
+      "title": "Main item only",
+      "text": "The main item is independent from details and uses default density."
+    },
+    "details-only": {
+      "title": "Details only",
+      "text": "Details can be shown without a main item. Details use compact density."
+    },
+    "four-details": {
+      "title": "Four details",
+      "text": "Use no more than four details as a screen-level usage rule. The component renders every supplied detail."
     }
   },
   "api": {
-    "intro": "The React component accepts Transaction List Read Only rows and leaves business behavior to the consumer.",
-    "type": "Surface appearance. `default` is white with a top border; `highlight` uses the light-up surface and rounded top corners.",
-    "items": "Read-only transaction rows. All supplied rows render; the first uses default density and following rows use compact density.",
-    "total": "Label and value rendered after a divider below the transaction rows.",
-    "notice": "Optional structured notice with a required title, optional description and optional custom icon. When omitted, an Ocean positive check icon is used.",
-    "action": "Consumer-provided action, rendered full width inside the footer body.",
-    "className": "Additional class name for the root element."
+    "intro": "The React component receives label/value rows in separate mainItem and details roles. It renders all supplied details and leaves business behavior to the consumer.",
+    "type": "Body appearance. `default` is white with a top border; `highlight` uses the light-up surface and rounded top corners.",
+    "mainItem": "Optional label/value row with default density. It is never inferred from the first detail.",
+    "details": "Optional label/value rows with compact density. Use at most four as a screen-level rule; the component does not truncate the list.",
+    "total": "Required label/value row with bold 16px typography. A divider precedes it whenever a main item or details are present.",
+    "notice": "Optional structured notice. Description is required; title is optional. An omitted icon uses the Ocean positive check icon, while `icon={null}` hides it.",
+    "action": "Required consumer-provided action, rendered full width inside the body.",
+    "className": "Additional class name for the component root."
   },
   "platforms": {
-    "text": "The same Footer is available in SwiftUI and Jetpack Compose. iOS keeps `.legacy` as the default style; opt into 2.0 with `.transaction(...)`. Android keeps the legacy overload and adds `OceanTransactionFooter(items, total, button, modifier, type, notice)`. Native notice content is text; sticky positioning and safe-area handling remain the screen's responsibility."
+    "text": "The Footer is also available in SwiftUI and Jetpack Compose. iOS keeps `.legacy` as the default; use `.v2(...)` for this API. Android keeps the deprecated overload and adds the overload with total, button, type, notice, mainItem and details."
   },
   "rules": [
-    "Place the Footer at the bottom of a mobile payment screen; the screen owns sticky positioning and safe-area insets.",
-    "Use no more than five items as a screen-level guideline; the component renders every item it receives.",
-    "Use TransactionListReadOnly props for row content, including extra information, tags and struck-through values.",
-    "Pass a structured notice object with a title; the description and custom icon are optional.",
-    "Pass the Ocean button through `action`; do not add a second action inside a row."
+    "Use Footer at the bottom of a mobile payment screen; the screen owns sticky positioning and safe-area insets.",
+    "A row contains only a label and a value. Use mainItem and details independently; the component never promotes the first detail to main.",
+    "Use no more than four details as a screen-level usage rule. Footer renders every item it receives.",
+    "Main and total use default density; details use compact density. Dividers appear after a main item when details follow and before total whenever rows are above it.",
+    "The notice is a separate piece above the body; the body covers 16px of it.",
+    "Use the 2.0 API on web. Transaction Footer 1.0 remains deprecated on iOS and Android."
   ]
 }

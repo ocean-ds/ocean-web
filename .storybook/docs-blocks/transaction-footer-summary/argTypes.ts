@@ -22,48 +22,62 @@ export const footerArgTypes: Record<string, ApiArgType> = {
   type: prop(
     'type',
     "'default' | 'highlight'",
-    'Transaction Footer',
+    'Transaction Footer 2.0',
     "'default'",
     'inline-radio',
     ['default', 'highlight']
   ),
-  items: prop(
-    'items',
-    'TransactionListReadOnlyProps[]',
-    'Transaction Footer',
+  mainItem: prop(
+    'mainItem',
+    'TransactionRow',
+    'Transaction Footer 2.0',
     undefined,
+    'object'
+  ),
+  details: prop(
+    'details',
+    'TransactionRow[]',
+    'Transaction Footer 2.0',
+    '[]',
     'object'
   ),
   total: prop(
     'total',
-    '{ label: ReactNode; value: ReactNode }',
-    'Transaction Footer',
+    'TransactionRow',
+    'Transaction Footer 2.0',
     undefined,
     'object'
   ),
   notice: prop(
     'notice',
     'TransactionNoticeProps',
-    'Transaction Footer',
+    'Transaction Footer 2.0',
     undefined,
     'object'
   ),
-  action: prop('action', 'ReactNode', 'Transaction Footer'),
+  action: prop('action', 'ReactNode', 'Transaction Footer 2.0'),
   className: prop('className', 'string', 'HTML attributes'),
 };
 
 export const summaryArgTypes: Record<string, ApiArgType> = {
   title: prop('title', 'ReactNode', 'Transaction Summary'),
-  items: prop(
-    'items',
-    'TransactionListReadOnlyProps[]',
+  mainItem: prop(
+    'mainItem',
+    'TransactionRow',
     'Transaction Summary',
     undefined,
     'object'
   ),
+  details: prop(
+    'details',
+    'TransactionRow[]',
+    'Transaction Summary',
+    '[]',
+    'object'
+  ),
   total: prop(
     'total',
-    '{ label: ReactNode; value: ReactNode }',
+    'TransactionRow',
     'Transaction Summary',
     undefined,
     'object'

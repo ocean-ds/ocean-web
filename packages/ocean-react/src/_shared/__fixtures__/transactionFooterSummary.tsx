@@ -1,15 +1,21 @@
 import React from 'react';
+import { CheckCircleOutline } from '@useblu/ocean-icons-react';
 import Button from '../../Button';
-import { TransactionListReadOnlyProps } from '../../TransactionListReadOnly';
 
-export const getTransactionSummaryItems = (
-  title = 'Pedido'
-): TransactionListReadOnlyProps[] => [
-  { content: { title }, amount: { value: 'R$ 623,80' } },
-  {
-    content: { title: 'Pague em' },
-    amount: { value: '3x de R$ 207,93', info: 'sem acréscimo' },
-  },
+export const transactionSummaryMainItem = {
+  label: 'Pedido',
+  value: 'R$ 623,80',
+};
+
+export const transactionSummaryDetails = [
+  { label: 'Pague em', value: '3x de R$ 207,93 sem acréscimo' },
+];
+
+export const transactionFourDetails = [
+  ...transactionSummaryDetails,
+  { label: 'Custo de antecipação', value: 'R$ 96,39' },
+  { label: 'Vencimento', value: '10 de outubro' },
+  { label: 'Forma de pagamento', value: 'Cartão de crédito' },
 ];
 
 export const transactionSummaryTotal = {
@@ -24,8 +30,13 @@ export const transactionSummaryAction = (
 );
 
 export const transactionNotice = {
+  description: 'A economia será aplicada ao seu pagamento.',
+};
+
+export const transactionNoticeWithTitleAndIcon = {
   title: 'Economia de R$ 96,39',
-  description: 'Economia aplicada ao seu pagamento.',
+  description: 'A economia será aplicada ao seu pagamento.',
+  icon: <CheckCircleOutline size={24} focusable={false} />,
 };
 
 export const transactionFooterDecorators: Array<

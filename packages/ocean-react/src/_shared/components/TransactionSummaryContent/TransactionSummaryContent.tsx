@@ -1,67 +1,71 @@
 import React from 'react';
-import TransactionListReadOnly, {
-  TransactionListReadOnlyProps,
-} from '../../../TransactionListReadOnly';
 import { TransactionListDivider } from '../TransactionListParts';
 
-export type TransactionSummaryContentProps = {
-  classPrefix: 'ods-transaction-footer' | 'ods-transaction-summary';
-  rowsClassName: string;
-  items: TransactionListReadOnlyProps[];
-  total: {
-    label: React.ReactNode;
-    value: React.ReactNode;
-  };
+export type TransactionRow = {
+  label: React.ReactNode;
+  value: React.ReactNode;
 };
 
-/* eslint-disable react/no-array-index-key */
+export type TransactionSummaryContentProps = {
+  classPrefix: 'ods-transaction-footer-v2' | 'ods-transaction-summary';
+  mainItem?: TransactionRow;
+  details?: TransactionRow[];
+  total: TransactionRow;
+};
+
 const TransactionSummaryContent = ({
   classPrefix,
-  rowsClassName,
-  items,
+  mainItem,
+  details = [],
   total,
 }: TransactionSummaryContentProps): React.ReactElement => {
-  const [mainItem, ...details] = items;
-
   return (
     <>
-      <div className={rowsClassName}>
+      <div className={`${classPrefix}__rows`}>
         {mainItem && (
-          <TransactionListReadOnly
-            key="main"
-            {...mainItem}
-            content={{ ...mainItem.content, inverted: false, size: 'sm' }}
-            amount={{ ...mainItem.amount, size: 'sm' }}
-            density="default"
-            showDivider
-          />
+          <div className={`${classPrefix}__row ${classPrefix}__row--default`}>
+            <span className={`${classPrefix}__row-label`}>
+              {mainItem.label}
+            </span>
+            <span className={`${classPrefix}__row-value`}>
+              {mainItem.value}
+            </span>
+          </div>
         )}
+        {mainItem && details.length > 0 && <TransactionListDivider />}
         {details.length > 0 && (
-          <>
-            <div className={`${classPrefix}__details`}>
-              {details.map((item, index) => (
-                <TransactionListReadOnly
-                  key={`${index}-${item.content.title}`}
-                  {...item}
-                  content={{ ...item.content, inverted: false, size: 'sm' }}
-                  amount={{ ...item.amount, size: 'sm' }}
-                  density="compact"
-                  showDivider={false}
-                />
-              ))}
-            </div>
-            <TransactionListDivider />
-          </>
+          <div className={`${classPrefix}__details`}>
+            {details.map((item, index) => (
+              <div
+                key={index}
+                className={`${classPrefix}__row ${classPrefix}__row--compact`}
+              >
+                <span className={`${classPrefix}__row-label`}>
+                  {item.label}
+                </span>
+                <span className={`${classPrefix}__row-value`}>
+                  {item.value}
+                </span>
+              </div>
+            ))}
+          </div>
         )}
-        {!mainItem && <TransactionListDivider />}
+        {(mainItem || details.length > 0) && <TransactionListDivider />}
       </div>
-      <div className={`${classPrefix}__total`}>
-        <span className={`${classPrefix}__total-label`}>{total.label}</span>
-        <span className={`${classPrefix}__total-value`}>{total.value}</span>
+      <div className={`${classPrefix}__total ${classPrefix}__total--bold-16`}>
+        <span
+          className={`${classPrefix}__total-label ${classPrefix}__total-label--bold-16`}
+        >
+          {total.label}
+        </span>
+        <span
+          className={`${classPrefix}__total-value ${classPrefix}__total-value--bold-16`}
+        >
+          {total.value}
+        </span>
       </div>
     </>
   );
 };
-/* eslint-enable react/no-array-index-key */
 
 export default TransactionSummaryContent;

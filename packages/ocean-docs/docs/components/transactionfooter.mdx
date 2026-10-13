@@ -7,12 +7,19 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # Transaction Footer
 
-`TransactionFooter` organiza as linhas de uma transação, o total, um aviso opcional e a ação principal na parte inferior de uma tela móvel de pagamento. Cada linha usa `TransactionListReadOnly`: a primeira mantém a densidade padrão e as demais usam a densidade compacta. Como regra de uso, passe no máximo cinco linhas, sem contar o total; o componente renderiza todas as linhas recebidas, sem truncar. Posicionamento fixo e área segura continuam sob responsabilidade da tela.
+`TransactionFooter` reúne o item principal opcional, detalhes opcionais, o total obrigatório, um aviso opcional e a ação principal de uma tela móvel de pagamento. Cada linha contém somente `label` e `value`; `mainItem` e `details` são independentes. O componente renderiza todos os detalhes recebidos. Use no máximo quatro detalhes como regra de uso da tela, sem contar o total.
+
+O aviso é uma peça separada acima do corpo; o corpo cobre 16px do aviso. A tela é responsável pelo posicionamento do Footer e pela área segura.
 
 ## Importação
 
 ```tsx
 import { TransactionFooter } from '@useblu/ocean-react';
+import type {
+  TransactionFooterProps,
+  TransactionNoticeProps,
+  TransactionRow,
+} from '@useblu/ocean-react';
 ```
 
 ## Playground
@@ -27,17 +34,9 @@ import { TransactionFooter } from '@useblu/ocean-react';
 
 ```tsx live
 <TransactionFooter
-  type="highlight"
-  items={[
-    {
-      content: { title: 'Pedido' },
-      amount: { value: 'R$ 623,80' },
-    },
-    {
-      content: { title: 'Pague em' },
-      amount: { value: '3x de R$ 207,93', info: 'sem acréscimo' },
-    },
-  ]}
+  type="default"
+  mainItem={{ label: 'Pedido', value: 'R$ 623,80' }}
+  details={[{ label: 'Pague em', value: '3x de R$ 207,93 sem acréscimo' }]}
   total={{ label: 'Total', value: 'R$ 623,80' }}
   notice={{
     title: 'Economia de R$ 96,39',
@@ -53,23 +52,27 @@ import { TransactionFooter } from '@useblu/ocean-react';
 
 ## Propriedades
 
-| Propriedade | Tipo                                     | Obrigatória | Descrição                                                                                                                               |
-| ----------- | ---------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`      | `'default' \| 'highlight'`               | Não         | Aparência. `default` usa fundo branco e borda superior; `highlight` usa fundo `colorInterfaceLightUp` e cantos superiores de 12px.      |
-| `items`     | `TransactionListReadOnlyProps[]`         | Sim         | Linhas de transação. A primeira é exibida em densidade padrão e as seguintes em densidade compacta.                                     |
-| `total`     | `{ label: ReactNode; value: ReactNode }` | Sim         | Rótulo e valor do total, exibidos depois das linhas e do divisor.                                                                       |
-| `notice`    | `TransactionNoticeProps`                 | Não         | `{ title: ReactNode; description?: ReactNode; icon?: ReactNode }`. O título é obrigatório; sem ícone, usa-se o check positivo do Ocean. |
-| `action`    | `ReactNode`                              | Sim         | Ação fornecida pelo consumidor, em largura total dentro do rodapé.                                                                      |
+| Propriedade | Tipo                       | Obrigatória | Descrição                                                                                                                                                                                     |
+| ----------- | -------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`      | `'default' \| 'highlight'` | Não         | Aparência do corpo. `default` usa fundo branco e borda superior; `highlight` usa fundo `colorInterfaceLightUp` e cantos superiores de 12px.                                                   |
+| `mainItem`  | `TransactionRow`           | Não         | Linha opcional com `{ label, value }`, em densidade padrão. Não é inferida do primeiro detalhe.                                                                                               |
+| `details`   | `TransactionRow[]`         | Não         | Linhas opcionais com `{ label, value }`, em densidade compacta. Use no máximo quatro como regra da tela; o componente não corta a lista.                                                      |
+| `total`     | `TransactionRow`           | Sim         | Linha `{ label, value }` obrigatória, em negrito 16px.                                                                                                                                        |
+| `notice`    | `TransactionNoticeProps`   | Não         | Aviso opcional: `{ title?: ReactNode; description: ReactNode; icon?: ReactNode }`. Título opcional; descrição obrigatória. Sem `icon`, usa o check positivo do Ocean; `icon={null}` o oculta. |
+| `action`    | `ReactNode`                | Sim         | Ação fornecida pelo consumidor, em largura total dentro do corpo.                                                                                                                             |
+| `className` | `string`                   | Não         | Classe CSS adicional para a raiz.                                                                                                                                                             |
 
-O componente também aceita `className` e atributos válidos de uma `<div>`.
+O componente também aceita atributos válidos de uma `<div>`.
 
-## Estilo
+## Densidade e divisores
 
-O Footer usa tokens Ocean para cores, espaçamentos, tipografia e bordas. O aviso combina `colorStatusPositiveUp` com uma sobreposição de 12% de `colorStatusPositiveDeep`.
+- A linha principal e o total usam densidade padrão; os detalhes usam densidade compacta.
+- Há um divisor depois do item principal quando detalhes vêm em seguida e um divisor antes do total sempre que existe uma linha acima.
+- Sem item principal e sem detalhes, o total aparece sem divisor.
+- A ordem permanece `mainItem`, `details`, `total`; o componente renderiza todos os detalhes recebidos.
 
 ## Boas práticas
 
-- Passe os dados de cada linha nas propriedades existentes de `TransactionListReadOnly`, incluindo descrição, informação extra, tag ou valores riscados.
-- Passe o botão Ocean no campo `action`; o componente não define a ação de negócio.
-- Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos.
-- Use o Footer na parte inferior de uma tela de pagamento móvel; sticky e área segura são responsabilidade da tela.
+- Cada linha deve conter somente rótulo e valor. Não passe ícone, descrição, legenda, tag ou valor riscado.
+- Use no máximo quatro detalhes como regra de uso da tela; esse número não é um limite de renderização do componente.
+- Passe o botão Ocean por `action`; o componente não define a ação de negócio.

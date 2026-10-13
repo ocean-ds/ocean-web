@@ -4,18 +4,16 @@ import TransactionSummaryContent from '../_shared/components/TransactionSummaryC
 import TransactionNotice, {
   TransactionNoticeProps,
 } from '../_shared/components/TransactionNotice';
-import { TransactionListReadOnlyProps } from '../TransactionListReadOnly';
+import type { TransactionRow } from '../_shared/components/TransactionSummaryContent';
 
 export type TransactionFooterType = 'default' | 'highlight';
 
 export type TransactionFooterProps = {
   type?: TransactionFooterType;
   notice?: TransactionNoticeProps;
-  items: TransactionListReadOnlyProps[];
-  total: {
-    label: React.ReactNode;
-    value: React.ReactNode;
-  };
+  mainItem?: TransactionRow;
+  details?: TransactionRow[];
+  total: TransactionRow;
   action: React.ReactNode;
   className?: string;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
@@ -25,31 +23,43 @@ const TransactionFooter = React.forwardRef<
   TransactionFooterProps
 >(
   (
-    { type = 'default', notice, items, total, action, className, ...rest },
+    {
+      type = 'default',
+      notice,
+      mainItem,
+      details,
+      total,
+      action,
+      className,
+      ...rest
+    },
     ref
   ) => (
     <div
       ref={ref}
-      className={classNames(
-        'ods-transaction-footer',
-        `ods-transaction-footer--${type}`,
-        className
-      )}
+      className={classNames('ods-transaction-footer-v2', className)}
       {...rest}
     >
       {notice != null && (
         <TransactionNotice
-          className="ods-transaction-footer__notice"
+          className="ods-transaction-footer-v2__notice"
           notice={notice}
         />
       )}
-      <TransactionSummaryContent
-        classPrefix="ods-transaction-footer"
-        rowsClassName="ods-transaction-footer__content"
-        items={items}
-        total={total}
-      />
-      <div className="ods-transaction-footer__action">{action}</div>
+      <div
+        className={classNames(
+          'ods-transaction-footer-v2__body',
+          `ods-transaction-footer-v2__body--${type}`
+        )}
+      >
+        <TransactionSummaryContent
+          classPrefix="ods-transaction-footer-v2"
+          mainItem={mainItem}
+          details={details}
+          total={total}
+        />
+        <div className="ods-transaction-footer-v2__action">{action}</div>
+      </div>
     </div>
   )
 );

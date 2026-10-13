@@ -16,27 +16,10 @@
   justify-content: space-between;
 }
 
-@mixin ods-transaction-total-label {
-  color: $color-interface-dark-deep;
-  font-family: $font-family-base;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-comfy;
-}
-
-@mixin ods-transaction-total-value {
-  color: $color-interface-dark-deep;
-  font-family: $font-family-base;
-  font-size: $font-size-xs;
-  font-weight: $font-weight-bold;
-  line-height: $line-height-comfy;
-  text-align: right;
-}
-
 .ods-transaction-notice {
   @include ods-transaction-notice;
 
-  align-items: center;
+  align-items: flex-start;
   font-family: $font-family-base;
 
   &__icon {
@@ -67,27 +50,29 @@
   &__description {
     color: $color-interface-dark-deep;
     font-family: $font-family-base;
+    margin: 0;
     width: 100%;
+  }
+
+  &__title {
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-extrabold;
+    line-height: 1.32;
+  }
+
+  &__description {
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-comfy;
   }
 }
 
-.ods-transaction-footer {
-  background-color: $color-interface-light-pure;
+.ods-transaction-footer-v2 {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
-
-  &--default {
-    border-top: $border-width-hairline solid $color-interface-light-down;
-  }
-
-  &--highlight {
-    background-color: $color-interface-light-up;
-    border-top-left-radius: $border-radius-md;
-    border-top-right-radius: $border-radius-md;
-  }
 
   &__notice {
     border-radius: $border-radius-md $border-radius-md 0 0;
@@ -97,39 +82,95 @@
     z-index: 0;
   }
 
-  &__content {
-    background-color: inherit;
-    position: relative;
-    z-index: 1;
-  }
-
-  &__total {
-    @include ods-transaction-total;
-    padding: $spacing-stack-xs;
-  }
-
-  &__total-label {
-    @include ods-transaction-total-label;
-  }
-
-  &__total-value {
-    @include ods-transaction-total-value;
-  }
-
-  &__action {
+  &__body {
     box-sizing: border-box;
-    padding: $spacing-stack-xs;
     position: relative;
     width: 100%;
     z-index: 1;
 
-    > * {
-      width: 100%;
+    &--default {
+      background-color: $color-interface-light-pure;
+      border-top: $border-width-hairline solid $color-interface-light-down;
     }
+
+    &--highlight {
+      background-color: $color-interface-light-up;
+      border-radius: $border-radius-md $border-radius-md 0 0;
+    }
+  }
+
+  &__rows,
+  &__row {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  &__row {
+    align-items: center;
+    color: $color-interface-dark-deep;
+    display: flex;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    gap: $spacing-inline-xs;
+    justify-content: space-between;
+    line-height: $line-height-comfy;
+
+    &--default {
+      padding: $spacing-stack-xs;
+    }
+
+    &--compact {
+      padding: $spacing-stack-xxs $spacing-inline-xs;
+    }
+  }
+
+  &__row-label {
+    color: $color-interface-dark-deep;
+    flex: 1;
+    font-weight: $font-weight-regular;
+    min-width: 0;
+  }
+
+  &__row-value {
+    color: $color-interface-dark-deep;
+    flex-shrink: 0;
+    font-weight: $font-weight-medium;
+    text-align: right;
   }
 
   &__details {
     padding: $spacing-stack-xxs 0;
+  }
+
+  &__total {
+    @include ods-transaction-total;
+
+    padding: $spacing-stack-xs;
+  }
+
+  &__total-label,
+  &__total-value,
+  &__total-label--bold-16,
+  &__total-value--bold-16 {
+    color: $color-interface-dark-deep;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-comfy;
+  }
+
+  &__total-value {
+    text-align: right;
+  }
+
+  &__action {
+    box-sizing: border-box;
+    padding: 0 $spacing-inline-xs $spacing-stack-xs;
+    width: 100%;
+
+    > * {
+      width: 100%;
+    }
   }
 }
 
@@ -140,7 +181,10 @@
     align-items: center;
     color: $color-interface-dark-up;
     display: flex;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-extrabold;
     height: 20px;
+    line-height: 1.32;
     margin: 0 0 $spacing-stack-xxs;
   }
 
@@ -152,20 +196,69 @@
     z-index: 1;
   }
 
+  &__row {
+    align-items: center;
+    box-sizing: border-box;
+    color: $color-interface-dark-deep;
+    display: flex;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    gap: $spacing-inline-xs;
+    justify-content: space-between;
+    line-height: $line-height-comfy;
+    width: 100%;
+
+    &--default {
+      padding: $spacing-stack-xs;
+    }
+
+    &--compact {
+      padding: $spacing-stack-xxs $spacing-inline-xs;
+    }
+  }
+
+  &__row-label {
+    color: $color-interface-dark-deep;
+    flex: 1;
+    font-weight: $font-weight-regular;
+    min-width: 0;
+  }
+
+  &__row-value {
+    color: $color-interface-dark-deep;
+    flex-shrink: 0;
+    font-weight: $font-weight-medium;
+    text-align: right;
+  }
+
+  &__details {
+    padding: $spacing-stack-xxs 0;
+  }
+
   &__total {
     @include ods-transaction-total;
+
     padding: $spacing-stack-xs;
   }
 
-  &__total-label {
-    @include ods-transaction-total-label;
+  &__total-label,
+  &__total-value,
+  &__total-label--bold-16,
+  &__total-value--bold-16 {
+    color: $color-interface-dark-deep;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-comfy;
   }
 
   &__total-value {
-    @include ods-transaction-total-value;
+    text-align: right;
   }
 
   &__notice {
+    @include ods-transaction-notice;
+
     border-radius: 0 0 $border-radius-md $border-radius-md;
     padding: $spacing-stack-md $spacing-inline-xs $spacing-stack-xs;
     position: relative;
@@ -184,9 +277,5 @@
     > * {
       width: 100%;
     }
-  }
-
-  &__details {
-    padding: $spacing-stack-xxs 0;
   }
 }

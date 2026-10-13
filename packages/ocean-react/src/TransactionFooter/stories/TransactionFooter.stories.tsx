@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TransactionFooter from '../TransactionFooter';
 import {
-  getTransactionSummaryItems,
-  transactionSummaryAction as action,
+  transactionFourDetails,
   transactionFooterDecorators as decorators,
-  transactionSummaryTotal as total,
   transactionNotice,
+  transactionNoticeWithTitleAndIcon,
+  transactionSummaryAction as action,
+  transactionSummaryDetails,
+  transactionSummaryMainItem as mainItem,
+  transactionSummaryTotal as total,
 } from '../../_shared/__fixtures__/transactionFooterSummary';
 
 const meta: Meta<typeof TransactionFooter> = {
@@ -23,21 +26,26 @@ const meta: Meta<typeof TransactionFooter> = {
 export default meta;
 type Story = StoryObj<typeof TransactionFooter>;
 
-const items = getTransactionSummaryItems();
-
 export const Default: Story = {
-  args: { items, total, action },
+  args: { mainItem, details: transactionSummaryDetails, total, action },
   decorators,
 };
 
 export const Highlight: Story = {
-  args: { type: 'highlight', items, total, action },
+  args: {
+    type: 'highlight',
+    mainItem,
+    details: transactionSummaryDetails,
+    total,
+    action,
+  },
   decorators,
 };
 
 export const WithNotice: Story = {
   args: {
-    items,
+    mainItem,
+    details: transactionSummaryDetails,
     total,
     action,
     notice: transactionNotice,
@@ -48,7 +56,8 @@ export const WithNotice: Story = {
 export const WithNoticeHighlight: Story = {
   args: {
     type: 'highlight',
-    items,
+    mainItem,
+    details: transactionSummaryDetails,
     total,
     action,
     notice: transactionNotice,
@@ -56,36 +65,28 @@ export const WithNoticeHighlight: Story = {
   decorators,
 };
 
-export const RichRows: Story = {
+export const NoticeWithTitleAndIcon: Story = {
   args: {
-    items: [
-      {
-        content: { title: 'Pedido', description: 'Loja de colchões' },
-        amount: { value: 'R$ 623,80' },
-      },
-      {
-        content: { title: 'Custo de antecipação' },
-        amount: {
-          value: 'Grátis',
-          strikethroughValue: 'R$ 96,39',
-          type: 'strikethrough',
-        },
-      },
-    ],
+    mainItem,
+    details: transactionSummaryDetails,
     total,
     action,
+    notice: transactionNoticeWithTitleAndIcon,
   },
   decorators,
 };
 
-export const ManyRows: Story = {
-  args: {
-    items: Array.from({ length: 5 }, (_, index) => ({
-      content: { title: `Item ${index + 1}` },
-      amount: { value: `R$ ${100 + index},00` },
-    })),
-    total,
-    action,
-  },
+export const MainItemOnly: Story = {
+  args: { mainItem, total, action },
+  decorators,
+};
+
+export const DetailsOnly: Story = {
+  args: { details: transactionSummaryDetails, total, action },
+  decorators,
+};
+
+export const FourDetails: Story = {
+  args: { details: transactionFourDetails, total, action },
   decorators,
 };

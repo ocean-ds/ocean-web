@@ -1,50 +1,59 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TransactionSummary from '../TransactionSummary';
 import {
-  getTransactionSummaryItems,
+  transactionSummaryDecorators,
   transactionSummaryAction as action,
-  transactionSummaryDecorators as decorators,
-  transactionSummaryTotal as total,
   transactionNotice,
+  transactionSummaryDetails,
+  transactionSummaryMainItem as mainItem,
+  transactionSummaryTotal as total,
 } from '../../_shared/__fixtures__/transactionFooterSummary';
 
 const meta: Meta<typeof TransactionSummary> = {
   title: 'Components/Transaction Summary',
   component: TransactionSummary,
   tags: ['autodocs'],
+  decorators: transactionSummaryDecorators,
 };
 
 export default meta;
 type Story = StoryObj<typeof TransactionSummary>;
 
-const items = getTransactionSummaryItems();
-
 export const Default: Story = {
   args: {
-    title: 'Resumo',
-    items,
+    title: 'Resumo do pagamento',
+    mainItem,
+    details: transactionSummaryDetails,
     total,
     action,
   },
-  decorators,
 };
 
 export const WithoutTitle: Story = {
   args: {
-    items,
+    mainItem,
+    details: transactionSummaryDetails,
     total,
     action,
   },
-  decorators,
 };
 
 export const WithNotice: Story = {
   args: {
-    title: 'Resumo',
-    items,
+    title: 'Resumo do pagamento',
+    mainItem,
+    details: transactionSummaryDetails,
     total,
     notice: transactionNotice,
     action,
   },
-  decorators,
+};
+
+export const DetailsOnly: Story = {
+  args: {
+    title: 'Resumo do pagamento',
+    details: transactionSummaryDetails,
+    total,
+    action,
+  },
 };

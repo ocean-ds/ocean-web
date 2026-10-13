@@ -2,90 +2,149 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TransactionSummary from '../TransactionSummary';
 
-const items = [
-  { content: { title: 'Compra' }, amount: { value: 'R$ 10,00' } },
-  { content: { title: 'Desconto' }, amount: { value: 'R$ 2,00' } },
-];
+const mainItem = { label: 'Pedido', value: 'R$ 10,00' };
+const details = [{ label: 'Desconto', value: 'R$ 2,00' }];
 const total = { label: 'Total', value: 'R$ 8,00' };
+const action = <button type="button">Continuar</button>;
+const dividerSelector = '.ods-transaction-list__divider';
 
-test('renders title, rows, total, notice, action and forwards props and ref', () => {
-  const ref = React.createRef<HTMLDivElement>();
-
+test('shows the title by default and places the notice after the card', () => {
   render(
     <TransactionSummary
-      ref={ref}
-      title="Resumo"
-      items={items}
+      title="Resumo do pagamento"
+      mainItem={mainItem}
+      details={details}
       total={total}
       notice={{
-        title: 'Economia de R$ 96,39',
-        icon: <span data-testid="notice-icon" />,
+        title: 'Economia de R$ 2,00',
+        description: 'Desconto aplicado.',
       }}
-      action={<button type="button">Continuar</button>}
+      action={action}
       data-testid="summary"
-      aria-label="resumo da compra"
     />
   );
 
   const summary = screen.getByTestId('summary');
-  expect(ref.current).toBe(summary);
-  expect(summary).toHaveAttribute('aria-label', 'resumo da compra');
-  expect(summary).toHaveClass('ods-transaction-summary');
-  expect(screen.getByText('Resumo')).toBeInTheDocument();
-  expect(screen.getByText('Compra')).toBeInTheDocument();
-  expect(screen.getByText('Desconto')).toBeInTheDocument();
-  expect(screen.getByText('Total')).toBeInTheDocument();
-  expect(screen.getByText('R$ 8,00')).toBeInTheDocument();
-  expect(screen.getByText('Economia de R$ 96,39')).toBeInTheDocument();
-  expect(screen.getByTestId('notice-icon')).toBeInTheDocument();
-  expect(summary).toHaveClass('ods-transaction-summary--has-notice');
-  expect(
-    summary.querySelector('.ods-transaction-notice__description')
-  ).not.toBeInTheDocument();
+  const card = summary.querySelector('.ods-transaction-summary__card');
+  const notice = summary.querySelector('.ods-transaction-summary__notice');
+
+  expect(screen.getByText('Resumo do pagamento')).toBeInTheDocument();
+  expect(card?.nextElementSibling).toBe(notice);
+  expect(card).toHaveClass('ods-transaction-summary__card');
+  expect(screen.getByText('Total').parentElement).toHaveClass(
+    'ods-transaction-summary__total--bold-16'
+  );
   expect(screen.getByRole('button', { name: 'Continuar' })).toBeInTheDocument();
 });
 
-test('renders without optional title, notice and action', () => {
+test('does not render a title when one is omitted', () => {
   render(
     <TransactionSummary
-      items={items}
+      mainItem={mainItem}
       total={total}
-      data-testid="summary"
-      className="custom-class"
-    />
-  );
-
-  expect(screen.getByTestId('summary')).toHaveClass('custom-class');
-  expect(screen.queryByText('Resumo')).not.toBeInTheDocument();
-  expect(screen.getByTestId('summary')).not.toHaveClass(
-    'ods-transaction-summary--has-notice'
-  );
-  expect(screen.queryByRole('button')).not.toBeInTheDocument();
-});
-
-test('renders every supplied row', () => {
-  const moreThanFiveItems = Array.from({ length: 6 }, (_, index) => ({
-    content: { title: `Item ${index + 1}` },
-    amount: { value: `R$ ${index + 1}` },
-  }));
-
-  render(
-    <TransactionSummary
-      items={moreThanFiveItems}
-      total={total}
+      action={action}
       data-testid="summary"
     />
   );
-
-  expect(screen.getAllByText(/^Item [1-6]$/)).toHaveLength(6);
-});
-
-test('renders a divider when there are no rows', () => {
-  render(<TransactionSummary items={[]} total={total} data-testid="summary" />);
 
   expect(
     screen
       .getByTestId('summary')
-      .querySelector('.ods-transaction-list__divider')
-  ).toBeInTheDocument();
+      .querySelector('.ods-transaction-summary__title')
+  ).toBeNull();
+});
+
+test('renders details only with compact density and one divider', () => {
+  render(
+    <TransactionSummary
+      title="Resumo"
+      details={details}
+      total={total}
+      action={action}
+      data-testid="summary"
+    />
+  );
+
+  const summary = screen.getByTestId('summary');
+
+  expect(
+    summary.querySelector('.ods-transaction-summary__row--default')
+  ).toBeNull();
+  expect(
+    summary.querySelectorAll('.ods-transaction-summary__row--compact')
+  ).toHaveLength(1);
+  expect(summary.querySelectorAll(dividerSelector)).toHaveLength(1);
+  expect(screen.getByRole('button', { name: 'Continuar' })).toBeInTheDocument();
+});
+
+test('renders a main item with one divider', () => {
+  render(
+    <TransactionSummary
+      title="Resumo"
+      mainItem={mainItem}
+      total={total}
+      action={action}
+      data-testid="summary"
+    />
+  );
+
+  expect(
+    screen.getByTestId('summary').querySelectorAll(dividerSelector)
+  ).toHaveLength(1);
+});
+
+test('renders two dividers when main item and details are present', () => {
+  render(
+    <TransactionSummary
+      title="Resumo"
+      mainItem={mainItem}
+      details={details}
+      total={total}
+      action={action}
+      data-testid="summary"
+    />
+  );
+
+  expect(
+    screen.getByTestId('summary').querySelectorAll(dividerSelector)
+  ).toHaveLength(2);
+});
+
+test('renders no divider without a main item or details', () => {
+  render(
+    <TransactionSummary
+      title="Resumo"
+      total={total}
+      action={action}
+      data-testid="summary"
+    />
+  );
+
+  expect(
+    screen.getByTestId('summary').querySelectorAll(dividerSelector)
+  ).toHaveLength(0);
+});
+
+test('renders all six supplied details', () => {
+  const sixDetails = Array.from({ length: 6 }, (_, index) => ({
+    label: `Detalhe ${index + 1}`,
+    value: `R$ ${index + 1}`,
+  }));
+
+  render(
+    <TransactionSummary
+      title="Resumo"
+      details={sixDetails}
+      total={total}
+      action={action}
+      data-testid="summary"
+    />
+  );
+
+  expect(
+    screen
+      .getByTestId('summary')
+      .querySelectorAll('.ods-transaction-summary__row--compact')
+  ).toHaveLength(6);
+  expect(screen.getAllByText(/^Detalhe [1-6]$/)).toHaveLength(6);
 });

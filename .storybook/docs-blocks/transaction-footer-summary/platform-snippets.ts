@@ -3,12 +3,9 @@ export const footerPlatforms = {
 
 <TransactionFooter
   type="default"
-  items={[
-    { content: { title: 'Pedido' }, amount: { value: 'R$ 623,80' } },
-    {
-      content: { title: 'Pague em' },
-      amount: { value: '3x de R$ 207,93', info: 'sem acréscimo' },
-    },
+  mainItem={{ label: 'Pedido', value: 'R$ 623,80' }}
+  details={[
+    { label: 'Pague em', value: '3x de R$ 207,93 sem acréscimo' },
   ]}
   total={{ label: 'Total', value: 'R$ 623,80' }}
   notice={{
@@ -17,21 +14,24 @@ export const footerPlatforms = {
   }}
   action={<Button variant="primary" blocked>Revisar pagamento</Button>}
 />`,
-  swift: `let content = OceanSwiftUI.TransactionFooterContent(
+  swift: `let content = TransactionFooterContent(
     type: .default,
-    notice: "Economia de R$ 96,39",
-    items: items,
-    total: .init(label: "Total", value: "R$ 623,80"),
+    notice: TransactionFooterNotice(
+        title: "Economia de R$ 96,39",
+        description: "Economia aplicada ao seu pagamento."
+    ),
+    mainItem: TransactionFooterRow(label: "Pedido", value: "R$ 623,80"),
+    details: [
+        TransactionFooterRow(label: "Pague em", value: "3x de R$ 207,93 sem acréscimo")
+    ],
+    total: TransactionFooterTotal(label: "Total", value: "R$ 623,80"),
     button: button
 )
 
 OceanSwiftUI.TransactionFooter(
-    parameters: OceanSwiftUI.TransactionFooterParameters(
-        style: .transaction(content)
-    )
+    parameters: TransactionFooterParameters(style: .v2(content))
 )`,
   compose: `OceanTransactionFooter(
-    items = items,
     total = OceanTransactionFooterTotal(
         label = "Total",
         value = "R$ 623,80"
@@ -39,7 +39,20 @@ OceanSwiftUI.TransactionFooter(
     button = button,
     modifier = Modifier,
     type = OceanTransactionFooterType.Default,
-    notice = "Economia de R$ 96,39"
+    notice = OceanTransactionFooterNotice(
+        title = "Economia de R$ 96,39",
+        description = "Economia aplicada ao seu pagamento."
+    ),
+    mainItem = OceanTransactionFooterItem(
+        label = "Pedido",
+        value = "R$ 623,80"
+    ),
+    details = listOf(
+        OceanTransactionFooterItem(
+            label = "Pague em",
+            value = "3x de R$ 207,93 sem acréscimo"
+        )
+    )
 )`,
 };
 

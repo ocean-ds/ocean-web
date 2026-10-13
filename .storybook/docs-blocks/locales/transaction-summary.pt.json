@@ -1,28 +1,33 @@
 {
-  "usedBy": "Use este bloco na coluna lateral de uma tela desktop de pagamento. Ele mantém as linhas da transação e o total juntos em um card.",
-  "overview": "Resumo para a coluna lateral de telas desktop que agrupa linhas de transação e o total em um card, com aviso e ação opcionais.",
+  "usedBy": "Use este bloco na coluna lateral de uma tela desktop de pagamento. A ação fica fora do card.",
+  "overview": "Resumo para a coluna lateral desktop com linha principal opcional, detalhes opcionais, total obrigatório, aviso opcional e ação obrigatória.",
   "sections": {
     "default": {
       "title": "Com título",
-      "text": "O título opcional fica acima do card light-up; as linhas e o total permanecem dentro do card."
+      "text": "O título fica visível por padrão acima do card light-up. Linhas e total ficam dentro do card."
     },
     "without-title": {
       "title": "Sem título",
-      "text": "Omitir o título quando a própria tela já identifica o resumo."
+      "text": "No uso normal, sempre informe um título, como “Resumo do pagamento”. Omiti-lo é uma exceção para quando a própria tela já identifica o resumo."
     },
     "with-notice": {
       "title": "Com aviso",
-      "text": "O aviso aparece depois do card e se sobrepõe a ele em 16px. A ação permanece fora de ambos."
+      "text": "O card cobre 16px do aviso abaixo dele. A ação fica fora de ambos."
+    },
+    "details-only": {
+      "title": "Somente detalhes",
+      "text": "Os detalhes podem ser informados sem uma linha principal; o componente renderiza todos em densidade compacta."
     }
   },
   "api": {
-    "intro": "Transaction Summary está disponível somente na Web e usa a mesma estrutura de linhas somente leitura e total do Footer.",
-    "title": "Título opcional exibido acima do card.",
-    "items": "Linhas de transação somente leitura. Todos os itens recebidos são renderizados; o primeiro usa densidade padrão e os seguintes usam densidade compacta.",
-    "total": "Rótulo e valor exibidos depois de um divisor abaixo das linhas.",
-    "notice": "Aviso estruturado opcional com título obrigatório, descrição opcional e ícone personalizado opcional. Sem ícone, usa-se o ícone positivo de confirmação do Ocean.",
-    "action": "Ação opcional fornecida pelo consumidor, exibida em largura total abaixo do card e do aviso.",
-    "className": "Classe adicional para o elemento raiz."
+    "intro": "Transaction Summary está disponível somente na Web e usa os papéis separados mainItem, details e total.",
+    "title": "Título opcional exibido acima do card quando informado. No uso normal, sempre informe um título, como “Resumo do pagamento”; omiti-lo é uma exceção.",
+    "mainItem": "Linha opcional de rótulo e valor com densidade padrão. Ela nunca é inferida do primeiro detalhe.",
+    "details": "Linhas opcionais de rótulo e valor com densidade compacta. Use no máximo quatro como regra para a tela; o componente renderiza todos os detalhes recebidos.",
+    "total": "Linha obrigatória de rótulo e valor com tipografia bold de 16px. Há divisor antes dela quando existem linha principal ou detalhes.",
+    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. Sem ícone, usa-se o check positivo do Ocean; `icon={null}` o oculta.",
+    "action": "Ação obrigatória em largura total fora do card, com 16px de padding vertical.",
+    "className": "Classe adicional para a raiz do componente."
   },
   "platforms": {
     "platform": "Plataforma",
@@ -32,10 +37,11 @@
     "android": "Não disponível; use o Transaction Footer móvel na parte inferior da tela de pagamento."
   },
   "rules": [
-    "Use Summary na coluna lateral de uma tela desktop de pagamento.",
-    "Use no máximo cinco itens como regra para a tela; o componente renderiza todos os itens recebidos.",
-    "Mantenha a ação fora do card; quando existir, ela aparece depois do card e do aviso opcional.",
-    "Use as propriedades de TransactionListReadOnly nas linhas, incluindo informação extra, tags e valores riscados.",
-    "Posicionamento fixo e comportamento de área segura pertencem à tela, não ao componente Summary."
+    "Use Summary na coluna lateral de uma tela desktop; Footer é o componente móvel.",
+    "Linhas contêm somente rótulo e valor. Use mainItem e details de forma independente; o primeiro detalhe não é promovido a principal.",
+    "Use no máximo quatro detalhes como regra para a tela. Summary renderiza todos os detalhes recebidos.",
+    "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após main quando há detalhes e antes do total quando existem linhas acima.",
+    "O card é sempre light-up, tem cantos de 12px e cobre 16px do aviso abaixo dele.",
+    "Mantenha a ação obrigatória fora do card e do aviso."
   ]
 }

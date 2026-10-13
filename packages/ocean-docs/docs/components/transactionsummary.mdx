@@ -7,12 +7,19 @@ import StorybookEmbed from '@site/src/components/StorybookEmbed';
 
 # Transaction Summary
 
-`TransactionSummary` reúne linhas somente de leitura em um card para a coluna lateral de uma tela desktop, com título, aviso e ação opcionais. A primeira linha usa densidade padrão; as demais usam densidade compacta. Como regra de uso, passe no máximo cinco linhas, sem contar o total; o componente renderiza todas as linhas recebidas, sem truncar. Posicionamento fixo e área segura continuam sob responsabilidade da tela.
+`TransactionSummary` reúne linhas somente de leitura em um card para a coluna lateral de uma tela desktop. No uso normal, sempre passe um título, como `Resumo do pagamento`; omiti-lo é uma exceção. O item principal e os detalhes são opcionais; o total e a ação são obrigatórios.
+
+Cada linha contém somente `label` e `value`. O componente renderiza todos os detalhes recebidos; use no máximo quatro como regra de uso da tela, sem contar o total. O card é sempre light-up, tem cantos de 12px e cobre 16px do aviso que fica abaixo dele. A ação fica fora do card.
 
 ## Importação
 
 ```tsx
 import { TransactionSummary } from '@useblu/ocean-react';
+import type {
+  TransactionSummaryProps,
+  TransactionNoticeProps,
+  TransactionRow,
+} from '@useblu/ocean-react';
 ```
 
 ## Playground
@@ -27,17 +34,9 @@ import { TransactionSummary } from '@useblu/ocean-react';
 
 ```tsx live
 <TransactionSummary
-  title="Resumo"
-  items={[
-    {
-      content: { title: 'Pedido' },
-      amount: { value: 'R$ 623,80' },
-    },
-    {
-      content: { title: 'Pague em' },
-      amount: { value: '3x de R$ 207,93', info: 'sem acréscimo' },
-    },
-  ]}
+  title="Resumo do pagamento"
+  mainItem={{ label: 'Pedido', value: 'R$ 623,80' }}
+  details={[{ label: 'Pague em', value: '3x de R$ 207,93 sem acréscimo' }]}
   total={{ label: 'Total', value: 'R$ 623,80' }}
   notice={{
     title: 'Economia de R$ 96,39',
@@ -53,23 +52,28 @@ import { TransactionSummary } from '@useblu/ocean-react';
 
 ## Propriedades
 
-| Propriedade | Tipo                                     | Obrigatória | Descrição                                                                                                                               |
-| ----------- | ---------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `title`     | `ReactNode`                              | Não         | Título acima do card, exibido em `colorInterfaceDarkUp`.                                                                                |
-| `items`     | `TransactionListReadOnlyProps[]`         | Sim         | Linhas da transação. A primeira é exibida em densidade padrão e as seguintes em densidade compacta.                                     |
-| `total`     | `{ label: ReactNode; value: ReactNode }` | Sim         | Rótulo e valor do total, separados das linhas por um divisor.                                                                           |
-| `notice`    | `TransactionNoticeProps`                 | Não         | `{ title: ReactNode; description?: ReactNode; icon?: ReactNode }`. O título é obrigatório; sem ícone, usa-se o check positivo do Ocean. |
-| `action`    | `ReactNode`                              | Não         | Ação exibida em largura total fora do card, abaixo do aviso opcional.                                                                   |
+| Propriedade | Tipo                     | Obrigatória | Descrição                                                                                                                                                                                     |
+| ----------- | ------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`     | `ReactNode`              | Não         | Título acima do card. No uso normal, sempre informe um título; omiti-lo é uma exceção.                                                                                                        |
+| `mainItem`  | `TransactionRow`         | Não         | Linha opcional `{ label, value }` em densidade padrão. Não é inferida do primeiro detalhe.                                                                                                    |
+| `details`   | `TransactionRow[]`       | Não         | Linhas opcionais `{ label, value }` em densidade compacta. Use no máximo quatro como regra da tela; o componente renderiza todos.                                                             |
+| `total`     | `TransactionRow`         | Sim         | Linha `{ label, value }` obrigatória, em negrito 16px.                                                                                                                                        |
+| `notice`    | `TransactionNoticeProps` | Não         | Aviso opcional: `{ title?: ReactNode; description: ReactNode; icon?: ReactNode }`. Título opcional; descrição obrigatória. Sem `icon`, usa o check positivo do Ocean; `icon={null}` o oculta. |
+| `action`    | `ReactNode`              | Sim         | Ação em largura total fora do card e do aviso, com 16px de padding vertical.                                                                                                                  |
+| `className` | `string`                 | Não         | Classe CSS adicional para a raiz.                                                                                                                                                             |
 
-O componente também aceita `className` e atributos válidos de uma `<div>`.
+O componente também aceita atributos válidos de uma `<div>`.
 
-## Estilo
+## Densidade e divisores
 
-O card usa `colorInterfaceLightUp` e cantos de 12px (`borderRadiusMd`). O aviso combina `colorStatusPositiveUp` com uma sobreposição de 12% de `colorStatusPositiveDeep`. As demais cores, tipografia e espaçamentos usam tokens Ocean.
+- A linha principal e o total usam densidade padrão; os detalhes usam densidade compacta.
+- Há um divisor depois do item principal quando detalhes vêm em seguida e um divisor antes do total sempre que existe uma linha acima.
+- Sem item principal e sem detalhes, o total aparece sem divisor.
+- A ordem permanece `mainItem`, `details`, `total`; o componente renderiza todos os detalhes recebidos.
 
 ## Boas práticas
 
-- Use Summary na coluna lateral de uma tela desktop; o componente está disponível somente na Web.
-- Use no máximo cinco linhas como regra para a tela; o componente renderiza todas as linhas recebidas.
-- Mantenha a ação fora do card; ela aparece depois do card e do aviso opcional.
-- Sticky, posicionamento e área segura são responsabilidade da tela.
+- Use Summary na coluna lateral de uma tela desktop; Footer é o componente móvel.
+- Cada linha contém somente rótulo e valor. Use no máximo quatro detalhes como regra de uso da tela, não como limite de renderização.
+- O card é sempre light-up, com cantos de 12px; quando há aviso, o card cobre 16px dele.
+- Mantenha a ação obrigatória fora do card.

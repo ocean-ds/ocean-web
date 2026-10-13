@@ -1,2 +1,5 @@
 export { default } from './TransactionSummaryContent';
-export type { TransactionSummaryContentProps } from './TransactionSummaryContent';
+export type {
+  TransactionRow,
+  TransactionSummaryContentProps,
+} from './TransactionSummaryContent';
