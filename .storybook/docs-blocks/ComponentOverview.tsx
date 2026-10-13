@@ -35,6 +35,10 @@ export type ExampleSpec = {
   rows: ReactElement[];
   /** Shown on its own, without the List container (blocks). */
   plain?: boolean;
+  /** Render directly on the stage without a white block frame. */
+  unframed?: boolean;
+  /** Optional modifier class for the example stage. */
+  canvasClass?: string;
   /** Snippet; generated from `rows` when omitted. */
   code?: string;
   /** Locale key of a caption shown below the example. */
@@ -45,21 +49,23 @@ export type ComponentDocConfig = {
   /** Locale and tokens id, e.g. `transaction-list-action`. */
   id: string;
   title: string;
-  kind: 'item' | 'block';
+  kind: 'component' | 'block';
   /** Folder of the source code in the repository. */
   source: string;
+  /** Group Overview story id. */
+  groupOverview: string;
   locale: LocaleFiles;
   /** Import line shown above the Overview snippet. */
   imports: string;
   primary: ExampleSpec;
   /** One section per story, in the sidebar order. */
   sections: { key: string; example?: ExampleSpec }[];
-  /** Items: Density · Icon color · Loading and disabled · Divider. */
-  rowOptions?: Partial<
-    Record<'density' | 'iconColor' | 'states' | 'divider', ExampleSpec>
-  >;
-  /** Blocks: one section per prop. */
-  options?: { key: string; example?: ExampleSpec }[];
+  /** Visual options that are not separate stories. */
+  options?: Record<string, ExampleSpec>;
+  optionsTitle?: string;
+  optionsLocalePrefix?: string;
+  /** Show the list-only Content and amount section. */
+  contentAndAmount?: boolean;
   platforms: PlatformSnippets | 'table';
   /** Primary story: the Component API example and its controls. */
   story: unknown;
@@ -69,8 +75,6 @@ export type ComponentDocConfig = {
 
 const COMMON: LocaleFiles = { en: common, pt: commonPt };
 const REPO = 'https://github.com/ocean-ds/ocean-web/tree/master/';
-export const GROUP_OVERVIEW =
-  'components-lists-transaction-list-overview--docs';
 
 const openGroup = (tab: string) => () => request(TAB_REQUEST_KEY, tab);
 
@@ -88,6 +92,8 @@ const Snippet = ({
     <Example
       t={t}
       plain={spec.plain}
+      unframed={spec.unframed}
+      canvasClass={spec.canvasClass}
       caption={spec.caption ? t(spec.caption) : undefined}
       code={imports ? `${imports}\n\n${code}` : code}
     >
@@ -96,16 +102,14 @@ const Snippet = ({
   );
 };
 
-const ROW_OPTIONS = ['density', 'iconColor', 'states', 'divider'] as const;
-
 export const ComponentOverview = ({
   config,
 }: {
   config: ComponentDocConfig;
 }): React.ReactElement => {
   const t = useTranslate(COMMON, config.locale);
-  const item = config.kind === 'item';
-  const rowOptions = ROW_OPTIONS.filter((key) => config.rowOptions?.[key]);
+  const component = config.kind === 'component';
+  const options = Object.entries(config.options ?? {});
 
   useEffect(() => {
     const section = takeRequest(SECTION_REQUEST_KEY);
@@ -119,20 +123,22 @@ export const ComponentOverview = ({
       id: key,
       label: t(`sections.${key}.title`),
     })),
-    ...(item
+    ...(options.length
       ? [
-          { id: 'row-options', label: t('sections.rowOptions') },
-          ...rowOptions.map((key) => ({
+          {
+            id: 'row-options',
+            label: t(config.optionsTitle ?? 'sections.rowOptions'),
+          },
+          ...options.map(([key]) => ({
             id: key,
-            label: t(`rowOptions.${key}.title`),
+            label: t(`${config.optionsLocalePrefix ?? 'options'}.${key}.title`),
             sub: true,
           })),
-          { id: 'content-and-amount', label: t('sections.contentAndAmount') },
         ]
-      : (config.options ?? []).map(({ key }) => ({
-          id: key,
-          label: t(`options.${key}.title`),
-        }))),
+      : []),
+    ...(config.contentAndAmount
+      ? [{ id: 'content-and-amount', label: t('sections.contentAndAmount') }]
+      : []),
     { id: 'other-platforms', label: t('sections.otherPlatforms') },
     { id: 'component-api', label: t('sections.componentApi') },
     { id: 'design-tokens', label: t('sections.designTokens') },
@@ -159,7 +165,7 @@ export const ComponentOverview = ({
                   size="medium"
                   setIconOff
                 >
-                  {t(item ? 'status.beta' : 'status.block')}
+                  {t(component ? 'status.beta' : 'status.block')}
                 </Tag>
                 <Link
                   href={`${REPO}${config.source}`}
@@ -170,17 +176,17 @@ export const ComponentOverview = ({
                 </Link>
                 <span aria-hidden>|</span>
                 <Link
-                  href={`./?path=/docs/${GROUP_OVERVIEW}`}
+                  href={`./?path=/docs/${config.groupOverview}`}
                   target="_top"
                   onClick={openGroup('guidelines')}
                 >
                   {t('links.usageGuidelines')}
                 </Link>
-                {item && (
+                {component && (
                   <>
                     <span aria-hidden>|</span>
                     <Link
-                      href={`./?path=/docs/${GROUP_OVERVIEW}`}
+                      href={`./?path=/docs/${config.groupOverview}`}
                       target="_top"
                       onClick={openGroup('accessibility')}
                     >
@@ -194,7 +200,7 @@ export const ComponentOverview = ({
         </div>
         <div className="odoc-body">
           <div>
-            {!item && <Callout text={t('usedBy')} />}
+            {config.kind === 'block' && <Callout text={t('usedBy')} />}
 
             <Section id="overview" title={t('sections.overview')}>
               <p>
@@ -212,41 +218,40 @@ export const ComponentOverview = ({
               </Section>
             ))}
 
-            {item ? (
-              <>
-                <Section id="row-options" title={t('sections.rowOptions')}>
-                  {rowOptions.map((key) => (
-                    <Subsection
-                      key={key}
-                      id={key}
-                      title={t(`rowOptions.${key}.title`)}
-                    >
-                      <p>
-                        <Md text={t(`rowOptions.${key}.text`)} />
-                      </p>
-                      <Snippet
-                        spec={config.rowOptions?.[key] as ExampleSpec}
-                        t={t}
+            {options.length > 0 && (
+              <Section
+                id="row-options"
+                title={t(config.optionsTitle ?? 'sections.rowOptions')}
+              >
+                {options.map(([key, example]) => (
+                  <Subsection
+                    key={key}
+                    id={key}
+                    title={t(
+                      `${config.optionsLocalePrefix ?? 'options'}.${key}.title`
+                    )}
+                  >
+                    <p>
+                      <Md
+                        text={t(
+                          `${
+                            config.optionsLocalePrefix ?? 'options'
+                          }.${key}.text`
+                        )}
                       />
-                    </Subsection>
-                  ))}
-                </Section>
-                <Section
-                  id="content-and-amount"
-                  title={t('sections.contentAndAmount')}
-                >
-                  <Callout text={t('contentAndAmount')} />
-                </Section>
-              </>
-            ) : (
-              (config.options ?? []).map(({ key, example }) => (
-                <Section key={key} id={key} title={t(`options.${key}.title`)}>
-                  <p>
-                    <Md text={t(`options.${key}.text`)} />
-                  </p>
-                  {example && <Snippet spec={example} t={t} />}
-                </Section>
-              ))
+                    </p>
+                    {example && <Snippet spec={example} t={t} />}
+                  </Subsection>
+                ))}
+              </Section>
+            )}
+            {config.contentAndAmount && (
+              <Section
+                id="content-and-amount"
+                title={t('sections.contentAndAmount')}
+              >
+                <Callout text={t('contentAndAmount')} />
+              </Section>
             )}
 
             <Section id="other-platforms" title={t('sections.otherPlatforms')}>
@@ -288,7 +293,7 @@ export const ComponentOverview = ({
 
             <Section id="design-tokens" title={t('sections.designTokens')}>
               <TokensTable file={config.tokens} t={t} />
-              {item && (
+              {component && (
                 <p>
                   <Md text={t('tokens.blocks')} />
                 </p>

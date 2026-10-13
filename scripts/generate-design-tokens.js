@@ -370,6 +370,18 @@ const COMPONENTS = {
     files: ['_transaction-footer.scss'],
     include: (selector) => selector.startsWith('.ods-transaction-'),
   },
+  'transaction-footer': {
+    files: ['_transaction-footer.scss'],
+    include: (selector) =>
+      selector.startsWith('.ods-transaction-footer') ||
+      selector.startsWith('.ods-transaction-notice'),
+  },
+  'transaction-summary': {
+    files: ['_transaction-footer.scss'],
+    include: (selector) =>
+      selector.startsWith('.ods-transaction-summary') ||
+      selector.startsWith('.ods-transaction-notice'),
+  },
   'transaction-list-action': {
     files: [ROW_FILE, SKELETON_FILE],
     include: all(

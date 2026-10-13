@@ -118,6 +118,12 @@ const rowOptions = (render: Row, sample: RowFixture[], icon = true) => ({
 });
 
 const SRC = 'packages/ocean-react/src/';
+const LIST_GROUP_OVERVIEW = 'components-lists-transaction-list-overview--docs';
+const LIST_COMPONENT = {
+  groupOverview: LIST_GROUP_OVERVIEW,
+  contentAndAmount: true,
+  optionsLocalePrefix: 'rowOptions',
+};
 
 /* ----- Items ----- */
 
@@ -125,14 +131,15 @@ const readOnly: Row = (props) => <TransactionListReadOnly {...props} />;
 export const readOnlyDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-list-read-only',
   title: 'Transaction List Read Only',
-  kind: 'item',
+  kind: 'component',
+  ...LIST_COMPONENT,
   source: `${SRC}TransactionListReadOnly`,
   locale: locale(readOnlyEn, readOnlyPt),
   imports:
     "import { List, TransactionListReadOnly } from '@useblu/ocean-react';",
   primary: { rows: group(readOnly, statementRows) },
   sections: [{ key: 'default', example: one(readOnly, rows.supplierPayment) }],
-  rowOptions: rowOptions(readOnly, statementRows),
+  options: rowOptions(readOnly, statementRows),
   platforms: snippets.readOnly,
   argTypes: readOnlyArgTypes,
   tokens: tokensReadOnly,
@@ -142,7 +149,8 @@ const action: Row = (props) => <TransactionListAction {...props} />;
 export const actionDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-list-action',
   title: 'Transaction List Action',
-  kind: 'item',
+  kind: 'component',
+  ...LIST_COMPONENT,
   source: `${SRC}TransactionListAction`,
   locale: locale(actionEn, actionPt),
   imports: "import { List, TransactionListAction } from '@useblu/ocean-react';",
@@ -172,7 +180,7 @@ export const actionDoc: Omit<ComponentDocConfig, 'story'> = {
       }),
     },
   ],
-  rowOptions: rowOptions(action, statementRows),
+  options: rowOptions(action, statementRows),
   platforms: snippets.action,
   argTypes: actionArgTypes,
   tokens: tokensAction,
@@ -190,7 +198,8 @@ const checkboxRows = selectableRows.map((row, index) => ({
 export const selectableDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-list-selectable',
   title: 'Transaction List Selectable',
-  kind: 'item',
+  kind: 'component',
+  ...LIST_COMPONENT,
   source: `${SRC}TransactionListSelectable`,
   locale: locale(selectableEn, selectablePt),
   imports:
@@ -219,7 +228,7 @@ export const selectableDoc: Omit<ComponentDocConfig, 'story'> = {
       },
     },
   ],
-  rowOptions: rowOptions(selectable, checkboxRows, false),
+  options: rowOptions(selectable, checkboxRows, false),
   platforms: snippets.selectable,
   argTypes: selectableArgTypes,
   tokens: tokensSelectable,
@@ -241,7 +250,8 @@ const expandableBase = {
 export const expandableDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-list-expandable',
   title: 'Transaction List Expandable',
-  kind: 'item',
+  kind: 'component',
+  ...LIST_COMPONENT,
   source: `${SRC}TransactionListExpandable`,
   locale: locale(expandableEn, expandablePt),
   imports:
@@ -269,7 +279,7 @@ export const expandableDoc: Omit<ComponentDocConfig, 'story'> = {
       },
     },
   ],
-  rowOptions: {
+  options: {
     density: { rows: [expandable({ ...expandableBase, density: 'compact' })] },
     iconColor: {
       rows: [expandable({ ...expandableBase, iconColor: 'highlight' })],
@@ -322,14 +332,15 @@ const childReadOnly: Row = (props) => (
 export const childReadOnlyDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-list-child-read-only',
   title: 'Transaction List Child Read Only',
-  kind: 'item',
+  kind: 'component',
+  ...LIST_COMPONENT,
   source: `${SRC}TransactionListChildReadOnly`,
   locale: locale(childReadOnlyEn, childReadOnlyPt),
   imports:
     "import { TransactionListChildReadOnly } from '@useblu/ocean-react';",
   primary: { rows: childGroup(childReadOnly) },
   sections: [{ key: 'timeline', example: { rows: childGroup(childReadOnly) } }],
-  rowOptions: childOptions(childReadOnly),
+  options: childOptions(childReadOnly),
   platforms: snippets.childReadOnly,
   argTypes: childReadOnlyArgTypes,
   tokens: tokensChildReadOnly,
@@ -341,13 +352,14 @@ const childAction: Row = (props) => (
 export const childActionDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'transaction-list-child-action',
   title: 'Transaction List Child Action',
-  kind: 'item',
+  kind: 'component',
+  ...LIST_COMPONENT,
   source: `${SRC}TransactionListChildAction`,
   locale: locale(childActionEn, childActionPt),
   imports: "import { TransactionListChildAction } from '@useblu/ocean-react';",
   primary: { rows: childGroup(childAction) },
   sections: [{ key: 'timeline', example: { rows: childGroup(childAction) } }],
-  rowOptions: childOptions(childAction),
+  options: childOptions(childAction),
   platforms: snippets.childAction,
   argTypes: childActionArgTypes,
   tokens: tokensChildAction,
@@ -380,6 +392,7 @@ export const contentDefaultDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'content-list-default',
   title: 'Content List Default',
   kind: 'block',
+  groupOverview: LIST_GROUP_OVERVIEW,
   source: `${SRC}_shared/components/ContentList`,
   locale: locale(contentDefaultEn, contentDefaultPt),
   imports:
@@ -432,6 +445,7 @@ export const contentAmountDoc: Omit<ComponentDocConfig, 'story'> = {
   id: 'content-list-amount',
   title: 'Content List Amount',
   kind: 'block',
+  groupOverview: LIST_GROUP_OVERVIEW,
   source: `${SRC}_shared/components/AmountDetails`,
   locale: locale(contentAmountEn, contentAmountPt),
   imports: "import type { ContentListAmountProps } from '@useblu/ocean-react';",

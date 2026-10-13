@@ -35,6 +35,8 @@ export const Example = ({
   t,
   language = 'tsx',
   plain = false,
+  unframed = false,
+  canvasClass,
   caption,
 }: {
   children: ReactNode;
@@ -45,19 +47,29 @@ export const Example = ({
   language?: string;
   /** Without the List container (blocks shown on their own). */
   plain?: boolean;
+  /** Without the white block frame. */
+  unframed?: boolean;
+  /** Optional modifier class for the example stage. */
+  canvasClass?: string;
 }): React.ReactElement => {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   return (
     <figure className="odoc-example">
-      <div className="odoc-example__stage">
-        <div className="odoc-example__frame">
-          {plain ? (
-            <div className="odoc-frame--block">{children}</div>
-          ) : (
-            <Screen>{children}</Screen>
-          )}
-        </div>
+      <div
+        className={`odoc-example__stage${canvasClass ? ` ${canvasClass}` : ''}`}
+      >
+        {unframed ? (
+          children
+        ) : (
+          <div className="odoc-example__frame">
+            {plain ? (
+              <div className="odoc-frame--block">{children}</div>
+            ) : (
+              <Screen>{children}</Screen>
+            )}
+          </div>
+        )}
       </div>
       {caption && (
         <figcaption className="odoc-example__caption">
