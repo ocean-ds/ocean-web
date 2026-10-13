@@ -1,15 +1,13 @@
 {
   "breadcrumb": ["Componentes", "Resumo da transação"],
-  "description": "Um Footer para totais em telas mobile e um Aside para resumos em telas desktop.",
+  "description": "Footer e Aside compõem totais e resumos de pagamento.",
+  "lastUpdated": "Atualizado em {date}",
   "toc": "Nesta página",
   "documentation": "Documentação",
-  "onThisPage": "Nesta página",
   "page": {
     "title": "Resumo da transação",
     "status": "Beta",
-    "lastUpdated": "Atualizado em 13 out. 2026",
-    "library": "Ocean Core",
-    "description": "Um Footer para totais em telas mobile e um Aside para resumos em telas desktop."
+    "library": "Ocean Core"
   },
   "tabs": {
     "guidelines": "Diretrizes",
@@ -17,34 +15,112 @@
     "accessibility": "Acessibilidade"
   },
   "guidelines": {
-    "whenToUse": {
-      "title": "Quando usar",
-      "items": [
-        "Use **Transaction Footer** em telas de pagamento mobile.",
-        "Use **Transaction Summary** na coluna lateral de telas de pagamento desktop."
-      ]
+    "overview": {
+      "title": "Visão geral",
+      "text": "Transaction Summary reúne o valor que a pessoa está prestes a pagar e a ação que confirma o pagamento. Uma revisão realista pode mostrar Subtotal, detalhes do parcelamento, Total e a ação Continuar em um bloco claro.",
+      "exampleLabel": "Revisão do pagamento",
+      "whenToUse": "Quando usar",
+      "whenToUseItems": [
+        "Use Footer (`TransactionFooter`) no fim de telas de pagamento mobile.",
+        "Use Aside (`TransactionSummary`) na coluna lateral de telas de pagamento desktop."
+      ],
+      "whenNotToUse": "Quando não usar",
+      "whenNotToUseItems": [
+        "Não use Footer ou Aside para escolhas editáveis de pagamento; use o componente de seleção ou configuração adequado.",
+        "Não use estes componentes para um histórico extenso de transações; use Transaction List."
+      ],
+      "variants": "Variantes",
+      "variantTable": {
+        "columns": ["Variante", "Objetivo"]
+      },
+      "footerName": "Footer",
+      "asideName": "Aside",
+      "variantRows": {
+        "footer": "Total e ação principal em mobile.",
+        "aside": "Resumo do pagamento em desktop, com a ação fora do card."
+      }
     },
-    "anatomy": {
-      "title": "Anatomia",
-      "text": "O bloco de valores segue a ordem `mainItem` opcional, `details` opcionais e `total` obrigatório. O `notice` é separado desse bloco, e a `action` é obrigatória."
+    "formatting": {
+      "title": "Formatação",
+      "anatomy": "Anatomia",
+      "anatomyTable": {
+        "columns": ["#", "Elemento", "Obrigatório", "Notas"],
+        "rows": [
+          ["Aviso", "Opcional", "Mensagem de apoio acima do bloco de valores."],
+          [
+            "Item principal",
+            "Opcional",
+            "Densidade Default para o valor principal."
+          ],
+          [
+            "Details",
+            "Opcional",
+            "Densidade Compact; use no máximo quatro como regra da tela."
+          ],
+          ["Total", "Obrigatório", "Densidade Default e valor final."],
+          ["Ação", "Obrigatório", "Ação principal da tela de pagamento."]
+        ]
+      },
+      "density": {
+        "title": "Densidade",
+        "text": "Use densidade Default para o item principal e o total. Details usam densidade Compact para manter os valores de apoio fáceis de escanear.",
+        "table": {
+          "columns": ["Elemento", "Densidade"],
+          "rows": ["Item principal|Default", "Details|Compact", "Total|Default"]
+        }
+      }
     },
     "content": {
       "title": "Conteúdo",
-      "items": [
-        "As linhas contêm `label`, `value` e `info` opcional em uma segunda linha abaixo do valor. Não inclua ícone, descrição, legenda, tag ou valor riscado nas linhas.",
-        "Use no máximo quatro details como regra da tela; os componentes renderizam todos os detalhes recebidos.",
-        "No uso normal, sempre passe um título no Summary, como **Resumo do pagamento**. Omiti-lo é uma exceção.",
-        "A descrição do aviso é obrigatória; título e ícone são opcionais. O check-circle sólido recomendado fica centralizado verticalmente com ou sem título."
+      "text": "Escreva uma informação clara por linha. Mantenha labels curtos, formate values no locale da pessoa e coloque a informação opcional abaixo do valor em vez de adicionar outra frase ao label.",
+      "writingItems": [
+        "Use um label específico, como **Subtotal**, **Parcelamento** ou **Total**.",
+        "Formate valores monetários de forma consistente e mantenha o total visualmente decisivo.",
+        "Use `info` para uma linha curta de apoio abaixo do valor do item principal ou detail; o total não tem `info`.",
+        "A descrição do aviso é obrigatória. Título e ícone sólido de check-circle são opcionais.",
+        "No uso normal, sempre passe um título para Aside (`TransactionSummary`), como **Resumo do pagamento**. Omitir é uma exceção."
+      ],
+      "doDontTitle": "Faça / Não faça",
+      "doDontItems": [
+        "Faça: coloque a informação de apoio em `info`, abaixo do valor, para manter o label fácil de escanear.",
+        "Não faça: combine valor e informação de apoio em uma única string de value; isso dificulta a leitura da linha."
       ]
     },
-    "behavior": {
-      "title": "Comportamento",
-      "items": [
-        "O corpo ou card se sobrepõe ao aviso separado.",
-        "Os divisores aparecem apenas entre linhas existentes e antes do total quando há uma linha acima.",
-        "Item principal e details são independentes; o primeiro detail nunca é promovido a principal.",
-        "Nenhuma linha recebida é truncada."
-      ]
+    "behaviors": {
+      "title": "Comportamentos",
+      "text": "Linhas, avisos, títulos e variantes são independentes. O componente mantém a mesma ordem de leitura quando elementos são adicionados ou omitidos.",
+      "table": {
+        "columns": ["Estado", "Quando", "Aparência"],
+        "rows": [
+          "Com aviso|Uma mensagem de apoio é necessária|O aviso se sobrepõe ao bloco de valores.",
+          "Sem aviso|Nenhuma mensagem de apoio é necessária|O bloco de valores começa no topo.",
+          "Com item principal|Um valor principal deve ser exibido|O item principal usa densidade Default.",
+          "Sem item principal|Somente details explicam o valor|Details continuam independentes.",
+          "Com details|Mais de um valor precisa de explicação|Details usam densidade Compact e divisores apenas onde há linhas.",
+          "Sem details|Somente o valor principal e o total são necessários|Nenhuma região vazia de details é renderizada.",
+          "Aside com título|Uso normal em desktop|O título aparece acima do card.",
+          "Aside sem título|Uma exceção intencional sem título|Nenhum elemento de cabeçalho é renderizado.",
+          "Default|A apresentação padrão do total é necessária|Superfície e bordas Default são usadas.",
+          "Highlight|O bloco de valores precisa de ênfase|A superfície Highlight é usada."
+        ]
+      }
+    },
+    "related": {
+      "title": "Relacionados",
+      "footer": {
+        "title": "Footer",
+        "text": "Use Footer para totais no fim de telas de pagamento mobile.",
+        "link": "Overview do Footer"
+      },
+      "aside": {
+        "title": "Aside",
+        "text": "Use Aside para o resumo do pagamento em uma coluna lateral desktop.",
+        "link": "Overview do Aside"
+      }
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Sugira melhorias pelo [repositório Ocean Web](https://github.com/ocean-ds/ocean-web)."
     }
   },
   "specs": {
@@ -56,9 +132,10 @@
       },
       "rows": [
         "Corpo|colorInterfaceLightPure|Footer Default",
-        "Card|colorInterfaceLightUp|Footer Highlight e Summary",
+        "Card|colorInterfaceLightUp|Footer Highlight e Aside",
         "Texto|colorInterfaceDarkDeep|Linhas e texto do aviso",
         "Divisor|colorInterfaceLightDown|Borda superior do Footer Default e divisores das linhas",
+        "Ícone do aviso|20px|Sem token",
         "Aviso|#f2fcf5 + #2da94f a 12%|Tratamento fixo do aviso"
       ]
     },
@@ -74,8 +151,8 @@
       "title": "Estrutura",
       "footer": "Footer",
       "footerText": "O aviso fica acima do corpo. O check-circle sólido de 20 × 20 fica centralizado verticalmente com ou sem título. Default tem borda superior de 1px no corpo; Highlight tem cantos superiores de 12px no corpo. A raiz não tem fundo.",
-      "summary": "Summary",
-      "summaryText": "O card light-up com raio 12 fica acima do aviso. O título opcional aparece apenas quando passado, e a ação obrigatória fica fora do card."
+      "summary": "Aside",
+      "summaryText": "O card light-up com raio 12 fica acima da ação. O título opcional aparece apenas quando passado, e a ação obrigatória fica fora do card."
     }
   },
   "accessibility": {

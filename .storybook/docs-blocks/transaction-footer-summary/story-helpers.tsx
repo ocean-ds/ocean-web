@@ -1,13 +1,12 @@
 import React from 'react';
 import type { Decorator } from '@storybook/react';
-import { Screen } from '../doc-parts';
 
 export const transactionFooterDecorator: Decorator = (Story) => (
   <div className="odoc-canvas">
     <div className="odoc-example__frame">
-      <Screen>
+      <div className="odoc-footer-surface">
         <Story />
-      </Screen>
+      </div>
     </div>
   </div>
 );

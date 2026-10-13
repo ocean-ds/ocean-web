@@ -1,21 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { DocTable, Section, Subsection } from '../blocks';
+import React, { ReactNode, useEffect, useState } from 'react';
+import Link from '../../../packages/ocean-react/src/Link';
+import TransactionFooter from '../../../packages/ocean-react/src/TransactionFooter';
+import {
+  Anatomy,
+  DoDont,
+  DocTable,
+  Section,
+  Stage,
+  Subsection,
+} from '../blocks';
 import { GroupOverviewFrame } from '../GroupOverviewFrame';
+import { Screen } from '../doc-parts';
 import { LocaleFiles, Md, Translate, useTranslate } from '../i18n';
-import { TAB_REQUEST_KEY, takeRequest } from '../navigation';
+import {
+  SECTION_REQUEST_KEY,
+  TAB_REQUEST_KEY,
+  request,
+  takeRequest,
+} from '../navigation';
 import common from '../locales/common.en.json';
 import commonPt from '../locales/common.pt.json';
 import en from '../locales/transaction-group.en.json';
 import pt from '../locales/transaction-group.pt.json';
+import {
+  transactionNotice,
+  transactionSummaryAction,
+  transactionSummaryDetails,
+  transactionSummaryMainItem,
+  transactionSummaryTotal,
+} from './fixtures';
 
 type TabId = 'guidelines' | 'specs' | 'accessibility';
 
 const TOC: Record<TabId, { id: string; labelKey: string }[]> = {
   guidelines: [
-    { id: 'when-to-use', labelKey: 'guidelines.whenToUse.title' },
-    { id: 'anatomy', labelKey: 'guidelines.anatomy.title' },
+    { id: 'overview', labelKey: 'guidelines.overview.title' },
+    { id: 'formatting', labelKey: 'guidelines.formatting.title' },
     { id: 'content', labelKey: 'guidelines.content.title' },
-    { id: 'behavior', labelKey: 'guidelines.behavior.title' },
+    { id: 'behaviors', labelKey: 'guidelines.behaviors.title' },
+    { id: 'related', labelKey: 'guidelines.related.title' },
+    { id: 'feedback', labelKey: 'guidelines.feedback.title' },
   ],
   specs: [
     { id: 'tokens', labelKey: 'specs.tokens.title' },
@@ -43,47 +67,237 @@ const DocsTable = ({
 }: {
   t: Translate;
   path: string;
-  rows: string[][];
+  rows: ReactNode[][];
 }): React.ReactElement => (
   <DocTable columns={t.list(`${path}.columns`)} rows={rows} />
 );
 
-const Guidelines = ({ t }: { t: Translate }): React.ReactElement => (
-  <>
-    <Section id="when-to-use" title={t('guidelines.whenToUse.title')}>
-      <ul>
-        {t.list('guidelines.whenToUse.items').map((item) => (
-          <li key={item}>
-            <Md text={item} />
-          </li>
-        ))}
-      </ul>
-    </Section>
-    <Section id="anatomy" title={t('guidelines.anatomy.title')}>
-      <p>
-        <Md text={t('guidelines.anatomy.text')} />
-      </p>
-    </Section>
-    <Section id="content" title={t('guidelines.content.title')}>
-      <ul>
-        {t.list('guidelines.content.items').map((item) => (
-          <li key={item}>
-            <Md text={item} />
-          </li>
-        ))}
-      </ul>
-    </Section>
-    <Section id="behavior" title={t('guidelines.behavior.title')}>
-      <ul>
-        {t.list('guidelines.behavior.items').map((item) => (
-          <li key={item}>
-            <Md text={item} />
-          </li>
-        ))}
-      </ul>
-    </Section>
-  </>
+const DocsLink = ({
+  id,
+  section,
+  children,
+}: {
+  id: string;
+  section?: string;
+  children: ReactNode;
+}): React.ReactElement => (
+  <Link
+    href={`./?path=/docs/${id}`}
+    target="_top"
+    onClick={() => section && request(SECTION_REQUEST_KEY, section)}
+  >
+    {children}
+  </Link>
 );
+
+const footer = (props: Record<string, unknown> = {}) => (
+  <TransactionFooter
+    mainItem={transactionSummaryMainItem}
+    details={transactionSummaryDetails}
+    total={transactionSummaryTotal}
+    action={transactionSummaryAction}
+    {...props}
+  />
+);
+
+const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
+  const g = (key: string) => t(`guidelines.${key}`);
+  const doDont = t.list('guidelines.content.doDontItems');
+
+  return (
+    <>
+      <Section id="overview" title={g('overview.title')}>
+        <p>
+          <Md text={g('overview.text')} />
+        </p>
+        <Stage
+          frames={[
+            {
+              label: g('overview.exampleLabel'),
+              content: <Screen>{footer()}</Screen>,
+            },
+          ]}
+        />
+        <div className="odoc-columns">
+          {(['whenToUse', 'whenNotToUse'] as const).map((key) => (
+            <div key={key} className="odoc-prose">
+              <h4>{g(`overview.${key}`)}</h4>
+              <ul>
+                {t.list(`guidelines.overview.${key}Items`).map((item) => (
+                  <li key={item}>
+                    <Md text={item} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <Subsection id="variants" title={g('overview.variants')}>
+          <DocsTable
+            t={t}
+            path="guidelines.overview.variantTable"
+            rows={[
+              [
+                <DocsLink
+                  id="components-transaction-summary-footer--overview"
+                  key="footer"
+                >
+                  {g('overview.footerName')}
+                </DocsLink>,
+                g('overview.variantRows.footer'),
+              ],
+              [
+                <DocsLink
+                  id="components-transaction-summary-aside--overview"
+                  key="aside"
+                >
+                  {g('overview.asideName')}
+                </DocsLink>,
+                g('overview.variantRows.aside'),
+              ],
+            ]}
+          />
+        </Subsection>
+      </Section>
+
+      <Section id="formatting" title={g('formatting.title')}>
+        <Subsection id="anatomy" title={g('formatting.anatomy')}>
+          <Anatomy
+            example={<Screen>{footer({ notice: transactionNotice })}</Screen>}
+            parts={[
+              { selector: '.ods-transaction-footer-v2__notice', side: 'left' },
+              {
+                selector: '.ods-transaction-footer-v2__row--default',
+                side: 'top',
+              },
+              { selector: '.ods-transaction-footer-v2__details', side: 'left' },
+              { selector: '.ods-transaction-footer-v2__total', side: 'right' },
+              {
+                selector: '.ods-transaction-footer-v2__action',
+                side: 'bottom',
+              },
+            ]}
+          />
+          <DocsTable
+            t={t}
+            path="guidelines.formatting.anatomyTable"
+            rows={(
+              en.guidelines.formatting.anatomyTable.rows as string[][]
+            ).map((row) => {
+              const rowIndex = (
+                en.guidelines.formatting.anatomyTable.rows as string[][]
+              ).indexOf(row);
+              return [
+                rowIndex + 1,
+                t(`guidelines.formatting.anatomyTable.rows.${rowIndex}.0`),
+                t(`guidelines.formatting.anatomyTable.rows.${rowIndex}.1`),
+                <Md
+                  key={row[0]}
+                  text={t(
+                    `guidelines.formatting.anatomyTable.rows.${rowIndex}.2`
+                  )}
+                />,
+              ];
+            })}
+          />
+        </Subsection>
+        <Subsection id="density" title={g('formatting.density.title')}>
+          <p>
+            <Md text={g('formatting.density.text')} />
+          </p>
+          <DocsTable
+            t={t}
+            path="guidelines.formatting.density.table"
+            rows={t
+              .list('guidelines.formatting.density.table.rows')
+              .map((row) => row.split('|'))}
+          />
+        </Subsection>
+      </Section>
+
+      <Section id="content" title={g('content.title')}>
+        <p>
+          <Md text={g('content.text')} />
+        </p>
+        <ul>
+          {t.list('guidelines.content.writingItems').map((item) => (
+            <li key={item}>
+              <Md text={item} />
+            </li>
+          ))}
+        </ul>
+        <Subsection id="do-dont" title={g('content.doDontTitle')}>
+          <DoDont
+            items={[
+              {
+                kind: 'dont',
+                example: (
+                  <Screen>
+                    {footer({
+                      details: [
+                        {
+                          label: 'Installments',
+                          value: '5x of R$ 250,00 · No additional fees',
+                        },
+                      ],
+                    })}
+                  </Screen>
+                ),
+                text: <Md text={doDont[1]} />,
+              },
+              {
+                kind: 'do',
+                example: <Screen>{footer()}</Screen>,
+                text: <Md text={doDont[0]} />,
+              },
+            ]}
+          />
+        </Subsection>
+      </Section>
+
+      <Section id="behaviors" title={g('behaviors.title')}>
+        <p>
+          <Md text={g('behaviors.text')} />
+        </p>
+        <DocsTable
+          t={t}
+          path="guidelines.behaviors.table"
+          rows={t
+            .list('guidelines.behaviors.table.rows')
+            .map((row) => row.split('|'))}
+        />
+      </Section>
+
+      <Section id="related" title={g('related.title')}>
+        <div className="odoc-related">
+          {(['footer', 'aside'] as const).map((key) => (
+            <div key={key} className="odoc-related__card odoc-prose">
+              <h4>{g(`related.${key}.title`)}</h4>
+              <p>
+                <Md text={g(`related.${key}.text`)} />
+              </p>
+              <DocsLink
+                id={
+                  key === 'footer'
+                    ? 'components-transaction-summary-footer--overview'
+                    : 'components-transaction-summary-aside--overview'
+                }
+              >
+                {g(`related.${key}.link`)}
+              </DocsLink>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="feedback" title={g('feedback.title')}>
+        <p>
+          <Md text={g('feedback.text')} />
+        </p>
+      </Section>
+    </>
+  );
+};
 
 const Specs = ({ t }: { t: Translate }): React.ReactElement => (
   <>
@@ -173,3 +387,5 @@ export const GroupOverview = (): React.ReactElement => {
     />
   );
 };
+
+export default GroupOverview;

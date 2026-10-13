@@ -636,6 +636,11 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   padding-bottom: $spacing-stack-xs;
 }
 
+.odoc-footer-surface {
+  background: $color-interface-light-pure;
+  width: $doc-frame-width;
+}
+
 .odoc-example {
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-sm;
