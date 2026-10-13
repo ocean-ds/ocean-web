@@ -19,6 +19,7 @@ const meta: Meta<StoryArgs> = {
   title: 'Components/Transaction Summary/Footer',
   component: TransactionFooter,
   decorators: [transactionFooterDecorator],
+  parameters: { layout: 'fullscreen' },
   args: {
     actionLabel: 'Continue',
     action: (

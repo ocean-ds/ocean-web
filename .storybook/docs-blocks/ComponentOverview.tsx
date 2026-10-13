@@ -272,7 +272,7 @@ export const ComponentOverview = ({
                         ios: 'iOS (SwiftUI)',
                         android: 'Android (Compose)',
                       }[platform],
-                      <Md text={t(`platforms.${platform}`)} />,
+                      <Md key={platform} text={t(`platforms.${platform}`)} />,
                     ]
                   )}
                 />
@@ -290,8 +290,20 @@ export const ComponentOverview = ({
               <p>
                 <Md text={t('api.intro')} />
               </p>
-              <div className="odoc-example">
-                <div className="odoc-example__stage">
+              <div
+                className={`odoc-example${
+                  config.primary.canvasClass?.startsWith('odoc-canvas--footer-')
+                    ? ' odoc-example--footer'
+                    : ''
+                }`}
+              >
+                <div
+                  className={
+                    config.primary.canvasClass
+                      ? `odoc-example__stage ${config.primary.canvasClass}`
+                      : 'odoc-example__stage'
+                  }
+                >
                   <Story of={config.story} />
                 </div>
               </div>

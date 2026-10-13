@@ -641,11 +641,16 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   width: $doc-frame-width;
 }
 
-.odoc-footer-surface--default {
+.odoc-footer-swatch {
+  padding: $spacing-inline-sm;
+  width: calc($doc-frame-width + 2 * $spacing-inline-sm);
+}
+
+.odoc-footer-swatch--default {
   background: $color-interface-light-up;
 }
 
-.odoc-footer-surface--highlight {
+.odoc-footer-swatch--highlight {
   background: $color-interface-light-pure;
 }
 
@@ -689,6 +694,15 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
     border-radius: 0;
     margin: 0;
   }
+}
+
+.odoc-example--footer {
+  border-color: transparent;
+}
+
+.odoc-example--footer .odoc-example__bar,
+.odoc-example--footer .odoc-example__caption {
+  border-top-color: transparent;
 }
 
 .odoc-callout {
@@ -893,13 +907,32 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 }
 
 .odoc-canvas--footer-default,
-.odoc-example__stage.odoc-canvas--footer-default {
+.odoc-example__stage.odoc-canvas--footer-default,
+.odoc-stage__surface.odoc-canvas--footer-default,
+.odoc-anatomy.odoc-canvas--footer-default,
+.odoc-dodont__example.odoc-canvas--footer-default {
   background: $color-interface-light-up;
 }
 
 .odoc-canvas--footer-highlight,
-.odoc-example__stage.odoc-canvas--footer-highlight {
+.odoc-example__stage.odoc-canvas--footer-highlight,
+.odoc-stage__surface.odoc-canvas--footer-highlight,
+.odoc-anatomy.odoc-canvas--footer-highlight,
+.odoc-dodont__example.odoc-canvas--footer-highlight {
   background: $color-interface-light-pure;
+}
+
+.odoc-canvas.odoc-canvas--footer-default,
+.odoc-canvas.odoc-canvas--footer-highlight {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.odoc-matrix--footer {
+  grid-template-columns: ($spacing-inline-xxxl + $spacing-inline-lg) repeat(
+      var(--odoc-columns),
+      calc($doc-frame-width + 2 * $spacing-inline-sm)
+    );
 }
 
 .odoc-visual-root {
@@ -911,7 +944,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 }
 
 .odoc-visual-root--transaction-summary {
-  background: $color-interface-light-down;
+  background: $color-interface-light-pure;
 }
 
 .odoc-visual-root--transaction-summary.odoc-canvas--white {

@@ -1,15 +1,14 @@
 import React from 'react';
 import type { Decorator } from '@storybook/react';
+import '../docs.scss';
 
 export const transactionFooterDecorator: Decorator = (Story, context) => {
   const type = context.args.type === 'highlight' ? 'highlight' : 'default';
 
   return (
     <div className={`odoc-canvas odoc-canvas--footer-${type}`}>
-      <div className="odoc-example__frame">
-        <div className={`odoc-footer-surface odoc-footer-surface--${type}`}>
-          <Story />
-        </div>
+      <div className="odoc-footer-surface">
+        <Story />
       </div>
     </div>
   );

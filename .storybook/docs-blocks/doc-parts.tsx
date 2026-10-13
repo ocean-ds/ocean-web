@@ -55,7 +55,13 @@ export const Example = ({
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   return (
-    <figure className="odoc-example">
+    <figure
+      className={`odoc-example${
+        canvasClass?.startsWith('odoc-canvas--footer-')
+          ? ' odoc-example--footer'
+          : ''
+      }`}
+    >
       <div
         className={`odoc-example__stage${canvasClass ? ` ${canvasClass}` : ''}`}
       >

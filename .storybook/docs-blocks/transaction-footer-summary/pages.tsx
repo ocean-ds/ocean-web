@@ -40,10 +40,7 @@ const footerExample = (
 
   return {
     rows: [
-      <div
-        key="transaction-footer"
-        className={`odoc-footer-surface odoc-footer-surface--${type}`}
-      >
+      <div key="transaction-footer" className="odoc-footer-surface">
         <TransactionFooter {...props} />
       </div>,
     ],

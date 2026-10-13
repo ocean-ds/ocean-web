@@ -30,7 +30,7 @@ type Story = StoryObj;
 const footerCells = [
   {
     label: 'With notice',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
+    canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter
         notice={transactionNotice}
@@ -43,7 +43,7 @@ const footerCells = [
   },
   {
     label: 'Notice + highlight',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--highlight',
+    canvasClass: 'odoc-footer-swatch--highlight',
     node: (
       <TransactionFooter
         type="highlight"
@@ -57,7 +57,7 @@ const footerCells = [
   },
   {
     label: 'Notice title and icon',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
+    canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter
         notice={transactionNoticeWithTitleAndIcon}
@@ -70,14 +70,14 @@ const footerCells = [
   },
   {
     label: 'Main item only',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
+    canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter mainItem={mainItem} total={total} action={action} />
     ),
   },
   {
     label: 'Details only',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
+    canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter
         details={transactionSummaryDetails}
@@ -88,7 +88,7 @@ const footerCells = [
   },
   {
     label: 'Four details',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
+    canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter
         details={transactionFourDetails}
@@ -99,7 +99,7 @@ const footerCells = [
   },
   {
     label: 'Additional info',
-    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
+    canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter
         mainItem={{ ...mainItem, info: 'No additional fees' }}
@@ -155,23 +155,31 @@ const matrix = (
     node: React.ReactNode;
     canvasClass?: string;
   }>,
-  width: number
+  width: number,
+  matrixClass?: string
 ): React.ReactElement => (
   <MatrixGrid
     columns={['Variant']}
+    className={matrixClass}
     rows={cells.map(({ label, node, canvasClass }) => ({
       label,
       cells: [
-        <div key={label} className={canvasClass} style={{ width }}>
-          {node}
-        </div>,
+        canvasClass ? (
+          <div key={label} className={`odoc-footer-swatch ${canvasClass}`}>
+            <div className="odoc-footer-surface">{node}</div>
+          </div>
+        ) : (
+          <div key={label} style={{ width }}>
+            {node}
+          </div>
+        ),
       ],
     }))}
   />
 );
 
 export const Footer: Story = {
-  render: () => matrix(footerCells, 360),
+  render: () => matrix(footerCells, 360, 'odoc-matrix--footer'),
 };
 
 export const Aside: Story = {

@@ -99,15 +99,9 @@ const footer = (props: Record<string, unknown> = {}) => (
   />
 );
 
-const footerOnCanvas = (props: Record<string, unknown> = {}) => {
-  const type = props.type === 'highlight' ? 'highlight' : 'default';
-
-  return (
-    <div className={`odoc-footer-surface odoc-footer-surface--${type}`}>
-      {footer(props)}
-    </div>
-  );
-};
+const footerOnCanvas = (props: Record<string, unknown> = {}) => (
+  <div className="odoc-footer-surface">{footer(props)}</div>
+);
 
 const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
   const g = (key: string) => t(`guidelines.${key}`);
@@ -120,6 +114,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
           <Md text={g('overview.text')} />
         </p>
         <Stage
+          canvasClass="odoc-canvas--footer-default"
           frames={[
             {
               label: g('overview.exampleLabel'),
@@ -172,18 +167,21 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
       <Section id="formatting" title={g('formatting.title')}>
         <Subsection id="anatomy" title={g('formatting.anatomy')}>
           <Anatomy
+            canvasClass="odoc-canvas--footer-default"
             example={footerOnCanvas({ notice: transactionNotice })}
             parts={[
               { selector: '.ods-transaction-footer-v2__notice', side: 'left' },
               {
                 selector: '.ods-transaction-footer-v2__row--default',
                 side: 'top',
+                anchor: 0.25,
               },
               { selector: '.ods-transaction-footer-v2__details', side: 'left' },
               { selector: '.ods-transaction-footer-v2__total', side: 'right' },
               {
                 selector: '.ods-transaction-footer-v2__action',
                 side: 'bottom',
+                anchor: 0.75,
               },
             ]}
           />
@@ -248,11 +246,13 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
                     },
                   ],
                 }),
+                canvasClass: 'odoc-canvas--footer-default',
                 text: <Md text={doDont[1]} />,
               },
               {
                 kind: 'do',
                 example: footerOnCanvas(),
+                canvasClass: 'odoc-canvas--footer-default',
                 text: <Md text={doDont[0]} />,
               },
             ]}
