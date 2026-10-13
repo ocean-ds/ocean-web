@@ -35,10 +35,23 @@ const locale = (
 const footerExample = (
   props: TransactionFooterProps,
   code: string
-): ExampleSpec => ({
-  rows: [<TransactionFooter key="transaction-footer" {...props} />],
-  code,
-});
+): ExampleSpec => {
+  const type = props.type === 'highlight' ? 'highlight' : 'default';
+
+  return {
+    rows: [
+      <div
+        key="transaction-footer"
+        className={`odoc-footer-surface odoc-footer-surface--${type}`}
+      >
+        <TransactionFooter {...props} />
+      </div>,
+    ],
+    code,
+    unframed: true,
+    canvasClass: `odoc-canvas--footer-${type}`,
+  };
+};
 
 const summaryExample = (
   props: TransactionSummaryProps,

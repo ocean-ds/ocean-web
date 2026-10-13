@@ -10,7 +10,6 @@ import {
   Subsection,
 } from '../blocks';
 import { GroupOverviewFrame } from '../GroupOverviewFrame';
-import { Screen } from '../doc-parts';
 import { LocaleFiles, Md, Translate, useTranslate } from '../i18n';
 import {
   SECTION_REQUEST_KEY,
@@ -100,6 +99,16 @@ const footer = (props: Record<string, unknown> = {}) => (
   />
 );
 
+const footerOnCanvas = (props: Record<string, unknown> = {}) => {
+  const type = props.type === 'highlight' ? 'highlight' : 'default';
+
+  return (
+    <div className={`odoc-footer-surface odoc-footer-surface--${type}`}>
+      {footer(props)}
+    </div>
+  );
+};
+
 const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
   const g = (key: string) => t(`guidelines.${key}`);
   const doDont = t.list('guidelines.content.doDontItems');
@@ -114,7 +123,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
           frames={[
             {
               label: g('overview.exampleLabel'),
-              content: <Screen>{footer()}</Screen>,
+              content: footerOnCanvas(),
             },
           ]}
         />
@@ -163,7 +172,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
       <Section id="formatting" title={g('formatting.title')}>
         <Subsection id="anatomy" title={g('formatting.anatomy')}>
           <Anatomy
-            example={<Screen>{footer({ notice: transactionNotice })}</Screen>}
+            example={footerOnCanvas({ notice: transactionNotice })}
             parts={[
               { selector: '.ods-transaction-footer-v2__notice', side: 'left' },
               {
@@ -231,23 +240,19 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
             items={[
               {
                 kind: 'dont',
-                example: (
-                  <Screen>
-                    {footer({
-                      details: [
-                        {
-                          label: 'Installments',
-                          value: '5x of R$ 250,00 · No additional fees',
-                        },
-                      ],
-                    })}
-                  </Screen>
-                ),
+                example: footerOnCanvas({
+                  details: [
+                    {
+                      label: 'Installments',
+                      value: '5x of R$ 250,00 · No additional fees',
+                    },
+                  ],
+                }),
                 text: <Md text={doDont[1]} />,
               },
               {
                 kind: 'do',
-                example: <Screen>{footer()}</Screen>,
+                example: footerOnCanvas(),
                 text: <Md text={doDont[0]} />,
               },
             ]}

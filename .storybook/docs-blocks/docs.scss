@@ -637,8 +637,16 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 }
 
 .odoc-footer-surface {
-  background: $color-interface-light-pure;
+  max-width: 100%;
   width: $doc-frame-width;
+}
+
+.odoc-footer-surface--default {
+  background: $color-interface-light-up;
+}
+
+.odoc-footer-surface--highlight {
+  background: $color-interface-light-pure;
 }
 
 .odoc-example {
@@ -882,6 +890,16 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 .odoc-example__stage .odoc-canvas {
   background: transparent;
   padding: 0;
+}
+
+.odoc-canvas--footer-default,
+.odoc-example__stage.odoc-canvas--footer-default {
+  background: $color-interface-light-up;
+}
+
+.odoc-canvas--footer-highlight,
+.odoc-example__stage.odoc-canvas--footer-highlight {
+  background: $color-interface-light-pure;
 }
 
 .odoc-visual-root {

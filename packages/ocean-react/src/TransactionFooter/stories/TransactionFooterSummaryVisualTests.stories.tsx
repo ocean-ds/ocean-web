@@ -30,6 +30,7 @@ type Story = StoryObj;
 const footerCells = [
   {
     label: 'With notice',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
     node: (
       <TransactionFooter
         notice={transactionNotice}
@@ -42,6 +43,7 @@ const footerCells = [
   },
   {
     label: 'Notice + highlight',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--highlight',
     node: (
       <TransactionFooter
         type="highlight"
@@ -55,6 +57,7 @@ const footerCells = [
   },
   {
     label: 'Notice title and icon',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
     node: (
       <TransactionFooter
         notice={transactionNoticeWithTitleAndIcon}
@@ -67,12 +70,14 @@ const footerCells = [
   },
   {
     label: 'Main item only',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
     node: (
       <TransactionFooter mainItem={mainItem} total={total} action={action} />
     ),
   },
   {
     label: 'Details only',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
     node: (
       <TransactionFooter
         details={transactionSummaryDetails}
@@ -83,6 +88,7 @@ const footerCells = [
   },
   {
     label: 'Four details',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
     node: (
       <TransactionFooter
         details={transactionFourDetails}
@@ -93,6 +99,7 @@ const footerCells = [
   },
   {
     label: 'Additional info',
+    canvasClass: 'odoc-footer-surface odoc-footer-surface--default',
     node: (
       <TransactionFooter
         mainItem={{ ...mainItem, info: 'No additional fees' }}
@@ -143,15 +150,19 @@ const summaryCells = [
 ];
 
 const matrix = (
-  cells: Array<{ label: string; node: React.ReactNode }>,
+  cells: Array<{
+    label: string;
+    node: React.ReactNode;
+    canvasClass?: string;
+  }>,
   width: number
 ): React.ReactElement => (
   <MatrixGrid
     columns={['Variant']}
-    rows={cells.map(({ label, node }) => ({
+    rows={cells.map(({ label, node, canvasClass }) => ({
       label,
       cells: [
-        <div key={label} style={{ width }}>
+        <div key={label} className={canvasClass} style={{ width }}>
           {node}
         </div>,
       ],
