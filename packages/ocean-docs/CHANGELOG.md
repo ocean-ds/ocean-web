@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.147.0](https://github.com/ocean-ds/ocean-web/compare/v1.146.0...v1.147.0) (2026-10-14)
+
+### Features
+
+- **transaction-footer:** publica o Transaction Footer 2.0 e cria o Transaction Summary (MR-908) ([#1277](https://github.com/ocean-ds/ocean-web/issues/1277)) ([4a794e4](https://github.com/ocean-ds/ocean-web/commit/4a794e484808c455038df9c99b572628ad7ff14f))
+
 # [1.146.0](https://github.com/ocean-ds/ocean-web/compare/v1.145.1...v1.146.0) (2026-10-09)
 
 ### Features
