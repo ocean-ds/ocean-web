@@ -23,8 +23,8 @@
   "api": {
     "intro": "Transaction Summary is available on Web only and uses separate mainItem, details and total roles.",
     "title": "Optional title rendered above the card only when supplied. In normal use, always pass a title such as “Payment summary”; omitting it is an exception.",
-    "mainItem": "Optional label/value row with optional info below the value, using default density. It is never inferred from the first detail.",
-    "details": "Optional label/value rows with optional info below the value, using compact density. Use at most four as a screen-level rule; the component renders all supplied details.",
+    "mainItem": "Optional Transaction List Read Only item (`content` + `amount`) using Default density. It is never inferred from the first detail.",
+    "details": "Optional Transaction List Read Only items (`content` + `amount`) using Compact density. Use at most four as a screen-level rule; the component renders all supplied details.",
     "total": "Required label/value row. A divider precedes it whenever a main item or details are present.",
     "notice": "Optional structured notice. Description is required; title is optional. A solid check-circle is recommended; `icon={null}` hides it.",
     "action": "Required action rendered full width outside the card.",
@@ -39,9 +39,9 @@
   },
   "rules": [
     "Use Summary in the side column of a desktop payment screen; Footer is the mobile component.",
-    "Rows contain a label, value, and optional info below the value. Use mainItem and details independently; the first detail is not promoted to main.",
+    "Each row is Transaction List Read Only: `content` accepts a title and description; `amount` accepts a value, default/positive/negative/inactive/strikethrough/strikethrough-neutral type, struck-through value, tag, and info. Use mainItem and details independently; the first detail is not promoted to main.",
     "Use no more than four details as a screen-level rule. Summary renders every detail it receives.",
-    "Main and total use default density; details use compact density. Dividers appear after main when details follow and before total whenever rows are above it.",
+    "The main item uses Default density and details use Compact. Rows have no internal divider; group dividers appear after main when details follow and before total whenever rows are above it.",
     "The card is always light-up and overlaps the notice below it.",
     "Keep the required action outside the card and notice."
   ]

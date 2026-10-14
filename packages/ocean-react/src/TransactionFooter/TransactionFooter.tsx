@@ -4,16 +4,20 @@ import TransactionSummaryContent from '../_shared/components/TransactionSummaryC
 import TransactionNotice, {
   TransactionNoticeProps,
 } from '../_shared/components/TransactionNotice';
-import type { TransactionRow } from '../_shared/components/TransactionSummaryContent';
+import type {
+  TransactionRow,
+  TransactionSummaryItem,
+  TransactionTotal,
+} from '../_shared/components/TransactionSummaryContent';
 
 export type TransactionFooterType = 'default' | 'highlight';
 
 export type TransactionFooterProps = {
   type?: TransactionFooterType;
   notice?: TransactionNoticeProps;
-  mainItem?: TransactionRow;
-  details?: TransactionRow[];
-  total: TransactionRow;
+  mainItem?: TransactionSummaryItem | TransactionRow;
+  details?: Array<TransactionSummaryItem | TransactionRow>;
+  total: TransactionTotal;
   action: React.ReactNode;
   className?: string;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;

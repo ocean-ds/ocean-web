@@ -82,11 +82,11 @@ export const footerDoc: Omit<ComponentDocConfig, 'story'> = {
   primary: footerExample(
     { mainItem, details, total, action },
     `<TransactionFooter
-  mainItem={{ label: 'Subtotal', value: 'R$ 1.250,00' }}
+  mainItem={{ content: { title: 'Subtotal' }, amount: { value: '$1,250.00' } }}
   details={[
-    { label: 'Installments', value: '5x of R$ 250,00', info: 'No additional fees' },
+    { content: { title: 'Installments' }, amount: { value: '5 × $250.00', info: 'No additional fees' } },
   ]}
-  total={{ label: 'Total', value: 'R$ 1.250,00' }}
+  total={{ label: 'Total', value: '$1,250.00' }}
   action={<Button variant="primary" blocked>Continue</Button>}
 />`
   ),
@@ -136,8 +136,15 @@ export const footerDoc: Omit<ComponentDocConfig, 'story'> = {
       `<TransactionFooter details={fourDetails} total={total} action={action} />`
     ),
     'additional-info': footerExample(
-      { mainItem: { ...mainItem, info: 'No additional fees' }, total, action },
-      `<TransactionFooter mainItem={{ ...mainItem, info: 'No additional fees' }} total={total} action={action} />`
+      {
+        mainItem: {
+          ...mainItem,
+          amount: { ...mainItem.amount, info: 'No additional fees' },
+        },
+        total,
+        action,
+      },
+      `<TransactionFooter mainItem={{ ...mainItem, amount: { ...mainItem.amount, info: 'No additional fees' } }} total={total} action={action} />`
     ),
   },
   platforms: footerPlatforms,

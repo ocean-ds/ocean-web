@@ -5,13 +5,17 @@ import TransactionNotice, {
   TransactionNoticeProps,
 } from '../_shared/components/TransactionNotice';
 import Typography from '../Typography';
-import type { TransactionRow } from '../_shared/components/TransactionSummaryContent';
+import type {
+  TransactionRow,
+  TransactionSummaryItem,
+  TransactionTotal,
+} from '../_shared/components/TransactionSummaryContent';
 
 export type TransactionSummaryProps = {
   title?: React.ReactNode;
-  mainItem?: TransactionRow;
-  details?: TransactionRow[];
-  total: TransactionRow;
+  mainItem?: TransactionSummaryItem | TransactionRow;
+  details?: Array<TransactionSummaryItem | TransactionRow>;
+  total: TransactionTotal;
   notice?: TransactionNoticeProps;
   action: React.ReactNode;
   className?: string;

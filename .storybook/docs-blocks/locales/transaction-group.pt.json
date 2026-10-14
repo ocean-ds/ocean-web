@@ -75,11 +75,11 @@
     },
     "content": {
       "title": "Conteúdo",
-      "text": "Escreva uma informação clara por linha. Mantenha labels curtos, formate values no locale da pessoa e coloque a informação opcional abaixo do valor em vez de adicionar outra frase ao label.",
+      "text": "Cada linha é um Transaction List Read Only, com `content` (título e descrição) e `amount` (valor e estados). O item principal usa densidade Default; os detalhes, Compact.",
       "writingItems": [
-        "Use um label específico, como **Subtotal**, **Parcelamento** ou **Total**.",
+        "Use um título específico em `content`, como **Subtotal** ou **Parcelamento**, e mantenha o total separado.",
         "Formate valores monetários de forma consistente e mantenha o total visualmente decisivo.",
-        "Use `info` para uma linha curta de apoio abaixo do valor do item principal ou detail; o total não tem `info`.",
+        "Use `amount.info` para apoio abaixo do valor e `amount.tag` para uma tag. `amount.type` aceita default, positive, negative, inactive, strikethrough e strikethrough-neutral; use `strikethroughValue` para o valor original.",
         "A descrição do aviso é obrigatória. Título e ícone sólido de check-circle são opcionais.",
         "No uso normal, sempre passe um título para Aside (`TransactionSummary`), como **Resumo do pagamento**. Omitir é uma exceção."
       ],
@@ -144,7 +144,7 @@
     },
     "typography": {
       "title": "Tipografia",
-      "text": "Labels usam Regular 14 e values, SemiBold 14. O info opcional segue o estilo amount.info do Transaction List: captionbold com $font-size-xxxs, $font-weight-medium, $line-height-comfy e $color-interface-dark-down; mantenha $spacing-inline-xxxs entre o valor e o info. Label e value do total usam Bold 16; o título do aviso usa ExtraBold 14 e a descrição Regular 12."
+      "text": "Cada linha usa Transaction List Read Only (`content` + `amount`): Default no item principal e Compact nos detalhes. O título usa Regular 14 e o valor, SemiBold 14. `amount.type` aceita default, positive, negative, inactive, strikethrough e strikethrough-neutral; `strikethroughValue` mostra o valor original riscado, `tag` aparece abaixo do valor e `info` segue captionbold com $font-size-xxxs, $font-weight-medium, $line-height-comfy e $color-interface-dark-down. Label e value do total permanecem Bold 16."
     },
     "spacing": {
       "title": "Espaçamento",

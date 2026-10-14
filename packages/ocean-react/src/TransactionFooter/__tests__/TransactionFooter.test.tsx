@@ -1,6 +1,7 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import TransactionFooter from '../TransactionFooter';
+import type { TransactionSummaryItem } from '../index';
 
 const mainItem = { label: 'Subtotal', value: 'R$ 1.250,00' };
 const details = [
@@ -49,15 +50,17 @@ test('renders notice before the body, rows, total and action', () => {
   expect(
     notice?.querySelector('.ods-transaction-notice__icon svg')
   ).toBeInTheDocument();
-  expect(screen.getByText('Subtotal')).toHaveClass(
-    'ods-transaction-footer-v2__row-label'
-  );
-  expect(screen.getByText('Parcelamento').parentElement).toHaveClass(
-    'ods-transaction-footer-v2__row--compact'
-  );
-  expect(screen.getByText('Subtotal').parentElement).toHaveClass(
-    'ods-transaction-footer-v2__row--default'
-  );
+  expect(screen.getByText('Subtotal')).toBeInTheDocument();
+  expect(
+    screen
+      .getByText('Parcelamento')
+      .closest('.ods-transaction-footer-v2__row--compact')
+  ).toBeInTheDocument();
+  expect(
+    screen
+      .getByText('Subtotal')
+      .closest('.ods-transaction-footer-v2__row--default')
+  ).toBeInTheDocument();
   expect(screen.getByText('Total').parentElement).toHaveClass(
     'ods-transaction-footer-v2__total--bold-16'
   );
@@ -203,12 +206,8 @@ test('renders additional info under main and detail values only when provided', 
     />
   );
 
-  expect(screen.getByText('sem acréscimo')).toHaveClass(
-    'ods-transaction-footer-v2__row-info'
-  );
-  expect(screen.getByText('Sem acréscimo')).toHaveClass(
-    'ods-transaction-footer-v2__row-info'
-  );
+  expect(screen.getByText('sem acréscimo')).toBeInTheDocument();
+  expect(screen.getByText('Sem acréscimo')).toBeInTheDocument();
 
   cleanup();
   render(
@@ -220,4 +219,112 @@ test('renders additional info under main and detail values only when provided', 
     />
   );
   expect(screen.queryByText('sem acréscimo')).not.toBeInTheDocument();
+});
+
+test('renders Transaction List amount types and content in compact detail rows', () => {
+  const items: TransactionSummaryItem[] = [
+    {
+      content: { title: 'Positive amount', inverted: false },
+      amount: { value: '$24.00', type: 'positive' },
+    },
+    {
+      content: { title: 'Negative amount', inverted: false },
+      amount: { value: '$12.50', type: 'negative' },
+    },
+    {
+      content: { title: 'Inactive amount', inverted: false },
+      amount: { value: '$8.00', type: 'inactive' },
+    },
+    {
+      content: { title: 'Changed amount', inverted: false },
+      amount: {
+        value: '$24.00',
+        type: 'strikethrough',
+        strikethroughValue: '$30.00',
+      },
+    },
+    {
+      content: { title: 'Neutral change', inverted: false },
+      amount: {
+        value: '$24.00',
+        type: 'strikethrough-neutral',
+        strikethroughValue: '$30.00',
+      },
+    },
+    {
+      content: { title: 'Scheduled payment', inverted: false },
+      amount: {
+        value: '$24.00',
+        tag: { label: 'Scheduled', type: 'complementary' },
+      },
+    },
+    {
+      content: {
+        title: 'Monthly payment',
+        description: 'Five monthly payments',
+        inverted: false,
+      },
+      amount: { value: '$24.00', info: 'No additional fees' },
+    },
+  ];
+
+  render(
+    <TransactionFooter
+      mainItem={{
+        content: { title: 'Subtotal', inverted: false },
+        amount: { value: '$100.00' },
+      }}
+      details={items}
+      total={total}
+      action={action}
+      data-testid="footer"
+    />
+  );
+
+  const footer = screen.getByTestId('footer');
+  const rows = footer.querySelectorAll('.ods-transaction-footer-v2__row');
+
+  expect(rows).toHaveLength(items.length + 1);
+  expect(rows[0]).not.toHaveClass('ods-transaction-list--compact');
+  expect(rows[1]).toHaveClass('ods-transaction-list--compact');
+  expect(screen.getByText('Five monthly payments')).toBeInTheDocument();
+  expect(screen.getByText('No additional fees')).toBeInTheDocument();
+  expect(screen.getByText('Scheduled')).toBeInTheDocument();
+  expect(
+    footer.querySelectorAll('.ods-amount-details__strikethrough')
+  ).toHaveLength(2);
+  expect(screen.getAllByText('$30.00')).toHaveLength(2);
+  expect(
+    footer.querySelector('.ods-amount-details__amount--positive')
+  ).toBeInTheDocument();
+  expect(
+    footer.querySelector('.ods-amount-details__amount-sign')
+  ).toBeInTheDocument();
+  expect(
+    footer.querySelector('.ods-amount-details__amount-sign--sized')
+  ).toBeInTheDocument();
+  expect(
+    footer.querySelector('.ods-amount-details--inactive')
+  ).toBeInTheDocument();
+  expect(
+    footer.querySelector('.ods-amount-details__amount--strikethrough-neutral')
+  ).toBeInTheDocument();
+  const scheduledTag = screen.getByText('Scheduled');
+  const scheduledValue = scheduledTag
+    .closest('.ods-amount-details')
+    ?.querySelector('.ods-amount-details__amount');
+  expect(scheduledValue?.compareDocumentPosition(scheduledTag)).toBe(
+    Node.DOCUMENT_POSITION_FOLLOWING
+  );
+  const info = screen.getByText('No additional fees');
+  const infoValue = info
+    .closest('.ods-amount-details')
+    ?.querySelector('.ods-amount-details__amount');
+  expect(infoValue?.compareDocumentPosition(info)).toBe(
+    Node.DOCUMENT_POSITION_FOLLOWING
+  );
+  rows.forEach((row) => {
+    expect(row.querySelector('.ods-transaction-list__divider')).toBeNull();
+  });
+  expect(footer.querySelectorAll(dividerSelector)).toHaveLength(2);
 });

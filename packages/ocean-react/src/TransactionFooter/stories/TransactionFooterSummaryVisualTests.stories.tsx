@@ -7,6 +7,7 @@ import {
   transactionFourDetails,
   transactionNotice,
   transactionNoticeWithTitleAndIcon,
+  transactionSummaryAmountVariants,
   transactionSummaryAction as action,
   transactionSummaryDetails,
   transactionSummaryMainItem as mainItem,
@@ -28,6 +29,18 @@ export default meta;
 type Story = StoryObj;
 
 const footerCells = [
+  {
+    label: 'Amount types, tags and content',
+    canvasClass: 'odoc-footer-swatch--default',
+    node: (
+      <TransactionFooter
+        mainItem={transactionSummaryAmountVariants[0]}
+        details={transactionSummaryAmountVariants.slice(1)}
+        total={total}
+        action={action}
+      />
+    ),
+  },
   {
     label: 'With notice',
     canvasClass: 'odoc-footer-swatch--default',
@@ -102,7 +115,10 @@ const footerCells = [
     canvasClass: 'odoc-footer-swatch--default',
     node: (
       <TransactionFooter
-        mainItem={{ ...mainItem, info: 'No additional fees' }}
+        mainItem={{
+          ...mainItem,
+          amount: { ...mainItem.amount, info: 'No additional fees' },
+        }}
         details={transactionSummaryDetails}
         total={total}
         action={action}
@@ -112,6 +128,18 @@ const footerCells = [
 ];
 
 const summaryCells = [
+  {
+    label: 'Amount types, tags and content',
+    node: (
+      <TransactionSummary
+        title="Payment summary"
+        mainItem={transactionSummaryAmountVariants[0]}
+        details={transactionSummaryAmountVariants.slice(1)}
+        total={total}
+        action={action}
+      />
+    ),
+  },
   {
     label: 'Without title',
     node: (
