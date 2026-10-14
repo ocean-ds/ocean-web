@@ -203,12 +203,16 @@ export const DocTable = ({
 export const Stage = ({
   frames,
   caption,
+  canvasClass,
 }: {
   frames: { label?: string; content: ReactNode; className?: string }[];
   caption?: ReactNode;
+  canvasClass?: string;
 }): React.ReactElement => (
   <figure className="odoc-stage">
-    <div className="odoc-stage__surface">
+    <div
+      className={`odoc-stage__surface${canvasClass ? ` ${canvasClass}` : ''}`}
+    >
       {frames.map((frame, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <div key={index}>
@@ -258,6 +262,7 @@ export const DoDont = ({
     kind: Verdict;
     /** Live example; when omitted, the code is shown in its place. */
     example?: ReactNode;
+    canvasClass?: string;
     text: ReactNode;
     /** Snippet below the text (for example, the wrong and the right version). */
     code?: string;
@@ -271,7 +276,11 @@ export const DoDont = ({
         key={index}
         className={`odoc-dodont__card odoc-dodont__card--${item.kind}`}
       >
-        <div className="odoc-dodont__example">
+        <div
+          className={`odoc-dodont__example${
+            item.canvasClass ? ` ${item.canvasClass}` : ''
+          }`}
+        >
           {item.example ? (
             <div className="odoc-stage__frame">{item.example}</div>
           ) : (
@@ -319,8 +328,10 @@ type Pin = { x: number; y: number; tx: number; ty: number };
 export const Anatomy = ({
   example,
   parts,
+  canvasClass,
 }: {
   example: ReactNode;
+  canvasClass?: string;
   parts: {
     selector: string;
     side: 'left' | 'right' | 'top' | 'bottom';
@@ -385,7 +396,7 @@ export const Anatomy = ({
   }, [measure]);
 
   return (
-    <div className="odoc-anatomy">
+    <div className={`odoc-anatomy${canvasClass ? ` ${canvasClass}` : ''}`}>
       <div className="odoc-anatomy__stage" ref={stage}>
         <div className="odoc-stage__frame">{example}</div>
         <svg
@@ -397,9 +408,8 @@ export const Anatomy = ({
           {pins.map(
             (pin, index) =>
               pin && (
-                // eslint-disable-next-line react/no-array-index-key
                 <path
-                  key={index}
+                  key={parts[index].selector}
                   d={`M ${pin.x} ${pin.y} L ${pin.tx} ${pin.ty}`}
                 />
               )
@@ -409,8 +419,7 @@ export const Anatomy = ({
           (pin, index) =>
             pin && (
               <span
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
+                key={parts[index].selector}
                 className="odoc-anatomy__pin"
                 style={{ left: pin.x, top: pin.y }}
                 aria-hidden
@@ -428,12 +437,14 @@ export const Anatomy = ({
 export const MatrixGrid = ({
   columns,
   rows,
+  className,
 }: {
   columns: string[];
   rows: { label: string; cells: ReactNode[] }[];
+  className?: string;
 }): React.ReactElement => (
   <div
-    className="odoc-matrix"
+    className={`odoc-matrix${className ? ` ${className}` : ''}`}
     style={{ ['--odoc-columns' as string]: columns.length }}
   >
     <span />

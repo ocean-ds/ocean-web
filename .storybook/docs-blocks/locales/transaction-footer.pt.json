@@ -1,0 +1,61 @@
+{
+  "overview": "Rodapé móvel de pagamento com linha principal opcional, detalhes opcionais, total obrigatório, aviso opcional e ação em largura total.",
+  "sections": {
+    "options": "Opções",
+    "default": {
+      "title": "Padrão",
+      "text": "O corpo padrão usa superfície branca; a raiz não tem fundo próprio."
+    },
+    "highlight": {
+      "title": "Destaque",
+      "text": "O corpo de destaque usa a superfície light-up."
+    }
+  },
+  "options": {
+    "notice": {
+      "title": "Aviso",
+      "text": "A descrição é obrigatória; o título e o ícone são opcionais."
+    },
+    "notice-title-icon": {
+      "title": "Aviso com título e ícone",
+      "text": "O check-circle sólido é o ícone recomendado. Passe null para ocultá-lo."
+    },
+    "main-item-only": {
+      "title": "Somente linha principal",
+      "text": "A linha principal é independente dos detalhes e usa densidade padrão."
+    },
+    "details-only": {
+      "title": "Somente detalhes",
+      "text": "Os detalhes podem ser exibidos sem uma linha principal e usam densidade compacta."
+    },
+    "four-details": {
+      "title": "Quatro detalhes",
+      "text": "Use até quatro detalhes como regra para a tela; o componente renderiza todos os recebidos."
+    },
+    "additional-info": {
+      "title": "Informação adicional",
+      "text": "O info opcional aparece abaixo do valor da linha e fica alinhado à direita."
+    }
+  },
+  "api": {
+    "intro": "O componente React recebe linhas de rótulo e valor em papéis separados: mainItem e details. Todos os detalhes recebidos são renderizados; o comportamento de negócio fica com quem consome.",
+    "type": "Aparência do corpo. `default` é branco; `highlight` usa light-up.",
+    "mainItem": "Linha opcional de rótulo e valor, com informação opcional abaixo do valor, em densidade padrão. Ela nunca é inferida do primeiro detalhe.",
+    "details": "Lista opcional de linhas de rótulo e valor, com informação opcional abaixo do valor, em densidade compacta. Use no máximo quatro como regra para a tela; o componente não corta a lista.",
+    "total": "Linha obrigatória de rótulo e valor em negrito. Há divisor antes dela quando existem linha principal ou detalhes.",
+    "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. O check-circle sólido é o ícone recomendado; `icon={null}` o oculta.",
+    "action": "Ação obrigatória fornecida pelo consumidor, exibida em largura total dentro do corpo.",
+    "className": "Classe adicional para a raiz do componente."
+  },
+  "platforms": {
+    "text": "Os mesmos dados de linha são mapeados para `TransactionFooterRow` no SwiftUI e `OceanTransactionFooterItem` no Compose."
+  },
+  "rules": [
+    "Use Footer na parte inferior de uma tela móvel de pagamento; a tela é responsável pelo posicionamento fixo e pela área segura.",
+    "As linhas contêm rótulo, valor e informação opcional abaixo do valor. Use mainItem e details de forma independente; o componente nunca transforma o primeiro detalhe em linha principal.",
+    "Use no máximo quatro detalhes como regra para a tela. Footer renderiza todos os itens recebidos.",
+    "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após a linha principal quando há detalhes e antes do total quando existem linhas acima.",
+    "O aviso permanece separado do corpo, e o corpo se sobrepõe a ele.",
+    "Use o componente Ocean de ação para a ação obrigatória."
+  ]
+}

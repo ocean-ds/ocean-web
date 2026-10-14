@@ -1,0 +1,167 @@
+{
+  "breadcrumb": ["Components", "Transaction Summary"],
+  "description": "Footer and Aside components compose totals and payment summaries.",
+  "lastUpdated": "Last updated {date}",
+  "toc": "On this page",
+  "documentation": "Documentation",
+  "page": {
+    "title": "Transaction Summary",
+    "status": "Beta",
+    "library": "Ocean Core"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility"
+  },
+  "guidelines": {
+    "overview": {
+      "title": "Overview",
+      "text": "Transaction Summary groups the amount a person is about to pay with the action that confirms it. A realistic payment review can show a Subtotal, installment details, a Total, and a Continue action in one clear block.",
+      "whenToUse": "When to use",
+      "whenToUseItems": [
+        "Use Footer (`TransactionFooter`) at the end of mobile payment screens.",
+        "Use Aside (`TransactionSummary`) in the side column of desktop payment screens."
+      ],
+      "whenNotToUse": "When not to use",
+      "whenNotToUseItems": [
+        "Do not use Footer or Aside for editable payment choices; use the relevant selection or settings component instead.",
+        "Do not use these components for a long transaction history; use Transaction List instead."
+      ],
+      "variants": "Variants",
+      "variantTable": {
+        "columns": ["Variant", "Purpose"]
+      },
+      "footerName": "Footer",
+      "asideName": "Aside",
+      "variantRows": {
+        "footer": "Mobile total and primary action.",
+        "aside": "Desktop payment summary with the action outside the card."
+      }
+    },
+    "formatting": {
+      "title": "Formatting",
+      "anatomy": "Anatomy",
+      "anatomyTable": {
+        "columns": ["#", "Element", "Required", "Notes"],
+        "rows": [
+          [
+            "Notice",
+            "Optional",
+            "Footer: above the body; Aside: below the card. In both, the body/card overlaps 16px of the notice."
+          ],
+          ["Main item", "Optional", "Default density for the primary amount."],
+          [
+            "Details",
+            "Optional",
+            "Compact density; use no more than four as a screen rule."
+          ],
+          ["Total", "Required", "Default density and final amount."],
+          ["Action", "Required", "Primary action for the payment screen."]
+        ]
+      },
+      "density": {
+        "title": "Density",
+        "text": "Use Default density for the main item and total. Details use Compact density so supporting amounts remain scannable.",
+        "table": {
+          "columns": ["Element", "Density"],
+          "rows": ["Main item|Default", "Details|Compact", "Total|Default"]
+        }
+      }
+    },
+    "content": {
+      "title": "Content",
+      "text": "Write one clear piece of information per row. Keep labels short, format values for the user's locale, and place optional information below the value instead of adding another sentence to the label.",
+      "writingItems": [
+        "Use a specific label such as **Subtotal**, **Installments**, or **Total**.",
+        "Format monetary values consistently and keep the total visually decisive.",
+        "Use `info` for a short supporting line below a main item or detail value; the total has no `info`.",
+        "The notice description is required. Its title and solid check-circle icon are optional.",
+        "In normal use, always pass a title to Aside (`TransactionSummary`), such as **Payment summary**. Omitting it is an exception."
+      ],
+      "doDontTitle": "Do / Don't",
+      "doDontItems": [
+        "Do place supporting information in `info`, below the value, so the label remains easy to scan.",
+        "Don't combine the value and supporting information in one value string; that makes the row harder to scan."
+      ]
+    },
+    "behaviors": {
+      "title": "Behaviors",
+      "text": "Rows, notices, titles, and variants are independent. The component keeps the same reading order as elements are added or omitted.",
+      "table": {
+        "columns": ["State", "When", "Appearance"],
+        "rows": [
+          "With notice|A supporting message is needed|The amount block overlaps 16px of the notice.",
+          "Without notice|No supporting message is needed|The amount block starts at the top.",
+          "With main item|A primary amount should be shown|Main item uses Default density.",
+          "Without main item|Only details explain the amount|Details remain independent.",
+          "With details|More than one amount needs explanation|Details use Compact density and dividers only where rows exist.",
+          "Without details|Only the primary amount and total are needed|No empty detail region is rendered.",
+          "Aside with title|Normal desktop use|Title appears above the card.",
+          "Aside without title|An intentional title-less exception|No header element is rendered.",
+          "Default|The standard total presentation is needed|Default surface and borders are used.",
+          "Highlight|The amount block needs emphasis|Highlight surface is used."
+        ]
+      }
+    },
+    "related": {
+      "title": "Related",
+      "footer": {
+        "title": "Footer",
+        "text": "Use Footer for totals at the end of mobile payment screens.",
+        "link": "Footer Overview"
+      },
+      "aside": {
+        "title": "Aside",
+        "text": "Use Aside for the payment summary in a desktop side column.",
+        "link": "Aside Overview"
+      }
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Suggest improvements through the [Ocean Web repository](https://github.com/ocean-ds/ocean-web)."
+    }
+  },
+  "specs": {
+    "tokens": {
+      "title": "Tokens and colors",
+      "text": "Use Ocean tokens for surfaces, text, dividers, spacing, and radius.",
+      "table": {
+        "columns": ["Part", "Color or token", "Use"]
+      },
+      "rows": [
+        "Body|colorInterfaceLightPure|Footer Default",
+        "Card|colorInterfaceLightUp|Footer Highlight and Aside",
+        "Text|colorInterfaceDarkDeep|Rows and notice text",
+        "Divider|colorInterfaceLightDown|Footer Default top border and row dividers",
+        "Notice icon|20px|No token",
+        "Notice|colorStatusPositiveUp + colorStatusPositiveDeep at 12%|Notice background"
+      ]
+    },
+    "typography": {
+      "title": "Typography",
+      "text": "Row labels use Regular 14 and values use SemiBold 14. Optional info follows the Transaction List amount.info style: captionbold with $font-size-xxxs, $font-weight-medium, $line-height-comfy, and $color-interface-dark-down; keep $spacing-inline-xxxs between the value and info. Total label and value use Bold 16; notice title uses ExtraBold 14 and description Regular 12."
+    },
+    "spacing": {
+      "title": "Spacing",
+      "text": "Use 8px between the notice icon and text, 4px between notice title and description, 8px of vertical padding around details, and 16px for the notice overlap and action spacing."
+    },
+    "structure": {
+      "title": "Structure",
+      "footer": "Footer",
+      "footerText": "The notice sits above the body. Its solid 20 × 20 check-circle stays vertically centered with or without a title. Default has a 1px top border on the body; Highlight has 12px top corners on the body. The root has no background.",
+      "summary": "Aside",
+      "summaryText": "The light-up card with 12px radius sits above the action. The optional title appears only when passed, and the required action stays outside the card."
+    }
+  },
+  "accessibility": {
+    "requirements": {
+      "title": "Requirements",
+      "items": [
+        "Keep row labels and values in a meaningful reading order.",
+        "The notice description remains available as text when its icon is hidden.",
+        "Treat the decorative default notice icon as hidden from assistive technology."
+      ]
+    }
+  }
+}

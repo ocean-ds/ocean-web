@@ -1,40 +1,68 @@
 import React from 'react';
 import classNames from 'classnames';
+import TransactionSummaryContent from '../_shared/components/TransactionSummaryContent';
+import TransactionNotice, {
+  TransactionNoticeProps,
+} from '../_shared/components/TransactionNotice';
+import type { TransactionRow } from '../_shared/components/TransactionSummaryContent';
 
-export type TransactionFooterVariant = 'default' | 'highlight';
+export type TransactionFooterType = 'default' | 'highlight';
 
 export type TransactionFooterProps = {
-  /**
-   * A variante visual do rodapé.
-   * `default` mantém o fundo neutro (`colorInterfaceLightPure`) com cantos retos;
-   * `highlight` aplica o fundo `colorInterfaceLightUp` e arredonda os cantos
-   * superiores em 16px, sem alterar as dimensões externas do bloco.
-   * @default 'default'
-   */
-  variant?: TransactionFooterVariant;
-  /**
-   * O conteúdo do rodapé — linhas de resumo (benefício → custo → total), divisor
-   * e botões. A composição e a ordem das linhas são responsabilidade do consumidor.
-   */
-  children: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'div'>;
+  type?: TransactionFooterType;
+  notice?: TransactionNoticeProps;
+  mainItem?: TransactionRow;
+  details?: TransactionRow[];
+  total: TransactionRow;
+  action: React.ReactNode;
+  className?: string;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 const TransactionFooter = React.forwardRef<
   HTMLDivElement,
   TransactionFooterProps
->(({ variant = 'default', className, children, ...rest }, ref) => (
-  <div
-    ref={ref}
-    className={classNames(
-      'ods-transaction-footer',
-      `ods-transaction-footer--${variant}`,
-      className
-    )}
-    {...rest}
-  >
-    {children}
-  </div>
-));
+>(
+  (
+    {
+      type = 'default',
+      notice,
+      mainItem,
+      details,
+      total,
+      action,
+      className,
+      ...rest
+    },
+    ref
+  ) => (
+    <div
+      ref={ref}
+      className={classNames('ods-transaction-footer-v2', className)}
+      {...rest}
+    >
+      {notice != null && (
+        <TransactionNotice
+          className="ods-transaction-footer-v2__notice"
+          notice={notice}
+        />
+      )}
+      <div
+        className={classNames(
+          'ods-transaction-footer-v2__body',
+          `ods-transaction-footer-v2__body--${type}`
+        )}
+      >
+        <TransactionSummaryContent
+          classPrefix="ods-transaction-footer-v2"
+          mainItem={mainItem}
+          details={details}
+          total={total}
+        />
+        <div className="ods-transaction-footer-v2__action">{action}</div>
+      </div>
+    </div>
+  )
+);
 
 TransactionFooter.displayName = 'TransactionFooter';
 

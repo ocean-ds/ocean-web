@@ -1,0 +1,61 @@
+{
+  "overview": "A mobile payment footer with an optional main row, optional details, a required total, an optional notice and a full-width action.",
+  "sections": {
+    "options": "Options",
+    "default": {
+      "title": "Default",
+      "text": "The default body uses a white surface; the root itself has no background."
+    },
+    "highlight": {
+      "title": "Highlight",
+      "text": "The highlight body uses the light-up surface."
+    }
+  },
+  "options": {
+    "notice": {
+      "title": "Notice",
+      "text": "The description is required; the title and icon are optional."
+    },
+    "notice-title-icon": {
+      "title": "Notice title and icon",
+      "text": "A solid check-circle is the recommended icon. Pass null to hide it."
+    },
+    "main-item-only": {
+      "title": "Main item only",
+      "text": "The main item is independent from details and uses default density."
+    },
+    "details-only": {
+      "title": "Details only",
+      "text": "Details can be shown without a main item and use compact density."
+    },
+    "four-details": {
+      "title": "Four details",
+      "text": "Use up to four details as a screen-level rule; the component renders every supplied detail."
+    },
+    "additional-info": {
+      "title": "Additional info",
+      "text": "Optional info appears below the row value and aligns to the right."
+    }
+  },
+  "api": {
+    "intro": "The component receives label/value rows in separate mainItem and details roles. It renders all supplied details and leaves behavior to the consumer.",
+    "type": "Body appearance. `default` is white; `highlight` uses the light-up surface.",
+    "mainItem": "Optional label/value row with optional info below the value, using default density. It is never inferred from the first detail.",
+    "details": "Optional label/value rows with optional info below the value, using compact density. Use at most four as a screen-level rule; the component does not truncate the list.",
+    "total": "Required label/value row in bold. A divider precedes it whenever a main item or details are present.",
+    "notice": "Optional structured notice. Description is required; title is optional. A solid check-circle is recommended; `icon={null}` hides it.",
+    "action": "Required consumer-provided action, rendered full width inside the body.",
+    "className": "Additional class name for the component root."
+  },
+  "platforms": {
+    "text": "The same row data maps to `TransactionFooterRow` in SwiftUI and `OceanTransactionFooterItem` in Compose."
+  },
+  "rules": [
+    "Use Footer at the bottom of a mobile payment screen; the screen owns sticky positioning and safe-area insets.",
+    "Rows contain a label, value, and optional info below the value. Use mainItem and details independently; the component never promotes the first detail to main.",
+    "Use no more than four details as a screen-level usage rule. Footer renders every item it receives.",
+    "Main and total use default density; details use compact density. Dividers appear after a main item when details follow and before total whenever rows are above it.",
+    "The notice remains separate from the body, and the body overlaps it.",
+    "Use the Ocean action component for the required action."
+  ]
+}

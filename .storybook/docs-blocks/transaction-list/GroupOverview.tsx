@@ -1,9 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import { Unstyled } from '@storybook/blocks';
-import Breadcrumb from '../../../packages/ocean-react/src/Breadcrumb';
 import Link from '../../../packages/ocean-react/src/Link';
-import Tag from '../../../packages/ocean-react/src/Tag';
-import Typography from '../../../packages/ocean-react/src/Typography';
 import TransactionListReadOnly from '../../../packages/ocean-react/src/TransactionListReadOnly';
 import TransactionListAction from '../../../packages/ocean-react/src/TransactionListAction';
 import TransactionListSelectable from '../../../packages/ocean-react/src/TransactionListSelectable';
@@ -14,15 +10,14 @@ import {
   Anatomy,
   DoDont,
   DocTable,
-  OnThisPage,
   Section,
   Stage,
   Subsection,
   Swatch,
-  Tabs,
   c,
   tokenValue,
 } from '../blocks';
+import { GroupOverviewFrame } from '../GroupOverviewFrame';
 import { Screen } from '../doc-parts';
 import { LocaleFiles, Md, Translate, useTranslate } from '../i18n';
 import {
@@ -61,12 +56,6 @@ const LOCALES: LocaleFiles[] = [
   { en: common, pt: commonPt },
   { en, pt } as unknown as LocaleFiles,
 ];
-
-const formatDate = (iso: string, locale: string) =>
-  new Date(`${iso}T12:00:00Z`).toLocaleDateString(
-    locale === 'pt' ? 'pt-BR' : 'en-US',
-    { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }
-  );
 
 const docsId = (component: string) =>
   `components-lists-transaction-list-transaction-list-${component}--overview`;
@@ -961,77 +950,20 @@ export const GroupOverview = (): React.ReactElement => {
   useEffect(() => window.scrollTo?.(0, 0), []);
 
   return (
-    <Unstyled>
-      <div className="odoc">
-        <div className="odoc-band">
-          <div className="odoc-band__inner">
-            <header className="odoc-header">
-              <div>
-                <Breadcrumb items={t.list('breadcrumb')} />
-                <Typography variant="heading1" className="odoc-header__title">
-                  {PAGE.title}
-                </Typography>
-                <div className="odoc-header__meta">
-                  <Tag
-                    variant="highlight"
-                    type="neutral"
-                    size="medium"
-                    setIconOff
-                  >
-                    {PAGE.status}
-                  </Tag>
-                  <span>
-                    {t('lastUpdated').replace(
-                      '{date}',
-                      formatDate(PAGE.lastUpdated, t.locale)
-                    )}
-                  </span>
-                </div>
-                <Typography variant="lead" className="odoc-header__description">
-                  {t('description')}
-                </Typography>
-              </div>
-              <aside className="odoc-panel" aria-label={t('componentDetails')}>
-                <div>
-                  <span className="odoc-panel__label">{t('library')}</span>
-                  <span className="odoc-panel__value">{PAGE.library}</span>
-                </div>
-                <Link
-                  href={PAGE.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  icon="externalLink"
-                >
-                  GitHub
-                </Link>
-              </aside>
-            </header>
-          </div>
-        </div>
-        <div className="odoc-tabbar">
-          <Tabs
-            label={t('documentation')}
-            tabs={(Object.keys(TOC) as TabId[]).map((id) => ({
-              id,
-              label: t(`tabs.${id}`),
-            }))}
-            active={tab}
-            onChange={(id) => setTab(id as TabId)}
-          />
-        </div>
-        <div className="odoc-body">
-          <div role="tabpanel" aria-labelledby={`odoc-tab-${tab}`}>
-            {tab === 'guidelines' && <Guidelines t={t} />}
-            {tab === 'specs' && <Specs t={t} />}
-            {tab === 'accessibility' && <Accessibility t={t} />}
-          </div>
-          <OnThisPage
-            key={`${tab}-${t.locale}`}
-            title={t('toc')}
-            items={TOC[tab].map(([id, key]) => ({ id, label: t(key) }))}
-          />
-        </div>
-      </div>
-    </Unstyled>
+    <GroupOverviewFrame
+      t={t}
+      page={PAGE}
+      activeTab={tab}
+      tabs={Object.keys(TOC)}
+      onTabChange={(id) => setTab(id as TabId)}
+      content={
+        <>
+          {tab === 'guidelines' && <Guidelines t={t} />}
+          {tab === 'specs' && <Specs t={t} />}
+          {tab === 'accessibility' && <Accessibility t={t} />}
+        </>
+      }
+      tocItems={TOC[tab].map(([id, key]) => ({ id, label: t(key) }))}
+    />
   );
 };

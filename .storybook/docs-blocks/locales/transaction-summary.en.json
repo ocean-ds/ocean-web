@@ -1,0 +1,48 @@
+{
+  "overview": "A desktop side-column summary with a title, optional main row and details, a required total, an optional notice and a required action.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Always pass a title in normal use, such as “Payment summary”. Omitting it is an exception."
+    }
+  },
+  "options": {
+    "without-title": {
+      "title": "Without title",
+      "text": "Omitting the title is an exception when the surrounding screen already identifies the summary."
+    },
+    "notice": {
+      "title": "With notice",
+      "text": "The notice is optional and remains separate from the card."
+    },
+    "details-only": {
+      "title": "Details only",
+      "text": "Details can be supplied without a main item; the component renders every supplied detail."
+    }
+  },
+  "api": {
+    "intro": "Transaction Summary is available on Web only and uses separate mainItem, details and total roles.",
+    "title": "Optional title rendered above the card only when supplied. In normal use, always pass a title such as “Payment summary”; omitting it is an exception.",
+    "mainItem": "Optional label/value row with optional info below the value, using default density. It is never inferred from the first detail.",
+    "details": "Optional label/value rows with optional info below the value, using compact density. Use at most four as a screen-level rule; the component renders all supplied details.",
+    "total": "Required label/value row. A divider precedes it whenever a main item or details are present.",
+    "notice": "Optional structured notice. Description is required; title is optional. A solid check-circle is recommended; `icon={null}` hides it.",
+    "action": "Required action rendered full width outside the card.",
+    "className": "Additional class name for the component root."
+  },
+  "platforms": {
+    "platform": "Platform",
+    "type": "Availability",
+    "react": "Available as `TransactionSummary`.",
+    "ios": "Not available; use the mobile Transaction Footer at the bottom of the payment screen.",
+    "android": "Not available; use the mobile Transaction Footer at the bottom of the payment screen."
+  },
+  "rules": [
+    "Use Summary in the side column of a desktop payment screen; Footer is the mobile component.",
+    "Rows contain a label, value, and optional info below the value. Use mainItem and details independently; the first detail is not promoted to main.",
+    "Use no more than four details as a screen-level rule. Summary renders every detail it receives.",
+    "Main and total use default density; details use compact density. Dividers appear after main when details follow and before total whenever rows are above it.",
+    "The card is always light-up and overlaps the notice below it.",
+    "Keep the required action outside the card and notice."
+  ]
+}

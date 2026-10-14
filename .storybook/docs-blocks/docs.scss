@@ -4,7 +4,8 @@
 
 // Layout measures with no Ocean token, composed from spacing tokens.
 $doc-frame-width: $spacing-inline-xxxl * 4 + $spacing-inline-lg; // mobile frame
-$doc-aside-width: $spacing-inline-xxxl * 3; // "On this page"
+$doc-aside-width: $doc-frame-width - $spacing-inline-xxs-extra; // TransactionSummary example
+$doc-toc-width: $spacing-inline-xxxl * 3; // "On this page"
 $doc-panel-width: $spacing-inline-xxxl * 4; // header side panel
 $doc-max-width: $spacing-inline-xxxl * 16;
 $doc-wide: $spacing-inline-xxxl * 13; // above: side nav and side panel
@@ -147,7 +148,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   padding: $spacing-stack-lg $spacing-inline-lg $spacing-stack-xxxl;
 
   @media (min-width: $doc-wide) {
-    grid-template-columns: minmax(0, 1fr) $doc-aside-width;
+    grid-template-columns: minmax(0, 1fr) $doc-toc-width;
   }
 }
 
@@ -636,6 +637,24 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   padding-bottom: $spacing-stack-xs;
 }
 
+.odoc-footer-surface {
+  max-width: 100%;
+  width: $doc-frame-width;
+}
+
+.odoc-footer-swatch {
+  padding: $spacing-inline-sm;
+  width: calc($doc-frame-width + 2 * $spacing-inline-sm);
+}
+
+.odoc-footer-swatch--default {
+  background: $color-interface-light-up;
+}
+
+.odoc-footer-swatch--highlight {
+  background: $color-interface-light-pure;
+}
+
 .odoc-example {
   border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-sm;
@@ -676,6 +695,15 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
     border-radius: 0;
     margin: 0;
   }
+}
+
+.odoc-example--footer {
+  border-color: transparent;
+}
+
+.odoc-example--footer .odoc-example__bar,
+.odoc-example--footer .odoc-example__caption {
+  border-top-color: transparent;
 }
 
 .odoc-callout {
@@ -826,6 +854,17 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   padding: $spacing-stack-xl $spacing-inline-lg;
 }
 
+.odoc-canvas--white,
+.odoc-example__stage.odoc-canvas--white {
+  background: $color-interface-light-pure;
+}
+
+.odoc-canvas--aside .ods-transaction-summary {
+  margin: 0 auto;
+  max-width: $doc-aside-width;
+  width: 100%;
+}
+
 .odoc-dodont__code {
   margin-top: $spacing-stack-xs;
 
@@ -874,8 +913,47 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   padding: 0;
 }
 
+.odoc-canvas--footer-default,
+.odoc-example__stage.odoc-canvas--footer-default,
+.odoc-stage__surface.odoc-canvas--footer-default,
+.odoc-anatomy.odoc-canvas--footer-default,
+.odoc-dodont__example.odoc-canvas--footer-default {
+  background: $color-interface-light-up;
+}
+
+.odoc-canvas--footer-highlight,
+.odoc-example__stage.odoc-canvas--footer-highlight,
+.odoc-stage__surface.odoc-canvas--footer-highlight,
+.odoc-anatomy.odoc-canvas--footer-highlight,
+.odoc-dodont__example.odoc-canvas--footer-highlight {
+  background: $color-interface-light-pure;
+}
+
+.odoc-canvas.odoc-canvas--footer-default,
+.odoc-canvas.odoc-canvas--footer-highlight {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.odoc-matrix--footer {
+  grid-template-columns: ($spacing-inline-xxxl + $spacing-inline-lg) repeat(
+      var(--odoc-columns),
+      calc($doc-frame-width + 2 * $spacing-inline-sm)
+    );
+}
+
 .odoc-visual-root {
   align-items: center;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.odoc-visual-root--transaction-summary {
+  background: $color-interface-light-pure;
+}
+
+.odoc-visual-root--transaction-summary.odoc-canvas--white {
+  background: $color-interface-light-pure;
 }
