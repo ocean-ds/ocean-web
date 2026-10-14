@@ -29,21 +29,21 @@ export const footerArgTypes: Record<string, ApiArgType> = {
   ),
   mainItem: prop(
     'mainItem',
-    'TransactionRow',
+    'TransactionSummaryItem | TransactionRow',
     'Transaction Footer',
     undefined,
     'object'
   ),
   details: prop(
     'details',
-    'TransactionRow[]',
+    '(TransactionSummaryItem | TransactionRow)[]',
     'Transaction Footer',
     '[]',
     'object'
   ),
   total: prop(
     'total',
-    'TransactionRow',
+    'TransactionTotal',
     'Transaction Footer',
     undefined,
     'object'
@@ -63,21 +63,21 @@ export const summaryArgTypes: Record<string, ApiArgType> = {
   title: prop('title', 'ReactNode', 'Transaction Summary', undefined, 'text'),
   mainItem: prop(
     'mainItem',
-    'TransactionRow',
+    'TransactionSummaryItem | TransactionRow',
     'Transaction Summary',
     undefined,
     'object'
   ),
   details: prop(
     'details',
-    'TransactionRow[]',
+    '(TransactionSummaryItem | TransactionRow)[]',
     'Transaction Summary',
     '[]',
     'object'
   ),
   total: prop(
     'total',
-    'TransactionRow',
+    'TransactionTotal',
     'Transaction Summary',
     undefined,
     'object'

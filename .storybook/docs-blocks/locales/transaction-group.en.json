@@ -71,11 +71,11 @@
     },
     "content": {
       "title": "Content",
-      "text": "Write one clear piece of information per row. Keep labels short, format values for the user's locale, and place optional information below the value instead of adding another sentence to the label.",
+      "text": "Each row is Transaction List Read Only, with `content` (title and description) and `amount` (value and states). The main item uses Default density; details use Compact.",
       "writingItems": [
-        "Use a specific label such as **Subtotal**, **Installments**, or **Total**.",
+        "Use a specific `content` title such as **Subtotal** or **Installments**, and keep the total separate.",
         "Format monetary values consistently and keep the total visually decisive.",
-        "Use `info` for a short supporting line below a main item or detail value; the total has no `info`.",
+        "Use `amount.info` for supporting text below a value and `amount.tag` for a tag. `amount.type` accepts default, positive, negative, inactive, strikethrough, and strikethrough-neutral; use `strikethroughValue` for the original value.",
         "The notice description is required. Its title and solid check-circle icon are optional.",
         "In normal use, always pass a title to Aside (`TransactionSummary`), such as **Payment summary**. Omitting it is an exception."
       ],
@@ -140,7 +140,7 @@
     },
     "typography": {
       "title": "Typography",
-      "text": "Row labels use Regular 14 and values use SemiBold 14. Optional info follows the Transaction List amount.info style: captionbold with $font-size-xxxs, $font-weight-medium, $line-height-comfy, and $color-interface-dark-down; keep $spacing-inline-xxxs between the value and info. Total label and value use Bold 16; notice title uses ExtraBold 14 and description Regular 12."
+      "text": "Each row uses Transaction List Read Only (`content` + `amount`): Default for the main item and Compact for details. The title uses Regular 14 and the value SemiBold 14. `amount.type` accepts default, positive, negative, inactive, strikethrough, and strikethrough-neutral; `strikethroughValue` shows the original value struck through, `tag` appears below the value, and `info` follows captionbold with $font-size-xxxs, $font-weight-medium, $line-height-comfy, and $color-interface-dark-down. Total label and value remain Bold 16."
     },
     "spacing": {
       "title": "Spacing",

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import TransactionSummary from '../TransactionSummary';
+import type { TransactionSummaryItem } from '../index';
 
 const mainItem = { label: 'Subtotal', value: 'R$ 1.250,00' };
 const details = [
@@ -166,10 +167,67 @@ test('renders additional info under main and detail values', () => {
     />
   );
 
-  expect(screen.getByText('sem acréscimo')).toHaveClass(
-    'ods-transaction-summary__row-info'
+  expect(screen.getByText('sem acréscimo')).toBeInTheDocument();
+  expect(screen.getByText('Sem acréscimo')).toBeInTheDocument();
+});
+
+test('renders new content and amount props through Transaction List Read Only', () => {
+  const item: TransactionSummaryItem = {
+    content: {
+      title: 'Installments',
+      description: 'Five monthly payments',
+      inverted: false,
+    },
+    amount: {
+      value: '$24.00',
+      type: 'strikethrough',
+      strikethroughValue: '$30.00',
+      info: 'No additional fees',
+      tag: { label: 'Scheduled', type: 'complementary' },
+    },
+  };
+
+  render(
+    <TransactionSummary
+      title="Payment summary"
+      mainItem={item}
+      details={[
+        {
+          content: { title: 'Neutral adjustment', inverted: false },
+          amount: {
+            value: '$20.00',
+            type: 'strikethrough-neutral',
+            strikethroughValue: '$25.00',
+          },
+        },
+      ]}
+      total={total}
+      action={action}
+      data-testid="summary"
+    />
   );
-  expect(screen.getByText('Sem acréscimo')).toHaveClass(
-    'ods-transaction-summary__row-info'
+
+  const summary = screen.getByTestId('summary');
+  const rows = summary.querySelectorAll('.ods-transaction-summary__row');
+
+  expect(rows).toHaveLength(2);
+  expect(rows[0]).not.toHaveClass('ods-transaction-list--compact');
+  expect(rows[1]).toHaveClass('ods-transaction-list--compact');
+  expect(screen.getByText('Five monthly payments')).toBeInTheDocument();
+  expect(screen.getByText('$24.00')).toBeInTheDocument();
+  expect(screen.getByText('$30.00')).toHaveClass(
+    'ods-amount-details__strikethrough'
   );
+  expect(screen.getByText('$20.00')).toBeInTheDocument();
+  expect(screen.getByText('$25.00')).toHaveClass(
+    'ods-amount-details__strikethrough'
+  );
+  expect(screen.getByText('No additional fees')).toBeInTheDocument();
+  expect(screen.getByText('Scheduled')).toBeInTheDocument();
+  rows.forEach((row) => {
+    expect(row.querySelector('.ods-transaction-list__divider')).toBeNull();
+  });
+  expect(
+    summary.querySelectorAll('.ods-transaction-list__divider')
+  ).toHaveLength(2);
 });

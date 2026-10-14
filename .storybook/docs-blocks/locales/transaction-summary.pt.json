@@ -23,8 +23,8 @@
   "api": {
     "intro": "Transaction Summary está disponível somente na Web e usa os papéis separados mainItem, details e total.",
     "title": "Título opcional exibido acima do card somente quando informado. No uso normal, sempre informe um título, como “Resumo do pagamento”; omiti-lo é uma exceção.",
-    "mainItem": "Linha opcional de rótulo e valor, com informação opcional abaixo do valor, em densidade padrão. Ela nunca é inferida do primeiro detalhe.",
-    "details": "Linhas opcionais de rótulo e valor, com informação opcional abaixo do valor, em densidade compacta. Use no máximo quatro como regra para a tela; o componente renderiza todos os detalhes recebidos.",
+    "mainItem": "Item opcional de Transaction List Read Only (`content` + `amount`) em densidade Default. Ele nunca é inferido do primeiro detalhe.",
+    "details": "Itens opcionais de Transaction List Read Only (`content` + `amount`) em densidade Compact. Use no máximo quatro como regra para a tela; o componente renderiza todos os detalhes recebidos.",
     "total": "Linha obrigatória de rótulo e valor. Há divisor antes dela quando existem linha principal ou detalhes.",
     "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. O check-circle sólido é o ícone recomendado; `icon={null}` o oculta.",
     "action": "Ação obrigatória em largura total fora do card.",
@@ -39,9 +39,9 @@
   },
   "rules": [
     "Use Summary na coluna lateral de uma tela desktop; Footer é o componente móvel.",
-    "As linhas contêm rótulo, valor e informação opcional abaixo do valor. Use mainItem e details de forma independente; o primeiro detalhe não é promovido a principal.",
+    "Cada linha é um Transaction List Read Only: `content` aceita título e descrição; `amount` aceita valor, tipo default/positive/negative/inactive/strikethrough/strikethrough-neutral, valor riscado, tag e info. Use mainItem e details de forma independente; o primeiro detalhe não é promovido a principal.",
     "Use no máximo quatro detalhes como regra para a tela. Summary renderiza todos os detalhes recebidos.",
-    "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após main quando há detalhes e antes do total quando existem linhas acima.",
+    "O item principal usa densidade Default e os detalhes usam Compact. As linhas não têm divisor interno; os divisores de grupo aparecem após main quando há detalhes e antes do total quando existem linhas acima.",
     "O card é sempre light-up e se sobrepõe ao aviso abaixo dele.",
     "Mantenha a ação obrigatória fora do card e do aviso."
   ]

@@ -38,10 +38,10 @@
     }
   },
   "api": {
-    "intro": "The component receives label/value rows in separate mainItem and details roles. It renders all supplied details and leaves behavior to the consumer.",
+    "intro": "Each row uses Transaction List Read Only, with `content` on the left and `amount` on the right. Footer renders all supplied details and leaves business behavior to the consumer.",
     "type": "Body appearance. `default` is white; `highlight` uses the light-up surface.",
-    "mainItem": "Optional label/value row with optional info below the value, using default density. It is never inferred from the first detail.",
-    "details": "Optional label/value rows with optional info below the value, using compact density. Use at most four as a screen-level rule; the component does not truncate the list.",
+    "mainItem": "Optional Transaction List Read Only item (`content` + `amount`) using Default density. It is never inferred from the first detail.",
+    "details": "Optional Transaction List Read Only items (`content` + `amount`) using Compact density. Use at most four as a screen-level rule; the component does not truncate the list.",
     "total": "Required label/value row in bold. A divider precedes it whenever a main item or details are present.",
     "notice": "Optional structured notice. Description is required; title is optional. A solid check-circle is recommended; `icon={null}` hides it.",
     "action": "Required consumer-provided action, rendered full width inside the body.",
@@ -52,9 +52,9 @@
   },
   "rules": [
     "Use Footer at the bottom of a mobile payment screen; the screen owns sticky positioning and safe-area insets.",
-    "Rows contain a label, value, and optional info below the value. Use mainItem and details independently; the component never promotes the first detail to main.",
+    "Each row is Transaction List Read Only: `content` accepts a title and description; `amount` accepts a value, default/positive/negative/inactive/strikethrough/strikethrough-neutral type, struck-through value, tag, and info. Use mainItem and details independently; the first detail is never promoted to main.",
     "Use no more than four details as a screen-level usage rule. Footer renders every item it receives.",
-    "Main and total use default density; details use compact density. Dividers appear after a main item when details follow and before total whenever rows are above it.",
+    "The main item uses Default density and details use Compact. Rows have no internal divider; group dividers appear after main when details follow and before total whenever rows are above it.",
     "The notice remains separate from the body, and the body overlaps it.",
     "Use the Ocean action component for the required action."
   ]

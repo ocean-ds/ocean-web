@@ -38,10 +38,10 @@
     }
   },
   "api": {
-    "intro": "O componente React recebe linhas de rótulo e valor em papéis separados: mainItem e details. Todos os detalhes recebidos são renderizados; o comportamento de negócio fica com quem consome.",
+    "intro": "Cada linha usa Transaction List Read Only, com `content` à esquerda e `amount` à direita. O Footer renderiza todos os detalhes recebidos; o comportamento de negócio fica com quem consome.",
     "type": "Aparência do corpo. `default` é branco; `highlight` usa light-up.",
-    "mainItem": "Linha opcional de rótulo e valor, com informação opcional abaixo do valor, em densidade padrão. Ela nunca é inferida do primeiro detalhe.",
-    "details": "Lista opcional de linhas de rótulo e valor, com informação opcional abaixo do valor, em densidade compacta. Use no máximo quatro como regra para a tela; o componente não corta a lista.",
+    "mainItem": "Item opcional de Transaction List Read Only (`content` + `amount`) em densidade Default. Ele nunca é inferido do primeiro detalhe.",
+    "details": "Lista opcional de itens de Transaction List Read Only (`content` + `amount`) em densidade Compact. Use no máximo quatro como regra para a tela; o componente não corta a lista.",
     "total": "Linha obrigatória de rótulo e valor em negrito. Há divisor antes dela quando existem linha principal ou detalhes.",
     "notice": "Aviso estruturado opcional. A descrição é obrigatória; o título é opcional. O check-circle sólido é o ícone recomendado; `icon={null}` o oculta.",
     "action": "Ação obrigatória fornecida pelo consumidor, exibida em largura total dentro do corpo.",
@@ -52,9 +52,9 @@
   },
   "rules": [
     "Use Footer na parte inferior de uma tela móvel de pagamento; a tela é responsável pelo posicionamento fixo e pela área segura.",
-    "As linhas contêm rótulo, valor e informação opcional abaixo do valor. Use mainItem e details de forma independente; o componente nunca transforma o primeiro detalhe em linha principal.",
+    "Cada linha é um Transaction List Read Only: `content` aceita título e descrição; `amount` aceita valor, tipo default/positive/negative/inactive/strikethrough/strikethrough-neutral, valor riscado, tag e info. Use mainItem e details de forma independente; o primeiro detalhe nunca vira linha principal.",
     "Use no máximo quatro detalhes como regra para a tela. Footer renderiza todos os itens recebidos.",
-    "Linha principal e total usam densidade padrão; detalhes usam densidade compacta. Os divisores aparecem após a linha principal quando há detalhes e antes do total quando existem linhas acima.",
+    "O item principal usa densidade Default e os detalhes usam Compact. As linhas não têm divisor interno; os divisores de grupo aparecem após o item principal quando há detalhes e antes do total quando existem linhas acima.",
     "O aviso permanece separado do corpo, e o corpo se sobrepõe a ele.",
     "Use o componente Ocean de ação para a ação obrigatória."
   ]

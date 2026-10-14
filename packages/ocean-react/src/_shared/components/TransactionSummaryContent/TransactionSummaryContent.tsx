@@ -1,18 +1,33 @@
 import React from 'react';
-import { TransactionListDivider } from '../TransactionListParts';
-import Typography from '../../../Typography';
+import TransactionListReadOnly from '../../../TransactionListReadOnly';
+import {
+  TransactionListDivider,
+  type ContentListAmountProps,
+  type ContentListDefaultProps,
+} from '../TransactionListParts';
 
+export type TransactionSummaryItem = {
+  content: Omit<ContentListDefaultProps, 'size'>;
+  amount: Omit<ContentListAmountProps, 'size'>;
+};
+
+/** @deprecated Use `TransactionSummaryItem` (`content` + `amount`). */
 export type TransactionRow = {
+  label: string;
+  value: string;
+  info?: string;
+};
+
+export type TransactionTotal = {
   label: React.ReactNode;
   value: React.ReactNode;
-  info?: React.ReactNode;
 };
 
 export type TransactionSummaryContentProps = {
   classPrefix: 'ods-transaction-footer-v2' | 'ods-transaction-summary';
-  mainItem?: TransactionRow;
-  details?: TransactionRow[];
-  total: TransactionRow;
+  mainItem?: TransactionSummaryItem | TransactionRow;
+  details?: Array<TransactionSummaryItem | TransactionRow>;
+  total: TransactionTotal;
 };
 
 const getReactNodeKey = (node: React.ReactNode): string => {
@@ -27,16 +42,52 @@ const getReactNodeKey = (node: React.ReactNode): string => {
   return String(node ?? '');
 };
 
-const getKeyedDetails = (details: TransactionRow[]) => {
+const normalizeItem = (
+  item: TransactionSummaryItem | TransactionRow
+): TransactionSummaryItem => {
+  if ('content' in item) {
+    return item;
+  }
+
+  return {
+    content: { title: item.label },
+    amount: { value: item.value, info: item.info },
+  };
+};
+
+const getKeyedDetails = (
+  details: Array<TransactionSummaryItem | TransactionRow>
+) => {
   const occurrences = new Map<string, number>();
   return details.map((item) => {
-    const baseKey = `${getReactNodeKey(item.label)}-${getReactNodeKey(
-      item.value
-    )}`;
+    const normalized = normalizeItem(item);
+    const baseKey = `${getReactNodeKey(
+      normalized.content.title
+    )}-${getReactNodeKey(normalized.amount.value)}`;
     const occurrence = occurrences.get(baseKey) ?? 0;
     occurrences.set(baseKey, occurrence + 1);
-    return { item, key: `${baseKey}-${occurrence}` };
+    return { item: normalized, key: `${baseKey}-${occurrence}` };
   });
+};
+
+const renderRow = (
+  item: TransactionSummaryItem | TransactionRow,
+  classPrefix: TransactionSummaryContentProps['classPrefix'],
+  density: 'default' | 'compact',
+  key?: string
+): React.ReactElement => {
+  const { content, amount } = normalizeItem(item);
+
+  return (
+    <TransactionListReadOnly
+      key={key}
+      className={`${classPrefix}__row ${classPrefix}__row--${density}`}
+      content={{ inverted: false, ...content, size: 'sm' }}
+      amount={{ ...amount, size: 'sm' }}
+      density={density}
+      showDivider={false}
+    />
+  );
 };
 
 const TransactionSummaryContent = ({
@@ -47,48 +98,13 @@ const TransactionSummaryContent = ({
 }: TransactionSummaryContentProps): React.ReactElement => (
   <>
     <div className={`${classPrefix}__rows`}>
-      {mainItem && (
-        <div className={`${classPrefix}__row ${classPrefix}__row--default`}>
-          <span className={`${classPrefix}__row-label`}>{mainItem.label}</span>
-          <span className={`${classPrefix}__row-value-column`}>
-            <span className={`${classPrefix}__row-value`}>
-              {mainItem.value}
-            </span>
-            {mainItem.info != null && (
-              <Typography
-                variant="captionbold"
-                className={`${classPrefix}__row-info`}
-              >
-                {mainItem.info}
-              </Typography>
-            )}
-          </span>
-        </div>
-      )}
+      {mainItem && renderRow(mainItem, classPrefix, 'default')}
       {mainItem && details.length > 0 && <TransactionListDivider />}
       {details.length > 0 && (
         <div className={`${classPrefix}__details`}>
-          {getKeyedDetails(details).map(({ item, key }) => (
-            <div
-              key={key}
-              className={`${classPrefix}__row ${classPrefix}__row--compact`}
-            >
-              <span className={`${classPrefix}__row-label`}>{item.label}</span>
-              <span className={`${classPrefix}__row-value-column`}>
-                <span className={`${classPrefix}__row-value`}>
-                  {item.value}
-                </span>
-                {item.info != null && (
-                  <Typography
-                    variant="captionbold"
-                    className={`${classPrefix}__row-info`}
-                  >
-                    {item.info}
-                  </Typography>
-                )}
-              </span>
-            </div>
-          ))}
+          {getKeyedDetails(details).map(({ item, key }) =>
+            renderRow(item, classPrefix, 'compact', key)
+          )}
         </div>
       )}
       {(mainItem || details.length > 0) && <TransactionListDivider />}

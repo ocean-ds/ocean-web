@@ -99,57 +99,9 @@
     }
   }
 
-  &__rows,
-  &__row {
+  &__rows {
     box-sizing: border-box;
     width: 100%;
-  }
-
-  &__row {
-    align-items: center;
-    color: $color-interface-dark-deep;
-    display: flex;
-    font-family: $font-family-base;
-    font-size: $font-size-xxs;
-    gap: $spacing-inline-xs;
-    justify-content: space-between;
-    line-height: $line-height-comfy;
-
-    &--default {
-      padding: $spacing-stack-xs;
-    }
-
-    &--compact {
-      padding: $spacing-stack-xxs $spacing-inline-xs;
-    }
-  }
-
-  &__row-label {
-    color: $color-interface-dark-deep;
-    flex: 1;
-    font-weight: $font-weight-regular;
-    min-width: 0;
-  }
-
-  &__row-value {
-    color: $color-interface-dark-deep;
-    flex-shrink: 0;
-    font-weight: $font-weight-medium;
-    text-align: right;
-  }
-
-  &__row-value-column {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-  }
-
-  &__row-info {
-    color: $color-interface-dark-down;
-    margin-top: $spacing-inline-xxxs;
-    text-align: right;
-    white-space: nowrap;
   }
 
   &__details {
@@ -208,55 +160,6 @@
     overflow: hidden;
     position: relative;
     z-index: 1;
-  }
-
-  &__row {
-    align-items: center;
-    box-sizing: border-box;
-    color: $color-interface-dark-deep;
-    display: flex;
-    font-family: $font-family-base;
-    font-size: $font-size-xxs;
-    gap: $spacing-inline-xs;
-    justify-content: space-between;
-    line-height: $line-height-comfy;
-    width: 100%;
-
-    &--default {
-      padding: $spacing-stack-xs;
-    }
-
-    &--compact {
-      padding: $spacing-stack-xxs $spacing-inline-xs;
-    }
-  }
-
-  &__row-label {
-    color: $color-interface-dark-deep;
-    flex: 1;
-    font-weight: $font-weight-regular;
-    min-width: 0;
-  }
-
-  &__row-value {
-    color: $color-interface-dark-deep;
-    flex-shrink: 0;
-    font-weight: $font-weight-medium;
-    text-align: right;
-  }
-
-  &__row-value-column {
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-  }
-
-  &__row-info {
-    color: $color-interface-dark-down;
-    margin-top: $spacing-inline-xxxs;
-    text-align: right;
-    white-space: nowrap;
   }
 
   &__details {
