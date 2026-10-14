@@ -117,7 +117,6 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => {
           canvasClass="odoc-canvas--footer-default"
           frames={[
             {
-              label: g('overview.exampleLabel'),
               content: footerOnCanvas(),
             },
           ]}

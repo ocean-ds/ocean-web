@@ -18,7 +18,6 @@
     "overview": {
       "title": "Visão geral",
       "text": "Transaction Summary reúne o valor que a pessoa está prestes a pagar e a ação que confirma o pagamento. Uma revisão realista pode mostrar Subtotal, detalhes do parcelamento, Total e a ação Continuar em um bloco claro.",
-      "exampleLabel": "Revisão do pagamento",
       "whenToUse": "Quando usar",
       "whenToUseItems": [
         "Use Footer (`TransactionFooter`) no fim de telas de pagamento mobile.",

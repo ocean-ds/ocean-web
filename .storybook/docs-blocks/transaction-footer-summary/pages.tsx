@@ -57,7 +57,7 @@ const summaryExample = (
   rows: [<TransactionSummary key="transaction-summary" {...props} />],
   code,
   unframed: true,
-  canvasClass: 'odoc-canvas--white',
+  canvasClass: 'odoc-canvas--white odoc-canvas--aside',
 });
 
 const mainItem = transactionSummaryMainItem;

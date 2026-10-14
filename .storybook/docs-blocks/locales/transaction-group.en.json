@@ -18,7 +18,6 @@
     "overview": {
       "title": "Overview",
       "text": "Transaction Summary groups the amount a person is about to pay with the action that confirms it. A realistic payment review can show a Subtotal, installment details, a Total, and a Continue action in one clear block.",
-      "exampleLabel": "Payment review",
       "whenToUse": "When to use",
       "whenToUseItems": [
         "Use Footer (`TransactionFooter`) at the end of mobile payment screens.",

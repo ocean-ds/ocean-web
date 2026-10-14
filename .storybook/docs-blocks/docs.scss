@@ -4,7 +4,8 @@
 
 // Layout measures with no Ocean token, composed from spacing tokens.
 $doc-frame-width: $spacing-inline-xxxl * 4 + $spacing-inline-lg; // mobile frame
-$doc-aside-width: $spacing-inline-xxxl * 3; // "On this page"
+$doc-aside-width: $doc-frame-width - $spacing-inline-xxs-extra; // TransactionSummary example
+$doc-toc-width: $spacing-inline-xxxl * 3; // "On this page"
 $doc-panel-width: $spacing-inline-xxxl * 4; // header side panel
 $doc-max-width: $spacing-inline-xxxl * 16;
 $doc-wide: $spacing-inline-xxxl * 13; // above: side nav and side panel
@@ -147,7 +148,7 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   padding: $spacing-stack-lg $spacing-inline-lg $spacing-stack-xxxl;
 
   @media (min-width: $doc-wide) {
-    grid-template-columns: minmax(0, 1fr) $doc-aside-width;
+    grid-template-columns: minmax(0, 1fr) $doc-toc-width;
   }
 }
 
@@ -856,6 +857,12 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 .odoc-canvas--white,
 .odoc-example__stage.odoc-canvas--white {
   background: $color-interface-light-pure;
+}
+
+.odoc-canvas--aside .ods-transaction-summary {
+  margin: 0 auto;
+  max-width: $doc-aside-width;
+  width: 100%;
 }
 
 .odoc-dodont__code {
