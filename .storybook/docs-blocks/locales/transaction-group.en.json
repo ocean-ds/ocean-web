@@ -45,7 +45,11 @@
       "anatomyTable": {
         "columns": ["#", "Element", "Required", "Notes"],
         "rows": [
-          ["Notice", "Optional", "Supporting message above the amount block."],
+          [
+            "Notice",
+            "Optional",
+            "Footer: above the body; Aside: below the card. In both, the body/card overlaps 16px of the notice."
+          ],
           ["Main item", "Optional", "Default density for the primary amount."],
           [
             "Details",
@@ -87,7 +91,7 @@
       "table": {
         "columns": ["State", "When", "Appearance"],
         "rows": [
-          "With notice|A supporting message is needed|Notice overlaps the amount block.",
+          "With notice|A supporting message is needed|The amount block overlaps 16px of the notice.",
           "Without notice|No supporting message is needed|The amount block starts at the top.",
           "With main item|A primary amount should be shown|Main item uses Default density.",
           "Without main item|Only details explain the amount|Details remain independent.",
@@ -121,7 +125,7 @@
   "specs": {
     "tokens": {
       "title": "Tokens and colors",
-      "text": "Use Ocean tokens for surfaces, text, dividers, spacing, and radius. Notice colors remain fixed values outside the token system intentionally.",
+      "text": "Use Ocean tokens for surfaces, text, dividers, spacing, and radius.",
       "table": {
         "columns": ["Part", "Color or token", "Use"]
       },
@@ -131,7 +135,7 @@
         "Text|colorInterfaceDarkDeep|Rows and notice text",
         "Divider|colorInterfaceLightDown|Footer Default top border and row dividers",
         "Notice icon|20px|No token",
-        "Notice|#f2fcf5 + #2da94f at 12%|Fixed notice treatment"
+        "Notice|colorStatusPositiveUp + colorStatusPositiveDeep at 12%|Notice background"
       ]
     },
     "typography": {

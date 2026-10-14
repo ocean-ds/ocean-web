@@ -45,7 +45,11 @@
       "anatomyTable": {
         "columns": ["#", "Elemento", "Obrigatório", "Notas"],
         "rows": [
-          ["Aviso", "Opcional", "Mensagem de apoio acima do bloco de valores."],
+          [
+            "Aviso",
+            "Opcional",
+            "Footer: acima do corpo; Aside: abaixo do card. Em ambos, o corpo/card cobre 16px do aviso."
+          ],
           [
             "Item principal",
             "Opcional",
@@ -91,7 +95,7 @@
       "table": {
         "columns": ["Estado", "Quando", "Aparência"],
         "rows": [
-          "Com aviso|Uma mensagem de apoio é necessária|O aviso se sobrepõe ao bloco de valores.",
+          "Com aviso|Uma mensagem de apoio é necessária|O bloco de valores cobre 16px do aviso.",
           "Sem aviso|Nenhuma mensagem de apoio é necessária|O bloco de valores começa no topo.",
           "Com item principal|Um valor principal deve ser exibido|O item principal usa densidade Default.",
           "Sem item principal|Somente details explicam o valor|Details continuam independentes.",
@@ -125,7 +129,7 @@
   "specs": {
     "tokens": {
       "title": "Tokens e cores",
-      "text": "Use tokens Ocean para superfícies, texto, divisores, espaçamento e raio. As cores do aviso permanecem intencionalmente fixas, fora do sistema de tokens.",
+      "text": "Use tokens Ocean para superfícies, texto, divisores, espaçamento e raio.",
       "table": {
         "columns": ["Parte", "Cor ou token", "Uso"]
       },
@@ -135,7 +139,7 @@
         "Texto|colorInterfaceDarkDeep|Linhas e texto do aviso",
         "Divisor|colorInterfaceLightDown|Borda superior do Footer Default e divisores das linhas",
         "Ícone do aviso|20px|Sem token",
-        "Aviso|#f2fcf5 + #2da94f a 12%|Tratamento fixo do aviso"
+        "Aviso|colorStatusPositiveUp + colorStatusPositiveDeep a 12%|Fundo do aviso"
       ]
     },
     "typography": {
