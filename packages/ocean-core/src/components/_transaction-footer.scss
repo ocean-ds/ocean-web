@@ -179,7 +179,7 @@
 
   &__action {
     box-sizing: border-box;
-    padding: 0 $spacing-inline-xs $spacing-stack-xs;
+    padding: $spacing-stack-xs $spacing-inline-xs;
     width: 100%;
 
     > * {
