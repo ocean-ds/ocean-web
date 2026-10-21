@@ -32,7 +32,7 @@ const meta: Meta<StoryArgs> = {
   decorators: [tagDecorator],
   args: {
     appearance: 'default',
-    children: 'Harbor Market',
+    children: 'Paid',
     icon: 'default',
     setIconOff: false,
     size: 'medium',

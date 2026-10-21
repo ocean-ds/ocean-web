@@ -1,4 +1,11 @@
 {
+  "breadcrumb": ["Components", "Data Display"],
+  "description": "Compact, non-interactive labels for status or category information.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "toc": "On this page",
   "page": {
     "title": "Tag",
     "status": "Stable"
@@ -11,116 +18,176 @@
   "guidelines": {
     "overview": {
       "title": "Overview",
-      "text": "Tag presents a concise status or category label as static text.",
-      "defaultLabel": "Default",
-      "translucentLabel": "Translucent",
+      "text": "A Tag is a compact, non-interactive label for status or category information. For example, “Paid” lets people scan a payment status at a glance.",
+      "defaultLabel": "Default appearance",
+      "translucentLabel": "Translucent on a colored surface",
       "whenToUseTitle": "When to use",
       "whenToUseItems": [
-        "Use a Tag to communicate a short status or category.",
-        "Choose the type that best matches the label's meaning."
+        "Show a short status or category next to related content.",
+        "Use a clear type and concise label so the meaning is easy to scan.",
+        "Use Translucent on colored surfaces only, never on white."
       ],
-      "whenToAvoidTitle": "When to avoid",
-      "whenToAvoidItems": [
-        "Do not use a Tag as a button or other interactive control.",
-        "Do not rely on color alone to communicate a status."
+      "whenNotToUseTitle": "When not to use",
+      "whenNotToUseItems": [
+        "For a count, use Badge.",
+        "For filtering or selection, use Chips.",
+        "For an action, use Button."
       ]
     },
     "variants": {
       "title": "Variants",
-      "text": "Choose the appearance that fits the surface and the emphasis needed.",
-      "columns": ["Story", "Appearance", "Description"],
-      "rows": [
-        "Default|Default|Standard Tag appearance.",
-        "Highlight|Highlight|Emphasized label with a stronger type treatment.",
-        "Translucent|Translucent|Token color background at 24% opacity for colored surfaces."
+      "columns": ["Variant", "Purpose", "Link"],
+      "default": "Default",
+      "highlight": "Highlight",
+      "translucent": "Translucent",
+      "purposes": {
+        "default": "Status or category labels.",
+        "highlight": "Emphasize an important value or offer.",
+        "translucent": "Status labels on colored surfaces."
+      },
+      "link": "Tag Overview"
+    },
+    "formatting": {
+      "title": "Formatting",
+      "anatomy": {
+        "title": "Anatomy",
+        "text": "The icon is optional in Default; the text label is required.",
+        "columns": ["#", "Element", "Required", "Notes"],
+        "rows": [
+          "1|Icon|No|The default icon reinforces the label.",
+          "2|Text|Yes|Use a concise status or category label."
+        ]
+      },
+      "sizes": {
+        "title": "Sizes",
+        "text": "Use small when space is limited; use medium as the standard size. Translucent is available only in medium with an icon.",
+        "columns": ["Size", "Height", "When to use"],
+        "rows": [
+          "Small|16px|Use in dense layouts.",
+          "Medium|20px without an icon; 16px with an icon|Use as the standard size."
+        ]
+      }
+    },
+    "content": {
+      "title": "Content",
+      "text": "Write a short label that can be understood without reading a sentence.",
+      "writingItems": [
+        "Use one or two words when possible.",
+        "Name the status or category directly.",
+        "Do not use a Tag as a sentence or as a replacement for supporting content."
       ],
-      "componentLink": "Explore the Tag component documentation."
+      "doDontTitle": "Do and don’t",
+      "do": "Do",
+      "dont": "Don’t",
+      "caution": "Use with care",
+      "doDont": {
+        "shortDo": "Use a short, scannable label.",
+        "shortDont": "Do not put a sentence in a Tag.",
+        "surfaceDo": "Place Translucent over a colored surface.",
+        "surfaceDont": "Do not place Translucent on white.",
+        "sizesDo": "Keep Tags in a row the same size.",
+        "sizesDont": "Do not mix sizes in the same row."
+      }
     },
-    "anatomy": {
-      "title": "Anatomy",
-      "text": "A Tag contains a label and may include an icon.",
-      "columns": ["Part", "Requirement", "Description"],
+    "behaviors": {
+      "title": "Behaviors",
+      "text": "A Tag is a static label; it does not provide an action or interactive state.",
+      "columns": ["State", "When", "Appearance"],
       "rows": [
-        "Tag root|Required|Contains the label and optional icon.",
-        "Icon|Optional|Supports the label; do not use it as the only status cue.",
-        "Text|Required|Provides the meaning of the Tag."
-      ]
-    },
-    "writing": {
-      "title": "Labels and icons",
-      "text": "Keep Tag content brief and clear.",
-      "items": [
-        "Use a short label that remains understandable without its icon.",
-        "Use a custom icon only when it supports the label.",
-        "Avoid sentences or multiple lines of text."
-      ]
-    },
-    "behavior": {
-      "title": "Appearance behavior",
-      "text": "Translucent appearance keeps the medium size and requires an icon.",
-      "columns": ["Appearance", "Size", "Icon", "Surface"],
-      "rows": [
-        "Default|Small or medium|Optional|Any suitable surface.",
-        "Highlight|Small or medium|Optional|Any suitable surface.",
-        "Translucent|Medium only|Required|Colored surfaces; not white backgrounds."
-      ]
+        "Default|At rest|Uses the selected type and appearance.",
+        "Highlight|Emphasized value|Uses the highlight variant.",
+        "Translucent|On a colored surface|Uses a translucent background and contrasting text."
+      ],
+      "longTextTitle": "Long text",
+      "longText": "The label stays on one line: `.ods-tag__content` uses `white-space: nowrap`. The Tag does not wrap or truncate the text; a long label can extend beyond a narrow container."
     },
     "related": {
-      "title": "Related documentation",
-      "text": "The component overview includes live examples, API controls, platform snippets, and design tokens.",
-      "componentLink": "Open the Tag component overview."
+      "title": "Related components",
+      "badge": {
+        "title": "Badge",
+        "text": "Use Badge to display a count.",
+        "link": "Explore Badge"
+      },
+      "chips": {
+        "title": "Chips",
+        "text": "Use Chips for filtering or selection.",
+        "link": "Explore Chips"
+      }
     },
     "feedback": {
       "title": "Feedback",
-      "text": "Share feedback in the [Ocean Web repository](https://github.com/ocean-ds/ocean-web)."
+      "text": "Found an issue or have a suggestion? [Send feedback](https://github.com/ocean-ds/ocean-web/issues)."
     }
   },
   "specs": {
-    "colors": {
-      "title": "Color tokens",
-      "text": "Translucent colors use the following token colors as backgrounds at 24% opacity. Text and icon colors use the corresponding solid tokens.",
-      "columns": ["Type", "Background", "Text", "Icon"],
-      "positive": "Positive",
-      "warning": "Warning",
-      "negative": "Negative",
-      "complementary": "Complementary",
-      "neutralInterface": "Neutral · interface",
-      "neutralBrand": "Neutral · brand",
-      "opacity": "The default and highlight appearances use their standard Tag color tokens."
+    "fullTokenList": "Full token list → Tag › Design tokens",
+    "color": {
+      "title": "Color",
+      "text": "The values below come from the Tag styles. Translucent background tokens are rendered at 24% opacity.",
+      "columns": ["Element", "Property", "Token"],
+      "variants": {
+        "default": "Default",
+        "highlight": "Highlight",
+        "translucent": "Translucent"
+      },
+      "properties": {
+        "background": "Background",
+        "text": "Text",
+        "icon": "Icon fill"
+      },
+      "opacity": "24% opacity",
+      "noToken": "No Ocean token"
     },
     "typography": {
       "title": "Typography",
-      "text": "Tag uses the component's existing typography tokens. The translucent appearance preserves the same typography as a medium Tag with an icon."
-    },
-    "sizes": {
-      "title": "Size and shape",
-      "text": "Translucent is available only in medium size with an icon; all other appearances keep their existing sizes.",
-      "columns": ["Size", "Description"],
+      "text": "Font sizes and weights follow the selected Tag size and variant.",
+      "columns": ["Element", "Size", "Weight", "Token"],
       "rows": [
-        "Small|Compact Tag with the existing small size metrics.",
-        "Medium|Standard Tag size; translucent uses the same geometry."
+        "Tag · Small|10px / 8px line-height|700|font-weight-bold; font-family-base",
+        "Tag · Medium|12px / 12px line-height|600|font-size-xxxs; font-weight-medium; font-family-base",
+        "Tag · Highlight|Same as selected size|800|font-weight-extrabold; font-family-base",
+        "Tag · Translucent|12px / 12px line-height|600|font-size-xxxs; font-weight-medium; font-family-base"
       ]
     },
     "structure": {
       "title": "Structure",
-      "text": "The root contains optional icon content and a text element.",
-      "columns": ["Part", "Selector"],
-      "rows": ["Root|.ods-tag", "Icon|.ods-tag__icon", "Text|.ods-tag__content"]
+      "text": "Spacing and radius values follow the Tag component styles.",
+      "columns": ["Element", "Property", "px/rem", "Token"],
+      "rows": [
+        "Tag|Border radius|16px / 1rem|border-radius-lg",
+        "Tag content|Gap|4px / 0.25rem|spacing-stack-xxxs",
+        "Medium|Padding without icon|4px 8px / 0.25rem 0.5rem|spacing-stack-xxxs; spacing-stack-xxs",
+        "Medium with icon|Padding|2px 8px 2px 6px / 0.125rem 0.5rem 0.125rem 0.375rem|2px; spacing-stack-xxs; 6px",
+        "Small|Padding|4px / 0.25rem|spacing-stack-xxxs",
+        "Icon|Minimum width|16px / 1rem|spacing-stack-xs"
+      ]
+    },
+    "size": {
+      "title": "Size",
+      "text": "Height is the line box plus vertical padding.",
+      "columns": ["Size", "Height", "Configuration"],
+      "rows": [
+        "Small|16px|With or without an icon.",
+        "Medium|20px without an icon; 16px with an icon|Default and Highlight.",
+        "Translucent|16px|Medium with an icon."
+      ]
     }
   },
   "accessibility": {
-    "requirements": {
-      "title": "Requirements",
-      "items": [
-        "Write a label that communicates its meaning without color or icon alone.",
-        "Keep the label concise and meaningful when read by assistive technology."
+    "oceanProvides": {
+      "title": "What Ocean provides",
+      "text": "Tag is a non-focusable `div` with no explicit role. Its label is read as plain text, and the default icon is marked `aria-hidden`.",
+      "keyboardColumns": ["Key", "Action"],
+      "keyboardRows": [
+        "Tab|Tag is not focusable; it is skipped in the keyboard order."
       ]
     },
-    "considerations": {
-      "title": "Implementation considerations",
+    "development": {
+      "title": "Development considerations",
       "items": [
-        "Keep a Tag non-interactive; use a control component for actions.",
-        "If a custom icon conveys unique information, include that information in the label."
+        "**Use a clear label.** Do not rely on color alone to communicate status.",
+        "**Keep the text meaningful.** The label is exposed as plain text to assistive technology.",
+        "**Do not add interaction.** If the content performs an action, use an interactive component such as Button."
       ]
     }
   }

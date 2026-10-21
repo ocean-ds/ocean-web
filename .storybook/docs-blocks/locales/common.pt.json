@@ -1,5 +1,6 @@
 {
   "status": {
+    "stable": "Estável",
     "beta": "Beta",
     "block": "Bloco de construção"
   },
@@ -18,6 +19,7 @@
   "sections": {
     "overview": "Visão geral",
     "rowOptions": "Opções da linha",
+    "options": "Opções",
     "contentAndAmount": "Conteúdo e valor",
     "otherPlatforms": "Outras plataformas",
     "componentApi": "API do componente",

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Decorator } from '@storybook/react';
+import '../docs.scss';
 
 export const tagDecorator: Decorator = (Story, context) => {
   const translucent =

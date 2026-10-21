@@ -1,5 +1,6 @@
 {
   "status": {
+    "stable": "Stable",
     "beta": "Beta",
     "block": "Building block"
   },
@@ -18,6 +19,7 @@
   "sections": {
     "overview": "Overview",
     "rowOptions": "Row options",
+    "options": "Options",
     "contentAndAmount": "Content and amount",
     "otherPlatforms": "Other platforms",
     "componentApi": "Component API",

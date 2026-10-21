@@ -26,7 +26,7 @@
     "variant": "Tag type treatment: default or highlight."
   },
   "platforms": {
-    "text": "These examples use the current default Tag API in each code sample.",
+    "text": "The same example in each library.",
     "react": "React",
     "swift": "SwiftUI",
     "compose": "Compose"
@@ -34,8 +34,26 @@
   "tokens": {
     "intro": "The table below lists the Ocean tokens used by the Tag styles."
   },
+  "options": {
+    "size": {
+      "title": "Size",
+      "text": "Choose small for dense layouts or medium for the standard Tag size."
+    },
+    "icon": {
+      "title": "Custom icon",
+      "text": "Pass a React element to `icon` when the default icon does not express the intended meaning."
+    },
+    "setIconOff": {
+      "title": "Hide the icon",
+      "text": "Set `setIconOff` to hide the default icon."
+    }
+  },
   "rules": [
     "Keep the label concise and understandable without color alone.",
-    "Use Translucent only on colored surfaces, never on white backgrounds."
+    "Translucent requires size medium and an icon; neutral, neutral-02 and complementary need a custom `icon`.",
+    "Use Translucent only on colored surfaces, never on white backgrounds.",
+    "Highlight uses `variant=\"highlight\"` with type `important` or `neutral`.",
+    "The Tag label is plain text and is not a keyboard focus target.",
+    "When `setIconOff` is true, the default icon is not rendered."
   ]
 }

@@ -26,7 +26,7 @@
     "variant": "Tratamento de Tag: default ou highlight."
   },
   "platforms": {
-    "text": "Estes exemplos usam a API padrão atual de Tag em cada trecho de código.",
+    "text": "O mesmo exemplo em cada biblioteca.",
     "react": "React",
     "swift": "SwiftUI",
     "compose": "Compose"
@@ -34,8 +34,26 @@
   "tokens": {
     "intro": "A tabela a seguir lista os tokens Ocean usados pelos estilos de Tag."
   },
+  "options": {
+    "size": {
+      "title": "Tamanho",
+      "text": "Escolha small para layouts densos e medium como tamanho padrão da Tag."
+    },
+    "icon": {
+      "title": "Ícone personalizado",
+      "text": "Passe um elemento React em `icon` quando o ícone padrão não expressar o significado desejado."
+    },
+    "setIconOff": {
+      "title": "Ocultar o ícone",
+      "text": "Defina `setIconOff` para ocultar o ícone padrão."
+    }
+  },
   "rules": [
     "Mantenha o rótulo conciso e compreensível sem depender apenas da cor.",
-    "Use Translucent somente em superfícies coloridas, nunca em fundos brancos."
+    "Translucent exige tamanho medium e um ícone; neutral, neutral-02 e complementary precisam de `icon` personalizado.",
+    "Use Translucent somente em superfícies coloridas, nunca em fundos brancos.",
+    "Highlight usa `variant=\"highlight\"` com type `important` ou `neutral`.",
+    "O rótulo da Tag é texto simples e não recebe foco pelo teclado.",
+    "Quando `setIconOff` é verdadeiro, o ícone padrão não é renderizado."
   ]
 }

@@ -53,6 +53,8 @@ export type ComponentDocConfig = {
   kind: 'component' | 'block';
   /** Folder of the source code in the repository. */
   source: string;
+  /** Component lifecycle status. */
+  status?: 'stable' | 'beta';
   /** Group Overview story id. */
   groupOverview: string;
   locale: LocaleFiles;
@@ -172,7 +174,11 @@ export const ComponentOverview = ({
                   size="medium"
                   setIconOff
                 >
-                  {t(component ? 'status.beta' : 'status.block')}
+                  {t(
+                    component
+                      ? `status.${config.status ?? 'beta'}`
+                      : 'status.block'
+                  )}
                 </Tag>
                 <Link
                   href={`${REPO}${config.source}`}

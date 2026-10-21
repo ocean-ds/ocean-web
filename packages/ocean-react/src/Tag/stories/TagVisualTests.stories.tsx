@@ -26,6 +26,16 @@ const NO_DEFAULT_ICON: Type[] = [
   'neutral-03',
   'default',
 ];
+const LABELS: Record<Type, string> = {
+  positive: 'Paid',
+  warning: 'Due soon',
+  negative: 'Overdue',
+  complementary: 'Scheduled',
+  neutral: 'Processing',
+  'neutral-02': 'In review',
+  'neutral-03': 'Draft',
+  default: 'Draft',
+};
 
 const tag = (
   type: Type,
@@ -45,11 +55,11 @@ const tag = (
     <div
       className={
         appearance === 'translucent'
-          ? 'odoc-tag-surface'
-          : 'odoc-tag-white-surface'
+          ? 'odoc-tag-surface odoc-tag-surface--compact'
+          : 'odoc-tag-white-surface odoc-tag-surface--compact'
       }
     >
-      <Tag {...props}>Harbor Market</Tag>
+      <Tag {...props}>{LABELS[type]}</Tag>
     </div>
   );
 };
@@ -70,6 +80,7 @@ type Story = StoryObj;
 export const Matrix: Story = {
   render: () => (
     <MatrixGrid
+      className="odoc-matrix--tag"
       columns={[
         'Small · no icon',
         'Small · icon',
@@ -101,7 +112,7 @@ export const Matrix: Story = {
               type="important"
               size="small"
             >
-              Harbor Market
+              Save 75%
             </Tag>,
             <Tag
               key="hi-medium"
@@ -109,7 +120,7 @@ export const Matrix: Story = {
               type="important"
               size="medium"
             >
-              Harbor Market
+              Save 75%
             </Tag>,
           ],
         },
@@ -117,7 +128,7 @@ export const Matrix: Story = {
           label: 'Highlight · neutral',
           cells: [
             <Tag key="hn-small" variant="highlight" type="neutral" size="small">
-              Harbor Market
+              Pay in 3x
             </Tag>,
             <Tag
               key="hn-medium"
@@ -126,7 +137,7 @@ export const Matrix: Story = {
               size="medium"
               icon={<Star />}
             >
-              Harbor Market
+              Pay in 3x
             </Tag>,
           ],
         },
@@ -135,7 +146,7 @@ export const Matrix: Story = {
           cells: [
             <div className="odoc-tag-narrow" key="long-label">
               <Tag type="positive">
-                Harbor Market supplies the northern reef collection
+                Payment to supplier scheduled for Nov 12
               </Tag>
             </div>,
           ],

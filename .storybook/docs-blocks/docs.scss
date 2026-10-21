@@ -980,13 +980,43 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   background: $color-interface-light-pure;
 }
 
+.odoc-tag-surface--compact,
+.odoc-tag-white-surface--compact {
+  min-height: 0;
+  padding: $spacing-stack-xxs;
+  width: auto;
+}
+
+.odoc-tag-demo-row {
+  align-items: center;
+  display: flex;
+  gap: $spacing-inline-xs;
+}
+
 .odoc-visual-root--tag {
   align-items: stretch;
   background: $color-interface-light-down;
-  padding: $spacing-stack-xl;
+  box-sizing: border-box;
+  padding: $spacing-stack-xs;
+}
+
+.odoc-visual-root--tag .odoc-matrix--tag {
+  gap: $spacing-stack-xxs $spacing-inline-xxs;
+  grid-template-columns: minmax(0, 1fr) repeat(
+      var(--odoc-columns),
+      minmax(0, 1fr)
+    );
+  width: 100%;
+}
+
+.odoc-visual-root--tag .odoc-matrix--tag > div {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
 }
 
 .odoc-tag-narrow {
   max-width: $spacing-inline-xxxl * 3;
-  overflow: hidden;
+  overflow-x: auto;
 }
