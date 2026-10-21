@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
-import { TagProps } from '../Tag/Tag';
+import type { TagProps } from '../Tag/Tag';
+
+type ChipTagProps = Exclude<TagProps, { appearance: 'translucent' }>;
 
 export type ChipValue = {
   label: string;
@@ -7,7 +9,7 @@ export type ChipValue = {
   indicator?: ReactNode;
   disabled?: boolean;
   indeterminate?: boolean;
-  tag?: TagProps;
+  tag?: ChipTagProps;
 };
 
 export interface IUseChipReturn {

@@ -1,0 +1,8 @@
+import { Meta } from '@storybook/blocks';
+import * as Stories from './Tag.stories';
+import { ComponentOverview } from '../../../../../.storybook/docs-blocks/ComponentOverview';
+import { tagDoc } from '../../../../../.storybook/docs-blocks/tag/pages';
+
+<Meta of={Stories} name="Overview" />
+
+<ComponentOverview config={{ ...tagDoc, story: Stories.Default }} />

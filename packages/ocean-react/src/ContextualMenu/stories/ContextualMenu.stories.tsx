@@ -1,14 +1,16 @@
 import React from 'react';
 import { Trash } from '@useblu/ocean-icons-react';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { TagProps } from '../../Tag/Tag';
 import ContextualMenu from '../ContextualMenu';
 import { ContextualMenuTrigger } from './ContextualMenuTrigger';
 import type { ContextualMenuItemProps } from '../ContextualMenuItem';
 
 type ItemType = 'primary' | 'neutral' | 'critical';
 
-const getTagForType = (type: ItemType, label: string): TagProps | undefined => {
+const getTagForType = (
+  type: ItemType,
+  label: string
+): ContextualMenuItemProps['tag'] => {
   const tagMap: Record<ItemType, 'neutral' | 'important'> = {
     primary: 'important',
     neutral: 'neutral',

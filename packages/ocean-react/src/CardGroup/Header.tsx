@@ -3,11 +3,13 @@ import classNames from 'classnames';
 import Badge from '../Badge';
 import Tag, { TagProps } from '../Tag/Tag';
 
+type CardGroupTagProps = Exclude<TagProps, { appearance: 'translucent' }>;
+
 interface IHeaderProps {
   title?: string;
   subtitle?: string;
   count?: number;
-  tag?: TagProps;
+  tag?: CardGroupTagProps;
 }
 const Header = ({ title, subtitle, count, tag }: IHeaderProps): JSX.Element => (
   <div

@@ -1,0 +1,127 @@
+{
+  "page": {
+    "title": "Tag",
+    "status": "Stable"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility"
+  },
+  "guidelines": {
+    "overview": {
+      "title": "Overview",
+      "text": "Tag presents a concise status or category label as static text.",
+      "defaultLabel": "Default",
+      "translucentLabel": "Translucent",
+      "whenToUseTitle": "When to use",
+      "whenToUseItems": [
+        "Use a Tag to communicate a short status or category.",
+        "Choose the type that best matches the label's meaning."
+      ],
+      "whenToAvoidTitle": "When to avoid",
+      "whenToAvoidItems": [
+        "Do not use a Tag as a button or other interactive control.",
+        "Do not rely on color alone to communicate a status."
+      ]
+    },
+    "variants": {
+      "title": "Variants",
+      "text": "Choose the appearance that fits the surface and the emphasis needed.",
+      "columns": ["Story", "Appearance", "Description"],
+      "rows": [
+        "Default|Default|Standard Tag appearance.",
+        "Highlight|Highlight|Emphasized label with a stronger type treatment.",
+        "Translucent|Translucent|Token color background at 24% opacity for colored surfaces."
+      ],
+      "componentLink": "Explore the Tag component documentation."
+    },
+    "anatomy": {
+      "title": "Anatomy",
+      "text": "A Tag contains a label and may include an icon.",
+      "columns": ["Part", "Requirement", "Description"],
+      "rows": [
+        "Tag root|Required|Contains the label and optional icon.",
+        "Icon|Optional|Supports the label; do not use it as the only status cue.",
+        "Text|Required|Provides the meaning of the Tag."
+      ]
+    },
+    "writing": {
+      "title": "Labels and icons",
+      "text": "Keep Tag content brief and clear.",
+      "items": [
+        "Use a short label that remains understandable without its icon.",
+        "Use a custom icon only when it supports the label.",
+        "Avoid sentences or multiple lines of text."
+      ]
+    },
+    "behavior": {
+      "title": "Appearance behavior",
+      "text": "Translucent appearance keeps the medium size and requires an icon.",
+      "columns": ["Appearance", "Size", "Icon", "Surface"],
+      "rows": [
+        "Default|Small or medium|Optional|Any suitable surface.",
+        "Highlight|Small or medium|Optional|Any suitable surface.",
+        "Translucent|Medium only|Required|Colored surfaces; not white backgrounds."
+      ]
+    },
+    "related": {
+      "title": "Related documentation",
+      "text": "The component overview includes live examples, API controls, platform snippets, and design tokens.",
+      "componentLink": "Open the Tag component overview."
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Share feedback in the [Ocean Web repository](https://github.com/ocean-ds/ocean-web)."
+    }
+  },
+  "specs": {
+    "colors": {
+      "title": "Color tokens",
+      "text": "Translucent colors use the following token colors as backgrounds at 24% opacity. Text and icon colors use the corresponding solid tokens.",
+      "columns": ["Type", "Background", "Text", "Icon"],
+      "positive": "Positive",
+      "warning": "Warning",
+      "negative": "Negative",
+      "complementary": "Complementary",
+      "neutralInterface": "Neutral · interface",
+      "neutralBrand": "Neutral · brand",
+      "opacity": "The default and highlight appearances use their standard Tag color tokens."
+    },
+    "typography": {
+      "title": "Typography",
+      "text": "Tag uses the component's existing typography tokens. The translucent appearance preserves the same typography as a medium Tag with an icon."
+    },
+    "sizes": {
+      "title": "Size and shape",
+      "text": "Translucent is available only in medium size with an icon; all other appearances keep their existing sizes.",
+      "columns": ["Size", "Description"],
+      "rows": [
+        "Small|Compact Tag with the existing small size metrics.",
+        "Medium|Standard Tag size; translucent uses the same geometry."
+      ]
+    },
+    "structure": {
+      "title": "Structure",
+      "text": "The root contains optional icon content and a text element.",
+      "columns": ["Part", "Selector"],
+      "rows": ["Root|.ods-tag", "Icon|.ods-tag__icon", "Text|.ods-tag__content"]
+    }
+  },
+  "accessibility": {
+    "requirements": {
+      "title": "Requirements",
+      "items": [
+        "Write a label that communicates its meaning without color or icon alone.",
+        "Keep the label concise and meaningful when read by assistive technology."
+      ]
+    },
+    "considerations": {
+      "title": "Implementation considerations",
+      "items": [
+        "Keep a Tag non-interactive; use a control component for actions.",
+        "If a custom icon conveys unique information, include that information in the label."
+      ]
+    }
+  }
+}

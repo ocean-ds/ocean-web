@@ -1,0 +1,131 @@
+{
+  "page": {
+    "title": "Tag",
+    "status": "Estável"
+  },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Especificações",
+    "accessibility": "Acessibilidade"
+  },
+  "guidelines": {
+    "overview": {
+      "title": "Visão geral",
+      "text": "Tag apresenta um rótulo conciso de status ou categoria como texto estático.",
+      "defaultLabel": "Default",
+      "translucentLabel": "Translucent",
+      "whenToUseTitle": "Quando usar",
+      "whenToUseItems": [
+        "Use Tag para comunicar um status ou categoria breve.",
+        "Escolha o tipo que melhor corresponda ao significado do rótulo."
+      ],
+      "whenToAvoidTitle": "Quando evitar",
+      "whenToAvoidItems": [
+        "Não use Tag como botão ou outro controle interativo.",
+        "Não dependa apenas da cor para comunicar um status."
+      ]
+    },
+    "variants": {
+      "title": "Variantes",
+      "text": "Escolha a aparência adequada à superfície e ao destaque necessário.",
+      "columns": ["Story", "Aparência", "Descrição"],
+      "rows": [
+        "Default|Default|Aparência padrão de Tag.",
+        "Highlight|Highlight|Rótulo destacado com tratamento tipográfico mais forte.",
+        "Translucent|Translucent|Fundo com cor de token em 24% de opacidade para superfícies coloridas."
+      ],
+      "componentLink": "Explore a documentação do componente Tag."
+    },
+    "anatomy": {
+      "title": "Anatomia",
+      "text": "Tag contém um rótulo e pode incluir um ícone.",
+      "columns": ["Parte", "Requisito", "Descrição"],
+      "rows": [
+        "Raiz de Tag|Obrigatória|Contém o rótulo e o ícone opcional.",
+        "Ícone|Opcional|Complementa o rótulo; não use como único indicador de status.",
+        "Texto|Obrigatório|Apresenta o significado de Tag."
+      ]
+    },
+    "writing": {
+      "title": "Rótulos e ícones",
+      "text": "Mantenha o conteúdo de Tag breve e claro.",
+      "items": [
+        "Use um rótulo curto que continue compreensível sem o ícone.",
+        "Use um ícone personalizado somente quando complementar o rótulo.",
+        "Evite frases ou textos com várias linhas."
+      ]
+    },
+    "behavior": {
+      "title": "Comportamento da aparência",
+      "text": "A aparência Translucent mantém o tamanho medium e exige um ícone.",
+      "columns": ["Aparência", "Tamanho", "Ícone", "Superfície"],
+      "rows": [
+        "Default|Small ou medium|Opcional|Qualquer superfície adequada.",
+        "Highlight|Small ou medium|Opcional|Qualquer superfície adequada.",
+        "Translucent|Somente medium|Obrigatório|Superfícies coloridas; não use em fundos brancos."
+      ]
+    },
+    "related": {
+      "title": "Documentação relacionada",
+      "text": "A visão geral do componente inclui exemplos interativos, controles da API, trechos de plataforma e tokens de design.",
+      "componentLink": "Abra a visão geral do componente Tag."
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Compartilhe feedback no [repositório Ocean Web](https://github.com/ocean-ds/ocean-web)."
+    }
+  },
+  "specs": {
+    "colors": {
+      "title": "Tokens de cor",
+      "text": "As cores de Translucent usam os tokens de cor a seguir como fundos com 24% de opacidade. As cores do texto e do ícone usam os tokens sólidos correspondentes.",
+      "columns": ["Tipo", "Fundo", "Texto", "Ícone"],
+      "positive": "Positive",
+      "warning": "Warning",
+      "negative": "Negative",
+      "complementary": "Complementary",
+      "neutralInterface": "Neutral · interface",
+      "neutralBrand": "Neutral · marca",
+      "opacity": "As aparências Default e Highlight usam os tokens de cor padrão de Tag."
+    },
+    "typography": {
+      "title": "Tipografia",
+      "text": "Tag usa os tokens tipográficos existentes do componente. A aparência Translucent preserva a mesma tipografia de Tag medium com ícone."
+    },
+    "sizes": {
+      "title": "Tamanho e forma",
+      "text": "Translucent existe somente no tamanho medium com ícone; as outras aparências mantêm os tamanhos existentes.",
+      "columns": ["Tamanho", "Descrição"],
+      "rows": [
+        "Small|Tag compacto com as métricas existentes de tamanho small.",
+        "Medium|Tamanho padrão de Tag; Translucent mantém a mesma geometria."
+      ]
+    },
+    "structure": {
+      "title": "Estrutura",
+      "text": "A raiz contém o conteúdo opcional do ícone e um elemento de texto.",
+      "columns": ["Parte", "Seletor"],
+      "rows": [
+        "Raiz|.ods-tag",
+        "Ícone|.ods-tag__icon",
+        "Texto|.ods-tag__content"
+      ]
+    }
+  },
+  "accessibility": {
+    "requirements": {
+      "title": "Requisitos",
+      "items": [
+        "Escreva um rótulo que comunique o significado sem depender apenas da cor ou do ícone.",
+        "Mantenha o rótulo conciso e significativo para tecnologias assistivas."
+      ]
+    },
+    "considerations": {
+      "title": "Considerações de implementação",
+      "items": [
+        "Mantenha Tag não interativo; use um componente de controle para ações.",
+        "Se um ícone personalizado transmitir uma informação única, inclua essa informação no rótulo."
+      ]
+    }
+  }
+}

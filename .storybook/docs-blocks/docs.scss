@@ -957,3 +957,36 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 .odoc-visual-root--transaction-summary.odoc-canvas--white {
   background: $color-interface-light-pure;
 }
+
+.odoc-canvas--tag-translucent {
+  background: $color-brand-primary-pure;
+}
+
+.odoc-tag-surface,
+.odoc-tag-white-surface {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: $spacing-stack-xxxl;
+  padding: $spacing-stack-md;
+  width: 100%;
+}
+
+.odoc-tag-surface {
+  background: $color-brand-primary-pure;
+}
+
+.odoc-tag-white-surface {
+  background: $color-interface-light-pure;
+}
+
+.odoc-visual-root--tag {
+  align-items: stretch;
+  background: $color-interface-light-down;
+  padding: $spacing-stack-xl;
+}
+
+.odoc-tag-narrow {
+  max-width: $spacing-inline-xxxl * 3;
+  overflow: hidden;
+}

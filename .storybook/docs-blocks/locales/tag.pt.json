@@ -1,0 +1,41 @@
+{
+  "overview": "Tag é um rótulo compacto e não interativo para um status ou categoria.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "A aparência Default mantém as cores e a geometria existentes de Tag."
+    },
+    "highlight": {
+      "title": "Highlight",
+      "text": "Highlight enfatiza um rótulo breve com um tratamento tipográfico mais forte."
+    },
+    "translucent": {
+      "title": "Translucent",
+      "text": "Translucent usa uma cor de token em 24% de opacidade e é destinada a superfícies coloridas. Não use em fundos brancos."
+    }
+  },
+  "api": {
+    "intro": "Tag renderiza um rótulo conciso como conteúdo estático. Use os controles para escolher aparência, tipo, tamanho e ícone.",
+    "appearance": "Tratamento visual da variante default. `default` preserva a aparência padrão; `translucent` usa uma cor de token em 24% de opacidade em superfícies coloridas, não em fundos brancos. Highlight não aceita esta propriedade.",
+    "children": "Conteúdo textual exibido por Tag.",
+    "className": "Classe adicional aplicada à raiz de Tag.",
+    "icon": "Elemento React personalizado opcional usado como ícone de Tag.",
+    "setIconOff": "Oculta o ícone de Tag.",
+    "size": "Tamanho de Tag. A aparência Translucent usa o tamanho medium.",
+    "type": "Estilo de cor e ícone de status ou categoria de Tag.",
+    "variant": "Tratamento de Tag: default ou highlight."
+  },
+  "platforms": {
+    "text": "Estes exemplos usam a API padrão atual de Tag em cada trecho de código.",
+    "react": "React",
+    "swift": "SwiftUI",
+    "compose": "Compose"
+  },
+  "tokens": {
+    "intro": "A tabela a seguir lista os tokens Ocean usados pelos estilos de Tag."
+  },
+  "rules": [
+    "Mantenha o rótulo conciso e compreensível sem depender apenas da cor.",
+    "Use Translucent somente em superfícies coloridas, nunca em fundos brancos."
+  ]
+}

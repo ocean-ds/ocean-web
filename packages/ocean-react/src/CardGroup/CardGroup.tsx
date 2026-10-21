@@ -4,6 +4,8 @@ import Header from './Header';
 import ActionButton from './ActionButton';
 import { TagProps } from '../Tag/Tag';
 
+type CardGroupTagProps = Exclude<TagProps, { appearance: 'translucent' }>;
+
 export type CardGroupActionBadgeColor =
   | 'brand'
   | 'complementary'
@@ -16,7 +18,7 @@ export interface ICardGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   subtitle?: string;
   variant?: 'minimal' | 'header';
   count?: number;
-  tag?: TagProps;
+  tag?: CardGroupTagProps;
   actionLabel?: string;
   actionCount?: number;
   actionClick?: () => void;

@@ -13,9 +13,7 @@ jest.mock('@useblu/ocean-icons-react', () => ({
   },
 }));
 
-const setup = (props?: TagProps) => {
-  render(<Tag {...props}>Hello There!</Tag>);
-};
+const setup = (props?: TagProps) => render(<Tag {...props}>Hello There!</Tag>);
 
 test('renders default element properly', () => {
   setup();
@@ -199,4 +197,62 @@ test('has no invalid ARIA role; the text is read as plain content', () => {
   const tag = document.querySelector('.ods-tag');
   expect(tag).not.toHaveAttribute('role');
   expect(tag).toHaveTextContent('Hello There!');
+});
+
+test.each([
+  {
+    props: { appearance: 'translucent', type: 'positive' } as TagProps,
+    iconText: 'mock-check-circle-outline',
+  },
+  {
+    props: { appearance: 'translucent', type: 'warning' } as TagProps,
+    iconText: 'mock-exclamation-circle-outline',
+  },
+  {
+    props: { appearance: 'translucent', type: 'negative' } as TagProps,
+    iconText: 'mock-x-circle-outline',
+  },
+  {
+    props: {
+      appearance: 'translucent',
+      type: 'complementary',
+      icon: <Star />,
+    } as TagProps,
+    iconText: 'mock-start-circle-outline',
+  },
+  {
+    props: {
+      appearance: 'translucent',
+      type: 'neutral',
+      icon: <Star />,
+    } as TagProps,
+    iconText: 'mock-start-circle-outline',
+  },
+  {
+    props: {
+      appearance: 'translucent',
+      type: 'neutral-02',
+      icon: <Star />,
+    } as TagProps,
+    iconText: 'mock-start-circle-outline',
+  },
+])(
+  'renders a translucent $props.type Tag with its icon',
+  ({ props, iconText }) => {
+    setup(props);
+
+    const tag = document.querySelector('.ods-tag');
+    expect(tag).toHaveClass('ods-tag--translucent');
+    expect(tag).toHaveClass(`ods-tag--${props.type}`);
+    expect(tag).toHaveTextContent(iconText);
+  }
+);
+
+test('explicit default appearance keeps the original markup', () => {
+  const { container, rerender } = setup();
+  const originalMarkup = container.innerHTML;
+
+  rerender(<Tag appearance="default">Hello There!</Tag>);
+
+  expect(container.innerHTML).toBe(originalMarkup);
 });

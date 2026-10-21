@@ -1,0 +1,41 @@
+{
+  "overview": "Tag is a compact, non-interactive label for a status or category.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "The default appearance keeps the existing Tag colors and geometry."
+    },
+    "highlight": {
+      "title": "Highlight",
+      "text": "Highlight emphasizes a short label with its stronger type treatment."
+    },
+    "translucent": {
+      "title": "Translucent",
+      "text": "Translucent uses a token color at 24% opacity and is intended for colored surfaces. Do not use it on white backgrounds."
+    }
+  },
+  "api": {
+    "intro": "Tag renders a concise label as static content. Use its controls to choose an appearance, type, size, and icon.",
+    "appearance": "Visual treatment for the default variant. `default` preserves the standard appearance; `translucent` uses a token color at 24% opacity on colored surfaces, not white backgrounds. Highlight does not accept this prop.",
+    "children": "Text content displayed by the Tag.",
+    "className": "Additional class name applied to the Tag root.",
+    "icon": "Optional custom React element used as the Tag icon.",
+    "setIconOff": "Hides the Tag icon.",
+    "size": "Tag size. Translucent appearance uses medium size.",
+    "type": "Status or category color and icon style for the Tag.",
+    "variant": "Tag type treatment: default or highlight."
+  },
+  "platforms": {
+    "text": "These examples use the current default Tag API in each code sample.",
+    "react": "React",
+    "swift": "SwiftUI",
+    "compose": "Compose"
+  },
+  "tokens": {
+    "intro": "The table below lists the Ocean tokens used by the Tag styles."
+  },
+  "rules": [
+    "Keep the label concise and understandable without color alone.",
+    "Use Translucent only on colored surfaces, never on white backgrounds."
+  ]
+}

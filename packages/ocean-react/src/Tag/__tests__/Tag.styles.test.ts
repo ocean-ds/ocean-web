@@ -60,4 +60,52 @@ describe('compiled styles', () => {
       /background-color:\s*(rgb\(88, 114, 245\)|#5872f5)/i
     );
   });
+
+  test.each([
+    {
+      type: 'positive',
+      background: 'rgba(122, 220, 148, 0.24)',
+      text: /color:\s*(?:white|#fff|#ffffff|rgb\(255, 255, 255\))/i,
+      icon: /fill:\s*(?:#f2fdf5|rgb\(242, 253, 245\))/i,
+    },
+    {
+      type: 'warning',
+      background: 'rgba(255, 189, 122, 0.24)',
+      text: /color:\s*(?:white|#fff|#ffffff|rgb\(255, 255, 255\))/i,
+      icon: /fill:\s*(?:#fff7f0|rgb\(255, 247, 240\))/i,
+    },
+    {
+      type: 'negative',
+      background: 'rgba(242, 117, 146, 0.24)',
+      text: /color:\s*(?:white|#fff|#ffffff|rgb\(255, 255, 255\))/i,
+      icon: /fill:\s*(?:#fff1f4|rgb\(255, 241, 244\))/i,
+    },
+    {
+      type: 'complementary',
+      background: 'rgba(106, 229, 229, 0.24)',
+      text: /color:\s*(?:white|#fff|#ffffff|rgb\(255, 255, 255\))/i,
+      icon: /fill:\s*(?:#b0f5f5|rgb\(176, 245, 245\))/i,
+    },
+    {
+      type: 'neutral',
+      background: 'rgba(170, 173, 192, 0.24)',
+      text: /color:\s*(?:white|#fff|#ffffff|rgb\(255, 255, 255\))/i,
+      icon: /fill:\s*(?:white|#fff|#ffffff|rgb\(255, 255, 255\))/i,
+    },
+    {
+      type: 'neutral-02',
+      background: 'rgba(184, 195, 255, 0.24)',
+      text: /color:\s*(?:#393b47|rgb\(57, 59, 71\))/i,
+      icon: /fill:\s*(?:#5872f5|rgb\(88, 114, 245\))/i,
+    },
+  ])(
+    'uses the translucent $type colors',
+    ({ type, background, text, icon }) => {
+      const selector = `.ods-tag--translucent.ods-tag--${type}`;
+
+      expect(rule(selector)).toContain(`background-color: ${background}`);
+      expect(rule(`${selector} .ods-tag__content`)).toMatch(text);
+      expect(rule(`${selector} .ods-tag__icon`)).toMatch(icon);
+    }
+  );
 });
