@@ -64,7 +64,7 @@
         "columns": ["Size", "Height", "When to use"],
         "rows": [
           "Small|16px|Use in dense layouts.",
-          "Medium|20px without an icon; 16px with an icon|Use as the standard size."
+          "Medium|20px with or without an icon|Use as the standard size."
         ]
       }
     },
@@ -168,8 +168,8 @@
       "columns": ["Size", "Height", "Configuration"],
       "rows": [
         "Small|16px|With or without an icon.",
-        "Medium|20px without an icon; 16px with an icon|Default and Highlight.",
-        "Translucent|16px|Medium with an icon."
+        "Medium|20px|Default and Highlight.",
+        "Translucent|20px|Medium with an icon."
       ]
     }
   },

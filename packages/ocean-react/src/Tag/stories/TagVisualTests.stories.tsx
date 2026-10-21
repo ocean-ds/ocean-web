@@ -114,6 +114,7 @@ export const Matrix: Story = {
             >
               Save 75%
             </Tag>,
+            <span key="hi-small-icon-not-applicable">—</span>,
             <Tag
               key="hi-medium"
               variant="highlight"
@@ -122,6 +123,8 @@ export const Matrix: Story = {
             >
               Save 75%
             </Tag>,
+            <span key="hi-medium-icon-not-applicable">—</span>,
+            <span key="hi-translucent-not-applicable">—</span>,
           ],
         },
         {
@@ -130,6 +133,8 @@ export const Matrix: Story = {
             <Tag key="hn-small" variant="highlight" type="neutral" size="small">
               Pay in 3x
             </Tag>,
+            <span key="hn-small-icon-not-applicable">—</span>,
+            <span key="hn-medium-not-applicable">—</span>,
             <Tag
               key="hn-medium"
               variant="highlight"
@@ -139,16 +144,21 @@ export const Matrix: Story = {
             >
               Pay in 3x
             </Tag>,
+            <span key="hn-translucent-not-applicable">—</span>,
           ],
         },
         {
           label: 'Long label · narrow width',
           cells: [
+            <span key="long-label-small-not-applicable">—</span>,
+            <span key="long-label-small-icon-not-applicable">—</span>,
             <div className="odoc-tag-narrow" key="long-label">
               <Tag type="positive">
                 Payment to supplier scheduled for Nov 12
               </Tag>
             </div>,
+            <span key="long-label-medium-icon-not-applicable">—</span>,
+            <span key="long-label-translucent-not-applicable">—</span>,
           ],
         },
       ]}
