@@ -11,12 +11,12 @@
     },
     "translucent": {
       "title": "Translucent",
-      "text": "Translucent usa uma cor de token em 24% de opacidade e é destinada a superfícies coloridas. Não use em fundos brancos."
+      "text": "Translucent usa uma cor de token em 24% de opacidade. Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone. Não use em fundos brancos."
     }
   },
   "api": {
     "intro": "Tag renderiza um rótulo conciso como conteúdo estático. Use os controles para escolher aparência, tipo, tamanho e ícone.",
-    "appearance": "Tratamento visual da variante default. `default` preserva a aparência padrão; `translucent` usa uma cor de token em 24% de opacidade em superfícies coloridas, não em fundos brancos. Highlight não aceita esta propriedade.",
+    "appearance": "Tratamento visual da variante default. `default` preserva a aparência padrão; Translucent usa o token de fundo do tipo com 24% de opacidade. Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone. Highlight não aceita esta propriedade. Não use em fundos brancos.",
     "children": "Conteúdo textual exibido por Tag.",
     "className": "Classe adicional aplicada à raiz de Tag.",
     "icon": "Elemento React personalizado opcional usado como ícone de Tag.",
@@ -50,7 +50,7 @@
   },
   "rules": [
     "Mantenha o rótulo conciso e compreensível sem depender apenas da cor.",
-    "Translucent exige tamanho medium e um ícone; neutral, neutral-02 e complementary precisam de `icon` personalizado.",
+    "Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone; neutral, neutral-02 e complementary precisam de `icon` personalizado.",
     "Use Translucent somente em superfícies coloridas, nunca em fundos brancos.",
     "Highlight usa `variant=\"highlight\"` com type `important` ou `neutral`.",
     "O rótulo da Tag é texto simples e não recebe foco pelo teclado.",

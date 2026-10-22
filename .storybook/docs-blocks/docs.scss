@@ -962,6 +962,10 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   background: $color-brand-primary-pure;
 }
 
+.odoc-canvas--tag-translucent-light {
+  background: $color-interface-light-up;
+}
+
 .odoc-tag-surface,
 .odoc-tag-white-surface {
   align-items: center;
@@ -974,6 +978,10 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
 
 .odoc-tag-surface {
   background: $color-brand-primary-pure;
+}
+
+.odoc-tag-surface--light {
+  background: $color-interface-light-up;
 }
 
 .odoc-tag-white-surface {

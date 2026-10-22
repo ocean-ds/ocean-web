@@ -6,6 +6,10 @@ import type { LocaleFiles } from '../i18n';
 import type { TokensFile } from '../doc-parts';
 import { tagArgTypes } from './argTypes';
 import { tagPlatformSnippets } from './platform-snippets';
+import {
+  tagSurfaceClassName,
+  tagTranslucentCanvasClassName,
+} from './story-helpers';
 import tagTokens from '../../assets/tokens/tag.json';
 import * as Stories from '../../../packages/ocean-react/src/Tag/stories/Tag.stories';
 import tagEn from '../locales/tag.en.json';
@@ -19,11 +23,14 @@ const locale: LocaleFiles = {
 const example = (
   node: React.ReactElement,
   code: string,
-  translucent = false
+  translucent = false,
+  type = 'positive'
 ) => ({
   rows: [
     <div
-      className={translucent ? 'odoc-tag-surface' : 'odoc-tag-white-surface'}
+      className={
+        translucent ? tagSurfaceClassName(type) : 'odoc-tag-white-surface'
+      }
       key={code}
     >
       {node}
@@ -31,7 +38,7 @@ const example = (
   ],
   unframed: true,
   canvasClass: translucent
-    ? 'odoc-canvas--tag-translucent'
+    ? tagTranslucentCanvasClassName(type)
     : 'odoc-canvas--white',
   code,
 });
@@ -73,7 +80,8 @@ export const tagDoc: ComponentDocConfig = {
           Paid
         </Tag>,
         '<Tag appearance="translucent" type="positive">Paid</Tag>',
-        true
+        true,
+        'positive'
       ),
     },
   ],

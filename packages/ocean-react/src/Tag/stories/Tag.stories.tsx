@@ -3,7 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Star } from '@useblu/ocean-icons-react';
 import Tag from '../Tag';
 import type { TagProps } from '../Tag';
-import { tagDecorator } from '../../../../../.storybook/docs-blocks/tag/story-helpers';
+import {
+  isSupportedTranslucentTag,
+  tagDecorator,
+} from '../../../../../.storybook/docs-blocks/tag/story-helpers';
 
 type TagType =
   | 'default'
@@ -75,7 +78,18 @@ const meta: Meta<StoryArgs> = {
       icon === 'star' || (icon === 'default' && needsCustomIcon) ? (
         <Star />
       ) : undefined;
-    const appearanceProps = variant === 'highlight' ? {} : { appearance };
+    const resolvedAppearance = isSupportedTranslucentTag({
+      appearance,
+      icon,
+      setIconOff,
+      size,
+      type,
+      variant,
+    })
+      ? 'translucent'
+      : 'default';
+    const appearanceProps =
+      variant === 'highlight' ? {} : { appearance: resolvedAppearance };
 
     return (
       <Tag

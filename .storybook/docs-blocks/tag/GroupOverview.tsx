@@ -23,6 +23,7 @@ import common from '../locales/common.en.json';
 import commonPt from '../locales/common.pt.json';
 import en from '../locales/tag-group.en.json';
 import pt from '../locales/tag-group.pt.json';
+import { tagSurfaceClassName } from './story-helpers';
 
 const COMPONENT_OVERVIEW = 'components-data-display-tag-tag--overview';
 const LOCALES: LocaleFiles[] = [
@@ -223,7 +224,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => (
           {
             label: t('guidelines.overview.translucentLabel'),
             content: (
-              <div className="odoc-tag-surface">
+              <div className={tagSurfaceClassName('positive')}>
                 <Tag appearance="translucent" type="positive">
                   Paid
                 </Tag>
@@ -327,7 +328,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => (
             {
               kind: 'do',
               example: (
-                <div className="odoc-tag-surface odoc-tag-surface--compact">
+                <div className={tagSurfaceClassName('positive', true)}>
                   <Tag appearance="translucent" type="positive">
                     Paid
                   </Tag>

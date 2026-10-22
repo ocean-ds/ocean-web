@@ -2,7 +2,10 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Star } from '@useblu/ocean-icons-react';
 import { MatrixGrid } from '../../../../../.storybook/docs-blocks';
-import { tagVisualDecorator } from '../../../../../.storybook/docs-blocks/tag/story-helpers';
+import {
+  tagSurfaceClassName,
+  tagVisualDecorator,
+} from '../../../../../.storybook/docs-blocks/tag/story-helpers';
 import Tag from '../Tag';
 import type { TagProps } from '../Tag';
 
@@ -55,7 +58,7 @@ const tag = (
     <div
       className={
         appearance === 'translucent'
-          ? 'odoc-tag-surface odoc-tag-surface--compact'
+          ? tagSurfaceClassName(type, true)
           : 'odoc-tag-white-surface odoc-tag-surface--compact'
       }
     >
