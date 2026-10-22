@@ -48,7 +48,8 @@ const tag = (
 ): React.ReactElement => {
   const props = {
     appearance,
-    icon: iconOn && NO_DEFAULT_ICON.includes(type) ? <Star /> : undefined,
+    icon:
+      iconOn && NO_DEFAULT_ICON.includes(type) ? <Star size={16} /> : undefined,
     setIconOff: !iconOn,
     size,
     type,
@@ -143,7 +144,7 @@ export const Matrix: Story = {
               variant="highlight"
               type="neutral"
               size="medium"
-              icon={<Star />}
+              icon={<Star size={16} />}
             >
               Pay in 3x
             </Tag>,

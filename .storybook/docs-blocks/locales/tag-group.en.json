@@ -25,7 +25,7 @@
       "whenToUseItems": [
         "Show a short status or category next to related content.",
         "Use a clear type and concise label so the meaning is easy to scan.",
-        "Translucent with dark text (`neutral-02`) is for light coloured surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong coloured surfaces. Translucent exists only in medium size with an icon.",
+        "Translucent with dark text (`neutral-02`) is for light colored surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong colored surfaces. Translucent exists only in medium size with an icon.",
         "Use Translucent on colored surfaces only, never on white."
       ],
       "whenNotToUseTitle": "When not to use",
@@ -97,7 +97,7 @@
       "rows": [
         "Default|At rest|Uses the selected type and appearance.",
         "Highlight|Emphasized value|Uses the highlight variant.",
-        "Translucent|Translucent with dark text (`neutral-02`) is for light coloured surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong coloured surfaces. Translucent exists only in medium size with an icon.|Uses a translucent background at 24% opacity with contrasting text."
+        "Translucent|On colored surfaces|Uses a translucent background at 24% opacity with contrasting text."
       ],
       "longTextTitle": "Long text",
       "longText": "The label stays on one line: `.ods-tag__content` uses `white-space: nowrap`. The Tag does not wrap or truncate the text; a long label can extend beyond a narrow container."
@@ -124,7 +124,7 @@
     "fullTokenList": "Full token list → Tag › Design tokens",
     "color": {
       "title": "Color",
-      "text": "The values below come from the Tag styles. Translucent background tokens are rendered at 24% opacity. Translucent with dark text (`neutral-02`) is for light coloured surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong coloured surfaces. Translucent exists only in medium size with an icon.",
+      "text": "The values below come from the Tag styles. Translucent background tokens are rendered at 24% opacity.",
       "columns": ["Element", "Property", "Token"],
       "variants": {
         "default": "Default",
