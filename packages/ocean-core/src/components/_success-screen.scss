@@ -102,6 +102,10 @@ $success-screen-desktop-width: 530px;
   }
 
   &--positive {
+    .ods-success-screen__card {
+      background-color: $color-status-positive-deep;
+    }
+
     .ods-success-screen__header {
       background-color: $color-status-positive-deep;
     }
@@ -117,6 +121,10 @@ $success-screen-desktop-width: 530px;
   }
 
   &--neutral {
+    .ods-success-screen__card {
+      background-color: $color-interface-light-up;
+    }
+
     .ods-success-screen__header {
       background-color: $color-interface-light-up;
     }
@@ -132,6 +140,10 @@ $success-screen-desktop-width: 530px;
   }
 
   &--negative {
+    .ods-success-screen__card {
+      background-color: $color-interface-dark-down;
+    }
+
     .ods-success-screen__header {
       background-color: $color-interface-dark-down;
     }
@@ -168,23 +180,27 @@ $success-screen-desktop-width: 530px;
   .ods-success-screen__details {
     flex: 1;
   }
-
-  .ods-success-screen--positive .ods-success-screen__card {
-    background-color: $color-status-positive-deep;
-  }
-
-  .ods-success-screen--neutral .ods-success-screen__card {
-    background-color: $color-interface-light-up;
-  }
-
-  .ods-success-screen--negative .ods-success-screen__card {
-    background-color: $color-interface-dark-down;
-  }
 }
 
 @container (min-width: #{$success-screen-desktop-width}) {
   .ods-success-screen__card {
-    border-radius: 0;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+  }
+
+  .ods-success-screen--positive .ods-success-screen__card {
+    // prettier-ignore
+    background: linear-gradient(to bottom, $color-status-positive-deep calc(100% - #{$border-radius-lg}), $color-interface-light-pure calc(100% - #{$border-radius-lg}));
+  }
+
+  .ods-success-screen--neutral .ods-success-screen__card {
+    // prettier-ignore
+    background: linear-gradient(to bottom, $color-interface-light-up calc(100% - #{$border-radius-lg}), $color-interface-light-pure calc(100% - #{$border-radius-lg}));
+  }
+
+  .ods-success-screen--negative .ods-success-screen__card {
+    // prettier-ignore
+    background: linear-gradient(to bottom, $color-interface-dark-down calc(100% - #{$border-radius-lg}), $color-interface-light-pure calc(100% - #{$border-radius-lg}));
   }
 
   .ods-success-screen__header-content {

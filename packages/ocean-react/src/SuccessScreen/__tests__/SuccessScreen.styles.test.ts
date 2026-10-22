@@ -89,11 +89,21 @@ describe('compiled SuccessScreen styles', () => {
     { status: 'neutral', background: '#f3f5fe', closeColor: '#aaadc0' },
     { status: 'negative', background: '#67697a', closeColor: 'white' },
   ])(
-    'uses the mobile $status card surface and close icon color',
+    'uses the $status card surface on every layout and keeps the close icon color',
     ({ status, background, closeColor }) => {
-      expect(css).toMatch(
+      const baseStyles = css.split('@container (max-width: 529.99px)')[0];
+      const mobileStyles = css
+        .split('@container (max-width: 529.99px)')[1]
+        ?.split('@container (min-width: 530px)')[0];
+
+      expect(baseStyles).toMatch(
         new RegExp(
           `\\.ods-success-screen--${status} \\.ods-success-screen__card\\s*\\{\\s*background-color:\\s*${background};`
+        )
+      );
+      expect(mobileStyles).not.toMatch(
+        new RegExp(
+          `\\.ods-success-screen--${status} \\.ods-success-screen__card`
         )
       );
       expect(css).toMatch(
@@ -150,4 +160,29 @@ describe('compiled SuccessScreen styles', () => {
     );
     expect(css).toMatch(/margin-top:\s*0/);
   });
+
+  test('uses a rounded, clipped desktop card', () => {
+    const desktopStyles = css.split('@container (min-width: 530px)')[1];
+    expect(desktopStyles).toMatch(
+      /\.ods-success-screen__card\s*\{\s*border-radius:\s*16px;\s*overflow:\s*hidden;\s*\}/
+    );
+  });
+
+  test.each([
+    { status: 'positive', background: '#2da94f' },
+    { status: 'neutral', background: '#f3f5fe' },
+    { status: 'negative', background: '#67697a' },
+  ])(
+    'keeps the $status surface behind desktop Details corners',
+    ({ status, background }) => {
+      const desktopStyles = css.split('@container (min-width: 530px)')[1];
+
+      expect(desktopStyles).toMatch(
+        new RegExp(
+          `\\.ods-success-screen--${status} \\.ods-success-screen__card\\s*\\{\\s*background:\\s*linear-gradient\\(to bottom,\\s*${background}\\s+calc\\(100% - 16px\\),\\s*(?:white|#fff|#ffffff)\\s+calc\\(100% - 16px\\)\\);\\s*\\}`,
+          'i'
+        )
+      );
+    }
+  );
 });
