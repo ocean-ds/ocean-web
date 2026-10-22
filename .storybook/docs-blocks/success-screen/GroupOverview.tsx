@@ -31,6 +31,11 @@ const LOCALES: LocaleFiles[] = [
 const tabs = ['guidelines', 'specs', 'accessibility'] as const;
 const componentOverviewId =
   'components-feedback-success-screen-success-screen--docs';
+const relatedComponents = [
+  { key: 'tag', id: 'components-data-display-tag-tag--overview' },
+  { key: 'button', id: 'components-button--docs' },
+  { key: 'cardListReadOnly', id: 'components-lists-list-listreadonly--docs' },
+] as const;
 const toc: Record<typeof tabs[number], { id: string; labelKey: string }[]> = {
   guidelines: [
     { id: 'overview', labelKey: 'guidelines.overview' },
@@ -269,19 +274,11 @@ export const GroupOverview = (): React.ReactElement => {
         </Section>
         <Section id="related" title={t('related.title')}>
           <div className="odoc-related">
-            {(['badge', 'chips'] as const).map((key) => (
+            {relatedComponents.map(({ key, id }) => (
               <div key={key} className="odoc-related__card odoc-prose">
                 <h4>{t(`related.${key}.title`)}</h4>
                 <p>{t(`related.${key}.text`)}</p>
-                <DocsLink
-                  id={
-                    key === 'badge'
-                      ? 'components-badge--docs'
-                      : 'components-chips--docs'
-                  }
-                >
-                  {t(`related.${key}.link`)}
-                </DocsLink>
+                <DocsLink id={id}>{t(`related.${key}.link`)}</DocsLink>
               </div>
             ))}
           </div>

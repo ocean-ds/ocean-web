@@ -60,6 +60,10 @@ $success-screen-desktop-width: 530px;
     width: 100%;
   }
 
+  &__description.ods-typography__description {
+    font-weight: $font-weight-medium;
+  }
+
   &__details {
     align-items: flex-start;
     background-color: $color-interface-light-pure;

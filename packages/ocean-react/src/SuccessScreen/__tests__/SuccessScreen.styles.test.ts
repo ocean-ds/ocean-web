@@ -56,6 +56,12 @@ describe('compiled SuccessScreen styles', () => {
     expect(css).toMatch(/@container \(min-width: 530px\)/);
   });
 
+  test('uses the Figma description font weight', () => {
+    expect(css).toMatch(
+      /\.ods-success-screen__description\.ods-typography__description\s*\{\s*font-weight:\s*600;/
+    );
+  });
+
   test('overlaps mobile Details by 24px and keeps its outer width', () => {
     expect(css).toMatch(/box-sizing:\s*border-box/);
     expect(css).toMatch(/margin-top:\s*-24px/);

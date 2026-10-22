@@ -93,15 +93,20 @@
   },
   "related": {
     "title": "Relacionados",
-    "badge": {
-      "title": "Badge",
-      "text": "Use Badge para comunicar uma contagem ou um status compacto fora de uma tela terminal.",
-      "link": "Conheça Badge"
+    "tag": {
+      "title": "Tag",
+      "text": "Use Tag para comunicar um status ou destacar uma informação breve.",
+      "link": "Conheça Tag"
     },
-    "chips": {
-      "title": "Chips",
-      "text": "Use Chips para interações de filtro e seleção.",
-      "link": "Conheça Chips"
+    "button": {
+      "title": "Button",
+      "text": "Use Button para permitir que a pessoa realize uma ação.",
+      "link": "Conheça Button"
+    },
+    "cardListReadOnly": {
+      "title": "Card List Read Only",
+      "text": "Use Card List Read Only para apresentar detalhes estruturados que não exigem uma ação.",
+      "link": "Conheça Card List Read Only"
     }
   },
   "feedback": {
@@ -126,20 +131,22 @@
       "Details|Fundo|color-interface-light-pure",
       "Details|Borda|color-interface-light-down",
       "Tag Positive|Fundo|color-status-positive-down|24% de opacidade",
-      "Tag Positive|Texto e ícone|color-interface-light-pure",
-      "Tag Neutral|Fundo|color-interface-light-up",
-      "Tag Neutral|Texto e ícone|color-brand-primary-down",
-      "Tag Negative|Fundo|color-interface-light-up",
-      "Tag Negative|Texto e ícone|color-interface-dark-up"
+      "Tag Positive|Texto|color-interface-light-pure",
+      "Tag Positive|Ícone|color-status-positive-up",
+      "Tag Neutral|Fundo|color-brand-primary-up|24% de opacidade",
+      "Tag Neutral|Texto|color-interface-dark-deep",
+      "Tag Neutral|Ícone|color-brand-primary-down",
+      "Tag Negative|Fundo|color-interface-dark-up|24% de opacidade",
+      "Tag Negative|Texto e ícone|color-interface-light-pure"
     ]
   },
   "typography": {
     "title": "Tipografia",
     "columns": ["Elemento", "Tamanho", "Peso", "Token"],
     "rows": [
-      "Título|20px|Bold|heading3",
-      "Descrição|14px|Regular|description",
-      "Informação extra|12px|Bold|captionBold"
+      "Título|20px|ExtraBold (800)|heading3",
+      "Descrição|14px|SemiBold (600)|description",
+      "Informação extra|12px|SemiBold (600)|captionBold"
     ]
   },
   "structure": {

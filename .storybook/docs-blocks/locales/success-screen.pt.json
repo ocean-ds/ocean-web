@@ -25,7 +25,7 @@
     "primaryAction": "Ação primária opcional, visível apenas no desktop.",
     "secondaryAction": "Ação secundária opcional, visível apenas no desktop.",
     "showTopBar": "Exibe a barra superior mobile com controle de fechar.",
-    "closeButtonAriaLabel": "Rótulo acessível do botão de fechar. O padrão é 'Fechar'.",
+    "closeButtonAriaLabel": "Rótulo acessível do botão de fechar. O rótulo padrão em pt-BR é \"Fechar\".",
     "onClose": "Executada quando o controle de fechar no mobile é acionado.",
     "tagLabel": "Texto opcional da Tag de status.",
     "tagIcon": "Ícone customizado opcional para a Tag de status.",

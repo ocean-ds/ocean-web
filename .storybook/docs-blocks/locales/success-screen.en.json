@@ -25,7 +25,7 @@
     "primaryAction": "Optional primary desktop action.",
     "secondaryAction": "Optional secondary desktop action.",
     "showTopBar": "Shows the mobile Top Bar and its close control.",
-    "closeButtonAriaLabel": "Accessible label for the close button. Defaults to 'Fechar'.",
+    "closeButtonAriaLabel": "Accessible label for the close button. The default pt-BR label is \"Fechar\".",
     "onClose": "Called when the mobile close control is activated.",
     "tagLabel": "Optional status Tag label.",
     "tagIcon": "Optional custom status Tag icon.",

@@ -93,15 +93,20 @@
   },
   "related": {
     "title": "Related",
-    "badge": {
-      "title": "Badge",
-      "text": "Use Badge to communicate a count or compact status outside a terminal screen.",
-      "link": "Explore Badge"
+    "tag": {
+      "title": "Tag",
+      "text": "Use Tag to communicate a status or highlight concise information.",
+      "link": "Explore Tag"
     },
-    "chips": {
-      "title": "Chips",
-      "text": "Use Chips for filtering and selection interactions.",
-      "link": "Explore Chips"
+    "button": {
+      "title": "Button",
+      "text": "Use Button to let people take an action.",
+      "link": "Explore Button"
+    },
+    "cardListReadOnly": {
+      "title": "Card List Read Only",
+      "text": "Use Card List Read Only to present structured details that do not require an action.",
+      "link": "Explore Card List Read Only"
     }
   },
   "feedback": {
@@ -126,20 +131,22 @@
       "Details|Background|color-interface-light-pure",
       "Details|Border|color-interface-light-down",
       "Positive Tag|Background|color-status-positive-down|24% opacity",
-      "Positive Tag|Text and icon|color-interface-light-pure",
-      "Neutral Tag|Background|color-interface-light-up",
-      "Neutral Tag|Text and icon|color-brand-primary-down",
-      "Negative Tag|Background|color-interface-light-up",
-      "Negative Tag|Text and icon|color-interface-dark-up"
+      "Positive Tag|Text|color-interface-light-pure",
+      "Positive Tag|Icon|color-status-positive-up",
+      "Neutral Tag|Background|color-brand-primary-up|24% opacity",
+      "Neutral Tag|Text|color-interface-dark-deep",
+      "Neutral Tag|Icon|color-brand-primary-down",
+      "Negative Tag|Background|color-interface-dark-up|24% opacity",
+      "Negative Tag|Text and icon|color-interface-light-pure"
     ]
   },
   "typography": {
     "title": "Typography",
     "columns": ["Element", "Size", "Weight", "Token"],
     "rows": [
-      "Title|20px|Bold|heading3",
-      "Description|14px|Regular|description",
-      "Extra information|12px|Bold|captionBold"
+      "Title|20px|ExtraBold (800)|heading3",
+      "Description|14px|SemiBold (600)|description",
+      "Extra information|12px|SemiBold (600)|captionBold"
     ]
   },
   "structure": {
