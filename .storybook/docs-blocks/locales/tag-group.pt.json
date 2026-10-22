@@ -97,7 +97,7 @@
       "rows": [
         "Default|Em repouso|Usa o type e a aparência selecionados.",
         "Highlight|Valor em destaque|Usa a variante Highlight.",
-        "Translucent|Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone.|Usa fundo translúcido com 24% de opacidade e texto contrastante."
+        "Translucent|Em superfícies coloridas|Usa fundo translúcido com 24% de opacidade e texto contrastante."
       ],
       "longTextTitle": "Textos longos",
       "longText": "O rótulo permanece em uma linha: `.ods-tag__content` usa `white-space: nowrap`. A Tag não quebra nem trunca o texto; um rótulo longo pode ultrapassar um contêiner estreito."
@@ -124,7 +124,7 @@
     "fullTokenList": "Lista completa de tokens → Tag › Tokens de design",
     "color": {
       "title": "Cor",
-      "text": "Os valores abaixo vêm dos estilos de Tag. Os tokens de fundo de Translucent são aplicados com 24% de opacidade. Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone.",
+      "text": "Os valores abaixo vêm dos estilos de Tag. Os tokens de fundo de Translucent são aplicados com 24% de opacidade.",
       "columns": ["Elemento", "Propriedade", "Token"],
       "variants": {
         "default": "Default",

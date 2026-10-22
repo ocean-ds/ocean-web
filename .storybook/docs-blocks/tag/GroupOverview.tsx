@@ -188,8 +188,14 @@ const colorRows = (t: Translate): React.ReactNode[][] => {
     Object.entries(colors).forEach(([type, tokens]) =>
       tokens.forEach((token, index) => {
         rows.push([
-          `${t(`specs.color.variants.${variant}`)} · ${type}`,
-          t(`specs.color.properties.${PROPERTIES[index]}`),
+          <Md
+            key="element"
+            text={`${t(`specs.color.variants.${variant}`)} · ${type}`}
+          />,
+          <Md
+            key="property"
+            text={t(`specs.color.properties.${PROPERTIES[index]}`)}
+          />,
           tokenCell(token, t, translucent && index === 0),
         ]);
       })
@@ -200,6 +206,9 @@ const colorRows = (t: Translate): React.ReactNode[][] => {
   add('translucent', TRANSLUCENT_COLORS, true);
   return rows;
 };
+
+const localeCells = (row: string): React.ReactNode[] =>
+  row.split('|').map((cell, index) => <Md key={index} text={cell} />);
 
 const FullTokenList = ({ t }: { t: Translate }): React.ReactElement => (
   <p>
@@ -277,9 +286,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => (
         />
         <DocTable
           columns={t.list('guidelines.formatting.anatomy.columns')}
-          rows={t
-            .list('guidelines.formatting.anatomy.rows')
-            .map((row) => row.split('|'))}
+          rows={t.list('guidelines.formatting.anatomy.rows').map(localeCells)}
         />
       </Subsection>
       <Subsection id="sizes" title={t('guidelines.formatting.sizes.title')}>
@@ -288,9 +295,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => (
         </p>
         <DocTable
           columns={t.list('guidelines.formatting.sizes.columns')}
-          rows={t
-            .list('guidelines.formatting.sizes.rows')
-            .map((row) => row.split('|'))}
+          rows={t.list('guidelines.formatting.sizes.rows').map(localeCells)}
         />
       </Subsection>
     </Section>
@@ -379,7 +384,7 @@ const Guidelines = ({ t }: { t: Translate }): React.ReactElement => (
       </p>
       <DocTable
         columns={t.list('guidelines.behaviors.columns')}
-        rows={t.list('guidelines.behaviors.rows').map((row) => row.split('|'))}
+        rows={t.list('guidelines.behaviors.rows').map(localeCells)}
       />
       <Subsection
         id="long-text"
@@ -440,7 +445,7 @@ const Specs = ({ t }: { t: Translate }): React.ReactElement => (
         </p>
         <DocTable
           columns={t.list(`specs.${key}.columns`)}
-          rows={t.list(`specs.${key}.rows`).map((row) => row.split('|'))}
+          rows={t.list(`specs.${key}.rows`).map(localeCells)}
         />
         <FullTokenList t={t} />
       </Section>
@@ -458,7 +463,7 @@ const Accessibility = ({ t }: { t: Translate }): React.ReactElement => (
         columns={t.list('accessibility.oceanProvides.keyboardColumns')}
         rows={t
           .list('accessibility.oceanProvides.keyboardRows')
-          .map((row) => row.split('|'))}
+          .map(localeCells)}
       />
     </Section>
     <Section id="development" title={t('accessibility.development.title')}>
