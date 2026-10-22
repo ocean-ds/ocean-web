@@ -112,6 +112,34 @@ test('renders desktop actions and calls their handlers', () => {
   expect(onSecondaryClick).toHaveBeenCalledTimes(1);
 });
 
+test('does not submit a containing form when actions or the close button are clicked', () => {
+  const onSubmit = jest.fn();
+  const onPrimaryClick = jest.fn();
+  const onSecondaryClick = jest.fn();
+  const onClose = jest.fn();
+
+  render(
+    <form onSubmit={onSubmit}>
+      <SuccessScreen
+        title="Payment complete"
+        showTopBar
+        onClose={onClose}
+        primaryAction={{ label: 'View payment', onClick: onPrimaryClick }}
+        secondaryAction={{ label: 'Done', onClick: onSecondaryClick }}
+      />
+    </form>
+  );
+
+  fireEvent.click(screen.getByRole('button', { name: 'View payment' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Done' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Fechar' }));
+
+  expect(onSubmit).not.toHaveBeenCalled();
+  expect(onPrimaryClick).toHaveBeenCalledTimes(1);
+  expect(onSecondaryClick).toHaveBeenCalledTimes(1);
+  expect(onClose).toHaveBeenCalledTimes(1);
+});
+
 test('renders only a passed action, including when it has no click handler', () => {
   render(
     <SuccessScreen

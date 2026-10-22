@@ -84,6 +84,7 @@ const SuccessScreen = React.forwardRef<HTMLDivElement, SuccessScreenProps>(
             {showTopBar && (
               <div className="ods-success-screen__topbar">
                 <IconButton
+                  type="button"
                   className="ods-success-screen__close"
                   size="sm"
                   aria-label={closeButtonAriaLabel}
@@ -134,12 +135,20 @@ const SuccessScreen = React.forwardRef<HTMLDivElement, SuccessScreenProps>(
             {(primaryAction || secondaryAction) && (
               <div className="ods-success-screen__actions">
                 {secondaryAction && (
-                  <Button variant="secondary" onClick={secondaryAction.onClick}>
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={secondaryAction.onClick}
+                  >
                     {secondaryAction.label}
                   </Button>
                 )}
                 {primaryAction && (
-                  <Button variant="primary" onClick={primaryAction.onClick}>
+                  <Button
+                    type="button"
+                    variant="primary"
+                    onClick={primaryAction.onClick}
+                  >
                     {primaryAction.label}
                   </Button>
                 )}
