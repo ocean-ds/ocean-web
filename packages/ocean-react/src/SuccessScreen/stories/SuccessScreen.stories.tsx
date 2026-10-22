@@ -101,12 +101,12 @@ export const Negative: Story = {
     description: "We couldn't process this payment.",
   },
 };
-export const PositiveMobileTopBar: Story = {
-  args: { status: 'positive', showTopBar: true, layout: 'mobile' },
+export const PositiveMobile: Story = {
+  args: { ...Positive.args, showTopBar: true, layout: 'mobile' },
 };
-export const NeutralMobileTopBar: Story = {
+export const NeutralMobile: Story = {
   args: { ...Neutral.args, showTopBar: true, layout: 'mobile' },
 };
 export const NegativeMobile: Story = {
-  args: { ...Negative.args, layout: 'mobile' },
+  args: { ...Negative.args, showTopBar: true, layout: 'mobile' },
 };

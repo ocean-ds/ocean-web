@@ -167,6 +167,28 @@ test('shows the mobile Top Bar and calls onClose', () => {
   expect(screen.getByRole('button', { name: 'Continue' })).toBeInTheDocument();
 });
 
+test('marks the screen when the Top Bar is shown', () => {
+  const { rerender } = render(
+    <SuccessScreen
+      title="Payment complete"
+      data-testid="success-screen"
+      showTopBar
+    />
+  );
+
+  expect(screen.getByTestId('success-screen')).toHaveClass(
+    'ods-success-screen--with-top-bar'
+  );
+
+  rerender(
+    <SuccessScreen title="Payment complete" data-testid="success-screen" />
+  );
+
+  expect(screen.getByTestId('success-screen')).not.toHaveClass(
+    'ods-success-screen--with-top-bar'
+  );
+});
+
 test('keeps desktop actions out of the mobile layout through CSS classes', () => {
   render(<SuccessScreen title="Payment complete" showTopBar />);
 

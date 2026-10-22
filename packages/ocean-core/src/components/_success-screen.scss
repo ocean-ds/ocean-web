@@ -156,6 +156,12 @@ $success-screen-desktop-width: 530px;
     flex: 0 0 auto;
   }
 
+  .ods-success-screen:not(.ods-success-screen--with-top-bar) {
+    .ods-success-screen__header {
+      padding-top: $spacing-stack-sm;
+    }
+  }
+
   .ods-success-screen__details {
     flex: 1;
   }

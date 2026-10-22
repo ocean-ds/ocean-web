@@ -92,6 +92,21 @@ describe('compiled SuccessScreen styles', () => {
     );
   });
 
+  test('adds mobile header top padding only without the Top Bar', () => {
+    const mobileStyles = css
+      .split('@container (max-width: 529.99px)')[1]
+      ?.split('@container (min-width: 530px)')[0];
+
+    expect(mobileStyles).toMatch(
+      /\.ods-success-screen:not\(\.ods-success-screen--with-top-bar\)\s+\.ods-success-screen__header\s*\{\s*padding-top:\s*24px;/
+    );
+
+    const desktopStyles = css.split('@container (min-width: 530px)')[1];
+    expect(desktopStyles).toMatch(
+      /\.ods-success-screen__header\s*\{[^}]*padding:\s*24px;/
+    );
+  });
+
   test('fills the available height on mobile while keeping desktop content-sized', () => {
     expect(css).toMatch(/\.ods-success-screen\s*\{[^}]*height:\s*100%;/);
     expect(css).toMatch(

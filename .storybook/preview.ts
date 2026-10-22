@@ -86,9 +86,9 @@ export const parameters = {
               [
                 'Overview',
                 'Positive',
-                'Positive Mobile Top Bar',
+                'Positive Mobile',
                 'Neutral',
-                'Neutral Mobile Top Bar',
+                'Neutral Mobile',
                 'Negative',
                 'Negative Mobile',
               ],

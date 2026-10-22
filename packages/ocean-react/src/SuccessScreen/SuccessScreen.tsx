@@ -75,6 +75,7 @@ const SuccessScreen = React.forwardRef<HTMLDivElement, SuccessScreenProps>(
         className={classNames(
           'ods-success-screen',
           `ods-success-screen--${status}`,
+          showTopBar && 'ods-success-screen--with-top-bar',
           className
         )}
         {...rest}
