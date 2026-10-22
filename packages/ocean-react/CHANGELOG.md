@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.150.0](https://github.com/ocean-ds/ocean-web/compare/v1.149.0...v1.150.0) (2026-10-22)
+
+### Features
+
+- **success-screen:** add Success Screen component + Storybook docs (MR-940) ([#1280](https://github.com/ocean-ds/ocean-web/issues/1280)) ([b75c764](https://github.com/ocean-ds/ocean-web/commit/b75c764471f6d902bae458205ed9b7fc1e360207))
+
 # [1.149.0](https://github.com/ocean-ds/ocean-web/compare/v1.148.0...v1.149.0) (2026-10-22)
 
 ### Features
