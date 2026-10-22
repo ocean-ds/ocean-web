@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.150.1](https://github.com/ocean-ds/ocean-web/compare/v1.150.0...v1.150.1) (2026-10-22)
+
+### Bug Fixes
+
+- **success-screen:** status background behind the desktop Details top corners (MR-940) ([#1281](https://github.com/ocean-ds/ocean-web/issues/1281)) ([4197c6a](https://github.com/ocean-ds/ocean-web/commit/4197c6af3f7619c95f7870fe4aa0671147d8e27d))
+
 # [1.150.0](https://github.com/ocean-ds/ocean-web/compare/v1.149.0...v1.150.0) (2026-10-22)
 
 ### Features
