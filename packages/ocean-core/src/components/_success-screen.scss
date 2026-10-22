@@ -187,6 +187,10 @@ $success-screen-desktop-width: 530px;
     border-radius: 0;
   }
 
+  .ods-success-screen__header-content {
+    padding: 0;
+  }
+
   .ods-success-screen__header {
     border-radius: $border-radius-lg $border-radius-lg 0 0;
     padding: $spacing-stack-sm;

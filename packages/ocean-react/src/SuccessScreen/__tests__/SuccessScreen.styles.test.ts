@@ -56,6 +56,17 @@ describe('compiled SuccessScreen styles', () => {
     expect(css).toMatch(/@container \(min-width: 530px\)/);
   });
 
+  test('keeps 24px header-content padding on mobile and removes it on desktop', () => {
+    expect(css).toMatch(
+      /\.ods-success-screen__header-content\s*\{[^}]*padding:\s*0 24px;/
+    );
+
+    const desktopStyles = css.split('@container (min-width: 530px)')[1];
+    expect(desktopStyles).toMatch(
+      /\.ods-success-screen__header-content\s*\{\s*padding:\s*0;\s*\}/
+    );
+  });
+
   test.each(['topbar', 'header-content', 'text'])(
     'uses border-box sizing for __%s',
     (element) => {
