@@ -1,0 +1,364 @@
+{
+  "component": "transaction-footer",
+  "generatedFrom": [
+    "packages/ocean-core/src/components/_transaction-footer.scss"
+  ],
+  "rows": [
+    {
+      "part": "Notice",
+      "property": "background",
+      "state": "Default",
+      "tokens": [
+        "positive-overlay",
+        "positive-overlay",
+        "color-status-positive-up"
+      ],
+      "value": "linear-gradient($positive-overlay, $positive-overlay), rgb(242, 253, 245)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice"
+    },
+    {
+      "part": "Notice",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice"
+    },
+    {
+      "part": "Notice",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice"
+    },
+    {
+      "part": "Notice content",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxxs"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__content"
+    },
+    {
+      "part": "Notice icon",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-status-positive-deep"
+      ],
+      "value": "rgb(45, 169, 79)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__icon"
+    },
+    {
+      "part": "Notice icon",
+      "property": "height",
+      "state": "Default",
+      "tokens": [],
+      "value": "20px",
+      "noToken": "20px",
+      "source": "_transaction-footer.scss .ods-transaction-notice__icon"
+    },
+    {
+      "part": "Notice icon",
+      "property": "width",
+      "state": "Default",
+      "tokens": [],
+      "value": "20px",
+      "noToken": "20px",
+      "source": "_transaction-footer.scss .ods-transaction-notice__icon"
+    },
+    {
+      "part": "Notice title",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__title"
+    },
+    {
+      "part": "Notice title",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__title"
+    },
+    {
+      "part": "Notice title",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__title"
+    },
+    {
+      "part": "Notice title",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-extrabold"
+      ],
+      "value": "800",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__title"
+    },
+    {
+      "part": "Notice description",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__description"
+    },
+    {
+      "part": "Notice description",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__description"
+    },
+    {
+      "part": "Notice description",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxxs"
+      ],
+      "value": "12px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__description"
+    },
+    {
+      "part": "Notice description",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-regular"
+      ],
+      "value": "400",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__description"
+    },
+    {
+      "part": "Notice description",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-comfy"
+      ],
+      "value": "1.5",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-notice__description"
+    },
+    {
+      "part": "Row",
+      "property": "border-radius",
+      "state": "Default",
+      "tokens": [
+        "border-radius-md",
+        "border-radius-md"
+      ],
+      "value": "12px 12px 0 0",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__notice"
+    },
+    {
+      "part": "Row",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total-label"
+    },
+    {
+      "part": "Row",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total-label"
+    },
+    {
+      "part": "Row",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total-label"
+    },
+    {
+      "part": "Row",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-bold"
+      ],
+      "value": "700",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total-label"
+    },
+    {
+      "part": "Row",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total"
+    },
+    {
+      "part": "Row",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-comfy"
+      ],
+      "value": "1.5",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total-label"
+    },
+    {
+      "part": "Row",
+      "property": "margin-bottom",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xs"
+      ],
+      "value": "-16px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__notice"
+    },
+    {
+      "part": "Row",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xs",
+        "spacing-inline-xs",
+        "spacing-stack-md"
+      ],
+      "value": "16px 16px 32px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__notice"
+    },
+    {
+      "part": "Row",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xxs"
+      ],
+      "value": "8px 0",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__details"
+    },
+    {
+      "part": "Row",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__total"
+    },
+    {
+      "part": "Row",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xs",
+        "spacing-inline-xs"
+      ],
+      "value": "16px 16px",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__action"
+    },
+    {
+      "part": "Row",
+      "property": "background-color",
+      "state": "default",
+      "tokens": [
+        "color-interface-light-pure"
+      ],
+      "value": "rgb(255, 255, 255)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__body--default"
+    },
+    {
+      "part": "Row",
+      "property": "border-top",
+      "state": "default",
+      "tokens": [
+        "border-width-hairline",
+        "color-interface-light-down"
+      ],
+      "value": "1px solid rgb(224, 226, 238)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__body--default"
+    },
+    {
+      "part": "Row",
+      "property": "background-color",
+      "state": "highlight",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__body--highlight"
+    },
+    {
+      "part": "Row",
+      "property": "border-radius",
+      "state": "highlight",
+      "tokens": [
+        "border-radius-md",
+        "border-radius-md"
+      ],
+      "value": "12px 12px 0 0",
+      "noToken": null,
+      "source": "_transaction-footer.scss .ods-transaction-footer-v2__body--highlight"
+    }
+  ]
+}

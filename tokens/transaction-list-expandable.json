@@ -1,0 +1,436 @@
+{
+  "component": "transaction-list-expandable",
+  "generatedFrom": [
+    "packages/ocean-core/src/components/_list-expandable.scss",
+    "packages/ocean-core/src/components/_skeleton-bar.scss"
+  ],
+  "rows": [
+    {
+      "part": "Row",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xs",
+        "spacing-inline-xxs",
+        "spacing-inline-xs",
+        "spacing-inline-xs"
+      ],
+      "value": "16px 8px 16px 16px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "background-color",
+      "state": "Hover",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__main:hover:not(.ods-list-expandable--loading .ods-list-expandable__main)"
+    },
+    {
+      "part": "Row",
+      "property": "background-color",
+      "state": "Focus",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__main:focus-visible:not(.ods-list-expandable--loading .ods-list-expandable__main)"
+    },
+    {
+      "part": "Row",
+      "property": "outline",
+      "state": "Focus",
+      "tokens": [
+        "color-brand-primary-pure"
+      ],
+      "value": "2px solid rgb(0, 37, 224)",
+      "noToken": "2px",
+      "source": "_list-expandable.scss .ods-list-expandable__main:focus-visible"
+    },
+    {
+      "part": "Row",
+      "property": "outline-offset",
+      "state": "Focus",
+      "tokens": [],
+      "value": "-2px",
+      "noToken": "-2px",
+      "source": "_list-expandable.scss .ods-list-expandable__main:focus-visible"
+    },
+    {
+      "part": "Row",
+      "property": "background-color",
+      "state": "Expanded · Hover",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--expanded .ods-list-expandable__main:hover"
+    },
+    {
+      "part": "Row",
+      "property": "padding-bottom",
+      "state": "Compact",
+      "tokens": [
+        "spacing-stack-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--compact .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "padding-top",
+      "state": "Compact",
+      "tokens": [
+        "spacing-stack-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--compact .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "padding-bottom",
+      "state": "Compact · Loading",
+      "tokens": [
+        "spacing-stack-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--compact.ods-list-expandable--loading .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "padding-top",
+      "state": "Compact · Loading",
+      "tokens": [
+        "spacing-stack-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--compact.ods-list-expandable--loading .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "padding",
+      "state": "Loading",
+      "tokens": [
+        "spacing-inline-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--loading .ods-list-expandable__main"
+    },
+    {
+      "part": "Row",
+      "property": "opacity",
+      "state": "Disabled",
+      "tokens": [],
+      "value": "0.6",
+      "noToken": "0.6",
+      "source": "_list-expandable.scss .ods-list-expandable--disabled"
+    },
+    {
+      "part": "Icon",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__icon"
+    },
+    {
+      "part": "Icon",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-brand-primary-down"
+      ],
+      "value": "rgb(88, 114, 245)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__icon"
+    },
+    {
+      "part": "Icon",
+      "property": "color",
+      "state": "highlight",
+      "tokens": [
+        "color-brand-primary-down"
+      ],
+      "value": "rgb(88, 114, 245)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__icon--highlight"
+    },
+    {
+      "part": "Icon",
+      "property": "color",
+      "state": "on-color",
+      "tokens": [
+        "color-interface-dark-down"
+      ],
+      "value": "rgb(103, 105, 122)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__icon--on-color"
+    },
+    {
+      "part": "Icon",
+      "property": "color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-light-deep"
+      ],
+      "value": "rgb(206, 209, 225)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__icon--disabled"
+    },
+    {
+      "part": "Content area",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxs-extra"
+      ],
+      "value": "12px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__transaction-content"
+    },
+    {
+      "part": "Value",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__transaction-content .ods-amount-details__amount:not(.ods-amount-details__amount--positive):not(.ods-amount-details__amount--sized)"
+    },
+    {
+      "part": "Value",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__transaction-content .ods-amount-details__amount:not(.ods-amount-details__amount--sized)"
+    },
+    {
+      "part": "Sign",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-deep"
+      ],
+      "value": "rgb(57, 59, 71)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__transaction-content .ods-amount-details__amount-sign:not(.ods-amount-details__amount-sign--sized)"
+    },
+    {
+      "part": "Sign",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xs"
+      ],
+      "value": "16px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__transaction-content .ods-amount-details__amount-sign:not(.ods-amount-details__amount-sign--sized)"
+    },
+    {
+      "part": "Trailing",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__trailing"
+    },
+    {
+      "part": "Chevron",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__action svg"
+    },
+    {
+      "part": "Supporting text",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__footer"
+    },
+    {
+      "part": "Supporting text",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__footer"
+    },
+    {
+      "part": "Supporting text",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxxs"
+      ],
+      "value": "12px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__footer"
+    },
+    {
+      "part": "Supporting text",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-medium"
+      ],
+      "value": "600",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__footer"
+    },
+    {
+      "part": "Supporting text",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-comfy"
+      ],
+      "value": "1.5",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__footer"
+    },
+    {
+      "part": "Supporting text",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxs-extra",
+        "spacing-inline-sm"
+      ],
+      "value": "12px 0 24px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__footer"
+    },
+    {
+      "part": "Divider",
+      "property": "border-bottom",
+      "state": "Default",
+      "tokens": [
+        "color-interface-light-down"
+      ],
+      "value": "1px solid rgb(224, 226, 238)",
+      "noToken": "1px",
+      "source": "_list-expandable.scss .ods-list-expandable__divider"
+    },
+    {
+      "part": "Divider",
+      "property": "border-color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-light-down"
+      ],
+      "value": "rgb(224, 226, 238)",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable__divider"
+    },
+    {
+      "part": "Divider",
+      "property": "margin",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xs"
+      ],
+      "value": "-1px 16px 0",
+      "noToken": "-1px",
+      "source": "_list-expandable.scss .ods-list-expandable__divider"
+    },
+    {
+      "part": "Skeleton",
+      "property": "background-color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_skeleton-bar.scss .ods-skeleton-bar"
+    },
+    {
+      "part": "Skeleton",
+      "property": "border-radius",
+      "state": "Default",
+      "tokens": [
+        "border-radius-tiny"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_skeleton-bar.scss .ods-skeleton-bar"
+    },
+    {
+      "part": "Skeleton",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_skeleton-bar.scss .ods-skeleton-bar"
+    },
+    {
+      "part": "Skeleton",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxs"
+      ],
+      "value": "8px",
+      "noToken": null,
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__skeleton-list"
+    },
+    {
+      "part": "Skeleton",
+      "property": "width",
+      "state": "Default",
+      "tokens": [],
+      "value": "86px",
+      "noToken": "86px",
+      "source": "_list-expandable.scss .ods-list-expandable--transaction .ods-list-expandable__skeleton-amount"
+    }
+  ]
+}
