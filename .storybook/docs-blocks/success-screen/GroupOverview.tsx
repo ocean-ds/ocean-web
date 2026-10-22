@@ -132,7 +132,12 @@ export const GroupOverview = (): React.ReactElement => {
       : 'guidelines';
   });
   useEffect(() => window.scrollTo?.(0, 0), []);
-  const rows = (key: string) => t.list(key).map((row) => row.split('|'));
+  const rows = (key: string) =>
+    t
+      .list(key)
+      .map((row) =>
+        row.split('|').map((cell, index) => <Md key={index} text={cell} />)
+      );
   const linkToOverview = (label: string, section?: string) => (
     <DocsLink id={componentOverviewId} section={section}>
       {label}
@@ -141,8 +146,8 @@ export const GroupOverview = (): React.ReactElement => {
   const colors = t.list('colors.rows').map((row) => {
     const [element, property, token, note] = row.split('|');
     return [
-      element,
-      property,
+      <Md key="element" text={element} />,
+      <Md key="property" text={property} />,
       <span key={`${element}-${token}`}>
         <Swatch token={token} />
         {note && ` · ${note}`}
@@ -194,8 +199,8 @@ export const GroupOverview = (): React.ReactElement => {
               rows={t.list('overview.variantRows').map((row) => {
                 const [variant, purpose] = row.split('|');
                 return [
-                  variant,
-                  purpose,
+                  <Md key="variant" text={variant} />,
+                  <Md key="purpose" text={purpose} />,
                   linkToOverview(t('overview.overviewLink')),
                 ];
               })}
@@ -266,7 +271,9 @@ export const GroupOverview = (): React.ReactElement => {
           </Subsection>
         </Section>
         <Section id="behaviors" title={t('behaviors.title')}>
-          <p>{t('behaviors.text')}</p>
+          <p>
+            <Md text={t('behaviors.text')} />
+          </p>
           <DocTable
             columns={t.list('behaviors.columns')}
             rows={rows('behaviors.rows')}

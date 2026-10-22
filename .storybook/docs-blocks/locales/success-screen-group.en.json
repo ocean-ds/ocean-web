@@ -30,8 +30,8 @@
     ],
     "whenNotToUse": "When not to use",
     "whenNotToUseItems": [
-      "To show a count, use [Badge](docs:components-badge--docs).",
-      "To filter or select items, use [Chips](docs:components-chips--docs).",
+      "For feedback that does not end a flow, use [Alert](docs:components-alert--docs) or [Snackbar](docs:components-snackbar--docs).",
+      "For a confirmation that keeps the person in the current screen, use [Modal](docs:components-modal--docs).",
       "To trigger an action without a terminal confirmation, use a Button."
     ],
     "variants": "Variants",

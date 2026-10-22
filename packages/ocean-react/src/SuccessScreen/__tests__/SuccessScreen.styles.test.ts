@@ -56,6 +56,17 @@ describe('compiled SuccessScreen styles', () => {
     expect(css).toMatch(/@container \(min-width: 530px\)/);
   });
 
+  test.each(['topbar', 'header-content', 'text'])(
+    'uses border-box sizing for __%s',
+    (element) => {
+      expect(css).toMatch(
+        new RegExp(
+          `\\.ods-success-screen__${element}\\s*\\{[^}]*box-sizing:\\s*border-box;`
+        )
+      );
+    }
+  );
+
   test('keeps extra information on the dark-up token', () => {
     expect(css).toMatch(
       /\.ods-success-screen__extra-information\.ods-typography__captionbold\s*\{\s*color:\s*#aaadc0;/
@@ -120,7 +131,6 @@ describe('compiled SuccessScreen styles', () => {
     const desktopStyles = css.split('@container (min-width: 530px)')[1];
     expect(desktopStyles).toBeDefined();
     expect(desktopStyles).not.toMatch(/min-height:\s*100%/);
-    expect(css).toMatch(/box-sizing:\s*border-box/);
   });
 
   test('uses the Figma desktop Details border and radius', () => {

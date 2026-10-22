@@ -23,6 +23,7 @@ $success-screen-desktop-width: 530px;
 
   &__topbar {
     align-items: center;
+    box-sizing: border-box;
     display: flex;
     height: $spacing-stack-xl;
     justify-content: flex-end;
@@ -39,6 +40,7 @@ $success-screen-desktop-width: 530px;
 
   &__header-content {
     align-items: center;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: $spacing-stack-xxs-extra;
@@ -49,6 +51,7 @@ $success-screen-desktop-width: 530px;
 
   &__text {
     align-items: center;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: $spacing-stack-xxs;
