@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Typography from '../../Typography';
 import SuccessScreen from '../SuccessScreen';
+import './success-screen-story-frame.scss';
 
 const meta: Meta = {
   title: 'Visual tests/Success Screen',
@@ -75,6 +76,11 @@ export const Matrix: Story = {
                     <div key={label} style={{ minWidth: width }}>
                       <Typography variant="captionbold">{label}</Typography>
                       <div
+                        className={
+                          layout === 'mobile'
+                            ? 'ods-success-screen-story-frame--mobile'
+                            : undefined
+                        }
                         style={{
                           marginTop: 8,
                           width,

@@ -56,6 +56,12 @@ describe('compiled SuccessScreen styles', () => {
     expect(css).toMatch(/@container \(min-width: 530px\)/);
   });
 
+  test('keeps extra information on the dark-up token', () => {
+    expect(css).toMatch(
+      /\.ods-success-screen__extra-information\.ods-typography__captionbold\s*\{\s*color:\s*#aaadc0;/
+    );
+  });
+
   test.each([
     { status: 'positive', background: '#2da94f', closeColor: 'white' },
     { status: 'neutral', background: '#f3f5fe', closeColor: '#aaadc0' },

@@ -83,7 +83,15 @@ export const parameters = {
             [
               'Overview',
               'Success Screen',
-              ['Overview', 'Positive', 'Neutral', 'Negative'],
+              [
+                'Overview',
+                'Positive',
+                'Positive Mobile Top Bar',
+                'Neutral',
+                'Neutral Mobile Top Bar',
+                'Negative',
+                'Negative Mobile',
+              ],
             ],
           ],
           'Lists',

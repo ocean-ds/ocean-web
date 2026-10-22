@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import List from '../../List';
 import TransactionListItem from '../../TransactionListItem';
 import SuccessScreen from '../SuccessScreen';
+import './success-screen-story-frame.scss';
 
 type Args = React.ComponentProps<typeof SuccessScreen> & {
   showDescription: boolean;
@@ -53,6 +54,11 @@ const meta: Meta<Args> = {
     ...args
   }) => (
     <div
+      className={
+        layout === 'mobile'
+          ? 'ods-success-screen-story-frame--mobile'
+          : undefined
+      }
       style={{
         width: layout === 'desktop' ? 1024 : 360,
         height: layout === 'mobile' ? 640 : undefined,
@@ -97,4 +103,10 @@ export const Negative: Story = {
 };
 export const PositiveMobileTopBar: Story = {
   args: { status: 'positive', showTopBar: true, layout: 'mobile' },
+};
+export const NeutralMobileTopBar: Story = {
+  args: { ...Neutral.args, showTopBar: true, layout: 'mobile' },
+};
+export const NegativeMobile: Story = {
+  args: { ...Negative.args, layout: 'mobile' },
 };
