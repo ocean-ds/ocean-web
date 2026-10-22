@@ -6,6 +6,8 @@ import Tag, { TagProps } from '../Tag/Tag';
 import ContentList from '../_shared/components/ContentList/ContentList';
 import SkeletonBar from '../_shared/components/SkeletonBar';
 
+type SettingsListTagProps = Exclude<TagProps, { appearance: 'translucent' }>;
+
 export type SettingListItemProps = {
   title: string;
   description?: string;
@@ -13,7 +15,7 @@ export type SettingListItemProps = {
   caption?: string;
   errorMessage?: string;
   button?: ButtonProps;
-  tag?: TagProps;
+  tag?: SettingsListTagProps;
   showDivider?: boolean;
   blocked?: boolean;
   disabled?: boolean;

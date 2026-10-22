@@ -1,0 +1,53 @@
+{
+  "overview": "Tag is a compact, non-interactive label for a status or category.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "The default appearance keeps the existing Tag colors and geometry."
+    },
+    "highlight": {
+      "title": "Highlight",
+      "text": "Highlight emphasizes a short label with its stronger type treatment."
+    },
+    "translucent": {
+      "title": "Translucent",
+      "text": "Translucent uses a token color at 24% opacity. Translucent with dark text (`neutral-02`) is for light colored surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong colored surfaces. Translucent exists only in medium size with an icon. Do not use it on white backgrounds."
+    }
+  },
+  "api": {
+    "intro": "Tag renders a concise label as static content. Use its controls to choose an appearance, type, size, and icon.",
+    "appearance": "Visual treatment for the default variant. `default` preserves the standard appearance; Translucent uses the type's background token at 24% opacity. Translucent with dark text (`neutral-02`) is for light colored surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong colored surfaces. Translucent exists only in medium size with an icon. Highlight does not accept this prop. Do not use it on white backgrounds.",
+    "children": "Text content displayed by the Tag.",
+    "className": "Additional class name applied to the Tag root.",
+    "icon": "Optional custom React element used as the Tag icon.",
+    "setIconOff": "Hides the Tag icon.",
+    "size": "Tag size. Translucent appearance uses medium size.",
+    "type": "Status or category color and icon style for the Tag.",
+    "variant": "Tag type treatment: default or highlight."
+  },
+  "tokens": {
+    "intro": "The table below lists the Ocean tokens used by the Tag styles."
+  },
+  "options": {
+    "size": {
+      "title": "Size",
+      "text": "Choose small for dense layouts or medium for the standard Tag size."
+    },
+    "icon": {
+      "title": "Custom icon",
+      "text": "Pass a React element to `icon` when the default icon does not express the intended meaning."
+    },
+    "setIconOff": {
+      "title": "Hide the icon",
+      "text": "Set `setIconOff` to hide the default icon."
+    }
+  },
+  "rules": [
+    "Keep the label concise and understandable without color alone.",
+    "Translucent with dark text (`neutral-02`) is for light colored surfaces. The white-text types (`positive`, `warning`, `negative`, `complementary`, `neutral`) are for strong colored surfaces. Translucent exists only in medium size with an icon; neutral, neutral-02 and complementary need a custom `icon`.",
+    "Use Translucent only on colored surfaces, never on white backgrounds.",
+    "Highlight uses `variant=\"highlight\"` with type `important` or `neutral`.",
+    "The Tag label is plain text and is not a keyboard focus target.",
+    "When `setIconOff` is true, the default icon is not rendered."
+  ]
+}

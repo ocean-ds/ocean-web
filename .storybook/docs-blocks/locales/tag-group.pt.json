@@ -1,0 +1,195 @@
+{
+  "breadcrumb": ["Componentes", "Exibição de dados"],
+  "description": "Rótulos compactos e não interativos para status ou categorias.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "toc": "Nesta página",
+  "page": {
+    "title": "Tag",
+    "status": "Estável"
+  },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Especificações",
+    "accessibility": "Acessibilidade"
+  },
+  "guidelines": {
+    "overview": {
+      "title": "Visão geral",
+      "text": "Tag é um rótulo compacto e não interativo para status ou categorias. Por exemplo, “Paid” permite identificar o status de um pagamento rapidamente.",
+      "defaultLabel": "Aparência Default",
+      "translucentLabel": "Translucent sobre uma superfície colorida",
+      "whenToUseTitle": "Quando usar",
+      "whenToUseItems": [
+        "Exiba um status ou uma categoria ao lado do conteúdo relacionado.",
+        "Escolha um type claro e um rótulo conciso para facilitar a leitura.",
+        "Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone.",
+        "Use Translucent somente sobre superfícies coloridas, nunca sobre branco."
+      ],
+      "whenNotToUseTitle": "Quando não usar",
+      "whenNotToUseItems": [
+        "Para exibir uma contagem, use Badge.",
+        "Para filtrar ou selecionar, use Chips.",
+        "Para uma ação, use Button."
+      ]
+    },
+    "variants": {
+      "title": "Variantes",
+      "columns": ["Variante", "Finalidade", "Link"],
+      "default": "Default",
+      "highlight": "Highlight",
+      "translucent": "Translucent",
+      "purposes": {
+        "default": "Rótulos de status ou categoria.",
+        "highlight": "Destacar um valor ou uma oferta importante.",
+        "translucent": "Rótulos de status sobre superfícies coloridas."
+      },
+      "link": "Visão geral de Tag"
+    },
+    "formatting": {
+      "title": "Formatação",
+      "anatomy": {
+        "title": "Anatomia",
+        "text": "O ícone é opcional em Default; o texto do rótulo é obrigatório.",
+        "columns": ["#", "Elemento", "Obrigatório", "Observações"],
+        "rows": [
+          "1|Ícone|Não|O ícone padrão reforça o rótulo.",
+          "2|Texto|Sim|Use um rótulo conciso de status ou categoria."
+        ]
+      },
+      "sizes": {
+        "title": "Tamanhos",
+        "text": "Use small quando o espaço for limitado e medium como tamanho padrão. Translucent existe somente em medium com ícone.",
+        "columns": ["Tamanho", "Altura", "Quando usar"],
+        "rows": [
+          "Small|16px|Use em layouts densos.",
+          "Medium|20px com ou sem ícone|Use como tamanho padrão."
+        ]
+      }
+    },
+    "content": {
+      "title": "Conteúdo",
+      "text": "Escreva um rótulo curto, que possa ser entendido sem a leitura de uma frase.",
+      "writingItems": [
+        "Prefira uma ou duas palavras.",
+        "Nomeie o status ou a categoria diretamente.",
+        "Não use Tag como frase nem como substituto de conteúdo explicativo."
+      ],
+      "doDontTitle": "Faça e evite",
+      "do": "Faça",
+      "dont": "Evite",
+      "caution": "Use com cuidado",
+      "doDont": {
+        "shortDo": "Use um rótulo curto e fácil de identificar.",
+        "shortDont": "Não coloque uma frase dentro da Tag.",
+        "surfaceDo": "Posicione Translucent sobre uma superfície colorida.",
+        "surfaceDont": "Não posicione Translucent sobre branco.",
+        "sizesDo": "Mantenha o mesmo tamanho nas Tags de uma linha.",
+        "sizesDont": "Não misture tamanhos na mesma linha."
+      }
+    },
+    "behaviors": {
+      "title": "Comportamentos",
+      "text": "Tag é um rótulo estático; não oferece ações nem estados interativos.",
+      "columns": ["Estado", "Quando", "Aparência"],
+      "rows": [
+        "Default|Em repouso|Usa o type e a aparência selecionados.",
+        "Highlight|Valor em destaque|Usa a variante Highlight.",
+        "Translucent|Em superfícies coloridas|Usa fundo translúcido com 24% de opacidade e texto contrastante."
+      ],
+      "longTextTitle": "Textos longos",
+      "longText": "O rótulo permanece em uma linha: `.ods-tag__content` usa `white-space: nowrap`. A Tag não quebra nem trunca o texto; um rótulo longo pode ultrapassar um contêiner estreito."
+    },
+    "related": {
+      "title": "Componentes relacionados",
+      "badge": {
+        "title": "Badge",
+        "text": "Use Badge para exibir uma contagem.",
+        "link": "Conheça Badge"
+      },
+      "chips": {
+        "title": "Chips",
+        "text": "Use Chips para filtros ou seleções.",
+        "link": "Conheça Chips"
+      }
+    },
+    "feedback": {
+      "title": "Feedback",
+      "text": "Encontrou um problema ou tem uma sugestão? [Envie seu feedback](https://github.com/ocean-ds/ocean-web/issues)."
+    }
+  },
+  "specs": {
+    "fullTokenList": "Lista completa de tokens → Tag › Tokens de design",
+    "color": {
+      "title": "Cor",
+      "text": "Os valores abaixo vêm dos estilos de Tag. Os tokens de fundo de Translucent são aplicados com 24% de opacidade.",
+      "columns": ["Elemento", "Propriedade", "Token"],
+      "variants": {
+        "default": "Default",
+        "highlight": "Highlight",
+        "translucent": "Translucent"
+      },
+      "properties": {
+        "background": "Fundo",
+        "text": "Texto",
+        "icon": "Preenchimento do ícone"
+      },
+      "opacity": "24% de opacidade",
+      "noToken": "Sem token Ocean"
+    },
+    "typography": {
+      "title": "Tipografia",
+      "text": "O tamanho e o peso da fonte seguem o tamanho e a variante selecionados.",
+      "columns": ["Elemento", "Tamanho", "Peso", "Token"],
+      "rows": [
+        "Tag · Small|10px / line-height de 8px|700|font-weight-bold; font-family-base",
+        "Tag · Medium|12px / line-height de 12px|600|font-size-xxxs; font-weight-medium; font-family-base",
+        "Tag · Highlight|Mesmo tamanho selecionado|800|font-weight-extrabold; font-family-base",
+        "Tag · Translucent|12px / line-height de 12px|600|font-size-xxxs; font-weight-medium; font-family-base"
+      ]
+    },
+    "structure": {
+      "title": "Estrutura",
+      "text": "Os valores de espaçamento e raio seguem os estilos do componente Tag.",
+      "columns": ["Elemento", "Propriedade", "px/rem", "Token"],
+      "rows": [
+        "Tag|Raio da borda|16px / 1rem|border-radius-lg",
+        "Conteúdo da Tag|Espaço|4px / 0,25rem|spacing-stack-xxxs",
+        "Medium|Padding sem ícone|4px 8px / 0,25rem 0,5rem|spacing-stack-xxxs; spacing-stack-xxs",
+        "Medium com ícone|Padding|2px 8px 2px 6px / 0,125rem 0,5rem 0,125rem 0,375rem|2px; spacing-stack-xxs; 6px",
+        "Small|Padding|4px / 0,25rem|spacing-stack-xxxs",
+        "Ícone|Largura mínima|16px / 1rem|spacing-stack-xs"
+      ]
+    },
+    "size": {
+      "title": "Tamanho",
+      "text": "A altura é a soma da line box com o padding vertical.",
+      "columns": ["Tamanho", "Altura", "Configuração"],
+      "rows": [
+        "Small|16px|Com ou sem ícone.",
+        "Medium|20px|Default e Highlight.",
+        "Translucent|20px|Medium com ícone."
+      ]
+    }
+  },
+  "accessibility": {
+    "oceanProvides": {
+      "title": "O que o Ocean oferece",
+      "text": "Tag é uma `div` não focável e sem role explícito. O rótulo é lido como texto simples, e o ícone padrão recebe `aria-hidden`.",
+      "keyboardColumns": ["Tecla", "Ação"],
+      "keyboardRows": [
+        "Tab|Tag não recebe foco e é ignorada na ordem de navegação por teclado."
+      ]
+    },
+    "development": {
+      "title": "Considerações de desenvolvimento",
+      "items": [
+        "**Use um rótulo claro.** Não dependa somente da cor para comunicar o status.",
+        "**Mantenha o texto significativo.** Tecnologias assistivas recebem o rótulo como texto simples.",
+        "**Não adicione interação.** Se o conteúdo executa uma ação, use um componente interativo como Button."
+      ]
+    }
+  }
+}

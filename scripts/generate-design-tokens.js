@@ -282,6 +282,7 @@ const STATE_NAMES = {
   warning: 'warning',
   neutral: 'neutral',
   complementary: 'complementary',
+  translucent: 'Translucent',
   strikethrough: 'strikethrough',
   'strikethrough-neutral': 'strikethrough-neutral',
   'highlight-lead': 'highlight-lead',
@@ -437,6 +438,10 @@ const COMPONENTS = {
       /^\.ods-tag(--(medium|small|neutral|complementary|positive|warning|negative))?( \.ods-tag__(content))?$/.test(
         selector
       ),
+  },
+  tag: {
+    files: ['_tag.scss'],
+    include: (selector) => selector.startsWith('.ods-tag'),
   },
 };
 

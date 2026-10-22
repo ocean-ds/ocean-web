@@ -1,0 +1,53 @@
+{
+  "overview": "Tag é um rótulo compacto e não interativo para um status ou categoria.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "A aparência Default mantém as cores e a geometria existentes de Tag."
+    },
+    "highlight": {
+      "title": "Highlight",
+      "text": "Highlight enfatiza um rótulo breve com um tratamento tipográfico mais forte."
+    },
+    "translucent": {
+      "title": "Translucent",
+      "text": "Translucent usa uma cor de token em 24% de opacidade. Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone. Não use em fundos brancos."
+    }
+  },
+  "api": {
+    "intro": "Tag renderiza um rótulo conciso como conteúdo estático. Use os controles para escolher aparência, tipo, tamanho e ícone.",
+    "appearance": "Tratamento visual da variante default. `default` preserva a aparência padrão; Translucent usa o token de fundo do tipo com 24% de opacidade. Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone. Highlight não aceita esta propriedade. Não use em fundos brancos.",
+    "children": "Conteúdo textual exibido por Tag.",
+    "className": "Classe adicional aplicada à raiz de Tag.",
+    "icon": "Elemento React personalizado opcional usado como ícone de Tag.",
+    "setIconOff": "Oculta o ícone de Tag.",
+    "size": "Tamanho de Tag. A aparência Translucent usa o tamanho medium.",
+    "type": "Estilo de cor e ícone de status ou categoria de Tag.",
+    "variant": "Tratamento de Tag: default ou highlight."
+  },
+  "tokens": {
+    "intro": "A tabela a seguir lista os tokens Ocean usados pelos estilos de Tag."
+  },
+  "options": {
+    "size": {
+      "title": "Tamanho",
+      "text": "Escolha small para layouts densos e medium como tamanho padrão da Tag."
+    },
+    "icon": {
+      "title": "Ícone personalizado",
+      "text": "Passe um elemento React em `icon` quando o ícone padrão não expressar o significado desejado."
+    },
+    "setIconOff": {
+      "title": "Ocultar o ícone",
+      "text": "Defina `setIconOff` para ocultar o ícone padrão."
+    }
+  },
+  "rules": [
+    "Mantenha o rótulo conciso e compreensível sem depender apenas da cor.",
+    "Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone; neutral, neutral-02 e complementary precisam de `icon` personalizado.",
+    "Use Translucent somente em superfícies coloridas, nunca em fundos brancos.",
+    "Highlight usa `variant=\"highlight\"` com type `important` ou `neutral`.",
+    "O rótulo da Tag é texto simples e não recebe foco pelo teclado.",
+    "Quando `setIconOff` é verdadeiro, o ícone padrão não é renderizado."
+  ]
+}

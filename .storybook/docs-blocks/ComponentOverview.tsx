@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Story, Unstyled } from '@storybook/blocks';
+import { Source, Story, Unstyled } from '@storybook/blocks';
 import Link from '../../packages/ocean-react/src/Link';
 import Tag from '../../packages/ocean-react/src/Tag';
 import Typography from '../../packages/ocean-react/src/Typography';
@@ -53,6 +53,8 @@ export type ComponentDocConfig = {
   kind: 'component' | 'block';
   /** Folder of the source code in the repository. */
   source: string;
+  /** Component lifecycle status. */
+  status?: 'stable' | 'beta';
   /** Group Overview story id. */
   groupOverview: string;
   locale: LocaleFiles;
@@ -67,7 +69,8 @@ export type ComponentDocConfig = {
   optionsLocalePrefix?: string;
   /** Show the list-only Content and amount section. */
   contentAndAmount?: boolean;
-  platforms: PlatformSnippets | 'table';
+  platforms: PlatformSnippets | 'table' | 'react-only';
+  reactSnippet?: string;
   /** Primary story: the Component API example and its controls. */
   story: unknown;
   argTypes: Record<string, ApiArgType>;
@@ -172,7 +175,11 @@ export const ComponentOverview = ({
                   size="medium"
                   setIconOff
                 >
-                  {t(component ? 'status.beta' : 'status.block')}
+                  {t(
+                    component
+                      ? `status.${config.status ?? 'beta'}`
+                      : 'status.block'
+                  )}
                 </Tag>
                 <Link
                   href={`${REPO}${config.source}`}
@@ -262,7 +269,9 @@ export const ComponentOverview = ({
             )}
 
             <Section id="other-platforms" title={t('sections.otherPlatforms')}>
-              {config.platforms === 'table' ? (
+              {config.platforms === 'react-only' ? (
+                <Source code={config.reactSnippet ?? ''} language="tsx" dark />
+              ) : config.platforms === 'table' ? (
                 <DocTable
                   columns={[t('platforms.platform'), t('platforms.type')]}
                   rows={(['react', 'ios', 'android'] as const).map(

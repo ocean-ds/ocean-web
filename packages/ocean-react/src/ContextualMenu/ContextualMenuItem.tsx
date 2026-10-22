@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import React from 'react';
 import Tag, { TagProps } from '../Tag/Tag';
 
+type ContextualMenuTagProps = Exclude<TagProps, { appearance: 'translucent' }>;
+
 export type ContextualMenuItemProps = {
   /**
    * Texto do item do menu
@@ -39,7 +41,7 @@ export type ContextualMenuItemProps = {
   /**
    * Tag exibida à direita do texto
    */
-  tag?: TagProps;
+  tag?: ContextualMenuTagProps;
   /**
    * ID HTML do elemento
    */

@@ -68,6 +68,15 @@ export const parameters = {
         'First Steps',
         'Components',
         [
+          'Data Display',
+          [
+            'Tag',
+            [
+              'Overview',
+              'Tag',
+              ['Overview', 'Default', 'Highlight', 'Translucent'],
+            ],
+          ],
           'Lists',
           [
             'Content List',
@@ -115,7 +124,7 @@ export const parameters = {
         ],
         'Examples',
         'Visual tests',
-        ['Transaction Summary', ['Footer', 'Aside']],
+        ['Tag', ['Matrix'], 'Transaction Summary', ['Footer', 'Aside']],
         '*',
       ],
       method: 'alphabetical',

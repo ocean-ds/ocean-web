@@ -21,6 +21,10 @@ export type BaseTagProps = {
 type DefaultType = {
   variant?: 'default';
   /**
+   * Sets the visual appearance of the Tag.
+   */
+  appearance?: 'default';
+  /**
    * Determines the type of Tag, with default icon and colors for each type
    */
   type?:
@@ -39,49 +43,70 @@ type HighlightType = {
   type: 'important' | 'neutral';
 } & BaseTagProps;
 
-export type TagProps = DefaultType | HighlightType;
+type TranslucentType = {
+  variant?: 'default';
+  /**
+   * Sets the visual appearance of the Tag.
+   */
+  appearance: 'translucent';
+  size?: 'medium';
+  setIconOff?: false;
+} & (
+  | {
+      type: 'positive' | 'warning' | 'negative';
+      icon?: React.ReactElement;
+    }
+  | {
+      type: 'neutral' | 'neutral-02' | 'complementary';
+      icon: React.ReactElement;
+    }
+) &
+  Omit<BaseTagProps, 'size' | 'icon' | 'setIconOff'>;
 
-const Tag = React.forwardRef<HTMLDivElement, TagProps>(
-  (
-    {
-      children,
-      variant = 'default',
-      type = 'default',
-      size = 'medium',
-      className,
-      icon,
-      setIconOff = false,
-      ...rest
-    },
-    ref
-  ) => {
-    const hasIcon =
-      (type === 'positive' ||
-        type === 'warning' ||
-        type === 'negative' ||
-        icon) &&
-      !setIconOff;
+export type TagProps = DefaultType | HighlightType | TranslucentType;
 
-    const isHighlight = variant === 'highlight';
+const Tag = React.forwardRef<HTMLDivElement, TagProps>((tagProps, ref) => {
+  const {
+    children,
+    variant = 'default',
+    type = 'default',
+    appearance = 'default',
+    size = 'medium',
+    className,
+    icon,
+    setIconOff = false,
+    ...rest
+  } = tagProps as TagProps & {
+    appearance?: 'default' | 'translucent';
+  };
 
-    return (
-      <div
-        ref={ref}
-        className={classNames(
-          'ods-tag',
-          `ods-tag--${size}`,
-          hasIcon && `ods-tag--${size}__with-icon`,
-          isHighlight ? `ods-tag--${variant}__${type}` : `ods-tag--${type}`,
-          className
-        )}
-        {...rest}
-      >
-        {!setIconOff && <TagIcon type={type} icon={icon} />}
-        <div className="ods-tag__content">{children}</div>
-      </div>
-    );
-  }
-);
+  const hasIcon =
+    (type === 'positive' ||
+      type === 'warning' ||
+      type === 'negative' ||
+      icon) &&
+    !setIconOff;
+
+  const isHighlight = variant === 'highlight';
+
+  return (
+    <div
+      ref={ref}
+      className={classNames(
+        'ods-tag',
+        `ods-tag--${size}`,
+        hasIcon && `ods-tag--${size}__with-icon`,
+        isHighlight ? `ods-tag--${variant}__${type}` : `ods-tag--${type}`,
+        appearance === 'translucent' && 'ods-tag--translucent',
+        className
+      )}
+      {...rest}
+    >
+      {!setIconOff && <TagIcon type={type} icon={icon} />}
+      <div className="ods-tag__content">{children}</div>
+    </div>
+  );
+});
 
 Tag.displayName = 'Tag';
 

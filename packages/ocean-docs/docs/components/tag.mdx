@@ -34,14 +34,14 @@ const StatusTag: React.FC<TagProps> = (props) => <Tag {...props} />;
 ## Playground Interativo
 
 <StorybookEmbed
-  storyId="components-tag--usage"
+  storyId="components-data-display-tag-tag--default"
   height={300}
   title="Tag - Playground Interativo"
 />
 
 ## Documentação Completa
 
-Para a API completa e todos os exemplos, consulte o **[Storybook da Tag](https://ocean-ds.github.io/ocean-web/?path=/docs/components-tag--docs)**.
+Para a API completa e todos os exemplos, consulte o **[Storybook da Tag](https://ocean-ds.github.io/ocean-web/?path=/docs/components-data-display-tag-tag--overview)**.
 
 ## Uso básico
 
@@ -85,15 +85,45 @@ Pílula de destaque, para oferta ou informação promocional. Sai sempre sem íc
 ```
 
 <StorybookEmbed
-  storyId="components-tag--highlight-variants"
+  storyId="components-data-display-tag-tag--highlight"
   height={200}
   showToolbar={false}
   title="Tag - Variante highlight"
 />
 
+## Aparência
+
+`appearance` define o tratamento visual da variante `default`; `highlight` não recebe essa propriedade. `default` mantém a aparência atual. `translucent` usa o token de fundo correspondente ao tipo com 24% de opacidade e cores de texto e ícone definidas por tipo; existe somente em tamanho `medium` com ícone.
+
+Translucent com texto escuro (`neutral-02`) é para superfície colorida clara. Os tipos com texto branco (`positive`, `warning`, `negative`, `complementary`, `neutral`) são para superfície colorida forte. Translucent existe só em tamanho medium com ícone.
+
+Use `translucent` em superfícies coloridas. **Não use em fundos brancos.**
+
+| `type`          | Token do fundo                      | Texto                         | Ícone                         |
+| --------------- | ----------------------------------- | ----------------------------- | ----------------------------- |
+| `positive`      | `$color-status-positive-down` a 24% | `$color-interface-light-pure` | `$color-status-positive-up`   |
+| `warning`       | `$color-status-warning-down` a 24%  | `$color-interface-light-pure` | `$color-status-warning-up`    |
+| `negative`      | `$color-status-negative-down` a 24% | `$color-interface-light-pure` | `$color-status-negative-up`   |
+| `complementary` | `$color-complementary-down` a 24%   | `$color-interface-light-pure` | `$color-complementary-up`     |
+| `neutral`       | `$color-interface-dark-up` a 24%    | `$color-interface-light-pure` | `$color-interface-light-pure` |
+| `neutral-02`    | `$color-brand-primary-up` a 24%     | `$color-interface-dark-deep`  | `$color-brand-primary-down`   |
+
+```tsx
+<Tag appearance="translucent" type="positive">
+  Pago
+</Tag>
+```
+
+<StorybookEmbed
+  storyId="components-data-display-tag-tag--translucent"
+  height={180}
+  showToolbar={false}
+  title="Tag - Aparência translucent"
+/>
+
 ## Tamanhos
 
-Os dois tamanhos valem para as duas variantes. O tamanho e a altura da linha vêm só do `size`; o peso segue a tabela abaixo para a variante `default`, e a variante `highlight` usa sempre **Nunito Sans ExtraBold (800)** em texto branco, nos dois tamanhos.
+Os dois tamanhos valem para as duas variantes. O tamanho e a altura da linha vêm só do `size`; o peso segue a tabela abaixo para a variante `default`, e a variante `highlight` usa sempre **Nunito Sans ExtraBold (800)** em texto branco, nos dois tamanhos. Translucent existe somente em `medium` com ícone.
 
 | `size`            | Fonte                      | Tamanho / altura da linha | Uso                                                          |
 | ----------------- | -------------------------- | ------------------------- | ------------------------------------------------------------ |
@@ -116,7 +146,7 @@ Os dois tamanhos valem para as duas variantes. O tamanho e a altura da linha vê
 ```
 
 <StorybookEmbed
-  storyId="components-tag--sizes"
+  storyId="components-data-display-tag-tag--default"
   height={200}
   showToolbar={false}
   title="Tag - Tamanhos"
@@ -149,6 +179,7 @@ Os tipos `positive`, `warning` e `negative` recebem ícone padrão. `icon` subst
 | Prop         | Tipo                                                                                                                                               | Padrão      | Descrição                                      |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------- |
 | `variant`    | `'default' \| 'highlight'`                                                                                                                         | `'default'` | Variante visual — discrimina os `type` válidos |
+| `appearance` | `'default' \| 'translucent'`                                                                                                                       | `'default'` | Aparência visual da variante `default`         |
 | `type`       | default: `'positive' \| 'warning' \| 'negative' \| 'neutral' \| 'neutral-02' \| 'neutral-03' \| 'default'` · highlight: `'important' \| 'neutral'` | `'default'` | Tipo semântico                                 |
 | `size`       | `'small' \| 'medium'`                                                                                                                              | `'medium'`  | Tamanho — define a tipografia                  |
 | `icon`       | `React.ReactElement`                                                                                                                               | -           | Ícone custom (substitui o padrão do `type`)    |
@@ -179,6 +210,7 @@ Os tipos `positive`, `warning` e `negative` recebem ícone padrão. `icon` subst
 | `.ods-tag--{size}__with-icon`  | Ajuste de padding quando há ícone                    |
 | `.ods-tag--{type}`             | Cor da variante default                              |
 | `.ods-tag--highlight__{type}`  | Cor da variante highlight (`important` ou `neutral`) |
+| `.ods-tag--translucent`        | Aparência translúcida combinada com o tipo           |
 | `.ods-tag__icon`               | Slot do ícone                                        |
 | `.ods-tag__content`            | Texto                                                |
 
