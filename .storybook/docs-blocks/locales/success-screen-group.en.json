@@ -1,0 +1,183 @@
+{
+  "breadcrumb": ["Components", "Feedback"],
+  "description": "A terminal screen that confirms a completed flow and presents its next steps.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "toc": "On this page",
+  "page": { "title": "Success Screen", "status": "Stable" },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility"
+  },
+  "guidelines": {
+    "overview": "Overview",
+    "formatting": "Formatting",
+    "content": "Content",
+    "behaviors": "Behaviors",
+    "related": "Related",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Overview",
+    "text": "Success Screen is a terminal view for confirming a completed flow and presenting its next steps. For example, a payment screen can confirm a supplier payment, show its details, and offer a clear exit.",
+    "whenToUse": "When to use",
+    "whenToUseItems": [
+      "A flow has completed and its result needs a dedicated confirmation.",
+      "The confirmation and its relevant details or next steps belong together."
+    ],
+    "whenNotToUse": "When not to use",
+    "whenNotToUseItems": [
+      "To show a count, use [Badge](docs:components-badge--docs).",
+      "To filter or select items, use [Chips](docs:components-chips--docs).",
+      "To trigger an action without a terminal confirmation, use a Button."
+    ],
+    "variants": "Variants",
+    "variantColumns": ["Variant", "Purpose", "Link"],
+    "variantRows": [
+      "Positive|Confirms a successful result.",
+      "Neutral|Confirms a result that is still in progress.",
+      "Negative|Confirms that a flow did not succeed."
+    ],
+    "overviewLink": "Component Overview"
+  },
+  "formatting": {
+    "title": "Formatting",
+    "anatomy": "Anatomy",
+    "layoutTitle": "Layouts",
+    "layoutText": "The layout responds to the component container: desktop actions appear at 530px and above; below that width, the screen fills its container and actions are hidden.",
+    "layoutColumns": ["Layout", "Width", "Behavior"],
+    "layoutRows": [
+      "Desktop|Up to 530px|Actions are visible.",
+      "Mobile|Full width|Actions are hidden; the top bar is optional."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Element", "Required", "Notes"],
+    "rows": [
+      "1|Status icon|No|Shown when a Tag label is provided.",
+      "2|Status label|No|Identifies the result in the Tag.",
+      "3|Title|Yes|States the result of the completed flow.",
+      "4|Description|No|Adds a short supporting sentence.",
+      "5|Content|No|Children render in the Details area.",
+      "6|Extra information|No|Optional timestamp or reference.",
+      "7|Actions|No|Up to two actions; hidden below the desktop container width."
+    ]
+  },
+  "content": {
+    "title": "Content",
+    "text": "Use concise, specific copy and include only details that help explain the completed result.",
+    "writingItems": [
+      "Use one clear title that states the result.",
+      "Use the description for brief supporting context.",
+      "Keep each content row focused on a distinct detail."
+    ],
+    "titleExamples": "Title",
+    "shortTitleDo": "Use a short title that confirms the result.",
+    "shortTitleDont": "Avoid a full sentence in the title; put supporting detail in the description.",
+    "detailsExamples": "Details",
+    "detailsDo": "Show distinct payment details in the content rows.",
+    "detailsDont": "Do not repeat the same completion message in every row."
+  },
+  "behaviors": {
+    "title": "Behaviors",
+    "text": "The component uses a container query rather than the viewport width. On mobile, actions are hidden and `showTopBar` can add a close control.",
+    "columns": ["Status", "Header", "Tag", "Actions"],
+    "rows": [
+      "Positive|Positive status color|Positive translucent Tag|Visible at 530px and above",
+      "Neutral|Light interface surface|Neutral-02 Tag with calendar icon|Visible at 530px and above",
+      "Negative|Dark interface surface|Neutral Tag with X icon|Visible at 530px and above"
+    ]
+  },
+  "related": {
+    "title": "Related",
+    "badge": {
+      "title": "Badge",
+      "text": "Use Badge to communicate a count or compact status outside a terminal screen.",
+      "link": "Explore Badge"
+    },
+    "chips": {
+      "title": "Chips",
+      "text": "Use Chips for filtering and selection interactions.",
+      "link": "Explore Chips"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Share feedback about this component through the Ocean Design System feedback channels."
+  },
+  "specs": {
+    "colors": "Colors",
+    "typography": "Typography",
+    "structure": "Structure",
+    "size": "Size"
+  },
+  "colors": {
+    "title": "Colors",
+    "columns": ["Element", "Property", "Token"],
+    "rows": [
+      "Positive header|Background|color-status-positive-deep",
+      "Neutral header|Background|color-interface-light-up",
+      "Negative header|Background|color-interface-dark-down",
+      "Positive and negative header copy|Text|color-interface-light-pure",
+      "Neutral header copy|Text|color-interface-dark-pure",
+      "Details|Background|color-interface-light-pure",
+      "Details|Border|color-interface-light-down",
+      "Positive Tag|Background|color-status-positive-down|24% opacity",
+      "Positive Tag|Text and icon|color-interface-light-pure",
+      "Neutral Tag|Background|color-interface-light-up",
+      "Neutral Tag|Text and icon|color-brand-primary-down",
+      "Negative Tag|Background|color-interface-light-up",
+      "Negative Tag|Text and icon|color-interface-dark-up"
+    ]
+  },
+  "typography": {
+    "title": "Typography",
+    "columns": ["Element", "Size", "Weight", "Token"],
+    "rows": [
+      "Title|20px|Bold|heading3",
+      "Description|14px|Regular|description",
+      "Extra information|12px|Bold|captionBold"
+    ]
+  },
+  "structure": {
+    "title": "Structure",
+    "columns": ["Element", "Property", "px/rem", "Token"],
+    "rows": [
+      "Desktop card|Max width|530px|No token",
+      "Header|Padding|24px|spacing-stack-sm",
+      "Details|Padding and gap|16px|spacing-stack-xs",
+      "Mobile top bar|Height|48px|spacing-stack-xl",
+      "Corners|Radius|16px|border-radius-lg"
+    ]
+  },
+  "size": {
+    "title": "Size",
+    "columns": ["Layout", "Width", "Actions"],
+    "rows": ["Desktop|Up to 530px|Visible", "Mobile|Full width|Hidden"]
+  },
+  "tokens": { "link": "Full token list → Success Screen › Design tokens" },
+  "accessibility": {
+    "keyboard": "Keyboard",
+    "development": "Development considerations"
+  },
+  "keyboard": {
+    "title": "Keyboard",
+    "columns": ["Element", "Keyboard behavior"],
+    "rows": [
+      "Close control|When shown, the IconButton calls `onClose`; Enter or Space activates it.",
+      "Actions|Native buttons support their standard keyboard behavior.",
+      "Content|Reading order follows the visual order."
+    ]
+  },
+  "development": {
+    "title": "Development considerations",
+    "items": [
+      "**Use a clear title.** Make the completed result understandable at a glance.",
+      "**Do not rely on color alone.** Keep the outcome clear in text.",
+      "**Preserve reading order.** Ensure custom content follows a meaningful sequence."
+    ]
+  }
+}

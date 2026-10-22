@@ -89,6 +89,9 @@ export * from './TopBar';
 export { default as Stepper } from './Stepper';
 export * from './Stepper';
 
+export { default as SuccessScreen } from './SuccessScreen';
+export * from './SuccessScreen';
+
 export { default as Steps } from './Steps';
 export * from './Steps';
 

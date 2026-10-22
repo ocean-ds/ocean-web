@@ -77,6 +77,15 @@ export const parameters = {
               ['Overview', 'Default', 'Highlight', 'Translucent'],
             ],
           ],
+          'Feedback',
+          [
+            'Success Screen',
+            [
+              'Overview',
+              'Success Screen',
+              ['Overview', 'Positive', 'Neutral', 'Negative'],
+            ],
+          ],
           'Lists',
           [
             'Content List',

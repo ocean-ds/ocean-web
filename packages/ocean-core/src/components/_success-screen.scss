@@ -1,0 +1,160 @@
+$success-screen-desktop-width: 530px;
+
+/* stylelint-disable property-no-unknown */
+.ods-success-screen {
+  container-type: inline-size;
+  width: 100%;
+
+  &__card {
+    background-color: $color-interface-light-pure;
+    margin: 0 auto;
+    max-width: $success-screen-desktop-width;
+    width: 100%;
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxs-extra;
+    padding: 0 0 $spacing-stack-sm;
+  }
+
+  &__topbar {
+    align-items: center;
+    display: flex;
+    height: $spacing-stack-xl;
+    justify-content: flex-end;
+    padding: 0 $spacing-inline-xxs;
+    width: 100%;
+  }
+
+  &__close {
+    height: $spacing-stack-md;
+    min-width: $spacing-stack-md;
+    padding: 0;
+    width: $spacing-stack-md;
+  }
+
+  &__header-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxs-extra;
+    padding: 0 $spacing-stack-sm;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__text {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-stack-xxs;
+    width: 100%;
+  }
+
+  &__title,
+  &__description {
+    text-align: center;
+    width: 100%;
+  }
+
+  &__details {
+    align-items: flex-start;
+    background-color: $color-interface-light-pure;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    gap: $spacing-stack-xs;
+    min-height: 0;
+    overflow: hidden;
+    padding: $spacing-stack-xs;
+    width: 100%;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__extra-information {
+    color: $color-interface-dark-up;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__actions {
+    align-items: center;
+    display: none;
+    gap: $spacing-stack-xxs-extra;
+    justify-content: center;
+    padding: $spacing-stack-xs 0;
+    width: 100%;
+  }
+
+  &--positive {
+    .ods-success-screen__header {
+      background-color: $color-status-positive-deep;
+    }
+
+    .ods-success-screen__title,
+    .ods-success-screen__description,
+    .ods-success-screen__close {
+      color: $color-interface-light-pure;
+    }
+  }
+
+  &--neutral {
+    .ods-success-screen__header {
+      background-color: $color-interface-light-up;
+    }
+
+    .ods-success-screen__title,
+    .ods-success-screen__description,
+    .ods-success-screen__close {
+      color: $color-interface-dark-pure;
+    }
+  }
+
+  &--negative {
+    .ods-success-screen__header {
+      background-color: $color-interface-dark-down;
+    }
+
+    .ods-success-screen__title,
+    .ods-success-screen__description,
+    .ods-success-screen__close {
+      color: $color-interface-light-pure;
+    }
+  }
+}
+
+/* stylelint-disable scss/at-rule-no-unknown */
+@container (min-width: #{$success-screen-desktop-width}) {
+  .ods-success-screen__card {
+    border-radius: 0;
+  }
+
+  .ods-success-screen__header {
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    padding: $spacing-stack-sm;
+  }
+
+  .ods-success-screen__topbar {
+    display: none;
+  }
+
+  .ods-success-screen__details {
+    border: $border-width-hairline solid $color-interface-light-down;
+    border-radius: $border-radius-lg;
+    gap: $spacing-stack-xs;
+    overflow: hidden;
+  }
+
+  .ods-success-screen__actions {
+    display: flex;
+  }
+}
+/* stylelint-enable scss/at-rule-no-unknown */
+/* stylelint-enable property-no-unknown */

@@ -1,0 +1,51 @@
+{
+  "overview": "Success Screen apresenta um fluxo concluído e um próximo passo claro.",
+  "sections": {
+    "positive": {
+      "title": "Positive",
+      "text": "Use o status positivo após uma conclusão bem-sucedida."
+    },
+    "neutral": {
+      "title": "Neutral",
+      "text": "Use o status neutro quando o resultado foi confirmado, mas não é positivo nem negativo."
+    },
+    "negative": {
+      "title": "Negative",
+      "text": "Use o status negativo quando o fluxo concluído não teve sucesso."
+    },
+    "options": "Opções"
+  },
+  "api": {
+    "intro": "SuccessScreen é uma tela terminal para um fluxo concluído.",
+    "status": "Cor de status e tratamento da Tag para o fluxo concluído.",
+    "title": "Título obrigatório exibido no cabeçalho de status.",
+    "description": "Descrição complementar opcional.",
+    "extraInformation": "Data, hora ou referência complementar opcional.",
+    "children": "Conteúdo exibido na área Details.",
+    "primaryAction": "Ação primária opcional, visível apenas no desktop.",
+    "secondaryAction": "Ação secundária opcional, visível apenas no desktop.",
+    "showTopBar": "Exibe a barra superior mobile com controle de fechar.",
+    "onClose": "Executada quando o controle de fechar no mobile é acionado.",
+    "tagLabel": "Texto opcional da Tag de status.",
+    "tagIcon": "Ícone customizado opcional para a Tag de status.",
+    "className": "Classe adicional aplicada ao elemento raiz."
+  },
+  "platforms": { "text": "O mesmo exemplo em cada biblioteca." },
+  "tokens": {
+    "intro": "A tabela abaixo lista os tokens Ocean usados por SuccessScreen."
+  },
+  "options": {
+    "topBar": {
+      "title": "Barra superior mobile",
+      "text": "Exiba o controle de fechar em layouts mobile."
+    }
+  },
+  "rules": [
+    "Use SuccessScreen para um fluxo concluído.",
+    "Use um título conciso e mantenha o conteúdo complementar relevante.",
+    "As ações aparecem apenas no desktop; o layout mobile as omite.",
+    "A barra superior mobile é opcional e fecha por meio de `onClose`.",
+    "Use o ícone padrão da Tag neutra ou negativa ao substituir o ícone."
+  ],
+  "feedback": "Compartilhe feedback do componente com a equipe Ocean Design System."
+}

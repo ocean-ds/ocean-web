@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Story, Unstyled } from '@storybook/blocks';
+import { Source, Story, Unstyled } from '@storybook/blocks';
 import Link from '../../packages/ocean-react/src/Link';
 import Tag from '../../packages/ocean-react/src/Tag';
 import Typography from '../../packages/ocean-react/src/Typography';
@@ -69,7 +69,8 @@ export type ComponentDocConfig = {
   optionsLocalePrefix?: string;
   /** Show the list-only Content and amount section. */
   contentAndAmount?: boolean;
-  platforms: PlatformSnippets | 'table';
+  platforms: PlatformSnippets | 'table' | 'react-only';
+  reactSnippet?: string;
   /** Primary story: the Component API example and its controls. */
   story: unknown;
   argTypes: Record<string, ApiArgType>;
@@ -268,7 +269,9 @@ export const ComponentOverview = ({
             )}
 
             <Section id="other-platforms" title={t('sections.otherPlatforms')}>
-              {config.platforms === 'table' ? (
+              {config.platforms === 'react-only' ? (
+                <Source code={config.reactSnippet ?? ''} language="tsx" dark />
+              ) : config.platforms === 'table' ? (
                 <DocTable
                   columns={[t('platforms.platform'), t('platforms.type')]}
                   rows={(['react', 'ios', 'android'] as const).map(
