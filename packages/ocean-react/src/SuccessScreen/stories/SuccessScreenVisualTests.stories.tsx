@@ -74,7 +74,13 @@ export const Matrix: Story = {
                   {scenarios.map(({ label, options }) => (
                     <div key={label} style={{ minWidth: width }}>
                       <Typography variant="captionbold">{label}</Typography>
-                      <div style={{ marginTop: 8, width }}>
+                      <div
+                        style={{
+                          marginTop: 8,
+                          width,
+                          height: layout === 'mobile' ? 640 : undefined,
+                        }}
+                      >
                         <SuccessScreen
                           status={status}
                           title={

@@ -52,7 +52,13 @@ const meta: Meta<Args> = {
     secondaryActionLabel,
     ...args
   }) => (
-    <div style={{ width: layout === 'desktop' ? 1024 : 360, margin: '0 auto' }}>
+    <div
+      style={{
+        width: layout === 'desktop' ? 1024 : 360,
+        height: layout === 'mobile' ? 640 : undefined,
+        margin: '0 auto',
+      }}
+    >
       <SuccessScreen
         {...args}
         description={showDescription ? args.description : undefined}

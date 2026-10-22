@@ -56,15 +56,50 @@ describe('compiled SuccessScreen styles', () => {
     expect(css).toMatch(/@container \(min-width: 530px\)/);
   });
 
-  test('uses the Figma description font weight', () => {
+  test.each([
+    { status: 'positive', background: '#2da94f', closeColor: 'white' },
+    { status: 'neutral', background: '#f3f5fe', closeColor: '#aaadc0' },
+    { status: 'negative', background: '#67697a', closeColor: 'white' },
+  ])(
+    'uses the mobile $status card surface and close icon color',
+    ({ status, background, closeColor }) => {
+      expect(css).toMatch(
+        new RegExp(
+          `\\.ods-success-screen--${status} \\.ods-success-screen__card\\s*\\{\\s*background-color:\\s*${background};`
+        )
+      );
+      expect(css).toMatch(
+        new RegExp(
+          `\\.ods-success-screen--${status} \\.ods-success-screen__close\\s*\\{\\s*color:\\s*${closeColor};`
+        )
+      );
+    }
+  );
+
+  test('leaves the 24px header gap without overlapping Details', () => {
     expect(css).toMatch(
-      /\.ods-success-screen__description\.ods-typography__description\s*\{\s*font-weight:\s*600;/
+      /\.ods-success-screen__header\s*\{[^}]*padding:\s*0 0 24px;/
+    );
+    expect(css).not.toMatch(/margin-top:\s*-24px/);
+    expect(css).toMatch(
+      /\.ods-success-screen__details\s*\{[^}]*margin-top:\s*0;/
     );
   });
 
-  test('overlaps mobile Details by 24px and keeps its outer width', () => {
+  test('fills the available height on mobile while keeping desktop content-sized', () => {
+    expect(css).toMatch(/\.ods-success-screen\s*\{[^}]*height:\s*100%;/);
+    expect(css).toMatch(
+      /\.ods-success-screen__card\s*\{[^}]*display:\s*flex;[^}]*flex-direction:\s*column;[^}]*min-height:\s*100%;/
+    );
+    expect(css).toMatch(
+      /\.ods-success-screen__header\s*\{[^}]*flex:\s*0 0 auto;/
+    );
+    expect(css).toMatch(/\.ods-success-screen__details\s*\{[^}]*flex:\s*1;/);
+
+    const desktopStyles = css.split('@container (min-width: 530px)')[1];
+    expect(desktopStyles).toBeDefined();
+    expect(desktopStyles).not.toMatch(/min-height:\s*100%/);
     expect(css).toMatch(/box-sizing:\s*border-box/);
-    expect(css).toMatch(/margin-top:\s*-24px/);
   });
 
   test('uses the Figma desktop Details border and radius', () => {

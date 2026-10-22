@@ -3,6 +3,7 @@ $success-screen-desktop-width: 530px;
 /* stylelint-disable property-no-unknown */
 .ods-success-screen {
   container-type: inline-size;
+  height: 100%;
   width: 100%;
 
   &__card {
@@ -60,10 +61,6 @@ $success-screen-desktop-width: 530px;
     width: 100%;
   }
 
-  &__description.ods-typography__description {
-    font-weight: $font-weight-medium;
-  }
-
   &__details {
     align-items: flex-start;
     background-color: $color-interface-light-pure;
@@ -73,7 +70,7 @@ $success-screen-desktop-width: 530px;
     flex: 1 0 0;
     flex-direction: column;
     gap: $spacing-stack-xs;
-    margin-top: -$spacing-stack-sm;
+    margin-top: 0;
     min-height: 0;
     overflow: hidden;
     padding: $spacing-stack-xs;
@@ -107,7 +104,10 @@ $success-screen-desktop-width: 530px;
     }
 
     .ods-success-screen__title,
-    .ods-success-screen__description,
+    .ods-success-screen__description {
+      color: $color-interface-light-pure;
+    }
+
     .ods-success-screen__close {
       color: $color-interface-light-pure;
     }
@@ -119,9 +119,12 @@ $success-screen-desktop-width: 530px;
     }
 
     .ods-success-screen__title,
-    .ods-success-screen__description,
-    .ods-success-screen__close {
+    .ods-success-screen__description {
       color: $color-interface-dark-pure;
+    }
+
+    .ods-success-screen__close {
+      color: $color-interface-dark-up;
     }
   }
 
@@ -131,7 +134,10 @@ $success-screen-desktop-width: 530px;
     }
 
     .ods-success-screen__title,
-    .ods-success-screen__description,
+    .ods-success-screen__description {
+      color: $color-interface-light-pure;
+    }
+
     .ods-success-screen__close {
       color: $color-interface-light-pure;
     }
@@ -139,6 +145,34 @@ $success-screen-desktop-width: 530px;
 }
 
 /* stylelint-disable scss/at-rule-no-unknown */
+@container (max-width: 529.99px) {
+  .ods-success-screen__card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .ods-success-screen__header {
+    flex: 0 0 auto;
+  }
+
+  .ods-success-screen__details {
+    flex: 1;
+  }
+
+  .ods-success-screen--positive .ods-success-screen__card {
+    background-color: $color-status-positive-deep;
+  }
+
+  .ods-success-screen--neutral .ods-success-screen__card {
+    background-color: $color-interface-light-up;
+  }
+
+  .ods-success-screen--negative .ods-success-screen__card {
+    background-color: $color-interface-dark-down;
+  }
+}
+
 @container (min-width: #{$success-screen-desktop-width}) {
   .ods-success-screen__card {
     border-radius: 0;

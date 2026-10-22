@@ -50,8 +50,8 @@
     "layoutText": "O layout responde à largura do contêiner: as ações no desktop aparecem a partir de 530px; abaixo dessa largura, a tela ocupa todo o contêiner e as ações ficam ocultas.",
     "layoutColumns": ["Layout", "Largura", "Comportamento"],
     "layoutRows": [
-      "Desktop|Até 530px|Ações visíveis.",
-      "Mobile|Largura total|Ações ocultas; barra superior opcional."
+      "Desktop|A partir de 530px|Ações visíveis.",
+      "Mobile|Abaixo de 530px|Ações ocultas; barra superior opcional."
     ]
   },
   "anatomy": {
@@ -130,6 +130,8 @@
       "Texto do cabeçalho neutro|Texto|color-interface-dark-pure",
       "Details|Fundo|color-interface-light-pure",
       "Details|Borda|color-interface-light-down",
+      "Informação extra|Texto|color-interface-dark-up",
+      "Controle de fechar|Ícone|color-interface-light-pure|positive/negative; color-interface-dark-up (neutral)",
       "Tag Positive|Fundo|color-status-positive-down|24% de opacidade",
       "Tag Positive|Texto|color-interface-light-pure",
       "Tag Positive|Ícone|color-status-positive-up",
@@ -145,7 +147,7 @@
     "columns": ["Elemento", "Tamanho", "Peso", "Token"],
     "rows": [
       "Título|20px|ExtraBold (800)|heading3",
-      "Descrição|14px|SemiBold (600)|description",
+      "Descrição|14px|Regular (400)|description",
       "Informação extra|12px|SemiBold (600)|captionBold"
     ]
   },
@@ -163,7 +165,10 @@
   "size": {
     "title": "Tamanho",
     "columns": ["Layout", "Largura", "Ações"],
-    "rows": ["Desktop|Até 530px|Visíveis", "Mobile|Largura total|Ocultas"]
+    "rows": [
+      "Desktop|A partir de 530px|Visíveis",
+      "Mobile|Abaixo de 530px|Ocultas"
+    ]
   },
   "tokens": {
     "link": "Lista completa de tokens → Success Screen › Design tokens"

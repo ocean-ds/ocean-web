@@ -50,8 +50,8 @@
     "layoutText": "The layout responds to the component container: desktop actions appear at 530px and above; below that width, the screen fills its container and actions are hidden.",
     "layoutColumns": ["Layout", "Width", "Behavior"],
     "layoutRows": [
-      "Desktop|Up to 530px|Actions are visible.",
-      "Mobile|Full width|Actions are hidden; the top bar is optional."
+      "Desktop|530px and above|Actions are visible.",
+      "Mobile|Below 530px|Actions are hidden; the top bar is optional."
     ]
   },
   "anatomy": {
@@ -130,6 +130,8 @@
       "Neutral header copy|Text|color-interface-dark-pure",
       "Details|Background|color-interface-light-pure",
       "Details|Border|color-interface-light-down",
+      "Extra information|Text|color-interface-dark-up",
+      "Close control|Icon|color-interface-light-pure|positive/negative; color-interface-dark-up (neutral)",
       "Positive Tag|Background|color-status-positive-down|24% opacity",
       "Positive Tag|Text|color-interface-light-pure",
       "Positive Tag|Icon|color-status-positive-up",
@@ -145,7 +147,7 @@
     "columns": ["Element", "Size", "Weight", "Token"],
     "rows": [
       "Title|20px|ExtraBold (800)|heading3",
-      "Description|14px|SemiBold (600)|description",
+      "Description|14px|Regular (400)|description",
       "Extra information|12px|SemiBold (600)|captionBold"
     ]
   },
@@ -163,7 +165,7 @@
   "size": {
     "title": "Size",
     "columns": ["Layout", "Width", "Actions"],
-    "rows": ["Desktop|Up to 530px|Visible", "Mobile|Full width|Hidden"]
+    "rows": ["Desktop|530px and above|Visible", "Mobile|Below 530px|Hidden"]
   },
   "tokens": { "link": "Full token list → Success Screen › Design tokens" },
   "accessibility": {
