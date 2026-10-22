@@ -1,0 +1,8 @@
+import { Meta } from '@storybook/blocks';
+import { ComponentOverview } from '../../../../../.storybook/docs-blocks/ComponentOverview';
+import { successScreenDoc } from '../../../../../.storybook/docs-blocks/success-screen/pages';
+import * as Stories from './SuccessScreen.stories';
+
+<Meta title="Components/Feedback/Success Screen/Success Screen" />
+
+<ComponentOverview config={{ ...successScreenDoc, story: Stories.Positive }} />

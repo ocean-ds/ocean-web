@@ -443,6 +443,10 @@ const COMPONENTS = {
     files: ['_tag.scss'],
     include: (selector) => selector.startsWith('.ods-tag'),
   },
+  'success-screen': {
+    files: ['_success-screen.scss'],
+    include: (selector) => selector.startsWith('.ods-success-screen'),
+  },
 };
 
 // Visual order of the anatomy parts (left to right, top to bottom), then of the states.

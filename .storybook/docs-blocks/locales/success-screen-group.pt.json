@@ -1,0 +1,197 @@
+{
+  "breadcrumb": ["Components", "Feedback"],
+  "description": "Uma tela terminal que confirma a conclusão de um fluxo e apresenta os próximos passos.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "toc": "Nesta página",
+  "page": { "title": "Success Screen", "status": "Stable" },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Especificações",
+    "accessibility": "Acessibilidade"
+  },
+  "guidelines": {
+    "overview": "Visão geral",
+    "formatting": "Formatação",
+    "content": "Conteúdo",
+    "behaviors": "Comportamentos",
+    "related": "Relacionados",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Visão geral",
+    "text": "Success Screen é uma tela terminal para confirmar um fluxo concluído e apresentar os próximos passos. Por exemplo, uma tela de pagamento pode confirmar um pagamento a um fornecedor, mostrar seus detalhes e oferecer uma saída clara.",
+    "whenToUse": "Quando usar",
+    "whenToUseItems": [
+      "Um fluxo foi concluído e o resultado precisa de uma confirmação em tela própria.",
+      "A confirmação, os detalhes relevantes e os próximos passos precisam aparecer juntos."
+    ],
+    "whenNotToUse": "Quando não usar",
+    "whenNotToUseItems": [
+      "Para um feedback que não encerra um fluxo, use [Alert](docs:components-alert--docs) ou [Snackbar](docs:components-snackbar--docs).",
+      "Para uma confirmação que mantém a pessoa na tela atual, use [Modal](docs:components-modal--docs).",
+      "Para executar uma ação sem uma confirmação terminal, use um Button."
+    ],
+    "variants": "Variantes",
+    "variantColumns": ["Variante", "Objetivo", "Link"],
+    "variantRows": [
+      "Positive|Confirma um resultado bem-sucedido.",
+      "Neutral|Confirma um resultado que ainda está em andamento.",
+      "Negative|Confirma que o fluxo não foi concluído com sucesso."
+    ],
+    "overviewLink": "Visão geral do componente"
+  },
+  "formatting": {
+    "title": "Formatação",
+    "anatomy": "Anatomia",
+    "layoutTitle": "Layouts",
+    "layoutText": "O layout responde à largura do contêiner: as ações no desktop aparecem a partir de 530px; abaixo dessa largura, a tela ocupa todo o contêiner e as ações ficam ocultas.",
+    "layoutColumns": ["Layout", "Largura", "Comportamento"],
+    "layoutRows": [
+      "Desktop|A partir de 530px|Ações visíveis.",
+      "Mobile|Abaixo de 530px|Ações ocultas; barra superior opcional."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Elemento", "Obrigatório", "Observações"],
+    "rows": [
+      "1|Ícone de status|Não|Exibido quando uma Tag é informada.",
+      "2|Rótulo de status|Não|Identifica o resultado na Tag.",
+      "3|Título|Sim|Informa o resultado do fluxo concluído.",
+      "4|Descrição|Não|Adiciona uma frase breve de apoio.",
+      "5|Conteúdo|Não|Os filhos são exibidos na área Details.",
+      "6|Informação extra|Não|Data, hora ou referência complementar.",
+      "7|Ações|Não|Até duas ações; ocultas abaixo da largura do desktop."
+    ]
+  },
+  "content": {
+    "title": "Conteúdo",
+    "text": "Use textos concisos e específicos e inclua apenas detalhes que ajudem a explicar o resultado concluído.",
+    "writingItems": [
+      "Use um título claro para comunicar o resultado.",
+      "Use a descrição para incluir um breve contexto de apoio.",
+      "Mantenha cada linha de conteúdo focada em um detalhe diferente."
+    ],
+    "titleExamples": "Título",
+    "shortTitleDo": "Use um título curto para confirmar o resultado.",
+    "shortTitleDont": "Evite uma frase completa no título; coloque os detalhes de apoio na descrição.",
+    "detailsExamples": "Detalhes",
+    "detailsDo": "Mostre detalhes diferentes do pagamento nas linhas de conteúdo.",
+    "detailsDont": "Não repita a mesma mensagem de conclusão em todas as linhas."
+  },
+  "behaviors": {
+    "title": "Comportamentos",
+    "text": "O componente usa uma container query, não a largura da janela. No mobile, as ações ficam ocultas e `showTopBar` pode adicionar um controle para fechar.",
+    "columns": ["Status", "Cabeçalho", "Tag", "Ações"],
+    "rows": [
+      "Positive|Cor de status positivo|Tag Positive translúcida|Visíveis a partir de 530px",
+      "Neutral|Superfície clara da interface|Tag Neutral-02 com ícone de calendário|Visíveis a partir de 530px",
+      "Negative|Superfície escura da interface|Tag Neutral com ícone de X|Visíveis a partir de 530px"
+    ]
+  },
+  "related": {
+    "title": "Relacionados",
+    "tag": {
+      "title": "Tag",
+      "text": "Use Tag para comunicar um status ou destacar uma informação breve.",
+      "link": "Conheça Tag"
+    },
+    "button": {
+      "title": "Button",
+      "text": "Use Button para permitir que a pessoa realize uma ação.",
+      "link": "Conheça Button"
+    },
+    "cardListReadOnly": {
+      "title": "Card List Read Only",
+      "text": "Use Card List Read Only para apresentar detalhes estruturados que não exigem uma ação.",
+      "link": "Conheça Card List Read Only"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Compartilhe feedback sobre este componente pelos canais de feedback do Ocean Design System."
+  },
+  "specs": {
+    "colors": "Cores",
+    "typography": "Tipografia",
+    "structure": "Estrutura",
+    "size": "Tamanho"
+  },
+  "colors": {
+    "title": "Cores",
+    "columns": ["Elemento", "Propriedade", "Token"],
+    "rows": [
+      "Cabeçalho positivo|Fundo|color-status-positive-deep",
+      "Cabeçalho neutro|Fundo|color-interface-light-up",
+      "Cabeçalho negativo|Fundo|color-interface-dark-down",
+      "Texto do cabeçalho positivo e negativo|Texto|color-interface-light-pure",
+      "Texto do cabeçalho neutro|Texto|color-interface-dark-pure",
+      "Details|Fundo|color-interface-light-pure",
+      "Details|Borda|color-interface-light-down",
+      "Informação extra|Texto|color-interface-dark-up",
+      "Controle de fechar|Ícone|color-interface-light-pure|positive/negative; color-interface-dark-up (neutral)",
+      "Tag Positive|Fundo|color-status-positive-down|24% de opacidade",
+      "Tag Positive|Texto|color-interface-light-pure",
+      "Tag Positive|Ícone|color-status-positive-up",
+      "Tag Neutral|Fundo|color-brand-primary-up|24% de opacidade",
+      "Tag Neutral|Texto|color-interface-dark-deep",
+      "Tag Neutral|Ícone|color-brand-primary-down",
+      "Tag Negative|Fundo|color-interface-dark-up|24% de opacidade",
+      "Tag Negative|Texto e ícone|color-interface-light-pure"
+    ]
+  },
+  "typography": {
+    "title": "Tipografia",
+    "columns": ["Elemento", "Tamanho", "Peso", "Token"],
+    "rows": [
+      "Título|20px|ExtraBold (800)|heading3",
+      "Descrição|14px|Regular (400)|description",
+      "Informação extra|12px|SemiBold (600)|captionBold"
+    ]
+  },
+  "structure": {
+    "title": "Estrutura",
+    "columns": ["Elemento", "Propriedade", "px/rem", "Token"],
+    "rows": [
+      "Card desktop|Largura máxima|530px|No token",
+      "Cabeçalho|Padding|24px|spacing-stack-sm",
+      "Details|Padding e espaço|16px|spacing-stack-xs",
+      "Barra mobile|Altura|48px|spacing-stack-xl",
+      "Cantos|Raio|16px|border-radius-lg"
+    ]
+  },
+  "size": {
+    "title": "Tamanho",
+    "columns": ["Layout", "Largura", "Ações"],
+    "rows": [
+      "Desktop|A partir de 530px|Visíveis",
+      "Mobile|Abaixo de 530px|Ocultas"
+    ]
+  },
+  "tokens": {
+    "link": "Lista completa de tokens → Success Screen › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Teclado",
+    "development": "Considerações de desenvolvimento"
+  },
+  "keyboard": {
+    "title": "Teclado",
+    "columns": ["Elemento", "Comportamento do teclado"],
+    "rows": [
+      "Fechar|Quando exibido, o IconButton chama `onClose`; Enter ou Espaço o ativa.",
+      "Ações|Botões nativos mantêm o comportamento padrão do teclado.",
+      "Conteúdo|A ordem de leitura acompanha a ordem visual."
+    ]
+  },
+  "development": {
+    "title": "Considerações de desenvolvimento",
+    "items": [
+      "**Use um título claro.** Facilite a compreensão do resultado concluído.",
+      "**Não dependa apenas da cor.** Mantenha o resultado explícito no texto.",
+      "**Preserve a ordem de leitura.** Organize o conteúdo personalizado em uma sequência significativa."
+    ]
+  }
+}

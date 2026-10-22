@@ -66,6 +66,7 @@ const sidebars: SidebarsConfig = {
         'components/stepper',
         'components/steps',
         'components/subheader',
+        'components/success-screen',
         'components/switch',
         'components/tag',
         'components/textarea',

@@ -1,0 +1,52 @@
+{
+  "overview": "Success Screen presents a completed flow and a clear next step.",
+  "sections": {
+    "positive": {
+      "title": "Positive",
+      "text": "Use the positive status after a successful completion."
+    },
+    "neutral": {
+      "title": "Neutral",
+      "text": "Use the neutral status when the result is confirmed but not positive or negative."
+    },
+    "negative": {
+      "title": "Negative",
+      "text": "Use the negative status when the completed flow did not succeed."
+    },
+    "options": "Options"
+  },
+  "api": {
+    "intro": "SuccessScreen is a terminal view for a completed flow.",
+    "status": "Status color and Tag treatment for the completed flow.",
+    "title": "Required title shown in the status header.",
+    "description": "Optional supporting description.",
+    "extraInformation": "Optional supporting timestamp or reference.",
+    "children": "Content rendered inside the Details area.",
+    "primaryAction": "Optional primary desktop action.",
+    "secondaryAction": "Optional secondary desktop action.",
+    "showTopBar": "Shows the mobile Top Bar and its close control.",
+    "closeButtonAriaLabel": "Accessible label for the close button. The default pt-BR label is \"Fechar\".",
+    "onClose": "Called when the mobile close control is activated.",
+    "tagLabel": "Optional status Tag label.",
+    "tagIcon": "Optional custom status Tag icon.",
+    "className": "Additional class name applied to the root element."
+  },
+  "platforms": { "text": "The same example in each library." },
+  "tokens": {
+    "intro": "The table below lists the Ocean tokens used by SuccessScreen."
+  },
+  "options": {
+    "topBar": {
+      "title": "Mobile Top Bar",
+      "text": "Show the close control on mobile layouts."
+    }
+  },
+  "rules": [
+    "Use SuccessScreen for a completed flow.",
+    "Use a concise title and keep supporting content relevant.",
+    "Actions render on desktop only; mobile layouts omit them.",
+    "The mobile Top Bar is optional and closes through `onClose`.",
+    "Use the neutral or negative status Tag icon when replacing its default icon."
+  ],
+  "feedback": "Share component feedback through the Ocean Design System team."
+}
