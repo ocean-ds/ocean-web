@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.149.0](https://github.com/ocean-ds/ocean-web/compare/v1.148.0...v1.149.0) (2026-10-22)
+
+### Features
+
+- **tag:** appearance translucent + Tag docs in the Storybook standard (MR-937) ([#1279](https://github.com/ocean-ds/ocean-web/issues/1279)) ([eabb37f](https://github.com/ocean-ds/ocean-web/commit/eabb37f2f61729d348712e25e0ee743ae0048c2f))
+
 # [1.148.0](https://github.com/ocean-ds/ocean-web/compare/v1.147.0...v1.148.0) (2026-10-14)
 
 **Note:** Version bump only for package @useblu/ocean-docs
