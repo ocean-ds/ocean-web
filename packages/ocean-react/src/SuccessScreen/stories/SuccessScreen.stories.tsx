@@ -13,7 +13,7 @@ type Args = React.ComponentProps<typeof SuccessScreen> & {
 
 const TAG_LABELS = {
   positive: 'Paid',
-  neutral: 'Processing',
+  neutral: 'Scheduled',
   negative: 'Not completed',
 };
 
@@ -27,6 +27,7 @@ const meta: Meta<Args> = {
     },
     title: { control: 'text' },
     description: { control: 'text' },
+    closeButtonAriaLabel: { control: 'text' },
     showDescription: { control: 'boolean' },
     extraInformation: { control: 'text' },
     showTopBar: { control: 'boolean' },
@@ -74,8 +75,20 @@ export default meta;
 type Story = StoryObj<Args>;
 
 export const Positive: Story = { args: { status: 'positive' } };
-export const Neutral: Story = { args: { status: 'neutral' } };
-export const Negative: Story = { args: { status: 'negative' } };
+export const Neutral: Story = {
+  args: {
+    status: 'neutral',
+    title: 'Payment scheduled',
+    description: 'Your payment will be processed on Nov 12.',
+  },
+};
+export const Negative: Story = {
+  args: {
+    status: 'negative',
+    title: 'Payment not completed',
+    description: "We couldn't process this payment.",
+  },
+};
 export const PositiveMobileTopBar: Story = {
   args: { status: 'positive', showTopBar: true, layout: 'mobile' },
 };

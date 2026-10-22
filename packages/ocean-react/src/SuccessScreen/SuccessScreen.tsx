@@ -23,6 +23,7 @@ export type SuccessScreenProps = {
   secondaryAction?: SuccessScreenAction;
   showTopBar?: boolean;
   onClose?: () => void;
+  closeButtonAriaLabel?: string;
   tagLabel?: string;
   tagIcon?: React.ReactElement;
 } & React.ComponentPropsWithoutRef<'div'>;
@@ -39,6 +40,7 @@ const SuccessScreen = React.forwardRef<HTMLDivElement, SuccessScreenProps>(
       secondaryAction,
       showTopBar = false,
       onClose,
+      closeButtonAriaLabel = 'Fechar',
       tagLabel,
       tagIcon,
       className,
@@ -56,11 +58,13 @@ const SuccessScreen = React.forwardRef<HTMLDivElement, SuccessScreenProps>(
     } else if (status === 'neutral') {
       tagProps = {
         type: 'neutral-02',
+        appearance: 'translucent',
         icon: tagIcon ?? <Calendar size={16} />,
       };
     } else {
       tagProps = {
         type: 'neutral',
+        appearance: 'translucent',
         icon: tagIcon ?? <XCircle size={16} />,
       };
     }
@@ -82,7 +86,7 @@ const SuccessScreen = React.forwardRef<HTMLDivElement, SuccessScreenProps>(
                 <IconButton
                   className="ods-success-screen__close"
                   size="sm"
-                  aria-label="Close"
+                  aria-label={closeButtonAriaLabel}
                   onClick={onClose}
                 >
                   <X size={20} />

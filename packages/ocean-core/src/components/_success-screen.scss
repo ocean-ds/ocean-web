@@ -64,14 +64,18 @@ $success-screen-desktop-width: 530px;
     align-items: flex-start;
     background-color: $color-interface-light-pure;
     border-radius: $border-radius-lg $border-radius-lg 0 0;
+    box-sizing: border-box;
     display: flex;
     flex: 1 0 0;
     flex-direction: column;
     gap: $spacing-stack-xs;
+    margin-top: -$spacing-stack-sm;
     min-height: 0;
     overflow: hidden;
     padding: $spacing-stack-xs;
+    position: relative;
     width: 100%;
+    z-index: 1;
   }
 
   &__content {
@@ -149,6 +153,7 @@ $success-screen-desktop-width: 530px;
     border: $border-width-hairline solid $color-interface-light-down;
     border-radius: $border-radius-lg;
     gap: $spacing-stack-xs;
+    margin-top: 0;
     overflow: hidden;
   }
 

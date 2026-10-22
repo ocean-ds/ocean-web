@@ -55,4 +55,16 @@ describe('compiled SuccessScreen styles', () => {
     expect(css).toMatch(/max-width:\s*530px/);
     expect(css).toMatch(/@container \(min-width: 530px\)/);
   });
+
+  test('overlaps mobile Details by 24px and keeps its outer width', () => {
+    expect(css).toMatch(/box-sizing:\s*border-box/);
+    expect(css).toMatch(/margin-top:\s*-24px/);
+  });
+
+  test('uses the Figma desktop Details border and radius', () => {
+    expect(css).toMatch(
+      /border:\s*1px solid #e0e2ee;[\s\S]*?border-radius:\s*16px;/
+    );
+    expect(css).toMatch(/margin-top:\s*0/);
+  });
 });

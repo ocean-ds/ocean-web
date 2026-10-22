@@ -54,7 +54,8 @@ test('renders the neutral Tag with its default calendar icon and omits optional 
   expect(screen.queryByText('Description')).not.toBeInTheDocument();
   expect(screen.queryByText('Nov 12, 9:15 AM')).not.toBeInTheDocument();
   expect(screen.getByText('Processing').closest('.ods-tag')).toHaveClass(
-    'ods-tag--neutral-02'
+    'ods-tag--neutral-02',
+    'ods-tag--translucent'
   );
 });
 
@@ -70,7 +71,8 @@ test('renders the neutral Tag with the provided icon and label', () => {
 
   expect(screen.getByTestId('custom-tag-icon')).toBeInTheDocument();
   expect(screen.getByText('Processing').closest('.ods-tag')).toHaveClass(
-    'ods-tag--neutral-02'
+    'ods-tag--neutral-02',
+    'ods-tag--translucent'
   );
 });
 
@@ -87,7 +89,8 @@ test('renders the negative Tag with its default XCircle icon', () => {
     screen.getByText('Payment not completed').closest('.ods-success-screen')
   ).toHaveClass('ods-success-screen--negative');
   expect(screen.getByText('Not completed').closest('.ods-tag')).toHaveClass(
-    'ods-tag--neutral'
+    'ods-tag--neutral',
+    'ods-tag--translucent'
   );
 });
 
@@ -131,7 +134,7 @@ test('shows the mobile Top Bar and calls onClose', () => {
     />
   );
 
-  fireEvent.click(screen.getByRole('button', { name: 'Close' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Fechar' }));
   expect(onClose).toHaveBeenCalledTimes(1);
   expect(screen.getByRole('button', { name: 'Continue' })).toBeInTheDocument();
 });
@@ -139,10 +142,22 @@ test('shows the mobile Top Bar and calls onClose', () => {
 test('keeps desktop actions out of the mobile layout through CSS classes', () => {
   render(<SuccessScreen title="Payment complete" showTopBar />);
 
-  expect(screen.getByRole('button', { name: 'Close' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Fechar' })).toBeInTheDocument();
   expect(
     screen.queryByRole('button', { name: 'Continue' })
   ).not.toBeInTheDocument();
+});
+
+test('allows overriding the close button accessible label', () => {
+  render(
+    <SuccessScreen
+      title="Payment complete"
+      showTopBar
+      closeButtonAriaLabel="Dismiss"
+    />
+  );
+
+  expect(screen.getByRole('button', { name: 'Dismiss' })).toBeInTheDocument();
 });
 
 test('accepts a custom icon for positive and negative status Tags', () => {

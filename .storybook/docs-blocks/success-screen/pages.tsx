@@ -14,7 +14,11 @@ const locale: LocaleFiles = {
   pt: pt as LocaleFiles['pt'],
 };
 const example = (
-  <SuccessScreen title="Payment complete" tagLabel="Paid">
+  <SuccessScreen
+    title="Payment complete"
+    description="Your payment has been processed."
+    tagLabel="Paid"
+  >
     Payment to supplier · Coral Distributors · R$ 6.819,33
   </SuccessScreen>
 );
@@ -41,8 +45,9 @@ export const successScreenDoc: ComponentDocConfig = {
           <SuccessScreen
             key="neutral"
             status="neutral"
-            title="Payment pending"
-            tagLabel="Processing"
+            title="Payment scheduled"
+            description="Your payment will be processed on Nov 12."
+            tagLabel="Scheduled"
           />,
         ],
       },
@@ -55,6 +60,7 @@ export const successScreenDoc: ComponentDocConfig = {
             key="negative"
             status="negative"
             title="Payment not completed"
+            description="We couldn't process this payment."
             tagLabel="Not completed"
           />,
         ],

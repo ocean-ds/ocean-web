@@ -50,6 +50,13 @@ export const successScreenArgTypes: Record<string, ApiArgType> = {
     'Actions'
   ),
   showTopBar: arg('showTopBar', 'boolean', 'false', 'Appearance', 'boolean'),
+  closeButtonAriaLabel: arg(
+    'closeButtonAriaLabel',
+    'string',
+    "'Fechar'",
+    'Accessibility',
+    'text'
+  ),
   onClose: arg('onClose', '() => void'),
   tagLabel: arg('tagLabel', 'string', undefined, 'Content', 'text'),
   tagIcon: arg('tagIcon', 'React.ReactElement'),
