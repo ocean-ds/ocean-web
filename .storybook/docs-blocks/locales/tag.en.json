@@ -25,12 +25,6 @@
     "type": "Status or category color and icon style for the Tag.",
     "variant": "Tag type treatment: default or highlight."
   },
-  "platforms": {
-    "text": "The same example in each library.",
-    "react": "React",
-    "swift": "SwiftUI",
-    "compose": "Compose"
-  },
   "tokens": {
     "intro": "The table below lists the Ocean tokens used by the Tag styles."
   },

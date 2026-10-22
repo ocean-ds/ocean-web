@@ -5,7 +5,6 @@ import type { ComponentDocConfig } from '../ComponentOverview';
 import type { LocaleFiles } from '../i18n';
 import type { TokensFile } from '../doc-parts';
 import { tagArgTypes } from './argTypes';
-import { tagPlatformSnippets } from './platform-snippets';
 import {
   tagSurfaceClassName,
   tagTranslucentCanvasClassName,
@@ -116,7 +115,13 @@ export const tagDoc: ComponentDocConfig = {
       code: '<Tag type="positive" setIconOff>Paid</Tag>',
     },
   },
-  platforms: tagPlatformSnippets,
+  platforms: 'react-only',
+  reactSnippet: `import { Star } from '@useblu/ocean-icons-react';
+import Tag from '@useblu/ocean-react/Tag';
+
+<Tag appearance="translucent" type="positive" icon={<Star />}>
+  Paid
+</Tag>`,
   story: Stories.Default,
   argTypes: tagArgTypes,
   tokens: tagTokens as TokensFile,
