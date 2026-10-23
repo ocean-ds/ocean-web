@@ -447,6 +447,11 @@ const COMPONENTS = {
     files: ['_success-screen.scss'],
     include: (selector) => selector.startsWith('.ods-success-screen'),
   },
+  drawer: {
+    files: ['_drawer.scss'],
+    include: (selector) =>
+      selector.startsWith('.ods-drawer') || selector.startsWith('.ods-overlay'),
+  },
 };
 
 // Visual order of the anatomy parts (left to right, top to bottom), then of the states.

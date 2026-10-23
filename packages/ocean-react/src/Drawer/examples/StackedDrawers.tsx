@@ -1,100 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Drawer from '../Drawer';
+import useDrawerStack from '../useDrawerStack';
 import Button from '../../Button';
+import List from '../../List';
+import ListAction from '../../ListAction';
+import Typography from '../../Typography';
 
-const WIDTHS = { small: 378, large: 476 };
-const GAP = 16;
-const MOBILE_MAX_WIDTH = 575;
+const LEVELS = ['company', 'orders', 'order'] as const;
+const TITLES = ['Coral Distributors', 'Open orders', 'Order details'];
 
 export interface StackedDrawersProps {
-  first: React.ReactElement;
-  second: React.ReactElement;
-  size?: 'small' | 'large';
+  /** Drawers open on mount, from the first to the top. */
+  initial?: typeof LEVELS[number][];
 }
 
-const useViewportWidth = () => {
-  const [width, setWidth] = useState(() => window.innerWidth);
-
-  useEffect(() => {
-    const onResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  return width;
-};
-
 const StackedDrawers = ({
-  first,
-  second,
-  size = 'small',
+  initial,
 }: StackedDrawersProps): React.ReactElement => {
-  const [firstOpen, setFirstOpen] = useState(false);
-  const [secondOpen, setSecondOpen] = useState(false);
-  const viewport = useViewportWidth();
+  const { stack, open, drawerProps } = useDrawerStack({ initial });
 
-  const mobile = viewport <= MOBILE_MAX_WIDTH;
-  const drawerWidth = Math.min(
-    WIDTHS[size],
-    Math.floor((viewport - GAP * 3) / 2)
-  );
-
-  const closeSecond = () => setSecondOpen(false);
-  const closeAll = () => {
-    setFirstOpen(false);
-    setSecondOpen(false);
+  const nextItem = (level: number) => {
+    const next = LEVELS[level + 1];
+    const items = [
+      { title: 'Orders', description: '3 open orders' },
+      { title: 'Order #4521', description: 'R$ 6.819,33 · Nov 12' },
+    ];
+    return (
+      <List>
+        <ListAction
+          title={items[level].title}
+          description={items[level].description}
+          actionType="chevron"
+          chevronFlipped={stack.includes(next)}
+          onClick={() => open(next)}
+        />
+      </List>
+    );
   };
-  const offsetX = secondOpen && !mobile ? drawerWidth + GAP : 0;
-  const anyOpen = firstOpen || secondOpen;
 
   return (
     <>
-      <Button onClick={() => setFirstOpen(true)} type="button">
-        Abrir primeira
+      <Button type="button" onClick={() => open(LEVELS[0])}>
+        Open drawer
       </Button>
-      <div
-        aria-hidden="true"
-        className={`ods-overlay ods-overlay--floating${
-          anyOpen ? ' ods-overlay--open' : ''
-        }`}
-        onClick={closeAll}
-      />
-      <Drawer
-        open={firstOpen}
-        onDrawerClose={() => setFirstOpen(false)}
-        overlayClose={closeAll}
-        size={size}
-        floating={!mobile}
-        width={mobile ? undefined : drawerWidth}
-        depth={0}
-        offsetX={offsetX}
-        hideOverlay
-      >
-        <div style={{ padding: '0 24px' }}>
-          {first}
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => setSecondOpen(true)}
-          >
-            Abrir segunda ao lado
-          </Button>
-        </div>
-      </Drawer>
-      <Drawer
-        open={secondOpen}
-        onDrawerClose={closeSecond}
-        overlayClose={closeAll}
-        size={size}
-        floating={!mobile}
-        width={mobile ? undefined : drawerWidth}
-        depth={1}
-        hideOverlay
-        onBack={mobile ? closeSecond : undefined}
-      >
-        <div style={{ padding: '0 24px' }}>{second}</div>
-      </Drawer>
+      {LEVELS.map((level, index) => (
+        <Drawer key={level} title={TITLES[index]} {...drawerProps(level)}>
+          {index < LEVELS.length - 1 ? (
+            nextItem(index)
+          ) : (
+            <Typography variant="paragraph">
+              Payment to supplier · Coral Distributors · R$ 6.819,33
+            </Typography>
+          )}
+        </Drawer>
+      ))}
     </>
   );
 };

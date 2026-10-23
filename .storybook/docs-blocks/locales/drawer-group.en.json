@@ -1,0 +1,167 @@
+{
+  "breadcrumb": ["Components", "Overlays"],
+  "description": "A side panel for details and secondary tasks, that can open another beside it.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "toc": "On this page",
+  "page": {
+    "title": "Drawer",
+    "status": "Stable"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility"
+  },
+  "guidelines": {
+    "overview": "Overview",
+    "formatting": "Formatting",
+    "content": "Content",
+    "behaviors": "Behaviors",
+    "related": "Related",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Overview",
+    "text": "Drawer opens a side panel over the page to show details or a secondary task without leaving it. For example, a supplier's drawer lists its orders, and an order opens beside it.",
+    "whenToUse": "When to use",
+    "whenToUseItems": [
+      "Details of an item of the page, keeping the page in view.",
+      "A drill-down: a detail that opens a deeper detail beside it."
+    ],
+    "whenNotToUse": "When not to use",
+    "whenNotToUseItems": [
+      "For a decision that blocks the page, use [Modal](docs:components-modal--docs).",
+      "For a long task with its own steps, use a new screen.",
+      "For more than three levels, rethink the flow: the stack keeps three."
+    ],
+    "variants": "Variants",
+    "variantColumns": ["Variant", "Purpose", "Link"],
+    "variantRows": [
+      "Default|A single drawer.",
+      "Attached|Opens from an element of the page.",
+      "Stacked|Drawers open beside each other."
+    ],
+    "overviewLink": "Component Overview"
+  },
+  "formatting": {
+    "title": "Formatting",
+    "anatomy": "Anatomy",
+    "layoutTitle": "Stack layouts",
+    "layoutText": "The stack adapts to the window width.",
+    "layoutColumns": ["Window", "Drawers side by side", "Behavior"],
+    "layoutRows": [
+      "1198px and above|Up to 3|The ones behind are dimmed.",
+      "576px to 1197px|Up to 2|Narrowing with 3 open keeps the first and the top.",
+      "Below 576px|1|Only the top shows, with a back arrow."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Element", "Required", "Notes"],
+    "rows": [
+      "1|Close bar|Yes|Close button, or back arrow on mobile.",
+      "2|Title|No|Scrolls with the content.",
+      "3|Content|Yes|Children of the drawer.",
+      "4|Actions|No|Fixed at the bottom."
+    ]
+  },
+  "content": {
+    "title": "Content",
+    "text": "Each drawer has one subject, named in the title.",
+    "writingItems": [
+      "Name the subject in the title, not the action.",
+      "Open the next drawer from a list item with a chevron, not from a button."
+    ],
+    "nextExamples": "Opening the next drawer",
+    "nextDo": "Open the next drawer from a list item with a chevron.",
+    "nextDont": "Do not open the next drawer from a button."
+  },
+  "behaviors": {
+    "title": "Behaviors",
+    "text": "The stack is one per page and keeps the order the drawers opened in.",
+    "columns": ["Action", "Result"],
+    "rows": [
+      "Open from the top drawer|Opens beside it; at the limit it replaces the top.",
+      "Click a dimmed drawer|Goes back to it and closes the ones after it.",
+      "Close a drawer|Closes it and the ones after it.",
+      "Click outside|Closes the whole stack.",
+      "Narrow the window|Keeps the first and the top.",
+      "Back arrow (mobile)|Goes back to the previous drawer."
+    ]
+  },
+  "related": {
+    "title": "Related",
+    "modal": {
+      "title": "Modal",
+      "text": "Use Modal for a decision that blocks the page.",
+      "link": "Explore Modal"
+    },
+    "listAction": {
+      "title": "List Action",
+      "text": "Use List Action with a chevron to open the next drawer.",
+      "link": "Explore List Action"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Share feedback about this component through the Ocean Design System feedback channels."
+  },
+  "specs": {
+    "colors": "Colors",
+    "typography": "Typography",
+    "structure": "Structure",
+    "size": "Size"
+  },
+  "colors": {
+    "title": "Colors",
+    "columns": ["Element", "Property", "Token"],
+    "rows": [
+      "Panel|Background|color-interface-light-pure",
+      "Scrim|Background|color-interface-dark-deep",
+      "Actions|Border|color-interface-light-down"
+    ]
+  },
+  "typography": {
+    "title": "Typography",
+    "columns": ["Element", "Size", "Weight", "Token"],
+    "rows": ["Title|20px|ExtraBold (800)|heading3"]
+  },
+  "structure": {
+    "title": "Structure",
+    "columns": ["Element", "Property", "px/rem", "Token"],
+    "rows": [
+      "Small drawer|Width|378px|No token",
+      "Stack|Gap|16px|spacing-inline-xs"
+    ]
+  },
+  "size": {
+    "title": "Size",
+    "columns": ["Size", "Width"],
+    "rows": ["Small|378px", "Large|476px"]
+  },
+  "tokens": {
+    "link": "Full token list → Drawer › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Keyboard",
+    "development": "Development considerations"
+  },
+  "keyboard": {
+    "title": "Keyboard",
+    "columns": ["Element", "Keyboard behavior"],
+    "rows": [
+      "Close button|Enter or Space closes the drawer.",
+      "Dimmed drawer|Its content is inert; Enter on it goes back to it.",
+      "Back arrow|Enter or Space goes back to the previous drawer."
+    ]
+  },
+  "development": {
+    "title": "Development considerations",
+    "items": [
+      "**Use the stack hook.** `useDrawerStack` sets dim, focus and the inert content.",
+      "**Give each drawer a title.** It names the panel for screen readers."
+    ]
+  }
+}
