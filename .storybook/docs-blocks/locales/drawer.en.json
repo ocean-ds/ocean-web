@@ -1,0 +1,56 @@
+{
+  "overview": "Drawer is a side panel for details and secondary tasks. A drawer can open another beside it with `useDrawerStack`.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "A single drawer: control it with `open`, `onDrawerClose` and `overlayClose`."
+    },
+    "attached": {
+      "title": "Attached",
+      "text": "Pass `anchorEl` to open the drawer from an element of the page instead of the screen edge."
+    },
+    "stacked": {
+      "title": "Stacked",
+      "text": "`useDrawerStack` opens drawers beside each other: up to three on wide screens, two below 1198px. The ones behind are dimmed; clicking one goes back to it and closes the ones after it. On mobile only the top drawer shows, with a back arrow."
+    },
+    "withActions": {
+      "title": "With actions",
+      "text": "Pass `actions` to fix the action bar at the bottom of the drawer."
+    }
+  },
+  "api": {
+    "intro": "Drawer renders the panel; `useDrawerStack` returns `drawerProps(id)` to spread on each drawer of a stack.",
+    "open": "Opens or closes the drawer.",
+    "title": "Title below the close bar; scrolls with the content.",
+    "children": "Content of the drawer.",
+    "actions": "Action bar fixed at the bottom.",
+    "size": "Width of the drawer.",
+    "align": "Screen edge the drawer opens from.",
+    "headerColor": "Color of the close bar.",
+    "floating": "Floating panel with margins and rounded corners. `false` attaches it to the edge.",
+    "onDrawerClose": "Called by the close button.",
+    "overlayClose": "Called by a click outside the drawer.",
+    "onBack": "Shows the back arrow instead of the close button.",
+    "anchorEl": "Element the drawer opens from.",
+    "depth": "Position in the stack. Set by `useDrawerStack`.",
+    "width": "Width in px. Set by `useDrawerStack`.",
+    "offsetX": "Horizontal offset in px. Set by `useDrawerStack`.",
+    "hideOverlay": "Skips the drawer's own scrim. Set by `useDrawerStack`.",
+    "dim": "Dims a drawer behind another. Set by `useDrawerStack`.",
+    "onDimClick": "Called by a click on a dimmed drawer. Set by `useDrawerStack`.",
+    "closeButton": "Close button as an IconButton (`icon`) or a Button (`legacy`)."
+  },
+  "platforms": {
+    "text": "The same example in each library."
+  },
+  "tokens": {
+    "intro": "The table below lists the Ocean tokens used by Drawer."
+  },
+  "rules": [
+    "Open a drawer from another only with `useDrawerStack`; do not set `depth`, `width`, `offsetX` or `dim` by hand.",
+    "Open the next drawer from a list item with a chevron.",
+    "Keep one stack per page.",
+    "A single drawer needs only `open`, `onDrawerClose` and `overlayClose`."
+  ],
+  "feedback": "Share component feedback through the Ocean Design System team."
+}

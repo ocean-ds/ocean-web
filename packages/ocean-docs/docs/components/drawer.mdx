@@ -103,6 +103,24 @@ Exemplo de drawer anexado a um elemento específico da página:
   title="Drawer - Anexado"
 />
 
+## Drawers empilhadas
+
+Para uma drawer abrir outra ao lado, use `useDrawerStack`. Ele aplica as regras da pilha: até três drawers lado a lado em telas a partir de 1198px e duas abaixo disso; as de trás escurecem; clicar numa drawer de trás volta para ela e fecha as seguintes; fechar uma fecha as que vieram depois; clicar fora fecha a pilha; ao estreitar a janela ficam a primeira e a de cima; no celular só a de cima aparece, com seta de voltar.
+
+```tsx
+import { Drawer, ListAction, useDrawerStack } from '@useblu/ocean-react';
+
+const { open, drawerProps } = useDrawerStack();
+
+<Button onClick={() => open('company')}>Abrir</Button>
+<Drawer title="Coral Distributors" {...drawerProps('company')}>
+  <ListAction title="Orders" actionType="chevron" onClick={() => open('orders')} />
+</Drawer>
+<Drawer title="Open orders" {...drawerProps('orders')}>…</Drawer>
+```
+
+Não defina `depth`, `width`, `offsetX`, `hideOverlay`, `dim` ou `onDimClick` à mão: `drawerProps(id)` entrega esses valores. Quem usa uma drawer só continua igual.
+
 ## API
 
 ### Props
