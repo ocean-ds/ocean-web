@@ -13,6 +13,8 @@ const NEXT = ['Second drawer', 'Third drawer'];
 export interface StackedDrawersProps {
   /** Drawers open on mount, from the first to the top. */
   initial?: typeof LEVELS[number][];
+  /** Hides the button that opens the first drawer (examples that start open). */
+  hideTrigger?: boolean;
   /** Shows the action bar on every drawer. */
   withActions?: boolean;
 }
@@ -20,14 +22,17 @@ export interface StackedDrawersProps {
 const StackedDrawers = ({
   initial,
   withActions = false,
+  hideTrigger = false,
 }: StackedDrawersProps): React.ReactElement => {
   const { stack, open, drawerProps } = useDrawerStack({ initial });
 
   return (
     <>
-      <Button type="button" onClick={() => open(LEVELS[0])}>
-        Open drawer
-      </Button>
+      {!hideTrigger && (
+        <Button type="button" onClick={() => open(LEVELS[0])}>
+          Open drawer
+        </Button>
+      )}
       {LEVELS.map((level, index) => {
         const next = LEVELS[index + 1];
         return (

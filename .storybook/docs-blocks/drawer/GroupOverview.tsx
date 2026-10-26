@@ -3,14 +3,7 @@ import Link from '../../../packages/ocean-react/src/Link';
 import Button from '../../../packages/ocean-react/src/Button';
 import List from '../../../packages/ocean-react/src/List';
 import ListAction from '../../../packages/ocean-react/src/ListAction';
-import {
-  DoDont,
-  DocTable,
-  Section,
-  Stage,
-  Subsection,
-  Swatch,
-} from '../blocks';
+import { DoDont, DocTable, Section, Subsection, Swatch } from '../blocks';
 import { ComponentOverview, componentToc } from '../ComponentOverview';
 import { GroupOverviewFrame } from '../GroupOverviewFrame';
 import { drawerDoc, stackedExample } from './pages';
@@ -115,7 +108,7 @@ export const DrawerOverview = (): React.ReactElement => {
       <>
         <Section id="overview" title={t('overview.title')}>
           <p>{t('overview.text')}</p>
-          <Stage frames={[{ content: stackedExample }]} />
+          {stackedExample}
           <div className="odoc-columns">
             {(['whenToUse', 'whenNotToUse'] as const).map((key) => (
               <div key={key} className="odoc-prose">
@@ -173,8 +166,8 @@ export const DrawerOverview = (): React.ReactElement => {
                   example: (
                     <List>
                       <ListAction
-                        title="Orders"
-                        description="3 open orders"
+                        title="Second drawer"
+                        description="Opens beside this one"
                         actionType="chevron"
                       />
                     </List>
@@ -183,7 +176,9 @@ export const DrawerOverview = (): React.ReactElement => {
                 },
                 {
                   kind: 'dont',
-                  example: <Button variant="secondary">Open orders</Button>,
+                  example: (
+                    <Button variant="secondary">Open second drawer</Button>
+                  ),
                   text: <Md text={t('content.nextDont')} />,
                 },
               ]}

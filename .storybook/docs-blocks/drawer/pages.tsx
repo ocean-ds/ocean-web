@@ -51,7 +51,12 @@ const STACK_CODE = `const { open, drawerProps } = useDrawerStack();
 
 export const defaultExample = (
   <DrawerFrame key="default">
-    <SimpleDrawer defaultOpen title={SAMPLE_TITLE} actions={<SampleActions />}>
+    <SimpleDrawer
+      defaultOpen
+      hideTrigger
+      title={SAMPLE_TITLE}
+      actions={<SampleActions />}
+    >
       <SampleContent />
     </SimpleDrawer>
   </DrawerFrame>
@@ -59,7 +64,7 @@ export const defaultExample = (
 
 export const stackedExample = (
   <DrawerFrame key="stacked">
-    <StackedDrawers initial={['first', 'second']} />
+    <StackedDrawers hideTrigger initial={['first', 'second']} />
   </DrawerFrame>
 );
 

@@ -26,7 +26,7 @@
   },
   "overview": {
     "title": "Visão geral",
-    "text": "Drawer abre um painel lateral sobre a página para mostrar detalhes ou uma tarefa secundária sem sair dela. Por exemplo, a drawer de um fornecedor lista os pedidos, e um pedido abre ao lado.",
+    "text": "Drawer abre um painel lateral sobre a página para mostrar detalhes ou uma tarefa secundária sem sair dela. Uma drawer pode abrir outra ao lado.",
     "whenToUse": "Quando usar",
     "whenToUseItems": [
       "Detalhes de um item da página, mantendo a página à vista.",

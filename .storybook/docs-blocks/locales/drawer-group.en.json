@@ -26,7 +26,7 @@
   },
   "overview": {
     "title": "Overview",
-    "text": "Drawer opens a side panel over the page to show details or a secondary task without leaving it. For example, a supplier's drawer lists its orders, and an order opens beside it.",
+    "text": "Drawer opens a side panel over the page to show details or a secondary task without leaving it. A drawer can open another one beside it.",
     "whenToUse": "When to use",
     "whenToUseItems": [
       "Details of an item of the page, keeping the page in view.",

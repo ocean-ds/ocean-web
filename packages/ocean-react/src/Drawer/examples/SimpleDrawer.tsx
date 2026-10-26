@@ -6,6 +6,8 @@ import Button from '../../Button';
 export interface SimpleDrawerProps {
   children: React.ReactElement;
   open?: boolean;
+  /** Hides the button that opens the drawer (examples that start open). */
+  hideTrigger?: boolean;
   /** Opens on mount. */
   defaultOpen?: boolean;
   align?: 'left' | 'right';
@@ -20,6 +22,7 @@ const SimpleDrawer = ({
   children,
   open,
   defaultOpen = false,
+  hideTrigger = false,
   align,
   iconAlignment,
   size,
@@ -35,9 +38,11 @@ const SimpleDrawer = ({
 
   return (
     <>
-      <Button onClick={toggleOpen} type="button">
-        Open drawer
-      </Button>
+      {!hideTrigger && (
+        <Button onClick={toggleOpen} type="button">
+          Open drawer
+        </Button>
+      )}
       <Drawer
         open={open || isOpen}
         onDrawerClose={toggleOpen}
