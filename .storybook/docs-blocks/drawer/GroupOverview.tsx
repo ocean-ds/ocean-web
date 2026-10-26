@@ -3,7 +3,6 @@ import Link from '../../../packages/ocean-react/src/Link';
 import Button from '../../../packages/ocean-react/src/Button';
 import List from '../../../packages/ocean-react/src/List';
 import ListAction from '../../../packages/ocean-react/src/ListAction';
-import StackedDrawers from '../../../packages/ocean-react/src/Drawer/examples/StackedDrawers';
 import {
   DoDont,
   DocTable,
@@ -12,7 +11,9 @@ import {
   Subsection,
   Swatch,
 } from '../blocks';
+import { ComponentOverview, componentToc } from '../ComponentOverview';
 import { GroupOverviewFrame } from '../GroupOverviewFrame';
+import { drawerDoc, stackedExample } from './pages';
 import { LocaleFiles, Md, useTranslate } from '../i18n';
 import {
   request,
@@ -29,13 +30,15 @@ const LOCALES: LocaleFiles[] = [
   { en: common, pt: commonPt },
   { en, pt } as unknown as LocaleFiles,
 ];
-const tabs = ['guidelines', 'specs', 'accessibility'] as const;
-const componentOverviewId = 'components-overlays-drawer-drawer--overview';
+const tabs = ['guidelines', 'specs', 'accessibility', 'code'] as const;
 const relatedComponents = [
   { key: 'modal', id: 'components-modal--docs' },
   { key: 'listAction', id: 'components-lists-list-listaction--docs' },
 ] as const;
-const toc: Record<typeof tabs[number], { id: string; labelKey: string }[]> = {
+const toc: Record<
+  Exclude<typeof tabs[number], 'code'>,
+  { id: string; labelKey: string }[]
+> = {
   guidelines: [
     { id: 'overview', labelKey: 'guidelines.overview' },
     { id: 'formatting', labelKey: 'guidelines.formatting' },
@@ -74,8 +77,9 @@ const DocsLink = ({
   </Link>
 );
 
-export const GroupOverview = (): React.ReactElement => {
+export const DrawerOverview = (): React.ReactElement => {
   const t = useTranslate(...LOCALES);
+  const tCode = useTranslate({ en: common, pt: commonPt }, drawerDoc.locale);
   const [active, setActive] = useState<typeof tabs[number]>(() => {
     const requested = takeRequest(TAB_REQUEST_KEY);
     return tabs.includes(requested as typeof tabs[number])
@@ -89,10 +93,21 @@ export const GroupOverview = (): React.ReactElement => {
       .map((row) =>
         row.split('|').map((cell, index) => <Md key={index} text={cell} />)
       );
-  const linkToOverview = (label: string, section?: string) => (
-    <DocsLink id={componentOverviewId} section={section}>
+  const linkToCode = (label: string, section?: string) => (
+    <Link
+      href={`#${section ?? 'overview'}`}
+      onClick={(event) => {
+        event.preventDefault();
+        setActive('code');
+        setTimeout(
+          () =>
+            document.getElementById(section ?? 'overview')?.scrollIntoView(),
+          100
+        );
+      }}
+    >
       {label}
-    </DocsLink>
+    </Link>
   );
   let content: React.ReactNode;
   if (active === 'guidelines') {
@@ -100,7 +115,7 @@ export const GroupOverview = (): React.ReactElement => {
       <>
         <Section id="overview" title={t('overview.title')}>
           <p>{t('overview.text')}</p>
-          <Stage frames={[{ content: <StackedDrawers /> }]} />
+          <Stage frames={[{ content: stackedExample }]} />
           <div className="odoc-columns">
             {(['whenToUse', 'whenNotToUse'] as const).map((key) => (
               <div key={key} className="odoc-prose">
@@ -123,7 +138,6 @@ export const GroupOverview = (): React.ReactElement => {
                 return [
                   <Md key="variant" text={variant} />,
                   <Md key="purpose" text={purpose} />,
-                  linkToOverview(t('overview.overviewLink')),
                 ];
               })}
             />
@@ -218,11 +232,13 @@ export const GroupOverview = (): React.ReactElement => {
               columns={t.list(`${key}.columns`)}
               rows={key === 'colors' ? colors : rows(`${key}.rows`)}
             />
-            <p>{linkToOverview(t('tokens.link'), 'design-tokens')}</p>
+            <p>{linkToCode(t('tokens.link'), 'design-tokens')}</p>
           </Section>
         ))}
       </>
     );
+  } else if (active === 'code') {
+    content = <ComponentOverview config={drawerDoc} embedded />;
   } else {
     content = (
       <>
@@ -258,12 +274,16 @@ export const GroupOverview = (): React.ReactElement => {
       tabs={[...tabs]}
       onTabChange={(tab) => setActive(tab as typeof tabs[number])}
       content={content}
-      tocItems={toc[active].map(({ id, labelKey }) => ({
-        id,
-        label: t(labelKey),
-      }))}
+      tocItems={
+        active === 'code'
+          ? componentToc(drawerDoc, tCode)
+          : toc[active].map(({ id, labelKey }) => ({
+              id,
+              label: t(labelKey),
+            }))
+      }
     />
   );
 };
 
-export default GroupOverview;
+export default DrawerOverview;

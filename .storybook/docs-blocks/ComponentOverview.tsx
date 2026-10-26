@@ -106,22 +106,12 @@ const Snippet = ({
   );
 };
 
-export const ComponentOverview = ({
-  config,
-}: {
-  config: ComponentDocConfig;
-}): React.ReactElement => {
-  const t = useTranslate(COMMON, config.locale);
-  const component = config.kind === 'component';
+export const componentToc = (
+  config: ComponentDocConfig,
+  t: Translate
+): TocItem[] => {
   const options = Object.entries(config.options ?? {});
-
-  useEffect(() => {
-    const section = takeRequest(SECTION_REQUEST_KEY);
-    if (section)
-      setTimeout(() => document.getElementById(section)?.scrollIntoView(), 300);
-  }, []);
-
-  const toc: TocItem[] = [
+  return [
     { id: 'overview', label: t('sections.overview') },
     ...config.sections.map(({ key }) => ({
       id: key,
@@ -149,6 +139,153 @@ export const ComponentOverview = ({
     { id: 'implementation-rules', label: t('sections.implementationRules') },
     { id: 'feedback', label: t('sections.feedback') },
   ];
+};
+
+export const ComponentOverview = ({
+  config,
+  embedded = false,
+}: {
+  config: ComponentDocConfig;
+  /** Only the sections, for a tab of a page that already has the header. */
+  embedded?: boolean;
+}): React.ReactElement => {
+  const t = useTranslate(COMMON, config.locale);
+  const component = config.kind === 'component';
+  const options = Object.entries(config.options ?? {});
+
+  useEffect(() => {
+    const section = takeRequest(SECTION_REQUEST_KEY);
+    if (section)
+      setTimeout(() => document.getElementById(section)?.scrollIntoView(), 300);
+  }, []);
+
+  const toc = componentToc(config, t);
+
+  const body = (
+    <>
+      {config.kind === 'block' && <Callout text={t('usedBy')} />}
+
+      <Section id="overview" title={t('sections.overview')}>
+        <p>
+          <Md text={t('overview')} />
+        </p>
+        <Snippet spec={config.primary} t={t} imports={config.imports} />
+      </Section>
+
+      {config.sections.map(({ key, example }) => (
+        <Section key={key} id={key} title={t(`sections.${key}.title`)}>
+          <p>
+            <Md text={t(`sections.${key}.text`)} />
+          </p>
+          {example && <Snippet spec={example} t={t} />}
+        </Section>
+      ))}
+
+      {options.length > 0 && (
+        <Section
+          id="row-options"
+          title={t(config.optionsTitle ?? 'sections.rowOptions')}
+        >
+          {options.map(([key, example]) => (
+            <Subsection
+              key={key}
+              id={key}
+              title={t(
+                `${config.optionsLocalePrefix ?? 'options'}.${key}.title`
+              )}
+            >
+              <p>
+                <Md
+                  text={t(
+                    `${config.optionsLocalePrefix ?? 'options'}.${key}.text`
+                  )}
+                />
+              </p>
+              {example && <Snippet spec={example} t={t} />}
+            </Subsection>
+          ))}
+        </Section>
+      )}
+      {config.contentAndAmount && (
+        <Section id="content-and-amount" title={t('sections.contentAndAmount')}>
+          <Callout text={t('contentAndAmount')} />
+        </Section>
+      )}
+
+      <Section id="other-platforms" title={t('sections.otherPlatforms')}>
+        {config.platforms === 'react-only' ? (
+          <Source code={config.reactSnippet ?? ''} language="tsx" dark />
+        ) : config.platforms === 'table' ? (
+          <DocTable
+            columns={[t('platforms.platform'), t('platforms.type')]}
+            rows={(['react', 'ios', 'android'] as const).map((platform) => [
+              {
+                react: 'React',
+                ios: 'iOS (SwiftUI)',
+                android: 'Android (Compose)',
+              }[platform],
+              <Md key={platform} text={t(`platforms.${platform}`)} />,
+            ])}
+          />
+        ) : (
+          <>
+            <p>
+              <Md text={t('platforms.text')} />
+            </p>
+            <PlatformTabs snippets={config.platforms} t={t} />
+          </>
+        )}
+      </Section>
+
+      <Section id="component-api" title={t('sections.componentApi')}>
+        <p>
+          <Md text={t('api.intro')} />
+        </p>
+        <div
+          className={`odoc-example${
+            config.primary.canvasClass?.startsWith('odoc-canvas--footer-')
+              ? ' odoc-example--footer'
+              : ''
+          }`}
+        >
+          <div
+            className={
+              config.primary.canvasClass
+                ? `odoc-example__stage ${config.primary.canvasClass}`
+                : 'odoc-example__stage'
+            }
+          >
+            <Story of={config.story} />
+          </div>
+        </div>
+        <ApiTable of={config.story} argTypes={config.argTypes} t={t} />
+      </Section>
+
+      <Section id="design-tokens" title={t('sections.designTokens')}>
+        <TokensTable file={config.tokens} t={t} />
+        {component && (
+          <p>
+            <Md text={t('tokens.blocks')} />
+          </p>
+        )}
+      </Section>
+
+      <Section
+        id="implementation-rules"
+        title={t('sections.implementationRules')}
+      >
+        <Rules rules={t.list('rules')} />
+      </Section>
+
+      <Section id="feedback" title={t('sections.feedback')}>
+        <p>
+          <Md text={t('feedback')} />
+        </p>
+      </Section>
+    </>
+  );
+
+  if (embedded) return body;
 
   return (
     <Unstyled>
@@ -213,134 +350,7 @@ export const ComponentOverview = ({
           </div>
         </div>
         <div className="odoc-body">
-          <div>
-            {config.kind === 'block' && <Callout text={t('usedBy')} />}
-
-            <Section id="overview" title={t('sections.overview')}>
-              <p>
-                <Md text={t('overview')} />
-              </p>
-              <Snippet spec={config.primary} t={t} imports={config.imports} />
-            </Section>
-
-            {config.sections.map(({ key, example }) => (
-              <Section key={key} id={key} title={t(`sections.${key}.title`)}>
-                <p>
-                  <Md text={t(`sections.${key}.text`)} />
-                </p>
-                {example && <Snippet spec={example} t={t} />}
-              </Section>
-            ))}
-
-            {options.length > 0 && (
-              <Section
-                id="row-options"
-                title={t(config.optionsTitle ?? 'sections.rowOptions')}
-              >
-                {options.map(([key, example]) => (
-                  <Subsection
-                    key={key}
-                    id={key}
-                    title={t(
-                      `${config.optionsLocalePrefix ?? 'options'}.${key}.title`
-                    )}
-                  >
-                    <p>
-                      <Md
-                        text={t(
-                          `${
-                            config.optionsLocalePrefix ?? 'options'
-                          }.${key}.text`
-                        )}
-                      />
-                    </p>
-                    {example && <Snippet spec={example} t={t} />}
-                  </Subsection>
-                ))}
-              </Section>
-            )}
-            {config.contentAndAmount && (
-              <Section
-                id="content-and-amount"
-                title={t('sections.contentAndAmount')}
-              >
-                <Callout text={t('contentAndAmount')} />
-              </Section>
-            )}
-
-            <Section id="other-platforms" title={t('sections.otherPlatforms')}>
-              {config.platforms === 'react-only' ? (
-                <Source code={config.reactSnippet ?? ''} language="tsx" dark />
-              ) : config.platforms === 'table' ? (
-                <DocTable
-                  columns={[t('platforms.platform'), t('platforms.type')]}
-                  rows={(['react', 'ios', 'android'] as const).map(
-                    (platform) => [
-                      {
-                        react: 'React',
-                        ios: 'iOS (SwiftUI)',
-                        android: 'Android (Compose)',
-                      }[platform],
-                      <Md key={platform} text={t(`platforms.${platform}`)} />,
-                    ]
-                  )}
-                />
-              ) : (
-                <>
-                  <p>
-                    <Md text={t('platforms.text')} />
-                  </p>
-                  <PlatformTabs snippets={config.platforms} t={t} />
-                </>
-              )}
-            </Section>
-
-            <Section id="component-api" title={t('sections.componentApi')}>
-              <p>
-                <Md text={t('api.intro')} />
-              </p>
-              <div
-                className={`odoc-example${
-                  config.primary.canvasClass?.startsWith('odoc-canvas--footer-')
-                    ? ' odoc-example--footer'
-                    : ''
-                }`}
-              >
-                <div
-                  className={
-                    config.primary.canvasClass
-                      ? `odoc-example__stage ${config.primary.canvasClass}`
-                      : 'odoc-example__stage'
-                  }
-                >
-                  <Story of={config.story} />
-                </div>
-              </div>
-              <ApiTable of={config.story} argTypes={config.argTypes} t={t} />
-            </Section>
-
-            <Section id="design-tokens" title={t('sections.designTokens')}>
-              <TokensTable file={config.tokens} t={t} />
-              {component && (
-                <p>
-                  <Md text={t('tokens.blocks')} />
-                </p>
-              )}
-            </Section>
-
-            <Section
-              id="implementation-rules"
-              title={t('sections.implementationRules')}
-            >
-              <Rules rules={t.list('rules')} />
-            </Section>
-
-            <Section id="feedback" title={t('sections.feedback')}>
-              <p>
-                <Md text={t('feedback')} />
-              </p>
-            </Section>
-          </div>
+          <div>{body}</div>
           <OnThisPage items={toc} title={t('toc')} />
         </div>
       </div>

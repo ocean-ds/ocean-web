@@ -1028,3 +1028,12 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   max-width: $spacing-inline-xxxl * 3;
   overflow-x: auto;
 }
+
+// Drawer examples: the transform makes the drawer and its scrim fixed to the frame.
+.odoc-drawer-frame {
+  height: $spacing-stack-xxxl * 8;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+  width: 100%;
+}

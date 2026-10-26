@@ -13,25 +13,25 @@ const wide = { chromatic: { viewports: [1440] } };
 
 export const OneOpen: Story = {
   parameters: wide,
-  render: () => <StackedDrawers initial={['company']} />,
+  render: () => <StackedDrawers initial={['first']} />,
 };
 
 export const TwoOpen: Story = {
   parameters: wide,
-  render: () => <StackedDrawers initial={['company', 'orders']} />,
+  render: () => <StackedDrawers initial={['first', 'second']} />,
 };
 
 export const ThreeOpen: Story = {
   parameters: wide,
-  render: () => <StackedDrawers initial={['company', 'orders', 'order']} />,
+  render: () => <StackedDrawers initial={['first', 'second', 'third']} />,
 };
 
 export const Narrow: Story = {
   parameters: { chromatic: { viewports: [1024] } },
-  render: () => <StackedDrawers initial={['company', 'orders', 'order']} />,
+  render: () => <StackedDrawers initial={['first', 'second', 'third']} />,
 };
 
 export const Mobile: Story = {
   parameters: { chromatic: { viewports: [375] } },
-  render: () => <StackedDrawers initial={['company', 'orders']} />,
+  render: () => <StackedDrawers initial={['first', 'second']} />,
 };

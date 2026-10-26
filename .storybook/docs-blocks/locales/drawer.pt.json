@@ -3,19 +3,11 @@
   "sections": {
     "default": {
       "title": "Default",
-      "text": "Uma drawer só: controle com `open`, `onDrawerClose` e `overlayClose`."
-    },
-    "attached": {
-      "title": "Attached",
-      "text": "Passe `anchorEl` para abrir a drawer a partir de um elemento da página, e não da borda da tela."
+      "text": "Uma drawer só: controle com `open`, `onDrawerClose` e `overlayClose`. Passe `actions` para fixar a barra de ações no rodapé."
     },
     "stacked": {
       "title": "Stacked",
-      "text": "`useDrawerStack` abre drawers lado a lado: até três em telas largas e duas abaixo de 1198px. As de trás escurecem; clicar numa delas volta para ela e fecha as seguintes. No celular só a de cima aparece, com seta de voltar."
-    },
-    "withActions": {
-      "title": "With actions",
-      "text": "Passe `actions` para fixar a barra de ações no rodapé da drawer."
+      "text": "`useDrawerStack` abre drawers lado a lado: até três em telas largas e duas abaixo de 1198px. As de trás escurecem; clicar numa delas volta para ela e fecha as seguintes. No celular só a de cima aparece, com seta de voltar. As drawers da pilha também aceitam `actions`."
     }
   },
   "api": {

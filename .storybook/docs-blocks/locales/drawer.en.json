@@ -3,19 +3,11 @@
   "sections": {
     "default": {
       "title": "Default",
-      "text": "A single drawer: control it with `open`, `onDrawerClose` and `overlayClose`."
-    },
-    "attached": {
-      "title": "Attached",
-      "text": "Pass `anchorEl` to open the drawer from an element of the page instead of the screen edge."
+      "text": "A single drawer: control it with `open`, `onDrawerClose` and `overlayClose`. Pass `actions` to fix the action bar at the bottom."
     },
     "stacked": {
       "title": "Stacked",
-      "text": "`useDrawerStack` opens drawers beside each other: up to three on wide screens, two below 1198px. The ones behind are dimmed; clicking one goes back to it and closes the ones after it. On mobile only the top drawer shows, with a back arrow."
-    },
-    "withActions": {
-      "title": "With actions",
-      "text": "Pass `actions` to fix the action bar at the bottom of the drawer."
+      "text": "`useDrawerStack` opens drawers beside each other: up to three on wide screens, two below 1198px. The ones behind are dimmed; clicking one goes back to it and closes the ones after it. On mobile only the top drawer shows, with a back arrow. Stacked drawers take `actions` too."
     }
   },
   "api": {

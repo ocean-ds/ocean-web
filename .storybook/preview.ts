@@ -130,14 +130,7 @@ export const parameters = {
             ],
           ],
           'Overlays',
-          [
-            'Drawer',
-            [
-              'Overview',
-              'Drawer',
-              ['Overview', 'Default', 'Attached', 'Stacked', 'With Actions'],
-            ],
-          ],
+          ['Drawer', ['Overview', 'Default', 'Stacked']],
           'Transaction Summary',
           [
             'Overview',

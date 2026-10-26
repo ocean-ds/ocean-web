@@ -70,15 +70,15 @@ test('CT-2: pilha de 3 lado a lado em tela larga, as de trás escurecidas', () =
   setViewport(1440);
   render(<StackedDrawers />);
   fireEvent.click(screen.getByRole('button', { name: 'Open drawer' }));
-  fireEvent.click(screen.getByText('Orders'));
-  fireEvent.click(screen.getByText('Order #4521'));
+  fireEvent.click(screen.getByText('Second drawer'));
+  fireEvent.click(screen.getByText('Third drawer'));
   expect(openDrawers()).toHaveLength(3);
   const dimmed = document.querySelectorAll('.ods-drawer--dimmed');
   expect(dimmed).toHaveLength(2);
   expect(screen.getAllByTestId('drawer-dim')[0]).toHaveClass(
     'ods-drawer__dim--far'
   );
-  fireEvent.click(screen.getByText('Orders'));
+  fireEvent.click(screen.getByText('Second drawer'));
   expect(openDrawers()).toHaveLength(1);
   expect(drawerStackLimit(DRAWER_STACK_THREE_MIN_WIDTH, false)).toBe(3);
   expect(drawerStackWidth(1440, 3)).toBe(378);
@@ -88,12 +88,12 @@ test('CT-2: pilha de 3 lado a lado em tela larga, as de trás escurecidas', () =
 
 test('CT-3: clicar na de trás volta para ela e fechar uma fecha as seguintes', () => {
   setViewport(1440);
-  render(<StackedDrawers initial={['company', 'orders', 'order']} />);
+  render(<StackedDrawers initial={['first', 'second', 'third']} />);
   expect(openDrawers()).toHaveLength(3);
   fireEvent.click(document.querySelectorAll('.ods-drawer--dimmed')[0]);
   expect(openDrawers()).toHaveLength(1);
-  fireEvent.click(screen.getByText('Orders'));
-  fireEvent.click(screen.getByText('Order #4521'));
+  fireEvent.click(screen.getByText('Second drawer'));
+  fireEvent.click(screen.getByText('Third drawer'));
   fireEvent.click(
     screen.getAllByRole('button', { name: 'Fechar', hidden: true })[1]
   );
@@ -106,7 +106,7 @@ test('CT-3: clicar na de trás volta para ela e fechar uma fecha as seguintes', 
 
 test('CT-4: estreitar a janela com 3 abertas deixa 2', () => {
   setViewport(1440);
-  render(<StackedDrawers initial={['company', 'orders', 'order']} />);
+  render(<StackedDrawers initial={['first', 'second', 'third']} />);
   expect(openDrawers()).toHaveLength(3);
   setViewport(1024);
   flushResize();
@@ -118,7 +118,7 @@ test('CT-5: no celular só a de cima aparece, com seta de voltar', () => {
   setViewport(375, true);
   render(<StackedDrawers />);
   fireEvent.click(screen.getByRole('button', { name: 'Open drawer' }));
-  fireEvent.click(screen.getByText('Orders'));
+  fireEvent.click(screen.getByText('Second drawer'));
   expect(openDrawers()).toHaveLength(1);
   fireEvent.click(screen.getByRole('button', { name: 'Voltar', hidden: true }));
   expect(openDrawers()).toHaveLength(1);
@@ -133,6 +133,6 @@ test('CT-5: no celular só a de cima aparece, com seta de voltar', () => {
 test('CT-5: sem matchMedia a pilha segue como tela larga', () => {
   setViewport(1440);
   (window as unknown as { matchMedia?: unknown }).matchMedia = undefined;
-  render(<StackedDrawers initial={['company', 'orders']} />);
+  render(<StackedDrawers initial={['first', 'second']} />);
   expect(openDrawers()).toHaveLength(2);
 });

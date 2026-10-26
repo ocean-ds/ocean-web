@@ -13,7 +13,8 @@
   "tabs": {
     "guidelines": "Guidelines",
     "specs": "Specs",
-    "accessibility": "Acessibilidade"
+    "accessibility": "Acessibilidade",
+    "code": "Código"
   },
   "guidelines": {
     "overview": "Visão geral",
@@ -38,10 +39,9 @@
       "Para mais de três níveis, repense o fluxo: a pilha guarda três."
     ],
     "variants": "Variantes",
-    "variantColumns": ["Variante", "Propósito", "Link"],
+    "variantColumns": ["Variante", "Propósito"],
     "variantRows": [
       "Default|Uma drawer só.",
-      "Attached|Abre a partir de um elemento da página.",
       "Stacked|Drawers abrem lado a lado."
     ],
     "overviewLink": "Visão geral do componente"
@@ -142,7 +142,7 @@
     "rows": ["Small|378px", "Large|476px"]
   },
   "tokens": {
-    "link": "Lista completa de tokens → Drawer › Design tokens"
+    "link": "Lista completa de tokens → Código › Design tokens"
   },
   "accessibility": {
     "keyboard": "Teclado",

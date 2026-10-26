@@ -13,7 +13,8 @@
   "tabs": {
     "guidelines": "Guidelines",
     "specs": "Specs",
-    "accessibility": "Accessibility"
+    "accessibility": "Accessibility",
+    "code": "Code"
   },
   "guidelines": {
     "overview": "Overview",
@@ -38,10 +39,9 @@
       "For more than three levels, rethink the flow: the stack keeps three."
     ],
     "variants": "Variants",
-    "variantColumns": ["Variant", "Purpose", "Link"],
+    "variantColumns": ["Variant", "Purpose"],
     "variantRows": [
       "Default|A single drawer.",
-      "Attached|Opens from an element of the page.",
       "Stacked|Drawers open beside each other."
     ],
     "overviewLink": "Component Overview"
@@ -142,7 +142,7 @@
     "rows": ["Small|378px", "Large|476px"]
   },
   "tokens": {
-    "link": "Full token list → Drawer › Design tokens"
+    "link": "Full token list → Code › Design tokens"
   },
   "accessibility": {
     "keyboard": "Keyboard",
