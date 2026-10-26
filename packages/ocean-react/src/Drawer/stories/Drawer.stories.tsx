@@ -2,335 +2,68 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import Drawer from '../Drawer';
 import SimpleDrawer from '../examples/SimpleDrawer';
-import AttachedDrawer from '../examples/AttachedDrawer';
 import StackedDrawers from '../examples/StackedDrawers';
-import Button from '../../Button';
+import {
+  SAMPLE_TITLE,
+  SampleActions,
+  SampleContent,
+} from '../examples/DrawerSample';
 
-const meta: Meta<typeof Drawer> = {
-  title: 'Components/Drawer',
+type DrawerStoryArgs = React.ComponentProps<typeof Drawer> & {
+  withActions: boolean;
+};
+
+const meta: Meta<DrawerStoryArgs> = {
+  title: 'Components/Overlays/Drawer',
   component: Drawer,
-  tags: ['autodocs'],
+  parameters: { actions: { disable: true } },
   argTypes: {
-    children: {
-      description: 'Conteúdo a ser exibido dentro do drawer.',
-      control: false,
-    },
-    open: {
-      description: 'Controla se o drawer está aberto ou fechado.',
+    title: { control: 'text' },
+    withActions: {
       control: 'boolean',
+      description: 'Shows the action bar (`actions`).',
     },
-    onDrawerClose: {
-      description: 'Função chamada quando o drawer é fechado.',
-      control: false,
-    },
-    overlayClose: {
-      description: 'Função chamada quando clica no overlay.',
-      control: false,
-    },
-    headerIcon: {
-      description: 'Ícone customizado para o cabeçalho.',
-      control: false,
-    },
-    align: {
-      description: 'Posição do drawer na tela.',
-      control: 'select',
-      options: ['left', 'right'],
-    },
-    iconAlignment: {
-      description: 'Alinhamento do ícone no cabeçalho.',
-      control: 'select',
-      options: ['left', 'right'],
-    },
-    anchorEl: {
-      description: 'Elemento de referência para posicionamento.',
-      control: false,
-    },
-    onMouseOutDrawer: {
-      description: 'Função chamada quando o mouse sai do drawer.',
-      control: false,
-    },
-    size: {
-      description: 'Tamanho do drawer.',
-      control: 'radio',
-      options: ['small', 'large'],
-    },
-    floating: {
-      description:
-        'Padrão: o drawer flutua com margem de 16px, cantos arredondados e motion Gentle (tela inteira abaixo de 576px). `false` volta ao painel colado na borda.',
-      control: 'boolean',
-    },
-    offsetX: {
-      description:
-        'Deslocamento horizontal extra (px) aplicado quando aberto — usado para empurrar o primeiro drawer quando o segundo abre ao lado.',
-      control: 'number',
-    },
-    depth: {
-      description: 'Posição na pilha (0 ou 1). Define o z-index relativo.',
-      control: 'number',
-    },
-    width: {
-      description:
-        'Largura em px que substitui a de `size` — usada para as duas drawers caberem lado a lado em viewport estreito.',
-      control: 'number',
-    },
-    hideOverlay: {
-      description:
-        'Não pinta o próprio scrim — quem empilha fornece um scrim só.',
-      control: 'boolean',
-    },
-    onBack: {
-      description:
-        'Quando presente, o cabeçalho troca o X por uma seta "Voltar" à esquerda (drawer mobile, abaixo de `sm`).',
-      control: false,
-    },
-    dim: {
-      description:
-        'Scrim só sobre este painel, quando ele fica atrás de outro na pilha: `near` (0.48, imediatamente atrás) ou `far` (0.64, mais antigo). Exige `onDimClick`.',
-      control: 'select',
-      options: [undefined, 'near', 'far'],
-    },
-    onDimClick: {
-      description:
-        'Drawer de pilha: com `dim`, clicar no painel (fora do X) volta para ele em vez de acionar o conteúdo, que fica `inert`.',
-      control: false,
-    },
-    closeButton: {
-      description:
-        '`icon` (padrão): X (ou seta voltar) como `IconButton` pequeno e claro. `legacy`: X como `Button`.',
-      control: 'select',
-      options: ['icon', 'legacy'],
-    },
-    title: {
-      description:
-        'Título logo abaixo da barra do X; texto vira `heading3`. Rola junto com o conteúdo.',
-      control: 'text',
-    },
-    actions: {
-      description:
-        'Barra de ações fixa no rodapé, com linha acima e botões em coluna.',
-      control: false,
-    },
+    size: { control: 'radio', options: ['small', 'large'] },
+    align: { control: 'select', options: ['left', 'right'] },
     headerColor: {
-      description:
-        'Cor da barra do X. `warning` e `negative` pintam a barra e deixam o hover do X escuro, com círculo em multiply.',
       control: 'select',
       options: ['default', 'warning', 'negative'],
     },
   },
+  args: { withActions: false },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Drawer>;
+type Story = StoryObj<DrawerStoryArgs>;
 
-const DrawerContent = () => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      height: '100%',
-    }}
-  >
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: '0 24px',
-      }}
-    >
-      <h3
-        style={{
-          fontFamily: 'Avenir',
-          fontSize: '20px',
-          fontWeight: '800',
-          lineHeight: '22px',
-          color: '#393B47',
-          margin: '0 0 8px 0',
-        }}
-      >
-        Drawer title
-      </h3>
-      <p
-        style={{
-          fontFamily: 'Nunito Sans',
-          fontSize: '16px',
-          fontWeight: '400',
-          lineHeight: '24px',
-          color: '#67697A',
-          margin: '0 0 16px 0',
-        }}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipi elit. Semper diam
-        adipiscing.
-      </p>
-      <div
-        style={{
-          width: '100%',
-          height: '120px',
-          backgroundColor: '#f5f5f5',
-          border: '2px dashed #ccc',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '4px',
-          color: '#999',
-        }}
-      >
-        Conteúdo placeholder
-      </div>
-    </div>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '16px 24px',
-        borderTop: 'solid 1px #EBECF5',
-      }}
-    >
-      <Button
-        variant="secondary"
-        size="md"
-        blocked
-        style={{ margin: '0 12px 0 0' }}
-      >
-        Cancelar
-      </Button>
-      <Button size="md" blocked>
-        Confirmar
-      </Button>
-    </div>
-  </div>
-);
-
-export const Usage: Story = {
+export const Default: Story = {
   args: {
-    open: false,
-    align: 'right',
-    iconAlignment: 'right',
+    title: SAMPLE_TITLE,
     size: 'small',
+    align: 'right',
+    headerColor: 'default',
+    withActions: true,
   },
-  render: (args) => (
-    <SimpleDrawer {...args}>
-      <DrawerContent />
-    </SimpleDrawer>
-  ),
-  decorators: [
-    (StoryComponent: React.ComponentType): JSX.Element => (
-      <div
-        style={{
-          minWidth: '500px',
-          height: '400px',
-          display: 'flex',
-          gap: '16px',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '16px',
-        }}
-      >
-        <StoryComponent />
-      </div>
-    ),
-  ],
-};
-
-export const Attached: Story = {
   parameters: {
-    controls: { disable: true },
+    controls: {
+      include: ['title', 'withActions', 'size', 'align', 'headerColor'],
+    },
   },
-  render: () => (
-    <AttachedDrawer align="right" iconAlignment="right" size="small">
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '0 24px',
-          height: '400px',
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: 'Avenir',
-            fontSize: '20px',
-            fontWeight: '800',
-            lineHeight: '22px',
-            color: '#393B47',
-            margin: '0 0 8px 0',
-          }}
-        >
-          Drawer anexado
-        </h3>
-        <p>Este drawer está anexado a um elemento específico da página.</p>
-      </div>
-    </AttachedDrawer>
+  render: ({ title, withActions, size, align, headerColor }) => (
+    <SimpleDrawer
+      title={title}
+      size={size}
+      align={align}
+      headerColor={headerColor}
+      actions={withActions ? <SampleActions /> : undefined}
+    >
+      <SampleContent />
+    </SimpleDrawer>
   ),
 };
 
 export const Stacked: Story = {
-  parameters: {
-    controls: { disable: true },
-  },
-  render: () => (
-    <StackedDrawers
-      first={<h3 style={{ fontFamily: 'Avenir' }}>Primeiro drawer</h3>}
-      second={<h3 style={{ fontFamily: 'Avenir' }}>Segundo drawer</h3>}
-    />
-  ),
-};
-
-export const WithTitleAndActions: Story = {
-  args: {
-    open: true,
-    title: 'Detalhes do contrato',
-  },
-  render: (args) => (
-    <Drawer
-      {...args}
-      onBack={undefined}
-      overlayClose={() => undefined}
-      onDrawerClose={() => undefined}
-      actions={
-        <>
-          <Button blocked>Pagar parcela</Button>
-          <Button variant="secondary" blocked>
-            Ver contrato
-          </Button>
-        </>
-      }
-    >
-      {Array.from({ length: 12 }, (_, index) => (
-        <p
-          key={index}
-          style={{ fontFamily: 'Nunito Sans', margin: '0 0 16px' }}
-        >
-          Conteúdo que rola junto com o título.
-        </p>
-      ))}
-    </Drawer>
-  ),
-};
-
-export const HeaderColor: Story = {
-  args: {
-    open: true,
-    headerColor: 'warning',
-    title: 'Limite de compra',
-  },
-  render: (args) => (
-    <Drawer
-      {...args}
-      onBack={undefined}
-      overlayClose={() => undefined}
-      onDrawerClose={() => undefined}
-    >
-      <p style={{ fontFamily: 'Nunito Sans', margin: 0 }}>
-        Passe o mouse no X: no fundo colorido ele fica escuro; no padrão, azul.
-      </p>
-    </Drawer>
-  ),
+  parameters: { controls: { include: ['withActions'] } },
+  render: ({ withActions }) => <StackedDrawers withActions={withActions} />,
 };

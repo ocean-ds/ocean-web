@@ -129,6 +129,8 @@ export const parameters = {
               ['Overview', 'Timeline'],
             ],
           ],
+          'Overlays',
+          ['Drawer', ['Overview', 'Default', 'Stacked']],
           'Transaction Summary',
           [
             'Overview',
@@ -141,7 +143,13 @@ export const parameters = {
         ],
         'Examples',
         'Visual tests',
-        ['Tag', ['Matrix'], 'Transaction Summary', ['Footer', 'Aside']],
+        [
+          'Drawer',
+          'Tag',
+          ['Matrix'],
+          'Transaction Summary',
+          ['Footer', 'Aside'],
+        ],
         '*',
       ],
       method: 'alphabetical',

@@ -1,0 +1,48 @@
+{
+  "overview": "Drawer é um painel lateral para detalhes e tarefas secundárias. Uma drawer pode abrir outra ao lado com `useDrawerStack`.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Uma drawer só: controle com `open`, `onDrawerClose` e `overlayClose`. Passe `actions` para fixar a barra de ações no rodapé."
+    },
+    "stacked": {
+      "title": "Stacked",
+      "text": "`useDrawerStack` abre drawers lado a lado: até três em telas largas e duas abaixo de 1198px. As de trás escurecem; clicar numa delas volta para ela e fecha as seguintes. No celular só a de cima aparece, com seta de voltar. As drawers da pilha também aceitam `actions`."
+    }
+  },
+  "api": {
+    "intro": "Drawer desenha o painel; `useDrawerStack` devolve `drawerProps(id)` para espalhar em cada drawer da pilha.",
+    "open": "Abre ou fecha a drawer.",
+    "title": "Título abaixo da barra do X; rola com o conteúdo.",
+    "children": "Conteúdo da drawer.",
+    "actions": "Barra de ações fixa no rodapé.",
+    "size": "Largura da drawer.",
+    "align": "Borda da tela de onde a drawer abre.",
+    "headerColor": "Cor da barra do X.",
+    "floating": "Painel flutuante com margens e cantos arredondados. `false` cola o painel na borda.",
+    "onDrawerClose": "Chamada pelo botão de fechar.",
+    "overlayClose": "Chamada pelo clique fora da drawer.",
+    "onBack": "Mostra a seta de voltar no lugar do X.",
+    "anchorEl": "Elemento de onde a drawer abre.",
+    "depth": "Posição na pilha. Definida por `useDrawerStack`.",
+    "width": "Largura em px. Definida por `useDrawerStack`.",
+    "offsetX": "Deslocamento horizontal em px. Definido por `useDrawerStack`.",
+    "hideOverlay": "Não desenha o scrim próprio. Definido por `useDrawerStack`.",
+    "dim": "Escurece a drawer que fica atrás de outra. Definido por `useDrawerStack`.",
+    "onDimClick": "Chamada pelo clique numa drawer escurecida. Definida por `useDrawerStack`.",
+    "closeButton": "X como IconButton (`icon`) ou Button (`legacy`)."
+  },
+  "platforms": {
+    "text": "O mesmo exemplo em cada biblioteca."
+  },
+  "tokens": {
+    "intro": "A tabela abaixo lista os tokens do Ocean usados pelo Drawer."
+  },
+  "rules": [
+    "Abra uma drawer a partir de outra só com `useDrawerStack`; não defina `depth`, `width`, `offsetX` ou `dim` à mão.",
+    "Abra a próxima drawer a partir de um item de lista com seta.",
+    "Mantenha uma pilha por página.",
+    "Uma drawer só precisa apenas de `open`, `onDrawerClose` e `overlayClose`."
+  ],
+  "feedback": "Envie feedback sobre o componente pelo time do Ocean Design System."
+}

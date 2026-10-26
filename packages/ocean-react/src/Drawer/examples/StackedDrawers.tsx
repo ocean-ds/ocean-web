@@ -1,100 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Drawer from '../Drawer';
+import useDrawerStack from '../useDrawerStack';
 import Button from '../../Button';
+import List from '../../List';
+import ListAction from '../../ListAction';
+import { SAMPLE_TITLE, SampleActions, SampleContent } from './DrawerSample';
 
-const WIDTHS = { small: 378, large: 476 };
-const GAP = 16;
-const MOBILE_MAX_WIDTH = 575;
+const LEVELS = ['first', 'second', 'third'] as const;
+const NEXT = ['Second drawer', 'Third drawer'];
 
 export interface StackedDrawersProps {
-  first: React.ReactElement;
-  second: React.ReactElement;
-  size?: 'small' | 'large';
+  /** Drawers open on mount, from the first to the top. */
+  initial?: typeof LEVELS[number][];
+  /** Hides the button that opens the first drawer (examples that start open). */
+  hideTrigger?: boolean;
+  /** Shows the action bar on every drawer. */
+  withActions?: boolean;
 }
 
-const useViewportWidth = () => {
-  const [width, setWidth] = useState(() => window.innerWidth);
-
-  useEffect(() => {
-    const onResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  return width;
-};
-
 const StackedDrawers = ({
-  first,
-  second,
-  size = 'small',
+  initial,
+  withActions = false,
+  hideTrigger = false,
 }: StackedDrawersProps): React.ReactElement => {
-  const [firstOpen, setFirstOpen] = useState(false);
-  const [secondOpen, setSecondOpen] = useState(false);
-  const viewport = useViewportWidth();
-
-  const mobile = viewport <= MOBILE_MAX_WIDTH;
-  const drawerWidth = Math.min(
-    WIDTHS[size],
-    Math.floor((viewport - GAP * 3) / 2)
-  );
-
-  const closeSecond = () => setSecondOpen(false);
-  const closeAll = () => {
-    setFirstOpen(false);
-    setSecondOpen(false);
-  };
-  const offsetX = secondOpen && !mobile ? drawerWidth + GAP : 0;
-  const anyOpen = firstOpen || secondOpen;
+  const { stack, open, drawerProps } = useDrawerStack({ initial });
 
   return (
     <>
-      <Button onClick={() => setFirstOpen(true)} type="button">
-        Abrir primeira
-      </Button>
-      <div
-        aria-hidden="true"
-        className={`ods-overlay ods-overlay--floating${
-          anyOpen ? ' ods-overlay--open' : ''
-        }`}
-        onClick={closeAll}
-      />
-      <Drawer
-        open={firstOpen}
-        onDrawerClose={() => setFirstOpen(false)}
-        overlayClose={closeAll}
-        size={size}
-        floating={!mobile}
-        width={mobile ? undefined : drawerWidth}
-        depth={0}
-        offsetX={offsetX}
-        hideOverlay
-      >
-        <div style={{ padding: '0 24px' }}>
-          {first}
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => setSecondOpen(true)}
+      {!hideTrigger && (
+        <Button type="button" onClick={() => open(LEVELS[0])}>
+          Open drawer
+        </Button>
+      )}
+      {LEVELS.map((level, index) => {
+        const next = LEVELS[index + 1];
+        return (
+          <Drawer
+            key={level}
+            title={SAMPLE_TITLE}
+            actions={withActions ? <SampleActions /> : undefined}
+            {...drawerProps(level)}
           >
-            Abrir segunda ao lado
-          </Button>
-        </div>
-      </Drawer>
-      <Drawer
-        open={secondOpen}
-        onDrawerClose={closeSecond}
-        overlayClose={closeAll}
-        size={size}
-        floating={!mobile}
-        width={mobile ? undefined : drawerWidth}
-        depth={1}
-        hideOverlay
-        onBack={mobile ? closeSecond : undefined}
-      >
-        <div style={{ padding: '0 24px' }}>{second}</div>
-      </Drawer>
+            <SampleContent />
+            {next && (
+              <List>
+                <ListAction
+                  title={NEXT[index]}
+                  description="Opens beside this one"
+                  actionType="chevron"
+                  chevronFlipped={stack.includes(next)}
+                  onClick={() => open(next)}
+                />
+              </List>
+            )}
+          </Drawer>
+        );
+      })}
     </>
   );
 };

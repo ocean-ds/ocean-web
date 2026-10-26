@@ -49,19 +49,19 @@ const MyDrawer: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
 Explore o componente Drawer no playground interativo do Storybook:
 
 <StorybookEmbed
-  storyId="components-drawer--usage"
+  storyId="components-overlays-drawer--default"
   height={500}
   title="Drawer - Playground Interativo"
 />
 
 ## Documentação Completa
 
-Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Drawer](https://ocean-ds.github.io/ocean-web/?path=/docs/components-drawer--docs)**.
+Para documentação técnica detalhada, exemplos de uso e API completa, consulte o **[Storybook do Drawer](https://ocean-ds.github.io/ocean-web/?path=/docs/components-overlays-drawer--overview)**.
 
 No Storybook você encontrará:
 
 - ✅ **Controles interativos** para testar todas as props
-- ✅ **API gerada automaticamente** com tipagem completa
+- ✅ **Tabela de API** com tipagem completa
 - ✅ **Exemplos visuais** de todas as variantes e estados
 - ✅ **Playground** para experimentação rápida
 
@@ -92,16 +92,23 @@ function BasicDrawer() {
 }
 ```
 
-## Drawer anexado
+## Drawers empilhadas
 
-Exemplo de drawer anexado a um elemento específico da página:
+Para uma drawer abrir outra ao lado, use `useDrawerStack`. Ele aplica as regras da pilha: até três drawers lado a lado em telas a partir de 1198px e duas abaixo disso; as de trás escurecem; clicar numa drawer de trás volta para ela e fecha as seguintes; fechar uma fecha as que vieram depois; clicar fora fecha a pilha; ao estreitar a janela ficam a primeira e a de cima; no celular só a de cima aparece, com seta de voltar.
 
-<StorybookEmbed
-  storyId="components-drawer--attached"
-  height={500}
-  showToolbar={false}
-  title="Drawer - Anexado"
-/>
+```tsx
+import { Drawer, ListAction, useDrawerStack } from '@useblu/ocean-react';
+
+const { open, drawerProps } = useDrawerStack();
+
+<Button onClick={() => open('company')}>Abrir</Button>
+<Drawer title="Coral Distributors" {...drawerProps('company')}>
+  <ListAction title="Orders" actionType="chevron" onClick={() => open('orders')} />
+</Drawer>
+<Drawer title="Open orders" {...drawerProps('orders')}>…</Drawer>
+```
+
+Não defina `depth`, `width`, `offsetX`, `hideOverlay`, `dim` ou `onDimClick` à mão: `drawerProps(id)` entrega esses valores. Quem usa uma drawer só continua igual.
 
 ## API
 
@@ -300,4 +307,4 @@ function FilterDrawer() {
 - [ContextualMenu](/components/contextualmenu) - Para menus de opções contextuais
 - [Accordion](/components/accordion) - Para conteúdo expansível inline
 - [Tabs](/components/tabs) - Para navegação entre seções relacionadas
-- [Storybook - Drawer](https://ocean-ds.github.io/ocean-web/?path=/docs/components-drawer--docs) - Documentação técnica
+- [Storybook - Drawer](https://ocean-ds.github.io/ocean-web/?path=/docs/components-overlays-drawer--overview) - Documentação técnica

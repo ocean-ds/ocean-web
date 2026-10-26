@@ -1,0 +1,167 @@
+{
+  "breadcrumb": ["Components", "Overlays"],
+  "description": "Um painel lateral para detalhes e tarefas secundárias, que pode abrir outro ao lado.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "toc": "Nesta página",
+  "page": {
+    "title": "Drawer",
+    "status": "Stable"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Acessibilidade",
+    "code": "Código"
+  },
+  "guidelines": {
+    "overview": "Visão geral",
+    "formatting": "Formatação",
+    "content": "Conteúdo",
+    "behaviors": "Comportamentos",
+    "related": "Relacionados",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Visão geral",
+    "text": "Drawer abre um painel lateral sobre a página para mostrar detalhes ou uma tarefa secundária sem sair dela. Uma drawer pode abrir outra ao lado.",
+    "whenToUse": "Quando usar",
+    "whenToUseItems": [
+      "Detalhes de um item da página, mantendo a página à vista.",
+      "Um aprofundamento: um detalhe que abre outro mais profundo ao lado."
+    ],
+    "whenNotToUse": "Quando não usar",
+    "whenNotToUseItems": [
+      "Para uma decisão que bloqueia a página, use [Modal](docs:components-modal--docs).",
+      "Para uma tarefa longa com etapas próprias, use uma tela nova.",
+      "Para mais de três níveis, repense o fluxo: a pilha guarda três."
+    ],
+    "variants": "Variantes",
+    "variantColumns": ["Variante", "Propósito"],
+    "variantRows": [
+      "Default|Uma drawer só.",
+      "Stacked|Drawers abrem lado a lado."
+    ],
+    "overviewLink": "Visão geral do componente"
+  },
+  "formatting": {
+    "title": "Formatação",
+    "anatomy": "Anatomia",
+    "layoutTitle": "Layouts da pilha",
+    "layoutText": "A pilha se ajusta à largura da janela.",
+    "layoutColumns": ["Janela", "Drawers lado a lado", "Comportamento"],
+    "layoutRows": [
+      "1198px ou mais|Até 3|As de trás escurecem.",
+      "De 576px a 1197px|Até 2|Estreitar com 3 abertas mantém a primeira e a de cima.",
+      "Abaixo de 576px|1|Só a de cima aparece, com seta de voltar."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Elemento", "Obrigatório", "Observações"],
+    "rows": [
+      "1|Barra do X|Sim|Botão de fechar, ou seta de voltar no celular.",
+      "2|Título|Não|Rola com o conteúdo.",
+      "3|Conteúdo|Sim|Filhos da drawer.",
+      "4|Ações|Não|Fixas no rodapé."
+    ]
+  },
+  "content": {
+    "title": "Conteúdo",
+    "text": "Cada drawer tem um assunto, dito no título.",
+    "writingItems": [
+      "Diga o assunto no título, não a ação.",
+      "Abra a próxima drawer a partir de um item de lista com seta, não de um botão."
+    ],
+    "nextExamples": "Abrir a próxima drawer",
+    "nextDo": "Abra a próxima drawer a partir de um item de lista com seta.",
+    "nextDont": "Não abra a próxima drawer a partir de um botão."
+  },
+  "behaviors": {
+    "title": "Comportamentos",
+    "text": "A pilha é uma por página e guarda a ordem em que as drawers abriram.",
+    "columns": ["Ação", "Resultado"],
+    "rows": [
+      "Abrir a partir da drawer de cima|Abre ao lado; no limite, troca a de cima.",
+      "Clicar numa drawer escurecida|Volta para ela e fecha as seguintes.",
+      "Fechar uma drawer|Fecha ela e as seguintes.",
+      "Clicar fora|Fecha a pilha inteira.",
+      "Estreitar a janela|Mantém a primeira e a de cima.",
+      "Seta de voltar (celular)|Volta para a drawer anterior."
+    ]
+  },
+  "related": {
+    "title": "Relacionados",
+    "modal": {
+      "title": "Modal",
+      "text": "Use Modal para uma decisão que bloqueia a página.",
+      "link": "Ver Modal"
+    },
+    "listAction": {
+      "title": "List Action",
+      "text": "Use List Action com seta para abrir a próxima drawer.",
+      "link": "Ver List Action"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Envie feedback sobre este componente pelos canais do Ocean Design System."
+  },
+  "specs": {
+    "colors": "Cores",
+    "typography": "Tipografia",
+    "structure": "Estrutura",
+    "size": "Tamanho"
+  },
+  "colors": {
+    "title": "Cores",
+    "columns": ["Elemento", "Propriedade", "Token"],
+    "rows": [
+      "Panel|Background|color-interface-light-pure",
+      "Scrim|Background|color-interface-dark-deep",
+      "Actions|Border|color-interface-light-down"
+    ]
+  },
+  "typography": {
+    "title": "Tipografia",
+    "columns": ["Elemento", "Tamanho", "Peso", "Token"],
+    "rows": ["Title|20px|ExtraBold (800)|heading3"]
+  },
+  "structure": {
+    "title": "Estrutura",
+    "columns": ["Elemento", "Propriedade", "px/rem", "Token"],
+    "rows": [
+      "Drawer small|Largura|378px|Sem token",
+      "Pilha|Espaço|16px|spacing-inline-xs"
+    ]
+  },
+  "size": {
+    "title": "Tamanho",
+    "columns": ["Tamanho", "Largura"],
+    "rows": ["Small|378px", "Large|476px"]
+  },
+  "tokens": {
+    "link": "Lista completa de tokens → Código › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Teclado",
+    "development": "Cuidados no desenvolvimento"
+  },
+  "keyboard": {
+    "title": "Teclado",
+    "columns": ["Elemento", "Comportamento no teclado"],
+    "rows": [
+      "Botão de fechar|Enter ou Espaço fecha a drawer.",
+      "Drawer escurecida|O conteúdo fica inerte; Enter nela volta para ela.",
+      "Seta de voltar|Enter ou Espaço volta para a drawer anterior."
+    ]
+  },
+  "development": {
+    "title": "Cuidados no desenvolvimento",
+    "items": [
+      "**Use o hook da pilha.** `useDrawerStack` cuida do escurecimento, do foco e do conteúdo inerte.",
+      "**Dê um título a cada drawer.** Ele nomeia o painel para o leitor de tela."
+    ]
+  }
+}
