@@ -258,6 +258,23 @@ $drawer-dim-near: 0.48;
 .ods-drawer__main {
   flex: 1;
   padding: 0 $spacing-inline-sm;
+
+  // Lista de texto dentro da drawer: o conteúdo já tem os 24px laterais, então
+  // o item perde o padding lateral e alinha com o título; o traço acompanha o
+  // texto de ponta a ponta. Lista em card mantém o padding, por causa da borda.
+  .ods-list-container__content--text {
+    > .ods-list-readonly,
+    > .ods-list-action,
+    > .ods-list-settings {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    > .ods-list-container__content__divider {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 }
 
 .ods-drawer__actions {
