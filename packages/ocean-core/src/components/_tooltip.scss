@@ -26,7 +26,7 @@ $arrow-directions: (
 }
 
 @mixin normalized-text() {
-  font-size: 12px;
+  font-size: $font-size-xxxs;
   font-style: normal;
   font-weight: normal;
   text-indent: 0;
@@ -44,10 +44,10 @@ $arrow-directions: (
 
   background: $color-interface-dark-deep;
   border-radius: 2px;
-  border-radius: 8px;
+  border-radius: $border-radius-sm;
   color: $color-interface-light-pure;
   content: attr(aria-label);
-  padding: 12px 16px;
+  padding: $spacing-stack-xxs-extra $spacing-inline-xs;
   position: absolute;
   white-space: pre;
   z-index: 10;

@@ -68,7 +68,7 @@
 
   &__clean {
     color: $color-interface-dark-up;
-    margin-right: 4px;
+    margin-right: $spacing-inline-xxxs;
 
     &:hover {
       color: $color-brand-primary-pure;

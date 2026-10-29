@@ -9,7 +9,7 @@
   width: 100%;
 
   &-scroll-bar {
-    box-shadow: 0 4px 8px rgba(12, 13, 20, 0.08);
+    box-shadow: $shadow-level-1;
   }
 
   &-light {
@@ -38,7 +38,7 @@
     flex-direction: column;
     height: 128px;
     justify-content: space-between;
-    padding: 16px 16px 8px;
+    padding: $spacing-stack-xs $spacing-inline-xs $spacing-stack-xxs;
 
     .ods-topbar-actions {
       display: flex;
@@ -59,7 +59,7 @@
 
   &-left {
     line-height: 0;
-    margin-left: 16px;
+    margin-left: $spacing-inline-xs;
     width: 24px;
 
     span {
@@ -73,8 +73,8 @@
   &-title {
     font-weight: $font-weight-extrabold;
     line-height: $line-height-medium;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: $spacing-inline-xs;
+    margin-right: $spacing-inline-xs;
     width: 100%;
 
     span {
@@ -87,7 +87,7 @@
 
   &-right {
     line-height: 0;
-    margin-right: 16px;
+    margin-right: $spacing-inline-xs;
     width: 24px;
 
     span {

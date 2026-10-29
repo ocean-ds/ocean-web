@@ -1,6 +1,6 @@
 .ods-modal {
   &__overlay {
-    background: rgba($color-interface-dark-deep, 0.4);
+    background: rgba($color-interface-dark-deep, $opacity-level-medium);
     bottom: 0;
     left: 0;
     opacity: 0;

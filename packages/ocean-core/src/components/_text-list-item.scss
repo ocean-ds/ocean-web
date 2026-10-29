@@ -15,7 +15,7 @@
 
   .ods-checkbox__label,
   .ods-radio__label {
-    padding-left: 16px;
+    padding-left: $spacing-inline-xs;
     width: 100%;
   }
 }
@@ -101,7 +101,7 @@
     align-items: center;
     color: $color-interface-dark-pure;
     display: flex;
-    gap: 4px;
+    gap: $spacing-inline-xxxs;
   }
 
   .ods-typography__captionbold {

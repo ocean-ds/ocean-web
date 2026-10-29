@@ -1,5 +1,5 @@
 .ods-card-group {
-  border: 1px solid $color-interface-light-down;
+  border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-sm;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 
   &--header {
     border: hidden;
-    border-bottom: 1px solid $color-interface-light-down;
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
     border-radius: 0;
   }
 

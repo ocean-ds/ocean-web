@@ -47,7 +47,7 @@
 
     &::after {
       border: solid #fff;
-      border-width: 0 2px 2px 0;
+      border-width: 0 $border-width-thin $border-width-thin 0;
       box-sizing: border-box;
       content: '';
       display: none;
@@ -71,7 +71,7 @@
     &::after {
       border: 0;
       border-radius: 1px;
-      border-top: 2px solid #fff;
+      border-top: $border-width-thin solid #fff;
       height: 0;
       margin: 0;
       position: absolute;

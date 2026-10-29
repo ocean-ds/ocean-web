@@ -62,7 +62,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
       display: flex;
       font-family: $font-family-base;
       font-size: $font-size-xxs;
-      font-weight: 400;
+      font-weight: $font-weight-regular;
       line-height: 15px;
       margin: 0 $spacing-inline-xxxs $spacing-inline-xxs 0;
       min-height: 22px;
@@ -94,7 +94,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
   &__calendar {
     background-color: $color-interface-light-pure;
-    border: 1px solid $color-interface-light-down;
+    border: $border-width-hairline solid $color-interface-light-down;
     border-radius: $border-radius-md;
     box-shadow: $shadow-level-2;
     box-sizing: border-box;
@@ -125,7 +125,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     font-size: $font-size-xxs;
     font-weight: $font-weight-regular;
     left: 0;
-    line-height: 1.5;
+    line-height: $line-height-comfy;
     padding: $spacing-inline-xxs-extra $spacing-inline-xs;
     position: absolute;
     right: 0;
@@ -163,13 +163,13 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     display: flex;
     height: 40px;
     justify-content: center;
-    margin: 16px 8px;
+    margin: $spacing-stack-xs $spacing-inline-xxs;
     position: relative;
 
     h2 {
       font-family: $font-family-highlight;
       font-size: $font-size-xs;
-      font-weight: 700;
+      font-weight: $font-weight-bold;
       line-height: 17.6px;
       margin: 0;
       text-align: center;
@@ -299,7 +299,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
 
     &:hover::after {
       align-items: center;
-      border: 1px solid $color-interface-dark-up;
+      border: $border-width-hairline solid $color-interface-dark-up;
       border-radius: 20px;
       box-sizing: border-box;
       content: '';
@@ -324,12 +324,12 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   &__selected {
-    background-color: rgba(176, 245, 245, 0.24);
+    background-color: rgba($color-complementary-up, 0.24);
     position: relative;
 
     &:hover::after {
       align-items: center;
-      border: 1px solid $color-interface-dark-up;
+      border: $border-width-hairline solid $color-interface-dark-up;
       border-radius: 20px;
       content: '';
       display: flex;
@@ -412,6 +412,6 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   &__selectedMiddle {
-    background-color: rgba(176, 245, 245, 0.24);
+    background-color: rgba($color-complementary-up, 0.24);
   }
 }

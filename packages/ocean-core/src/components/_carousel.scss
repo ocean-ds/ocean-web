@@ -6,7 +6,7 @@
     overflow: hidden;
 
     .slick-track {
-      gap: 8px;
+      gap: $spacing-inline-xxs;
     }
 
     .slick-list {
@@ -15,7 +15,7 @@
     }
 
     .slick-slide {
-      border-radius: 8px;
+      border-radius: $border-radius-sm;
       box-shadow: $shadow-level-1;
     }
   }
@@ -44,7 +44,7 @@
 }
 
 .slick-list {
-  border-radius: 8px;
+  border-radius: $border-radius-sm;
   box-shadow: $shadow-level-1;
   display: block;
   margin: 0;
@@ -137,7 +137,7 @@
 .slick-next::before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1;
+  line-height: $line-height-tight;
 }
 
 .slick-arrow > path {
@@ -197,10 +197,10 @@
 .ods-carousel-dots li button::before {
   align-items: center;
   background: $color-interface-light-deep;
-  border-radius: 16px;
+  border-radius: $border-radius-lg;
   content: ' ';
   display: flex;
-  font-size: 24px;
+  font-size: $font-size-md;
   height: 4px;
   left: 0;
   padding: 0;

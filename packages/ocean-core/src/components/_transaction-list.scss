@@ -40,7 +40,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-brand-primary-pure;
+      outline: $border-width-thin solid $color-brand-primary-pure;
       outline-offset: -2px;
     }
 
