@@ -46,7 +46,19 @@ test('CT-1: modal content is visible to assistive technologies and named by its 
   expect(screen.getByTestId('drawer-overlay')).not.toHaveAttribute(
     'aria-hidden'
   );
+  expect(screen.getByTestId('drawer-overlay')).toHaveAttribute(
+    'role',
+    'presentation'
+  );
   await waitFor(() => expect(dialog).toHaveFocus());
+});
+
+test('CT-6: interacting with modal content does not activate the decorative overlay', () => {
+  render(<Example />);
+  openDrawer();
+  fireEvent.click(screen.getByRole('radio', { name: 'Primeira opção' }));
+  expect(screen.getByRole('dialog', { name: 'Escolher opção' })).toBeVisible();
+  expect(screen.getByRole('radio', { name: 'Primeira opção' })).toBeChecked();
 });
 
 test('CT-5: Escape returns focus to the trigger and reopening restores the dialog', async () => {

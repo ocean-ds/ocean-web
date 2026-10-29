@@ -232,6 +232,7 @@ const Drawer = ({
         floating && 'ods-overlay--floating',
         hideOverlay && 'ods-overlay--transparent'
       )}
+      role="presentation"
       aria-hidden={open ? undefined : true}
       onClick={handleOverlayClose}
       ref={drawerRef}

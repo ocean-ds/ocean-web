@@ -59,7 +59,7 @@ const ModalExample = (): React.ReactElement => {
         }
       >
         <label htmlFor="modal-first-option">
-          <input id="modal-first-option" type="radio" name="modal-option" />
+          <input id="modal-first-option" type="radio" name="modal-option" />{' '}
           Primeira opção
         </label>
       </Drawer>
