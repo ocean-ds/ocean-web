@@ -28,7 +28,7 @@
   &__checkmark {
     background-color: $color-interface-light-pure;
     border: solid $border-width-hairline $color-interface-dark-up;
-    border-radius: 50%;
+    border-radius: $border-radius-circular;
     box-sizing: border-box;
     cursor: pointer;
     height: 20px;

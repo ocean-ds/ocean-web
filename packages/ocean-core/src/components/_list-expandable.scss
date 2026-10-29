@@ -14,7 +14,7 @@
   &__divider {
     @include list-divider-blend;
 
-    border-bottom: 1px solid $color-interface-light-down;
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
     margin: -1px $spacing-inline-xs 0;
     pointer-events: none;
     position: relative;
@@ -147,7 +147,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-brand-primary-pure;
+      outline: $border-width-thin solid $color-brand-primary-pure;
       outline-offset: -2px;
     }
   }

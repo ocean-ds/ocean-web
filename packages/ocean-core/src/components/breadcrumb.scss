@@ -3,7 +3,7 @@
   display: flex;
   font-family: $font-family-base;
   font-size: $font-size-xxxs;
-  gap: 4px;
+  gap: $spacing-inline-xxxs;
   padding: 6px 0;
 
   @media (max-width: 576px) {
@@ -17,13 +17,13 @@
   &__item {
     align-items: center;
     display: flex;
-    gap: 4px;
+    gap: $spacing-inline-xxxs;
   }
 
   button {
     background: none;
     border: transparent;
-    outline: 1px solid transparent;
+    outline: $border-width-hairline solid transparent;
     padding: 0;
 
     svg {
