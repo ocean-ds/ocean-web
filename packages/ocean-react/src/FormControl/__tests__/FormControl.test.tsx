@@ -62,6 +62,51 @@ test('renders a disabled state', () => {
   );
 });
 
+test('CT-3: a group has a single associated error outside its radio cards', () => {
+  render(
+    <FormControl
+      role="radiogroup"
+      aria-label="Parcelas"
+      aria-describedby="group-error"
+      aria-invalid
+      error
+      helperText="Escolha uma opção."
+      helperTextId="group-error"
+      helperTextRole="alert"
+    >
+      <div data-testid="cards">
+        <input
+          type="radio"
+          id="option-six"
+          name="installments"
+          aria-label="6x"
+          aria-describedby="group-error"
+        />
+        <input
+          type="radio"
+          id="option-three"
+          name="installments"
+          aria-label="3x"
+          aria-describedby="group-error"
+        />
+      </div>
+    </FormControl>
+  );
+  const group = screen.getByRole('radiogroup', { name: 'Parcelas' });
+  expect(group).toHaveClass('ods-form-control__root--group');
+  expect(group).toHaveAttribute('aria-invalid', 'true');
+  expect(group).toHaveAccessibleDescription('Escolha uma opção.');
+  expect(screen.getAllByRole('radio')).toHaveLength(2);
+  screen.getAllByRole('radio').forEach((radio) => {
+    expect(radio).toHaveAccessibleDescription('Escolha uma opção.');
+    expect(radio).toHaveAttribute('name', 'installments');
+  });
+  expect(screen.getByRole('alert').parentElement).toBe(group);
+  expect(screen.getByTestId('cards')).not.toContainElement(
+    screen.getByRole('alert')
+  );
+});
+
 test('renders a Hello World tooltip', () => {
   setup({
     tooltipMessage: 'Hello World!',

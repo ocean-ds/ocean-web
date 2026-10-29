@@ -22,6 +22,16 @@
     max-height: 145px;
   }
 
+  &__root--group {
+    > .ods-form-control__element {
+      max-height: none;
+    }
+
+    > .ods-form-control__helper-text {
+      margin-top: $spacing-stack-xxs;
+    }
+  }
+
   &__icon {
     align-items: start;
     color: $color-interface-dark-up;

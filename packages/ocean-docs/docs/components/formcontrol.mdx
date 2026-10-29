@@ -1,0 +1,79 @@
+---
+title: FormControl
+---
+
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# FormControl
+
+Organiza label, controle e ajuda/validação sem colocar o aviso dentro de um cartão.
+
+```tsx
+import { FormControl, Radio } from '@useblu/ocean-react';
+
+<FormControl
+  role="radiogroup"
+  aria-label="Forma de entrega"
+  aria-describedby="delivery-error"
+  aria-invalid
+  error
+  helperText="Escolha uma forma de entrega."
+  helperTextId="delivery-error"
+  helperTextRole="alert"
+>
+  <div>
+    <Radio
+      id="delivery-pickup"
+      name="delivery"
+      label="Retirar"
+      aria-describedby="delivery-error"
+    />
+    <Radio
+      id="delivery-shipping"
+      name="delivery"
+      label="Receber"
+      aria-describedby="delivery-error"
+    />
+  </div>
+</FormControl>;
+```
+
+## Props
+
+| Prop               | Tipo                  | Padrão  | Descrição                                                                                          |
+| ------------------ | --------------------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `children`         | `ReactElement`        | —       | Controle ou conjunto de controles em um único contêiner.                                           |
+| `label`            | `ReactNode`           | —       | Label de um campo individual.                                                                      |
+| `htmlFor`          | `string`              | —       | ID do campo individual associado ao label.                                                         |
+| `tooltipMessage`   | `string`              | —       | Ajuda adicional do label.                                                                          |
+| `error`            | `boolean`             | `false` | Aplica a apresentação de erro à ajuda.                                                             |
+| `disabled`         | `boolean`             | `false` | Aplica a apresentação desabilitada. Não desabilita os controles filhos.                            |
+| `helperText`       | `string`              | —       | Ajuda ou erro abaixo de todo o conteúdo.                                                           |
+| `helperTextId`     | `string`              | —       | ID único para associar a ajuda ao grupo e aos controles.                                           |
+| `helperTextRole`   | `'alert' \| 'status'` | —       | Anúncio acessível da ajuda. Use `alert` para erro após tentativa inválida.                         |
+| `role`             | `AriaRole`            | —       | `radiogroup` ou `group` remove a altura limitada do campo individual e separa o aviso do conjunto. |
+| `id` / `className` | `string`              | —       | Identificação e composição visual da raiz.                                                         |
+| Atributos ARIA     | `AriaAttributes`      | —       | `aria-labelledby`, `aria-describedby`, `aria-invalid` e demais atributos acessíveis da raiz.       |
+
+## Acessibilidade
+
+Dê nome ao grupo com `aria-labelledby` apontando para um título existente, ou `aria-label`.
+Todos os radios devem ter o mesmo `name`, IDs únicos e um label. Quando houver erro,
+associe a ajuda por `aria-describedby` ao grupo e aos radios; limpe o aviso ao escolher.
+FormControl não escolhe opções nem move o foco: o consumidor foca o primeiro controle
+após uma tentativa inválida e mantém os dados/estado da seleção.
+
+## Exemplo interativo
+
+<StorybookEmbed
+  storyId="components-forms-formcontrol--radio-group"
+  height={340}
+  title="FormControl — grupo com validação"
+/>
+
+## Quando não usar
+
+- Não coloque um FormControl com o mesmo erro em cada cartão: uma falha de seleção pertence ao grupo.
+- Não use `htmlFor` para nomear vários radios; use `role="radiogroup"` e os atributos ARIA.
+- Não aplique o modo de grupo a um Input comum para alterar seu espaçamento; preserve a anatomia do campo.
+- Não use `alert` em uma ajuda estática ou deixe uma referência ARIA apontando para ajuda inexistente.

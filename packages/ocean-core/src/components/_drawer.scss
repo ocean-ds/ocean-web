@@ -4,6 +4,14 @@ $drawer-scrim-delay: 280ms;
 $drawer-scrim-color: rgba(0, 0, 0, 0.5);
 $drawer-dim-near: 0.48;
 
+.ods-drawer-modal--open {
+  overflow: hidden;
+}
+
+.ods-drawer-modal__content {
+  outline: none;
+}
+
 .ods-overlay {
   background-color: $drawer-scrim-color;
   height: 100%;

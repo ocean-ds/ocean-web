@@ -117,6 +117,9 @@ export * from './Breadcrumb';
 export { default as Drawer } from './Drawer';
 export * from './Drawer';
 
+export { default as FormControl } from './FormControl';
+export * from './FormControl';
+
 export { default as Snackbar } from './Snackbar';
 export * from './Snackbar';
 
