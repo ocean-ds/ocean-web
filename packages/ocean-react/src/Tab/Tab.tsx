@@ -121,9 +121,11 @@ const Tab = React.forwardRef<HTMLDivElement, TabProps>(
       };
       measure();
       let active = true;
-      document.fonts?.ready.then(() => {
+      // Re-place the line once fonts settle; a failed font load still re-places it.
+      const onFontsSettled = () => {
         if (active) placeRef.current();
-      });
+      };
+      document.fonts?.ready.then(onFontsSettled, onFontsSettled);
       if (typeof ResizeObserver === 'undefined') {
         window.addEventListener('resize', measure);
         return () => {
