@@ -253,4 +253,10 @@
   &--show-hover .ods-list-expandable__main {
     @include list-state-blend;
   }
+
+  // Disabled state
+  &--disabled .ods-list-expandable__main {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
