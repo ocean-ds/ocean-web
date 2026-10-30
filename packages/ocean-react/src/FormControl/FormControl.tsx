@@ -33,12 +33,19 @@ export type FormControlProps = {
    * The helper text content.
    */
   helperText?: string;
+  /** Identifica a ajuda para associação por aria-describedby. */
+  helperTextId?: string;
+  /** Anuncia a ajuda quando uma validação do grupo falha. */
+  helperTextRole?: 'alert' | 'status';
   /**
    * If true, should be displayed in a disabled state.
    * @default false
    */
   disabled?: boolean;
-};
+  id?: string;
+  className?: string;
+  role?: React.AriaRole;
+} & React.AriaAttributes;
 
 const FormControl: React.FC<FormControlProps> = ({
   children,
@@ -46,8 +53,13 @@ const FormControl: React.FC<FormControlProps> = ({
   tooltipMessage,
   htmlFor,
   helperText,
+  helperTextId,
+  helperTextRole,
   error,
   disabled,
+  className,
+  role,
+  ...rest
 }) => {
   let label;
   if (labelProp) {
@@ -62,7 +74,14 @@ const FormControl: React.FC<FormControlProps> = ({
   }
 
   return (
-    <div className="ods-form-control__root">
+    <div
+      className={classNames('ods-form-control__root', className, {
+        'ods-form-control__root--group':
+          role === 'radiogroup' || role === 'group',
+      })}
+      role={role}
+      {...rest}
+    >
       {(labelProp || tooltipMessage) && (
         <div className="ods-form-control__header">
           {labelProp && <div className="ods-form-control__label">{label}</div>}
@@ -80,6 +99,8 @@ const FormControl: React.FC<FormControlProps> = ({
       <div className={classNames('ods-form-control__element')}>{children}</div>
       {helperText && (
         <p
+          id={helperTextId}
+          role={helperTextRole}
           className={classNames(
             'ods-form-control__helper-text',
             error && 'ods-form-control__helper-text--error',

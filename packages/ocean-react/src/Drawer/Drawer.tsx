@@ -9,12 +9,13 @@ import React, {
 } from 'react';
 
 import classNames from 'classnames';
+import ReactModal from 'react-modal';
 import { ArrowLeftOutline, XOutline } from '@useblu/ocean-icons-react';
 import Button from '../Button/Button';
 import IconButton from '../IconButton/IconButton';
 import Typography from '../Typography/Typography';
 
-interface DrawerProps {
+export interface DrawerProps extends React.AriaAttributes {
   children: React.ReactNode;
   open: boolean;
   onDrawerClose?(event: React.MouseEvent | React.KeyboardEvent): void;
@@ -76,6 +77,8 @@ interface DrawerProps {
    * o hover do X para escuro com círculo em multiply.
    */
   headerColor?: 'default' | 'warning' | 'negative';
+  /** Modal isolado: prende Tab, fecha com Escape e restaura o foco ao fechar. */
+  modal?: boolean;
 }
 
 const Drawer = ({
@@ -101,6 +104,10 @@ const Drawer = ({
   title,
   actions,
   headerColor = 'default',
+  modal = false,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+  'aria-describedby': ariaDescribedBy,
 }: DrawerProps): React.ReactElement => {
   const floating = floatingProp ?? !anchorEl;
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -127,6 +134,10 @@ const Drawer = ({
   useEffect(() => {
     bodyRef.current?.toggleAttribute('inert', dimmed);
   }, [dimmed]);
+
+  useEffect(() => {
+    drawerRef.current?.toggleAttribute('inert', !open);
+  }, [open]);
 
   const handleDimmedClick = (event: MouseEvent<HTMLDivElement>) => {
     if (!dimmed) return;
@@ -213,7 +224,7 @@ const Drawer = ({
     children
   );
 
-  return (
+  const drawer = (
     <div
       className={classNames(
         'ods-overlay',
@@ -221,7 +232,8 @@ const Drawer = ({
         floating && 'ods-overlay--floating',
         hideOverlay && 'ods-overlay--transparent'
       )}
-      aria-hidden="true"
+      role="presentation"
+      aria-hidden={open ? undefined : true}
       onClick={handleOverlayClose}
       ref={drawerRef}
       style={overlayStyle}
@@ -296,6 +308,29 @@ const Drawer = ({
         )}
       </div>
     </div>
+  );
+
+  if (!modal) return drawer;
+
+  return (
+    <ReactModal
+      isOpen={open}
+      portalClassName="ods-drawer-portal"
+      overlayClassName="ods-drawer-modal__overlay"
+      className="ods-drawer-modal__content"
+      bodyOpenClassName="ods-drawer-modal--open"
+      contentLabel={ariaLabel}
+      aria={{
+        modal: true,
+        labelledby: ariaLabelledBy,
+        describedby: ariaDescribedBy,
+      }}
+      ariaHideApp={false}
+      shouldCloseOnOverlayClick={false}
+      onRequestClose={onDrawerClose ?? (() => overlayClose())}
+    >
+      {drawer}
+    </ReactModal>
   );
 };
 
