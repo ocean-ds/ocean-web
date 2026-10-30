@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.152.0](https://github.com/ocean-ds/ocean-web/compare/v1.151.2...v1.152.0) (2026-10-30)
+
+### Features
+
+- **tab:** add Tab component ([#1286](https://github.com/ocean-ds/ocean-web/issues/1286)) ([cd5389b](https://github.com/ocean-ds/ocean-web/commit/cd5389b7df05c2fe45a1aaf8a0d7fdc309d0e9e6))
+
 ## [1.151.2](https://github.com/ocean-ds/ocean-web/compare/v1.151.1...v1.151.2) (2026-10-29)
 
 **Note:** Version bump only for package @useblu/ocean-core
