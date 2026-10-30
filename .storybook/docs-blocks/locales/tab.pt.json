@@ -1,0 +1,57 @@
+{
+  "overview": "Tab é a barra que alterna entre seções do mesmo nível de uma tela. Mostra uma aba por seção e chama `onChange` com o índice escolhido; a tela renderiza o painel.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Passe as seções em `tabs`, a selecionada em `selectedIndex` e atualize-a em `onChange`. Cada aba tem a largura do texto, alinhadas à esquerda."
+    },
+    "withBadge": {
+      "title": "With badge",
+      "text": "Adicione `count` a uma aba para mostrar um contador depois do texto. O contador fica primário na aba selecionada, no hover e no foco de teclado, e neutro nas outras. Acima de 99 mostra `99+`."
+    },
+    "withScroll": {
+      "title": "With scroll",
+      "text": "Quando as abas não cabem na largura, a barra rola para o lado. A aba selecionada é rolada para ficar visível."
+    },
+    "mobile": {
+      "title": "Mobile",
+      "text": "Abaixo do breakpoint `sm` (576px), até três abas dividem a largura em partes iguais. Com quatro ou mais abas, cada aba fica do tamanho do texto e a barra rola com 32px de cada lado. Abra a story para ver no viewport de celular."
+    },
+    "longLabels": {
+      "title": "Long labels",
+      "text": "O texto fica em uma linha e nunca é cortado. No celular, quando um texto não cabe na sua parte da largura, todas as abas ficam do tamanho do texto e a barra rola."
+    }
+  },
+  "options": {
+    "panels": {
+      "title": "Ligando os painéis",
+      "text": "O Tab renderiza só a barra. Dê um `id` à barra e cada aba recebe `<id>-tab-<index>`; use no `aria-labelledby` do painel. Passe `panelId` numa aba para definir o `aria-controls`."
+    }
+  },
+  "api": {
+    "intro": "Tab renderiza a barra de uma tela com abas; a tela renderiza o painel selecionado.",
+    "tabs": "Abas da barra, em ordem: `label`, `count` opcional e `panelId` opcional. Use de 2 a 8 abas.",
+    "selectedIndex": "Índice da aba selecionada. Fora do intervalo, nenhuma aba fica selecionada e a primeira recebe o foco de teclado.",
+    "onChange": "Chamado com o índice da aba escolhida por clique ou teclado. Não é chamado no clique da aba já selecionada.",
+    "ariaLabel": "Nome da barra para leitores de tela. Passe quando nenhum título visível nomeia as seções.",
+    "id": "Id da barra. Cada aba recebe `<id>-tab-<index>`. Gerado quando omitido.",
+    "className": "Classe na barra. `ref` e os outros atributos vão para o elemento da barra."
+  },
+  "platforms": {
+    "text": "O mesmo componente existe nas bibliotecas iOS e Android. Nos apps a aba também guarda a view do conteúdo."
+  },
+  "tokens": {
+    "intro": "A tabela abaixo lista os tokens do Ocean usados pelo Tab.",
+    "blocks": "O contador é um [Badge](docs:components-badge--docs) pequeno; os tokens de tamanho dele estão lá."
+  },
+  "rules": [
+    "Use de 2 a 8 abas; com uma seção, mostre o conteúdo direto.",
+    "Guarde `selectedIndex` no estado da tela e atualize em `onChange`.",
+    "Renderize o painel da aba selecionada logo abaixo da barra.",
+    "Não existe aba desabilitada: deixe a seção indisponível fora de `tabs`.",
+    "Mantenha os textos curtos; eles nunca quebram nem são cortados.",
+    "Passe `aria-label` quando nenhum título visível nomeia as seções.",
+    "Não use abas para filtrar uma lista nem como etapas de um fluxo."
+  ],
+  "feedback": "Envie feedback sobre o componente pelo time do Ocean Design System."
+}

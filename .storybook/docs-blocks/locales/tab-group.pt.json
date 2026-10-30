@@ -1,0 +1,195 @@
+{
+  "breadcrumb": ["Componentes"],
+  "description": "Uma barra que alterna entre seções do mesmo nível, uma visível por vez.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "toc": "Nesta página",
+  "page": {
+    "title": "Tab",
+    "status": "Estável"
+  },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Specs",
+    "accessibility": "Acessibilidade",
+    "code": "Código"
+  },
+  "guidelines": {
+    "overview": "Visão geral",
+    "formatting": "Formatação",
+    "content": "Conteúdo",
+    "behaviors": "Comportamentos",
+    "related": "Relacionados",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Visão geral",
+    "text": "O Tab separa o conteúdo de uma tela em seções do mesmo nível. Uma seção fica visível por vez, e a pessoa pode ir para qualquer uma, em qualquer ordem, sem sair da tela.",
+    "whenToUse": "Quando usar",
+    "whenToUseItems": [
+      "Uma tela com 2 a 8 seções paralelas, cada uma com conteúdo próprio.",
+      "Seções que a pessoa visita em qualquer ordem."
+    ],
+    "whenNotToUse": "Quando não usar",
+    "whenNotToUseItems": [
+      "Só uma seção: mostre o conteúdo direto, sem abas.",
+      "Para filtrar uma lista (Todos, Pendentes, Pagos): use o Filter Bar, [Chips](docs:components-chips--docs).",
+      "Etapas em sequência: use [Steps](docs:components-steps--docs). Não combine Tab e Steps na mesma tela.",
+      "Mais de 8 seções: use um menu ou navegação de página.",
+      "Uma seção indisponível para a pessoa: não mostre a aba. Não existe aba desabilitada."
+    ],
+    "variants": "Variantes",
+    "variantColumns": ["Variante", "Para que serve", "Código"],
+    "variantRows": [
+      "Default|Abas do tamanho do texto, alinhadas à esquerda.|default",
+      "With badge|Um contador depois do texto.|withBadge",
+      "With scroll|Mais abas do que a largura comporta; a barra rola.|withScroll",
+      "Mobile|Até três abas dividem a largura.|mobile",
+      "Long labels|Texto em uma linha; a barra rola em vez de quebrar.|longLabels"
+    ],
+    "codeLink": "Ver no Código"
+  },
+  "formatting": {
+    "title": "Formatação",
+    "anatomy": "Anatomia",
+    "layoutTitle": "Layout",
+    "layoutText": "A barra segue a regra de layout sozinha.",
+    "layoutColumns": ["Tela", "Abas", "Largura"],
+    "layoutRows": [
+      "Desktop (a partir de 576px)|Qualquer quantidade|Cada aba do tamanho do texto, alinhadas à esquerda. Se não couberem, a barra rola para o lado.",
+      "Celular (abaixo de 576px)|Até 3, todos os textos cabem|As abas dividem a largura em partes iguais.",
+      "Celular (abaixo de 576px)|4 ou mais, ou um texto que não cabe|Cada aba do tamanho do texto; a barra rola com 32px de cada lado."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Elemento", "Obrigatório", "Observações"],
+    "rows": [
+      "1|Texto|Sim|Uma linha; nunca quebra nem é cortado.",
+      "2|Contador|Não|Badge de contagem pequeno depois do texto.",
+      "3|Linha de seleção|Só na aba selecionada|Ocupa a largura da aba.",
+      "4|Divisor|Sim|Linha de baixo em toda a barra."
+    ]
+  },
+  "content": {
+    "title": "Conteúdo",
+    "text": "Cada aba nomeia uma seção da tela.",
+    "writingItems": [
+      "Nomeie a seção com uma ou duas palavras, só com a primeira letra maiúscula.",
+      "Mantenha os textos de uma barra paralelos: todos substantivos, de tamanho parecido.",
+      "Use o contador para uma quantidade sobre a qual a pessoa age, como itens pendentes."
+    ],
+    "useTitle": "Seções, não filtros",
+    "useDo": "Use abas para seções com conteúdo próprio.",
+    "useDont": "Não use abas para filtrar uma lista; use o Filter Bar ([Chips](docs:components-chips--docs))."
+  },
+  "behaviors": {
+    "title": "Comportamentos",
+    "text": "O Tab tem quatro estados. O foco de teclado fica exatamente igual ao hover, sem contorno.",
+    "columns": ["Estado", "Texto", "Contador", "Linha de seleção"],
+    "rows": [
+      "Default|Neutro|Neutro|–",
+      "Hover|Primário|Primário|–",
+      "Focused (teclado)|Primário|Primário|–",
+      "Selected|Primário|Primário|Primária, 2px"
+    ]
+  },
+  "related": {
+    "title": "Relacionados",
+    "chips": {
+      "title": "Chips",
+      "text": "Use Chips como Filter Bar para filtrar uma lista.",
+      "link": "Ver Chips"
+    },
+    "steps": {
+      "title": "Steps",
+      "text": "Use Steps para etapas em sequência.",
+      "link": "Ver Steps"
+    },
+    "badge": {
+      "title": "Badge",
+      "text": "O contador da aba é um Badge de contagem pequeno.",
+      "link": "Ver Badge"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Envie feedback sobre este componente pelos canais do Ocean Design System."
+  },
+  "specs": {
+    "colors": "Cores",
+    "typography": "Tipografia",
+    "structure": "Estrutura",
+    "size": "Tamanho"
+  },
+  "colors": {
+    "title": "Cores",
+    "columns": ["Elemento", "Estado", "Token"],
+    "rows": [
+      "Aba|Fundo|color-interface-light-pure",
+      "Texto|Default|color-interface-dark-up",
+      "Texto|Hover, Focused, Selected|color-brand-primary-pure",
+      "Contador|Default|color-interface-dark-up",
+      "Contador|Hover, Focused, Selected|color-brand-primary-pure",
+      "Linha de seleção|Selected|color-brand-primary-pure",
+      "Divisor|Todos|color-interface-light-down"
+    ]
+  },
+  "typography": {
+    "title": "Tipografia",
+    "columns": ["Elemento", "Tamanho", "Peso", "Altura de linha", "Token"],
+    "rows": ["Texto|16px|ExtraBold (800)|1.32|heading4"]
+  },
+  "structure": {
+    "title": "Estrutura",
+    "columns": ["Elemento", "Propriedade", "px", "Token"],
+    "rows": [
+      "Aba|Espaço nas laterais|16px|spacing-inline-xs",
+      "Aba|Espaço entre texto e contador|8px|spacing-inline-xxs",
+      "Linha de seleção|Altura|2px|border-width-thin",
+      "Divisor|Altura|1px|border-width-hairline",
+      "Barra (celular, com rolagem)|Margem nas laterais|32px|spacing-inline-md"
+    ]
+  },
+  "size": {
+    "title": "Tamanho",
+    "columns": ["Elemento", "Altura"],
+    "rows": ["Aba|56px (sem token)"]
+  },
+  "tokens": {
+    "link": "Lista completa de tokens → Código › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Teclado",
+    "screenReaders": "Leitores de tela",
+    "development": "Considerações de desenvolvimento"
+  },
+  "keyboard": {
+    "title": "Teclado",
+    "columns": ["Tecla", "Ação"],
+    "rows": [
+      "Tab|Leva o foco para a barra, na aba selecionada, e depois para fora dela.",
+      "Seta para a direita|Vai para a próxima aba e a seleciona; da última, vai para a primeira.",
+      "Seta para a esquerda|Vai para a aba anterior e a seleciona; da primeira, vai para a última.",
+      "Home / End|Vai para a primeira ou a última aba e a seleciona."
+    ]
+  },
+  "screenReaders": {
+    "title": "Leitores de tela",
+    "columns": ["Elemento", "Comportamento"],
+    "rows": [
+      "Barra|Anunciada como lista de abas, com o nome dado em `aria-label`.",
+      "Aba|Anunciada como aba, com a posição e se está selecionada.",
+      "Contador|Lido como parte do nome da aba (\"Payments 3\")."
+    ]
+  },
+  "development": {
+    "title": "Considerações de desenvolvimento",
+    "items": [
+      "**Dê nome à barra.** Passe `aria-label` quando nenhum título visível nomeia as seções.",
+      "**Ligue o painel.** Renderize o painel com `role=\"tabpanel\"` e `aria-labelledby` com o id da aba (`<id>-tab-<index>`); passe `panelId` para definir o `aria-controls`.",
+      "**O foco não tem contorno.** O foco de teclado fica igual ao hover, por decisão de design; mantenha a barra em fundo branco para a mudança de cor continuar visível."
+    ]
+  }
+}

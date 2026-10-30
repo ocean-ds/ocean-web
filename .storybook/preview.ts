@@ -131,6 +131,15 @@ export const parameters = {
           ],
           'Overlays',
           ['Drawer', ['Overview', 'Default', 'Stacked']],
+          'Tab',
+          [
+            'Overview',
+            'Default',
+            'With badge',
+            'With scroll',
+            'Mobile',
+            'Long labels',
+          ],
           'Transaction Summary',
           [
             'Overview',
@@ -145,6 +154,8 @@ export const parameters = {
         'Visual tests',
         [
           'Drawer',
+          'Tab',
+          ['Matrix', 'Focused', 'Mobile'],
           'Tag',
           ['Matrix'],
           'Transaction Summary',

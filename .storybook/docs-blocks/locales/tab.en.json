@@ -1,0 +1,57 @@
+{
+  "overview": "Tab is the bar that switches between sections of the same level on a screen. It shows one tab per section and calls `onChange` with the chosen index; the screen renders the panel.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Pass the sections in `tabs`, the selected one in `selectedIndex` and update it in `onChange`. Each tab is as wide as its label, aligned to the left."
+    },
+    "withBadge": {
+      "title": "With badge",
+      "text": "Add `count` to a tab to show a counter after the label. The counter is primary on the selected tab, on hover and on keyboard focus, and neutral on the others. Above 99 it shows `99+`."
+    },
+    "withScroll": {
+      "title": "With scroll",
+      "text": "When the tabs do not fit the width, the bar scrolls sideways. The selected tab is scrolled into view."
+    },
+    "mobile": {
+      "title": "Mobile",
+      "text": "Below the `sm` breakpoint (576px), up to three tabs share the width equally. With four or more tabs, the tabs size to their labels and the bar scrolls with 32px on each side. Open the story to see it in the mobile viewport."
+    },
+    "longLabels": {
+      "title": "Long labels",
+      "text": "Labels stay on one line and are never cut. On mobile, when one label does not fit its share of the width, all tabs size to their labels and the bar scrolls."
+    }
+  },
+  "options": {
+    "panels": {
+      "title": "Connecting the panels",
+      "text": "Tab renders only the bar. Give the bar an `id` and each tab gets `<id>-tab-<index>`; use it in the panel's `aria-labelledby`. Pass `panelId` in a tab to set its `aria-controls`."
+    }
+  },
+  "api": {
+    "intro": "Tab renders the bar of a tabbed screen; the screen renders the selected panel.",
+    "tabs": "Tabs of the bar, in order: `label`, an optional `count` and an optional `panelId`. Use 2 to 8 tabs.",
+    "selectedIndex": "Index of the selected tab. Out of range, no tab is selected and the first one takes the keyboard focus.",
+    "onChange": "Called with the index of the tab chosen by click or keyboard. Not called when the selected tab is clicked.",
+    "ariaLabel": "Name of the bar for screen readers. Pass it when no visible heading names the sections.",
+    "id": "Id of the bar. Each tab gets `<id>-tab-<index>`. Generated when omitted.",
+    "className": "Class on the bar. `ref` and the other attributes go to the bar element."
+  },
+  "platforms": {
+    "text": "The same component exists in the iOS and Android libraries. In the apps the tab also holds its content view."
+  },
+  "tokens": {
+    "intro": "The table below lists the Ocean tokens used by Tab.",
+    "blocks": "The counter is a small [Badge](docs:components-badge--docs); its size tokens are listed there."
+  },
+  "rules": [
+    "Use from 2 to 8 tabs; with one section, show the content directly.",
+    "Keep `selectedIndex` in the screen state and update it in `onChange`.",
+    "Render the panel of the selected tab right below the bar.",
+    "There is no disabled tab: leave an unavailable section out of `tabs`.",
+    "Keep labels short; they never wrap or truncate.",
+    "Pass `aria-label` when no visible heading names the sections.",
+    "Do not use tabs to filter one list or as steps of a flow."
+  ],
+  "feedback": "Share component feedback through the Ocean Design System team."
+}

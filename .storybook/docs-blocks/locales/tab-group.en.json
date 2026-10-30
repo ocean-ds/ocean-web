@@ -1,0 +1,195 @@
+{
+  "breadcrumb": ["Components"],
+  "description": "A bar that switches between sections of the same level, one visible at a time.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "toc": "On this page",
+  "page": {
+    "title": "Tab",
+    "status": "Stable"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility",
+    "code": "Code"
+  },
+  "guidelines": {
+    "overview": "Overview",
+    "formatting": "Formatting",
+    "content": "Content",
+    "behaviors": "Behaviors",
+    "related": "Related",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Overview",
+    "text": "Tab splits the content of a screen into sections of the same level. One section is visible at a time, and the person can go to any of them, in any order, without leaving the screen.",
+    "whenToUse": "When to use",
+    "whenToUseItems": [
+      "A screen with 2 to 8 parallel sections, each with its own content.",
+      "Sections the person visits in any order."
+    ],
+    "whenNotToUse": "When not to use",
+    "whenNotToUseItems": [
+      "Only one section: show the content directly, without tabs.",
+      "To filter one list (All, Pending, Paid): use the Filter Bar, [Chips](docs:components-chips--docs).",
+      "Steps in sequence: use [Steps](docs:components-steps--docs). Do not combine Tab and Steps on the same screen.",
+      "More than 8 sections: use a menu or page navigation.",
+      "A section that is unavailable to the person: do not show the tab. There is no disabled tab."
+    ],
+    "variants": "Variants",
+    "variantColumns": ["Variant", "Purpose", "Code"],
+    "variantRows": [
+      "Default|Tabs sized to their labels, aligned to the left.|default",
+      "With badge|A counter after the label.|withBadge",
+      "With scroll|More tabs than the width holds; the bar scrolls.|withScroll",
+      "Mobile|Up to three tabs share the width.|mobile",
+      "Long labels|Labels on one line; the bar scrolls instead of wrapping.|longLabels"
+    ],
+    "codeLink": "See in Code"
+  },
+  "formatting": {
+    "title": "Formatting",
+    "anatomy": "Anatomy",
+    "layoutTitle": "Layout",
+    "layoutText": "The bar follows the layout rule on its own.",
+    "layoutColumns": ["Screen", "Tabs", "Width"],
+    "layoutRows": [
+      "Desktop (576px and above)|Any number|Each tab as wide as its label, aligned to the left. If they do not fit, the bar scrolls sideways.",
+      "Mobile (below 576px)|Up to 3, all labels fit|The tabs share the width equally.",
+      "Mobile (below 576px)|4 or more, or a label that does not fit|Each tab as wide as its label; the bar scrolls with 32px on each side."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Element", "Required", "Notes"],
+    "rows": [
+      "1|Label|Yes|One line; never wraps or truncates.",
+      "2|Counter|No|Small count Badge after the label.",
+      "3|Selection line|Selected tab only|Spans the width of the tab.",
+      "4|Divider|Yes|Bottom line across the full bar."
+    ]
+  },
+  "content": {
+    "title": "Content",
+    "text": "Each tab names one section of the screen.",
+    "writingItems": [
+      "Name the section with one or two words, in sentence case.",
+      "Keep the labels of a bar parallel: all nouns, about the same length.",
+      "Use the counter for an amount the person acts on, like items pending."
+    ],
+    "useTitle": "Sections, not filters",
+    "useDo": "Use tabs for sections with their own content.",
+    "useDont": "Do not use tabs to filter one list; use the Filter Bar ([Chips](docs:components-chips--docs))."
+  },
+  "behaviors": {
+    "title": "Behaviors",
+    "text": "Tab has four states. Keyboard focus looks exactly like hover, without a focus ring.",
+    "columns": ["State", "Label", "Counter", "Selection line"],
+    "rows": [
+      "Default|Neutral|Neutral|–",
+      "Hover|Primary|Primary|–",
+      "Focused (keyboard)|Primary|Primary|–",
+      "Selected|Primary|Primary|Primary, 2px"
+    ]
+  },
+  "related": {
+    "title": "Related",
+    "chips": {
+      "title": "Chips",
+      "text": "Use Chips as the Filter Bar to filter one list.",
+      "link": "Explore Chips"
+    },
+    "steps": {
+      "title": "Steps",
+      "text": "Use Steps for steps in sequence.",
+      "link": "Explore Steps"
+    },
+    "badge": {
+      "title": "Badge",
+      "text": "The counter of a tab is a small count Badge.",
+      "link": "Explore Badge"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Share feedback about this component through the Ocean Design System feedback channels."
+  },
+  "specs": {
+    "colors": "Colors",
+    "typography": "Typography",
+    "structure": "Structure",
+    "size": "Size"
+  },
+  "colors": {
+    "title": "Colors",
+    "columns": ["Element", "State", "Token"],
+    "rows": [
+      "Tab|Background|color-interface-light-pure",
+      "Label|Default|color-interface-dark-up",
+      "Label|Hover, Focused, Selected|color-brand-primary-pure",
+      "Counter|Default|color-interface-dark-up",
+      "Counter|Hover, Focused, Selected|color-brand-primary-pure",
+      "Selection line|Selected|color-brand-primary-pure",
+      "Divider|All|color-interface-light-down"
+    ]
+  },
+  "typography": {
+    "title": "Typography",
+    "columns": ["Element", "Size", "Weight", "Line height", "Token"],
+    "rows": ["Label|16px|ExtraBold (800)|1.32|heading4"]
+  },
+  "structure": {
+    "title": "Structure",
+    "columns": ["Element", "Property", "px", "Token"],
+    "rows": [
+      "Tab|Horizontal padding|16px|spacing-inline-xs",
+      "Tab|Gap label to counter|8px|spacing-inline-xxs",
+      "Selection line|Height|2px|border-width-thin",
+      "Divider|Height|1px|border-width-hairline",
+      "Bar (mobile, scroll)|Side padding|32px|spacing-inline-md"
+    ]
+  },
+  "size": {
+    "title": "Size",
+    "columns": ["Element", "Height"],
+    "rows": ["Tab|56px (No token)"]
+  },
+  "tokens": {
+    "link": "Full token list → Code › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Keyboard",
+    "screenReaders": "Screen readers",
+    "development": "Development considerations"
+  },
+  "keyboard": {
+    "title": "Keyboard",
+    "columns": ["Key", "Action"],
+    "rows": [
+      "Tab|Moves the focus into the bar, to the selected tab, and then out of it.",
+      "Arrow right|Moves to the next tab and selects it; from the last, goes to the first.",
+      "Arrow left|Moves to the previous tab and selects it; from the first, goes to the last.",
+      "Home / End|Moves to the first or the last tab and selects it."
+    ]
+  },
+  "screenReaders": {
+    "title": "Screen readers",
+    "columns": ["Element", "Behavior"],
+    "rows": [
+      "Bar|Announced as a tab list, with the name given in `aria-label`.",
+      "Tab|Announced as a tab, with its position and whether it is selected.",
+      "Counter|Read as part of the tab name (\"Payments 3\")."
+    ]
+  },
+  "development": {
+    "title": "Development considerations",
+    "items": [
+      "**Name the bar.** Pass `aria-label` when no visible heading names the sections.",
+      "**Connect the panel.** Render the panel with `role=\"tabpanel\"` and `aria-labelledby` set to the tab id (`<id>-tab-<index>`); pass `panelId` to set `aria-controls`.",
+      "**Focus has no ring.** Keyboard focus looks like hover, by design decision; keep the bar on a white background so the change of color stays visible."
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+.ods-tab {
+  background-color: $color-interface-light-pure;
+  border-bottom: $border-width-hairline solid $color-interface-light-down;
+  box-sizing: border-box;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  scrollbar-width: none;
+  width: 100%;
+
+  // Mobile: up to 3 tabs share the width; otherwise the bar scrolls with side padding.
+  @include media-breakpoint-down(sm) {
+    padding: 0 $spacing-inline-md;
+
+    &--fill {
+      padding: 0;
+    }
+
+    &--fill &__item {
+      flex: 1 1 0;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__item {
+    align-items: center;
+    background-color: $color-interface-light-pure;
+    border: 0;
+    box-sizing: border-box;
+    color: $color-interface-dark-up;
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    font-family: $font-family-base;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-extrabold;
+    // Item height from the design; Ocean has no size token for it.
+    height: 56px;
+    justify-content: center;
+    line-height: $line-height-loose;
+    margin: 0;
+    padding: 0 $spacing-inline-xs;
+    position: relative;
+    white-space: nowrap;
+
+    // Keyboard focus looks exactly like hover, without a focus ring.
+    &:hover,
+    &:focus-visible {
+      color: $color-brand-primary-pure;
+      outline: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &--selected {
+      color: $color-brand-primary-pure;
+    }
+  }
+
+  &__content {
+    align-items: center;
+    display: inline-flex;
+    gap: $spacing-inline-xxs;
+  }
+
+  &__item:hover &__count .ods-badge__content,
+  &__item:focus-visible &__count .ods-badge__content {
+    background-color: $color-brand-primary-pure;
+  }
+
+  &__indicator {
+    background-color: $color-brand-primary-pure;
+    bottom: 0;
+    height: $border-width-thin;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+}
