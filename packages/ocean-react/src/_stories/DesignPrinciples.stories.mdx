@@ -1,0 +1,387 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import Button from '../Button';
+import {
+  colorInterfaceLightDown,
+  colorStatusPositivePure,
+  colorStatusNegativePure,
+  colorInterfaceDarkDown,
+  spacingInlineXs,
+  spacingInlineXxs,
+  borderRadiusSm,
+  borderWidthHairline,
+} from '@useblu/ocean-tokens/web/tokens';
+
+<Meta title="Foundation/Design Principles" />
+
+# Princípios de Design
+
+Os princípios de design do Ocean guiam todas as decisões criativas e técnicas, garantindo uma experiência consistente, funcional e deliciosa para nossos usuários.
+
+## 1. Clareza
+
+### Interface clara é interface eficiente
+
+Priorizamos clareza em cada elemento visual. Informações devem ser apresentadas de forma direta, sem ambiguidade, permitindo que usuários compreendam e atuem rapidamente.
+
+<Canvas>
+  <Story name="Clarity Example">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md={6}>
+          <div
+            style={{
+              padding: spacingInlineXs,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXs,
+            }}
+          >
+            <Typography
+              variant="heading3"
+              style={{
+                marginBottom: spacingInlineXxs,
+                color: colorStatusPositivePure,
+              }}
+            >
+              ✓ Clara
+            </Typography>
+            <Typography
+              variant="paragraph"
+              style={{ marginBottom: spacingInlineXxs }}
+            >
+              Confirmar exclusão do item
+            </Typography>
+            <Button variant="primary" size="sm">
+              Confirmar
+            </Button>
+          </div>
+          <Typography
+            variant="caption"
+            style={{ color: colorInterfaceDarkDown }}
+          >
+            Ação e consequência claramente definidas
+          </Typography>
+        </Grid.Col>
+        <Grid.Col md={6}>
+          <div
+            style={{
+              padding: spacingInlineXs,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXs,
+            }}
+          >
+            <Typography
+              variant="heading3"
+              style={{
+                marginBottom: spacingInlineXxs,
+                color: colorStatusNegativePure,
+              }}
+            >
+              ✕ Confusa
+            </Typography>
+            <Typography
+              variant="paragraph"
+              style={{ marginBottom: spacingInlineXxs }}
+            >
+              Tem certeza?
+            </Typography>
+            <Button variant="primary" size="sm">
+              OK
+            </Button>
+          </div>
+          <Typography
+            variant="caption"
+            style={{ color: colorInterfaceDarkDown }}
+          >
+            Contexto e ação ambíguos
+          </Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## 2. Consistência
+
+### Padrões uniformes criam familiaridade
+
+Elementos similares devem funcionar de forma similar. Usuários aprendem uma vez e aplicam esse conhecimento em toda a experiência.
+
+<Canvas>
+  <Story name="Consistency Example">
+    <div style={{ padding: spacingInlineXs }}>
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXs }}>
+        Botões Consistentes
+      </Typography>
+      <div
+        style={{
+          display: 'flex',
+          gap: spacingInlineXxs,
+          marginBottom: spacingInlineXs,
+        }}
+      >
+        <Button variant="primary">Salvar</Button>
+        <Button variant="secondary">Cancelar</Button>
+        <Button variant="tertiary">Mais opções</Button>
+      </div>
+      <div style={{ display: 'flex', gap: spacingInlineXxs }}>
+        <Button variant="primary" size="sm">
+          Salvar
+        </Button>
+        <Button variant="secondary" size="sm">
+          Cancelar
+        </Button>
+        <Button variant="tertiary" size="sm">
+          Mais opções
+        </Button>
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## 3. Hierarquia
+
+### Organização visual guia a atenção
+
+Estabelecemos hierarquia visual clara através de tipografia, cores, espaçamento e layout, direcionando o olhar do usuário para o que é mais importante.
+
+<Canvas>
+  <Story name="Hierarchy Example">
+    <div style={{ padding: spacingInlineXs, maxWidth: '600px' }}>
+      <Typography variant="heading1" style={{ marginBottom: spacingInlineXs }}>
+        Título Principal (H1)
+      </Typography>
+      <Typography variant="paragraph" style={{ marginBottom: spacingInlineXs }}>
+        Parágrafo introdutório que contextualiza o conteúdo e fornece
+        informações importantes ao usuário.
+      </Typography>
+      <Typography variant="heading2" style={{ marginBottom: spacingInlineXxs }}>
+        Seção Secundária (H2)
+      </Typography>
+      <Typography variant="paragraph" style={{ marginBottom: spacingInlineXs }}>
+        Conteúdo da seção com informações detalhadas.
+      </Typography>
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXxs }}>
+        Subseção (H3)
+      </Typography>
+      <Typography variant="paragraph">
+        Informações específicas desta subseção.
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+## 4. Feedback
+
+### Comunicação contínua com o usuário
+
+Fornecemos feedback imediato e contextual para todas as ações do usuário, confirmando que o sistema respondeu e orientando próximos passos.
+
+<Canvas>
+  <Story name="Feedback Example">
+    <div style={{ padding: spacingInlineXs }}>
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXs }}>
+        Estados de Feedback
+      </Typography>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: spacingInlineXxs,
+        }}
+      >
+        <Button variant="primary">Estado Normal</Button>
+        <Button variant="primary" disabled>
+          Estado Carregando...
+        </Button>
+        <div
+          style={{
+            padding: spacingInlineXxs,
+            backgroundColor: '#f0f9ff',
+            border: '1px solid #0ea5e9',
+            borderRadius: borderRadiusSm,
+            color: '#0369a1',
+          }}
+        >
+          ✓ Operação realizada com sucesso
+        </div>
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## 5. Eficiência
+
+### Otimizado para produtividade
+
+Interfaces devem permitir que usuários completem tarefas rapidamente, com mínimo esforço cognitivo e físico.
+
+<Canvas>
+  <Story name="Efficiency Example">
+    <div style={{ padding: spacingInlineXs }}>
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXs }}>
+        Ações Rápidas
+      </Typography>
+      <div
+        style={{ display: 'flex', gap: spacingInlineXxs, alignItems: 'center' }}
+      >
+        <Button variant="primary" size="sm">
+          Ação Principal
+        </Button>
+        <Button variant="ghost" size="sm">
+          ⌘K
+        </Button>
+        <Typography variant="caption" style={{ color: colorInterfaceDarkDown }}>
+          Atalho de teclado para acesso rápido
+        </Typography>
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## 6. Acessibilidade
+
+### Design inclusivo para todos
+
+Consideramos diferentes necessidades e contextos de uso, garantindo que nossas interfaces sejam utilizáveis por todos.
+
+<Canvas>
+  <Story name="Accessibility Example">
+    <div style={{ padding: spacingInlineXs }}>
+      <Typography variant="heading3" style={{ marginBottom: spacingInlineXs }}>
+        Design Inclusivo
+      </Typography>
+      <div style={{ marginBottom: spacingInlineXs }}>
+        <label
+          htmlFor="accessible-input"
+          style={{ display: 'block', marginBottom: spacingInlineXxs }}
+        >
+          <Typography variant="caption">Campo obrigatório *</Typography>
+        </label>
+        <input
+          id="accessible-input"
+          type="text"
+          placeholder="Digite aqui..."
+          style={{
+            padding: spacingInlineXxs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            fontSize: '14px',
+            width: '200px',
+          }}
+        />
+      </div>
+      <Typography
+        variant="caption"
+        style={{ color: colorInterfaceDarkDown, textAlign: 'center' }}
+      >
+        Labels claros e navegação por teclado
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+## Aplicando os Princípios
+
+### Na Prática Diária
+
+1. **Questionamento constante**: "Isso está claro para o usuário?"
+2. **Revisão de padrões**: "Estamos sendo consistentes?"
+3. **Teste de usabilidade**: "Usuários conseguem completar a tarefa?"
+4. **Validação de acessibilidade**: "Funciona para todos?"
+
+### Tomada de Decisões
+
+Quando enfrentar dilemas de design, use os princípios como critério de decisão:
+
+- **Clareza** vs. **Estética**: Sempre priorize clareza
+- **Consistência** vs. **Inovação**: Mantenha padrões estabelecidos
+- **Eficiência** vs. **Completude**: Foque no essencial
+- **Acessibilidade** vs. **Complexidade**: Simplifique para incluir
+
+## Exemplos de Aplicação
+
+### Interface de Formulário
+
+```jsx
+// Aplicando os princípios
+const FormExample = () => (
+  <form>
+    {/* Clareza: Labels descritivos */}
+    <label htmlFor="email">Endereço de email para login</label>
+    <input id="email" type="email" required aria-describedby="email-help" />
+    <small id="email-help">Usaremos este email para enviar confirmações</small>
+
+    {/* Hierarquia: Botão principal destacado */}
+    <div>
+      <Button variant="primary">Criar conta</Button>
+      <Button variant="secondary">Voltar</Button>
+    </div>
+  </form>
+);
+```
+
+### Lista de Ações
+
+```jsx
+// Consistência em ações repetitivas
+const ActionsList = ({ items }) => (
+  <ul>
+    {items.map((item) => (
+      <li key={item.id}>
+        <span>{item.name}</span>
+        {/* Padrão consistente para todas as linhas */}
+        <Button variant="ghost" size="sm" aria-label={`Editar ${item.name}`}>
+          ✏️
+        </Button>
+        <Button variant="ghost" size="sm" aria-label={`Excluir ${item.name}`}>
+          🗑️
+        </Button>
+      </li>
+    ))}
+  </ul>
+);
+```
+
+## Validação dos Princípios
+
+### Perguntas para Validação
+
+Antes de finalizar qualquer design, considere:
+
+1. **Clareza**: O usuário entende imediatamente o que fazer?
+2. **Consistência**: Isso funciona igual a outros lugares similares?
+3. **Hierarquia**: O mais importante está em destaque?
+4. **Feedback**: O usuário sabe o que aconteceu após sua ação?
+5. **Eficiência**: Esse é o caminho mais direto para o objetivo?
+6. **Acessibilidade**: Funciona para usuários com diferentes necessidades?
+
+### Métricas de Sucesso
+
+- **Taxa de sucesso na primeira tentativa**: Usuários conseguem completar tarefas sem ajuda
+- **Tempo para conclusão**: Redução no tempo necessário para tarefas
+- **Satisfação do usuário**: Feedback positivo em pesquisas
+- **Redução de suporte**: Menos dúvidas e solicitações de ajuda
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use os princípios como guia para todas as decisões
+- Teste soluções com usuários reais
+- Documente padrões estabelecidos
+- Revise regularmente para manter consistência
+- Priorize clareza sobre decoração
+
+### ❌ Evite
+
+- Adicionar elementos apenas por estética
+- Quebrar padrões estabelecidos sem justificativa
+- Ignorar feedback dos usuários
+- Criar soluções complexas para problemas simples
+- Desconsiderar contexto de uso
+
+Os princípios do Ocean não são regras rígidas, mas diretrizes que nos ajudam a criar experiências melhores. Eles devem ser aplicados com bom senso, sempre considerando o contexto específico e as necessidades dos usuários.

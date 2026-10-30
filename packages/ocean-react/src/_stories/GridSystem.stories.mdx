@@ -1,0 +1,591 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import {
+  colorBrandPrimaryPure,
+  colorBrandPrimaryUp,
+  colorInterfaceLightDown,
+  colorInterfaceDarkDown,
+  colorStatusPositivePure,
+  colorStatusPositiveUp,
+  colorStatusNegativePure,
+  colorStatusNegativeUp,
+  colorStatusWarningPure,
+  colorStatusWarningUp,
+  colorComplementaryPure,
+  colorComplementaryUp,
+  colorInterfaceLightPure,
+  colorInterfaceLightDeep,
+  spacingInlineXs,
+  spacingInlineXxs,
+  borderRadiusSm,
+  borderWidthHairline,
+} from '@useblu/ocean-tokens/web/tokens';
+
+<Meta title="Foundation/Grid System" />
+
+# Sistema de Grid
+
+O sistema de grid do Ocean fornece uma estrutura flexível e responsiva para organizar conteúdo em layouts consistentes e adaptáveis a diferentes tamanhos de tela.
+
+## Visão Geral
+
+### Estrutura Base
+
+O grid do Ocean é baseado em **12 colunas** com breakpoints responsivos que se adaptam automaticamente a diferentes dispositivos.
+
+### Componentes do Grid
+
+- **Container**: Envolve o conteúdo e define largura máxima
+- **Row**: Agrupa colunas horizontalmente
+- **Col**: Define colunas individuais com larguras responsivas
+
+## Grid Básico
+
+### Exemplo de 12 Colunas
+
+<Canvas>
+  <Story name="Basic Grid">
+    <Grid.Container>
+      <Grid.Row>
+        {Array.from({ length: 12 }, (_, i) => (
+          <Grid.Col xs="1" key={i}>
+            <div
+              style={{
+                backgroundColor: colorBrandPrimaryUp,
+                border: `${borderWidthHairline} solid ${colorBrandPrimaryPure}`,
+                padding: spacingInlineXxs,
+                textAlign: 'center',
+                borderRadius: borderRadiusSm,
+                minHeight: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography variant="caption">{i + 1}</Typography>
+            </div>
+          </Grid.Col>
+        ))}
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+### Colunas de Diferentes Tamanhos
+
+<Canvas>
+  <Story name="Different Column Sizes">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md="6">
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightDown,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              minHeight: '60px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="paragraph">6 colunas</Typography>
+          </div>
+        </Grid.Col>
+        <Grid.Col md="3">
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightDown,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              minHeight: '60px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="paragraph">3 colunas</Typography>
+          </div>
+        </Grid.Col>
+        <Grid.Col md="3">
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightDown,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              minHeight: '60px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="paragraph">3 colunas</Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+      <Typography variant="caption" style={{ color: colorInterfaceDarkDown }}>
+        Layout: 6 + 3 + 3 = 12 colunas
+      </Typography>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Breakpoints Responsivos
+
+### Tamanhos de Tela
+
+O sistema inclui breakpoints para diferentes dispositivos:
+
+- **xs** (extra small): < 576px (celulares)
+- **sm** (small): ≥ 576px (celulares grandes)
+- **md** (medium): ≥ 768px (tablets)
+- **lg** (large): ≥ 992px (desktops)
+- **xl** (extra large): ≥ 1200px (desktops grandes)
+
+### Comportamento Responsivo
+
+<Canvas>
+  <Story name="Responsive Behavior">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col xs="12" md="4">
+          <div
+            style={{
+              backgroundColor: colorStatusNegativeUp,
+              border: `${borderWidthHairline} solid ${colorStatusNegativePure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          >
+            <Typography variant="paragraph">xs=12, md=4</Typography>
+          </div>
+        </Grid.Col>
+        <Grid.Col xs="12" md="4">
+          <div
+            style={{
+              backgroundColor: colorStatusPositiveUp,
+              border: `${borderWidthHairline} solid ${colorStatusPositivePure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          >
+            <Typography variant="paragraph">xs=12, md=4</Typography>
+          </div>
+        </Grid.Col>
+        <Grid.Col xs="12" md="4">
+          <div
+            style={{
+              backgroundColor: colorStatusWarningUp,
+              border: `${borderWidthHairline} solid ${colorStatusWarningPure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          >
+            <Typography variant="paragraph">xs=12, md=4</Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+      <Typography variant="caption" style={{ color: colorInterfaceDarkDown }}>
+        Mobile: 3 linhas (12+12+12) | Desktop: 1 linha (4+4+4)
+      </Typography>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Layouts Complexos
+
+### Layout Assimétrico
+
+<Canvas>
+  <Story name="Asymmetric Layout">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md="8">
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryUp,
+              border: `${borderWidthHairline} solid ${colorBrandPrimaryPure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              minHeight: '100px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="heading3">
+              Conteúdo Principal (8 cols)
+            </Typography>
+          </div>
+        </Grid.Col>
+        <Grid.Col md="4">
+          <div
+            style={{
+              backgroundColor: colorComplementaryUp,
+              border: `${borderWidthHairline} solid ${colorComplementaryPure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              minHeight: '100px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="paragraph">Sidebar (4 cols)</Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+### Layout Aninhado
+
+<Canvas>
+  <Story name="Nested Layout">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col md="6">
+          <div
+            style={{
+              backgroundColor: colorStatusNegativeUp,
+              border: `${borderWidthHairline} solid ${colorStatusNegativePure}`,
+              padding: spacingInlineXs,
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          >
+            <Typography
+              variant="heading3"
+              style={{ marginBottom: spacingInlineXxs }}
+            >
+              Coluna Esquerda
+            </Typography>
+            <Grid.Row>
+              <Grid.Col md="6">
+                <div
+                  style={{
+                    backgroundColor: colorStatusPositiveUp,
+                    border: `${borderWidthHairline} solid ${colorStatusPositivePure}`,
+                    padding: spacingInlineXxs,
+                    textAlign: 'center',
+                    borderRadius: borderRadiusSm,
+                    marginBottom: spacingInlineXxs,
+                  }}
+                >
+                  <Typography variant="caption">Aninhado 1</Typography>
+                </div>
+              </Grid.Col>
+              <Grid.Col md="6">
+                <div
+                  style={{
+                    backgroundColor: colorStatusWarningUp,
+                    border: `${borderWidthHairline} solid ${colorStatusWarningPure}`,
+                    padding: spacingInlineXxs,
+                    textAlign: 'center',
+                    borderRadius: borderRadiusSm,
+                    marginBottom: spacingInlineXxs,
+                  }}
+                >
+                  <Typography variant="caption">Aninhado 2</Typography>
+                </div>
+              </Grid.Col>
+            </Grid.Row>
+          </div>
+        </Grid.Col>
+        <Grid.Col md="6">
+          <div
+            style={{
+              backgroundColor: colorComplementaryUp,
+              border: `${borderWidthHairline} solid ${colorComplementaryPure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              minHeight: '120px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="heading3">Coluna Direita</Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Componentes do Sistema
+
+### Container
+
+O `Container` centraliza e limita a largura máxima do conteúdo:
+
+```jsx
+<Grid.Container>{/* Seu conteúdo aqui */}</Grid.Container>
+```
+
+### Row
+
+A `Row` cria agrupamentos horizontais de colunas:
+
+```jsx
+<Grid.Row>
+  <Grid.Col>Coluna 1</Grid.Col>
+  <Grid.Col>Coluna 2</Grid.Col>
+</Grid.Row>
+```
+
+### Col
+
+As `Col` definem larguras responsivas:
+
+```jsx
+// Exemplos de uso
+<Grid.Col xs="12" md="6" lg="4">Responsiva</Grid.Col>
+<Grid.Col md="8">8 colunas no desktop</Grid.Col>
+<Grid.Col>Largura automática</Grid.Col>
+```
+
+## Exemplo de Layout Responsivo
+
+<Canvas>
+  <Story name="Responsive Layout Example">
+    <Grid.Container>
+      {/* Header */}
+      <Grid.Row>
+        <Grid.Col xs="12">
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightPure,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+            }}
+          >
+            <Typography variant="heading2">Header (12 cols)</Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+
+      {/* Content + Sidebar */}
+      <Grid.Row>
+        <Grid.Col xs="12" lg="8">
+          <div
+            style={{
+              backgroundColor: colorInterfaceLightPure,
+              border: `${borderWidthHairline} solid ${colorInterfaceLightDeep}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              minHeight: '120px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div>
+              <Typography variant="heading3">Conteúdo Principal</Typography>
+              <Typography
+                variant="caption"
+                style={{
+                  color: colorInterfaceDarkDown,
+                  marginTop: spacingInlineXxs,
+                }}
+              >
+                xs=12 (mobile) | lg=8 (desktop)
+              </Typography>
+            </div>
+          </div>
+        </Grid.Col>
+        <Grid.Col xs="12" lg="4">
+          <div
+            style={{
+              backgroundColor: colorBrandPrimaryUp,
+              border: `${borderWidthHairline} solid ${colorBrandPrimaryPure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+              marginBottom: spacingInlineXxs,
+              minHeight: '120px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div>
+              <Typography variant="heading4">Sidebar</Typography>
+              <Typography
+                variant="caption"
+                style={{
+                  color: colorInterfaceDarkDown,
+                  marginTop: spacingInlineXxs,
+                }}
+              >
+                xs=12 (mobile) | lg=4 (desktop)
+              </Typography>
+            </div>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+
+      {/* Footer */}
+      <Grid.Row>
+        <Grid.Col xs="12">
+          <div
+            style={{
+              backgroundColor: colorComplementaryUp,
+              border: `${borderWidthHairline} solid ${colorComplementaryPure}`,
+              padding: spacingInlineXs,
+              textAlign: 'center',
+              borderRadius: borderRadiusSm,
+            }}
+          >
+            <Typography variant="heading3">Footer (12 cols)</Typography>
+          </div>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+
+  </Story>
+</Canvas>
+
+## API dos Componentes
+
+### Grid.Container
+
+```jsx
+<Grid.Container>{children}</Grid.Container>
+```
+
+**Props:**
+
+- `children`: Conteúdo do container
+
+### Grid.Row
+
+```jsx
+<Grid.Row>{children}</Grid.Row>
+```
+
+**Props:**
+
+- `children`: Colunas filhas
+
+### Grid.Col
+
+```jsx
+<Grid.Col xs="12" sm="6" md="4" lg="3" xl="2">
+  {children}
+</Grid.Col>
+```
+
+**Props:**
+
+- `xs`: Largura em telas extra pequenas (< 576px)
+- `sm`: Largura em telas pequenas (≥ 576px)
+- `md`: Largura em telas médias (≥ 768px)
+- `lg`: Largura em telas grandes (≥ 992px)
+- `xl`: Largura em telas extra grandes (≥ 1200px)
+- `children`: Conteúdo da coluna
+
+**Valores aceitos:** "1" a "6" (representando colunas de 1 a 12)
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use `Container` para envolver layouts principais
+- Agrupe colunas relacionadas em `Row`
+- Defina larguras para diferentes breakpoints
+- Teste layouts em diferentes tamanhos de tela
+- Use grid aninhado para layouts complexos
+
+### ❌ Evite
+
+- Colocar conteúdo diretamente no `Container` sem `Row`
+- Usar larguras que não somem 12 colunas
+- Criar layouts muito complexos com muitos níveis aninhados
+- Ignorar comportamento mobile
+- Usar grid para alinhamentos simples (prefira flexbox)
+
+## Exemplos de Uso
+
+### Layout de Cards
+
+```jsx
+<Grid.Container>
+  <Grid.Row>
+    {cards.map((card) => (
+      <Grid.Col xs="12" sm="6" lg="4" key={card.id}>
+        <Card>{card.content}</Card>
+      </Grid.Col>
+    ))}
+  </Grid.Row>
+</Grid.Container>
+```
+
+### Layout de Formulário
+
+```jsx
+<Grid.Container>
+  <Grid.Row>
+    <Grid.Col xs="12" md="6">
+      <Input label="Nome" />
+    </Grid.Col>
+    <Grid.Col xs="12" md="6">
+      <Input label="Sobrenome" />
+    </Grid.Col>
+    <Grid.Col xs="12">
+      <Input label="Email" />
+    </Grid.Col>
+  </Grid.Row>
+</Grid.Container>
+```
+
+### Layout Dashborad
+
+```jsx
+<Grid.Container>
+  <Grid.Row>
+    <Grid.Col xs="12">
+      <Header />
+    </Grid.Col>
+  </Grid.Row>
+  <Grid.Row>
+    <Grid.Col xs="12" lg="3">
+      <Sidebar />
+    </Grid.Col>
+    <Grid.Col xs="12" lg="9">
+      <Grid.Row>
+        <Grid.Col xs="12" md="6">
+          <Widget />
+        </Grid.Col>
+        <Grid.Col xs="12" md="6">
+          <Widget />
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Col>
+  </Grid.Row>
+</Grid.Container>
+```
+
+O sistema de grid do Ocean oferece flexibilidade total para criar layouts responsivos e organizados, mantendo a consistência visual em todos os dispositivos.
