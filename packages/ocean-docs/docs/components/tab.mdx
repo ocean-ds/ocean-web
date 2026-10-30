@@ -1,0 +1,133 @@
+---
+title: Tab
+---
+
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Tab
+
+O Tab é a barra de abas que separa o conteúdo de uma tela em seções do mesmo nível, uma visível por vez, sem sair da tela. Ele renderiza só a barra: a tela guarda a aba selecionada e renderiza o painel dela.
+
+## Importação
+
+```tsx
+import { Tab } from '@useblu/ocean-react';
+import type { TabProps, TabItem } from '@useblu/ocean-react';
+```
+
+## Uso básico
+
+```tsx
+import { useState } from 'react';
+import { Tab } from '@useblu/ocean-react';
+
+function AccountSections() {
+  const [selected, setSelected] = useState(0);
+
+  return (
+    <>
+      <Tab
+        id="account"
+        aria-label="Conta"
+        tabs={[
+          { label: 'Resumo', panelId: 'account-panel' },
+          { label: 'Pagamentos', count: 3, panelId: 'account-panel' },
+          { label: 'Recebimentos', panelId: 'account-panel' },
+        ]}
+        selectedIndex={selected}
+        onChange={setSelected}
+      />
+      <div
+        role="tabpanel"
+        id="account-panel"
+        aria-labelledby={`account-tab-${selected}`}
+      >
+        {/* conteúdo da aba selecionada */}
+      </div>
+    </>
+  );
+}
+```
+
+## Playground interativo
+
+<StorybookEmbed
+  storyId="components-tab--default"
+  height={200}
+  title="Tab - Playground interativo"
+/>
+
+Documentação técnica completa, com diretrizes, specs, acessibilidade e tokens, no **[Storybook do Tab](https://ocean-ds.github.io/ocean-web/?path=/docs/components-tab--overview)**.
+
+## Quando usar
+
+Use quando a tela tem de **2 a 8 seções paralelas**, cada uma com conteúdo próprio, e a pessoa pode ir para qualquer uma, em qualquer ordem.
+
+## Quando NÃO usar
+
+| Situação                                           | Use no lugar                                  |
+| -------------------------------------------------- | --------------------------------------------- |
+| Só 1 seção                                         | O conteúdo direto, sem abas                   |
+| Filtrar uma mesma lista (Todos, Pendentes, Pagos…) | Filter Bar ([Chips](/components/chips))       |
+| Etapas em sequência, uma depois da outra           | [Steps](/components/steps)                    |
+| Mais de 8 seções                                   | Menu ou navegação de página                   |
+| Aba que não está disponível para a pessoa          | Não mostre a aba: não existe aba desabilitada |
+
+Não combine Tab e Steps na mesma tela: abas não são etapas.
+
+## API
+
+### Props
+
+| Prop            | Tipo                                                    | Padrão | Descrição                                                                                                   |
+| --------------- | ------------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
+| `tabs`          | `{ label: string; count?: number; panelId?: string }[]` | -      | Abas da barra, em ordem. Use de 2 a 8 abas. `count` mostra o contador; `panelId` define o `aria-controls`.  |
+| `selectedIndex` | `number`                                                | -      | Índice da aba selecionada. Fora do intervalo, nenhuma aba fica selecionada e a primeira recebe o foco.      |
+| `onChange`      | `(index: number) => void`                               | -      | Chamado com o índice da aba escolhida por clique ou teclado. Não é chamado no clique da aba já selecionada. |
+| `aria-label`    | `string`                                                | -      | Nome da barra para leitores de tela. Passe quando nenhum título visível nomeia as seções.                   |
+| `id`            | `string`                                                | gerado | Id da barra. Cada aba recebe o id `<id>-tab-<index>`, para o `aria-labelledby` do painel.                   |
+| `className`     | `string`                                                | -      | Classe extra na barra.                                                                                      |
+| `ref`           | `Ref<HTMLDivElement>`                                   | -      | Encaminhado para o elemento da barra (`role="tablist"`). Os demais atributos de `div` também vão para ela.  |
+
+O módulo também exporta `getTabId(id, index)`, que devolve o id de uma aba.
+
+## Comportamento
+
+- **Estados:** inativo (texto e contador cinza), hover e foco de teclado (azul), selecionado (azul, com linha de 2px embaixo). O foco de teclado tem a mesma aparência do hover, sem contorno.
+- **Transição:** na troca de aba, a linha de seleção desliza até a nova aba (300ms) e as cores do texto e do contador mudam suavemente (150ms). Se a aba estiver escondida ou perto da borda, a barra rola com suavidade (400ms) até deixá-la perto do centro. Com `prefers-reduced-motion: reduce`, a troca e a rolagem são imediatas.
+- **Contador:** `count` mostra um Badge pequeno de contagem depois do texto; acima de 99 mostra `99+`.
+- **Texto:** sempre em uma linha; nunca quebra nem é cortado.
+- **Desktop:** cada aba do tamanho do texto, alinhadas à esquerda. Se não couberem, a barra rola para o lado.
+- **Celular (abaixo de 576px):** até 3 abas dividem a largura em partes iguais. Com 4 ou mais, ou com um texto que não cabe, cada aba fica do tamanho do texto e a barra rola, com 32px nas laterais. No celular, coloque o Tab ocupando a largura inteira da tela, sem a margem lateral da página: a linha de baixo vai de borda a borda e as abas que não cabem são cortadas na borda da tela.
+- **Rolagem:** quando a aba selecionada está escondida ou perto da borda, a barra rola com suavidade até deixá-la perto do centro.
+
+## Acessibilidade
+
+| Tecla          | Ação                                                                   |
+| -------------- | ---------------------------------------------------------------------- |
+| `Tab`          | Leva o foco para a aba selecionada e, depois, para fora da barra       |
+| `→` / `←`      | Vai para a próxima ou a anterior e a seleciona (dá a volta nas pontas) |
+| `Home` / `End` | Vai para a primeira ou a última aba e a seleciona                      |
+
+- A barra tem `role="tablist"`; cada aba é um `<button role="tab">` com `aria-selected`.
+- Só a aba selecionada entra na ordem de tabulação (`tabIndex=0`); as outras ficam com `-1`.
+- O contador é lido como parte do nome da aba.
+
+## Classes CSS
+
+| Classe                     | Descrição                                                          |
+| -------------------------- | ------------------------------------------------------------------ |
+| `.ods-tab`                 | Barra, com a linha de baixo                                        |
+| `.ods-tab--fill`           | No celular, as abas dividem a largura                              |
+| `.ods-tab__item`           | Aba                                                                |
+| `.ods-tab__item--selected` | Aba selecionada                                                    |
+| `.ods-tab__content`        | Texto e contador                                                   |
+| `.ods-tab__label`          | Texto da aba                                                       |
+| `.ods-tab__count`          | Contador (Badge)                                                   |
+| `.ods-tab__indicator`      | Linha de seleção única da barra, que desliza até a aba selecionada |
+
+## Links relacionados
+
+- [Chips](/components/chips) - Filter Bar, para filtrar uma lista
+- [Steps](/components/steps) - Para etapas em sequência
+- [Badge](/components/badge) - O contador da aba
