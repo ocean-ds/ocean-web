@@ -1,5 +1,9 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+import {
+  colorInterfaceLightUp,
+  colorInterfaceDarkDown,
+} from '@useblu/ocean-tokens/web/tokens';
 import CornerTag, { CornerTagProps } from '../../../CornerTag/CornerTag';
 
 export type ListContainerHighlight = {
@@ -81,11 +85,13 @@ const ListContainer = React.forwardRef<HTMLDivElement, ListContainerProps>(
         <div
           className="ods-list-container__highlight"
           data-testid="list-container-highlight"
-          style={{ backgroundColor: highlight.backgroundColor ?? '#F3F5FE' }}
+          style={{
+            backgroundColor: highlight.backgroundColor ?? colorInterfaceLightUp,
+          }}
         >
           <p
             className="ods-typography ods-typography__caption"
-            style={{ color: highlight.captionColor ?? '#67697A' }}
+            style={{ color: highlight.captionColor ?? colorInterfaceDarkDown }}
           >
             {highlight.caption}
           </p>

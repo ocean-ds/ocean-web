@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { colorComplementaryPure } from '@useblu/ocean-tokens/web/tokens';
 
 export interface StepsProps {
   /**
@@ -32,14 +33,14 @@ const Steps = ({
             cx={step === 1 ? 9.5 : left + 12}
             cy="10"
             r="5"
-            stroke="#13BDBD"
+            stroke={colorComplementaryPure}
             strokeWidth="2"
           />
           {steps > step && (
             <>
               <path
                 d={step === 1 ? 'M15 10H20' : `M${left + 17} 10H${left + 22}`}
-                stroke="#13BDBD"
+                stroke={colorComplementaryPure}
                 strokeWidth="2"
               />
               <path
@@ -60,8 +61,8 @@ const Steps = ({
             cx={step === 1 ? 10 : left + 12}
             cy="10"
             r="9"
-            fill="#13BDBD"
-            stroke="#13BDBD"
+            fill={colorComplementaryPure}
+            stroke={colorComplementaryPure}
             strokeWidth="2"
           />
 
@@ -80,12 +81,12 @@ const Steps = ({
             <>
               <path
                 d={`M${step === 1 ? 20 : left + 22} 10H${step * 30 + 2}`}
-                stroke="#13BDBD"
+                stroke={colorComplementaryPure}
                 strokeWidth="2"
               />
               <path
                 d={`M${step * 30 + 2} 10L${step * 30 + 7} 10`}
-                stroke="#13BDBD"
+                stroke={colorComplementaryPure}
                 strokeWidth="2"
               />
             </>

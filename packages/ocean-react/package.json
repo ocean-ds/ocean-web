@@ -46,6 +46,7 @@
     "react-use": "^17.5.0"
   },
   "devDependencies": {
+    "@useblu/ocean-tokens": "3.8.0",
     "@types/classnames": "2.3.1",
     "@types/lodash": "^4.14.182",
     "@types/react-modal": "^3.13.1",
