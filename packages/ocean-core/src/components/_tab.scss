@@ -45,6 +45,8 @@
     margin: 0;
     padding: 0 $spacing-inline-xs;
     position: relative;
+    // Motion: Ocean has no motion tokens; the color eases on state change.
+    transition: color 150ms ease;
     white-space: nowrap;
 
     // Keyboard focus looks exactly like hover, without a focus ring.
@@ -69,17 +71,36 @@
     gap: $spacing-inline-xxs;
   }
 
+  &__count .ods-badge__content {
+    transition: background-color 150ms ease;
+  }
+
   &__item:hover &__count .ods-badge__content,
   &__item:focus-visible &__count .ods-badge__content {
     background-color: $color-brand-primary-pure;
   }
 
+  // One line for the bar, moved under the selected tab; it scrolls with the tabs.
   &__indicator {
     background-color: $color-brand-primary-pure;
     bottom: 0;
     height: $border-width-thin;
     left: 0;
+    pointer-events: none;
     position: absolute;
-    right: 0;
+
+    // Ease-in-out cubic, the same curve as the bar scroll; Ocean has no motion tokens.
+    &--animated {
+      transition: transform 300ms cubic-bezier(0.65, 0, 0.35, 1),
+        width 300ms cubic-bezier(0.65, 0, 0.35, 1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__item,
+    &__count .ods-badge__content,
+    &__indicator--animated {
+      transition: none;
+    }
   }
 }

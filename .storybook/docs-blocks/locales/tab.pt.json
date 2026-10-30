@@ -11,11 +11,11 @@
     },
     "withScroll": {
       "title": "With scroll",
-      "text": "Quando as abas não cabem na largura, a barra rola para o lado. A aba selecionada é rolada para ficar visível."
+      "text": "Quando as abas não cabem na largura, a barra rola para o lado. Quando a aba selecionada está escondida ou perto da borda, a barra rola com suavidade até deixá-la perto do centro."
     },
     "mobile": {
       "title": "Mobile",
-      "text": "Abaixo do breakpoint `sm` (576px), até três abas dividem a largura em partes iguais. Com quatro ou mais abas, cada aba fica do tamanho do texto e a barra rola com 32px de cada lado. Abra a story para ver no viewport de celular."
+      "text": "Abaixo do breakpoint `sm` (576px), até três abas dividem a largura em partes iguais. Com quatro ou mais abas, cada aba fica do tamanho do texto e a barra rola com 32px de cada lado. Abra a story para ver no viewport de celular. Use o Tab na largura inteira da tela, sem a margem lateral da página: a linha de baixo vai de borda a borda e as abas são cortadas na borda da tela."
     },
     "longLabels": {
       "title": "Long labels",

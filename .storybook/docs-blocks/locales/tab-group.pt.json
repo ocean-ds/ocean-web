@@ -68,7 +68,7 @@
     "rows": [
       "1|Texto|Sim|Uma linha; nunca quebra nem é cortado.",
       "2|Contador|Não|Badge de contagem pequeno depois do texto.",
-      "3|Linha de seleção|Só na aba selecionada|Ocupa a largura da aba.",
+      "3|Linha de seleção|Só na aba selecionada|Uma linha só na barra; desliza até a aba selecionada e ocupa a largura dela.",
       "4|Divisor|Sim|Linha de baixo em toda a barra."
     ]
   },
@@ -86,7 +86,7 @@
   },
   "behaviors": {
     "title": "Comportamentos",
-    "text": "O Tab tem quatro estados. O foco de teclado fica exatamente igual ao hover, sem contorno.",
+    "text": "O Tab tem quatro estados. O foco de teclado fica exatamente igual ao hover, sem contorno. Na troca, a linha de seleção desliza até a nova aba e as cores mudam suavemente; uma aba escondida ou perto da borda é rolada com suavidade para perto do centro. Com movimento reduzido a troca e a rolagem são imediatas.",
     "columns": ["Estado", "Texto", "Contador", "Linha de seleção"],
     "rows": [
       "Default|Neutro|Neutro|–",

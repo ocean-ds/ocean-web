@@ -68,7 +68,7 @@
     "rows": [
       "1|Label|Yes|One line; never wraps or truncates.",
       "2|Counter|No|Small count Badge after the label.",
-      "3|Selection line|Selected tab only|Spans the width of the tab.",
+      "3|Selection line|Selected tab only|One line for the bar; slides under the selected tab and spans its width.",
       "4|Divider|Yes|Bottom line across the full bar."
     ]
   },
@@ -86,7 +86,7 @@
   },
   "behaviors": {
     "title": "Behaviors",
-    "text": "Tab has four states. Keyboard focus looks exactly like hover, without a focus ring.",
+    "text": "Tab has four states. Keyboard focus looks exactly like hover, without a focus ring. On a change, the selection line slides to the new tab and the colors ease; a hidden tab or one near an edge is scrolled gently toward the center. With reduced motion the change and the scroll are instant.",
     "columns": ["State", "Label", "Counter", "Selection line"],
     "rows": [
       "Default|Neutral|Neutral|–",

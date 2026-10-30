@@ -51,6 +51,16 @@ describe('compiled Tab styles', () => {
     expect(rule('.ods-tab__indicator')).toContain('height: 2px');
   });
 
+  test('eases the changes and turns motion off for reduced motion', () => {
+    expect(rule('.ods-tab__item')).toContain('transition: color 150ms ease');
+    expect(rule('.ods-tab__indicator--animated')).toContain(
+      'transform 300ms cubic-bezier(0.65, 0, 0.35, 1)'
+    );
+    expect(css).toMatch(
+      /@media \(prefers-reduced-motion: reduce\) \{[^}]*\.ods-tab__indicator--animated \{\s*transition: none;/
+    );
+  });
+
   test('draws the divider and the mobile layouts', () => {
     expect(rule('.ods-tab')).toContain('border-bottom: 1px solid #e0e2ee');
     expect(css).toMatch(

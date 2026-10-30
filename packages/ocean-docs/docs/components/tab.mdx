@@ -94,11 +94,12 @@ O módulo também exporta `getTabId(id, index)`, que devolve o id de uma aba.
 ## Comportamento
 
 - **Estados:** inativo (texto e contador cinza), hover e foco de teclado (azul), selecionado (azul, com linha de 2px embaixo). O foco de teclado tem a mesma aparência do hover, sem contorno.
+- **Transição:** na troca de aba, a linha de seleção desliza até a nova aba (300ms) e as cores do texto e do contador mudam suavemente (150ms). Se a aba estiver escondida ou perto da borda, a barra rola com suavidade (400ms) até deixá-la perto do centro. Com `prefers-reduced-motion: reduce`, a troca e a rolagem são imediatas.
 - **Contador:** `count` mostra um Badge pequeno de contagem depois do texto; acima de 99 mostra `99+`.
 - **Texto:** sempre em uma linha; nunca quebra nem é cortado.
 - **Desktop:** cada aba do tamanho do texto, alinhadas à esquerda. Se não couberem, a barra rola para o lado.
-- **Celular (abaixo de 576px):** até 3 abas dividem a largura em partes iguais. Com 4 ou mais, ou com um texto que não cabe, cada aba fica do tamanho do texto e a barra rola, com 32px nas laterais.
-- **Rolagem:** a aba selecionada é rolada para ficar visível.
+- **Celular (abaixo de 576px):** até 3 abas dividem a largura em partes iguais. Com 4 ou mais, ou com um texto que não cabe, cada aba fica do tamanho do texto e a barra rola, com 32px nas laterais. No celular, coloque o Tab ocupando a largura inteira da tela, sem a margem lateral da página: a linha de baixo vai de borda a borda e as abas que não cabem são cortadas na borda da tela.
+- **Rolagem:** quando a aba selecionada está escondida ou perto da borda, a barra rola com suavidade até deixá-la perto do centro.
 
 ## Acessibilidade
 
@@ -114,16 +115,16 @@ O módulo também exporta `getTabId(id, index)`, que devolve o id de uma aba.
 
 ## Classes CSS
 
-| Classe                     | Descrição                             |
-| -------------------------- | ------------------------------------- |
-| `.ods-tab`                 | Barra, com a linha de baixo           |
-| `.ods-tab--fill`           | No celular, as abas dividem a largura |
-| `.ods-tab__item`           | Aba                                   |
-| `.ods-tab__item--selected` | Aba selecionada                       |
-| `.ods-tab__content`        | Texto e contador                      |
-| `.ods-tab__label`          | Texto da aba                          |
-| `.ods-tab__count`          | Contador (Badge)                      |
-| `.ods-tab__indicator`      | Linha de seleção da aba selecionada   |
+| Classe                     | Descrição                                                          |
+| -------------------------- | ------------------------------------------------------------------ |
+| `.ods-tab`                 | Barra, com a linha de baixo                                        |
+| `.ods-tab--fill`           | No celular, as abas dividem a largura                              |
+| `.ods-tab__item`           | Aba                                                                |
+| `.ods-tab__item--selected` | Aba selecionada                                                    |
+| `.ods-tab__content`        | Texto e contador                                                   |
+| `.ods-tab__label`          | Texto da aba                                                       |
+| `.ods-tab__count`          | Contador (Badge)                                                   |
+| `.ods-tab__indicator`      | Linha de seleção única da barra, que desliza até a aba selecionada |
 
 ## Links relacionados
 

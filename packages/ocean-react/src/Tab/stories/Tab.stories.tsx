@@ -35,7 +35,9 @@ export default meta;
 
 type Story = StoryObj<StoryArgs>;
 
+// On mobile the bar spans the whole screen: no canvas padding around it.
 const mobile = {
+  layout: 'fullscreen',
   viewport: { defaultViewport: 'galaxys5' },
   chromatic: { viewports: [375] },
 };

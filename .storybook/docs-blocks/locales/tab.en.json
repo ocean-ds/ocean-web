@@ -11,11 +11,11 @@
     },
     "withScroll": {
       "title": "With scroll",
-      "text": "When the tabs do not fit the width, the bar scrolls sideways. The selected tab is scrolled into view."
+      "text": "When the tabs do not fit the width, the bar scrolls sideways. When the selected tab is hidden or near an edge, the bar scrolls gently to bring it toward the center."
     },
     "mobile": {
       "title": "Mobile",
-      "text": "Below the `sm` breakpoint (576px), up to three tabs share the width equally. With four or more tabs, the tabs size to their labels and the bar scrolls with 32px on each side. Open the story to see it in the mobile viewport."
+      "text": "Below the `sm` breakpoint (576px), up to three tabs share the width equally. With four or more tabs, the tabs size to their labels and the bar scrolls with 32px on each side. Open the story to see it in the mobile viewport. Place the Tab across the full screen width, without the page side margin: the bottom line runs edge to edge and tabs are cut at the screen edge."
     },
     "longLabels": {
       "title": "Long labels",
