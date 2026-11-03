@@ -1,0 +1,57 @@
+name: Propagate to mfe-core
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag da release a propagar, ex. v1.152.1
+        required: true
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
+  RELEASE_URL: ${{ github.event.release.html_url || format('{0}/releases/tag/{1}', github.event.repository.html_url, inputs.tag) }}
+
+jobs:
+  bump:
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.MFE_CORE_APP_ID }}
+          private-key: ${{ secrets.MFE_CORE_APP_PRIVATE_KEY }}
+          owner: Pagnet
+          repositories: mfe-core
+          permission-contents: write
+          permission-pull-requests: write
+
+      - uses: actions/checkout@v4
+        with:
+          repository: Pagnet/mfe-core
+          token: ${{ steps.app.outputs.token }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: |
+          VERSION="${TAG#v}"
+          CORE=$(npm view @useblu/ocean-core version)
+          REACT=$(npm view @useblu/ocean-react version)
+          [ "$CORE" = "$VERSION" ] || [ "$REACT" = "$VERSION" ] || { echo "npm ainda não tem $VERSION (ocean-core $CORE, ocean-react $REACT)"; exit 1; }
+          yarn upgrade "@useblu/ocean-core@^$CORE" "@useblu/ocean-react@^$REACT"
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ steps.app.outputs.token }}
+          branch: chore/ocean-release
+          commit-message: "chore(deps): Ocean ${{ env.TAG }}"
+          title: "chore(deps): Ocean ${{ env.TAG }}"
+          labels: dependencies
+          body: |
+            Bump automático de `@useblu/ocean-core` e `@useblu/ocean-react` a partir da release ${{ env.RELEASE_URL }}.
+
+            ${{ github.event.release.body }}
