@@ -70,7 +70,7 @@
 
     &::after {
       border: 0;
-      border-radius: 1px;
+      border-radius: $border-radius-none;
       border-top: $border-width-thin solid $color-interface-light-pure;
       height: 0;
       margin: 0;

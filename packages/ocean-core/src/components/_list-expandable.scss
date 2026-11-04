@@ -148,7 +148,7 @@
 
     &:focus-visible {
       outline: $border-width-thin solid $color-brand-primary-pure;
-      outline-offset: -2px;
+      outline-offset: -$border-width-thin;
     }
   }
 
