@@ -47,7 +47,7 @@
     align-items: center;
     background-color: $color-interface-light-pure;
     border: hidden;
-    border-radius: 0 0 7px 7px;
+    border-radius: 0 0 $border-radius-sm $border-radius-sm;
     box-sizing: border-box;
     color: $color-brand-primary-pure;
     display: flex;
@@ -62,7 +62,7 @@
       font-family: $font-family-base;
       font-size: $font-size-xxs;
       font-weight: $font-weight-bold;
-      line-height: 15.4px;
+      line-height: $line-height-tight;
     }
 
     &--right {

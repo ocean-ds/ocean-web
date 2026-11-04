@@ -7,7 +7,7 @@
 
   &__dot {
     background-color: $color-interface-light-deep;
-    border-radius: 3px;
+    border-radius: $border-radius-tiny;
     cursor: pointer;
     height: 6px;
     transition: all 250ms ease-in-out;

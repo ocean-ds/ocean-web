@@ -63,7 +63,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
       font-family: $font-family-base;
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
-      line-height: 15px;
+      line-height: $line-height-tight;
       margin: 0 $spacing-inline-xxxs $spacing-inline-xxs 0;
       min-height: 22px;
       padding: 0;
@@ -170,7 +170,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
       font-family: $font-family-highlight;
       font-size: $font-size-xs;
       font-weight: $font-weight-bold;
-      line-height: 17.6px;
+      line-height: $line-height-tight;
       margin: 0;
       text-align: center;
       text-transform: capitalize;

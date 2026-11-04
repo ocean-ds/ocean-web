@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import { DayPicker, CaptionProps } from 'react-day-picker';
 import { CalendarOutline } from '@useblu/ocean-icons-react';
+import { colorInterfaceDarkUp } from '@useblu/ocean-tokens/web/tokens';
 import Input from '../Input';
 
 import useDateRange from './hooks/useDateRange';
@@ -102,7 +103,9 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 value={values.from}
                 onChange={(editable && inputChange) || undefined}
                 placeholder={inputPlaceholder}
-                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+                adornment={
+                  <CalendarOutline size={20} stroke={colorInterfaceDarkUp} />
+                }
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
@@ -133,7 +136,9 @@ const DatePickerRange = React.forwardRef<HTMLDivElement, DatePickerProps>(
                 value={values.to}
                 onChange={(editable && inputChange) || undefined}
                 placeholder={inputPlaceholder}
-                adornment={<CalendarOutline size={20} stroke="#B6B9CC" />}
+                adornment={
+                  <CalendarOutline size={20} stroke={colorInterfaceDarkUp} />
+                }
                 autoComplete="off"
                 readOnly={!editable}
                 disabled={disabled}
