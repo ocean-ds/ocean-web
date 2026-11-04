@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 @mixin complementary-tag($foreground) {
-  background-color: $color-status-positive-up;
+  background-color: #edfdfd;
 
   .ods-tag__icon {
     fill: $foreground;
