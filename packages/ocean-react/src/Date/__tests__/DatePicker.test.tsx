@@ -78,7 +78,7 @@ test('renders element properly', () => {
                     <svg
                       fill="none"
                       height="20"
-                      stroke="#B6B9CC"
+                      stroke="rgb(170, 173, 192)"
                       viewBox="0 0 24 24"
                       width="20"
                       xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,8 @@
 import React, { ReactElement } from 'react';
-import { colorComplementaryPure } from '@useblu/ocean-tokens/web/tokens';
+import {
+  colorComplementaryPure,
+  colorInterfaceLightUp,
+} from '@useblu/ocean-tokens/web/tokens';
 
 export interface StepsProps {
   /**
@@ -45,7 +48,7 @@ const Steps = ({
               />
               <path
                 d={step === 1 ? 'M20 10H37' : `M${left + 22} 10H${left + 38}`}
-                stroke="#EBECF5"
+                stroke={colorInterfaceLightUp}
                 strokeWidth="2"
               />
             </>
@@ -101,13 +104,13 @@ const Steps = ({
           cx={step === 1 ? 9.5 : left + 12}
           cy="10"
           r="5"
-          stroke="#EBECF5"
+          stroke={colorInterfaceLightUp}
           strokeWidth="2"
         />
         {steps > step && (
           <path
             d={step === 1 ? 'M15 10H37' : `M${left + 17} 10H${left + 38}`}
-            stroke="#EBECF5"
+            stroke={colorInterfaceLightUp}
             strokeWidth="2"
           />
         )}
