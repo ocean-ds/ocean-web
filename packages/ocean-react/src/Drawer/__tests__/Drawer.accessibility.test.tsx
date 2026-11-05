@@ -178,3 +178,34 @@ test('modal panel is laid out closed before opening and stays until slide-out en
     layout.mockRestore();
   }
 });
+
+test('modal reopened during slide-out opens the still-mounted panel again', () => {
+  jest.useFakeTimers();
+  try {
+    const renderDrawer = (open: boolean) => (
+      <Drawer modal open={open} overlayClose={jest.fn()} aria-label="Escolha">
+        Conteúdo
+      </Drawer>
+    );
+    const { rerender } = render(renderDrawer(false));
+    rerender(renderDrawer(true));
+    const panel = document.querySelector('.ods-drawer') as HTMLElement;
+    rerender(renderDrawer(false));
+    act(() => {
+      jest.advanceTimersByTime(300);
+    });
+    rerender(renderDrawer(true));
+    expect(panel).toHaveClass('ods-drawer--open');
+    expect(screen.getByTestId('drawer-overlay')).toHaveClass(
+      'ods-overlay--open'
+    );
+    act(() => {
+      jest.advanceTimersByTime(600);
+    });
+    expect(panel).toBeInTheDocument();
+    expect(panel).toHaveClass('ods-drawer--open');
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  } finally {
+    jest.useRealTimers();
+  }
+});

@@ -152,3 +152,28 @@ test('renders a Hello World tooltip', () => {
     </div>
   `);
 });
+
+test('helperTextId and helperTextRole are not forwarded to the root element', () => {
+  const consoleError = jest.spyOn(console, 'error').mockImplementation();
+  try {
+    const { container } = render(
+      <FormControl
+        role="radiogroup"
+        helperText="Escolha uma opção."
+        helperTextId="group-error"
+        helperTextRole="alert"
+        error
+      >
+        <input type="radio" name="option" aria-label="Opção" />
+      </FormControl>
+    );
+    const root = container.firstChild as HTMLElement;
+    expect(root).not.toHaveAttribute('helperTextId');
+    expect(root).not.toHaveAttribute('helpertextid');
+    expect(root).not.toHaveAttribute('helpertextrole');
+    expect(screen.getByRole('alert')).toHaveAttribute('id', 'group-error');
+    expect(consoleError).not.toHaveBeenCalled();
+  } finally {
+    consoleError.mockRestore();
+  }
+});

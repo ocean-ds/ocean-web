@@ -129,8 +129,9 @@ const Drawer = ({
    */
   useLayoutEffect(() => {
     if (!animated || entered === open) return;
-    // Modal: o ReactModal monta o conteúdo depois; a abertura vem em onAfterOpen.
-    if (modal && open) return;
+    // Modal: o ReactModal monta o conteúdo depois e a abertura vem em
+    // onAfterOpen; reaberto durante a saída, o painel ainda montado reabre aqui.
+    if (modal && open && !panelRef.current) return;
     if (open) panelRef.current?.getBoundingClientRect();
     setEntered(open);
   }, [animated, modal, open, entered]);
