@@ -26,6 +26,6 @@
   &__highlight {
     border-radius: 0 0 $border-radius-sm $border-radius-sm;
     margin-top: -$spacing-stack-xxs;
-    padding: 18px $spacing-inline-xs 10px;
+    padding: 18px $spacing-inline-xs $spacing-inset-xs;
   }
 }

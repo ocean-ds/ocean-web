@@ -43,7 +43,7 @@ $arrow-directions: (
   @include normalized-text();
 
   background: $color-interface-dark-deep;
-  border-radius: 2px;
+  border-radius: $border-radius-sm;
   border-radius: $border-radius-sm;
   color: $color-interface-light-pure;
   content: attr(aria-label);

@@ -1,8 +1,8 @@
 $drawer-stack-margin: $spacing-stack-xs;
 $drawer-scrim-fade: 120ms;
 $drawer-scrim-delay: 280ms;
-$drawer-scrim-color: rgba(0, 0, 0, 0.5);
-$drawer-dim-near: 0.48;
+$drawer-scrim-color: rgba($color-interface-dark-pure, $opacity-level-medium);
+$drawer-dim-near: $opacity-level-medium;
 
 .ods-overlay {
   background-color: $drawer-scrim-color;
@@ -80,8 +80,7 @@ $drawer-dim-near: 0.48;
   }
 
   &--open {
-    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
-      0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+    box-shadow: $shadow-level-4;
     transform: translateX(0);
     transition: all 200ms ease-out 0ms;
     visibility: visible;
