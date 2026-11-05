@@ -300,7 +300,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     &:hover::after {
       align-items: center;
       border: $border-width-hairline solid $color-interface-dark-up;
-      border-radius: 20px;
+      border-radius: $border-radius-circular;
       box-sizing: border-box;
       content: '';
       display: flex;
@@ -330,7 +330,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     &:hover::after {
       align-items: center;
       border: $border-width-hairline solid $color-interface-dark-up;
-      border-radius: 20px;
+      border-radius: $border-radius-circular;
       content: '';
       display: flex;
       height: 40px;
@@ -353,7 +353,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     ::after {
       align-items: center;
       background-color: $color-complementary-pure;
-      border-radius: 20px;
+      border-radius: $border-radius-circular;
       content: '';
       display: flex;
       height: 40px;
@@ -375,7 +375,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     ::after {
       align-items: center;
       background-color: $color-complementary-pure;
-      border-radius: 20px;
+      border-radius: $border-radius-circular;
       content: '';
       display: flex;
       height: 40px;
@@ -397,7 +397,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     ::after {
       align-items: center;
       background-color: $color-complementary-pure;
-      border-radius: 20px;
+      border-radius: $border-radius-circular;
       content: '';
       display: flex;
       height: 40px;
