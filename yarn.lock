@@ -6912,10 +6912,10 @@
   resolved "https://registry.yarnpkg.com/@useblu/ocean-icons-react/-/ocean-icons-react-1.23.1.tgz#f893fe6a84ac1eec091424b81963108fba724adb"
   integrity sha512-ZEJqimv8bXpx22CNGCGvu3SDLYnvXRi4CTlhvfA5Hx5jGGS3c5lA9r7exEE2cCQ5YVmrq5aShAO2zy+c11nc9w==
 
-"@useblu/ocean-tokens@3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@useblu/ocean-tokens/-/ocean-tokens-3.8.0.tgz#5da116a0a2a513d79e20865c246fde4113963fa1"
-  integrity sha512-BGFdz/QnTaJNCQyamyoBXHOzEKlGKaTQ5OKVCjCeGz4ZPmTbNMFY+0blTvFUzq7rtpAZkzeLR9Wz+KBWZ2AfUA==
+"@useblu/ocean-tokens@3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@useblu/ocean-tokens/-/ocean-tokens-3.10.0.tgz#5a92f493d882b7ea214f69ff54d926267ddc1a73"
+  integrity sha512-Fuyj+AMvg6/5TfRgLnejz/Slbhn9NE2h2eL2FDiP8ZnTggQpQBhpUQoui0vgsELQe16MV+QESxPp6kzd5c8q2Q==
   dependencies:
     gulp "^4.0.2"
     gulp-dom "^1.0.0"

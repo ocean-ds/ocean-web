@@ -1,4 +1,4 @@
-$background-custom: rgba(176, 245, 245, 0.24) 50%,
+$background-custom: rgba($color-complementary-up, $opacity-level-soft) 50%,
   $color-interface-light-pure 50%;
 
 .ods-date-background {
@@ -325,7 +325,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   &__selected {
-    background-color: rgba($color-complementary-up, 0.24);
+    background-color: rgba($color-complementary-up, $opacity-level-soft);
     position: relative;
 
     &:hover::after {
@@ -413,6 +413,6 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
   }
 
   &__selectedMiddle {
-    background-color: rgba($color-complementary-up, 0.24);
+    background-color: rgba($color-complementary-up, $opacity-level-soft);
   }
 }
