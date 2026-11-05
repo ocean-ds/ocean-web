@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import Drawer from '../Drawer';
 
 const Example = (): React.ReactElement => {
@@ -128,4 +134,47 @@ test('CT-6: the legacy drawer keeps its DOM and hides only when closed', () => {
   );
   expect(screen.getByTestId('drawer-overlay')).not.toHaveAttribute('inert');
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+test('modal panel is laid out closed before opening and stays until slide-out ends', () => {
+  const layoutClasses: string[] = [];
+  const layout = jest
+    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+    .mockImplementation(function record(this: HTMLElement) {
+      if (this.classList.contains('ods-drawer'))
+        layoutClasses.push(this.className);
+      return {} as DOMRect;
+    });
+  jest.useFakeTimers();
+  try {
+    const { rerender } = render(
+      <Drawer modal open={false} overlayClose={jest.fn()} aria-label="Escolha">
+        Conteúdo
+      </Drawer>
+    );
+    rerender(
+      <Drawer modal open overlayClose={jest.fn()} aria-label="Escolha">
+        Conteúdo
+      </Drawer>
+    );
+    const panel = document.querySelector('.ods-drawer') as HTMLElement;
+    expect(layoutClasses).toHaveLength(1);
+    expect(layoutClasses[0]).not.toContain('ods-drawer--open');
+    expect(panel).toHaveClass('ods-drawer--open');
+
+    rerender(
+      <Drawer modal open={false} overlayClose={jest.fn()} aria-label="Escolha">
+        Conteúdo
+      </Drawer>
+    );
+    expect(panel).toBeInTheDocument();
+    expect(panel).not.toHaveClass('ods-drawer--open');
+    act(() => {
+      jest.advanceTimersByTime(600);
+    });
+    expect(document.querySelector('.ods-drawer')).not.toBeInTheDocument();
+  } finally {
+    jest.useRealTimers();
+    layout.mockRestore();
+  }
 });

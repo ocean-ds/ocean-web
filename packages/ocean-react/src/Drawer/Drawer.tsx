@@ -15,6 +15,9 @@ import Button from '../Button/Button';
 import IconButton from '../IconButton/IconButton';
 import Typography from '../Typography/Typography';
 
+/** Mantém o conteúdo montado até o fim do slide de saída ($motion-duration-gentle). */
+const MODAL_CLOSE_TIMEOUT_MS = 600;
+
 export interface DrawerProps extends React.AriaAttributes {
   children: React.ReactNode;
   open: boolean;
@@ -116,7 +119,8 @@ const Drawer = ({
   const closeRef = useRef<HTMLButtonElement>(null);
   const stacked = onDimClick !== undefined;
   const dimmed = stacked && dim !== undefined;
-  const [entered, setEntered] = useState(!floating);
+  const animated = floating || modal;
+  const [entered, setEntered] = useState(!animated);
 
   /*
    * Modo flutuante: uma Drawer montada já com `open` nasce fechada por um
@@ -124,12 +128,19 @@ const Drawer = ({
    * deslizar da borda em vez de aparecer pronta.
    */
   useLayoutEffect(() => {
-    if (!floating || entered === open) return;
+    if (!animated || entered === open) return;
+    // Modal: o ReactModal monta o conteúdo depois; a abertura vem em onAfterOpen.
+    if (modal && open) return;
     if (open) panelRef.current?.getBoundingClientRect();
     setEntered(open);
-  }, [floating, open, entered]);
+  }, [animated, modal, open, entered]);
 
-  const visuallyOpen = floating ? entered : open;
+  const handleModalAfterOpen = () => {
+    panelRef.current?.getBoundingClientRect();
+    setEntered(true);
+  };
+
+  const visuallyOpen = animated ? entered : open;
 
   useEffect(() => {
     bodyRef.current?.toggleAttribute('inert', dimmed);
@@ -327,6 +338,8 @@ const Drawer = ({
       }}
       ariaHideApp={false}
       shouldCloseOnOverlayClick={false}
+      closeTimeoutMS={MODAL_CLOSE_TIMEOUT_MS}
+      onAfterOpen={handleModalAfterOpen}
       onRequestClose={onDrawerClose ?? (() => overlayClose())}
     >
       {drawer}
