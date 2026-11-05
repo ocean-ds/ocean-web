@@ -42,7 +42,7 @@ describe('compiled styles', () => {
 
   test('complementary uses complementary deep for text and icon', () => {
     expect(rule('.ods-tag--complementary')).toMatch(
-      /background-color:\s*#edfdfd/i
+      /background-color:\s*#ecfafa/i
     );
     expect(rule('.ods-tag--complementary .ods-tag__content')).toMatch(
       /color:\s*(rgb\(28, 153, 153\)|#1c9999)/i
