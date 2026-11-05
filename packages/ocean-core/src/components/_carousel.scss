@@ -48,7 +48,7 @@
   box-shadow: $shadow-level-1;
   display: block;
   margin: 0;
-  margin-bottom: 15px;
+  margin-bottom: $spacing-stack-xs;
   overflow: hidden;
   padding: 0;
   position: relative;
@@ -190,7 +190,7 @@
   justify-content: center;
   line-height: 0;
   outline: none;
-  padding: 5px;
+  padding: $spacing-inset-xxs;
   width: 8px;
 }
 

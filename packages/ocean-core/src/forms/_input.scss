@@ -42,7 +42,7 @@ $x-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdC
     border-radius: $border-radius-circular;
     cursor: pointer;
     height: 20px;
-    padding: 6px;
+    padding: $spacing-inset-xxs;
     transition: background-color 250ms ease-out;
     width: 20px;
   }

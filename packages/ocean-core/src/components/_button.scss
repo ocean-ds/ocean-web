@@ -80,7 +80,7 @@
     }
 
     &:active {
-      background: linear-gradient(0deg, rgba($color-interface-dark-pure, 0.12) 0%, rgba($color-interface-dark-pure, 0.12) 100%), $color-status-warning-deep;
+      background: linear-gradient(0deg, rgba($color-interface-dark-pure, $opacity-level-light) 0%, rgba($color-interface-dark-pure, $opacity-level-light) 100%), $color-status-warning-deep;
       border-radius: $border-radius-pill;
     }
   }

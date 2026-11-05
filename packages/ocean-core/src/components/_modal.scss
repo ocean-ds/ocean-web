@@ -20,10 +20,10 @@
   }
 
   &__header {
-    padding: 18px 18px 10px;
+    padding: $spacing-inset-sm $spacing-inset-sm $spacing-inset-xs;
 
     @include media-breakpoint-down(md) {
-      padding: 14px 14px 10px;
+      padding: $spacing-inset-sm $spacing-inset-sm $spacing-inset-xs;
     }
 
     &-close {

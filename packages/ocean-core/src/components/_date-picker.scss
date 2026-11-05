@@ -261,6 +261,7 @@ $background-custom: rgba(176, 245, 245, 0.24) 50%,
     display: flex;
     height: 40px;
     justify-content: center;
+    // Registered exception: 2px is off-scale; review in Figma.
     margin: 2px 0;
     outline: 0;
     padding: 0;

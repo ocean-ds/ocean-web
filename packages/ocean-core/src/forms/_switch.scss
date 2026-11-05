@@ -24,6 +24,7 @@
     box-sizing: border-box;
     cursor: pointer;
     left: 0;
+    // Registered exception: 2px is off-scale; review in Figma.
     padding: 2px;
     position: absolute;
     right: 0;
