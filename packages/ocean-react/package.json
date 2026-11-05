@@ -1,6 +1,6 @@
 {
   "name": "@useblu/ocean-react",
-  "version": "1.151.0",
+  "version": "1.152.3",
   "private": false,
   "description": "React components that implement Ocean's Design System.",
   "main": "dist/index.js",
@@ -50,7 +50,8 @@
     "@types/lodash": "^4.14.182",
     "@types/react-modal": "^3.13.1",
     "@types/react-slick": "^0.23.6",
-    "@types/rollup-plugin-peer-deps-external": "^2.2.0"
+    "@types/rollup-plugin-peer-deps-external": "^2.2.0",
+    "@useblu/ocean-tokens": "3.8.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

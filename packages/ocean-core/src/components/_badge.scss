@@ -7,7 +7,7 @@
   &__content {
     align-items: center;
     background-color: $color-highlight-pure;
-    border-radius: 40px;
+    border-radius: $border-radius-pill;
     box-sizing: border-box;
     color: $color-interface-light-pure;
     display: flex;
@@ -28,7 +28,7 @@
   &--small .ods-badge__content {
     font-size: 10px;
     height: 16px;
-    line-height: 16px;
+    line-height: $line-height-comfy;
     min-width: 16px;
   }
 
@@ -43,18 +43,18 @@
   }
 
   &--small &__text {
-    border-radius: 40px;
-    padding: 0 4px;
+    border-radius: $border-radius-pill;
+    padding: 0 $spacing-inline-xxxs;
     width: auto;
   }
 
   &--overflow .ods-badge__content {
-    padding: 0 4px;
+    padding: 0 $spacing-inline-xxxs;
     width: auto;
   }
 
   &--overflow .ods-badge__content {
-    padding: 0 4px;
+    padding: 0 $spacing-inline-xxxs;
     width: auto;
   }
 

@@ -20,11 +20,11 @@
   }
 
   &__stepper-controls_plus {
-    padding-right: 4px;
+    padding-right: $spacing-inline-xxxs;
   }
 
   &__stepper-controls_minus {
-    padding-left: 4px;
+    padding-left: $spacing-inline-xxxs;
   }
 
   .ods-input--amount--zero {

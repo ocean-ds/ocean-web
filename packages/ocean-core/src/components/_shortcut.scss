@@ -80,7 +80,7 @@
 
   &__content {
     display: flex;
-    gap: 8px;
+    gap: $spacing-inline-xxs;
 
     &--vertical {
       flex-direction: column;

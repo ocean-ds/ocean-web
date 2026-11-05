@@ -72,7 +72,7 @@ $slide-animate-timer: 150ms;
   &__content {
     display: flex;
     max-width: 328px;
-    padding: 12px $spacing-inline-xs;
+    padding: $spacing-stack-xxs-extra $spacing-inline-xs;
     width: 328px;
     z-index: 1;
   }

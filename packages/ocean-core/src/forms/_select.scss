@@ -67,7 +67,7 @@
 
   &__listbox {
     background-color: $color-interface-light-pure;
-    border: solid 1px $color-interface-light-deep;
+    border: solid $border-width-hairline $color-interface-light-deep;
     border-radius: $border-radius-sm;
     box-shadow: $shadow-level-2;
     list-style: none;

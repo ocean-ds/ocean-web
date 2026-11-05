@@ -1037,3 +1037,20 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
   transform: translateZ(0);
   width: 100%;
 }
+
+// Tab examples: the bar spans the stage; the narrow frame shows the horizontal scroll.
+.odoc-tab-example {
+  width: 100%;
+}
+
+.odoc-tab-example--narrow {
+  max-width: $doc-frame-width;
+}
+
+.odoc-matrix--tab {
+  grid-template-columns: ($spacing-inline-xxxl + $spacing-inline-lg) repeat(
+      var(--odoc-columns),
+      minmax(0, 1fr)
+    );
+  width: 100%;
+}

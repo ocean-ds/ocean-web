@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { InformationCircle } from '@useblu/ocean-icons-react';
+import { colorInterfaceDarkUp } from '@useblu/ocean-tokens/web/tokens';
 import FormLabel from '../FormLabel';
 
 export type FormControlProps = {
@@ -91,7 +92,7 @@ const FormControl: React.FC<FormControlProps> = ({
               className="ods-form-control__icon ods-tooltip"
               data-tooltip-pos="up-left"
             >
-              <InformationCircle size={16} color="#B6B9CC" />{' '}
+              <InformationCircle size={16} color={colorInterfaceDarkUp} />{' '}
             </div>
           )}
         </div>

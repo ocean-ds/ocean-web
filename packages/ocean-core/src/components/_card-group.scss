@@ -1,5 +1,5 @@
 .ods-card-group {
-  border: 1px solid $color-interface-light-down;
+  border: $border-width-hairline solid $color-interface-light-down;
   border-radius: $border-radius-sm;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
 
   &--header {
     border: hidden;
-    border-bottom: 1px solid $color-interface-light-down;
+    border-bottom: $border-width-hairline solid $color-interface-light-down;
     border-radius: 0;
   }
 
@@ -47,7 +47,7 @@
     align-items: center;
     background-color: $color-interface-light-pure;
     border: hidden;
-    border-radius: 0 0 7px 7px;
+    border-radius: 0 0 $border-radius-sm $border-radius-sm;
     box-sizing: border-box;
     color: $color-brand-primary-pure;
     display: flex;
@@ -62,7 +62,7 @@
       font-family: $font-family-base;
       font-size: $font-size-xxs;
       font-weight: $font-weight-bold;
-      line-height: 15.4px;
+      line-height: $line-height-tight;
     }
 
     &--right {

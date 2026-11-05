@@ -126,7 +126,7 @@ test('renders a Hello World tooltip', () => {
           data-tooltip-pos="up-left"
         >
           <svg
-            color="#B6B9CC"
+            color="rgb(170, 173, 192)"
             fill="currentColor"
             height="16"
             viewBox="0 0 20 20"

@@ -95,6 +95,9 @@ export * from './SuccessScreen';
 export { default as Steps } from './Steps';
 export * from './Steps';
 
+export { default as Tab } from './Tab';
+export * from './Tab';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 

@@ -57,7 +57,7 @@
   &__title {
     font-size: $font-size-xxs;
     font-weight: $font-weight-extrabold;
-    line-height: 1.32;
+    line-height: $line-height-loose;
   }
 
   &__description {
@@ -150,7 +150,7 @@
     font-size: $font-size-xxs;
     font-weight: $font-weight-extrabold;
     height: 20px;
-    line-height: 1.32;
+    line-height: $line-height-loose;
     margin: 0 0 $spacing-stack-xxs;
   }
 

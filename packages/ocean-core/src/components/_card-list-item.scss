@@ -145,7 +145,7 @@
   &__circle {
     animation: pulse 1.5s infinite ease-in-out;
     background-color: $color-interface-light-up;
-    border-radius: 50%;
+    border-radius: $border-radius-circular;
     height: $spacing-stack-lg;
     width: $spacing-stack-lg;
   }

@@ -27,7 +27,7 @@
   &--on-color {
     svg circle,
     .ods-progress__track {
-      stroke: rgba(255, 255, 255, 0.4);
+      stroke: rgba($color-interface-light-pure, $opacity-level-medium);
     }
 
     svg path,

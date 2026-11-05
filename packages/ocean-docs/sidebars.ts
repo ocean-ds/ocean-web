@@ -68,6 +68,7 @@ const sidebars: SidebarsConfig = {
         'components/subheader',
         'components/success-screen',
         'components/switch',
+        'components/tab',
         'components/tag',
         'components/textarea',
         'components/textlistitem',

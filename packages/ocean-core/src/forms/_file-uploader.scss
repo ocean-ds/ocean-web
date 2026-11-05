@@ -10,32 +10,32 @@
   }
 
   &__dropzone {
-    margin-bottom: 8px;
+    margin-bottom: $spacing-stack-xxs;
     width: 100%;
   }
 
   &__trigger {
     align-items: center;
     background: $color-interface-light-pure;
-    border: 1px dashed $color-interface-light-deep;
-    border-radius: 8px;
+    border: $border-width-hairline dashed $color-interface-light-deep;
+    border-radius: $border-radius-sm;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 128px;
-    padding: 24px 16px;
+    padding: $spacing-stack-sm $spacing-inline-xs;
     width: 100%;
 
     &--drag {
       background: $color-interface-light-up;
-      border: 1px dashed $color-brand-primary-pure;
+      border: $border-width-hairline dashed $color-brand-primary-pure;
     }
   }
 
   &--error {
     .ods-file-uploader__trigger {
-      border: 1px dashed $color-status-negative-pure;
+      border: $border-width-hairline dashed $color-status-negative-pure;
     }
   }
 
@@ -46,10 +46,10 @@
   &__title {
     color: $color-interface-dark-deep;
     display: block;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-regular;
     line-height: 21px;
-    margin: 8px 0;
+    margin: $spacing-stack-xxs 0;
     text-align: center;
 
     @include media-breakpoint-down(sm) {
@@ -60,24 +60,24 @@
   &__title--mobile {
     color: $color-interface-dark-deep;
     display: block;
-    font-size: 14px;
+    font-size: $font-size-xxs;
     line-height: 21px;
-    margin: 8px 0;
+    margin: $spacing-stack-xxs 0;
     text-align: center;
     @include media-breakpoint-up(sm) {
       display: none;
     }
 
     a {
-      font-size: 14px;
-      margin-left: 4px;
+      font-size: $font-size-xxs;
+      margin-left: $spacing-inline-xxxs;
       white-space: nowrap;
     }
   }
 
   &__title a {
-    font-size: 14px;
-    margin-left: 4px;
+    font-size: $font-size-xxs;
+    margin-left: $spacing-inline-xxxs;
   }
 
   &__title a:hover {
@@ -89,8 +89,8 @@
     align-items: center;
     color: $color-interface-dark-up;
     display: flex;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: $font-size-xxxs;
+    font-weight: $font-weight-regular;
     line-height: 18px;
     margin: 0;
     text-align: center;
@@ -120,15 +120,15 @@
     align-items: center;
     animation: ods-file-animation 0.2s linear;
     background: $color-interface-light-pure;
-    border: 1px solid $color-interface-light-deep;
-    border-radius: 8px;
+    border: $border-width-hairline solid $color-interface-light-deep;
+    border-radius: $border-radius-sm;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     height: 48px;
     justify-content: space-between;
-    margin-top: 8px;
-    padding: 0 4px;
+    margin-top: $spacing-stack-xxs;
+    padding: 0 $spacing-inline-xxxs;
     width: 100%;
 
     &.removed {
@@ -137,24 +137,24 @@
   }
 
   &__file--warning {
-    border: 1px solid $color-status-warning-deep;
+    border: $border-width-hairline solid $color-status-warning-deep;
   }
 
   &__file--success {
-    border: 1px solid $color-brand-primary-up;
+    border: $border-width-hairline solid $color-brand-primary-up;
   }
 
   &__file--idle {
-    border: 1px solid $color-interface-light-down;
+    border: $border-width-hairline solid $color-interface-light-down;
   }
 
   &__file--loading {
-    border: 1px solid $color-interface-light-down;
+    border: $border-width-hairline solid $color-interface-light-down;
   }
 
   &__file--idle &__file-status {
     color: $color-brand-primary-up;
-    opacity: 0.4;
+    opacity: $opacity-level-medium;
   }
 
   &__file--warning &__file-status {
@@ -166,7 +166,7 @@
   }
 
   &__file--error {
-    border: 1px solid $color-status-negative-pure;
+    border: $border-width-hairline solid $color-status-negative-pure;
   }
 
   &__file--error &__file-status {
@@ -189,11 +189,11 @@
 
   &__warning_message,
   &__error_message {
-    font-size: 12px;
+    font-size: $font-size-xxxs;
     font-style: normal;
-    font-weight: 400;
+    font-weight: $font-weight-regular;
     line-height: 18px;
-    margin: 4px 0;
+    margin: $spacing-stack-xxxs 0;
     width: 100%;
   }
 
@@ -206,11 +206,11 @@
   }
 
   &__file-name {
-    color: #393b47;
-    font-size: 14px;
-    font-weight: 400;
+    color: $color-interface-dark-deep;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-regular;
     line-height: 21px;
-    margin: 0 8px 0 0;
+    margin: 0 $spacing-inline-xxs 0 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -228,7 +228,7 @@
   &__file-status {
     display: flex;
     justify-content: center;
-    margin: 0 8px;
+    margin: 0 $spacing-inline-xxs;
 
     svg {
       height: 20px;

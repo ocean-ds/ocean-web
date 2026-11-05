@@ -67,8 +67,8 @@
     .ods-transaction-list-item__level1 {
       color: $color-interface-dark-down;
       font-family: $font-family-base;
-      font-size: 16px;
-      font-weight: 400;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-regular;
     }
 
     .ods-transaction-list-item__icon {
@@ -126,7 +126,7 @@
 }
 
 .ods-transaction-list-item__information--with-icon {
-  margin: 0 $spacing-inline-xs 0 12px;
+  margin: 0 $spacing-inline-xs 0 $spacing-inline-xxs-extra;
 }
 
 .ods-transaction-list-item__sub-information {
@@ -209,7 +209,7 @@
 
 .ods-transaction-list-item__chevron {
   color: $color-interface-dark-up;
-  margin-left: 12px;
+  margin-left: $spacing-inline-xxs-extra;
   min-height: 20px;
   min-width: 20px;
   transition: transform 0.3s ease;

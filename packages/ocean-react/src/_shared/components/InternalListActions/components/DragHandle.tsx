@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { colorInterfaceLightDeep } from '@useblu/ocean-tokens/web/tokens';
 
 interface DragHandleProps {
   onClose: () => void;
@@ -69,7 +70,7 @@ const DragHandle: React.FC<DragHandleProps> = ({ onClose, onKeyDown }) => {
             y1="0.5"
             x2="0.499999"
             y2="23.5"
-            stroke="#CED1E1"
+            stroke={colorInterfaceLightDeep}
             strokeLinecap="round"
           />
           <line
@@ -77,7 +78,7 @@ const DragHandle: React.FC<DragHandleProps> = ({ onClose, onKeyDown }) => {
             y1="0.5"
             x2="4.5"
             y2="23.5"
-            stroke="#CED1E1"
+            stroke={colorInterfaceLightDeep}
             strokeLinecap="round"
           />
         </svg>

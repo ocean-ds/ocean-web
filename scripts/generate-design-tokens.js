@@ -260,6 +260,11 @@ const PART_NAMES = {
   'ods-transaction-notice__content': 'Notice content',
   'ods-transaction-notice__title': 'Notice title',
   'ods-transaction-notice__description': 'Notice description',
+  'ods-tab': 'Bar',
+  'ods-tab__item': 'Tab',
+  'ods-tab__content': 'Tab content',
+  'ods-tab__count': 'Counter',
+  'ods-tab__indicator': 'Selection line',
 };
 
 const STATE_NAMES = {
@@ -292,6 +297,7 @@ const STATE_NAMES = {
   small: 'Size sm',
   app: 'App',
   swipe: 'Swipe',
+  selected: 'Selected',
 };
 
 const describe = (selector) => {
@@ -447,6 +453,10 @@ const COMPONENTS = {
     files: ['_success-screen.scss'],
     include: (selector) => selector.startsWith('.ods-success-screen'),
   },
+  tab: {
+    files: ['_tab.scss'],
+    include: (selector) => selector.startsWith('.ods-tab'),
+  },
   drawer: {
     files: ['_drawer.scss'],
     include: (selector) =>
@@ -456,6 +466,11 @@ const COMPONENTS = {
 
 // Visual order of the anatomy parts (left to right, top to bottom), then of the states.
 const PART_ORDER = [
+  'Bar',
+  'Tab',
+  'Tab content',
+  'Counter',
+  'Selection line',
   'Footer',
   'Summary',
   'Card',

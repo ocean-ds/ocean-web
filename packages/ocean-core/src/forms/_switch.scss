@@ -32,7 +32,7 @@
 
     &::before {
       background-color: $color-interface-dark-up;
-      border-radius: 50%;
+      border-radius: $border-radius-circular;
       content: '';
       display: block;
       height: 14px;

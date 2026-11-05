@@ -76,7 +76,7 @@
 
   &__options {
     background: $color-interface-light-pure;
-    border: 1px solid $color-interface-light-down;
+    border: $border-width-hairline solid $color-interface-light-down;
     border-radius: $border-radius-sm;
     box-shadow: $shadow-level-2;
     display: flex;
@@ -128,7 +128,7 @@
       font-size: $font-size-xxs;
       font-weight: $font-weight-regular;
       gap: $spacing-inline-xxs;
-      padding: $spacing-stack-xxs 12px;
+      padding: $spacing-stack-xxs $spacing-inline-xxs-extra;
       text-wrap: nowrap;
       width: 100%;
     }

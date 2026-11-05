@@ -136,8 +136,8 @@ $drawer-dim-near: 0.48;
   }
 
   &:focus-visible {
-    outline: 2px solid $color-brand-primary-pure;
-    outline-offset: -2px;
+    outline: $border-width-thin solid $color-brand-primary-pure;
+    outline-offset: -$border-width-thin;
   }
 }
 
@@ -287,7 +287,7 @@ $drawer-dim-near: 0.48;
 
 .ods-drawer__actions {
   align-items: flex-start;
-  border-top: 1px solid $color-interface-light-down;
+  border-top: $border-width-hairline solid $color-interface-light-down;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
