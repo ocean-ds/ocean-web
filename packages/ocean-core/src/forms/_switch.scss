@@ -24,7 +24,8 @@
     box-sizing: border-box;
     cursor: pointer;
     left: 0;
-    padding: $spacing-inset-xxs;
+    // Exceção registrada: 2px fora da escala; revisar no Figma.
+    padding: 2px;
     position: absolute;
     right: 0;
     top: 0;
