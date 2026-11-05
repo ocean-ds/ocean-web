@@ -42,7 +42,7 @@ export type InputProps = {
    * Sets a custon adornment to be iside of the `input` element.
    */
   adornment?: React.ReactElement;
-} & Omit<FormControlProps, 'children'> &
+} & Omit<FormControlProps, 'children' | 'helperTextId' | 'helperTextRole'> &
   React.ComponentPropsWithoutRef<'input'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(

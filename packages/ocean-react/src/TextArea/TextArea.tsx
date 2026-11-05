@@ -4,7 +4,10 @@ import classNames from 'classnames';
 import useInputFilled from '../_util/useInputFilled';
 import FormControl, { FormControlProps } from '../FormControl';
 
-export type TextAreaProps = Omit<FormControlProps, 'children'> &
+export type TextAreaProps = Omit<
+  FormControlProps,
+  'children' | 'helperTextId' | 'helperTextRole'
+> &
   React.ComponentPropsWithoutRef<'textarea'>;
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(

@@ -49,7 +49,10 @@ export type SelectProps = {
    */
   className?: string;
   [propName: string]: unknown;
-} & Omit<FormControlProps, 'children' | 'htmlFor'>;
+} & Omit<
+  FormControlProps,
+  'children' | 'htmlFor' | 'helperTextId' | 'helperTextRole'
+>;
 
 export type OptionProps = {
   id: string;

@@ -3,6 +3,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import FormControl, { FormControlProps } from '../FormControl';
+import type { InputProps } from '../../Input/Input';
+import type { TextAreaProps } from '../../TextArea/TextArea';
+import type { SearchInputProps } from '../../Search/Search';
+import type { StepperProps } from '../../Stepper/Stepper';
+import type { SelectProps } from '../../Select/types';
 
 const setup = (props?: Omit<FormControlProps, 'children'>) =>
   render(
@@ -176,4 +181,17 @@ test('helperTextId and helperTextRole are not forwarded to the root element', ()
   } finally {
     consoleError.mockRestore();
   }
+});
+
+test('field components do not accept the group-only helper props', () => {
+  // Esses componentes repassam as props restantes ao elemento nativo.
+  type GroupOnly<T> = Extract<keyof T, 'helperTextId' | 'helperTextRole'>;
+  const accepted: never[] = [] as Array<
+    | GroupOnly<InputProps>
+    | GroupOnly<TextAreaProps>
+    | GroupOnly<SearchInputProps>
+    | GroupOnly<StepperProps>
+    | GroupOnly<SelectProps>
+  >;
+  expect(accepted).toHaveLength(0);
 });

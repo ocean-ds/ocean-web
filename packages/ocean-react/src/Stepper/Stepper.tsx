@@ -22,7 +22,7 @@ export type StepperProps = {
    * The maximum value accepted
    */
   max?: number;
-} & Omit<FormControlProps, 'children'> &
+} & Omit<FormControlProps, 'children' | 'helperTextId' | 'helperTextRole'> &
   React.ComponentPropsWithoutRef<'input'>;
 
 const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
