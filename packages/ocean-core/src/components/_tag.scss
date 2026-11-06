@@ -43,8 +43,7 @@
     }
   }
 
-  // Size small: 10 bold, line box 8 (0.8), padding 4 →
-  // altura 16.
+  // Size small: 10px bold, 8px line box (0.8), 4px padding → 16px tall.
   &--small {
     font-size: $font-size-xxxxs;
     font-weight: $font-weight-bold;
