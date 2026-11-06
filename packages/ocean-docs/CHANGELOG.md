@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.153.0](https://github.com/ocean-ds/ocean-web/compare/v1.152.6...v1.153.0) (2026-11-06)
+
+### Features
+
+- **segmented-control:** add SegmentedControl component ([#1294](https://github.com/ocean-ds/ocean-web/issues/1294)) ([c49a21a](https://github.com/ocean-ds/ocean-web/commit/c49a21aa40d381221ac0318bd62f4feae51883e2))
+
 ## [1.152.6](https://github.com/ocean-ds/ocean-web/compare/v1.152.5...v1.152.6) (2026-11-06)
 
 **Note:** Version bump only for package @useblu/ocean-docs
