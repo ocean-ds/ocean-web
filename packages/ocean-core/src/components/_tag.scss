@@ -43,12 +43,11 @@
     }
   }
 
-  // Size small: 10 bold, line box 8 (0.8), padding 4 →
-  // altura 16. Não há token de fonte 10 no Ocean.
+  // Size small: 10px bold, 8px line box (0.8), 4px padding → 16px tall.
   &--small {
-    font-size: 10px;
+    font-size: $font-size-xxxxs;
     font-weight: $font-weight-bold;
-    line-height: 8px;
+    line-height: $line-height-extra-tight;
     padding: $spacing-stack-xxxs $spacing-stack-xxxs;
   }
 
@@ -143,7 +142,7 @@
 }
 
 .ods-tag--translucent.ods-tag--positive {
-  background-color: rgba($color-status-positive-down, 0.24);
+  background-color: rgba($color-status-positive-down, $opacity-level-soft);
 }
 
 .ods-tag--translucent.ods-tag--positive .ods-tag__icon {
@@ -155,7 +154,7 @@
 }
 
 .ods-tag--translucent.ods-tag--warning {
-  background-color: rgba($color-status-warning-down, 0.24);
+  background-color: rgba($color-status-warning-down, $opacity-level-soft);
 }
 
 .ods-tag--translucent.ods-tag--warning .ods-tag__icon {
@@ -167,7 +166,7 @@
 }
 
 .ods-tag--translucent.ods-tag--negative {
-  background-color: rgba($color-status-negative-down, 0.24);
+  background-color: rgba($color-status-negative-down, $opacity-level-soft);
 }
 
 .ods-tag--translucent.ods-tag--negative .ods-tag__icon {
@@ -179,7 +178,7 @@
 }
 
 .ods-tag--translucent.ods-tag--complementary {
-  background-color: rgba($color-complementary-down, 0.24);
+  background-color: rgba($color-complementary-down, $opacity-level-soft);
 }
 
 .ods-tag--translucent.ods-tag--complementary .ods-tag__icon {
@@ -191,7 +190,7 @@
 }
 
 .ods-tag--translucent.ods-tag--neutral {
-  background-color: rgba($color-interface-dark-up, 0.24);
+  background-color: rgba($color-interface-dark-up, $opacity-level-soft);
 }
 
 .ods-tag--translucent.ods-tag--neutral .ods-tag__icon {
@@ -203,7 +202,7 @@
 }
 
 .ods-tag--translucent.ods-tag--neutral-02 {
-  background-color: rgba($color-brand-primary-up, 0.24);
+  background-color: rgba($color-brand-primary-up, $opacity-level-soft);
 }
 
 .ods-tag--translucent.ods-tag--neutral-02 .ods-tag__icon {
