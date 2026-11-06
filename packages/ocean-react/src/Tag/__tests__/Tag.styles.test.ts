@@ -26,7 +26,7 @@ describe('compiled styles', () => {
     expect(rule('.ods-tag--medium')).toMatch(/font-size:\s*12px/);
     expect(rule('.ods-tag--medium')).toMatch(/font-weight:\s*600/);
     expect(rule('.ods-tag--small')).toMatch(/font-size:\s*10px/);
-    expect(rule('.ods-tag--small')).toMatch(/line-height:\s*8px/);
+    expect(rule('.ods-tag--small')).toMatch(/line-height:\s*0\.8\b/);
     expect(rule('.ods-tag--medium')).toMatch(/line-height:\s*12px/);
     expect(rule('.ods-tag--small')).toMatch(/font-weight:\s*700/);
     expect(rule('.ods-tag--highlight__neutral')).not.toMatch(/font-size/);

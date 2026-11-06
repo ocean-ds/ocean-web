@@ -26,17 +26,17 @@
   }
 
   &--small .ods-badge__content {
-    font-size: 10px;
+    font-size: $font-size-xxxxs;
     height: 16px;
-    line-height: $line-height-comfy;
+    line-height: $line-height-extra-comfy;
     min-width: 16px;
   }
 
   &--tiny .ods-badge__content {
     display: block;
-    font-size: 10px;
+    font-size: $font-size-xxxxs;
     height: 8px;
-    line-height: 8px;
+    line-height: $line-height-extra-tight;
     min-width: 8px;
     overflow: hidden;
     width: 8px;
