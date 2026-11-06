@@ -12,15 +12,24 @@ const meta: Meta<SegmentedControlProps> = {
   argTypes: {
     options: { control: 'object' },
     selectedIndex: { control: { type: 'number', min: 0, max: 1 } },
+    background: { control: 'inline-radio', options: ['default', 'white'] },
+    disabled: { control: 'boolean' },
     'aria-label': { control: 'text' },
     onChange: { action: 'onChange' },
   },
   args: {
     options: DEFAULT_OPTIONS,
     selectedIndex: 0,
+    background: 'default',
+    disabled: false,
     'aria-label': 'Scope',
   },
-  render: (args) => <ControlledSegmentedControl {...args} />,
+  render: (args) => (
+    <ControlledSegmentedControl
+      {...args}
+      surface={args.background === 'white'}
+    />
+  ),
 };
 
 export default meta;

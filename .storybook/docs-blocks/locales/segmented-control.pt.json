@@ -9,15 +9,23 @@
   "options": {
     "withIcon": {
       "title": "With icon",
-      "text": "Adicione `icon` a uma opção para mostrar um ícone de 16px antes do texto. O ícone recebe a cor primária; passe-o sem cor nem tamanho próprios."
+      "text": "Adicione `icon` a uma opção para mostrar um ícone de 16px antes do texto. O ícone recebe a cor do texto (primária, branca na opção selecionada); passe-o sem cor nem tamanho próprios."
     },
     "withCount": {
       "title": "With counter",
-      "text": "Adicione `count` a uma opção para mostrar um Badge de contagem pequeno e primário depois do texto. Acima de 99 mostra `99+`."
+      "text": "Adicione `count` a uma opção para mostrar um Badge de contagem pequeno depois do texto: Primary na opção não selecionada e Primary Inverse (branco com número primário) na selecionada. Acima de 99 mostra `99+`."
     },
     "longLabels": {
       "title": "Long labels",
       "text": "O texto fica em uma linha. Quando o controle é mais largo que o container, ele para na largura do container e os textos são cortados com reticências; o leitor de tela continua lendo o texto inteiro."
+    },
+    "whiteBackground": {
+      "title": "White background",
+      "text": "Passe `background=\"white\"` quando o controle fica sobre uma superfície light up, como um card ou um hero, onde o fundo padrão light up sumiria. Hover e foco são iguais nos dois fundos."
+    },
+    "disabled": {
+      "title": "Disabled",
+      "text": "Passe `disabled` para desabilitar o controle inteiro: a seleção continua visível em cinza, nenhuma opção pode ser escolhida e `onChange` não é chamado. Quando a troca não faz sentido para a pessoa, não renderize o controle."
     }
   },
   "api": {
@@ -25,6 +33,8 @@
     "options": "As duas opções, em ordem: `label`, `icon` opcional e `count` opcional. Exatamente duas são desenhadas; itens a mais são ignorados.",
     "selectedIndex": "Índice da opção selecionada, 0 ou 1. Qualquer outro valor seleciona a primeira opção.",
     "onChange": "Chamado com o índice da opção escolhida por clique ou seta. Não é chamado no clique da opção já selecionada.",
+    "background": "Fundo do controle: `default` (light up), para telas brancas, ou `white`, para superfícies light up como cards e heros. Padrão `default`.",
+    "disabled": "Desabilita o controle inteiro: as opções viram botões desabilitados, o grupo recebe `aria-disabled` e `onChange` não é chamado. Padrão `false`.",
     "ariaLabel": "Nome do controle para leitores de tela, como \"Escopo\" ou \"Visão\".",
     "className": "Classe no controle. `ref` e os outros atributos vão para o elemento do controle."
   },
@@ -39,9 +49,10 @@
     "Use exatamente duas opções; com mais, use o Tab ou a Filter Bar.",
     "Guarde `selectedIndex` no estado da tela e atualize em `onChange`.",
     "Uma opção está sempre selecionada; não existe estado vazio.",
-    "Não existe estado desabilitado nem carregando: quando a troca não está disponível, não renderize o controle.",
+    "Use `background=\"white\"` sobre superfícies light up (cards, heros); mantenha o padrão em telas brancas.",
+    "Use `disabled` só quando a troca existe mas está indisponível no momento; quando ela não faz sentido para a pessoa, não renderize o controle. Não existe estado carregando.",
     "Passe `aria-label` com o que as opções trocam.",
-    "Passe ícones sem cor nem tamanho; o controle aplica 16px e a cor primária.",
+    "Passe os ícones sem cor nem tamanho; o controle define 16px e a cor do texto.",
     "Não use o controle para filtrar uma lista nem para ligar ou desligar uma configuração."
   ],
   "feedback": "Envie feedback sobre o componente pelo time do Ocean Design System."

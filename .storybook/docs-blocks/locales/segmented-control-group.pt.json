@@ -39,7 +39,7 @@
       "Para ligar ou desligar uma configuração: use o [Switch](docs:components-switch--docs).",
       "Uma escolha dentro de um formulário: use o [Radio](docs:components-radio--docs).",
       "Mais de duas opções: use o [Tab](docs:components-tab--overview) ou a Filter Bar, [Chips](docs:components-chips--docs).",
-      "Quando a troca não está disponível para a pessoa: não mostre o controle. Não existe estado desabilitado nem carregando."
+      "Quando a troca não faz sentido para a pessoa (como uma loja sem rede): não mostre o controle. Use `disabled` só quando a troca existe mas está indisponível no momento. Não existe estado carregando."
     ],
     "variants": "Variantes",
     "variantColumns": ["Variante", "Para que serve", "Código"],
@@ -47,7 +47,9 @@
       "Default|Duas opções, uma sempre selecionada.|default",
       "With icon|Um ícone de 16px antes do texto.|withIcon",
       "With counter|Um contador depois do texto.|withCount",
-      "Long labels|Texto em uma linha, cortado com reticências.|longLabels"
+      "Long labels|Texto em uma linha, cortado com reticências.|longLabels",
+      "White background|Para superfícies light up, como cards e heros.|whiteBackground",
+      "Disabled|O controle inteiro indisponível; a seleção continua visível.|disabled"
     ],
     "codeLink": "Ver no Código"
   },
@@ -60,16 +62,23 @@
     "layoutRows": [
       "Os textos cabem|Cada opção do tamanho do conteúdo; o controle abraça as duas opções.",
       "Os textos não cabem no container|O controle para na largura do container e os textos são cortados com reticências."
+    ],
+    "backgroundTitle": "Fundo",
+    "backgroundText": "O controle tem dois fundos. Escolha o que contrasta com a superfície embaixo dele.",
+    "backgroundColumns": ["Fundo", "Token", "Use sobre"],
+    "backgroundRows": [
+      "Default|color-interface-light-up|Telas e superfícies brancas.",
+      "White (`background=\"white\"`)|color-interface-light-pure|Superfícies light up (`color-interface-light-up`), como cards e heros, onde o padrão sumiria."
     ]
   },
   "anatomy": {
     "columns": ["#", "Elemento", "Obrigatório", "Observações"],
     "rows": [
-      "1|Controle|Sim|Pílula com borda de 1px, em volta das duas opções.",
-      "2|Fundo de seleção|Só na opção selecionada|Um fundo só para o controle; desliza até a opção selecionada e ocupa a largura dela.",
-      "3|Ícone|Não|16px, antes do texto.",
-      "4|Texto|Sim|Uma linha; cortado com reticências quando não cabe.",
-      "5|Contador|Não|Badge de contagem pequeno e primário depois do texto."
+      "1|Controle|Sim|Pílula sem borda, em volta das duas opções; fundo light up ou branco.",
+      "2|Fundo de seleção|Só na opção selecionada|Um fundo primário só para o controle; desliza até a opção selecionada e ocupa a largura dela.",
+      "3|Ícone|Não|16px, antes do texto, na cor do texto.",
+      "4|Texto|Sim|Uma linha; cortado com reticências quando não cabe. Branco na opção selecionada, primário na outra.",
+      "5|Contador|Não|Badge de contagem pequeno depois do texto: Primary Inverse na opção selecionada, Primary na outra, Neutral quando desabilitado."
     ]
   },
   "content": {
@@ -86,12 +95,18 @@
   },
   "behaviors": {
     "title": "Comportamentos",
-    "text": "O estado é do controle inteiro. O foco de teclado tem a mesma aparência do hover, sem contorno de foco. Na troca, o fundo de seleção desliza até a nova opção em 300ms e as cores mudam suavemente. Com movimento reduzido, a troca é imediata.",
-    "columns": ["Estado", "Fundo do controle", "Fundo de seleção"],
+    "text": "O estado é do controle inteiro. Hover e foco de teclado mudam só o fundo do controle; o foco de teclado tem a mesma aparência do hover, sem contorno de foco. Na troca, o fundo de seleção desliza até a nova opção em 300ms e as cores mudam suavemente. Com movimento reduzido, a troca é imediata.",
+    "columns": [
+      "Estado",
+      "Fundo do controle",
+      "Fundo de seleção",
+      "Textos e ícones"
+    ],
     "rows": [
-      "Padrão|Branco|Primary up, 32% de opacidade",
-      "Hover|Light up|Primary up, 48% de opacidade",
-      "Foco (teclado)|Light up|Primary up, 48% de opacidade"
+      "Padrão|Light up (default) · Branco (white)|Primary|Branco na opção selecionada, primário na outra",
+      "Hover|Light down, nos dois fundos|Primary|Igual ao padrão",
+      "Foco (teclado)|Light down, nos dois fundos|Primary|Igual ao padrão",
+      "Desabilitado|Light up (default) · Branco (white), sem hover|Light down|Dark up nas duas opções; contadores Neutral"
     ]
   },
   "related": {
@@ -131,13 +146,17 @@
     "title": "Cores",
     "columns": ["Elemento", "Estado", "Token"],
     "rows": [
-      "Controle|Padrão|color-interface-light-pure",
-      "Controle|Hover, Foco|color-interface-light-up",
-      "Borda do controle|Todos|color-interface-light-down",
-      "Fundo de seleção|Padrão, 32% de opacidade|color-brand-primary-up",
-      "Fundo de seleção|Hover, Foco, 48% de opacidade|color-brand-primary-up",
-      "Ícone|Todos|color-brand-primary-pure",
-      "Texto|Todos|color-brand-primary-pure"
+      "Controle|Fundo padrão|color-interface-light-up",
+      "Controle|Fundo branco|color-interface-light-pure",
+      "Controle|Hover, Foco|color-interface-light-down",
+      "Fundo de seleção|Padrão, Hover, Foco|color-brand-primary-pure",
+      "Fundo de seleção|Desabilitado|color-interface-light-down",
+      "Texto, ícone|Opção selecionada|color-interface-light-pure",
+      "Texto, ícone|Opção não selecionada|color-brand-primary-pure",
+      "Texto, ícone|Desabilitado|color-interface-dark-up",
+      "Contador (Primary Inverse)|Opção selecionada|color-interface-light-pure",
+      "Contador (Primary)|Opção não selecionada|color-brand-primary-pure",
+      "Contador (Neutral)|Desabilitado|color-interface-dark-up"
     ]
   },
   "typography": {
@@ -151,12 +170,10 @@
     "rows": [
       "Controle|Padding|4px|spacing-inline-xxxs, spacing-stack-xxxs",
       "Controle|Espaço entre as opções|4px|spacing-inline-xxxs",
-      "Controle|Borda|1px|border-width-hairline",
       "Controle, opção, seleção|Raio|Pílula|border-radius-pill",
       "Opção|Padding horizontal|12px|spacing-inline-xxs-extra",
       "Opção|Padding vertical|4px|spacing-stack-xxxs",
-      "Opção|Espaço entre ícone, texto e contador|4px|spacing-inline-xxxs",
-      "Fundo de seleção|Opacidade|32% / 48%|No token"
+      "Opção|Espaço entre ícone, texto e contador|4px|spacing-inline-xxxs"
     ]
   },
   "size": {
@@ -177,7 +194,8 @@
     "columns": ["Tecla", "Ação"],
     "rows": [
       "Tab|Leva o foco para a opção selecionada e, depois, para fora do controle.",
-      "Setas|Vão para a outra opção e a selecionam."
+      "Setas|Vão para a outra opção e a selecionam.",
+      "Desabilitado|As opções saem da ordem de tabulação; nenhuma tecla troca a seleção."
     ]
   },
   "screenReaders": {
@@ -186,6 +204,7 @@
     "rows": [
       "Controle|Anunciado como grupo de rádio, com o nome passado em `aria-label`.",
       "Opção|Anunciada como botão de rádio, com a posição e se está marcada.",
+      "Desabilitado|O grupo é anunciado com `aria-disabled`, e cada opção como botão de rádio desabilitado.",
       "Texto|O texto inteiro é lido, mesmo quando aparece cortado na tela.",
       "Contador|Lido como parte do nome da opção (\"Network 12\")."
     ]
@@ -195,7 +214,9 @@
     "items": [
       "**Dê um nome ao controle.** Passe `aria-label` com o que as opções trocam, como \"Escopo\" ou \"Visão\".",
       "**Guarde a seleção na tela.** Mantenha `selectedIndex` no estado da tela e atualize em `onChange`.",
-      "**O foco não tem contorno.** O foco de teclado tem a aparência do hover, por decisão de design; mantenha o controle sobre fundo branco para a mudança continuar visível."
+      "**O foco não tem contorno.** O foco de teclado tem a aparência do hover, por decisão de design: o fundo do controle fica light down nos dois fundos.",
+      "**Escolha o fundo pela superfície.** Use `background=\"white\"` sobre superfícies light up; o padrão some nelas.",
+      "**Desabilitado ou oculto.** Use `disabled` quando a troca existe mas está indisponível no momento; quando ela não faz sentido para a pessoa, não renderize o controle."
     ]
   }
 }

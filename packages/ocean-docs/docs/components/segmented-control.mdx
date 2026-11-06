@@ -16,6 +16,7 @@ import type {
   SegmentedControlProps,
   SegmentedControlOption,
   SegmentedControlIndex,
+  SegmentedControlBackground,
 } from '@useblu/ocean-react';
 ```
 
@@ -46,6 +47,34 @@ function ScheduleView() {
 }
 ```
 
+## Fundo branco
+
+Sobre superfícies `color-interface-light-up` (cards, heros), o fundo padrão do controle some. Use `background="white"`:
+
+```tsx
+<SegmentedControl
+  aria-label="Escopo"
+  options={[{ label: 'Loja' }, { label: 'Rede' }]}
+  selectedIndex={selected}
+  onChange={setSelected}
+  background="white"
+/>
+```
+
+## Desabilitado
+
+`disabled` desabilita o controle inteiro: a seleção continua visível em cinza, nenhuma opção troca e `onChange` não é chamado. Use quando a troca existe mas está indisponível no momento; quando ela não faz sentido para a pessoa (ex.: loja sem rede), não renderize o controle.
+
+```tsx
+<SegmentedControl
+  aria-label="Escopo"
+  options={[{ label: 'Loja' }, { label: 'Rede' }]}
+  selectedIndex={0}
+  onChange={setSelected}
+  disabled
+/>
+```
+
 ## Playground interativo
 
 <StorybookEmbed
@@ -62,40 +91,43 @@ Use quando a tela mostra **o mesmo conteúdo em 2 escopos ou 2 visões** e a pes
 
 ## Quando NÃO usar
 
-| Situação                                           | Use no lugar                                                         |
-| -------------------------------------------------- | -------------------------------------------------------------------- |
-| Seções com conteúdo próprio                        | [Tab](/components/tab)                                               |
-| Filtrar uma mesma lista (Todos, Pendentes, Pagos…) | Filter Bar ([Chips](/components/chips))                              |
-| Ligar ou desligar uma configuração                 | [Switch](/components/switch)                                         |
-| Uma escolha dentro de um formulário                | [Radio](/components/radio)                                           |
-| Mais de 2 opções                                   | [Tab](/components/tab) ou Filter Bar ([Chips](/components/chips))    |
-| Troca que não está disponível para a pessoa        | Não mostre o controle: não existe estado desabilitado nem carregando |
+| Situação                                           | Use no lugar                                                      |
+| -------------------------------------------------- | ----------------------------------------------------------------- |
+| Seções com conteúdo próprio                        | [Tab](/components/tab)                                            |
+| Filtrar uma mesma lista (Todos, Pendentes, Pagos…) | Filter Bar ([Chips](/components/chips))                           |
+| Ligar ou desligar uma configuração                 | [Switch](/components/switch)                                      |
+| Uma escolha dentro de um formulário                | [Radio](/components/radio)                                        |
+| Mais de 2 opções                                   | [Tab](/components/tab) ou Filter Bar ([Chips](/components/chips)) |
+| Troca que não faz sentido para a pessoa            | Não mostre o controle (não existe estado carregando)              |
 
 ## API
 
 ### Props
 
-| Prop            | Tipo                                               | Padrão | Descrição                                                                                                                                                    |
-| --------------- | -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`       | `[SegmentedControlOption, SegmentedControlOption]` | -      | As duas opções, em ordem. Cada uma tem `label: string`, `icon?: ReactNode` e `count?: number`. Só as 2 primeiras são desenhadas; itens a mais são ignorados. |
-| `selectedIndex` | `0 \| 1`                                           | -      | Índice da opção selecionada. Qualquer outro valor seleciona a primeira opção.                                                                                |
-| `onChange`      | `(index: 0 \| 1) => void`                          | -      | Chamado com o índice da opção escolhida por clique ou seta. Não é chamado no clique da opção já selecionada.                                                 |
-| `aria-label`    | `string`                                           | -      | Nome do controle para leitores de tela, como "Escopo" ou "Visão".                                                                                            |
-| `className`     | `string`                                           | -      | Classe extra no controle.                                                                                                                                    |
-| `ref`           | `Ref<HTMLDivElement>`                              | -      | Encaminhado para o elemento do controle (`role="radiogroup"`). Os demais atributos de `div` também vão para ele.                                             |
+| Prop            | Tipo                                               | Padrão      | Descrição                                                                                                                                                            |
+| --------------- | -------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options`       | `[SegmentedControlOption, SegmentedControlOption]` | -           | As duas opções, em ordem. Cada uma tem `label: string`, `icon?: ReactNode` e `count?: number`. Só as 2 primeiras são desenhadas; itens a mais são ignorados.         |
+| `selectedIndex` | `0 \| 1`                                           | -           | Índice da opção selecionada. Qualquer outro valor seleciona a primeira opção.                                                                                        |
+| `onChange`      | `(index: 0 \| 1) => void`                          | -           | Chamado com o índice da opção escolhida por clique ou seta. Não é chamado no clique da opção já selecionada.                                                         |
+| `background`    | `'default' \| 'white'`                             | `'default'` | Fundo do controle: `default` (`color-interface-light-up`), para telas brancas; `white` (`color-interface-light-pure`), para superfícies light up como cards e heros. |
+| `disabled`      | `boolean`                                          | `false`     | Desabilita o controle inteiro: opções viram botões `disabled` (fora da ordem de tabulação), o grupo recebe `aria-disabled="true"` e `onChange` não é chamado.        |
+| `aria-label`    | `string`                                           | -           | Nome do controle para leitores de tela, como "Escopo" ou "Visão".                                                                                                    |
+| `className`     | `string`                                           | -           | Classe extra no controle.                                                                                                                                            |
+| `ref`           | `Ref<HTMLDivElement>`                              | -           | Encaminhado para o elemento do controle (`role="radiogroup"`). Os demais atributos de `div` também vão para ele.                                                     |
 
 ### `SegmentedControlOption`
 
-| Campo   | Tipo        | Padrão | Descrição                                                                    |
-| ------- | ----------- | ------ | ---------------------------------------------------------------------------- |
-| `label` | `string`    | -      | Texto da opção. Uma linha só; cortado com "…" quando não cabe.               |
-| `icon`  | `ReactNode` | -      | Ícone de 16px antes do texto, na cor primária. Passe sem cor nem tamanho.    |
-| `count` | `number`    | -      | Contador (Badge pequeno primário) depois do texto. Acima de 99 mostra `99+`. |
+| Campo   | Tipo        | Padrão | Descrição                                                                                                                                                |
+| ------- | ----------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `label` | `string`    | -      | Texto da opção. Uma linha só; cortado com "…" quando não cabe.                                                                                           |
+| `icon`  | `ReactNode` | -      | Ícone de 16px antes do texto, na cor do texto. Passe sem cor nem tamanho.                                                                                |
+| `count` | `number`    | -      | Contador (Badge pequeno) depois do texto: Primary Inverse na opção selecionada, Primary na outra, Neutral quando desabilitado. Acima de 99 mostra `99+`. |
 
 ## Comportamento
 
-- **Estados:** o estado é do controle inteiro. Padrão (fundo branco, seleção em `color-brand-primary-up` com 32% de opacidade); hover e foco de teclado (fundo `color-interface-light-up`, seleção com 48%). O foco de teclado tem a mesma aparência do hover, sem contorno.
-- **Sem desabilitado nem carregando:** se a troca não está disponível, a tela não mostra o controle.
+- **Estados:** o estado é do controle inteiro, sem borda. Padrão: fundo `color-interface-light-up` (ou `color-interface-light-pure` com `background="white"`), seleção cheia em `color-brand-primary-pure`, texto e ícone brancos na opção selecionada e `color-brand-primary-pure` na outra. Hover e foco de teclado mudam só o fundo do controle para `color-interface-light-down`, nos dois fundos; o foco de teclado tem a mesma aparência do hover, sem contorno.
+- **Desabilitado:** fundo do controle igual ao do `background`, seleção `color-interface-light-down`, textos e ícones `color-interface-dark-up`, contadores Neutral; sem hover.
+- **Sem carregando:** quem carrega é o conteúdo abaixo do controle. Se a troca não faz sentido para a pessoa, a tela não mostra o controle.
 - **Transição:** na troca de opção, o fundo de seleção desliza da opção anterior até a nova (posição e largura juntas) em 300ms, `cubic-bezier(0.65, 0, 0.35, 1)`, sem overshoot. As cores de fundo mudam em 150ms. Com `prefers-reduced-motion: reduce`, a troca é imediata.
 - **Largura:** o controle tem a largura das duas opções (não estica). Altura total de 40px; cada opção tem 32px.
 - **Texto:** sempre em uma linha. Se o controle não couber no container, ele para na largura do container e o texto é cortado com "…"; o leitor de tela continua lendo o texto inteiro.
@@ -107,15 +139,20 @@ Use quando a tela mostra **o mesmo conteúdo em 2 escopos ou 2 visões** e a pes
 | `Tab`           | Leva o foco para a opção selecionada e, depois, para fora |
 | `→` `←` `↑` `↓` | Vão para a outra opção e a selecionam                     |
 
+Desabilitado, as opções saem da ordem de tabulação e nenhuma tecla troca a seleção.
+
 - O controle tem `role="radiogroup"` com o `aria-label`; cada opção é um `<button role="radio">` com `aria-checked`.
 - Só a opção selecionada entra na ordem de tabulação (`tabIndex=0`); a outra fica com `-1` (roving tabindex).
 - O contador é lido como parte do nome da opção.
+- Desabilitado, o grupo tem `aria-disabled="true"` e cada opção é um botão `disabled`.
 
 ## Classes CSS
 
 | Classe                                     | Descrição                                                   |
 | ------------------------------------------ | ----------------------------------------------------------- |
-| `.ods-segmented-control`                   | Controle (container), com a borda                           |
+| `.ods-segmented-control`                   | Controle (container)                                        |
+| `.ods-segmented-control--white`            | Fundo branco (`background="white"`)                         |
+| `.ods-segmented-control--disabled`         | Controle desabilitado                                       |
 | `.ods-segmented-control__option`           | Opção                                                       |
 | `.ods-segmented-control__option--selected` | Opção selecionada                                           |
 | `.ods-segmented-control__icon`             | Ícone da opção                                              |

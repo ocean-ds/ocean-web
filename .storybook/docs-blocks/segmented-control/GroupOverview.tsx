@@ -4,7 +4,7 @@ import { DoDont, DocTable, Section, Subsection, Swatch } from '../blocks';
 import { ComponentOverview, componentToc } from '../ComponentOverview';
 import { GroupOverviewFrame } from '../GroupOverviewFrame';
 import { defaultExample, segmentedControlDoc } from './pages';
-import { DEFAULT_OPTIONS, FILTER_OPTIONS } from './fixtures';
+import { COUNT_OPTIONS, DEFAULT_OPTIONS, FILTER_OPTIONS } from './fixtures';
 import { ControlledSegmentedControl } from './story-helpers';
 import { LocaleFiles, Md, useTranslate } from '../i18n';
 import {
@@ -157,6 +157,27 @@ export const SegmentedControlOverview = (): React.ReactElement => {
               rows={rows('formatting.layoutRows')}
             />
           </Subsection>
+          <Subsection id="background" title={t('formatting.backgroundTitle')}>
+            <p>{t('formatting.backgroundText')}</p>
+            <div className="odoc-columns">
+              <ControlledSegmentedControl
+                aria-label="Scope"
+                options={COUNT_OPTIONS}
+                selectedIndex={0}
+              />
+              <ControlledSegmentedControl
+                aria-label="Scope"
+                options={COUNT_OPTIONS}
+                selectedIndex={0}
+                background="white"
+                surface
+              />
+            </div>
+            <DocTable
+              columns={t.list('formatting.backgroundColumns')}
+              rows={rows('formatting.backgroundRows')}
+            />
+          </Subsection>
         </Section>
         <Section id="content" title={t('content.title')}>
           <p>{t('content.text')}</p>
@@ -278,7 +299,7 @@ export const SegmentedControlOverview = (): React.ReactElement => {
       page={{
         title: t('page.title'),
         status: t('page.status'),
-        lastUpdated: '2026-11-05',
+        lastUpdated: '2026-11-06',
         library: 'Ocean React',
         github: 'https://github.com/ocean-ds/ocean-web',
       }}

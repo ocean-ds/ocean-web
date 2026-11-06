@@ -64,6 +64,105 @@ test('renders a radio group with two radios and the selected one checked', () =>
   expect(backgrounds[0].parentElement).toBe(root);
 });
 
+test('is enabled on the default background when background and disabled are not given', () => {
+  setup();
+
+  expect(group()).not.toHaveClass(
+    'ods-segmented-control--white',
+    'ods-segmented-control--disabled'
+  );
+  expect(group()).not.toHaveAttribute('aria-disabled');
+  screen.getAllByRole('radio').forEach((option) => {
+    expect(option).toBeEnabled();
+  });
+});
+
+test('adds the white modifier for the white background', () => {
+  setup({ background: 'white' });
+
+  expect(group()).toHaveClass(
+    'ods-segmented-control',
+    'ods-segmented-control--white'
+  );
+  setup({ background: 'default' });
+  expect(screen.getAllByRole('radiogroup')[1]).not.toHaveClass(
+    'ods-segmented-control--white'
+  );
+});
+
+test('disables the whole control: disabled options, aria-disabled group, no onChange', () => {
+  const { onChange } = setup({
+    disabled: true,
+    background: 'white',
+    options: [
+      { label: 'Store', count: 3 },
+      { label: 'Network', count: 12 },
+    ],
+  });
+
+  expect(group()).toHaveAttribute('aria-disabled', 'true');
+  expect(group()).toHaveClass(
+    'ods-segmented-control--disabled',
+    'ods-segmented-control--white'
+  );
+  const store = radio('Store, 3');
+  const network = radio('Network, 12');
+  expect(store).toBeDisabled();
+  expect(network).toBeDisabled();
+  expect(store).toHaveAttribute('aria-checked', 'true');
+
+  fireEvent.click(network);
+  fireEvent.keyDown(store, { key: 'ArrowRight' });
+  fireEvent.keyDown(network, { key: 'ArrowLeft' });
+  expect(onChange).not.toHaveBeenCalled();
+  expect(store).toHaveAttribute('aria-checked', 'true');
+
+  const arrow = new KeyboardEvent('keydown', {
+    key: 'ArrowDown',
+    bubbles: true,
+    cancelable: true,
+  });
+  store.dispatchEvent(arrow);
+  expect(arrow.defaultPrevented).toBe(false);
+});
+
+test('keeps the brand Badge on the selected option, made inverse by the control style', () => {
+  setup({
+    options: [
+      { label: 'Store', count: 3 },
+      { label: 'Network', count: 12 },
+    ],
+  });
+
+  const selectedBadge = radio('Store, 3').querySelector('.ods-badge');
+  expect(radio('Store, 3')).toHaveClass(
+    'ods-segmented-control__option--selected'
+  );
+  expect(selectedBadge).toHaveClass(
+    'ods-segmented-control__count',
+    'ods-badge--brand'
+  );
+  expect(radio('Network, 12').querySelector('.ods-badge')).toHaveClass(
+    'ods-badge--brand'
+  );
+});
+
+test('shows Neutral counters on both options when disabled', () => {
+  setup({
+    disabled: true,
+    options: [
+      { label: 'Store', count: 3 },
+      { label: 'Network', count: 12 },
+    ],
+  });
+
+  [radio('Store, 3'), radio('Network, 12')].forEach((option) => {
+    const badge = option.querySelector('.ods-badge');
+    expect(badge).toHaveClass('ods-badge--neutral');
+    expect(badge).not.toHaveClass('ods-badge--brand');
+  });
+});
+
 test('passes the class name and the other attributes to the root', () => {
   setup({ className: 'custom-control', id: 'scope', title: 'Scope' });
 

@@ -21,6 +21,9 @@ export type SegmentedControlOption = {
 /** Index of an option: the control always has exactly two. */
 export type SegmentedControlIndex = 0 | 1;
 
+/** Background of the control. */
+export type SegmentedControlBackground = 'default' | 'white';
+
 export type SegmentedControlProps = {
   /** The two options of the control, in order. */
   options: [SegmentedControlOption, SegmentedControlOption];
@@ -28,6 +31,17 @@ export type SegmentedControlProps = {
   selectedIndex: SegmentedControlIndex;
   /** Called with the index of the option chosen by click or keyboard. */
   onChange: (index: SegmentedControlIndex) => void;
+  /**
+   * Background of the control: `default` (light up) for white screens, `white` for light up
+   * surfaces such as cards and heros.
+   * @default 'default'
+   */
+  background?: SegmentedControlBackground;
+  /**
+   * Disables the whole control: no option can be chosen and `onChange` is not called.
+   * @default false
+   */
+  disabled?: boolean;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'onChange' | 'role'>;
 
 /** The control draws exactly this many options; extra ones are ignored. */
@@ -49,7 +63,8 @@ const NAVIGATION_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'];
 const SegmentedControl = React.forwardRef<
   HTMLDivElement,
   SegmentedControlProps
->(({ options, selectedIndex, onChange, className, ...rest }, ref) => {
+>(({ options, selectedIndex, onChange, className, ...props }, ref) => {
+  const { background = 'default', disabled = false, ...rest } = props;
   const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [selection, setSelection] = useState<Selection | null>(null);
   const items = options.slice(0, OPTION_COUNT);
@@ -115,7 +130,11 @@ const SegmentedControl = React.forwardRef<
   useEffect(placeSelection, [placeSelection, optionsKey]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-    if (!NAVIGATION_KEYS.includes(event.key) || items.length < OPTION_COUNT)
+    if (
+      disabled ||
+      !NAVIGATION_KEYS.includes(event.key) ||
+      items.length < OPTION_COUNT
+    )
       return;
     event.preventDefault();
     const target: SegmentedControlIndex = selected === 0 ? 1 : 0;
@@ -127,7 +146,15 @@ const SegmentedControl = React.forwardRef<
     <div
       ref={ref}
       role="radiogroup"
-      className={classNames('ods-segmented-control', className)}
+      aria-disabled={disabled || undefined}
+      className={classNames(
+        'ods-segmented-control',
+        {
+          'ods-segmented-control--white': background === 'white',
+          'ods-segmented-control--disabled': disabled,
+        },
+        className
+      )}
       {...rest}
     >
       {selection && (
@@ -161,10 +188,12 @@ const SegmentedControl = React.forwardRef<
                 : undefined
             }
             tabIndex={isSelected ? 0 : -1}
+            disabled={disabled}
             className={classNames('ods-segmented-control__option', {
               'ods-segmented-control__option--selected': isSelected,
             })}
             onClick={() => {
+              // A disabled option is a disabled button: the browser sends no click.
               if (!isSelected) onChange(index as SegmentedControlIndex);
             }}
             onKeyDown={handleKeyDown}
@@ -181,7 +210,8 @@ const SegmentedControl = React.forwardRef<
                 role={undefined}
                 className="ods-segmented-control__count"
                 variation="small"
-                color="brand"
+                // Selected: primary inverse, styled by the control (Badge has no inverse color).
+                color={disabled ? 'neutral' : 'brand'}
                 count={count}
               />
             )}

@@ -28,13 +28,17 @@ type Story = StoryObj;
 const control = (
   options: [SegmentedControlOption, SegmentedControlOption],
   selectedIndex: SegmentedControlIndex = 0,
-  narrow = false
+  narrow = false,
+  { white = false, disabled = false } = {}
 ) => (
   <ControlledSegmentedControl
     aria-label="Scope"
     options={options}
     selectedIndex={selectedIndex}
     narrow={narrow}
+    background={white ? 'white' : 'default'}
+    surface={white}
+    disabled={disabled}
   />
 );
 
@@ -74,10 +78,57 @@ export const Matrix: Story = {
   ),
 };
 
-/** Keyboard focus looks like hover: lighter control and stronger selection, no ring. */
+/** State × Background, Option 1 and Option 2 selected: the 16 Figma variants without hover/focus. */
+export const StatesAndBackgrounds: Story = {
+  parameters: { chromatic: { viewports: [1440] } },
+  render: () => (
+    <MatrixGrid
+      className="odoc-matrix--segmented-control"
+      columns={['Option 1 selected', 'Option 2 selected']}
+      rows={[
+        {
+          label: 'Default',
+          cells: [control(FULL_OPTIONS), control(FULL_OPTIONS, 1)],
+        },
+        {
+          label: 'White background',
+          cells: [
+            control(FULL_OPTIONS, 0, false, { white: true }),
+            control(FULL_OPTIONS, 1, false, { white: true }),
+          ],
+        },
+        {
+          label: 'Disabled',
+          cells: [
+            control(FULL_OPTIONS, 0, false, { disabled: true }),
+            control(FULL_OPTIONS, 1, false, { disabled: true }),
+          ],
+        },
+        {
+          label: 'Disabled, white background',
+          cells: [
+            control(FULL_OPTIONS, 0, false, { white: true, disabled: true }),
+            control(FULL_OPTIONS, 1, false, { white: true, disabled: true }),
+          ],
+        },
+      ]}
+    />
+  ),
+};
+
+/** Keyboard focus looks like hover: only the control background turns light down, no ring. */
 export const Focused: Story = {
   parameters: { chromatic: { viewports: [1440] } },
   render: () => control(FULL_OPTIONS),
+  play: async ({ canvasElement }) => {
+    canvasElement.querySelector<HTMLButtonElement>('[role="radio"]')?.focus();
+  },
+};
+
+/** Keyboard focus on the white background: the control turns light down as on the default. */
+export const FocusedWhite: Story = {
+  parameters: { chromatic: { viewports: [1440] } },
+  render: () => control(FULL_OPTIONS, 0, false, { white: true }),
   play: async ({ canvasElement }) => {
     canvasElement.querySelector<HTMLButtonElement>('[role="radio"]')?.focus();
   },

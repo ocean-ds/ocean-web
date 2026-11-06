@@ -50,7 +50,8 @@ export const optionsCode = (options: Options): string =>
 
 export const segmentedControlCode = (
   options: Options,
-  ariaLabel = 'Scope'
+  ariaLabel = 'Scope',
+  extraProps: string[] = []
 ): string =>
   `const [selected, setSelected] = useState<0 | 1>(0);
 
@@ -58,5 +59,5 @@ export const segmentedControlCode = (
   aria-label="${ariaLabel}"
   options={${optionsCode(options)}}
   selectedIndex={selected}
-  onChange={setSelected}
+  onChange={setSelected}${extraProps.map((prop) => `\n  ${prop}`).join('')}
 />`;

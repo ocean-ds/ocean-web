@@ -1,10 +1,8 @@
 .ods-segmented-control {
   align-items: center;
-  background-color: $color-interface-light-pure;
+  background-color: $color-interface-light-up;
   // Pill radius: the circular token (50%) draws an ellipse on a wide box.
   border-radius: $border-radius-pill;
-  // The border is drawn inside, so it adds no height: 4 + 32 + 4 = 40.
-  box-shadow: inset 0 0 0 $border-width-hairline $color-interface-light-down;
   box-sizing: border-box;
   display: inline-flex;
   gap: $spacing-inline-xxxs;
@@ -14,6 +12,11 @@
   // Motion: Ocean has no motion tokens; the background eases on state change.
   transition: background-color 150ms ease;
   vertical-align: middle;
+
+  // For light up surfaces (cards, heros), where the default background disappears.
+  &--white {
+    background-color: $color-interface-light-pure;
+  }
 
   &__option {
     align-items: center;
@@ -36,12 +39,17 @@
     min-width: 0;
     padding: $spacing-stack-xxxs $spacing-inline-xxs-extra;
     position: relative;
+    transition: color 150ms ease;
     white-space: nowrap;
 
     // Keyboard focus looks exactly like hover, without a focus ring.
     &:focus,
     &:focus-visible {
       outline: none;
+    }
+
+    &--selected {
+      color: $color-interface-light-pure;
     }
   }
 
@@ -66,10 +74,16 @@
     flex: 0 0 auto;
   }
 
+  // Primary inverse counter on the selected option: Badge has no inverse color, so the
+  // control styles the brand Badge, as Chips does on its active chip.
+  &__option--selected &__count .ods-badge__content {
+    background-color: $color-interface-light-pure;
+    color: $color-brand-primary-pure;
+  }
+
   // One background for the control, moved under the selected option.
   &__selection {
-    // 32% over the token; Ocean has no opacity token for this level.
-    background-color: rgba($color-brand-primary-up, 0.32);
+    background-color: $color-brand-primary-pure;
     border-radius: $border-radius-pill;
     bottom: $spacing-stack-xxxs;
     left: 0;
@@ -86,20 +100,31 @@
     }
   }
 
-  // Hover and keyboard focus act on the whole control.
-  &:hover,
+  // Hover and keyboard focus change only the control background, on both backgrounds.
+  &:not(.ods-segmented-control--disabled):hover,
   &:has(.ods-segmented-control__option:focus-visible) {
-    background-color: $color-interface-light-up;
+    background-color: $color-interface-light-down;
   }
 
-  &:hover &__selection,
-  &:has(.ods-segmented-control__option:focus-visible) &__selection {
-    // 48% over the token; Ocean has no opacity token for this level.
-    background-color: rgba($color-brand-primary-up, 0.48);
+  // Disabled: the whole control; the background stays the one of its Background.
+  &--disabled &__option {
+    color: $color-interface-dark-up;
+    cursor: default;
+  }
+
+  &--disabled &__selection {
+    background-color: $color-interface-light-down;
+  }
+
+  // Neutral counters on both options; overrides the inverse of the selected one.
+  &--disabled &__count .ods-badge__content {
+    background-color: $color-interface-dark-up;
+    color: $color-interface-light-pure;
   }
 
   @media (prefers-reduced-motion: reduce) {
     &,
+    &__option,
     &__selection,
     &__selection--animated {
       transition: none;

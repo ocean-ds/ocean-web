@@ -31,7 +31,8 @@ const example = (
   key: string,
   options: typeof DEFAULT_OPTIONS,
   selectedIndex: 0 | 1 = 0,
-  narrow = false
+  narrow = false,
+  extra: Partial<React.ComponentProps<typeof ControlledSegmentedControl>> = {}
 ) => (
   <ControlledSegmentedControl
     key={key}
@@ -39,6 +40,7 @@ const example = (
     options={options}
     selectedIndex={selectedIndex}
     narrow={narrow}
+    {...extra}
   />
 );
 
@@ -87,6 +89,24 @@ export const segmentedControlDoc: ComponentDocConfig = {
     longLabels: spec(
       [example('long', LONG_OPTIONS, 0, true)],
       segmentedControlCode(LONG_OPTIONS)
+    ),
+    whiteBackground: spec(
+      [
+        example('white', COUNT_OPTIONS, 0, false, {
+          background: 'white',
+          surface: true,
+        }),
+      ],
+      segmentedControlCode(COUNT_OPTIONS, 'Scope', ['background="white"'])
+    ),
+    disabled: spec(
+      [
+        example('disabled', COUNT_OPTIONS, 0, false, { disabled: true }),
+        example('disabled-second', COUNT_OPTIONS, 1, false, {
+          disabled: true,
+        }),
+      ],
+      segmentedControlCode(COUNT_OPTIONS, 'Scope', ['disabled'])
     ),
   },
   platforms: {

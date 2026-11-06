@@ -304,6 +304,7 @@ const STATE_NAMES = {
   app: 'App',
   swipe: 'Swipe',
   selected: 'Selected',
+  white: 'White background',
 };
 
 const describe = (selector) => {

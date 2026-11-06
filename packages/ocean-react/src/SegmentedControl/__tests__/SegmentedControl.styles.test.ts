@@ -22,25 +22,23 @@ describe('compiled SegmentedControl styles', () => {
     )?.[1];
   };
   const HOVER_OR_FOCUS =
-    '.ods-segmented-control:hover, .ods-segmented-control:has(.ods-segmented-control__option:focus-visible)';
+    '.ods-segmented-control:not(.ods-segmented-control--disabled):hover, .ods-segmented-control:has(.ods-segmented-control__option:focus-visible)';
 
-  test('uses only tokens in the source, except the documented sizes and opacities', () => {
+  test('uses only tokens in the source, except the documented sizes', () => {
     const source = fs.readFileSync(
       path.join(oceanCore, 'components/_segmented-control.scss'),
       'utf8'
     );
     expect(source).not.toMatch(/#[0-9a-f]{3,8}\b/i);
     expect(source.match(/\d+px/g)).toEqual(['32px', '16px', '16px']);
-    expect(source.match(/rgba\([^)]*\)/g)).toEqual([
-      'rgba($color-brand-primary-up, 0.32)',
-      'rgba($color-brand-primary-up, 0.48)',
-    ]);
+    expect(source).not.toMatch(/rgba\(/);
   });
 
-  test('draws the control: white pill, inner border, 4px padding and gap', () => {
+  test('draws the control: light up pill without border, 4px padding and gap', () => {
     const control = rule('.ods-segmented-control');
-    expect(control).toContain('background-color: white');
-    expect(control).toContain('box-shadow: inset 0 0 0 1px #e0e2ee');
+    expect(control).toContain('background-color: #f3f5fe');
+    expect(control).not.toContain('box-shadow');
+    expect(control).not.toContain('border:');
     expect(control).toContain('border-radius: 56px');
     expect(control).toContain('padding: 4px 4px');
     expect(control).toContain('gap: 4px');
@@ -74,16 +72,59 @@ describe('compiled SegmentedControl styles', () => {
     expect(label).toContain('min-width: 0');
   });
 
-  test('gives the selection 32% by default and 48% on hover and keyboard focus', () => {
-    expect(rule('.ods-segmented-control__selection')).toContain(
-      'background-color: rgba(184, 195, 255, 0.32)'
+  test('draws the white background with the white modifier', () => {
+    expect(rule('.ods-segmented-control--white')).toContain(
+      'background-color: white'
     );
-    expect(rule(HOVER_OR_FOCUS)).toContain('background-color: #f3f5fe');
+  });
+
+  test('fills the selection with primary pure and turns the selected text white', () => {
+    expect(rule('.ods-segmented-control__selection')).toContain(
+      'background-color: #0025e0'
+    );
+    expect(rule('.ods-segmented-control__option--selected')).toContain(
+      'color: white'
+    );
+    expect(rule('.ods-segmented-control__option')).toContain(
+      'transition: color 150ms ease'
+    );
+  });
+
+  test('makes the selected counter primary inverse, except when disabled', () => {
+    const inverse = rule(
+      '.ods-segmented-control__option--selected .ods-segmented-control__count .ods-badge__content'
+    );
+    expect(inverse).toContain('background-color: white');
+    expect(inverse).toContain('color: #0025e0');
+    const neutral = rule(
+      '.ods-segmented-control--disabled .ods-segmented-control__count .ods-badge__content'
+    );
+    expect(neutral).toContain('background-color: #aaadc0');
+    expect(neutral).toContain('color: white');
+    // Same specificity: the disabled rule comes later, so it wins over the inverse.
+    expect(css.indexOf(neutral as string)).toBeGreaterThan(
+      css.indexOf(inverse as string)
+    );
+  });
+
+  test('changes only the control background to light down on hover and keyboard focus', () => {
+    expect(rule(HOVER_OR_FOCUS)).toContain('background-color: #e0e2ee');
+    // The only hover or focus rule is the control one: selection and texts stay as they are.
+    expect(css.match(/:hover|:has\(/g)).toEqual([':hover', ':has(']);
+  });
+
+  test('draws the disabled control: light down selection, dark up texts, no hover', () => {
+    const option = rule(
+      '.ods-segmented-control--disabled .ods-segmented-control__option'
+    );
+    expect(option).toContain('color: #aaadc0');
+    expect(option).toContain('cursor: default');
     expect(
-      rule(
-        '.ods-segmented-control:hover .ods-segmented-control__selection, .ods-segmented-control:has(.ods-segmented-control__option:focus-visible) .ods-segmented-control__selection'
-      )
-    ).toContain('background-color: rgba(184, 195, 255, 0.48)');
+      rule('.ods-segmented-control--disabled .ods-segmented-control__selection')
+    ).toContain('background-color: #e0e2ee');
+    expect(HOVER_OR_FOCUS).toContain(
+      ':not(.ods-segmented-control--disabled):hover'
+    );
   });
 
   test('slides the selection in 300ms and turns motion off for reduced motion', () => {
@@ -96,7 +137,7 @@ describe('compiled SegmentedControl styles', () => {
     );
     expect(animated).toContain('width 300ms cubic-bezier(0.65, 0, 0.35, 1)');
     expect(css).toMatch(
-      /@media \(prefers-reduced-motion: reduce\) \{\s*\.ods-segmented-control, \.ods-segmented-control__selection, \.ods-segmented-control__selection--animated \{\s*transition: none;/
+      /@media \(prefers-reduced-motion: reduce\) \{\s*\.ods-segmented-control, \.ods-segmented-control__option, \.ods-segmented-control__selection, \.ods-segmented-control__selection--animated \{\s*transition: none;/
     );
   });
 });

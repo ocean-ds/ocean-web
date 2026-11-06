@@ -9,15 +9,23 @@
   "options": {
     "withIcon": {
       "title": "With icon",
-      "text": "Add `icon` to an option to show a 16px icon before the label. The icon takes the primary color; pass it without its own color or size."
+      "text": "Add `icon` to an option to show a 16px icon before the label. The icon takes the label color (primary, white on the selected option); pass it without its own color or size."
     },
     "withCount": {
       "title": "With counter",
-      "text": "Add `count` to an option to show a small primary count Badge after the label. Above 99 it shows `99+`."
+      "text": "Add `count` to an option to show a small count Badge after the label: Primary on the unselected option, Primary Inverse (white with a primary number) on the selected one. Above 99 it shows `99+`."
     },
     "longLabels": {
       "title": "Long labels",
       "text": "Labels stay on one line. When the control is wider than its container, it stops at the container width and the labels are cut with an ellipsis; screen readers still read the full label."
+    },
+    "whiteBackground": {
+      "title": "White background",
+      "text": "Pass `background=\"white\"` when the control sits on a light up surface, like a card or a hero, where the default light up background would disappear. Hover and focus are the same on both backgrounds."
+    },
+    "disabled": {
+      "title": "Disabled",
+      "text": "Pass `disabled` to disable the whole control: the selection stays visible in gray, no option can be chosen and `onChange` is not called. When the switch makes no sense for the person, do not render the control."
     }
   },
   "api": {
@@ -25,6 +33,8 @@
     "options": "The two options, in order: `label`, an optional `icon` and an optional `count`. Exactly two are drawn; extra items are ignored.",
     "selectedIndex": "Index of the selected option, 0 or 1. Any other value selects the first option.",
     "onChange": "Called with the index of the option chosen by click or arrow key. Not called when the selected option is clicked.",
+    "background": "Background of the control: `default` (light up), for white screens, or `white`, for light up surfaces like cards and heros. Default `default`.",
+    "disabled": "Disables the whole control: the options are disabled buttons, the group gets `aria-disabled`, and `onChange` is not called. Default `false`.",
     "ariaLabel": "Name of the control for screen readers, like \"Scope\" or \"View\".",
     "className": "Class on the control. `ref` and the other attributes go to the control element."
   },
@@ -39,9 +49,10 @@
     "Use exactly two options; with more, use Tab or the Filter Bar.",
     "Keep `selectedIndex` in the screen state and update it in `onChange`.",
     "One option is always selected; there is no empty state.",
-    "There is no disabled or loading state: when the switch is unavailable, do not render the control.",
+    "Use `background=\"white\"` on light up surfaces (cards, heros); keep the default on white screens.",
+    "Use `disabled` only when the switch exists but is unavailable for now; when it makes no sense for the person, do not render the control. There is no loading state.",
     "Pass `aria-label` with what the options switch.",
-    "Pass icons without color or size; the control sets 16px and the primary color.",
+    "Pass icons without color or size; the control sets 16px and the label color.",
     "Do not use the control to filter a list or to turn a setting on or off."
   ],
   "feedback": "Share component feedback through the Ocean Design System team."

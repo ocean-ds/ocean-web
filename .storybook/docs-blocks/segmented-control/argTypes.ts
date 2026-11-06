@@ -5,10 +5,12 @@ const arg = (
   type: string,
   defaultValue?: string,
   category = 'Content',
-  control: ApiArgType['control'] = false
+  control: ApiArgType['control'] = false,
+  options?: string[]
 ): ApiArgType => ({
   descriptionKey: `api.${descriptionKey}`,
   control,
+  options,
   table: {
     category,
     type: { summary: type },
@@ -29,6 +31,15 @@ export const segmentedControlArgTypes: Record<string, ApiArgType> = {
     min: 0,
     max: 1,
   }),
+  background: arg(
+    'background',
+    "'default' | 'white'",
+    "'default'",
+    'Appearance',
+    'inline-radio',
+    ['default', 'white']
+  ),
+  disabled: arg('disabled', 'boolean', 'false', 'State', 'boolean'),
   onChange: arg('onChange', '(index: 0 | 1) => void', undefined, 'Events'),
   'aria-label': arg('ariaLabel', 'string', undefined, 'Accessibility', 'text'),
   className: arg('className', 'string', undefined, 'Appearance'),
