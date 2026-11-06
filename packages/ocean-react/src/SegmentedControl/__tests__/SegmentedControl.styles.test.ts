@@ -149,9 +149,7 @@ describe('compiled SegmentedControl styles', () => {
     expect(rule('.ods-segmented-control__option')).toContain(
       `transition: color ${slide};`
     );
-    const counter = rule(
-      '.ods-segmented-control__count .ods-badge__content'
-    );
+    const counter = rule('.ods-segmented-control__count .ods-badge__content');
     expect(counter).toContain(`background-color ${slide}`);
     expect(counter).toContain(`color ${slide}`);
     // Only the control background keeps the short 150ms ease.
