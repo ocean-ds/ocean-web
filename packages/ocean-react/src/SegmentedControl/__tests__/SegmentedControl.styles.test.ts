@@ -86,7 +86,7 @@ describe('compiled SegmentedControl styles', () => {
       'color: white'
     );
     expect(rule('.ods-segmented-control__option')).toContain(
-      'transition: color 150ms ease'
+      'transition: color 300ms cubic-bezier(0.65, 0, 0.35, 1)'
     );
   });
 
@@ -137,7 +137,27 @@ describe('compiled SegmentedControl styles', () => {
     );
     expect(animated).toContain('width 300ms cubic-bezier(0.65, 0, 0.35, 1)');
     expect(css).toMatch(
-      /@media \(prefers-reduced-motion: reduce\) \{\s*\.ods-segmented-control, \.ods-segmented-control__option, \.ods-segmented-control__selection, \.ods-segmented-control__selection--animated \{\s*transition: none;/
+      /@media \(prefers-reduced-motion: reduce\) \{\s*\.ods-segmented-control, \.ods-segmented-control__option, \.ods-segmented-control__count \.ods-badge__content, \.ods-segmented-control__selection, \.ods-segmented-control__selection--animated \{\s*transition: none;/
     );
+  });
+
+  test('changes text, icon and counter colors with the same duration and curve as the selection', () => {
+    const slide = rule('.ods-segmented-control__selection--animated')?.match(
+      /transform (\d+ms cubic-bezier\([^)]*\))/
+    )?.[1];
+    expect(slide).toBe('300ms cubic-bezier(0.65, 0, 0.35, 1)');
+    expect(rule('.ods-segmented-control__option')).toContain(
+      `transition: color ${slide};`
+    );
+    const counter = rule(
+      '.ods-segmented-control__count .ods-badge__content'
+    );
+    expect(counter).toContain(`background-color ${slide}`);
+    expect(counter).toContain(`color ${slide}`);
+    // Only the control background keeps the short 150ms ease.
+    expect(rule('.ods-segmented-control')).toContain(
+      'transition: background-color 150ms ease'
+    );
+    expect(rule('.ods-segmented-control__option')).not.toContain('150ms');
   });
 });

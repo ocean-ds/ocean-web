@@ -39,7 +39,9 @@
     min-width: 0;
     padding: $spacing-stack-xxxs $spacing-inline-xxs-extra;
     position: relative;
-    transition: color 150ms ease;
+    // Selection-driven: same duration and curve as the selection slide, so the text and
+    // icon colors arrive together with the selection background.
+    transition: color 300ms cubic-bezier(0.65, 0, 0.35, 1);
     white-space: nowrap;
 
     // Keyboard focus looks exactly like hover, without a focus ring.
@@ -72,6 +74,12 @@
 
   &__count {
     flex: 0 0 auto;
+
+    // The counter swaps primary and inverse with the selection, in the same rhythm.
+    .ods-badge__content {
+      transition: background-color 300ms cubic-bezier(0.65, 0, 0.35, 1),
+        color 300ms cubic-bezier(0.65, 0, 0.35, 1);
+    }
   }
 
   // Primary inverse counter on the selected option: Badge has no inverse color, so the
@@ -125,6 +133,7 @@
   @media (prefers-reduced-motion: reduce) {
     &,
     &__option,
+    &__count .ods-badge__content,
     &__selection,
     &__selection--animated {
       transition: none;
