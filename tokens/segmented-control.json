@@ -1,0 +1,290 @@
+{
+  "component": "segmented-control",
+  "generatedFrom": [
+    "packages/ocean-core/src/components/_segmented-control.scss"
+  ],
+  "rows": [
+    {
+      "part": "Segmented control",
+      "property": "background-color",
+      "state": "Default",
+      "tokens": [
+        "color-interface-light-up"
+      ],
+      "value": "rgb(243, 245, 254)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control"
+    },
+    {
+      "part": "Segmented control",
+      "property": "border-radius",
+      "state": "Default",
+      "tokens": [
+        "border-radius-pill"
+      ],
+      "value": "56px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control"
+    },
+    {
+      "part": "Segmented control",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxxs"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control"
+    },
+    {
+      "part": "Segmented control",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xxxs",
+        "spacing-inline-xxxs"
+      ],
+      "value": "4px 4px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control"
+    },
+    {
+      "part": "Segmented control",
+      "property": "background-color",
+      "state": "Hover",
+      "tokens": [
+        "color-interface-light-down"
+      ],
+      "value": "rgb(224, 226, 238)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control:not(.ods-segmented-control--disabled):hover"
+    },
+    {
+      "part": "Segmented control",
+      "property": "background-color",
+      "state": "White background",
+      "tokens": [
+        "color-interface-light-pure"
+      ],
+      "value": "rgb(255, 255, 255)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control--white"
+    },
+    {
+      "part": "Selection background",
+      "property": "background-color",
+      "state": "Default",
+      "tokens": [
+        "color-brand-primary-pure"
+      ],
+      "value": "rgb(0, 37, 224)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__selection"
+    },
+    {
+      "part": "Selection background",
+      "property": "border-radius",
+      "state": "Default",
+      "tokens": [
+        "border-radius-pill"
+      ],
+      "value": "56px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__selection"
+    },
+    {
+      "part": "Selection background",
+      "property": "background-color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-light-down"
+      ],
+      "value": "rgb(224, 226, 238)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control--disabled .ods-segmented-control__selection"
+    },
+    {
+      "part": "Option",
+      "property": "border-radius",
+      "state": "Default",
+      "tokens": [
+        "border-radius-pill"
+      ],
+      "value": "56px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "color",
+      "state": "Default",
+      "tokens": [
+        "color-brand-primary-pure"
+      ],
+      "value": "rgb(0, 37, 224)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "font-family",
+      "state": "Default",
+      "tokens": [
+        "font-family-base"
+      ],
+      "value": "\"Nunito Sans\"",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "font-size",
+      "state": "Default",
+      "tokens": [
+        "font-size-xxs"
+      ],
+      "value": "14px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "font-weight",
+      "state": "Default",
+      "tokens": [
+        "font-weight-extrabold"
+      ],
+      "value": "800",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "gap",
+      "state": "Default",
+      "tokens": [
+        "spacing-inline-xxxs"
+      ],
+      "value": "4px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "height",
+      "state": "Default",
+      "tokens": [],
+      "value": "32px",
+      "noToken": "32px",
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "line-height",
+      "state": "Default",
+      "tokens": [
+        "line-height-loose"
+      ],
+      "value": "1.32",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "padding",
+      "state": "Default",
+      "tokens": [
+        "spacing-stack-xxxs",
+        "spacing-inline-xxs-extra"
+      ],
+      "value": "4px 12px",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option"
+    },
+    {
+      "part": "Option",
+      "property": "color",
+      "state": "Selected",
+      "tokens": [
+        "color-interface-light-pure"
+      ],
+      "value": "rgb(255, 255, 255)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option--selected"
+    },
+    {
+      "part": "Option",
+      "property": "color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control--disabled .ods-segmented-control__option"
+    },
+    {
+      "part": "Option icon",
+      "property": "height",
+      "state": "Default",
+      "tokens": [],
+      "value": "16px",
+      "noToken": "16px",
+      "source": "_segmented-control.scss .ods-segmented-control__icon svg"
+    },
+    {
+      "part": "Option icon",
+      "property": "width",
+      "state": "Default",
+      "tokens": [],
+      "value": "16px",
+      "noToken": "16px",
+      "source": "_segmented-control.scss .ods-segmented-control__icon svg"
+    },
+    {
+      "part": "Option counter",
+      "property": "background-color",
+      "state": "Selected",
+      "tokens": [
+        "color-interface-light-pure"
+      ],
+      "value": "rgb(255, 255, 255)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option--selected .ods-segmented-control__count .ods-badge__content"
+    },
+    {
+      "part": "Option counter",
+      "property": "color",
+      "state": "Selected",
+      "tokens": [
+        "color-brand-primary-pure"
+      ],
+      "value": "rgb(0, 37, 224)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control__option--selected .ods-segmented-control__count .ods-badge__content"
+    },
+    {
+      "part": "Option counter",
+      "property": "background-color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-dark-up"
+      ],
+      "value": "rgb(170, 173, 192)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control--disabled .ods-segmented-control__count .ods-badge__content"
+    },
+    {
+      "part": "Option counter",
+      "property": "color",
+      "state": "Disabled",
+      "tokens": [
+        "color-interface-light-pure"
+      ],
+      "value": "rgb(255, 255, 255)",
+      "noToken": null,
+      "source": "_segmented-control.scss .ods-segmented-control--disabled .ods-segmented-control__count .ods-badge__content"
+    }
+  ]
+}
