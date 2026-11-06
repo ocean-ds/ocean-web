@@ -9,12 +9,16 @@ import React, {
 } from 'react';
 
 import classNames from 'classnames';
+import ReactModal from 'react-modal';
 import { ArrowLeftOutline, XOutline } from '@useblu/ocean-icons-react';
 import Button from '../Button/Button';
 import IconButton from '../IconButton/IconButton';
 import Typography from '../Typography/Typography';
 
-interface DrawerProps {
+/** Mantém o conteúdo montado até o fim do slide de saída ($motion-duration-gentle). */
+const MODAL_CLOSE_TIMEOUT_MS = 600;
+
+export interface DrawerProps extends React.AriaAttributes {
   children: React.ReactNode;
   open: boolean;
   onDrawerClose?(event: React.MouseEvent | React.KeyboardEvent): void;
@@ -76,6 +80,8 @@ interface DrawerProps {
    * o hover do X para escuro com círculo em multiply.
    */
   headerColor?: 'default' | 'warning' | 'negative';
+  /** Modal isolado: prende Tab, fecha com Escape e restaura o foco ao fechar. */
+  modal?: boolean;
 }
 
 const Drawer = ({
@@ -101,6 +107,10 @@ const Drawer = ({
   title,
   actions,
   headerColor = 'default',
+  modal = false,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+  'aria-describedby': ariaDescribedBy,
 }: DrawerProps): React.ReactElement => {
   const floating = floatingProp ?? !anchorEl;
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -109,7 +119,8 @@ const Drawer = ({
   const closeRef = useRef<HTMLButtonElement>(null);
   const stacked = onDimClick !== undefined;
   const dimmed = stacked && dim !== undefined;
-  const [entered, setEntered] = useState(!floating);
+  const animated = floating || modal;
+  const [entered, setEntered] = useState(!animated);
 
   /*
    * Modo flutuante: uma Drawer montada já com `open` nasce fechada por um
@@ -117,16 +128,28 @@ const Drawer = ({
    * deslizar da borda em vez de aparecer pronta.
    */
   useLayoutEffect(() => {
-    if (!floating || entered === open) return;
+    if (!animated || entered === open) return;
+    // Modal: o ReactModal monta o conteúdo depois e a abertura vem em
+    // onAfterOpen; reaberto durante a saída, o painel ainda montado reabre aqui.
+    if (modal && open && !panelRef.current) return;
     if (open) panelRef.current?.getBoundingClientRect();
     setEntered(open);
-  }, [floating, open, entered]);
+  }, [animated, modal, open, entered]);
 
-  const visuallyOpen = floating ? entered : open;
+  const handleModalAfterOpen = () => {
+    panelRef.current?.getBoundingClientRect();
+    setEntered(true);
+  };
+
+  const visuallyOpen = animated ? entered : open;
 
   useEffect(() => {
     bodyRef.current?.toggleAttribute('inert', dimmed);
   }, [dimmed]);
+
+  useEffect(() => {
+    drawerRef.current?.toggleAttribute('inert', !open);
+  }, [open]);
 
   const handleDimmedClick = (event: MouseEvent<HTMLDivElement>) => {
     if (!dimmed) return;
@@ -213,7 +236,7 @@ const Drawer = ({
     children
   );
 
-  return (
+  const drawer = (
     <div
       className={classNames(
         'ods-overlay',
@@ -221,7 +244,8 @@ const Drawer = ({
         floating && 'ods-overlay--floating',
         hideOverlay && 'ods-overlay--transparent'
       )}
-      aria-hidden="true"
+      role="presentation"
+      aria-hidden={open ? undefined : true}
       onClick={handleOverlayClose}
       ref={drawerRef}
       style={overlayStyle}
@@ -296,6 +320,31 @@ const Drawer = ({
         )}
       </div>
     </div>
+  );
+
+  if (!modal) return drawer;
+
+  return (
+    <ReactModal
+      isOpen={open}
+      portalClassName="ods-drawer-portal"
+      overlayClassName="ods-drawer-modal__overlay"
+      className="ods-drawer-modal__content"
+      bodyOpenClassName="ods-drawer-modal--open"
+      contentLabel={ariaLabel}
+      aria={{
+        modal: true,
+        labelledby: ariaLabelledBy,
+        describedby: ariaDescribedBy,
+      }}
+      ariaHideApp={false}
+      shouldCloseOnOverlayClick={false}
+      closeTimeoutMS={MODAL_CLOSE_TIMEOUT_MS}
+      onAfterOpen={handleModalAfterOpen}
+      onRequestClose={onDrawerClose ?? (() => overlayClose())}
+    >
+      {drawer}
+    </ReactModal>
   );
 };
 

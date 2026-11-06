@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import FormControl from '../FormControl';
+import Radio from '../../Radio';
 
 const meta: Meta<typeof FormControl> = {
   title: 'Components/Forms/FormControl',
@@ -41,6 +42,36 @@ const meta: Meta<typeof FormControl> = {
 export default meta;
 
 type Story = StoryObj<typeof FormControl>;
+
+export const RadioGroup: Story = {
+  render: () => (
+    <FormControl
+      role="radiogroup"
+      aria-label="Forma de entrega"
+      aria-describedby="delivery-error"
+      aria-invalid
+      error
+      helperText="Escolha uma forma de entrega."
+      helperTextId="delivery-error"
+      helperTextRole="alert"
+    >
+      <div>
+        <Radio
+          id="delivery-pickup"
+          name="delivery"
+          label="Retirar"
+          aria-describedby="delivery-error"
+        />
+        <Radio
+          id="delivery-shipping"
+          name="delivery"
+          label="Receber"
+          aria-describedby="delivery-error"
+        />
+      </div>
+    </FormControl>
+  ),
+};
 
 export const Usage: Story = {
   args: {

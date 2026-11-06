@@ -3,6 +3,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import FormControl, { FormControlProps } from '../FormControl';
+import type { InputProps } from '../../Input/Input';
+import type { TextAreaProps } from '../../TextArea/TextArea';
+import type { SearchInputProps } from '../../Search/Search';
+import type { StepperProps } from '../../Stepper/Stepper';
+import type { SelectProps } from '../../Select/types';
 
 const setup = (props?: Omit<FormControlProps, 'children'>) =>
   render(
@@ -62,6 +67,51 @@ test('renders a disabled state', () => {
   );
 });
 
+test('CT-3: a group has a single associated error outside its radio cards', () => {
+  render(
+    <FormControl
+      role="radiogroup"
+      aria-label="Parcelas"
+      aria-describedby="group-error"
+      aria-invalid
+      error
+      helperText="Escolha uma opção."
+      helperTextId="group-error"
+      helperTextRole="alert"
+    >
+      <div data-testid="cards">
+        <input
+          type="radio"
+          id="option-six"
+          name="installments"
+          aria-label="6x"
+          aria-describedby="group-error"
+        />
+        <input
+          type="radio"
+          id="option-three"
+          name="installments"
+          aria-label="3x"
+          aria-describedby="group-error"
+        />
+      </div>
+    </FormControl>
+  );
+  const group = screen.getByRole('radiogroup', { name: 'Parcelas' });
+  expect(group).toHaveClass('ods-form-control__root--group');
+  expect(group).toHaveAttribute('aria-invalid', 'true');
+  expect(group).toHaveAccessibleDescription('Escolha uma opção.');
+  expect(screen.getAllByRole('radio')).toHaveLength(2);
+  screen.getAllByRole('radio').forEach((radio) => {
+    expect(radio).toHaveAccessibleDescription('Escolha uma opção.');
+    expect(radio).toHaveAttribute('name', 'installments');
+  });
+  expect(screen.getByRole('alert').parentElement).toBe(group);
+  expect(screen.getByTestId('cards')).not.toContainElement(
+    screen.getByRole('alert')
+  );
+});
+
 test('renders a Hello World tooltip', () => {
   setup({
     tooltipMessage: 'Hello World!',
@@ -106,4 +156,42 @@ test('renders a Hello World tooltip', () => {
       </div>
     </div>
   `);
+});
+
+test('helperTextId and helperTextRole are not forwarded to the root element', () => {
+  const consoleError = jest.spyOn(console, 'error').mockImplementation();
+  try {
+    const { container } = render(
+      <FormControl
+        role="radiogroup"
+        helperText="Escolha uma opção."
+        helperTextId="group-error"
+        helperTextRole="alert"
+        error
+      >
+        <input type="radio" name="option" aria-label="Opção" />
+      </FormControl>
+    );
+    const root = container.firstChild as HTMLElement;
+    expect(root).not.toHaveAttribute('helperTextId');
+    expect(root).not.toHaveAttribute('helpertextid');
+    expect(root).not.toHaveAttribute('helpertextrole');
+    expect(screen.getByRole('alert')).toHaveAttribute('id', 'group-error');
+    expect(consoleError).not.toHaveBeenCalled();
+  } finally {
+    consoleError.mockRestore();
+  }
+});
+
+test('field components do not accept the group-only helper props', () => {
+  // Esses componentes repassam as props restantes ao elemento nativo.
+  type GroupOnly<T> = Extract<keyof T, 'helperTextId' | 'helperTextRole'>;
+  const accepted: never[] = [] as Array<
+    | GroupOnly<InputProps>
+    | GroupOnly<TextAreaProps>
+    | GroupOnly<SearchInputProps>
+    | GroupOnly<StepperProps>
+    | GroupOnly<SelectProps>
+  >;
+  expect(accepted).toHaveLength(0);
 });

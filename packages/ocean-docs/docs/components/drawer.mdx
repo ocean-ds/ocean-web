@@ -159,6 +159,47 @@ O componente utiliza as seguintes classes CSS que podem ser customizadas:
 
 ## Acessibilidade
 
+### Painel modal isolado
+
+Use `modal` para uma escolha que deve permanecer dentro do painel até fechar.
+Reutiliza o gerenciador de foco do Modal do Ocean: Tab/Shift+Tab ficam no painel,
+Escape fecha e o foco volta ao disparador, inclusive após reabrir. O diálogo usa
+`aria-modal="true"`; a raiz desconhecida do aplicativo consumidor não é alterada.
+O overlay aberto não oculta seus descendentes de tecnologias assistivas.
+
+| Prop               | Tipo      | Padrão  | Descrição                                                     |
+| ------------------ | --------- | ------- | ------------------------------------------------------------- |
+| `modal`            | `boolean` | `false` | Modal isolado com foco contido, Escape e restauração de foco. |
+| `aria-labelledby`  | `string`  | —       | ID do título que dá nome ao modal.                            |
+| `aria-label`       | `string`  | —       | Nome alternativo, quando não há título visível.               |
+| `aria-describedby` | `string`  | —       | ID da descrição opcional do modal.                            |
+
+```tsx
+<Drawer
+  modal
+  open={open}
+  onDrawerClose={close}
+  overlayClose={close}
+  aria-labelledby="choice-title"
+  title={<h2 id="choice-title">Escolha uma opção</h2>}
+  actions={<Button onClick={close}>Selecionar</Button>}
+>
+  <p>Conteúdo da escolha.</p>
+</Drawer>
+```
+
+<StorybookEmbed
+  storyId="components-overlays-drawer--accessible-modal"
+  height={480}
+  title="Drawer — modal acessível"
+/>
+
+**Quando não usar:** não combine `modal` com `anchorEl`, menus por hover ou
+drawers empilhadas; use o modo ancorado ou `useDrawerStack` já existentes. As
+instâncias sem `modal` preservam sua anatomia e posicionamento. Não crie outro
+gerenciador de Tab/Escape no aplicativo consumidor nem dê ao overlay aberto
+`aria-hidden="true"`.
+
 - ✅ Suporte completo a navegação por teclado
 - ✅ Foco automático no drawer quando aberto
 - ✅ Escape para fechar o drawer

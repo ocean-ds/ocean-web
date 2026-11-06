@@ -6,7 +6,10 @@ import FormControl, { FormControlProps } from '../FormControl';
 import useInputFilled from '../_util/useInputFilled';
 import IconButton from '../IconButton';
 
-export type SearchInputProps = Omit<FormControlProps, 'children'> &
+export type SearchInputProps = Omit<
+  FormControlProps,
+  'children' | 'helperTextId' | 'helperTextRole'
+> &
   React.ComponentPropsWithoutRef<'input'>;
 
 const Search = React.forwardRef<HTMLInputElement, SearchInputProps>(
