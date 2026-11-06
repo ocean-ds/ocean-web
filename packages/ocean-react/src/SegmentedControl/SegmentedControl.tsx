@@ -3,6 +3,7 @@ import React, {
   ReactNode,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -58,7 +59,16 @@ type Selection = {
   animate: boolean;
 };
 
-const NAVIGATION_KEYS = ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'];
+const NAVIGATION_KEYS = new Set([
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowDown',
+  'ArrowUp',
+]);
+
+/** The counter as the Badge shows it: up to 99, then "99+". */
+const countText = (count: number): string =>
+  count > 99 ? '99+' : String(count);
 
 const SegmentedControl = React.forwardRef<
   HTMLDivElement,
@@ -84,8 +94,7 @@ const SegmentedControl = React.forwardRef<
     const left = option.offsetLeft;
     const width = option.offsetWidth;
     setSelection((previous) =>
-      previous &&
-      previous.index === selected &&
+      previous?.index === selected &&
       previous.left === left &&
       previous.width === width
         ? previous
@@ -127,12 +136,14 @@ const SegmentedControl = React.forwardRef<
     };
   }, [optionsKey]);
 
-  useEffect(placeSelection, [placeSelection, optionsKey]);
+  // Before paint, so the selection moves in the same frame as the option colors
+  // (with reduced motion there is no frame where the colors and the selection disagree).
+  useLayoutEffect(placeSelection, [placeSelection, optionsKey]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     if (
       disabled ||
-      !NAVIGATION_KEYS.includes(event.key) ||
+      !NAVIGATION_KEYS.has(event.key) ||
       items.length < OPTION_COUNT
     )
       return;
@@ -184,7 +195,7 @@ const SegmentedControl = React.forwardRef<
             aria-label={
               // Read the counter as the Badge shows it, separated from the label.
               typeof count === 'number'
-                ? `${label}, ${count > 99 ? '99+' : count}`
+                ? `${label}, ${countText(count)}`
                 : undefined
             }
             tabIndex={isSelected ? 0 : -1}

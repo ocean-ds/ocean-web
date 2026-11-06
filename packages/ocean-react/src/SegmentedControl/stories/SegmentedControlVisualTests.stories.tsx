@@ -120,7 +120,7 @@ export const StatesAndBackgrounds: Story = {
 export const Focused: Story = {
   parameters: { chromatic: { viewports: [1440] } },
   render: () => control(FULL_OPTIONS),
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     canvasElement.querySelector<HTMLButtonElement>('[role="radio"]')?.focus();
   },
 };
@@ -129,7 +129,7 @@ export const Focused: Story = {
 export const FocusedWhite: Story = {
   parameters: { chromatic: { viewports: [1440] } },
   render: () => control(FULL_OPTIONS, 0, false, { white: true }),
-  play: async ({ canvasElement }) => {
+  play: ({ canvasElement }) => {
     canvasElement.querySelector<HTMLButtonElement>('[role="radio"]')?.focus();
   },
 };
