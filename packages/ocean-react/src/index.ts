@@ -98,6 +98,9 @@ export * from './Steps';
 export { default as Tab } from './Tab';
 export * from './Tab';
 
+export { default as SegmentedControl } from './SegmentedControl';
+export * from './SegmentedControl';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 

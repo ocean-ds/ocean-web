@@ -1,0 +1,48 @@
+{
+  "overview": "Segmented Control switches the scope or the view of the same content between exactly two options. It calls `onChange` with the chosen index; the screen updates the content.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Pass the two options in `options`, the selected one in `selectedIndex` (0 or 1) and update it in `onChange`. The control is as wide as its options."
+    }
+  },
+  "options": {
+    "withIcon": {
+      "title": "With icon",
+      "text": "Add `icon` to an option to show a 16px icon before the label. The icon takes the primary color; pass it without its own color or size."
+    },
+    "withCount": {
+      "title": "With counter",
+      "text": "Add `count` to an option to show a small primary count Badge after the label. Above 99 it shows `99+`."
+    },
+    "longLabels": {
+      "title": "Long labels",
+      "text": "Labels stay on one line. When the control is wider than its container, it stops at the container width and the labels are cut with an ellipsis; screen readers still read the full label."
+    }
+  },
+  "api": {
+    "intro": "Segmented Control renders the two options; the screen keeps the selection and updates the content.",
+    "options": "The two options, in order: `label`, an optional `icon` and an optional `count`. Exactly two are drawn; extra items are ignored.",
+    "selectedIndex": "Index of the selected option, 0 or 1. Any other value selects the first option.",
+    "onChange": "Called with the index of the option chosen by click or arrow key. Not called when the selected option is clicked.",
+    "ariaLabel": "Name of the control for screen readers, like \"Scope\" or \"View\".",
+    "className": "Class on the control. `ref` and the other attributes go to the control element."
+  },
+  "platforms": {
+    "text": "The same component exists in the iOS and Android libraries."
+  },
+  "tokens": {
+    "intro": "The table below lists the Ocean tokens used by Segmented Control.",
+    "blocks": "The counter is a small [Badge](docs:components-badge--docs); its size tokens are listed there."
+  },
+  "rules": [
+    "Use exactly two options; with more, use Tab or the Filter Bar.",
+    "Keep `selectedIndex` in the screen state and update it in `onChange`.",
+    "One option is always selected; there is no empty state.",
+    "There is no disabled or loading state: when the switch is unavailable, do not render the control.",
+    "Pass `aria-label` with what the options switch.",
+    "Pass icons without color or size; the control sets 16px and the primary color.",
+    "Do not use the control to filter a list or to turn a setting on or off."
+  ],
+  "feedback": "Share component feedback through the Ocean Design System team."
+}

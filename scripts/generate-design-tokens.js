@@ -265,6 +265,12 @@ const PART_NAMES = {
   'ods-tab__content': 'Tab content',
   'ods-tab__count': 'Counter',
   'ods-tab__indicator': 'Selection line',
+  'ods-segmented-control': 'Segmented control',
+  'ods-segmented-control__selection': 'Selection background',
+  'ods-segmented-control__option': 'Option',
+  'ods-segmented-control__icon': 'Option icon',
+  'ods-segmented-control__label': 'Option label',
+  'ods-segmented-control__count': 'Option counter',
 };
 
 const STATE_NAMES = {
@@ -457,6 +463,14 @@ const COMPONENTS = {
     files: ['_tab.scss'],
     include: (selector) => selector.startsWith('.ods-tab'),
   },
+  'segmented-control': {
+    files: ['_segmented-control.scss'],
+    // Keyboard focus repeats the hover tokens through :has(), which the table cannot name.
+    include: all(
+      (selector) => selector.startsWith('.ods-segmented-control'),
+      not(NOT_DOCS)
+    ),
+  },
   drawer: {
     files: ['_drawer.scss'],
     include: (selector) =>
@@ -471,6 +485,12 @@ const PART_ORDER = [
   'Tab content',
   'Counter',
   'Selection line',
+  'Segmented control',
+  'Selection background',
+  'Option',
+  'Option icon',
+  'Option label',
+  'Option counter',
   'Footer',
   'Summary',
   'Card',

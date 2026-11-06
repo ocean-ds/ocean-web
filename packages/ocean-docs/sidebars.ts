@@ -58,6 +58,7 @@ const sidebars: SidebarsConfig = {
         'components/progress',
         'components/radio',
         'components/search',
+        'components/segmented-control',
         'components/select',
         'components/selectautocomplete',
         'components/settingslistitem',

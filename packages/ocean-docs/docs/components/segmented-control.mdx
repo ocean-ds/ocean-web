@@ -1,0 +1,132 @@
+---
+title: Segmented Control
+---
+
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Segmented Control
+
+O Segmented Control é um controle com **exatamente 2 opções**, uma sempre selecionada, que troca o escopo ou a visão do mesmo conteúdo (ex.: Loja | Rede, Lista | Calendário). Ele renderiza só o controle: a tela guarda a opção selecionada e atualiza o conteúdo.
+
+## Importação
+
+```tsx
+import { SegmentedControl } from '@useblu/ocean-react';
+import type {
+  SegmentedControlProps,
+  SegmentedControlOption,
+  SegmentedControlIndex,
+} from '@useblu/ocean-react';
+```
+
+## Uso básico
+
+```tsx
+import { useState } from 'react';
+import { SegmentedControl } from '@useblu/ocean-react';
+import { CalendarOutline, ViewListOutline } from '@useblu/ocean-icons-react';
+
+function ScheduleView() {
+  const [selected, setSelected] = useState<0 | 1>(0);
+
+  return (
+    <>
+      <SegmentedControl
+        aria-label="Visão"
+        options={[
+          { label: 'Lista', icon: <ViewListOutline /> },
+          { label: 'Calendário', icon: <CalendarOutline />, count: 3 },
+        ]}
+        selectedIndex={selected}
+        onChange={setSelected}
+      />
+      {selected === 0 ? <ScheduleList /> : <ScheduleCalendar />}
+    </>
+  );
+}
+```
+
+## Playground interativo
+
+<StorybookEmbed
+  storyId="components-segmented-control--default"
+  height={160}
+  title="Segmented Control - Playground interativo"
+/>
+
+Documentação técnica completa, com diretrizes, specs, acessibilidade e tokens, no **[Storybook do Segmented Control](https://ocean-ds.github.io/ocean-web/?path=/docs/components-segmented-control--overview)**.
+
+## Quando usar
+
+Use quando a tela mostra **o mesmo conteúdo em 2 escopos ou 2 visões** e a pessoa alterna entre eles: uma loja ou a rede inteira, lista ou calendário.
+
+## Quando NÃO usar
+
+| Situação                                           | Use no lugar                                                         |
+| -------------------------------------------------- | -------------------------------------------------------------------- |
+| Seções com conteúdo próprio                        | [Tab](/components/tab)                                               |
+| Filtrar uma mesma lista (Todos, Pendentes, Pagos…) | Filter Bar ([Chips](/components/chips))                              |
+| Ligar ou desligar uma configuração                 | [Switch](/components/switch)                                         |
+| Uma escolha dentro de um formulário                | [Radio](/components/radio)                                           |
+| Mais de 2 opções                                   | [Tab](/components/tab) ou Filter Bar ([Chips](/components/chips))    |
+| Troca que não está disponível para a pessoa        | Não mostre o controle: não existe estado desabilitado nem carregando |
+
+## API
+
+### Props
+
+| Prop            | Tipo                                               | Padrão | Descrição                                                                                                                                                    |
+| --------------- | -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`       | `[SegmentedControlOption, SegmentedControlOption]` | -      | As duas opções, em ordem. Cada uma tem `label: string`, `icon?: ReactNode` e `count?: number`. Só as 2 primeiras são desenhadas; itens a mais são ignorados. |
+| `selectedIndex` | `0 \| 1`                                           | -      | Índice da opção selecionada. Qualquer outro valor seleciona a primeira opção.                                                                                |
+| `onChange`      | `(index: 0 \| 1) => void`                          | -      | Chamado com o índice da opção escolhida por clique ou seta. Não é chamado no clique da opção já selecionada.                                                 |
+| `aria-label`    | `string`                                           | -      | Nome do controle para leitores de tela, como "Escopo" ou "Visão".                                                                                            |
+| `className`     | `string`                                           | -      | Classe extra no controle.                                                                                                                                    |
+| `ref`           | `Ref<HTMLDivElement>`                              | -      | Encaminhado para o elemento do controle (`role="radiogroup"`). Os demais atributos de `div` também vão para ele.                                             |
+
+### `SegmentedControlOption`
+
+| Campo   | Tipo        | Padrão | Descrição                                                                    |
+| ------- | ----------- | ------ | ---------------------------------------------------------------------------- |
+| `label` | `string`    | -      | Texto da opção. Uma linha só; cortado com "…" quando não cabe.               |
+| `icon`  | `ReactNode` | -      | Ícone de 16px antes do texto, na cor primária. Passe sem cor nem tamanho.    |
+| `count` | `number`    | -      | Contador (Badge pequeno primário) depois do texto. Acima de 99 mostra `99+`. |
+
+## Comportamento
+
+- **Estados:** o estado é do controle inteiro. Padrão (fundo branco, seleção em `color-brand-primary-up` com 32% de opacidade); hover e foco de teclado (fundo `color-interface-light-up`, seleção com 48%). O foco de teclado tem a mesma aparência do hover, sem contorno.
+- **Sem desabilitado nem carregando:** se a troca não está disponível, a tela não mostra o controle.
+- **Transição:** na troca de opção, o fundo de seleção desliza da opção anterior até a nova (posição e largura juntas) em 300ms, `cubic-bezier(0.65, 0, 0.35, 1)`, sem overshoot. As cores de fundo mudam em 150ms. Com `prefers-reduced-motion: reduce`, a troca é imediata.
+- **Largura:** o controle tem a largura das duas opções (não estica). Altura total de 40px; cada opção tem 32px.
+- **Texto:** sempre em uma linha. Se o controle não couber no container, ele para na largura do container e o texto é cortado com "…"; o leitor de tela continua lendo o texto inteiro.
+
+## Acessibilidade
+
+| Tecla           | Ação                                                      |
+| --------------- | --------------------------------------------------------- |
+| `Tab`           | Leva o foco para a opção selecionada e, depois, para fora |
+| `→` `←` `↑` `↓` | Vão para a outra opção e a selecionam                     |
+
+- O controle tem `role="radiogroup"` com o `aria-label`; cada opção é um `<button role="radio">` com `aria-checked`.
+- Só a opção selecionada entra na ordem de tabulação (`tabIndex=0`); a outra fica com `-1` (roving tabindex).
+- O contador é lido como parte do nome da opção.
+
+## Classes CSS
+
+| Classe                                     | Descrição                                                   |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `.ods-segmented-control`                   | Controle (container), com a borda                           |
+| `.ods-segmented-control__option`           | Opção                                                       |
+| `.ods-segmented-control__option--selected` | Opção selecionada                                           |
+| `.ods-segmented-control__icon`             | Ícone da opção                                              |
+| `.ods-segmented-control__label`            | Texto da opção (cortado com reticências)                    |
+| `.ods-segmented-control__count`            | Contador (Badge)                                            |
+| `.ods-segmented-control__selection`        | Fundo de seleção único, que desliza até a opção selecionada |
+
+## Links relacionados
+
+- [Tab](/components/tab) - Para seções com conteúdo próprio
+- [Chips](/components/chips) - Filter Bar, para filtrar uma lista
+- [Switch](/components/switch) - Para ligar ou desligar uma configuração
+- [Radio](/components/radio) - Para uma escolha dentro de um formulário
+- [Badge](/components/badge) - O contador da opção
