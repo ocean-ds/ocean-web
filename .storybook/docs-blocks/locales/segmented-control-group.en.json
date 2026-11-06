@@ -1,0 +1,222 @@
+{
+  "breadcrumb": ["Components"],
+  "description": "A control with exactly two options that switches the scope or the view of the same content.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "toc": "On this page",
+  "page": {
+    "title": "Segmented Control",
+    "status": "Stable"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility",
+    "code": "Code"
+  },
+  "guidelines": {
+    "overview": "Overview",
+    "formatting": "Formatting",
+    "content": "Content",
+    "behaviors": "Behaviors",
+    "related": "Related",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Overview",
+    "text": "Segmented Control switches the scope or the view of the same content between exactly two options, like Store and Network or List and Calendar. One option is always selected, and the content below changes at once.",
+    "whenToUse": "When to use",
+    "whenToUseItems": [
+      "Two scopes of the same content, like one store or the whole network.",
+      "Two views of the same data, like a list or a calendar."
+    ],
+    "whenNotToUse": "When not to use",
+    "whenNotToUseItems": [
+      "Sections with their own content: use [Tab](docs:components-tab--overview).",
+      "To filter one list (All, Pending, Paid): use the Filter Bar, [Chips](docs:components-chips--docs).",
+      "To turn a setting on or off: use [Switch](docs:components-switch--docs).",
+      "A choice inside a form: use [Radio](docs:components-radio--docs).",
+      "More than two options: use [Tab](docs:components-tab--overview) or the Filter Bar, [Chips](docs:components-chips--docs).",
+      "When the switch makes no sense for the person (like a store without a network): do not show the control. Use `disabled` only when the switch exists but is unavailable for now. There is no loading state."
+    ],
+    "variants": "Variants",
+    "variantColumns": ["Variant", "Purpose", "Code"],
+    "variantRows": [
+      "Default|Two options, one always selected.|default",
+      "With icon|A 16px icon before the label.|withIcon",
+      "With counter|A counter after the label.|withCount",
+      "Long labels|Labels on one line, cut with an ellipsis.|longLabels",
+      "White background|For light up surfaces, like cards and heros.|whiteBackground",
+      "Disabled|The whole control unavailable; the selection stays visible.|disabled"
+    ],
+    "codeLink": "See in Code"
+  },
+  "formatting": {
+    "title": "Formatting",
+    "anatomy": "Anatomy",
+    "layoutTitle": "Layout",
+    "layoutText": "The control is as wide as its two options; it does not stretch.",
+    "layoutColumns": ["Situation", "Width"],
+    "layoutRows": [
+      "The labels fit|Each option as wide as its content; the control hugs the two options.",
+      "The labels do not fit the container|The control stops at the container width and the labels are cut with an ellipsis."
+    ],
+    "backgroundTitle": "Background",
+    "backgroundText": "The control has two backgrounds. Pick the one that contrasts with the surface below it.",
+    "backgroundColumns": ["Background", "Token", "Use on"],
+    "backgroundRows": [
+      "Default|color-interface-light-up|White screens and surfaces.",
+      "White (`background=\"white\"`)|color-interface-light-pure|Light up surfaces (`color-interface-light-up`), like cards and heros, where the default would disappear."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Element", "Required", "Notes"],
+    "rows": [
+      "1|Control|Yes|Pill without border, around the two options; light up or white background.",
+      "2|Selection background|Selected option only|One primary background for the control; slides under the selected option and spans its width.",
+      "3|Icon|No|16px, before the label, in the label color.",
+      "4|Label|Yes|One line; cut with an ellipsis when it does not fit. White on the selected option, primary on the other.",
+      "5|Counter|No|Small count Badge after the label: Primary Inverse on the selected option, Primary on the other, Neutral when disabled."
+    ]
+  },
+  "content": {
+    "title": "Content",
+    "text": "Each option names one scope or one view of the same content.",
+    "writingItems": [
+      "Name each option with one or two words, in sentence case.",
+      "Keep the two labels parallel: both nouns, about the same length.",
+      "Use the icon only when it helps tell the views apart, on both options."
+    ],
+    "useTitle": "Views, not filters",
+    "useDo": "Use the control to switch the scope or the view of the same content.",
+    "useDont": "Do not use it to filter one list; use the Filter Bar ([Chips](docs:components-chips--docs))."
+  },
+  "behaviors": {
+    "title": "Behaviors",
+    "text": "The state belongs to the whole control. Hover and keyboard focus change only the control background; keyboard focus looks exactly like hover, without a focus ring. On a change, the selection background slides to the new option in 300ms and the colors ease. With reduced motion the change is instant.",
+    "columns": [
+      "State",
+      "Control background",
+      "Selection background",
+      "Labels and icons"
+    ],
+    "rows": [
+      "Default|Light up (default) · White (white)|Primary|White on the selected option, primary on the other",
+      "Hover|Light down, on both backgrounds|Primary|Same as default",
+      "Focused (keyboard)|Light down, on both backgrounds|Primary|Same as default",
+      "Disabled|Light up (default) · White (white), no hover|Light down|Dark up on both options; Neutral counters"
+    ]
+  },
+  "related": {
+    "title": "Related",
+    "tab": {
+      "title": "Tab",
+      "text": "Use Tab for sections with their own content.",
+      "link": "Explore Tab"
+    },
+    "chips": {
+      "title": "Chips",
+      "text": "Use Chips as the Filter Bar to filter one list.",
+      "link": "Explore Chips"
+    },
+    "switch": {
+      "title": "Switch",
+      "text": "Use Switch to turn a setting on or off.",
+      "link": "Explore Switch"
+    },
+    "radio": {
+      "title": "Radio",
+      "text": "Use Radio for a choice inside a form.",
+      "link": "Explore Radio"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Share feedback about this component through the Ocean Design System feedback channels."
+  },
+  "specs": {
+    "colors": "Colors",
+    "typography": "Typography",
+    "structure": "Structure",
+    "size": "Size"
+  },
+  "colors": {
+    "title": "Colors",
+    "columns": ["Element", "State", "Token"],
+    "rows": [
+      "Control|Default background|color-interface-light-up",
+      "Control|White background|color-interface-light-pure",
+      "Control|Hover, Focused|color-interface-light-down",
+      "Selection background|Default, Hover, Focused|color-brand-primary-pure",
+      "Selection background|Disabled|color-interface-light-down",
+      "Label, icon|Selected option|color-interface-light-pure",
+      "Label, icon|Unselected option|color-brand-primary-pure",
+      "Label, icon|Disabled|color-interface-dark-up",
+      "Counter (Primary Inverse)|Selected option|color-interface-light-pure",
+      "Counter (Primary)|Unselected option|color-brand-primary-pure",
+      "Counter (Neutral)|Disabled|color-interface-dark-up"
+    ]
+  },
+  "typography": {
+    "title": "Typography",
+    "columns": ["Element", "Size", "Weight", "Line height", "Token"],
+    "rows": ["Label|14px|ExtraBold (800)|1.32|heading5"]
+  },
+  "structure": {
+    "title": "Structure",
+    "columns": ["Element", "Property", "px", "Token"],
+    "rows": [
+      "Control|Padding|4px|spacing-inline-xxxs, spacing-stack-xxxs",
+      "Control|Gap between options|4px|spacing-inline-xxxs",
+      "Control, option, selection|Radius|Pill|border-radius-pill",
+      "Option|Horizontal padding|12px|spacing-inline-xxs-extra",
+      "Option|Vertical padding|4px|spacing-stack-xxxs",
+      "Option|Gap icon, label, counter|4px|spacing-inline-xxxs"
+    ]
+  },
+  "size": {
+    "title": "Size",
+    "columns": ["Element", "Height"],
+    "rows": ["Control|40px", "Option|32px (No token)", "Icon|16px (No token)"]
+  },
+  "tokens": {
+    "link": "Full token list → Code › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Keyboard",
+    "screenReaders": "Screen readers",
+    "development": "Development considerations"
+  },
+  "keyboard": {
+    "title": "Keyboard",
+    "columns": ["Key", "Action"],
+    "rows": [
+      "Tab|Moves the focus into the control, to the selected option, and then out of it.",
+      "Arrow keys|Move to the other option and select it.",
+      "Disabled|The options leave the tab order; no key changes the selection."
+    ]
+  },
+  "screenReaders": {
+    "title": "Screen readers",
+    "columns": ["Element", "Behavior"],
+    "rows": [
+      "Control|Announced as a radio group, with the name given in `aria-label`.",
+      "Option|Announced as a radio button, with its position and whether it is checked.",
+      "Disabled|The group is announced with `aria-disabled`, and each option as a disabled radio button.",
+      "Label|The full label is read, even when it is cut on screen.",
+      "Counter|Read as part of the option name (\"Network 12\")."
+    ]
+  },
+  "development": {
+    "title": "Development considerations",
+    "items": [
+      "**Name the control.** Pass `aria-label` with what the options switch, like \"Scope\" or \"View\".",
+      "**Keep the selection in the screen.** Store `selectedIndex` in the screen state and update it in `onChange`.",
+      "**Focus has no ring.** Keyboard focus looks like hover, by design decision: the control background turns light down on both backgrounds.",
+      "**Pick the background by the surface.** Use `background=\"white\"` on light up surfaces; the default disappears on them.",
+      "**Disabled or hidden.** Use `disabled` when the switch exists but is unavailable for now; when it makes no sense for the person, do not render the control."
+    ]
+  }
+}

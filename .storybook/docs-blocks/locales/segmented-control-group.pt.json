@@ -1,0 +1,222 @@
+{
+  "breadcrumb": ["Componentes"],
+  "description": "Um controle com exatamente duas opções que troca o escopo ou a visão do mesmo conteúdo.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "toc": "Nesta página",
+  "page": {
+    "title": "Segmented Control",
+    "status": "Estável"
+  },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Specs",
+    "accessibility": "Acessibilidade",
+    "code": "Código"
+  },
+  "guidelines": {
+    "overview": "Visão geral",
+    "formatting": "Formatação",
+    "content": "Conteúdo",
+    "behaviors": "Comportamentos",
+    "related": "Relacionados",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Visão geral",
+    "text": "O Segmented Control troca o escopo ou a visão do mesmo conteúdo entre exatamente duas opções, como Loja e Rede ou Lista e Calendário. Uma opção está sempre selecionada, e o conteúdo abaixo muda na hora.",
+    "whenToUse": "Quando usar",
+    "whenToUseItems": [
+      "Dois escopos do mesmo conteúdo, como uma loja ou a rede inteira.",
+      "Duas visões dos mesmos dados, como lista ou calendário."
+    ],
+    "whenNotToUse": "Quando não usar",
+    "whenNotToUseItems": [
+      "Seções com conteúdo próprio: use o [Tab](docs:components-tab--overview).",
+      "Para filtrar uma lista (Todos, Pendentes, Pagos): use a Filter Bar, [Chips](docs:components-chips--docs).",
+      "Para ligar ou desligar uma configuração: use o [Switch](docs:components-switch--docs).",
+      "Uma escolha dentro de um formulário: use o [Radio](docs:components-radio--docs).",
+      "Mais de duas opções: use o [Tab](docs:components-tab--overview) ou a Filter Bar, [Chips](docs:components-chips--docs).",
+      "Quando a troca não faz sentido para a pessoa (como uma loja sem rede): não mostre o controle. Use `disabled` só quando a troca existe mas está indisponível no momento. Não existe estado carregando."
+    ],
+    "variants": "Variantes",
+    "variantColumns": ["Variante", "Para que serve", "Código"],
+    "variantRows": [
+      "Default|Duas opções, uma sempre selecionada.|default",
+      "With icon|Um ícone de 16px antes do texto.|withIcon",
+      "With counter|Um contador depois do texto.|withCount",
+      "Long labels|Texto em uma linha, cortado com reticências.|longLabels",
+      "White background|Para superfícies light up, como cards e heros.|whiteBackground",
+      "Disabled|O controle inteiro indisponível; a seleção continua visível.|disabled"
+    ],
+    "codeLink": "Ver no Código"
+  },
+  "formatting": {
+    "title": "Formatação",
+    "anatomy": "Anatomia",
+    "layoutTitle": "Layout",
+    "layoutText": "O controle tem a largura das duas opções; ele não estica.",
+    "layoutColumns": ["Situação", "Largura"],
+    "layoutRows": [
+      "Os textos cabem|Cada opção do tamanho do conteúdo; o controle abraça as duas opções.",
+      "Os textos não cabem no container|O controle para na largura do container e os textos são cortados com reticências."
+    ],
+    "backgroundTitle": "Fundo",
+    "backgroundText": "O controle tem dois fundos. Escolha o que contrasta com a superfície embaixo dele.",
+    "backgroundColumns": ["Fundo", "Token", "Use sobre"],
+    "backgroundRows": [
+      "Default|color-interface-light-up|Telas e superfícies brancas.",
+      "White (`background=\"white\"`)|color-interface-light-pure|Superfícies light up (`color-interface-light-up`), como cards e heros, onde o padrão sumiria."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Elemento", "Obrigatório", "Observações"],
+    "rows": [
+      "1|Controle|Sim|Pílula sem borda, em volta das duas opções; fundo light up ou branco.",
+      "2|Fundo de seleção|Só na opção selecionada|Um fundo primário só para o controle; desliza até a opção selecionada e ocupa a largura dela.",
+      "3|Ícone|Não|16px, antes do texto, na cor do texto.",
+      "4|Texto|Sim|Uma linha; cortado com reticências quando não cabe. Branco na opção selecionada, primário na outra.",
+      "5|Contador|Não|Badge de contagem pequeno depois do texto: Primary Inverse na opção selecionada, Primary na outra, Neutral quando desabilitado."
+    ]
+  },
+  "content": {
+    "title": "Conteúdo",
+    "text": "Cada opção nomeia um escopo ou uma visão do mesmo conteúdo.",
+    "writingItems": [
+      "Nomeie cada opção com uma ou duas palavras, só com a primeira letra maiúscula.",
+      "Mantenha os dois textos paralelos: os dois substantivos, de tamanho parecido.",
+      "Use o ícone só quando ele ajuda a diferenciar as visões, nas duas opções."
+    ],
+    "useTitle": "Visões, não filtros",
+    "useDo": "Use o controle para trocar o escopo ou a visão do mesmo conteúdo.",
+    "useDont": "Não use para filtrar uma lista; use a Filter Bar ([Chips](docs:components-chips--docs))."
+  },
+  "behaviors": {
+    "title": "Comportamentos",
+    "text": "O estado é do controle inteiro. Hover e foco de teclado mudam só o fundo do controle; o foco de teclado tem a mesma aparência do hover, sem contorno de foco. Na troca, o fundo de seleção desliza até a nova opção em 300ms e as cores mudam suavemente. Com movimento reduzido, a troca é imediata.",
+    "columns": [
+      "Estado",
+      "Fundo do controle",
+      "Fundo de seleção",
+      "Textos e ícones"
+    ],
+    "rows": [
+      "Padrão|Light up (default) · Branco (white)|Primary|Branco na opção selecionada, primário na outra",
+      "Hover|Light down, nos dois fundos|Primary|Igual ao padrão",
+      "Foco (teclado)|Light down, nos dois fundos|Primary|Igual ao padrão",
+      "Desabilitado|Light up (default) · Branco (white), sem hover|Light down|Dark up nas duas opções; contadores Neutral"
+    ]
+  },
+  "related": {
+    "title": "Relacionados",
+    "tab": {
+      "title": "Tab",
+      "text": "Use o Tab para seções com conteúdo próprio.",
+      "link": "Ver Tab"
+    },
+    "chips": {
+      "title": "Chips",
+      "text": "Use os Chips como Filter Bar para filtrar uma lista.",
+      "link": "Ver Chips"
+    },
+    "switch": {
+      "title": "Switch",
+      "text": "Use o Switch para ligar ou desligar uma configuração.",
+      "link": "Ver Switch"
+    },
+    "radio": {
+      "title": "Radio",
+      "text": "Use o Radio para uma escolha dentro de um formulário.",
+      "link": "Ver Radio"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Envie feedback sobre este componente pelos canais de feedback do Ocean Design System."
+  },
+  "specs": {
+    "colors": "Cores",
+    "typography": "Tipografia",
+    "structure": "Estrutura",
+    "size": "Tamanho"
+  },
+  "colors": {
+    "title": "Cores",
+    "columns": ["Elemento", "Estado", "Token"],
+    "rows": [
+      "Controle|Fundo padrão|color-interface-light-up",
+      "Controle|Fundo branco|color-interface-light-pure",
+      "Controle|Hover, Foco|color-interface-light-down",
+      "Fundo de seleção|Padrão, Hover, Foco|color-brand-primary-pure",
+      "Fundo de seleção|Desabilitado|color-interface-light-down",
+      "Texto, ícone|Opção selecionada|color-interface-light-pure",
+      "Texto, ícone|Opção não selecionada|color-brand-primary-pure",
+      "Texto, ícone|Desabilitado|color-interface-dark-up",
+      "Contador (Primary Inverse)|Opção selecionada|color-interface-light-pure",
+      "Contador (Primary)|Opção não selecionada|color-brand-primary-pure",
+      "Contador (Neutral)|Desabilitado|color-interface-dark-up"
+    ]
+  },
+  "typography": {
+    "title": "Tipografia",
+    "columns": ["Elemento", "Tamanho", "Peso", "Altura de linha", "Token"],
+    "rows": ["Texto|14px|ExtraBold (800)|1.32|heading5"]
+  },
+  "structure": {
+    "title": "Estrutura",
+    "columns": ["Elemento", "Propriedade", "px", "Token"],
+    "rows": [
+      "Controle|Padding|4px|spacing-inline-xxxs, spacing-stack-xxxs",
+      "Controle|Espaço entre as opções|4px|spacing-inline-xxxs",
+      "Controle, opção, seleção|Raio|Pílula|border-radius-pill",
+      "Opção|Padding horizontal|12px|spacing-inline-xxs-extra",
+      "Opção|Padding vertical|4px|spacing-stack-xxxs",
+      "Opção|Espaço entre ícone, texto e contador|4px|spacing-inline-xxxs"
+    ]
+  },
+  "size": {
+    "title": "Tamanho",
+    "columns": ["Elemento", "Altura"],
+    "rows": ["Controle|40px", "Opção|32px (No token)", "Ícone|16px (No token)"]
+  },
+  "tokens": {
+    "link": "Lista completa de tokens → Código › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Teclado",
+    "screenReaders": "Leitores de tela",
+    "development": "Considerações de desenvolvimento"
+  },
+  "keyboard": {
+    "title": "Teclado",
+    "columns": ["Tecla", "Ação"],
+    "rows": [
+      "Tab|Leva o foco para a opção selecionada e, depois, para fora do controle.",
+      "Setas|Vão para a outra opção e a selecionam.",
+      "Desabilitado|As opções saem da ordem de tabulação; nenhuma tecla troca a seleção."
+    ]
+  },
+  "screenReaders": {
+    "title": "Leitores de tela",
+    "columns": ["Elemento", "Comportamento"],
+    "rows": [
+      "Controle|Anunciado como grupo de rádio, com o nome passado em `aria-label`.",
+      "Opção|Anunciada como botão de rádio, com a posição e se está marcada.",
+      "Desabilitado|O grupo é anunciado com `aria-disabled`, e cada opção como botão de rádio desabilitado.",
+      "Texto|O texto inteiro é lido, mesmo quando aparece cortado na tela.",
+      "Contador|Lido como parte do nome da opção (\"Network 12\")."
+    ]
+  },
+  "development": {
+    "title": "Considerações de desenvolvimento",
+    "items": [
+      "**Dê um nome ao controle.** Passe `aria-label` com o que as opções trocam, como \"Escopo\" ou \"Visão\".",
+      "**Guarde a seleção na tela.** Mantenha `selectedIndex` no estado da tela e atualize em `onChange`.",
+      "**O foco não tem contorno.** O foco de teclado tem a aparência do hover, por decisão de design: o fundo do controle fica light down nos dois fundos.",
+      "**Escolha o fundo pela superfície.** Use `background=\"white\"` sobre superfícies light up; o padrão some nelas.",
+      "**Desabilitado ou oculto.** Use `disabled` quando a troca existe mas está indisponível no momento; quando ela não faz sentido para a pessoa, não renderize o controle."
+    ]
+  }
+}

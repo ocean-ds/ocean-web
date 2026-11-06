@@ -1054,3 +1054,24 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
     );
   width: 100%;
 }
+
+// Segmented Control examples: the control hugs its options; the narrow frame cuts long labels.
+.odoc-segmented-control-example--narrow {
+  max-width: $spacing-inline-xxxl * 3;
+}
+
+// A light up surface (card, hero), where the control uses the white background.
+.odoc-segmented-control-example--surface {
+  background-color: $color-interface-light-up;
+  border-radius: $border-radius-md;
+  display: inline-block;
+  padding: $spacing-stack-sm;
+}
+
+.odoc-matrix--segmented-control {
+  grid-template-columns: ($spacing-inline-xxxl + $spacing-inline-lg) repeat(
+      var(--odoc-columns),
+      minmax(0, 1fr)
+    );
+  width: 100%;
+}

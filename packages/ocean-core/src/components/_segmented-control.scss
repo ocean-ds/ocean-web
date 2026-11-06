@@ -1,0 +1,142 @@
+.ods-segmented-control {
+  align-items: center;
+  background-color: $color-interface-light-up;
+  // Pill radius: the circular token (50%) draws an ellipse on a wide box.
+  border-radius: $border-radius-pill;
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: $spacing-inline-xxxs;
+  max-width: 100%;
+  padding: $spacing-stack-xxxs $spacing-inline-xxxs;
+  position: relative;
+  // Motion: Ocean has no motion tokens; the background eases on state change.
+  transition: background-color 150ms ease;
+  vertical-align: middle;
+
+  // For light up surfaces (cards, heros), where the default background disappears.
+  &--white {
+    background-color: $color-interface-light-pure;
+  }
+
+  &__option {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    border-radius: $border-radius-pill;
+    box-sizing: border-box;
+    color: $color-brand-primary-pure;
+    cursor: pointer;
+    display: flex;
+    flex: 0 1 auto;
+    font-family: $font-family-base;
+    font-size: $font-size-xxs;
+    font-weight: $font-weight-extrabold;
+    gap: $spacing-inline-xxxs;
+    // Option height from the design; Ocean has no size token for it.
+    height: 32px;
+    line-height: $line-height-loose;
+    margin: 0;
+    min-width: 0;
+    padding: $spacing-stack-xxxs $spacing-inline-xxs-extra;
+    position: relative;
+    // Selection-driven: same duration and curve as the selection slide, so the text and
+    // icon colors arrive together with the selection background.
+    transition: color 300ms cubic-bezier(0.65, 0, 0.35, 1);
+    white-space: nowrap;
+
+    // Keyboard focus looks exactly like hover, without a focus ring.
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+
+    &--selected {
+      color: $color-interface-light-pure;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex: 0 0 auto;
+
+    // Icon size from the design; Ocean has no size token for it.
+    svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
+
+  &__label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__count {
+    flex: 0 0 auto;
+
+    // The counter swaps primary and inverse with the selection, in the same rhythm.
+    .ods-badge__content {
+      transition: background-color 300ms cubic-bezier(0.65, 0, 0.35, 1),
+        color 300ms cubic-bezier(0.65, 0, 0.35, 1);
+    }
+  }
+
+  // Primary inverse counter on the selected option: Badge has no inverse color, so the
+  // control styles the brand Badge, as Chips does on its active chip.
+  &__option--selected &__count .ods-badge__content {
+    background-color: $color-interface-light-pure;
+    color: $color-brand-primary-pure;
+  }
+
+  // One background for the control, moved under the selected option.
+  &__selection {
+    background-color: $color-brand-primary-pure;
+    border-radius: $border-radius-pill;
+    bottom: $spacing-stack-xxxs;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: $spacing-stack-xxxs;
+    transition: background-color 150ms ease;
+
+    // Ease-in-out cubic, the same curve as the Tab selection line; Ocean has no motion tokens.
+    &--animated {
+      transition: background-color 150ms ease,
+        transform 300ms cubic-bezier(0.65, 0, 0.35, 1),
+        width 300ms cubic-bezier(0.65, 0, 0.35, 1);
+    }
+  }
+
+  // Hover and keyboard focus change only the control background, on both backgrounds.
+  &:not(.ods-segmented-control--disabled):hover,
+  &:has(.ods-segmented-control__option:focus-visible) {
+    background-color: $color-interface-light-down;
+  }
+
+  // Disabled: the whole control; the background stays the one of its Background.
+  &--disabled &__option {
+    color: $color-interface-dark-up;
+    cursor: default;
+  }
+
+  &--disabled &__selection {
+    background-color: $color-interface-light-down;
+  }
+
+  // Neutral counters on both options; overrides the inverse of the selected one.
+  &--disabled &__count .ods-badge__content {
+    background-color: $color-interface-dark-up;
+    color: $color-interface-light-pure;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &__option,
+    &__count .ods-badge__content,
+    &__selection,
+    &__selection--animated {
+      transition: none;
+    }
+  }
+}

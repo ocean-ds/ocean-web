@@ -131,6 +131,8 @@ export const parameters = {
           ],
           'Overlays',
           ['Drawer', ['Overview', 'Default', 'Stacked']],
+          'Segmented Control',
+          ['Overview', 'Default'],
           'Tab',
           [
             'Overview',
@@ -154,6 +156,8 @@ export const parameters = {
         'Visual tests',
         [
           'Drawer',
+          'Segmented Control',
+          ['Matrix', 'Focused'],
           'Tab',
           ['Matrix', 'Focused', 'Mobile'],
           'Tag',
