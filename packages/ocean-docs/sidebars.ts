@@ -46,6 +46,7 @@ const sidebars: SidebarsConfig = {
         'components/dotpagination',
         'components/doughnutchart',
         'components/drawer',
+        'components/filter-bar',
         'components/iconbutton',
         'components/input',
         'components/link',

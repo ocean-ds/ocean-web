@@ -101,6 +101,9 @@ export * from './Tab';
 export { default as SegmentedControl } from './SegmentedControl';
 export * from './SegmentedControl';
 
+export { default as FilterBar } from './FilterBar';
+export * from './FilterBar';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 

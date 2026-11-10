@@ -271,6 +271,12 @@ const PART_NAMES = {
   'ods-segmented-control__icon': 'Option icon',
   'ods-segmented-control__label': 'Option label',
   'ods-segmented-control__count': 'Option counter',
+  'ods-filter-bar': 'Filter bar',
+  'ods-filter-bar__filters': 'Filters',
+  'ods-filter-bar__chips': 'Chip area',
+  'ods-filter-bar__divider': 'Divider',
+  'ods-filter-bar__all-filters': 'All filters',
+  'ods-filter-bar__segmented': 'Segmented control area',
 };
 
 const STATE_NAMES = {
@@ -305,6 +311,8 @@ const STATE_NAMES = {
   swipe: 'Swipe',
   selected: 'Selected',
   white: 'White background',
+  segmented: 'With segmented control',
+  'all-filters': 'With all filters',
 };
 
 const describe = (selector) => {
@@ -472,6 +480,14 @@ const COMPONENTS = {
       not(NOT_DOCS)
     ),
   },
+  'filter-bar': {
+    files: ['_filter-bar.scss'],
+    // The chips and the Segmented Control list their own tokens.
+    include: (selector) =>
+      selector.startsWith('.ods-filter-bar') &&
+      !selector.includes('.ods-chips') &&
+      !selector.includes('.ods-segmented-control'),
+  },
   drawer: {
     files: ['_drawer.scss'],
     include: (selector) =>
@@ -492,6 +508,12 @@ const PART_ORDER = [
   'Option icon',
   'Option label',
   'Option counter',
+  'Filter bar',
+  'Filters',
+  'Chip area',
+  'Divider',
+  'All filters',
+  'Segmented control area',
   'Footer',
   'Summary',
   'Card',

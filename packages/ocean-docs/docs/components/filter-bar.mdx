@@ -1,0 +1,218 @@
+---
+title: Filter Bar
+---
+
+import StorybookEmbed from '@site/src/components/StorybookEmbed';
+
+# Filter Bar
+
+O Filter Bar filtra a **lista logo abaixo dele**. Ele mostra os filtros rápidos (chips) em uma linha, com o chip **"Todos os filtros"** opcional e um **Segmented Control** opcional fixo à direita, para trocar o escopo da mesma lista (ex.: Loja | Rede). Ele só organiza as peças: a tela guarda os filtros, o escopo e atualiza a lista.
+
+A barra tem **sempre pelo menos um chip**. "Todos os filtros" e Segmented Control são opcionais; a barra nunca aparece só com "Todos os filtros", só com o Segmented Control ou só com os dois.
+
+## Importação
+
+```tsx
+import { FilterBar } from '@useblu/ocean-react';
+import type {
+  FilterBarProps,
+  FilterBarFilter,
+  FilterBarAllFilters,
+} from '@useblu/ocean-react';
+```
+
+## Uso básico
+
+```tsx
+import { useState } from 'react';
+import { FilterBar } from '@useblu/ocean-react';
+
+function PaymentsFilters() {
+  const [active, setActive] = useState<string[]>([]);
+  const [scope, setScope] = useState<0 | 1>(0);
+
+  const toggle = (filter: string) =>
+    setActive((current) =>
+      current.includes(filter)
+        ? current.filter((item) => item !== filter)
+        : [...current, filter]
+    );
+
+  return (
+    <FilterBar
+      aria-label="Filtros"
+      filters={[
+        {
+          label: 'Pendentes',
+          actived: active.includes('pending'),
+          onClick: () => toggle('pending'),
+        },
+        {
+          label: 'Vencimento',
+          options: [
+            { label: 'Vence hoje', value: 'today' },
+            { label: 'Próximos 7 dias', value: 'week' },
+            { label: 'Vencidos', value: 'overdue' },
+          ],
+          onChange: (value) => console.log(value),
+        },
+      ]}
+      allFilters={{ count: 2, onClick: () => setDrawerOpen(true) }}
+      segmentedControl={{
+        'aria-label': 'Escopo',
+        options: [{ label: 'Loja' }, { label: 'Rede' }],
+        selectedIndex: scope,
+        onChange: setScope,
+      }}
+    />
+  );
+}
+```
+
+## Opções
+
+### Só os filtros rápidos
+
+```tsx
+<FilterBar
+  aria-label="Filtros"
+  filters={[
+    { label: 'Pendentes', actived, onClick: toggle },
+    { label: 'Pagos' },
+  ]}
+/>
+```
+
+### Com "Todos os filtros"
+
+`allFilters` mostra o chip com o ícone `AdjustmentsOutline` depois de um divisor. O texto padrão é **"Todos os filtros"**; passe `label` para trocar. `count` mostra o contador quando é maior que zero.
+
+```tsx
+<FilterBar
+  aria-label="Filtros"
+  filters={[{ label: 'Pendentes' }]}
+  allFilters={{ count: 2, onClick: openAllFilters }}
+/>
+```
+
+### Com Segmented Control
+
+`segmentedControl` recebe as props do [Segmented Control](/components/segmented-control) e fica fixo à direita. No desktop ele aparece igual ao componente publicado (ícone e contador opcionais). **No mobile** (abaixo de 768px) a barra mostra só os textos: ícones e contadores são removidos, mesmo se a tela passar.
+
+```tsx
+<FilterBar
+  aria-label="Filtros"
+  filters={[{ label: 'Pendentes' }]}
+  segmentedControl={{
+    'aria-label': 'Escopo',
+    options: [{ label: 'Loja' }, { label: 'Rede' }],
+    selectedIndex: scope,
+    onChange: setScope,
+  }}
+/>
+```
+
+## Playground interativo
+
+<StorybookEmbed
+  storyId="components-filter-bar--all-filters-and-segmented-control"
+  height={160}
+  title="Filter Bar - Playground interativo"
+/>
+
+Documentação técnica completa, com diretrizes, specs, acessibilidade e tokens, no **[Storybook do Filter Bar](https://ocean-ds.github.io/ocean-web/?path=/docs/components-filter-bar--overview)**.
+
+## Quando usar
+
+Use quando a tela tem uma **lista filtrável**. O Segmented Control entra quando a mesma lista pode ser vista em dois escopos (ex.: Loja e Rede) e a troca vale para tudo o que a barra filtra.
+
+## Quando NÃO usar
+
+| Situação                                          | Use                                                                            |
+| ------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Só a troca de escopo, sem nenhum chip             | [Segmented Control](/components/segmented-control) sozinho, fora do Filter Bar |
+| Só o acesso a "Todos os filtros", sem nenhum chip | Botão "Todos os filtros" na tela, fora do Filter Bar                           |
+| Seções com conteúdos diferentes                   | [Tab](/components/tab), acima da barra                                         |
+| Mais de duas opções de escopo                     | Um chip de filtro com opções ([Chips](/components/chips)) dentro da barra      |
+| Ação sobre a lista (ex.: "Pagar em lote")         | Fora do componente, na tela                                                    |
+| Busca por texto                                   | [Search](/components/search), acima da barra                                   |
+
+## API
+
+### Props
+
+| Prop               | Tipo                                      | Padrão | Descrição                                                                                                                                                                                                                                                 |
+| ------------------ | ----------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filters`          | `[FilterBarFilter, ...FilterBarFilter[]]` | -      | **Obrigatória.** Filtros rápidos, em ordem: pelo menos um. Cada item recebe as props do [Chips](/components/chips) (`label`, `options`, `actived`, `onClick`, `onConfirm`…). Com a lista vazia a barra não renderiza nada.                                |
+| `allFilters`       | `FilterBarAllFilters`                     | -      | Mostra o chip "Todos os filtros" depois de um divisor.                                                                                                                                                                                                    |
+| `segmentedControl` | `SegmentedControlProps`                   | -      | Mostra um Segmented Control fixo à direita, com as props do [Segmented Control](/components/segmented-control). Ocupa no máximo metade da barra; passando disso, os textos das opções são cortados com "…". No mobile, ícones e contadores são removidos. |
+| `aria-label`       | `string`                                  | -      | Nome da barra para leitores de tela, como "Filtros". A barra tem `role="group"`.                                                                                                                                                                          |
+| `className`        | `string`                                  | -      | Classe extra na barra.                                                                                                                                                                                                                                    |
+| `ref`              | `Ref<HTMLDivElement>`                     | -      | Encaminhado para o elemento da barra. Os demais atributos de `div` também vão para ele.                                                                                                                                                                   |
+
+### `FilterBarAllFilters`
+
+| Campo     | Tipo         | Padrão               | Descrição                                                             |
+| --------- | ------------ | -------------------- | --------------------------------------------------------------------- |
+| `onClick` | `() => void` | -                    | **Obrigatório.** Chamado no clique; a tela abre os filtros completos. |
+| `count`   | `number`     | -                    | Quantidade de filtros aplicados por ele; mostrada acima de zero.      |
+| `label`   | `string`     | `'Todos os filtros'` | Texto do chip.                                                        |
+
+## Comportamento
+
+A barra troca de layout pela largura da tela: **desktop a partir de 768px** e **mobile abaixo disso** (o mesmo breakpoint `md` em que o Chips abre as opções como bottom sheet). A altura é a mesma com ou sem o Segmented Control.
+
+**Desktop** (80px de altura, sem padding lateral: o container da tela define)
+
+- A área dos chips acompanha a largura dos chips mais 16px de respiro no fim. Quando eles não cabem, ela encolhe e **só os chips rolam** na horizontal, cortados colados no divisor.
+- O divisor e o "Todos os filtros" vêm logo depois da área dos chips (divisor · 16px · "Todos os filtros") e nunca encolhem.
+- O Segmented Control fica encostado à direita, a pelo menos 16px do elemento anterior, e ocupa no máximo metade da barra.
+- **Divisor antes do Segmented Control:** só quando não há "Todos os filtros"; ele fica logo depois da área dos chips. Com "Todos os filtros", não há divisor antes do Segmented Control.
+
+**Mobile** (64px de altura)
+
+- Chips e "Todos os filtros" rolam juntos, com 16px na borda esquerda e 16px no fim da rolagem; 8px entre chips.
+- Sem Segmented Control: 16px · divisor · 16px antes do "Todos os filtros".
+- Com Segmented Control: um divisor só, entre os filtros e o controle. O "Todos os filtros" fica a 8px do último chip (sem divisor), a rolagem é cortada colada no divisor, e depois vêm divisor · 8px · Segmented Control · 16px até a borda direita. O controle mostra só os textos.
+
+**Geral**
+
+- **Rolagem:** a área que rola não mostra barra de rolagem em nenhum navegador. Ela rola por toque, trackpad, roda horizontal e Shift + roda do mouse; o foco do teclado traz o chip para a vista.
+- **Opções de um chip:** abrem embaixo do chip, fora da área de rolagem (não são cortadas); no mobile abrem como bottom sheet.
+- **Texto longo:** chips ficam em uma linha e nunca quebram. O Segmented Control ocupa no máximo metade da barra (com os espaços dele); passando disso, os textos das opções são cortados com "…" e os chips nunca somem. O leitor de tela continua lendo o texto inteiro.
+- **Estados:** quem tem estado são os chips e o Segmented Control, cada um com os seus. Não existe carregando na web.
+- **Tokens:** fundo `color-interface-light-pure`; divisor de 1px (`border-width-hairline`) e 32px de altura (`spacing-stack-md`) em `color-interface-light-down`; espaços `spacing-inline-xxs` (8px) e `spacing-inline-xs` (16px); alturas `spacing-stack-xxxl` (80px) e `spacing-stack-xxl` (64px).
+
+## Acessibilidade
+
+| Tecla            | Ação                                                                                    |
+| ---------------- | --------------------------------------------------------------------------------------- |
+| `Tab`            | Passa pelos chips em ordem, depois pelo "Todos os filtros" e entra no Segmented Control |
+| `Enter` `Espaço` | Liga ou desliga um chip, ou abre as opções dele                                         |
+| `→` `←` `↑` `↓`  | Dentro do Segmented Control, vão para a outra opção e a selecionam                      |
+
+- A barra tem `role="group"` com o `aria-label`; os divisores ficam escondidos dos leitores de tela.
+- Os chips são lidos em ordem e o Segmented Control por último, como um grupo de rádio de duas opções com a selecionada marcada.
+- Passe `aria-label` na barra ("Filtros") e no `segmentedControl` ("Escopo").
+
+## Classes CSS
+
+| Classe                                  | Descrição                                            |
+| --------------------------------------- | ---------------------------------------------------- |
+| `.ods-filter-bar`                       | Barra (container)                                    |
+| `.ods-filter-bar--all-filters`          | Barra com "Todos os filtros"                         |
+| `.ods-filter-bar--segmented`            | Barra com Segmented Control                          |
+| `.ods-filter-bar__filters`              | Chips + "Todos os filtros" (área que rola no mobile) |
+| `.ods-filter-bar__chips`                | Área dos chips (área que rola no desktop)            |
+| `.ods-filter-bar__divider`              | Divisor                                              |
+| `.ods-filter-bar__divider--all-filters` | Divisor antes do "Todos os filtros"                  |
+| `.ods-filter-bar__divider--segmented`   | Divisor antes do Segmented Control                   |
+| `.ods-filter-bar__all-filters`          | Chip "Todos os filtros"                              |
+| `.ods-filter-bar__segmented`            | Segmented Control                                    |
+
+## Links relacionados
+
+- [Chips](/components/chips) - Os filtros rápidos e o chip "Todos os filtros"
+- [Segmented Control](/components/segmented-control) - A troca de escopo à direita
+- [Tab](/components/tab) - Para seções com conteúdos diferentes
+- [Search](/components/search) - Para busca por texto, acima da barra

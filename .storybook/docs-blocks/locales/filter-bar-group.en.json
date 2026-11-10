@@ -1,0 +1,202 @@
+{
+  "breadcrumb": ["Components"],
+  "description": "A row of quick filters for the list below it, with an optional \"All filters\" chip and an optional Segmented Control on the right.",
+  "lastUpdated": "Last updated {date}",
+  "library": "Library",
+  "componentDetails": "Component details",
+  "documentation": "Documentation",
+  "toc": "On this page",
+  "page": {
+    "title": "Filter Bar",
+    "status": "Stable"
+  },
+  "tabs": {
+    "guidelines": "Guidelines",
+    "specs": "Specs",
+    "accessibility": "Accessibility",
+    "code": "Code"
+  },
+  "guidelines": {
+    "overview": "Overview",
+    "formatting": "Formatting",
+    "content": "Content",
+    "behaviors": "Behaviors",
+    "related": "Related",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Overview",
+    "text": "Filter Bar filters the list right below it. Quick filters are always at hand; \"All filters\" opens the full filters; and, when the screen needs it, a Segmented Control on the right switches the scope of the same list.",
+    "whenToUse": "When to use",
+    "whenToUseItems": [
+      "A filterable list, with a few filters people use often.",
+      "With the Segmented Control: the same list seen in two scopes (like Store and Network), and the switch applies to everything the bar filters."
+    ],
+    "whenNotToUse": "When not to use",
+    "whenNotToUseColumns": ["Situation", "Use"],
+    "whenNotToUseRows": [
+      "Only the scope switch, without any chip|[Segmented Control](docs:components-segmented-control--overview) on its own, outside the Filter Bar",
+      "Only access to \"All filters\", without any chip|An \"All filters\" button on the screen, outside the Filter Bar",
+      "Sections with different content|[Tab](docs:components-tab--overview), above the bar",
+      "More than two scope options|A filter chip with options ([Chips](docs:components-chips--docs)) inside the bar",
+      "An action on the list (like \"Pay in batch\")|Outside the component, on the screen",
+      "Text search|[Search](docs:components-search--docs), above the bar"
+    ],
+    "variants": "Variants",
+    "variantColumns": ["Variant", "Purpose", "Code"],
+    "variantRows": [
+      "Default|Quick filters only.|default",
+      "All filters|Adds the \"All filters\" chip after a divider.|allFilters",
+      "Segmented control|Adds a Segmented Control on the right.|segmentedControl",
+      "All filters and segmented control|Both together.|allFiltersAndSegmentedControl"
+    ],
+    "codeLink": "See in Code"
+  },
+  "formatting": {
+    "title": "Formatting",
+    "anatomy": "Anatomy",
+    "layoutTitle": "Layout",
+    "layoutText": "The bar switches layout by screen width: desktop from 768px, mobile below it. The height is the same with or without the Segmented Control.",
+    "layoutColumns": ["Layout", "How it works"],
+    "layoutRows": [
+      "Desktop|80px high, no side padding (the screen container sets it). The chip area hugs the chips plus 16px; when they do not fit, it shrinks and only the chips scroll, cut right at the divider. The divider and \"All filters\" come right after the chip area and never shrink. The Segmented Control sits on the right, at least 16px from what comes before it.",
+      "Desktop, divider before the Segmented Control|Only without \"All filters\": the divider comes right after the chip area. With \"All filters\" there is no divider before the Segmented Control.",
+      "Mobile|64px high. Chips and \"All filters\" scroll together, with 16px at the left edge and at the end of the scroll; 8px between chips; 16px · divider · 16px before \"All filters\".",
+      "Mobile, with the Segmented Control|One divider only, between the filters and the control: \"All filters\" sits 8px after the last chip, the scroll is cut right at the divider, then 8px · Segmented Control · 16px to the right edge. The control shows only labels: icons and counters are removed."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Element", "Required", "Notes"],
+    "rows": [
+      "1|Quick filters|Yes, at least one|[Chips](docs:components-chips--docs): a chip that turns on and off, or a chip with options. 8px between chips; one line each.",
+      "2|Divider|With \"All filters\" or the Segmented Control|1px wide, 32px high, `color-interface-light-down`.",
+      "3|All filters|No|Chip with the adjustments icon and an optional counter.",
+      "4|Segmented Control|No|[Segmented Control](docs:components-segmented-control--overview) with two options and the default background, fixed on the right; at most half of the bar, labels cut with an ellipsis beyond that."
+    ]
+  },
+  "content": {
+    "title": "Content",
+    "text": "Each chip names one filter of the list.",
+    "writingItems": [
+      "Name each chip with one or two words, in sentence case.",
+      "Put the filters people use most first.",
+      "Keep the default \"All filters\" text unless the screen needs another one.",
+      "Name the Segmented Control options as two scopes of the same list."
+    ]
+  },
+  "behaviors": {
+    "title": "Behaviors",
+    "text": "The chips and the Segmented Control keep their own states. The bar only lays them out and scrolls the filters.",
+    "columns": ["Situation", "Behavior"],
+    "rows": [
+      "More chips than fit, desktop|Only the chip area scrolls; it is cut right at the divider and 16px stay at the end of the scroll.",
+      "More chips than fit, mobile|Chips and \"All filters\" scroll together.",
+      "Scrolling the filters|No scrollbar is shown. The area scrolls by touch, trackpad, horizontal wheel and Shift + wheel; keyboard focus scrolls a chip into view.",
+      "Chip with options|The options open under the chip, outside the scroll area; on mobile they open as a bottom sheet.",
+      "Long text|Chips never wrap. The Segmented Control takes at most half of the bar; beyond that, its labels are cut with an ellipsis, so the chips always keep room. Screen readers still read the full labels.",
+      "Segmented Control on mobile|Only labels: icons and counters passed by the screen are removed."
+    ]
+  },
+  "related": {
+    "title": "Related",
+    "chips": {
+      "title": "Chips",
+      "text": "The quick filters and the \"All filters\" chip.",
+      "link": "Explore Chips"
+    },
+    "segmentedControl": {
+      "title": "Segmented Control",
+      "text": "The scope switch on the right of the bar.",
+      "link": "Explore Segmented Control"
+    },
+    "tab": {
+      "title": "Tab",
+      "text": "Use Tab for sections with different content.",
+      "link": "Explore Tab"
+    },
+    "search": {
+      "title": "Search",
+      "text": "Use Search, above the bar, for text search.",
+      "link": "Explore Search"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Share feedback about this component through the Ocean Design System feedback channels."
+  },
+  "specs": {
+    "colors": "Colors",
+    "structure": "Structure",
+    "size": "Size"
+  },
+  "colors": {
+    "title": "Colors",
+    "columns": ["Element", "State", "Token"],
+    "rows": [
+      "Bar|Default|color-interface-light-pure",
+      "Divider|Default|color-interface-light-down"
+    ]
+  },
+  "structure": {
+    "title": "Structure",
+    "columns": ["Element", "Property", "px", "Token"],
+    "rows": [
+      "Chips|Gap|8px|spacing-inline-xxs",
+      "Chip area, desktop|Space at the end of the scroll|16px|spacing-inline-xs",
+      "Divider, desktop|Space before \"All filters\"|16px|spacing-inline-xs",
+      "Segmented Control, desktop|Minimum space before it|16px|spacing-inline-xs",
+      "Filters, mobile|Space at the left edge and at the end of the scroll|16px|spacing-inline-xs",
+      "Divider, mobile without the Segmented Control|Space on each side|16px|spacing-inline-xxs (gap) + spacing-inline-xxs",
+      "Segmented Control, mobile|Space after the divider · to the right edge|8px · 16px|spacing-inline-xxs · spacing-inline-xs",
+      "Divider|Width|1px|border-width-hairline",
+      "Segmented Control, with its spacing|Maximum width|50% of the bar|No token"
+    ]
+  },
+  "size": {
+    "title": "Size",
+    "columns": ["Element", "Height"],
+    "rows": [
+      "Bar, desktop|80px (spacing-stack-xxxl)",
+      "Bar, mobile|64px (spacing-stack-xxl)",
+      "Divider|32px (spacing-stack-md)",
+      "Chip|32px (Chips)",
+      "Segmented Control|40px (Segmented Control)"
+    ]
+  },
+  "tokens": {
+    "link": "Full token list → Code › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Keyboard",
+    "screenReaders": "Screen readers",
+    "development": "Development considerations"
+  },
+  "keyboard": {
+    "title": "Keyboard",
+    "columns": ["Key", "Action"],
+    "rows": [
+      "Tab|Moves through the chips in order, then \"All filters\", then into the Segmented Control. A chip that receives focus scrolls into view.",
+      "Enter, Space|Turns a chip on or off, or opens its options.",
+      "Arrow keys|Inside the Segmented Control, move to the other option and select it."
+    ]
+  },
+  "screenReaders": {
+    "title": "Screen readers",
+    "columns": ["Element", "Behavior"],
+    "rows": [
+      "Bar|Announced as a group, with the name given in `aria-label`.",
+      "Chips|Read in order, as buttons; the counter is read with the label.",
+      "Divider|Hidden from screen readers.",
+      "Segmented Control|Read last, as a radio group of two options with the selected one checked."
+    ]
+  },
+  "development": {
+    "title": "Development considerations",
+    "items": [
+      "**Name the bar.** Pass `aria-label` with what the bar filters, like \"Filters\".",
+      "**Name the Segmented Control.** Pass `aria-label` in `segmentedControl`, like \"Scope\".",
+      "**Keep the state in the screen.** The filters, the scope and the list belong to the screen; update them in the callbacks.",
+      "**At least one chip.** Without chips the bar renders nothing; use the Segmented Control or an \"All filters\" button on their own."
+    ]
+  }
+}

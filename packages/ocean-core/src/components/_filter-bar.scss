@@ -1,0 +1,154 @@
+// Filter Bar: quick filters (Chips), an optional divider + "All filters" chip and an optional
+// Segmented Control fixed on the right. Desktop from the md breakpoint; mobile below it, the
+// same breakpoint where Chips opens its options as a bottom sheet. Each layout has its own
+// media block and the shared rules never set the same property, so nothing overrides.
+.ods-filter-bar {
+  align-items: center;
+  background-color: $color-interface-light-pure;
+  box-sizing: border-box;
+  display: flex;
+  // Anchors the chip popovers to the bar, so the scrolling area does not clip them.
+  position: relative;
+  width: 100%;
+
+  // Desktop: only the chips scroll; "All filters" and the Segmented Control stay in place.
+  @include media-breakpoint-up(md) {
+    // Bar height from the design (80 desktop); the spacing token has the same value.
+    height: $spacing-stack-xxxl;
+
+    &__filters {
+      flex: 0 1 auto;
+    }
+
+    // Hugs the chips plus 16 at the end; when they do not fit, it shrinks and scrolls,
+    // cut right at the divider.
+    &__chips {
+      flex: 0 1 auto;
+      min-width: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-right: $spacing-inline-xs;
+      scrollbar-width: none;
+    }
+
+    &__chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__divider--all-filters {
+      margin-right: $spacing-inline-xs;
+    }
+
+    // Fixed on the right, at least 16 from what comes before it.
+    &__segmented {
+      margin-left: auto;
+      padding-left: $spacing-inline-xs;
+    }
+
+    // The divider before the Segmented Control only without "All filters".
+    &--all-filters &__divider--segmented {
+      display: none;
+    }
+
+    // The chip popovers open under the chip that was clicked; FilterBar sets the position
+    // relative to the bar, following the scroll of the chips.
+    .ods-chips__options {
+      left: var(--ods-filter-bar-popover-left, 0);
+      // Same 6px gap the Chips popover keeps under its 32px chip (top: 38px); no token.
+      margin-top: 6px;
+      top: var(--ods-filter-bar-popover-top, 100%);
+    }
+
+    .ods-chips__contextual-menu {
+      left: var(--ods-filter-bar-popover-left, 0);
+      top: var(--ods-filter-bar-popover-top, 100%);
+    }
+  }
+
+  // Mobile: chips and "All filters" scroll together.
+  @include media-breakpoint-down(md) {
+    // Bar height from the design (64 mobile); the spacing token has the same value.
+    height: $spacing-stack-xxl;
+
+    &__filters {
+      flex: 1 1 auto;
+      gap: $spacing-inline-xxs;
+      overflow-x: auto;
+      overflow-y: hidden;
+      // 16 at the left edge and 16 at the end of the scroll.
+      padding: 0 $spacing-inline-xs;
+      scrollbar-width: none;
+    }
+
+    &__filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__chips {
+      flex: none;
+    }
+
+    // Without the Segmented Control: 16 · divider · 16 (the 8 gap plus 8 on each side).
+    &__divider--all-filters {
+      margin: 0 $spacing-inline-xxs;
+    }
+
+    // With the Segmented Control: one divider only, between the filters and the control;
+    // "All filters" sits 8 after the last chip.
+    &--segmented &__divider--all-filters {
+      display: none;
+    }
+
+    // divider · 8 · Segmented Control · 16 to the right edge.
+    &__segmented {
+      padding: 0 $spacing-inline-xs 0 $spacing-inline-xxs;
+    }
+  }
+
+  .ods-chips {
+    flex: none;
+    position: static;
+  }
+
+  // Chips and their texts stay on one line.
+  .ods-chips__label {
+    white-space: nowrap;
+  }
+
+  &__filters {
+    align-items: center;
+    display: flex;
+    min-width: 0;
+  }
+
+  &__chips {
+    align-items: center;
+    display: flex;
+    gap: $spacing-inline-xxs;
+  }
+
+  &__divider {
+    border-left: $border-width-hairline solid $color-interface-light-down;
+    flex: none;
+    height: $spacing-stack-md;
+    width: 0;
+  }
+
+  &__all-filters {
+    display: flex;
+    flex: none;
+  }
+
+  // The Segmented Control takes at most half of the bar (its spacing included), so the chips
+  // always keep room; beyond that, its labels are cut with an ellipsis.
+  &__segmented {
+    box-sizing: border-box;
+    display: flex;
+    flex: none;
+    max-width: 50%;
+
+    .ods-segmented-control {
+      min-width: 0;
+    }
+  }
+}
