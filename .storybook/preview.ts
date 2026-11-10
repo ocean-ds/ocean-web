@@ -94,6 +94,14 @@ export const parameters = {
               ],
             ],
           ],
+          'Filter Bar',
+          [
+            'Overview',
+            'Default',
+            'All filters',
+            'Segmented control',
+            'All filters and segmented control',
+          ],
           'Lists',
           [
             'Content List',
@@ -156,6 +164,8 @@ export const parameters = {
         'Visual tests',
         [
           'Drawer',
+          'Filter Bar',
+          ['Desktop', 'Desktop narrow', 'Mobile', 'Long text'],
           'Segmented Control',
           ['Matrix', 'Focused'],
           'Tab',

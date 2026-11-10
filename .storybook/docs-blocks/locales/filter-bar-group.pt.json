@@ -1,0 +1,201 @@
+{
+  "breadcrumb": ["Componentes"],
+  "description": "Uma linha de filtros rápidos para a lista logo abaixo, com o chip \"Todos os filtros\" opcional e um Segmented Control opcional à direita.",
+  "lastUpdated": "Atualizado em {date}",
+  "library": "Biblioteca",
+  "componentDetails": "Detalhes do componente",
+  "documentation": "Documentação",
+  "toc": "Nesta página",
+  "page": {
+    "title": "Filter Bar",
+    "status": "Estável"
+  },
+  "tabs": {
+    "guidelines": "Diretrizes",
+    "specs": "Specs",
+    "accessibility": "Acessibilidade",
+    "code": "Código"
+  },
+  "guidelines": {
+    "overview": "Visão geral",
+    "formatting": "Formatação",
+    "content": "Conteúdo",
+    "behaviors": "Comportamentos",
+    "related": "Relacionados",
+    "feedback": "Feedback"
+  },
+  "overview": {
+    "title": "Visão geral",
+    "text": "O Filter Bar filtra a lista logo abaixo dele. Os filtros rápidos ficam sempre à mão; o \"Todos os filtros\" abre os filtros completos; e, quando a tela precisa, um Segmented Control à direita troca o escopo da mesma lista.",
+    "whenToUse": "Quando usar",
+    "whenToUseItems": [
+      "Uma lista filtrável, com alguns filtros que as pessoas usam com frequência.",
+      "Com o Segmented Control: a mesma lista vista em dois escopos (como Loja e Rede), e a troca vale para tudo o que a barra filtra."
+    ],
+    "whenNotToUse": "Quando não usar",
+    "whenNotToUseColumns": ["Situação", "Use"],
+    "whenNotToUseRows": [
+      "Só a troca de escopo, sem nenhum chip|[Segmented Control](docs:components-segmented-control--overview) sozinho, fora do Filter Bar",
+      "Só o acesso a \"Todos os filtros\", sem nenhum chip|Botão \"Todos os filtros\" na tela, fora do Filter Bar",
+      "Seções com conteúdos diferentes|[Tab](docs:components-tab--overview), acima da barra",
+      "Mais de duas opções de escopo|Um chip de filtro com opções ([Chips](docs:components-chips--docs)) dentro da barra",
+      "Ação sobre a lista (como \"Pagar em lote\")|Fora do componente, na tela",
+      "Busca por texto|[Search](docs:components-search--docs), acima da barra"
+    ],
+    "variants": "Variantes",
+    "variantColumns": ["Variante", "Para que serve", "Código"],
+    "variantRows": [
+      "Default|Só os filtros rápidos.|default",
+      "All filters|Adiciona o chip \"Todos os filtros\" depois de um divisor.|allFilters",
+      "Segmented control|Adiciona um Segmented Control à direita.|segmentedControl",
+      "All filters and segmented control|Os dois juntos.|allFiltersAndSegmentedControl"
+    ],
+    "codeLink": "Ver no Código"
+  },
+  "formatting": {
+    "title": "Formatação",
+    "anatomy": "Anatomia",
+    "layoutTitle": "Layout",
+    "layoutText": "A barra troca de layout pela largura da tela: desktop a partir de 768px e mobile abaixo disso. A altura é a mesma com ou sem o Segmented Control.",
+    "layoutColumns": ["Layout", "Como funciona"],
+    "layoutRows": [
+      "Desktop|80px de altura, sem padding lateral (o container da tela define). A área dos chips acompanha os chips mais 16px; quando eles não cabem, ela encolhe e só os chips rolam, cortados colados no divisor. O divisor e o \"Todos os filtros\" vêm logo depois da área dos chips e nunca encolhem. O Segmented Control fica à direita, a pelo menos 16px do que vem antes.",
+      "Desktop, divisor antes do Segmented Control|Só sem \"Todos os filtros\": o divisor vem logo depois da área dos chips. Com \"Todos os filtros\" não há divisor antes do Segmented Control.",
+      "Mobile|64px de altura. Chips e \"Todos os filtros\" rolam juntos, com 16px na borda esquerda e no fim da rolagem; 8px entre chips; 16px · divisor · 16px antes do \"Todos os filtros\".",
+      "Mobile, com o Segmented Control|Um divisor só, entre os filtros e o controle: o \"Todos os filtros\" fica a 8px do último chip, a rolagem é cortada colada no divisor e depois vêm 8px · Segmented Control · 16px até a borda direita. O controle mostra só os textos: ícones e contadores são removidos."
+    ]
+  },
+  "anatomy": {
+    "columns": ["#", "Elemento", "Obrigatório", "Observações"],
+    "rows": [
+      "1|Filtros rápidos|Sim, pelo menos um|[Chips](docs:components-chips--docs): chip que liga e desliga, ou chip com opções. 8px entre chips; uma linha cada.",
+      "2|Divisor|Com \"Todos os filtros\" ou o Segmented Control|1px de largura, 32px de altura, `color-interface-light-down`.",
+      "3|Todos os filtros|Não|Chip com o ícone adjustments e contador opcional.",
+      "4|Segmented Control|Não|[Segmented Control](docs:components-segmented-control--overview) com duas opções e o fundo padrão, fixo à direita; no máximo metade da barra, com os textos cortados com reticências passando disso."
+    ]
+  },
+  "content": {
+    "title": "Conteúdo",
+    "text": "Cada chip nomeia um filtro da lista.",
+    "writingItems": [
+      "Nomeie cada chip com uma ou duas palavras, só com a primeira maiúscula.",
+      "Coloque primeiro os filtros mais usados.",
+      "Mantenha o texto padrão \"Todos os filtros\", a menos que a tela precise de outro.",
+      "Nomeie as opções do Segmented Control como dois escopos da mesma lista."
+    ]
+  },
+  "behaviors": {
+    "title": "Comportamentos",
+    "text": "Os chips e o Segmented Control mantêm os estados deles. A barra só os organiza e rola os filtros.",
+    "columns": ["Situação", "Comportamento"],
+    "rows": [
+      "Mais chips do que cabem, desktop|Só a área dos chips rola; ela é cortada colada no divisor e 16px ficam no fim da rolagem.",
+      "Mais chips do que cabem, mobile|Chips e \"Todos os filtros\" rolam juntos.",
+      "Chip com opções|As opções abrem embaixo do chip, fora da área de rolagem; no mobile abrem como bottom sheet.",
+      "Texto longo|Os chips nunca quebram linha. O Segmented Control ocupa no máximo metade da barra; passando disso, os textos dele são cortados com reticências, e os chips sempre continuam com espaço. O leitor de tela continua lendo o texto inteiro.",
+      "Segmented Control no mobile|Só os textos: ícones e contadores passados pela tela são removidos."
+    ]
+  },
+  "related": {
+    "title": "Relacionados",
+    "chips": {
+      "title": "Chips",
+      "text": "Os filtros rápidos e o chip \"Todos os filtros\".",
+      "link": "Ver Chips"
+    },
+    "segmentedControl": {
+      "title": "Segmented Control",
+      "text": "A troca de escopo à direita da barra.",
+      "link": "Ver Segmented Control"
+    },
+    "tab": {
+      "title": "Tab",
+      "text": "Use Tab para seções com conteúdos diferentes.",
+      "link": "Ver Tab"
+    },
+    "search": {
+      "title": "Search",
+      "text": "Use Search, acima da barra, para busca por texto.",
+      "link": "Ver Search"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "text": "Compartilhe feedback sobre este componente pelos canais de feedback do Ocean Design System."
+  },
+  "specs": {
+    "colors": "Cores",
+    "structure": "Estrutura",
+    "size": "Tamanho"
+  },
+  "colors": {
+    "title": "Cores",
+    "columns": ["Elemento", "Estado", "Token"],
+    "rows": [
+      "Barra|Padrão|color-interface-light-pure",
+      "Divisor|Padrão|color-interface-light-down"
+    ]
+  },
+  "structure": {
+    "title": "Estrutura",
+    "columns": ["Elemento", "Propriedade", "px", "Token"],
+    "rows": [
+      "Chips|Espaço entre chips|8px|spacing-inline-xxs",
+      "Área dos chips, desktop|Respiro no fim da rolagem|16px|spacing-inline-xs",
+      "Divisor, desktop|Espaço antes do \"Todos os filtros\"|16px|spacing-inline-xs",
+      "Segmented Control, desktop|Espaço mínimo antes dele|16px|spacing-inline-xs",
+      "Filtros, mobile|Espaço na borda esquerda e no fim da rolagem|16px|spacing-inline-xs",
+      "Divisor, mobile sem o Segmented Control|Espaço de cada lado|16px|spacing-inline-xxs (gap) + spacing-inline-xxs",
+      "Segmented Control, mobile|Espaço depois do divisor · até a borda direita|8px · 16px|spacing-inline-xxs · spacing-inline-xs",
+      "Divisor|Largura|1px|border-width-hairline",
+      "Segmented Control, com os espaços dele|Largura máxima|50% da barra|Sem token"
+    ]
+  },
+  "size": {
+    "title": "Tamanho",
+    "columns": ["Elemento", "Altura"],
+    "rows": [
+      "Barra, desktop|80px (spacing-stack-xxxl)",
+      "Barra, mobile|64px (spacing-stack-xxl)",
+      "Divisor|32px (spacing-stack-md)",
+      "Chip|32px (Chips)",
+      "Segmented Control|40px (Segmented Control)"
+    ]
+  },
+  "tokens": {
+    "link": "Lista completa de tokens → Código › Design tokens"
+  },
+  "accessibility": {
+    "keyboard": "Teclado",
+    "screenReaders": "Leitores de tela",
+    "development": "Considerações de desenvolvimento"
+  },
+  "keyboard": {
+    "title": "Teclado",
+    "columns": ["Tecla", "Ação"],
+    "rows": [
+      "Tab|Passa pelos chips em ordem, depois pelo \"Todos os filtros\" e entra no Segmented Control. Um chip que recebe o foco rola até ficar visível.",
+      "Enter, Espaço|Liga ou desliga um chip, ou abre as opções dele.",
+      "Setas|Dentro do Segmented Control, vão para a outra opção e a selecionam."
+    ]
+  },
+  "screenReaders": {
+    "title": "Leitores de tela",
+    "columns": ["Elemento", "Comportamento"],
+    "rows": [
+      "Barra|Anunciada como grupo, com o nome passado em `aria-label`.",
+      "Chips|Lidos em ordem, como botões; o contador é lido junto com o texto.",
+      "Divisor|Escondido dos leitores de tela.",
+      "Segmented Control|Lido por último, como um grupo de rádio de duas opções com a selecionada marcada."
+    ]
+  },
+  "development": {
+    "title": "Considerações de desenvolvimento",
+    "items": [
+      "**Nomeie a barra.** Passe `aria-label` dizendo o que a barra filtra, como \"Filtros\".",
+      "**Nomeie o Segmented Control.** Passe `aria-label` em `segmentedControl`, como \"Escopo\".",
+      "**Guarde o estado na tela.** Os filtros, o escopo e a lista são da tela; atualize-os nos callbacks.",
+      "**Pelo menos um chip.** Sem chips a barra não renderiza nada; use o Segmented Control ou um botão \"Todos os filtros\" sozinhos."
+    ]
+  }
+}

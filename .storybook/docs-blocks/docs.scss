@@ -1075,3 +1075,17 @@ $doc-tab-height: $spacing-stack-xl + $spacing-stack-xxs; // Ocean Tab height
     );
   width: 100%;
 }
+
+// Filter Bar examples: the bar takes the frame width. Wide and narrow desktop frames show
+// the chips hugging their width and the chips scrolling (about 880 and 600 wide).
+.odoc-filter-bar-example {
+  width: 100%;
+}
+
+.odoc-filter-bar-example--wide {
+  max-width: $spacing-inline-xxxl * 11;
+}
+
+.odoc-filter-bar-example--narrow {
+  max-width: $spacing-inline-xxxl * 7 + $spacing-inline-lg;
+}

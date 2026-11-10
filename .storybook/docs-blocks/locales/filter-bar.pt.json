@@ -1,0 +1,59 @@
+{
+  "overview": "O Filter Bar mostra os filtros rápidos de uma lista em uma linha, com o chip \"Todos os filtros\" opcional e um Segmented Control opcional à direita. A tela guarda os filtros e atualiza a lista.",
+  "sections": {
+    "default": {
+      "title": "Default",
+      "text": "Passe os filtros rápidos em `filters`: pelo menos um, cada um com as props do [Chips](docs:components-chips--docs). Chips sem `options` ligam e desligam com `actived` e `onClick`; chips com `options` abrem as opções."
+    },
+    "allFilters": {
+      "title": "All filters",
+      "text": "Passe `allFilters` com `onClick` para mostrar o chip \"Todos os filtros\" depois de um divisor. `count` mostra quantos filtros foram aplicados por ele; `label` troca o texto."
+    },
+    "segmentedControl": {
+      "title": "Segmented control",
+      "text": "Passe `segmentedControl` com as props do [Segmented Control](docs:components-segmented-control--overview) para trocar o escopo da lista, fixo à direita. No mobile ele mostra só os textos: a barra tira ícones e contadores."
+    },
+    "allFiltersAndSegmentedControl": {
+      "title": "All filters and segmented control",
+      "text": "Os dois juntos: chips, divisor e \"Todos os filtros\" à esquerda e o Segmented Control à direita. No desktop não há divisor antes do Segmented Control; no mobile há um divisor só, entre os filtros e o controle."
+    }
+  },
+  "options": {
+    "overflow": {
+      "title": "More chips than fit",
+      "text": "No desktop só os chips rolam: eles são cortados colados no divisor, e 16px de respiro ficam no fim da rolagem. O divisor, o \"Todos os filtros\" e o Segmented Control ficam parados. No mobile, chips e \"Todos os filtros\" rolam juntos."
+    },
+    "longText": {
+      "title": "Long text",
+      "text": "Os chips ficam em uma linha e nunca quebram. O Segmented Control ocupa no máximo metade da barra; passando disso, os textos dele são cortados com reticências, e os chips sempre continuam com espaço. O leitor de tela continua lendo o texto inteiro."
+    }
+  },
+  "api": {
+    "intro": "O Filter Bar renderiza os chips, o \"Todos os filtros\" e o Segmented Control; a tela guarda os filtros, o escopo e a lista.",
+    "filters": "Filtros rápidos, em ordem: pelo menos um. Cada item recebe as props do [Chips](docs:components-chips--docs) (`label`, `options`, `actived`, `onClick`, `onConfirm`…). Sem chips a barra não renderiza nada.",
+    "allFilters": "Mostra o chip \"Todos os filtros\" depois de um divisor: `onClick` (obrigatório), `count` (contador mostrado acima de zero) e `label` (padrão \"Todos os filtros\").",
+    "segmentedControl": "Mostra um Segmented Control fixo à direita, com as props do [Segmented Control](docs:components-segmented-control--overview). Ocupa no máximo metade da barra, com os textos cortados com reticências passando disso. Abaixo do breakpoint md (768px) ícones e contadores são removidos.",
+    "ariaLabel": "Nome da barra para leitores de tela, como \"Filtros\". A barra é um `group`.",
+    "className": "Classe na barra. `ref` e os demais atributos vão para o elemento da barra."
+  },
+  "platforms": {
+    "react": "`FilterBar`: layout desktop a partir de 768px e layout mobile abaixo disso.",
+    "ios": "`OceanSwiftUI.FilterBar`, com `segmentedControl` em `FilterBarParameters` (vazio por padrão). Sempre o layout mobile.",
+    "android": "`OceanFilterBar`, com o parâmetro `segmentedControl` (vazio por padrão). Sempre o layout mobile."
+  },
+  "tokens": {
+    "intro": "A tabela abaixo lista os tokens do Ocean usados pelo Filter Bar.",
+    "blocks": "Os chips e o controle mantêm os tokens deles: veja [Chips](docs:components-chips--docs) e [Segmented Control](docs:components-segmented-control--overview)."
+  },
+  "rules": [
+    "Passe sempre pelo menos um chip; a barra nunca aparece só com \"Todos os filtros\" ou só com o Segmented Control.",
+    "Use a barra para uma lista logo abaixo dela; todos os filtros e o Segmented Control valem para essa lista.",
+    "Guarde os filtros e o escopo no estado da tela e atualize a lista nos callbacks.",
+    "Passe o Segmented Control com exatamente dois escopos; com mais, use um chip de filtro com opções.",
+    "Não passe ícones ou contadores ao Segmented Control esperando vê-los no mobile: a barra tira os dois abaixo de 768px.",
+    "Não coloque ações sobre a lista (como \"Pagar em lote\") nem a busca dentro da barra.",
+    "Não adicione padding lateral à barra no desktop; o container da tela define.",
+    "Passe `aria-label` dizendo o que a barra filtra."
+  ],
+  "feedback": "Compartilhe feedback do componente com o time do Ocean Design System."
+}
