@@ -395,3 +395,101 @@ test('accepts a callback ref', () => {
   unmount();
   expect(ref).toHaveBeenLastCalledWith(null);
 });
+
+describe('Shift + wheel', () => {
+  /** Makes a scrolling area of the bar 500 wide inside 200, with a writable scrollLeft. */
+  const scrollable = (element: HTMLElement) => {
+    let left = 0;
+    element.style.overflowX = 'auto';
+    Object.defineProperty(element, 'scrollWidth', { value: 500 });
+    Object.defineProperty(element, 'clientWidth', { value: 200 });
+    Object.defineProperty(element, 'scrollLeft', {
+      get: () => left,
+      set: (value: number) => {
+        left = value;
+      },
+    });
+    return element;
+  };
+  const wheel = (
+    target: Element,
+    init: ConstructorParameters<typeof WheelEvent>[1]
+  ) => {
+    const event = new WheelEvent('wheel', {
+      bubbles: true,
+      cancelable: true,
+      ...init,
+    });
+    target.dispatchEvent(event);
+    return event;
+  };
+
+  test('scrolls the chips sideways with Shift + vertical wheel, within the scroll range', () => {
+    const { container } = render(
+      <FilterBar filters={filters} segmentedControl={segmentedControl()} />
+    );
+    const chips = scrollable(
+      bar(container).querySelector('.ods-filter-bar__chips') as HTMLElement
+    );
+    const chip = screen.getByRole('button', { name: 'Paid' });
+
+    const first = wheel(chip, { shiftKey: true, deltaY: 120 });
+    expect(chips.scrollLeft).toBe(120);
+    expect(first.defaultPrevented).toBe(true);
+
+    wheel(chip, { shiftKey: true, deltaY: 400 });
+    expect(chips.scrollLeft).toBe(300);
+
+    // At the end of the range the wheel is left to the page.
+    const atEnd = wheel(chip, { shiftKey: true, deltaY: 50 });
+    expect(chips.scrollLeft).toBe(300);
+    expect(atEnd.defaultPrevented).toBe(false);
+
+    wheel(chip, { shiftKey: true, deltaY: -1000 });
+    expect(chips.scrollLeft).toBe(0);
+  });
+
+  test('scrolls chips and "All filters" together when that area is the one that scrolls', () => {
+    const { container } = render(
+      <FilterBar filters={filters} allFilters={{ onClick: jest.fn() }} />
+    );
+    const area = scrollable(
+      bar(container).querySelector('.ods-filter-bar__filters') as HTMLElement
+    );
+
+    wheel(screen.getByRole('button', { name: ALL_FILTERS_LABEL }), {
+      shiftKey: true,
+      deltaY: 80,
+    });
+
+    expect(area.scrollLeft).toBe(80);
+  });
+
+  test('leaves other wheels to the browser', () => {
+    const { container, unmount } = render(
+      <FilterBar filters={filters} segmentedControl={segmentedControl()} />
+    );
+    const root = bar(container);
+    const chips = scrollable(
+      root.querySelector('.ods-filter-bar__chips') as HTMLElement
+    );
+    const chip = screen.getByRole('button', { name: 'Paid' });
+
+    [
+      wheel(chip, { deltaY: 120 }),
+      wheel(chip, { shiftKey: true, deltaX: 120, deltaY: 0 }),
+      wheel(chip, { shiftKey: true, deltaX: 30, deltaY: 120 }),
+      wheel(chip, { shiftKey: true, deltaY: 0 }),
+      // Outside the scrolling area.
+      wheel(screen.getByRole('radio', { name: /Store/ }), {
+        shiftKey: true,
+        deltaY: 120,
+      }),
+    ].forEach((event) => expect(event.defaultPrevented).toBe(false));
+    expect(chips.scrollLeft).toBe(0);
+
+    const remove = jest.spyOn(root, 'removeEventListener');
+    unmount();
+    expect(remove).toHaveBeenCalledWith('wheel', expect.any(Function));
+  });
+});

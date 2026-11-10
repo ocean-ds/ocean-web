@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import React from 'react';
 import FilterBar from '../FilterBar';
 import type { FilterBarProps } from '../types';
@@ -10,6 +11,30 @@ import {
 } from '../../../../../.storybook/docs-blocks/filter-bar/fixtures';
 
 const onClick = (): void => undefined;
+
+/**
+ * Sends the clicks of the chips, of "All filters" and the Segmented Control changes to the
+ * Actions panel. The nested callbacks are not matched by `argTypesRegex`, so the story wires
+ * them here; Filter Bar itself only calls them (the screen opens its own filters).
+ */
+const withActions = (args: FilterBarProps): FilterBarProps => ({
+  ...args,
+  filters: args.filters.map((filter) => ({
+    ...filter,
+    onClick: () => {
+      filter.onClick?.();
+      action('filters.onClick')(filter.label);
+    },
+  })) as FilterBarProps['filters'],
+  allFilters: args.allFilters && {
+    ...args.allFilters,
+    onClick: action('allFilters.onClick'),
+  },
+  segmentedControl: args.segmentedControl && {
+    ...args.segmentedControl,
+    onChange: action('segmentedControl.onChange'),
+  },
+});
 
 const meta: Meta<FilterBarProps> = {
   title: 'Components/Filter Bar',
@@ -25,7 +50,7 @@ const meta: Meta<FilterBarProps> = {
     'aria-label': 'Filters',
     filters: FEW_FILTERS,
   },
-  render: (args) => <ControlledFilterBar {...args} />,
+  render: (args) => <ControlledFilterBar {...withActions(args)} />,
 };
 
 export default meta;

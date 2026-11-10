@@ -91,6 +91,7 @@
     "rows": [
       "Mais chips do que cabem, desktop|Só a área dos chips rola; ela é cortada colada no divisor e 16px ficam no fim da rolagem.",
       "Mais chips do que cabem, mobile|Chips e \"Todos os filtros\" rolam juntos.",
+      "Rolar os filtros|Nenhuma barra de rolagem aparece. A área rola por toque, trackpad, roda horizontal e Shift + roda; o foco do teclado traz o chip para a vista.",
       "Chip com opções|As opções abrem embaixo do chip, fora da área de rolagem; no mobile abrem como bottom sheet.",
       "Texto longo|Os chips nunca quebram linha. O Segmented Control ocupa no máximo metade da barra; passando disso, os textos dele são cortados com reticências, e os chips sempre continuam com espaço. O leitor de tela continua lendo o texto inteiro.",
       "Segmented Control no mobile|Só os textos: ícones e contadores passados pela tela são removidos."

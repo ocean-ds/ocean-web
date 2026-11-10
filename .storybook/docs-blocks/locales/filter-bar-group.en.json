@@ -91,6 +91,7 @@
     "rows": [
       "More chips than fit, desktop|Only the chip area scrolls; it is cut right at the divider and 16px stay at the end of the scroll.",
       "More chips than fit, mobile|Chips and \"All filters\" scroll together.",
+      "Scrolling the filters|No scrollbar is shown. The area scrolls by touch, trackpad, horizontal wheel and Shift + wheel; keyboard focus scrolls a chip into view.",
       "Chip with options|The options open under the chip, outside the scroll area; on mobile they open as a bottom sheet.",
       "Long text|Chips never wrap. The Segmented Control takes at most half of the bar; beyond that, its labels are cut with an ellipsis, so the chips always keep room. Screen readers still read the full labels.",
       "Segmented Control on mobile|Only labels: icons and counters passed by the screen are removed."

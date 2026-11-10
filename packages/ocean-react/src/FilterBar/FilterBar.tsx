@@ -86,7 +86,39 @@ const FilterBar = React.forwardRef<HTMLDivElement, FilterBarProps>(
       );
     }, []);
 
-    if (filters.length === 0) return null;
+    // The scrolling area has no scrollbar, so Shift + vertical wheel scrolls it sideways, as
+    // browsers do on a scrollbar. A wheel that already brings deltaX is left to the browser.
+    const hasFilters = filters.length > 0;
+    useEffect(() => {
+      const root = rootRef.current;
+      if (!root) return undefined;
+      const onWheel = (event: WheelEvent) => {
+        if (!event.shiftKey || event.deltaX !== 0 || event.deltaY === 0) return;
+        const target = event.target as Node;
+        // Desktop scrolls the chips; mobile scrolls chips and "All filters" together.
+        const scroller = Array.from(
+          root.querySelectorAll<HTMLElement>(
+            '.ods-filter-bar__chips, .ods-filter-bar__filters'
+          )
+        ).find(
+          (area) =>
+            area.contains(target) && getComputedStyle(area).overflowX === 'auto'
+        );
+        if (!scroller) return;
+        const max = scroller.scrollWidth - scroller.clientWidth;
+        const next = Math.max(
+          0,
+          Math.min(max, scroller.scrollLeft + event.deltaY)
+        );
+        if (next === scroller.scrollLeft) return;
+        event.preventDefault();
+        scroller.scrollLeft = next;
+      };
+      root.addEventListener('wheel', onWheel, { passive: false });
+      return () => root.removeEventListener('wheel', onWheel);
+    }, [hasFilters]);
+
+    if (!hasFilters) return null;
 
     return (
       <div
