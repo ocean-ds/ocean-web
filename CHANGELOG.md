@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.154.0](https://github.com/ocean-ds/ocean-web/compare/v1.153.0...v1.154.0) (2026-11-10)
+
+### Features
+
+- **filter-bar:** add FilterBar component ([#1295](https://github.com/ocean-ds/ocean-web/issues/1295)) ([4154214](https://github.com/ocean-ds/ocean-web/commit/41542140f8fdf024340bed08be13f9cf45ae5d20))
+
 # [1.153.0](https://github.com/ocean-ds/ocean-web/compare/v1.152.6...v1.153.0) (2026-11-06)
 
 ### Features
