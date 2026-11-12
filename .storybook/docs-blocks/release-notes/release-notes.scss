@@ -1,0 +1,84 @@
+// "Release note & changelog" page. Ocean tokens only (`yarn lint:docs-tokens`).
+@import '@useblu/ocean-tokens/web/tokens';
+
+.odoc--release-notes {
+  .odoc-header {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: $spacing-stack-lg;
+  }
+
+  // The Ocean Tab sits on a white surface (its items are white), below the header band.
+  .odoc-tabbar {
+    background: $color-interface-light-pure;
+  }
+}
+
+.odoc-release {
+  border-bottom: $border-width-hairline solid $color-interface-light-down;
+  padding: $spacing-stack-md 0;
+  scroll-margin-top: $spacing-stack-xxl;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &__header {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-inline-xs;
+    margin-bottom: $spacing-stack-xs;
+  }
+
+  &__version.ods-typography {
+    margin: 0;
+  }
+
+  &__date.ods-typography {
+    color: $color-interface-dark-down;
+    margin: 0;
+  }
+
+  &__github {
+    margin-left: auto;
+  }
+
+  &__group {
+    margin-top: $spacing-stack-xs;
+  }
+
+  &__changes {
+    list-style: none;
+    margin: $spacing-stack-xxs 0 0;
+    padding: 0;
+  }
+
+  &__change {
+    align-items: baseline;
+    color: $color-interface-dark-deep;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: $font-size-xs;
+    gap: $spacing-inline-xxs;
+    line-height: $line-height-comfy;
+    padding: $spacing-stack-xxxs 0;
+  }
+
+  &__pr {
+    white-space: nowrap;
+  }
+
+  &__alert {
+    margin-bottom: $spacing-stack-md;
+
+    .ods-link {
+      font-size: inherit;
+    }
+  }
+
+  &__more {
+    display: flex;
+    justify-content: center;
+    padding-top: $spacing-stack-md;
+  }
+}

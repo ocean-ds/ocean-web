@@ -7,6 +7,8 @@ generate();
 
 const config: StorybookConfig = {
   stories: [
+    // Pages that belong to no package (they never change a published version).
+    './pages/*.docs.mdx',
     '../packages/*/src/**/*.docs.mdx',
     '../packages/*/src/**/*.stories.mdx',
     '../packages/*/src/**/*.stories.@(js|jsx|ts|tsx)',

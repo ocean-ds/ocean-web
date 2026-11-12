@@ -1,0 +1,29 @@
+{
+  "title": "Release note & changelog",
+  "description": "What changed in each version of Ocean, by platform. The newest version comes first.",
+  "updated": "Updated every hour from GitHub Releases · last update {date}",
+  "platforms": "Platforms",
+  "tabs": {
+    "web": "Web",
+    "tokens": "Tokens",
+    "icons": "Icons",
+    "ios": "iOS",
+    "android": "Android"
+  },
+  "groups": {
+    "added": "Added",
+    "fixed": "Fixed",
+    "removed": "Removed",
+    "other": "Other"
+  },
+  "loading": "Loading the release notes…",
+  "errorTitle": "Release notes unavailable",
+  "errorAll": "It was not possible to load the release notes right now. The rest of the documentation is up to date; try again later.",
+  "errorRepo": "It was not possible to load the release notes of {repo} right now. Try again later or see them on [GitHub]({url}).",
+  "empty": "No versions with changes to show yet.",
+  "viewOnGitHub": "View on GitHub",
+  "viewVersion": "version",
+  "showMore": "Show more versions",
+  "toc": "Versions on this tab",
+  "mobileVersionNote": "On iOS and Android the version number follows the version of the tokens plus a build number. It does not show how big the change is."
+}
