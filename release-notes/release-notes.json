@@ -1,0 +1,6057 @@
+{
+  "generatedAt": "2026-11-12T20:05:15.107Z",
+  "complete": true,
+  "repos": {
+    "web": {
+      "repo": "ocean-web",
+      "url": "https://github.com/ocean-ds/ocean-web/releases",
+      "status": "ok",
+      "releases": [
+        {
+          "version": "v1.154.0",
+          "date": "2026-11-10T17:39:43Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.154.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add FilterBar component",
+                "scope": "filter-bar",
+                "pr": 1295,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1295"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.153.0",
+          "date": "2026-11-06T19:29:58Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.153.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add SegmentedControl component",
+                "scope": "segmented-control",
+                "pr": 1294,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1294"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.152.0",
+          "date": "2026-10-30T17:10:33Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.152.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add Tab component",
+                "scope": "tab",
+                "pr": 1286,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1286"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.151.1",
+          "date": "2026-10-28T18:22:24Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.151.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "lista de texto alinha com o título dentro da drawer",
+                "scope": "drawer",
+                "pr": 1283,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1283"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.151.0",
+          "date": "2026-10-26T12:26:42Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.151.0",
+          "groups": {
+            "added": [
+              {
+                "text": "pilha pronta com useDrawerStack e página no padrão novo (MR-955)",
+                "scope": "drawer",
+                "pr": 1282,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1282"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.150.1",
+          "date": "2026-10-22T21:10:27Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.150.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "status background behind the desktop Details top corners (MR-940)",
+                "scope": "success-screen",
+                "pr": 1281,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1281"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.150.0",
+          "date": "2026-10-22T19:30:56Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.150.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add Success Screen component + Storybook docs (MR-940)",
+                "scope": "success-screen",
+                "pr": 1280,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1280"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.149.0",
+          "date": "2026-10-22T18:58:43Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.149.0",
+          "groups": {
+            "added": [
+              {
+                "text": "appearance translucent + Tag docs in the Storybook standard (MR-937)",
+                "scope": "tag",
+                "pr": 1279,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1279"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.148.0",
+          "date": "2026-10-14T17:49:30Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.148.0",
+          "groups": {
+            "added": [
+              {
+                "text": "linhas do Footer/Summary usam a Transaction List Read Only (MR-908)",
+                "scope": "transaction-footer",
+                "pr": 1278,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1278"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.147.0",
+          "date": "2026-10-14T14:41:40Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.147.0",
+          "groups": {
+            "added": [
+              {
+                "text": "publica o Transaction Footer 2.0 e cria o Transaction Summary (MR-908)",
+                "scope": "transaction-footer",
+                "pr": 1277,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1277"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.146.0",
+          "date": "2026-10-09T17:06:34Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.146.0",
+          "groups": {
+            "added": [
+              {
+                "text": "cria a família Transaction List no web (MR-615)",
+                "scope": "list",
+                "pr": 1275,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1275"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.145.1",
+          "date": "2026-10-08T21:59:43Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.145.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "long size body takes full width",
+                "scope": "alert",
+                "pr": 1274,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1274"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.145.0",
+          "date": "2026-10-07T17:18:41Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.145.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add TransactionFooter component with default and highlight variants",
+                "pr": 1252,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1252"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.144.2",
+          "date": "2026-10-02T13:25:13Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.144.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "title e actions nulos mantêm a anatomia do conteúdo (MR-871)",
+                "scope": "drawer",
+                "pr": 1273,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1273"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.144.0",
+          "date": "2026-09-30T12:52:16Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.144.0",
+          "groups": {
+            "added": [
+              {
+                "text": "headerColor pinta a barra do X e ajusta o hover no fundo colorido (MR-877)",
+                "scope": "drawer",
+                "pr": 1271,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1271"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.143.0",
+          "date": "2026-09-29T18:07:48Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.143.0",
+          "groups": {
+            "added": [
+              {
+                "text": "x pequeno e claro, título e barra de ações; chevronFlipped nos itens de lista (MR-877)",
+                "scope": "drawer",
+                "pr": 1270,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1270"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.142.0",
+          "date": "2026-09-28T19:22:08Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.142.0",
+          "groups": {
+            "added": [
+              {
+                "text": "scrim por painel na pilha, retorno pelo clique e X em IconButton (MR-854)",
+                "scope": "drawer",
+                "pr": 1269,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1269"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.141.2",
+          "date": "2026-09-25T17:49:26Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.141.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "tooltip de dia indisponível fecha em 3 s (MR-665)",
+                "scope": "date",
+                "pr": 1268,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1268"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.141.1",
+          "date": "2026-09-24T15:23:23Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.141.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "highlight em ExtraBold 800 (MR-836)",
+                "scope": "tag",
+                "pr": 1267,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1267"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.141.0",
+          "date": "2026-09-23T19:45:08Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.141.0",
+          "groups": {
+            "added": [
+              {
+                "text": "type complementary em Deep e highlight em Bold 700 (MR-836)",
+                "scope": "tag",
+                "pr": 1266,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1266"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.140.1",
+          "date": "2026-09-21T20:54:20Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.140.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "scrim e painel mantêm z-index durante a saída (MR-823)",
+                "scope": "drawer",
+                "pr": 1265,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1265"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.140.0",
+          "date": "2026-09-21T18:29:06Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.140.0",
+          "groups": {
+            "added": [
+              {
+                "text": "visual flutuante como padrão do Drawer (MR-823)",
+                "scope": "drawer",
+                "pr": 1264,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1264"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.6",
+          "date": "2026-09-21T13:23:23Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.6",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "token Gentle assenta em 600ms (MR-795)",
+                "scope": "motion",
+                "pr": 1262,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1262"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.5",
+          "date": "2026-09-21T12:52:29Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.5",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "highlight neutral volta a brandPrimaryDown (MR-802)",
+                "scope": "tag",
+                "pr": 1263,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1263"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.4",
+          "date": "2026-09-18T17:36:11Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.4",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "overlay transparente não intercepta o ponteiro (MR-795)",
+                "scope": "drawer",
+                "pr": 1261,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1261"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.3",
+          "date": "2026-09-18T16:37:35Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.3",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "entrada da direita e empurrão coordenados com motion Gentle (MR-795)",
+                "scope": "drawer",
+                "pr": 1260,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1260"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.2",
+          "date": "2026-09-18T14:06:47Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "tipografia definida só pelo size e highlight neutral em brandPrimaryPure (MR-802)",
+                "scope": "tag",
+                "pr": 1258,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1258"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.1",
+          "date": "2026-09-18T13:32:54Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "MR-772 calendário do DateRange/DatePicker na largura dos dois campos",
+                "scope": "core",
+                "pr": 1257,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1257"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.139.0",
+          "date": "2026-09-17T21:17:27Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.139.0",
+          "groups": {
+            "added": [
+              {
+                "text": "props para pilha de drawers lado a lado (MR-795)",
+                "scope": "drawer",
+                "pr": 1259,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1259"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.138.0",
+          "date": "2026-09-11T17:23:02Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.138.0",
+          "groups": {
+            "added": [
+              {
+                "text": "modo de escolha única com radio e rodapé Limpar/Filtrar",
+                "scope": "chips",
+                "pr": 1256,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1256"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.137.1",
+          "date": "2026-09-11T16:45:53Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.137.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "MR-748 hover das famílias de lista compõe com o fundo do container",
+                "scope": "core",
+                "pr": 1254,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1254"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.137.0",
+          "date": "2026-07-27T20:42:22Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.137.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add Banner component",
+                "pr": 1251,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1251"
+              },
+              {
+                "text": "adiciona indicatorPosition nos componentes de lista",
+                "scope": "list",
+                "pr": 1253,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1253"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.136.0",
+          "date": "2026-05-11T19:09:46Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.136.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add cornerTag prop with Highlight Corner Tag (MR-490)",
+                "scope": "list-selectable",
+                "pr": 1244,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1244"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.135.2",
+          "date": "2026-04-30T14:16:43Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.135.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "card border color should match Figma spec",
+                "scope": "list-container",
+                "pr": 1245,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1245"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.135.1",
+          "date": "2026-04-14T19:28:59Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.135.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "swap colors in isInverted mode (BAN-52)",
+                "pr": 1239,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1239"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.135.0",
+          "date": "2026-04-14T13:20:32Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.135.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add isInverted prop for typography hierarchy (BAN-52).",
+                "pr": 1236,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1236"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.134.1",
+          "date": "2026-03-18T14:12:55Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.134.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust is selectable disabled type",
+                "pr": 1233,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1233"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.134.0",
+          "date": "2026-03-18T12:21:32Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.134.0",
+          "groups": {
+            "added": [
+              {
+                "text": "adjust list components",
+                "pr": 1232,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1232"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.133.0",
+          "date": "2026-03-05T12:27:18Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.133.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create TransactionListExpandable",
+                "pr": 1228,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1228"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.132.0",
+          "date": "2026-03-03T19:39:39Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.132.0",
+          "groups": {
+            "added": [
+              {
+                "text": "update data picker adding tooltip list",
+                "pr": 1230,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1230"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.131.0",
+          "date": "2026-03-03T13:06:30Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.131.0",
+          "groups": {
+            "added": [
+              {
+                "text": "update data picker",
+                "pr": 1229,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1229"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.130.0",
+          "date": "2026-02-12T20:38:04Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.130.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add action badge color on cardgroup",
+                "pr": 1226,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1226"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.129.0",
+          "date": "2026-02-05T14:38:33Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.129.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create new properties to internal contextual hero",
+                "pr": 1223,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1223"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.128.1",
+          "date": "2026-02-04T18:47:07Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.128.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "remove `cursor: not-allowed` from disabled list item styles",
+                "pr": 1224,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1224"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.128.0",
+          "date": "2026-02-04T15:27:53Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.128.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create new Button variants",
+                "pr": 1222,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1222"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.127.0",
+          "date": "2026-01-14T15:04:09Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.127.0",
+          "groups": {
+            "added": [
+              {
+                "text": "include error message on radio",
+                "pr": 1216,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1216"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.126.0",
+          "date": "2026-01-14T13:44:14Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.126.0",
+          "groups": {
+            "added": [
+              {
+                "text": "include icon prop on SubHeader",
+                "pr": 1218,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1218"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.125.1",
+          "date": "2026-01-13T19:07:02Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.125.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust styles of card list item disabled",
+                "pr": 1219,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1219"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.125.0",
+          "date": "2026-01-13T12:19:39Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.125.0",
+          "groups": {
+            "added": [
+              {
+                "text": "Introduces a new percentage property to the component to enable loading progress control.",
+                "pr": 1215,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1215"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.124.0",
+          "date": "2026-01-08T14:16:31Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.124.0",
+          "groups": {
+            "added": [
+              {
+                "text": "card list item",
+                "pr": 1213,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1213"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.121.0",
+          "date": "2025-12-22T14:39:10Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.121.0",
+          "groups": {
+            "added": [
+              {
+                "text": "card list item update",
+                "pr": 1209,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1209"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.119.0",
+          "date": "2025-12-08T18:23:56Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.119.0",
+          "groups": {
+            "added": [
+              {
+                "text": "style cancel button on input search",
+                "pr": 1202,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1202"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.118.0",
+          "date": "2025-12-08T16:23:21Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.118.0",
+          "groups": {
+            "added": [
+              {
+                "text": "card list expandable",
+                "pr": 1197,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1197"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.117.0",
+          "date": "2025-12-08T13:57:41Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.117.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create list action",
+                "pr": 1204,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1204"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.116.0",
+          "date": "2025-12-08T12:12:07Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.116.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create text list selectable component",
+                "pr": 1199,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1199"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.115.0",
+          "date": "2025-12-04T15:29:50Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.115.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create card list actions",
+                "pr": 1195,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1195"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.114.0",
+          "date": "2025-12-04T15:10:56Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.114.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create internal list actions",
+                "pr": 1194,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1194"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.113.2",
+          "date": "2025-12-03T13:09:54Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.113.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "chip multi select",
+                "pr": 1203,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1203"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.113.1",
+          "date": "2025-11-26T14:26:53Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.113.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust shortcut badge",
+                "pr": 1196,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1196"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.113.0",
+          "date": "2025-10-22T20:49:18Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.113.0",
+          "groups": {
+            "added": [
+              {
+                "text": "updates modals",
+                "pr": 1193,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1193"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.112.1",
+          "date": "2025-10-07T20:01:32Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.112.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "tag position and limit props to accept only tag or count prop",
+                "pr": 1191,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1191"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.112.0",
+          "date": "2025-10-07T19:35:27Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.112.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add tag and actionCount",
+                "pr": 1192,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1192"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.111.0",
+          "date": "2025-08-29T17:01:14Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.111.0",
+          "groups": {
+            "added": [
+              {
+                "text": "foundation",
+                "pr": 1189,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1189"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.110.0",
+          "date": "2025-08-25T12:31:26Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.110.0",
+          "groups": {
+            "added": [
+              {
+                "text": "ocean docs 3",
+                "pr": 1188,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1188"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.109.0",
+          "date": "2025-08-21T17:14:58Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.109.0",
+          "groups": {
+            "added": [
+              {
+                "text": "ocean docs 2",
+                "pr": 1187,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1187"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.108.0",
+          "date": "2025-08-20T13:27:02Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.108.0",
+          "groups": {
+            "added": [
+              {
+                "text": "ocean docs",
+                "pr": 1186,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1186"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.107.0",
+          "date": "2025-08-19T13:37:03Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.107.0",
+          "groups": {
+            "added": [
+              {
+                "text": "drawer modal doc",
+                "pr": 1185,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1185"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.106.0",
+          "date": "2025-08-18T17:45:54Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.106.0",
+          "groups": {
+            "added": [
+              {
+                "text": "cross sell card and divider",
+                "pr": 1184,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1184"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.105.0",
+          "date": "2025-08-14T17:18:32Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.105.0",
+          "groups": {
+            "added": [
+              {
+                "text": "cross sell card and divider",
+                "pr": 1183,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1183"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.104.0",
+          "date": "2025-08-12T18:51:12Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.104.0",
+          "groups": {
+            "added": [
+              {
+                "text": "typography doc",
+                "pr": 1182,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1182"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.103.0",
+          "date": "2025-08-12T12:35:43Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.103.0",
+          "groups": {
+            "added": [
+              {
+                "text": "checkbox and chips docs",
+                "pr": 1181,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1181"
+              },
+              {
+                "text": "remoce unused doc",
+                "pr": 1180,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1180"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.102.0",
+          "date": "2025-08-08T12:45:41Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.102.0",
+          "groups": {
+            "added": [
+              {
+                "text": "carousel and chart docs",
+                "pr": 1179,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1179"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.101.0",
+          "date": "2025-08-07T13:08:23Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.101.0",
+          "groups": {
+            "added": [
+              {
+                "text": "card group and card list item docs",
+                "pr": 1178,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1178"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.100.0",
+          "date": "2025-08-06T17:05:46Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.100.0",
+          "groups": {
+            "added": [
+              {
+                "text": "badge and breadcrumbs docs",
+                "pr": 1177,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1177"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.99.0",
+          "date": "2025-08-06T12:09:46Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.99.0",
+          "groups": {
+            "added": [
+              {
+                "text": "accordion andalert docs",
+                "pr": 1176,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1176"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.98.0",
+          "date": "2025-08-04T20:36:48Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.98.0",
+          "groups": {
+            "added": [
+              {
+                "text": "select and stepper docs",
+                "pr": 1175,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1175"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.97.0",
+          "date": "2025-07-31T20:19:21Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.97.0",
+          "groups": {
+            "added": [
+              {
+                "text": "select docs",
+                "pr": 1174,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1174"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.96.0",
+          "date": "2025-07-31T19:59:59Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.96.0",
+          "groups": {
+            "added": [
+              {
+                "text": "token input docs",
+                "pr": 1173,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1173"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.95.0",
+          "date": "2025-07-31T17:47:05Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.95.0",
+          "groups": {
+            "added": [
+              {
+                "text": "text list item doc",
+                "pr": 1172,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1172"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.94.0",
+          "date": "2025-07-31T17:19:01Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.94.0",
+          "groups": {
+            "added": [
+              {
+                "text": "unordered list item doc",
+                "pr": 1171,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1171"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.93.0",
+          "date": "2025-07-31T14:36:40Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.93.0",
+          "groups": {
+            "added": [
+              {
+                "text": "text input",
+                "pr": 1170,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1170"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.92.0",
+          "date": "2025-07-28T19:33:11Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.92.0",
+          "groups": {
+            "added": [
+              {
+                "text": "setting list",
+                "pr": 1169,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1169"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.91.0",
+          "date": "2025-07-23T19:59:54Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.91.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create list doc",
+                "pr": 1168,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1168"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.90.1",
+          "date": "2025-07-23T16:55:42Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.90.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "remove slash from base url",
+                "pr": 1165,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1165"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.90.0",
+          "date": "2025-07-23T15:04:39Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.90.0",
+          "groups": {
+            "added": [
+              {
+                "text": "update docs config",
+                "pr": 1162,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1162"
+              }
+            ],
+            "fixed": [
+              {
+                "text": "token on deploy-docs.yml",
+                "pr": 1164,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1164"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.89.1",
+          "date": "2025-07-22T18:59:51Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.89.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust line-height in Shortcut component styles for improved layout",
+                "pr": 1159,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1159"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.89.0",
+          "date": "2025-07-22T14:35:20Z",
+          "url": "https://github.com/ocean-ds/ocean-web/releases/tag/v1.89.0",
+          "groups": {
+            "added": [
+              {
+                "text": "enhance Shortcut component with tag support",
+                "pr": 1157,
+                "url": "https://github.com/ocean-ds/ocean-web/pull/1157"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        }
+      ]
+    },
+    "tokens": {
+      "repo": "ocean-tokens",
+      "url": "https://github.com/ocean-ds/ocean-tokens/releases",
+      "status": "ok",
+      "releases": [
+        {
+          "version": "v3.10.1",
+          "date": "2026-11-10T15:33:12Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.10.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "keep tokens-fontNames.json to font file names only",
+                "scope": "ios",
+                "pr": 304,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/304"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.10.0",
+          "date": "2026-11-05T19:40:04Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.10.0",
+          "groups": {
+            "added": [
+              {
+                "text": "extend opacity and typography scales",
+                "scope": "tokens",
+                "pr": 303,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/303"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.9.0",
+          "date": "2026-11-03T17:40:18Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.9.0",
+          "groups": {
+            "added": [
+              {
+                "text": "generate border-width and opacity tokens",
+                "scope": "android",
+                "pr": 302,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/302"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2",
+          "date": "2026-07-27T20:34:20Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.8.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "família Highlight passa de Avenir para Nunito Sans",
+                "scope": "typography",
+                "pr": 299,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/299"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1",
+          "date": "2024-07-08T17:27:09Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.8.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "json ios generator",
+                "pr": 296,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/296"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.7.0",
+          "date": "2024-06-11T12:40:16Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.7.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create spacing xxs extra",
+                "pr": 293,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/293"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.6.2",
+          "date": "2024-06-03T12:34:37Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.6.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust module type",
+                "pr": 292,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/292"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.6.1",
+          "date": "2024-05-31T16:27:26Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.6.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust module type",
+                "pr": 291,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/291"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.6.0",
+          "date": "2024-05-31T15:47:57Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.6.0",
+          "groups": {
+            "added": [
+              {
+                "text": "create step to generate sourcemaps",
+                "pr": 290,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/290"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.5.0",
+          "date": "2024-04-18T14:19:47Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.5.0",
+          "groups": {
+            "added": [
+              {
+                "text": "update tokens",
+                "pr": 287,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/287"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.4.0",
+          "date": "2024-01-22T18:54:12Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.4.0",
+          "groups": {
+            "added": [
+              {
+                "text": "update tokens colors",
+                "pr": 285,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/285"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.3.1",
+          "date": "2023-06-29T12:41:37Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.3.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "revert package version",
+                "pr": 281,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/281"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.3.0",
+          "date": "2022-08-15T16:22:37Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.3.0",
+          "groups": {
+            "added": [
+              {
+                "text": "upgrade eslint-plugin-promise from 5.2.0 to 6.0.0",
+                "pr": 222,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/222"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.2.0",
+          "date": "2022-08-15T12:55:45Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.2.0",
+          "groups": {
+            "added": [
+              {
+                "text": "changed spacing stacks tokens",
+                "pr": 251,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/251"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.11",
+          "date": "2022-04-14T17:38:59Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.11",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "changed back to 200px",
+                "scope": "spacing-stack-xxxl",
+                "url": "https://github.com/ocean-ds/ocean-tokens/commit/65c98226291bcb336bc0e638f8ccee3d32afbb13"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.10",
+          "date": "2022-02-10T19:14:06Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.10",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "package.json & yarn.lock to reduce vulnerabilities",
+                "pr": 216,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/216"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.9",
+          "date": "2022-02-10T19:05:21Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.9",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade eslint-plugin-promise from 5.1.1 to 5.2.0",
+                "pr": 209,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/209"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.8",
+          "date": "2022-02-10T19:00:03Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.8",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade prettier from 2.4.1 to 2.5.0",
+                "pr": 208,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/208"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.7",
+          "date": "2022-02-10T18:56:45Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.7",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade semantic-release from 18.0.0 to 18.0.1",
+                "pr": 207,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/207"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.6",
+          "date": "2022-02-10T18:52:17Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.6",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade pretty-quick from 3.1.1 to 3.1.2",
+                "pr": 206,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/206"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.5",
+          "date": "2022-02-10T18:44:56Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.5",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade eslint-plugin-import from 2.25.2 to 2.25.3",
+                "pr": 204,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/204"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.4",
+          "date": "2021-11-09T17:46:42Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.4",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade immutable from 4.0.0-rc.14 to 4.0.0",
+                "pr": 193,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/193"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.3",
+          "date": "2021-11-09T17:34:33Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.3",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade prettier from 2.3.2 to 2.4.0",
+                "pr": 187,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/187"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.2",
+          "date": "2021-11-09T17:32:11Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade @semantic-release/git from 9.0.0 to 9.0.1",
+                "pr": 186,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/186"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.1",
+          "date": "2021-11-09T17:29:11Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "upgrade multiple dependencies with Snyk",
+                "pr": 189,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/189"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.1.0",
+          "date": "2021-06-17T16:36:53Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.1.0",
+          "groups": {
+            "added": [
+              {
+                "text": "change status colors and create deep variations",
+                "scope": "color",
+                "pr": 150,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/150"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.0.1",
+          "date": "2021-06-15T15:01:53Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.0.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "package.json & yarn.lock to reduce vulnerabilities",
+                "pr": 149,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/149"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.0.0",
+          "date": "2021-06-09T13:12:16Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v3.0.0",
+          "groups": {
+            "added": [
+              {
+                "text": "change pkg name to ocean-tokens",
+                "url": "https://github.com/ocean-ds/ocean-tokens/commit/6892731fc4334a3c7629e66ef75b6f79ecaaf4a1"
+              },
+              {
+                "text": "shrink import path",
+                "url": "https://github.com/ocean-ds/ocean-tokens/commit/9082433ced7fb972a6edf90fabeb452e4e662d6d"
+              },
+              {
+                "text": "rename tokens.module.js to tokens.js",
+                "scope": "web",
+                "url": "https://github.com/ocean-ds/ocean-tokens/commit/c71e951b42f788b02be85ea41804a3c0a1b56659"
+              }
+            ],
+            "fixed": [],
+            "removed": [
+              {
+                "text": "change pkg name from @useblu/tokens to @useblu/ocean-tokens"
+              },
+              {
+                "text": "omit the directory '/dist' of the imports path"
+              },
+              {
+                "text": "normalizes tokens filename for web renaming js exported",
+                "scope": "web"
+              }
+            ],
+            "other": []
+          }
+        },
+        {
+          "version": "v2.0.1",
+          "date": "2021-06-07T20:33:24Z",
+          "url": "https://github.com/ocean-ds/ocean-tokens/releases/tag/v2.0.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "package.json & yarn.lock to reduce vulnerabilities",
+                "pr": 133,
+                "url": "https://github.com/ocean-ds/ocean-tokens/pull/133"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        }
+      ]
+    },
+    "icons": {
+      "repo": "ocean-icons",
+      "url": "https://github.com/ocean-ds/ocean-icons/releases",
+      "status": "ok",
+      "releases": [
+        {
+          "version": "v1.39.0",
+          "date": "2026-10-14T19:19:51Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.39.0",
+          "groups": {
+            "added": [
+              {
+                "text": "desenho atual do Figma nos Blu Icons e 11 ícones que faltavam (MR-915)",
+                "scope": "ocean-icons",
+                "pr": 290,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/290"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.38.1",
+          "date": "2026-10-14T13:51:03Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.38.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "stroke none em formas preenchidas de Outline e checagem no CI",
+                "scope": "ocean-icons",
+                "pr": 289,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/289"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.38.0",
+          "date": "2026-08-07T13:28:38Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.38.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add LimitOutline icon",
+                "pr": 287,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/287"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.37.0",
+          "date": "2026-04-28T18:06:58Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.37.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add CoinsHand solid icon",
+                "pr": 286,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/286"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.36.0",
+          "date": "2026-02-25T12:49:23Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.36.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add inflow and outflow icons",
+                "pr": 285,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/285"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.35.0",
+          "date": "2025-12-01T17:01:41Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.35.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add coins swap",
+                "pr": 284,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/284"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.34.2",
+          "date": "2025-11-26T14:21:59Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.34.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "reimported fixed svgs",
+                "pr": 283,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/283"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.34.1",
+          "date": "2025-11-25T15:18:59Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.34.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust icons strokes",
+                "pr": 282,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/282"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.34.0",
+          "date": "2025-11-24T21:00:21Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.34.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add new icons",
+                "pr": 281,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/281"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.33.0",
+          "date": "2025-11-05T13:46:24Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.33.0",
+          "groups": {
+            "added": [
+              {
+                "text": "reupload all figma icons",
+                "pr": 280,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/280"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.32.0",
+          "date": "2025-10-27T13:06:38Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.32.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add EyeOffAltOutline icon to ocean-icons-react",
+                "pr": 278,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/278"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.31.0",
+          "date": "2025-10-22T18:57:32Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.31.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add SparklesAlt icon and update documentation for adding new icons",
+                "pr": 277,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/277"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.30.0",
+          "date": "2025-07-15T19:49:30Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.30.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add new icons",
+                "pr": 276,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/276"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.29.0",
+          "date": "2025-01-14T13:17:39Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.29.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add target outline",
+                "pr": 275,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/275"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.28.0",
+          "date": "2024-12-26T14:55:16Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.28.0",
+          "groups": {
+            "added": [
+              {
+                "text": "new icon contact less outline",
+                "pr": 274,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/274"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.27.0",
+          "date": "2024-10-17T17:57:21Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.27.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add lightouse icon",
+                "pr": 272,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/272"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.26.0",
+          "date": "2024-10-17T15:58:15Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.26.0",
+          "groups": {
+            "added": [
+              {
+                "text": "new arrow icon",
+                "pr": 273,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/273"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.25.0",
+          "date": "2024-08-15T17:41:58Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.25.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add wallet icon",
+                "pr": 270,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/270"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.24.0",
+          "date": "2024-07-16T14:24:10Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.24.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add piggy bank icon",
+                "pr": 269,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/269"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.23.0",
+          "date": "2024-04-24T14:10:26Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.23.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add coins hand icon",
+                "pr": 267,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/267"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.22.0",
+          "date": "2024-03-21T13:07:42Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.22.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add contactbook and score outline",
+                "pr": 266,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/266"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.21.0",
+          "date": "2024-02-26T18:58:09Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.21.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add money inflow and outflow icon",
+                "pr": 265,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/265"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.20.0",
+          "date": "2023-11-14T14:15:44Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.20.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add paper plane outline icon",
+                "pr": 264,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/264"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.19.0",
+          "date": "2023-07-25T13:54:55Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.19.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add social media icons",
+                "pr": 263,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/263"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.18.0",
+          "date": "2023-06-29T18:12:08Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.18.0",
+          "groups": {
+            "added": [
+              {
+                "text": "update alert component icon in default state",
+                "pr": 262,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/262"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.17.0",
+          "date": "2023-06-16T17:03:58Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.17.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add charge, report and solid pagblu",
+                "pr": 261,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/261"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.16.0",
+          "date": "2023-03-21T19:09:25Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.16.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add btoke outline",
+                "pr": 259,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/259"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.15.0",
+          "date": "2023-02-01T15:28:17Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.15.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add barcode bubble outline icon",
+                "pr": 250,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/250"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.14.0",
+          "date": "2023-01-18T16:23:40Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.14.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add icon pagblu outline",
+                "pr": 247,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/247"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.13.0",
+          "date": "2023-01-18T16:14:48Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.13.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add icon bms outline",
+                "pr": 248,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/248"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.12.0",
+          "date": "2022-10-24T20:23:55Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.12.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add icon retailer solid",
+                "pr": 227,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/227"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.11.0",
+          "date": "2022-10-06T21:13:01Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.11.0",
+          "groups": {
+            "added": [
+              {
+                "text": "include whatsapp icon",
+                "pr": 221,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/221"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.10.4",
+          "date": "2022-09-08T13:50:32Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.10.4",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust svgr to version 6.3.1",
+                "pr": 211,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/211"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.10.3",
+          "date": "2022-08-19T17:38:26Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.10.3",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "corrects wrong stroke on SupplierOutline react svg",
+                "pr": 201,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/201"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.10.2",
+          "date": "2022-08-15T12:42:34Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.10.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "packages/ocean-icons-react/package.json to reduce vulnerabilities",
+                "pr": 135,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/135"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.10.1",
+          "date": "2022-07-28T13:19:25Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.10.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "corrects the icons stroke-width and color to currentColor",
+                "pr": 196,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/196"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.10.0",
+          "date": "2022-07-26T15:00:11Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.10.0",
+          "groups": {
+            "added": [
+              {
+                "text": "tax outline",
+                "pr": 194,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/194"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.9.2",
+          "date": "2022-07-19T15:56:37Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.9.2",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "fix pix-icon",
+                "pr": 192,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/192"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.9.1",
+          "date": "2022-07-08T12:43:38Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.9.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "fix CashbackOutline stroke",
+                "scope": "cashbackoutline",
+                "pr": 189,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/189"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.9.0",
+          "date": "2022-07-01T12:55:21Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.9.0",
+          "groups": {
+            "added": [
+              {
+                "text": "include retailer icon",
+                "pr": 187,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/187"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.8.0",
+          "date": "2022-06-30T14:26:59Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.8.0",
+          "groups": {
+            "added": [
+              {
+                "text": "include cashback-outline icon",
+                "pr": 186,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/186"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.7.0",
+          "date": "2022-06-23T15:00:00Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.7.0",
+          "groups": {
+            "added": [
+              {
+                "text": "include blu-logo",
+                "pr": 182,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/182"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.6.1",
+          "date": "2022-05-02T17:56:52Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.6.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "export icons",
+                "pr": 171,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/171"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.6.0",
+          "date": "2022-05-02T17:02:18Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.6.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add tax icons",
+                "pr": 169,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/169"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.5.1",
+          "date": "2022-03-25T14:14:54Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.5.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "adjust presentation qrcode outline svg",
+                "pr": 167,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/167"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.5.0",
+          "date": "2022-03-25T12:56:30Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.5.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add presentation qrcode icon",
+                "pr": 164,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/164"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.4.1",
+          "date": "2022-03-22T12:23:05Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.4.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "fix stroke color pix icon",
+                "pr": 163,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/163"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.4.0",
+          "date": "2022-03-16T14:50:42Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.4.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add payment outline icon",
+                "scope": "paymentoutline",
+                "pr": 162,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/162"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.3.1",
+          "date": "2022-03-15T18:19:30Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.3.1",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "change stroke to fill",
+                "scope": "supplier",
+                "pr": 161,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/161"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.3.0",
+          "date": "2022-03-14T18:52:58Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.3.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add supplier icon",
+                "scope": "supplier",
+                "pr": 159,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/159"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.2.0",
+          "date": "2022-02-10T18:26:34Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.2.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add pix icon",
+                "pr": 147,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/147"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.1.0",
+          "date": "2021-08-13T20:53:36Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.1.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add blu icons",
+                "pr": 93,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/93"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v1.0.0",
+          "date": "2021-07-13T18:53:45Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v1.0.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add heroicons v1",
+                "pr": 56,
+                "url": "https://github.com/ocean-ds/ocean-icons/pull/56"
+              }
+            ],
+            "fixed": [],
+            "removed": [
+              {
+                "text": "include arrow-sm variations and update icons from heroicons v1.0.0"
+              }
+            ],
+            "other": []
+          }
+        },
+        {
+          "version": "v0.1.0",
+          "date": "2021-02-25T13:32:37Z",
+          "url": "https://github.com/ocean-ds/ocean-icons/releases/tag/v0.1.0",
+          "groups": {
+            "added": [
+              {
+                "text": "add initial icons component",
+                "scope": "ocean-icons-react",
+                "url": "https://github.com/Pagnet/ocean-icons/commit/23032f6240bf189aa95a72773701c2802c6b7580"
+              },
+              {
+                "text": "add initial icons",
+                "url": "https://github.com/Pagnet/ocean-icons/commit/49c18e7f699c71ef16aebacf8aeca38e174d1839"
+              }
+            ],
+            "fixed": [
+              {
+                "text": "add missing svg attributes",
+                "scope": "ocean-icons-react",
+                "url": "https://github.com/Pagnet/ocean-icons/commit/2c901eb2772b31a3a6208b192028dbc526ca7bc4"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        }
+      ]
+    },
+    "ios": {
+      "repo": "ocean-ios",
+      "url": "https://github.com/ocean-ds/ocean-ios/releases",
+      "status": "ok",
+      "releases": [
+        {
+          "version": "3.10.1738",
+          "date": "2026-11-12T09:58:22Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.10.1738",
+          "groups": {
+            "added": [
+              {
+                "text": "appearance translucent (MR-944)",
+                "pr": 734,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/734",
+                "scope": "tag"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.10.1735",
+          "date": "2026-11-10T19:11:05Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.10.1735",
+          "groups": {
+            "added": [
+              {
+                "text": "FilterBar com SegmentedControl opcional (SwiftUI)",
+                "pr": 729,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/729"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.10.0732",
+          "date": "2026-11-06T19:21:41Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.10.0732",
+          "groups": {
+            "added": [
+              {
+                "text": "add SegmentedControl (SwiftUI)",
+                "pr": 727,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/727"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2731",
+          "date": "2026-10-30T18:52:09Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2731",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "align SwiftUI Tab and ScrollableTab with Figma",
+                "pr": 724,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/724",
+                "scope": "tab"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2725",
+          "date": "2026-10-27T18:03:53Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2725",
+          "groups": {
+            "added": [
+              {
+                "text": "MR-929 slot de view no ícone e limite de linhas opt-in no Shortcut; slot de view no TextListItem (SwiftUI)",
+                "pr": 718,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/718"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2724",
+          "date": "2026-10-14T21:00:42Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2724",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-915: desenho atual do Figma nos Blu Icons e 35 ícones que faltavam",
+                "pr": 715,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/715"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2723",
+          "date": "2026-10-14T19:22:17Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2723",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-915: entrada para ícones de fora do Ocean (iconProvider)",
+                "pr": 717,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/717"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2722",
+          "date": "2026-10-14T17:53:53Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2722",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-908: linhas do Transaction Footer 2.0 usam a Transaction List Read Only",
+                "pr": 716,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/716"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2721",
+          "date": "2026-10-14T14:39:46Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2721",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-908: Adiciona o Transaction Footer 2.0 (.v2) e marca o 1.0 como deprecated",
+                "pr": 714,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/714"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2720",
+          "date": "2026-10-09T17:03:02Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2720",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-615: Família Transaction List no SwiftUI",
+                "pr": 713,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/713"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2719",
+          "date": "2026-09-24T15:20:45Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2719",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-836: Tag highlight em ExtraBold (800)",
+                "pr": 712,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/712"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2718",
+          "date": "2026-09-23T19:42:17Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2718",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-836: Tag complementary em colorComplementaryDeep e highlight medium em Bold",
+                "pr": 711,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/711"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2717",
+          "date": "2026-09-21T12:48:14Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2717",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "highlightNeutral volta a colorBrandPrimaryDown (MR-802)",
+                "pr": 710,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/710",
+                "scope": "tag"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2716",
+          "date": "2026-09-18T13:56:02Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2716",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-802: Tag resolve tipografia pelo size e highlightNeutral usa colorBrandPrimaryPure",
+                "pr": 709,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/709"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.2715",
+          "date": "2026-09-15T16:37:54Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2715",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "compila o Icon.xcassets do OceanComponents",
+                "pr": 708,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/708",
+                "scope": "resources"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2714",
+          "date": "2026-09-04T13:56:23Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2714",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "lay the item row out as a two-column grid",
+                "pr": 706,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/706",
+                "scope": "inline-text-list-item"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2713",
+          "date": "2026-08-27T17:35:53Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2713",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "toque no item bloqueado por opt-in e cadeado vencendo tag/badge",
+                "pr": 703,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/703",
+                "scope": "shortcut"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2712",
+          "date": "2026-08-04T19:05:04Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2712",
+          "groups": {
+            "added": [
+              {
+                "text": "adiciona leadingIcon ao StatusListItem SwiftUI",
+                "pr": 702,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/702",
+                "scope": "status-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.2711",
+          "date": "2026-07-28T09:46:34Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.2711",
+          "groups": {
+            "added": [
+              {
+                "text": "adiciona .above e .below ao tagPosition",
+                "pr": 699,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/699",
+                "scope": "card-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1709",
+          "date": "2026-06-30T20:33:33Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1709",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "alinha tipografia iOS ao Figma (Nunito Sans + ExtraBold + subtitles + eyebrow) [MR-491]",
+                "pr": 697,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/697"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1706",
+          "date": "2026-06-19T13:10:43Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1706",
+          "groups": {
+            "added": [
+              {
+                "text": "add disabled state to OceanSwiftUI.Switch",
+                "pr": 692,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/692",
+                "scope": "switch"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1704",
+          "date": "2026-05-25T12:50:10Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1704",
+          "groups": {
+            "added": [
+              {
+                "text": "hide header when all header fields are empty",
+                "pr": 687,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/687",
+                "scope": "card-group"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1703",
+          "date": "2026-05-19T20:37:18Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1703",
+          "groups": {
+            "added": [
+              {
+                "text": "add cornerTag prop for Highlight Corner Tag (MR-490)",
+                "pr": 685,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/685",
+                "scope": "card-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1702",
+          "date": "2026-04-30T13:12:17Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1702",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "align label spacing with Android (BAN-57)",
+                "pr": 684,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/684",
+                "scope": "transaction-list-item"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1701",
+          "date": "2026-04-22T20:24:36Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1701",
+          "groups": {
+            "added": [
+              {
+                "text": "add OceanSwiftUI.TextListReadOnly composite",
+                "pr": 682,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/682",
+                "scope": "text-list-read-only"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1700",
+          "date": "2026-03-26T21:08:37Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1700",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-transaction-list-item-with-colors",
+                "pr": 677,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/677"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1699",
+          "date": "2026-03-20T21:10:38Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1699",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/Improvements-in-ViewController-of-CardListItem",
+                "pr": 675,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/675"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1698",
+          "date": "2026-03-20T13:16:26Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1698",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-transaction-list-item",
+                "pr": 674,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/674"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1697",
+          "date": "2026-03-19T18:16:01Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1697",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feat/Add highlightCaptionColor in CardListItem",
+                "pr": 673,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/673"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1696",
+          "date": "2026-03-16T14:22:45Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1696",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/ Update CardListItem",
+                "pr": 672,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/672"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1695",
+          "date": "2026-03-12T13:14:46Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1695",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/datepicker-month-capitalization",
+                "pr": 671,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/671"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1694",
+          "date": "2026-03-12T12:48:28Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1694",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "fix transaction footer",
+                "pr": 670,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/670"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1693",
+          "date": "2026-03-11T19:39:27Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1693",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Hotfix/fix transaction list tag",
+                "pr": 669,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/669"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1692",
+          "date": "2026-03-06T21:03:24Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1692",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-transaction-list-expandable",
+                "pr": 668,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/668"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1691",
+          "date": "2026-03-06T14:19:34Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1691",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Fix/datepicker tooltip current day",
+                "pr": 667,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/667"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1690",
+          "date": "2026-03-04T19:41:26Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1690",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-transaction-list-item-divider",
+                "pr": 666,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/666"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1689",
+          "date": "2026-03-04T16:48:06Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1689",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-transaction-list-expandable",
+                "pr": 665,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/665"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1688",
+          "date": "2026-03-03T20:55:47Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1688",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/add transaction list expandable",
+                "pr": 664,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/664"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1687",
+          "date": "2026-03-03T14:18:47Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1687",
+          "groups": {
+            "added": [
+              {
+                "text": "enhance DatePicker with tooltip",
+                "pr": 663,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/663"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1686",
+          "date": "2026-02-27T21:16:18Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1686",
+          "groups": {
+            "added": [
+              {
+                "text": "add caption in the transaction footer component item",
+                "pr": 661,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/661"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1685",
+          "date": "2026-02-24T16:50:58Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1685",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-navigation-bar-when-topviewcontroller-is-self",
+                "pr": 660,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/660"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1684",
+          "date": "2026-02-11T16:08:38Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1684",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Hotfix/fix padding and corner radius modal",
+                "pr": 658,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/658"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1683",
+          "date": "2026-02-11T12:29:37Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1683",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-spacing-filter-bar",
+                "pr": 657,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/657"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1682",
+          "date": "2026-02-10T12:56:15Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1682",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-leading-image-with-color",
+                "pr": 656,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/656"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1681",
+          "date": "2026-02-10T12:03:03Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1681",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/add-badge-and-action-inverted-textlist",
+                "pr": 655,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/655"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1680",
+          "date": "2026-02-06T12:12:34Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1680",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Fix/Background color when button hug is pressed",
+                "pr": 654,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/654"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1679",
+          "date": "2026-02-04T19:29:48Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1679",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Update/Add mode in button",
+                "pr": 652,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/652"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1678",
+          "date": "2026-02-04T14:38:19Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1678",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/add-badge-textlist",
+                "pr": 653,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/653"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1677",
+          "date": "2026-01-28T18:04:33Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1677",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/add-new-button-variant",
+                "pr": 651,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/651"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1676",
+          "date": "2026-01-28T12:31:23Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1676",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "add new icons and remove wave icon",
+                "pr": 649,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/649"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1675",
+          "date": "2026-01-27T21:01:38Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1675",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-text-area-padding",
+                "pr": 650,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/650"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1674",
+          "date": "2026-01-23T14:43:36Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1674",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feat/npm and yarn/lodash 4.17.23",
+                "pr": 648,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/648"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1673",
+          "date": "2026-01-22T18:10:54Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1673",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/add-not-dismiss",
+                "pr": 647,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/647"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1672",
+          "date": "2026-01-19T13:10:43Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1672",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-card-cta",
+                "pr": 645,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/645"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1671",
+          "date": "2026-01-15T20:23:58Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1671",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/test-deploy",
+                "pr": 644,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/644"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1670",
+          "date": "2026-01-15T18:47:58Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1670",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-card-cta",
+                "pr": 643,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/643"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1669",
+          "date": "2025-12-30T14:40:52Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1669",
+          "groups": {
+            "added": [
+              {
+                "text": "handle symbol fs",
+                "pr": 642,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/642"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1668",
+          "date": "2025-12-30T11:57:57Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1668",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-card-list-item",
+                "pr": 641,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/641"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1667",
+          "date": "2025-12-29T12:50:06Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1667",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feat/Update CardGroup + Alert + Brands",
+                "pr": 640,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/640"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1666",
+          "date": "2025-12-19T20:21:36Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1666",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "typography",
+                "pr": 639,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/639"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1665",
+          "date": "2025-12-19T14:52:58Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1665",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-text-list-item-padding",
+                "pr": 638,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/638"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1664",
+          "date": "2025-12-18T20:18:07Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1664",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-hide-if-spacing",
+                "pr": 637,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/637"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1663",
+          "date": "2025-12-18T19:32:52Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1663",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Hotfix/fix adjusts button and textlist",
+                "pr": 636,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/636"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1662",
+          "date": "2025-12-15T20:31:52Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1662",
+          "groups": {
+            "added": [
+              {
+                "text": "add icon and fix card list item border radius",
+                "pr": 635,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/635"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1661",
+          "date": "2025-12-12T13:13:35Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1661",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feature/add-icons",
+                "pr": 634,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/634"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1660",
+          "date": "2025-12-04T20:59:12Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1660",
+          "groups": {
+            "added": [
+              {
+                "text": "update card list item",
+                "pr": 633,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/633"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1659",
+          "date": "2025-12-02T20:27:49Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1659",
+          "groups": {
+            "added": [
+              {
+                "text": "change color default, add border focused, add caption is bold",
+                "pr": 632,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/632"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1658",
+          "date": "2025-11-27T13:02:07Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1658",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Hotfix/fix add release",
+                "pr": 631,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/631"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1",
+          "date": "2025-11-27T12:35:09Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-add-release",
+                "pr": 630,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/630"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1$GITHUB_RUN_NUMBER",
+          "date": "2025-11-26T21:39:45Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1%24GITHUB_RUN_NUMBER",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "chore/update-xcode",
+                "pr": 629,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/629"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1655",
+          "date": "2025-11-26T12:08:37Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1655",
+          "groups": {
+            "added": [
+              {
+                "text": "adjusts in icons and add icon qr code",
+                "pr": 628,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/628"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1654",
+          "date": "2025-11-18T17:34:42Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1654",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feat/modal with swiftui",
+                "pr": 627,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/627"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1653",
+          "date": "2025-11-17T18:40:17Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1653",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/text-list-update",
+                "pr": 626,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/626"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1652",
+          "date": "2025-11-14T20:14:35Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1652",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "visibility hideIf",
+                "pr": 625,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/625"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1651",
+          "date": "2025-11-14T19:21:55Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1651",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "CardBalance",
+                "pr": 624,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/624"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1650",
+          "date": "2025-11-14T16:51:07Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1650",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Fix/CardBalance change type items",
+                "pr": 623,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/623"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1649",
+          "date": "2025-11-13T19:23:03Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1649",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/APP-8311 Update CardBalance",
+                "pr": 622,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/622"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1648",
+          "date": "2025-11-10T16:55:37Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1648",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/add title modal filter bar",
+                "pr": 621,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/621"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1644",
+          "date": "2025-11-06T13:20:47Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1644",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/modal-add-identifier-close",
+                "pr": 617,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/617"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1643",
+          "date": "2025-11-05T12:39:51Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1643",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "Alignment highlightCaption",
+                "pr": 616,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/616"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1642",
+          "date": "2025-11-05T12:36:22Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1642",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/inverted-text-list-image-url",
+                "pr": 615,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/615"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1640",
+          "date": "2025-10-27T19:36:26Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1640",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "fix skeleton state",
+                "pr": 613,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/613"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1639",
+          "date": "2025-10-23T20:28:52Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1639",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Fix/card balance",
+                "pr": 612,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/612"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1638",
+          "date": "2025-10-22T13:24:59Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1638",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "remove spacer + renderingMode InvertedTextListItem",
+                "pr": 610,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/610"
+              },
+              {
+                "text": "remove caracter",
+                "pr": 611,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/611"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1636",
+          "date": "2025-10-21T19:38:25Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1636",
+          "groups": {
+            "added": [
+              {
+                "text": "Add onTapGesture when card disable",
+                "pr": 609,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/609"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "3.8.1635",
+          "date": "2025-10-16T14:22:47Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1635",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/App-8187 update CardGroup + CardCTA + Inverted TextListItem + Tag",
+                "pr": 608,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/608"
+              }
+            ]
+          }
+        },
+        {
+          "version": "3.8.1634",
+          "date": "2025-10-10T12:27:33Z",
+          "url": "https://github.com/ocean-ds/ocean-ios/releases/tag/3.8.1634",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/add card balance",
+                "pr": 607,
+                "url": "https://github.com/ocean-ds/ocean-ios/pull/607"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "android": {
+      "repo": "ocean-android",
+      "url": "https://github.com/ocean-ds/ocean-android/releases",
+      "status": "ok",
+      "releases": [
+        {
+          "version": "v3.10.1-1003",
+          "date": "2026-11-11T19:18:59Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.1-1003",
+          "groups": {
+            "added": [
+              {
+                "text": "appearance translucent (MR-937)",
+                "pr": 1118,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1118",
+                "scope": "tag"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.10.1-1002",
+          "date": "2026-11-10T17:40:43Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.1-1002",
+          "groups": {
+            "added": [
+              {
+                "text": "Segmented Control opcional no OceanFilterBar (Compose)",
+                "pr": 1135,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1135"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.10.0-1001",
+          "date": "2026-11-06T19:23:59Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.0-1001",
+          "groups": {
+            "added": [
+              {
+                "text": "add OceanSegmentedControl (Compose)",
+                "pr": 1134,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1134"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.9.0-1000",
+          "date": "2026-11-04T13:04:40Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.9.0-1000",
+          "groups": {
+            "added": [
+              {
+                "text": "add OceanBorderWidth and OceanOpacity compose tokens",
+                "pr": 1132,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1132",
+                "scope": "tokens"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-999",
+          "date": "2026-11-03T14:53:45Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-999",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "remember tab state in OceanScrollableTabTapTest",
+                "pr": 1133,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1133",
+                "scope": "tab"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-998",
+          "date": "2026-10-30T18:49:27Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-998",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "align Compose tabs with Figma and add demo",
+                "pr": 1130,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1130",
+                "scope": "tab"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-996",
+          "date": "2026-10-30T17:15:54Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-996",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "TCP-68: atualiza libs de terceiros",
+                "pr": 1129,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1129"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-994",
+          "date": "2026-10-29T12:42:44Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-994",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "tela do OceanDropDownMenu no app de exemplo",
+                "pr": 1127,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1127"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-988",
+          "date": "2026-10-27T18:07:10Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-988",
+          "groups": {
+            "added": [
+              {
+                "text": "MR-929 slot de conteúdo no ícone e limite de linhas opt-in no OceanShortcut; slot no OceanTextListIconItem",
+                "pr": 1119,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1119"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-987",
+          "date": "2026-10-15T14:44:06Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-987",
+          "groups": {
+            "added": [
+              {
+                "text": "MR-915 OceanIcons aceita ícones de fora do Ocean (classe aberta + provider)",
+                "pr": 1117,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1117"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-986",
+          "date": "2026-10-14T20:53:48Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-986",
+          "groups": {
+            "added": [
+              {
+                "text": "MR-915 desenho atual do Figma nos Blu Icons e ícones que faltavam",
+                "pr": 1116,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1116"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-985",
+          "date": "2026-10-14T17:53:38Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-985",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-908: linhas do Transaction Footer 2.0 usam a Transaction List Read Only",
+                "pr": 1115,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1115"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-984",
+          "date": "2026-10-14T14:53:40Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-984",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-908: Adiciona o Transaction Footer 2.0 como overload e marca o 1.0 como deprecated",
+                "pr": 1114,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1114"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-983",
+          "date": "2026-10-09T17:14:34Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-983",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-615: Adiciona família Transaction List no Compose",
+                "pr": 1113,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1113"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-982",
+          "date": "2026-10-08T13:06:06Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-982",
+          "groups": {
+            "added": [
+              {
+                "text": "align OceanBanner with Banner PRD spec",
+                "pr": 1093,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1093"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-981",
+          "date": "2026-10-01T17:07:51Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-981",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "SHOW-268: badge no título do MinimalHeader",
+                "pr": 1112,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1112"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-980",
+          "date": "2026-09-25T17:44:13Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-980",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-836: Tag Highlight em ExtraBold (800)",
+                "pr": 1111,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1111"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-979",
+          "date": "2026-09-23T19:44:44Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-979",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-836: Tag Complementary em complementaryDeep e Highlight medium em Bold",
+                "pr": 1110,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1110"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-978",
+          "date": "2026-09-21T12:49:27Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-978",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "highlight neutral volta a brandPrimaryDown (MR-802)",
+                "pr": 1109,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1109",
+                "scope": "tag"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-977",
+          "date": "2026-09-18T13:58:17Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-977",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "MR-802: Tag highlight herda tipografia do size e neutral usa brandPrimaryPure",
+                "pr": 1108,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1108"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.2-976",
+          "date": "2026-08-28T19:31:41Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-976",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "padding horizontal no conteúdo rolável (MR-693)",
+                "pr": 1107,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1107",
+                "scope": "filter-bar"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-975",
+          "date": "2026-08-27T17:37:44Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-975",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "clique no item bloqueado por opt-in e cadeado vencendo tag/badge",
+                "pr": 1106,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1106",
+                "scope": "shortcut"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-974",
+          "date": "2026-08-11T19:27:33Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-974",
+          "groups": {
+            "added": [
+              {
+                "text": "adiciona END_CENTER ao tagAlignment",
+                "pr": 1105,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1105",
+                "scope": "card-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.2-973",
+          "date": "2026-08-04T18:53:42Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.2-973",
+          "groups": {
+            "added": [
+              {
+                "text": "adiciona leadingIcon ao OceanStatusListItem",
+                "pr": 1104,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1104",
+                "scope": "status-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-972",
+          "date": "2026-07-27T18:57:56Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-972",
+          "groups": {
+            "added": [
+              {
+                "text": "adiciona ABOVE e BELOW ao tagAlignment",
+                "pr": 1103,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1103",
+                "scope": "card-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-971",
+          "date": "2026-07-06T18:14:13Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-971",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "avoid stale index crash in auto-cycle effect",
+                "pr": 1101,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1101",
+                "scope": "OceanCarousel"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-970",
+          "date": "2026-06-30T20:15:49Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-970",
+          "groups": {
+            "added": [
+              {
+                "text": "alinha tipografia ao Figma — Compose + XML (MR-492)",
+                "pr": 1100,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1100",
+                "scope": "typography"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-968",
+          "date": "2026-06-09T19:17:10Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-968",
+          "groups": {
+            "added": [
+              {
+                "text": "add hasHorizontalPadding to OceanButton",
+                "pr": 1092,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1092",
+                "scope": "button"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-967",
+          "date": "2026-06-03T19:47:29Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-967",
+          "groups": {
+            "added": [
+              {
+                "text": "add strikethroughColor for the struck value",
+                "pr": 1091,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1091",
+                "scope": "inline-text-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-966",
+          "date": "2026-06-02T17:28:42Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-966",
+          "groups": {
+            "added": [
+              {
+                "text": "accept alphanumeric CNPJ in OceanInputType (OR-98)",
+                "pr": 1088,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1088",
+                "scope": "input"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-965",
+          "date": "2026-05-22T19:46:27Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-965",
+          "groups": {
+            "added": [
+              {
+                "text": "hide header when title is blank",
+                "pr": 1090,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1090",
+                "scope": "card-group"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-964",
+          "date": "2026-05-19T20:43:54Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-964",
+          "groups": {
+            "added": [
+              {
+                "text": "add cornerTag for Highlight Corner Tag (MR-490)",
+                "pr": 1087,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1087",
+                "scope": "card-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-963",
+          "date": "2026-05-07T20:16:30Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-963",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "align padding and title typography with Figma",
+                "pr": 1084,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1084",
+                "scope": "inline-text-list-item"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-962",
+          "date": "2026-04-30T18:32:46Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-962",
+          "groups": {
+            "added": [
+              {
+                "text": "preSelectionInputMode with ClearOnFirstInput as default",
+                "pr": 1083,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1083",
+                "scope": "currency-pinpad"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-961",
+          "date": "2026-04-29T15:57:13Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-961",
+          "groups": {
+            "added": [
+              {
+                "text": "expose items icon size and tint",
+                "pr": 1082,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1082",
+                "scope": "transaction-list-expandable"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-960",
+          "date": "2026-04-28T22:17:59Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-960",
+          "groups": {
+            "added": [
+              {
+                "text": "add OceanTextListReadOnly composite",
+                "pr": 1081,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1081",
+                "scope": "text-list-read-only"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-959",
+          "date": "2026-04-22T13:14:24Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-959",
+          "groups": {
+            "added": [
+              {
+                "text": "expose label gap parameters",
+                "pr": 1079,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1079",
+                "scope": "transaction-list-item"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-958",
+          "date": "2026-04-16T17:27:58Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-958",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "increase snackbar vertical padding from 4dp to 16dp",
+                "pr": 1077,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1077"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-957",
+          "date": "2026-03-24T20:53:54Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-957",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "update card list item brands size",
+                "pr": 1075,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1075"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-956",
+          "date": "2026-03-16T22:24:45Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-956",
+          "groups": {
+            "added": [
+              {
+                "text": "add brands prop in CardListItem",
+                "pr": 1074,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1074"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-955",
+          "date": "2026-03-13T16:25:54Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-955",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-ocean-transaction-list-item",
+                "pr": 1073,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1073"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-954",
+          "date": "2026-03-11T11:56:41Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-954",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "DatePicker with Ocean standard  + CardItem Inverted fix",
+                "pr": 1070,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1070"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-953",
+          "date": "2026-03-10T20:07:34Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-953",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-tag-fromstring",
+                "pr": 1071,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1071"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-952",
+          "date": "2026-03-10T18:39:39Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-952",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feature/transaction-list-with-tag",
+                "pr": 1069,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1069"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-951",
+          "date": "2026-03-09T19:07:05Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-951",
+          "groups": {
+            "added": [
+              {
+                "text": "Add Position Tag in OceanShortcut",
+                "pr": 1068,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1068"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-950",
+          "date": "2026-03-09T16:41:38Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-950",
+          "groups": {
+            "added": [
+              {
+                "text": "CardGroup without CTA",
+                "pr": 1067,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1067"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-949",
+          "date": "2026-03-06T19:01:52Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-949",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feature/add-icons",
+                "pr": 1066,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1066"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-948",
+          "date": "2026-03-06T17:56:35Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-948",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-transaction-list-expandable",
+                "pr": 1065,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1065"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-947",
+          "date": "2026-03-06T13:22:22Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-947",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/add transaction list expandable",
+                "pr": 1064,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1064"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-946",
+          "date": "2026-03-04T18:58:02Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-946",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Adjust Visibility + Unify Rules for DatePicker",
+                "pr": 1063,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1063"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-945",
+          "date": "2026-03-04T17:15:09Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-945",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Show Tooltip On Open in DatePicker",
+                "pr": 1062,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1062"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-944",
+          "date": "2026-03-04T14:17:22Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-944",
+          "groups": {
+            "added": [
+              {
+                "text": "DatePicker Tooltip",
+                "pr": 1061,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1061"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-943",
+          "date": "2026-03-02T12:20:35Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-943",
+          "groups": {
+            "added": [
+              {
+                "text": "OceanTransactionFooter with Caption",
+                "pr": 1058,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1058"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-942",
+          "date": "2026-02-20T17:05:56Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-942",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-ocean-banner",
+                "pr": 1057,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1057"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-940",
+          "date": "2026-02-10T18:13:03Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-940",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-ocean-text-list-item",
+                "pr": 1056,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1056"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-939",
+          "date": "2026-02-09T19:57:32Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-939",
+          "groups": {
+            "added": [
+              {
+                "text": "OceanBottomSheet with custom buttons",
+                "pr": 1055,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1055"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-937",
+          "date": "2026-02-03T14:38:29Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-937",
+          "groups": {
+            "added": [
+              {
+                "text": "add tertiary, critical and warning variants to OceanHeader component",
+                "pr": 1051,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1051"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-936",
+          "date": "2026-02-03T12:14:20Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-936",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "add composable interactive preview for button component",
+                "pr": 1050,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1050"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-935",
+          "date": "2026-02-02T14:25:59Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-935",
+          "groups": {
+            "added": [
+              {
+                "text": "Add Badge + Tint Icon in OceanTextListItem",
+                "pr": 1049,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1049"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-934",
+          "date": "2026-01-30T12:33:08Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-934",
+          "groups": {
+            "added": [
+              {
+                "text": "new button variants",
+                "pr": 1046,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1046"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-933",
+          "date": "2026-01-27T12:01:51Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-933",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Adjust CTA Button Style from OceanBanner Warning Style",
+                "pr": 1042,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1042"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-932",
+          "date": "2026-01-23T21:34:31Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-932",
+          "groups": {
+            "added": [
+              {
+                "text": "Add Warning Style to OceanBanner",
+                "pr": 1040,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1040"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-931",
+          "date": "2026-01-23T18:01:22Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-931",
+          "groups": {
+            "added": [
+              {
+                "text": "Allow Disabled Click in OceanTextListItem",
+                "pr": 1039,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1039"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-930",
+          "date": "2026-01-23T17:51:30Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-930",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "chore/update libs",
+                "pr": 1038,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1038"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-929",
+          "date": "2026-01-21T22:25:25Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-929",
+          "groups": {
+            "added": [
+              {
+                "text": "create OceanBanner component",
+                "pr": 1036,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1036"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-927",
+          "date": "2026-01-20T12:44:24Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-927",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "Adjust Mask for installmentsPinPad",
+                "pr": 1031,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1031"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-926",
+          "date": "2026-01-19T20:57:29Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-926",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "cardgroup storybook",
+                "pr": 1033,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1033"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-925",
+          "date": "2026-01-19T19:24:58Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-925",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "add new previews to card group",
+                "pr": 1032,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1032"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-923",
+          "date": "2026-01-13T18:33:44Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-923",
+          "groups": {
+            "added": [
+              {
+                "text": "Add TopBar Style Alternative",
+                "pr": 1027,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1027"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-922",
+          "date": "2026-01-12T15:36:33Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-922",
+          "groups": {
+            "added": [
+              {
+                "text": "add alert to card group",
+                "pr": 1026,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1026"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-921",
+          "date": "2026-01-12T13:28:38Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-921",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Fix/front 8549 layout issues",
+                "pr": 1025,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1025"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-920",
+          "date": "2025-12-29T18:33:26Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-920",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "fix card click and icon spacing",
+                "pr": 1021,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1021"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-919",
+          "date": "2025-12-22T17:23:29Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-919",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/add-testTag-in-icon",
+                "pr": 1017,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1017"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-918",
+          "date": "2025-12-22T12:45:09Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-918",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "review issues",
+                "pr": 1016,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1016"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-917",
+          "date": "2025-12-19T17:01:59Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-917",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-text-list-item-padding",
+                "pr": 1014,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1014"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-916",
+          "date": "2025-12-19T14:03:21Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-916",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "hotfix/fix-text-list-item-padding",
+                "pr": 1013,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1013"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-915",
+          "date": "2025-12-11T20:52:02Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-915",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feature/add icons",
+                "pr": 1008,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1008"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-914",
+          "date": "2025-12-09T22:50:08Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-914",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Adjust installments pinpad package",
+                "pr": 1006,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1006"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-913",
+          "date": "2025-12-09T19:57:55Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-913",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "feat/add-icon",
+                "pr": 1005,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1005"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-912",
+          "date": "2025-12-09T19:07:26Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-912",
+          "groups": {
+            "added": [
+              {
+                "text": "Add OceanInstallmentsPinPadHandler",
+                "pr": 1004,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1004"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-911",
+          "date": "2025-12-08T20:41:04Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-911",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "Fix enabled input leading icon color",
+                "pr": 1003,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1003"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-910",
+          "date": "2025-12-08T19:55:55Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-910",
+          "groups": {
+            "added": [
+              {
+                "text": "add new tag alignment parameter",
+                "pr": 1002,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1002"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-909",
+          "date": "2025-12-08T13:27:08Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-909",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "add default value to alignment parameter",
+                "pr": 1001,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1001"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-908",
+          "date": "2025-12-08T12:52:25Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-908",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "callout list divider and alignment",
+                "pr": 1000,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1000"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-907",
+          "date": "2025-12-04T15:41:43Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-907",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Fix composable undismissable bottom sheet",
+                "pr": 999,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/999"
+              }
+            ]
+          }
+        },
+        {
+          "version": "v3.8.1-906",
+          "date": "2025-12-03T14:04:08Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-906",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "Update shortcut vertical spacing",
+                "pr": 996,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/996"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-905",
+          "date": "2025-12-02T15:16:31Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-905",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "Add custom horizontal padding for TextListItem",
+                "pr": 995,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/995"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-904",
+          "date": "2025-12-01T17:29:45Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-904",
+          "groups": {
+            "added": [],
+            "fixed": [
+              {
+                "text": "Adjust TextListItem divider + InputSearch with clear",
+                "pr": 993,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/993"
+              }
+            ],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
+          "version": "v3.8.1-903",
+          "date": "2025-12-01T13:06:44Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-903",
+          "groups": {
+            "added": [],
+            "fixed": [],
+            "removed": [],
+            "other": [
+              {
+                "text": "Feat/header variant",
+                "pr": 994,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/994"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "failures": []
+}
