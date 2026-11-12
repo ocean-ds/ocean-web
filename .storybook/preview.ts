@@ -66,6 +66,7 @@ export const parameters = {
         'Usage',
         'Welcome',
         'First Steps',
+        'Release note & changelog',
         'Components',
         [
           'Data Display',

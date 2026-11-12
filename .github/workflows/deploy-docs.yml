@@ -28,6 +28,12 @@ jobs:
     name: Build and Deploy Documentation
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    # One publish to gh-pages at a time: this job, Site and Release
+    # notes share the queue and wait for each other.
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+      queue: max
     permissions:
       pages: write
       id-token: write
@@ -48,12 +54,15 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # Build todos os pacotes
+      # Build todos os pacotes. O build do Storybook também gera os dados da página de
+      # release note; se o GitHub não responder, publica assim mesmo e a página mostra um aviso.
       - name: Build all packages
         run: |
           yarn build:libs
           yarn build:storybook
           yarn build:docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Prepara o diretório de deploy
       - name: Prepare deployment directory

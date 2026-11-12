@@ -1,0 +1,85 @@
+name: Release notes
+
+# Every hour, copies the GitHub Releases of ocean-web, ocean-tokens, ocean-icons, ocean-ios
+# and ocean-android into the published Storybook (the "Release note & changelog" page).
+#
+# What it touches: only `release-notes/release-notes.json` on the `gh-pages` branch.
+# What it never touches: `master`, `next`, tags, npm or GitHub Releases. With no push to
+# master/next, the CD workflow (lerna publish) never runs, so no Ocean version comes out of
+# it. `gh-pages` holds no workflows, so the push there starts nothing either.
+#
+# If any of the five repositories cannot be read, the script stops before writing, nothing
+# is published and the page online stays as it was.
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.repository == 'ocean-ds/ocean-web'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Same queue as the other jobs that publish to gh-pages (Site and Deploy Ocean
+    # Documentation): one at a time, the others wait their turn.
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - name: Checkout the script (master)
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          path: source
+          persist-credentials: false
+
+      - name: Checkout the published site (gh-pages)
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+          fetch-depth: 1
+          # Same token the Site workflow uses to publish, so GitHub Pages rebuilds the site.
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Use Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Read the release notes (stops here if any repository fails)
+        run: node source/scripts/fetch-release-notes.js --strict --out "$RUNNER_TEMP/release-notes.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compare with the published notes
+        id: compare
+        run: |
+          node -e '
+            const fs = require("fs");
+            const read = (file) => {
+              try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return null; }
+            };
+            const fresh = read(process.argv[1]);
+            const live = read(process.argv[2]);
+            const same = live && JSON.stringify(live.repos) === JSON.stringify(fresh.repos);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `changed=${same ? "false" : "true"}\n`);
+            console.log(same ? "No new release notes." : "New release notes to publish.");
+          ' "$RUNNER_TEMP/release-notes.json" site/release-notes/release-notes.json
+
+      - name: Publish to gh-pages
+        if: steps.compare.outputs.changed == 'true'
+        working-directory: site
+        run: |
+          mkdir -p release-notes
+          cp "$RUNNER_TEMP/release-notes.json" release-notes/release-notes.json
+          git config user.name "Blu Release Bot"
+          git config user.email "devs@useblu.com.br"
+          git add release-notes/release-notes.json
+          git commit -m "docs: update release notes"
+          git push origin HEAD:gh-pages

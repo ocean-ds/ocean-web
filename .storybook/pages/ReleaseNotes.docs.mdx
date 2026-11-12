@@ -1,0 +1,11 @@
+import { Meta } from '@storybook/blocks';
+import { ReleaseNotesPage } from '../docs-blocks/release-notes/ReleaseNotesPage';
+
+{/* Content changes every hour: kept out of the Chromatic visual tests. */}
+
+<Meta
+  title="Release note & changelog"
+  parameters={{ chromatic: { disableSnapshot: true } }}
+/>
+
+<ReleaseNotesPage />
