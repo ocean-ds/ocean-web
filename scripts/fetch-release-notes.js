@@ -21,8 +21,8 @@
  * Options: `--out <file>` writes somewhere else. `GITHUB_TOKEN` (or `GH_TOKEN`), when set,
  * authenticates the requests.
  */
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const OWNER = 'ocean-ds';
 const PER_PAGE = 100;
@@ -110,9 +110,9 @@ const parseChangelog = (body, repo) => {
   const groups = emptyGroups();
   let group = null;
   body.split(/\r?\n/).forEach((line) => {
-    const heading = line.match(/^#{3,4}\s+(.+?)\s*$/);
+    const heading = line.match(/^#{3,4}\s(.*)$/);
     if (heading) {
-      group = CHANGELOG_SECTIONS[heading[1].toLowerCase()] ?? null;
+      group = CHANGELOG_SECTIONS[heading[1].trim().toLowerCase()] ?? null;
       return;
     }
     if (/^#{1,2}\s/.test(line)) {
@@ -126,13 +126,17 @@ const parseChangelog = (body, repo) => {
   return groups;
 };
 
-const CONVENTIONAL_TITLE = /^(\w+)(?:\(([^)]*)\))?(!)?:\s*(.+)$/;
+// `type(scope)!: text`. The text is trimmed afterwards, so the pattern never backtracks.
+const CONVENTIONAL_TITLE = /^(\w+)(?:\(([^)]*)\))?(!)?:(.*)$/;
 
 /** Group of a pull request title, or null when the line is hidden. */
 const classifyTitle = (title) => {
   const match = title.match(CONVENTIONAL_TITLE);
-  if (!match) return isHidden(title) ? null : { group: 'other', text: title };
-  const [, rawType, scope, bang, text] = match;
+  const text = match ? match[4].trim() : '';
+  if (!match || !text) {
+    return isHidden(title) ? null : { group: 'other', text: title };
+  }
+  const [, rawType, scope, bang] = match;
   const type = rawType.toLowerCase();
   if (isHidden(text)) return null;
   if (bang || /BREAKING CHANGE/.test(title))
@@ -141,6 +145,27 @@ const classifyTitle = (title) => {
   if (type === 'fix' || type === 'perf') return { group: 'fixed', text, scope };
   if (HIDDEN_TYPES.has(type)) return null;
   return { group: 'other', text, scope };
+};
+
+const PULL_URL = /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/pull\/(\d+)$/;
+
+/**
+ * Line of the GitHub notes: `* title by @user in <pull url>`. Split by its fixed markers
+ * (no backtracking regular expression); null when the line has another shape.
+ */
+const parseGeneratedLine = (line) => {
+  const bullet = line.trimStart();
+  if (!bullet.startsWith('* ') && !bullet.startsWith('- ')) return null;
+  const rest = bullet.slice(2).trimEnd();
+  const inAt = rest.lastIndexOf(' in ');
+  const byAt = rest.lastIndexOf(' by @', inAt);
+  if (inAt < 0 || byAt < 0) return null;
+  const url = rest.slice(inAt + 4).trim();
+  const pull = url.match(PULL_URL);
+  const title = rest.slice(0, byAt).trim();
+  const author = rest.slice(byAt + 5, inAt).trim();
+  if (!pull || !title || !author || author.includes(' ')) return null;
+  return { title, author, url, number: pull[1] };
 };
 
 /** Notes written by GitHub (`generateReleaseNotes`): `* title by @user in <pull url>`. */
@@ -153,14 +178,12 @@ const parseGenerated = (body) => {
       return;
     }
     if (!inChanges) return;
-    const match = line.match(
-      /^\s*[*-]\s+(.+?)\s+by\s+@(\S+)\s+in\s+(https:\/\/github\.com\/\S+\/pull\/(\d+))\s*$/
-    );
-    if (!match) return;
-    const [, title, author, url, number] = match;
+    const entry = parseGeneratedLine(line);
+    if (!entry) return;
+    const { title, author, url, number } = entry;
     // Dependency updates opened by bots carry no change of the components.
-    if (/^dependabot|^renovate/i.test(author)) return;
-    const classified = classifyTitle(title.trim());
+    if (/^(dependabot|renovate)/i.test(author)) return;
+    const classified = classifyTitle(title);
     if (!classified) return;
     const change = { text: classified.text, pr: Number(number), url };
     if (classified.scope) change.scope = classified.scope;
@@ -302,6 +325,12 @@ const main = async () => {
   }
 };
 
-if (require.main === module) main();
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(`[release-notes] ${error.message}`);
+    // Only the hourly workflow (strict) fails; the Storybook build always goes on.
+    process.exitCode = process.argv.includes('--strict') ? 1 : 0;
+  });
+}
 
 module.exports = { parseChangelog, parseGenerated, classifyTitle };
