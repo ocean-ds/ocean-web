@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T20:05:15.107Z",
+  "generatedAt": "2026-11-13T01:04:12.047Z",
   "complete": true,
   "repos": {
     "web": {
@@ -4516,6 +4516,24 @@
       "status": "ok",
       "releases": [
         {
+          "version": "v3.10.1-1004",
+          "date": "2026-11-12T23:51:01Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.1-1004",
+          "groups": {
+            "added": [
+              {
+                "text": "messageFontSize e hintColor no OceanPinPad para a linha de dica/erro",
+                "pr": 1136,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1136",
+                "scope": "pinpad"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
           "version": "v3.10.1-1003",
           "date": "2026-11-11T19:18:59Z",
           "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.1-1003",
@@ -6031,23 +6049,6 @@
             ],
             "removed": [],
             "other": []
-          }
-        },
-        {
-          "version": "v3.8.1-903",
-          "date": "2025-12-01T13:06:44Z",
-          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-903",
-          "groups": {
-            "added": [],
-            "fixed": [],
-            "removed": [],
-            "other": [
-              {
-                "text": "Feat/header variant",
-                "pr": 994,
-                "url": "https://github.com/ocean-ds/ocean-android/pull/994"
-              }
-            ]
           }
         }
       ]
