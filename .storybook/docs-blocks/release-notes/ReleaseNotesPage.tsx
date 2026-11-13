@@ -1,5 +1,11 @@
 import './release-notes.scss';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Unstyled } from '@storybook/blocks';
 import Alert from '../../../packages/ocean-react/src/Alert';
 import Button from '../../../packages/ocean-react/src/Button';
@@ -10,6 +16,12 @@ import Typography from '../../../packages/ocean-react/src/Typography';
 import { OnThisPage, slug } from '../blocks';
 import { Callout } from '../doc-parts';
 import { LocaleFiles, Md, Translate, useTranslate } from '../i18n';
+import {
+  ComponentCatalog,
+  EMPTY_CATALOG,
+  componentsFor,
+  loadCatalog,
+} from './component-links';
 import en from '../locales/release-notes.en.json';
 import pt from '../locales/release-notes.pt.json';
 
@@ -92,6 +104,25 @@ const useReleaseNotes = (): LoadState => {
   return state;
 };
 
+/** Component pages of this Storybook; empty until the index loads, or if it fails. */
+const useComponentCatalog = (): ComponentCatalog => {
+  const [catalog, setCatalog] = useState(EMPTY_CATALOG);
+  useEffect(() => {
+    let active = true;
+    loadCatalog().then((loaded) => active && setCatalog(loaded));
+    return () => {
+      active = false;
+    };
+  }, []);
+  return catalog;
+};
+
+/** Catalog for the change links; empty on tabs with no component pages (tokens, icons). */
+const CatalogContext = createContext<ComponentCatalog>(EMPTY_CATALOG);
+
+/** Tabs whose changes can link to component pages. */
+const COMPONENT_PLATFORMS: Platform[] = ['web', 'ios', 'android'];
+
 const formatDate = (iso: string, t: Translate, withTime = false): string =>
   new Date(iso).toLocaleString(t.locale === 'pt' ? 'pt-BR' : 'en-US', {
     day: 'numeric',
@@ -111,20 +142,40 @@ const ChangeItem = ({
   change: Change;
   release: Release;
   t: Translate;
-}) => (
-  <li className="odoc-release__change">
-    {change.scope && <code>{change.scope}</code>}
-    <span>{change.text}</span>
-    <Link
-      href={change.url ?? release.url}
-      target="_blank"
-      rel="noreferrer"
-      className="odoc-release__pr"
-    >
-      {change.pr ? `#${change.pr}` : t('viewVersion')}
-    </Link>
-  </li>
-);
+}) => {
+  const components = componentsFor(change, useContext(CatalogContext));
+  return (
+    <li className="odoc-release__change">
+      {change.scope && <code>{change.scope}</code>}
+      <span>{change.text}</span>
+      <Link
+        href={change.url ?? release.url}
+        target="_blank"
+        rel="noreferrer"
+        className="odoc-release__pr"
+      >
+        {change.pr ? `#${change.pr}` : t('viewVersion')}
+      </Link>
+      {components.length > 0 && (
+        <span className="odoc-release__components">
+          {components.map((page, index) => (
+            <React.Fragment key={page.id}>
+              {index > 0 && <span aria-hidden> · </span>}
+              <Link
+                href={`./?path=/docs/${page.id}`}
+                target="_top"
+                variant="neutral"
+                size="tiny"
+              >
+                {t('viewComponent').replace('{name}', page.name)}
+              </Link>
+            </React.Fragment>
+          ))}
+        </span>
+      )}
+    </li>
+  );
+};
 
 const ReleaseEntry = ({
   platform,
@@ -196,10 +247,12 @@ const Warning = ({ text }: { text: string }) => (
 const PlatformPanel = ({
   platform,
   notes,
+  catalog,
   t,
 }: {
   platform: Platform;
   notes?: RepoNotes;
+  catalog: ComponentCatalog;
   t: Translate;
 }) => {
   const [shown, setShown] = useState(PAGE_SIZE);
@@ -218,7 +271,9 @@ const PlatformPanel = ({
     return <Typography variant="description">{t('empty')}</Typography>;
   }
   return (
-    <>
+    <CatalogContext.Provider
+      value={COMPONENT_PLATFORMS.includes(platform) ? catalog : EMPTY_CATALOG}
+    >
       {MOBILE.includes(platform) && <Callout text={t('mobileVersionNote')} />}
       {notes.releases.slice(0, shown).map((release) => (
         <ReleaseEntry
@@ -239,13 +294,14 @@ const PlatformPanel = ({
           </Button>
         </div>
       )}
-    </>
+    </CatalogContext.Provider>
   );
 };
 
 export const ReleaseNotesPage = (): React.ReactElement => {
   const t = useTranslate(locale);
   const state = useReleaseNotes();
+  const catalog = useComponentCatalog();
   const [selected, setSelected] = useState(0);
   const platform = PLATFORMS[selected];
   const notes =
@@ -318,6 +374,7 @@ export const ReleaseNotesPage = (): React.ReactElement => {
                 key={platform}
                 platform={platform}
                 notes={notes}
+                catalog={catalog}
                 t={t}
               />
             )}
