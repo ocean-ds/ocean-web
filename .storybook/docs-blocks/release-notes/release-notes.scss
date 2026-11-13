@@ -68,6 +68,12 @@
     white-space: nowrap;
   }
 
+  // "Ver Filter Bar · Ver Segmented Control": as discreet as "Ver no GitHub".
+  &__components {
+    color: $color-interface-dark-down;
+    font-size: $font-size-xxxs;
+  }
+
   &__alert {
     margin-bottom: $spacing-stack-md;
 

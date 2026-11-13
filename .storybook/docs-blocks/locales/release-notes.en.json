@@ -25,5 +25,6 @@
   "viewVersion": "version",
   "showMore": "Show more versions",
   "toc": "Versions on this tab",
-  "mobileVersionNote": "On iOS and Android the version number follows the version of the tokens plus a build number. It does not show how big the change is."
+  "mobileVersionNote": "On iOS and Android the version number follows the version of the tokens plus a build number. It does not show how big the change is.",
+  "viewComponent": "View {name}"
 }
