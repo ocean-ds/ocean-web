@@ -11,6 +11,8 @@ on:
       - 'packages/ocean-core/**'
       - '.github/workflows/deploy-docs.yml'
       - 'package.json'
+      - '.storybook/**'
+      - 'scripts/fetch-release-notes.js'
   pull_request:
     branches:
       - master
@@ -18,6 +20,8 @@ on:
     paths:
       - 'packages/ocean-docs/**'
       - 'packages/ocean-react/**'
+  # "Run workflow" button: runs the deploy by hand (only from master/main, see the job's `if`).
+  workflow_dispatch:
 
 concurrency:
   group: deploy-${{ github.ref_name }}
