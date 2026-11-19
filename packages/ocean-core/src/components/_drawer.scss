@@ -255,6 +255,8 @@ $drawer-dim-near: $opacity-level-medium;
 }
 
 .ods-drawer__main {
+  $bordered-lists: '.ods-list *, .ods-list-container__content--card *';
+
   flex: 1;
   padding: 0 $spacing-inline-sm;
 
@@ -272,6 +274,24 @@ $drawer-dim-near: $opacity-level-medium;
     > .ods-list-container__content__divider {
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+
+  // Bordered ancestors keep the rows' default insets without raising specificity.
+  .ods-list-container__content--text:where(#{$bordered-lists}) {
+    > .ods-list-readonly,
+    > .ods-list-action,
+    > .ods-list-settings {
+      padding-left: $spacing-inline-xs;
+      padding-right: $spacing-inline-xs;
+    }
+
+    > .ods-list-action {
+      padding-right: $spacing-inline-xxs;
+    }
+
+    > .ods-list-action:where(.ods-list-action--loading) {
+      padding-right: $spacing-inline-xs;
     }
   }
 }

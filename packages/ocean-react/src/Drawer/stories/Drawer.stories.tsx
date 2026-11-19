@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
+import { CreditCardOutline } from '@useblu/ocean-icons-react';
+import List from '../../List';
+import ListReadOnly from '../../ListReadOnly';
+import ListAction from '../../ListAction';
+import ListSettings from '../../ListSettings';
+import ListExpandable from '../../ListExpandable';
+import Tag from '../../Tag';
 import Drawer from '../Drawer';
 import SimpleDrawer from '../examples/SimpleDrawer';
 import StackedDrawers from '../examples/StackedDrawers';
@@ -66,4 +73,88 @@ export const Default: Story = {
 export const Stacked: Story = {
   parameters: { controls: { include: ['withActions'] } },
   render: ({ withActions }) => <StackedDrawers withActions={withActions} />,
+};
+
+export const ListWithBorderInsideDrawer: Story = {
+  name: 'List with border inside drawer',
+  parameters: { layout: 'fullscreen', controls: { disable: true } },
+  render: () => (
+    <Drawer
+      open
+      title="Listas na drawer"
+      onDrawerClose={() => undefined}
+      overlayClose={() => undefined}
+    >
+      <List data-testid="bordered-list">
+        <ListReadOnly
+          type="text"
+          title="Recebível"
+          icon={<CreditCardOutline />}
+          indicator={<Tag type="neutral">Pago</Tag>}
+          showDivider
+          data-testid="bordered-readonly"
+        />
+        <ListAction
+          type="text"
+          title="Ver recebível"
+          icon={<CreditCardOutline />}
+          indicator={<Tag type="neutral">Novo</Tag>}
+          actionType="chevron"
+          data-testid="bordered-action"
+        />
+        <ListSettings
+          type="text"
+          title="Notificações"
+          actionType="button"
+          buttonLabel="Alterar"
+          data-testid="bordered-settings"
+        />
+        <ListAction
+          type="text"
+          title="Carregando"
+          loading
+          data-testid="bordered-loading"
+        />
+      </List>
+      <ListExpandable title="Parcelas do crédito" defaultExpanded>
+        <ListReadOnly
+          type="text"
+          title="Parcela 1"
+          icon={<CreditCardOutline />}
+          indicator={<Tag type="neutral">Paga</Tag>}
+          showDivider
+          data-testid="expanded-readonly"
+        />
+        <ListAction
+          type="text"
+          title="Parcela 2"
+          icon={<CreditCardOutline />}
+          indicator={<Tag type="neutral">Aberta</Tag>}
+          actionType="chevron"
+          data-testid="expanded-action"
+        />
+      </ListExpandable>
+      <ListReadOnly
+        type="text"
+        title="Lista sem borda"
+        indicator={<Tag type="neutral">Livre</Tag>}
+        showDivider
+        data-testid="loose-readonly"
+      />
+      <ListExpandable type="text" title="Grupo sem borda" defaultExpanded>
+        <ListReadOnly
+          type="text"
+          title="Parcela sem borda"
+          indicator={<Tag type="neutral">Livre</Tag>}
+          data-testid="borderless-expanded-readonly"
+        />
+      </ListExpandable>
+      <ListReadOnly
+        type="card"
+        title="Item do tipo card"
+        indicator={<Tag type="neutral">Card</Tag>}
+        data-testid="card-readonly"
+      />
+    </Drawer>
+  ),
 };
