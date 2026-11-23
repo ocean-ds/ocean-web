@@ -1,0 +1,471 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import Typography from '../Typography';
+import Grid from '../Grid';
+import Button from '../Button';
+import {
+  colorInterfaceLightDown,
+  colorStatusPositivePure,
+  colorStatusPositiveUp,
+  colorStatusNegativePure,
+  colorStatusNegativeUp,
+  colorStatusWarningPure,
+  colorStatusWarningUp,
+  colorComplementaryPure,
+  colorComplementaryUp,
+  colorBrandPrimaryPure,
+  colorInterfaceDarkDown,
+  spacingInlineXs,
+  spacingInlineXxs,
+  borderRadiusSm,
+  borderWidthHairline,
+} from '@useblu/ocean-tokens/web/tokens';
+
+<Meta title="Foundation/Iconography" />
+
+# Iconografia
+
+A iconografia do Ocean Design System fornece uma linguagem visual consistente que complementa a experiência do usuário através de símbolos claros e reconhecíveis.
+
+## Princípios dos Ícones
+
+### Clareza
+
+Ícones devem ser imediatamente reconhecíveis e comunicar sua função sem ambiguidade.
+
+### Consistência
+
+Todos os ícones seguem o mesmo estilo visual, peso de linha e proporções.
+
+### Simplicidade
+
+Design minimalista que funciona em diferentes tamanhos e contextos.
+
+## Biblioteca de Ícones
+
+### Ícones de Navegação
+
+Ícones fundamentais para navegação e ações básicas do usuário.
+
+<Canvas>
+  <Story name="Navigation Icons">
+    <Grid.Container>
+      <Grid.Row>
+        <Grid.Col
+          md={2}
+          style={{
+            padding: spacingInlineXs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            textAlign: 'center',
+            marginBottom: spacingInlineXs,
+          }}
+        >
+          <div style={{ fontSize: '24px', marginBottom: spacingInlineXxs }}>
+            🏠
+          </div>
+          <Typography variant="caption">Home</Typography>
+        </Grid.Col>
+        <Grid.Col
+          md={2}
+          style={{
+            padding: spacingInlineXs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            textAlign: 'center',
+            marginBottom: spacingInlineXs,
+          }}
+        >
+          <div style={{ fontSize: '24px', marginBottom: spacingInlineXxs }}>
+            🔍
+          </div>
+          <Typography variant="caption">Search</Typography>
+        </Grid.Col>
+        <Grid.Col
+          md={2}
+          style={{
+            padding: spacingInlineXs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            textAlign: 'center',
+            marginBottom: spacingInlineXs,
+          }}
+        >
+          <div style={{ fontSize: '24px', marginBottom: spacingInlineXxs }}>
+            ☰
+          </div>
+          <Typography variant="caption">Menu</Typography>
+        </Grid.Col>
+        <Grid.Col
+          md={2}
+          style={{
+            padding: spacingInlineXs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            textAlign: 'center',
+            marginBottom: spacingInlineXs,
+          }}
+        >
+          <div style={{ fontSize: '24px', marginBottom: spacingInlineXxs }}>
+            👤
+          </div>
+          <Typography variant="caption">Profile</Typography>
+        </Grid.Col>
+        <Grid.Col
+          md={2}
+          style={{
+            padding: spacingInlineXs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            textAlign: 'center',
+            marginBottom: spacingInlineXs,
+          }}
+        >
+          <div style={{ fontSize: '24px', marginBottom: spacingInlineXxs }}>
+            ⚙️
+          </div>
+          <Typography variant="caption">Settings</Typography>
+        </Grid.Col>
+        <Grid.Col
+          md={2}
+          style={{
+            padding: spacingInlineXs,
+            border: `${borderWidthHairline} solid ${colorInterfaceLightDown}`,
+            borderRadius: borderRadiusSm,
+            textAlign: 'center',
+            marginBottom: spacingInlineXs,
+          }}
+        >
+          <div style={{ fontSize: '24px', marginBottom: spacingInlineXxs }}>
+            🚪
+          </div>
+          <Typography variant="caption">Logout</Typography>
+        </Grid.Col>
+      </Grid.Row>
+    </Grid.Container>
+  </Story>
+</Canvas>
+
+## Estados dos Ícones
+
+### Ícone de Sucesso
+
+<Canvas>
+  <Story name="Success Icon">
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: spacingInlineXs,
+        border: `${borderWidthHairline} solid ${colorStatusPositivePure}`,
+        borderRadius: borderRadiusSm,
+        backgroundColor: colorStatusPositiveUp,
+        marginBottom: spacingInlineXs,
+      }}
+    >
+      <div
+        style={{
+          fontSize: '20px',
+          marginRight: spacingInlineXxs,
+          color: colorStatusPositivePure,
+        }}
+      >
+        ✓
+      </div>
+      <Typography variant="caption" style={{ color: colorStatusPositivePure }}>
+        Operação realizada com sucesso
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+### Ícone de Erro
+
+<Canvas>
+  <Story name="Error Icon">
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: spacingInlineXs,
+        border: `${borderWidthHairline} solid ${colorStatusNegativePure}`,
+        borderRadius: borderRadiusSm,
+        backgroundColor: colorStatusNegativeUp,
+        marginBottom: spacingInlineXs,
+      }}
+    >
+      <div
+        style={{
+          fontSize: '20px',
+          marginRight: spacingInlineXxs,
+          color: colorStatusNegativePure,
+        }}
+      >
+        ✕
+      </div>
+      <Typography variant="caption" style={{ color: colorStatusNegativePure }}>
+        Erro na operação
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+### Ícone de Aviso
+
+<Canvas>
+  <Story name="Warning Icon">
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: spacingInlineXs,
+        border: `${borderWidthHairline} solid ${colorStatusWarningPure}`,
+        borderRadius: borderRadiusSm,
+        backgroundColor: colorStatusWarningUp,
+        marginBottom: spacingInlineXs,
+      }}
+    >
+      <div
+        style={{
+          fontSize: '20px',
+          marginRight: spacingInlineXxs,
+          color: colorStatusWarningPure,
+        }}
+      >
+        ⚠
+      </div>
+      <Typography variant="caption" style={{ color: colorInterfaceDarkDown }}>
+        Atenção necessária
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+### Ícone de Informação
+
+<Canvas>
+  <Story name="Info Icon">
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: spacingInlineXs,
+        border: `${borderWidthHairline} solid ${colorComplementaryPure}`,
+        borderRadius: borderRadiusSm,
+        backgroundColor: colorComplementaryUp,
+        marginBottom: spacingInlineXs,
+      }}
+    >
+      <div
+        style={{
+          fontSize: '20px',
+          marginRight: spacingInlineXxs,
+          color: colorComplementaryPure,
+        }}
+      >
+        ℹ
+      </div>
+      <Typography variant="caption" style={{ color: colorComplementaryPure }}>
+        Informação adicional
+      </Typography>
+    </div>
+  </Story>
+</Canvas>
+
+## Tamanhos de Ícones
+
+### Escala Padronizada
+
+Os ícones do Ocean seguem uma escala padronizada para garantir consistência:
+
+<Canvas>
+  <Story name="Icon Sizes">
+    <div>
+      <div
+        style={{
+          marginBottom: spacingInlineXs,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <span style={{ fontSize: '16px', marginRight: spacingInlineXs }}>
+          ⭐
+        </span>
+        <Typography variant="caption">
+          Small (16px) - Para uso em textos e botões pequenos
+        </Typography>
+      </div>
+      <div
+        style={{
+          marginBottom: spacingInlineXs,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <span style={{ fontSize: '20px', marginRight: spacingInlineXs }}>
+          ⭐
+        </span>
+        <Typography variant="caption">
+          Medium (20px) - Tamanho padrão para a maioria dos casos
+        </Typography>
+      </div>
+      <div
+        style={{
+          marginBottom: spacingInlineXs,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <span style={{ fontSize: '24px', marginRight: spacingInlineXs }}>
+          ⭐
+        </span>
+        <Typography variant="caption">
+          Large (24px) - Para cabeçalhos e destaque
+        </Typography>
+      </div>
+      <div
+        style={{
+          marginBottom: spacingInlineXs,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <span style={{ fontSize: '32px', marginRight: spacingInlineXs }}>
+          ⭐
+        </span>
+        <Typography variant="caption">
+          Extra Large (32px) - Para estados vazios e ilustrações
+        </Typography>
+      </div>
+    </div>
+  </Story>
+</Canvas>
+
+## Diretrizes de Uso
+
+### Posicionamento
+
+- **À esquerda do texto**: Para ações e navegação
+- **À direita do texto**: Para indicadores de estado ou setas
+- **Centralizado**: Para estados vazios ou ilustrações principais
+
+### Cores
+
+Os ícones devem usar as cores dos tokens do Ocean:
+
+- **Primária**: `colorBrandPrimaryPure` para ações principais
+- **Sucesso**: `colorStatusPositivePure` para confirmações
+- **Erro**: `colorStatusNegativePure` para alertas
+- **Aviso**: `colorStatusWarningPure` para cautela
+- **Neutro**: `colorInterfaceDarkDown` para ícones secundários
+
+<Canvas>
+  <Story name="Icon Colors">
+    <div
+      style={{ display: 'flex', gap: spacingInlineXs, alignItems: 'center' }}
+    >
+      <span style={{ fontSize: '24px', color: colorBrandPrimaryPure }}>★</span>
+      <span style={{ fontSize: '24px', color: colorStatusPositivePure }}>
+        ★
+      </span>
+      <span style={{ fontSize: '24px', color: colorStatusNegativePure }}>
+        ★
+      </span>
+      <span style={{ fontSize: '24px', color: colorStatusWarningPure }}>★</span>
+      <span style={{ fontSize: '24px', color: colorInterfaceDarkDown }}>★</span>
+    </div>
+  </Story>
+</Canvas>
+
+## Implementação
+
+### Em React
+
+```jsx
+import { ColorBrandPrimaryPure } from '@useblu/ocean-tokens/web/tokens';
+
+// Ícone com cor dos tokens
+const MyIcon = () => <AddIcon size={24} color={colorBrandPrimaryPure} />;
+```
+
+### Em CSS
+
+```css
+.icon {
+  color: var(--color-brand-primary-pure);
+  font-size: 24px;
+}
+
+.icon--small {
+  font-size: 16px;
+}
+.icon--medium {
+  font-size: 20px;
+}
+.icon--large {
+  font-size: 24px;
+}
+.icon--xlarge {
+  font-size: 32px;
+}
+```
+
+## Acessibilidade
+
+### Texto Alternativo
+
+Sempre forneça texto alternativo para ícones:
+
+```jsx
+<Icon aria-label="Fechar modal" />
+<Icon role="img" aria-label="Status de sucesso" />
+```
+
+### Ícones Decorativos
+
+Para ícones puramente decorativos:
+
+```jsx
+<Icon aria-hidden="true" />
+```
+
+### Contraste
+
+Verifique se os ícones atendem aos requisitos de contraste WCAG 2.1:
+
+- **Texto normal**: Contraste mínimo 4.5:1
+- **Texto grande**: Contraste mínimo 3:1
+- **Elementos gráficos**: Contraste mínimo 3:1
+
+## Melhores Práticas
+
+### ✅ Faça
+
+- Use ícones reconhecíveis universalmente
+- Mantenha consistência no estilo dos ícones
+- Combine ícones com rótulos quando necessário
+- Use cores dos tokens do Ocean
+- Teste a legibilidade em diferentes tamanhos
+
+### ❌ Evite
+
+- Usar muitos ícones diferentes em uma interface
+- Criar ícones personalizados sem necessidade
+- Usar ícones sem significado claro
+- Ignorar acessibilidade
+- Misturar estilos de ícones diferentes
+
+## Recursos
+
+### Biblioteca Recomendada
+
+Para projetos React, recomendamos:
+
+- **React Icons**: Biblioteca com ícones populares
+- **Lucide React**: Ícones modernos e consistentes
+- **Heroicons**: Ícones desenhados pelos criadores do Tailwind CSS
+
+### Ferramentas
+
+- **Figma Icons**: Para design
+- **IconBuddy**: Para busca de ícones
+- **SVGR**: Para converter SVG em componentes React
