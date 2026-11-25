@@ -40,6 +40,7 @@ type Story = StoryObj<typeof Search>;
 export const Usage: Story = {
   args: {
     placeholder: 'Buscar...',
+    defaultValue: 'Exemplo de busca',
   },
   decorators: [
     (StoryComponent: React.ComponentType): JSX.Element => (
