@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T18:16:16.779Z",
+  "generatedAt": "2026-11-26T23:50:34.919Z",
   "complete": true,
   "repos": {
     "web": {
@@ -4517,6 +4517,23 @@
       "status": "ok",
       "releases": [
         {
+          "version": "v3.10.1-1006",
+          "date": "2026-11-26T18:12:11Z",
+          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.1-1006",
+          "groups": {
+            "added": [
+              {
+                "text": "troca o ícone da InfinitePay pela logomarca",
+                "pr": 1138,
+                "url": "https://github.com/ocean-ds/ocean-android/pull/1138"
+              }
+            ],
+            "fixed": [],
+            "removed": [],
+            "other": []
+          }
+        },
+        {
           "version": "v3.10.1-1004",
           "date": "2026-11-12T23:51:01Z",
           "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.10.1-1004",
@@ -6029,23 +6046,6 @@
                 "text": "Add custom horizontal padding for TextListItem",
                 "pr": 995,
                 "url": "https://github.com/ocean-ds/ocean-android/pull/995"
-              }
-            ],
-            "removed": [],
-            "other": []
-          }
-        },
-        {
-          "version": "v3.8.1-904",
-          "date": "2025-12-01T17:29:45Z",
-          "url": "https://github.com/ocean-ds/ocean-android/releases/tag/v3.8.1-904",
-          "groups": {
-            "added": [],
-            "fixed": [
-              {
-                "text": "Adjust TextListItem divider + InputSearch with clear",
-                "pr": 993,
-                "url": "https://github.com/ocean-ds/ocean-android/pull/993"
               }
             ],
             "removed": [],
