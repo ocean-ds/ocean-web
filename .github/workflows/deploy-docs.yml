@@ -1,4 +1,4 @@
-name: Deploy Ocean Documentation
+name: Publish Storybook
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
       - master
       - main
     paths:
-      - 'packages/ocean-docs/**'
       - 'packages/ocean-react/**'
       - 'packages/ocean-core/**'
+      - '.github/pages/**'
       - '.github/workflows/deploy-docs.yml'
       - 'package.json'
       - '.storybook/**'
@@ -18,8 +18,8 @@ on:
       - master
       - main
     paths:
-      - 'packages/ocean-docs/**'
       - 'packages/ocean-react/**'
+      - '.github/pages/**'
   # "Run workflow" button: runs the deploy by hand (only from master/main, see the job's `if`).
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy Documentation
+    name: Build and Deploy Storybook
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     # One publish to gh-pages at a time: this job, Site and Release
@@ -64,7 +64,6 @@ jobs:
         run: |
           yarn build:libs
           yarn build:storybook
-          yarn build:docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -75,9 +74,7 @@ jobs:
           mkdir -p ./deploy-temp
           # Move o Storybook para a raiz
           cp -r storybook-static/* ./deploy-temp/
-          # Move o Docusaurus para /docs
-          mkdir -p ./deploy-temp/docs
-          cp -r packages/ocean-docs/build/* ./deploy-temp/docs/
+          cp -r .github/pages/* ./deploy-temp/
 
       # Deploy único para GitHub Pages
       - name: Deploy to GitHub Pages
@@ -111,14 +108,6 @@ jobs:
         run: |
           yarn build:libs
           yarn build:storybook
-          yarn build:docs
-
-      - name: Test serve documentation
-        run: |
-          cd packages/ocean-docs
-          yarn serve &
-          sleep 10
-          curl -f http://localhost:3000/ || exit 1
 
       - name: Test serve Storybook
         run: |
